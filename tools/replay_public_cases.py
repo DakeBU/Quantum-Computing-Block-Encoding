@@ -35,6 +35,11 @@ LEAN_MODULES = (
     "QuantumBlockEncoding.RobinMatrix",
     "QuantumBlockEncoding.RobinEvolution",
     "QuantumBlockEncoding.Robin.ResourceComparison",
+    "QuantumBlockEncoding.Robin.ComplexLCU",
+    "QuantumBlockEncoding.Robin.ComplexLCUProjection",
+    "QuantumBlockEncoding.Robin.Hadamard8Verified",
+    "QuantumBlockEncoding.Robin.SixSlotOptimal",
+    "QuantumBlockEncoding.Robin.SymmetryFourSlot",
 )
 
 HASHED_INPUTS = (
@@ -57,6 +62,11 @@ HASHED_INPUTS = (
     "QuantumBlockEncoding/Robin/WeightedPermutation.lean",
     "QuantumBlockEncoding/Robin/EvolvedCandidates.lean",
     "QuantumBlockEncoding/Robin/ResourceComparison.lean",
+    "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+    "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+    "QuantumBlockEncoding/Robin/Hadamard8Verified.lean",
+    "QuantumBlockEncoding/Robin/SixSlotOptimal.lean",
+    "QuantumBlockEncoding/Robin/SymmetryFourSlot.lean",
     "tools/export_robin_evolution.py",
 )
 
@@ -278,14 +288,17 @@ def main() -> None:
         },
         "cases": case_results,
         "robin": {
-            "status": "T1 exact finite structural LCU; full unitary route partial",
+            "status": "T1 exact finite structure; T2 logical-unitary route partial",
             "included_in_lean_gate": True,
             "evolution_replayed": completed_robin_cycles > 0,
             "reason": (
                 f"The audited warm run completed {completed_robin_cycles} controller "
                 "cycles and produced no verified block-encoding root or resource "
-                "point. Deterministic fixed-N structural roots were added after "
-                "the run; no resource-improvement claim is available."
+                "point. Deterministic fixed-N structural roots, a reusable complex "
+                "LCU unitary kernel, and the Hadamard-8 logical-unitary theorem were "
+                "added after the run. The specialized clean-block promotion and a "
+                "same-tier resource theorem remain open, so no resource-improvement "
+                "claim is available."
                 if robin_audit
                 else "No audited warm evolution result is available."
             ),

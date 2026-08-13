@@ -98,6 +98,11 @@ CATALOGS = [
             "Robin/WeightedPermutation.lean",
             "Robin/EvolvedCandidates.lean",
             "Robin/ResourceComparison.lean",
+            "Robin/ComplexLCU.lean",
+            "Robin/ComplexLCUProjection.lean",
+            "Robin/Hadamard8Verified.lean",
+            "Robin/SixSlotOptimal.lean",
+            "Robin/SymmetryFourSlot.lean",
         },
     ),
     (

@@ -18,8 +18,10 @@ Lean-checked quantum construction search, executable validation, and the
 - **12 August 2026.** The fixed `N=8` Robin audit now freezes `M=12A` and
   `A/(56/3)=M/224` in Lean. Five-shift, source-like seven-slot, and
   Hadamard-8 weighted-permutation decompositions compile entrywise, including
-  permutation and amplitude guards. These are exact structural certificates,
-  not yet primitive-circuit block encodings; no resource improvement is
+  permutation and amplitude guards. A reusable complex LCU kernel now proves
+  the Hadamard-8 PREPARE/amplitude/SELECT/unprepare matrix unitary and provides
+  a generic clean-entry expansion. The Robin-specific clean-block promotion
+  and same-tier resource comparison remain open; no resource improvement is
   claimed across unlike semantic tiers.
 - **12 August 2026.** The textbook track now includes complete Mathlib-backed
   Pauli X and Hadamard state-preparation certificates. The full Lean gate also
@@ -336,11 +338,14 @@ ten-block source transcript and layout guards, and indicator permutation
 certificate. It produced no verified block-encoding root or same-tier resource
 point. The subsequent deterministic repair added exact fixed-data and
 weighted-permutation structural roots, an explicit three-wire register SWAP,
-and a standard-`Ry` factor-of-two convention theorem. A deterministic exporter
-checks the corresponding finite composed matrices, but labels that evidence
-experimental until Lean connects the same PREPARE/SELECT/amplitude circuit to
-one complex-unitary clean-block theorem. Therefore no Robin resource
-improvement is claimed.
+and a standard-`Ry` factor-of-two convention theorem. It now also includes a
+reusable complex-unitary LCU kernel, a proved Hadamard-8 logical unitary, a
+generic clean-entry projection formula, four-slot symmetry-sector
+decompositions, and a six-slot cap-sum certificate. The remaining mathematical
+leaf is the Robin-specific clean-block equality and promotion into
+`VerifiedOperatorBlockEncoding`; primitive synthesis and a same-tier resource
+comparison remain separate after that. Therefore no Robin resource improvement
+is claimed.
 The complete replay contract is in
 [`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
 

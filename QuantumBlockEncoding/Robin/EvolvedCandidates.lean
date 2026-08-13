@@ -5,9 +5,11 @@ import Mathlib.Tactic
 /-!
 # Fixed Robin structural candidates
 
-These are exact clean-branch algebra certificates. They deliberately stop
-short of `VerifiedOperatorBlockEncoding`: PREPARE and coefficient rotations
-still need one common complex-unitary circuit semantics.
+These are exact clean-branch algebra certificates. The Hadamard-8 route also
+has a compiled logical complex unitary in `Hadamard8Verified`; the candidates
+still stop short of `VerifiedOperatorBlockEncoding` until that unitary is
+specialized to the Robin clean formula and refined to the repository circuit
+interface.
 -/
 
 namespace QuantumBlockEncoding.Robin
@@ -79,6 +81,6 @@ theorem warmRobinSevenSlotCleanFormula_eq_target (row column : Fin 8) :
 
 /-- Precise T2 blocker shared by the structural candidates. -/
 def warmRobinStructuralCandidateBlockedLeaf : String :=
-  "construct one complex-unitary PREPARE/SELECT/amplitude/unprepare matrix and prove its clean block is the compiled clean formula"
+  "specialize a matching complex-unitary clean-entry theorem to the compiled Robin clean formula, then refine it to the circuit certificate interface"
 
 end QuantumBlockEncoding.Robin

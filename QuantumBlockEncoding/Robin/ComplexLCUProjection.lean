@@ -103,6 +103,7 @@ theorem amplitudeLift_mul_selectorLift_clean
   rw [_root_.Matrix.mul_apply]
   simp_rw [Fintype.sum_prod_type]
   simp_rw [selectorLift_cleanColumn_apply, amplitudeLift_apply]
+  simp_rw [ite_and]
   by_cases systemMatch : systemRow = systemColumn
   · subst systemRow
     simp [Prod.mk.injEq]
@@ -164,6 +165,7 @@ theorem star_selectorLift_mul_clean
   rw [_root_.Matrix.mul_apply]
   simp_rw [star_selectorLift_cleanRow_apply]
   simp_rw [Fintype.sum_prod_type]
+  simp_rw [ite_and]
   simp
 
 /-- Exact projected clean entry of PREPARE/amplitude/SELECT/unprepare. -/

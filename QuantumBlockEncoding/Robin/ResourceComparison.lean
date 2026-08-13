@@ -9,6 +9,7 @@ namespace QuantumBlockEncoding.Robin
 inductive RobinSemanticTier where
   | paperTranscript
   | exactStructuralLCU
+  | exactLogicalUnitary
   | exactPrimitiveCircuit
 deriving Repr, DecidableEq
 
@@ -39,7 +40,7 @@ def warmRobinFiveShiftResourceRow : RobinResourceRow where
 
 def warmRobinHadamard8ResourceRow : RobinResourceRow where
   identity := "hadamard-eight-weighted-permutation"
-  tier := .exactStructuralLCU
+  tier := .exactLogicalUnitary
   convention := warmRobinPrimitiveConvention
   cost := none
   blockedLeaf := some warmRobinStructuralCandidateBlockedLeaf

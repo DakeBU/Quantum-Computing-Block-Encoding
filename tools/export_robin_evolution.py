@@ -2,8 +2,9 @@
 """Deterministic fixed-N Robin structural and executable cross-check.
 
 This exporter never promotes its floating-point circuit to a Lean certificate.
-The accepted Lean tier is read from named structural roots; executable evidence
-is reported separately until a matching complex-unitary theorem exists.
+The Hadamard-8 logical complex unitary is proved in Lean, while this dense
+executable composition remains separate until a specialized clean-block theorem
+and primitive circuit refinement connect both representations.
 """
 
 from __future__ import annotations
@@ -127,7 +128,15 @@ def full_candidate(slots: int, perm, weight, denominator: int) -> tuple[np.ndarr
     return unitary, clean
 
 
-def candidate_result(name: str, slots: int, perm, weight, denominator: int, root: str) -> dict:
+def candidate_result(
+    name: str,
+    slots: int,
+    perm,
+    weight,
+    denominator: int,
+    root: str,
+    logical_unitary_root: str | None = None,
+) -> dict:
     exact_decomposition(slots, perm, weight)
     unitary, clean = full_candidate(slots, perm, weight, denominator)
     target = np.asarray(M, dtype=float) / 224.0
@@ -142,6 +151,7 @@ def candidate_result(name: str, slots: int, perm, weight, denominator: int, root
     return {
         "identity": name,
         "leanRoot": root,
+        "leanLogicalUnitaryRoot": logical_unitary_root,
         "leanSemanticTier": "T1 exact finite structural LCU",
         "executableSemanticTier": "experimental dense composition of PREPARE, amplitude, SELECT, unprepare",
         "selectorSlots": slots,
@@ -152,7 +162,7 @@ def candidate_result(name: str, slots: int, perm, weight, denominator: int, root
         "qiskitOperatorError": qiskit_operator_error,
         "qiskitVersion": qiskit.__version__,
         "basisPermutationChecks": slots * N,
-        "promotionBlockedBy": "matching Lean complex-unitary circuit semantics and primitive synthesis",
+        "promotionBlockedBy": "Robin-specific clean-block promotion and primitive circuit refinement",
     }
 
 
@@ -169,7 +179,15 @@ def main() -> int:
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
     candidates = [
         candidate_result("five-shift-weighted-permutation", 5, five_perm, five_weight, 224 / 5, "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula_eq_target"),
-        candidate_result("hadamard-eight-weighted-permutation", 8, eight_perm, eight_weight, 28, "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target"),
+        candidate_result(
+            "hadamard-eight-weighted-permutation",
+            8,
+            eight_perm,
+            eight_weight,
+            28,
+            "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target",
+            "QuantumBlockEncoding.Robin.warmRobinHadamard8LogicalUnitary_unitary",
+        ),
     ]
     baseline = {
         "identity": "source-standard-Ry-fixed-N8",
@@ -189,7 +207,7 @@ def main() -> int:
         "target": "A=M/12; A/alpha=M/224",
         "semanticTierCompatible": False,
         "conclusion": "not yet same-tier",
-        "reason": "source is a T1 paper transcript and candidates are T1 structural LCUs; no common T3 primitive resource rows exist",
+        "reason": "source is a T1 paper transcript; the strongest candidate has a T2 logical unitary but no common T3 primitive resource rows exist",
     }
     result_root = ROOT / "experiments" / "robin-be" / "results"
     write_json(result_root / "baseline.json", baseline)
@@ -208,7 +226,7 @@ def main() -> int:
         "candidates": candidates,
     }
     write_json(ROOT / "executable-exports" / args.task / "manifest.json", manifest)
-    print(json.dumps({"passed": True, "highestTier": "T1", "comparison": comparison["conclusion"]}))
+    print(json.dumps({"passed": True, "highestTier": "T2-logical-unitary-partial", "comparison": comparison["conclusion"]}))
     return 0
 
 

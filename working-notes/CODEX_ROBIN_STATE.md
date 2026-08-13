@@ -1,11 +1,16 @@
-# CODEX ROBIN STATE
+# ROBIN PROOF STATE
 
-- Branch: `agent/robin-t2-verified`
-- Base: `main@159d2b8047707a5cbe45c8d1fa6b2a861bb278a8`
-- Baseline CI: current Robin T1 modules and exporter pass on Actions run 31617871357.
-- Current proof root: `warmRobinSymmetryPlusFourShiftDecomposition` and `warmRobinSymmetryMinusFourShiftDecomposition` pending compile.
-- Current failing leaf: no concrete complex-unitary PREPARE/amplitude/SELECT/unprepare theorem.
-- Accepted candidates: five-shift structural LCU; Hadamard-8 structural LCU; centrosymmetric four-slot sector decomposition.
-- Rejected claims: source/candidate resource dominance before same-tier primitive expansion.
-- Resource convention: logical one-qubit rotations plus CNOT; SWAP = 3 CNOT; expand PREPARE, SELECT, truth-table logic, and uncompute.
-- Next action: compile the symmetry decomposition, then add a reusable finite complex LCU semantics kernel.
+- Integration target: `main` after the Robin agent branch is audited.
+- Compiled structural roots: five-shift, source-like seven-slot, Hadamard-8,
+  centrosymmetric four-slot sectors, and the six-slot cap-sum certificate.
+- Compiled logical roots: reusable complex LCU unitarity, generic clean-entry
+  projection, and `warmRobinHadamard8LogicalUnitary_unitary`.
+- Open promotion leaf: specialize the generic projection to
+  `warmRobinHadamard8CleanFormula_eq_target`, reindex the product register into
+  the circuit interface, and construct `VerifiedOperatorBlockEncoding`.
+- Open resource leaf: expand both source and candidate under one primitive
+  convention before stating any lexicographic dominance theorem.
+- Rejected claim: the branch does not contain `warmRobinBestVerified`, a
+  same-tier strict-improvement theorem, or a T3 primitive refinement.
+- Resource convention: logical one-qubit rotations plus CNOT; SWAP = 3 CNOT;
+  expand PREPARE, SELECT, truth-table logic, and uncompute.

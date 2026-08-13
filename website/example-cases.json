@@ -90,10 +90,10 @@
       "title": "Robin boundary block encoding",
       "kind": "operatorBlockEncoding",
       "status": "partial",
-      "semanticTier": "T1 exact finite structure",
-      "leanAnchors": ["QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_eval_robinDerivativeMatrix"],
+      "semanticTier": "T1 exact finite structure; T2 logical-unitary route partial",
+      "leanAnchors": ["QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_eval_robinDerivativeMatrix", "QuantumBlockEncoding.Robin.warmRobinHadamard8LogicalUnitary_unitary", "QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"],
       "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "Fixed N=8 homogeneous-Robin fourth-order derivative matrix", "normalizer": "56/3", "projector": "clean signal index 0; system Fin 8"},
-      "summary": "The paper contract and fixed finite decomposition are formalized, while the source circuit remains below a full gate-level certificate.",
+      "summary": "The fixed finite decompositions and a Hadamard-8 logical unitary compile. The specialized clean-block promotion and primitive circuit refinement remain open.",
       "source": "Guseynov-Huang-Liu construction and ASPBE fixed-N audit",
       "contributor": "ASPBE authors",
       "limitations": "No T3 source baseline or same-tier improvement claim is currently published."

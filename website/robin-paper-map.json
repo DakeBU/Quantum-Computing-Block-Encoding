@@ -102,11 +102,16 @@
         "QuantumBlockEncoding.Robin.warmRobinFiveShiftDecomposition",
         "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula_eq_target",
         "QuantumBlockEncoding.Robin.warmRobinEightSlotDecomposition",
-        "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target"
+        "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target",
+        "QuantumBlockEncoding.Robin.warmRobinHadamard8LogicalUnitary_unitary",
+        "QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry",
+        "QuantumBlockEncoding.Robin.warmRobinSixSlotCap_sum_eq_maxColumnL1",
+        "QuantumBlockEncoding.Robin.warmRobinSymmetryPlusFourShiftDecomposition",
+        "QuantumBlockEncoding.Robin.warmRobinSymmetryMinusFourShiftDecomposition"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
-      "reading": "These are exact finite structural certificates. They are not promoted to a verified block encoding until one matching complex-unitary PREPARE/amplitude/SELECT/unprepare circuit and its primitive expansion are proved."
+      "reading": "The finite decompositions, reusable complex LCU unitary kernel, Hadamard-8 logical unitary, and generic clean-entry expansion compile. The Robin-specific clean-block equality, VerifiedOperatorBlockEncoding promotion, primitive refinement, and same-tier resource theorem remain open."
     }
   ]
 }
