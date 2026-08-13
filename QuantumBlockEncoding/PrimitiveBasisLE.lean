@@ -44,4 +44,28 @@ theorem primitiveBasisLEEquiv_six_value (bits : PrimitiveBasis 6) :
       8 * (bits 3).val + 16 * (bits 4).val + 32 * (bits 5).val := by
   native_decide +revert
 
+/-- Explicit inverse used by finite three-wire compiler proofs. -/
+def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
+  | 0 => ⟨index.val % 2, by omega⟩
+  | 1 => ⟨(index.val / 2) % 2, by omega⟩
+  | _ => ⟨(index.val / 4) % 2, by omega⟩
+
+@[simp] theorem primitiveBasisLEEquiv_three_symm (index : Fin 8) :
+    (primitiveBasisLEEquiv 3).symm index = primitiveBits3LE index := by
+  native_decide +revert
+
+def primitiveBits3LEWithout (target : Fin 3) (index : Fin 8) : Nat :=
+  match target.val with
+  | 0 => index.val / 2
+  | 1 => index.val % 2 + 2 * (index.val / 4)
+  | _ => index.val % 4
+
+@[simp] theorem splitPrimitiveWire_primitiveBits3LE_context_eq
+    (target : Fin 3) (left right : Fin 8) :
+    (splitPrimitiveWire target (primitiveBits3LE left)).2 =
+        (splitPrimitiveWire target (primitiveBits3LE right)).2 ↔
+      primitiveBits3LEWithout target left =
+        primitiveBits3LEWithout target right := by
+  native_decide +revert
+
 end QuantumBlockEncoding

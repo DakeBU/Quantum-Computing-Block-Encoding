@@ -48,6 +48,22 @@ noncomputable def controlledRyBlockMatrix {qubits controls : Nat}
     (_root_.Matrix.blockDiagonal fun context =>
       standardRyMatrix (angles (primitiveControlAssignment wires target distinct context)).eval)
 
+@[simp] theorem controlledRyBlockMatrix_apply {qubits controls : Nat}
+    (wires : Fin controls → Fin qubits) (target : Fin qubits)
+    (distinct : ∀ control, wires control ≠ target)
+    (angles : PrimitiveBasis controls → ExactAngle)
+    (row column : PrimitiveBasis qubits) :
+    controlledRyBlockMatrix wires target distinct angles row column =
+      if (splitPrimitiveWire target row).2 =
+          (splitPrimitiveWire target column).2 then
+        standardRyMatrix
+          (angles (primitiveControlAssignment wires target distinct
+            (splitPrimitiveWire target row).2)).eval
+          (row target) (column target)
+      else 0 := by
+  simp [controlledRyBlockMatrix, _root_.Matrix.blockDiagonal_apply,
+    splitPrimitiveWire]
+
 private theorem kronecker_one_eq_blockDiagonal
     {context : Type*} [Fintype context] [DecidableEq context]
     (gate : _root_.Matrix (Fin 2) (Fin 2) ℂ) :

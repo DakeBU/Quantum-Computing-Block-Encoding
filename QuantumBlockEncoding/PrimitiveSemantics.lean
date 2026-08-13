@@ -185,6 +185,11 @@ def splitPrimitiveWire {qubits : Nat} (target : Fin qubits) :
     · funext wire
       simp [wire.property]
 
+@[simp] theorem splitPrimitiveWire_other_apply {qubits : Nat}
+    (target : Fin qubits) (state : PrimitiveBasis qubits)
+    (wire : OtherPrimitiveWires target) :
+    (splitPrimitiveWire target state).2 wire = state wire.1 := rfl
+
 /-- Lift a one-qubit matrix to a named wire, leaving every other wire fixed. -/
 noncomputable def liftPrimitiveOneQubit {qubits : Nat} (target : Fin qubits)
     (gate : _root_.Matrix (Fin 2) (Fin 2) ℂ) :

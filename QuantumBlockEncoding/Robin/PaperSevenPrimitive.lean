@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.Robin.EvolvedCandidates
+import QuantumBlockEncoding.PrimitiveBasisLE
 import QuantumBlockEncoding.UniformlyControlledRy
 import Mathlib.Tactic
 
@@ -112,5 +113,160 @@ def warmRobinPaperSevenPaddedSlot (slot : Fin 8) : Option (Fin 7) :=
 
 theorem warmRobinPaperSevenPaddedSlot_seven :
     warmRobinPaperSevenPaddedSlot 7 = none := by decide
+
+/-- The physical three-qubit PREPARE, flattened with the repository's declared
+little-endian convention. -/
+noncomputable def warmRobinPaperSevenSelectorPrepare :
+    _root_.Matrix (Fin 8) (Fin 8) ℂ :=
+  _root_.Matrix.reindexAlgEquiv ℂ ℂ (primitiveBasisLEEquiv 3)
+    warmRobinUniformSevenPrepareMatrix
+
+theorem warmRobinPaperSevenSelectorPrepare_unitary_flat :
+    warmRobinPaperSevenSelectorPrepare ∈
+      _root_.Matrix.unitaryGroup (Fin 8) ℂ := by
+  apply ComplexLCU.reindex_unitary
+  exact warmRobinPaperSevenSelectorPrepare_unitary
+
+set_option maxHeartbeats 2000000
+
+/-- The theorem uses probabilities directly, so no arbitrary clean-column
+phase convention for `1 / sqrt 7` enters the LCU proof. -/
+theorem warmRobinUniformSevenPrepare_probability (slot : Fin 8) :
+    star (warmRobinPaperSevenSelectorPrepare slot 0) *
+        warmRobinPaperSevenSelectorPrepare slot 0 =
+      if slot.val < 7 then (1 / 7 : ℂ) else 0 := by
+  have sumLE (f : PrimitiveBasis 3 → ℂ) :
+      ∑ bits, f bits =
+        ∑ index : Fin 8, f ((primitiveBasisLEEquiv 3).symm index) :=
+    Fintype.sum_equiv (primitiveBasisLEEquiv 3) f
+      (fun index => f ((primitiveBasisLEEquiv 3).symm index))
+      (fun _ => by simp)
+  have piQuarter : Real.pi * (2 : Real)⁻¹ / 2 = Real.pi / 4 := by ring
+  have complexPiQuarter :
+      (↑Real.pi * (2 : ℂ)⁻¹ / 2) =
+        ((Real.pi * (2 : Real)⁻¹ / 2 : Real) : ℂ) := by
+    norm_num
+  have complexSevenInv :
+      (7 : ℂ)⁻¹ = (((7 : Real)⁻¹ : Real) : ℂ) := by
+    norm_num
+  have sqrtTwoSquare : (Real.sqrt 2) ^ 2 = (2 : Real) :=
+    Real.sq_sqrt (by norm_num)
+  have quarterCosSquare :
+      (Real.cos (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2 = (1 / 2 : Real) := by
+    rw [piQuarter, Real.cos_pi_div_four]
+    nlinarith
+  have quarterSinSquare :
+      (Real.sin (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2 = (1 / 2 : Real) := by
+    rw [piQuarter, Real.sin_pi_div_four]
+    nlinarith
+  have highCosSquare :
+      (Real.cos (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (4 / 7 : Real) := by
+    have sqrtSevenSquare : (Real.sqrt 7) ^ 2 = (7 : Real) :=
+      Real.sq_sqrt (by norm_num)
+    have sqrtSevenNonnegative : 0 ≤ Real.sqrt 7 := Real.sqrt_nonneg _
+    have sqrtSevenPositive : 0 < Real.sqrt 7 := Real.sqrt_pos.2 (by norm_num)
+    have sqrtFour : Real.sqrt 4 = 2 := by norm_num
+    have ratioNonnegative : 0 ≤ Real.sqrt 4 / Real.sqrt 7 :=
+      div_nonneg (Real.sqrt_nonneg _) sqrtSevenNonnegative
+    have ratioUpper : Real.sqrt 4 / Real.sqrt 7 ≤ 1 := by
+      rw [sqrtFour]
+      apply (div_le_one sqrtSevenPositive).2
+      nlinarith
+    rw [Real.cos_arccos (by linarith) ratioUpper, sqrtFour]
+    field_simp
+    nlinarith
+  have highSinSquare :
+      (Real.sin (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (3 / 7 : Real) := by
+    nlinarith [Real.sin_sq_add_cos_sq
+      (Real.arccos (Real.sqrt 4 / Real.sqrt 7))]
+  have tailCosSquare :
+      (Real.cos (Real.arccos (Real.sqrt 2 / Real.sqrt 3))) ^ 2 =
+        (2 / 3 : Real) := by
+    have sqrtThreeSquare : (Real.sqrt 3) ^ 2 = (3 : Real) :=
+      Real.sq_sqrt (by norm_num)
+    have sqrtThreeNonnegative : 0 ≤ Real.sqrt 3 := Real.sqrt_nonneg _
+    have sqrtThreePositive : 0 < Real.sqrt 3 := Real.sqrt_pos.2 (by norm_num)
+    have ratioNonnegative : 0 ≤ Real.sqrt 2 / Real.sqrt 3 :=
+      div_nonneg (Real.sqrt_nonneg _) sqrtThreeNonnegative
+    have ratioUpper : Real.sqrt 2 / Real.sqrt 3 ≤ 1 := by
+      apply (div_le_one sqrtThreePositive).2
+      nlinarith [sqrtTwoSquare]
+    rw [Real.cos_arccos (by linarith) ratioUpper]
+    field_simp
+    nlinarith
+  have tailSinSquare :
+      (Real.sin (Real.arccos (Real.sqrt 2 / Real.sqrt 3))) ^ 2 =
+        (1 / 3 : Real) := by
+    nlinarith [Real.sin_sq_add_cos_sq
+      (Real.arccos (Real.sqrt 2 / Real.sqrt 3))]
+  have headCosProbability :
+      (Real.cos (Real.pi * (2 : Real)⁻¹ / 2)) ^ 4 *
+          (Real.cos (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (1 / 7 : Real) := by
+    rw [show (Real.cos (Real.pi * (2 : Real)⁻¹ / 2)) ^ 4 =
+      ((Real.cos (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2) ^ 2 by ring,
+      quarterCosSquare, highCosSquare]
+    norm_num
+  have headMixedProbability :
+      (Real.cos (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2 *
+          (Real.sin (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2 *
+          (Real.cos (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (1 / 7 : Real) := by
+    rw [quarterCosSquare, quarterSinSquare, highCosSquare]
+    norm_num
+  have headSinProbability :
+      (Real.sin (Real.pi * (2 : Real)⁻¹ / 2)) ^ 4 *
+          (Real.cos (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (1 / 7 : Real) := by
+    rw [show (Real.sin (Real.pi * (2 : Real)⁻¹ / 2)) ^ 4 =
+      ((Real.sin (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2) ^ 2 by ring,
+      quarterSinSquare, highCosSquare]
+    norm_num
+  have tailCosProbability :
+      (Real.cos (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2 *
+          (Real.cos (Real.arccos (Real.sqrt 2 / Real.sqrt 3))) ^ 2 *
+          (Real.sin (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (1 / 7 : Real) := by
+    rw [quarterCosSquare, tailCosSquare, highSinSquare]
+    norm_num
+  have tailSinProbability :
+      (Real.sin (Real.pi * (2 : Real)⁻¹ / 2)) ^ 2 *
+          (Real.cos (Real.arccos (Real.sqrt 2 / Real.sqrt 3))) ^ 2 *
+          (Real.sin (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (1 / 7 : Real) := by
+    rw [quarterSinSquare, tailCosSquare, highSinSquare]
+    norm_num
+  have lastProbability :
+      (Real.sin (Real.arccos (Real.sqrt 2 / Real.sqrt 3))) ^ 2 *
+          (Real.sin (Real.arccos (Real.sqrt 4 / Real.sqrt 7))) ^ 2 =
+        (1 / 7 : Real) := by
+    rw [tailSinSquare, highSinSquare]
+    norm_num
+  fin_cases slot <;>
+    simp [warmRobinPaperSevenSelectorPrepare,
+      warmRobinUniformSevenPrepareMatrix,
+      warmRobinUniformSevenLowWires, warmRobinUniformSevenMiddleWires,
+      warmRobinUniformSevenLowAngles, warmRobinUniformSevenMiddleAngles,
+      warmRobinUniformSevenHighAngle, warmRobinUniformSevenTailAngle,
+      primitiveControlAssignment, primitiveBits3LE,
+      primitiveBits3LEWithout,
+      standardRyMatrix, ComplexLCU.realRotation,
+      ComplexLCU.realOrthogonalRotation, ExactAngle.eval,
+      evalPrimitiveGate, liftPrimitiveOneQubit_apply,
+      _root_.Matrix.mul_apply, sumLE, Fin.sum_univ_succ]
+  all_goals
+    try rw [complexPiQuarter]
+    try simp_rw [← Complex.ofReal_cos]
+    try simp_rw [← Complex.ofReal_sin]
+    rw [complexSevenInv]
+    norm_cast
+    ring_nf at quarterCosSquare quarterSinSquare highCosSquare highSinSquare tailCosSquare tailSinSquare headCosProbability headMixedProbability headSinProbability tailCosProbability tailSinProbability lastProbability ⊢
+    nlinarith [headCosProbability, headMixedProbability,
+      headSinProbability, tailCosProbability, tailSinProbability,
+      lastProbability]
+
+set_option maxHeartbeats 200000
 
 end QuantumBlockEncoding.Robin
