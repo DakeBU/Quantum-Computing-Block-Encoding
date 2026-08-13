@@ -83,10 +83,6 @@ theorem warmRobinSymmetryBasisChange_unitary :
   · simpa using realSquare
   · simp
 
-@[simp] theorem warmRobinUniformScalar_pow_two_complex :
-    (((Real.sqrt 2 / 2 : Real) : ℂ) ^ 2) = (1 / 2 : ℂ) := by
-  simpa [pow_two] using warmRobinUniformScalar_square_complex
-
 /-- Entry formula for the exact symmetry basis change. -/
 @[simp] theorem warmRobinSymmetryBasisChange_apply
     (row column : WarmRobinSymmetrySystem) :
@@ -94,7 +90,8 @@ theorem warmRobinSymmetryBasisChange_unitary :
       if row.2 = column.2 then
         warmRobinUniformBitPrepare row.1 column.1
       else 0 := by
-  simp [warmRobinSymmetryBasisChange]
+  by_cases pairMatch : row.2 = column.2 <;>
+    simp [warmRobinSymmetryBasisChange, pairMatch]
 
 /-- Entry formula for the adjoint symmetry basis change. -/
 @[simp] theorem star_warmRobinSymmetryBasisChange_apply
@@ -221,6 +218,46 @@ def warmRobinFourSlotSectorTargetComplex :
     _root_.Matrix WarmRobinSymmetrySystem WarmRobinSymmetrySystem ℂ :=
   fun row column => (warmRobinFourSlotSectorTarget row column : ℂ)
 
+private theorem warmRobinSymmetryConjugation00
+    (c a b : ℂ) (square : c * c = 1 / 2) :
+    c * (((a + b) / 224) * c) +
+      (-c) * (((a - b) / 224) * (-c)) = a / 224 := by
+  calc
+    c * (((a + b) / 224) * c) +
+        (-c) * (((a - b) / 224) * (-c)) =
+      (c * c) * ((a + b) + (a - b)) / 224 := by ring
+    _ = a / 224 := by rw [square]; ring
+
+private theorem warmRobinSymmetryConjugation01
+    (c a b : ℂ) (square : c * c = 1 / 2) :
+    c * (((a + b) / 224) * c) +
+      (-c) * (((a - b) / 224) * c) = b / 224 := by
+  calc
+    c * (((a + b) / 224) * c) +
+        (-c) * (((a - b) / 224) * c) =
+      (c * c) * ((a + b) - (a - b)) / 224 := by ring
+    _ = b / 224 := by rw [square]; ring
+
+private theorem warmRobinSymmetryConjugation10
+    (c a b : ℂ) (square : c * c = 1 / 2) :
+    c * (((a + b) / 224) * c) +
+      c * (((a - b) / 224) * (-c)) = b / 224 := by
+  calc
+    c * (((a + b) / 224) * c) +
+        c * (((a - b) / 224) * (-c)) =
+      (c * c) * ((a + b) - (a - b)) / 224 := by ring
+    _ = b / 224 := by rw [square]; ring
+
+private theorem warmRobinSymmetryConjugation11
+    (c a b : ℂ) (square : c * c = 1 / 2) :
+    c * (((a + b) / 224) * c) +
+      c * (((a - b) / 224) * c) = a / 224 := by
+  calc
+    c * (((a + b) / 224) * c) +
+        c * (((a - b) / 224) * c) =
+      (c * c) * ((a + b) + (a - b)) / 224 := by ring
+    _ = a / 224 := by rw [square]; ring
+
 /-- The exact symmetry transform reconstructs the pair-ordered Robin matrix. -/
 theorem warmRobinSymmetryBasisChange_conjugates_target :
     warmRobinSymmetryBasisChange *
@@ -231,18 +268,36 @@ theorem warmRobinSymmetryBasisChange_conjugates_target :
   ext ⟨rowSide, rowPair⟩ ⟨columnSide, columnPair⟩
   rw [warmRobinSymmetryBasisChange_mul_pairRow]
   simp_rw [mul_star_warmRobinSymmetryBasisChange_pairColumn]
-  fin_cases rowSide <;> fin_cases columnSide <;>
-    simp [Fin.sum_univ_two,
-      warmRobinFourSlotSectorTargetComplex,
-      warmRobinFourSlotSectorTarget,
-      warmRobinPairNormalizedTargetComplex,
-      warmRobinUniformBitPrepare,
-      realOrthogonalRotation,
-      warmRobinSymmetryPlusBlock,
-      warmRobinSymmetryMinusBlock] <;>
-    ring_nf <;>
-    simp [warmRobinUniformScalar_pow_two_complex] <;>
-    ring
+  let c : ℂ := ((Real.sqrt 2 / 2 : Real) : ℂ)
+  let a : ℂ :=
+    (warmRobinIntegerTarget
+      (warmRobinPairLow rowPair) (warmRobinPairLow columnPair) : ℂ)
+  let b : ℂ :=
+    (warmRobinIntegerTarget
+      (warmRobinPairLow rowPair) (warmRobinPairHigh columnPair) : ℂ)
+  have square : c * c = (1 / 2 : ℂ) := by
+    simpa [c] using warmRobinUniformScalar_square_complex
+  fin_cases rowSide <;> fin_cases columnSide
+  · simpa [Fin.sum_univ_two, warmRobinFourSlotSectorTargetComplex,
+      warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
+      warmRobinUniformBitPrepare, realOrthogonalRotation,
+      warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
+      c, a, b] using warmRobinSymmetryConjugation00 c a b square
+  · simpa [Fin.sum_univ_two, warmRobinFourSlotSectorTargetComplex,
+      warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
+      warmRobinUniformBitPrepare, realOrthogonalRotation,
+      warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
+      c, a, b] using warmRobinSymmetryConjugation01 c a b square
+  · simpa [Fin.sum_univ_two, warmRobinFourSlotSectorTargetComplex,
+      warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
+      warmRobinUniformBitPrepare, realOrthogonalRotation,
+      warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
+      c, a, b] using warmRobinSymmetryConjugation10 c a b square
+  · simpa [Fin.sum_univ_two, warmRobinFourSlotSectorTargetComplex,
+      warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
+      warmRobinUniformBitPrepare, realOrthogonalRotation,
+      warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
+      c, a, b] using warmRobinSymmetryConjugation11 c a b square
 
 /-- Conjugate the sector logical unitary back to reversal-pair coordinates. -/
 noncomputable def warmRobinFourSlotPairLogicalUnitary :
