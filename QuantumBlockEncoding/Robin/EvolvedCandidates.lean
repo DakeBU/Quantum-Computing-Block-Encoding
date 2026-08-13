@@ -60,6 +60,15 @@ theorem warmRobinSevenSlotDecomposition (row column : Fin 8) :
         else 0 := by
   fin_cases row <;> fin_cases column <;> native_decide
 
+/-- The historical split-seven route is a weighted-permutation LCU, not a
+sparse-access enumeration: two nonzero terms can address the same entry. -/
+theorem warmRobinSplitSeven_duplicate_nonzero_access :
+    warmRobinSevenSlotPerm (2 : Fin 7) (6 : Fin 8) = 7 ∧
+      warmRobinSevenSlotPerm (5 : Fin 7) (6 : Fin 8) = 7 ∧
+      warmRobinSevenSlotWeight (2 : Fin 7) (6 : Fin 8) = 16 ∧
+      warmRobinSevenSlotWeight (5 : Fin 7) (6 : Fin 8) = 16 := by
+  native_decide
+
 def warmRobinSevenSlotAmplitude (slot : Fin 7) (column : Fin 8) : Rat :=
   warmRobinSevenSlotWeight slot column / 32
 
