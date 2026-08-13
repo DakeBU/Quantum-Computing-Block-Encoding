@@ -19,6 +19,7 @@ import QuantumBlockEncoding.PrimitiveSemantics
 import QuantumBlockEncoding.PrimitiveRefinement
 import QuantumBlockEncoding.ReversibleClassical
 import QuantumBlockEncoding.PrimitiveMacros
+import QuantumBlockEncoding.ModularAdder3
 import QuantumBlockEncoding.UniformlyControlledRy
 import QuantumBlockEncoding.Resources
 import QuantumBlockEncoding.RobinMatrix
