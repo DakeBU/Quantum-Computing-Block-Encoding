@@ -17,6 +17,8 @@ import QuantumBlockEncoding.PrimitiveCircuit
 import QuantumBlockEncoding.PrimitiveBasisLE
 import QuantumBlockEncoding.PrimitiveSemantics
 import QuantumBlockEncoding.PrimitiveRefinement
+import QuantumBlockEncoding.ReversibleClassical
+import QuantumBlockEncoding.PrimitiveMacros
 import QuantumBlockEncoding.UniformlyControlledRy
 import QuantumBlockEncoding.Resources
 import QuantumBlockEncoding.RobinMatrix
