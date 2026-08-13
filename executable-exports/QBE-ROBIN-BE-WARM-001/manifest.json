@@ -5,46 +5,84 @@
       "basisPermutationChecks": 40,
       "cleanBlockMaxEntryError": 1.1102230246251565e-16,
       "cleanBlockOperatorNormError": 1.769911968528648e-16,
-      "executableSemanticTier": "experimental dense composition of PREPARE, amplitude, SELECT, unprepare",
+      "executableSemanticTier": "legacyDenseDiagnostic",
       "identity": "five-shift-weighted-permutation",
       "leanLogicalUnitaryRoot": null,
       "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula_eq_target",
       "leanSemanticTier": "T1 exact finite structural LCU",
       "leanVerifiedBlockEncodingRoot": null,
+      "primitive": false,
       "promotionBlockedBy": "Robin-specific clean-block promotion and primitive circuit refinement",
       "qiskitOperatorError": 0.0,
       "qiskitPrimitiveResource": null,
       "qiskitVersion": "2.4.2",
       "selectorSlots": 5,
+      "t3": false,
       "unitaryError": 8.859694521532909e-16
     },
     {
       "basisPermutationChecks": 64,
       "cleanBlockMaxEntryError": 8.326672684688674e-17,
       "cleanBlockOperatorNormError": 1.5682158042015002e-16,
-      "executableSemanticTier": "experimental dense composition of PREPARE, amplitude, SELECT, unprepare",
+      "executableSemanticTier": "legacyDenseDiagnostic",
       "identity": "hadamard-eight-weighted-permutation",
       "leanLogicalUnitaryRoot": "QuantumBlockEncoding.Robin.warmRobinHadamard8LogicalUnitary_unitary",
       "leanRoot": "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target",
       "leanSemanticTier": "T2 exact logical-unitary block encoding",
       "leanVerifiedBlockEncodingRoot": "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
+      "primitive": false,
       "promotionBlockedBy": "primitive circuit refinement",
       "qiskitOperatorError": 0.0,
       "qiskitPrimitiveResource": null,
       "qiskitVersion": "2.4.2",
       "selectorSlots": 8,
+      "t3": false,
       "unitaryError": 1.7625701818922639e-15
     }
   ],
   "certifiedExecutable": false,
+  "checkBackends": {
+    "legacyDenseDiagnostic": {
+      "evidenceClasses": [
+        "numericUnitary",
+        "numericCleanBlock"
+      ],
+      "proofAuthority": false,
+      "status": "passed"
+    },
+    "openqasm3RoundTrip": {
+      "reason": "no canonical primitive Robin IR yet",
+      "status": "open"
+    },
+    "qiskitOperator": {
+      "reason": "no canonical primitive Robin IR yet",
+      "status": "open"
+    }
+  },
   "cleanQubits": {
     "coefficient": 0,
     "selector": 0
   },
+  "connectivity": "all-to-all",
   "conventionVersion": "robin-fixed-n3-structural-v1",
+  "globalPhasePolicy": "exact-zero-or-explicitly-corrected",
+  "leanRefinementRoot": null,
+  "leanSemanticTier": "T2 exact logical-unitary block encoding",
+  "primitiveBasis": [
+    "x",
+    "ry",
+    "rz",
+    "cx"
+  ],
   "registerOrder": "selector high-order, coefficient ancilla, system low-order",
-  "schemaVersion": 1,
-  "sourceCommit": "1cdcbd0119a8d6e4ae46bcfdc1cdc416a38f61f3",
+  "remainingT3Root": "QuantumBlockEncoding.Robin.warmRobinFourSlotPrimitive_eval_eq_flatUnitary",
+  "schemaVersion": 2,
+  "sourceCommit": "e4d999a0c467e7e2b72195fa787223af0aa49c03",
   "systemQubits": 3,
+  "t3PrerequisiteRoots": [
+    "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_eval_eq",
+    "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_image",
+    "QuantumBlockEncoding.Robin.warmRobinFourSlotExactRy_eq_rotation"
+  ],
   "task": "QBE-ROBIN-BE-WARM-001"
 }

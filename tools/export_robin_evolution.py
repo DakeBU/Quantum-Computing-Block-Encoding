@@ -147,7 +147,7 @@ def candidate_result(
     entry_error = float(np.max(np.abs(clean - target)))
     operator_error = float(np.linalg.norm(clean - target, ord=2))
     circuit = QuantumCircuit(7, name=name)
-    circuit.unitary(unitary, range(7), label=f"experimental-{name}")
+    circuit.unitary(unitary, range(7), label=f"legacy-dense-diagnostic-{name}")
     qiskit_operator_error = float(np.linalg.norm(Operator(circuit).data - unitary, ord=2))
     if identity_error > 1e-12 or entry_error > 1e-12 or qiskit_operator_error > 1e-12:
         raise AssertionError(f"{name} executable check failed")
@@ -161,7 +161,9 @@ def candidate_result(
             if verified_block_root
             else "T1 exact finite structural LCU"
         ),
-        "executableSemanticTier": "experimental dense composition of PREPARE, amplitude, SELECT, unprepare",
+        "executableSemanticTier": "legacyDenseDiagnostic",
+        "primitive": False,
+        "t3": False,
         "selectorSlots": slots,
         "qiskitPrimitiveResource": None,
         "unitaryError": identity_error,
@@ -231,7 +233,7 @@ def main() -> int:
     write_json(result_root / "candidates.json", {"candidates": candidates})
     write_json(result_root / "comparison.json", comparison)
     manifest = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "task": args.task,
         "sourceCommit": commit,
         "registerOrder": "selector high-order, coefficient ancilla, system low-order",
@@ -240,6 +242,26 @@ def main() -> int:
         "alpha": "56/3",
         "conventionVersion": "robin-fixed-n3-structural-v1",
         "certifiedExecutable": False,
+        "leanSemanticTier": "T2 exact logical-unitary block encoding",
+        "leanRefinementRoot": None,
+        "primitiveBasis": ["x", "ry", "rz", "cx"],
+        "connectivity": "all-to-all",
+        "globalPhasePolicy": "exact-zero-or-explicitly-corrected",
+        "checkBackends": {
+            "legacyDenseDiagnostic": {
+                "status": "passed",
+                "evidenceClasses": ["numericUnitary", "numericCleanBlock"],
+                "proofAuthority": False
+            },
+            "qiskitOperator": {"status": "open", "reason": "no canonical primitive Robin IR yet"},
+            "openqasm3RoundTrip": {"status": "open", "reason": "no canonical primitive Robin IR yet"}
+        },
+        "t3PrerequisiteRoots": [
+            "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_eval_eq",
+            "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_image",
+            "QuantumBlockEncoding.Robin.warmRobinFourSlotExactRy_eq_rotation"
+        ],
+        "remainingT3Root": "QuantumBlockEncoding.Robin.warmRobinFourSlotPrimitive_eval_eq_flatUnitary",
         "candidates": candidates,
     }
     write_json(ROOT / "executable-exports" / args.task / "manifest.json", manifest)

@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.316532,
+      "elapsed_seconds": 0.319935,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.042943,
+      "elapsed_seconds": 0.044944,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.713907,
+      "elapsed_seconds": 0.704147,
       "passed": true
     },
     {
@@ -160,14 +160,14 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.950559,
+      "elapsed_seconds": 0.958466,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 2.748903,
-    "population_controller": 0.060338,
-    "total": 4.846767
+    "lean_modules": 4.045184,
+    "population_controller": 0.064211,
+    "total": 6.150657
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -177,8 +177,8 @@
     "qiskit": "2.4.2"
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
-  "git_branch": "main",
-  "git_commit": "1cdcbd0119a8d6e4ae46bcfdc1cdc416a38f61f3",
+  "git_branch": "agent/robin-t3-executable-backends",
+  "git_commit": "e4d999a0c467e7e2b72195fa787223af0aa49c03",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -229,9 +229,9 @@
     },
     "evolution_replayed": true,
     "included_in_lean_gate": true,
-    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic completion after the run produced exact Hadamard-8 and four-slot T2 VerifiedOperatorBlockEncoding roots. A same-tier theorem proves the four-slot cost strictly better by one auxiliary qubit after gate count and depth tie. Primitive {u,cx} refinement remains open and is not inferred from Qiskit.",
+    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic completion after the run produced exact Hadamard-8 and four-slot T2 VerifiedOperatorBlockEncoding roots. A same-tier theorem proves the four-slot cost strictly better by one auxiliary qubit after gate count and depth tie. Primitive {X,RY,RZ,CX} refinement remains open and is not inferred from Qiskit.",
     "status": "T2 exact logical-unitary block encodings and same-tier strict comparison"
   },
   "schema_version": 1,
-  "source_digest": "6d548e60ae3b88e942a5b214339dad020e509fc8bf8cf5e36921ffb8b070bacf"
+  "source_digest": "dd2cbd324a7930cd052c296dcc6296e406d10ddfcbca52f553575bb1df077b01"
 }

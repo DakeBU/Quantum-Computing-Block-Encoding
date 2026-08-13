@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 1967,
+  "publicDeclarationCount": 2022,
   "privateDeclarationExclusionCount": 181,
-  "sourceDocstringCount": 1525,
-  "generatedReaderCueCount": 1967,
+  "sourceDocstringCount": 1537,
+  "generatedReaderCueCount": 2022,
   "byKind": {
-    "abbrev": 17,
-    "def": 788,
-    "inductive": 23,
+    "abbrev": 20,
+    "def": 816,
+    "inductive": 25,
     "opaque": 7,
-    "structure": 174,
-    "theorem": 958
+    "structure": 175,
+    "theorem": 979
   },
   "bySource": {
     "QuantumBlockEncoding/Automation.lean": 39,
@@ -29,6 +29,9 @@
     "QuantumBlockEncoding/MainCase.lean": 127,
     "QuantumBlockEncoding/OpenProblems.lean": 4,
     "QuantumBlockEncoding/OptimalControl.lean": 133,
+    "QuantumBlockEncoding/PrimitiveCircuit.lean": 18,
+    "QuantumBlockEncoding/PrimitiveRefinement.lean": 2,
+    "QuantumBlockEncoding/PrimitiveSemantics.lean": 25,
     "QuantumBlockEncoding/Resources.lean": 25,
     "QuantumBlockEncoding/Robin/ComplexLCU.lean": 26,
     "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean": 8,
@@ -42,6 +45,7 @@
     "QuantumBlockEncoding/Robin/SymmetryFourSlot.lean": 21,
     "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean": 47,
     "QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean": 29,
+    "QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean": 10,
     "QuantumBlockEncoding/Robin/SystemConjugation.lean": 10,
     "QuantumBlockEncoding/Robin/WeightedPermutation.lean": 15,
     "QuantumBlockEncoding/RobinEvolution.lean": 17,

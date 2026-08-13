@@ -306,7 +306,7 @@ def main() -> None:
                 "Hadamard-8 and four-slot T2 VerifiedOperatorBlockEncoding roots. "
                 "A same-tier theorem proves the four-slot cost strictly better by "
                 "one auxiliary qubit after gate count and depth tie. Primitive "
-                "{u,cx} refinement remains open and is not inferred from Qiskit."
+                "{X,RY,RZ,CX} refinement remains open and is not inferred from Qiskit."
                 if robin_audit
                 else "No audited warm evolution result is available."
             ),

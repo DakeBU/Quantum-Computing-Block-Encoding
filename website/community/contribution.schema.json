@@ -10,7 +10,7 @@
     "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "minLength": 3, "maxLength": 96},
     "title": {"type": "string", "minLength": 1, "maxLength": 500},
     "kind": {"enum": ["statePreparation", "operatorBlockEncoding"]},
-    "status": {"enum": ["draft", "pendingReview", "verified", "rejected"]},
+    "status": {"enum": ["draft", "pendingReview", "executable-screened", "verified", "rejected"]},
     "case_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "mathematics": {
       "type": "object", "additionalProperties": false,
@@ -45,7 +45,17 @@
     },
     "executable": {
       "type": "object", "additionalProperties": false, "required": ["advertised", "artifact", "accepted", "diagnostics"],
-      "properties": {"advertised": {"type": "boolean"}, "artifact": {"type": "string"}, "accepted": {"type": "boolean"}, "diagnostics": {"type": "string"}}
+      "properties": {
+        "advertised": {"type": "boolean"},
+        "artifact": {"type": "string"},
+        "accepted": {"type": "boolean"},
+        "diagnostics": {"type": "string"},
+        "requested_policy": {"type": ["object", "null"]},
+        "actual_checks": {"type": "array", "items": {"type": "object"}},
+        "canonical_ir_digest": {"type": "string", "pattern": "^$|^[a-f0-9]{64}$"},
+        "lean_roots": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "evidence_classes": {"type": "array", "items": {"enum": ["syntaxOnly", "roundTrip", "numericUnitary", "numericCleanBlock", "leanCheckedRefinement"]}, "uniqueItems": true}
+      }
     },
     "resource": {
       "type": "object", "additionalProperties": false, "required": ["convention", "record"],

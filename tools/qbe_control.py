@@ -530,10 +530,22 @@ def infer_acceptance_anchors(task_text: str) -> tuple[str, ...]:
 class ExecutableAcceptance:
     command: str
     artifacts: tuple[str, ...]
+    backend: str = "both"
+    required: bool = True
+    evidence_classes: tuple[str, ...] = (
+        "roundTrip",
+        "numericUnitary",
+        "numericCleanBlock",
+    )
 
 
 def infer_executable_acceptance(task_text: str) -> ExecutableAcceptance:
-    """Read the deterministic post-Lean acceptance command and its outputs."""
+    """Read the deterministic executable policy and its declared outputs.
+
+    The command/artifact markers predate selectable backends and remain valid.
+    New task cards can independently name the checker, whether absence blocks
+    the route, and the evidence classes produced by the command.
+    """
 
     command_match = re.search(
         r"(?im)^\s*Executable acceptance command\s*:\s*(.+)$", task_text
@@ -546,11 +558,50 @@ def infer_executable_acceptance(task_text: str) -> ExecutableAcceptance:
     if artifact_match:
         raw = artifact_match.group(1)
         quoted = re.findall(r"`([^`]+)`", raw)
-        values = quoted or re.split(r"[,;]", raw)
+        values = re.split(r"[,;]", ",".join(quoted)) if quoted else re.split(r"[,;]", raw)
         artifacts = tuple(
             dict.fromkeys(value.strip().strip("`") for value in values if value.strip().strip("`"))
         )
-    return ExecutableAcceptance(command=command, artifacts=artifacts)
+    backend_match = re.search(
+        r"(?im)^\s*(?:-\s*)?Executable check backend\s*:\s*`?([^`\n]+)`?\s*$", task_text
+    )
+    backend = backend_match.group(1).strip() if backend_match else "both"
+    if backend not in {"none", "qiskitOperator", "openqasm3RoundTrip", "both"}:
+        backend = "both"
+    required_match = re.search(
+        r"(?im)^\s*(?:-\s*)?Executable check required\s*:\s*`?([^`\n]+)`?\s*$", task_text
+    )
+    required = bool(command) if not required_match else _lower(required_match.group(1)) in {
+        "true", "yes", "on", "required",
+    }
+    evidence_match = re.search(
+        r"(?im)^\s*(?:-\s*)?Executable evidence classes\s*:\s*(.+)$", task_text
+    )
+    allowed = {
+        "syntaxOnly", "roundTrip", "numericUnitary", "numericCleanBlock",
+        "leanCheckedRefinement",
+    }
+    evidence_classes: tuple[str, ...] = ()
+    if evidence_match:
+        raw = evidence_match.group(1)
+        quoted = re.findall(r"`([^`]+)`", raw)
+        values = re.split(r"[,;]", ",".join(quoted)) if quoted else re.split(r"[,;]", raw)
+        evidence_classes = tuple(
+            dict.fromkeys(value.strip() for value in values if value.strip() in allowed)
+        )
+    if not evidence_classes and backend != "none":
+        evidence_classes = (
+            ("roundTrip", "numericUnitary", "numericCleanBlock")
+            if backend in {"openqasm3RoundTrip", "both"}
+            else ("numericUnitary", "numericCleanBlock")
+        )
+    return ExecutableAcceptance(
+        command=command,
+        artifacts=artifacts,
+        backend=backend,
+        required=required and backend != "none",
+        evidence_classes=evidence_classes,
+    )
 
 
 def infer_population_gate(task_text: str) -> bool:
@@ -768,6 +819,8 @@ class CycleDecision:
     executable_acceptance_complete: bool = False
     executable_acceptance_command: str = ""
     executable_acceptance_artifacts: tuple[str, ...] = ()
+    executable_check_backend: str = "none"
+    executable_evidence_classes: tuple[str, ...] = ()
     population_gate_required: bool = False
     population_digest: str = ""
     population_active_candidate_ids: tuple[str, ...] = ()
@@ -805,6 +858,8 @@ def decide_cycle(
     executable_acceptance_complete: bool = False,
     executable_acceptance_command: str = "",
     executable_acceptance_artifacts: Sequence[str] = (),
+    executable_check_backend: str = "none",
+    executable_evidence_classes: Sequence[str] = (),
     lean_acceptance_required: bool = False,
     population_gate_required: bool = False,
     evaluation_mode: str = "full-abeis",
@@ -1054,6 +1109,8 @@ def decide_cycle(
             executable_acceptance_complete=executable_acceptance_complete,
             executable_acceptance_command=executable_acceptance_command,
             executable_acceptance_artifacts=tuple(executable_acceptance_artifacts),
+            executable_check_backend=executable_check_backend,
+            executable_evidence_classes=tuple(executable_evidence_classes),
             population_gate_required=population_gate_required,
             population_digest=population.digest,
             population_active_candidate_ids=population.active_candidate_ids,

@@ -4,11 +4,14 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 
 from tools.export_robin_evolution import (
     candidate_result, eight_perm, eight_weight, exact_decomposition, five_perm,
     five_weight, full_candidate,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class RobinExportTests(unittest.TestCase):
@@ -28,6 +31,14 @@ class RobinExportTests(unittest.TestCase):
     def test_qiskit_operator_agreement(self) -> None:
         result = candidate_result("five", 5, five_perm, five_weight, 224 / 5, "test.root")
         self.assertLess(result["qiskitOperatorError"], 1e-12)
+        self.assertEqual(result["executableSemanticTier"], "legacyDenseDiagnostic")
+        self.assertFalse(result["primitive"])
+        self.assertFalse(result["t3"])
+
+    def test_dense_diagnostic_is_not_presented_as_t3(self) -> None:
+        source = (ROOT / "tools" / "export_robin_evolution.py").read_text(encoding="utf-8")
+        self.assertIn("legacy-dense-diagnostic", source)
+        self.assertIn('"certifiedExecutable": False', source)
 
 
 if __name__ == "__main__":

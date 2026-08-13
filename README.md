@@ -21,7 +21,7 @@ Lean-checked quantum construction search, executable validation, and the
   permutation and amplitude guards. A reusable complex LCU kernel now proves
   PREPARE/amplitude/SELECT/unprepare unitarity and clean-entry expansion. The
   audited fixed benchmark now has exact Hadamard-8 and four-slot T2 block-
-  encoding roots plus a same-tier Lean comparison; primitive `{u,cx}`
+  encoding roots plus a same-tier Lean comparison; primitive `{X,RY,RZ,CX}`
   refinement remains a separate T3 obligation.
 - **12 August 2026.** The textbook track now includes complete Mathlib-backed
   Pauli X and Hadamard state-preparation certificates. The full Lean gate also
@@ -197,8 +197,19 @@ retried by more tactic workers.
 
 ### Optional executable outputs
 
-Lean is the symbolic acceptance gate, but users can also request executable
-artifacts for the accepted finite instance. Depending on the task, ASPBE emits:
+Lean is the symbolic acceptance gate, but executable checks can screen a
+candidate before proof and users can independently choose final artifacts.
+The version-2 task packet separates these decisions:
+
+```text
+intermediate check: none | Qiskit Operator | OpenQASM 3 round-trip | both
+export artifacts:  canonical IR | Qiskit Python | OpenQASM 3 | metrics | text
+```
+
+Both adapters consume one backend-neutral canonical IR with structured exact
+angles. Qiskit constructs `x`, `ry`, `rz`, and `cx` gate by gate; the strict
+OpenQASM path writes, parses, imports, canonicalizes, and re-evaluates the
+supported subset. Depending on the task, ASPBE emits:
 
 - runnable Qiskit Python that constructs the selected circuit;
 - OpenQASM 3 for interchange with simulators and hardware toolchains;
@@ -284,6 +295,9 @@ QuantumBlockEncoding/
 ├── StatePreparation.lean        state targets, candidates, exact/approx certificates
 ├── Circuit.lean                 gate and circuit syntax
 ├── CircuitSemantics.lean        circuit evaluation and register semantics
+├── PrimitiveCircuit.lean        typed exact {X, RY, RZ, CX} syntax and resources
+├── PrimitiveSemantics.lean      exact primitive matrices and circuit products
+├── PrimitiveRefinement.lean     exact T3 promotion boundary
 ├── ConcreteSemantics.lean       ket/column and projection bridges
 ├── TextbookStatePreparation.lean complete Pauli X and Hadamard certificates
 ├── BlockEncoding.lean           operator targets and verified block encodings
@@ -411,15 +425,17 @@ block equals the fixed target divided by `56/3`. Under one declared T2
 logical-stage convention,
 `warmRobinFourSlotT2Cost_betterThan_hadamard8` proves strict lexicographic
 improvement: gate count and depth tie, while the four-slot route uses one fewer
-auxiliary qubit. This is not a primitive `{u,cx}` claim. Exact primitive gate
-semantics, circuit-product equality with the T2 unitary, and primitive resource
-counts remain the separate T3 refinement obligation.
+auxiliary qubit. This is not a primitive `{X,RY,RZ,CX}` claim. The typed
+primitive language, exact gate semantics, two-CX pair-coordinate transform,
+and exact standard-RY angle bridge now compile. The 32-branch uniformly
+controlled-RY product equality, full circuit equality with the T2 unitary, and
+primitive resource comparison remain the separate T3 obligations.
 
 In plain terms, **T2** proves that the complete high-level unitary matrix is
 exactly unitary and has exactly the requested clean block. Operations such as a
 controlled amplitude loader or `SELECT` may still be counted as named logical
-stages. **T3** expands those stages into a fixed primitive gate basis such as
-`{u,cx}`, defines the exact matrix semantics of every primitive, and proves in
+stages. **T3** expands those stages into the frozen exact basis
+`{X,RY(theta),RZ(theta),CX}`, defines every primitive's matrix semantics, and proves in
 Lean that their ordered product is the T2 unitary. T3 is required for claims
 about primitive gate counts, transpiled depth, or end-to-end verified hardware-
 level code; it is not required merely to establish that the mathematical block

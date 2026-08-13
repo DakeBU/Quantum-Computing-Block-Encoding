@@ -890,6 +890,27 @@ def render_robin_paper_map(
     route = "case-studies/robin/"
     prefix = prefix_for(route)
     paper = data["paper"]
+    robin_tiers = (
+        ("T2 exact logical unitary", "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding"),
+        ("Pair-coordinate primitive CX refinement", "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_eval_eq"),
+        ("Exact standard-RY loader angles", "QuantumBlockEncoding.Robin.warmRobinFourSlotExactRy_eq_rotation"),
+        ("T3 four-slot primitive refinement", "QuantumBlockEncoding.Robin.warmRobinFourSlotPrimitive_eval_eq_flatUnitary"),
+        ("T3 paper-seven primitive baseline", "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitive_eval_eq_logical"),
+        ("T3 Figure-4 source reproduction", "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock"),
+        ("Same-tier paper comparison", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"),
+    )
+    tier_rows = []
+    for label, root in robin_tiers:
+        declaration = declarations.get(root)
+        if declaration:
+            evidence = f'<a href="{module_url(prefix, declaration)}"><code>{html.escape(root)}</code></a>'
+            state = badge("Compiled")
+        else:
+            evidence = f'<code>{html.escape(root)}</code>'
+            state = badge("Open")
+        tier_rows.append(
+            f"<tr><th>{html.escape(label)}</th><td>{state}</td><td>{evidence}</td></tr>"
+        )
     rows: list[str] = []
     toc = [
         ("paper-contract", "Paper contract"),
@@ -982,9 +1003,10 @@ def render_robin_paper_map(
     benchmark is stronger and separate. Lean certifies both the Hadamard-8 and
     centrosymmetric four-slot constructions as exact high-level logical-unitary
     block encodings (internally, T2), and proves the four-slot cost strictly
-    better under that shared convention. Primitive <code>{{u,cx}}</code>
+    better under that shared convention. Primitive <code>{{X, RY, RZ, CX}}</code>
     refinement is a separate gate-level result (internally, T3).
   </div>
+  <table class="proof-steps"><thead><tr><th>Verification layer</th><th>Status in this build</th><th>Required root</th></tr></thead><tbody>{''.join(tier_rows)}</tbody></table>
 </section>
 <section class="content-section" id="structural-candidates">
   <div class="section-heading"><p class="eyebrow">Fixed N=8 evolution</p>
@@ -1002,7 +1024,7 @@ def render_robin_paper_map(
   <div class="callout warning"><strong>Do we need the primitive level?</strong>
   Not to prove that this block encoding exists: the exact unitary and clean block
   are already certified. It is needed before claiming primitive
-  <code>{{u,cx}}</code> gate counts, transpiled depth, or end-to-end verified
+  <code>{{X, RY, RZ, CX}}</code> gate counts, transpiled depth, or end-to-end verified
   backend code. That stronger result requires an exact primitive gate list, its
   matrix semantics, and a Lean theorem equating the primitive product with the
   high-level unitary.</div>
@@ -2063,6 +2085,38 @@ def render_case_circuit(case: dict[str, object]) -> str:
 <div class="circuit-flow">{''.join(stages)}</div>"""
 
 
+def render_executable_evidence(case: dict[str, object], prefix: str) -> str:
+    qiskit = case["qiskit"]
+    artifact = str(qiskit["path"])
+    manifest_path = ROOT / Path(artifact).parents[1] / "manifest.json"
+    manifest = load_json(manifest_path) if manifest_path.is_file() else {}
+    checks = manifest.get("checkBackends", {}) if isinstance(manifest, dict) else {}
+    checks = checks if isinstance(checks, dict) else {}
+
+    def check_status(name: str, fallback: str) -> str:
+        value = checks.get(name, {})
+        return str(value.get("status", fallback)) if isinstance(value, dict) else fallback
+
+    lean_status = "passed" if case.get("status") == "certified" else "open"
+    rows = [
+        ("Internal canonical evaluator", "Reference semantics for primitive canonical IR", check_status("internalCanonicalEvaluator", "open"), "metrics manifest"),
+        ("Qiskit Operator", "Gate-by-gate numerical screening", check_status("qiskitOperator", "artifact available"), artifact),
+        ("OpenQASM 3 round-trip", "Strict serialization, import, and semantic replay", check_status("openqasm3RoundTrip", "not recorded"), "QASM and report when generated"),
+        ("Lean certificate", "Exact proof authority at the page's stated semantic tier", lean_status, f"{len(case.get('leanAnchors', []))} named root(s)"),
+    ]
+    legacy = checks.get("legacyDenseDiagnostic")
+    if isinstance(legacy, dict):
+        rows.insert(1, (
+            "Legacy dense diagnostic", "Historical numerical composition; explicitly non-primitive and not T3",
+            str(legacy.get("status", "recorded")), "numericUnitary + numericCleanBlock",
+        ))
+    rendered = "".join(
+        f"<tr><th>{html.escape(name)}</th><td>{html.escape(role)}</td><td>{badge(status)}</td><td><code>{html.escape(evidence)}</code></td></tr>"
+        for name, role, status, evidence in rows
+    )
+    return f'<table class="proof-steps"><thead><tr><th>Backend / artifact</th><th>Role</th><th>Status</th><th>Evidence</th></tr></thead><tbody>{rendered}</tbody></table>'
+
+
 def render_case_evolution(
     case: dict[str, object], declarations: dict[str, dict[str, object]], prefix: str
 ) -> str:
@@ -2126,17 +2180,17 @@ def render_example_case(
 <section class="content-section" id="circuit"><div class="section-heading"><p class="eyebrow">Circuit anatomy</p><h2>How the candidate acts</h2><p>These blocks show logical stages and register responsibilities. They do not pretend an unresolved logical oracle is already a primitive hardware gate.</p></div>{render_case_circuit(case)}</section>
 <section class="content-section" id="evolution"><div class="section-heading"><p class="eyebrow">Auditable evolution</p><h2>Candidate and proof progression</h2></div>{render_case_evolution(case, declarations, prefix)}</section>
 <section class="content-section" id="lean-certificate"><div class="section-heading"><p class="eyebrow">Proof authority</p><h2>Named Lean certificates</h2><p>These declarations, compiled by the current Lean gate, support the mathematical and resource claims above.</p></div><ul class="case-declaration-list">{anchors}</ul></section>
-<section class="content-section export-section" id="qiskit-export"><div class="section-heading"><p class="eyebrow">Optional executable output</p><h2>Run the construction with Qiskit</h2></div><p>{html.escape(str(qiskit['role']))}</p><dl class="definition-list"><dt>Repository path</dt><dd><code>{html.escape(str(qiskit['path']))}</code></dd><dt>Command</dt><dd><pre><code>{html.escape(str(qiskit['command']))}</code></pre></dd></dl><div class="callout warning"><strong>Trust boundary.</strong> A fast Qiskit check may reject, rank, or provisionally promote a route before formalization. A floating-point norm tolerance does not replace the exact Lean root shown above; an external exact certificate contributes to final proof only when a Lean checker verifies it.</div></section>
+<section class="content-section export-section" id="executable-evidence"><div class="section-heading"><p class="eyebrow">Optional executable checks and outputs</p><h2>Executable verification and exports</h2><p>Checking and artifact selection are independent. A user may screen with Qiskit, OpenQASM round-trip, both, or neither, then request a different set of output files.</p></div>{render_executable_evidence(case, prefix)}<p>{html.escape(str(qiskit['role']))}</p><dl class="definition-list"><dt>Current runnable artifact</dt><dd><code>{html.escape(str(qiskit['path']))}</code></dd><dt>Command</dt><dd><pre><code>{html.escape(str(qiskit['command']))}</code></pre></dd></dl><div class="callout warning"><strong>Trust boundary.</strong> Fast executable checks may reject, rank, or queue a route for formalization. Floating-point tolerances do not replace the exact Lean roots above; an external exact certificate contributes only after a Lean checker verifies it.</div></section>
 <section class="content-section"><dl class="definition-list"><dt>Source</dt><dd>{html.escape(str(case['source']))}</dd><dt>Contributor</dt><dd>{html.escape(str(case['contributor']))}</dd><dt>Current boundary</dt><dd>{html.escape(str(case['limitations']))}</dd></dl><div class="link-row"><a class="button" href="{prefix}task-builder/index.html?case={html.escape(str(case['slug']))}">Load in task builder</a><a class="button secondary" href="{prefix}community/index.html?case={html.escape(str(case['slug']))}">Contribute a variant</a></div></section>
 <script type="application/json" data-example-preset>{preset}</script></article>"""
-    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=[("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution"), ("lean-certificate", "Lean certificates"), ("qiskit-export", "Qiskit export")])
+    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=[("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution"), ("lean-certificate", "Lean certificates"), ("executable-evidence", "Executable evidence")])
 
 
 def render_task_builder(
     coverage: dict[str, object], gate: dict[str, object], context: dict[str, object]
 ) -> str:
     body = """<section class="hero task-builder-intro"><p class="eyebrow">User-owned execution</p>
-<h1>Build an ASPBE task</h1><p class="lede">Describe a state or operator, inspect the generated contract, and send it only to a runner you control. Lean remains the proof gate; Qiskit remains an executable cross-check.</p></section>
+<h1>Build an ASPBE task</h1><p class="lede">Describe a state or operator, choose fast executable screening independently from final artifacts, and send the packet only to a runner you control. Exact certification still enters through Lean.</p></section>
 <div class="task-builder" data-task-builder>
 <section class="builder-panel"><h2>Target and acceptance contract</h2>
 <label>Example preset<select id="benchmarkPreset"><option value="custom">Custom task</option></select></label>
@@ -2145,8 +2199,20 @@ def render_task_builder(
 <label>Target state, operator, or oracle<textarea id="oracleDescription">Prepare (|0> + |1>) / sqrt(2) from |0></textarea></label>
 <div class="form-grid"><label>Normalizer alpha / state norm<input id="normalizer" value="1"></label><label>Initial or clean state<input id="projector" value="|0^n>"></label></div>
 <label>Constraints<textarea id="constraints" placeholder="Register order, exact or approximate tolerance, allowed gates, and non-goals."></textarea></label>
+<fieldset class="executable-policy"><legend>Executable verification</legend>
+<div class="section-heading"><p>Choose an intermediate checker independently from the files you want to keep.</p></div>
+<div class="backend-options" role="radiogroup" aria-label="Intermediate executable checker">
+<label class="option-row"><input name="intermediateBackend" type="radio" value="none"><span><strong>None</strong><small>Skip intermediate executable screening.</small></span></label>
+<label class="option-row"><input name="intermediateBackend" type="radio" value="qiskitOperator"><span><strong>Qiskit Operator check</strong><small>Builds the circuit gate by gate and numerically checks unitarity and the clean block.</small></span></label>
+<label class="option-row"><input name="intermediateBackend" type="radio" value="openqasm3RoundTrip"><span><strong>OpenQASM 3 strict round-trip</strong><small>Writes canonical IR, parses the supported subset, reconstructs the IR, and checks its semantics.</small></span></label>
+<label class="option-row"><input name="intermediateBackend" type="radio" value="both" checked><span><strong>Both</strong><small>Recommended. Both independent checks must pass when required.</small></span></label>
+</div>
+<div class="form-grid"><label class="check-row"><input id="checkRequired" type="checkbox" checked> Treat selected checker as required</label><label class="check-row"><input id="requireCanonicalRoundTrip" type="checkbox" checked> Require canonical QASM round-trip</label><label>Unitarity tolerance<input id="unitarityTolerance" type="number" value="1e-10" min="0" step="any"></label><label>Clean-block tolerance<input id="cleanBlockTolerance" type="number" value="1e-10" min="0" step="any"></label></div>
+<p class="hint">Neither numerical backend replaces Lean. A passing check may screen and prioritize a candidate; exact proof authority requires a Lean root.</p>
+<h3>Export artifacts</h3><div class="artifact-options"><label class="check-row"><input id="exportCanonicalIr" type="checkbox" checked> Canonical circuit IR</label><label class="check-row"><input id="exportQiskitPython" type="checkbox" checked> Qiskit Python</label><label class="check-row"><input id="exportOpenQasm3" type="checkbox" checked> OpenQASM 3</label><label class="check-row"><input id="exportMetricsJson" type="checkbox" checked> Verification metrics</label><label class="check-row"><input id="exportCircuitText" type="checkbox"> Circuit text</label></div>
+</fieldset>
 <fieldset><legend>API ownership</legend><div class="form-grid"><label>Run location<select id="runLocation"><option value="localCli">Local CLI</option><option value="selfHostedRunner">My self-hosted runner</option><option value="browserPacketOnly">Packet only</option></select></label><label>Provider<select id="apiProvider"><option value="openai">OpenAI</option><option value="anthropic">Anthropic</option><option value="gemini">Gemini</option><option value="custom">Custom endpoint</option></select></label><label>Model<input id="defaultModel" value="use profile default"></label><label>Runner endpoint<input id="runnerEndpoint" value="/api/run-task"></label></div><label>Session-only API key<input id="apiKey" type="password" autocomplete="off" data-never-persist></label><p class="hint">The key is never stored, exported, logged, or placed in a contribution URL.</p></fieldset>
-<details><summary>Advanced search and export fields</summary><label>Known baseline<textarea id="baseline"></textarea></label><label>User insight<textarea id="userInsight"></textarea></label><label>Proposed construction or proof<textarea id="proposedProof"></textarea></label><label class="check-row"><input id="exportQiskit" type="checkbox" checked> Qiskit cross-check</label><label class="check-row"><input id="exportQasm3" type="checkbox"> OpenQASM 3 export</label></details>
+<details><summary>Advanced search fields</summary><label>Known baseline<textarea id="baseline"></textarea></label><label>User insight<textarea id="userInsight"></textarea></label><label>Proposed construction or proof<textarea id="proposedProof"></textarea></label></details>
 <div class="builder-actions"><button id="buildPacket" type="button">Build task packet</button><button id="runWithApi" type="button">Run with my API</button><button id="copyPacket" class="secondary" type="button">Copy</button><button id="downloadPacket" class="secondary" type="button">Download</button></div><p id="runnerStatus" aria-live="polite"></p></section>
 <section class="builder-panel"><h2>Generated packet</h2><pre id="packet" class="packet" tabindex="0"></pre><div class="memory-actions"><button id="savePrivateCase" type="button">Save privately</button><button id="forgetPrivateCase" class="secondary" type="button">Forget</button><button id="exportPrivateCases" class="secondary" type="button">Export JSON</button><label class="file-button">Import JSON<input id="importPrivateCases" type="file" accept="application/json"></label><button id="submitCase" class="secondary" type="button">Submit for review</button></div><p id="memoryStatus" aria-live="polite"></p><details><summary>Runner dashboard JSON</summary><textarea id="dashboardJson"></textarea><button id="renderDashboard" type="button">Render JSON</button><div id="dashboardView"></div></details></section></div>"""
     return page_template(title="Task builder", route="task-builder/", current="task-builder/", body=body, coverage=coverage, gate=gate, context=context, extra_scripts=("static/case-memory.js", "static/task-builder.js"))

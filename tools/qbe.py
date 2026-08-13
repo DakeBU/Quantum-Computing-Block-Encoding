@@ -1279,6 +1279,9 @@ def cmd_next_task(_: argparse.Namespace) -> int:
 def task_template(args: argparse.Namespace) -> str:
     now = _dt.datetime.now().strftime("%Y-%m-%d %H:%M")
     export_targets = getattr(args, "export_targets", "qiskit") or "none"
+    executable_backend = getattr(args, "executable_check_backend", "none")
+    executable_required = bool(getattr(args, "executable_check_required", False))
+    executable_evidence = getattr(args, "executable_evidence_classes", "none")
     export_instantiation = (
         getattr(args, "export_instantiation", "")
         or "smallest certified instance first; record all register sizes and parameter values"
@@ -1374,12 +1377,17 @@ LexElim scheduler discipline:
 - Free parameters allowed in the oracle: `TBD`
 - Required exactness or error tolerance: `TBD`
 
-## Post-Lean Executable Exports
+## Executable Checks and Exports
 
 - Requested targets: `{export_targets}`
-- Export policy: Lean-first.  Generate executable code only after a named Lean
-  declaration proves the advertised state-preparation or block-encoding
-  theorem at the task's semantic tier.
+- Executable check backend: `{executable_backend}`
+- Executable check required: `{str(executable_required).lower()}`
+- Executable evidence classes: `{executable_evidence}`
+- Screening policy: canonical executable IR may reject, rank, or queue a
+  candidate before proof.  It remains executable-screened until Lean closes
+  the advertised semantic root.
+- Certified-export policy: an artifact may advertise exact refinement only
+  after it names the matching Lean declaration.
 - Concrete export instantiation: `{export_instantiation}`
 - Expected artifact root: `executable-exports/{slugify(args.id)}/`
 
@@ -1498,6 +1506,9 @@ Ingested: `{now_stamp()}`
             source=args.source,
             epsilon=args.epsilon,
             export_targets=args.export_targets,
+            executable_check_backend=args.executable_check_backend,
+            executable_check_required=args.executable_check_required,
+            executable_evidence_classes=args.executable_evidence_classes,
             raw=raw,
         )
         write_text(task_path, task_text)
@@ -1538,6 +1549,9 @@ def user_problem_task_template(
     epsilon: str,
     export_targets: str,
     raw: str,
+    executable_check_backend: str = "none",
+    executable_check_required: bool = False,
+    executable_evidence_classes: str = "none",
 ) -> str:
     lean_root = (
         "UserSubmission."
@@ -1559,6 +1573,9 @@ Lean acceptance anchors: `{lean_root}`
 - Source: `{source}`
 - Requested tolerance: `{epsilon}`
 - Requested executable exports: `{export_targets}`
+- Executable check backend: `{executable_check_backend}`
+- Executable check required: `{str(executable_check_required).lower()}`
+- Executable evidence classes: `{executable_evidence_classes}`
 
 ## Raw User Problem
 
@@ -3950,6 +3967,8 @@ def task_contract_capsule(
             "complete": controller_state.get("executable_acceptance_complete", False),
             "command": controller_state.get("executable_acceptance_command", ""),
             "artifacts": controller_state.get("executable_acceptance_artifacts", []),
+            "backend": controller_state.get("executable_check_backend", "none"),
+            "evidence_classes": controller_state.get("executable_evidence_classes", []),
         },
         "active_route_fingerprint": semantic_route_fingerprint(route_record),
         "failed_route_fingerprints": failed_fingerprints,
@@ -9403,6 +9422,10 @@ def verified_task_executable_acceptance(
         "input_digest": final_digest,
         "stdout_tail": stdout[-8000:],
         "stderr_tail": stderr[-8000:],
+        "backend": contract.backend,
+        "required": contract.required,
+        "evidence_classes": list(contract.evidence_classes),
+        "exact_proof_authority": "leanCheckedRefinement" in contract.evidence_classes,
     }
     atomic_write_json(state_path, payload)
     append_jsonl(
@@ -9423,8 +9446,17 @@ def verified_task_executable_acceptance(
             "verifier_feedback": {
                 "leaf": "POST-LEAN-EXPORT",
                 "lean_build_ok": True,
-                "qiskit_acceptance_ok": exit_code == 0,
-                "qasm_acceptance_ok": exit_code == 0,
+                "executable_backend": contract.backend,
+                "evidence_classes": list(contract.evidence_classes),
+                "qiskit_acceptance_ok": (
+                    exit_code == 0 if contract.backend in {"qiskitOperator", "both"} else None
+                ),
+                "qasm_acceptance_ok": (
+                    exit_code == 0 if contract.backend in {"openqasm3RoundTrip", "both"} else None
+                ),
+                "exact_proof_authority": (
+                    exit_code == 0 and "leanCheckedRefinement" in contract.evidence_classes
+                ),
                 "error_class": "" if exit_code == 0 else "executable_export_gap",
                 "next_route": "closeout" if exit_code == 0 else "repair the declared exporter before rerun",
             },
@@ -9628,12 +9660,14 @@ def cycle_control_decision(args: argparse.Namespace, cycle: int) -> CycleDecisio
         verified_root_anchors=verified_task_acceptance_anchors(
             args.id, task_text=task_text
         ),
-        executable_acceptance_required=bool(executable.command),
+        executable_acceptance_required=executable.required,
         executable_acceptance_complete=verified_task_executable_acceptance(
             args.id, task_text=task_text
         ),
         executable_acceptance_command=executable.command,
         executable_acceptance_artifacts=executable.artifacts,
+        executable_check_backend=executable.backend,
+        executable_evidence_classes=executable.evidence_classes,
         lean_acceptance_required=bool(infer_acceptance_anchors(task_text)),
         population_gate_required=(
             evaluation_mode in {"full-abeis", "isolated-abeis"}
@@ -10393,7 +10427,7 @@ def cmd_agent_note(args: argparse.Namespace) -> int:
     return 0
 
 
-CASE_STATES = {"draft", "pendingReview", "verified", "rejected"}
+CASE_STATES = {"draft", "pendingReview", "executable-screened", "verified", "rejected"}
 SECRET_FIELD = re.compile(r"(?:api[_-]?key|authorization|cookie|password|token)", re.I)
 
 
@@ -10454,10 +10488,12 @@ def validate_case_packet(packet: dict[str, object], *, promotion: bool = False) 
     if consent.get("public_repository") is not True:
         raise ValueError("public repository consent is required")
     if promotion:
-        if packet["status"] != "pendingReview":
-            raise ValueError("only pendingReview cases can be promoted")
+        if packet["status"] not in {"pendingReview", "executable-screened"}:
+            raise ValueError("only reviewed cases can be promoted")
         if packet["verification"].get("accepted") is not True:
             raise ValueError("promotion requires accepted compiler evidence")
+        if not str(packet["lean"].get("root", "")).strip():
+            raise ValueError("promotion requires a named Lean root")
         executable = packet["executable"]
         if executable.get("advertised") and executable.get("accepted") is not True:
             raise ValueError("advertised executable evidence has not passed")
@@ -10592,6 +10628,13 @@ def build_parser() -> argparse.ArgumentParser:
         default="",
         help="concrete register sizes/parameters for post-Lean executable exports",
     )
+    p_task.add_argument(
+        "--executable-check-backend",
+        choices=["none", "qiskitOperator", "openqasm3RoundTrip", "both"],
+        default="none",
+    )
+    p_task.add_argument("--executable-check-required", action="store_true")
+    p_task.add_argument("--executable-evidence-classes", default="none")
     p_task.set_defaults(func=cmd_new_task)
 
     p_ingest = sub.add_parser(
@@ -10608,6 +10651,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_ingest.add_argument("--source", default="user-provided")
     p_ingest.add_argument("--epsilon", default="")
     p_ingest.add_argument("--export-targets", default="qiskit,quantum-katas,qasm3")
+    p_ingest.add_argument(
+        "--executable-check-backend",
+        choices=["none", "qiskitOperator", "openqasm3RoundTrip", "both"],
+        default="none",
+    )
+    p_ingest.add_argument("--executable-check-required", action="store_true")
+    p_ingest.add_argument("--executable-evidence-classes", default="none")
     p_ingest.add_argument("--create-task", action="store_true", help="create or overwrite the task shell if absent")
     p_ingest.add_argument("--active", action="store_true", help="set this task as active")
     p_ingest.set_defaults(func=cmd_ingest_user_problem)

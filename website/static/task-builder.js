@@ -10,7 +10,11 @@
     insight: $("userInsight"), proof: $("proposedProof"),
     runLocation: $("runLocation"), provider: $("apiProvider"),
     model: $("defaultModel"), endpoint: $("runnerEndpoint"), key: $("apiKey"),
-    qiskit: $("exportQiskit"), qasm: $("exportQasm3"), packet: $("packet"),
+    checkRequired: $("checkRequired"), unitaryTolerance: $("unitarityTolerance"),
+    cleanBlockTolerance: $("cleanBlockTolerance"), roundTrip: $("requireCanonicalRoundTrip"),
+    exportCanonical: $("exportCanonicalIr"), exportQiskit: $("exportQiskitPython"),
+    exportQasm: $("exportOpenQasm3"), exportMetrics: $("exportMetricsJson"),
+    exportText: $("exportCircuitText"), packet: $("packet"),
   };
   let cases = [];
 
@@ -32,8 +36,16 @@
   }
 
   function packetData() {
+    const backend = document.querySelector('input[name="intermediateBackend"]:checked')?.value || "none";
+    const formats = [
+      [fields.exportCanonical, "canonicalIrJson"],
+      [fields.exportQiskit, "qiskitPython"],
+      [fields.exportQasm, "openqasm3"],
+      [fields.exportMetrics, "metricsJson"],
+      [fields.exportText, "circuitText"],
+    ].filter(([control]) => control.checked).map(([, name]) => name);
     return {
-      schemaVersion: 1,
+      schemaVersion: 2,
       generatedAt: new Date().toISOString(),
       caseSlug: selectedCase()?.slug || null,
       taskName: fields.task.value.trim(),
@@ -54,7 +66,16 @@
         apiKeyPresentInSession: Boolean(fields.key.value),
         apiKeyExported: false,
       },
-      exports: {qiskit: fields.qiskit.checked, qasm3: fields.qasm.checked},
+      executablePolicy: {
+        intermediateCheck: {
+          backend,
+          required: fields.checkRequired.checked && backend !== "none",
+          unitarityTolerance: Number(fields.unitaryTolerance.value),
+          cleanBlockTolerance: Number(fields.cleanBlockTolerance.value),
+          requireCanonicalRoundTrip: fields.roundTrip.checked,
+        },
+        exports: {formats},
+      },
       status: "draft",
     };
   }
@@ -69,7 +90,9 @@
       `Normalizer: \`${data.normalizer}\`\n\nInitial / clean state: \`${data.projector}\`\n\n` +
       `## Constraints\n\n${data.constraints || "None supplied."}\n\n` +
       `## Baseline and guidance\n\n${data.baseline || "No baseline supplied."}\n\n${data.userInsight}\n\n${data.proposedProof}\n\n` +
-      `## Acceptance boundary\n\nLean is the proof authority. Executable exports are cross-checks and must name the accepted Lean root.`;
+      `## Executable policy\n\nIntermediate checker: \`${data.executablePolicy.intermediateCheck.backend}\` (${data.executablePolicy.intermediateCheck.required ? "required" : "optional"}).\n\n` +
+      `Requested artifacts: ${data.executablePolicy.exports.formats.map((item) => `\`${item}\``).join(", ") || "none"}.\n\n` +
+      `## Acceptance boundary\n\nExecutable checks may reject, rank, and queue candidates for proof. Exact certification requires a named Lean root, or an external exact certificate checked by Lean.`;
     return data;
   }
 
@@ -97,8 +120,25 @@
     if (fields.key.value) headers.Authorization = `Bearer ${fields.key.value}`;
     status.textContent = "Sending to your runner...";
     try {
+      const taskPacket = packetData();
+      const taskId = (taskPacket.taskName || "aspbe-user-task")
+        .toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "")
+        .slice(0, 96) || "aspbe-user-task";
+      const request = {
+        task: {
+          id: taskId,
+          target: taskPacket.target,
+          mode: taskPacket.kind,
+          harness: taskPacket.harness,
+          language: "en",
+          executablePolicy: taskPacket.executablePolicy,
+        },
+        provider: taskPacket.runner.provider,
+        model: taskPacket.runner.model,
+        packet: fields.packet.textContent,
+      };
       const response = await fetch(fields.endpoint.value.trim(), {
-        method: "POST", headers, body: JSON.stringify(packetData()), cache: "no-store",
+        method: "POST", headers, body: JSON.stringify(request), cache: "no-store",
       });
       if (!response.ok) throw new Error(`runner returned ${response.status}`);
       $("dashboardJson").value = JSON.stringify(await response.json(), null, 2);
@@ -139,7 +179,24 @@
   fields.preset.addEventListener("change", () => applyPreset(selectedCase()));
   document.querySelectorAll(".task-builder input, .task-builder textarea, .task-builder select")
     .forEach((control) => control.addEventListener("change", buildPacket));
-  window.AspbeTaskBuilder = {packetData, buildPacket};
+  function migratePacket(packet) {
+    if (Number(packet?.schemaVersion || 1) !== 1) return structuredClone(packet);
+    const old = packet.exports || {};
+    const formats = ["canonicalIrJson", "metricsJson"];
+    if (old.qiskit) formats.push("qiskitPython");
+    if (old.qasm3) formats.push("openqasm3");
+    const backend = old.qiskit && old.qasm3 ? "both" : old.qiskit ? "qiskitOperator" : old.qasm3 ? "openqasm3RoundTrip" : "none";
+    const migrated = structuredClone(packet);
+    delete migrated.exports;
+    migrated.schemaVersion = 2;
+    migrated.executablePolicy = {
+      intermediateCheck: {backend, required: backend !== "none", unitarityTolerance: 1e-10, cleanBlockTolerance: 1e-10, requireCanonicalRoundTrip: true},
+      exports: {formats: [...new Set(formats)]},
+    };
+    return migrated;
+  }
+
+  window.AspbeTaskBuilder = {packetData, buildPacket, migratePacket};
   loadCases().catch((error) => { $("runnerStatus").textContent = error.message; });
   buildPacket();
 })();

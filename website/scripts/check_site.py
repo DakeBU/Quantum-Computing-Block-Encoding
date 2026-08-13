@@ -286,9 +286,12 @@ def main() -> int:
             "Circuit anatomy",
             "Candidate and proof progression",
             "Named Lean certificates",
-            "Run the construction with Qiskit",
-            "may reject, rank, or provisionally promote a route",
-            "floating-point norm tolerance does not replace the exact Lean root",
+            "Executable verification and exports",
+            "Checking and artifact selection are independent",
+            "Qiskit Operator",
+            "OpenQASM 3 round-trip",
+            "Fast executable checks may reject, rank, or queue a route for formalization",
+            "Floating-point tolerances do not replace the exact Lean roots above",
         ):
             if marker not in case_page:
                 errors.append(f"example case lacks teaching marker {marker!r}: {case['slug']}")

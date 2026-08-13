@@ -5,14 +5,38 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+
+from tools.executable_manifest import migrate_task_packet, validate_executable_policy
+
+
 ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{2,95}$")
+
+
+def server_owned_profile(provider: str) -> dict[str, object]:
+    """Return commands selected by the local runner, never by browser input."""
+
+    environment_name = f"ASPBE_{provider.upper()}_AGENT_COMMAND"
+    command = os.environ.get(environment_name, "").strip()
+    if not command and provider == "openai":
+        command = 'cd {root} && codex exec --dangerously-bypass-approvals-and-sandbox "$(cat {prompt})"'
+    if not command:
+        raise ValueError(
+            f"Set {environment_name} on the self-hosted runner before using provider {provider}."
+        )
+    return {
+        "description": f"Server-owned {provider} profile; no command was accepted from the browser.",
+        "commands": {role: command for role in (
+            "upper", "middle", "lower1", "lower2", "lower3", "reviewer", "default"
+        )},
+    }
 
 
 def run(command: list[str], *, input_text: str | None = None) -> subprocess.CompletedProcess[str]:
@@ -109,9 +133,33 @@ def main() -> int:
         }
         print(json.dumps(response, ensure_ascii=False))
         return 0 if response["ok"] else (evolved.returncode or audited.returncode or 1)
-    profile = payload.get("profile")
-    if not isinstance(profile, dict) or not isinstance(profile.get("commands"), dict):
-        return fail("Request profile has no command map.")
+    provider = str(payload.get("provider", "openai"))
+    try:
+        profile = server_owned_profile(provider)
+    except ValueError as error:
+        return fail(str(error))
+
+    policy = task.get("executablePolicy")
+    if not isinstance(policy, dict):
+        legacy_packet = payload.get("taskPacket")
+        if isinstance(legacy_packet, dict):
+            try:
+                policy = migrate_task_packet(legacy_packet)["executablePolicy"]
+            except ValueError as error:
+                return fail(f"Invalid executable policy: {error}")
+        else:
+            policy = {
+                "intermediateCheck": {
+                    "backend": "none", "required": False,
+                    "unitarityTolerance": 1e-10, "cleanBlockTolerance": 1e-10,
+                    "requireCanonicalRoundTrip": True,
+                },
+                "exports": {"formats": []},
+            }
+    try:
+        validate_executable_policy(policy)
+    except ValueError as error:
+        return fail(f"Invalid executable policy: {error}")
 
     profile_dir = ROOT / "agent-profiles"
     profile_dir.mkdir(parents=True, exist_ok=True)
@@ -122,8 +170,18 @@ def main() -> int:
         newline="\n",
     )
 
-    exports = task.get("exportTargets")
-    export_targets = ",".join(str(item) for item in exports) if isinstance(exports, list) else ""
+    format_to_target = {
+        "qiskitPython": "qiskit",
+        "openqasm3": "qasm3",
+        "canonicalIrJson": "canonical-ir",
+        "metricsJson": "metrics",
+        "circuitText": "circuit-text",
+    }
+    requested_formats = policy["exports"]["formats"]
+    export_targets = ",".join(
+        format_to_target[str(item)] for item in requested_formats if str(item) in format_to_target
+    )
+    check = policy["intermediateCheck"]
     ingest = [
         sys.executable,
         "tools/qbe.py",
@@ -141,9 +199,21 @@ def main() -> int:
         "QuantumComputinglib user-owned API runner",
         "--export-targets",
         export_targets or "none",
+        "--executable-check-backend",
+        str(check["backend"]),
+        "--executable-evidence-classes",
+        (
+            "roundTrip,numericUnitary,numericCleanBlock"
+            if check["backend"] in {"both", "openqasm3RoundTrip"}
+            else "numericUnitary,numericCleanBlock"
+            if check["backend"] == "qiskitOperator"
+            else "none"
+        ),
         "--create-task",
         "--active",
     ]
+    if check["required"]:
+        ingest.append("--executable-check-required")
     packet = payload.get("packet")
     raw_input = packet if isinstance(packet, str) and packet.strip() else target
     ingested = run(ingest, input_text=raw_input)
@@ -193,6 +263,7 @@ def main() -> int:
     }
     if isinstance(dashboard, dict):
         response["dashboard"] = dashboard
+    response["executablePolicy"] = policy
     print(json.dumps(response, ensure_ascii=False))
     return 0
 

@@ -114,7 +114,7 @@
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
-      "reading": "Hadamard-8 and four-slot high-level logical unitaries are promoted to exact VerifiedOperatorBlockEncoding roots. Their shared logical-stage convention (called T2 internally) proves the four-slot route strictly better after gate count and depth tie. Expanding every stage into exact primitive {u,cx} gates is a separate backend-refinement result (called T3)."
+      "reading": "Hadamard-8 and four-slot high-level logical unitaries are promoted to exact VerifiedOperatorBlockEncoding roots. Their shared logical-stage convention (called T2 internally) proves the four-slot route strictly better after gate count and depth tie. Expanding every stage into the frozen exact primitive basis {X,RY(theta),RZ(theta),CX} is a separate backend-refinement result (called T3)."
     }
   ]
 }

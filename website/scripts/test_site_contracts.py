@@ -54,7 +54,7 @@ class SiteContractTests(unittest.TestCase):
         self.assertEqual(len(slugs), len(set(slugs)))
         self.assertIn("Example Cases", build_site.site_header("./", ""))
 
-    def test_every_case_has_formula_lean_evolution_and_qiskit(self) -> None:
+    def test_every_case_has_formula_lean_evolution_and_executable_output(self) -> None:
         data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))
         for case in data["cases"]:
             self.assertTrue(case["formula"], case["slug"])
@@ -67,6 +67,20 @@ class SiteContractTests(unittest.TestCase):
                 self.assertIn(stage["leanAnchor"], case["leanAnchors"])
                 if stage["status"].startswith("Strictly better"):
                     self.assertIn("betterThan", stage["leanAnchor"])
+
+    def test_backend_check_and_export_controls_are_independent(self) -> None:
+        source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
+        script = (ROOT / "website/static/task-builder.js").read_text(encoding="utf-8")
+        self.assertIn('name="intermediateBackend"', source)
+        self.assertIn('id="exportQiskitPython"', source)
+        self.assertIn("executablePolicy", script)
+        self.assertNotIn('exports: {qiskit:', script)
+
+    def test_example_pages_use_backend_neutral_evidence_section(self) -> None:
+        source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
+        self.assertIn("Executable verification and exports", source)
+        self.assertIn("OpenQASM 3 round-trip", source)
+        self.assertNotIn('(\"qiskit-export\", \"Qiskit export\")', source)
 
     def test_numerical_replay_is_not_the_case_certification_gate(self) -> None:
         source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")

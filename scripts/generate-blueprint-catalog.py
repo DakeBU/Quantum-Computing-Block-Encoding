@@ -75,6 +75,9 @@ CATALOGS = [
         {
             "CircuitSemantics.lean",
             "ConcreteSemantics.lean",
+            "PrimitiveCircuit.lean",
+            "PrimitiveSemantics.lean",
+            "PrimitiveRefinement.lean",
             "TextbookStatePreparation.lean",
         },
     ),
@@ -106,6 +109,7 @@ CATALOGS = [
             "Robin/SymmetryFourSlot.lean",
             "Robin/SymmetryFourSlotLogicalUnitary.lean",
             "Robin/SymmetryFourSlotBlockEncoding.lean",
+            "Robin/SymmetryFourSlotPrimitive.lean",
             "Robin/SystemConjugation.lean",
         },
     ),

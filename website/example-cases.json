@@ -298,9 +298,12 @@
       "semanticTier": "Exact logical-unitary block encoding (T2)",
       "leanAnchors": [
         "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224",
-        "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
-        "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding",
-        "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"
+      "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
+      "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding",
+      "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
+      "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_eval_eq",
+      "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_image",
+      "QuantumBlockEncoding.Robin.warmRobinFourSlotExactRy_eq_rotation"
       ],
       "problem": "For the fixed homogeneous-Robin fourth-derivative discretization with N=8, construct an exact logical unitary whose clean block is the scaled non-unitary matrix A.",
       "formula": "A=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{A}{56/3}=\\frac{M}{224}.",
@@ -310,7 +313,7 @@
         ["M=12A", "the integer matrix used by the exact decomposition proofs"],
         ["alpha=56/3", "the frozen block-encoding normalizer"],
         ["T2", "the exact high-level unitary and clean block are proved; named loaders and SELECT operations may remain logical stages"],
-        ["T3", "every logical stage is expanded into primitive gates such as {u,cx}, and Lean proves that the primitive product equals the T2 unitary"]
+        ["T3", "every logical stage is expanded into the frozen exact basis {X, RY(theta), RZ(theta), CX}, and Lean proves that the primitive product equals the T2 unitary"]
       ],
       "circuit": {
         "registers": "selector | coefficient signal | three-qubit system",
@@ -331,13 +334,13 @@
       "qiskit": {
         "path": "executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py",
         "command": "python3 executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py",
-        "role": "Exports the fixed logical benchmark as runnable Qiskit code. This fast check can screen future routes and prioritize their Lean proofs. A separate primitive-gate refinement is needed only for certified {u,cx} counts and end-to-end gate-level correctness."
+        "role": "Exports the fixed logical benchmark as a legacy dense Qiskit diagnostic. Gate-by-gate Qiskit and strict OpenQASM checks consume canonical primitive IR once the exact {X, RY, RZ, CX} refinement exists; neither numerical route replaces Lean."
       },
       "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "fixed N=8 homogeneous-Robin matrix A with clean block A/(56/3)", "normalizer": "56/3", "projector": "selector=0 and coefficient=0; system Fin 8"},
       "summary": "Two exact high-level logical-unitary block encodings compile, and Lean proves the four-slot symmetry route improves auxiliary width from four to three.",
       "source": "Guseynov-Huang-Liu construction and ASPBE fixed-N audit",
       "contributor": "ASPBE authors",
-      "limitations": "The mathematical block encoding is complete at the logical-unitary level. Exact primitive {u,cx} refinement is needed only for primitive-resource or end-to-end gate-level claims."
+      "limitations": "The mathematical block encoding is complete at the logical-unitary level. Pair-coordinate CX and exact RY-angle prerequisites compile, while the uniformly controlled RY product equality and full {X, RY, RZ, CX} refinement remain open."
     }
   ]
 }

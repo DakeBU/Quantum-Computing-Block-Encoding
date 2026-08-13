@@ -19,6 +19,14 @@ except ModuleNotFoundError:
 
 
 LIFECYCLE_STATES = ("active", "superseded", "completed", "blocked", "archived")
+CERTIFICATION_STAGES = (
+    "generated",
+    "executable-screened",
+    "lean-obligation-queued",
+    "lean-certified",
+    "same-tier-comparable",
+    "accepted",
+)
 
 
 def _content_digest(parts: Sequence[object]) -> str:
@@ -162,6 +170,7 @@ def completion_evidence(
         and root_anchors
     )
     executable_required = bool(control.get("executable_acceptance_required"))
+    executable_backend = str(control.get("executable_check_backend", "both"))
     executable_command = str(control.get("executable_acceptance_command", ""))
     executable_artifacts_raw = control.get("executable_acceptance_artifacts", [])
     executable_artifacts = (
@@ -185,12 +194,20 @@ def completion_evidence(
             continue
         feedback_raw = row.get("verifier_feedback", {})
         feedback = feedback_raw if isinstance(feedback_raw, Mapping) else {}
-        if (
-            row.get("status") == "accepted"
-            and feedback.get("lean_build_ok") is True
-            and feedback.get("qasm_acceptance_ok") is True
-            and feedback.get("qiskit_acceptance_ok") is True
-        ):
+        backend = str(feedback.get("executable_backend", executable_backend))
+        backend_ok = (
+            feedback.get("qiskit_acceptance_ok") is True
+            if backend == "qiskitOperator"
+            else feedback.get("qasm_acceptance_ok") is True
+            if backend == "openqasm3RoundTrip"
+            else (
+                feedback.get("qasm_acceptance_ok") is True
+                and feedback.get("qiskit_acceptance_ok") is True
+            )
+            if backend == "both"
+            else True
+        )
+        if row.get("status") == "accepted" and feedback.get("lean_build_ok") is True and backend_ok:
             accepted_rows.append(str(row.get("trial_id", "")))
     complete = bool(
         control.get("status") == "complete"
@@ -203,6 +220,7 @@ def completion_evidence(
         "current_lean_gate": current_lean_gate,
         "lean_complete": lean_complete,
         "executable_required": executable_required,
+        "executable_backend": executable_backend,
         "executable_complete": executable_complete,
         "certified_root_anchors": root_anchors if isinstance(root_anchors, list) else [],
         "accepted_executable_trial_ids": accepted_rows,
@@ -224,7 +242,7 @@ def resolve_task_lifecycle(
 
     if evidence["complete"]:
         lifecycle = "completed"
-        reason = "current control state has Lean roots and required executable/Qiskit acceptance"
+        reason = "current control state has Lean roots and the required executable policy passed"
     elif task_id == state.get("active_task"):
         lifecycle = "active"
         reason = "selected by .qbe/state.json"

@@ -52,6 +52,18 @@ class CaseMemoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "compiler evidence"):
             validate_case_packet(value, promotion=True)
 
+    def test_executable_screening_does_not_create_proof_authority(self) -> None:
+        value = packet()
+        value["status"] = "executable-screened"
+        value["executable"].update({
+            "advertised": True,
+            "accepted": True,
+            "evidence_classes": ["numericUnitary", "numericCleanBlock"],
+        })
+        value["case_hash"] = canonical_case_hash(value)
+        with self.assertRaisesRegex(ValueError, "compiler evidence"):
+            validate_case_packet(value, promotion=True)
+
 
 if __name__ == "__main__":
     unittest.main()

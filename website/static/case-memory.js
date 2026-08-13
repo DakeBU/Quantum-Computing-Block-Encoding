@@ -2,7 +2,7 @@
   "use strict";
   const DB_NAME = "aspbe-private-cases";
   const STORE = "cases";
-  const STATES = new Set(["draft", "pendingReview", "verified", "rejected"]);
+  const STATES = new Set(["draft", "pendingReview", "executable-screened", "verified", "rejected"]);
   const status = () => document.getElementById("memoryStatus");
 
   function openDb() {
@@ -30,7 +30,9 @@
   }
 
   function scrub(packet) {
-    const clean = structuredClone(packet);
+    const clean = window.AspbeTaskBuilder?.migratePacket
+      ? window.AspbeTaskBuilder.migratePacket(packet)
+      : structuredClone(packet);
     if (clean.runner) {
       delete clean.runner.authorization;
       delete clean.runner.apiKey;
@@ -63,7 +65,7 @@
   }
 
   async function exportCases() {
-    const payload = {schemaVersion: 1, exportedAt: new Date().toISOString(), cases: (await allCases()).map(scrub)};
+    const payload = {schemaVersion: 2, exportedAt: new Date().toISOString(), cases: (await allCases()).map(scrub)};
     const blob = new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"});
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob); link.download = "aspbe-private-cases.json"; link.click();
@@ -72,9 +74,10 @@
 
   async function importCases(event) {
     const payload = JSON.parse(await event.target.files[0].text());
-    for (const item of payload.cases || []) {
+    for (const raw of payload.cases || []) {
+      const item = scrub(raw);
       if (!item.uuid || !STATES.has(item.status) || JSON.stringify(item).match(/api[_-]?key|authorization/i)) throw new Error("Import contains an invalid state or credential field");
-      await transact("readwrite", (store) => store.put(scrub(item)));
+      await transact("readwrite", (store) => store.put(item));
     }
     status().textContent = "Private cases imported after credential-field validation.";
   }

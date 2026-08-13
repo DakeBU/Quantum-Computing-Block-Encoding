@@ -1096,6 +1096,19 @@ Forbidden leaf prefixes: `APPROX-RAT-`, `RATIONAL-CIRCLE-`
         )
         self.assertEqual(contract.command, "python3 tools/export.py")
         self.assertEqual(contract.artifacts, ("out/a.json", "out/a.qasm3"))
+        self.assertEqual(contract.backend, "both")
+        self.assertTrue(contract.required)
+
+    def test_selectable_executable_policy_is_parsed_independently(self) -> None:
+        contract = infer_executable_acceptance(
+            "Executable check backend: `openqasm3RoundTrip`\n"
+            "Executable check required: `false`\n"
+            "Executable evidence classes: `syntaxOnly`, `roundTrip`\n"
+            "Executable acceptance command: `python3 tools/check.py`\n"
+        )
+        self.assertEqual(contract.backend, "openqasm3RoundTrip")
+        self.assertFalse(contract.required)
+        self.assertEqual(contract.evidence_classes, ("syntaxOnly", "roundTrip"))
 
     def test_population_gate_is_explicit(self) -> None:
         self.assertTrue(infer_population_gate("Population gate: `required`\n"))

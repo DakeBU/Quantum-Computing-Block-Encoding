@@ -168,6 +168,26 @@ class LifecycleReplayTests(unittest.TestCase):
         self.assertNotEqual(result["lifecycle"], "completed")
         self.assertFalse(result["evidence"]["executable_complete"])
 
+    def test_single_selected_backend_does_not_require_the_other_backend(self) -> None:
+        task_id = "QASM-ONLY"
+        self.add_completed_task(task_id)
+        control_path = self.root / "runs" / "control" / f"{task_id}.json"
+        control = json.loads(control_path.read_text())
+        control["executable_check_backend"] = "openqasm3RoundTrip"
+        write_json(control_path, control)
+        trial_path = self.root / "runs" / "trials.jsonl"
+        rows = [json.loads(line) for line in trial_path.read_text().splitlines()]
+        rows[-1]["verifier_feedback"].update({
+            "executable_backend": "openqasm3RoundTrip",
+            "qiskit_acceptance_ok": None,
+            "qasm_acceptance_ok": True,
+        })
+        trial_path.write_text("\n".join(json.dumps(row) for row in rows) + "\n")
+        result = resolve_task_lifecycle(
+            self.root, task_id, state={"active_task": "OTHER"}, trial_rows=rows
+        )
+        self.assertEqual(result["lifecycle"], "completed")
+
     def test_explicit_superseded_blocked_and_archived_states_are_distinct(self) -> None:
         (self.root / "tasks" / "OLD.md").write_text("Superseded by: `NEW`\n", encoding="utf-8")
         (self.root / "tasks" / "BLOCK.md").write_text("Lifecycle: `blocked`\n", encoding="utf-8")
