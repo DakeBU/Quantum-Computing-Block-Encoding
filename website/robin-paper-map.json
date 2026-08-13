@@ -113,7 +113,7 @@
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"
       ],
       "localStatus": "Compiled",
-      "routeStatus": "T2 complete; T3 planned",
+      "routeStatus": "Partial route",
       "reading": "Hadamard-8 and four-slot logical unitaries are promoted to exact VerifiedOperatorBlockEncoding roots. Their shared T2 convention proves the four-slot route strictly better after gate count and depth tie. Primitive {u,cx} refinement remains separate."
     }
   ]

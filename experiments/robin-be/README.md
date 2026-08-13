@@ -10,9 +10,10 @@ reported August 2026 experiment is the paper-seeded `warm` arm only.
   historical H-free raw-fold route.
 
 The two arms use the same normalizer, projector, register order, Lean gate,
-Qiskit acceptance checks, and score order.  A result is not an improvement when
+Qiskit export convention, and score order. A result is not an improvement when
 it changes semantic tier or replaces an expanded circuit with an unresolved
-oracle call.
+oracle call. Qiskit diagnostics never promote a candidate; a named Lean
+certificate and a same-tier Lean comparison theorem are required.
 
 Reproduce the reported warm protocol with the pinned model family:
 
@@ -36,16 +37,28 @@ Generated run data belongs under `experiments/robin-be/results/`.  Figures and
 paper tables must be generated from the audited summary there.  An empty or
 non-certified population is a reported outcome, not a plotting error.
 
-The current warm run completed six controller cycles and was stopped during a
-seventh after the upper agent repeated the same source-contract scan. It
-produced compiled certificates for the fixed target, the source-ordered
-ten-block transcript and register arithmetic, and the indicator permutation.
-It did not produce `RobinEvolution.warmRobinBestVerified`, a deterministic
-Qiskit export, or a same-tier resource tuple. Consequently, no lexicographic
-improvement is claimed. `website/robin-paper-map.json` maps the paper's LaTeX statements to
-the compiled `GHL2025.lean` and `RobinMatrix.lean` structures and labels the
-paper-wide route separately. The generated website page is
-`/case-studies/robin/`.
+The original warm automation log completed six controller cycles and stopped
+during a seventh after repeating the source-contract scan. That run alone did
+not establish a same-tier improvement. The subsequent audited proof-completion
+work closes two exact fixed-benchmark T2 roots:
+
+- `QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding` with
+  score `(8,4,4,2)`;
+- `QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding` with
+  score `(8,4,3,2)`.
+
+Lean theorem
+`QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8`
+proves the second score strictly better in their shared logical-stage
+convention. This is deterministic proof completion after the recorded search,
+not a retroactive claim that cycle seven discovered the theorem. The Qiskit
+export remains separate executable evidence, and T3 primitive `{u,cx}`
+refinement remains open.
+
+`website/robin-paper-map.json` maps the paper's LaTeX statements to compiled
+structures and labels the general paper-wide route separately. The generated
+website pages are `/case-studies/robin/` and
+`/example-cases/robin-ghl-one-term/`.
 
 The cold arm remains defined for a future controlled comparison, but it is not
 part of the paper result reported here.

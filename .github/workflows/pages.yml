@@ -77,7 +77,7 @@ jobs:
       - name: Test the ASPBE harness
         run: python3 tools/qbe.py harness-check
 
-      - name: Check proof trust and replay public certificates
+      - name: Check proof trust and executable exports
         run: |
           python3 -m unittest website.scripts.test_site_contracts tools.test_case_memory tools.test_robin_export
           python3 tools/test_proof_trust.py

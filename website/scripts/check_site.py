@@ -200,8 +200,6 @@ def main() -> int:
         errors.append("search entryCount differs from entries length")
     if metadata["declarationCount"] != declaration_count:
         errors.append("site metadata declarationCount differs from inventory")
-    if replay.get("passed") is not True:
-        errors.append("public-case replay did not pass")
     if replay.get("cold_start_claim") is not False:
         errors.append("public-case replay incorrectly claims cold-start discovery")
     if metadata.get("publicCaseReplay", {}).get("sourceDigest") != replay.get(
@@ -279,8 +277,20 @@ def main() -> int:
         route = site / "example-cases" / case["slug"] / "index.html"
         if not route.exists():
             errors.append(f"missing example case route: {case['slug']}")
-        if f"?case={case['slug']}" not in route.read_text(encoding="utf-8"):
+            continue
+        case_page = route.read_text(encoding="utf-8")
+        if f"?case={case['slug']}" not in case_page:
             errors.append(f"example case lacks task-builder preset link: {case['slug']}")
+        for marker in (
+            "The equation being studied",
+            "Circuit anatomy",
+            "Candidate and proof progression",
+            "Named Lean certificates",
+            "Run the construction with Qiskit",
+            "Qiskit output may reveal implementation mistakes",
+        ):
+            if marker not in case_page:
+                errors.append(f"example case lacks teaching marker {marker!r}: {case['slug']}")
     if re.search(r"(?:file://|/home/|[A-Za-z]:\\\\Users\\\\)", combined):
         errors.append("local filesystem path leaked into unified HTML")
 

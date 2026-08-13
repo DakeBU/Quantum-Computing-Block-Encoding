@@ -1,8 +1,28 @@
 {
   "alpha": "56/3",
-  "conclusion": "not yet same-tier",
-  "reason": "source is a T1 paper transcript; the strongest candidate has a T2 logical unitary but no common T3 primitive resource rows exist",
-  "semanticTierCompatible": false,
+  "baseline": {
+    "cost": [
+      8,
+      4,
+      4,
+      2
+    ],
+    "identity": "hadamard-eight"
+  },
+  "candidate": {
+    "cost": [
+      8,
+      4,
+      3,
+      2
+    ],
+    "identity": "symmetry-four-slot"
+  },
+  "conclusion": "four-slot strictly better than Hadamard-8 at T2",
+  "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
+  "reason": "gate count and depth tie; four-slot uses one fewer auxiliary qubit",
+  "semanticTierCompatible": true,
+  "t3PrimitiveComparisonCertified": false,
   "target": "A=M/12; A/alpha=M/224",
   "task": "QBE-ROBIN-BE-WARM-001"
 }

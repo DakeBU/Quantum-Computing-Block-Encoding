@@ -32,3 +32,5 @@ Current Qiskit exports:
 | `QBE-MAIN-CASE-HIER-COLD-001` | `QBE-MAIN-CASE-HIER-COLD-001/` | Lean certificate named; Qiskit/QASM3 artifacts generated with deterministic finite checks |
 | `QBE-OP-OPTCTRL-001` | `QBE-OP-OPTCTRL-001/qiskit/export.py` | Lean-certified concrete champion exported to Qiskit |
 | `QBE-OP-CUBIC-STATEPREP-001` | `QBE-OP-CUBIC-STATEPREP-001/qiskit/export.py` | fixed-instance dense baseline only; not a symbolic certificate |
+| `SP-TEXTBOOK-001` | `SP-TEXTBOOK-001/qiskit/export.py` | Pauli X and Hadamard circuits exported from separately Lean-certified textbook contracts |
+| `QBE-ROBIN-BE-WARM-001` | `QBE-ROBIN-BE-WARM-001/qiskit/export.py` | fixed Robin logical benchmark export; T2 is Lean-certified and T3 primitive refinement remains open |

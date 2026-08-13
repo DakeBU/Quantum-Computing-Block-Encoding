@@ -10,6 +10,7 @@
       "leanLogicalUnitaryRoot": null,
       "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFiveShiftCleanFormula_eq_target",
       "leanSemanticTier": "T1 exact finite structural LCU",
+      "leanVerifiedBlockEncodingRoot": null,
       "promotionBlockedBy": "Robin-specific clean-block promotion and primitive circuit refinement",
       "qiskitOperatorError": 0.0,
       "qiskitPrimitiveResource": null,
@@ -25,8 +26,9 @@
       "identity": "hadamard-eight-weighted-permutation",
       "leanLogicalUnitaryRoot": "QuantumBlockEncoding.Robin.warmRobinHadamard8LogicalUnitary_unitary",
       "leanRoot": "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target",
-      "leanSemanticTier": "T1 exact finite structural LCU",
-      "promotionBlockedBy": "Robin-specific clean-block promotion and primitive circuit refinement",
+      "leanSemanticTier": "T2 exact logical-unitary block encoding",
+      "leanVerifiedBlockEncodingRoot": "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
+      "promotionBlockedBy": "primitive circuit refinement",
       "qiskitOperatorError": 0.0,
       "qiskitPrimitiveResource": null,
       "qiskitVersion": "2.4.2",
@@ -42,7 +44,7 @@
   "conventionVersion": "robin-fixed-n3-structural-v1",
   "registerOrder": "selector high-order, coefficient ancilla, system low-order",
   "schemaVersion": 1,
-  "sourceCommit": "43a08a054b34b9a084aa18aad632058e328b4273",
+  "sourceCommit": "1cdcbd0119a8d6e4ae46bcfdc1cdc416a38f61f3",
   "systemQubits": 3,
   "task": "QBE-ROBIN-BE-WARM-001"
 }

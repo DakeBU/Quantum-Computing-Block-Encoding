@@ -1,102 +1,342 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "scoreOrder": [
+    "gate count",
+    "parallel depth",
+    "auxiliary qubits",
+    "oracle calls"
+  ],
   "cases": [
     {
       "slug": "pauli-x-state-preparation",
-      "title": "Pauli X prepares |1>",
+      "title": "Preparing the basis state |1>",
+      "shortTitle": "State prep: Pauli X",
       "kind": "statePreparation",
       "status": "certified",
       "semanticTier": "exact one-qubit circuit",
-      "leanAnchors": ["QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one"],
-      "replaySelector": {"case": "Textbook state preparation", "name": "pauli_x"},
+      "leanAnchors": [
+        "QuantumBlockEncoding.TextbookStatePreparation.pauliX_unitary",
+        "QuantumBlockEncoding.TextbookStatePreparation.oneTarget_normalized",
+        "QuantumBlockEncoding.TextbookStatePreparation.pauliXCertificate_prepares_one",
+        "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified_cost"
+      ],
+      "problem": "Starting from the computational-basis zero state, construct a one-qubit unitary whose output is exactly |1>.",
+      "formula": "X|0\\rangle=|1\\rangle,\\qquad X=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}.",
+      "contract": "Lean proves normalization of the target, unitarity of X, and the exact matrix-vector equation. No sampled amplitudes or floating-point tolerance enters the certificate.",
+      "symbols": [
+        ["|0>, |1>", "the two computational-basis states"],
+        ["X", "the Pauli X unitary, which exchanges the two basis states"]
+      ],
+      "circuit": {
+        "registers": "one system qubit; no ancilla",
+        "stages": [
+          {"label": "Input", "detail": "system = |0>", "gates": ["|0>"]},
+          {"label": "Unitary", "detail": "apply Pauli X", "gates": ["X"]},
+          {"label": "Certified output", "detail": "system = |1>", "gates": ["|1>"]}
+        ]
+      },
+      "evolution": {
+        "caption": "This textbook case closes in one candidate; the plot is a proof-and-resource trace, not a search claim.",
+        "stages": [
+          {"iteration": "0", "name": "X candidate", "score": [1, 1, 0, 0], "status": "Lean certified", "description": "The first and only candidate satisfies the exact state-action contract.", "leanAnchor": "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified_cost"}
+        ]
+      },
+      "qiskit": {
+        "path": "executable-exports/SP-TEXTBOOK-001/qiskit/export.py",
+        "command": "python3 executable-exports/SP-TEXTBOOK-001/qiskit/export.py --case pauli-x",
+        "role": "Exports the certified gate as runnable Qiskit code; it is not used to decide the theorem."
+      },
       "preset": {"taskName": "SP-PAULI-X-001", "mode": "statePreparation", "target": "X |0> = |1>", "normalizer": "1", "projector": "|0>"},
-      "summary": "The smallest complete state-preparation example: one X gate, exact unitary semantics, and an exact state-action theorem.",
+      "summary": "The smallest complete state-preparation certificate: target normalization, unitary matrix, exact state action, and resource tuple.",
       "source": "ASPBE textbook example",
       "contributor": "ASPBE authors",
       "limitations": "One qubit; no synthesis search is needed."
     },
     {
       "slug": "hadamard-plus-state-preparation",
-      "title": "Hadamard prepares |+>",
+      "title": "Preparing the equal superposition |+>",
+      "shortTitle": "State prep: Hadamard",
       "kind": "statePreparation",
       "status": "certified",
       "semanticTier": "exact one-qubit circuit",
-      "leanAnchors": ["QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus"],
-      "replaySelector": {"case": "Textbook state preparation", "name": "hadamard"},
+      "leanAnchors": [
+        "QuantumBlockEncoding.TextbookStatePreparation.hadamard_unitary",
+        "QuantumBlockEncoding.TextbookStatePreparation.plusTarget_normalized",
+        "QuantumBlockEncoding.TextbookStatePreparation.hadamardCertificate_prepares_plus",
+        "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified_cost"
+      ],
+      "problem": "Prepare a coherent equal superposition from |0>, including the exact factor 1/sqrt(2).",
+      "formula": "H|0\\rangle=|+\\rangle=\\frac{|0\\rangle+|1\\rangle}{\\sqrt 2},\\qquad H=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}.",
+      "contract": "Lean proves the square-root identity needed for normalization, proves H is complex unitary, and identifies its zero-input column with the target amplitudes.",
+      "symbols": [
+        ["H", "the Hadamard unitary"],
+        ["|+>", "the normalized state with equal positive amplitudes"]
+      ],
+      "circuit": {
+        "registers": "one system qubit; no ancilla",
+        "stages": [
+          {"label": "Input", "detail": "system = |0>", "gates": ["|0>"]},
+          {"label": "Unitary", "detail": "apply Hadamard", "gates": ["H"]},
+          {"label": "Certified output", "detail": "system = (|0>+|1>)/sqrt(2)", "gates": ["|+>"]}
+        ]
+      },
+      "evolution": {
+        "caption": "One exact candidate is sufficient. The certified score uses the same tuple order as the larger cases.",
+        "stages": [
+          {"iteration": "0", "name": "Hadamard candidate", "score": [1, 1, 0, 0], "status": "Lean certified", "description": "The candidate closes normalization, unitarity, state action, and cost.", "leanAnchor": "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified_cost"}
+        ]
+      },
+      "qiskit": {
+        "path": "executable-exports/SP-TEXTBOOK-001/qiskit/export.py",
+        "command": "python3 executable-exports/SP-TEXTBOOK-001/qiskit/export.py --case hadamard",
+        "role": "Exports the certified gate as runnable Qiskit code; numerical statevector output is optional user evidence, not the proof."
+      },
       "preset": {"taskName": "SP-HADAMARD-PLUS-001", "mode": "statePreparation", "target": "H |0> = (|0> + |1>) / sqrt(2)", "normalizer": "1", "projector": "|0>"},
-      "summary": "A one-gate preparation of the equal superposition, linked to the complex-unitary certificate used by Lean.",
+      "summary": "A familiar quantum gate becomes a complete exact certificate rather than a numerical statevector check.",
       "source": "ASPBE textbook example",
       "contributor": "ASPBE authors",
-      "limitations": "One qubit; numerical replay is supporting evidence, not the proof."
+      "limitations": "One qubit; no synthesis search is needed."
     },
     {
       "slug": "be-case-1-champion",
-      "title": "BE Case 1 champion",
+      "title": "BE Case 1: finite transfer operator",
+      "shortTitle": "BE Case 1",
       "kind": "operatorBlockEncoding",
       "status": "certified",
-      "semanticTier": "Lean-certified exact finite instance",
-      "leanAnchors": ["QuantumBlockEncoding.OptimalControl.evolvedEqFlipVerified"],
-      "replaySelector": {"case": "BE Case 1 champion"},
-      "preset": {"taskName": "QBE-OP-OPTCTRL-001", "mode": "operatorBlockEncoding", "target": "Finite transfer operator from BE Case 1", "normalizer": "1", "projector": "clean signal |0>"},
-      "summary": "The accepted exact descendant for the finite transfer-operator benchmark.",
+      "semanticTier": "exact finite logical reversible circuit",
+      "leanAnchors": [
+        "QuantumBlockEncoding.OptimalControl.reducedDepth5Verified",
+        "QuantumBlockEncoding.OptimalControl.proEqTransferVerified",
+        "QuantumBlockEncoding.OptimalControl.evolvedEqFlipVerified",
+        "QuantumBlockEncoding.OptimalControl.reducedDepth5Candidate_cost",
+        "QuantumBlockEncoding.OptimalControl.proEqTransferCandidate_cost",
+        "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCandidate_cost",
+        "QuantumBlockEncoding.OptimalControl.proEqTransferCost_betterThan_depth5",
+        "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_pro"
+      ],
+      "problem": "Encode the non-unitary transfer that moves the time/type label (1,1) to (0,0) while leaving the state bit unchanged.",
+      "formula": "E_1=|0\\rangle\\!\\langle1|_{\\mathrm{time}}\\otimes|0\\rangle\\!\\langle1|_{\\mathrm{type}}\\otimes I_2,\\qquad \\langle0|_aU|0\\rangle_a=E_1.",
+      "contract": "The system has time, type, and state qubits. One clean signal qubit enlarges E_1 to a permutation unitary. Lean proves the full permutation/orthogonality property and every clean-block entry exactly with alpha=1.",
+      "symbols": [
+        ["E_1", "the concrete 8 by 8 transfer operator"],
+        ["a", "the one-qubit clean signal register"],
+        ["I_2", "identity on the passive state qubit"]
+      ],
+      "circuit": {
+        "registers": "signal a | time t | type y | passive state s",
+        "stages": [
+          {"label": "Generation 0", "detail": "expanded depth-5 completion", "gates": ["X", "CNOT", "CNOT", "CNOT", "Toffoli", "X"]},
+          {"label": "Generation 1", "detail": "equality flag then transfer", "gates": ["X", "CNOT", "CNOT", "Toffoli"]},
+          {"label": "Generation 2", "detail": "one Toffoli then three parallel X gates", "gates": ["Toffoli", "X || X || X"]}
+        ]
+      },
+      "evolution": {
+        "caption": "All three points are exact Lean-certified block encodings in one logical gate convention. Both arrows are Lean theorems about the fixed lexicographic order.",
+        "stages": [
+          {"iteration": "0", "name": "Depth-5 completion", "score": [6, 5, 1, 0], "status": "Lean certified", "description": "A direct reversible completion establishes the first accepted point.", "leanAnchor": "QuantumBlockEncoding.OptimalControl.reducedDepth5Verified"},
+          {"iteration": "1", "name": "Equality-transfer", "score": [4, 4, 1, 0], "status": "Strictly better", "description": "Two gates are removed while preserving the exact clean block.", "leanAnchor": "QuantumBlockEncoding.OptimalControl.proEqTransferCost_betterThan_depth5"},
+          {"iteration": "2", "name": "Parallel equality-flip", "score": [4, 2, 1, 0], "status": "Strictly better", "description": "Gate count ties the previous candidate and parallel depth falls from four to two.", "leanAnchor": "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_pro"}
+        ]
+      },
+      "qiskit": {
+        "path": "executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py",
+        "command": "python3 executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py",
+        "role": "Exports the final certified logical construction to Qiskit. Lean, not Qiskit matrix comparison, proves acceptance and the score ordering."
+      },
+      "preset": {"taskName": "QBE-OP-OPTCTRL-001", "mode": "operatorBlockEncoding", "target": "E_1 = |0><1|_time tensor |0><1|_type tensor I_2", "normalizer": "1", "projector": "clean signal |0>"},
+      "summary": "A concrete non-unitary transfer is embedded in a permutation unitary and improved from (6,5,1,0) to (4,2,1,0).",
       "source": "ASPBE BE Case 1",
       "contributor": "ASPBE authors",
-      "limitations": "The resource row applies only to the declared finite primitive convention."
+      "limitations": "The comparison is for the declared finite logical {X, CNOT, Toffoli} convention, not a hardware-global optimum."
     },
     {
       "slug": "be-case-1-isolated-baseline",
-      "title": "BE Case 1 isolated baseline",
+      "title": "BE Case 1: isolated cold reconstruction",
+      "shortTitle": "BE Case 1 cold",
       "kind": "operatorBlockEncoding",
       "status": "certified",
-      "semanticTier": "Lean-certified exact finite instance",
-      "leanAnchors": ["QuantumBlockEncoding.mainCaseColdPartialPermVerified"],
-      "replaySelector": {"case": "BE Case 1 isolated baseline"},
-      "preset": {"taskName": "QBE-MAIN-CASE-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "Isolated finite partial-permutation benchmark", "normalizer": "1", "projector": "clean signal |0>"},
-      "summary": "A cold, isolated finite baseline with an exact permutation and projected-block certificate.",
+      "semanticTier": "exact finite logical reversible circuit",
+      "leanAnchors": [
+        "QuantumBlockEncoding.mainCaseColdPartialPermImage_bijective",
+        "QuantumBlockEncoding.mainCaseColdPartialPerm_clean_eq_target",
+        "QuantumBlockEncoding.mainCaseColdPartialPermVerified",
+        "QuantumBlockEncoding.mainCaseColdPartialPermCandidate_cost"
+      ],
+      "problem": "Reconstruct the same finite transfer contract in an isolated run that cannot retrieve the warm-route candidate implementation.",
+      "formula": "E_1=|0\\rangle\\!\\langle1|_{\\mathrm{time}}\\otimes|0\\rangle\\!\\langle1|_{\\mathrm{type}}\\otimes I_2,\\qquad \\langle0|_aU_{\\mathrm{cold}}|0\\rangle_a=E_1.",
+      "contract": "Lean separately proves that the cold image table is bijective, that its clean projection is E_1, and that the packaged candidate has score (5,5,1,0). This page does not call replay a new rediscovery.",
+      "symbols": [
+        ["U_cold", "the isolated finite permutation completion"],
+        ["a", "the clean signal qubit"]
+      ],
+      "circuit": {
+        "registers": "signal a | time t | type y | passive state s",
+        "stages": [
+          {"label": "Contract", "detail": "freeze E_1 and the clean embedding", "gates": ["target"]},
+          {"label": "Cold construction", "detail": "five logical reversible gates", "gates": ["X", "X", "controlled", "controlled", "controlled"]},
+          {"label": "Promotion", "detail": "bijection plus exact clean block", "gates": ["Lean certificate"]}
+        ]
+      },
+      "evolution": {
+        "caption": "This is a proof-completion trace. There is one scored candidate, so no lexicographic dominance claim is made.",
+        "stages": [
+          {"iteration": "0", "name": "Target fixed", "score": null, "status": "Proof obligations opened", "description": "Register order, alpha=1, and the clean block are fixed before construction.", "leanAnchor": "QuantumBlockEncoding.mainCaseColdPartialPerm_clean_eq_target"},
+          {"iteration": "1", "name": "Cold permutation", "score": [5, 5, 1, 0], "status": "Lean certified", "description": "The exact finite candidate closes bijectivity, projection, and resource fields.", "leanAnchor": "QuantumBlockEncoding.mainCaseColdPartialPermVerified"}
+        ]
+      },
+      "qiskit": {
+        "path": "executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py",
+        "command": "python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py --json",
+        "role": "Exports the already certified permutation. Its finite matrix check does not establish the Lean theorem or a cold-start discovery claim."
+      },
+      "preset": {"taskName": "QBE-MAIN-CASE-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "isolated E_1 finite transfer operator", "normalizer": "1", "projector": "clean signal |0>"},
+      "summary": "An isolated route closes the same mathematical contract with its own exact permutation and score (5,5,1,0).",
       "source": "ASPBE BE Case 1 isolated replay",
       "contributor": "ASPBE authors",
-      "limitations": "Certificate replay does not claim fresh cold-start discovery."
+      "limitations": "The certificate is reproducible; replay alone is not evidence of fresh model discovery or global optimality."
     },
     {
       "slug": "cubic-diagonal-cold",
-      "title": "Cubic diagonal cold replay",
+      "title": "BE Case 2: cubic diagonal family, cold route",
+      "shortTitle": "BE Case 2 cold",
       "kind": "operatorBlockEncoding",
       "status": "certified",
-      "semanticTier": "symbolic Lean family plus finite executable validation",
-      "leanAnchors": ["QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"],
-      "replaySelector": {"case": "BE Case 2 cold", "name": "cubic_householder"},
-      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "Block encode diag(x)^3 on a finite grid", "normalizer": "1", "projector": "three clean Householder ancillas"},
-      "summary": "An exact rational Householder family theorem with deterministic finite Qiskit and OpenQASM replay.",
-      "source": "ASPBE BE Case 2 cold replay",
+      "semanticTier": "symbolic exact rational family",
+      "leanAnchors": [
+        "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists",
+        "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_clean_eq_target",
+        "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"
+      ],
+      "problem": "For every n, block encode the diagonal operator whose j-th entry is the cube of the grid point x_j=j/2^n.",
+      "formula": "D_n=\\operatorname{diag}_{0\\le j<2^n}\\!\\left(\\frac{j}{2^n}\\right)^3,\\qquad \\Pi U_n\\Pi^\\dagger=D_n.",
+      "contract": "For arbitrary n, Lean constructs exact rational branch vectors using the four-square theorem, forms a controlled direct sum of Householder matrices, proves rational orthogonality, and proves the clean block equals D_n with alpha=1.",
+      "symbols": [
+        ["D_n", "the symbolic 2^n by 2^n cubic diagonal operator"],
+        ["Pi", "the clean embedding selecting the first Householder branch coordinate"],
+        ["U_n", "the controlled direct sum of exact rational Householder matrices"]
+      ],
+      "circuit": {
+        "registers": "n system qubits | three Householder branch qubits",
+        "stages": [
+          {"label": "Grid label", "detail": "hold j in the system register", "gates": ["|j>"]},
+          {"label": "Exact completion", "detail": "construct a rational unit vector with first entry (j/2^n)^3", "gates": ["four-square witness"]},
+          {"label": "Controlled Householder", "detail": "apply the branch reflection selected by j", "gates": ["H(v_j)"]},
+          {"label": "Clean projection", "detail": "read the first branch coordinate", "gates": ["D_n"]}
+        ]
+      },
+      "evolution": {
+        "caption": "The cold route evolves proof structure, not a sequence of comparable resource champions. The endpoint is a theorem for every n.",
+        "stages": [
+          {"iteration": "0", "name": "Symbolic target", "score": null, "status": "Contract fixed", "description": "The target is diag((j/2^n)^3), not one sampled n=2 matrix.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists"},
+          {"iteration": "1", "name": "Rational branch completion", "score": null, "status": "Lean certified", "description": "Four-square witnesses close exact normalization for every branch.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists"},
+          {"iteration": "2", "name": "Householder direct sum", "score": [1, 1, 3, 1], "status": "Lean certified family", "description": "The final conjunction proves orthogonality, clean block, alpha, and logical resource record.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"}
+        ]
+      },
+      "qiskit": {
+        "path": "tools/export_hard_cubic_householder.py",
+        "command": "python3 tools/export_hard_cubic_householder.py --task QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001",
+        "role": "Instantiates the symbolic Lean construction for Qiskit/OpenQASM use. Finite numerical output is diagnostic only."
+      },
+      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "D_n = diag((j/2^n)^3) for arbitrary n", "normalizer": "1", "projector": "three clean Householder branch qubits"},
+      "summary": "A symbolic exact family theorem replaces finite numerical acceptance with rational Householder certificates for every n.",
+      "source": "ASPBE BE Case 2 cold route",
       "contributor": "ASPBE authors",
-      "limitations": "The replay is certificate validation, not a new model search."
+      "limitations": "The logical Householder resource is not a primitive {u,cx} decomposition or an optimality theorem."
     },
     {
       "slug": "cubic-diagonal-hinted",
-      "title": "Cubic diagonal hinted replay",
+      "title": "BE Case 2: cubic diagonal family, hinted route",
+      "shortTitle": "BE Case 2 hinted",
       "kind": "operatorBlockEncoding",
       "status": "certified",
-      "semanticTier": "symbolic Lean family plus finite executable validation",
-      "leanAnchors": ["QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete", "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"],
-      "replaySelector": {"case": "BE Case 2 hinted", "name": "cubic_householder"},
-      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001", "mode": "operatorBlockEncoding", "target": "Use diag(x)^3 = diag(x^3) with exact Householder leaves", "normalizer": "1", "projector": "three clean Householder ancillas"},
-      "summary": "The hinted route exposes both the linear input block and the cubic output block as named Lean roots.",
-      "source": "ASPBE BE Case 2 hinted replay",
+      "semanticTier": "symbolic exact rational family",
+      "leanAnchors": [
+        "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete",
+        "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"
+      ],
+      "problem": "Use the supplied idea 'first represent the diagonal input x_j, then target x_j^3' without treating that prose hint as a proof.",
+      "formula": "O_0=\\sum_{j=0}^{2^n-1}x_j|j\\rangle\\!\\langle j|,\\quad x_j=\\frac{j}{2^n},\\qquad D_n=O_0^3=\\sum_jx_j^3|j\\rangle\\!\\langle j|.",
+      "contract": "Lean closes two named endpoints: an exact linear-diagonal Householder input block and an exact cubic-diagonal Householder output block. The algebraic hint chooses a route; each unitary and clean block is still proved independently.",
+      "symbols": [
+        ["O_0", "the input diagonal operator suggested by the hint"],
+        ["D_n", "the desired cubic diagonal operator"],
+        ["x_j", "the exact rational grid point j/2^n"]
+      ],
+      "circuit": {
+        "registers": "n system qubits | clean Householder branch register",
+        "stages": [
+          {"label": "Input block", "detail": "exactly encode diag(x_j)", "gates": ["BE(O_0)"]},
+          {"label": "Polynomial route", "detail": "identify the desired diagonal entries x_j^3", "gates": ["z -> z^3"]},
+          {"label": "Output block", "detail": "exact rational Householder completion", "gates": ["BE(D_n)"]}
+        ]
+      },
+      "evolution": {
+        "caption": "The stages show route closure. They are not claimed as a strict resource improvement because no same-tier better-than theorem is attached to this route.",
+        "stages": [
+          {"iteration": "0", "name": "Hint parsed", "score": null, "status": "Route selected", "description": "The prose suggestion is converted into two formal operator contracts.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete"},
+          {"iteration": "1", "name": "Linear input block", "score": [1, 1, 1, 1], "status": "Lean certified family", "description": "The input diagonal block has exact unitarity, projection, alpha, and resource fields.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete"},
+          {"iteration": "2", "name": "Cubic output block", "score": [1, 1, 3, 1], "status": "Lean certified family", "description": "The desired cubic family is closed independently; the differing branch widths are not ranked here.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"}
+        ]
+      },
+      "qiskit": {
+        "path": "tools/export_hard_cubic_householder.py",
+        "command": "python3 tools/export_hard_cubic_householder.py --task QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001",
+        "role": "Exports finite instances of both exact symbolic roots. Numerical comparisons do not certify either family."
+      },
+      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001", "mode": "operatorBlockEncoding", "target": "O_0 = diag(j/2^n), then D_n = O_0^3", "normalizer": "1", "projector": "clean Householder branch register"},
+      "summary": "A direct hint becomes a short formal route with separate exact Lean roots for the input and output blocks.",
+      "source": "ASPBE BE Case 2 hinted route",
       "contributor": "ASPBE authors",
-      "limitations": "The polynomial identity is guidance; each accepted block still has its own Lean theorem."
+      "limitations": "The current theorem uses exact Householder completion; it does not yet certify a QSVT primitive implementation."
     },
     {
       "slug": "robin-ghl-one-term",
-      "title": "Robin boundary block encoding",
+      "title": "Robin boundary block encoding at N=8",
+      "shortTitle": "Robin benchmark",
       "kind": "operatorBlockEncoding",
-      "status": "verified",
+      "status": "certified",
       "semanticTier": "T2 exact logical-unitary block encoding",
-      "leanAnchors": ["QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding", "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding", "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"],
-      "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "Fixed N=8 homogeneous-Robin fourth-order derivative matrix", "normalizer": "56/3", "projector": "clean signal index 0; system Fin 8"},
-      "summary": "Two exact logical-unitary clean-block certificates compile; the four-slot route is strictly better under the shared T2 cost convention.",
+      "leanAnchors": [
+        "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224",
+        "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"
+      ],
+      "problem": "For the fixed homogeneous-Robin fourth-derivative discretization with N=8, construct an exact logical unitary whose clean block is the scaled non-unitary matrix A.",
+      "formula": "A=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{A}{56/3}=\\frac{M}{224}.",
+      "contract": "Lean proves the exact normalization identity, complex unitarity of each T2 logical matrix, the original-basis clean-block equality, and a same-tier lexicographic comparison. Qiskit transpilation is not used to promote either candidate.",
+      "symbols": [
+        ["A", "the fixed N=8 homogeneous-Robin finite-difference operator"],
+        ["M=12A", "the integer matrix used by the exact decomposition proofs"],
+        ["alpha=56/3", "the frozen block-encoding normalizer"],
+        ["T2", "logical-unitary semantics before primitive {u,cx} refinement"]
+      ],
+      "circuit": {
+        "registers": "selector | coefficient signal | three-qubit system",
+        "stages": [
+          {"label": "Source seed", "detail": "paper theorem-7 normal form", "gates": ["PREPARE", "amplitude", "sparse SELECT", "cleanup"]},
+          {"label": "T2 baseline", "detail": "eight selector labels with H tensor H tensor H", "gates": ["H^3", "amplitude", "SELECT", "H^3"]},
+          {"label": "T2 evolved", "detail": "centrosymmetric basis split with four slots", "gates": ["basis change", "4-slot block", "basis change dagger"]}
+        ]
+      },
+      "evolution": {
+        "caption": "Only the last two points share the exact T2 cost convention. Lean proves the four-slot point strictly better because gate count and depth tie while one auxiliary qubit is removed.",
+        "stages": [
+          {"iteration": "seed", "name": "Paper theorem-7 route", "score": null, "status": "T1 source route", "description": "The source transcript motivates the benchmark but lacks the T2 logical-unitary root needed for comparison.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224"},
+          {"iteration": "0", "name": "Hadamard-8", "score": [8, 4, 4, 2], "status": "Lean certified T2", "description": "An exact PREPARE/amplitude/SELECT/unprepare logical unitary closes the clean block.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding"},
+          {"iteration": "1", "name": "Centrosymmetric four-slot", "score": [8, 4, 3, 2], "status": "Strictly better at T2", "description": "A symmetry basis change splits the matrix into two four-by-four sectors and removes one selector qubit.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"}
+        ]
+      },
+      "qiskit": {
+        "path": "executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py",
+        "command": "python3 executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py",
+        "role": "Exports the fixed logical benchmark and its runnable Qiskit evidence. T3 primitive {u,cx} refinement remains an explicit open theorem."
+      },
+      "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "fixed N=8 homogeneous-Robin matrix A with clean block A/(56/3)", "normalizer": "56/3", "projector": "selector=0 and coefficient=0; system Fin 8"},
+      "summary": "Two exact T2 logical-unitary block encodings compile, and Lean proves the four-slot symmetry route improves auxiliary width from four to three.",
       "source": "Guseynov-Huang-Liu construction and ASPBE fixed-N audit",
       "contributor": "ASPBE authors",
-      "limitations": "T3 primitive {u,cx} refinement is not yet certified; Qiskit remains separate executable evidence."
+      "limitations": "The fixed benchmark is complete at T2. Exact primitive {u,cx} circuit refinement remains T3 work."
     }
   ]
 }

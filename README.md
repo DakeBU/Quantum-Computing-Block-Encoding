@@ -19,10 +19,10 @@ Lean-checked quantum construction search, executable validation, and the
   `A/(56/3)=M/224` in Lean. Five-shift, source-like seven-slot, and
   Hadamard-8 weighted-permutation decompositions compile entrywise, including
   permutation and amplitude guards. A reusable complex LCU kernel now proves
-  the Hadamard-8 PREPARE/amplitude/SELECT/unprepare matrix unitary and provides
-  a generic clean-entry expansion. The Robin-specific clean-block promotion
-  and same-tier resource comparison remain open; no resource improvement is
-  claimed across unlike semantic tiers.
+  PREPARE/amplitude/SELECT/unprepare unitarity and clean-entry expansion. The
+  audited fixed benchmark now has exact Hadamard-8 and four-slot T2 block-
+  encoding roots plus a same-tier Lean comparison; primitive `{u,cx}`
+  refinement remains a separate T3 obligation.
 - **12 August 2026.** The textbook track now includes complete Mathlib-backed
   Pauli X and Hadamard state-preparation certificates. The full Lean gate also
   covers `RobinMatrix.lean` with zero proof holes: the historical H-free raw
@@ -88,8 +88,9 @@ formal quantum-computing textbook rather than a project dashboard:
 - an exhaustive declaration catalog and implementation map;
 - an atlas of ASPBE, Mathlib, and selected external quantum Lean libraries;
 - organizers, contribution guidance, and a versioned lemma-packet contract;
-- generated Example Cases whose status joins named Lean roots to replay
-  evidence, with one-click Task Builder presets;
+- generated Example Cases with explicit target formulas, circuit and score
+  evolution, named Lean roots, separate Qiskit exports, and one-click Task
+  Builder presets;
 - a Live Formalization Workspace for LaTeX, Lean, dependency navigation, and
   local compiler diagnostics;
 - the existing Verso Blueprint at `/blueprint/html-multi/`.
@@ -201,18 +202,17 @@ artifacts for the accepted finite instance. Depending on the task, ASPBE emits:
 
 - runnable Qiskit Python that constructs the selected circuit;
 - OpenQASM 3 for interchange with simulators and hardware toolchains;
-- acceptance JSON with unitarity, prepared-state, or projected clean-block
+- diagnostic JSON with unitarity, prepared-state, or projected clean-block
   errors, register order, package versions, and the matching Lean root;
 - a manifest recording normalization, qubit layout, semantic tier, and output
   files.
 
-These outputs are useful in two different ways. For state preparation they
-numerically check the produced state against the requested amplitude vector.
-For block encoding they extract the declared clean ancilla block and compare it
-with `A / alpha`. They also expose code that a user can inspect, modify, or run
-on another compatible backend. Floating-point simulation and transpilation are
-reported as executable evidence; they do not replace an exact Lean theorem or
-silently promote a T2 logical unitary to a T3 primitive certificate.
+These outputs expose code that users can inspect, modify, or run on a compatible
+backend. For state preparation they construct the requested preparation
+circuit. For block encoding they expose the declared register order and clean
+ancilla block. Optional floating-point diagnostics can catch an export bug at a
+fixed size, but are never used to certify the mathematical claim, establish a
+lexicographic improvement, or promote a T2 logical unitary to T3.
 
 ```bash
 python3 -m pip install -r requirements-executable.txt
@@ -221,6 +221,8 @@ python3 tools/replay_public_cases.py
 # Individual reproducible exports
 python3 executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
 python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py
+python3 executable-exports/SP-TEXTBOOK-001/qiskit/export.py --case hadamard
+python3 executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/export.py
 ```
 
 Generated code and reports live under
@@ -300,9 +302,17 @@ modules, licenses, and adapter rules are under
 
 ### BE Case 1: transfer operator
 
-The search retains only candidates in the same implementation tier before
-resource comparison. Certified logical candidates improve from resource tuple
-`(6, 5, 1, 0)` to `(4, 2, 1, 0)`.
+The target is the concrete non-unitary transfer
+
+```text
+E_1 = |0><1|_time tensor |0><1|_type tensor I_2,
+<0|_a U |0>_a = E_1.
+```
+
+One clean signal qubit completes the operator to a permutation unitary. Lean
+proves unitarity, every projected-block entry, each resource tuple, and the two
+strict comparisons. In one fixed logical `{X,CNOT,Toffoli}` tier, certified
+candidates improve `(6,5,1,0) -> (4,4,1,0) -> (4,2,1,0)`.
 
 | Certified candidates | Convergence |
 | --- | --- |
@@ -310,10 +320,20 @@ resource comparison. Certified logical candidates improve from resource tuple
 
 ### BE Case 2: cubic diagonal operator
 
-Cold and hinted runs close the same exact family through a rational
-Householder construction. The hinted diagonal/product route remains recorded
-as reusable clean-block arithmetic; QSVT is not presented as implemented when
-only its consumer contract exists.
+For every `n`, the target is
+
+```text
+D_n = diag_{0 <= j < 2^n} ((j / 2^n)^3),
+Pi U_n Pi^dagger = D_n.
+```
+
+Cold and hinted routes close this symbolic family through exact rational
+Householder constructions. Lean uses four-square witnesses to prove branch
+normalization, rational orthogonality, the clean block, `alpha=1`, and the
+logical resource record for arbitrary `n`. A finite Qiskit instance is only an
+export. The hinted identity `D_n = O_0^3`, with
+`O_0 = diag(j/2^n)`, selects the route; QSVT is not presented as a certified
+primitive implementation.
 
 | Candidate route | Cold and hinted progress |
 | --- | --- |
@@ -326,11 +346,12 @@ or model-token curves. Replay the current certificate surface with:
 python3 tools/replay_public_cases.py
 ```
 
-The machine-readable result is
+The machine-readable diagnostic record is
 [`reports/public-case-replay/latest.json`](reports/public-case-replay/latest.json).
 It rebuilds the relevant Lean modules, replays the controller population gate,
-and reruns the State Preparation, BE Case 1, and BE Case 2 Qiskit/QASM checks.
-It does not claim a new isolated cold-start discovery. Historical figures
+and reruns the State Preparation, BE Case 1, and BE Case 2 Qiskit/QASM exports.
+Case certification comes from the named Lean roots, not this record. It does
+not claim a new isolated cold-start discovery. Historical figures
 change only after a fresh controlled search fixes the model, task, memory
 policy, budget, and acceptance gate.
 
@@ -353,9 +374,10 @@ and paper-wide composition contracts have been implemented at gate level.
 
 The current paper experiment uses the warm arm: one frozen finite target plus
 the paper construction and compiled Robin memory. The cold arm remains defined
-for a later controlled comparison. Both arms require the same named Lean root,
-exact Qiskit clean-block check, semantic tier, and score order before a
-candidate can appear as an improved resource point.
+for a later controlled comparison. A candidate can appear as an improved
+resource point only after a named Lean block-encoding root and same-tier Lean
+`betterThan` theorem compile. Qiskit is an export gate, not mathematical
+acceptance.
 
 ```bash
 export CODEX_MODEL=gpt-5.6-sol
@@ -384,8 +406,9 @@ counts remain the separate T3 refinement obligation.
 The complete replay contract is in
 [`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
 
-The published baseline remains the paper construction represented in Lean,
-not a manufactured optimization curve. The
+The published source baseline remains the paper construction represented in
+Lean, not a manufactured optimization curve. The fixed benchmark additionally
+reports the theorem-backed T2 evolution `(8,4,4,2) -> (8,4,3,2)`. The
 [Robin paper map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/case-studies/robin/)
 places the source theorem, equations, and circuit transcript beside their
 exact `GHL2025.lean` and `RobinMatrix.lean` declarations. It distinguishes

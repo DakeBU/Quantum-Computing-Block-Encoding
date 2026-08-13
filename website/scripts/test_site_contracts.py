@@ -49,9 +49,30 @@ class SiteContractTests(unittest.TestCase):
 
     def test_example_cases_are_unique_and_nav_is_common(self) -> None:
         data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["schemaVersion"], 2)
         slugs = [case["slug"] for case in data["cases"]]
         self.assertEqual(len(slugs), len(set(slugs)))
         self.assertIn("Example Cases", build_site.site_header("./", ""))
+
+    def test_every_case_has_formula_lean_evolution_and_qiskit(self) -> None:
+        data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))
+        for case in data["cases"]:
+            self.assertTrue(case["formula"], case["slug"])
+            self.assertTrue(case["problem"], case["slug"])
+            self.assertTrue(case["leanAnchors"], case["slug"])
+            self.assertTrue(case["circuit"]["stages"], case["slug"])
+            self.assertTrue(case["evolution"]["stages"], case["slug"])
+            self.assertTrue((ROOT / case["qiskit"]["path"]).is_file(), case["slug"])
+            for stage in case["evolution"]["stages"]:
+                self.assertIn(stage["leanAnchor"], case["leanAnchors"])
+                if stage["status"].startswith("Strictly better"):
+                    self.assertIn("betterThan", stage["leanAnchor"])
+
+    def test_numerical_replay_is_not_the_case_certification_gate(self) -> None:
+        source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
+        self.assertNotIn("lacks passing replay evidence", source)
+        self.assertNotIn("public-case replay report is missing or did not pass", source)
+        self.assertIn("not a Lean certification gate", source)
 
     def test_no_credential_export_branch(self) -> None:
         script = (ROOT / "website/static/task-builder.js").read_text(encoding="utf-8")

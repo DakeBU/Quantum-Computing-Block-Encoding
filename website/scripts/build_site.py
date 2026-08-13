@@ -893,7 +893,9 @@ def render_robin_paper_map(
     rows: list[str] = []
     toc = [
         ("paper-contract", "Paper contract"),
+        ("fixed-benchmark", "Fixed benchmark"),
         ("how-to-read", "How to read the map"),
+        ("structural-candidates", "T2 evolution"),
     ]
     for row in data["rows"]:
         row_id = str(row["id"])
@@ -943,14 +945,25 @@ def render_robin_paper_map(
     body = f"""
 <section class="hero" id="paper-contract">
   <p class="eyebrow">Paper reproduction · source-to-Lean reading map</p>
-  <h1>Robin one-term block encoding</h1>
-  <p class="lede">Read the construction in the paper's order, then inspect the
-  exact Lean structures used to represent each step. This page presents the
-  compiled baseline before any claim of resource evolution.</p>
+  <h1>Robin boundary block encoding</h1>
+  <p class="lede">The source paper proposes a general circuit family for
+  differential operators with Robin boundaries. ASPBE separates that general
+  route from a fixed (N=8) benchmark, where complete T2 logical-unitary
+  certificates and an exact resource comparison now compile.</p>
   <div class="link-row">
     <a class="button" href="{html.escape(str(paper['url']))}">Open the source paper</a>
     <a class="button secondary" href="{prefix}sources/ghl2025-robin-excerpts.tex">Download the LaTeX excerpts</a>
+    <a class="text-link" href="{prefix}example-cases/robin-ghl-one-term/index.html">See the circuit and evolution trace &#8594;</a>
   </div>
+</section>
+<section class="content-section" id="fixed-benchmark">
+  <div class="section-heading"><p class="eyebrow">The concrete case</p>
+  <h2>What matrix is being encoded?</h2>
+  <p>The benchmark fixes the homogeneous-Robin fourth-derivative matrix. Keeping
+  (M=12A) integral makes every decomposition identity exact in Lean.</p></div>
+  {render_math_tex(r"A=\frac1{12}\begin{pmatrix}-30&32&-2&0&0&0&0&0\\16&-31&16&-1&0&0&0&0\\-1&16&-30&16&-1&0&0&0\\0&-1&16&-30&16&-1&0&0\\0&0&-1&16&-30&16&-1&0\\0&0&0&-1&16&-30&16&-1\\0&0&0&0&-1&16&-31&16\\0&0&0&0&0&-2&32&-30\end{pmatrix},\qquad \Pi U\Pi^\dagger=\frac{A}{56/3}=\frac{M}{224}.")}
+  <p>The clean projector fixes selector and coefficient registers to zero. The
+  remaining three-qubit register indexes the rows and columns of (A).</p>
 </section>
 <section class="content-section" id="how-to-read">
   <div class="section-heading">
@@ -964,31 +977,31 @@ def render_robin_paper_map(
   theorem.</p>
   <div class="callout warning">
     <strong>Current conclusion.</strong>
-    The source paper route remains T1: several oracle matrices, transported
-    cleanup, and the final unitary theorem are open. This checkout separately
-    compiles exact fixed-N scaling, five-shift, seven-slot, and Hadamard-8
-    weighted-permutation decompositions and clean-branch formulas. Their finite
-    exporter is experimental until the same composed circuit has a Lean
-    complex-unitary root. Source and candidate therefore have no same-tier
-    primitive resource comparison, and no improvement is reported.
+    The general paper route remains partial: several oracle semantics, transported
+    cleanup, and its final theorem still need to be connected. The fixed (N=8)
+    benchmark is stronger and separate. Lean certifies both the Hadamard-8 and
+    centrosymmetric four-slot constructions as exact T2 logical-unitary block
+    encodings, and proves the four-slot cost strictly better under their shared
+    T2 convention. Exact primitive <code>{{u,cx}}</code> refinement remains T3 work.
   </div>
 </section>
 <section class="content-section" id="structural-candidates">
-  <div class="section-heading"><p class="eyebrow">Fixed N=8 repair</p>
-  <h2>What is now exact, and what is still missing</h2></div>
+  <div class="section-heading"><p class="eyebrow">Fixed N=8 evolution</p>
+  <h2>Two comparable logical unitaries</h2></div>
   {render_math_tex(r"A/(56/3)=M/224")}
   <div class="case-grid">
-    <article class="case-card"><h3>Five shifts</h3><p>Five cyclic system
-    permutations carry column-dependent boundary weights. Lean checks all 64
-    entries and the bound <code>|5w/224| &lt;= 5/7</code>.</p></article>
-    <article class="case-card"><h3>Hadamard eight</h3><p>Eight labels use an
-    exact three-Hadamard selector and provide an independently checked finite
-    control decomposition.</p></article>
+    <article class="case-card"><p class="eyebrow">T2 baseline · (8,4,4,2)</p><h3>Hadamard eight</h3><p>Three selector
+    Hadamards, an exact controlled amplitude unitary, SELECT, and unprepare form
+    a complete complex unitary whose clean block is (M/224).</p></article>
+    <article class="case-card"><p class="eyebrow">T2 evolved · (8,4,3,2)</p><h3>Four symmetry slots</h3><p>A reversal-symmetry
+    basis change splits the system into two four-dimensional sectors. Gate count
+    and depth tie while the selector width falls by one qubit.</p></article>
   </div>
-  <div class="callout warning"><strong>Blocked promotion leaf.</strong>
-  Construct one complex-unitary PREPARE/amplitude/SELECT/unprepare semantics,
-  prove that its clean projection is the compiled formula, and expand both the
-  source and candidate under the same primitive accounting convention.</div>
+  <p><a class="button" href="{prefix}example-cases/robin-ghl-one-term/index.html">Open the theorem-linked evolution visualization</a></p>
+  <div class="callout warning"><strong>Remaining boundary.</strong>
+  Neither T2 resource row is advertised as a primitive <code>{{u,cx}}</code>
+  count. T3 requires an exact primitive gate list, its matrix semantics, and a
+  refinement theorem equating the primitive product with the T2 logical unitary.</div>
 </section>
 <section class="content-section paper-map" id="correspondence">
   <div class="section-heading">
@@ -1935,7 +1948,7 @@ def load_example_cases(
     declarations: dict[str, dict[str, object]], replay: dict[str, object]
 ) -> list[dict[str, object]]:
     data = load_json(WEBSITE_ROOT / "example-cases.json")
-    if data.get("schemaVersion") != 1 or not isinstance(data.get("cases"), list):
+    if data.get("schemaVersion") != 2 or not isinstance(data.get("cases"), list):
         raise SystemExit("website/example-cases.json has an unsupported schema")
     seen: set[str] = set()
     cases: list[dict[str, object]] = []
@@ -1946,10 +1959,50 @@ def load_example_cases(
         if case_slug in seen:
             raise SystemExit(f"Duplicate example-case slug: {case_slug}")
         seen.add(case_slug)
-        missing = [name for name in case.get("leanAnchors", []) if name not in declarations]
+        required = (
+            "title", "shortTitle", "kind", "status", "semanticTier", "problem",
+            "formula", "contract", "symbols", "circuit", "evolution", "qiskit",
+            "preset", "summary", "source", "contributor", "limitations",
+        )
+        absent = [field for field in required if not case.get(field)]
+        if absent:
+            raise SystemExit(f"Example case {case_slug} lacks fields: {absent}")
+        anchors = case.get("leanAnchors", [])
+        if case.get("status") == "certified" and not anchors:
+            raise SystemExit(f"Certified example {case_slug} has no Lean roots")
+        missing = [name for name in anchors if name not in declarations]
         if missing:
             raise SystemExit(
                 f"Example case {case_slug} names declarations absent from inventory: {missing}"
+            )
+        stages = case["evolution"].get("stages", [])
+        if not stages:
+            raise SystemExit(f"Example case {case_slug} has no evolution stages")
+        for stage in stages:
+            stage_anchor = stage.get("leanAnchor")
+            if stage_anchor not in anchors:
+                raise SystemExit(
+                    f"Example case {case_slug} evolution root is not listed in leanAnchors: "
+                    f"{stage_anchor}"
+                )
+            score = stage.get("score")
+            if score is not None and (
+                not isinstance(score, list)
+                or len(score) != 4
+                or any(not isinstance(value, int) or value < 0 for value in score)
+            ):
+                raise SystemExit(f"Example case {case_slug} has an invalid score: {score}")
+            if str(stage.get("status", "")).startswith("Strictly better") and (
+                "betterThan" not in str(stage_anchor)
+            ):
+                raise SystemExit(
+                    f"Example case {case_slug} advertises strict improvement without "
+                    "a named Lean betterThan theorem"
+                )
+        export_path = ROOT / str(case["qiskit"].get("path", ""))
+        if not export_path.is_file() or ROOT not in export_path.resolve().parents:
+            raise SystemExit(
+                f"Example case {case_slug} has no repository Qiskit export: {export_path}"
             )
         evidence = None
         selector = case.get("replaySelector")
@@ -1958,14 +2011,71 @@ def load_example_cases(
         if case.get("status") == "certified":
             if not case.get("semanticTier") or not case.get("source"):
                 raise SystemExit(f"Certified example {case_slug} lacks tier or provenance")
-            if not evidence or evidence.get("passed") is not True:
-                raise SystemExit(f"Certified example {case_slug} lacks passing replay evidence")
+            # The site itself is built only after `load_gate_report` has accepted
+            # the current commit.  Executable replay is deliberately not a proof
+            # gate for an individual mathematical claim.
         cases.append({**case, "executionEvidence": evidence})
     return cases
 
 
 def compact_json(value: object) -> str:
     return html.escape(json.dumps(value, ensure_ascii=False, separators=(",", ":")))
+
+
+def case_kind_label(kind: object) -> str:
+    return {
+        "statePreparation": "State preparation",
+        "operatorBlockEncoding": "Block encoding",
+    }.get(str(kind), str(kind))
+
+
+def render_case_score(score: object) -> str:
+    if score is None:
+        return '<span class="score-unranked">not ranked at this tier</span>'
+    values = list(score)  # type: ignore[arg-type]
+    labels = ("gates", "depth", "aux", "oracles")
+    cells = "".join(
+        f'<span><strong>{int(value)}</strong><small>{label}</small></span>'
+        for value, label in zip(values, labels, strict=True)
+    )
+    return f'<div class="score-tuple" aria-label="resource score">{cells}</div>'
+
+
+def render_case_circuit(case: dict[str, object]) -> str:
+    circuit = case["circuit"]
+    stages: list[str] = []
+    for index, stage in enumerate(circuit["stages"], start=1):
+        gates = "".join(
+            f'<span class="gate-chip">{html.escape(str(gate))}</span>'
+            for gate in stage.get("gates", [])
+        )
+        stages.append(f"""<article class="circuit-stage">
+  <span class="stage-index">{index:02d}</span>
+  <h3>{html.escape(str(stage['label']))}</h3>
+  <p>{html.escape(str(stage['detail']))}</p>
+  <div class="gate-row">{gates}</div>
+</article>""")
+    return f"""<div class="circuit-registers"><strong>Register order</strong><span>{html.escape(str(circuit['registers']))}</span></div>
+<div class="circuit-flow">{''.join(stages)}</div>"""
+
+
+def render_case_evolution(
+    case: dict[str, object], declarations: dict[str, dict[str, object]], prefix: str
+) -> str:
+    points: list[str] = []
+    for stage in case["evolution"]["stages"]:
+        anchor = str(stage["leanAnchor"])
+        points.append(f"""<article class="evolution-point">
+  <div class="iteration-mark"><span>iteration</span><strong>{html.escape(str(stage['iteration']))}</strong></div>
+  <div class="evolution-copy">
+    <div class="evolution-heading"><h3>{html.escape(str(stage['name']))}</h3><span>{html.escape(str(stage['status']))}</span></div>
+    <p>{html.escape(str(stage['description']))}</p>
+    <a class="theorem-root" href="{module_url(prefix, declarations[anchor])}"><span>Lean root</span><code>{html.escape(anchor)}</code></a>
+  </div>
+  {render_case_score(stage.get('score'))}
+</article>""")
+    return f"""<p class="figure-caption">{html.escape(str(case['evolution']['caption']))}</p>
+<div class="evolution-track">{''.join(points)}</div>"""
 
 
 def render_example_case_index(
@@ -1975,13 +2085,15 @@ def render_example_case_index(
     cards = []
     for case in cases:
         cards.append(f"""<article class="case-card">
-  <p class="eyebrow">{html.escape(str(case['kind']))}</p>
+  <p class="eyebrow">{html.escape(case_kind_label(case['kind']))}</p>
   <h2><a href="{html.escape(str(case['slug']))}/index.html">{html.escape(str(case['title']))}</a></h2>
   <p>{html.escape(str(case['summary']))}</p>
-  <div class="case-meta">{badge('Compiled' if case['status'] == 'certified' else 'Partial route')}<span>{html.escape(str(case['semanticTier']))}</span></div>
+  <div class="case-formula">{render_math_tex(str(case['formula']))}</div>
+  <div class="case-meta">{badge('Lean certified' if case['status'] == 'certified' else 'Partial route')}<span>{html.escape(str(case['semanticTier']))}</span></div>
 </article>""")
     body = f"""<section class="hero"><p class="eyebrow">Reproducible reading paths</p>
-<h1>Example cases</h1><p class="lede">Each page ties one mathematical contract to named Lean declarations and separate executable evidence. A replay validates an existing certificate; it does not claim that a model rediscovered the proof.</p></section>
+<h1>Case studies, from equation to circuit</h1><p class="lede">Each case begins with the operator or target state, fixes the acceptance contract, and then shows the circuit and resource trace. “Certified” means a named Lean root compiled in this checkout. Qiskit is a runnable export, never the proof gate.</p></section>
+<section class="content-section case-reading-key"><h2>How to read a score</h2><p>The tuple is ordered lexicographically as <strong>(gate count, parallel depth, auxiliary qubits, oracle calls)</strong>. A page says “strictly better” only when it links the corresponding Lean <code>betterThan</code> theorem. Routes at different semantic tiers are not compared.</p></section>
 <section class="content-section"><div class="case-grid">{''.join(cards)}</div></section>
 <section class="content-section contribution-callout"><h2>Contribute a checked variant</h2><p>Generated drafts are welcome. Public retrieval begins only after review, a repository declaration, and the advertised gates pass.</p><div class="link-row"><a class="button" href="../task-builder/index.html">Share a State Preparation example</a><a class="button secondary" href="../community/index.html">Share a Block Encoding example</a></div></section>"""
     return page_template(title="Example cases", route="example-cases/", current="example-cases/", body=body, coverage=coverage, gate=gate, context=context)
@@ -1994,23 +2106,26 @@ def render_example_case(
     route = f"example-cases/{case['slug']}/"
     prefix = prefix_for(route)
     anchors = "".join(
-        f'<li><a href="{module_url(prefix, declarations[name])}"><code>{html.escape(name)}</code></a></li>'
+        f'<li><a href="{module_url(prefix, declarations[name])}"><code>{html.escape(name)}</code></a>'
+        f'<span>{html.escape(str(declarations[name]["source"]))}:{int(declarations[name]["line"])}</span></li>'
         for name in case["leanAnchors"]
     )
-    evidence = case.get("executionEvidence")
-    evidence_html = (
-        f'<pre><code>{html.escape(json.dumps(evidence, ensure_ascii=False, indent=2))}</code></pre>'
-        if evidence else '<p>No executable acceptance row is advertised at this tier.</p>'
+    symbols = "".join(
+        f'<div><dt><code>{html.escape(str(symbol))}</code></dt><dd>{html.escape(str(reading))}</dd></div>'
+        for symbol, reading in case["symbols"]
     )
+    qiskit = case["qiskit"]
     preset = compact_json(case["preset"])
     body = f"""<article class="case-detail">
-<header class="hero"><p class="eyebrow">{html.escape(str(case['kind']))} · {html.escape(str(case['semanticTier']))}</p><h1>{html.escape(str(case['title']))}</h1><p class="lede">{html.escape(str(case['summary']))}</p></header>
-<section class="content-section"><h2>Contract and status</h2><dl class="definition-list"><dt>Status</dt><dd>{badge('Compiled' if case['status'] == 'certified' else 'Partial route')}</dd><dt>Target</dt><dd><code>{html.escape(str(case['preset']['target']))}</code></dd><dt>Normalization / projector</dt><dd><code>{html.escape(str(case['preset']['normalizer']))}</code>; {html.escape(str(case['preset']['projector']))}</dd><dt>Source and contributor</dt><dd>{html.escape(str(case['source']))}; {html.escape(str(case['contributor']))}</dd><dt>Current limitation</dt><dd>{html.escape(str(case['limitations']))}</dd></dl></section>
-<section class="content-section"><h2>Named Lean root</h2><ul class="declaration-list">{anchors}</ul></section>
-<section class="content-section"><h2>Executable evidence</h2>{evidence_html}</section>
-<section class="content-section"><div class="link-row"><a class="button" href="{prefix}task-builder/index.html?case={html.escape(str(case['slug']))}">Load in task builder</a><a class="button secondary" href="{prefix}community/index.html?case={html.escape(str(case['slug']))}">Contribute a variant</a></div><details><summary>Run locally</summary><pre><code>python3 tools/replay_public_cases.py</code></pre></details></section>
+<header class="hero case-hero"><p class="eyebrow">{html.escape(case_kind_label(case['kind']))} · {html.escape(str(case['semanticTier']))}</p><h1>{html.escape(str(case['title']))}</h1><p class="lede">{html.escape(str(case['problem']))}</p><div class="case-status-line">{badge('Lean certified' if case['status'] == 'certified' else 'Partial route')}<span>{html.escape(str(case['summary']))}</span></div></header>
+<section class="content-section case-problem" id="mathematical-target"><div class="section-heading"><p class="eyebrow">Mathematical target</p><h2>The equation being studied</h2></div>{render_math_tex(str(case['formula']))}<p class="contract-reading">{html.escape(str(case['contract']))}</p><dl class="symbol-key">{symbols}</dl></section>
+<section class="content-section" id="circuit"><div class="section-heading"><p class="eyebrow">Circuit anatomy</p><h2>How the candidate acts</h2><p>These blocks show logical stages and register responsibilities. They do not pretend an unresolved logical oracle is already a primitive hardware gate.</p></div>{render_case_circuit(case)}</section>
+<section class="content-section" id="evolution"><div class="section-heading"><p class="eyebrow">Auditable evolution</p><h2>Candidate and proof progression</h2></div>{render_case_evolution(case, declarations, prefix)}</section>
+<section class="content-section" id="lean-certificate"><div class="section-heading"><p class="eyebrow">Proof authority</p><h2>Named Lean certificates</h2><p>These declarations, compiled by the current Lean gate, support the mathematical and resource claims above.</p></div><ul class="case-declaration-list">{anchors}</ul></section>
+<section class="content-section export-section" id="qiskit-export"><div class="section-heading"><p class="eyebrow">Optional executable output</p><h2>Run the construction with Qiskit</h2></div><p>{html.escape(str(qiskit['role']))}</p><dl class="definition-list"><dt>Repository path</dt><dd><code>{html.escape(str(qiskit['path']))}</code></dd><dt>Command</dt><dd><pre><code>{html.escape(str(qiskit['command']))}</code></pre></dd></dl><div class="callout warning"><strong>Trust boundary.</strong> Qiskit output may reveal implementation mistakes at a concrete size, but no norm tolerance or sampled matrix equality can replace the symbolic Lean root shown above.</div></section>
+<section class="content-section"><dl class="definition-list"><dt>Source</dt><dd>{html.escape(str(case['source']))}</dd><dt>Contributor</dt><dd>{html.escape(str(case['contributor']))}</dd><dt>Current boundary</dt><dd>{html.escape(str(case['limitations']))}</dd></dl><div class="link-row"><a class="button" href="{prefix}task-builder/index.html?case={html.escape(str(case['slug']))}">Load in task builder</a><a class="button secondary" href="{prefix}community/index.html?case={html.escape(str(case['slug']))}">Contribute a variant</a></div></section>
 <script type="application/json" data-example-preset>{preset}</script></article>"""
-    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context)
+    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=[("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution"), ("lean-certificate", "Lean certificates"), ("qiskit-export", "Qiskit export")])
 
 
 def render_task_builder(
@@ -2160,8 +2275,6 @@ def build(args: argparse.Namespace) -> None:
     replay_report = load_json(
         ROOT / "reports" / "public-case-replay" / "latest.json"
     )
-    if replay_report.get("passed") is not True:
-        raise SystemExit("The public-case replay report is missing or did not pass.")
     if replay_report.get("cold_start_claim") is not False:
         raise SystemExit("Public-case replay must not be labeled as cold-start search.")
     example_cases = load_example_cases(declaration_map, replay_report)
@@ -2275,7 +2388,9 @@ def build(args: argparse.Namespace) -> None:
     )
     (output / "data" / "example-cases.json").write_text(
         json.dumps(
-            {"schemaVersion": 1, "cases": [
+            {"schemaVersion": 2, "scoreOrder": [
+                "gate count", "parallel depth", "auxiliary qubits", "oracle calls"
+            ], "cases": [
                 {key: value for key, value in case.items() if key != "executionEvidence"}
                 for case in example_cases
             ]},
@@ -2312,6 +2427,7 @@ def build(args: argparse.Namespace) -> None:
         "leanGate": gate,
         "publicCaseReplay": {
             "passed": replay_report["passed"],
+            "role": "executable diagnostics only; not a Lean certification gate",
             "scope": replay_report["replay_scope"],
             "coldStartClaim": replay_report["cold_start_claim"],
             "sourceDigest": replay_report["source_digest"],

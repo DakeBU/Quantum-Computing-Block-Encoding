@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.3257,
+      "elapsed_seconds": 0.316532,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.044754,
+      "elapsed_seconds": 0.042943,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.717363,
+      "elapsed_seconds": 0.713907,
       "passed": true
     },
     {
@@ -160,14 +160,14 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.959093,
+      "elapsed_seconds": 0.950559,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 2.689443,
-    "population_controller": 0.065553,
-    "total": 4.813454
+    "lean_modules": 2.748903,
+    "population_controller": 0.060338,
+    "total": 4.846767
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -178,7 +178,7 @@
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
   "git_branch": "main",
-  "git_commit": "43a08a054b34b9a084aa18aad632058e328b4273",
+  "git_commit": "1cdcbd0119a8d6e4ae46bcfdc1cdc416a38f61f3",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -191,8 +191,12 @@
     "QuantumBlockEncoding.Robin.ComplexLCU",
     "QuantumBlockEncoding.Robin.ComplexLCUProjection",
     "QuantumBlockEncoding.Robin.Hadamard8Verified",
+    "QuantumBlockEncoding.Robin.Hadamard8BlockEncoding",
     "QuantumBlockEncoding.Robin.SixSlotOptimal",
-    "QuantumBlockEncoding.Robin.SymmetryFourSlot"
+    "QuantumBlockEncoding.Robin.SymmetryFourSlot",
+    "QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary",
+    "QuantumBlockEncoding.Robin.SymmetryFourSlotBlockEncoding",
+    "QuantumBlockEncoding.Robin.SystemConjugation"
   ],
   "lean_passed": true,
   "passed": true,
@@ -225,9 +229,9 @@
     },
     "evolution_replayed": true,
     "included_in_lean_gate": true,
-    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic fixed-N structural roots, a reusable complex LCU unitary kernel, and the Hadamard-8 logical-unitary theorem were added after the run. The specialized clean-block promotion and a same-tier resource theorem remain open, so no resource-improvement claim is available.",
-    "status": "T1 exact finite structure; T2 logical-unitary route partial"
+    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic completion after the run produced exact Hadamard-8 and four-slot T2 VerifiedOperatorBlockEncoding roots. A same-tier theorem proves the four-slot cost strictly better by one auxiliary qubit after gate count and depth tie. Primitive {u,cx} refinement remains open and is not inferred from Qiskit.",
+    "status": "T2 exact logical-unitary block encodings and same-tier strict comparison"
   },
   "schema_version": 1,
-  "source_digest": "347e1085f608befe75f72772f98f111111acf75f6ae60e052d05af48f8a50577"
+  "source_digest": "6d548e60ae3b88e942a5b214339dad020e509fc8bf8cf5e36921ffb8b070bacf"
 }

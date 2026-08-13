@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic fixed-N Robin structural and executable cross-check.
+"""Deterministic fixed-N Robin executable export and diagnostic cross-check.
 
-This exporter never promotes its floating-point circuit to a Lean certificate.
-The Hadamard-8 logical complex unitary is proved in Lean, while this dense
-executable composition remains separate until a specialized clean-block theorem
-and primitive circuit refinement connect both representations.
+Lean independently proves the Hadamard-8 and four-slot T2 logical-unitary block
+encodings and their same-tier resource comparison.  This script exports a dense
+Qiskit realization of the fixed benchmark and records diagnostics; no floating-
+point result here promotes a candidate or discharges the open T3 primitive
+refinement theorem.
 """
 
 from __future__ import annotations
