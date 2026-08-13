@@ -83,6 +83,75 @@ theorem warmRobinSymmetryBasisChange_unitary :
   · simpa using realSquare
   · simp
 
+@[simp] theorem warmRobinUniformScalar_pow_two_complex :
+    (((Real.sqrt 2 / 2 : Real) : ℂ) ^ 2) = (1 / 2 : ℂ) := by
+  simpa [pow_two] using warmRobinUniformScalar_square_complex
+
+/-- Entry formula for the exact symmetry basis change. -/
+@[simp] theorem warmRobinSymmetryBasisChange_apply
+    (row column : WarmRobinSymmetrySystem) :
+    warmRobinSymmetryBasisChange row column =
+      if row.2 = column.2 then
+        warmRobinUniformBitPrepare row.1 column.1
+      else 0 := by
+  simp [warmRobinSymmetryBasisChange]
+
+/-- Entry formula for the adjoint symmetry basis change. -/
+@[simp] theorem star_warmRobinSymmetryBasisChange_apply
+    (row column : WarmRobinSymmetrySystem) :
+    star warmRobinSymmetryBasisChange row column =
+      if row.2 = column.2 then
+        star (warmRobinUniformBitPrepare column.1 row.1)
+      else 0 := by
+  change star (warmRobinSymmetryBasisChange column row) = _
+  rw [warmRobinSymmetryBasisChange_apply]
+  by_cases pairMatch : row.2 = column.2 <;>
+    simp [pairMatch, eq_comm]
+
+/-- Left multiplication preserves the pair index and sums only over sectors. -/
+theorem warmRobinSymmetryBasisChange_mul_pairRow
+    {columnType : Type*} [Fintype columnType]
+    (operator : _root_.Matrix WarmRobinSymmetrySystem columnType ℂ)
+    (rowSide : Fin 2) (rowPair : Fin 4) (column : columnType) :
+    (warmRobinSymmetryBasisChange * operator)
+        (rowSide, rowPair) column =
+      ∑ side : Fin 2,
+        warmRobinUniformBitPrepare rowSide side *
+          operator (side, rowPair) column := by
+  classical
+  rw [_root_.Matrix.mul_apply]
+  simp_rw [Fintype.sum_prod_type]
+  simp_rw [warmRobinSymmetryBasisChange_apply]
+  apply Finset.sum_congr rfl
+  intro side _
+  rw [Finset.sum_eq_single rowPair]
+  · simp
+  · intro pair _ pair_ne
+    simp [Ne.symm pair_ne]
+  · simp
+
+/-- Right multiplication by the adjoint also preserves the pair index. -/
+theorem mul_star_warmRobinSymmetryBasisChange_pairColumn
+    {rowType : Type*} [Fintype rowType]
+    (operator : _root_.Matrix rowType WarmRobinSymmetrySystem ℂ)
+    (row : rowType) (columnSide : Fin 2) (columnPair : Fin 4) :
+    (operator * star warmRobinSymmetryBasisChange)
+        row (columnSide, columnPair) =
+      ∑ side : Fin 2,
+        operator row (side, columnPair) *
+          star (warmRobinUniformBitPrepare columnSide side) := by
+  classical
+  rw [_root_.Matrix.mul_apply]
+  simp_rw [Fintype.sum_prod_type]
+  simp_rw [star_warmRobinSymmetryBasisChange_apply]
+  apply Finset.sum_congr rfl
+  intro side _
+  rw [Finset.sum_eq_single columnPair]
+  · simp
+  · intro pair _ pair_ne
+    simp [pair_ne]
+  · simp
+
 /-- Lower-left pair block equals the upper-right pair block by centrosymmetry. -/
 theorem warmRobinIntegerTarget_pair_high_low
     (row column : Fin 4) :
@@ -160,30 +229,20 @@ theorem warmRobinSymmetryBasisChange_conjugates_target :
       warmRobinPairNormalizedTargetComplex := by
   classical
   ext ⟨rowSide, rowPair⟩ ⟨columnSide, columnPair⟩
+  rw [warmRobinSymmetryBasisChange_mul_pairRow]
+  simp_rw [mul_star_warmRobinSymmetryBasisChange_pairColumn]
   fin_cases rowSide <;> fin_cases columnSide <;>
-    fin_cases rowPair <;> fin_cases columnPair <;>
-    norm_num [warmRobinSymmetryBasisChange,
+    simp [Fin.sum_univ_two,
       warmRobinFourSlotSectorTargetComplex,
-      warmRobinPairNormalizedTargetComplex,
-      warmRobinPairNormalizedTargetRat,
       warmRobinFourSlotSectorTarget,
+      warmRobinPairNormalizedTargetComplex,
       warmRobinUniformBitPrepare,
       realOrthogonalRotation,
-      _root_.Matrix.mul_apply,
-      _root_.Matrix.one_apply,
-      Fintype.sum_prod_type,
-      Fin.sum_univ_two,
-      Fin.sum_univ_succ,
       warmRobinSymmetryPlusBlock,
-      warmRobinSymmetryMinusBlock,
-      warmRobinIntegerTargetRat,
-      warmRobinIntegerTarget,
-      warmRobinPairSystemToOriginal,
-      warmRobinPairLow,
-      warmRobinPairHigh,
-      warmRobinReverse8] <;>
+      warmRobinSymmetryMinusBlock] <;>
     ring_nf <;>
-    norm_num [Real.sq_sqrt]
+    simp [warmRobinUniformScalar_pow_two_complex] <;>
+    ring
 
 /-- Conjugate the sector logical unitary back to reversal-pair coordinates. -/
 noncomputable def warmRobinFourSlotPairLogicalUnitary :
