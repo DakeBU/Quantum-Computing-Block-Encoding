@@ -177,7 +177,7 @@ theorem warmRobinFourSlotMiddleLogicalUnitary_unitary :
   · exact warmRobinFourSlotRotation_unitary
 
 /-- Structural clean formula on the full sector-system basis. -/
-def warmRobinFourSlotSectorCleanFormula :
+noncomputable def warmRobinFourSlotSectorCleanFormula :
     _root_.Matrix WarmRobinSymmetrySystem WarmRobinSymmetrySystem Rat :=
   fun row column =>
     (1 / 4 : Rat) * ∑ slot : Fin 4,
@@ -204,7 +204,7 @@ theorem warmRobinFourSlotSectorCleanFormula_cross
         (rowSector, row) (columnSector, column) = 0 := by
   simp [warmRobinFourSlotSectorCleanFormula,
     warmRobinFourSlotSystemEquiv, warmRobinFourSlotSystemPerm,
-    sectorMismatch, Ne.symm sectorMismatch]
+    Ne.symm sectorMismatch]
 
 /-- Direct-sum normalized target in the symmetry-sector basis. -/
 def warmRobinFourSlotSectorTarget :
