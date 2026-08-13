@@ -106,7 +106,16 @@ theorem systemLift_mul_cleanRow
   classical
   rw [_root_.Matrix.mul_apply]
   simp_rw [Fintype.sum_prod_type]
-  simp [systemLift_apply]
+  simp_rw [systemLift_apply]
+  rw [Finset.sum_eq_single cleanCoefficient]
+  · rw [Finset.sum_eq_single cleanSelector]
+    · simp
+    · intro candidate _ candidate_ne
+      simp [Ne.symm candidate_ne]
+    · simp
+  · intro candidate _ candidate_ne
+    simp [Ne.symm candidate_ne]
+  · simp
 
 /-- Right multiplication by the adjoint lift on a clean column. -/
 theorem mul_star_systemLift_cleanColumn
@@ -130,7 +139,16 @@ theorem mul_star_systemLift_cleanColumn
   classical
   rw [_root_.Matrix.mul_apply]
   simp_rw [Fintype.sum_prod_type]
-  simp [star_systemLift_apply]
+  simp_rw [star_systemLift_apply]
+  rw [Finset.sum_eq_single cleanCoefficient]
+  · rw [Finset.sum_eq_single cleanSelector]
+    · simp
+    · intro candidate _ candidate_ne
+      simp [Ne.symm candidate_ne]
+    · simp
+  · intro candidate _ candidate_ne
+    simp [Ne.symm candidate_ne]
+  · simp
 
 /-- Extract the coefficient/selector clean block as a system matrix. -/
 noncomputable def cleanSystemBlock
@@ -144,7 +162,7 @@ noncomputable def cleanSystemBlock
     (cleanCoefficient, (cleanSelector, column))
 
 /-- Conjugate a full logical matrix only on its system register. -/
-def conjugateSystem
+noncomputable def conjugateSystem
     {coefficient selector system : Type*}
     [Fintype coefficient] [DecidableEq coefficient]
     [Fintype selector] [DecidableEq selector]
