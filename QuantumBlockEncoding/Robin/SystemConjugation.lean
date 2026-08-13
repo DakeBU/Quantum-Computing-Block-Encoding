@@ -144,10 +144,10 @@ theorem mul_star_systemLift_cleanColumn
   · rw [Finset.sum_eq_single cleanSelector]
     · simp
     · intro candidate _ candidate_ne
-      simp [Ne.symm candidate_ne]
+      simp [candidate_ne]
     · simp
   · intro candidate _ candidate_ne
-    simp [Ne.symm candidate_ne]
+    simp [candidate_ne]
   · simp
 
 /-- Extract the coefficient/selector clean block as a system matrix. -/
