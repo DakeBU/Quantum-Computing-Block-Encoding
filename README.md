@@ -194,6 +194,40 @@ Repeating the same leaf against the same Lean-evidence digest is bounded. A
 stalled representation bridge is assigned as a prerequisite instead of being
 retried by more tactic workers.
 
+### Optional executable outputs
+
+Lean is the symbolic acceptance gate, but users can also request executable
+artifacts for the accepted finite instance. Depending on the task, ASPBE emits:
+
+- runnable Qiskit Python that constructs the selected circuit;
+- OpenQASM 3 for interchange with simulators and hardware toolchains;
+- acceptance JSON with unitarity, prepared-state, or projected clean-block
+  errors, register order, package versions, and the matching Lean root;
+- a manifest recording normalization, qubit layout, semantic tier, and output
+  files.
+
+These outputs are useful in two different ways. For state preparation they
+numerically check the produced state against the requested amplitude vector.
+For block encoding they extract the declared clean ancilla block and compare it
+with `A / alpha`. They also expose code that a user can inspect, modify, or run
+on another compatible backend. Floating-point simulation and transpilation are
+reported as executable evidence; they do not replace an exact Lean theorem or
+silently promote a T2 logical unitary to a T3 primitive certificate.
+
+```bash
+python3 -m pip install -r requirements-executable.txt
+python3 tools/replay_public_cases.py
+
+# Individual reproducible exports
+python3 executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
+python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py
+```
+
+Generated code and reports live under
+[`executable-exports/`](executable-exports/). Task packets may select any
+supported subset of `qiskit`, `qasm3`, and other registered executable targets,
+or disable post-Lean export when only the formal certificate is required.
+
 ### Candidate and evidence policy
 
 Candidates live in three separate populations:
@@ -336,16 +370,17 @@ example preset. The reported run used `gpt-5.6-sol` with Codex CLI
 repeated the same source-contract scan. The run compiled the fixed target,
 ten-block source transcript and layout guards, and indicator permutation
 certificate. It produced no verified block-encoding root or same-tier resource
-point. The subsequent deterministic repair added exact fixed-data and
-weighted-permutation structural roots, an explicit three-wire register SWAP,
-and a standard-`Ry` factor-of-two convention theorem. It now also includes a
-reusable complex-unitary LCU kernel, a proved Hadamard-8 logical unitary, a
-generic clean-entry projection formula, four-slot symmetry-sector
-decompositions, and a six-slot cap-sum certificate. The remaining mathematical
-leaf is the Robin-specific clean-block equality and promotion into
-`VerifiedOperatorBlockEncoding`; primitive synthesis and a same-tier resource
-comparison remain separate after that. Therefore no Robin resource improvement
-is claimed.
+point. The subsequent deterministic completion added exact fixed data, a
+reusable complex-unitary LCU kernel, and two complete T2 certificates:
+`warmRobinHadamard8VerifiedBlockEncoding` and
+`warmRobinFourSlotVerifiedBlockEncoding`. Both prove the original-basis clean
+block equals the fixed target divided by `56/3`. Under one declared T2
+logical-stage convention,
+`warmRobinFourSlotT2Cost_betterThan_hadamard8` proves strict lexicographic
+improvement: gate count and depth tie, while the four-slot route uses one fewer
+auxiliary qubit. This is not a primitive `{u,cx}` claim. Exact primitive gate
+semantics, circuit-product equality with the T2 unitary, and primitive resource
+counts remain the separate T3 refinement obligation.
 The complete replay contract is in
 [`run-presets/robin_cold_warm_reproduction.md`](run-presets/robin_cold_warm_reproduction.md).
 

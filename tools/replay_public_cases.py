@@ -38,8 +38,12 @@ LEAN_MODULES = (
     "QuantumBlockEncoding.Robin.ComplexLCU",
     "QuantumBlockEncoding.Robin.ComplexLCUProjection",
     "QuantumBlockEncoding.Robin.Hadamard8Verified",
+    "QuantumBlockEncoding.Robin.Hadamard8BlockEncoding",
     "QuantumBlockEncoding.Robin.SixSlotOptimal",
     "QuantumBlockEncoding.Robin.SymmetryFourSlot",
+    "QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary",
+    "QuantumBlockEncoding.Robin.SymmetryFourSlotBlockEncoding",
+    "QuantumBlockEncoding.Robin.SystemConjugation",
 )
 
 HASHED_INPUTS = (
@@ -65,8 +69,12 @@ HASHED_INPUTS = (
     "QuantumBlockEncoding/Robin/ComplexLCU.lean",
     "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
     "QuantumBlockEncoding/Robin/Hadamard8Verified.lean",
+    "QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean",
     "QuantumBlockEncoding/Robin/SixSlotOptimal.lean",
     "QuantumBlockEncoding/Robin/SymmetryFourSlot.lean",
+    "QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean",
+    "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
+    "QuantumBlockEncoding/Robin/SystemConjugation.lean",
     "tools/export_robin_evolution.py",
 )
 
@@ -288,17 +296,17 @@ def main() -> None:
         },
         "cases": case_results,
         "robin": {
-            "status": "T1 exact finite structure; T2 logical-unitary route partial",
+            "status": "T2 exact logical-unitary block encodings and same-tier strict comparison",
             "included_in_lean_gate": True,
             "evolution_replayed": completed_robin_cycles > 0,
             "reason": (
                 f"The audited warm run completed {completed_robin_cycles} controller "
                 "cycles and produced no verified block-encoding root or resource "
-                "point. Deterministic fixed-N structural roots, a reusable complex "
-                "LCU unitary kernel, and the Hadamard-8 logical-unitary theorem were "
-                "added after the run. The specialized clean-block promotion and a "
-                "same-tier resource theorem remain open, so no resource-improvement "
-                "claim is available."
+                "point. Deterministic completion after the run produced exact "
+                "Hadamard-8 and four-slot T2 VerifiedOperatorBlockEncoding roots. "
+                "A same-tier theorem proves the four-slot cost strictly better by "
+                "one auxiliary qubit after gate count and depth tie. Primitive "
+                "{u,cx} refinement remains open and is not inferred from Qiskit."
                 if robin_audit
                 else "No audited warm evolution result is available."
             ),

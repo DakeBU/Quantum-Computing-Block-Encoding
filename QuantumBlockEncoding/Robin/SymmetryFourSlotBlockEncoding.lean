@@ -70,6 +70,19 @@ theorem warmRobinSymmetryBasisChange_unitary :
   · exact warmRobinUniformBitPrepare_unitary
   · exact (_root_.Matrix.unitaryGroup (Fin 4) ℂ).one_mem
 
+/-- Every entry of the real two-dimensional basis change is self-conjugate. -/
+@[simp] theorem star_warmRobinUniformBitPrepare_apply
+    (row column : Fin 2) :
+    star (warmRobinUniformBitPrepare row column) =
+      warmRobinUniformBitPrepare row column := by
+  rw [Complex.star_def]
+  fin_cases row <;> fin_cases column <;>
+    simp only [warmRobinUniformBitPrepare, realOrthogonalRotation]
+  · exact Complex.conj_ofReal _
+  · rw [map_neg, Complex.conj_ofReal]
+  · exact Complex.conj_ofReal _
+  · exact Complex.conj_ofReal _
+
 /-- The common real selector amplitude has squared magnitude `1/2`. -/
 @[simp] theorem warmRobinUniformScalar_square_complex :
     (((Real.sqrt 2 / 2 : Real) : ℂ) *
@@ -91,7 +104,7 @@ theorem warmRobinSymmetryBasisChange_unitary :
         warmRobinUniformBitPrepare row.1 column.1
       else 0 := by
   by_cases pairMatch : row.2 = column.2 <;>
-    simp [warmRobinSymmetryBasisChange, pairMatch]
+    simp [warmRobinSymmetryBasisChange, Matrix.one_apply, pairMatch]
 
 /-- Entry formula for the adjoint symmetry basis change. -/
 @[simp] theorem star_warmRobinSymmetryBasisChange_apply
@@ -268,6 +281,7 @@ theorem warmRobinSymmetryBasisChange_conjugates_target :
   ext ⟨rowSide, rowPair⟩ ⟨columnSide, columnPair⟩
   rw [warmRobinSymmetryBasisChange_mul_pairRow]
   simp_rw [mul_star_warmRobinSymmetryBasisChange_pairColumn]
+  simp_rw [star_warmRobinUniformBitPrepare_apply]
   let c : ℂ := ((Real.sqrt 2 / 2 : Real) : ℂ)
   let a : ℂ :=
     (warmRobinIntegerTarget
@@ -282,22 +296,26 @@ theorem warmRobinSymmetryBasisChange_conjugates_target :
       warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
       warmRobinUniformBitPrepare, realOrthogonalRotation,
       warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
-      c, a, b] using warmRobinSymmetryConjugation00 c a b square
+      c, a, b] using
+        warmRobinSymmetryConjugation00 c a b square
   · simpa [Fin.sum_univ_two, warmRobinFourSlotSectorTargetComplex,
       warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
       warmRobinUniformBitPrepare, realOrthogonalRotation,
       warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
-      c, a, b] using warmRobinSymmetryConjugation01 c a b square
+      c, a, b] using
+        warmRobinSymmetryConjugation01 c a b square
   · simpa [Fin.sum_univ_two, warmRobinFourSlotSectorTargetComplex,
       warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
       warmRobinUniformBitPrepare, realOrthogonalRotation,
       warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
-      c, a, b] using warmRobinSymmetryConjugation10 c a b square
+      c, a, b] using
+        warmRobinSymmetryConjugation10 c a b square
   · simpa [Fin.sum_univ_two, warmRobinFourSlotSectorTargetComplex,
       warmRobinFourSlotSectorTarget, warmRobinPairNormalizedTargetComplex,
       warmRobinUniformBitPrepare, realOrthogonalRotation,
       warmRobinSymmetryPlusBlock, warmRobinSymmetryMinusBlock,
-      c, a, b] using warmRobinSymmetryConjugation11 c a b square
+      c, a, b] using
+        warmRobinSymmetryConjugation11 c a b square
 
 /-- Conjugate the sector logical unitary back to reversal-pair coordinates. -/
 noncomputable def warmRobinFourSlotPairLogicalUnitary :
@@ -471,6 +489,20 @@ noncomputable def warmRobinFourSlotVerifiedBlockEncoding :
   candidate := warmRobinFourSlotOperatorCandidate
   unitaryProof := warmRobinFourSlotFlatUnitary_unitary
   blockProof := warmRobinFourSlotBlockContainsTarget_proof
+
+/-- Under one T2 logical-stage convention, four slots strictly improve the
+Hadamard-8 route: gate count and depth tie, while the clean layout uses one
+fewer auxiliary qubit. -/
+theorem warmRobinFourSlotT2Cost_betterThan_hadamard8 :
+    warmRobinFourSlotOperatorCandidate.cost.betterThan
+      warmRobinHadamard8OperatorCandidate.cost := by
+  norm_num [OperatorBlockEncodingCandidate.cost,
+    warmRobinFourSlotOperatorCandidate, warmRobinHadamard8OperatorCandidate,
+    warmRobinFourSlotT2Resource, warmRobinHadamard8T2Resource,
+    warmRobinFourSlotT2Schedule, warmRobinHadamard8T2Schedule,
+    LayeredCircuit.resource, CircuitLayer.resource, Gate.resource,
+    Resource.parallel, Resource.add, Resource.gates,
+    BlockEncodingCost.betterThan]
 
 /-- Honest boundary: primitive synthesis and refinement remain a T3 obligation. -/
 def warmRobinFourSlotT3BlockedLeaf : String :=

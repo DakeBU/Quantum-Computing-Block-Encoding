@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 1857,
-  "privateDeclarationExclusionCount": 177,
-  "sourceDocstringCount": 1424,
-  "generatedReaderCueCount": 1857,
+  "publicDeclarationCount": 1967,
+  "privateDeclarationExclusionCount": 181,
+  "sourceDocstringCount": 1525,
+  "generatedReaderCueCount": 1967,
   "byKind": {
-    "abbrev": 15,
-    "def": 744,
+    "abbrev": 17,
+    "def": 788,
     "inductive": 23,
     "opaque": 7,
     "structure": 174,
-    "theorem": 894
+    "theorem": 958
   },
   "bySource": {
     "QuantumBlockEncoding/Automation.lean": 39,
@@ -34,11 +34,15 @@
     "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean": 8,
     "QuantumBlockEncoding/Robin/EvolvedCandidates.lean": 13,
     "QuantumBlockEncoding/Robin/FixedN3Data.lean": 6,
+    "QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean": 24,
     "QuantumBlockEncoding/Robin/Hadamard8Verified.lean": 16,
     "QuantumBlockEncoding/Robin/ResourceComparison.lean": 10,
     "QuantumBlockEncoding/Robin/SixSlotOptimal.lean": 20,
     "QuantumBlockEncoding/Robin/SourceBaseline.lean": 12,
     "QuantumBlockEncoding/Robin/SymmetryFourSlot.lean": 21,
+    "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean": 47,
+    "QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean": 29,
+    "QuantumBlockEncoding/Robin/SystemConjugation.lean": 10,
     "QuantumBlockEncoding/Robin/WeightedPermutation.lean": 15,
     "QuantumBlockEncoding/RobinEvolution.lean": 17,
     "QuantumBlockEncoding/RobinMatrix.lean": 395,
@@ -485,6 +489,34 @@
       "name": "QuantumBlockEncoding.GHL2025.eq_zero_or_eq_base_of_mod_eq_zero_of_lt_two_mul",
       "source": "QuantumBlockEncoding/GHL2025.lean",
       "line": 1115,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation00",
+      "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
+      "line": 234,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation01",
+      "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
+      "line": 244,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation10",
+      "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
+      "line": 254,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation11",
+      "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
+      "line": 264,
       "reason": "private declaration"
     },
     {

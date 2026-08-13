@@ -186,21 +186,25 @@ def warmRobinQueryTarget : QueryOperatorTarget ℂ 8 8 where
     "the coefficient=0 and selector=0 clean block equals A/(56/3) exactly"
   freeParameters := []
 
-/-- Four exact logical stages; no primitive decomposition is asserted here. -/
-def warmRobinHadamard8T2Circuit : Circuit :=
-  [ Gate.oracleCall "T2 selector PREPARE-8"
-  , Gate.oracleCall "T2 controlled amplitude rotation"
-  , Gate.oracleCall "T2 SELECT permutation"
-  , Gate.oracleCall "T2 selector PREPARE-8 dagger"
+/-- Four logical stages with the three selector Hadamards made explicit. -/
+def warmRobinHadamard8T2Schedule : LayeredCircuit :=
+  [ [ Gate.oneQubit "T2 selector-H-0" 0
+    , Gate.oneQubit "T2 selector-H-1" 1
+    , Gate.oneQubit "T2 selector-H-2" 2 ]
+  , [ Gate.oracleCall "T2 controlled amplitude rotation" ]
+  , [ Gate.oracleCall "T2 SELECT permutation" ]
+  , [ Gate.oneQubit "T2 selector-H-0 dagger" 0
+    , Gate.oneQubit "T2 selector-H-1 dagger" 1
+    , Gate.oneQubit "T2 selector-H-2 dagger" 2 ]
   ]
 
-/-- Sequential T2 schedule matching the four logical stages. -/
-def warmRobinHadamard8T2Schedule : LayeredCircuit :=
-  warmRobinHadamard8T2Circuit.map fun gate => [gate]
+/-- Logical gate list associated with the fair T2 schedule. -/
+def warmRobinHadamard8T2Circuit : Circuit :=
+  warmRobinHadamard8T2Schedule.flatten
 
 /-- Resource record under the logical-stage convention, not a T3 primitive count. -/
 def warmRobinHadamard8T2Resource : Resource :=
-  warmRobinHadamard8T2Circuit.resource
+  warmRobinHadamard8T2Schedule.resource
 
 /-- The exact block predicate attached to the operator candidate. -/
 def warmRobinHadamard8BlockContainsTarget : Prop :=

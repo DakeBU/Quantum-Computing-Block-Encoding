@@ -107,11 +107,14 @@
         "QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry",
         "QuantumBlockEncoding.Robin.warmRobinSixSlotCap_sum_eq_maxColumnL1",
         "QuantumBlockEncoding.Robin.warmRobinSymmetryPlusFourShiftDecomposition",
-        "QuantumBlockEncoding.Robin.warmRobinSymmetryMinusFourShiftDecomposition"
+        "QuantumBlockEncoding.Robin.warmRobinSymmetryMinusFourShiftDecomposition",
+        "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding",
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"
       ],
       "localStatus": "Compiled",
-      "routeStatus": "Partial route",
-      "reading": "The finite decompositions, reusable complex LCU unitary kernel, Hadamard-8 logical unitary, and generic clean-entry expansion compile. The Robin-specific clean-block equality, VerifiedOperatorBlockEncoding promotion, primitive refinement, and same-tier resource theorem remain open."
+      "routeStatus": "T2 complete; T3 planned",
+      "reading": "Hadamard-8 and four-slot logical unitaries are promoted to exact VerifiedOperatorBlockEncoding roots. Their shared T2 convention proves the four-slot route strictly better after gate count and depth tie. Primitive {u,cx} refinement remains separate."
     }
   ]
 }

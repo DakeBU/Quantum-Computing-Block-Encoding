@@ -1,16 +1,17 @@
 # ROBIN PROOF STATE
 
-- Integration target: `main` after the Robin agent branch is audited.
+- Integration target: `main` after the Robin completion branch is audited.
 - Compiled structural roots: five-shift, source-like seven-slot, Hadamard-8,
   centrosymmetric four-slot sectors, and the six-slot cap-sum certificate.
-- Compiled logical roots: reusable complex LCU unitarity, generic clean-entry
-  projection, and `warmRobinHadamard8LogicalUnitary_unitary`.
-- Open promotion leaf: specialize the generic projection to
-  `warmRobinHadamard8CleanFormula_eq_target`, reindex the product register into
-  the circuit interface, and construct `VerifiedOperatorBlockEncoding`.
-- Open resource leaf: expand both source and candidate under one primitive
-  convention before stating any lexicographic dominance theorem.
-- Rejected claim: the branch does not contain `warmRobinBestVerified`, a
-  same-tier strict-improvement theorem, or a T3 primitive refinement.
+- Compiled T2 roots: `warmRobinHadamard8VerifiedBlockEncoding` and
+  `warmRobinFourSlotVerifiedBlockEncoding`, including original-basis clean
+  blocks at normalizer `56/3`.
+- Compiled comparison root:
+  `warmRobinFourSlotT2Cost_betterThan_hadamard8`. Under the shared T2 schedule,
+  gate count and depth tie and the four-slot route uses one fewer auxiliary.
+- Open T3 leaf: give an exact primitive gate list and matrix semantics, then
+  prove its product equals the corresponding T2 logical unitary.
+- Rejected claim: Qiskit transpilation or floating-point agreement is not a
+  Lean primitive-refinement theorem.
 - Resource convention: logical one-qubit rotations plus CNOT; SWAP = 3 CNOT;
   expand PREPARE, SELECT, truth-table logic, and uncompute.

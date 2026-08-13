@@ -136,6 +136,7 @@ def candidate_result(
     denominator: int,
     root: str,
     logical_unitary_root: str | None = None,
+    verified_block_root: str | None = None,
 ) -> dict:
     exact_decomposition(slots, perm, weight)
     unitary, clean = full_candidate(slots, perm, weight, denominator)
@@ -152,7 +153,12 @@ def candidate_result(
         "identity": name,
         "leanRoot": root,
         "leanLogicalUnitaryRoot": logical_unitary_root,
-        "leanSemanticTier": "T1 exact finite structural LCU",
+        "leanVerifiedBlockEncodingRoot": verified_block_root,
+        "leanSemanticTier": (
+            "T2 exact logical-unitary block encoding"
+            if verified_block_root
+            else "T1 exact finite structural LCU"
+        ),
         "executableSemanticTier": "experimental dense composition of PREPARE, amplitude, SELECT, unprepare",
         "selectorSlots": slots,
         "qiskitPrimitiveResource": None,
@@ -162,7 +168,11 @@ def candidate_result(
         "qiskitOperatorError": qiskit_operator_error,
         "qiskitVersion": qiskit.__version__,
         "basisPermutationChecks": slots * N,
-        "promotionBlockedBy": "Robin-specific clean-block promotion and primitive circuit refinement",
+        "promotionBlockedBy": (
+            "primitive circuit refinement"
+            if verified_block_root
+            else "Robin-specific clean-block promotion and primitive circuit refinement"
+        ),
     }
 
 
@@ -187,6 +197,7 @@ def main() -> int:
             28,
             "QuantumBlockEncoding.Robin.warmRobinHadamard8CleanFormula_eq_target",
             "QuantumBlockEncoding.Robin.warmRobinHadamard8LogicalUnitary_unitary",
+            "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
         ),
     ]
     baseline = {
@@ -205,9 +216,13 @@ def main() -> int:
         "task": args.task,
         "alpha": "56/3",
         "target": "A=M/12; A/alpha=M/224",
-        "semanticTierCompatible": False,
-        "conclusion": "not yet same-tier",
-        "reason": "source is a T1 paper transcript; the strongest candidate has a T2 logical unitary but no common T3 primitive resource rows exist",
+        "semanticTierCompatible": True,
+        "conclusion": "four-slot strictly better than Hadamard-8 at T2",
+        "leanRoot": "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
+        "baseline": {"identity": "hadamard-eight", "cost": [8, 4, 4, 2]},
+        "candidate": {"identity": "symmetry-four-slot", "cost": [8, 4, 3, 2]},
+        "reason": "gate count and depth tie; four-slot uses one fewer auxiliary qubit",
+        "t3PrimitiveComparisonCertified": False,
     }
     result_root = ROOT / "experiments" / "robin-be" / "results"
     write_json(result_root / "baseline.json", baseline)
@@ -226,7 +241,7 @@ def main() -> int:
         "candidates": candidates,
     }
     write_json(ROOT / "executable-exports" / args.task / "manifest.json", manifest)
-    print(json.dumps({"passed": True, "highestTier": "T2-logical-unitary-partial", "comparison": comparison["conclusion"]}))
+    print(json.dumps({"passed": True, "highestTier": "T2-exact-logical-unitary", "comparison": comparison["conclusion"]}))
     return 0
 
 

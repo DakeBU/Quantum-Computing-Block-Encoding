@@ -101,8 +101,12 @@ CATALOGS = [
             "Robin/ComplexLCU.lean",
             "Robin/ComplexLCUProjection.lean",
             "Robin/Hadamard8Verified.lean",
+            "Robin/Hadamard8BlockEncoding.lean",
             "Robin/SixSlotOptimal.lean",
             "Robin/SymmetryFourSlot.lean",
+            "Robin/SymmetryFourSlotLogicalUnitary.lean",
+            "Robin/SymmetryFourSlotBlockEncoding.lean",
+            "Robin/SystemConjugation.lean",
         },
     ),
     (
