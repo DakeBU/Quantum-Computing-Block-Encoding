@@ -28,6 +28,7 @@ import QuantumBlockEncoding.Robin.Hadamard8Verified
 import QuantumBlockEncoding.Robin.Hadamard8BlockEncoding
 import QuantumBlockEncoding.Robin.SystemConjugation
 import QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary
+import QuantumBlockEncoding.Robin.SymmetryFourSlotBlockEncoding
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas
