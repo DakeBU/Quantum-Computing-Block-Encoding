@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary
+import QuantumBlockEncoding.PrimitiveBasisLE
 import QuantumBlockEncoding.Robin.Hadamard8BlockEncoding
 import Mathlib.Tactic
 
@@ -365,6 +366,32 @@ def warmRobinFourSlotOriginalIndexEquiv :
     LCUIndex (Fin 2) (Fin 4) (Fin 8) ≃ Fin (gridSize 6) :=
   (Equiv.prodCongr (Equiv.refl (Fin 2)) finProdFinEquiv).trans
     finProdFinEquiv
+
+/-- The six primitive wires interpreted as coefficient, selector, and system
+registers through the already-certified T2 flattening.  Consequently q0--q2
+are system, q3--q4 are selector, and q5 is coefficient. -/
+def warmRobinFourSlotProductBitsEquiv :
+    PrimitiveBasis 6 ≃ LCUIndex (Fin 2) (Fin 4) (Fin 8) :=
+  (primitiveBasisLEEquiv 6).trans warmRobinFourSlotOriginalIndexEquiv.symm
+
+/-- Primitive little-endian indexing is exactly the original T2 index map. -/
+theorem warmRobinFourSlotProductBitsEquiv_index (bits : PrimitiveBasis 6) :
+    warmRobinFourSlotOriginalIndexEquiv
+        (warmRobinFourSlotProductBitsEquiv bits) =
+      primitiveBasisLEEquiv 6 bits := by
+  simp [warmRobinFourSlotProductBitsEquiv]
+
+/-- Regression over all 64 basis states, stated as the concrete register
+formula consumed by executable backends. -/
+theorem warmRobinFourSlotProductBitsEquiv_all_basis :
+    ∀ bits : PrimitiveBasis 6,
+      (warmRobinFourSlotOriginalIndexEquiv
+          (warmRobinFourSlotProductBitsEquiv bits)).val =
+        (bits 0).val + 2 * (bits 1).val + 4 * (bits 2).val +
+        8 * (bits 3).val + 16 * (bits 4).val + 32 * (bits 5).val := by
+  intro bits
+  rw [warmRobinFourSlotProductBitsEquiv_index]
+  exact primitiveBasisLEEquiv_six_value bits
 
 /-- Combined system reindexing and six-qubit flattening. -/
 noncomputable def warmRobinFourSlotIndexEquiv :

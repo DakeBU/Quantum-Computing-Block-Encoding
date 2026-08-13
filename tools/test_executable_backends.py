@@ -12,11 +12,15 @@ from unittest import mock
 import numpy as np
 
 from tools.backends import internal_matrix_backend, qiskit_backend
-from tools.executable_ir import CircuitIR, canonicalize_ir, evaluate_ir, pi_rational, rational
+from tools.executable_ir import (
+    CircuitIR, angle_scale, canonicalize_ir, evaluate_ir, pi_rational, rational,
+    twice_arccos_sqrt_rational,
+)
 from tools.executable_manifest import (
     default_executable_policy, migrate_task_packet, validate_executable_policy,
 )
 from tools.executable_runner import run_policy, write_artifacts
+from tools.export_robin_evolution import M, robin_xor_four_slot_ir
 
 
 def bell_ir() -> CircuitIR:
@@ -119,6 +123,81 @@ class ExecutableBackendTests(unittest.TestCase):
         restored = CircuitIR.from_payload(ir.payload())
         self.assertEqual(canonicalize_ir(restored), canonicalize_ir(ir))
         self.assertEqual(restored.circuit_digest, ir.circuit_digest)
+
+    def test_exact_angle_extensions_and_nonzero_phase_round_trip(self) -> None:
+        from tools.backends import openqasm3_backend
+
+        payload = bell_ir().payload(include_digest=False)
+        payload["instructions"][0]["angle"] = angle_scale(
+            1, 2, twice_arccos_sqrt_rational(1, 4)
+        )
+        payload["globalPhase"] = pi_rational(1, 7)
+        ir = CircuitIR.from_payload(payload)
+        text, report = openqasm3_backend.verify(ir)
+        self.assertIn("ASPBE_EXACT_GLOBAL_PHASE", text)
+        self.assertIn("gphase(", text)
+        self.assertTrue(report["canonicalRoundTrip"])
+        qiskit_report = qiskit_backend.verify(ir)
+        self.assertLess(float(qiskit_report["fullOperatorError"]), 1e-12)
+
+    def test_robin_six_wire_register_order_all_64_basis_states(self) -> None:
+        for flat in range(64):
+            bits = tuple((flat >> wire) & 1 for wire in range(6))
+            system = bits[0] + 2 * bits[1] + 4 * bits[2]
+            selector = bits[3] + 2 * bits[4]
+            coefficient = bits[5]
+            self.assertEqual(flat, system + 8 * selector + 32 * coefficient)
+
+    def test_robin_xor_t3_all_backends_and_mutations(self) -> None:
+        ir = robin_xor_four_slot_ir("test")
+        target = np.asarray(M, dtype=float) / 224.0
+        policy = default_executable_policy()
+        policy["intermediateCheck"]["backend"] = "both"
+        report = run_policy(
+            ir, policy, target=target,
+            system_qubits=(0, 1, 2), clean_qubits=(3, 4, 5),
+        )
+        self.assertEqual(report["status"], "passed")
+        self.assertLess(
+            float(report["reports"]["qiskitOperator"]["fullOperatorError"]),
+            1e-12,
+        )
+        self.assertTrue(
+            report["reports"]["openqasm3RoundTrip"]["canonicalRoundTrip"]
+        )
+
+        reference = evaluate_ir(ir)
+        mutations = []
+        changed_angle = copy.deepcopy(ir.payload(include_digest=False))
+        first_ry = next(
+            index for index, gate in enumerate(changed_angle["instructions"])
+            if gate["op"] == "ry"
+        )
+        changed_angle["instructions"][first_ry]["angle"] = pi_rational(-1, 3)
+        mutations.append(CircuitIR.from_payload(changed_angle))
+
+        deleted_cx = copy.deepcopy(ir.payload(include_digest=False))
+        first_cx = next(
+            index for index, gate in enumerate(deleted_cx["instructions"])
+            if gate["op"] == "cx"
+        )
+        del deleted_cx["instructions"][first_cx]
+        mutations.append(CircuitIR.from_payload(deleted_cx))
+
+        changed_qubit_order = copy.deepcopy(ir.payload(include_digest=False))
+        changed_qubit_order["instructions"][0] = {
+            "op": "cx", "control": 2, "target": 0,
+        }
+        mutations.append(CircuitIR.from_payload(changed_qubit_order))
+        for mutation in mutations:
+            self.assertGreater(
+                np.linalg.norm(evaluate_ir(mutation) - reference, ord=2), 1e-6
+            )
+
+        changed_endianness = copy.deepcopy(ir.payload(include_digest=False))
+        changed_endianness["endianness"] = "big-endian"
+        with self.assertRaisesRegex(ValueError, "endianness"):
+            CircuitIR.from_payload(changed_endianness)
 
     def test_check_backend_and_exports_are_independent(self) -> None:
         ir = bell_ir()

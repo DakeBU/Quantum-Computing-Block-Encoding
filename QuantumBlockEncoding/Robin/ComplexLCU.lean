@@ -186,6 +186,66 @@ theorem equivPermutationMatrix_mul_apply
     simp [equivPermutationMatrix, miss]
   · simp
 
+/-- Multiplication on the right by a permutation matrix applies the
+permutation to columns. -/
+theorem mul_equivPermutationMatrix_apply
+    {ι κ : Type*} [Fintype κ] [DecidableEq κ]
+    (operator : _root_.Matrix ι κ ℂ) (equiv : κ ≃ κ)
+    (row : ι) (column : κ) :
+    (operator * equivPermutationMatrix equiv) row column =
+      operator row (equiv column) := by
+  classical
+  rw [_root_.Matrix.mul_apply]
+  rw [Finset.sum_eq_single (equiv column)]
+  · simp [equivPermutationMatrix]
+  · intro candidate _ candidate_ne
+    simp [equivPermutationMatrix, candidate_ne]
+  · simp
+
+/-- Chronological composition of finite basis permutations. -/
+theorem equivPermutationMatrix_mul
+    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (first second : ι ≃ ι) :
+    equivPermutationMatrix second * equivPermutationMatrix first =
+      equivPermutationMatrix (first.trans second) := by
+  ext row column
+  rw [equivPermutationMatrix_mul_apply]
+  simp only [equivPermutationMatrix, Equiv.trans_apply]
+  by_cases hit : second.symm row = first column
+  · have forward : row = second (first column) := by
+      rw [← hit]
+      exact (second.apply_symm_apply row).symm
+    simp [hit, forward]
+  · have miss : row ≠ second (first column) := by
+      intro forward
+      apply hit
+      rw [forward, second.symm_apply_apply]
+    simp [hit, miss]
+
+/-- Conjugating a reindexed operator by an involutive basis permutation is
+the same as composing that permutation into the indexing equivalence. -/
+theorem equivPermutationMatrix_conjugates_reindex
+    {ι κ : Type*} [Fintype ι] [DecidableEq ι]
+    [Fintype κ] [DecidableEq κ]
+    (basis : ι ≃ ι) (logical : ι ≃ κ)
+    (operator : _root_.Matrix κ κ ℂ)
+    (involutive : Function.Involutive basis) :
+    equivPermutationMatrix basis *
+          _root_.Matrix.reindexAlgEquiv ℂ ℂ logical.symm operator *
+        equivPermutationMatrix basis =
+      _root_.Matrix.reindexAlgEquiv ℂ ℂ
+        (basis.trans logical).symm operator := by
+  ext row column
+  rw [mul_equivPermutationMatrix_apply,
+    equivPermutationMatrix_mul_apply]
+  have basisSymm (index : ι) : basis.symm index = basis index := by
+    apply basis.injective
+    rw [basis.apply_symm_apply, involutive index]
+  simp only [_root_.Matrix.reindexAlgEquiv_apply,
+    _root_.Matrix.reindex_apply, _root_.Matrix.submatrix_apply,
+    Equiv.symm_symm, Equiv.trans_apply]
+  rw [basisSymm]
+
 /-- Product-register index for coefficient, selector, and system registers. -/
 abbrev LCUIndex (coefficient selector system : Type*) :=
   coefficient × (selector × system)

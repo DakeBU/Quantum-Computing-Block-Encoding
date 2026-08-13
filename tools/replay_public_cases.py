@@ -44,6 +44,10 @@ LEAN_MODULES = (
     "QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary",
     "QuantumBlockEncoding.Robin.SymmetryFourSlotBlockEncoding",
     "QuantumBlockEncoding.Robin.SystemConjugation",
+    "QuantumBlockEncoding.Robin.SymmetryXorFourSlotLogicalUnitary",
+    "QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive",
+    "QuantumBlockEncoding.Robin.PaperSevenPrimitive",
+    "QuantumBlockEncoding.Robin.Figure4Primitive",
 )
 
 HASHED_INPUTS = (
@@ -75,6 +79,14 @@ HASHED_INPUTS = (
     "QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean",
     "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
     "QuantumBlockEncoding/Robin/SystemConjugation.lean",
+    "QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean",
+    "QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean",
+    "QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean",
+    "QuantumBlockEncoding/Robin/Figure4Primitive.lean",
+    "tools/executable_ir.py",
+    "tools/backends/internal_matrix_backend.py",
+    "tools/backends/qiskit_backend.py",
+    "tools/backends/openqasm3_backend.py",
     "tools/export_robin_evolution.py",
 )
 
@@ -241,6 +253,13 @@ def main() -> None:
                 "2",
             ],
         ),
+        (
+            "Robin XOR four-slot T3",
+            [
+                "python3", "tools/export_robin_evolution.py",
+                "--task", "QBE-ROBIN-BE-WARM-001", "--arm", "warm",
+            ],
+        ),
     )
     for label, command in commands:
         record = run(command)
@@ -296,17 +315,17 @@ def main() -> None:
         },
         "cases": case_results,
         "robin": {
-            "status": "T2 exact logical-unitary block encodings and same-tier strict comparison",
+            "status": "XOR four-slot T3 exact primitive block encoding; source Figure-4 remains partial",
             "included_in_lean_gate": True,
             "evolution_replayed": completed_robin_cycles > 0,
             "reason": (
                 f"The audited warm run completed {completed_robin_cycles} controller "
                 "cycles and produced no verified block-encoding root or resource "
-                "point. Deterministic completion after the run produced exact "
-                "Hadamard-8 and four-slot T2 VerifiedOperatorBlockEncoding roots. "
-                "A same-tier theorem proves the four-slot cost strictly better by "
-                "one auxiliary qubit after gate count and depth tie. Primitive "
-                "{X,RY,RZ,CX} refinement remains open and is not inferred from Qiskit."
+                "point. Deterministic proof completion after the run produced an "
+                "exact XOR four-slot {X,RY,RZ,CX} refinement and verified block "
+                "encoding. Gate-by-gate Qiskit and OpenQASM checks replay that "
+                "Lean-owned artifact. Paper-seven and fixed Figure-4 primitive "
+                "roots remain partial, so no source-level T3 winner is claimed."
                 if robin_audit
                 else "No audited warm evolution result is available."
             ),

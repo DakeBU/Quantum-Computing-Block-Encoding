@@ -46,6 +46,19 @@ def twice_arccos_rational(numerator: int, denominator: int = 1) -> dict[str, obj
     }
 
 
+def twice_arccos_sqrt_rational(
+    numerator: int, denominator: int = 1
+) -> dict[str, object]:
+    value = Fraction(numerator, denominator)
+    if not 0 <= value <= 1:
+        raise ValueError("twiceArccosSqrtRational requires a value in [0,1]")
+    return {
+        "kind": "twiceArccosSqrtRational",
+        "numerator": value.numerator,
+        "denominator": value.denominator,
+    }
+
+
 def angle_neg(value: Mapping[str, object]) -> dict[str, object]:
     return {"kind": "neg", "value": dict(value)}
 
@@ -54,15 +67,32 @@ def angle_add(*terms: Mapping[str, object]) -> dict[str, object]:
     return {"kind": "add", "terms": [dict(term) for term in terms]}
 
 
+def angle_scale(
+    numerator: int, denominator: int, value: Mapping[str, object]
+) -> dict[str, object]:
+    factor = Fraction(numerator, denominator)
+    return {
+        "kind": "scale",
+        "numerator": factor.numerator,
+        "denominator": factor.denominator,
+        "value": dict(value),
+    }
+
+
 def validate_angle(value: Mapping[str, object]) -> None:
     kind = value.get("kind")
-    if kind in {"rational", "piRational", "twiceArccosRational"}:
+    if kind in {
+        "rational", "piRational", "twiceArccosRational",
+        "twiceArccosSqrtRational",
+    }:
         numerator = value.get("numerator")
         denominator = value.get("denominator")
         if not isinstance(numerator, int) or not isinstance(denominator, int) or denominator == 0:
             raise ValueError(f"invalid rational angle: {value!r}")
         if kind == "twiceArccosRational" and abs(Fraction(numerator, denominator)) > 1:
             raise ValueError("twiceArccosRational requires a value in [-1,1]")
+        if kind == "twiceArccosSqrtRational" and not 0 <= Fraction(numerator, denominator) <= 1:
+            raise ValueError("twiceArccosSqrtRational requires a value in [0,1]")
         return
     if kind == "neg" and isinstance(value.get("value"), Mapping):
         validate_angle(value["value"])  # type: ignore[arg-type]
@@ -73,21 +103,36 @@ def validate_angle(value: Mapping[str, object]) -> None:
                 raise ValueError("angle add terms must be objects")
             validate_angle(term)
         return
+    if kind == "scale" and isinstance(value.get("value"), Mapping):
+        numerator = value.get("numerator")
+        denominator = value.get("denominator")
+        if not isinstance(numerator, int) or not isinstance(denominator, int) or denominator == 0:
+            raise ValueError(f"invalid rational scale: {value!r}")
+        validate_angle(value["value"])  # type: ignore[arg-type]
+        return
     raise ValueError(f"unsupported exact angle expression: {value!r}")
 
 
 def eval_angle(value: Mapping[str, object]) -> float:
     validate_angle(value)
     kind = value["kind"]
-    if kind in {"rational", "piRational", "twiceArccosRational"}:
+    if kind in {
+        "rational", "piRational", "twiceArccosRational",
+        "twiceArccosSqrtRational",
+    }:
         q = float(Fraction(int(value["numerator"]), int(value["denominator"])))
         if kind == "rational":
             return q
         if kind == "piRational":
             return math.pi * q
+        if kind == "twiceArccosSqrtRational":
+            return 2.0 * math.acos(math.sqrt(q))
         return 2.0 * math.acos(q)
     if kind == "neg":
         return -eval_angle(value["value"])  # type: ignore[arg-type]
+    if kind == "scale":
+        factor = Fraction(int(value["numerator"]), int(value["denominator"]))
+        return float(factor) * eval_angle(value["value"])  # type: ignore[arg-type]
     return sum(eval_angle(term) for term in value["terms"])  # type: ignore[arg-type]
 
 
@@ -100,8 +145,15 @@ def angle_to_text(value: Mapping[str, object]) -> str:
         return f"pi*({value['numerator']}/{value['denominator']})"
     if kind == "twiceArccosRational":
         return f"2*arccos({value['numerator']}/{value['denominator']})"
+    if kind == "twiceArccosSqrtRational":
+        return f"2*arccos(sqrt({value['numerator']}/{value['denominator']}))"
     if kind == "neg":
         return f"-({angle_to_text(value['value'])})"  # type: ignore[arg-type]
+    if kind == "scale":
+        return (
+            f"({value['numerator']}/{value['denominator']})*"
+            f"({angle_to_text(value['value'])})"  # type: ignore[arg-type]
+        )
     return " + ".join(angle_to_text(term) for term in value["terms"])  # type: ignore[arg-type]
 
 
@@ -222,6 +274,53 @@ def primitive_resource(instructions: Sequence[Mapping[str, object]]) -> dict[str
     }
 
 
+def compile_uniformly_controlled_ry(
+    controls: Sequence[int],
+    target: int,
+    angles: Mapping[tuple[int, ...], Mapping[str, object]],
+) -> list[dict[str, object]]:
+    """Mirror Lean's reference UCRY compiler exactly.
+
+    Control tuples are indexed low-to-high in ``controls``.  The returned
+    instruction list is chronological and contains only ``ry`` and ``cx``.
+    """
+    controls = tuple(controls)
+    expected = {
+        tuple((flat >> wire) & 1 for wire in range(len(controls)))
+        for flat in range(1 << len(controls))
+    }
+    if set(angles) != expected:
+        raise ValueError("UCRY angle table must cover every control assignment")
+    if target in controls or len(set(controls)) != len(controls):
+        raise ValueError("UCRY controls must be distinct from each other and target")
+
+    def recurse(
+        wires: tuple[int, ...],
+        table: Mapping[tuple[int, ...], Mapping[str, object]],
+    ) -> list[dict[str, object]]:
+        if not wires:
+            return [{"op": "ry", "target": target, "angle": dict(table[()])}]
+        additions: dict[tuple[int, ...], dict[str, object]] = {}
+        subtractions: dict[tuple[int, ...], dict[str, object]] = {}
+        for tail in {key[1:] for key in table}:
+            additions[tail] = angle_scale(
+                1, 2, angle_add(table[(0,) + tail], table[(1,) + tail])
+            )
+            subtractions[tail] = angle_scale(
+                1, 2,
+                angle_add(table[(0,) + tail], angle_neg(table[(1,) + tail])),
+            )
+        controlled = {"op": "cx", "control": wires[0], "target": target}
+        return (
+            recurse(wires[1:], additions)
+            + [controlled]
+            + recurse(wires[1:], subtractions)
+            + [controlled]
+        )
+
+    return recurse(controls, angles)
+
+
 def _one_qubit_full(qubits: int, target: int, gate: np.ndarray) -> np.ndarray:
     size = 1 << qubits
     result = np.zeros((size, size), dtype=np.complex128)
@@ -297,4 +396,3 @@ def operator_error(left: np.ndarray, right: np.ndarray) -> float:
 
 def unitarity_error(matrix: np.ndarray) -> float:
     return operator_error(matrix.conj().T @ matrix, np.eye(matrix.shape[0], dtype=np.complex128))
-

@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.319935,
+      "elapsed_seconds": 0.33272,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.044944,
+      "elapsed_seconds": 0.043631,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.704147,
+      "elapsed_seconds": 0.698949,
       "passed": true
     },
     {
@@ -160,14 +160,27 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.958466,
+      "elapsed_seconds": 0.972394,
+      "passed": true
+    },
+    {
+      "acceptance": {
+        "certifiedExecutable": true,
+        "highestTier": "T3-exact-primitive-xor-four-slot",
+        "openqasmCanonicalRoundTrip": true,
+        "paperLevelWinnerCertified": false,
+        "passed": true,
+        "qiskitFullOperatorError": 8.494648800000633e-16
+      },
+      "case": "Robin XOR four-slot T3",
+      "elapsed_seconds": 1.249865,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 4.045184,
-    "population_controller": 0.064211,
-    "total": 6.150657
+    "lean_modules": 2.971948,
+    "population_controller": 0.062534,
+    "total": 6.347022
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -178,7 +191,7 @@
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
   "git_branch": "agent/robin-t3-executable-backends",
-  "git_commit": "e4d999a0c467e7e2b72195fa787223af0aa49c03",
+  "git_commit": "9b8b7b63f011a7cda1f96f1a270b38f7028365c8",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -196,7 +209,11 @@
     "QuantumBlockEncoding.Robin.SymmetryFourSlot",
     "QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary",
     "QuantumBlockEncoding.Robin.SymmetryFourSlotBlockEncoding",
-    "QuantumBlockEncoding.Robin.SystemConjugation"
+    "QuantumBlockEncoding.Robin.SystemConjugation",
+    "QuantumBlockEncoding.Robin.SymmetryXorFourSlotLogicalUnitary",
+    "QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive",
+    "QuantumBlockEncoding.Robin.PaperSevenPrimitive",
+    "QuantumBlockEncoding.Robin.Figure4Primitive"
   ],
   "lean_passed": true,
   "passed": true,
@@ -229,9 +246,9 @@
     },
     "evolution_replayed": true,
     "included_in_lean_gate": true,
-    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic completion after the run produced exact Hadamard-8 and four-slot T2 VerifiedOperatorBlockEncoding roots. A same-tier theorem proves the four-slot cost strictly better by one auxiliary qubit after gate count and depth tie. Primitive {X,RY,RZ,CX} refinement remains open and is not inferred from Qiskit.",
-    "status": "T2 exact logical-unitary block encodings and same-tier strict comparison"
+    "reason": "The audited warm run completed 6 controller cycles and produced no verified block-encoding root or resource point. Deterministic proof completion after the run produced an exact XOR four-slot {X,RY,RZ,CX} refinement and verified block encoding. Gate-by-gate Qiskit and OpenQASM checks replay that Lean-owned artifact. Paper-seven and fixed Figure-4 primitive roots remain partial, so no source-level T3 winner is claimed.",
+    "status": "XOR four-slot T3 exact primitive block encoding; source Figure-4 remains partial"
   },
   "schema_version": 1,
-  "source_digest": "dd2cbd324a7930cd052c296dcc6296e406d10ddfcbca52f553575bb1df077b01"
+  "source_digest": "831e42eba976a214d688b7ea5cca6a693350ac118822549ed867dbe2cc4f4952"
 }

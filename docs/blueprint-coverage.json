@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 2022,
-  "privateDeclarationExclusionCount": 181,
-  "sourceDocstringCount": 1537,
-  "generatedReaderCueCount": 2022,
+  "publicDeclarationCount": 2227,
+  "privateDeclarationExclusionCount": 189,
+  "sourceDocstringCount": 1581,
+  "generatedReaderCueCount": 2227,
   "byKind": {
-    "abbrev": 20,
-    "def": 816,
+    "abbrev": 22,
+    "def": 897,
     "inductive": 25,
     "opaque": 7,
-    "structure": 175,
-    "theorem": 979
+    "structure": 176,
+    "theorem": 1100
   },
   "bySource": {
     "QuantumBlockEncoding/Automation.lean": 39,
@@ -29,29 +29,35 @@
     "QuantumBlockEncoding/MainCase.lean": 127,
     "QuantumBlockEncoding/OpenProblems.lean": 4,
     "QuantumBlockEncoding/OptimalControl.lean": 133,
-    "QuantumBlockEncoding/PrimitiveCircuit.lean": 18,
+    "QuantumBlockEncoding/PrimitiveBasisLE.lean": 4,
+    "QuantumBlockEncoding/PrimitiveCircuit.lean": 39,
     "QuantumBlockEncoding/PrimitiveRefinement.lean": 2,
-    "QuantumBlockEncoding/PrimitiveSemantics.lean": 25,
+    "QuantumBlockEncoding/PrimitiveSemantics.lean": 53,
     "QuantumBlockEncoding/Resources.lean": 25,
-    "QuantumBlockEncoding/Robin/ComplexLCU.lean": 26,
+    "QuantumBlockEncoding/Robin/ComplexLCU.lean": 29,
     "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean": 8,
     "QuantumBlockEncoding/Robin/EvolvedCandidates.lean": 13,
+    "QuantumBlockEncoding/Robin/Figure4Primitive.lean": 16,
     "QuantumBlockEncoding/Robin/FixedN3Data.lean": 6,
     "QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean": 24,
     "QuantumBlockEncoding/Robin/Hadamard8Verified.lean": 16,
+    "QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean": 17,
     "QuantumBlockEncoding/Robin/ResourceComparison.lean": 10,
     "QuantumBlockEncoding/Robin/SixSlotOptimal.lean": 20,
     "QuantumBlockEncoding/Robin/SourceBaseline.lean": 12,
     "QuantumBlockEncoding/Robin/SymmetryFourSlot.lean": 21,
-    "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean": 47,
+    "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean": 50,
     "QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean": 29,
     "QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean": 10,
+    "QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean": 28,
+    "QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean": 75,
     "QuantumBlockEncoding/Robin/SystemConjugation.lean": 10,
     "QuantumBlockEncoding/Robin/WeightedPermutation.lean": 15,
     "QuantumBlockEncoding/RobinEvolution.lean": 17,
     "QuantumBlockEncoding/RobinMatrix.lean": 395,
     "QuantumBlockEncoding/StatePreparation.lean": 11,
-    "QuantumBlockEncoding/TextbookStatePreparation.lean": 29
+    "QuantumBlockEncoding/TextbookStatePreparation.lean": 29,
+    "QuantumBlockEncoding/UniformlyControlledRy.lean": 10
   },
   "excluded": [
     {
@@ -499,28 +505,28 @@
       "kind": "theorem",
       "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation00",
       "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
-      "line": 234,
+      "line": 235,
       "reason": "private declaration"
     },
     {
       "kind": "theorem",
       "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation01",
       "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
-      "line": 244,
+      "line": 245,
       "reason": "private declaration"
     },
     {
       "kind": "theorem",
       "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation10",
       "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
-      "line": 254,
+      "line": 255,
       "reason": "private declaration"
     },
     {
       "kind": "theorem",
       "name": "QuantumBlockEncoding.Robin.warmRobinSymmetryConjugation11",
       "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
-      "line": 264,
+      "line": 265,
       "reason": "private declaration"
     },
     {
@@ -1319,6 +1325,62 @@
       "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFinSevenFoldEval_eq_slotTwo_of_vanish_n3",
       "source": "QuantumBlockEncoding/RobinMatrix.lean",
       "line": 17758,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.prependControlBit",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 16,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.halfAddAngles",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 20,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.halfSubAngles",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 27,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.kronecker_one_eq_blockDiagonal",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 51,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.evalPrimitiveRy_eq_controlledRyBlockMatrix_zero",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 62,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.controlledXBlock",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 76,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.xMatrix_flipBit",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 81,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.evalPrimitiveCx_eq_controlledXBlock",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "line": 85,
       "reason": "private declaration"
     }
   ],

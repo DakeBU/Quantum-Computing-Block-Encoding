@@ -40,49 +40,118 @@
       "unitaryError": 1.7625701818922639e-15
     }
   ],
-  "certifiedExecutable": false,
+  "certifiedExecutable": true,
   "checkBackends": {
-    "legacyDenseDiagnostic": {
+    "internalCanonicalEvaluator": {
+      "backend": "internalCanonicalMatrix",
+      "circuitDigest": "4c9d0e0f1efdad839eddd7a118710bf01051185c572b83544b488213514a86e8",
+      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
+      "cleanBlockOperatorNormError": 2.3126509619129623e-16,
       "evidenceClasses": [
         "numericUnitary",
         "numericCleanBlock"
       ],
-      "proofAuthority": false,
-      "status": "passed"
+      "fullOperatorError": 0.0,
+      "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
+      "qubitCount": 6,
+      "resource": {
+        "depth": 96,
+        "gateCount": 106,
+        "oracleCalls": 0
+      },
+      "status": "passed",
+      "unitarityError": 2.986277508937652e-15
     },
     "openqasm3RoundTrip": {
-      "reason": "no canonical primitive Robin IR yet",
-      "status": "open"
+      "backend": "openqasm3RoundTrip",
+      "canonicalRoundTrip": true,
+      "circuitDigest": "4c9d0e0f1efdad839eddd7a118710bf01051185c572b83544b488213514a86e8",
+      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
+      "cleanBlockOperatorNormError": 2.3126509619129623e-16,
+      "decimalPrecisionDigits": 17,
+      "evidenceClasses": [
+        "syntaxOnly",
+        "roundTrip",
+        "numericUnitary",
+        "numericCleanBlock"
+      ],
+      "fullOperatorError": 0.0,
+      "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
+      "openqasm3Version": "1.0.1",
+      "qubitCount": 6,
+      "roundingMode": "Python format round-to-nearest",
+      "status": "passed",
+      "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
+      "unitarityError": 2.986277508937652e-15
     },
     "qiskitOperator": {
-      "reason": "no canonical primitive Robin IR yet",
-      "status": "open"
+      "backend": "qiskitOperator",
+      "circuitDigest": "4c9d0e0f1efdad839eddd7a118710bf01051185c572b83544b488213514a86e8",
+      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
+      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "depth": 96,
+      "evidenceClasses": [
+        "numericUnitary",
+        "numericCleanBlock"
+      ],
+      "fullOperatorError": 8.494648800000633e-16,
+      "gateCount": 106,
+      "gateCounts": {
+        "cx": 68,
+        "ry": 38
+      },
+      "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
+      "qiskitVersion": "2.4.2",
+      "qubitCount": 6,
+      "status": "passed",
+      "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
+      "unitarityError": 3.478116716525296e-15
     }
   },
+  "circuitDigest": "4c9d0e0f1efdad839eddd7a118710bf01051185c572b83544b488213514a86e8",
   "cleanQubits": {
     "coefficient": 0,
     "selector": 0
   },
   "connectivity": "all-to-all",
-  "conventionVersion": "robin-fixed-n3-structural-v1",
-  "globalPhasePolicy": "exact-zero-or-explicitly-corrected",
-  "leanRefinementRoot": null,
-  "leanSemanticTier": "T2 exact logical-unitary block encoding",
+  "conventionVersion": "robin-fixed-n3-xor-t3-v1",
+  "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
+  "leanRefinementRoot": "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",
+  "leanSemanticTier": "T3 exact primitive XOR four-slot block encoding",
+  "paperLevelComparisonBlockedBy": [
+    "paper-seven T3 primitive root",
+    "fixed-N Figure-4 T3 primitive root",
+    "same-tier T3 comparison"
+  ],
+  "paperLevelWinnerCertified": false,
   "primitiveBasis": [
     "x",
     "ry",
     "rz",
     "cx"
   ],
-  "registerOrder": "selector high-order, coefficient ancilla, system low-order",
-  "remainingT3Root": "QuantumBlockEncoding.Robin.warmRobinFourSlotPrimitive_eval_eq_flatUnitary",
+  "primitiveResource": {
+    "depth": 96,
+    "gateCount": 106,
+    "oracleCalls": 0
+  },
+  "registerOrder": "q0-q2 system, q3-q4 selector, q5 coefficient; flat = system + 8*selector + 32*coefficient",
+  "remainingT3Root": null,
   "schemaVersion": 2,
-  "sourceCommit": "e4d999a0c467e7e2b72195fa787223af0aa49c03",
+  "sourceCommit": "9b8b7b63f011a7cda1f96f1a270b38f7028365c8",
   "systemQubits": 3,
   "t3PrerequisiteRoots": [
-    "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_eval_eq",
-    "QuantumBlockEncoding.Robin.warmRobinPairCoordinateCircuit_image",
-    "QuantumBlockEncoding.Robin.warmRobinFourSlotExactRy_eq_rotation"
+    "QuantumBlockEncoding.Robin.warmRobinXorFourSlotAmplitudeProgram_eval",
+    "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveMiddle_eval",
+    "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitivePair_eval"
   ],
-  "task": "QBE-ROBIN-BE-WARM-001"
+  "task": "QBE-ROBIN-BE-WARM-001",
+  "verifiedBlockEncodingRoot": "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding",
+  "writtenArtifacts": [
+    "canonical/circuit.json",
+    "qiskit/circuit.py",
+    "openqasm3/circuit.qasm",
+    "reports/check.json",
+    "circuit.txt"
+  ]
 }

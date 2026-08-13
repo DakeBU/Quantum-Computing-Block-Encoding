@@ -110,11 +110,13 @@
         "QuantumBlockEncoding.Robin.warmRobinSymmetryMinusFourShiftDecomposition",
         "QuantumBlockEncoding.Robin.warmRobinHadamard8VerifiedBlockEncoding",
         "QuantumBlockEncoding.Robin.warmRobinFourSlotVerifiedBlockEncoding",
-        "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8"
+        "QuantumBlockEncoding.Robin.warmRobinFourSlotT2Cost_betterThan_hadamard8",
+        "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",
+        "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
-      "reading": "Hadamard-8 and four-slot high-level logical unitaries are promoted to exact VerifiedOperatorBlockEncoding roots. Their shared logical-stage convention (called T2 internally) proves the four-slot route strictly better after gate count and depth tie. Expanding every stage into the frozen exact primitive basis {X,RY(theta),RZ(theta),CX} is a separate backend-refinement result (called T3)."
+      "reading": "Hadamard-8 and four-slot high-level logical unitaries are exact T2 roots. The evolved XOR four-slot route additionally has an exact `{X,RY(theta),RZ(theta),CX}` T3 refinement and verified block encoding. This does not close the distinct paper-seven/Figure-4 source route or prove a same-tier source comparison."
     }
   ]
 }

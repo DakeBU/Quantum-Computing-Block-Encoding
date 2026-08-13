@@ -55,8 +55,19 @@ proves the second score strictly better in their shared logical-stage
 convention. This is deterministic proof completion after the recorded search,
 not a retroactive claim that cycle seven discovered the theorem. The Qiskit
 export is executable evidence and, in future runs, a fast pre-Lean selection
-signal. It is not the proof of the two exact roots. T3 primitive `{u,cx}`
-refinement remains open.
+signal. It is not the proof of the two exact roots.
+
+The subsequent XOR four-slot implementation also closes an exact T3 primitive
+root in the frozen `{X,RY,RZ,CX}` basis:
+
+- `QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary`;
+- `QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding`.
+
+The generated six-wire circuit uses `(q0,q1,q2)` for system, `(q3,q4)` for
+selector, and `q5` for the coefficient signal. Its resource row is computed
+from the canonical circuit. The paper-seven and full fixed Figure-4 primitive
+routes are still partial, so no T3 comparison against the paper circuit is
+claimed.
 
 `website/robin-paper-map.json` maps the paper's LaTeX statements to compiled
 structures and labels the general paper-wide route separately. The generated

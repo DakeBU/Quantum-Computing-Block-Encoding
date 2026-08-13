@@ -35,7 +35,7 @@ def verify(
         "qubitCount": ir.qubit_count,
         "circuitDigest": ir.circuit_digest,
         "resource": primitive_resource(ir.instructions),
-        "globalPhasePolicy": "exact-zero-or-explicitly-corrected",
+        "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
     }
     if target is not None:
         projected = clean_block(matrix, system_qubits=system_qubits, clean_qubits=clean_qubits)
@@ -47,4 +47,3 @@ def verify(
             }
         )
     return result
-

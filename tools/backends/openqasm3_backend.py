@@ -22,6 +22,7 @@ from tools.executable_ir import (
 
 
 ANGLE_PREFIX = "// ASPBE_EXACT_ANGLE "
+PHASE_PREFIX = "// ASPBE_EXACT_GLOBAL_PHASE "
 
 
 def _encoded_angle(value: Mapping[str, object]) -> str:
@@ -42,8 +43,8 @@ def dumps(ir: CircuitIR, *, precision: int = 17) -> str:
         f"// ASPBE_ENDIANNESS {json.dumps('little-endian: qubit 0 is the least-significant basis bit')}",
     ]
     phase = eval_angle(ir.global_phase)
-    if abs(phase) > 0:
-        raise ValueError("OpenQASM strict subset currently requires explicit zero global phase")
+    lines.append(f"{PHASE_PREFIX}{_encoded_angle(ir.global_phase)}")
+    lines.append(f"gphase({format(phase, f'.{precision}g')});")
     for index, instruction in enumerate(ir.instructions):
         operation = instruction["op"]
         if operation in {"ry", "rz"}:
@@ -69,6 +70,14 @@ def _angle_comments(text: str) -> dict[int, dict[str, object]]:
     return result
 
 
+def _phase_comment(text: str) -> dict[str, object]:
+    records = [line[len(PHASE_PREFIX):] for line in text.splitlines()
+               if line.startswith(PHASE_PREFIX)]
+    if len(records) != 1:
+        raise ValueError("OpenQASM must contain one exact ASPBE global-phase record")
+    return _decoded_angle(records[0])
+
+
 def loads(text: str, template: CircuitIR, *, tolerance: float = 1e-12) -> CircuitIR:
     try:
         import openqasm3
@@ -77,8 +86,21 @@ def loads(text: str, template: CircuitIR, *, tolerance: float = 1e-12) -> Circui
         raise RuntimeError(f"openqasm3 unavailable: {error}") from error
     program = openqasm3.parse(text)
     exact_angles = _angle_comments(text)
+    exact_phase = _phase_comment(text)
     qubit_count: int | None = None
     instructions: list[dict[str, object]] = []
+    phase_seen = False
+
+    def numeric_literal(node) -> float:
+        if isinstance(node, (ast.FloatLiteral, ast.IntegerLiteral)):
+            return float(node.value)
+        if isinstance(node, ast.UnaryExpression):
+            value = numeric_literal(node.expression)
+            if node.op == ast.UnaryOperator["-"]:
+                return -value
+            if node.op == ast.UnaryOperator["+"]:
+                return value
+        raise ValueError("strict importer requires a deterministic numeric literal")
 
     def qubit_index(node) -> int:
         if not isinstance(node, ast.IndexedIdentifier) or node.name.name != "q":
@@ -95,6 +117,12 @@ def loads(text: str, template: CircuitIR, *, tolerance: float = 1e-12) -> Circui
             if statement.qubit.name != "q" or not isinstance(statement.size, ast.IntegerLiteral):
                 raise ValueError("strict importer requires one sized q register")
             qubit_count = int(statement.size.value)
+        elif isinstance(statement, ast.QuantumPhase):
+            if phase_seen or statement.modifiers or statement.qubits:
+                raise ValueError("strict importer requires one unmodified global phase")
+            if abs(numeric_literal(statement.argument) - eval_angle(exact_phase)) > tolerance:
+                raise ValueError("OpenQASM global phase does not match its exact source expression")
+            phase_seen = True
         elif isinstance(statement, ast.QuantumGate):
             if statement.modifiers or statement.duration is not None:
                 raise ValueError("gate modifiers and durations are unsupported")
@@ -108,9 +136,7 @@ def loads(text: str, template: CircuitIR, *, tolerance: float = 1e-12) -> Circui
                 if index not in exact_angles:
                     raise ValueError("rotation is missing its exact ASPBE angle record")
                 argument = statement.arguments[0]
-                if not isinstance(argument, (ast.FloatLiteral, ast.IntegerLiteral)):
-                    raise ValueError("strict importer requires a deterministic numeric rotation literal")
-                if abs(float(argument.value) - eval_angle(exact_angles[index])) > tolerance:
+                if abs(numeric_literal(argument) - eval_angle(exact_angles[index])) > tolerance:
                     raise ValueError("OpenQASM decimal does not match its exact source expression")
                 instructions.append({"op": name, "target": qubit_index(statement.qubits[0]), "angle": exact_angles[index]})
             else:
@@ -119,6 +145,8 @@ def loads(text: str, template: CircuitIR, *, tolerance: float = 1e-12) -> Circui
             raise ValueError(f"unsupported OpenQASM statement: {type(statement).__name__}")
     if qubit_count != template.qubit_count:
         raise ValueError("round-tripped qubit count changed")
+    if not phase_seen:
+        raise ValueError("round-tripped program omitted its global phase")
     result = CircuitIR(
         qubit_count=qubit_count,
         registers=template.registers,
@@ -126,7 +154,7 @@ def loads(text: str, template: CircuitIR, *, tolerance: float = 1e-12) -> Circui
         source_commit=template.source_commit,
         lean_roots=template.lean_roots,
         target_digest=template.target_digest,
-        global_phase=template.global_phase,
+        global_phase=exact_phase,
         metadata=template.metadata,
     )
     result.validate()
@@ -161,7 +189,7 @@ def verify(
         "circuitDigest": ir.circuit_digest,
         "decimalPrecisionDigits": 17,
         "roundingMode": "Python format round-to-nearest",
-        "globalPhasePolicy": "exact-zero-or-explicitly-corrected",
+        "globalPhasePolicy": "exp-plus-i-phase-shared-with-lean-qiskit-openqasm",
     }
     if target is not None:
         projected = clean_block(actual, system_qubits=system_qubits, clean_qubits=clean_qubits)

@@ -99,6 +99,7 @@ def _qiskit_python(ir: CircuitIR) -> str:
         "from qiskit.quantum_info import Operator",
         "",
         f"circuit = QuantumCircuit({ir.qubit_count})",
+        f"circuit.global_phase = {eval_angle(ir.global_phase)!r}",
     ]
     for instruction in ir.instructions:
         op = instruction["op"]

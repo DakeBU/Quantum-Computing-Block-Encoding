@@ -25,6 +25,14 @@ class SiteContractTests(unittest.TestCase):
             rendered = build_site.render_math_tex(row["latex"])
             self.assertNotIn("\ufffd", rendered)
 
+    def test_robin_statuses_keep_local_and_route_completion_separate(self) -> None:
+        data = json.loads((ROOT / "website/robin-paper-map.json").read_text(encoding="utf-8"))
+        for row in data["rows"]:
+            self.assertIn(row["localStatus"], build_site.STATUS_ORDER)
+            self.assertIn(row["routeStatus"], build_site.STATUS_ORDER)
+            self.assertNotIn(";", row["localStatus"])
+            self.assertNotIn(";", row["routeStatus"])
+
     def test_math_renderer_rejects_corruption(self) -> None:
         with self.assertRaises(ValueError):
             build_site.render_math_tex(r"\\theta")

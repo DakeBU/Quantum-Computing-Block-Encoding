@@ -14,8 +14,10 @@ import QuantumBlockEncoding.MainCase
 import QuantumBlockEncoding.OpenProblems
 import QuantumBlockEncoding.OptimalControl
 import QuantumBlockEncoding.PrimitiveCircuit
+import QuantumBlockEncoding.PrimitiveBasisLE
 import QuantumBlockEncoding.PrimitiveSemantics
 import QuantumBlockEncoding.PrimitiveRefinement
+import QuantumBlockEncoding.UniformlyControlledRy
 import QuantumBlockEncoding.Resources
 import QuantumBlockEncoding.RobinMatrix
 import QuantumBlockEncoding.RobinEvolution
@@ -33,6 +35,10 @@ import QuantumBlockEncoding.Robin.SystemConjugation
 import QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary
 import QuantumBlockEncoding.Robin.SymmetryFourSlotBlockEncoding
 import QuantumBlockEncoding.Robin.SymmetryFourSlotPrimitive
+import QuantumBlockEncoding.Robin.SymmetryXorFourSlotLogicalUnitary
+import QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive
+import QuantumBlockEncoding.Robin.PaperSevenPrimitive
+import QuantumBlockEncoding.Robin.Figure4Primitive
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas

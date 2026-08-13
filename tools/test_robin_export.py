@@ -8,7 +8,7 @@ from pathlib import Path
 
 from tools.export_robin_evolution import (
     candidate_result, eight_perm, eight_weight, exact_decomposition, five_perm,
-    five_weight, full_candidate,
+    five_weight, full_candidate, robin_xor_four_slot_ir,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,7 +38,15 @@ class RobinExportTests(unittest.TestCase):
     def test_dense_diagnostic_is_not_presented_as_t3(self) -> None:
         source = (ROOT / "tools" / "export_robin_evolution.py").read_text(encoding="utf-8")
         self.assertIn("legacy-dense-diagnostic", source)
-        self.assertIn('"certifiedExecutable": False', source)
+        diagnostic = candidate_result(
+            "five", 5, five_perm, five_weight, 224 / 5, "test.root"
+        )
+        self.assertFalse(diagnostic["t3"])
+        primitive = robin_xor_four_slot_ir("test")
+        self.assertIn(
+            "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",
+            primitive.lean_roots,
+        )
 
 
 if __name__ == "__main__":
