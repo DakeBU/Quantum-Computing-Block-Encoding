@@ -104,7 +104,7 @@ theorem warmRobinHadamard8FlatUnitary_unitary :
       _ = 1 / 8 := by norm_num
   apply Complex.ext
   · simpa [c, mul_assoc] using realProbability
-  · simp [c]
+  · simp
 
 /-- Rational and real-complex views of a slot coefficient agree. -/
 theorem warmRobinHadamard8Coefficient_complex
@@ -135,6 +135,11 @@ theorem warmRobinHadamard8LogicalUnitary_cleanEntry
             (warmRobinEightSlotAmplitude slot column : ℂ)
           else 0 := by
     norm_num [warmRobinHadamard8CleanFormula]
+    apply Finset.sum_congr rfl
+    intro slot _
+    by_cases selected : warmRobinEightSlotPerm slot column = row
+    · simp [selected]
+    · simp [selected]
   rw [castFormula, Finset.mul_sum]
   apply Finset.sum_congr rfl
   intro slot _
@@ -164,6 +169,7 @@ theorem warmRobinHadamard8FlatUnitary_cleanBlock
         (warmRobinHadamard8CleanIndex column) =
       ((RobinEvolution.warmRobinTarget row column /
         RobinEvolution.warmRobinNormalizer : Rat) : ℂ) := by
+  unfold warmRobinHadamard8CleanIndex
   rw [warmRobinHadamard8FlatUnitary_reindex]
   exact warmRobinHadamard8LogicalUnitary_cleanEntry_eq_target row column
 
