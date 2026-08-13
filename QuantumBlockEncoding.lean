@@ -51,6 +51,7 @@ import QuantumBlockEncoding.Robin.PaperSevenT3
 import QuantumBlockEncoding.Robin.T3ResourceComparison
 import QuantumBlockEncoding.Robin.Figure4Primitive
 import QuantumBlockEncoding.Robin.Figure4Loaders
+import QuantumBlockEncoding.Robin.Figure4PreparePrimitive
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas
