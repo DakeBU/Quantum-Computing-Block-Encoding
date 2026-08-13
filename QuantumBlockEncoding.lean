@@ -46,6 +46,7 @@ import QuantumBlockEncoding.Robin.PaperSevenPrepare
 import QuantumBlockEncoding.Robin.PaperSevenLogicalUnitary
 import QuantumBlockEncoding.Robin.PaperSevenPrimitive
 import QuantumBlockEncoding.Robin.PaperSevenAmplitudePrimitive
+import QuantumBlockEncoding.Robin.PaperSevenPreparePrimitive
 import QuantumBlockEncoding.Robin.Figure4Primitive
 import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
