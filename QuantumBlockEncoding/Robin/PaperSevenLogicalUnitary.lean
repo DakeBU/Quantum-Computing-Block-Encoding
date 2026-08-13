@@ -1,6 +1,6 @@
 import QuantumBlockEncoding.Robin.ComplexLCUProjection
 import QuantumBlockEncoding.Robin.Hadamard8BlockEncoding
-import QuantumBlockEncoding.Robin.PaperSevenPrimitive
+import QuantumBlockEncoding.Robin.PaperSevenPrepare
 import QuantumBlockEncoding.Robin.SourceSevenSparseData
 import QuantumBlockEncoding.Robin.SystemConjugation
 import Mathlib.Tactic

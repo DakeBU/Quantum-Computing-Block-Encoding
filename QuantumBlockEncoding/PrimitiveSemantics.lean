@@ -185,7 +185,7 @@ def splitPrimitiveWire {qubits : Nat} (target : Fin qubits) :
     · funext wire
       simp [wire.property]
 
-@[simp] theorem splitPrimitiveWire_other_apply {qubits : Nat}
+theorem splitPrimitiveWire_other_apply {qubits : Nat}
     (target : Fin qubits) (state : PrimitiveBasis qubits)
     (wire : OtherPrimitiveWires target) :
     (splitPrimitiveWire target state).2 wire = state wire.1 := rfl
