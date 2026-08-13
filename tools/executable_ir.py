@@ -366,7 +366,38 @@ def evaluate_ir(ir: CircuitIR) -> np.ndarray:
     size = 1 << ir.qubit_count
     result = np.eye(size, dtype=np.complex128)
     for instruction in ir.instructions:
-        result = instruction_matrix(ir.qubit_count, instruction) @ result
+        operation = instruction["op"]
+        target = int(instruction.get("target", 0))
+        target_mask = 1 << target
+        if operation == "x":
+            permutation = np.arange(size) ^ target_mask
+            result = result[permutation, :]
+        elif operation == "cx":
+            control_mask = 1 << int(instruction["control"])
+            permutation = np.arange(size)
+            active = (permutation & control_mask) != 0
+            permutation[active] ^= target_mask
+            result = result[permutation, :]
+        elif operation == "rz":
+            theta = eval_angle(instruction["angle"])  # type: ignore[arg-type]
+            phases = np.where(
+                (np.arange(size) & target_mask) == 0,
+                np.exp(-0.5j * theta),
+                np.exp(0.5j * theta),
+            )
+            result = phases[:, None] * result
+        elif operation == "ry":
+            theta = eval_angle(instruction["angle"])  # type: ignore[arg-type]
+            cosine = math.cos(theta / 2)
+            sine = math.sin(theta / 2)
+            zero_rows = np.arange(size)[(np.arange(size) & target_mask) == 0]
+            one_rows = zero_rows | target_mask
+            old_zero = result[zero_rows, :].copy()
+            old_one = result[one_rows, :].copy()
+            result[zero_rows, :] = cosine * old_zero - sine * old_one
+            result[one_rows, :] = sine * old_zero + cosine * old_one
+        else:  # Guarded by CircuitIR.validate; retained for type checkers.
+            raise ValueError(f"unsupported primitive instruction {operation!r}")
     phase = eval_angle(ir.global_phase)
     return np.exp(1j * phase) * result
 
