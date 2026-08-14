@@ -4,6 +4,30 @@ This audit records the bounded routes closed before promotion to `main`.  The
 listed website cards may be labelled **Compiled** only while these declarations
 remain in the generated inventory and the full Pages/Lean gate passes.
 
+## Shared exact and approximate promotion interfaces
+
+The public state-preparation and operator block-encoding interfaces now expose
+proof-carrying promotion functions for both exact and approximate routes:
+
+- `StatePreparationCandidate.certify`
+- `ApproximateStatePreparationCandidate.certify`
+- `OperatorBlockEncodingCandidate.certify`
+- `ApproximateOperatorBlockEncodingCandidate.certify`
+- `BlockEncodingSpec.certify`
+- `exactStatePreparation_hasZeroErrorApprox`
+- `exactOperatorBlockEncoding_hasZeroErrorApprox`
+
+Each constructor consumes the proposition-valued obligations already present in
+the candidate.  It does not infer normalization, unitarity, first-column,
+clean-block, resource, or approximation facts.  The corresponding projection
+theorems recover exactly the proofs stored in the promoted certificate.
+
+The Library Explorer route status is therefore proof-scope driven.  A compiled
+`structure`, `class`, or `opaque` declaration is not automatically an incomplete
+route merely because of its declaration kind.  The arbitrary-size GHL source
+module and seven explicitly external cubic oracle contracts remain marked
+**Partial route**; the open-problem registry remains **Planned**.
+
 ## Banded sparse access
 
 The arbitrary-size semantic permutation remains in
