@@ -24,6 +24,360 @@ Reader orientation: State-preparation and exact rational Householder development
 reading cue from formal status, the source docstring, and the authoritative Lean panel.
 The standalone Library Explorer adds full-text search and filters across every chapter.
 
+# QuantumBlockEncoding/CubicAmplitudePrimitive.lean
+
+25 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlWires" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 control wires”. The first two wires are system controls and wire two is the clean signal.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The first two wires are system controls and wire two is the clean signal.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:22](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2controlwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlWires_ne_signal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlWires_ne_signal")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 control wires ne signal”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:26](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2controlwires-ne-signal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlIndex" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 control index”. Decode the two little-endian system controls.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Decode the two little-endian system controls.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:31](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2controlindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Amplitude_abs_le_one" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Amplitude_abs_le_one")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 amplitude abs le one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:34](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2amplitude-abs-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Angle" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Angle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 angle”. Exact standard-RY angle for the selected cubic amplitude.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Exact standard-RY angle for the selected cubic amplitude.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:44](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2angle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveCircuit" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive circuit”. Four-way uniformly controlled rotation, compiled to primitive gates.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Four-way uniformly controlled rotation, compiled to primitive gates.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:50](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitivecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive program”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:54](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveCircuit_eval" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveCircuit_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 primitive circuit eval”; the hypotheses and conclusion in the code panel fix its exact scope. Exact matrix semantics of the emitted gate list.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Exact matrix semantics of the emitted gate list.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:59](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitivecircuit-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram_eval" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 primitive program eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:66](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveprogram-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2EncodeBits" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2EncodeBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 encode bits”. Encode a signal value and a two-qubit system index into three named wires.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Encode a signal value and a two-qubit system index into three named wires.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:77](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2encodebits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2EncodeBits_signal" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2EncodeBits_signal")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 encode bits signal”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:82](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2encodebits-signal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlIndex_encode" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ControlIndex_encode")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 control index encode”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:86](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2controlindex-encode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2EncodeBits_context_eq_iff" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2EncodeBits_context_eq_iff")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 encode bits context eq iff”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:95](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2encodebits-context-eq-iff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram_cleanEntry" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram_cleanEntry")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 primitive program clean entry”; the hypotheses and conclusion in the code panel fix its exact scope. The primitive program's clean signal block is exactly the cubic diagonal.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The primitive program's clean signal block is exactly the cubic diagonal.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:103](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveprogram-cleanentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveFlatUnitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveFlatUnitary")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive flat unitary”. Flat little-endian unitary used by the operator-certificate interface.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Flat little-endian unitary used by the operator-certificate interface.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:143](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveflatunitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveFlatUnitary_unitary" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveFlatUnitary_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 primitive flat unitary unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:148](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveflatunitary-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveCleanIndex" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveCleanIndex")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive clean index”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:154](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitivecleanindex). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveFlatUnitary_cleanBlock" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveFlatUnitary_cleanBlock")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 primitive flat unitary clean block”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:157](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveflatunitary-cleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ComplexTarget" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2ComplexTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 complex target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:168](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2complextarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitivePresentation" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitivePresentation")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive presentation”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:175](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitivepresentation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveResource" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveResource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive resource”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:183](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveOperatorCandidate" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveOperatorCandidate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive operator candidate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:186](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveoperatorcandidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveVerifiedBlockEncoding" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveVerifiedBlockEncoding")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cubic n 2 primitive verified block encoding”. Exact unitarity and clean-block promotion for the finite cubic route.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Exact unitarity and clean-block promotion for the finite cubic route.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:209](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitiveverifiedblockencoding). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Primitive_oracleCalls_eq_zero" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Primitive_oracleCalls_eq_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 primitive oracle calls eq zero”; the hypotheses and conclusion in the code panel fix its exact scope. No opaque oracle survives in the accepted primitive resource row.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* No opaque oracle survives in the accepted primitive resource row.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:219](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitive-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Primitive_resource_faithful" (lean := "QuantumBlockEncoding.CubicDiagonalOracle.cubicN2Primitive_resource_faithful")
+*Plain-English reading.* Lean checks the proposition indexed as “cubic n 2 primitive resource faithful”; the hypotheses and conclusion in the code panel fix its exact scope. Resource ownership is definitional rather than a handwritten tuple.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* State-preparation and exact rational Householder developments for the cubic benchmark family.
+
+*Technical source note.* Resource ownership is definitional rather than a handwritten tuple.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CubicAmplitudePrimitive.lean:224](../../../../library/modules/cubicamplitudeprimitive/#decl-quantumblockencoding-cubicdiagonaloracle-cubicn2primitive-resource-faithful). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/CubicStatePreparation.lean
 
 269 explicit public declarations, in source order.

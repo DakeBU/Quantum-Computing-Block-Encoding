@@ -16,29 +16,22 @@ assert SPEC and SPEC.loader
 build_site = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(build_site)
 
-from website.content import CHAPTERS
+from website.content import CHAPTERS, ROADMAP
 from website.case_assets import STAGE_CIRCUITS
 
 
-CORE_COMPLETE_TRACKS = {
-    "Shared foundations",
-    "State preparation",
-    "Block encoding",
-}
+TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
 
 
 class SiteContractTests(unittest.TestCase):
     def test_core_tracks_have_compiled_declarations_and_honest_routes(self) -> None:
         for chapter in CHAPTERS:
-            if chapter["track"] not in CORE_COMPLETE_TRACKS:
+            if chapter["track"] not in TEACHING_TRACKS:
                 continue
             for result in chapter["results"]:
                 self.assertEqual(result["local_status"], "Compiled", result["declaration"])
-                self.assertIn(result["route_status"], build_site.STATUS_ORDER)
-                if result["route_status"] == "Compiled":
-                    self.assertTrue(result["route_closures"], result["declaration"])
-                else:
-                    self.assertTrue(result["missing"], result["declaration"])
+                self.assertEqual(result["route_status"], "Compiled", result["declaration"])
+                self.assertTrue(result["route_closures"], result["declaration"])
 
     def test_rendered_core_chapters_explain_incomplete_routes(self) -> None:
         declarations = {}
@@ -53,7 +46,7 @@ class SiteContractTests(unittest.TestCase):
                         "blueprintUrl": "blueprint/html-multi/index.html",
                     })
         for chapter in CHAPTERS:
-            if chapter["track"] not in CORE_COMPLETE_TRACKS:
+            if chapter["track"] not in TEACHING_TRACKS:
                 continue
             rendered = build_site.render_chapter(
                 chapter,
@@ -64,12 +57,20 @@ class SiteContractTests(unittest.TestCase):
             )
             self.assertIn("Route closure", rendered, chapter["slug"])
             for result in chapter["results"]:
-                if result["route_status"] != "Compiled":
-                    self.assertIn(
-                        build_site.html.escape(str(result["missing"])),
-                        rendered,
-                        result["declaration"],
-                    )
+                self.assertEqual(result["route_status"], "Compiled", result["declaration"])
+                for root in result["route_closures"]:
+                    self.assertIn(build_site.html.escape(str(root)), rendered)
+
+
+    def test_roadmap_separates_closed_witnesses_from_open_generality(self) -> None:
+        status = dict(ROADMAP)
+        self.assertEqual(status["Finite three-bit primitive banded sparse access"], "Compiled")
+        self.assertEqual(status["Finite two-qubit cubic primitive amplitude oracle"], "Compiled")
+        self.assertEqual(status["Degree-one QSVT identity consumer realization"], "Compiled")
+        self.assertEqual(status["Fixed-N8 Robin T3 reproduction and evolved winner"], "Compiled")
+        self.assertEqual(status["Arbitrary-width banded-access source resource compiler"], "Planned")
+        self.assertEqual(status["General QSVT phase synthesis and approximation checker"], "Planned")
+        self.assertEqual(status["Arbitrary-n GHL and full Hamiltonian reproduction"], "Experimental")
 
     def test_robin_tex_is_canonical(self) -> None:
         data = json.loads((ROOT / "website/robin-paper-map.json").read_text(encoding="utf-8"))

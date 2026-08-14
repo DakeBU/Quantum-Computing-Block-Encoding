@@ -91,14 +91,14 @@ CATALOGS = [
     (
         "ClassicRoutes",
         "catalog-classic-routes",
-        {"BandedSparseAccess.lean", "BlockEncodingClassics.lean"},
+        {"BandedSparseAccess.lean", "BandedSparseAccessPrimitive.lean", "BlockEncodingClassics.lean"},
     ),
     (
         "CertifiedCases",
         "catalog-certified-cases",
         {"ColdStartTransferE1.lean", "MainCase.lean", "OptimalControl.lean"},
     ),
-    ("Cubic", "catalog-cubic", {"CubicStatePreparation.lean"}),
+    ("Cubic", "catalog-cubic", {"CubicStatePreparation.lean", "CubicAmplitudePrimitive.lean"}),
     (
         "PaperAndExamples",
         "catalog-paper-and-examples",
@@ -143,7 +143,7 @@ CATALOGS = [
     (
         "AutomationAndMemory",
         "catalog-automation-and-memory",
-        {"Automation.lean", "Literature.lean", "OpenProblems.lean"},
+        {"Automation.lean", "AutomationTrace.lean", "Literature.lean", "OpenProblems.lean", "OpenProblemsAudit.lean"},
     ),
     (
         "ExperimentalRobinMatrix",

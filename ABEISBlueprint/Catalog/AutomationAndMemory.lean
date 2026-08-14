@@ -574,6 +574,220 @@ Source: [QuantumBlockEncoding/Automation.lean:568](../../../../library/modules/a
 Source: [QuantumBlockEncoding/Automation.lean:605](../../../../library/modules/automation/#decl-quantumblockencoding-automationtaskcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/AutomationTrace.lean
+
+15 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.ThreeLayerPhase" (lean := "QuantumBlockEncoding.ThreeLayerPhase")
+*Plain-English reading.* This type lists the allowed alternatives for “three layer phase”; its constructors are the cases that downstream code must handle.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* inductive.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:15](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayerphase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ThreeLayerHandoff" (lean := "QuantumBlockEncoding.ThreeLayerHandoff")
+*Plain-English reading.* This record groups the data and proof fields needed for “three layer handoff”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:24](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayerhandoff). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ThreeLayerHandoff.validFlag" (lean := "QuantumBlockEncoding.ThreeLayerHandoff.validFlag")
+*Plain-English reading.* This definition gives the library's named construction or computation for “valid flag”. Executable transition guard.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Executable transition guard. Acceptance is possible only from review.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:35](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayerhandoff-validflag). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ThreeLayerHandoff.valid" (lean := "QuantumBlockEncoding.ThreeLayerHandoff.valid")
+*Plain-English reading.* This definition gives the library's named construction or computation for “valid”. Propositional view of the executable transition guard.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Propositional view of the executable transition guard.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:48](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayerhandoff-valid). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ThreeLayerTrace" (lean := "QuantumBlockEncoding.ThreeLayerTrace")
+*Plain-English reading.* This record groups the data and proof fields needed for “three layer trace”. A proposition-valued field is a requirement until a constructor supplies it. One execution trace with an explicit starting phase.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* One execution trace with an explicit starting phase.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:56](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayertrace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ThreeLayerTrace.advance" (lean := "QuantumBlockEncoding.ThreeLayerTrace.advance")
+*Plain-English reading.* This definition gives the library's named construction or computation for “advance”. Follow a handoff only when it starts at the current phase and is valid.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Follow a handoff only when it starts at the current phase and is valid.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:62](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayertrace-advance). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ThreeLayerTrace.finalPhase" (lean := "QuantumBlockEncoding.ThreeLayerTrace.finalPhase")
+*Plain-English reading.* This definition gives the library's named construction or computation for “final phase”. Execute a trace left-to-right, rejecting the first invalid handoff.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Execute a trace left-to-right, rejecting the first invalid handoff.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:68](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayertrace-finalphase). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ThreeLayerTrace.allValid" (lean := "QuantumBlockEncoding.ThreeLayerTrace.allValid")
+*Plain-English reading.* This definition gives the library's named construction or computation for “all valid”. Every handoff in a trace is locally valid.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Every handoff in a trace is locally valid.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:72](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayertrace-allvalid). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.threeLayerCanonicalTrace" (lean := "QuantumBlockEncoding.threeLayerCanonicalTrace")
+*Plain-English reading.* This definition gives the library's named construction or computation for “three layer canonical trace”. Canonical upper-to-reviewer trace used as the finite teaching witness.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Canonical upper-to-reviewer trace used as the finite teaching witness.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:76](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayercanonicaltrace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.threeLayerCanonicalTrace_allValid" (lean := "QuantumBlockEncoding.threeLayerCanonicalTrace_allValid")
+*Plain-English reading.* Lean checks the proposition indexed as “three layer canonical trace all valid”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:109](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayercanonicaltrace-allvalid). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.threeLayerCanonicalTrace_reachesAccepted" (lean := "QuantumBlockEncoding.threeLayerCanonicalTrace_reachesAccepted")
+*Plain-English reading.* Lean checks the proposition indexed as “three layer canonical trace reaches accepted”; the hypotheses and conclusion in the code panel fix its exact scope. The canonical trace reaches acceptance without an external semantic axiom.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The canonical trace reaches acceptance without an external semantic axiom.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:117](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayercanonicaltrace-reachesaccepted). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.threeLayerAccepted_requiresLeanGate" (lean := "QuantumBlockEncoding.threeLayerAccepted_requiresLeanGate")
+*Plain-English reading.* Lean checks the proposition indexed as “three layer accepted requires lean gate”; the hypotheses and conclusion in the code panel fix its exact scope. Any locally valid acceptance transition records a passing Lean gate.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Any locally valid acceptance transition records a passing Lean gate.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:122](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayeraccepted-requiresleangate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.threeLayerAccepted_requiresReviewerApproval" (lean := "QuantumBlockEncoding.threeLayerAccepted_requiresReviewerApproval")
+*Plain-English reading.* Lean checks the proposition indexed as “three layer accepted requires reviewer approval”; the hypotheses and conclusion in the code panel fix its exact scope. Any locally valid acceptance transition also records reviewer approval.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Any locally valid acceptance transition also records reviewer approval.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:134](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayeraccepted-requiresreviewerapproval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.threeLayerFailedGateTrace" (lean := "QuantumBlockEncoding.threeLayerFailedGateTrace")
+*Plain-English reading.* This definition gives the library's named construction or computation for “three layer failed gate trace”. Removing the final Lean gate prevents the same trace from being accepted.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Removing the final Lean gate prevents the same trace from being accepted.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:146](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayerfailedgatetrace). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.threeLayerFailedGateTrace_notAccepted" (lean := "QuantumBlockEncoding.threeLayerFailedGateTrace_notAccepted")
+*Plain-English reading.* Lean checks the proposition indexed as “three layer failed gate trace not accepted”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/AutomationTrace.lean:158](../../../../library/modules/automationtrace/#decl-quantumblockencoding-threelayerfailedgatetrace-notaccepted). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/Literature.lean
 
 6 explicit public declarations, in source order.
@@ -720,4 +934,92 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:28](../../../../library/modules/
 *Declaration kind.* def.
 
 Source: [QuantumBlockEncoding/OpenProblems.lean:88](../../../../library/modules/openproblems/#decl-quantumblockencoding-problemcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/OpenProblemsAudit.lean
+
+6 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.openProblemIds" (lean := "QuantumBlockEncoding.openProblemIds")
+*Plain-English reading.* This definition gives the library's named construction or computation for “open problem ids”. Stable list of the published problem identifiers.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Stable list of the published problem identifiers.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:16](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemids). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.OpenProblem.actionable" (lean := "QuantumBlockEncoding.OpenProblem.actionable")
+*Plain-English reading.* This definition gives the library's named construction or computation for “actionable”. Every public registry entry carries enough data to be actionable.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Every public registry entry carries enough data to be actionable.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:19](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblem-actionable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.openProblems_count" (lean := "QuantumBlockEncoding.openProblems_count")
+*Plain-English reading.* Lean checks the proposition indexed as “open problems count”; the hypotheses and conclusion in the code panel fix its exact scope. The current registry contains seven explicitly scoped problems.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The current registry contains seven explicitly scoped problems.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:31](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblems-count). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.openProblemIds_nodup" (lean := "QuantumBlockEncoding.openProblemIds_nodup")
+*Plain-English reading.* Lean checks the proposition indexed as “open problem ids nodup”; the hypotheses and conclusion in the code panel fix its exact scope. Problem identifiers are unique, so memories and task packets cannot collide.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* Problem identifiers are unique, so memories and task packets cannot collide.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:35](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemids-nodup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.openProblems_all_actionable" (lean := "QuantumBlockEncoding.openProblems_all_actionable")
+*Plain-English reading.* Lean checks the proposition indexed as “open problems all actionable”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:40](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblems-all-actionable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.openProblemRegistry_compiled" (lean := "QuantumBlockEncoding.openProblemRegistry_compiled")
+*Plain-English reading.* Lean checks the proposition indexed as “open problem registry compiled”; the hypotheses and conclusion in the code panel fix its exact scope. The registry itself is a compiled artifact even though its entries remain open research.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+
+*Technical source note.* The registry itself is a compiled artifact even though its entries remain open research.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:49](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemregistry-compiled). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

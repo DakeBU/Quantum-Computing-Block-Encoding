@@ -266,6 +266,192 @@ Source: [QuantumBlockEncoding/BandedSparseAccess.lean:105](../../../../library/m
 Source: [QuantumBlockEncoding/BandedSparseAccess.lean:110](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-paperpureancillaupperbound-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/BandedSparseAccessPrimitive.lean
+
+13 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.primitiveWord3" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveWord3")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive word 3”. Decode three little-endian wires as an element of 'Fin 8'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Decode three little-endian wires as an element of 'Fin 8'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:19](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveword3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive offset 3”. The concrete source loader used by the fixed witness: 's ↦ s XOR 3'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The concrete source loader used by the fixed witness: 's ↦ s XOR 3'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:29](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveoffset3). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3_table" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3_table")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive offset 3 table”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:32](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveoffset3-table). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3ReversibleProgram" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3ReversibleProgram")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive access 3 reversible program”. Wire order is 'address\[0..2\], row\[0..2\], work'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Wire order is 'address\[0..2\], row\[0..2\], work'. Two 'X' gates implement the source loader and the existing exact three-bit adder implements modular SUM.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:40](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3reversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3BasisEquiv" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3BasisEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive access 3 basis equiv”. Full-space reversible semantics of the fixed primitive witness.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Full-space reversible semantics of the fixed primitive witness.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:44](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3basisequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_cleanAction" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_cleanAction")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive access 3 clean action”; the hypotheses and conclusion in the code panel fix its exact scope. Exact clean-workspace action of the expanded access circuit.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Exact clean-workspace action of the expanded access circuit.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:48](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3-cleanaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_preserves_row" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_preserves_row")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive access 3 preserves row”; the hypotheses and conclusion in the code panel fix its exact scope. The row register is preserved by the primitive witness.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The row register is preserved by the primitive witness.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:60](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3-preserves-row). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_workspaceClean" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_workspaceClean")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive access 3 workspace clean”; the hypotheses and conclusion in the code panel fix its exact scope. The reusable work qubit is returned to zero.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The reusable work qubit is returned to zero.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:67](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3-workspaceclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive access 3 program”. Primitive compilation contains no opaque oracle instruction.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Primitive compilation contains no opaque oracle instruction.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:73](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3program). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_eval" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive access 3 program eval”; the hypotheses and conclusion in the code panel fix its exact scope. Exact matrix refinement from the emitted primitive list to the reversible map.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Exact matrix refinement from the emitted primitive list to the reversible map.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:77](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3program-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_resource_faithful" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_resource_faithful")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive access 3 program resource faithful”; the hypotheses and conclusion in the code panel fix its exact scope. Resource ownership is definitional: the score is computed from the gate list.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Resource ownership is definitional: the score is computed from the gate list.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:83](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3program-resource-faithful). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_oracleCalls_eq_zero" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_oracleCalls_eq_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive access 3 program oracle calls eq zero”; the hypotheses and conclusion in the code panel fix its exact scope. The expanded witness has zero unresolved oracle calls.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The expanded witness has zero unresolved oracle calls.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:87](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3program-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_unitary" (lean := "QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “primitive access 3 program unitary”; the hypotheses and conclusion in the code panel fix its exact scope. The primitive matrix is unitary because every emitted instruction is unitary.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The primitive matrix is unitary because every emitted instruction is unitary.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccessPrimitive.lean:92](../../../../library/modules/bandedsparseaccessprimitive/#decl-quantumblockencoding-bandedsparseaccess-primitiveaccess3program-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/BlockEncodingClassics.lean
 
 84 explicit public declarations, in source order.
