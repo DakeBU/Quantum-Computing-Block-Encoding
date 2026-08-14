@@ -1,0 +1,42 @@
+name: Regenerate registry catalog once
+
+on:
+  push:
+    branches:
+      - agent/close-library-partials
+    paths:
+      - .github/workflows/regenerate-open-problem-catalog.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the working branch
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Regenerate and verify declaration metadata
+        run: |
+          set -euo pipefail
+          python3 scripts/generate-blueprint-catalog.py
+          python3 scripts/generate-blueprint-catalog.py --check
+          git diff --check
+
+      - name: Commit generated metadata and remove this one-shot workflow
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add ABEISBlueprint/Catalog/AutomationAndMemory.lean \
+            web/library/declarations.json docs/blueprint-coverage.json
+          git commit -m "Refresh registry declaration metadata"
+
+          git rm .github/workflows/regenerate-open-problem-catalog.yml
+          git commit -m "Remove one-shot catalog regeneration workflow"
+
+          git push origin HEAD:agent/close-library-partials
