@@ -48,8 +48,9 @@ def ThreeLayerHandoff.validFlag (handoff : ThreeLayerHandoff) : Bool :=
 def ThreeLayerHandoff.valid (handoff : ThreeLayerHandoff) : Prop :=
   handoff.validFlag = true
 
-instance (handoff : ThreeLayerHandoff) : Decidable handoff.valid :=
-  inferInstance
+instance (handoff : ThreeLayerHandoff) : Decidable handoff.valid := by
+  unfold ThreeLayerHandoff.valid
+  infer_instance
 
 /-- One execution trace with an explicit starting phase. -/
 structure ThreeLayerTrace where
