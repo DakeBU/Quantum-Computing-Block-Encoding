@@ -34,17 +34,27 @@ def cubicN2ControlIndex (bits : PrimitiveBasis 2) : Fin 4 :=
 theorem cubicN2Amplitude_abs_le_one (bits : PrimitiveBasis 2) :
     |((CubicStatePreparation.cubicAmplitude 2
       (cubicN2ControlIndex bits) : Rat) : Real)| ≤ 1 := by
-  have hnonneg :
-      0 ≤ CubicStatePreparation.cubicAmplitude 2 (cubicN2ControlIndex bits) :=
-    cubicAmplitude_nonneg 2 (cubicN2ControlIndex bits)
-  have hle :
-      CubicStatePreparation.cubicAmplitude 2 (cubicN2ControlIndex bits) ≤ 1 :=
-    cubicAmplitude_le_one 2 (cubicN2ControlIndex bits)
-  have habs :
-      |CubicStatePreparation.cubicAmplitude 2 (cubicN2ControlIndex bits)| ≤
-        (1 : Rat) := by
-    simpa [abs_of_nonneg hnonneg] using hle
-  exact_mod_cast habs
+  let index := cubicN2ControlIndex bits
+  have pointNonnegative :
+      0 ≤ CubicStatePreparation.gridPoint 2 index :=
+    CubicStatePreparation.gridPoint_nonneg 2 index
+  have pointAtMostOne :
+      CubicStatePreparation.gridPoint 2 index ≤ 1 :=
+    CubicStatePreparation.gridPoint_le_one 2 index
+  have amplitudeNonnegative :
+      0 ≤ CubicStatePreparation.cubicAmplitude 2 index := by
+    unfold CubicStatePreparation.cubicAmplitude
+    positivity
+  have amplitudeAtMostOne :
+      CubicStatePreparation.cubicAmplitude 2 index ≤ 1 := by
+    unfold CubicStatePreparation.cubicAmplitude
+    exact CubicStatePreparation.rat_pow_le_one_of_nonneg_le_one
+      (CubicStatePreparation.gridPoint 2 index) 3
+      pointNonnegative pointAtMostOne
+  have rationalBound :
+      |CubicStatePreparation.cubicAmplitude 2 index| ≤ (1 : Rat) := by
+    simpa [abs_of_nonneg amplitudeNonnegative] using amplitudeAtMostOne
+  exact_mod_cast rationalBound
 
 /-- Exact standard-RY angle for the selected cubic amplitude. -/
 noncomputable def cubicN2Angle (bits : PrimitiveBasis 2) : ExactAngle :=
