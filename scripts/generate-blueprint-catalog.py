@@ -86,6 +86,7 @@ CATALOGS = [
             "UniformlyControlledRy.lean",
             "TextbookStatePreparation.lean",
             "TeachingRouteClosures.lean",
+            "RouteClosureCertificates.lean",
         },
     ),
     (
@@ -448,18 +449,34 @@ def local_status(decl: Declaration) -> str:
     return "Compiled"
 
 
+PARTIAL_ROUTE_SOURCES = {
+    "QuantumBlockEncoding/GHL2025.lean",
+}
+
+PARTIAL_ROUTE_DECLARATIONS = {
+    "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleUnitary",
+    "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleIsUnitary",
+    "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCleanBlockExtracts",
+    "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude",
+    "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle",
+    "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputed",
+    "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockExtracts",
+}
+
+
 def route_status(decl: Declaration) -> str:
+    """Classify route completion from explicit proof scope, never declaration kind."""
+
     if decl.open_proof:
         return "Blocked"
     if decl.experimental:
         return "Experimental"
     if decl.source.endswith("OpenProblems.lean"):
         return "Planned"
-    if decl.source.endswith(
-        ("GHL2025.lean", "RobinEvolution.lean", "Automation.lean", "Literature.lean")
+    if (
+        decl.source in PARTIAL_ROUTE_SOURCES
+        or decl.full_name in PARTIAL_ROUTE_DECLARATIONS
     ):
-        return "Partial route"
-    if decl.kind in {"structure", "class", "opaque"}:
         return "Partial route"
     return "Compiled"
 

@@ -65,3 +65,4 @@ import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas
 import QuantumBlockEncoding.TextbookStatePreparation
 import QuantumBlockEncoding.TeachingRouteClosures
+import QuantumBlockEncoding.RouteClosureCertificates

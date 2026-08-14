@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
   "scope": "Every explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declaration in QuantumBlockEncoding",
-  "publicDeclarationCount": 2757,
-  "sourceDocstringCount": 1728,
-  "generatedReaderCueCount": 2757,
+  "publicDeclarationCount": 2778,
+  "sourceDocstringCount": 1739,
+  "generatedReaderCueCount": 2778,
   "byCatalog": {
     "Foundations": 106,
-    "Semantics": 333,
+    "Semantics": 354,
     "ClassicRoutes": 114,
     "CertifiedCases": 288,
     "Cubic": 294,
@@ -34,7 +34,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -55,7 +55,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -76,7 +76,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -97,7 +97,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -118,7 +118,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -139,7 +139,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -160,7 +160,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -181,7 +181,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -202,7 +202,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -223,7 +223,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -244,7 +244,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -265,7 +265,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -286,7 +286,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -307,7 +307,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -328,7 +328,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -349,7 +349,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -370,7 +370,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -391,7 +391,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -412,7 +412,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -433,7 +433,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -454,7 +454,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -475,7 +475,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -496,7 +496,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -517,7 +517,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -538,7 +538,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -559,7 +559,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -580,7 +580,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -601,7 +601,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -622,7 +622,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -643,7 +643,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -664,7 +664,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -685,7 +685,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -706,7 +706,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -727,7 +727,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -748,7 +748,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -769,7 +769,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -790,7 +790,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -811,7 +811,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -832,7 +832,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -874,7 +874,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -937,7 +937,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -1798,7 +1798,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -1840,7 +1840,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -1861,7 +1861,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -1966,7 +1966,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -1987,7 +1987,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -2029,7 +2029,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -2050,7 +2050,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -2071,7 +2071,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -2113,7 +2113,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -2155,7 +2155,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -2239,7 +2239,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -2575,7 +2575,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -2785,7 +2785,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -2827,7 +2827,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -2869,7 +2869,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -3394,7 +3394,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -3457,7 +3457,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -3646,7 +3646,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -3919,7 +3919,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -3940,7 +3940,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -3961,7 +3961,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -4297,7 +4297,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -4318,7 +4318,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -4549,7 +4549,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -4591,7 +4591,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -4675,7 +4675,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -4717,7 +4717,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -4885,7 +4885,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -4906,7 +4906,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -5830,7 +5830,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -5914,7 +5914,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -6460,7 +6460,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -6523,7 +6523,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -6922,7 +6922,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -9568,7 +9568,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -10387,7 +10387,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -11017,7 +11017,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -11227,7 +11227,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -11269,7 +11269,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -11794,7 +11794,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -11878,7 +11878,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -12340,7 +12340,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -12403,7 +12403,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -12592,7 +12592,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -12676,7 +12676,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -21832,7 +21832,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "inductive",
@@ -21853,7 +21853,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -21874,7 +21874,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -21895,7 +21895,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -21916,7 +21916,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -21937,7 +21937,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -26368,7 +26368,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -28531,7 +28531,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -29518,7 +29518,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -29980,7 +29980,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -31198,7 +31198,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -31492,7 +31492,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -31576,7 +31576,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -31996,7 +31996,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -40879,7 +40879,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47473,7 +47473,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47494,7 +47494,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47515,7 +47515,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47536,7 +47536,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47557,7 +47557,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47578,7 +47578,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47599,7 +47599,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47620,7 +47620,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -47641,7 +47641,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47662,7 +47662,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47683,7 +47683,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47704,7 +47704,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47725,7 +47725,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47746,7 +47746,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47767,7 +47767,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47788,7 +47788,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "theorem",
@@ -47809,7 +47809,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -56108,6 +56108,447 @@
     },
     {
       "kind": "def",
+      "name": "certify",
+      "fullName": "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify",
+      "readerLabel": "certify",
+      "plainEnglish": "This definition gives the library's named construction or computation for “certify”. Promote an approximate state-preparation candidate only after normalization, unitarity, and the backend-specific approximation bound have all been proved.",
+      "formalStatus": "Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.",
+      "technicalNote": "Promote an approximate state-preparation candidate only after normalization, unitarity, and the backend-specific approximation bound have all been proved.",
+      "sourcePreview": "def certify {α : Type u} {qubits : Nat}\n    (candidate : ApproximateStatePreparationCandidate α qubits)\n    (normalizationProof : candidate.candidate.target.normalization)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    VerifiedApproximateStatePreparation α qubits where\n  approxCandidate := candidate\n  normalizationProof := normalizationProof\n  unitaryProof := unitaryProof\n  approximationProof := approximationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 30,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_FLQQ_-QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_candidate",
+      "fullName": "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_candidate",
+      "readerLabel": "certify candidate",
+      "plainEnglish": "Lean checks the proposition indexed as “certify candidate”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_candidate {α : Type u} {qubits : Nat}\n    (candidate : ApproximateStatePreparationCandidate α qubits)\n    (normalizationProof : candidate.candidate.target.normalization)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    (candidate.certify normalizationProof unitaryProof approximationProof).approxCandidate =\n      candidate := rfl",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 41,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-candidate",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_candidate_FLQQ_-QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_candidate",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_normalization",
+      "fullName": "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_normalization",
+      "readerLabel": "certify normalization",
+      "plainEnglish": "Lean checks the proposition indexed as “certify normalization”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_normalization {α : Type u} {qubits : Nat}\n    (candidate : ApproximateStatePreparationCandidate α qubits)\n    (normalizationProof : candidate.candidate.target.normalization)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    (candidate.certify normalizationProof unitaryProof approximationProof)\n      .approxCandidate.candidate.target.normalization :=\n  normalizationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 49,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-normalization",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_normalization_FLQQ_-QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_normalization",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_unitary",
+      "fullName": "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_unitary",
+      "readerLabel": "certify unitary",
+      "plainEnglish": "Lean checks the proposition indexed as “certify unitary”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_unitary {α : Type u} {qubits : Nat}\n    (candidate : ApproximateStatePreparationCandidate α qubits)\n    (normalizationProof : candidate.candidate.target.normalization)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    (candidate.certify normalizationProof unitaryProof approximationProof)\n      .approxCandidate.candidate.isUnitary :=\n  unitaryProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 58,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-unitary",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_unitary_FLQQ_-QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_unitary",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_approximation",
+      "fullName": "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_approximation",
+      "readerLabel": "certify approximation",
+      "plainEnglish": "Lean checks the proposition indexed as “certify approximation”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_approximation {α : Type u} {qubits : Nat}\n    (candidate : ApproximateStatePreparationCandidate α qubits)\n    (normalizationProof : candidate.candidate.target.normalization)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    (candidate.certify normalizationProof unitaryProof approximationProof)\n      .approxCandidate.approximationBound :=\n  approximationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 67,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-approximation",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_approximation_FLQQ_-QuantumBlockEncoding___ApproximateStatePreparationCandidate___certify_approximation",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "normalization",
+      "fullName": "QuantumBlockEncoding.VerifiedApproximateStatePreparation.normalization",
+      "readerLabel": "normalization",
+      "plainEnglish": "Lean checks the proposition indexed as “normalization”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the normalization proof carried by a verified approximate route.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "Recover the normalization proof carried by a verified approximate route.",
+      "sourcePreview": "theorem normalization {α : Type u} {qubits : Nat}\n    (verified : VerifiedApproximateStatePreparation α qubits) :\n    verified.approxCandidate.candidate.target.normalization :=\n  verified.normalizationProof\n\n/-- Recover the unitarity proof carried by a verified approximate route. -/",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 81,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximatestatepreparation-normalization",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___VerifiedApproximateStatePreparation___normalization_FLQQ_-QuantumBlockEncoding___VerifiedApproximateStatePreparation___normalization",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "unitary",
+      "fullName": "QuantumBlockEncoding.VerifiedApproximateStatePreparation.unitary",
+      "readerLabel": "unitary",
+      "plainEnglish": "Lean checks the proposition indexed as “unitary”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the unitarity proof carried by a verified approximate route.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "Recover the unitarity proof carried by a verified approximate route.",
+      "sourcePreview": "theorem unitary {α : Type u} {qubits : Nat}\n    (verified : VerifiedApproximateStatePreparation α qubits) :\n    verified.approxCandidate.candidate.isUnitary :=\n  verified.unitaryProof\n\n/-- Recover the approximation proof carried by a verified approximate route. -/",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 87,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximatestatepreparation-unitary",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___VerifiedApproximateStatePreparation___unitary_FLQQ_-QuantumBlockEncoding___VerifiedApproximateStatePreparation___unitary",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "approximation",
+      "fullName": "QuantumBlockEncoding.VerifiedApproximateStatePreparation.approximation",
+      "readerLabel": "approximation",
+      "plainEnglish": "Lean checks the proposition indexed as “approximation”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the approximation proof carried by a verified approximate route.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "Recover the approximation proof carried by a verified approximate route.",
+      "sourcePreview": "theorem approximation {α : Type u} {qubits : Nat}\n    (verified : VerifiedApproximateStatePreparation α qubits) :\n    verified.approxCandidate.approximationBound :=\n  verified.approximationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 93,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximatestatepreparation-approximation",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___VerifiedApproximateStatePreparation___approximation_FLQQ_-QuantumBlockEncoding___VerifiedApproximateStatePreparation___approximation",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "def",
+      "name": "certify",
+      "fullName": "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify",
+      "readerLabel": "certify",
+      "plainEnglish": "This definition gives the library's named construction or computation for “certify”. Promote an approximate operator block-encoding candidate only after the candidate unitary and the selected approximation predicate have been proved.",
+      "formalStatus": "Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.",
+      "technicalNote": "Promote an approximate operator block-encoding candidate only after the candidate unitary and the selected approximation predicate have been proved.",
+      "sourcePreview": "def certify {α : Type u} {systemQubits : Nat}\n    (candidate : ApproximateOperatorBlockEncodingCandidate α systemQubits)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    VerifiedApproximateOperatorBlockEncoding α systemQubits where\n  approxCandidate := candidate\n  unitaryProof := unitaryProof\n  approximationProof := approximationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 106,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify_FLQQ_-QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_candidate",
+      "fullName": "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_candidate",
+      "readerLabel": "certify candidate",
+      "plainEnglish": "Lean checks the proposition indexed as “certify candidate”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_candidate {α : Type u} {systemQubits : Nat}\n    (candidate : ApproximateOperatorBlockEncodingCandidate α systemQubits)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    (candidate.certify unitaryProof approximationProof).approxCandidate = candidate := rfl",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 115,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify-candidate",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify_candidate_FLQQ_-QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify_candidate",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_unitary",
+      "fullName": "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_unitary",
+      "readerLabel": "certify unitary",
+      "plainEnglish": "Lean checks the proposition indexed as “certify unitary”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_unitary {α : Type u} {systemQubits : Nat}\n    (candidate : ApproximateOperatorBlockEncodingCandidate α systemQubits)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    (candidate.certify unitaryProof approximationProof)\n      .approxCandidate.candidate.isUnitary :=\n  unitaryProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 121,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify-unitary",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify_unitary_FLQQ_-QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify_unitary",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_approximation",
+      "fullName": "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_approximation",
+      "readerLabel": "certify approximation",
+      "plainEnglish": "Lean checks the proposition indexed as “certify approximation”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_approximation {α : Type u} {systemQubits : Nat}\n    (candidate : ApproximateOperatorBlockEncodingCandidate α systemQubits)\n    (unitaryProof : candidate.candidate.isUnitary)\n    (approximationProof : candidate.approximationBound) :\n    (candidate.certify unitaryProof approximationProof)\n      .approxCandidate.approximationBound :=\n  approximationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 129,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify-approximation",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify_approximation_FLQQ_-QuantumBlockEncoding___ApproximateOperatorBlockEncodingCandidate___certify_approximation",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "unitary",
+      "fullName": "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding.unitary",
+      "readerLabel": "unitary",
+      "plainEnglish": "Lean checks the proposition indexed as “unitary”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the unitarity proof carried by a verified approximate block encoding.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "Recover the unitarity proof carried by a verified approximate block encoding.",
+      "sourcePreview": "theorem unitary {α : Type u} {systemQubits : Nat}\n    (verified : VerifiedApproximateOperatorBlockEncoding α systemQubits) :\n    verified.approxCandidate.candidate.isUnitary :=\n  verified.unitaryProof\n\n/-- Recover the approximation proof carried by a verified approximate block encoding. -/",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 142,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximateoperatorblockencoding-unitary",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___VerifiedApproximateOperatorBlockEncoding___unitary_FLQQ_-QuantumBlockEncoding___VerifiedApproximateOperatorBlockEncoding___unitary",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "approximation",
+      "fullName": "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding.approximation",
+      "readerLabel": "approximation",
+      "plainEnglish": "Lean checks the proposition indexed as “approximation”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the approximation proof carried by a verified approximate block encoding.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "Recover the approximation proof carried by a verified approximate block encoding.",
+      "sourcePreview": "theorem approximation {α : Type u} {systemQubits : Nat}\n    (verified : VerifiedApproximateOperatorBlockEncoding α systemQubits) :\n    verified.approxCandidate.approximationBound :=\n  verified.approximationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 148,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximateoperatorblockencoding-approximation",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___VerifiedApproximateOperatorBlockEncoding___approximation_FLQQ_-QuantumBlockEncoding___VerifiedApproximateOperatorBlockEncoding___approximation",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "def",
+      "name": "certify",
+      "fullName": "QuantumBlockEncoding.BlockEncodingSpec.certify",
+      "readerLabel": "certify",
+      "plainEnglish": "This definition gives the library's named construction or computation for “certify”. Generic proof-carrying promotion for the matrix-first 'BlockEncodingSpec' interface.",
+      "formalStatus": "Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.",
+      "technicalNote": "Generic proof-carrying promotion for the matrix-first 'BlockEncodingSpec' interface. The three propositions remain backend choices, but none may be omitted at promotion time.",
+      "sourcePreview": "def certify {α : Type u} {rows cols : Nat}\n    (spec : BlockEncodingSpec α rows cols)\n    (isUnitary blockCorrect resourceBound : Prop)\n    (unitaryProof : isUnitary)\n    (blockProof : blockCorrect)\n    (resourceProof : resourceBound) :\n    VerifiedBlockEncoding α rows cols where\n  spec := spec\n  isUnitary := isUnitary\n  blockCorrect := blockCorrect\n  resourceBound := resourceBound\n  unitaryProof := unitaryProof\n  blockProof := blockProof\n  resourceProof := resourceProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 162,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-blockencodingspec-certify",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___BlockEncodingSpec___certify_FLQQ_-QuantumBlockEncoding___BlockEncodingSpec___certify",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "certify_spec",
+      "fullName": "QuantumBlockEncoding.BlockEncodingSpec.certify_spec",
+      "readerLabel": "certify spec",
+      "plainEnglish": "Lean checks the proposition indexed as “certify spec”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem certify_spec {α : Type u} {rows cols : Nat}\n    (spec : BlockEncodingSpec α rows cols)\n    (isUnitary blockCorrect resourceBound : Prop)\n    (unitaryProof : isUnitary)\n    (blockProof : blockCorrect)\n    (resourceProof : resourceBound) :\n    (spec.certify isUnitary blockCorrect resourceBound\n      unitaryProof blockProof resourceProof).spec = spec := rfl",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 177,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-blockencodingspec-certify-spec",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___BlockEncodingSpec___certify_spec_FLQQ_-QuantumBlockEncoding___BlockEncodingSpec___certify_spec",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "exactStatePreparation_hasZeroErrorApprox",
+      "fullName": "QuantumBlockEncoding.exactStatePreparation_hasZeroErrorApprox",
+      "readerLabel": "exact state preparation has zero error approx",
+      "plainEnglish": "Lean checks the proposition indexed as “exact state preparation has zero error approx”; the hypotheses and conclusion in the code panel fix its exact scope. Every exact state-preparation certificate canonically closes the zero-error approximate route.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "Every exact state-preparation certificate canonically closes the zero-error approximate route.",
+      "sourcePreview": "theorem exactStatePreparation_hasZeroErrorApprox\n    {α : Type u} {qubits : Nat} [OfNat α 0]\n    (verified : VerifiedStatePreparation α qubits) :\n    ∃ approximate : VerifiedApproximateStatePreparation α qubits,\n      approximate.approxCandidate.candidate = verified.candidate ∧\n      approximate.approxCandidate.epsilon = 0 := by\n  exact ⟨verified.asZeroErrorApprox, rfl, rfl⟩\n\n/-- Every exact operator block encoding canonically closes the zero-error approximate route. -/",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 189,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-exactstatepreparation-haszeroerrorapprox",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___exactStatePreparation_hasZeroErrorApprox_FLQQ_-QuantumBlockEncoding___exactStatePreparation_hasZeroErrorApprox",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "exactOperatorBlockEncoding_hasZeroErrorApprox",
+      "fullName": "QuantumBlockEncoding.exactOperatorBlockEncoding_hasZeroErrorApprox",
+      "readerLabel": "exact operator block encoding has zero error approx",
+      "plainEnglish": "Lean checks the proposition indexed as “exact operator block encoding has zero error approx”; the hypotheses and conclusion in the code panel fix its exact scope. Every exact operator block encoding canonically closes the zero-error approximate route.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "Every exact operator block encoding canonically closes the zero-error approximate route.",
+      "sourcePreview": "theorem exactOperatorBlockEncoding_hasZeroErrorApprox\n    {α : Type u} {systemQubits : Nat} [OfNat α 0]\n    (verified : VerifiedOperatorBlockEncoding α systemQubits) :\n    ∃ approximate : VerifiedApproximateOperatorBlockEncoding α systemQubits,\n      approximate.approxCandidate.candidate = verified.candidate ∧\n      approximate.approxCandidate.epsilon = 0 := by\n  exact ⟨verified.asZeroErrorApprox, rfl, rfl⟩\n\n/-- Concrete regression witness for the generic exact-to-approximate state route. -/",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 198,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-exactoperatorblockencoding-haszeroerrorapprox",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___exactOperatorBlockEncoding_hasZeroErrorApprox_FLQQ_-QuantumBlockEncoding___exactOperatorBlockEncoding_hasZeroErrorApprox",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "def",
+      "name": "textbookPauliXZeroErrorApprox",
+      "fullName": "QuantumBlockEncoding.textbookPauliXZeroErrorApprox",
+      "readerLabel": "textbook pauli x zero error approx",
+      "plainEnglish": "This definition gives the library's named construction or computation for “textbook pauli x zero error approx”. Concrete regression witness for the generic exact-to-approximate state route.",
+      "formalStatus": "Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.",
+      "technicalNote": "Concrete regression witness for the generic exact-to-approximate state route.",
+      "sourcePreview": "def textbookPauliXZeroErrorApprox : VerifiedApproximateStatePreparation ℂ 1 :=\n  textbookPauliXVerifiedOfFirstColumn.asZeroErrorApprox",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 207,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-textbookpaulixzeroerrorapprox",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___textbookPauliXZeroErrorApprox_FLQQ_-QuantumBlockEncoding___textbookPauliXZeroErrorApprox",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "textbookPauliXZeroErrorApprox_epsilon",
+      "fullName": "QuantumBlockEncoding.textbookPauliXZeroErrorApprox_epsilon",
+      "readerLabel": "textbook pauli x zero error approx epsilon",
+      "plainEnglish": "Lean checks the proposition indexed as “textbook pauli x zero error approx epsilon”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem textbookPauliXZeroErrorApprox_epsilon :\n    textbookPauliXZeroErrorApprox.approxCandidate.epsilon = 0 := rfl",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 210,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-textbookpaulixzeroerrorapprox-epsilon",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___textbookPauliXZeroErrorApprox_epsilon_FLQQ_-QuantumBlockEncoding___textbookPauliXZeroErrorApprox_epsilon",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "theorem",
+      "name": "textbookPauliXZeroErrorApprox_preparesTarget",
+      "fullName": "QuantumBlockEncoding.textbookPauliXZeroErrorApprox_preparesTarget",
+      "readerLabel": "textbook pauli x zero error approx prepares target",
+      "plainEnglish": "Lean checks the proposition indexed as “textbook pauli x zero error approx prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.",
+      "formalStatus": "Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.",
+      "technicalNote": "",
+      "sourcePreview": "@[simp] theorem textbookPauliXZeroErrorApprox_preparesTarget :\n    textbookPauliXZeroErrorApprox.approxCandidate.approximationBound :=\n  textbookPauliXVerifiedOfFirstColumn.preparationProof",
+      "source": "QuantumBlockEncoding/RouteClosureCertificates.lean",
+      "line": 213,
+      "sourceUrl": null,
+      "localSourceUrl": "library/modules/routeclosurecertificates/#decl-quantumblockencoding-textbookpaulixzeroerrorapprox-preparestarget",
+      "catalog": "Semantics",
+      "catalogPurpose": "Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.",
+      "blueprintUrl": "../blueprint/html-multi/catalog-semantics/QuantumBlockEncoding___RouteClosureCertificates___lean/#--informal-external-decl-_FLQQ_QuantumBlockEncoding___textbookPauliXZeroErrorApprox_preparesTarget_FLQQ_-QuantumBlockEncoding___textbookPauliXZeroErrorApprox_preparesTarget",
+      "experimental": false,
+      "openProof": false,
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled"
+    },
+    {
+      "kind": "def",
       "name": "zeroBasisIndex",
       "fullName": "QuantumBlockEncoding.zeroBasisIndex",
       "readerLabel": "zero basis index",
@@ -56146,7 +56587,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -56188,7 +56629,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -56251,7 +56692,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -56272,7 +56713,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "structure",
@@ -56293,7 +56734,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -56356,7 +56797,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",
@@ -56755,7 +57196,7 @@
       "experimental": false,
       "openProof": false,
       "localStatus": "Compiled",
-      "routeStatus": "Partial route"
+      "routeStatus": "Compiled"
     },
     {
       "kind": "def",

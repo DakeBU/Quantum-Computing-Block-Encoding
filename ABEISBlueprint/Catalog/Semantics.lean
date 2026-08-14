@@ -3676,6 +3676,304 @@ Source: [QuantumBlockEncoding/ReversibleClassical.lean:63](../../../../library/m
 Source: [QuantumBlockEncoding/ReversibleClassical.lean:70](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-evalreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/RouteClosureCertificates.lean
+
+21 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify" (lean := "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify")
+*Plain-English reading.* This definition gives the library's named construction or computation for “certify”. Promote an approximate state-preparation candidate only after normalization, unitarity, and the backend-specific approximation bound have all been proved.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Promote an approximate state-preparation candidate only after normalization, unitarity, and the backend-specific approximation bound have all been proved.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:30](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_candidate" (lean := "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_candidate")
+*Plain-English reading.* Lean checks the proposition indexed as “certify candidate”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:41](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-candidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_normalization" (lean := "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_normalization")
+*Plain-English reading.* Lean checks the proposition indexed as “certify normalization”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:49](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-normalization). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_unitary" (lean := "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “certify unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:58](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_approximation" (lean := "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify_approximation")
+*Plain-English reading.* Lean checks the proposition indexed as “certify approximation”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:67](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximatestatepreparationcandidate-certify-approximation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.VerifiedApproximateStatePreparation.normalization" (lean := "QuantumBlockEncoding.VerifiedApproximateStatePreparation.normalization")
+*Plain-English reading.* Lean checks the proposition indexed as “normalization”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the normalization proof carried by a verified approximate route.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Recover the normalization proof carried by a verified approximate route.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:81](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximatestatepreparation-normalization). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.VerifiedApproximateStatePreparation.unitary" (lean := "QuantumBlockEncoding.VerifiedApproximateStatePreparation.unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “unitary”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the unitarity proof carried by a verified approximate route.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Recover the unitarity proof carried by a verified approximate route.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:87](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximatestatepreparation-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.VerifiedApproximateStatePreparation.approximation" (lean := "QuantumBlockEncoding.VerifiedApproximateStatePreparation.approximation")
+*Plain-English reading.* Lean checks the proposition indexed as “approximation”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the approximation proof carried by a verified approximate route.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Recover the approximation proof carried by a verified approximate route.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:93](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximatestatepreparation-approximation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify" (lean := "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify")
+*Plain-English reading.* This definition gives the library's named construction or computation for “certify”. Promote an approximate operator block-encoding candidate only after the candidate unitary and the selected approximation predicate have been proved.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Promote an approximate operator block-encoding candidate only after the candidate unitary and the selected approximation predicate have been proved.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:106](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_candidate" (lean := "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_candidate")
+*Plain-English reading.* Lean checks the proposition indexed as “certify candidate”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:115](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify-candidate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_unitary" (lean := "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “certify unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:121](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_approximation" (lean := "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify_approximation")
+*Plain-English reading.* Lean checks the proposition indexed as “certify approximation”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:129](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-approximateoperatorblockencodingcandidate-certify-approximation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding.unitary" (lean := "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding.unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “unitary”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the unitarity proof carried by a verified approximate block encoding.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Recover the unitarity proof carried by a verified approximate block encoding.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:142](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximateoperatorblockencoding-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding.approximation" (lean := "QuantumBlockEncoding.VerifiedApproximateOperatorBlockEncoding.approximation")
+*Plain-English reading.* Lean checks the proposition indexed as “approximation”; the hypotheses and conclusion in the code panel fix its exact scope. Recover the approximation proof carried by a verified approximate block encoding.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Recover the approximation proof carried by a verified approximate block encoding.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:148](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-verifiedapproximateoperatorblockencoding-approximation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BlockEncodingSpec.certify" (lean := "QuantumBlockEncoding.BlockEncodingSpec.certify")
+*Plain-English reading.* This definition gives the library's named construction or computation for “certify”. Generic proof-carrying promotion for the matrix-first 'BlockEncodingSpec' interface.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Generic proof-carrying promotion for the matrix-first 'BlockEncodingSpec' interface. The three propositions remain backend choices, but none may be omitted at promotion time.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:162](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-blockencodingspec-certify). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BlockEncodingSpec.certify_spec" (lean := "QuantumBlockEncoding.BlockEncodingSpec.certify_spec")
+*Plain-English reading.* Lean checks the proposition indexed as “certify spec”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:177](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-blockencodingspec-certify-spec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.exactStatePreparation_hasZeroErrorApprox" (lean := "QuantumBlockEncoding.exactStatePreparation_hasZeroErrorApprox")
+*Plain-English reading.* Lean checks the proposition indexed as “exact state preparation has zero error approx”; the hypotheses and conclusion in the code panel fix its exact scope. Every exact state-preparation certificate canonically closes the zero-error approximate route.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Every exact state-preparation certificate canonically closes the zero-error approximate route.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:189](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-exactstatepreparation-haszeroerrorapprox). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.exactOperatorBlockEncoding_hasZeroErrorApprox" (lean := "QuantumBlockEncoding.exactOperatorBlockEncoding_hasZeroErrorApprox")
+*Plain-English reading.* Lean checks the proposition indexed as “exact operator block encoding has zero error approx”; the hypotheses and conclusion in the code panel fix its exact scope. Every exact operator block encoding canonically closes the zero-error approximate route.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Every exact operator block encoding canonically closes the zero-error approximate route.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:198](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-exactoperatorblockencoding-haszeroerrorapprox). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.textbookPauliXZeroErrorApprox" (lean := "QuantumBlockEncoding.textbookPauliXZeroErrorApprox")
+*Plain-English reading.* This definition gives the library's named construction or computation for “textbook pauli x zero error approx”. Concrete regression witness for the generic exact-to-approximate state route.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Concrete regression witness for the generic exact-to-approximate state route.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:207](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-textbookpaulixzeroerrorapprox). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.textbookPauliXZeroErrorApprox_epsilon" (lean := "QuantumBlockEncoding.textbookPauliXZeroErrorApprox_epsilon")
+*Plain-English reading.* Lean checks the proposition indexed as “textbook pauli x zero error approx epsilon”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:210](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-textbookpaulixzeroerrorapprox-epsilon). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.textbookPauliXZeroErrorApprox_preparesTarget" (lean := "QuantumBlockEncoding.textbookPauliXZeroErrorApprox_preparesTarget")
+*Plain-English reading.* Lean checks the proposition indexed as “textbook pauli x zero error approx prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RouteClosureCertificates.lean:213](../../../../library/modules/routeclosurecertificates/#decl-quantumblockencoding-textbookpaulixzeroerrorapprox-preparestarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/TeachingRouteClosures.lean
 
 35 explicit public declarations, in source order.

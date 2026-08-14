@@ -62,6 +62,43 @@ class SiteContractTests(unittest.TestCase):
                     self.assertIn(build_site.html.escape(str(root)), rendered)
 
 
+    def test_library_route_status_is_proof_rooted(self) -> None:
+        data = json.loads(
+            (ROOT / "web/library/declarations.json").read_text(encoding="utf-8")
+        )
+        declarations = data["declarations"]
+        by_name = {item["fullName"]: item for item in declarations}
+        for name in (
+            "QuantumBlockEncoding.RegisterLayout",
+            "QuantumBlockEncoding.StatePreparationTarget",
+            "QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+            "QuantumBlockEncoding.ExecutableResourceCertificate",
+            "QuantumBlockEncoding.ApproximateStatePreparationCandidate.certify",
+            "QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate.certify",
+        ):
+            self.assertEqual(by_name[name]["localStatus"], "Compiled", name)
+            self.assertEqual(by_name[name]["routeStatus"], "Compiled", name)
+
+        partial = [
+            item for item in declarations if item["routeStatus"] == "Partial route"
+        ]
+        self.assertTrue(partial)
+        allowed_opaque = {
+            "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleUnitary",
+            "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleIsUnitary",
+            "QuantumBlockEncoding.CubicDiagonalOracle.primitiveAmplitudeOracleCleanBlockExtracts",
+            "QuantumBlockEncoding.CubicDiagonalOracle.expandedArithmeticComputesCubicAmplitude",
+            "QuantumBlockEncoding.CubicDiagonalOracle.expandedControlledRyUsesCubicAngle",
+            "QuantumBlockEncoding.CubicDiagonalOracle.expandedWorkspaceCleanUncomputed",
+            "QuantumBlockEncoding.CubicDiagonalOracle.expandedAmplitudeOracleCleanBlockExtracts",
+        }
+        for item in partial:
+            self.assertTrue(
+                item["source"] == "QuantumBlockEncoding/GHL2025.lean"
+                or item["fullName"] in allowed_opaque,
+                item["fullName"],
+            )
+
     def test_roadmap_separates_closed_witnesses_from_open_generality(self) -> None:
         status = dict(ROADMAP)
         self.assertEqual(status["Finite three-bit primitive banded sparse access"], "Compiled")
