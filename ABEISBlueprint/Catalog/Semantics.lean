@@ -604,7 +604,7 @@ Source: [QuantumBlockEncoding/CircuitSemantics.lean:786](../../../../library/mod
 
 # QuantumBlockEncoding/ConcreteSemantics.lean
 
-19 explicit public declarations, in source order.
+22 explicit public declarations, in source order.
 
 :::definition "QuantumBlockEncoding.ConcreteSemantics.FiniteMatrix" (lean := "QuantumBlockEncoding.ConcreteSemantics.FiniteMatrix")
 *Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “finite matrix”. A Mathlib finite matrix, definitionally compatible with ABEIS 'Matrix'.
@@ -870,6 +870,48 @@ Source: [QuantumBlockEncoding/ConcreteSemantics.lean:182](../../../../library/mo
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/ConcreteSemantics.lean:194](../../../../library/modules/concretesemantics/#decl-quantumblockencoding-concretesemantics-signalsystemblockprojection-eq-cleanblockproduct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude" (lean := "QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude")
+*Plain-English reading.* This definition gives the library's named construction or computation for “clean basis action amplitude”. The clean output amplitude obtained by applying 'operator' to a clean signal-system basis input.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The clean output amplitude obtained by applying 'operator' to a clean signal-system basis input. Naming this quantity makes the two common block-encoding proof styles explicit: prove the projected matrix block, or prove the clean branch of the action on every basis input.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/ConcreteSemantics.lean:211](../../../../library/modules/concretesemantics/#decl-quantumblockencoding-concretesemantics-cleanbasisactionamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection" (lean := "QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection")
+*Plain-English reading.* Lean checks the proposition indexed as “clean basis action amplitude eq signal system block projection”; the hypotheses and conclusion in the code panel fix its exact scope. Acting on a clean basis input and reading a clean output is one projected-block entry.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Acting on a clean basis input and reading a clean output is one projected-block entry.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ConcreteSemantics.lean:221](../../../../library/modules/concretesemantics/#decl-quantumblockencoding-concretesemantics-cleanbasisactionamplitude-eq-signalsystemblockprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction" (lean := "QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction")
+*Plain-English reading.* Lean checks the proposition indexed as “pointwise projection iff clean basis action”; the hypotheses and conclusion in the code panel fix its exact scope. Finite-dimensional bridge between the projected-block definition and the clean-branch action proof.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Finite-dimensional bridge between the projected-block definition and the clean-branch action proof. Linearity then extends the basis statement to an arbitrary system state; any normalized orthogonal failure branch is additional unitarity evidence, not a different block-encoding contract.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/ConcreteSemantics.lean:239](../../../../library/modules/concretesemantics/#decl-quantumblockencoding-concretesemantics-pointwiseprojection-iff-cleanbasisaction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/ModularAdder3.lean
@@ -3390,6 +3432,500 @@ Source: [QuantumBlockEncoding/ReversibleClassical.lean:63](../../../../library/m
 *Declaration kind.* def.
 
 Source: [QuantumBlockEncoding/ReversibleClassical.lean:70](../../../../library/modules/reversibleclassical/#decl-quantumblockencoding-evalreversibleprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/TeachingRouteClosures.lean
+
+35 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.ExecutableResourceCertificate" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate")
+*Plain-English reading.* This record groups the data and proof fields needed for “executable resource certificate”. A proposition-valued field is a requirement until a constructor supplies it. Backend-neutral cost evidence computed from the canonical primitive IR.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Backend-neutral cost evidence computed from the canonical primitive IR.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:18](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ExecutableResourceCertificate.resource" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate.resource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “resource”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:24](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ExecutableResourceCertificate.cost" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate.cost")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cost”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:27](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ExecutableResourceCertificate.resource_eq_program_resource" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate.resource_eq_program_resource")
+*Plain-English reading.* Lean checks the proposition indexed as “resource eq program resource”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:33](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate-resource-eq-program-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ExecutableResourceCertificate.cost_auxiliaryQubits" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate.cost_auxiliaryQubits")
+*Plain-English reading.* Lean checks the proposition indexed as “cost auxiliary qubits”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:37](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate-cost-auxiliaryqubits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ExecutableResourceCertificate.cost_gateCount" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate.cost_gateCount")
+*Plain-English reading.* Lean checks the proposition indexed as “cost gate count”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:41](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate-cost-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ExecutableResourceCertificate.cost_depth" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate.cost_depth")
+*Plain-English reading.* Lean checks the proposition indexed as “cost depth”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:45](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate-cost-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ExecutableResourceCertificate.cost_oracleCalls" (lean := "QuantumBlockEncoding.ExecutableResourceCertificate.cost_oracleCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “cost oracle calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:49](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-executableresourcecertificate-cost-oraclecalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationCandidate.certify" (lean := "QuantumBlockEncoding.StatePreparationCandidate.certify")
+*Plain-English reading.* This definition gives the library's named construction or computation for “certify”. Promote a candidate only after all three state-preparation obligations are supplied.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Promote a candidate only after all three state-preparation obligations are supplied.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:58](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-statepreparationcandidate-certify). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationCandidate.certify_firstColumn" (lean := "QuantumBlockEncoding.StatePreparationCandidate.certify_firstColumn")
+*Plain-English reading.* Lean checks the proposition indexed as “certify first column”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:68](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-statepreparationcandidate-certify-firstcolumn). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationCandidate.certify_unitary" (lean := "QuantumBlockEncoding.StatePreparationCandidate.certify_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “certify unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:75](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-statepreparationcandidate-certify-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationCandidate.certify_normalization" (lean := "QuantumBlockEncoding.StatePreparationCandidate.certify_normalization")
+*Plain-English reading.* Lean checks the proposition indexed as “certify normalization”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:82](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-statepreparationcandidate-certify-normalization). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.ofFirstColumn" (lean := "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.ofFirstColumn")
+*Plain-English reading.* This definition gives the library's named construction or computation for “of first column”. Build concrete state-preparation evidence from the equivalent first-column statement.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Build concrete state-preparation evidence from the equivalent first-column statement.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:94](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-concretesemantics-complexstatepreparationcertificate-offirstcolumn). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.verifiedOfFirstColumn" (lean := "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.verifiedOfFirstColumn")
+*Plain-English reading.* This definition gives the library's named construction or computation for “verified of first column”. Promote first-column evidence through the concrete finite-matrix backend.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Promote first-column evidence through the concrete finite-matrix backend.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:107](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-concretesemantics-complexstatepreparationcertificate-verifiedoffirstcolumn). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.verifiedOfFirstColumn_preparesTarget" (lean := "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.verifiedOfFirstColumn_preparesTarget")
+*Plain-English reading.* Lean checks the proposition indexed as “verified of first column prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:116](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-concretesemantics-complexstatepreparationcertificate-verifiedoffirstcolumn-preparestarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.textbookPauliXVerifiedOfFirstColumn" (lean := "QuantumBlockEncoding.textbookPauliXVerifiedOfFirstColumn")
+*Plain-English reading.* This definition gives the library's named construction or computation for “textbook pauli x verified of first column”. Finite witness that the generic first-column route reuses the Pauli-X proof.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Finite witness that the generic first-column route reuses the Pauli-X proof.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:131](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-textbookpaulixverifiedoffirstcolumn). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.textbookPauliXVerifiedOfFirstColumn_preparesTarget" (lean := "QuantumBlockEncoding.textbookPauliXVerifiedOfFirstColumn_preparesTarget")
+*Plain-English reading.* Lean checks the proposition indexed as “textbook pauli x verified of first column prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:141](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-textbookpaulixverifiedoffirstcolumn-preparestarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.ConcreteSemantics.exactCleanBlockOfSignalProjection" (lean := "QuantumBlockEncoding.ConcreteSemantics.exactCleanBlockOfSignalProjection")
+*Plain-English reading.* This definition gives the library's named construction or computation for “exact clean block of signal projection”. Convert a signal-register projection proof into an exact clean-block certificate.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Convert a signal-register projection proof into an exact clean-block certificate.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:148](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-concretesemantics-exactcleanblockofsignalprojection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.ConcreteSemantics.exactCleanBlockOfSignalProjection_correct" (lean := "QuantumBlockEncoding.ConcreteSemantics.exactCleanBlockOfSignalProjection_correct")
+*Plain-English reading.* Lean checks the proposition indexed as “exact clean block of signal projection correct”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:166](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-concretesemantics-exactcleanblockofsignalprojection-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CertifiedCircuitBlockExtraction" (lean := "QuantumBlockEncoding.CertifiedCircuitBlockExtraction")
+*Plain-English reading.* This record groups the data and proof fields needed for “certified circuit block extraction”. A proposition-valued field is a requirement until a constructor supplies it. A circuit block extraction whose selected block equality is carried as a proof.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* A circuit block extraction whose selected block equality is carried as a proof.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:183](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-certifiedcircuitblockextraction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.extractionTarget" (lean := "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.extractionTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “extraction target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:198](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-certifiedcircuitblockextraction-extractiontarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.normalizedTarget" (lean := "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.normalizedTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “normalized target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:218](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-certifiedcircuitblockextraction-normalizedtarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.exactCleanBlock" (lean := "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.exactCleanBlock")
+*Plain-English reading.* This definition gives the library's named construction or computation for “exact clean block”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:222](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-certifiedcircuitblockextraction-exactcleanblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.extractionTarget_blockProjection_proved" (lean := "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.extractionTarget_blockProjection_proved")
+*Plain-English reading.* Lean checks the proposition indexed as “extraction target block projection proved”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:230](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-certifiedcircuitblockextraction-extractiontarget-blockprojection-proved). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.extractionTarget_blockCorrect_proved" (lean := "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.extractionTarget_blockCorrect_proved")
+*Plain-English reading.* Lean checks the proposition indexed as “extraction target block correct proved”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:234](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-certifiedcircuitblockextraction-extractiontarget-blockcorrect-proved). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.exactCleanBlock_correct" (lean := "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.exactCleanBlock_correct")
+*Plain-English reading.* Lean checks the proposition indexed as “exact clean block correct”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:238](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-certifiedcircuitblockextraction-exactcleanblock-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.teachingIdentityCircuitSemantics" (lean := "QuantumBlockEncoding.teachingIdentityCircuitSemantics")
+*Plain-English reading.* This definition gives the library's named construction or computation for “teaching identity circuit semantics”. Empty-circuit semantics on the one-dimensional zero-qubit space.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Empty-circuit semantics on the one-dimensional zero-qubit space.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:246](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-teachingidentitycircuitsemantics). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.teachingIdentityBlockExtraction" (lean := "QuantumBlockEncoding.teachingIdentityBlockExtraction")
+*Plain-English reading.* This definition gives the library's named construction or computation for “teaching identity block extraction”. Finite witness for certified circuit block extraction.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Finite witness for certified circuit block extraction.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:250](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-teachingidentityblockextraction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.teachingIdentityBlockExtraction_correct" (lean := "QuantumBlockEncoding.teachingIdentityBlockExtraction_correct")
+*Plain-English reading.* Lean checks the proposition indexed as “teaching identity block extraction correct”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:263](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-teachingidentityblockextraction-correct). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.OperatorBlockEncodingCandidate.certify" (lean := "QuantumBlockEncoding.OperatorBlockEncodingCandidate.certify")
+*Plain-English reading.* This definition gives the library's named construction or computation for “certify”. Promote an operator candidate only after its unitary and block proofs are supplied.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Promote an operator candidate only after its unitary and block proofs are supplied.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:271](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-operatorblockencodingcandidate-certify). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost_eq_fromLayoutAndResource" (lean := "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost_eq_fromLayoutAndResource")
+*Plain-English reading.* Lean checks the proposition indexed as “cost eq from layout and resource”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:279](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-operatorblockencodingcandidate-cost-eq-fromlayoutandresource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity" (lean := "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity")
+*Plain-English reading.* This definition gives the library's named construction or computation for “identity”. Degree-one identity consumer: a proved clean block is returned unchanged.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Degree-one identity consumer: a proved clean block is returned unchanged.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:291](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-blockencodingclassics-qsvtconsumercontract-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity_sideConditions" (lean := "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity_sideConditions")
+*Plain-English reading.* Lean checks the proposition indexed as “identity side conditions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:300](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-blockencodingclassics-qsvtconsumercontract-identity-sideconditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity_output" (lean := "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity_output")
+*Plain-English reading.* Lean checks the proposition indexed as “identity output”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:304](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-blockencodingclassics-qsvtconsumercontract-identity-output). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.teachingIdentityQSVTConsumer" (lean := "QuantumBlockEncoding.teachingIdentityQSVTConsumer")
+*Plain-English reading.* This definition gives the library's named construction or computation for “teaching identity qsvt consumer”. Finite witness that a certified clean block crosses the typed QSVT boundary.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Finite witness that a certified clean block crosses the typed QSVT boundary.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/TeachingRouteClosures.lean:311](../../../../library/modules/teachingrouteclosures/#decl-quantumblockencoding-teachingidentityqsvtconsumer). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/TextbookStatePreparation.lean

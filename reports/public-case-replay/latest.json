@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.326119,
+      "elapsed_seconds": 0.330122,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.045646,
+      "elapsed_seconds": 0.045878,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.712188,
+      "elapsed_seconds": 0.702079,
       "passed": true
     },
     {
@@ -160,7 +160,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.957959,
+      "elapsed_seconds": 0.960217,
       "passed": true
     },
     {
@@ -200,14 +200,14 @@
         "passed": true
       },
       "case": "Robin XOR four-slot T3",
-      "elapsed_seconds": 19.812468,
+      "elapsed_seconds": 19.954635,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 3.756515,
-    "population_controller": 0.061093,
-    "total": 25.685101
+    "lean_modules": 79.530489,
+    "population_controller": 0.061091,
+    "total": 101.600991
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -218,7 +218,7 @@
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
   "git_branch": "agent/robin-t3-executable-backends",
-  "git_commit": "fc10b5065029d2d5caf3f52462237a8991e47e92",
+  "git_commit": "9e14b06c9828ddd3c990585a77e941751739d978",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -289,5 +289,5 @@
     "status": "Three exact primitive block encodings; frozen same-tier winner certified"
   },
   "schema_version": 1,
-  "source_digest": "c1b404e3a7d9e30d01843ae3f9dd02da171dfa70a2b13f6a8e4b2f77e5725225"
+  "source_digest": "1581419e5657b55adfea4d39e65a926c2098f9577cfee4ed8bee7aed32880552"
 }

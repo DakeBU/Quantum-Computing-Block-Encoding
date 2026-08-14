@@ -1,5 +1,5 @@
 {
-  "total": 1103,
+  "total": 1108,
   "files": [
     {
       "file": "QuantumBlockEncoding/Core.lean",
@@ -563,7 +563,7 @@
     },
     {
       "file": "QuantumBlockEncoding/ConcreteSemantics.lean",
-      "count": 19,
+      "count": 22,
       "declarations": [
         {
           "kind": "abbrev",
@@ -659,6 +659,21 @@
           "kind": "theorem",
           "name": "signalSystemBlockProjection_eq_cleanBlockProduct",
           "line": 194
+        },
+        {
+          "kind": "def",
+          "name": "cleanBasisActionAmplitude",
+          "line": 211
+        },
+        {
+          "kind": "theorem",
+          "name": "cleanBasisActionAmplitude_eq_signalSystemBlockProjection",
+          "line": 221
+        },
+        {
+          "kind": "theorem",
+          "name": "pointwiseProjection_iff_cleanBasisAction",
+          "line": 239
         }
       ]
     },
@@ -3268,7 +3283,7 @@
     },
     {
       "file": "QuantumBlockEncoding/GHL2025.lean",
-      "count": 401,
+      "count": 403,
       "declarations": [
         {
           "kind": "structure",
@@ -4086,1194 +4101,1204 @@
           "line": 3285
         },
         {
+          "kind": "def",
+          "name": "robinBandedSparseAccessCitationChain",
+          "line": 3308
+        },
+        {
+          "kind": "theorem",
+          "name": "robinBandedSparseAccessCitationChain_eq",
+          "line": 3313
+        },
+        {
           "kind": "theorem",
           "name": "bandedSparseAccessPriorPDESourceContract_blocks_unusedZeroBranch",
-          "line": 3310
+          "line": 3326
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPriorPDESourceContract_oracleEquation",
-          "line": 3319
+          "line": 3335
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPriorPDESourceContract_resource_unproved",
-          "line": 3324
+          "line": 3340
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperCleanInput_iff",
-          "line": 3334
+          "line": 3350
         },
         {
           "kind": "structure",
           "name": "BandedSparseAccessPaperColumnContract",
-          "line": 3350
+          "line": 3366
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPaperColumnContract",
-          "line": 3369
+          "line": 3385
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_inputRegisters_eq",
-          "line": 3393
+          "line": 3409
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_cleanInput_eq",
-          "line": 3399
+          "line": 3415
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_cleanInput_iff",
-          "line": 3410
-        },
-        {
-          "kind": "theorem",
-          "name": "bandedSparseAccessPaperColumnContract_unitaryExtension_proved_eq_false",
-          "line": 3421
-        },
-        {
-          "kind": "theorem",
-          "name": "bandedSparseAccessPaperColumnContract_imageIndex_eq",
           "line": 3426
         },
         {
           "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_unitaryExtension_proved_eq_false",
+          "line": 3437
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_imageIndex_eq",
+          "line": 3442
+        },
+        {
+          "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_addressInRange_eq",
-          "line": 3432
+          "line": 3448
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_imageNoSpill_eq",
-          "line": 3438
+          "line": 3454
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_rowPreserved_eq_true",
-          "line": 3449
+          "line": 3465
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_addressWritten_eq_true_of_address_lt",
-          "line": 3459
-        },
-        {
-          "kind": "theorem",
-          "name": "bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt",
-          "line": 3467
-        },
-        {
-          "kind": "theorem",
-          "name": "bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt",
           "line": 3475
         },
         {
           "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_addressInRange_eq_true_of_address_lt",
+          "line": 3483
+        },
+        {
+          "kind": "theorem",
+          "name": "bandedSparseAccessPaperColumnContract_imageNoSpill_eq_true_of_address_lt",
+          "line": 3491
+        },
+        {
+          "kind": "theorem",
           "name": "bandedSparseAccessPaperColumnContract_registerSafety_of_address_lt",
-          "line": 3487
+          "line": 3503
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPaperMatrix",
-          "line": 3509
+          "line": 3525
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperMatrix_eq_image",
-          "line": 3515
+          "line": 3531
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperMatrix_imageFin_eq_one",
-          "line": 3528
+          "line": 3544
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPaperDaggerMatrix",
-          "line": 3545
+          "line": 3561
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperDaggerMatrix_eq_image",
-          "line": 3551
+          "line": 3567
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperDaggerMatrix_imageFin_eq_one",
-          "line": 3563
+          "line": 3579
         },
         {
           "kind": "def",
           "name": "robinSparseAmplitudeValue",
-          "line": 3588
+          "line": 3604
         },
         {
           "kind": "def",
           "name": "robinGlobalSparseAmplitudeValue",
-          "line": 3645
+          "line": 3661
         },
         {
           "kind": "theorem",
           "name": "robinGlobalSparseAmplitudeValue_boundarySlot2_row0_n3",
-          "line": 3691
+          "line": 3707
         },
         {
           "kind": "theorem",
           "name": "robinGlobalSparseAmplitudeValue_boundarySlot2_differs_rowLocal_n3",
-          "line": 3703
+          "line": 3719
         },
         {
           "kind": "structure",
           "name": "DerivativeNormalizerNDContract",
-          "line": 3721
+          "line": 3737
         },
         {
           "kind": "def",
           "name": "derivativeNormalizerNDContract",
-          "line": 3745
+          "line": 3761
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDContract_coefficient",
-          "line": 3792
+          "line": 3808
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDContract_normalizerND",
-          "line": 3797
+          "line": 3813
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDContract_normalizedCoefficient",
-          "line": 3802
+          "line": 3818
         },
         {
           "kind": "structure",
           "name": "DerivativeNormalizerNDSourceBound",
-          "line": 3815
+          "line": 3831
         },
         {
           "kind": "def",
           "name": "derivativeNormalizerNDSourceBound",
-          "line": 3833
+          "line": 3849
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSourceBound_sourceCoefficient",
-          "line": 3847
+          "line": 3863
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSourceBound_normalizerND",
-          "line": 3852
+          "line": 3868
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSourceBound_boundFormula",
-          "line": 3857
+          "line": 3873
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSourceBound_coefficientBound",
-          "line": 3862
+          "line": 3878
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSourceBound_coefficientBound_false",
-          "line": 3867
+          "line": 3883
         },
         {
           "kind": "def",
           "name": "indicatorOracleMatrix",
-          "line": 3880
+          "line": 3896
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_U_indic",
-          "line": 3898
+          "line": 3914
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_U_indic_dagger",
-          "line": 3915
+          "line": 3931
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_U_indic_dagger_matrix_eq",
-          "line": 3931
+          "line": 3947
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTMatrix",
-          "line": 3949
+          "line": 3965
         },
         {
           "kind": "structure",
           "name": "SparseAmplitudeOracleDTPaperRegisters",
-          "line": 3978
+          "line": 3994
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTPaperRegisters",
-          "line": 3991
+          "line": 4007
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTCosHalf",
-          "line": 4009
+          "line": 4025
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTSinHalf",
-          "line": 4013
+          "line": 4029
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerObligation",
-          "line": 4028
+          "line": 4044
         },
         {
           "kind": "structure",
           "name": "SparseAmplitudeOracleDTCoefficientNormalizerContract",
-          "line": 4043
+          "line": 4059
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerContract",
-          "line": 4063
+          "line": 4079
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTNormalizedCoefficient",
-          "line": 4098
+          "line": 4114
         },
         {
           "kind": "structure",
           "name": "SparseAmplitudeOracleDTCoefficientNormalizerProofRoute",
-          "line": 4110
+          "line": 4126
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute",
-          "line": 4134
+          "line": 4150
         },
         {
           "kind": "theorem",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_coefficient",
-          "line": 4158
+          "line": 4174
         },
         {
           "kind": "theorem",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizerND",
-          "line": 4163
+          "line": 4179
         },
         {
           "kind": "theorem",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_normalizedCoefficient",
-          "line": 4168
+          "line": 4184
         },
         {
           "kind": "theorem",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sharedND",
-          "line": 4173
+          "line": 4189
         },
         {
           "kind": "theorem",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_sourceBound",
-          "line": 4185
+          "line": 4201
         },
         {
           "kind": "theorem",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketZeroEntry",
-          "line": 4195
+          "line": 4211
         },
         {
           "kind": "theorem",
           "name": "sparseAmplitudeOracleDTCoefficientNormalizerProofRoute_ketOneEntry",
-          "line": 4200
+          "line": 4216
         },
         {
           "kind": "def",
           "name": "sparseAmplitudeOracleDTRotationMatrix",
-          "line": 4215
+          "line": 4231
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_O_DT_S",
-          "line": 4240
+          "line": 4256
         },
         {
           "kind": "structure",
           "name": "BoundaryRotationPaperRegisters",
-          "line": 4259
+          "line": 4275
         },
         {
           "kind": "def",
           "name": "boundaryRotationPaperRegisters",
-          "line": 4272
+          "line": 4288
         },
         {
           "kind": "def",
           "name": "boundaryRotationCosHalf",
-          "line": 4290
+          "line": 4306
         },
         {
           "kind": "def",
           "name": "boundaryRotationSinHalf",
-          "line": 4294
+          "line": 4310
         },
         {
           "kind": "def",
           "name": "boundaryRotationAngleNormalizerObligation",
-          "line": 4306
+          "line": 4322
         },
         {
           "kind": "structure",
           "name": "BoundaryRotationAngleNormalizerContract",
-          "line": 4320
+          "line": 4336
         },
         {
           "kind": "def",
           "name": "boundaryRotationAngleNormalizerContract",
-          "line": 4343
+          "line": 4359
         },
         {
           "kind": "theorem",
           "name": "boundaryRotationAngleNormalizerContract_coefficient",
-          "line": 4386
+          "line": 4402
         },
         {
           "kind": "def",
           "name": "boundaryRotationNormalizedCoefficient",
-          "line": 4398
+          "line": 4414
         },
         {
           "kind": "structure",
           "name": "BoundaryRotationAngleNormalizerProofRoute",
-          "line": 4411
+          "line": 4427
         },
         {
           "kind": "def",
           "name": "boundaryRotationAngleNormalizerProofRoute",
-          "line": 4438
+          "line": 4454
         },
         {
           "kind": "theorem",
           "name": "boundaryRotationAngleNormalizerProofRoute_coefficient",
-          "line": 4467
+          "line": 4483
         },
         {
           "kind": "theorem",
           "name": "boundaryRotationAngleNormalizerProofRoute_arccosArgument",
-          "line": 4472
+          "line": 4488
         },
         {
           "kind": "theorem",
           "name": "boundaryRotationAngleNormalizerProofRoute_sharedND",
-          "line": 4477
+          "line": 4493
         },
         {
           "kind": "theorem",
           "name": "boundaryRotationAngleNormalizerProofRoute_sourceBound",
-          "line": 4487
+          "line": 4503
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSourceBound_sharedRoutes",
-          "line": 4497
+          "line": 4513
         },
         {
           "kind": "theorem",
           "name": "robinGlobalSparseAmplitudeValue_sharedNormalizerRoutes",
-          "line": 4514
+          "line": 4530
         },
         {
           "kind": "def",
           "name": "boundaryRotationMatrix",
-          "line": 4541
+          "line": 4557
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_Ry_boundary",
-          "line": 4576
+          "line": 4592
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSharedRoute_flags_false",
-          "line": 4594
+          "line": 4610
         },
         {
           "kind": "theorem",
           "name": "derivativeNormalizerNDSharedRoute_sourceBoundAndFlags",
-          "line": 4626
+          "line": 4642
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessMatrix",
-          "line": 4679
+          "line": 4695
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_O_D_BS",
-          "line": 4702
+          "line": 4718
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_imageFin_eq_one",
-          "line": 4712
+          "line": 4728
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_contractDrift_column8_n3",
-          "line": 4732
+          "line": 4748
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_boundaryUnusedSparseCollision_n3",
-          "line": 4754
+          "line": 4770
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_globalSparseBoundaryNoCollision_n3",
-          "line": 4780
+          "line": 4796
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperGlobalSlotSource_boundaryColumns_n3",
-          "line": 4805
+          "line": 4821
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperGlobalSlotSource_encodedOutOfRange_n3",
-          "line": 4820
+          "line": 4836
         },
         {
           "kind": "def",
           "name": "robinFunctionValue",
-          "line": 4837
+          "line": 4853
         },
         {
           "kind": "structure",
           "name": "FunctionOraclePaperRegisters",
-          "line": 4849
+          "line": 4865
         },
         {
           "kind": "def",
           "name": "functionOraclePaperRegisters",
-          "line": 4864
+          "line": 4880
         },
         {
           "kind": "def",
           "name": "functionOracleNormalizedValue",
-          "line": 4885
+          "line": 4901
         },
         {
           "kind": "structure",
           "name": "FunctionOraclePaperImage",
-          "line": 4896
+          "line": 4912
         },
         {
           "kind": "def",
           "name": "functionOraclePaperImage",
-          "line": 4920
+          "line": 4936
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperImage_inputRegisters_eq",
-          "line": 4961
+          "line": 4977
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperImage_cleanBranchBasisIndex_eq",
-          "line": 4967
+          "line": 4983
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperImage_cleanBranchSystemValue_eq",
-          "line": 4973
+          "line": 4989
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperImage_cleanBranchWorkspaceValue_eq",
-          "line": 4979
+          "line": 4995
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperImage_cleanBranchAmplitude_eq",
-          "line": 4987
+          "line": 5003
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperImage_cleanWorkspaceBranch_eq",
-          "line": 4993
+          "line": 5009
         },
         {
           "kind": "structure",
           "name": "FunctionOracleExternalAmplitudeSourceContract",
-          "line": 5006
+          "line": 5022
         },
         {
           "kind": "def",
           "name": "functionOracleExternalAmplitudeSourceContract",
-          "line": 5031
+          "line": 5047
         },
         {
           "kind": "theorem",
           "name": "functionOracleExternalAmplitudeSourceContract_sourceAnchor",
-          "line": 5072
+          "line": 5088
         },
         {
           "kind": "theorem",
           "name": "functionOracleExternalAmplitudeSourceContract_flags_false",
-          "line": 5076
+          "line": 5092
         },
         {
           "kind": "structure",
           "name": "FunctionOracleAmplitudeProofRoute",
-          "line": 5098
+          "line": 5114
         },
         {
           "kind": "def",
           "name": "functionOracleAmplitudeProofRoute",
-          "line": 5125
+          "line": 5141
         },
         {
           "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_sourceAnchor",
-          "line": 5150
+          "line": 5166
         },
         {
           "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_sourceFunctionValue",
-          "line": 5155
+          "line": 5171
         },
         {
           "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_normalizerNf",
-          "line": 5160
+          "line": 5176
         },
         {
           "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_normalizedAmplitude",
-          "line": 5165
+          "line": 5181
         },
         {
           "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_paperImage",
-          "line": 5170
+          "line": 5186
         },
         {
           "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_obligations_reuse_paperImage",
-          "line": 5180
+          "line": 5196
         },
         {
           "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_externalSourceContract",
-          "line": 5192
-        },
-        {
-          "kind": "theorem",
-          "name": "functionOracleAmplitudeProofRoute_flags_false",
           "line": 5208
         },
         {
           "kind": "theorem",
+          "name": "functionOracleAmplitudeProofRoute_flags_false",
+          "line": 5224
+        },
+        {
+          "kind": "theorem",
           "name": "functionOracleAmplitudeProofRoute_externalSourceAndFlags",
-          "line": 5226
+          "line": 5242
         },
         {
           "kind": "def",
           "name": "functionOracleOrthogonalEntry",
-          "line": 5269
+          "line": 5285
         },
         {
           "kind": "def",
           "name": "functionOraclePaperMatrix",
-          "line": 5289
+          "line": 5305
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperMatrix_cleanBranch_entry",
-          "line": 5304
+          "line": 5320
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperMatrix_cleanWorkspace_offBranch_zero",
-          "line": 5314
+          "line": 5330
         },
         {
           "kind": "theorem",
           "name": "functionOraclePaperMatrix_nonCleanInput_entry",
-          "line": 5324
+          "line": 5340
         },
         {
           "kind": "def",
           "name": "functionOracleMatrix",
-          "line": 5349
+          "line": 5365
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_O_f",
-          "line": 5368
+          "line": 5384
         },
         {
           "kind": "def",
           "name": "swapOracleMatrix",
-          "line": 5394
-        },
-        {
-          "kind": "def",
-          "name": "swapOracleImage",
           "line": 5410
         },
         {
           "kind": "def",
+          "name": "swapOracleImage",
+          "line": 5426
+        },
+        {
+          "kind": "def",
           "name": "swapOracleDiff",
-          "line": 5425
+          "line": 5441
         },
         {
           "kind": "theorem",
           "name": "swapOracleImage_eq_xor_diff",
-          "line": 5433
+          "line": 5449
         },
         {
           "kind": "theorem",
           "name": "swapOracleMatrix_eq_image",
-          "line": 5440
+          "line": 5456
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_SWAP",
-          "line": 5452
+          "line": 5468
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessDaggerMatrix",
-          "line": 5467
+          "line": 5483
         },
         {
           "kind": "def",
           "name": "oneTermRobinGate_O_D_BS_dagger",
-          "line": 5489
+          "line": 5505
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_dagger_imageFin_eq_one",
-          "line": 5499
+          "line": 5515
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_dagger_postSwap_entry_of_preimage",
-          "line": 5518
+          "line": 5534
         },
         {
           "kind": "structure",
           "name": "BandedSparseAccessPostSwapCleanup",
-          "line": 5539
+          "line": 5555
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPostSwapCleanup_of_preimage",
-          "line": 5569
+          "line": 5585
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_imageFin_entrySafety",
-          "line": 5610
+          "line": 5626
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_O_D_BS_globalSlotSource_entrySafety",
-          "line": 5644
+          "line": 5660
         },
         {
           "kind": "def",
           "name": "oneTermRobinGateMatrixPlaceholders",
-          "line": 5690
-        },
-        {
-          "kind": "theorem",
-          "name": "oneTermRobinPlaceholdersMatch",
           "line": 5706
         },
         {
           "kind": "theorem",
-          "name": "oneTermRobinGateMatrixPlaceholders_gateList",
+          "name": "oneTermRobinPlaceholdersMatch",
           "line": 5722
         },
         {
           "kind": "theorem",
+          "name": "oneTermRobinGateMatrixPlaceholders_gateList",
+          "line": 5738
+        },
+        {
+          "kind": "theorem",
           "name": "oneTermRobinGateMatrixPlaceholders_unitaryFlags",
-          "line": 5741
+          "line": 5757
         },
         {
           "kind": "def",
           "name": "indicatorOracleImage",
-          "line": 5757
+          "line": 5773
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleMatrix_eq_image",
-          "line": 5769
+          "line": 5785
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_self_inverse_n1",
-          "line": 5780
+          "line": 5796
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_self_inverse_n3",
-          "line": 5794
+          "line": 5810
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_injective_n1",
-          "line": 5806
-        },
-        {
-          "kind": "theorem",
-          "name": "indicatorOracleImage_injective_n3",
           "line": 5822
         },
         {
           "kind": "theorem",
+          "name": "indicatorOracleImage_injective_n3",
+          "line": 5838
+        },
+        {
+          "kind": "theorem",
           "name": "shiftLeft_land_mask_eq_zero",
-          "line": 5839
+          "line": 5855
         },
         {
           "kind": "theorem",
           "name": "xor_shift_preserve_low",
-          "line": 5856
+          "line": 5872
         },
         {
           "kind": "theorem",
           "name": "xor_shift_preserve_shift_low",
-          "line": 5867
+          "line": 5883
         },
         {
           "kind": "theorem",
           "name": "swapOracleDiff_lt_two_pow",
-          "line": 5892
+          "line": 5908
         },
         {
           "kind": "theorem",
           "name": "swapOracleDiff_shiftRight_eq_zero",
-          "line": 5910
+          "line": 5926
         },
         {
           "kind": "theorem",
           "name": "swapOracleDiff_shiftLeft_mask_eq_zero",
-          "line": 5925
+          "line": 5941
         },
         {
           "kind": "theorem",
           "name": "shiftLeft_lt_two_pow_of_lt",
-          "line": 5938
+          "line": 5954
         },
         {
           "kind": "theorem",
           "name": "swapOracleImage_lt_qubitDim",
-          "line": 5956
+          "line": 5972
         },
         {
           "kind": "theorem",
           "name": "swapOracleImage_block1_eq_block2",
-          "line": 5987
+          "line": 6003
         },
         {
           "kind": "theorem",
           "name": "swapOracleImage_block2_eq_block1",
-          "line": 6015
+          "line": 6031
         },
         {
           "kind": "theorem",
           "name": "swapOracleDiff_preserved",
-          "line": 6049
+          "line": 6065
         },
         {
           "kind": "theorem",
           "name": "xor_two_shifted_masks_cancel",
-          "line": 6058
+          "line": 6074
         },
         {
           "kind": "theorem",
           "name": "swapOracleImage_self_inverse",
-          "line": 6075
+          "line": 6091
         },
         {
           "kind": "theorem",
           "name": "swapOracleImage_injective",
-          "line": 6086
+          "line": 6102
         },
         {
           "kind": "theorem",
           "name": "swapOracleImage_bijective",
-          "line": 6100
+          "line": 6116
         },
         {
           "kind": "theorem",
           "name": "swapOracleMatrix_col_has_one",
-          "line": 6123
+          "line": 6139
         },
         {
           "kind": "theorem",
           "name": "swapOracleMatrix_col_unique",
-          "line": 6135
+          "line": 6151
         },
         {
           "kind": "theorem",
           "name": "swapOracleMatrix_row_has_one",
-          "line": 6145
+          "line": 6161
         },
         {
           "kind": "theorem",
           "name": "swapOracleMatrix_row_unique",
-          "line": 6160
+          "line": 6176
         },
         {
           "kind": "theorem",
           "name": "swapOracleMatrix_is_permutation",
-          "line": 6178
+          "line": 6194
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwap_rowValue_eq_address",
-          "line": 6205
+          "line": 6221
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwap_odRegisterValue_eq_rowValue",
-          "line": 6222
+          "line": 6238
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapImage_lt_qubitDim_of_address_lt",
-          "line": 6238
+          "line": 6254
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPaperSpliceODRegister",
-          "line": 6258
+          "line": 6274
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperImage_eq_splice",
-          "line": 6267
+          "line": 6283
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_lowBlock_lt_highBase_of_odValue_lt",
-          "line": 6275
+          "line": 6291
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_mod_lowBase",
-          "line": 6313
+          "line": 6329
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_div_lowBase_mod_eq",
-          "line": 6348
+          "line": 6364
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_rowValue_eq",
-          "line": 6391
+          "line": 6407
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_odRegisterValue_eq",
-          "line": 6411
+          "line": 6427
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_div_highBase_eq_of_odValue_lt",
-          "line": 6423
+          "line": 6439
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_lt_qubitDim_of_odValue_lt",
-          "line": 6455
+          "line": 6471
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_splice_of_odValue_lt",
-          "line": 6499
+          "line": 6515
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperSpliceODRegister_self",
-          "line": 6514
+          "line": 6530
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPaperCleanODValue",
-          "line": 6556
+          "line": 6572
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperCleanODValue_paddedZero_eq_zero",
-          "line": 6561
+          "line": 6577
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperCleanODValue_lt_two_pow_of_sparse_lt",
-          "line": 6570
+          "line": 6586
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperCleanODValue_sparseIndex_eq",
-          "line": 6585
+          "line": 6601
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperCleanInput_odRegisterValue_eq_cleanODValue",
-          "line": 6605
+          "line": 6621
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperImage_injective_on_globalSlotSource",
-          "line": 6679
+          "line": 6695
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapReverseSparse_lt_two_pow",
-          "line": 6806
+          "line": 6822
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapCleanODValue_lt_two_pow",
-          "line": 6821
+          "line": 6837
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidate",
-          "line": 6849
+          "line": 6865
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidateChecks",
-          "line": 6866
+          "line": 6882
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_cleanSource",
-          "line": 6883
+          "line": 6899
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_cleanSource",
-          "line": 6990
+          "line": 7006
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate",
-          "line": 7039
+          "line": 7055
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPostSwapCleanup_of_cleanSourceCandidate_noRange",
-          "line": 7080
+          "line": 7096
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPostSwapCleanup_of_validCleanSourceCandidate_noRange",
-          "line": 7128
+          "line": 7144
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPostSwapCleanup_of_globalSlotSourceCandidate_noRange",
-          "line": 7170
+          "line": 7186
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidateChecks_of_globalSlotSource",
-          "line": 7210
+          "line": 7226
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_lt_qubitDim_of_globalSlotSource",
-          "line": 7229
+          "line": 7245
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_sparseIndex_eq",
-          "line": 7251
+          "line": 7267
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_globalSlotSource_of_globalSlotSource",
-          "line": 7296
+          "line": 7312
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessPaperPostSwapPreimageCandidate_unique_on_globalSlotSource",
-          "line": 7344
+          "line": 7360
         },
         {
           "kind": "structure",
           "name": "BandedSparseAccessGlobalSlotInverseOnRangeContract",
-          "line": 7403
+          "line": 7419
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract",
-          "line": 7427
+          "line": 7443
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_flags_false",
-          "line": 7469
+          "line": 7485
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_of_globalSlotSource",
-          "line": 7490
+          "line": 7506
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_uniquePreimageBridge",
-          "line": 7525
+          "line": 7541
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerCleanupBridge",
-          "line": 7592
+          "line": 7608
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_cleanupContractMap",
-          "line": 7665
+          "line": 7681
         },
         {
           "kind": "theorem",
           "name": "defaultBandedSparseAccessPaperContract_cleanupRouteBridge",
-          "line": 7759
+          "line": 7775
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_daggerOffCandidate_zero",
-          "line": 7804
+          "line": 7820
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnCleanup",
-          "line": 7867
+          "line": 7883
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessGlobalSlotInverseOnRangeContract_restrictedDaggerColumnIndicator",
-          "line": 7956
+          "line": 7972
         },
         {
           "kind": "inductive",
           "name": "BandedSparseAccessCleanupScope",
-          "line": 8043
+          "line": 8059
         },
         {
           "kind": "structure",
           "name": "BandedSparseAccessCleanupScopeDecision",
-          "line": 8059
+          "line": 8075
         },
         {
           "kind": "def",
           "name": "bandedSparseAccessCleanupScopeDecision",
-          "line": 8079
+          "line": 8095
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessCleanupScopeDecision_activeGlobalSource",
-          "line": 8100
+          "line": 8116
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessCleanupScopeDecision_priorPDESourceTranscriptGuard",
-          "line": 8131
+          "line": 8147
         },
         {
           "kind": "theorem",
           "name": "bandedSparseAccessCleanupScopeDecision_fullCleanDomainImageRuleBlocked",
-          "line": 8161
+          "line": 8177
         },
         {
           "kind": "theorem",
           "name": "defaultBandedSparseAccessPaperContract_cleanupRouteBridge_boundaryColumn_n3",
-          "line": 8200
+          "line": 8216
         },
         {
           "kind": "theorem",
           "name": "robinIndicatorBitPosition_ge",
-          "line": 8249
+          "line": 8265
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_systemVal_preserved",
-          "line": 8259
+          "line": 8275
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_isBulk_preserved",
-          "line": 8273
+          "line": 8289
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_self_inverse",
-          "line": 8288
+          "line": 8304
         },
         {
           "kind": "theorem",
           "name": "oneTermRobinGate_U_indic_dagger_selfInverseBridge",
-          "line": 8303
+          "line": 8319
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_injective",
-          "line": 8314
+          "line": 8330
         },
         {
           "kind": "theorem",
           "name": "robinIndicatorBitPosition_lt_totalQubits",
-          "line": 8325
+          "line": 8341
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_lt",
-          "line": 8336
+          "line": 8352
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleImage_bijective",
-          "line": 8354
+          "line": 8370
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleMatrix_col_has_one",
-          "line": 8377
+          "line": 8393
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleMatrix_col_unique",
-          "line": 8389
+          "line": 8405
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleMatrix_row_has_one",
-          "line": 8402
+          "line": 8418
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleMatrix_row_unique",
-          "line": 8420
+          "line": 8436
         },
         {
           "kind": "theorem",
           "name": "indicatorOracleMatrix_is_permutation",
-          "line": 8436
+          "line": 8452
         }
       ]
     },
