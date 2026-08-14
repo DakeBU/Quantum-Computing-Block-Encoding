@@ -19,6 +19,7 @@ namespace BandedSparseAccess
 def primitiveWord3 (state : PrimitiveBasis 7)
     (wire0 wire1 wire2 : Fin 7) : Fin 8 :=
   ⟨littleEndian3Value state wire0 wire1 wire2, by
+    unfold littleEndian3Value
     have h0 := (state wire0).isLt
     have h1 := (state wire1).isLt
     have h2 := (state wire2).isLt
