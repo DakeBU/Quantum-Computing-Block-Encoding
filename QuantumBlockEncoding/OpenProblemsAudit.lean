@@ -12,6 +12,8 @@ acceptance test, and reference list.
 
 namespace QuantumBlockEncoding
 
+set_option maxRecDepth 100000
+
 /-- Stable list of the published problem identifiers. -/
 def openProblemIds : List String := openProblems.map OpenProblem.id
 
@@ -36,14 +38,12 @@ theorem openProblemIds_nodup : openProblemIds.Nodup := by
   decide
 
 /-- Every current problem has a nonempty statement, acceptance test, and source list. -/
-set_option maxRecDepth 10000 in
 theorem openProblems_all_actionable :
     ∀ problem ∈ openProblems, problem.actionable := by
   intro problem membership
-  simp only [openProblems, List.mem_cons, List.mem_singleton] at membership
-  rcases membership with h | h | h | h | h | h | h
-  all_goals subst problem
-  all_goals decide
+  simp [openProblems] at membership
+  rcases membership with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+    decide
 
 /-- The registry itself is a compiled artifact even though its entries remain open research. -/
 theorem openProblemRegistry_compiled :
