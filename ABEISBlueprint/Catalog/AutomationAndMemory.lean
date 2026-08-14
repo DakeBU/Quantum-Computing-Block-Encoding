@@ -645,7 +645,7 @@ Source: [QuantumBlockEncoding/Literature.lean:39](../../../../library/modules/li
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Literature.lean:219](../../../../library/modules/literature/#decl-quantumblockencoding-literaturecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Literature.lean:230](../../../../library/modules/literature/#decl-quantumblockencoding-literaturecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.primaryPapers" (lean := "QuantumBlockEncoding.primaryPapers")
@@ -659,7 +659,7 @@ Source: [QuantumBlockEncoding/Literature.lean:219](../../../../library/modules/l
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Literature.lean:221](../../../../library/modules/literature/#decl-quantumblockencoding-primarypapers). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Literature.lean:232](../../../../library/modules/literature/#decl-quantumblockencoding-primarypapers). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/OpenProblems.lean

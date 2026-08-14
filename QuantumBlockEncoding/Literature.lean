@@ -55,10 +55,21 @@ def literature : List PaperEntry :=
       authors := "Nikita Guseynov, Xiajie Huang, Nana Liu",
       year := 2025,
       role := PaperRole.explicitBlockEncoding,
-      status := ImplementationStatus.planned,
-      targetFile := "QuantumBlockEncoding/GHL2025.lean",
+      status := ImplementationStatus.skeleton,
+      targetFile := "QuantumBlockEncoding/BandedSparseAccess.lean",
       url := "https://arxiv.org/abs/2405.12855",
       note := "Periodic-boundary predecessor and baseline for derivative/operator encodings."
+    },
+    {
+      key := "conditionally-clean-promise-gates-2026",
+      title := "Asymptotically Optimal Quantum Circuits for Comparators and Incrementers",
+      authors := "Vivien Vandaele",
+      year := 2026,
+      role := PaperRole.arithmeticCircuits,
+      status := ImplementationStatus.skeleton,
+      targetFile := "QuantumBlockEncoding/PromiseGateOptimization.lean",
+      url := "https://arxiv.org/abs/2603.12917",
+      note := "ASPBE formalizes the controlled-conjugation and involutory dirty-flag identities; the paper's complete comparator and incrementer constructions remain outside current scope."
     },
     {
       key := "kharazi-alkadri-liu-mandadapu-whaley-2025-bvp",

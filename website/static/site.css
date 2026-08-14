@@ -2148,6 +2148,182 @@ code {
   white-space: nowrap;
 }
 
+.stage-circuit-render {
+  margin: 14px 0 10px;
+}
+
+.stage-circuit-canvas,
+.circuit-live-preview {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.stage-circuit-render figcaption {
+  margin-top: 6px;
+  color: var(--quiet);
+  font: 11px/1.45 var(--ui-font);
+}
+
+.quantikz-preview {
+  display: block;
+  width: 100%;
+  min-width: 430px;
+  height: auto;
+  min-height: 104px;
+}
+
+.qc-wire,
+.qc-control,
+.qc-target,
+.qc-meter {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.qc-gate {
+  fill: var(--block-soft);
+  stroke: var(--block-dark);
+  stroke-width: 1.4;
+}
+
+.qc-control-dot {
+  fill: var(--ink);
+}
+
+.qc-register,
+.qc-output,
+.qc-gate-label {
+  fill: var(--ink);
+  font-family: var(--ui-font);
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.qc-gate-label {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.qc-output {
+  fill: var(--muted);
+  font-size: 9px;
+}
+
+.stage-edit-link {
+  display: inline-block;
+  margin-top: 9px;
+  font-size: 12px;
+}
+
+.case-editor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.case-editor-panel {
+  min-width: 0;
+  border-top: 2px solid var(--line-strong);
+  padding-top: 12px;
+}
+
+.circuit-editor-panel {
+  grid-column: 1 / -1;
+}
+
+.editor-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 9px;
+}
+
+.editor-panel-heading h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.editor-panel-heading button,
+.case-editor-panel select {
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  color: var(--ink);
+  background: var(--surface);
+  font: 650 12px var(--ui-font);
+}
+
+.editor-panel-heading button {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.case-editor-panel textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 145px;
+  resize: vertical;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 12px;
+  color: var(--ink);
+  background: var(--surface);
+  font: 12px/1.55 var(--mono-font);
+}
+
+.circuit-editor-panel textarea {
+  min-height: 190px;
+}
+
+.case-live-preview {
+  min-height: 100px;
+  margin-top: 10px;
+  padding: 14px;
+}
+
+.math-preview {
+  display: grid;
+  align-items: center;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.proof-preview {
+  box-sizing: border-box;
+  padding-left: 38px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--muted);
+}
+
+.proof-preview li + li {
+  margin-top: 8px;
+}
+
+.field-label {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 360px);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 9px;
+  color: var(--quiet);
+  font: 700 11px var(--ui-font);
+}
+
+.case-editor-panel select {
+  min-height: 34px;
+  padding: 5px 8px;
+}
+
+.field-note {
+  margin: 0 0 8px;
+  color: var(--quiet);
+  font: 11px/1.45 var(--ui-font);
+}
+
 .copy-source-panel {
   min-width: 0;
   margin-top: 12px;
@@ -2215,6 +2391,47 @@ code {
   grid-template-columns: repeat(4, minmax(48px, 1fr));
   border: 1px solid var(--line);
   background: var(--surface);
+}
+
+.score-panel {
+  min-width: 0;
+}
+
+.score-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 7px 0 0;
+  color: var(--muted);
+  font: 10px/1.45 var(--ui-font);
+}
+
+.score-breakdown strong {
+  color: var(--ink);
+}
+
+.score-tier {
+  margin: 5px 0 0;
+  color: var(--quiet);
+  font: 10px/1.4 var(--ui-font);
+}
+
+.case-score-audit {
+  max-width: 1080px;
+  margin: 14px 0 20px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--state);
+  background: var(--state-soft);
+}
+
+.case-score-audit strong {
+  font: 750 12px var(--ui-font);
+}
+
+.case-score-audit p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .score-tuple span {
@@ -2310,7 +2527,7 @@ code {
     gap: 16px;
   }
 
-  .evolution-point > .score-tuple,
+  .evolution-point > .score-panel,
   .evolution-point > .score-unranked {
     grid-column: 2;
   }
@@ -2321,6 +2538,14 @@ code {
 
   .copy-packet-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-editor-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .circuit-editor-panel {
+    grid-column: 1;
   }
 }
 
@@ -2367,7 +2592,7 @@ code {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .evolution-point > .score-tuple,
+  .evolution-point > .score-panel,
   .evolution-point > .score-unranked {
     grid-column: 1;
   }

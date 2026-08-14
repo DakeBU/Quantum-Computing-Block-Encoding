@@ -74,6 +74,35 @@ theorem warmRobinFourSlotT3Cost_betterThan_figure4 :
     warmRobinFigure4PrimitiveResource_exact]
   decide
 
+/-- The evolved route improves every nonconstant score coordinate against the
+paper-seven normal form.  Consequently its winner status does not depend on
+the chosen ordering of the four displayed coordinates. -/
+theorem warmRobinFourSlotT3Cost_componentwise_paperSeven :
+    warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.gateCount <
+        warmRobinPaperSevenPrimitiveOperatorCandidate.cost.gateCount ∧
+      warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.depth <
+        warmRobinPaperSevenPrimitiveOperatorCandidate.cost.depth ∧
+      warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.auxiliaryQubits <
+        warmRobinPaperSevenPrimitiveOperatorCandidate.cost.auxiliaryQubits ∧
+      warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.oracleCalls =
+        warmRobinPaperSevenPrimitiveOperatorCandidate.cost.oracleCalls := by
+  change 106 < 312 ∧ 96 < 266 ∧ 3 < 5 ∧ 0 = 0
+  decide
+
+/-- The same componentwise dominance holds against the fixed-N8 Figure-4
+realization. -/
+theorem warmRobinFourSlotT3Cost_componentwise_figure4 :
+    warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.gateCount <
+        warmRobinFigure4PrimitiveOperatorCandidate.cost.gateCount ∧
+      warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.depth <
+        warmRobinFigure4PrimitiveOperatorCandidate.cost.depth ∧
+      warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.auxiliaryQubits <
+        warmRobinFigure4PrimitiveOperatorCandidate.cost.auxiliaryQubits ∧
+      warmRobinXorFourSlotPrimitiveOperatorCandidate.cost.oracleCalls =
+        warmRobinFigure4PrimitiveOperatorCandidate.cost.oracleCalls := by
+  change 106 < 881 ∧ 96 < 674 ∧ 3 < 6 ∧ 0 = 0
+  decide
+
 /-- The best fully verified Robin candidate under the frozen T3 comparison. -/
 noncomputable abbrev warmRobinBestVerified :
     VerifiedOperatorBlockEncoding ℂ 3 :=

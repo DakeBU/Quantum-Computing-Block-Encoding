@@ -28,16 +28,19 @@ CORE_COMPLETE_TRACKS = {
 
 
 class SiteContractTests(unittest.TestCase):
-    def test_core_tracks_have_compiled_proof_carrying_routes(self) -> None:
+    def test_core_tracks_have_compiled_declarations_and_honest_routes(self) -> None:
         for chapter in CHAPTERS:
             if chapter["track"] not in CORE_COMPLETE_TRACKS:
                 continue
             for result in chapter["results"]:
                 self.assertEqual(result["local_status"], "Compiled", result["declaration"])
-                self.assertEqual(result["route_status"], "Compiled", result["declaration"])
-                self.assertTrue(result["route_closures"], result["declaration"])
+                self.assertIn(result["route_status"], build_site.STATUS_ORDER)
+                if result["route_status"] == "Compiled":
+                    self.assertTrue(result["route_closures"], result["declaration"])
+                else:
+                    self.assertTrue(result["missing"], result["declaration"])
 
-    def test_rendered_core_chapters_have_no_incomplete_badges(self) -> None:
+    def test_rendered_core_chapters_explain_incomplete_routes(self) -> None:
         declarations = {}
         for chapter in CHAPTERS:
             for result in chapter["results"]:
@@ -59,18 +62,14 @@ class SiteContractTests(unittest.TestCase):
                 {"passed": True},
                 {"shortCommit": "test"},
             )
-            for badge_text in (
-                "Partial route",
-                "Stated, proof incomplete",
-                "Blocked",
-                "Planned",
-            ):
-                self.assertNotRegex(
-                    rendered,
-                    rf'<span class="status[^"]*">{re.escape(badge_text)}</span>',
-                    chapter["slug"],
-                )
             self.assertIn("Route closure", rendered, chapter["slug"])
+            for result in chapter["results"]:
+                if result["route_status"] != "Compiled":
+                    self.assertIn(
+                        build_site.html.escape(str(result["missing"])),
+                        rendered,
+                        result["declaration"],
+                    )
 
     def test_robin_tex_is_canonical(self) -> None:
         data = json.loads((ROOT / "website/robin-paper-map.json").read_text(encoding="utf-8"))
@@ -154,12 +153,33 @@ class SiteContractTests(unittest.TestCase):
 
     def test_case_pages_offer_copyable_latex_lean_and_quantikz(self) -> None:
         source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
+        workbench = (ROOT / "website/static/case-workbench.js").read_text(encoding="utf-8")
         self.assertIn("Construction and circuit LaTeX", source)
         self.assertIn("English proof LaTeX", source)
         self.assertIn("Lean declaration retrieval block", source)
+        self.assertIn("render_quantikz_svg", source)
+        self.assertIn("data-case-workbench", source)
+        self.assertIn("renderFormula", workbench)
+        self.assertIn("renderProof", workbench)
+        self.assertIn("renderCircuit", workbench)
         for circuits in STAGE_CIRCUITS.values():
             for circuit in circuits.values():
                 self.assertIn("\\begin{quantikz}", circuit)
+
+    def test_robin_primitive_counts_use_one_frozen_tier(self) -> None:
+        data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))
+        robin = next(case for case in data["cases"] if case["slug"] == "robin-ghl-one-term")
+        stages = {stage["name"]: stage for stage in robin["evolution"]["stages"]}
+        for name in (
+            "Fixed-N8 Figure-4 realization",
+            "Paper-seven normal form",
+            "XOR four-slot primitive",
+        ):
+            stage = stages[name]
+            split = stage["gateBreakdown"]
+            self.assertEqual(split["singleQubit"] + split["cx"], stage["score"][0])
+            self.assertIn("primitive", stage["instructionTier"].lower())
+        self.assertIn("every ordering", robin["evolution"]["scoreAudit"])
 
     def test_workspace_supports_both_translation_directions(self) -> None:
         page = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")

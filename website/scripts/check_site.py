@@ -109,7 +109,13 @@ MOJIBAKE_MARKERS = ("\ufffd", "ï¿½", "Ã", "Â", "â€", "ðŸ")
 
 def check_encoding(site: Path) -> list[str]:
     errors: list[str] = []
-    doubled_tex = re.compile(r'<div class="math-block">.*?\\\\[A-Za-z]', re.S)
+    # Restrict this check to the MathJax container itself. Case pages embed
+    # JSON later in the document, where valid JSON escaping spells `\frac`
+    # as `\\frac`; a cross-element regex would report that as corrupt TeX.
+    doubled_tex = re.compile(
+        r'<div class="math-block">(?:(?!</div>).)*?\\\\[A-Za-z]',
+        re.S,
+    )
     for path in sorted(site.rglob("*")):
         if not path.is_file() or path.suffix.lower() not in {".html", ".json", ".js", ".css", ".tex", ".md"}:
             continue

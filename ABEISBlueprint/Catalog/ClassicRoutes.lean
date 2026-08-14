@@ -20,9 +20,251 @@ This chapter is generated from the Lean source. Every node denotes one explicit 
 declaration, and every Lean link is checked during the Blueprint build. Definitions appear
 in source order before later results whenever the source module does so.
 
-Reader orientation: Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes. Each card separates an accessible
+Reader orientation: Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes. Each card separates an accessible
 reading cue from formal status, the source docstring, and the authoritative Lean panel.
 The standalone Library Explorer adds full-text search and filters across every chapter.
+
+# QuantumBlockEncoding/BandedSparseAccess.lean
+
+17 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.Word" (lean := "QuantumBlockEncoding.BandedSparseAccess.Word")
+*Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “word”. An 'n'-qubit computational-basis word, represented modulo '2^n'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* An 'n'-qubit computational-basis word, represented modulo '2^n'.
+
+*Declaration kind.* abbrev.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:21](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-word). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.slotWord" (lean := "QuantumBlockEncoding.BandedSparseAccess.slotWord")
+*Plain-English reading.* This definition gives the library's named construction or computation for “slot word”. The sparse selector embedded in the clean 'n'-qubit address register.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The sparse selector embedded in the clean 'n'-qubit address register.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:24](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-slotword). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.modularSumEquiv" (lean := "QuantumBlockEncoding.BandedSparseAccess.modularSumEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “modular sum equiv”. Reversible modular SUM: add the second register into the first and preserve the second register.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Reversible modular SUM: add the second register into the first and preserve the second register. This is Eq. (53) of arXiv:2405.12855.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:29](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-modularsumequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.liftLoaderEquiv" (lean := "QuantumBlockEncoding.BandedSparseAccess.liftLoaderEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “lift loader equiv”. Lift a reversible first-row address loader while leaving the row register untouched.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Lift a reversible first-row address loader while leaving the row register untouched.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:38](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-liftloaderequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.accessEquiv" (lean := "QuantumBlockEncoding.BandedSparseAccess.accessEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “access equiv”. The exact arbitrary-size banded-sparse-access semantics: load 'r\_(s,0)', then add the row modulo '2^n'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The exact arbitrary-size banded-sparse-access semantics: load 'r\_(s,0)', then add the row modulo '2^n'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:44](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-accessequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.modularSumEquiv_apply" (lean := "QuantumBlockEncoding.BandedSparseAccess.modularSumEquiv_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “modular sum equiv apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:48](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-modularsumequiv-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_apply" (lean := "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “access equiv apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:52](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-accessequiv-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_clean_slot" (lean := "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_clean_slot")
+*Plain-English reading.* Lean checks the proposition indexed as “access equiv clean slot”; the hypotheses and conclusion in the code panel fix its exact scope. Definition 6 action on the clean sparse-selector input.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Definition 6 action on the clean sparse-selector input.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:58](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-accessequiv-clean-slot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_preserves_row" (lean := "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_preserves_row")
+*Plain-English reading.* Lean checks the proposition indexed as “access equiv preserves row”; the hypotheses and conclusion in the code panel fix its exact scope. The row register is preserved for every basis input, not only clean sparse selectors.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The row register is preserved for every basis input, not only clean sparse selectors.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:70](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-accessequiv-preserves-row). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.accessMatrix" (lean := "QuantumBlockEncoding.BandedSparseAccess.accessMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “access matrix”. Exact matrix semantics induced by the reversible access map.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Exact matrix semantics induced by the reversible access map.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:77](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-accessmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.accessMatrix_unitary" (lean := "QuantumBlockEncoding.BandedSparseAccess.accessMatrix_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “access matrix unitary”; the hypotheses and conclusion in the code panel fix its exact scope. The arbitrary-size semantic access construction is unitary.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The arbitrary-size semantic access construction is unitary.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:82](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-accessmatrix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.paperSingleQubitUpperBound" (lean := "QuantumBlockEncoding.BandedSparseAccess.paperSingleQubitUpperBound")
+*Plain-English reading.* This definition gives the library's named construction or computation for “paper single qubit upper bound”. Source-facing single-qubit upper bound printed in Lemma 1 of arXiv:2405.12855v3.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Source-facing single-qubit upper bound printed in Lemma 1 of arXiv:2405.12855v3. Natural subtraction is appropriate only in the paper's stated nontrivial register regime.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:90](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-papersinglequbitupperbound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.paperCnotUpperBound" (lean := "QuantumBlockEncoding.BandedSparseAccess.paperCnotUpperBound")
+*Plain-English reading.* This definition gives the library's named construction or computation for “paper cnot upper bound”. Source-facing CNOT upper bound printed in the same lemma.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Source-facing CNOT upper bound printed in the same lemma.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:94](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-papercnotupperbound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.BandedSparseAccess.paperPureAncillaUpperBound" (lean := "QuantumBlockEncoding.BandedSparseAccess.paperPureAncillaUpperBound")
+*Plain-English reading.* This definition gives the library's named construction or computation for “paper pure ancilla upper bound”. Source-facing clean-ancilla upper bound printed in the same lemma.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* Source-facing clean-ancilla upper bound printed in the same lemma.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:98](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-paperpureancillaupperbound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.paperSingleQubitUpperBound_eq" (lean := "QuantumBlockEncoding.BandedSparseAccess.paperSingleQubitUpperBound_eq")
+*Plain-English reading.* Lean checks the proposition indexed as “paper single qubit upper bound eq”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:101](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-papersinglequbitupperbound-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.paperCnotUpperBound_eq" (lean := "QuantumBlockEncoding.BandedSparseAccess.paperCnotUpperBound_eq")
+*Plain-English reading.* Lean checks the proposition indexed as “paper cnot upper bound eq”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:105](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-papercnotupperbound-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BandedSparseAccess.paperPureAncillaUpperBound_eq" (lean := "QuantumBlockEncoding.BandedSparseAccess.paperPureAncillaUpperBound_eq")
+*Plain-English reading.* Lean checks the proposition indexed as “paper pure ancilla upper bound eq”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BandedSparseAccess.lean:110](../../../../library/modules/bandedsparseaccess/#decl-quantumblockencoding-bandedsparseaccess-paperpureancillaupperbound-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
 
 # QuantumBlockEncoding/BlockEncodingClassics.lean
 
@@ -33,7 +275,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Permutation-matrix entries for a finite basis map.
 
@@ -47,7 +289,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:19](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Column inner products for rational matrix-level orthogonality checks.
 
@@ -61,7 +303,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:23](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Row inner products for rational matrix-level orthogonality checks.
 
@@ -75,7 +317,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:27](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Rational orthogonality predicate for real-valued finite matrix backends: 'U^T U = I' and 'U U^T = I', expressed entrywise.
 
@@ -89,7 +331,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:34](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Clean block induced by an embedding of the system basis into a larger basis.
 
@@ -103,7 +345,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:39](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Canonical product-register embedding. If the full Hilbert basis is represented as 'ancilla × system', this maps '(a, s)' to the flattened index 'a \* system + s'.
 
@@ -117,7 +359,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:48](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Clean block for a flattened 'ancilla × system' matrix.
 
@@ -131,7 +373,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:60](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Core 'BE.PermMatrix.CleanBlock' leaf: the clean block of a permutation matrix is just the finite image predicate restricted to clean embedded rows and columns.
 
@@ -145,7 +387,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:69](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Product-register version of 'cleanBlockBy\_permMatrix\_entry'. This is the standard entrywise bridge for block encodings whose clean ancilla is explicitly one register of a flattened product basis.
 
@@ -159,7 +401,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:81](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Entrywise bridge from a finite image calculation to an exact clean block. This is the leaf that converts a successful finite reversible construction into the block-entry theorem lower agents usually need.
 
@@ -173,7 +415,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:93](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Pointwise extension principle for product-register clean blocks.
 
@@ -187,7 +429,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:104](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Kronecker delta over the project-local rational matrix backend.
 
@@ -201,7 +443,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:116](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Column one-sparse matrix with support map 'c': column 'j' has its possible nonzero entry at row 'c j', with amplitude 'amp j'.
 
@@ -215,7 +457,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:123](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -229,7 +471,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:127](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* One-sparse reconstruction leaf. If a target matrix is supported only at 'row = c col', then its support map and column amplitudes reconstruct it entrywise.
 
@@ -243,7 +485,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:139](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Proof-carrying one-sparse certificate. This is the exact finite leaf behind the textbook one-sparse block-encoding route after the amplitude and location oracles have been reduced to a support map.
 
@@ -257,7 +499,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:155](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -271,7 +513,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:163](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -285,7 +527,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:166](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Column sparse clean-entry expression: a finite sum over slot indices of value oracle entries times location deltas. This is the entrywise target for Lin-style sparse column proofs before a task attaches its uniqueness lemmas.
 
@@ -299,7 +541,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:177](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Column Gram entries of a permutation matrix collapse by injectivity.
 
@@ -313,7 +555,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:283](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Row Gram entries of a permutation matrix collapse by bijectivity.
 
@@ -327,7 +569,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:330](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* A bijective finite image induces a rational orthogonal permutation matrix. This is the reusable bridge from finite permutation certificates to the matrix-level unitarity proxy used by the exploratory block-encoding tasks.
 
@@ -341,7 +583,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:389](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -355,7 +597,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:396](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -369,7 +611,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:409](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* General row/column sparse delta expression. A paper-specific route must prove that row-location and column-location uniqueness collapse this finite double sum to the target entry divided by the sparsity normalizer.
 
@@ -383,7 +625,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:434](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Proof-carrying sparse-column contract. The contract is not a theorem by itself; it records the exact clean-entry theorem a paper-specific lower agent must supply.
 
@@ -397,7 +639,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:456](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -411,7 +653,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:466](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Proof-carrying row/column sparse contract for the general sparse route.
 
@@ -425,7 +667,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:475](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -439,7 +681,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:486](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Value-to-amplitude oracle contract. A task may use this only after it supplies both cleanup and amplitude-entry proofs; the record cannot close a proof by itself.
 
@@ -453,7 +695,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:498](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -467,7 +709,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:509](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Symmetric matrix predicate for the rational backend.
 
@@ -481,7 +723,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:516](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* A symmetric full matrix has a symmetric clean block under any embedding.
 
@@ -495,7 +737,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:520](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Two-by-two scalar dilation block. Unitarity requires a separate norm proof.
 
@@ -509,7 +751,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:528](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -523,7 +765,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:530](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -537,7 +779,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:532](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -551,7 +793,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:539](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -565,7 +807,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:543](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -579,7 +821,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:547](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -593,7 +835,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:551](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Two-entry row dot product for the scalar dilation block.
 
@@ -607,7 +849,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:556](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -621,7 +863,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:560](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -635,7 +877,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:564](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -649,7 +891,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:573](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -663,7 +905,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:578](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -677,7 +919,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:583](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -691,7 +933,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:590](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Chebyshev polynomial values, kept as a small executable recurrence.
 
@@ -705,7 +947,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:598](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -719,7 +961,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:603](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -733,7 +975,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:605](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -747,7 +989,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:607](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -761,7 +1003,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:609](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -775,7 +1017,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:613](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -789,7 +1031,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:616](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Proof-carrying exact clean-block package. This is smaller than the full operator-candidate record and is intended for reusable theorem arithmetic.
 
@@ -803,7 +1045,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:623](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The certified clean block associated with a proof-carrying package.
 
@@ -817,7 +1059,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:632](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -831,7 +1073,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:636](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Qubitization/Chebyshev proof-carrying contract. The full qubitization theorem will instantiate this after the two-dimensional invariant-subspace calculation is formalized.
 
@@ -845,7 +1087,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:648](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Abstract partial-permutation certificate. A concrete task supplies the embedding, finite image, target matrix, and image-entry theorem; this wrapper returns a reusable exact clean-block certificate.
 
@@ -859,7 +1101,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:662](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* One-term LCU leaf. It is mathematically trivial, but useful for proof-DAG normalization: when an LCU population collapses to one term, the selected block is just that term.
 
@@ -873,7 +1115,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:679](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -887,7 +1129,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:682](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Pointwise scalar multiplication for the project-local matrix backend.
 
@@ -901,7 +1143,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:689](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Pointwise addition for the project-local matrix backend.
 
@@ -915,7 +1157,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:693](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Two-term weighted sum, the finite clean-block algebra behind a 2-term LCU.
 
@@ -929,7 +1171,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:697](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -943,7 +1185,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:701](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -957,7 +1199,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:707](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Proof-carrying LCU contract. Full PREPARE-SELECT algebra can later instantiate 'cleanBlock'; downstream arithmetic should only depend on the exposed 'blockProof'.
 
@@ -971,7 +1213,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:722](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -985,7 +1227,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:731](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Two-term LCU arithmetic after both selected clean blocks have already been proved. Full PREPARE-SELECT-PREPARE dagger semantics should instantiate this leaf after proving the selected clean block equals the weighted sum.
 
@@ -999,7 +1241,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:743](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -1013,7 +1255,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:754](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Promote an exact clean-block certificate to the LCU-style arithmetic layer.
 
@@ -1027,7 +1269,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:764](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -1041,7 +1283,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:792](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Exact product certificate for already-extracted clean blocks.
 
@@ -1055,7 +1297,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:800](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Product bridge for exact clean-block certificates via the arithmetic layer.
 
@@ -1069,7 +1311,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:811](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Tensor-style resource score: parallel depth is the maximum of two depths.
 
@@ -1083,7 +1325,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:819](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -1097,7 +1339,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:825](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -1111,7 +1353,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:828](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Product-style resource score: sequential depth adds.
 
@@ -1125,7 +1367,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:832](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -1139,7 +1381,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:838](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Hermitian-dilation target shape. The complete block-matrix construction will live in a richer matrix backend; the important reusable Lean leaf is that a non-Hermitian target is explicitly converted into a named downstream target, not silently treated as Hermitian.
 
@@ -1153,7 +1395,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:847](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* QSVT consumer contract. QSVT is deliberately downstream of a proved block encoding: this record cannot be built without an input block certificate.
 
@@ -1167,7 +1409,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:857](../../../../librar
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Zero-error approximate incumbent at the clean-block level.
 
@@ -1181,7 +1423,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:866](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* Any exact clean-block certificate can be used as a zero-error approximate incumbent in the adaptive exact-to-approximate ABEIS policy.
 
@@ -1195,7 +1437,7 @@ Source: [QuantumBlockEncoding/BlockEncodingClassics.lean:877](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
+*Why it is in this chapter.* Reusable band-address, permutation, sparse, LCU, product, dilation, and QSVT-facing block-encoding routes.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 

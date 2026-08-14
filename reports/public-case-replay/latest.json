@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.330122,
+      "elapsed_seconds": 0.326083,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.045878,
+      "elapsed_seconds": 0.043082,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.702079,
+      "elapsed_seconds": 0.712289,
       "passed": true
     },
     {
@@ -160,7 +160,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.960217,
+      "elapsed_seconds": 0.95248,
       "passed": true
     },
     {
@@ -200,14 +200,14 @@
         "passed": true
       },
       "case": "Robin XOR four-slot T3",
-      "elapsed_seconds": 19.954635,
+      "elapsed_seconds": 19.671707,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 79.530489,
-    "population_controller": 0.061091,
-    "total": 101.600991
+    "lean_modules": 3.033739,
+    "population_controller": 0.061342,
+    "total": 24.819011
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -217,8 +217,8 @@
     "qiskit": "2.4.2"
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
-  "git_branch": "agent/robin-t3-executable-backends",
-  "git_commit": "9e14b06c9828ddd3c990585a77e941751739d978",
+  "git_branch": "main",
+  "git_commit": "610762da49c392a5a2c4c728b9476e4461949094",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -289,5 +289,5 @@
     "status": "Three exact primitive block encodings; frozen same-tier winner certified"
   },
   "schema_version": 1,
-  "source_digest": "1581419e5657b55adfea4d39e65a926c2098f9577cfee4ed8bee7aed32880552"
+  "source_digest": "29962cbfe38af779d479e616758392ba5c082bc20ca2a1ec21d2e5f6d2f37bfd"
 }

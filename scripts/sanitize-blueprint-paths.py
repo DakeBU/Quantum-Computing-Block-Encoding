@@ -21,6 +21,9 @@ ABSOLUTE_PATH_RE = re.compile(
     r"|(?<![A-Za-z0-9_])/(?:home|Users|root)/[^\s\"'<>]+)"
 )
 WEB_URL_RE = re.compile(r"https?://[^\s\"'<>]+", flags=re.IGNORECASE)
+MATHJAX_REGION_RE = re.compile(
+    r"\\\[(?:.|\n)*?\\\]|\\\((?:.|\n)*?\\\)",
+)
 PORTABLE_PATH_RE = re.compile(
     r"[A-Za-z0-9_. -]+(?:[\\/][A-Za-z0-9_. -]+)+"
     r"(?:(?:#|\?)[^\s\"'<>]*)?"
@@ -221,7 +224,11 @@ def _assert_no_local_paths(output_root: Path, repo_root: Path) -> int:
         if any(spelling and spelling in folded for spelling in repo_spellings):
             leaking_files += 1
             continue
-        if ABSOLUTE_PATH_RE.search(text):
+        # TeX such as ``I:\quad\mathrm{toggle}`` resembles a Windows drive
+        # path. Repository-root checks above still inspect the complete file;
+        # only the generic path heuristic skips rendered mathematics.
+        non_math_text = MATHJAX_REGION_RE.sub("", text)
+        if ABSOLUTE_PATH_RE.search(non_math_text):
             leaking_files += 1
 
     if leaking_files:

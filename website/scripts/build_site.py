@@ -2091,7 +2091,8 @@ def case_kind_label(kind: object) -> str:
     }.get(str(kind), str(kind))
 
 
-def render_case_score(score: object) -> str:
+def render_case_score(stage: dict[str, object]) -> str:
+    score = stage.get("score")
     if score is None:
         return '<span class="score-unranked">not ranked at this tier</span>'
     values = list(score)  # type: ignore[arg-type]
@@ -2100,7 +2101,17 @@ def render_case_score(score: object) -> str:
         f'<span><strong>{int(value)}</strong><small>{label}</small></span>'
         for value, label in zip(values, labels, strict=True)
     )
-    return f'<div class="score-tuple" aria-label="resource score">{cells}</div>'
+    breakdown = stage.get("gateBreakdown")
+    breakdown_html = ""
+    if isinstance(breakdown, dict):
+        breakdown_html = (
+            '<p class="score-breakdown"><strong>Primitive split</strong>'
+            f'<span>{int(breakdown["singleQubit"])} single-qubit</span>'
+            f'<span>{int(breakdown["cx"])} CX</span></p>'
+        )
+    tier = str(stage.get("instructionTier", ""))
+    tier_html = f'<p class="score-tier">{html.escape(tier)}</p>' if tier else ""
+    return f'<div class="score-panel"><div class="score-tuple" aria-label="resource score">{cells}</div>{breakdown_html}{tier_html}</div>'
 
 
 def render_copyable_source(title: str, source: str, language: str) -> str:
@@ -2109,6 +2120,117 @@ def render_copyable_source(title: str, source: str, language: str) -> str:
   <div class="copy-source-actions"><button type="button" data-copy-source>Copy</button></div>
   <pre><code class="language-{html.escape(language)}">{html.escape(source)}</code></pre>
 </details>"""
+
+
+def extract_tex_argument(source: str, command: str) -> str | None:
+    """Extract one balanced braced argument from a small reviewed TeX command."""
+    start = source.find(command)
+    if start < 0:
+        return None
+    brace = source.find("{", start + len(command))
+    if brace < 0:
+        return None
+    depth = 0
+    for index in range(brace, len(source)):
+        if source[index] == "{":
+            depth += 1
+        elif source[index] == "}":
+            depth -= 1
+            if depth == 0:
+                return source[brace + 1:index]
+    return None
+
+
+def circuit_plain_label(source: str) -> str:
+    """Produce a compact readable label for the reviewed quantikz subset."""
+    label = source.replace("$", "")
+    label = re.sub(r"\\ket\{([^{}]*)\}", r"|\1>", label)
+    label = re.sub(r"\\(?:mathrm|textrm|rm)\s*\{([^{}]*)\}", r"\1", label)
+    replacements = {
+        r"\dagger": "†",
+        r"\perp": "perp",
+        r"\alpha": "alpha",
+        r"\theta": "theta",
+        r"\arccos": "arccos",
+        r"\mathrm": "",
+        r"\rm": "",
+        r"\!": "",
+        r"\,": " ",
+        r"\;": " ",
+    }
+    for old, new in replacements.items():
+        label = label.replace(old, new)
+    label = label.replace("{", "").replace("}", "")
+    label = label.replace("\\", "")
+    return re.sub(r"\s+", " ", label).strip()
+
+
+def quantikz_rows(source: str) -> list[list[str]]:
+    body = re.sub(r"\\begin\{quantikz\}(?:\[[^\]]*\])?", "", source)
+    body = body.replace(r"\end{quantikz}", "")
+    rows = re.split(r"\\\\\s*(?:\n|$)", body.strip())
+    return [[cell.strip() for cell in row.split("&")] for row in rows if row.strip()]
+
+
+def render_quantikz_svg(source: str, title: str) -> str:
+    """Render the repository's reviewed grouped-register quantikz subset as SVG."""
+    rows = quantikz_rows(source)
+    row_gap = 62
+    col_gap = 132
+    left = 118
+    top = 38
+    columns = max((len(row) for row in rows), default=1)
+    width = max(430, left + max(1, columns - 1) * col_gap + 116)
+    height = max(104, top * 2 + max(0, len(rows) - 1) * row_gap)
+    parts = [
+        f'<svg class="quantikz-preview" viewBox="0 0 {width} {height}" role="img" '
+        f'aria-label="{html.escape(title)}"><title>{html.escape(title)}</title>'
+    ]
+    for row_index, row in enumerate(rows):
+        y = top + row_index * row_gap
+        parts.append(f'<line class="qc-wire" x1="92" y1="{y}" x2="{width - 34}" y2="{y}"/>')
+        for col_index, cell in enumerate(row):
+            x = left + col_index * col_gap
+            left_label = extract_tex_argument(cell, r"\lstick")
+            right_label = extract_tex_argument(cell, r"\rstick")
+            gate_label = extract_tex_argument(cell, r"\gate")
+            if left_label is not None:
+                parts.append(
+                    f'<text class="qc-register" x="8" y="{y + 5}">'
+                    f'{html.escape(circuit_plain_label(left_label))}</text>'
+                )
+            if gate_label is not None:
+                wires_match = re.search(r"\\gate\[wires=(\d+)\]", cell)
+                wires = int(wires_match.group(1)) if wires_match else 1
+                gate_height = 38 + (wires - 1) * row_gap
+                gate_y = y - 19
+                parts.append(
+                    f'<rect class="qc-gate" x="{x - 48}" y="{gate_y}" width="96" '
+                    f'height="{gate_height}" rx="4"/>'
+                )
+                parts.append(
+                    f'<text class="qc-gate-label" x="{x}" y="{gate_y + gate_height / 2 + 4}" '
+                    f'text-anchor="middle">{html.escape(circuit_plain_label(gate_label))}</text>'
+                )
+            ctrl = re.search(r"\\ctrl\{(-?\d+)\}", cell)
+            if ctrl:
+                target_y = y + int(ctrl.group(1)) * row_gap
+                parts.append(f'<line class="qc-control" x1="{x}" y1="{y}" x2="{x}" y2="{target_y}"/>')
+                parts.append(f'<circle class="qc-control-dot" cx="{x}" cy="{y}" r="5"/>')
+            if r"\targ" in cell:
+                parts.append(f'<circle class="qc-target" cx="{x}" cy="{y}" r="12"/>')
+                parts.append(f'<line class="qc-target" x1="{x - 8}" y1="{y}" x2="{x + 8}" y2="{y}"/>')
+                parts.append(f'<line class="qc-target" x1="{x}" y1="{y - 8}" x2="{x}" y2="{y + 8}"/>')
+            if r"\meter" in cell:
+                parts.append(f'<path class="qc-meter" d="M{x - 15},{y + 10} A15,15 0 0 1 {x + 15},{y + 10}"/>')
+                parts.append(f'<line class="qc-meter" x1="{x}" y1="{y + 8}" x2="{x + 9}" y2="{y - 8}"/>')
+            if right_label is not None:
+                parts.append(
+                    f'<text class="qc-output" x="{min(width - 190, x - 20)}" y="{y - 12}">'
+                    f'{html.escape(circuit_plain_label(right_label))}</text>'
+                )
+    parts.append("</svg>")
+    return "".join(parts)
 
 
 def case_stage_gate_labels(case: dict[str, object], stage: dict[str, object]) -> list[str]:
@@ -2198,13 +2320,16 @@ def render_case_evolution(
   <div class="evolution-copy">
     <div class="evolution-heading"><h3>{html.escape(str(stage['name']))}</h3><span>{html.escape(str(stage['status']))}</span></div>
     <p>{html.escape(str(stage['description']))}</p>
-    {render_stage_circuit_visual(case, stage)}
+    <figure class="stage-circuit-render"><div class="stage-circuit-canvas">{render_quantikz_svg(circuit_latex, str(stage['name']))}</div><figcaption>Grouped-register circuit. Open the source or workbench to adapt notation.</figcaption></figure>
     <a class="theorem-root" href="{module_url(prefix, declarations[anchor])}"><span>Lean root</span><code>{html.escape(anchor)}</code></a>
+    <a class="text-link stage-edit-link" href="#case-workbench" data-edit-circuit="{html.escape(str(stage['name']))}">Edit and preview this stage &#8594;</a>
     {render_copyable_source('Copy this stage as quantikz', circuit_latex, 'latex')}
   </div>
-  {render_case_score(stage.get('score'))}
+  {render_case_score(stage)}
 </article>""")
-    return f"""<p class="figure-caption">{html.escape(str(case['evolution']['caption']))}</p>
+    audit = str(case["evolution"].get("scoreAudit", ""))
+    audit_html = f'<aside class="case-score-audit"><strong>Cost audit</strong><p>{html.escape(audit)}</p></aside>' if audit else ""
+    return f"""<p class="figure-caption">{html.escape(str(case['evolution']['caption']))}</p>{audit_html}
 <div class="evolution-track">{''.join(points)}</div>"""
 
 
@@ -2232,8 +2357,35 @@ def render_case_copy_packet(case: dict[str, object]) -> str:
     lean = "import QuantumBlockEncoding\n\n" + "\n".join(
         f"#check {anchor}" for anchor in case["leanAnchors"]
     )
-    return f"""<section class="content-section" id="copy-construction">
-<div class="section-heading"><p class="eyebrow">Editable source</p><h2>Copy the construction and proof</h2><p>The LaTeX is a grouped-register explanation; the exact primitive authority is the linked Lean source and executable artifact. The Lean block imports the library and checks every root used by this page.</p></div>
+    editor_data = {
+        "formula": str(case["formula"]),
+        "proofSteps": [str(stage["description"]) for stage in case["evolution"]["stages"]],
+        "circuits": {
+            str(stage["name"]): stage_circuit_latex(str(case["slug"]), str(stage["name"]))
+            for stage in case["evolution"]["stages"]
+        },
+    }
+    encoded_editor_data = (
+        json.dumps(editor_data, ensure_ascii=True)
+        .replace("&", r"\u0026")
+        .replace("<", r"\u003c")
+        .replace(">", r"\u003e")
+    )
+    options = "".join(
+        f'<option value="{html.escape(name)}">{html.escape(name)}</option>'
+        for name in editor_data["circuits"]
+    )
+    return f"""<section class="content-section case-workbench" id="case-workbench" data-case-workbench>
+<div class="section-heading"><p class="eyebrow">Reader workbench</p><h2>Edit, preview, then copy</h2><p>Change symbols, language, proof steps, or the grouped-register circuit locally in your browser. The preview is explanatory; the linked Lean declaration remains the certificate.</p></div>
+<script type="application/json" data-case-editor-data>{encoded_editor_data}</script>
+<div class="case-editor-grid">
+  <section class="case-editor-panel"><div class="editor-panel-heading"><h3>Mathematical construction</h3><button type="button" data-copy-editor="formula">Copy</button></div><textarea data-case-formula spellcheck="false" aria-label="Editable construction LaTeX"></textarea><div class="case-live-preview math-preview" data-case-formula-preview aria-live="polite"></div></section>
+  <section class="case-editor-panel"><div class="editor-panel-heading"><h3>Proof steps</h3><button type="button" data-copy-editor="proof">Copy as LaTeX</button></div><p class="field-note">One step per line. Natural language and inline mathematics are both accepted.</p><textarea data-case-proof spellcheck="true" aria-label="Editable proof steps"></textarea><ol class="case-live-preview proof-preview" data-case-proof-preview></ol></section>
+  <section class="case-editor-panel circuit-editor-panel"><div class="editor-panel-heading"><h3>Quantum circuit</h3><button type="button" data-copy-editor="circuit">Copy quantikz</button></div><label class="field-label">Stage<select data-case-circuit-select>{options}</select></label><textarea data-case-circuit spellcheck="false" aria-label="Editable quantikz circuit"></textarea><div class="case-live-preview circuit-live-preview" data-case-circuit-preview></div><p class="field-note" data-case-circuit-diagnostic></p></section>
+</div>
+</section>
+<section class="content-section" id="copy-construction">
+<div class="section-heading"><p class="eyebrow">Complete packet</p><h2>Copy the reviewed construction and proof</h2><p>The packet below is generated from the reviewed case record. The exact primitive authority is the linked Lean source and executable artifact.</p></div>
 <div class="copy-packet-grid">
 {render_copyable_source('Construction and circuit LaTeX', construction, 'latex')}
 {render_copyable_source('English proof LaTeX', proof, 'latex')}
@@ -2327,7 +2479,7 @@ def render_example_case(
     if case.get("sourceInterpretation"):
         toc.append(("source-interpretation", "Source decisions"))
     toc.extend([("lean-certificate", "Lean certificates"), ("executable-evidence", "Executable evidence")])
-    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=toc)
+    return page_template(title=str(case["title"]), route=route, current=route, body=body, coverage=coverage, gate=gate, context=context, toc=toc, extra_scripts=("static/case-workbench.js",))
 
 
 def render_task_builder(

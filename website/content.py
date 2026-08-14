@@ -441,9 +441,34 @@ CHAPTERS = [
             "Reuse permutation, one-sparse, LCU, product, dilation, and QSVT "
             "interfaces instead of rediscovering each route per benchmark."
         ),
-        "modules": ["QuantumBlockEncoding/BlockEncodingClassics.lean"],
+        "modules": [
+            "QuantumBlockEncoding/BlockEncodingClassics.lean",
+            "QuantumBlockEncoding/BandedSparseAccess.lean",
+        ],
         "diagram": "module-dependencies",
         "results": [
+            result(
+                "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_clean_slot",
+                "Banded sparse address access",
+                "A reversible first-row address loader followed by modular SUM writes the selected band address and preserves the row register.",
+                r"|0^{n-l}\rangle|s\rangle|i\rangle\mapsto|r_{s0}+i\bmod 2^n\rangle|i\rangle.",
+                "The source-dependent loader chooses the first-row offset; the reusable SUM operation shifts it to row i.",
+                "Robin Lemma 2 reuses exactly this construction from Lemma 1 of arXiv:2405.12855.",
+                [
+                    "QuantumBlockEncoding.BandedSparseAccess.modularSumEquiv",
+                    "QuantumBlockEncoding.BandedSparseAccess.accessMatrix_unitary",
+                ],
+                "Compose two finite equivalences, simplify their action on a clean sparse slot, and obtain unitarity from the induced permutation matrix.",
+                [
+                    ("Load the first-row band offset.", "liftLoaderEquiv"),
+                    ("Add the preserved row modulo 2^n.", "modularSumEquiv"),
+                    ("Rewrite the clean slot with the loader specification.", "accessEquiv_clean_slot"),
+                    ("Promote the reversible map to a unitary matrix.", "accessMatrix_unitary"),
+                ],
+                "Compiled",
+                "Partial route",
+                "The arbitrary-size semantic unitary is closed. The paper's general one-qubit/CNOT upper bounds still need a gate compiler for the loader and modular adder.",
+            ),
             result(
                 "QuantumBlockEncoding.BlockEncodingClassics.partialPermutationCertificate",
                 "Partial-permutation certificate",
@@ -596,9 +621,51 @@ CHAPTERS = [
             "QuantumBlockEncoding/Resources.lean",
             "QuantumBlockEncoding/BlockEncoding.lean",
             "QuantumBlockEncoding/Automation.lean",
+            "QuantumBlockEncoding/PromiseGateOptimization.lean",
         ],
         "diagram": "candidate-lifecycle",
         "results": [
+            result(
+                "QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_matrix",
+                "Control only the middle of a conjugation",
+                "For a controlled V-dagger U V construction, V and V-dagger stay uncontrolled; only U receives the control.",
+                r"C(V^\dagger U V)=(I\otimes V^\dagger)\,C(U)\,(I\otimes V).",
+                "Both control branches agree: the false branch cancels V with V-dagger, and the true branch performs the conjugated target.",
+                "This removes expensive controls and lets the outer operations use promise-register workspace.",
+                [
+                    "QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_equiv",
+                    "QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul",
+                ],
+                "Prove the basis action by cases on the control bit, then lift the equivalence equality to permutation matrices.",
+                [
+                    ("Split the false and true control branches.", "cases control"),
+                    ("Cancel the outer equivalence on the false branch.", "Equiv.symm_apply_apply"),
+                    ("Compose the three permutation matrices.", "equivPermutationMatrix_mul"),
+                ],
+                "Compiled",
+                "Compiled",
+            ),
+            result(
+                "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_action",
+                "Replace a clean flag by a dirty flag",
+                "If U squared is identity, compute-use-uncompute-use restores an arbitrary dirty flag and applies U exactly when requested.",
+                r"U^2=I\Longrightarrow(c,b,|\psi\rangle)\mapsto(c,b,U^{[c]}|\psi\rangle).",
+                "The extra controlled-U cancels the accidental application caused by an initially set dirty flag.",
+                "It turns an ancilla-saving idea into a proof obligation that the planner can check before mutating a circuit.",
+                [
+                    "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolutionEquiv",
+                    "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_unitary",
+                ],
+                "Case-split on the requested control and unknown dirty bit; use U(U(x))=x in the two cancellation branches.",
+                [
+                    ("Toggle the dirty flag with the predicate.", "toggleDirtyFlagEquiv"),
+                    ("Use U under the flag twice.", "dirtyFlagControlledTargetEquiv"),
+                    ("Apply involutivity to cancel accidental work.", "involutive"),
+                    ("Read the exact clean/dirty cost tradeoff.", "dirtyFlag_replaces_cleanFlag"),
+                ],
+                "Compiled",
+                "Compiled",
+            ),
             result(
                 "QuantumBlockEncoding.BlockEncodingCost.betterThan",
                 "Lexicographic candidate comparison",
@@ -776,6 +843,7 @@ LESSONS = {
         ],
         "sections": [
             ("Sparse routing", r"O_c|j\rangle=|c(j)\rangle.", "When support is a reversible finite map, the proof reduces to routed basis indices and vanishing off-support entries."),
+            ("Banded sparse access", r"U_A^{(l)}:|0^{n-l}\rangle|s\rangle\mapsto|r_{s0}\rangle,\qquad U^{SUM}:|r\rangle|i\rangle\mapsto|r+i\bmod2^n\rangle|i\rangle.", "ASPBE proves the arbitrary-size semantic composition and its unitary permutation matrix. The source paper's general resource formula remains a separate compiler theorem."),
             ("Composition", r"\operatorname{block}(U_BU_A)=BA.", "Compatible clean-block certificates compose. Register compatibility and normalizers still have to match."),
             ("Consumer boundary", r"U_A\leadsto p^{(\mathrm{SV})}(A/\alpha).", "QSVT does not repair an invalid source encoding. The source certificate and the polynomial approximation are separate proof obligations."),
         ],
@@ -804,7 +872,8 @@ LESSONS = {
         ],
         "sections": [
             ("Lexicographic ranking", r"(g,d,a,o)_1<_{\rm lex}(g,d,a,o)_2.", "The first differing coordinate decides. A low-depth invalid circuit never outranks a valid certificate."),
-            ("Promise registers as an optimization hypothesis", r"W=V^\dagger U V,\qquad C^kW=\widetilde V^\dagger\,(C^k\widetilde U)\,\widetilde V.", "The promise-gate method of arXiv:2603.12917 can replace some clean work qubits by promised control-register qubits and avoids controlling the outer V and V-dagger pair. If U is involutory and the implementations preserve workspace for every input, one clean helper may be replaced by a dirty helper. ASPBE treats this as a candidate mutation: the planner must first prove the promise subspace, restoration, involution, and cost model before promotion."),
+            ("Promise registers as a proved optimization rule", r"C(V^\dagger U V)=(I\otimes V^\dagger)C(U)(I\otimes V).", "ASPBE proves the controlled-conjugation identity from arXiv:2603.12917 as an exact finite permutation-matrix theorem. The planner may remove controls from V and V-dagger only after matching register order and target semantics."),
+            ("Dirty helper for an involution", r"U^2=I:\quad\mathrm{toggle};C(U);\mathrm{toggle};C(U).", "ASPBE also proves that this protocol restores an arbitrary dirty flag and costs one extra controlled-U compared with the clean-flag construction. Concrete candidates still owe the involution, promise, restoration, and same-tier resource proofs."),
             ("Executable checks", r"\text{Lean certificate}+\text{finite export}+\text{backend report}.", "Qiskit or QASM tests catch convention and implementation errors, but numerical agreement is not substituted for the symbolic theorem."),
         ],
         "checkpoint": "Identify which cost coordinates are proved from the logical circuit and which depend on a selected hardware backend.",

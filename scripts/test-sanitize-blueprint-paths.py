@@ -88,6 +88,18 @@ class SanitizerTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 SANITIZER._assert_no_local_paths(output, root)
 
+    def test_publication_scan_allows_mathjax_control_protocol(self) -> None:
+        root = Path.cwd().resolve()
+        with tempfile.TemporaryDirectory(dir=root) as temporary:
+            output = Path(temporary)
+            (output / "formula.html").write_text(
+                r'<div class="math-block">\[I:\quad\mathrm{toggle};C(U)\]</div>',
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                SANITIZER._assert_no_local_paths(output, root), 1
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -82,12 +82,17 @@ CATALOGS = [
             "ReversibleClassical.lean",
             "PrimitiveMacros.lean",
             "ModularAdder3.lean",
+            "PromiseGateOptimization.lean",
             "UniformlyControlledRy.lean",
             "TextbookStatePreparation.lean",
             "TeachingRouteClosures.lean",
         },
     ),
-    ("ClassicRoutes", "catalog-classic-routes", {"BlockEncodingClassics.lean"}),
+    (
+        "ClassicRoutes",
+        "catalog-classic-routes",
+        {"BandedSparseAccess.lean", "BlockEncodingClassics.lean"},
+    ),
     (
         "CertifiedCases",
         "catalog-certified-cases",
@@ -157,8 +162,8 @@ CATALOG_PURPOSES = {
         "semantics, finite state action, and explicit product-register projection."
     ),
     "ClassicRoutes": (
-        "Reusable permutation, sparse, LCU, product, dilation, and QSVT-facing "
-        "block-encoding routes."
+        "Reusable band-address, permutation, sparse, LCU, product, dilation, "
+        "and QSVT-facing block-encoding routes."
     ),
     "CertifiedCases": (
         "Completed transfer-operator and optimal-control certificates used as "

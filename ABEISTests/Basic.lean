@@ -13,7 +13,7 @@ example : Examples.RobinHeat.fourthOrderSecondDerivative.width = 5 := rfl
 
 example : problemCount = 7 := rfl
 
-example : literatureCount = 16 := rfl
+example : literatureCount = 17 := rfl
 
 example : automationTaskCount = 3 := rfl
 
@@ -1066,6 +1066,25 @@ example :
   BlockEncodingClassics.LCUCertificate.correct
     (BlockEncodingClassics.twoTermLCUCertificate
       testLCUCertLeft testLCUCertRight (2 : Rat) (3 : Rat))
+
+example (slot : Fin (2 ^ 1))
+    (row : BandedSparseAccess.Word 2) :
+    BandedSparseAccess.accessEquiv 2 (Equiv.refl _)
+        (BandedSparseAccess.slotWord 2 slot, row) =
+      (BandedSparseAccess.slotWord 2 slot + row, row) :=
+  BandedSparseAccess.accessEquiv_clean_slot 2
+    (fun selected => BandedSparseAccess.slotWord 2 selected)
+    (Equiv.refl _)
+    (by intro selected; rfl)
+    slot row
+
+example (control flag value : Bool) :
+    PromiseGateOptimization.dirtyControlledInvolutionEquiv
+        (fun key => key) (Equiv.refl Bool) (control, flag, value) =
+      (control, flag, if control then value else value) :=
+  PromiseGateOptimization.dirtyControlledInvolution_action
+    (fun key => key) (Equiv.refl Bool) (by intro input; rfl)
+    control flag value
 
 /-!
 Optional Robin/GHL paper-benchmark tests are intentionally not part of the

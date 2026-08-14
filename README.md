@@ -89,7 +89,10 @@ formal quantum-computing textbook rather than a project dashboard:
 - organizers, contribution guidance, and a versioned lemma-packet contract;
 - generated Example Cases with explicit target formulas, circuit and score
   evolution, named Lean roots, separate Qiskit exports, copyable English-proof
-  LaTeX, and editable `quantikz` for every displayed stage;
+  LaTeX, visible circuit rendering, and editable live-preview `quantikz` for
+  every displayed stage;
+- a per-case reader workbench where formulas, proof language, proof steps, and
+  circuit notation can be edited and previewed before copying;
 - a Live Formalization Workspace for bidirectional LaTeX-to-Lean and
   Lean-to-LaTeX drafts, dependency navigation, copying, and local compiler
   diagnostics;
@@ -275,6 +278,13 @@ lexicographically by gate count, depth, auxiliary qubits, and unresolved oracle
 calls. Correctness and target fidelity are gates, not weighted score terms. An
 opaque oracle and an expanded logical circuit are never ranked as equal-cost
 implementations.
+
+For the fixed Robin benchmark, the displayed `881`, `312`, and `106` counts are
+exact `{X, RY, RZ, CX}` primitive-list lengths. They are not compared with the
+source paper's numerical simulator count, which leaves multi-controlled
+rotations undecomposed. The evolved route also improves depth and auxiliary
+qubits while all three oracle counts are zero, so its winner status is
+independent of how those four score coordinates are ordered.
 
 ### Adaptive capacity and tolerance 🎚️
 

@@ -15760,7 +15760,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:209](../../../../libr
 
 # QuantumBlockEncoding/Robin/T3ResourceComparison.lean
 
-8 explicit public declarations, in source order.
+10 explicit public declarations, in source order.
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveResource_exact" (lean := "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveResource_exact")
 *Plain-English reading.* Lean checks the proposition indexed as “warm robin paper seven primitive resource exact”; the hypotheses and conclusion in the code panel fix its exact scope.
@@ -15832,6 +15832,34 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:52](../../../../li
 Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:66](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinfourslott3cost-betterthan-figure4). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_paperSeven" (lean := "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_paperSeven")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin four slot t 3 cost componentwise paper seven”; the hypotheses and conclusion in the code panel fix its exact scope. The evolved route improves every nonconstant score coordinate against the paper-seven normal form.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The evolved route improves every nonconstant score coordinate against the paper-seven normal form. Consequently its winner status does not depend on the chosen ordering of the four displayed coordinates.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:80](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinfourslott3cost-componentwise-paperseven). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_figure4" (lean := "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_figure4")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin four slot t 3 cost componentwise figure 4”; the hypotheses and conclusion in the code panel fix its exact scope. The same componentwise dominance holds against the fixed-N8 Figure-4 realization.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The same componentwise dominance holds against the fixed-N8 Figure-4 realization.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:94](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinfourslott3cost-componentwise-figure4). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 :::definition "QuantumBlockEncoding.Robin.warmRobinBestVerified" (lean := "QuantumBlockEncoding.Robin.warmRobinBestVerified")
 *Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “warm robin best verified”. The best fully verified Robin candidate under the frozen T3 comparison.
 
@@ -15843,7 +15871,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:66](../../../../li
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:78](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinbestverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:107](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinbestverified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.Robin.paperLevelWinnerCertified" (lean := "QuantumBlockEncoding.Robin.paperLevelWinnerCertified")
@@ -15857,7 +15885,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:78](../../../../li
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:84](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-paperlevelwinnercertified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:113](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-paperlevelwinnercertified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.Robin.warmRobinPublicationState_consistent" (lean := "QuantumBlockEncoding.Robin.warmRobinPublicationState_consistent")
@@ -15871,7 +15899,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:84](../../../../li
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:88](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinpublicationstate-consistent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:117](../../../../library/modules/robin-t3resourcecomparison/#decl-quantumblockencoding-robin-warmrobinpublicationstate-consistent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Robin/WeightedPermutation.lean

@@ -234,6 +234,106 @@
       "verification_status": "compiled",
       "local_declaration_status": "complete",
       "broader_route_status": "partial route: representation prerequisite closed; candidate-level block encoding obligations remain separate"
+    },
+    {
+      "id": "tl-banded-sparse-access-clean-slot",
+      "theorem": "accessEquiv_clean_slot",
+      "fully_qualified_name": "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_clean_slot",
+      "source_file": "QuantumBlockEncoding/BandedSparseAccess.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.BandedSparseAccess"
+      ],
+      "category": "sparse-access",
+      "semantic_layer": "arbitrary-size reversible basis semantics",
+      "assumptions": "A reversible first-row address loader satisfying the sparse-slot offset specification.",
+      "conclusion": "Loader followed by modular SUM maps a clean slot and row to offset(slot)+row modulo 2^n while preserving the row.",
+      "exact_signature": "accessEquiv n loader (slotWord n slot, row) = (offset slot + row, row)",
+      "related_leaves": [
+        "arXiv:2405.12855 Lemma 1",
+        "GHL Robin Lemma 2"
+      ],
+      "compatible_shapes": [
+        "2^l-sparse band pattern in a 2^n-dimensional register"
+      ],
+      "known_successful_uses": [
+        "general banded sparse address semantics",
+        "Robin fixed-N8 sparse access interpretation"
+      ],
+      "failed_uses": [
+        "Does not certify the paper's general primitive gate-count upper bound without a loader and modular-adder compiler."
+      ],
+      "external_source": "arXiv:2405.12855v3 Definition 6, Lemma 1, Eqs. (53)-(55)",
+      "license_attribution": "ASPBE proof of the cited construction semantics; source paper is CC BY 4.0.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "partial route: arbitrary-size semantic unitary closed; general primitive resource compiler open"
+    },
+    {
+      "id": "tl-promise-controlled-conjugation",
+      "theorem": "controlledConjugation_matrix",
+      "fully_qualified_name": "QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_matrix",
+      "source_file": "QuantumBlockEncoding/PromiseGateOptimization.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.PromiseGateOptimization"
+      ],
+      "category": "circuit-optimization",
+      "semantic_layer": "exact finite permutation-matrix identity",
+      "assumptions": "Finite reversible outer and middle target operations.",
+      "conclusion": "A controlled conjugation is implemented by controlling only the middle operation.",
+      "exact_signature": "P(V^-1) * (P(C(U)) * P(V)) = P(C(V^-1 U V))",
+      "related_leaves": [
+        "promise-register mutation",
+        "control-removal cost proof"
+      ],
+      "compatible_shapes": [
+        "finite basis-permutation circuits"
+      ],
+      "known_successful_uses": [
+        "ASPBE promise-register planner memory"
+      ],
+      "failed_uses": [
+        "Does not by itself prove a concrete circuit has the required promise-register layout."
+      ],
+      "external_source": "arXiv:2603.12917 Figure 3(a)",
+      "license_attribution": "ASPBE proof of the cited circuit identity.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "reusable optimization theorem; candidate-specific promise and resource obligations remain"
+    },
+    {
+      "id": "tl-promise-dirty-involution",
+      "theorem": "dirtyControlledInvolution_action",
+      "fully_qualified_name": "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_action",
+      "source_file": "QuantumBlockEncoding/PromiseGateOptimization.lean",
+      "required_imports": [
+        "QuantumBlockEncoding.PromiseGateOptimization"
+      ],
+      "category": "circuit-optimization",
+      "semantic_layer": "exact dirty-ancilla basis semantics",
+      "assumptions": "The target permutation is involutory: U(U(x))=x.",
+      "conclusion": "Compute-use-uncompute-use restores an arbitrary dirty flag and applies the target exactly on the requested branch.",
+      "exact_signature": "dirtyControlledInvolutionEquiv control target (key, flag, value) = (key, flag, if control key then target value else value)",
+      "related_leaves": [
+        "clean-to-dirty ancilla mutation",
+        "workspace restoration proof"
+      ],
+      "compatible_shapes": [
+        "finite or infinite basis types with an involutory target equivalence"
+      ],
+      "known_successful_uses": [
+        "ASPBE promise-register planner memory"
+      ],
+      "failed_uses": [
+        "Cannot be applied when U^2=I or strong promise-register restoration is unproved."
+      ],
+      "external_source": "arXiv:2603.12917 Figure 2(a), dirty-ancilla variant",
+      "license_attribution": "ASPBE proof of the cited circuit identity.",
+      "lean_version": "4.29.1",
+      "verification_status": "compiled",
+      "local_declaration_status": "complete",
+      "broader_route_status": "reusable optimization theorem; candidate-specific involution and cost proofs remain"
     }
   ]
 }

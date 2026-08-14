@@ -6,7 +6,7 @@ tasks may need.
 
 | id | source | status | used by | next action |
 | --- | --- | --- | --- | --- |
-| tl-ghl-lemma2-prior-lemma1-banded-sparse-access | GHL2025 arXiv:2506.20478 Lemma 2; arXiv:2405.12855 Lemma 1 | contract-only | GHL2025 Fig. 4; Robin boundary ODBS dagger cleanup | Reuse the compiled fixed-N8 primitive; keep only the arbitrary-n resource theorem as an explicit external contract. |
+| tl-ghl-lemma2-prior-lemma1-banded-sparse-access-resource | GHL2025 arXiv:2506.20478 Lemma 2; arXiv:2405.12855 Lemma 1 | semantic theorem compiled; resource compiler open | arbitrary-n ODBS gate synthesis | Implement general first-row loader and modular adder, then prove the printed one-qubit, CNOT, and clean-ancilla upper bounds from the actual primitive list. |
 | tl-ghl-lemma3-sparse-amplitude | GHL2025 main.tex:822-843 | contract-only | GHL2025 gamma_1/gamma_2/gamma_3 slices | Maintain the clean-branch contract and isolate any missing unitarity proof as an external technical lemma. |
 | tl-ghl-theorem5-piecewise-polynomial-of | GHL2025 main.tex:870-908 | contract-only | GHL2025 one-term Robin operator A_k = f(x) partial_x^m | Use only as a named contract in the current theorem; do not invent stronger smoothness or range assumptions. |
 | tl-uniform-sparse-register-preparation | GHL2025 main.tex:948-955; Shukla--Vedula 2024 | contract-only | GHL2025 Fig. 4 left/right sparse-register preparation | Keep as a theorem-facing contract unless the exact state-preparation proof is needed to close a resource theorem. |

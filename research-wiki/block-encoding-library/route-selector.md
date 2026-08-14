@@ -204,7 +204,9 @@ Cards:
 Use this only after a correct candidate exposes a controlled conjugation
 $W=V^\dagger U V$ or conditionally clean workspace.  The card
 `BE.Circuit.PromiseAncillaTradeoff` adapts the promise-gate construction of
-arXiv:2603.12917 as a population mutation.  Upper must keep the original
+arXiv:2603.12917 as a population mutation. Retrieve the compiled generic roots
+`controlledConjugation_matrix` and `dirtyControlledInvolution_action` instead
+of reproving their branch algebra. Upper must keep the original
 candidate as a baseline; middle opens separate leaves for the promise
 predicate, compute-uncompute restoration, involution before any dirty-ancilla
 variant, and a same-tier resource comparison.  Until those leaves compile,

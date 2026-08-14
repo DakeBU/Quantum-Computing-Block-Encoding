@@ -4,7 +4,17 @@ Priority: P1 when auxiliary-qubit count or controlled-conjugation cost is active
 
 Source: arXiv:2603.12917, promise gates and the ancilla/control tradeoff.
 
-Status: literature-backed planning card. No general Lean theorem is claimed.
+Status: literature-backed planning card with compiled abstract Lean identities.
+
+Compiled roots:
+
+- `QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_matrix`;
+- `QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_action`;
+- `QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_unitary`;
+- `QuantumBlockEncoding.PromiseGateOptimization.dirtyFlag_replaces_cleanFlag`.
+
+These roots prove the reusable transformation. They do not discharge a
+candidate's promise predicate, register layout, involution, or primitive cost.
 
 ## Detect When
 
@@ -44,6 +54,10 @@ still expensive.
 Failure of any leaf keeps this as an exploratory population member. A Qiskit
 match may reject or prioritize it, but cannot establish the promise or cleanup
 theorems.
+
+The verifier should retrieve the compiled generic identity first and assign
+workers only the candidate-specific leaves. Reproving the control-bit case
+split or dirty-flag cancellation is duplicate work.
 
 ## Upper-Agent Rule
 

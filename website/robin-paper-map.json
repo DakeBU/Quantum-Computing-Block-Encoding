@@ -12,7 +12,8 @@
     "Equation (27) omits a factor of two. The certified circuit uses theta = 2 arccos(c), as required by the standard RY(theta) half-angle convention; the printed single-arccos expression remains visible only as a source-typo transcript.",
     "The unexplained literal gamma-1 normalization is not assumed. The fixed realization proves its actual executable stage states and final projected block.",
     "The full-space unitary uses the compiler's actual reversible behavior on dirty workspace states, while the block contract projects every declared workspace to zero.",
-    "The fixed benchmark has f=1, and Lean proves that coefficient stage is identity before it is constant-folded."
+    "The fixed benchmark has f=1, and Lean proves that coefficient stage is identity before it is constant-folded.",
+    "The paper's numerical experiment leaves multi-controlled rotations undecomposed. ASPBE's 881, 312, and 106 counts are exact primitive {X, RY, RZ, CX} lists and are compared only within that frozen compiler tier."
   ],
   "rows": [
     {
@@ -22,13 +23,15 @@
       "latex": "\\hat{O}^{BS}_D\\ket{0}^{n-l}\\ket{s}^l\\ket{i}^n := \\ket{r_{si}}^n\\ket{i}^n,\\qquad r_{si}=r_{s0}+i\\bmod 2^n.",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperContract",
+        "QuantumBlockEncoding.BandedSparseAccess.accessEquiv_clean_slot",
+        "QuantumBlockEncoding.BandedSparseAccess.accessMatrix_unitary",
         "QuantumBlockEncoding.GHL2025.robinBandedSparseAccessCitationChain_eq",
         "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_lt_gridSize_of_two_le",
         "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix_eq_image"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
-      "reading": "Robin Lemma 2 imports the banded-sparse primitive from Lemma 1 of arXiv:2405.12855. The register extraction, address range, row preservation, clean-source split, and matrix image are compiled. A full arbitrary-n unitary extension over every non-clean padded input remains a separate route."
+      "reading": "Robin Lemma 2 imports the banded-sparse primitive from Lemma 1 of arXiv:2405.12855. ASPBE now proves the arbitrary-size semantic construction: a supplied reversible first-row loader followed by modular SUM preserves the row, produces r_(s,0)+i modulo 2^n, and induces a unitary permutation matrix. The paper's general one-qubit/CNOT upper bounds remain source-facing until a general gate compiler realizes the loader and adder at those counts."
     },
     {
       "id": "indicator",

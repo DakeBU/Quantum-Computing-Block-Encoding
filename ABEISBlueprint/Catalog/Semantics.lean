@@ -3332,6 +3332,248 @@ Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:470](../../../../library/m
 Source: [QuantumBlockEncoding/PrimitiveSemantics.lean:482](../../../../library/modules/primitivesemantics/#decl-quantumblockencoding-primitiverefinement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/PromiseGateOptimization.lean
+
+17 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.liftTargetEquiv" (lean := "QuantumBlockEncoding.PromiseGateOptimization.liftTargetEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “lift target equiv”. Apply a target permutation without changing its control register.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Apply a target permutation without changing its control register.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:23](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-lifttargetequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.controlledTargetEquiv" (lean := "QuantumBlockEncoding.PromiseGateOptimization.controlledTargetEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “controlled target equiv”. Apply the target permutation exactly on the 'true' control branch.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Apply the target permutation exactly on the 'true' control branch.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:28](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-controlledtargetequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.conjugatedTargetEquiv" (lean := "QuantumBlockEncoding.PromiseGateOptimization.conjugatedTargetEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “conjugated target equiv”. Chronological 'V', then 'U', then 'V†'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Chronological 'V', then 'U', then 'V†'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:42](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-conjugatedtargetequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_equiv" (lean := "QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_equiv")
+*Plain-English reading.* Lean checks the proposition indexed as “controlled conjugation equiv”; the hypotheses and conclusion in the code panel fix its exact scope. Figure 3(a): controlling 'V† U V' is equivalent to leaving 'V' and 'V†' uncontrolled and controlling only 'U'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Figure 3(a): controlling 'V† U V' is equivalent to leaving 'V' and 'V†' uncontrolled and controlling only 'U'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:48](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-controlledconjugation-equiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_matrix" (lean := "QuantumBlockEncoding.PromiseGateOptimization.controlledConjugation_matrix")
+*Plain-English reading.* Lean checks the proposition indexed as “controlled conjugation matrix”; the hypotheses and conclusion in the code panel fix its exact scope. Matrix form of the controlled-conjugation identity.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Matrix form of the controlled-conjugation identity.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:61](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-controlledconjugation-matrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.WeakPromiseSpec" (lean := "QuantumBlockEncoding.PromiseGateOptimization.WeakPromiseSpec")
+*Plain-English reading.* This definition gives the library's named construction or computation for “weak promise spec”. Exact clean-branch contract for a weak promise gate.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Exact clean-branch contract for a weak promise gate. No behavior is required away from 'cleanPromise'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:75](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-weakpromisespec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.StrongPromiseSpec" (lean := "QuantumBlockEncoding.PromiseGateOptimization.StrongPromiseSpec")
+*Plain-English reading.* This definition gives the library's named construction or computation for “strong promise spec”. A strong promise gate additionally restores its promise register for every basis input.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* A strong promise gate additionally restores its promise register for every basis input.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:83](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-strongpromisespec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PromiseGateOptimization.StrongPromiseSpec.weak" (lean := "QuantumBlockEncoding.PromiseGateOptimization.StrongPromiseSpec.weak")
+*Plain-English reading.* Lean checks the proposition indexed as “weak”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:89](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-strongpromisespec-weak). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.toggleDirtyFlagEquiv" (lean := "QuantumBlockEncoding.PromiseGateOptimization.toggleDirtyFlagEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “toggle dirty flag equiv”. Toggle a possibly dirty flag exactly when the control predicate holds.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Toggle a possibly dirty flag exactly when the control predicate holds.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:97](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-toggledirtyflagequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.dirtyFlagControlledTargetEquiv" (lean := "QuantumBlockEncoding.PromiseGateOptimization.dirtyFlagControlledTargetEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “dirty flag controlled target equiv”. Apply the target when the dirty flag is set, preserving key and flag.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Apply the target when the dirty flag is set, preserving key and flag.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:111](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-dirtyflagcontrolledtargetequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolutionEquiv" (lean := "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolutionEquiv")
+*Plain-English reading.* This definition gives the library's named construction or computation for “dirty controlled involution equiv”. Compute-use-uncompute-use protocol from Figure 2(a), right-hand side.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Compute-use-uncompute-use protocol from Figure 2(a), right-hand side.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:125](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-dirtycontrolledinvolutionequiv). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_action" (lean := "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_action")
+*Plain-English reading.* Lean checks the proposition indexed as “dirty controlled involution action”; the hypotheses and conclusion in the code panel fix its exact scope. A dirty flag is restored and the requested controlled target is applied, provided the target is involutory.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* A dirty flag is restored and the requested controlled target is applied, provided the target is involutory.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:135](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-dirtycontrolledinvolution-action). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_unitary" (lean := "QuantumBlockEncoding.PromiseGateOptimization.dirtyControlledInvolution_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “dirty controlled involution unitary”; the hypotheses and conclusion in the code panel fix its exact scope. The dirty-flag protocol is unitary because it is a basis permutation.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The dirty-flag protocol is unitary because it is a basis permutation.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:146](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-dirtycontrolledinvolution-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.ControlledProtocolCost" (lean := "QuantumBlockEncoding.PromiseGateOptimization.ControlledProtocolCost")
+*Plain-English reading.* This record groups the data and proof fields needed for “controlled protocol cost”. A proposition-valued field is a requirement until a constructor supplies it. Abstract operation counts exposed to the ASPBE planner.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Abstract operation counts exposed to the ASPBE planner.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:156](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-controlledprotocolcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.cleanFlagProtocolCost" (lean := "QuantumBlockEncoding.PromiseGateOptimization.cleanFlagProtocolCost")
+*Plain-English reading.* This definition gives the library's named construction or computation for “clean flag protocol cost”. Standard clean-flag construction: compute, use, uncompute.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Standard clean-flag construction: compute, use, uncompute.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:164](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-cleanflagprotocolcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PromiseGateOptimization.dirtyFlagProtocolCost" (lean := "QuantumBlockEncoding.PromiseGateOptimization.dirtyFlagProtocolCost")
+*Plain-English reading.* This definition gives the library's named construction or computation for “dirty flag protocol cost”. Involutory dirty-flag construction: one extra controlled target use.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* Involutory dirty-flag construction: one extra controlled target use.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:171](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-dirtyflagprotocolcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PromiseGateOptimization.dirtyFlag_replaces_cleanFlag" (lean := "QuantumBlockEncoding.PromiseGateOptimization.dirtyFlag_replaces_cleanFlag")
+*Plain-English reading.* Lean checks the proposition indexed as “dirty flag replaces clean flag”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Definitions and lemmas that connect circuit syntax to evaluated matrix semantics, finite state action, and explicit product-register projection.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PromiseGateOptimization.lean:177](../../../../library/modules/promisegateoptimization/#decl-quantumblockencoding-promisegateoptimization-dirtyflag-replaces-cleanflag). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/ReversibleClassical.lean
 
 7 explicit public declarations, in source order.

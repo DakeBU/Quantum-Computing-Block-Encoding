@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.Automation
+import QuantumBlockEncoding.BandedSparseAccess
 import QuantumBlockEncoding.BlockEncoding
 import QuantumBlockEncoding.BlockEncodingClassics
 import QuantumBlockEncoding.Circuit
@@ -16,6 +17,7 @@ import QuantumBlockEncoding.OptimalControl
 import QuantumBlockEncoding.PrimitiveCircuit
 import QuantumBlockEncoding.PrimitiveBasisLE
 import QuantumBlockEncoding.PrimitiveSemantics
+import QuantumBlockEncoding.PromiseGateOptimization
 import QuantumBlockEncoding.PrimitiveRefinement
 import QuantumBlockEncoding.ReversibleClassical
 import QuantumBlockEncoding.PrimitiveMacros
