@@ -6,8 +6,8 @@ import Mathlib.Tactic
 
 The external models and shell processes remain engineering components.  This
 module closes the reusable Lean route by giving their handoffs a finite typed
-state machine, a validity predicate, and a canonical accepted trace whose final
-transition requires both review and a passing Lean gate.
+state machine, an executable validity predicate, and a canonical accepted trace
+whose final transition requires both review and a passing Lean gate.
 -/
 
 namespace QuantumBlockEncoding
@@ -31,18 +31,25 @@ structure ThreeLayerHandoff where
   reviewerApproved : Bool
 deriving Repr, DecidableEq
 
-/-- Allowed phase transitions.  Acceptance is possible only from review. -/
+/-- Executable transition guard.  Acceptance is possible only from review. -/
+def ThreeLayerHandoff.validFlag (handoff : ThreeLayerHandoff) : Bool :=
+  handoff.trialLogged &&
+    decide (handoff.artifactCount > 0) &&
+      match handoff.source, handoff.target, handoff.role with
+      | .upperPlanning, .middleRefinement, .upper => true
+      | .middleRefinement, .lowerAttempt, .middle => true
+      | .lowerAttempt, .reviewerAudit, .lower => true
+      | .reviewerAudit, .accepted, .reviewer =>
+          handoff.leanGatePassed && handoff.reviewerApproved
+      | .reviewerAudit, .rejected, .reviewer => true
+      | _, _, _ => false
+
+/-- Propositional view of the executable transition guard. -/
 def ThreeLayerHandoff.valid (handoff : ThreeLayerHandoff) : Prop :=
-  handoff.trialLogged = true ∧
-  handoff.artifactCount > 0 ∧
-  match handoff.source, handoff.target, handoff.role with
-  | .upperPlanning, .middleRefinement, .upper => True
-  | .middleRefinement, .lowerAttempt, .middle => True
-  | .lowerAttempt, .reviewerAudit, .lower => True
-  | .reviewerAudit, .accepted, .reviewer =>
-      handoff.leanGatePassed = true ∧ handoff.reviewerApproved = true
-  | .reviewerAudit, .rejected, .reviewer => True
-  | _, _, _ => False
+  handoff.validFlag = true
+
+instance (handoff : ThreeLayerHandoff) : Decidable handoff.valid :=
+  inferInstance
 
 /-- One execution trace with an explicit starting phase. -/
 structure ThreeLayerTrace where
@@ -119,9 +126,8 @@ theorem threeLayerAccepted_requiresLeanGate
   rcases handoff with
     ⟨source, target, role, trialLogged, artifactCount,
       leanGatePassed, reviewerApproved⟩
-  simp only [ThreeLayerHandoff.valid] at valid
-  subst target
-  cases source <;> cases role <;> simp_all
+  cases source <;> cases target <;> cases role <;>
+    simp_all [ThreeLayerHandoff.valid, ThreeLayerHandoff.validFlag]
 
 /-- Any locally valid acceptance transition also records reviewer approval. -/
 theorem threeLayerAccepted_requiresReviewerApproval
@@ -132,9 +138,8 @@ theorem threeLayerAccepted_requiresReviewerApproval
   rcases handoff with
     ⟨source, target, role, trialLogged, artifactCount,
       leanGatePassed, reviewerApproved⟩
-  simp only [ThreeLayerHandoff.valid] at valid
-  subst target
-  cases source <;> cases role <;> simp_all
+  cases source <;> cases target <;> cases role <;>
+    simp_all [ThreeLayerHandoff.valid, ThreeLayerHandoff.validFlag]
 
 /-- Removing the final Lean gate prevents the same trace from being accepted. -/
 def threeLayerFailedGateTrace : ThreeLayerTrace where
