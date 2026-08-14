@@ -69,6 +69,20 @@ theorem warmRobinTarget_eq_eval_robinDerivativeMatrix :
   fin_cases i <;> fin_cases j <;>
     native_decide
 
+
+/--
+Relation to Guseynov--Huang--Liu Eq. (9). The paper writes the physical
+finite-difference matrix as `A_GHL^(9) = Delta x^(-2) * A_tilde`, with boundary
+entries depending on `A1 * Delta x` and `B1 * Delta x`. The frozen ASPBE target
+is the dimensionless stencil `A_tilde` at `A1 = B1 = 0`; the inhomogeneous
+constants `A2` and `B2` belong to the source vector rather than this matrix.
+-/
+theorem warmRobinTarget_eq_paperEq9_dimensionless_A1_B1_zero :
+    warmRobinTarget = fun i j =>
+      Coeff.evalWith (fun _ => 0)
+        (Examples.RobinHeat.robinDerivativeMatrix 3 i j) :=
+  warmRobinTarget_eq_eval_robinDerivativeMatrix
+
 /-! ## Source-ordered warm circuit adapter
 
 These declarations expose the paper-facing ten-block transcript and its fixed

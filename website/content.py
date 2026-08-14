@@ -997,7 +997,7 @@ IMPLEMENTATION_MAP = [
     },
     {
         "goal": "Evaluate a gate list",
-        "contract": r"\llbracket C\rrbracket=G_m\cdots G_1",
+        "contract": r"\mathrm{Eval}(C)=G_m\cdots G_1",
         "obligation": "Fixed fold and register order",
         "declaration": "QuantumBlockEncoding.evalGateMatrices",
         "dependencies": "GateMatrix; Matrix",

@@ -24,21 +24,57 @@
       "formula": "X|0\\rangle=|1\\rangle,\\qquad X=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}.",
       "contract": "Lean proves normalization of the target, unitarity of X, and the exact matrix-vector equation. No sampled amplitudes or floating-point tolerance enters the certificate.",
       "symbols": [
-        ["|0>, |1>", "the two computational-basis states"],
-        ["X", "the Pauli X unitary, which exchanges the two basis states"]
+        [
+          "|0>, |1>",
+          "the two computational-basis states"
+        ],
+        [
+          "X",
+          "the Pauli X unitary, which exchanges the two basis states"
+        ]
       ],
       "circuit": {
         "registers": "one system qubit; no ancilla",
         "stages": [
-          {"label": "Input", "detail": "system = |0>", "gates": ["|0>"]},
-          {"label": "Unitary", "detail": "apply Pauli X", "gates": ["X"]},
-          {"label": "Certified output", "detail": "system = |1>", "gates": ["|1>"]}
+          {
+            "label": "Input",
+            "detail": "system = |0>",
+            "gates": [
+              "|0>"
+            ]
+          },
+          {
+            "label": "Unitary",
+            "detail": "apply Pauli X",
+            "gates": [
+              "X"
+            ]
+          },
+          {
+            "label": "Certified output",
+            "detail": "system = |1>",
+            "gates": [
+              "|1>"
+            ]
+          }
         ]
       },
       "evolution": {
         "caption": "This textbook case closes in one candidate; the plot is a proof-and-resource trace, not a search claim.",
         "stages": [
-          {"iteration": "0", "name": "X candidate", "score": [1, 1, 0, 0], "status": "Lean certified", "description": "The first and only candidate satisfies the exact state-action contract.", "leanAnchor": "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified_cost"}
+          {
+            "iteration": "0",
+            "name": "X candidate",
+            "score": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "status": "Lean certified",
+            "description": "The first and only candidate satisfies the exact state-action contract.",
+            "leanAnchor": "QuantumBlockEncoding.TextbookStatePreparation.pauliXVerified_cost"
+          }
         ]
       },
       "qiskit": {
@@ -46,7 +82,13 @@
         "command": "python3 executable-exports/SP-TEXTBOOK-001/qiskit/export.py --case pauli-x",
         "role": "Exports the certified gate as runnable Qiskit code; it is not used to decide the theorem."
       },
-      "preset": {"taskName": "SP-PAULI-X-001", "mode": "statePreparation", "target": "X |0> = |1>", "normalizer": "1", "projector": "|0>"},
+      "preset": {
+        "taskName": "SP-PAULI-X-001",
+        "mode": "statePreparation",
+        "target": "X |0> = |1>",
+        "normalizer": "1",
+        "projector": "|0>"
+      },
       "summary": "The smallest complete state-preparation certificate: target normalization, unitary matrix, exact state action, and resource tuple.",
       "source": "ASPBE textbook example",
       "contributor": "ASPBE authors",
@@ -69,21 +111,57 @@
       "formula": "H|0\\rangle=|+\\rangle=\\frac{|0\\rangle+|1\\rangle}{\\sqrt 2},\\qquad H=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}.",
       "contract": "Lean proves the square-root identity needed for normalization, proves H is complex unitary, and identifies its zero-input column with the target amplitudes.",
       "symbols": [
-        ["H", "the Hadamard unitary"],
-        ["|+>", "the normalized state with equal positive amplitudes"]
+        [
+          "H",
+          "the Hadamard unitary"
+        ],
+        [
+          "|+>",
+          "the normalized state with equal positive amplitudes"
+        ]
       ],
       "circuit": {
         "registers": "one system qubit; no ancilla",
         "stages": [
-          {"label": "Input", "detail": "system = |0>", "gates": ["|0>"]},
-          {"label": "Unitary", "detail": "apply Hadamard", "gates": ["H"]},
-          {"label": "Certified output", "detail": "system = (|0>+|1>)/sqrt(2)", "gates": ["|+>"]}
+          {
+            "label": "Input",
+            "detail": "system = |0>",
+            "gates": [
+              "|0>"
+            ]
+          },
+          {
+            "label": "Unitary",
+            "detail": "apply Hadamard",
+            "gates": [
+              "H"
+            ]
+          },
+          {
+            "label": "Certified output",
+            "detail": "system = (|0>+|1>)/sqrt(2)",
+            "gates": [
+              "|+>"
+            ]
+          }
         ]
       },
       "evolution": {
         "caption": "One exact candidate is sufficient. The certified score uses the same tuple order as the larger cases.",
         "stages": [
-          {"iteration": "0", "name": "Hadamard candidate", "score": [1, 1, 0, 0], "status": "Lean certified", "description": "The candidate closes normalization, unitarity, state action, and cost.", "leanAnchor": "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified_cost"}
+          {
+            "iteration": "0",
+            "name": "Hadamard candidate",
+            "score": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "status": "Lean certified",
+            "description": "The candidate closes normalization, unitarity, state action, and cost.",
+            "leanAnchor": "QuantumBlockEncoding.TextbookStatePreparation.hadamardVerified_cost"
+          }
         ]
       },
       "qiskit": {
@@ -91,7 +169,13 @@
         "command": "python3 executable-exports/SP-TEXTBOOK-001/qiskit/export.py --case hadamard",
         "role": "Exports the certified gate as runnable Qiskit code; numerical statevector output is optional user evidence, not the proof."
       },
-      "preset": {"taskName": "SP-HADAMARD-PLUS-001", "mode": "statePreparation", "target": "H |0> = (|0> + |1>) / sqrt(2)", "normalizer": "1", "projector": "|0>"},
+      "preset": {
+        "taskName": "SP-HADAMARD-PLUS-001",
+        "mode": "statePreparation",
+        "target": "H |0> = (|0> + |1>) / sqrt(2)",
+        "normalizer": "1",
+        "projector": "|0>"
+      },
       "summary": "A familiar quantum gate becomes a complete exact certificate rather than a numerical statevector check.",
       "source": "ASPBE textbook example",
       "contributor": "ASPBE authors",
@@ -118,24 +202,96 @@
       "formula": "E_1=|0\\rangle\\!\\langle1|_{\\mathrm{time}}\\otimes|0\\rangle\\!\\langle1|_{\\mathrm{type}}\\otimes I_2,\\qquad \\langle0|_aU|0\\rangle_a=E_1.",
       "contract": "The system has time, type, and state qubits. One clean signal qubit enlarges E_1 to a permutation unitary. Lean proves the full permutation/orthogonality property and every clean-block entry exactly with alpha=1.",
       "symbols": [
-        ["E_1", "the concrete 8 by 8 transfer operator"],
-        ["a", "the one-qubit clean signal register"],
-        ["I_2", "identity on the passive state qubit"]
+        [
+          "E_1",
+          "the concrete 8 by 8 transfer operator"
+        ],
+        [
+          "a",
+          "the one-qubit clean signal register"
+        ],
+        [
+          "I_2",
+          "identity on the passive state qubit"
+        ]
       ],
       "circuit": {
         "registers": "signal a | time t | type y | passive state s",
         "stages": [
-          {"label": "Generation 0", "detail": "expanded depth-5 completion", "gates": ["X", "CNOT", "CNOT", "CNOT", "Toffoli", "X"]},
-          {"label": "Generation 1", "detail": "equality flag then transfer", "gates": ["X", "CNOT", "CNOT", "Toffoli"]},
-          {"label": "Generation 2", "detail": "one Toffoli then three parallel X gates", "gates": ["Toffoli", "X || X || X"]}
+          {
+            "label": "Generation 0",
+            "detail": "expanded depth-5 completion",
+            "gates": [
+              "X",
+              "CNOT",
+              "CNOT",
+              "CNOT",
+              "Toffoli",
+              "X"
+            ]
+          },
+          {
+            "label": "Generation 1",
+            "detail": "equality flag then transfer",
+            "gates": [
+              "X",
+              "CNOT",
+              "CNOT",
+              "Toffoli"
+            ]
+          },
+          {
+            "label": "Generation 2",
+            "detail": "one Toffoli then three parallel X gates",
+            "gates": [
+              "Toffoli",
+              "X || X || X"
+            ]
+          }
         ]
       },
       "evolution": {
         "caption": "All three points are exact Lean-certified block encodings in one logical gate convention. Both arrows are Lean theorems about the fixed lexicographic order.",
         "stages": [
-          {"iteration": "0", "name": "Depth-5 completion", "score": [6, 5, 1, 0], "status": "Lean certified", "description": "A direct reversible completion establishes the first accepted point.", "leanAnchor": "QuantumBlockEncoding.OptimalControl.reducedDepth5Verified"},
-          {"iteration": "1", "name": "Equality-transfer", "score": [4, 4, 1, 0], "status": "Strictly better", "description": "Two gates are removed while preserving the exact clean block.", "leanAnchor": "QuantumBlockEncoding.OptimalControl.proEqTransferCost_betterThan_depth5"},
-          {"iteration": "2", "name": "Parallel equality-flip", "score": [4, 2, 1, 0], "status": "Strictly better", "description": "Gate count ties the previous candidate and parallel depth falls from four to two.", "leanAnchor": "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_pro"}
+          {
+            "iteration": "0",
+            "name": "Depth-5 completion",
+            "score": [
+              6,
+              5,
+              1,
+              0
+            ],
+            "status": "Lean certified",
+            "description": "A direct reversible completion establishes the first accepted point.",
+            "leanAnchor": "QuantumBlockEncoding.OptimalControl.reducedDepth5Verified"
+          },
+          {
+            "iteration": "1",
+            "name": "Equality-transfer",
+            "score": [
+              4,
+              4,
+              1,
+              0
+            ],
+            "status": "Strictly better",
+            "description": "Two gates are removed while preserving the exact clean block.",
+            "leanAnchor": "QuantumBlockEncoding.OptimalControl.proEqTransferCost_betterThan_depth5"
+          },
+          {
+            "iteration": "2",
+            "name": "Parallel equality-flip",
+            "score": [
+              4,
+              2,
+              1,
+              0
+            ],
+            "status": "Strictly better",
+            "description": "Gate count ties the previous candidate and parallel depth falls from four to two.",
+            "leanAnchor": "QuantumBlockEncoding.OptimalControl.evolvedEqFlipCost_betterThan_pro"
+          }
         ]
       },
       "qiskit": {
@@ -143,7 +299,13 @@
         "command": "python3 executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py",
         "role": "Exports the final certified logical construction to Qiskit. Lean, not Qiskit matrix comparison, proves acceptance and the score ordering."
       },
-      "preset": {"taskName": "QBE-OP-OPTCTRL-001", "mode": "operatorBlockEncoding", "target": "E_1 = |0><1|_time tensor |0><1|_type tensor I_2", "normalizer": "1", "projector": "clean signal |0>"},
+      "preset": {
+        "taskName": "QBE-OP-OPTCTRL-001",
+        "mode": "operatorBlockEncoding",
+        "target": "E_1 = |0><1|_time tensor |0><1|_type tensor I_2",
+        "normalizer": "1",
+        "projector": "clean signal |0>"
+      },
       "summary": "A concrete non-unitary transfer is embedded in a permutation unitary and improved from (6,5,1,0) to (4,2,1,0).",
       "source": "ASPBE BE Case 1",
       "contributor": "ASPBE authors",
@@ -166,22 +328,69 @@
       "formula": "E_1=|0\\rangle\\!\\langle1|_{\\mathrm{time}}\\otimes|0\\rangle\\!\\langle1|_{\\mathrm{type}}\\otimes I_2,\\qquad \\langle0|_aU_{\\mathrm{cold}}|0\\rangle_a=E_1.",
       "contract": "Lean separately proves that the cold image table is bijective, that its clean projection is E_1, and that the packaged candidate has score (5,5,1,0). This page does not call replay a new rediscovery.",
       "symbols": [
-        ["U_cold", "the isolated finite permutation completion"],
-        ["a", "the clean signal qubit"]
+        [
+          "U_cold",
+          "the isolated finite permutation completion"
+        ],
+        [
+          "a",
+          "the clean signal qubit"
+        ]
       ],
       "circuit": {
         "registers": "signal a | time t | type y | passive state s",
         "stages": [
-          {"label": "Contract", "detail": "freeze E_1 and the clean embedding", "gates": ["target"]},
-          {"label": "Cold construction", "detail": "five logical reversible gates", "gates": ["X", "X", "controlled", "controlled", "controlled"]},
-          {"label": "Promotion", "detail": "bijection plus exact clean block", "gates": ["Lean certificate"]}
+          {
+            "label": "Contract",
+            "detail": "freeze E_1 and the clean embedding",
+            "gates": [
+              "target"
+            ]
+          },
+          {
+            "label": "Cold construction",
+            "detail": "five logical reversible gates",
+            "gates": [
+              "X",
+              "X",
+              "controlled",
+              "controlled",
+              "controlled"
+            ]
+          },
+          {
+            "label": "Promotion",
+            "detail": "bijection plus exact clean block",
+            "gates": [
+              "Lean certificate"
+            ]
+          }
         ]
       },
       "evolution": {
         "caption": "This is a proof-completion trace. There is one scored candidate, so no lexicographic dominance claim is made.",
         "stages": [
-          {"iteration": "0", "name": "Target fixed", "score": null, "status": "Proof obligations opened", "description": "Register order, alpha=1, and the clean block are fixed before construction.", "leanAnchor": "QuantumBlockEncoding.mainCaseColdPartialPerm_clean_eq_target"},
-          {"iteration": "1", "name": "Cold permutation", "score": [5, 5, 1, 0], "status": "Lean certified", "description": "The exact finite candidate closes bijectivity, projection, and resource fields.", "leanAnchor": "QuantumBlockEncoding.mainCaseColdPartialPermVerified"}
+          {
+            "iteration": "0",
+            "name": "Target fixed",
+            "score": null,
+            "status": "Proof obligations opened",
+            "description": "Register order, alpha=1, and the clean block are fixed before construction.",
+            "leanAnchor": "QuantumBlockEncoding.mainCaseColdPartialPerm_clean_eq_target"
+          },
+          {
+            "iteration": "1",
+            "name": "Cold permutation",
+            "score": [
+              5,
+              5,
+              1,
+              0
+            ],
+            "status": "Lean certified",
+            "description": "The exact finite candidate closes bijectivity, projection, and resource fields.",
+            "leanAnchor": "QuantumBlockEncoding.mainCaseColdPartialPermVerified"
+          }
         ]
       },
       "qiskit": {
@@ -189,7 +398,13 @@
         "command": "python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py --json",
         "role": "Exports the already certified permutation. Its finite matrix check does not establish the Lean theorem or a cold-start discovery claim."
       },
-      "preset": {"taskName": "QBE-MAIN-CASE-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "isolated E_1 finite transfer operator", "normalizer": "1", "projector": "clean signal |0>"},
+      "preset": {
+        "taskName": "QBE-MAIN-CASE-HIER-COLD-001",
+        "mode": "operatorBlockEncoding",
+        "target": "isolated E_1 finite transfer operator",
+        "normalizer": "1",
+        "projector": "clean signal |0>"
+      },
       "summary": "An isolated route closes the same mathematical contract with its own exact permutation and score (5,5,1,0).",
       "source": "ASPBE BE Case 1 isolated replay",
       "contributor": "ASPBE authors",
@@ -211,25 +426,84 @@
       "formula": "D_n=\\operatorname{diag}_{0\\le j<2^n}\\!\\left(\\frac{j}{2^n}\\right)^3,\\qquad \\Pi U_n\\Pi^\\dagger=D_n.",
       "contract": "For arbitrary n, Lean constructs exact rational branch vectors using the four-square theorem, forms a controlled direct sum of Householder matrices, proves rational orthogonality, and proves the clean block equals D_n with alpha=1.",
       "symbols": [
-        ["D_n", "the symbolic 2^n by 2^n cubic diagonal operator"],
-        ["Pi", "the clean embedding selecting the first Householder branch coordinate"],
-        ["U_n", "the controlled direct sum of exact rational Householder matrices"]
+        [
+          "D_n",
+          "the symbolic 2^n by 2^n cubic diagonal operator"
+        ],
+        [
+          "Pi",
+          "the clean embedding selecting the first Householder branch coordinate"
+        ],
+        [
+          "U_n",
+          "the controlled direct sum of exact rational Householder matrices"
+        ]
       ],
       "circuit": {
         "registers": "n system qubits | three Householder branch qubits",
         "stages": [
-          {"label": "Grid label", "detail": "hold j in the system register", "gates": ["|j>"]},
-          {"label": "Exact completion", "detail": "construct a rational unit vector with first entry (j/2^n)^3", "gates": ["four-square witness"]},
-          {"label": "Controlled Householder", "detail": "apply the branch reflection selected by j", "gates": ["H(v_j)"]},
-          {"label": "Clean projection", "detail": "read the first branch coordinate", "gates": ["D_n"]}
+          {
+            "label": "Grid label",
+            "detail": "hold j in the system register",
+            "gates": [
+              "|j>"
+            ]
+          },
+          {
+            "label": "Exact completion",
+            "detail": "construct a rational unit vector with first entry (j/2^n)^3",
+            "gates": [
+              "four-square witness"
+            ]
+          },
+          {
+            "label": "Controlled Householder",
+            "detail": "apply the branch reflection selected by j",
+            "gates": [
+              "H(v_j)"
+            ]
+          },
+          {
+            "label": "Clean projection",
+            "detail": "read the first branch coordinate",
+            "gates": [
+              "D_n"
+            ]
+          }
         ]
       },
       "evolution": {
         "caption": "The cold route evolves proof structure, not a sequence of comparable resource champions. The endpoint is a theorem for every n.",
         "stages": [
-          {"iteration": "0", "name": "Symbolic target", "score": null, "status": "Contract fixed", "description": "The target is diag((j/2^n)^3), not one sampled n=2 matrix.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists"},
-          {"iteration": "1", "name": "Rational branch completion", "score": null, "status": "Lean certified", "description": "Four-square witnesses close exact normalization for every branch.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists"},
-          {"iteration": "2", "name": "Householder direct sum", "score": [1, 1, 3, 1], "status": "Lean certified family", "description": "The final conjunction proves orthogonality, clean block, alpha, and logical resource record.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"}
+          {
+            "iteration": "0",
+            "name": "Symbolic target",
+            "score": null,
+            "status": "Contract fixed",
+            "description": "The target is diag((j/2^n)^3), not one sampled n=2 matrix.",
+            "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists"
+          },
+          {
+            "iteration": "1",
+            "name": "Rational branch completion",
+            "score": null,
+            "status": "Lean certified",
+            "description": "Four-square witnesses close exact normalization for every branch.",
+            "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists"
+          },
+          {
+            "iteration": "2",
+            "name": "Householder direct sum",
+            "score": [
+              1,
+              1,
+              3,
+              1
+            ],
+            "status": "Lean certified family",
+            "description": "The final conjunction proves orthogonality, clean block, alpha, and logical resource record.",
+            "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"
+          }
         ]
       },
       "qiskit": {
@@ -237,7 +511,13 @@
         "command": "python3 tools/export_hard_cubic_householder.py --task QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001",
         "role": "Instantiates the symbolic Lean construction for Qiskit/OpenQASM use. Finite numerical output is diagnostic only."
       },
-      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001", "mode": "operatorBlockEncoding", "target": "D_n = diag((j/2^n)^3) for arbitrary n", "normalizer": "1", "projector": "three clean Householder branch qubits"},
+      "preset": {
+        "taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001",
+        "mode": "operatorBlockEncoding",
+        "target": "D_n = diag((j/2^n)^3) for arbitrary n",
+        "normalizer": "1",
+        "projector": "three clean Householder branch qubits"
+      },
       "summary": "A symbolic exact family theorem replaces finite numerical acceptance with rational Householder certificates for every n.",
       "source": "ASPBE BE Case 2 cold route",
       "contributor": "ASPBE authors",
@@ -258,24 +538,82 @@
       "formula": "O_0=\\sum_{j=0}^{2^n-1}x_j|j\\rangle\\!\\langle j|,\\quad x_j=\\frac{j}{2^n},\\qquad D_n=O_0^3=\\sum_jx_j^3|j\\rangle\\!\\langle j|.",
       "contract": "Lean closes two named endpoints: an exact linear-diagonal Householder input block and an exact cubic-diagonal Householder output block. The algebraic hint chooses a route; each unitary and clean block is still proved independently.",
       "symbols": [
-        ["O_0", "the input diagonal operator suggested by the hint"],
-        ["D_n", "the desired cubic diagonal operator"],
-        ["x_j", "the exact rational grid point j/2^n"]
+        [
+          "O_0",
+          "the input diagonal operator suggested by the hint"
+        ],
+        [
+          "D_n",
+          "the desired cubic diagonal operator"
+        ],
+        [
+          "x_j",
+          "the exact rational grid point j/2^n"
+        ]
       ],
       "circuit": {
         "registers": "n system qubits | clean Householder branch register",
         "stages": [
-          {"label": "Input block", "detail": "exactly encode diag(x_j)", "gates": ["BE(O_0)"]},
-          {"label": "Polynomial route", "detail": "identify the desired diagonal entries x_j^3", "gates": ["z -> z^3"]},
-          {"label": "Output block", "detail": "exact rational Householder completion", "gates": ["BE(D_n)"]}
+          {
+            "label": "Input block",
+            "detail": "exactly encode diag(x_j)",
+            "gates": [
+              "BE(O_0)"
+            ]
+          },
+          {
+            "label": "Polynomial route",
+            "detail": "identify the desired diagonal entries x_j^3",
+            "gates": [
+              "z -> z^3"
+            ]
+          },
+          {
+            "label": "Output block",
+            "detail": "exact rational Householder completion",
+            "gates": [
+              "BE(D_n)"
+            ]
+          }
         ]
       },
       "evolution": {
         "caption": "The stages show route closure. They are not claimed as a strict resource improvement because no same-tier better-than theorem is attached to this route.",
         "stages": [
-          {"iteration": "0", "name": "Hint parsed", "score": null, "status": "Route selected", "description": "The prose suggestion is converted into two formal operator contracts.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete"},
-          {"iteration": "1", "name": "Linear input block", "score": [1, 1, 1, 1], "status": "Lean certified family", "description": "The input diagonal block has exact unitarity, projection, alpha, and resource fields.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete"},
-          {"iteration": "2", "name": "Cubic output block", "score": [1, 1, 3, 1], "status": "Lean certified family", "description": "The desired cubic family is closed independently; the differing branch widths are not ranked here.", "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"}
+          {
+            "iteration": "0",
+            "name": "Hint parsed",
+            "score": null,
+            "status": "Route selected",
+            "description": "The prose suggestion is converted into two formal operator contracts.",
+            "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete"
+          },
+          {
+            "iteration": "1",
+            "name": "Linear input block",
+            "score": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "status": "Lean certified family",
+            "description": "The input diagonal block has exact unitarity, projection, alpha, and resource fields.",
+            "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete"
+          },
+          {
+            "iteration": "2",
+            "name": "Cubic output block",
+            "score": [
+              1,
+              1,
+              3,
+              1
+            ],
+            "status": "Lean certified family",
+            "description": "The desired cubic family is closed independently; the differing branch widths are not ranked here.",
+            "leanAnchor": "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete"
+          }
         ]
       },
       "qiskit": {
@@ -283,7 +621,13 @@
         "command": "python3 tools/export_hard_cubic_householder.py --task QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001",
         "role": "Exports finite instances of both exact symbolic roots. Numerical comparisons do not certify either family."
       },
-      "preset": {"taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001", "mode": "operatorBlockEncoding", "target": "O_0 = diag(j/2^n), then D_n = O_0^3", "normalizer": "1", "projector": "clean Householder branch register"},
+      "preset": {
+        "taskName": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001",
+        "mode": "operatorBlockEncoding",
+        "target": "O_0 = diag(j/2^n), then D_n = O_0^3",
+        "normalizer": "1",
+        "projector": "clean Householder branch register"
+      },
       "summary": "A direct hint becomes a short formal route with separate exact Lean roots for the input and output blocks.",
       "source": "ASPBE BE Case 2 hinted route",
       "contributor": "ASPBE authors",
@@ -291,13 +635,14 @@
     },
     {
       "slug": "robin-ghl-one-term",
-      "title": "Robin boundary block encoding at N=8",
-      "shortTitle": "Robin benchmark",
+      "title": "GHL Eq. (9) benchmark at N=8 (A1=B1=0)",
+      "shortTitle": "Robin Eq. (9) benchmark",
       "kind": "operatorBlockEncoding",
       "status": "certified",
       "semanticTier": "Exact primitive source reproductions and certified same-tier winner",
       "leanAnchors": [
         "QuantumBlockEncoding.Robin.warmRobin_normalized_eq_integer_div_224",
+        "QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_paperEq9_dimensionless_A1_B1_zero",
         "QuantumBlockEncoding.Robin.warmRobinSplitSeven_duplicate_nonzero_access",
         "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition",
         "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk_matches_periodic",
@@ -317,44 +662,186 @@
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_figure4",
         "QuantumBlockEncoding.Robin.warmRobinBestVerified"
       ],
-      "problem": "For the fixed homogeneous-Robin fourth-derivative discretization with N=8, construct an exact logical unitary whose clean block is the scaled non-unitary matrix A.",
-      "formula": "A=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{A}{56/3}=\\frac{M}{224}.",
-      "contract": "Lean proves three exact primitive block encodings under one frozen convention: the padded paper-seven normal form, a fixed-N8 and f=1 standard-RY-corrected realization of Figure 4, and the evolved XOR four-slot candidate. It then proves the XOR route strictly better than both source realizations in lexicographic order (gate count, depth, auxiliary qubits, oracle calls). Qiskit and OpenQASM replay all three gate lists; they do not replace the Lean equalities.",
+      "problem": "For the N=8 specialization of GHL Eq. (9), set the Robin coefficients A1=B1=0 and factor out the global Delta x^{-2}. Construct an exact primitive unitary whose clean block encodes the resulting fourth-order-accurate second-derivative stencil.",
+      "formula": "A_{\\mathrm{GHL}}^{(9)}=\\Delta x^{-2}\\,\\widetilde A(A_1\\Delta x,B_1\\Delta x),\\qquad \\widetilde A_0:=\\widetilde A(0,0)=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{\\widetilde A_0}{56/3}=\\frac{M}{224},\\quad M=12\\widetilde A_0.",
+      "contract": "The displayed and Lean-certified target is not the full symbolic Eq. (9) matrix. It is the dimensionless N=8 stencil A_tilde_0 obtained after setting A1=B1=0; for the homogeneous benchmark A2=B2=0 as well, and those two constants affect only the source vector. Lean proves three exact primitive block encodings of A_tilde_0 under one frozen convention: the padded paper-seven normal form, a fixed-N8 and f=1 standard-RY-corrected realization of Figure 4, and the evolved XOR four-slot candidate. The normalizer 56/3 belongs to A_tilde_0. Restoring the paper's physical Delta x^{-2} factor gives normalizer 56/(3 Delta x^2).",
       "symbols": [
-        ["A", "the fixed N=8 homogeneous-Robin finite-difference operator"],
-        ["M=12A", "the integer matrix used by the exact decomposition proofs"],
-        ["alpha=56/3", "the frozen block-encoding normalizer"],
-        ["T2", "the exact high-level unitary and clean block are proved; named loaders and SELECT operations may remain logical stages"],
-        ["T3", "every logical stage is expanded into the frozen exact basis {X, RY(theta), RZ(theta), CX}, and Lean proves that the primitive product equals the T2 unitary"]
+        [
+          "A_GHL^(9)",
+          "the physical matrix in paper Eq. (9), including the global Delta x^{-2} factor and general A1,B1 dependence"
+        ],
+        [
+          "A_tilde_0",
+          "the dimensionless N=8 specialization at A1=B1=0; this is the matrix displayed and block-encoded here"
+        ],
+        [
+          "M=12 A_tilde_0",
+          "the integer matrix used by the exact decomposition proofs"
+        ],
+        [
+          "alpha=56/3",
+          "the normalizer for A_tilde_0; the physical Eq. (9) matrix uses 56/(3 Delta x^2)"
+        ],
+        [
+          "T2",
+          "the exact high-level unitary and clean block are proved; named loaders and SELECT operations may remain logical stages"
+        ],
+        [
+          "T3",
+          "every logical stage is expanded into the frozen exact basis {X, RY(theta), RZ(theta), CX}, and Lean proves that the primitive product equals the T2 unitary"
+        ]
       ],
       "circuit": {
         "registers": "Each route declares its own wire order; all use exact {X, RY(theta), RZ(theta), CX} gates and clean workspaces",
         "stages": [
-          {"label": "Paper-seven normal form", "detail": "8 wires; 312 gates; depth 266", "gates": ["padded-seven PREPARE", "6-control RY", "sparse SELECT", "unprepare"]},
-          {"label": "Fixed-N8 Figure 4", "detail": "9 wires; 881 gates; depth 674", "gates": ["PREPARE", "D-transpose indicator", "bulk/boundary RY", "D-transpose access", "SWAP", "D inverse", "unprepare"]},
-          {"label": "Evolved XOR four-slot", "detail": "6 wires; 106 gates; depth 96", "gates": ["pair basis CX", "sector RY", "5-control UCRY", "XOR SELECT", "uncompute"]}
+          {
+            "label": "Paper-seven normal form",
+            "detail": "8 wires; 312 gates; depth 266",
+            "gates": [
+              "padded-seven PREPARE",
+              "6-control RY",
+              "sparse SELECT",
+              "unprepare"
+            ]
+          },
+          {
+            "label": "Fixed-N8 Figure 4",
+            "detail": "9 wires; 881 gates; depth 674",
+            "gates": [
+              "PREPARE",
+              "D-transpose indicator",
+              "bulk/boundary RY",
+              "D-transpose access",
+              "SWAP",
+              "D inverse",
+              "unprepare"
+            ]
+          },
+          {
+            "label": "Evolved XOR four-slot",
+            "detail": "6 wires; 106 gates; depth 96",
+            "gates": [
+              "pair basis CX",
+              "sector RY",
+              "5-control UCRY",
+              "XOR SELECT",
+              "uncompute"
+            ]
+          }
         ]
       },
       "evolution": {
         "caption": "All scored points below use the same exact primitive basis, normalizer 56/3, zero error, all-to-all connectivity, little-endian indexing, clean workspaces, and score order (gates, depth, auxiliary qubits, oracle calls). The comparison is benchmark- and compiler-specific, not a global optimality theorem.",
         "scoreAudit": "The paper's numerical experiment counts undecomposed multi-controlled rotations as instructions, whereas ASPBE counts the exact {X, RY, RZ, CX} list after a frozen compiler. These tiers are not compared numerically. Within the ASPBE primitive tier, the XOR route has fewer gates, lower depth, and fewer auxiliary qubits than both baselines; all oracle counts are zero. It therefore wins under every ordering of these four coordinates, not only the displayed lexicographic order.",
         "stages": [
-          {"iteration": "audit", "name": "Sparse-source correction", "score": null, "status": "Source interpretation certified", "description": "Lean detects duplicate nonzero accesses in the historical split-seven LCU and replaces it with a true padded-seven sparse enumeration.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"},
-          {"iteration": "0", "name": "Fixed-N8 Figure-4 realization", "score": [881, 674, 6, 0], "gateBreakdown": {"singleQubit": 427, "cx": 454}, "instructionTier": "Exact ASPBE primitive list; not the paper's undecomposed simulator instruction count.", "status": "Lean-certified source circuit", "description": "The full source order uses the corrected D-transpose bulk window, standard-RY doubled angles, transported cleanup, and f=1 constant folding.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"},
-          {"iteration": "1", "name": "Paper-seven normal form", "score": [312, 266, 5, 0], "gateBreakdown": {"singleQubit": 137, "cx": 175}, "instructionTier": "Exact ASPBE primitive list under the same compiler and connectivity.", "status": "Lean-certified source normal form", "description": "The equivalent sparse source contract compiles directly as PREPARE, amplitude loading, modular-add SELECT, and unprepare.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"},
-          {"iteration": "2", "name": "XOR four-slot primitive", "score": [106, 96, 3, 0], "gateBreakdown": {"singleQubit": 38, "cx": 68}, "instructionTier": "Exact ASPBE primitive list under the same compiler and connectivity.", "status": "Certified same-tier winner", "description": "Two compiled betterThan theorems establish the strict gate-count improvement over both source realizations.", "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinBestVerified"}
+          {
+            "iteration": "audit",
+            "name": "Sparse-source correction",
+            "score": null,
+            "status": "Source interpretation certified",
+            "description": "Lean detects duplicate nonzero accesses in the historical split-seven LCU and replaces it with a true padded-seven sparse enumeration.",
+            "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"
+          },
+          {
+            "iteration": "0",
+            "name": "Fixed-N8 Figure-4 realization",
+            "score": [
+              881,
+              674,
+              6,
+              0
+            ],
+            "gateBreakdown": {
+              "singleQubit": 427,
+              "cx": 454
+            },
+            "instructionTier": "Exact ASPBE primitive list; not the paper's undecomposed simulator instruction count.",
+            "status": "Lean-certified source circuit",
+            "description": "The full source order uses the corrected D-transpose bulk window, standard-RY doubled angles, transported cleanup, and f=1 constant folding.",
+            "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"
+          },
+          {
+            "iteration": "1",
+            "name": "Paper-seven normal form",
+            "score": [
+              312,
+              266,
+              5,
+              0
+            ],
+            "gateBreakdown": {
+              "singleQubit": 137,
+              "cx": 175
+            },
+            "instructionTier": "Exact ASPBE primitive list under the same compiler and connectivity.",
+            "status": "Lean-certified source normal form",
+            "description": "The equivalent sparse source contract compiles directly as PREPARE, amplitude loading, modular-add SELECT, and unprepare.",
+            "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"
+          },
+          {
+            "iteration": "2",
+            "name": "XOR four-slot primitive",
+            "score": [
+              106,
+              96,
+              3,
+              0
+            ],
+            "gateBreakdown": {
+              "singleQubit": 38,
+              "cx": 68
+            },
+            "instructionTier": "Exact ASPBE primitive list under the same compiler and connectivity.",
+            "status": "Certified same-tier winner",
+            "description": "Two compiled betterThan theorems establish the strict gate-count improvement over both source realizations.",
+            "leanAnchor": "QuantumBlockEncoding.Robin.warmRobinBestVerified"
+          }
         ]
       },
       "verificationStatus": [
-        ["Candidate exact primitive certificate", "Complete", "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"],
-        ["Source sparse-slot audit", "Complete", "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"],
-        ["Paper-seven exact primitive normal form", "Complete", "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"],
-        ["Figure-4 fixed-N8 exact primitive realization", "Complete", "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"],
-        ["Same-tier primitive comparison", "Complete", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"],
-        ["Ordering-independent componentwise dominance", "Complete", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_figure4"],
-        ["Winner for the frozen benchmark/compiler", "Certified", "QuantumBlockEncoding.Robin.warmRobinBestVerified"]
+        [
+          "Paper Eq. (9) specialization and scaling audit",
+          "Complete",
+          "QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_paperEq9_dimensionless_A1_B1_zero"
+        ],
+        [
+          "Candidate exact primitive certificate",
+          "Complete",
+          "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"
+        ],
+        [
+          "Source sparse-slot audit",
+          "Complete",
+          "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"
+        ],
+        [
+          "Paper-seven exact primitive normal form",
+          "Complete",
+          "QuantumBlockEncoding.Robin.warmRobinPaperSevenPrimitiveVerifiedBlockEncoding"
+        ],
+        [
+          "Figure-4 fixed-N8 exact primitive realization",
+          "Complete",
+          "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"
+        ],
+        [
+          "Same-tier primitive comparison",
+          "Complete",
+          "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"
+        ],
+        [
+          "Ordering-independent componentwise dominance",
+          "Complete",
+          "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_figure4"
+        ],
+        [
+          "Winner for the frozen benchmark/compiler",
+          "Certified",
+          "QuantumBlockEncoding.Robin.warmRobinBestVerified"
+        ]
       ],
       "sourceInterpretation": [
+        "The page displays A_tilde_0 = Delta x^2 A_GHL^(9)|_{A1=B1=0} = M/12, not the full general physical matrix of Eq. (9). With A2=B2=0 this is the homogeneous-Neumann special case inside the Robin family. Restoring the physical Delta x^{-2} factor rescales the normalizer from 56/3 to 56/(3 Delta x^2).",
         "The historical split-seven weighted-permutation LCU is retained as structural evidence, but it is not a sparse-access enumeration because two nonzero slots can address the same entry.",
         "Bulk rows of D and bulk rows of D-transpose are different tests. The Figure-4 indicator acts on D-transpose and therefore selects source columns 3 and 4.",
         "Equation (27) has a missing factor-of-two typo: the standard Qiskit and ASPBE RY convention needs 2 arccos(c) to place c in the clean matrix entry.",
@@ -367,11 +854,17 @@
         "command": "python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm",
         "role": "Regenerates three separate canonical artifacts: the XOR candidate at the task root, paper-seven under paper-seven/, and the fixed-N8 Figure-4 realization under figure4-fixed-n8/. Each receives an internal matrix check, gate-by-gate Qiskit Operator check, and strict OpenQASM 3 round-trip."
       },
-      "preset": {"taskName": "QBE-ROBIN-BE-WARM-001", "mode": "exploratoryConstruction", "target": "fixed N=8 homogeneous-Robin matrix A with clean block A/(56/3)", "normalizer": "56/3", "projector": "selector=0 and coefficient=0; system Fin 8"},
-      "summary": "Lean closes both source realizations and the evolved candidate at the exact primitive level, then certifies the candidate's same-tier lexicographic improvement.",
-      "source": "Guseynov-Huang-Liu construction and ASPBE fixed-N audit",
+      "preset": {
+        "taskName": "QBE-ROBIN-BE-WARM-001",
+        "mode": "exploratoryConstruction",
+        "target": "dimensionless N=8 Eq. (9) stencil A_tilde_0 at A1=B1=0, with clean block A_tilde_0/(56/3)",
+        "normalizer": "56/3",
+        "projector": "selector=0 and coefficient=0; system Fin 8"
+      },
+      "summary": "Lean block-encodes the dimensionless A1=B1=0 specialization of GHL Eq. (9), explicitly distinguishes it from the physical Delta x^{-2} matrix, closes both source realizations and the evolved candidate at the exact primitive level, and certifies the candidate's same-tier improvement.",
+      "source": "Guseynov-Huang-Liu Eq. (9), specialized to N=8 and A1=B1=0, plus the ASPBE fixed-instance audit",
       "contributor": "ASPBE authors",
-      "limitations": "The result is fixed to N=8, homogeneous f=1, alpha=56/3, the standard-RY correction, the declared exact compiler, and all-to-all resource accounting. It does not prove the arbitrary-n paper theorem or global circuit optimality."
+      "limitations": "The certified target is A_tilde_0 = Delta x^2 A_GHL^(9)|_{A1=B1=0}, not the full symbolic Robin family. The result is fixed to N=8, homogeneous A2=B2=0, f=1, alpha=56/3 for the dimensionless stencil, the standard-RY correction, the declared exact compiler, and all-to-all resource accounting. It does not prove the arbitrary-n paper theorem, general nonzero A1/B1, or global circuit optimality."
     }
   ]
 }

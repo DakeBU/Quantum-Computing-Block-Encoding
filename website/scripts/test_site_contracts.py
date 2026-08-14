@@ -16,7 +16,7 @@ assert SPEC and SPEC.loader
 build_site = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(build_site)
 
-from website.content import CHAPTERS, ROADMAP
+from website.content import CHAPTERS, IMPLEMENTATION_MAP, ROADMAP
 from website.case_assets import STAGE_CIRCUITS
 
 
@@ -181,6 +181,31 @@ class SiteContractTests(unittest.TestCase):
             self.assertEqual(split["singleQubit"] + split["cx"], stage["score"][0])
             self.assertIn("primitive", stage["instructionTier"].lower())
         self.assertIn("every ordering", robin["evolution"]["scoreAudit"])
+
+    def test_gate_list_contract_uses_supported_mathjax_tex(self) -> None:
+        row = next(item for item in IMPLEMENTATION_MAP if item["goal"] == "Evaluate a gate list")
+        self.assertEqual(row["contract"], r"\mathrm{Eval}(C)=G_m\cdots G_1")
+        self.assertNotIn(r"\llbracket", row["contract"])
+        rendered = build_site.render_math_tex(row["contract"])
+        self.assertIn(r"\mathrm{Eval}", rendered)
+
+    def test_robin_example_states_exact_eq9_specialization(self) -> None:
+        data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))
+        robin = next(case for case in data["cases"] if case["slug"] == "robin-ghl-one-term")
+        formula = robin["formula"]
+        relation_root = (
+            "QuantumBlockEncoding.RobinEvolution."
+            "warmRobinTarget_eq_paperEq9_dimensionless_A1_B1_zero"
+        )
+        self.assertIn(r"A_{\mathrm{GHL}}^{(9)}", formula)
+        self.assertIn(r"\Delta x^{-2}", formula)
+        self.assertIn(r"\widetilde A_0", formula)
+        self.assertIn("A1=B1=0", robin["problem"])
+        self.assertIn("56/(3 Delta x^2)", robin["contract"])
+        self.assertIn(relation_root, robin["leanAnchors"])
+        self.assertTrue(any(row[2] == relation_root for row in robin["verificationStatus"]))
+        rendered = build_site.render_math_tex(formula)
+        self.assertNotIn("\\llbracket", rendered)
 
     def test_workspace_supports_both_translation_directions(self) -> None:
         page = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")

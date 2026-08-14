@@ -16118,7 +16118,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:107](../../../../li
 
 # QuantumBlockEncoding/RobinEvolution.lean
 
-17 explicit public declarations, in source order.
+18 explicit public declarations, in source order.
 
 :::definition "QuantumBlockEncoding.RobinEvolution.warmRobinTarget" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinTarget")
 *Plain-English reading.* This definition gives the library's named construction or computation for “warm robin target”. The fixed eight-dimensional homogeneous-Robin benchmark matrix.
@@ -16190,6 +16190,20 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:59](../../../../library/module
 Source: [QuantumBlockEncoding/RobinEvolution.lean:64](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobintarget-eq-eval-robinderivativematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+:::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_paperEq9_dimensionless_A1_B1_zero" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinTarget_eq_paperEq9_dimensionless_A1_B1_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “warm robin target eq paper eq 9 dimensionless a 1 b 1 zero”; the hypotheses and conclusion in the code panel fix its exact scope. Relation to Guseynov--Huang--Liu Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Relation to Guseynov--Huang--Liu Eq. (9). The paper writes the physical finite-difference matrix as 'A\_GHL^(9) = Delta x^(-2) \* A\_tilde', with boundary entries depending on 'A1 \* Delta x' and 'B1 \* Delta x'. The frozen ASPBE target is the dimensionless stencil 'A\_tilde' at 'A1 = B1 = 0'; the inhomogeneous constants 'A2' and 'B2' belong to the source vector rather than this matrix.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/RobinEvolution.lean:80](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobintarget-eq-papereq9-dimensionless-a1-b1-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 :::definition "QuantumBlockEncoding.RobinEvolution.warmRobinParameters" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinParameters")
 *Plain-English reading.* This definition gives the library's named construction or computation for “warm robin parameters”. Fixed paper-seeded parameters for the eight-dimensional warm instance.
 
@@ -16201,7 +16215,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:64](../../../../library/module
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:80](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinparameters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:94](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinparameters). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout")
@@ -16215,7 +16229,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:80](../../../../library/module
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:84](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:98](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcelayout). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.RobinEvolution.warmRobinVisiblePartition" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinVisiblePartition")
@@ -16229,7 +16243,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:84](../../../../library/module
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:88](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinvisiblepartition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:102](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinvisiblepartition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit")
@@ -16243,7 +16257,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:88](../../../../library/module
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:94](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:108](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_gateList" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_gateList")
@@ -16257,7 +16271,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:94](../../../../library/module
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:108](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcecircuit-gatelist). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:122](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcecircuit-gatelist). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_length" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_length")
@@ -16271,7 +16285,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:108](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:124](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcecircuit-length). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:138](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcecircuit-length). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinParameters_spec" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinParameters_spec")
@@ -16285,7 +16299,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:124](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:130](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinparameters-spec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:144](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinparameters-spec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout_spec" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout_spec")
@@ -16299,7 +16313,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:130](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:138](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcelayout-spec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:152](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinsourcelayout-spec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinVisiblePartition_spec" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinVisiblePartition_spec")
@@ -16313,7 +16327,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:138](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:145](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinvisiblepartition-spec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:159](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinvisiblepartition-spec). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinTotalQubits_eq" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinTotalQubits_eq")
@@ -16327,7 +16341,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:145](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:155](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobintotalqubits-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:169](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobintotalqubits-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinEffectiveSignalQubits_eq" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinEffectiveSignalQubits_eq")
@@ -16341,7 +16355,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:155](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:160](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobineffectivesignalqubits-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:174](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobineffectivesignalqubits-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate" (lean := "QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate")
@@ -16355,5 +16369,5 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:160](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/RobinEvolution.lean:166](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinindicatorcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/RobinEvolution.lean:180](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinindicatorcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
