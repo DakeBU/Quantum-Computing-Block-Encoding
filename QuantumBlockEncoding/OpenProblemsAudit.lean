@@ -23,6 +23,10 @@ def OpenProblem.actionable (problem : OpenProblem) : Prop :=
   problem.acceptanceTest ≠ "" ∧
   problem.references ≠ []
 
+instance (problem : OpenProblem) : Decidable problem.actionable := by
+  unfold OpenProblem.actionable
+  infer_instance
+
 /-- The current registry contains seven explicitly scoped problems. -/
 theorem openProblems_count : problemCount = 7 := by
   decide
