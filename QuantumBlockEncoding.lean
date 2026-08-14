@@ -1,5 +1,7 @@
 import QuantumBlockEncoding.Automation
+import QuantumBlockEncoding.AutomationTrace
 import QuantumBlockEncoding.BandedSparseAccess
+import QuantumBlockEncoding.BandedSparseAccessPrimitive
 import QuantumBlockEncoding.BlockEncoding
 import QuantumBlockEncoding.BlockEncodingClassics
 import QuantumBlockEncoding.Circuit
@@ -8,6 +10,7 @@ import QuantumBlockEncoding.Core
 import QuantumBlockEncoding.ColdStartTransferE1
 import QuantumBlockEncoding.ConcreteSemantics
 import QuantumBlockEncoding.CubicStatePreparation
+import QuantumBlockEncoding.CubicAmplitudePrimitive
 import QuantumBlockEncoding.Examples.RobinHeat
 import QuantumBlockEncoding.GHL2025
 import QuantumBlockEncoding.Literature
