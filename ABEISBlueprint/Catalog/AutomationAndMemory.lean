@@ -951,7 +951,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:88](../../../../library/modules/
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:16](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemids). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:18](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemids). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.OpenProblem.actionable" (lean := "QuantumBlockEncoding.OpenProblem.actionable")
@@ -965,7 +965,7 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:16](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:19](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblem-actionable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:21](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblem-actionable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.openProblems_count" (lean := "QuantumBlockEncoding.openProblems_count")
@@ -979,7 +979,7 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:19](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:31](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblems-count). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:33](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblems-count). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.openProblemIds_nodup" (lean := "QuantumBlockEncoding.openProblemIds_nodup")
@@ -993,21 +993,21 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:31](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:35](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemids-nodup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:37](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemids-nodup). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.openProblems_all_actionable" (lean := "QuantumBlockEncoding.openProblems_all_actionable")
-*Plain-English reading.* Lean checks the proposition indexed as “open problems all actionable”; the hypotheses and conclusion in the code panel fix its exact scope.
+*Plain-English reading.* Lean checks the proposition indexed as “open problems all actionable”; the hypotheses and conclusion in the code panel fix its exact scope. Every current problem has a nonempty statement, acceptance test, and source list.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
 *Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
 
-*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+*Technical source note.* Every current problem has a nonempty statement, acceptance test, and source list.
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:40](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblems-all-actionable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:41](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblems-all-actionable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.openProblemRegistry_compiled" (lean := "QuantumBlockEncoding.openProblemRegistry_compiled")

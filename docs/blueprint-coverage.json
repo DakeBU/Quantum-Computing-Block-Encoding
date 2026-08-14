@@ -3,7 +3,7 @@
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
   "publicDeclarationCount": 2757,
   "privateDeclarationExclusionCount": 196,
-  "sourceDocstringCount": 1727,
+  "sourceDocstringCount": 1728,
   "generatedReaderCueCount": 2757,
   "byKind": {
     "abbrev": 30,
