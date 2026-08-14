@@ -16,6 +16,7 @@ import QuantumBlockEncoding.GHL2025
 import QuantumBlockEncoding.Literature
 import QuantumBlockEncoding.MainCase
 import QuantumBlockEncoding.OpenProblems
+import QuantumBlockEncoding.OpenProblemsAudit
 import QuantumBlockEncoding.OptimalControl
 import QuantumBlockEncoding.PrimitiveCircuit
 import QuantumBlockEncoding.PrimitiveBasisLE
