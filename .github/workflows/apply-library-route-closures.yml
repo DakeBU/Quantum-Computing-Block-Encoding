@@ -1,0 +1,49 @@
+name: Apply proof-backed teaching route metadata
+
+on:
+  push:
+    branches:
+      - agent/close-library-partials
+    paths:
+      - scripts/apply-library-route-closures.py
+      - .github/workflows/apply-library-route-closures.yml
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: apply-library-route-closures
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the working branch
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Apply metadata, regenerate catalogs, and run focused site contracts
+        run: python3 scripts/apply-library-route-closures.py
+
+      - name: Commit generated source and remove the one-shot maintenance surface
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add website/content.py website/scripts/test_site_contracts.py \
+            scripts/generate-blueprint-catalog.py ABEISBlueprint/Catalog \
+            docs/blueprint-coverage.json web/library/declarations.json
+          git commit -m "Close remaining teaching route metadata"
+
+          git rm .github/workflows/apply-library-route-closures.yml \
+            scripts/apply-library-route-closures.py
+          git commit -m "Remove one-shot teaching route migration"
+
+          git push origin HEAD:agent/close-library-partials
+          gh workflow run pages.yml --ref agent/close-library-partials
