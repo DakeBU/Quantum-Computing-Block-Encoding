@@ -2,7 +2,9 @@
 
 This audit records the bounded routes closed before promotion to `main`.  The
 listed website cards may be labelled **Compiled** only while these declarations
-remain in the generated inventory and the full Pages/Lean gate passes.
+remain in the generated inventory and the full Pages/Lean gate passes.  The
+inventory and Blueprint catalog must be regenerated from the same source tree
+after every proof edit; stale source previews are not acceptable evidence.
 
 ## Shared exact and approximate promotion interfaces
 
