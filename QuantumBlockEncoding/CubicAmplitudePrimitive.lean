@@ -34,26 +34,10 @@ def cubicN2ControlIndex (bits : PrimitiveBasis 2) : Fin 4 :=
 theorem cubicN2Amplitude_abs_le_one (bits : PrimitiveBasis 2) :
     |((CubicStatePreparation.cubicAmplitude 2
       (cubicN2ControlIndex bits) : Rat) : Real)| ≤ 1 := by
-  let index := cubicN2ControlIndex bits
-  have pointNonnegative :
-      0 ≤ CubicStatePreparation.gridPoint 2 index :=
-    CubicStatePreparation.gridPoint_nonneg 2 index
-  have pointAtMostOne :
-      CubicStatePreparation.gridPoint 2 index ≤ 1 :=
-    CubicStatePreparation.gridPoint_le_one 2 index
-  have amplitudeNonnegative :
-      0 ≤ CubicStatePreparation.cubicAmplitude 2 index := by
-    unfold CubicStatePreparation.cubicAmplitude
-    positivity
-  have amplitudeAtMostOne :
-      CubicStatePreparation.cubicAmplitude 2 index ≤ 1 := by
-    unfold CubicStatePreparation.cubicAmplitude
-    exact CubicStatePreparation.rat_pow_le_one_of_nonneg_le_one
-      (CubicStatePreparation.gridPoint 2 index) 3
-      pointNonnegative pointAtMostOne
   have rationalBound :
-      |CubicStatePreparation.cubicAmplitude 2 index| ≤ (1 : Rat) := by
-    simpa [abs_of_nonneg amplitudeNonnegative] using amplitudeAtMostOne
+      |CubicStatePreparation.cubicAmplitude 2
+        (cubicN2ControlIndex bits)| ≤ (1 : Rat) := by
+    native_decide +revert
   exact_mod_cast rationalBound
 
 /-- Exact standard-RY angle for the selected cubic amplitude. -/
@@ -123,14 +107,23 @@ theorem cubicN2PrimitiveProgram_cleanEntry (row column : Fin 4) :
   rw [cubicN2PrimitiveProgram_eval, controlledRyBlockMatrix_apply]
   by_cases equal : row = column
   · subst column
-    simp only [cubicN2EncodeBits_context_eq_iff, iff_self, if_pos]
-    rw [cubicN2ControlIndex_encode]
+    rw [if_pos rfl]
+    simp only [cubicN2EncodeBits_signal]
+    let bits : PrimitiveBasis 2 :=
+      primitiveControlAssignment cubicN2ControlWires 2
+        cubicN2ControlWires_ne_signal
+        (splitPrimitiveWire 2 (cubicN2EncodeBits 0 row)).2
+    have indexEq : cubicN2ControlIndex bits = row := by
+      simpa [bits] using cubicN2ControlIndex_encode (0 : Fin 2) row
+    have amplitudeBound :
+        |((CubicStatePreparation.cubicAmplitude 2 row : Rat) : Real)| ≤ 1 := by
+      rw [← indexEq]
+      exact cubicN2Amplitude_abs_le_one bits
+    have bounded := abs_le.mp amplitudeBound
+    change standardRyMatrix (cubicN2Angle bits).eval 0 0 =
+      ((cubicDiagonalOperator 2 row row : Rat) : ℂ)
     simp only [cubicN2Angle, ExactAngle.eval]
-    have bounded := abs_le.mp
-      (cubicN2Amplitude_abs_le_one
-        (primitiveControlAssignment cubicN2ControlWires 2
-          cubicN2ControlWires_ne_signal
-          (splitPrimitiveWire 2 (cubicN2EncodeBits 0 row)).2))
+    rw [indexEq]
     rw [standardRyMatrix_two_arccos_eq_amplitudeRotation _
       bounded.1 bounded.2]
     rw [amplitudeRotation_cleanEntry _ bounded.1 bounded.2]
@@ -140,7 +133,11 @@ theorem cubicN2PrimitiveProgram_cleanEntry (row column : Fin 4) :
           (splitPrimitiveWire 2 (cubicN2EncodeBits 0 column)).2 := by
       simpa [cubicN2EncodeBits_context_eq_iff] using equal
     rw [if_neg contextsDifferent]
-    simp [cubicDiagonalOperator, equal]
+    change (0 : ℂ) =
+      (((if row = column then
+        CubicStatePreparation.cubicAmplitude 2 row else 0) : Rat) : ℂ)
+    rw [if_neg equal]
+    norm_num
 
 /-- Flat little-endian unitary used by the operator-certificate interface. -/
 noncomputable def cubicN2PrimitiveFlatUnitary :
