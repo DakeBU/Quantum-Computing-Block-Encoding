@@ -3,6 +3,7 @@
 % These statements are paper inputs, not Lean certificates.
 
 \subsection*{Banded sparse access}
+Robin Lemma~2 invokes Lemma~1 of arXiv:2405.12855 for this primitive:
 \[
 \hat{O}^{BS}_D\ket{0}^{n-l}\ket{s}^l\ket{i}^n
   := \ket{r_{si}}^n\ket{i}^n,
@@ -23,14 +24,19 @@ U_{\mathrm{indic}}(K_1,K_2)
 \]
 
 \subsection*{Boundary rotations}
+Equation~(27) prints a single \(\arccos\), which is missing a factor of two
+under the standard \(R_y(\theta)\) convention.  The corrected executable and
+formal contract is
 \[
 \theta_j^s =
-\arccos\left(\frac{D_j^{(s)}}{\mathcal{N}_D}\right),
+2\arccos\left(\frac{D_j^{(s)}}{\mathcal{N}_D}\right),
 \quad
 s=0,\ldots,\kappa-1,
 \quad
 j\in[0,K_1)\cup(K_2,2^n).
 \]
+The paper-literal single-\(\arccos\) expression is retained in the source-audit
+record only; it is not used as a standard-\(R_y\) amplitude loader.
 
 \subsection*{One-term theorem}
 For a piecewise-continuous \(f\) and a discretized \(\kappa\)-sparse Robin

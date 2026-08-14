@@ -2051,6 +2051,11 @@ def reusable_memory_card_rows(task_text: str, limit: int = 8) -> list[dict[str, 
                 score += 200
             if "core.firstcolumn" in stem:
                 score += 240
+        if any(marker in lowered for marker in (
+            "ancilla", "auxiliary qubit", "controlled conjugation",
+            "promise register", "dirty workspace", "dirty ancilla",
+        )) and "promiseancillatradeoff" in stem:
+            score += 220
         anchors = []
         for token in re.findall(r"`([A-Za-z_][A-Za-z0-9_'.]+)`", text):
             if token not in anchors:
@@ -2680,9 +2685,9 @@ GHL2025_SOURCE_ANCHORS = [
     {
         "id": "ODBS",
         "source": "main.tex:784-798",
-        "paper": "Lemma 1，banded-sparse-access oracle",
-        "meaning": "定义 $\\hat{O}^{BS}_D |0\\rangle^{n-l}|s\\rangle^l|i\\rangle^n = |r_{si}\\rangle^n|i\\rangle^n$，并从前一篇 PDE block-encoding 论文引用资源估计。",
-        "status": "contract/backlog：已有 active matrix helper；完整 reversible extension、injectivity、dagger cleanup、unitarity 仍是义务。",
+        "paper": "Lemma 2，引用 arXiv:2405.12855 Lemma 1 的 banded-sparse-access oracle",
+        "meaning": "Robin Lemma 2 使用 $\\hat{O}^{BS}_D |0\\rangle^{n-l}|s\\rangle^l|i\\rangle^n = |r_{si}\\rangle^n|i\\rangle^n$，其 primitive 和资源来源明确是前一篇 PDE 论文的 Lemma 1。",
+        "status": "fixed-N8 route 已编译；任意 n 的 reversible extension 和统一资源定理仍作为外部来源合同。",
     },
     {
         "id": "ODTS",
@@ -2716,8 +2721,8 @@ GHL2025_SOURCE_ANCHORS = [
         "id": "RyBoundary",
         "source": "main.tex:1077-1085",
         "paper": "Boundary controlled $R_y$ rotations",
-        "meaning": "boundary entry 逐元素处理，角度写作 $\\theta_j^s = \\arccos(D_j^{(s)}/\\mathcal{N}_D)$。",
-        "status": "active convention audit：标准 $R_y(\\theta)$ 给出 $\\cos(\\theta/2)$，所以 Lean route 必须确认论文 convention，或使用有原文/引用支持的 doubled-angle 修正。",
+        "meaning": "Eq. (27) 漏写系数 2；标准旋转应使用 $\\theta_j^s = 2\\arccos(D_j^{(s)}/\\mathcal{N}_D)$。",
+        "status": "fixed-N8 standard-Ry corrected route 已编译；原文单 arccos 仅保留为 source-typo transcript。",
     },
     {
         "id": "RobinTheorem",
@@ -3676,7 +3681,7 @@ def ghl_anchor_metadata(anchor_id: str) -> dict[str, object]:
         "Of": "External contract/backlog: clean branch is typed; bounds, orthogonality, cleanup, and unitary completion remain obligations.",
         "HW": "The theorem-facing route uses a clean-column contract; full gate-level state-preparation remains external/backlog.",
         "Uindic": "Permutation and self-inverse helpers compile, but this is not yet the final block-encoding proof.",
-        "RyBoundary": "Active convention audit: the Ry angle convention must be source-supported before closing the boundary amplitude proof.",
+        "RyBoundary": "The fixed-N8 standard-Ry correction is compiled; the printed single-arccos formula is retained only as a source typo.",
         "RobinTheorem": "Main active target: the theorem-facing Lean statement is not closed.",
         "GammaSlices": "Several finite boundary lemmas exist; the final projection/product bridge is still open.",
         "FigRobin": "Transcript guard compiles for visible indicator dagger and H preparation; the active seven-gate backend remains a component.",
@@ -3722,14 +3727,14 @@ def ghl_contribution_rows() -> list[dict[str, object]]:
 def technical_lemma_rows() -> list[dict[str, object]]:
     return [
         {
-            "id": "tl-ghl-lemma1-banded-sparse-access",
-            "source": "GHL2025 main.tex:784-798; previous PDE block-encoding construction",
+            "id": "tl-ghl-lemma2-prior-lemma1-banded-sparse-access",
+            "source": "GHL2025 arXiv:2506.20478 Lemma 2; arXiv:2405.12855 Lemma 1",
             "statement": "Banded-sparse-access oracle maps sparse slot and row index to the corresponding column index, with a reversible/unitary completion and dagger cleanup.",
             "lean_decl": "bandedSparseAccessPaperMatrix / ODBS contract helpers",
             "lean_status": "contract-only",
             "used_by": ["GHL2025 Fig. 4", "Robin boundary ODBS dagger cleanup"],
             "dependencies": ["sparse slot injectivity", "reversible extension", "finite matrix unitarity"],
-            "next_action": "Keep as explicit external contract until the exact cited construction is formalized or imported as a theorem.",
+            "next_action": "Reuse the compiled fixed-N8 primitive; keep only the arbitrary-n resource theorem as an explicit external contract.",
             "tags": ["GHL2025", "oracle", "sparse-access", "external-primitive"],
         },
         {
@@ -5290,9 +5295,9 @@ def ghl_failure_map_markdown(task_id: str, run_dir: Path) -> str:
 | `main.tex:1098-1109` | one-term Robin block-encoding theorem：最终要证明 Fig. 4 的 circuit 是 $A_k=f(x)\\partial_x^m$ 的 block-encoding。 | `QuantumBlockEncoding/RobinMatrix.lean` 中的 theorem-facing wrapper 和局部 backend 定理。 | 局部宣言已编译；paper-wide route 仍是 experimental。 | 不完整处是具名外部原语 contract，包括 sparse preparation、oracle 和 cleanup；不是隐藏的 Lean proof hole。历史 raw fold 已被反例否定。 | `{rel(latest_summary)}`；`{rel(latest_memory)}`；`QuantumBlockEncoding/RobinMatrix.lean` | 选择一个外部 contract，明确它的语义、引用来源和单独验收定理；不再派发已否定的 raw fold。 |
 | `main.tex:1111-1119` | Eq. ROBIN clarified：给出 $\\gamma_1,\\gamma_2,\\gamma_3$，其中关键 clean branch 是 $f(x_i)D_i^{(s)}/(N_DN_f\\kappa)$。 | `oneTermRobinGamma3BoundaryBackendBranchContribution_n3`；backend branch fold；selected slot `2`。 | 局部分支和 support/vanish 引理已编译。 | 这些引理精确描述 active backend 组件。它们不自动实现完整 Fig. 4 中的外部 preparation/oracle contract。 | `QuantumBlockEncoding/RobinMatrix.lean`；历史失败仍保留在 `proof-attempts/QBE-AUTO-002/` 作为审计记录。 | 只在所选外部 contract 具体化后证明对应语义 entry；先做小维度反例检查。 |
 | `main.tex:1122-1164` | Fig. 4 circuit caption：完整线路顺序，包括左侧 $H_W^{(\\kappa)}$、`U_indic`、boundary $R_y$、$O_f$、SWAP、$(O_D^{BS})^\\dagger$、右侧 $H_W^T$。 | `GHL2025.oneTermRobinTheoremFacingFig4Circuit_gateList`；`oneTermRobinGamma3BoundaryGateMatrixList_n3` 证明 H-free seven-gate component 的确切顺序。 | 两个 gate-list 结构证书已编译；完整 gate-level 语义仍依赖外部 contract。 | ABEIS 已经守住门顺序，并明确区分七门 backend 与完整 Fig. 4。缺失的是原语实现，不是 transcript 或未证明等式。 | `{rel(latest_summary)}` 的 `FigRobin` 行；`conversion-windows/QBE-AUTO-002.md`；`proof-obligations/QBE-AUTO-002.md` | 保持图与子组件的边界；为每个外部原语建立独立 certificate，再做完整 composition。 |
-| `main.tex:1077-1085` | Robin boundary 的 controlled $R_y$ 旋转，论文写 $\\theta_j^s=\\arccos(D_j^{(s)}/N_D)$。 | boundary rotation convention lemmas；`tl-ry-boundary-amplitude-convention`。 | 仍是 obligation。 | 标准量子计算里的 `R_y(\\theta)` 振幅常出现半角 $\\cos(\\theta/2)$。如果论文采用不同 convention 或隐含 doubled-angle，Lean 必须明确桥接，不能硬改公式。 | `research-wiki/technical-lemmas/todo.md`；`research-wiki/paper-contributions/GHL2025/todo.md` | 查论文定义和引用文献，确认 convention 后写成 Lean lemma；不能自己加新假设。 |
+| `main.tex:1077-1085` | Robin boundary 的 controlled $R_y$ 旋转；Eq. (27) 漏写系数 2。 | `warmRobinCorrectedEq27_standardRy_cleanAmplitude`；`standardRyMatrix_two_arccos_eq_amplitudeRotation`。 | fixed-N8 corrected route compiled。 | 标准 `R_y(\\theta)` 的 clean 振幅是 $\\cos(\\theta/2)$，所以应使用 $\\theta_j^s=2\\arccos(D_j^{(s)}/N_D)$；单 arccos 只保留为 source-typo transcript。 | `QuantumBlockEncoding/Robin/Figure4Loaders.lean`；`research-wiki/cited-results/GHL2025.md` | 任意新 backend 必须先证明自己的旋转 convention bridge，禁止重新把原文笔误作为可执行合同。 |
 | `main.tex:948-955` | $H_W^{(\\kappa)}$ 制备 sparse register 的 uniform superposition。 | `oneTermRobinGamma3BoundaryHWKappaUniformColumnAllSlotsStatement_n3 H`。 | contract-only。 | 这是论文引用的已有 state-preparation primitive，不是当前 GHL 自己新证明的核心。为了先复现 GHL 主线，可以把它作为显式 contract，但不能说 gate-level proof 已完成。 | `research-wiki/technical-lemmas/todo.md`；`{rel(latest_summary)}` 的 `HW` 行 | 先保持 theorem-facing contract；若以后做资源定理或完整 gate-level primitive，再 formalize 引用文献。 |
-| `main.tex:784-798` | Lemma 1：banded-sparse-access oracle $\\hat O_D^{BS}$。 | `tl-ghl-lemma1-banded-sparse-access`；sparse-access oracle contract。 | contract/backlog。 | 论文引用前人 PDE block-encoding 构造；ABEIS 还没有从零证明 reversible extension、injectivity、dagger cleanup、unitarity。 | `research-wiki/technical-lemmas/todo.md`；`research-wiki/cited-results/GHL2025.md` | 保持为 external technical lemma；后续做 oracle library 时补完整证明。 |
+| `main.tex:784-798` | Robin Lemma 2：banded-sparse-access oracle $\\hat O_D^{BS}$，明确引用 arXiv:2405.12855 Lemma 1。 | `robinBandedSparseAccessCitationChain_eq`；sparse-access oracle contract。 | fixed-N8 route compiled；arbitrary-n source theorem remains external。 | 来源链必须写成 Robin Lemma 2 -> prior-paper Lemma 1，不能把两个编号合并。 | `QuantumBlockEncoding/GHL2025.lean`；`research-wiki/cited-results/GHL2025.md` | 固定实例复用已编译 finite primitive；任意 n 资源定理继续保留为外部合同。 |
 | `main.tex:822-843` | Lemma 3：sparse-amplitude oracle $\\hat O^S_{D^T}$，clean branch 给出 $D^{(s)}/N_D$。 | `tl-ghl-lemma3-sparse-amplitude`。 | contract/backlog。 | clean branch contract 可用于 GHL 主 theorem；sqrt complement、normalizer、unitarity 还没完整形式化。 | `research-wiki/technical-lemmas/todo.md` | 不在 one-term theorem 阶段重做全部 oracle primitive；只保留明确 contract。 |
 | `main.tex:870-908` | Theorem 5：piecewise-polynomial $O_f$ amplitude oracle，clean branch 给出 $f(x_i)/N_f$。 | `tl-ghl-theorem5-piecewise-polynomial-of`；$O_f$ clean branch contract。 | contract/backlog。 | 这是外部/前置 oracle construction；当前没有完整 formalize $N_f$ bound、workspace orthogonality、unitary completion。 | `research-wiki/technical-lemmas/todo.md`；`{rel(latest_summary)}` 的 `Of` 行 | 先用于 theorem-facing contract；不要把它和 GHL one-term proof 的完成混淆。 |
 | `main.tex:1171-1278` | 1D Hamiltonian block-encoding，用 LCU 组合多个 one-term operator。 | planned module / proof obligations。 | 未开始主体证明。 | 它依赖 one-term Robin theorem。当前 one-term 没闭合，所以 1D Hamiltonian 不是本轮 blocker。 | `{rel(latest_summary)}` 的 `OneD` 行；`proof-obligations/QBE-AUTO-002.md` | one-term theorem 关闭后再启动 LCU abstraction。 |
@@ -7835,6 +7840,11 @@ Produce:
    `research-wiki/block-encoding-library/compiled-lean-leaf-index.json`, and,
    for diagonal-grid polynomial hints such as `x_j -> x_j^3`,
    `research-wiki/block-encoding-library/qsvt-hard-hint-route.md`.
+   When auxiliary-qubit or controlled-conjugation cost is active, also inspect
+   `research-wiki/block-encoding-library/cards/BE.Circuit.PromiseAncillaTradeoff.md`.
+   Treat it as a candidate mutation only: require promise-subspace, restoration,
+   involution (for dirty workspace), and same-tier resource proof leaves before
+   selection or promotion.
 6. Layer-allocation decision for this cycle.  In the Hierarchical Harness
    profile, spend enough budget in upper/middle/reviewer planning before lower
    workers run: upper fixes target and search direction, middle translates and

@@ -70,6 +70,7 @@ paper-facing proofs for the main reusable leaves.
 | P1 | `BE.HermitianBlockEncoding` | Hermitian BE route for qubitization consumers |
 | P1 | `BE.HermitianDilation` | non-Hermitian target routed into Hermitian algorithms |
 | P1 | `BE.Contraction.SVDDilation` | arbitrary contraction fallback |
+| P1 | `BE.Circuit.PromiseAncillaTradeoff` | controlled conjugation with reusable promise/work registers |
 | P2 | `BE.Qubitization.Chebyshev` | Chebyshev powers after Hermitian BE |
 | P2 | `BE.QSVT.ConsumerContract` | downstream polynomial transformation of a proved BE |
 | P2 | `BE.FABLE.ApproxDense` | approximate dense block-encoding synthesis |

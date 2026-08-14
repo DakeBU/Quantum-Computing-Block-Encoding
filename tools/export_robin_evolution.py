@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import subprocess
 import sys
@@ -41,6 +42,55 @@ M = (
     (0, 0, 0, 0, -1, 16, -31, 16),
     (0, 0, 0, 0, 0, -2, 32, -30),
 )
+
+
+def source_digest() -> str:
+    """Hash the hand-maintained inputs which determine the Robin export."""
+    inputs = [
+        Path(__file__).resolve(),
+        ROOT / "tools" / "executable_ir.py",
+        ROOT / "tools" / "executable_manifest.py",
+        ROOT / "tools" / "executable_runner.py",
+        ROOT / "tools" / "backends" / "internal_matrix_backend.py",
+        ROOT / "tools" / "backends" / "qiskit_backend.py",
+        ROOT / "tools" / "backends" / "openqasm3_backend.py",
+        *sorted((ROOT / "QuantumBlockEncoding" / "Robin").glob("*.lean")),
+    ]
+    digest = hashlib.sha256()
+    for path in inputs:
+        relative = path.relative_to(ROOT).as_posix()
+        digest.update(relative.encode())
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def git_value(*args: str) -> str:
+    result = subprocess.run(
+        ["git", *args], cwd=ROOT, check=False, capture_output=True, text=True
+    )
+    return result.stdout.strip() if result.returncode == 0 else ""
+
+
+def source_provenance(export_root: Path) -> tuple[str, str]:
+    """Keep provenance pinned when only generated publication data changed."""
+    current_commit = git_value("rev-parse", "HEAD")
+    current_digest = source_digest()
+    manifest_path = export_root / "manifest.json"
+    if manifest_path.is_file():
+        previous = json.loads(manifest_path.read_text(encoding="utf-8"))
+        previous_commit = str(previous.get("sourceCommit", ""))
+        previous_digest = str(previous.get("sourceDigest", ""))
+        is_ancestor = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", previous_commit, current_commit],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+        ).returncode == 0
+        if previous_digest == current_digest and previous_commit and is_ancestor:
+            return previous_commit, current_digest
+    return current_commit, current_digest
 
 
 def five_perm(slot: int, column: int) -> int:
@@ -496,7 +546,6 @@ def main() -> int:
     parser.add_argument("--task", default="QBE-ROBIN-BE-WARM-001")
     parser.add_argument("--arm", choices=("warm",), default="warm")
     args = parser.parse_args()
-    commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
     clean_target = np.asarray(M, dtype=float) / 224.0
     policy = default_executable_policy()
     policy["intermediateCheck"]["backend"] = "both"
@@ -505,6 +554,7 @@ def main() -> int:
         "circuitText",
     ]
     export_root = ROOT / "executable-exports" / args.task
+    commit, digest = source_provenance(export_root)
     artifact_specs = (
         (
             "xorFourSlot", robin_xor_four_slot_ir(commit), export_root,
@@ -591,6 +641,7 @@ def main() -> int:
         "schemaVersion": 2,
         "task": args.task,
         "sourceCommit": commit,
+        "sourceDigest": digest,
         "registerOrder": "q0-q2 system, q3-q4 selector, q5 coefficient; flat = system + 8*selector + 32*coefficient",
         "systemQubits": 3,
         "cleanQubits": {"selector": 0, "coefficient": 0},

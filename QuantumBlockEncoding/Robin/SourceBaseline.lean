@@ -62,19 +62,31 @@ theorem warmRobinRegisterSwapWire_bijective :
   · intro y
     exact ⟨warmRobinRegisterSwapWire y, warmRobinRegisterSwapWire_involution y⟩
 
-/-- Machine-readable list of obligations preventing source-route promotion. -/
-def warmRobinSourceOpenContracts : List String :=
-  [ "exact seven-slot PREPARE including selector state 7"
-  , "sparse derivative-amplitude loader and inverse"
-  , "corrected standard-Ry boundary loader"
-  , "pre-SWAP sparse access and transported post-SWAP cleanup"
-  , "homogeneous coefficient-loader identity specialization"
-  , "whole-circuit unitarity and exact clean-block theorem"
-  , "primitive expansion under the common resource convention"
+/-- Obligations outside the fixed benchmark: arbitrary size and literal-source routes. -/
+def warmRobinGenericSourceOpenContracts : List String :=
+  [ "arbitrary-n sparse access and uniform resource theorem"
+  , "general piecewise f coefficient oracle"
+  , "paper-literal arccos convention reconciliation"
+  , "complete one-dimensional and multidimensional Hamiltonian composition"
   ]
 
-theorem warmRobinSourceOpenContracts_nonempty :
-    warmRobinSourceOpenContracts ≠ [] := by
+theorem warmRobinGenericSourceOpenContracts_nonempty :
+    warmRobinGenericSourceOpenContracts ≠ [] := by
   decide
+
+/-- The fixed-N8, f=1, standard-RY-corrected source route is closed. -/
+def warmRobinFixedN8SourceOpenContracts : List String := []
+
+@[simp] theorem warmRobinFixedN8SourceOpenContracts_eq_nil :
+    warmRobinFixedN8SourceOpenContracts = [] := rfl
+
+/-- Historical compatibility alias for the generic, arbitrary-n and
+paper-literal obligations. It does not describe the certified fixed-N8 route. -/
+abbrev warmRobinSourceOpenContracts : List String :=
+  warmRobinGenericSourceOpenContracts
+
+theorem warmRobinSourceOpenContracts_nonempty :
+    warmRobinSourceOpenContracts ≠ [] :=
+  warmRobinGenericSourceOpenContracts_nonempty
 
 end QuantumBlockEncoding.Robin

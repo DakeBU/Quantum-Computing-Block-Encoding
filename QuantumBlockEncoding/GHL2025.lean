@@ -3301,6 +3301,22 @@ def bandedSparseAccessPriorPDESourceContract :
   lowerProofSearchAllowed := false
 
 /--
+The explicit citation chain for the displayed Robin sparse-address equation.
+Lemma 2 of arXiv:2506.20478 invokes Lemma 1 of arXiv:2405.12855; older
+transcript fields above retain their historical labels for drift auditing.
+-/
+def robinBandedSparseAccessCitationChain : List String := [
+  "Guseynov-Huang-Liu 2025, arXiv:2506.20478, Lemma 2",
+  "Guseynov-Huang-Liu 2024, arXiv:2405.12855v3, Lemma 1"
+]
+
+@[simp] theorem robinBandedSparseAccessCitationChain_eq :
+    robinBandedSparseAccessCitationChain = [
+      "Guseynov-Huang-Liu 2025, arXiv:2506.20478, Lemma 2",
+      "Guseynov-Huang-Liu 2024, arXiv:2405.12855v3, Lemma 1"
+    ] := rfl
+
+/--
 The prior PDE source does not unblock the QBE unused-zero-branch extension.
 
 This is the compiled guard for the source audit: the cited theorem is recorded,

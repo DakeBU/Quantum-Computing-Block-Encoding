@@ -2111,6 +2111,87 @@ code {
   font-size: 15px;
 }
 
+.stage-circuit-visual {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 12px 0;
+  overflow-x: auto;
+  padding: 10px 0;
+  color: var(--quiet);
+  font: 600 10px var(--ui-font);
+}
+
+.stage-circuit-wire {
+  min-width: 18px;
+  height: 1px;
+  flex: 1 0 18px;
+  background: var(--line-strong);
+}
+
+.stage-circuit-gate {
+  flex: 0 0 auto;
+  max-width: 150px;
+  padding: 6px 8px;
+  border: 1px solid var(--block);
+  border-radius: 2px;
+  color: var(--block-dark);
+  background: var(--block-soft);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.stage-circuit-input,
+.stage-circuit-output {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.copy-source-panel {
+  min-width: 0;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.copy-source-panel summary {
+  cursor: pointer;
+  padding: 10px 12px;
+  color: var(--ink);
+  font: 700 12px var(--ui-font);
+}
+
+.copy-source-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10px 8px;
+}
+
+.copy-source-actions button {
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 5px 9px;
+  color: var(--ink);
+  background: var(--paper);
+  font: 650 11px var(--ui-font);
+  cursor: pointer;
+}
+
+.copy-source-panel pre {
+  max-height: 420px;
+  margin: 0;
+  overflow: auto;
+  border-top: 1px solid var(--line);
+  white-space: pre;
+}
+
+.copy-packet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
 .theorem-root {
   min-width: 0;
   display: grid;
@@ -2236,6 +2317,10 @@ code {
 
   .score-unranked {
     text-align: left;
+  }
+
+  .copy-packet-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -2652,6 +2737,16 @@ body {
 .workspace-toolbar > label:first-child {
   min-width: min(100%, 360px);
   flex: 1;
+}
+
+.workspace-toolbar > label:nth-child(2) {
+  min-width: 170px;
+}
+
+.compact-button {
+  min-height: 30px;
+  padding: 4px 8px;
+  font-size: 11px;
 }
 
 .workspace-toolbar > button {

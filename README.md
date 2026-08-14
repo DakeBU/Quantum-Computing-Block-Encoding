@@ -88,10 +88,11 @@ formal quantum-computing textbook rather than a project dashboard:
 - an atlas of ASPBE, Mathlib, and selected external quantum Lean libraries;
 - organizers, contribution guidance, and a versioned lemma-packet contract;
 - generated Example Cases with explicit target formulas, circuit and score
-  evolution, named Lean roots, separate Qiskit exports, and one-click Task
-  Builder presets;
-- a Live Formalization Workspace for LaTeX, Lean, dependency navigation, and
-  local compiler diagnostics;
+  evolution, named Lean roots, separate Qiskit exports, copyable English-proof
+  LaTeX, and editable `quantikz` for every displayed stage;
+- a Live Formalization Workspace for bidirectional LaTeX-to-Lean and
+  Lean-to-LaTeX drafts, dependency navigation, copying, and local compiler
+  diagnostics;
 - the existing Verso Blueprint at `/blueprint/html-multi/`.
 
 The site distinguishes **built here**, **imported**, and **reference atlas**.
@@ -109,7 +110,9 @@ python3 website/scripts/ide_server.py --directory _site
 ```
 
 Open <http://127.0.0.1:8000/ide/>. The static page always renders mathematics,
-reviewed LaTeX↔Lean mappings, and dependency links. The companion server adds
+reviewed LaTeX↔Lean mappings, and dependency links. With the optional local
+translator, users can draft in either direction and copy both panes. The
+companion server adds
 real `lake env lean` compilation in temporary files and never edits repository
 source.
 

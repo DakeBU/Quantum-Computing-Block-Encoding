@@ -436,13 +436,21 @@ theorem warmRobinFigure4SparseWorkspaceClean
   (warmRobinFigure4TransportedPostSwapCleanup
     slot column coefficient indicator).2.2.2.2
 
-/-- Honest remaining boundary for the fixed source route. -/
-def warmRobinFigure4OpenPrimitiveContracts : List String :=
+/-- Historical pre-T3 audit list. `Figure4T3.lean` now closes these obligations
+for fixed N=8, homogeneous f=1, and the standard-RY-corrected executable
+convention. -/
+def warmRobinFigure4FormerOpenPrimitiveContracts : List String :=
   [ "derivative-amplitude loader exact semantics"
   , "corrected boundary standard-RY loader exact semantics"
   , "pre-SWAP sparse access and transported post-SWAP cleanup"
   , "stagewise all-workspace clean-column theorem"
   , "full Figure-4 primitive clean-block promotion"
   ]
+
+/-- No primitive obligations remain open for the fixed-N8 Figure-4 route. -/
+def warmRobinFigure4OpenPrimitiveContracts : List String := []
+
+@[simp] theorem warmRobinFigure4OpenPrimitiveContracts_eq_nil :
+    warmRobinFigure4OpenPrimitiveContracts = [] := rfl
 
 end QuantumBlockEncoding.Robin

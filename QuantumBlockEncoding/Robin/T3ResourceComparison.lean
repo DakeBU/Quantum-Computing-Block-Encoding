@@ -1,6 +1,8 @@
 import QuantumBlockEncoding.Robin.PaperSevenT3
 import QuantumBlockEncoding.Robin.Figure4T3
 import QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive
+import QuantumBlockEncoding.Robin.SourceBaseline
+import QuantumBlockEncoding.Robin.Figure4Primitive
 
 /-!
 # Same-tier Robin T3 resource comparisons
@@ -80,5 +82,13 @@ noncomputable abbrev warmRobinBestVerified :
 /-- Machine-readable publication guard, enabled only after both source-side
 same-tier comparisons have compiled. -/
 def paperLevelWinnerCertified : Bool := true
+
+/-- Publication guard tying the certified fixed-instance winner to empty
+fixed-N8 source and primitive-obligation lists. -/
+theorem warmRobinPublicationState_consistent :
+    paperLevelWinnerCertified = true ∧
+      warmRobinFixedN8SourceOpenContracts = [] ∧
+      warmRobinFigure4OpenPrimitiveContracts = [] := by
+  decide
 
 end QuantumBlockEncoding.Robin

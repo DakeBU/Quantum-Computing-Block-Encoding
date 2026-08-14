@@ -30,6 +30,7 @@ from content import (  # noqa: E402
     STATUS_ORDER,
     WORKFLOW_STAGES,
 )
+from case_assets import STAGE_CIRCUITS, stage_circuit_latex  # noqa: E402
 
 
 NAVIGATION = [
@@ -808,6 +809,7 @@ def render_block_encoding(
 def result_card(
     result: dict[str, object],
     declaration: dict[str, object],
+    declarations: dict[str, dict[str, object]],
     prefix: str,
 ) -> str:
     dependencies = []
@@ -825,6 +827,11 @@ def result_card(
         f'<a href="{html.escape(str(external))}">commit-pinned GitHub source</a>'
         if external
         else "<span class=\"muted\">No external source link: this file is not publishable at the detected ref.</span>"
+    )
+    route_closures = "".join(
+        f'<li><a href="{module_url(prefix, declarations[str(root)])}">'
+        f'<code>{html.escape(str(root))}</code></a></li>'
+        for root in result["route_closures"]
     )
     return f"""
 <article class="result" id="{declaration_anchor(str(result['declaration']))}">
@@ -858,6 +865,8 @@ def result_card(
     <div><dt>Uses</dt><dd>{'; '.join(dependencies)}</dd></div>
     <div><dt>Still outside this result</dt><dd>{html.escape(str(result['missing']))}</dd></div>
   </dl>
+  <h4 class="proof-heading">Route closure</h4>
+  <ul class="declaration-list">{route_closures}</ul>
   <h4 class="proof-heading">Natural-language steps and Lean objects</h4>
   <table class="proof-steps">
     <thead><tr><th>Mathematical step</th><th>Lean object or step</th></tr></thead>
@@ -915,6 +924,7 @@ def render_robin_paper_map(
         ("Candidate better than paper-seven", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven"),
         ("Candidate better than Figure 4", "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"),
         ("Frozen benchmark winner", "QuantumBlockEncoding.Robin.warmRobinBestVerified"),
+        ("Fixed publication state is consistent", "QuantumBlockEncoding.Robin.warmRobinPublicationState_consistent"),
     )
     tier_rows = []
     for label, root in robin_tiers:
@@ -1133,7 +1143,7 @@ def render_chapter(
     ]
     for item in chapter["results"]:
         declaration = declarations[str(item["declaration"])]
-        result_html.append(result_card(item, declaration, prefix))
+        result_html.append(result_card(item, declaration, declarations, prefix))
         toc.append((declaration_anchor(str(item["declaration"])), str(item["title"])))
     modules = "".join(f"<li><code>{html.escape(module)}</code></li>" for module in chapter["modules"])
     body = f"""
@@ -1158,8 +1168,9 @@ def render_chapter(
   <div class="section-heading">
     <p class="eyebrow">Selected declarations</p>
     <h2>Read the mathematics beside the Lean statement</h2>
-    <p>The declaration badge reports what compiles locally. The route badge reports
-    whether the larger construction is complete.</p>
+    <p>A compiled route means that the reusable theorem or constructor and at
+    least one finite witness compile. Hardware- and problem-specific downstream
+    instantiations are out of scope, not universal claims made by these cards.</p>
   </div>
   {''.join(result_html)}
 </section>"""
@@ -1827,6 +1838,7 @@ def render_ide(
 <section class="content-section" id="workspace">
   <div class="workspace-toolbar">
     <label>Reviewed mapping<select data-ide-declaration><option>Loading declarations</option></select></label>
+    <label>Translation direction<select data-ide-direction><option value="latex-to-lean">LaTeX to Lean</option><option value="lean-to-latex">Lean to LaTeX</option></select></label>
     <button class="button secondary" type="button" data-ide-load>Reload mapping</button>
     <button class="button secondary" type="button" data-ide-translate>Translate with local agent</button>
     <button class="button secondary" type="button" data-ide-scaffold>Start an honest draft</button>
@@ -1834,7 +1846,7 @@ def render_ide(
   </div>
   <div class="workspace-grid" data-ide-app data-ide-data="../ide-data.json">
     <article class="workspace-pane math-pane">
-      <header><span>01</span><h2>Mathematical statement</h2><b data-translation-status>Reviewed mapping</b></header>
+      <header><span>01</span><h2>Mathematical statement</h2><button class="button secondary compact-button" type="button" data-copy-editor="latex">Copy</button><b data-translation-status>Reviewed mapping</b></header>
       <label for="ide-latex">LaTeX</label>
       <textarea id="ide-latex" data-ide-latex spellcheck="false"></textarea>
       <h3>Rendered statement</h3>
@@ -1842,7 +1854,7 @@ def render_ide(
       <p data-ide-plain></p>
     </article>
     <article class="workspace-pane lean-pane">
-      <header><span>02</span><h2>Lean source</h2><button class="button state-button" type="button" data-ide-compile>Compile</button></header>
+      <header><span>02</span><h2>Lean source</h2><button class="button secondary compact-button" type="button" data-copy-editor="lean">Copy</button><button class="button state-button" type="button" data-ide-compile>Compile</button></header>
       <label for="ide-lean">Editable snippet</label>
       <textarea id="ide-lean" data-ide-lean spellcheck="false"></textarea>
       <p class="source-actions"><a data-ide-declaration-link href="#">Declaration page</a> · <a data-ide-source-link href="#">Source</a></p>
@@ -2042,6 +2054,13 @@ def load_example_cases(
                     f"Example case {case_slug} advertises strict improvement without "
                     "a named Lean betterThan theorem"
                 )
+            try:
+                stage_circuit_latex(case_slug, str(stage.get("name", "")))
+            except KeyError as error:
+                raise SystemExit(
+                    f"Example case {case_slug} has no editable circuit LaTeX for "
+                    f"stage {stage.get('name')!r}"
+                ) from error
         export_path = ROOT / str(case["qiskit"].get("path", ""))
         if not export_path.is_file() or ROOT not in export_path.resolve().parents:
             raise SystemExit(
@@ -2082,6 +2101,39 @@ def render_case_score(score: object) -> str:
         for value, label in zip(values, labels, strict=True)
     )
     return f'<div class="score-tuple" aria-label="resource score">{cells}</div>'
+
+
+def render_copyable_source(title: str, source: str, language: str) -> str:
+    return f"""<details class="copy-source-panel">
+  <summary>{html.escape(title)}</summary>
+  <div class="copy-source-actions"><button type="button" data-copy-source>Copy</button></div>
+  <pre><code class="language-{html.escape(language)}">{html.escape(source)}</code></pre>
+</details>"""
+
+
+def case_stage_gate_labels(case: dict[str, object], stage: dict[str, object]) -> list[str]:
+    stage_name = str(stage.get("name", "")).lower()
+    if "audit" in str(stage.get("iteration", "")).lower():
+        return ["address audit", "padded-seven source"]
+    circuit_stages = list(case["circuit"]["stages"])
+    for circuit_stage in circuit_stages:
+        label = str(circuit_stage.get("label", "")).lower()
+        if any(word in stage_name for word in re.findall(r"[a-z0-9]+", label) if len(word) > 3):
+            return [str(gate) for gate in circuit_stage.get("gates", [])]
+    stage_index = list(case["evolution"]["stages"]).index(stage)
+    selected = circuit_stages[min(stage_index, len(circuit_stages) - 1)]
+    return [str(gate) for gate in selected.get("gates", [])]
+
+
+def render_stage_circuit_visual(case: dict[str, object], stage: dict[str, object]) -> str:
+    gates = "".join(
+        f'<span class="stage-circuit-gate">{html.escape(label)}</span>'
+        for label in case_stage_gate_labels(case, stage)
+    )
+    return f"""<div class="stage-circuit-visual" aria-label="logical circuit stage">
+  <span class="stage-circuit-input">clean input</span><span class="stage-circuit-wire"></span>
+  {gates}<span class="stage-circuit-wire"></span><span class="stage-circuit-output">certified branch</span>
+</div>"""
 
 
 def render_case_circuit(case: dict[str, object]) -> str:
@@ -2140,17 +2192,53 @@ def render_case_evolution(
     points: list[str] = []
     for stage in case["evolution"]["stages"]:
         anchor = str(stage["leanAnchor"])
+        circuit_latex = stage_circuit_latex(str(case["slug"]), str(stage["name"]))
         points.append(f"""<article class="evolution-point">
   <div class="iteration-mark"><span>iteration</span><strong>{html.escape(str(stage['iteration']))}</strong></div>
   <div class="evolution-copy">
     <div class="evolution-heading"><h3>{html.escape(str(stage['name']))}</h3><span>{html.escape(str(stage['status']))}</span></div>
     <p>{html.escape(str(stage['description']))}</p>
+    {render_stage_circuit_visual(case, stage)}
     <a class="theorem-root" href="{module_url(prefix, declarations[anchor])}"><span>Lean root</span><code>{html.escape(anchor)}</code></a>
+    {render_copyable_source('Copy this stage as quantikz', circuit_latex, 'latex')}
   </div>
   {render_case_score(stage.get('score'))}
 </article>""")
     return f"""<p class="figure-caption">{html.escape(str(case['evolution']['caption']))}</p>
 <div class="evolution-track">{''.join(points)}</div>"""
+
+
+def render_case_copy_packet(case: dict[str, object]) -> str:
+    stage_sources = "\n\n".join(
+        "% " + str(stage["name"]) + "\n" +
+        stage_circuit_latex(str(case["slug"]), str(stage["name"]))
+        for stage in case["evolution"]["stages"]
+    )
+    construction = (
+        "% Requires: \\usepackage{quantikz}\n"
+        "\\paragraph{Construction.}\n"
+        "\\[\n" + str(case["formula"]) + "\n\\]\n\n" + stage_sources
+    )
+    proof_steps = "\n".join(
+        f"  \\item {str(stage['description'])}"
+        for stage in case["evolution"]["stages"]
+    )
+    proof = (
+        "\\paragraph{Proof.}\n"
+        + str(case["contract"]) + "\n"
+        "\\begin{enumerate}\n" + proof_steps + "\n\\end{enumerate}\n"
+        "Each advertised certificate is the named Lean declaration linked on this page."
+    )
+    lean = "import QuantumBlockEncoding\n\n" + "\n".join(
+        f"#check {anchor}" for anchor in case["leanAnchors"]
+    )
+    return f"""<section class="content-section" id="copy-construction">
+<div class="section-heading"><p class="eyebrow">Editable source</p><h2>Copy the construction and proof</h2><p>The LaTeX is a grouped-register explanation; the exact primitive authority is the linked Lean source and executable artifact. The Lean block imports the library and checks every root used by this page.</p></div>
+<div class="copy-packet-grid">
+{render_copyable_source('Construction and circuit LaTeX', construction, 'latex')}
+{render_copyable_source('English proof LaTeX', proof, 'latex')}
+{render_copyable_source('Lean declaration retrieval block', lean, 'lean')}
+</div></section>"""
 
 
 def render_case_verification_status(
@@ -2226,13 +2314,14 @@ def render_example_case(
 <section class="content-section case-problem" id="mathematical-target"><div class="section-heading"><p class="eyebrow">Mathematical target</p><h2>The equation being studied</h2></div>{render_math_tex(str(case['formula']))}<p class="contract-reading">{html.escape(str(case['contract']))}</p><dl class="symbol-key">{symbols}</dl></section>
 <section class="content-section" id="circuit"><div class="section-heading"><p class="eyebrow">Circuit anatomy</p><h2>How the candidate acts</h2><p>These blocks show logical stages and register responsibilities. They do not pretend an unresolved logical oracle is already a primitive hardware gate.</p></div>{render_case_circuit(case)}</section>
 <section class="content-section" id="evolution"><div class="section-heading"><p class="eyebrow">Auditable evolution</p><h2>Candidate and proof progression</h2></div>{render_case_evolution(case, declarations, prefix)}</section>
+{render_case_copy_packet(case)}
 {render_case_verification_status(case, declarations, prefix)}
 {render_source_interpretation(case)}
 <section class="content-section" id="lean-certificate"><div class="section-heading"><p class="eyebrow">Proof authority</p><h2>Named Lean certificates</h2><p>These declarations, compiled by the current Lean gate, support the mathematical and resource claims above.</p></div><ul class="case-declaration-list">{anchors}</ul></section>
 <section class="content-section export-section" id="executable-evidence"><div class="section-heading"><p class="eyebrow">Optional executable checks and outputs</p><h2>Executable verification and exports</h2><p>Checking and artifact selection are independent. A user may screen with Qiskit, OpenQASM round-trip, both, or neither, then request a different set of output files.</p></div>{render_executable_evidence(case, prefix)}<p>{html.escape(str(qiskit['role']))}</p><dl class="definition-list"><dt>Current runnable artifact</dt><dd><code>{html.escape(str(qiskit['path']))}</code></dd><dt>Command</dt><dd><pre><code>{html.escape(str(qiskit['command']))}</code></pre></dd></dl><div class="callout warning"><strong>Trust boundary.</strong> Fast executable checks may reject, rank, or queue a route for formalization. Floating-point tolerances do not replace the exact Lean roots above; an external exact certificate contributes only after a Lean checker verifies it.</div></section>
 <section class="content-section"><dl class="definition-list"><dt>Source</dt><dd>{html.escape(str(case['source']))}</dd><dt>Contributor</dt><dd>{html.escape(str(case['contributor']))}</dd><dt>Current boundary</dt><dd>{html.escape(str(case['limitations']))}</dd></dl><div class="link-row"><a class="button" href="{prefix}task-builder/index.html?case={html.escape(str(case['slug']))}">Load in task builder</a><a class="button secondary" href="{prefix}community/index.html?case={html.escape(str(case['slug']))}">Contribute a variant</a></div></section>
 <script type="application/json" data-example-preset>{preset}</script></article>"""
-    toc = [("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution")]
+    toc = [("mathematical-target", "Mathematical target"), ("circuit", "Circuit anatomy"), ("evolution", "Evolution"), ("copy-construction", "Copy construction")]
     if case.get("verificationStatus"):
         toc.append(("verification-status", "Verification status"))
     if case.get("sourceInterpretation"):
@@ -2361,6 +2450,9 @@ def validate_curated_declarations(
                 raise SystemExit(f"Unknown local status: {item['local_status']}")
             if item["route_status"] not in STATUS_ORDER:
                 raise SystemExit(f"Unknown route status: {item['route_status']}")
+            for root in item["route_closures"]:
+                if root not in declaration_map:
+                    missing.append(str(root))
     for item in IMPLEMENTATION_MAP:
         if item["declaration"] not in declaration_map:
             missing.append(str(item["declaration"]))

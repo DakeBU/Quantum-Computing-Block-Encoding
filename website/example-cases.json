@@ -353,7 +353,7 @@
       "sourceInterpretation": [
         "The historical split-seven weighted-permutation LCU is retained as structural evidence, but it is not a sparse-access enumeration because two nonzero slots can address the same entry.",
         "Bulk rows of D and bulk rows of D-transpose are different tests. The Figure-4 indicator acts on D-transpose and therefore selects source columns 3 and 4.",
-        "The paper prints arccos(c), while the standard Qiskit and ASPBE RY convention needs 2 arccos(c) to place c in the clean matrix entry.",
+        "Equation (27) has a missing factor-of-two typo: the standard Qiskit and ASPBE RY convention needs 2 arccos(c) to place c in the clean matrix entry.",
         "The literal gamma-1 intermediate normalization is not inferred from gates that precede it; the certified route proves the executable stage states instead.",
         "Dirty-workspace behavior is the actual reversible extension produced by the compiler. Only the declared clean projection is the block-encoding contract.",
         "The coefficient function is f=1 in this fixed benchmark, so its oracle is proved equal to identity and constant-folded."

@@ -47,6 +47,7 @@ population diversity.
 | dense contraction with no better structure | dilation fallback | contraction scaling | 2-by-2 dilation orthogonality | efficient circuit is required but no implementation is supplied |
 | polynomial transform/inverse/sign/filter | QSVT/qubitization consumer | inherited from input BE and polynomial theorem | consume a proved BE | no input BE has been certified |
 | diagonal grid value then polynomial, e.g. $x_j \mapsto x_j^3$ | first prove diagonal/value BE, then QSVT consumer | input normalizer plus polynomial contract | `O_0 BE -> QSVT side conditions -> polynomial BE` | the input BE is unproved or QSVT is being used to hide the original oracle |
+| controlled conjugation with costly clean workspace | promise-register ancilla tradeoff | unchanged mathematical normalizer | promise, restoration, involution, and same-tier cost leaves | the input promise is unproved or workspace is not restored |
 
 After at least one route is made precise, certified candidates are ranked
 lexicographically at the same semantic tier:
@@ -197,6 +198,17 @@ Cards:
 
 - `BE.FABLE.ApproxDense`
 - `BE.StructuredSparse.ExplicitCircuits`
+
+## Route 11: Promise-Register Ancilla Tradeoff
+
+Use this only after a correct candidate exposes a controlled conjugation
+$W=V^\dagger U V$ or conditionally clean workspace.  The card
+`BE.Circuit.PromiseAncillaTradeoff` adapts the promise-gate construction of
+arXiv:2603.12917 as a population mutation.  Upper must keep the original
+candidate as a baseline; middle opens separate leaves for the promise
+predicate, compute-uncompute restoration, involution before any dirty-ancilla
+variant, and a same-tier resource comparison.  Until those leaves compile,
+the mutation remains exploratory.
 
 ## Mandatory Route Note
 

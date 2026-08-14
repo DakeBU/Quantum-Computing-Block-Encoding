@@ -19,14 +19,19 @@ complexity to explicit gate-level construction for PDE block encodings.
 ## Key Circuit Ingredients
 
 - Banded sparse access: converts sparse diagonal index `s` and row `i` into
-  the corresponding column index.
+  the corresponding column index. Robin Lemma 2 explicitly invokes Lemma 1 of
+  [arXiv:2405.12855](https://arxiv.org/abs/2405.12855) for this primitive.
 - Sparse-amplitude oracle: encodes constant-per-band derivative entries for
   periodic/bulk rows.
 - Piecewise-polynomial amplitude oracle: encodes diagonal coefficient
   functions `f(x)` and `v(x)`.
 - Robin boundary extension: use an indicator/comparator to separate bulk rows
   from boundary rows, then handle the finite number of boundary deviations by
-  controlled rotations.
+  controlled rotations. Equation (27) omits a factor of two: under the standard
+  `R_y(theta)` convention the executable angle is
+  `theta_j^s = 2 arccos(D_j^(s) / N_D)`. The fixed-N8 Lean route proves this
+  amplitude bridge; the printed single-`arccos` expression is retained only as
+  a historical source transcript.
 - LCU composition: combine `A_k`, `A_k^dagger`, `B`, `S1`, `S2`, and finally
   `H`.
 

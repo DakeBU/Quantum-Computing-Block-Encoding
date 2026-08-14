@@ -168,6 +168,50 @@ def git_value(*args: str) -> str:
     return result.stdout.strip() if result.returncode == 0 else ""
 
 
+def source_provenance(digest: str, output: Path) -> tuple[str, str]:
+    """Keep replay provenance stable across generated-only commits and merges."""
+    current_commit = git_value("rev-parse", "HEAD")
+    current_branch = git_value("branch", "--show-current")
+    if output.is_file():
+        previous = json.loads(output.read_text(encoding="utf-8"))
+        previous_commit = str(previous.get("git_commit", ""))
+        previous_branch = str(previous.get("git_branch", ""))
+        is_ancestor = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", previous_commit, current_commit],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+        ).returncode == 0
+        if previous.get("source_digest") == digest and previous_commit and is_ancestor:
+            return previous_commit, previous_branch
+    return current_commit, current_branch
+
+
+def preserve_recorded_timings(payload: dict[str, Any], output: Path) -> None:
+    """Avoid generated-file drift from wall-clock measurements alone."""
+    if not output.is_file():
+        return
+    previous = json.loads(output.read_text(encoding="utf-8"))
+    if (
+        previous.get("source_digest") != payload.get("source_digest")
+        or previous.get("git_commit") != payload.get("git_commit")
+    ):
+        return
+    previous_cases = {
+        case.get("case"): case
+        for case in previous.get("cases", [])
+        if isinstance(case, dict)
+    }
+    for case in payload.get("cases", []):
+        prior = previous_cases.get(case.get("case"))
+        if isinstance(prior, dict) and "elapsed_seconds" in prior:
+            case["elapsed_seconds"] = prior["elapsed_seconds"]
+    if "certificate_replay_timings_seconds" in previous:
+        payload["certificate_replay_timings_seconds"] = previous[
+            "certificate_replay_timings_seconds"
+        ]
+
+
 def textbook_state_preparation_check(atol: float = 1e-12) -> dict[str, Any]:
     cases: list[dict[str, Any]] = []
     targets = {
@@ -308,6 +352,8 @@ def main() -> None:
             (arm for arm in audit_arms if arm.get("arm") == "warm"), {}
         )
     completed_robin_cycles = int(robin_audit.get("completed_cycles", 0) or 0)
+    digest = source_digest()
+    source_commit, source_branch = source_provenance(digest, args.output)
     payload = {
         "schema_version": 1,
         "replay_scope": "certificate-and-executable acceptance; no synthesis model",
@@ -317,9 +363,9 @@ def main() -> None:
             "replay. New figures require a fresh isolated search under a frozen "
             "model, budget, task contract, and memory policy."
         ),
-        "git_commit": git_value("rev-parse", "HEAD"),
-        "git_branch": git_value("branch", "--show-current"),
-        "source_digest": source_digest(),
+        "git_commit": source_commit,
+        "git_branch": source_branch,
+        "source_digest": digest,
         "executable_dependencies": {
             "numpy": np.__version__,
             "openqasm3": getattr(openqasm3, "__version__", "unknown"),
@@ -364,6 +410,7 @@ def main() -> None:
         and payload["controller_population_replay_passed"]
         and all(case["passed"] for case in case_results)
     )
+    preserve_recorded_timings(payload, args.output)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(payload, indent=2, sort_keys=True) + "\n",

@@ -18,6 +18,29 @@ noncomputable def warmRobinExecutableStandardRyBoundaryAngle
     (coefficient : Rat) : Real :=
   2 * Real.arccos (coefficient : Real)
 
+/--
+Corrected reading of Eq. (27) for the standard quantum-computing `R_y`
+convention.  The displayed single-`arccos` expression in arXiv:2506.20478 is
+retained above only as a literal transcript of the source typo.
+-/
+noncomputable def warmRobinCorrectedEq27BoundaryAngle
+    (coefficient : Rat) : Real :=
+  2 * Real.arccos (coefficient : Real)
+
+@[simp] theorem warmRobinCorrectedEq27BoundaryAngle_eq_executable
+    (coefficient : Rat) :
+    warmRobinCorrectedEq27BoundaryAngle coefficient =
+      warmRobinExecutableStandardRyBoundaryAngle coefficient := rfl
+
+theorem warmRobinCorrectedEq27_standardRy_cleanAmplitude
+    (coefficient : Rat)
+    (lower : (-1 : Real) ≤ (coefficient : Real))
+    (upper : (coefficient : Real) ≤ 1) :
+    standardRyMatrix (warmRobinCorrectedEq27BoundaryAngle coefficient) =
+      ComplexLCU.amplitudeRotation (coefficient : Real) := by
+  exact standardRyMatrix_two_arccos_eq_amplitudeRotation
+    (coefficient : Real) lower upper
+
 theorem warmRobinBoundaryAngle_zero_guard :
     warmRobinPaperLiteralBoundaryAngle 0 = Real.pi / 2 ∧
       warmRobinExecutableStandardRyBoundaryAngle 0 = Real.pi := by

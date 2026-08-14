@@ -202,5 +202,58 @@ theorem signalSystemBlockProjection_eq_cleanBlockProduct
   intro row col
   rfl
 
+/--
+The clean output amplitude obtained by applying `operator` to a clean
+signal-system basis input.  Naming this quantity makes the two common
+block-encoding proof styles explicit: prove the projected matrix block, or
+prove the clean branch of the action on every basis input.
+-/
+def cleanBasisActionAmplitude {signalDim systemDim : Nat} {α : Type u}
+    [NonAssocSemiring α]
+    (operator : FiniteMatrix (signalDim * systemDim) (signalDim * systemDim) α)
+    (signalIndex : Fin signalDim) (output input : Fin systemDim) : α :=
+  applyVec operator
+    (basisKet (signalDim * systemDim)
+      (BlockEncodingClassics.productIndex signalIndex input))
+    (BlockEncodingClassics.productIndex signalIndex output)
+
+/-- Acting on a clean basis input and reading a clean output is one projected-block entry. -/
+theorem cleanBasisActionAmplitude_eq_signalSystemBlockProjection
+    {signalDim systemDim : Nat} {α : Type u} [NonAssocSemiring α]
+    (operator : FiniteMatrix (signalDim * systemDim) (signalDim * systemDim) α)
+    (signalIndex : Fin signalDim) (output input : Fin systemDim) :
+    cleanBasisActionAmplitude operator signalIndex output input =
+      signalSystemBlockProjection signalDim systemDim systemDim
+        operator signalIndex output input := by
+  unfold cleanBasisActionAmplitude
+  rw [applyVec_basisKet]
+  unfold signalSystemBlockProjection
+  congr 1
+
+/--
+Finite-dimensional bridge between the projected-block definition and the
+clean-branch action proof.  Linearity then extends the basis statement to an
+arbitrary system state; any normalized orthogonal failure branch is additional
+unitarity evidence, not a different block-encoding contract.
+-/
+theorem pointwiseProjection_iff_cleanBasisAction
+    {signalDim systemDim : Nat} {α : Type u} [NonAssocSemiring α]
+    (operator : FiniteMatrix (signalDim * systemDim) (signalDim * systemDim) α)
+    (signalIndex : Fin signalDim) (target : Matrix systemDim systemDim α) :
+    Matrix.PointwiseEq
+        (signalSystemBlockProjection signalDim systemDim systemDim
+          operator signalIndex)
+        target ↔
+      ∀ output input,
+        cleanBasisActionAmplitude operator signalIndex output input =
+          target output input := by
+  constructor
+  · intro projected output input
+    rw [cleanBasisActionAmplitude_eq_signalSystemBlockProjection]
+    exact projected output input
+  · intro action output input
+    rw [← cleanBasisActionAmplitude_eq_signalSystemBlockProjection]
+    exact action output input
+
 end ConcreteSemantics
 end QuantumBlockEncoding

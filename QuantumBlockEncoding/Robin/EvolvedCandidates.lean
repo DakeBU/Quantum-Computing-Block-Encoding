@@ -5,11 +5,12 @@ import Mathlib.Tactic
 /-!
 # Fixed Robin structural candidates
 
-These are exact clean-branch algebra certificates. The Hadamard-8 route also
-has a compiled logical complex unitary in `Hadamard8Verified`; the candidates
-still stop short of `VerifiedOperatorBlockEncoding` until that unitary is
-specialized to the Robin clean formula and refined to the repository circuit
-interface.
+This module preserves two structural-only routes and records their exact clean
+formulas. The five-shift route has no promoted logical or primitive circuit;
+the historical split-seven route is an exact weighted-permutation LCU but not
+a sparse-access enumeration. The Hadamard-8 route is promoted to a T2 verified
+block encoding in `Hadamard8BlockEncoding`, while the XOR four-slot route is
+promoted elsewhere to a T3 verified primitive block encoding.
 -/
 
 namespace QuantumBlockEncoding.Robin
@@ -88,8 +89,12 @@ theorem warmRobinSevenSlotCleanFormula_eq_target (row column : Fin 8) :
         RobinEvolution.warmRobinNormalizer := by
   fin_cases row <;> fin_cases column <;> native_decide
 
-/-- Precise T2 blocker shared by the structural candidates. -/
-def warmRobinStructuralCandidateBlockedLeaf : String :=
+/-- Precise promotion blocker for the genuinely structural-only routes. -/
+def warmRobinHistoricalStructuralCandidateBlockedLeaf : String :=
   "specialize a matching complex-unitary clean-entry theorem to the compiled Robin clean formula, then refine it to the circuit certificate interface"
+
+/-- Historical compatibility alias scoped to structural-only candidates. -/
+abbrev warmRobinStructuralCandidateBlockedLeaf : String :=
+  warmRobinHistoricalStructuralCandidateBlockedLeaf
 
 end QuantumBlockEncoding.Robin

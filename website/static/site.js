@@ -152,4 +152,19 @@
     });
     filterLibrary();
   }
+
+  document.querySelectorAll("[data-copy-source]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const source = button.closest("details")?.querySelector("pre code")?.textContent || "";
+      if (!source) return;
+      try {
+        await navigator.clipboard.writeText(source);
+        const previous = button.textContent;
+        button.textContent = "Copied";
+        window.setTimeout(() => { button.textContent = previous; }, 1400);
+      } catch {
+        button.textContent = "Copy unavailable";
+      }
+    });
+  });
 })();

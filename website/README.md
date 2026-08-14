@@ -45,8 +45,10 @@ that is absent from the inventory.
 ## Live formalization workspace
 
 The static site supports formula rendering, reviewed LaTeX↔Lean mappings,
-dependency navigation, Lean editing, packet export, and a prefilled GitHub
-submission request. GitHub Pages does **not** execute Lean.
+copyable case-study constructions, dependency navigation, Lean editing, packet
+export, and a prefilled GitHub submission request. With the optional local
+translator, the direction selector supports both user LaTeX to a Lean draft
+and user Lean to copyable LaTeX. GitHub Pages does **not** execute Lean.
 
 After building `_site`, start the loopback-only companion server:
 
@@ -74,7 +76,7 @@ read-only session. It follows the current Codex configuration by default. Set
 model name or credential is stored in the website.
 
 The adapter reads one JSON request on stdin and returns JSON with string fields
-`code` and `plain`. Its output is labeled **agent draft**. It must still compile
+`code`, `latex`, and `plain`. Its output is labeled **agent draft**. It must still compile
 and receive mathematical review. Without an adapter, the workspace offers an
 explicit `True` scaffold that is labeled as a placeholder, never as a semantic
 translation.

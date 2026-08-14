@@ -6,6 +6,7 @@
 
   const $ = (selector) => document.querySelector(selector);
   const select = $("[data-ide-declaration]");
+  const direction = $("[data-ide-direction]");
   const latex = $("[data-ide-latex]");
   const lean = $("[data-ide-lean]");
   const preview = $("[data-ide-math-preview]");
@@ -187,22 +188,31 @@
   const translate = async () => {
     if (!translatorAvailable || !latex || !lean || !diagnostics) return;
     translateButton.disabled = true;
-    diagnostics.textContent = "The configured local agent is preparing a Lean draft...";
+    const selectedDirection = direction?.value || "latex-to-lean";
+    diagnostics.textContent = selectedDirection === "latex-to-lean"
+      ? "The configured local agent is preparing a Lean draft..."
+      : "The configured local agent is reading the Lean proposition...";
     try {
       const response = await fetch("../api/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          direction: selectedDirection,
           latex: latex.value,
+          code: lean.value,
           reviewed_context: current,
         }),
       });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.output || `HTTP ${response.status}`);
       lean.value = result.code;
+      latex.value = result.latex;
+      renderMath();
       if (plain && result.plain) plain.textContent = result.plain;
       if (translationStatus) {
-        translationStatus.textContent = "Agent draft; review required";
+        translationStatus.textContent = selectedDirection === "latex-to-lean"
+          ? "Agent Lean draft; review required"
+          : "Agent LaTeX draft; review required";
         translationStatus.className = "edited";
       }
       diagnostics.textContent = "Draft received. Compilation and mathematical review are still required.";
@@ -350,6 +360,25 @@
   loadButton?.addEventListener("click", () => current && loadMapping(current));
   scaffoldButton?.addEventListener("click", safeDraftScaffold);
   translateButton?.addEventListener("click", translate);
+  direction?.addEventListener("change", () => {
+    if (!translateButton) return;
+    translateButton.textContent = direction.value === "latex-to-lean"
+      ? "Translate to Lean"
+      : "Translate to LaTeX";
+  });
+  document.querySelectorAll("[data-copy-editor]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const source = button.dataset.copyEditor === "lean" ? lean?.value : latex?.value;
+      if (!source) return;
+      try {
+        await navigator.clipboard.writeText(source);
+        button.textContent = "Copied";
+        window.setTimeout(() => { button.textContent = "Copy"; }, 1200);
+      } catch {
+        button.textContent = "Unavailable";
+      }
+    });
+  });
   compileButton?.addEventListener("click", compile);
   exportButton?.addEventListener("click", exportPacket);
   submitButton?.addEventListener("click", requestSubmission);

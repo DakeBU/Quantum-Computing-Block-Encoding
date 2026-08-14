@@ -24,26 +24,30 @@ deriving Repr, DecidableEq
 def warmRobinPrimitiveConvention : String :=
   "logical one-qubit rotations plus CNOT; SWAP is three CNOTs; all truth-table logic, PREPARE, SELECT, and uncompute are expanded"
 
-def warmRobinSourceResourceRow : RobinResourceRow where
-  identity := "source-standard-Ry-fixed-N8"
+/-- Historical paper-literal transcript row. This is not the certified fixed-N8
+standard-RY realization, whose exact primitive cost is recorded in
+`T3ResourceComparison.lean`. -/
+def warmRobinPaperLiteralTranscriptResourceRow : RobinResourceRow where
+  identity := "paper-literal-unexpanded-transcript"
   tier := .paperTranscript
   convention := warmRobinPrimitiveConvention
   cost := none
-  blockedLeaf := some "source oracle matrices and primitive expansion remain open"
+  blockedLeaf := some
+    "arbitrary-n source interpretation and the paper-literal single-arccos convention remain open"
 
 def warmRobinFiveShiftResourceRow : RobinResourceRow where
   identity := "five-shift-weighted-permutation"
   tier := .exactStructuralLCU
   convention := warmRobinPrimitiveConvention
   cost := none
-  blockedLeaf := some warmRobinStructuralCandidateBlockedLeaf
+  blockedLeaf := some warmRobinHistoricalStructuralCandidateBlockedLeaf
 
 def warmRobinHadamard8ResourceRow : RobinResourceRow where
   identity := "hadamard-eight-weighted-permutation"
   tier := .exactLogicalUnitary
   convention := warmRobinPrimitiveConvention
   cost := none
-  blockedLeaf := some warmRobinStructuralCandidateBlockedLeaf
+  blockedLeaf := none
 
 inductive RobinComparison where
   | dominates
@@ -64,16 +68,33 @@ noncomputable def compareRobinRows
         else if x = y then .tied else .incomparable
     | _, _ => .incomparable
 
-theorem warmRobinFiveShift_source_incomparable :
-    compareRobinRows warmRobinFiveShiftResourceRow warmRobinSourceResourceRow =
+theorem warmRobinFiveShift_paperTranscript_incomparable :
+    compareRobinRows warmRobinFiveShiftResourceRow
+        warmRobinPaperLiteralTranscriptResourceRow =
       .incomparable := by
   simp [compareRobinRows, warmRobinFiveShiftResourceRow,
-    warmRobinSourceResourceRow]
+    warmRobinPaperLiteralTranscriptResourceRow]
+
+theorem warmRobinHadamard8_paperTranscript_incomparable :
+    compareRobinRows warmRobinHadamard8ResourceRow
+        warmRobinPaperLiteralTranscriptResourceRow =
+      .incomparable := by
+  simp [compareRobinRows, warmRobinHadamard8ResourceRow,
+    warmRobinPaperLiteralTranscriptResourceRow]
+
+/-- Historical compatibility alias; this row is generic and paper-literal, not
+the certified fixed-N8 standard-RY source realization. -/
+abbrev warmRobinSourceResourceRow : RobinResourceRow :=
+  warmRobinPaperLiteralTranscriptResourceRow
+
+theorem warmRobinFiveShift_source_incomparable :
+    compareRobinRows warmRobinFiveShiftResourceRow warmRobinSourceResourceRow =
+      .incomparable :=
+  warmRobinFiveShift_paperTranscript_incomparable
 
 theorem warmRobinHadamard8_source_incomparable :
     compareRobinRows warmRobinHadamard8ResourceRow warmRobinSourceResourceRow =
-      .incomparable := by
-  simp [compareRobinRows, warmRobinHadamard8ResourceRow,
-    warmRobinSourceResourceRow]
+      .incomparable :=
+  warmRobinHadamard8_paperTranscript_incomparable
 
 end QuantumBlockEncoding.Robin

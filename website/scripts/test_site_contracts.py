@@ -16,8 +16,62 @@ assert SPEC and SPEC.loader
 build_site = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(build_site)
 
+from website.content import CHAPTERS
+from website.case_assets import STAGE_CIRCUITS
+
+
+CORE_COMPLETE_TRACKS = {
+    "Shared foundations",
+    "State preparation",
+    "Block encoding",
+}
+
 
 class SiteContractTests(unittest.TestCase):
+    def test_core_tracks_have_compiled_proof_carrying_routes(self) -> None:
+        for chapter in CHAPTERS:
+            if chapter["track"] not in CORE_COMPLETE_TRACKS:
+                continue
+            for result in chapter["results"]:
+                self.assertEqual(result["local_status"], "Compiled", result["declaration"])
+                self.assertEqual(result["route_status"], "Compiled", result["declaration"])
+                self.assertTrue(result["route_closures"], result["declaration"])
+
+    def test_rendered_core_chapters_have_no_incomplete_badges(self) -> None:
+        declarations = {}
+        for chapter in CHAPTERS:
+            for result in chapter["results"]:
+                for name in [result["declaration"], *result["route_closures"]]:
+                    declarations.setdefault(name, {
+                        "fullName": name,
+                        "source": "QuantumBlockEncoding/TeachingRouteClosures.lean",
+                        "sourcePreview": f"theorem {name.rsplit('.', 1)[-1]} : True := by trivial",
+                        "sourceUrl": None,
+                        "blueprintUrl": "blueprint/html-multi/index.html",
+                    })
+        for chapter in CHAPTERS:
+            if chapter["track"] not in CORE_COMPLETE_TRACKS:
+                continue
+            rendered = build_site.render_chapter(
+                chapter,
+                declarations,
+                {"publicDeclarationCount": len(declarations)},
+                {"passed": True},
+                {"shortCommit": "test"},
+            )
+            for badge_text in (
+                "Partial route",
+                "Stated, proof incomplete",
+                "Blocked",
+                "Planned",
+            ):
+                self.assertNotRegex(
+                    rendered,
+                    rf'<span class="status[^"]*">{re.escape(badge_text)}</span>',
+                    chapter["slug"],
+                )
+            self.assertIn("Route closure", rendered, chapter["slug"])
+
     def test_robin_tex_is_canonical(self) -> None:
         data = json.loads((ROOT / "website/robin-paper-map.json").read_text(encoding="utf-8"))
         for row in data["rows"]:
@@ -94,8 +148,27 @@ class SiteContractTests(unittest.TestCase):
             self.assertTrue((ROOT / case["qiskit"]["path"]).is_file(), case["slug"])
             for stage in case["evolution"]["stages"]:
                 self.assertIn(stage["leanAnchor"], case["leanAnchors"])
+                self.assertTrue(STAGE_CIRCUITS[case["slug"]][stage["name"]])
                 if stage["status"].startswith("Strictly better"):
                     self.assertIn("betterThan", stage["leanAnchor"])
+
+    def test_case_pages_offer_copyable_latex_lean_and_quantikz(self) -> None:
+        source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
+        self.assertIn("Construction and circuit LaTeX", source)
+        self.assertIn("English proof LaTeX", source)
+        self.assertIn("Lean declaration retrieval block", source)
+        for circuits in STAGE_CIRCUITS.values():
+            for circuit in circuits.values():
+                self.assertIn("\\begin{quantikz}", circuit)
+
+    def test_workspace_supports_both_translation_directions(self) -> None:
+        page = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
+        server = (ROOT / "website/scripts/ide_server.py").read_text(encoding="utf-8")
+        worker = (ROOT / "website/scripts/codex_translator.py").read_text(encoding="utf-8")
+        for marker in ("latex-to-lean", "lean-to-latex"):
+            self.assertIn(marker, page)
+            self.assertIn(marker, server)
+            self.assertIn(marker, worker)
 
     def test_backend_check_and_export_controls_are_independent(self) -> None:
         source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")

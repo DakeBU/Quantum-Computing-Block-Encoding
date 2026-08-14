@@ -4,12 +4,17 @@
   "title": "QuantumComputinglib local translation response",
   "type": "object",
   "additionalProperties": false,
-  "required": ["code", "plain"],
+  "required": ["code", "latex", "plain"],
   "properties": {
     "code": {
       "type": "string",
       "minLength": 1,
       "description": "A reviewable Lean 4 draft, including imports."
+    },
+    "latex": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A copyable LaTeX statement or proof skeleton corresponding to the Lean draft."
     },
     "plain": {
       "type": "string",

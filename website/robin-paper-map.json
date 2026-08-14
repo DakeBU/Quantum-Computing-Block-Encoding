@@ -9,7 +9,7 @@
   "sourceInterpretation": [
     "The historical split-seven weighted-permutation LCU is not used as a sparse enumeration because distinct nonzero slots can address the same matrix entry.",
     "The Figure-4 indicator is applied to a row of D-transpose, so the fixed source circuit selects columns 3 and 4 of D rather than the row window 2 through 5.",
-    "The exact executable circuit uses 2 arccos(c) for the repository's standard RY convention; the paper-literal arccos(c) record remains visible as an audited source convention.",
+    "Equation (27) omits a factor of two. The certified circuit uses theta = 2 arccos(c), as required by the standard RY(theta) half-angle convention; the printed single-arccos expression remains visible only as a source-typo transcript.",
     "The unexplained literal gamma-1 normalization is not assumed. The fixed realization proves its actual executable stage states and final projected block.",
     "The full-space unitary uses the compiler's actual reversible behavior on dirty workspace states, while the block contract projects every declared workspace to zero.",
     "The fixed benchmark has f=1, and Lean proves that coefficient stage is identity before it is constant-folded."
@@ -17,17 +17,18 @@
   "rows": [
     {
       "id": "sparse-access",
-      "paperAnchor": "Lemma 1, banded sparse access",
+      "paperAnchor": "Lemma 2, citing Lemma 1 of arXiv:2405.12855",
       "plain": "Write the banded sparse column address into an n-qubit register while preserving the row register.",
       "latex": "\\hat{O}^{BS}_D\\ket{0}^{n-l}\\ket{s}^l\\ket{i}^n := \\ket{r_{si}}^n\\ket{i}^n,\\qquad r_{si}=r_{s0}+i\\bmod 2^n.",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperContract",
+        "QuantumBlockEncoding.GHL2025.robinBandedSparseAccessCitationChain_eq",
         "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperAddress_lt_gridSize_of_two_le",
         "QuantumBlockEncoding.GHL2025.bandedSparseAccessPaperMatrix_eq_image"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Partial route",
-      "reading": "The register extraction, address range, row preservation, clean-source split, and matrix image are compiled. A full unitary extension over every non-clean padded input and the corresponding dagger cleanup remain explicit contracts."
+      "reading": "Robin Lemma 2 imports the banded-sparse primitive from Lemma 1 of arXiv:2405.12855. The register extraction, address range, row preservation, clean-source split, and matrix image are compiled. A full arbitrary-n unitary extension over every non-clean padded input remains a separate route."
     },
     {
       "id": "indicator",
@@ -47,15 +48,16 @@
       "id": "boundary-rotation",
       "paperAnchor": "Boundary controlled Ry angles",
       "plain": "Encode each exceptional Robin-boundary coefficient with a controlled y rotation.",
-      "latex": "\\theta_j^s=\\arccos\\!\\left(D_j^{(s)}/\\mathcal N_D\\right).",
+      "latex": "\\theta_j^s=2\\arccos\\!\\left(D_j^{(s)}/\\mathcal N_D\\right).",
       "declarations": [
         "QuantumBlockEncoding.GHL2025.RobinBoundaryRotationAngle",
+        "QuantumBlockEncoding.Robin.warmRobinCorrectedEq27_standardRy_cleanAmplitude",
         "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryRyAngleConventionDecision_n3_transcript",
         "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryCorrectedCoefficientInterface_n3_transcript"
       ],
       "localStatus": "Compiled",
-      "routeStatus": "Blocked",
-      "reading": "The source formula and both angle conventions are represented and audited. With the standard Ry(theta) matrix, the clean amplitude is cos(theta/2), not cos(theta). The source-faithful gate-level route therefore needs a convention clarification or a cited doubled-angle correction."
+      "routeStatus": "Compiled",
+      "reading": "The paper's displayed single-arccos formula is recorded as a typo. With standard RY(theta), Lean proves that the corrected doubled angle produces the requested clean coefficient, and the fixed-N8 Figure-4 route uses that certificate."
     },
     {
       "id": "theorem-data",
@@ -133,7 +135,8 @@
         "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding",
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven",
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4",
-        "QuantumBlockEncoding.Robin.warmRobinBestVerified"
+        "QuantumBlockEncoding.Robin.warmRobinBestVerified",
+        "QuantumBlockEncoding.Robin.warmRobinPublicationState_consistent"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Compiled",

@@ -181,9 +181,14 @@ class WorkspaceHandler(SimpleHTTPRequestHandler):
         )
 
     def translate_statement(self, payload: dict[str, object]) -> None:
-        latex = payload.get("latex")
-        if not isinstance(latex, str) or not latex.strip():
-            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": "`latex` must be nonempty."})
+        direction = payload.get("direction", "latex-to-lean")
+        if direction not in {"latex-to-lean", "lean-to-latex"}:
+            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": "Unknown translation direction."})
+            return
+        source_field = "latex" if direction == "latex-to-lean" else "code"
+        source = payload.get(source_field)
+        if not isinstance(source, str) or not source.strip():
+            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": f"`{source_field}` must be nonempty."})
             return
         if not self.translator_command:
             self.send_json(
@@ -192,14 +197,19 @@ class WorkspaceHandler(SimpleHTTPRequestHandler):
             )
             return
         request = {
-            "task": "Translate the mathematical statement into a reviewable Lean 4 draft for ASPBE.",
+            "task": (
+                "Translate the mathematical statement into a reviewable Lean 4 draft for ASPBE."
+                if direction == "latex-to-lean"
+                else "Translate the supplied Lean proposition into faithful copyable LaTeX and plain English."
+            ),
+            "direction": direction,
             "rules": [
                 "Import QuantumBlockEncoding unless a narrower import is sufficient.",
                 "Expose every assumption; do not replace the proposition with True.",
                 "Return JSON with string fields code and plain.",
                 "Compilation and human mathematical review remain separate gates.",
             ],
-            "latex": latex,
+            source_field: source,
             "reviewed_context": payload.get("reviewed_context"),
         }
         try:
@@ -232,12 +242,13 @@ class WorkspaceHandler(SimpleHTTPRequestHandler):
             self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": "Translator did not return JSON."})
             return
         code = response.get("code") if isinstance(response, dict) else None
-        if not isinstance(code, str) or not code.strip():
-            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": "Translator JSON has no nonempty `code` field."})
+        latex = response.get("latex") if isinstance(response, dict) else None
+        if not isinstance(code, str) or not code.strip() or not isinstance(latex, str) or not latex.strip():
+            self.send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "output": "Translator JSON lacks nonempty `code` or `latex`."})
             return
         self.send_json(
             HTTPStatus.OK,
-            {"ok": True, "code": code, "plain": str(response.get("plain", ""))},
+            {"ok": True, "code": code, "latex": latex, "plain": str(response.get("plain", ""))},
         )
 
     def run_task(self, payload: dict[str, object]) -> None:

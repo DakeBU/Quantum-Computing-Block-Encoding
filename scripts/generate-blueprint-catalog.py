@@ -84,6 +84,7 @@ CATALOGS = [
             "ModularAdder3.lean",
             "UniformlyControlledRy.lean",
             "TextbookStatePreparation.lean",
+            "TeachingRouteClosures.lean",
         },
     ),
     ("ClassicRoutes", "catalog-classic-routes", {"BlockEncodingClassics.lean"}),

@@ -58,3 +58,4 @@ import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.TechnicalLemmas
 import QuantumBlockEncoding.TextbookStatePreparation
+import QuantumBlockEncoding.TeachingRouteClosures

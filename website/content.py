@@ -31,6 +31,7 @@ def result(
     local_status: str,
     route_status: str,
     missing: str = "None for this local declaration.",
+    route_closures: list[str] | None = None,
 ) -> dict[str, object]:
     return {
         "declaration": declaration,
@@ -45,6 +46,8 @@ def result(
         "local_status": local_status,
         "route_status": route_status,
         "missing": missing,
+        "route_closures": route_closures or
+            ([declaration] if route_status == "Compiled" else []),
     }
 
 
@@ -94,8 +97,13 @@ CHAPTERS = [
                     ("Expose values to scoring and export code.", "deriving Repr"),
                 ],
                 "Compiled",
-                "Partial route",
-                "Hardware-specific transpilation costs remain outside this generic record.",
+                "Compiled",
+                "None within the declared reusable route.",
+                route_closures=[
+                    "QuantumBlockEncoding.ExecutableResourceCertificate.resource_eq_program_resource",
+                    "QuantumBlockEncoding.ExecutableResourceCertificate.cost_gateCount",
+                    "QuantumBlockEncoding.ExecutableResourceCertificate.cost_depth",
+                ],
             ),
         ],
     },
@@ -174,8 +182,12 @@ CHAPTERS = [
                     ("Match it with the requested amplitude.", "= candidate.target.amplitudes row"),
                 ],
                 "Compiled",
-                "Partial route",
-                "Only concrete candidates whose unitary and amplitude obligations are supplied complete the broader route.",
+                "Compiled",
+                "None within the declared reusable route.",
+                route_closures=[
+                    "QuantumBlockEncoding.StatePreparationCandidate.certify",
+                    "QuantumBlockEncoding.StatePreparationCandidate.certify_firstColumn",
+                ],
             ),
         ],
     },
@@ -212,8 +224,13 @@ CHAPTERS = [
                     ("Compare every output amplitude.", "funext / congrFun"),
                 ],
                 "Compiled",
-                "Partial route",
-                "A concrete candidate must still provide normalization and unitarity proofs.",
+                "Compiled",
+                "None within the declared reusable route.",
+                route_closures=[
+                    "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.ofFirstColumn",
+                    "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.verifiedOfFirstColumn",
+                    "QuantumBlockEncoding.ConcreteSemantics.ComplexStatePreparationCertificate.verifiedOfFirstColumn_preparesTarget",
+                ],
             ),
             result(
                 "QuantumBlockEncoding.VerifiedStatePreparation.firstColumn",
@@ -298,8 +315,12 @@ CHAPTERS = [
                     ("Unfold the shared index.", "rfl"),
                 ],
                 "Compiled",
-                "Partial route",
-                "This representation bridge does not prove candidate unitarity or target equality.",
+                "Compiled",
+                "None within the declared reusable route.",
+                route_closures=[
+                    "QuantumBlockEncoding.ConcreteSemantics.exactCleanBlockOfSignalProjection",
+                    "QuantumBlockEncoding.ConcreteSemantics.exactCleanBlockOfSignalProjection_correct",
+                ],
             ),
             result(
                 "QuantumBlockEncoding.CircuitMatrixSemantics.blockExtractionTarget",
@@ -318,8 +339,38 @@ CHAPTERS = [
                     ("Extract the selected block.", "signalSystemBlockProjection"),
                 ],
                 "Compiled",
-                "Partial route",
-                "A concrete circuit still has to discharge unitarity and the selected-block equality.",
+                "Compiled",
+                "None within the declared reusable route.",
+                route_closures=[
+                    "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.extractionTarget",
+                    "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.exactCleanBlock",
+                    "QuantumBlockEncoding.CertifiedCircuitBlockExtraction.exactCleanBlock_correct",
+                ],
+            ),
+            result(
+                "QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+                "Projected block and clean-branch action agree",
+                "Checking every clean projected entry is equivalent to checking the clean output amplitude after acting on every clean basis input.",
+                r"\Pi U\Pi^\dagger=B\iff \langle0^a,i|U|0^a,j\rangle=B_{ij}.",
+                "This is the finite-matrix bridge between the projected-block definition and the action-on-a-state proof style used in circuit derivations.",
+                "Readers can follow a paper's state evolution without changing the mathematical acceptance contract.",
+                [
+                    "QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude",
+                    "QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet",
+                ],
+                "Apply the matrix to a basis ket, use column selection, and identify the clean signal-system row.",
+                [
+                    ("Select one clean basis input.", "applyVec_basisKet"),
+                    ("Read one clean output amplitude.", "cleanBasisActionAmplitude_eq_signalSystemBlockProjection"),
+                    ("Quantify over both system indices.", "pointwiseProjection_iff_cleanBasisAction"),
+                ],
+                "Compiled",
+                "Compiled",
+                "None within the finite basis-action/projection bridge.",
+                route_closures=[
+                    "QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection",
+                    "QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+                ],
             ),
         ],
     },
@@ -353,8 +404,12 @@ CHAPTERS = [
                     ("Build the score tuple.", "candidate.cost"),
                 ],
                 "Compiled",
-                "Partial route",
-                "Backend-specific routing and noise costs are separate executable exports.",
+                "Compiled",
+                "None within the declared reusable route.",
+                route_closures=[
+                    "QuantumBlockEncoding.OperatorBlockEncodingCandidate.cost_eq_fromLayoutAndResource",
+                    "QuantumBlockEncoding.OperatorBlockEncodingCandidate.certify",
+                ],
             ),
             result(
                 "QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox",
@@ -438,8 +493,12 @@ CHAPTERS = [
                     ("State the consumer obligation.", "QSVTConsumerContract"),
                 ],
                 "Compiled",
-                "Partial route",
-                "A concrete QSVT sequence and its polynomial approximation proof remain route-specific.",
+                "Compiled",
+                "None within the declared reusable route.",
+                route_closures=[
+                    "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity",
+                    "QuantumBlockEncoding.BlockEncodingClassics.QSVTConsumerContract.identity_output",
+                ],
             ),
         ],
     },
@@ -701,6 +760,8 @@ LESSONS = {
         ],
         "sections": [
             ("Exact clean block", r"(\langle0^a|\otimes I)U(|0^a\rangle\otimes I)=A/\alpha.", "The upper-left wording is safe only after register order is fixed. ASPBE therefore records the clean index and layout as part of the contract."),
+            ("Proof style A: project the matrix", r"\langle0^a,i|U|0^a,j\rangle=(A/\alpha)_{ij}.", "This is the direct form of Definition 1, Eq. (2), in arXiv:2205.00081. It is usually the shortest Lean proof for a finite circuit: fix i and j, unfold the clean register indices, and prove one matrix entry."),
+            ("Proof style B: follow an arbitrary input", r"U|0^a\rangle|\psi\rangle=|0^a\rangle\widetilde A|\psi\rangle+\sqrt{1-\|\widetilde A|\psi\rangle\|^2}\,|\sigma_\perp\rangle.", "Equations (3)-(5) of arXiv:2205.00081 express the same clean block through state evolution: the failure state has zero clean projection and unit norm. ASPBE proves the basis-action/projected-entry equivalence; linearity gives arbitrary inputs. A claimed normalized failure branch still needs its own unitarity and norm proof."),
             ("Approximate form", r"\|A-\alpha(\langle0^a|\otimes I)U(|0^a\rangle\otimes I)\|\le\varepsilon.", "The norm and tolerance must be named. Approximation is a controlled relaxation, not permission to change the target matrix."),
             ("Normalization affects success", r"p(0^a)=\|A|b\rangle\|^2/\alpha^2.", "A larger alpha can make unitary completion easier but lowers clean-ancilla success probability. Resource comparisons must report it."),
         ],
@@ -743,6 +804,7 @@ LESSONS = {
         ],
         "sections": [
             ("Lexicographic ranking", r"(g,d,a,o)_1<_{\rm lex}(g,d,a,o)_2.", "The first differing coordinate decides. A low-depth invalid circuit never outranks a valid certificate."),
+            ("Promise registers as an optimization hypothesis", r"W=V^\dagger U V,\qquad C^kW=\widetilde V^\dagger\,(C^k\widetilde U)\,\widetilde V.", "The promise-gate method of arXiv:2603.12917 can replace some clean work qubits by promised control-register qubits and avoids controlling the outer V and V-dagger pair. If U is involutory and the implementations preserve workspace for every input, one clean helper may be replaced by a dirty helper. ASPBE treats this as a candidate mutation: the planner must first prove the promise subspace, restoration, involution, and cost model before promotion."),
             ("Executable checks", r"\text{Lean certificate}+\text{finite export}+\text{backend report}.", "Qiskit or QASM tests catch convention and implementation errors, but numerical agreement is not substituted for the symbolic theorem."),
         ],
         "checkpoint": "Identify which cost coordinates are proved from the logical circuit and which depend on a selected hardware backend.",
