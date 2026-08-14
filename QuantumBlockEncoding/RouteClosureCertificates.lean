@@ -51,8 +51,8 @@ def certify {α : Type u} {qubits : Nat}
     (normalizationProof : candidate.candidate.target.normalization)
     (unitaryProof : candidate.candidate.isUnitary)
     (approximationProof : candidate.approximationBound) :
-    (candidate.certify normalizationProof unitaryProof approximationProof)
-      .approxCandidate.candidate.target.normalization :=
+    (candidate.certify normalizationProof unitaryProof
+      approximationProof).approxCandidate.candidate.target.normalization :=
   normalizationProof
 
 @[simp] theorem certify_unitary {α : Type u} {qubits : Nat}
@@ -60,8 +60,8 @@ def certify {α : Type u} {qubits : Nat}
     (normalizationProof : candidate.candidate.target.normalization)
     (unitaryProof : candidate.candidate.isUnitary)
     (approximationProof : candidate.approximationBound) :
-    (candidate.certify normalizationProof unitaryProof approximationProof)
-      .approxCandidate.candidate.isUnitary :=
+    (candidate.certify normalizationProof unitaryProof
+      approximationProof).approxCandidate.candidate.isUnitary :=
   unitaryProof
 
 @[simp] theorem certify_approximation {α : Type u} {qubits : Nat}
@@ -69,8 +69,8 @@ def certify {α : Type u} {qubits : Nat}
     (normalizationProof : candidate.candidate.target.normalization)
     (unitaryProof : candidate.candidate.isUnitary)
     (approximationProof : candidate.approximationBound) :
-    (candidate.certify normalizationProof unitaryProof approximationProof)
-      .approxCandidate.approximationBound :=
+    (candidate.certify normalizationProof unitaryProof
+      approximationProof).approxCandidate.approximationBound :=
   approximationProof
 
 end ApproximateStatePreparationCandidate
@@ -122,16 +122,16 @@ def certify {α : Type u} {systemQubits : Nat}
     (candidate : ApproximateOperatorBlockEncodingCandidate α systemQubits)
     (unitaryProof : candidate.candidate.isUnitary)
     (approximationProof : candidate.approximationBound) :
-    (candidate.certify unitaryProof approximationProof)
-      .approxCandidate.candidate.isUnitary :=
+    (candidate.certify unitaryProof
+      approximationProof).approxCandidate.candidate.isUnitary :=
   unitaryProof
 
 @[simp] theorem certify_approximation {α : Type u} {systemQubits : Nat}
     (candidate : ApproximateOperatorBlockEncodingCandidate α systemQubits)
     (unitaryProof : candidate.candidate.isUnitary)
     (approximationProof : candidate.approximationBound) :
-    (candidate.certify unitaryProof approximationProof)
-      .approxCandidate.approximationBound :=
+    (candidate.certify unitaryProof
+      approximationProof).approxCandidate.approximationBound :=
   approximationProof
 
 end ApproximateOperatorBlockEncodingCandidate
