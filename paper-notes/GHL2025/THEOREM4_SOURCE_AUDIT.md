@@ -55,6 +55,14 @@ The existing reusable LCU kernel separately proves unitarity and exact clean
 projection for PREPARE/SELECT/UNPREPARE constructions in
 `Robin/ComplexLCU.lean` and `Robin/ComplexLCUProjection.lean`.
 
+## Publication mapping
+
+QuantumComputinglib exposes this result as a **Compiled** Theorem-4 route and a
+separate compiled phase-audit row. The textbook chapters use the new
+**Concept / Math / Lean** reader modes so the source-level issue can be read
+first as circuit intuition, then as matrix algebra, and finally through the
+named Lean declarations.
+
 ## Remaining frontier
 
 The remaining GHL item is a different layer: a uniform arbitrary-width
