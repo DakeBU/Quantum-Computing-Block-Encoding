@@ -94,6 +94,13 @@ def sumTerms {η : Type*} [Fintype η]
     (terms : η → CMatrix ι ι) (i j : ι) :
     sumTerms terms i j = ∑ k, terms k i j := rfl
 
+/-- Taking the adjoint commutes with the paper's finite sum of one-term matrices. -/
+theorem adjoint_sumTerms {η : Type*} [Fintype η]
+    (terms : η → CMatrix ι ι) :
+    adjoint (sumTerms terms) = sumTerms (fun k => adjoint (terms k)) := by
+  funext i j
+  simp [adjoint, sumTerms]
+
 /--
 Homogenized matrix from the paper, on the direct-sum basis `ι ⊕ ι`:
 `S = [[A,B],[0,0]]`.
@@ -247,6 +254,16 @@ variable {η ι ξ : Type*} [Fintype η] [DecidableEq ξ]
 /-- `A = Σ_k A_k`, exactly as in Theorem 4. -/
 def A (cert : OneDimCompositionCertificate η ι ξ) : CMatrix ι ι :=
   sumTerms cert.terms
+
+/-- `A†`, exposed as a named stage because Theorem 4 combines both `A` and `A†`. -/
+def Adagger (cert : OneDimCompositionCertificate η ι ξ) : CMatrix ι ι :=
+  adjoint cert.A
+
+/-- The adjoint assembled from the one-term adjoints equals the adjoint of `A`. -/
+theorem Adagger_eq_sum_term_adjoints
+    (cert : OneDimCompositionCertificate η ι ξ) :
+    cert.Adagger = sumTerms (fun k => adjoint (cert.terms k)) := by
+  exact adjoint_sumTerms cert.terms
 
 /-- Homogenized source matrix `S = [[A,B],[0,0]]`. -/
 def S (cert : OneDimCompositionCertificate η ι ξ) :

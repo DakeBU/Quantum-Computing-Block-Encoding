@@ -17,6 +17,10 @@ example (A B : CMatrix ι ι) : IsHermitian (S2 A B) :=
   S2_isHermitian A B
 
 example (cert : OneDimCompositionCertificate η ι ξ) :
+    cert.Adagger = sumTerms (fun k => adjoint (cert.terms k)) :=
+  cert.Adagger_eq_sum_term_adjoints
+
+example (cert : OneDimCompositionCertificate η ι ξ) :
     ∀ i j,
       cert.S i j = cert.first i j + Complex.I * cert.second i j :=
   cert.S_decomposition
