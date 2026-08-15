@@ -27,6 +27,7 @@ jobs:
         run: |
           python3 tools/fix_ghl_hamiltonian_conj.py
           python3 tools/extend_ghl_adjoint.py
+          python3 tools/fix_roadmap_test.py
           python3 tools/finalize_ghl_teaching.py
       - name: Compile GHL Hamiltonian composition and regression roots
         run: lake build QuantumBlockEncoding.GHLHamiltonian ABEISTests.GHLHamiltonian
