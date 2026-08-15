@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Add concept-first textbook layers to the generated QuantumComputinglib pages.
 
-The Lean-driven builder remains the source of proof/status pages.  This pass
+The Lean-driven builder remains the source of proof/status pages. This pass
 adds a beginner narrative above those proofs and gives readers three views:
-Concept, Math, and Lean.  Every chapter stays statically readable; JavaScript
+Concept, Math, and Lean. Every chapter stays statically readable; JavaScript
 only switches which already-rendered layer is visible.
 """
 
@@ -12,7 +12,6 @@ from __future__ import annotations
 import argparse
 import html
 import json
-import re
 from pathlib import Path
 
 
@@ -143,12 +142,25 @@ def start_here_html(data: dict[str, object]) -> str:
 </section>"""
 
 
-def inject_after_main(path: Path, fragment: str) -> None:
+def ensure_learning_css(path: Path, href: str) -> str:
     text = path.read_text(encoding="utf-8")
+    if "static/learning.css" not in text:
+        marker = '<link rel="stylesheet" href="'
+        first = text.find(marker)
+        if first < 0:
+            raise RuntimeError(f"stylesheet marker missing: {path}")
+        end = text.find("\n", first)
+        text = text[: end + 1] + f'  <link rel="stylesheet" href="{href}">\n' + text[end + 1 :]
+    return text
+
+
+def inject_after_main(path: Path, fragment: str, css_href: str) -> None:
+    text = ensure_learning_css(path, css_href)
     marker = '<main id="main-content">'
     if marker not in text:
         raise RuntimeError(f"main marker missing: {path}")
     if "data-concept-first-lesson=" in text or 'id="start-here"' in text:
+        path.write_text(text, encoding="utf-8")
         return
     text = text.replace(marker, marker + "\n" + fragment, 1)
     path.write_text(text, encoding="utf-8")
@@ -163,20 +175,20 @@ def enrich(root: Path) -> None:
         path = root / "chapters" / slug / "index.html"
         if not path.is_file():
             raise RuntimeError(f"chapter page missing for textbook lesson: {slug}")
-        inject_after_main(path, lesson_html(slug, dict(lesson), sources))
+        inject_after_main(path, lesson_html(slug, dict(lesson), sources), "../../static/learning.css")
 
     for route, slug in (("state-preparation", "state-preparation"), ("block-encoding", "block-encoding")):
         path = root / route / "index.html"
         if path.is_file():
-            inject_after_main(path, lesson_html(slug, dict(chapters[slug]), sources))
+            inject_after_main(path, lesson_html(slug, dict(chapters[slug]), sources), "../static/learning.css")
 
     learning = root / "learning" / "index.html"
     if not learning.is_file():
         raise RuntimeError("learning page missing")
-    inject_after_main(learning, start_here_html(data))
+    inject_after_main(learning, start_here_html(data), "../static/learning.css")
 
     home = root / "index.html"
-    text = home.read_text(encoding="utf-8")
+    text = ensure_learning_css(home, "static/learning.css")
     if 'href="learning/index.html#start-here"' not in text:
         marker = '<main id="main-content">'
         callout = """<aside class="home-beginner-callout">
@@ -185,7 +197,7 @@ def enrich(root: Path) -> None:
   <a href="learning/index.html#start-here">Start the beginner path →</a>
 </aside>"""
         text = text.replace(marker, marker + "\n" + callout, 1)
-        home.write_text(text, encoding="utf-8")
+    home.write_text(text, encoding="utf-8")
 
 
 def main() -> None:
