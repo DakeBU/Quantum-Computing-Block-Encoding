@@ -29,7 +29,9 @@ Lean-checked quantum construction search, executable validation, and the
   reading modes, including circuit-style visualizations and textbook/source
   anchors. The Guseynov--Huang--Liu Robin track also closes the paper's
   Theorem-4 composition from `A_k` and `A_k†` through `A`, `A†`, `S₁`, `S₂`,
-  and the one-dimensional Hamiltonian `H`; the remaining GHL frontier is the
+  and the one-dimensional Hamiltonian `H`. The source audit also proves that the
+  literal printed first `S₁` LCU phase pair leaves a nonzero filler block and
+  records the phase-balanced correction; the remaining GHL frontier is the
   uniform arbitrary-width primitive compiler/resource theorem for the source
   one-term oracles, not the Hamiltonian composition itself.
 - **12 August 2026.** The textbook track gained complete Mathlib-backed Pauli X
@@ -330,9 +332,10 @@ contains:
 - a fixed-N8 Guseynov--Huang--Liu Robin reproduction at the exact primitive
   tier, plus a Lean-certified XOR four-slot construction that is strictly
   better under the frozen same-tier resource order;
-- the GHL Theorem-4 source-level composition from one-term `A_k` / `A_k†`
+- the GHL Theorem-4 source-audited LCU composition from one-term `A_k` / `A_k†`
   ingredients to `A`, `A†`, `S₁`, `S₂`, and
-  `H = S₁ ⊗ x_ξ + S₂ ⊗ I_ξ`;
+  `H = S₁ ⊗ x_ξ + S₂ ⊗ I_ξ`, including a Lean-refuted literal phase pair and
+  a Lean-certified phase-balanced `S₁` correction;
 - executable Qiskit and OpenQASM evidence tied back to named Lean roots;
 - a generated paper/example atlas and searchable declaration inventory.
 

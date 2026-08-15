@@ -47,7 +47,7 @@ def literature : List PaperEntry :=
       status := ImplementationStatus.formalized,
       targetFile := "QuantumBlockEncoding/GHLHamiltonian.lean",
       url := "https://arxiv.org/abs/2506.20478",
-      note := "Fixed-N8 one-term source circuits are primitive-certified; Theorem 4 A/A-dagger to S1,S2 to H composition is formalized generically. Arbitrary-width primitive resource compilation remains a separate frontier."
+      note := "Fixed-N8 one-term source circuits are primitive-certified; Theorem 4 A/A-dagger to S1,S2 to H source LCU composition is formalized with an explicit Eq. (30) phase audit and phase-balanced S1 correction. Arbitrary-width primitive resource compilation remains a separate frontier."
     },
     {
       key := "guseynov-huang-liu-2025-pde-block-encoding",

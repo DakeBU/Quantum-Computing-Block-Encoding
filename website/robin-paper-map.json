@@ -14,7 +14,8 @@
     "The full-space unitary uses the compiler's actual reversible behavior on dirty workspace states, while the block contract projects every declared workspace to zero.",
     "The fixed benchmark has f=1, and Lean proves that coefficient stage is identity before it is constant-folded.",
     "The paper's numerical experiment leaves multi-controlled rotations undecomposed. ASPBE's 881, 312, and 106 counts are exact primitive {X, RY, RZ, CX} lists and are compared only within that frozen compiler tier.",
-    "Theorem 4 is part of the source paper: the one-term A_k and A_k-dagger ingredients are combined into A and A-dagger, then S1 and S2, and finally H = S1 tensor x_xi + S2 tensor I_xi. GHLHamiltonian.lean now formalizes that composition; only uniform primitive compilation of the general-width source oracles remains separate."
+    "Theorem 4 is part of the source paper: the one-term A_k and A_k-dagger ingredients are combined into A and A-dagger, then S1 and S2, and finally H = S1 tensor x_xi + S2 tensor I_xi. GHLHamiltonian.lean now formalizes that composition; only uniform primitive compilation of the general-width source oracles remains separate.",
+    "Source audit for Eq. (30): with Eq. (29)'s L1(phi), L2(phi) definitions, the printed first-line phases pi and -pi both contribute exp(i phi)=-1 on the filler block. A literal full-clean-matrix sum therefore leaves -N_A I rather than the displayed zero lower-right block. Lean proves this obstruction and separately proves a phase-balanced correction; the S2 line closes as printed."
   ],
   "rows": [
     {
@@ -147,22 +148,40 @@
       "reading": "For the fixed N=8, homogeneous f=1 benchmark, Lean now closes the true padded-seven sparse source, the paper-seven exact primitive normal form, the standard-RY-corrected Figure-4 realization, and the evolved XOR four-slot circuit. Two same-tier betterThan theorems certify the XOR route under the declared compiler. This remains distinct from the paper's arbitrary-n theorem."
     },
     {
-      "id": "hamiltonian-composition",
-      "paperAnchor": "Eq. (18), Eqs. (29)-(30), Theorem 4",
-      "plain": "Combine the one-term matrices and their adjoints into A and A-dagger, form the two Hermitian Schrodingerisation pieces, and assemble the one-dimensional Hamiltonian.",
-      "latex": "A=\\sum_kA_k,\\qquad A^\\dagger=\\sum_kA_k^\\dagger,\\qquad S=S_1+iS_2,\\qquad H=S_1\\otimes x_\\xi+S_2\\otimes I_\\xi.",
+      "id": "hamiltonian-phase-audit",
+      "paperAnchor": "Eq. (29) and first line of Eq. (30)",
+      "plain": "Check whether the printed phases really cancel the filler block before accepting the S1 LCU equality.",
+      "latex": "e^{i\\pi}=e^{-i\\pi}=-1\\;\\Longrightarrow\\;\\text{printed filler}=-\\mathcal N_A I\\neq0,\\qquad\\text{phase-balanced filler}=0.",
       "declarations": [
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms",
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.homogenizedS_eq_S1_add_iS2",
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_isHermitian",
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_isHermitian",
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints",
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_isHermitian",
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I"
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1"
       ],
       "localStatus": "Compiled",
       "routeStatus": "Compiled",
-      "reading": "This is the source-level Theorem-4 composition, not an extrapolation beyond the paper. The finite-sum adjoint identity, Hermitian S1/S2 decomposition, and final H formula compile as proof-carrying Lean data. The remaining generality frontier is uniform primitive compilation of all arbitrary-width one-term source oracles and their resource upper bounds."
+      "reading": "This row is a source audit, not a new open problem. ASPBE proves the literal printed full-clean-matrix phase pair does not produce S1 when N_A is nonzero, and proves a phase-balanced correction produces exactly S1."
+    },
+    {
+      "id": "hamiltonian-composition",
+      "paperAnchor": "Eq. (29), Eq. (30), Theorem 4",
+      "plain": "Use verified LCU clean-block algebra to combine A and A-dagger into S1 and S2, then assemble the one-dimensional Hamiltonian; keep the printed phase audit explicit.",
+      "latex": "A=\\sum_kA_k,\\qquad A^\\dagger=\\sum_kA_k^\\dagger,\\qquad S=S_1+iS_2,\\qquad H=S_1\\otimes x_\\xi+S_2\\otimes I_\\xi.",
+      "declarations": [
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq30Clean_eq_S2",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_normalization_closed",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_layout_closed",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianResource_pureAncilla_closed",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.theorem4_source_lcu_route_closed"
+      ],
+      "localStatus": "Compiled",
+      "routeStatus": "Compiled",
+      "reading": "Theorem 4 is not left open. Lean closes the source-audited LCU route through A/A-dagger, S1/S2, H, and the paper-facing normalization/layout/resource records. The literal printed S1 phase pair is separately refuted as a full clean matrix and replaced by an explicit phase-balanced correction. Uniform primitive compilation of all arbitrary-width Theorem-3 oracles remains a separate implementation frontier."
     }
   ]
 }

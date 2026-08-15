@@ -82,3 +82,15 @@ f(x_i)D_i^{(s)}\sigma^{(s)}
 %   H = S_1 \otimes x_\xi + S_2 \otimes I_\xi.
 % The corresponding Lean source-level composition roots live in
 % QuantumBlockEncoding/GHLHamiltonian.lean.
+
+
+% ASPBE-THEOREM4-PHASE-AUDIT
+% Eq. (29) defines both L_1(phi) and L_2(phi) with the filler I exp(i phi).
+% The first line of Eq. (30) then uses phases pi and -pi.  Since both phases
+% equal -1, a literal full-clean-matrix addition leaves the lower-right filler
+% -N_A I rather than the displayed zero block.  ASPBE records this as the
+% theorem eq29PrintedClean_ne_S1 (for nonzero N_A), and separately certifies a
+% phase-balanced correction with filler phases +1 and -1 via
+% eq29PhaseBalancedClean_eq_S1.  The S_2 line closes with the printed zero
+% phases, and theorem4_source_lcu_route_closed packages the corrected S_1,
+% printed S_2, final H formula, and paper-facing metadata.

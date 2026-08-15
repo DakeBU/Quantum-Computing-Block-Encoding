@@ -664,7 +664,12 @@
         "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms",
         "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints",
         "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_isHermitian",
-        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I"
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.eq30Clean_eq_S2",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.theorem4_source_lcu_route_closed"
       ],
       "problem": "For the N=8 specialization of GHL Eq. (9), set the Robin coefficients A1=B1=0 and factor out the global Delta x^{-2}. Construct an exact primitive unitary whose clean block encodes the resulting fourth-order-accurate second-derivative stencil.",
       "formula": "A_{\\mathrm{GHL}}^{(9)}=\\Delta x^{-2}\\,\\widetilde A(A_1\\Delta x,B_1\\Delta x),\\qquad \\widetilde A_0:=\\widetilde A(0,0)=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{\\widetilde A_0}{56/3}=\\frac{M}{224},\\quad M=12\\widetilde A_0.",
@@ -847,6 +852,16 @@
           "GHL Theorem-4 A to A-dagger to S1,S2 to H composition",
           "Complete",
           "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I"
+        ],
+        [
+          "Printed Eq. (30) first-line phase pair: full-clean-matrix audit",
+          "Refuted as printed",
+          "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1"
+        ],
+        [
+          "Source-audited Theorem-4 LCU composition to H",
+          "Complete",
+          "QuantumBlockEncoding.GHL2025.Hamiltonian.theorem4_source_lcu_route_closed"
         ]
       ],
       "sourceInterpretation": [
@@ -857,7 +872,8 @@
         "The literal gamma-1 intermediate normalization is not inferred from gates that precede it; the certified route proves the executable stage states instead.",
         "Dirty-workspace behavior is the actual reversible extension produced by the compiler. Only the declared clean projection is the block-encoding contract.",
         "The coefficient function is f=1 in this fixed benchmark, so its oracle is proved equal to identity and constant-folded.",
-        "The source paper continues beyond the one-term block encoding: Theorem 4 combines A_k/A_k-dagger into A/A-dagger, builds S1 and S2, and forms H. ASPBE now compiles this composition in GHLHamiltonian.lean."
+        "The source paper continues beyond the one-term block encoding: Theorem 4 combines A_k/A_k-dagger into A/A-dagger, builds S1 and S2, and forms H. ASPBE now compiles this composition in GHLHamiltonian.lean.",
+        "The Hamiltonian route is source-audited rather than silently normalized: the literal printed first S1 LCU phase pair leaves a -N_A identity filler, while a phase-balanced correction gives the intended S1. The second S2 LCU line and the final H composition close in Lean."
       ],
       "qiskit": {
         "path": "executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/circuit.py",
@@ -874,7 +890,7 @@
       "summary": "Lean block-encodes the dimensionless A1=B1=0 specialization of GHL Eq. (9), explicitly distinguishes it from the physical Delta x^{-2} matrix, closes both source realizations and the evolved candidate at the exact primitive level, and certifies the candidate's same-tier improvement.",
       "source": "Guseynov-Huang-Liu Eq. (9), specialized to N=8 and A1=B1=0, plus the ASPBE fixed-instance audit",
       "contributor": "ASPBE authors",
-      "limitations": "The fixed circuit comparison remains N=8, homogeneous f=1, alpha=56/3, standard-RY-corrected, and compiler-specific. The paper's Theorem-4 A/A-dagger to S1,S2 to H composition is compiled generically; uniform arbitrary-width primitive compilation of every source oracle and global circuit optimality are not claimed."
+      "limitations": "The fixed circuit comparison remains N=8, homogeneous f=1, alpha=56/3, standard-RY-corrected, and compiler-specific. The source-audited Theorem-4 LCU composition through H is compiled; the printed first S1 phase pair is explicitly flagged and corrected. Uniform arbitrary-width primitive compilation of every Theorem-3 source oracle and global circuit optimality are not claimed."
     }
   ]
 }

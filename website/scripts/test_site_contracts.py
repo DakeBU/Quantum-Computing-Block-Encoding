@@ -245,8 +245,12 @@ class SiteContractTests(unittest.TestCase):
         self.assertEqual(row["routeStatus"], "Compiled")
         required = {
             "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.eq30Clean_eq_S2",
             "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints",
             "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.theorem4_source_lcu_route_closed",
         }
         self.assertTrue(required.issubset(set(row["declarations"])))
         roadmap = dict(ROADMAP)
@@ -261,6 +265,11 @@ class SiteContractTests(unittest.TestCase):
         ghl = literature[ghl_start:ghl_end]
         self.assertIn("ImplementationStatus.formalized", ghl)
         self.assertIn("QuantumBlockEncoding/GHLHamiltonian.lean", ghl)
+        self.assertIn("phase audit", ghl)
+        audit = next(row for row in data["rows"] if row["id"] == "hamiltonian-phase-audit")
+        self.assertEqual(audit["routeStatus"], "Compiled")
+        self.assertIn("eq29PrintedClean_ne_S1", " ".join(audit["declarations"]))
+        self.assertIn("phase-balanced", audit["reading"])
 
     def test_no_credential_export_branch(self) -> None:
         script = (ROOT / "website/static/task-builder.js").read_text(encoding="utf-8")

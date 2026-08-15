@@ -5844,7 +5844,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8452](../../../../library/modules/ghl
 
 # QuantumBlockEncoding/GHLHamiltonian.lean
 
-50 explicit public declarations, in source order.
+64 explicit public declarations, in source order.
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.conj_two" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.conj_two")
 *Plain-English reading.* Lean checks the proposition indexed as “conj two”; the hypotheses and conclusion in the code panel fix its exact scope. Complex conjugation fixes the real scalar two.
@@ -6266,6 +6266,188 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:176](../../../../library/modul
 Source: [QuantumBlockEncoding/GHLHamiltonian.lean:181](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.scaledControlledPhaseSource" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.scaledControlledPhaseSource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “scaled controlled phase source”. The clean-block matrix contributed by 'N\_A L₁(φ)' or 'N\_A L₂(φ)' in Eq.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The clean-block matrix contributed by 'N\_A L₁(φ)' or 'N\_A L₂(φ)' in Eq. (29). The upper block is already rescaled from 'A/N\_A' to 'A'; the lower filler block is 'N\_A e^\{iφ\} I'. We expose the filler because cancellation of these entries is a real source-level proof obligation in the next LCU.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:191](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-scaledcontrolledphasesource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.pauliXTensor" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.pauliXTensor")
+*Plain-English reading.* This definition gives the library's named construction or computation for “pauli x tensor”. 'X ⊗ B' in the paper's Eq.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* 'X ⊗ B' in the paper's Eq. (30), written on the 'ι ⊕ ι' basis.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:201](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-paulixtensor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.pauliYTensor" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.pauliYTensor")
+*Plain-English reading.* This definition gives the library's named construction or computation for “pauli y tensor”. 'Y ⊗ B' in the paper's Eq.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* 'Y ⊗ B' in the paper's Eq. (30), written on the 'ι ⊕ ι' basis.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:209](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-pauliytensor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean")
+*Plain-English reading.* This definition gives the library's named construction or computation for “eq 29 printed clean”. Literal clean-block algebra of the first line of the printed Eq.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Literal clean-block algebra of the first line of the printed Eq. (30): both filler phases are 'e^\{±iπ\} = -1'. The selected 'A,A†,B' entries are correct, but the lower-right filler blocks add instead of canceling.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:221](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-eq29printedclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean")
+*Plain-English reading.* This definition gives the library's named construction or computation for “eq 29 phase balanced clean”. Phase-balanced interpretation of the first line of Eq.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Phase-balanced interpretation of the first line of Eq. (30). Replacing one of the two equal 'π,-π' filler phases by phase '0' makes the irrelevant identity blocks cancel while preserving the desired 'A' and 'A†' clean blocks.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:236](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-eq29phasebalancedclean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight")
+*Plain-English reading.* Lean checks the proposition indexed as “eq 29 printed clean lower right”; the hypotheses and conclusion in the code panel fix its exact scope. The printed Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The printed Eq. (29) leaves the lower-right clean filler equal to '-N\_A'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:247](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-eq29printedclean-lowerright). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1")
+*Plain-English reading.* Lean checks the proposition indexed as “eq 29 printed clean ne s 1”; the hypotheses and conclusion in the code panel fix its exact scope. Therefore the literal printed phase choice cannot equal 'S₁' when 'N\_A ≠ 0'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Therefore the literal printed phase choice cannot equal 'S₁' when 'N\_A ≠ 0'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:254](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-eq29printedclean-ne-s1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1")
+*Plain-English reading.* Lean checks the proposition indexed as “eq 29 phase balanced clean eq s 1”; the hypotheses and conclusion in the code panel fix its exact scope. The phase-balanced Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The phase-balanced Eq. (29) clean block is exactly the paper's 'S₁' whenever 'B' is Hermitian (in the PDE theorem 'B' is real diagonal).
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:268](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-eq29phasebalancedclean-eq-s1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.eq30Clean" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.eq30Clean")
+*Plain-English reading.* This definition gives the library's named construction or computation for “eq 30 clean”. Literal clean-block algebra of the second line of Eq.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Literal clean-block algebra of the second line of Eq. (30).
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:299](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-eq30clean). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.eq30Clean_eq_S2" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.eq30Clean_eq_S2")
+*Plain-English reading.* Lean checks the proposition indexed as “eq 30 clean eq s 2”; the hypotheses and conclusion in the code panel fix its exact scope. The second line of Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The second line of Eq. (30) has the required filler cancellation and equals 'S₂'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:311](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-eq30clean-eq-s2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_normalization_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_normalization_closed")
+*Plain-English reading.* Lean checks the proposition indexed as “one dim hamiltonian claim normalization closed”; the hypotheses and conclusion in the code panel fix its exact scope. Theorem 4's source normalization is registered exactly.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Theorem 4's source normalization is registered exactly.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:349](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-normalization-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_layout_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_layout_closed")
+*Plain-English reading.* Lean checks the proposition indexed as “one dim hamiltonian claim layout closed”; the hypotheses and conclusion in the code panel fix its exact scope. Theorem 4's source signal-qubit expression is registered exactly.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Theorem 4's source signal-qubit expression is registered exactly.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:354](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-layout-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianResource_pureAncilla_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianResource_pureAncilla_closed")
+*Plain-English reading.* Lean checks the proposition indexed as “one dim hamiltonian resource pure ancilla closed”; the hypotheses and conclusion in the code panel fix its exact scope. Theorem 4's source pure-ancilla expression is exactly '2n+2'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Theorem 4's source pure-ancilla expression is exactly '2n+2'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:360](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianresource-pureancilla-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor")
 *Plain-English reading.* This definition gives the library's named construction or computation for “tensor”. Kronecker product in explicit product-index form.
 
@@ -6277,7 +6459,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:181](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:185](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-tensor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:367](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-tensor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian")
@@ -6291,7 +6473,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:185](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:190](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:372](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_entry" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_entry")
@@ -6305,7 +6487,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:190](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:195](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:377](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.identity_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.identity_isHermitian")
@@ -6319,7 +6501,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:195](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:204](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-identity-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:386](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-identity-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian")
@@ -6333,7 +6515,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:204](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:213](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-tensor-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:395](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-tensor-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian")
@@ -6347,7 +6529,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:213](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:221](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-add-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:403](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-add-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_isHermitian")
@@ -6361,7 +6543,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:221](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:229](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:411](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate")
@@ -6375,7 +6557,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:229](../../../../library/modul
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:242](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:424](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.A" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.A")
@@ -6389,7 +6571,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:242](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:255](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-a). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:437](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-a). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger")
@@ -6403,7 +6585,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:255](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:259](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-adagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:441](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-adagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints")
@@ -6417,7 +6599,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:259](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:263](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-adagger-eq-sum-term-adjoints). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:445](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-adagger-eq-sum-term-adjoints). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S")
@@ -6431,7 +6613,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:263](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:269](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-s). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:451](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-s). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.first" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.first")
@@ -6445,7 +6627,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:269](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:274](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-first). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:456](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-first). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.second" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.second")
@@ -6459,7 +6641,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:274](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:278](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-second). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:460](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-second). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H")
@@ -6473,7 +6655,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:278](../../../../library/modul
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:282](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:464](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S_decomposition" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S_decomposition")
@@ -6487,7 +6669,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:282](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:286](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-s-decomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:468](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-s-decomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_isHermitian")
@@ -6501,7 +6683,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:286](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:291](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:473](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I")
@@ -6515,7 +6697,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:291](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:296](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h-eq-s1-tensor-xxi-add-s2-tensor-i). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:478](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h-eq-s1-tensor-xxi-add-s2-tensor-i). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_target_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_target_closed")
@@ -6529,7 +6711,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:296](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:305](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-target-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:487](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-target-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_resource_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_resource_closed")
@@ -6543,7 +6725,21 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:305](../../../../library/modul
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/GHLHamiltonian.lean:310](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-resource-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:492](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-resource-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.theorem4_source_lcu_route_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.theorem4_source_lcu_route_closed")
+*Plain-English reading.* Lean checks the proposition indexed as “theorem 4 source lcu route closed”; the hypotheses and conclusion in the code panel fix its exact scope. Single proof root for the paper-level Theorem 4 composition.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Single proof root for the paper-level Theorem 4 composition. This closes the source clean-block algebra of Eqs. (29)-(30), the final 'H' formula, and the normalization/layout/resource records. Primitive arbitrary-width realization of every Theorem-3 input oracle remains a separate compiler layer.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:502](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-theorem4-source-lcu-route-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/Robin/ComplexLCU.lean
