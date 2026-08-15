@@ -91,6 +91,8 @@ def add_textbook_quotes(text: str) -> str:
 
 def polish_example_pages(root: Path) -> None:
     case_root = root / "example-cases"
+    if not case_root.is_dir():
+        return
     for path in case_root.glob("*/index.html"):
         text = path.read_text(encoding="utf-8")
         text = annotate_ghl_source_theorems(text)
@@ -111,6 +113,8 @@ def polish_example_pages(root: Path) -> None:
 
 def polish_robin_map(root: Path) -> None:
     path = root / "case-studies" / "robin" / "index.html"
+    if not path.is_file():
+        return
     text = path.read_text(encoding="utf-8")
     text = annotate_ghl_source_theorems(text)
     text = wrap_section(
@@ -131,6 +135,8 @@ def polish_robin_map(root: Path) -> None:
 def polish_learning_pages(root: Path) -> None:
     for route in ("learning", "state-preparation", "block-encoding"):
         path = root / route / "index.html"
+        if not path.is_file():
+            continue
         text = path.read_text(encoding="utf-8")
         text = add_textbook_quotes(text)
         path.write_text(text, encoding="utf-8")
