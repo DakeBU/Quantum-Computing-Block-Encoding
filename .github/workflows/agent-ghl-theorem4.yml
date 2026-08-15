@@ -1,0 +1,37 @@
+name: Focused GHL Theorem 4 source LCU gate
+
+on:
+  push:
+    branches:
+      - agent/ghl-hamiltonian-textbook
+
+permissions:
+  contents: write
+
+concurrency:
+  group: focused-ghl-theorem4-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: false
+          use-mathlib-cache: true
+      - name: Apply Theorem 4 source LCU patch
+        run: python3 tools/add_ghl_theorem4_source_lcu.py
+      - name: Compile source LCU route and regression roots
+        run: lake build QuantumBlockEncoding.GHLHamiltonian ABEISTests.GHLHamiltonian
+      - name: Check diff hygiene
+        run: git diff --check
+      - name: Persist successful source LCU closure
+        run: |
+          git config user.name "ASPBE verification agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add QuantumBlockEncoding/GHLHamiltonian.lean ABEISTests/GHLHamiltonian.lean
+          git commit -m "Formalize GHL Theorem 4 source LCU phases and resource contract"
+          git push origin HEAD:agent/ghl-hamiltonian-textbook
