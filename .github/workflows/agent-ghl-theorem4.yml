@@ -23,7 +23,9 @@ jobs:
           use-github-cache: false
           use-mathlib-cache: true
       - name: Apply Theorem 4 source LCU patch
-        run: python3 tools/add_ghl_theorem4_source_lcu.py
+        run: |
+          python3 tools/add_ghl_theorem4_source_lcu.py
+          python3 tools/fix_ghl_theorem4_source_lcu.py
       - name: Compile source LCU route and regression roots
         run: lake build QuantumBlockEncoding.GHLHamiltonian ABEISTests.GHLHamiltonian
       - name: Check diff hygiene
