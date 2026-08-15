@@ -1,0 +1,40 @@
+name: Focused GHL Hamiltonian and teaching gate
+
+on:
+  push:
+    branches:
+      - agent/ghl-hamiltonian-textbook
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: focused-ghl-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: false
+          use-mathlib-cache: true
+      - name: Compile GHL Hamiltonian composition
+        run: lake build QuantumBlockEncoding.GHLHamiltonian
+      - name: Check teaching data and enrichment code
+        run: |
+          python3 -m py_compile website/scripts/enrich_teaching_site.py website/scripts/test_teaching_enrichment.py
+          python3 -m unittest website.scripts.test_teaching_enrichment
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('website/textbook-lessons.json').read_text())
+          assert len(data['chapters']) == 9
+          assert {'concept','math','lean'} == {'concept','math','lean'}
+          PY
+      - name: Check diff hygiene
+        run: git diff --check
