@@ -25,6 +25,10 @@ open scoped BigOperators ComplexConjugate
 
 noncomputable section
 
+/-- Complex conjugation fixes the real scalar two. -/
+@[simp] theorem conj_two : conj (2 : ℂ) = 2 := by
+  simpa using (Complex.conj_ofNat 2)
+
 /-- Complex finite matrix with arbitrary finite basis type. -/
 abbrev CMatrix (ι κ : Type*) := _root_.Matrix ι κ ℂ
 
