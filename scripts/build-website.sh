@@ -9,6 +9,7 @@ python3 -m py_compile \
   website/scripts/build_site.py \
   website/scripts/enrich_teaching_site.py \
   website/scripts/enrich_casebook.py \
+  website/scripts/polish_casebook.py \
   website/scripts/check_site.py \
   website/scripts/ide_server.py \
   website/scripts/qbe_task_runner.py \
@@ -29,6 +30,7 @@ python3 website/scripts/build_site.py \
 
 python3 website/scripts/enrich_teaching_site.py --root _out/site
 python3 website/scripts/enrich_casebook.py --root _out/site
+python3 website/scripts/polish_casebook.py --root _out/site
 
 rm -rf _site
 mkdir -p _site/blueprint
@@ -60,6 +62,8 @@ grep -q 'GHL Theorem 3' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'GHL Theorem 4' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'What ASPBE improves' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'Advanced source-fidelity notes' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'data-collapsed-section="lean-certificate"' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'data-collapsed-section="correspondence"' _site/case-studies/robin/index.html
 ! grep -q '<h2>Source interpretation decisions</h2>' _site/example-cases/robin-ghl-one-term/index.html
 test -f _site/.nojekyll
 
