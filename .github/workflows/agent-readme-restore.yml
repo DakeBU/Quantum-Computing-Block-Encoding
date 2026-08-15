@@ -1,0 +1,64 @@
+name: Restore full README with GHL textbook additions
+
+on:
+  push:
+    branches:
+      - agent/ghl-hamiltonian-textbook
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Restore main README and apply focused additions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          text = subprocess.check_output(
+              ["git", "show", "origin/main:README.md"], text=True
+          )
+
+          news_anchor = "## News 🔥\n\n"
+          news = """## News 🔥\n\n- **15 August 2026.** QuantumComputinglib added concept-first **Concept / Math / Lean** reading modes, circuit-first beginner lessons, and a source-audited Guseynov--Huang--Liu Theorem-4 route from `A_k,A_k†` through `A,A†,S₁,S₂` to `H`. The Lean audit also records that the literal printed first `S₁` LCU phase pair leaves a nonzero filler block and proves a phase-balanced correction; the remaining GHL frontier is the uniform arbitrary-width primitive compiler/resource theorem for the Theorem-3 source oracles.\n"""
+          if news_anchor not in text:
+              raise SystemExit("README news anchor missing")
+          text = text.replace(news_anchor, news, 1)
+
+          map_anchor = "- a persistent chapter map on the left;\n"
+          map_extra = """- a persistent chapter map on the left;\n- a beginner-first **Concept / Math / Lean** switch on core chapters: Concept explains qubits, amplitudes, gates, circuits, measurement, state preparation, and block encoding visually; Math reveals the equations; Lean reveals the machine-checked declarations and proof objects;\n- circuit-first teaching diagrams, including a Bell-pair introduction, clean-block pictures, and PREPARE/SELECT/UNPREPARE sketches, plus short attributed textbook/source anchors;\n"""
+          if map_anchor not in text:
+              raise SystemExit("README QuantumComputinglib anchor missing")
+          text = text.replace(map_anchor, map_extra, 1)
+
+          build_anchor = "## Build and verify 🛠️\n"
+          ghl = """### GHL Robin Theorem 4: source-audited Hamiltonian composition 🧮\n\nThe one-dimensional Hamiltonian composition itself is no longer listed as open. Lean closes the finite-sum adjoint bridge, the `S₁/S₂` clean-block algebra, `H = S₁ ⊗ x_ξ + S₂ ⊗ I_ξ`, and the paper-facing normalization/layout/resource record. The audit does **not** silently normalize the source: a literal full-clean-matrix reading of the printed first `S₁` LCU phase pair is proved to leave a `-N_A I` filler, while a phase-balanced correction is proved to give exactly `S₁`; the printed `S₂` line closes. See `paper-notes/GHL2025/THEOREM4_SOURCE_AUDIT.md` and the named declarations in `QuantumBlockEncoding/GHLHamiltonian.lean`.\n\nThe remaining GHL frontier is a uniform arbitrary-width primitive compiler that expands all Theorem-3 source oracles at the claimed resource tier.\n\n"""
+          if build_anchor not in text:
+              raise SystemExit("README build anchor missing")
+          text = text.replace(build_anchor, ghl + build_anchor, 1)
+
+          Path("README.md").write_text(text, encoding="utf-8")
+          PY
+      - name: Verify only the intended README delta
+        run: |
+          git diff --check
+          git diff --stat origin/main -- README.md
+          grep -q 'Concept / Math / Lean' README.md
+          grep -q 'THEOREM4_SOURCE_AUDIT.md' README.md
+          grep -q '## Citation' README.md
+          grep -q '## Acknowledgements' README.md
+          grep -q '## License' README.md
+      - name: Remove temporary workflow and commit
+        run: |
+          git rm .github/workflows/agent-readme-restore.yml
+          git config user.name "ASPBE verification agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Restore full README with GHL textbook additions"
+          git push origin HEAD:agent/ghl-hamiltonian-textbook
