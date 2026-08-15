@@ -72,3 +72,13 @@ f(x_i)D_i^{(s)}\sigma^{(s)}
 \ket{0}^{n-\lceil\log_2\kappa\rceil}\ket{j}\ket{0}
 +\cdots.
 \]
+
+
+% ASPBE-THEOREM4-COMPOSITION
+% Source audit note for Eq. (18), Eqs. (29)-(30), and Theorem 4.
+% The paper combines the one-term A_k and A_k^\dagger encodings into A and
+% A^\dagger, defines the Hermitian pieces S_1 and S_2 of the homogenized
+% system, and then forms
+%   H = S_1 \otimes x_\xi + S_2 \otimes I_\xi.
+% The corresponding Lean source-level composition roots live in
+% QuantumBlockEncoding/GHLHamiltonian.lean.

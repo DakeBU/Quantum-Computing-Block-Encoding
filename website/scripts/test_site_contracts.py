@@ -70,7 +70,9 @@ class SiteContractTests(unittest.TestCase):
         self.assertEqual(status["Fixed-N8 Robin T3 reproduction and evolved winner"], "Compiled")
         self.assertEqual(status["Arbitrary-width banded-access source resource compiler"], "Planned")
         self.assertEqual(status["General QSVT phase synthesis and approximation checker"], "Planned")
-        self.assertEqual(status["Arbitrary-n GHL and full Hamiltonian reproduction"], "Experimental")
+        self.assertEqual(status["GHL Theorem 4 A-to-H Hamiltonian composition"], "Compiled")
+        self.assertEqual(status["Arbitrary-width GHL one-term primitive resource compiler"], "Planned")
+        self.assertNotIn("Arbitrary-n GHL and full Hamiltonian reproduction", status)
 
     def test_robin_tex_is_canonical(self) -> None:
         data = json.loads((ROOT / "website/robin-paper-map.json").read_text(encoding="utf-8"))
@@ -235,6 +237,30 @@ class SiteContractTests(unittest.TestCase):
         self.assertNotIn("lacks passing replay evidence", source)
         self.assertNotIn("public-case replay report is missing or did not pass", source)
         self.assertIn("not a Lean certification gate", source)
+
+    def test_ghl_hamiltonian_composition_is_compiled(self) -> None:
+        data = json.loads((ROOT / "website/robin-paper-map.json").read_text(encoding="utf-8"))
+        row = next(row for row in data["rows"] if row["id"] == "hamiltonian-composition")
+        self.assertEqual(row["localStatus"], "Compiled")
+        self.assertEqual(row["routeStatus"], "Compiled")
+        required = {
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I",
+        }
+        self.assertTrue(required.issubset(set(row["declarations"])))
+        roadmap = dict(ROADMAP)
+        self.assertEqual(roadmap["GHL Theorem 4 A-to-H Hamiltonian composition"], "Compiled")
+        self.assertEqual(roadmap["Arbitrary-width GHL one-term primitive resource compiler"], "Planned")
+        self.assertNotIn("Arbitrary-n GHL and full Hamiltonian reproduction", roadmap)
+        content = (ROOT / "website/content.py").read_text(encoding="utf-8")
+        self.assertNotIn(r"\llbracket", content)
+        literature = (ROOT / "QuantumBlockEncoding/Literature.lean").read_text(encoding="utf-8")
+        ghl_start = literature.index('key := "guseynov-huang-liu-2026-robin"')
+        ghl_end = literature.index("\n    },", ghl_start)
+        ghl = literature[ghl_start:ghl_end]
+        self.assertIn("ImplementationStatus.formalized", ghl)
+        self.assertIn("QuantumBlockEncoding/GHLHamiltonian.lean", ghl)
 
     def test_no_credential_export_branch(self) -> None:
         script = (ROOT / "website/static/task-builder.js").read_text(encoding="utf-8")

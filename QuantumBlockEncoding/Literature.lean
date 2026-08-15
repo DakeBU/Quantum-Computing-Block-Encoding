@@ -44,10 +44,10 @@ def literature : List PaperEntry :=
       authors := "Nikita Guseynov, Xiajie Huang, Nana Liu",
       year := 2026,
       role := PaperRole.primaryTarget,
-      status := ImplementationStatus.skeleton,
-      targetFile := "QuantumBlockEncoding/GHL2025.lean",
+      status := ImplementationStatus.formalized,
+      targetFile := "QuantumBlockEncoding/GHLHamiltonian.lean",
       url := "https://arxiv.org/abs/2506.20478",
-      note := "Main target: explicit oracle-free block encodings for Robin boundaries."
+      note := "Fixed-N8 one-term source circuits are primitive-certified; Theorem 4 A/A-dagger to S1,S2 to H composition is formalized generically. Arbitrary-width primitive resource compilation remains a separate frontier."
     },
     {
       key := "guseynov-huang-liu-2025-pde-block-encoding",

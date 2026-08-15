@@ -660,7 +660,11 @@
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4",
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_paperSeven",
         "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_componentwise_figure4",
-        "QuantumBlockEncoding.Robin.warmRobinBestVerified"
+        "QuantumBlockEncoding.Robin.warmRobinBestVerified",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_isHermitian",
+        "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I"
       ],
       "problem": "For the N=8 specialization of GHL Eq. (9), set the Robin coefficients A1=B1=0 and factor out the global Delta x^{-2}. Construct an exact primitive unitary whose clean block encodes the resulting fourth-order-accurate second-derivative stencil.",
       "formula": "A_{\\mathrm{GHL}}^{(9)}=\\Delta x^{-2}\\,\\widetilde A(A_1\\Delta x,B_1\\Delta x),\\qquad \\widetilde A_0:=\\widetilde A(0,0)=\\frac1{12}\\begin{pmatrix}-30&32&-2&0&0&0&0&0\\\\16&-31&16&-1&0&0&0&0\\\\-1&16&-30&16&-1&0&0&0\\\\0&-1&16&-30&16&-1&0&0\\\\0&0&-1&16&-30&16&-1&0\\\\0&0&0&-1&16&-30&16&-1\\\\0&0&0&0&-1&16&-31&16\\\\0&0&0&0&0&-2&32&-30\\end{pmatrix},\\qquad \\Pi U\\Pi^\\dagger=\\frac{\\widetilde A_0}{56/3}=\\frac{M}{224},\\quad M=12\\widetilde A_0.",
@@ -838,6 +842,11 @@
           "Winner for the frozen benchmark/compiler",
           "Certified",
           "QuantumBlockEncoding.Robin.warmRobinBestVerified"
+        ],
+        [
+          "GHL Theorem-4 A to A-dagger to S1,S2 to H composition",
+          "Complete",
+          "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I"
         ]
       ],
       "sourceInterpretation": [
@@ -847,7 +856,8 @@
         "Equation (27) has a missing factor-of-two typo: the standard Qiskit and ASPBE RY convention needs 2 arccos(c) to place c in the clean matrix entry.",
         "The literal gamma-1 intermediate normalization is not inferred from gates that precede it; the certified route proves the executable stage states instead.",
         "Dirty-workspace behavior is the actual reversible extension produced by the compiler. Only the declared clean projection is the block-encoding contract.",
-        "The coefficient function is f=1 in this fixed benchmark, so its oracle is proved equal to identity and constant-folded."
+        "The coefficient function is f=1 in this fixed benchmark, so its oracle is proved equal to identity and constant-folded.",
+        "The source paper continues beyond the one-term block encoding: Theorem 4 combines A_k/A_k-dagger into A/A-dagger, builds S1 and S2, and forms H. ASPBE now compiles this composition in GHLHamiltonian.lean."
       ],
       "qiskit": {
         "path": "executable-exports/QBE-ROBIN-BE-WARM-001/qiskit/circuit.py",
@@ -864,7 +874,7 @@
       "summary": "Lean block-encodes the dimensionless A1=B1=0 specialization of GHL Eq. (9), explicitly distinguishes it from the physical Delta x^{-2} matrix, closes both source realizations and the evolved candidate at the exact primitive level, and certifies the candidate's same-tier improvement.",
       "source": "Guseynov-Huang-Liu Eq. (9), specialized to N=8 and A1=B1=0, plus the ASPBE fixed-instance audit",
       "contributor": "ASPBE authors",
-      "limitations": "The certified target is A_tilde_0 = Delta x^2 A_GHL^(9)|_{A1=B1=0}, not the full symbolic Robin family. The result is fixed to N=8, homogeneous A2=B2=0, f=1, alpha=56/3 for the dimensionless stencil, the standard-RY correction, the declared exact compiler, and all-to-all resource accounting. It does not prove the arbitrary-n paper theorem, general nonzero A1/B1, or global circuit optimality."
+      "limitations": "The fixed circuit comparison remains N=8, homogeneous f=1, alpha=56/3, standard-RY-corrected, and compiler-specific. The paper's Theorem-4 A/A-dagger to S1,S2 to H composition is compiled generically; uniform arbitrary-width primitive compilation of every source oracle and global circuit optimality are not claimed."
     }
   ]
 }

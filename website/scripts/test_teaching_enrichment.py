@@ -26,6 +26,15 @@ class TeachingEnrichmentTests(unittest.TestCase):
             self.assertIsInstance(quote, str)
             self.assertLessEqual(len(quote.split()), 24, key)
 
+    def test_start_here_teaches_measurement_and_entanglement_visually(self) -> None:
+        data = enrich.load_data()
+        intro = data["startHere"]
+        self.assertIn("P(x)", intro["measurementFormula"])
+        self.assertIn("Phi", intro["bellFormula"])
+        self.assertEqual(len(intro["circuit"]["wires"]), 2)
+        self.assertIn("H", intro["circuit"]["wires"][0]["gates"])
+        self.assertIn("X target", intro["circuit"]["wires"][1]["gates"])
+
     def test_lesson_has_all_three_reading_layers(self) -> None:
         data = enrich.load_data()
         lesson = enrich.lesson_html(

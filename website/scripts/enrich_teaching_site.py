@@ -136,6 +136,9 @@ def start_here_html(data: dict[str, object]) -> str:
   <h2>{html.escape(str(intro['title']))}</h2>
   <p class="reader-hook">{html.escape(str(intro['hook']))}</p>
   {math_block(str(intro['formula']))}
+  {math_block(str(intro['measurementFormula']))}
+  {circuit_html(dict(intro['circuit']))}
+  {math_block(str(intro['bellFormula']))}
   {steps_html(list(intro['steps']))}
   <div class="callout"><strong>How to read this site.</strong> Read the circuit picture first, switch to Math when the notation feels familiar, and switch to Lean only when you want the machine-checked statement.</div>
   {source_html}
