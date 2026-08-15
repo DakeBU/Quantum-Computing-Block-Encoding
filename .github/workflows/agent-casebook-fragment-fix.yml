@@ -1,0 +1,43 @@
+name: Repair and verify casebook source fragment
+
+on:
+  push:
+    branches:
+      - agent/pedagogy-casebook
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fragment-fix-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Apply unique source-fragment repair
+        run: python3 tools/fix_casebook_source_fragment.py
+      - name: Run pedagogy tests
+        run: |
+          python3 -m py_compile \
+            website/scripts/enrich_casebook.py \
+            website/scripts/polish_casebook.py \
+            website/scripts/test_casebook_enrichment.py \
+            website/scripts/test_casebook_polish.py
+          python3 -m unittest \
+            website.scripts.test_casebook_enrichment \
+            website.scripts.test_casebook_polish
+          git diff --check
+      - name: Persist repair without temporary machinery
+        run: |
+          git rm tools/fix_casebook_source_fragment.py
+          git rm .github/workflows/agent-casebook-fragment-fix.yml
+          git config user.name "ASPBE verification agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add website/scripts/enrich_casebook.py website/scripts/test_casebook_enrichment.py
+          git commit -m "Keep casebook source fragments unique"
+          git push origin HEAD:agent/pedagogy-casebook
