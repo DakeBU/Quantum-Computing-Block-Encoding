@@ -104,6 +104,7 @@ CATALOGS = [
         "catalog-paper-and-examples",
         {
             "GHL2025.lean",
+            "GHLHamiltonian.lean",
             "Papers/GHL2025.lean",
             "Examples/RobinHeat.lean",
             "RobinEvolution.lean",

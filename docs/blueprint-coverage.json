@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 2758,
+  "publicDeclarationCount": 2808,
   "privateDeclarationExclusionCount": 196,
-  "sourceDocstringCount": 1729,
-  "generatedReaderCueCount": 2758,
+  "sourceDocstringCount": 1774,
+  "generatedReaderCueCount": 2808,
   "byKind": {
-    "abbrev": 30,
-    "def": 1130,
+    "abbrev": 31,
+    "def": 1150,
     "inductive": 27,
     "opaque": 7,
-    "structure": 183,
-    "theorem": 1381
+    "structure": 184,
+    "theorem": 1409
   },
   "bySource": {
     "QuantumBlockEncoding/Automation.lean": 39,
@@ -29,6 +29,7 @@
     "QuantumBlockEncoding/CubicStatePreparation.lean": 269,
     "QuantumBlockEncoding/Examples/RobinHeat.lean": 12,
     "QuantumBlockEncoding/GHL2025.lean": 403,
+    "QuantumBlockEncoding/GHLHamiltonian.lean": 50,
     "QuantumBlockEncoding/Literature.lean": 6,
     "QuantumBlockEncoding/MainCase.lean": 127,
     "QuantumBlockEncoding/ModularAdder3.lean": 22,

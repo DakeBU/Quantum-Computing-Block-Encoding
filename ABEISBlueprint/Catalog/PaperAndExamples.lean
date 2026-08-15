@@ -5842,6 +5842,710 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8436](../../../../library/modules/ghl
 Source: [QuantumBlockEncoding/GHL2025.lean:8452](../../../../library/modules/ghl2025/#decl-quantumblockencoding-ghl2025-indicatororaclematrix-is-permutation). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/GHLHamiltonian.lean
+
+50 explicit public declarations, in source order.
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.conj_two" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.conj_two")
+*Plain-English reading.* Lean checks the proposition indexed as “conj two”; the hypotheses and conclusion in the code panel fix its exact scope. Complex conjugation fixes the real scalar two.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Complex conjugation fixes the real scalar two.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:29](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-conj-two). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.CMatrix" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.CMatrix")
+*Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “c matrix”. Complex finite matrix with arbitrary finite basis type.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Complex finite matrix with arbitrary finite basis type.
+
+*Declaration kind.* abbrev.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:33](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-cmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.add" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.add")
+*Plain-English reading.* This definition gives the library's named construction or computation for “add”. Entrywise addition, kept explicit so source formulas remain readable.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Entrywise addition, kept explicit so source formulas remain readable.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:36](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.sub" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.sub")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sub”. Entrywise subtraction.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Entrywise subtraction.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:40](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.scale" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.scale")
+*Plain-English reading.* This definition gives the library's named construction or computation for “scale”. Scalar multiplication.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Scalar multiplication.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:44](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-scale). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint")
+*Plain-English reading.* This definition gives the library's named construction or computation for “adjoint”. The matrix adjoint written directly as conjugate transpose.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The matrix adjoint written directly as conjugate transpose.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:48](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-adjoint). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.IsHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.IsHermitian")
+*Plain-English reading.* This definition gives the library's named construction or computation for “is hermitian”. Source-level Hermitian predicate.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Source-level Hermitian predicate.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:52](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.hermitianPart" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.hermitianPart")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hermitian part”. The Hermitian part '(A + A†)/2'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The Hermitian part '(A + A†)/2'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:56](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-hermitianpart). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.antiHermitianPart" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.antiHermitianPart")
+*Plain-English reading.* This definition gives the library's named construction or computation for “anti hermitian part”. The second Hermitian piece '(A - A†)/(2i)'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The second Hermitian piece '(A - A†)/(2i)'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:60](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-antihermitianpart). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.hermitian_decomposition" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.hermitian_decomposition")
+*Plain-English reading.* Lean checks the proposition indexed as “hermitian decomposition”; the hypotheses and conclusion in the code panel fix its exact scope. The two canonical pieces reconstruct the original matrix.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The two canonical pieces reconstruct the original matrix.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:64](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-hermitian-decomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.hermitianPart_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.hermitianPart_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “hermitian part is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. '(A + A†)/2' is Hermitian for every complex matrix 'A'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* '(A + A†)/2' is Hermitian for every complex matrix 'A'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:74](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-hermitianpart-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.antiHermitianPart_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.antiHermitianPart_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “anti hermitian part is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. '(A - A†)/(2i)' is Hermitian for every complex matrix 'A'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* '(A - A†)/(2i)' is Hermitian for every complex matrix 'A'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:80](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-antihermitianpart-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.sumTerms" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.sumTerms")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sum terms”. Sum of the paper's one-term matrices 'A\_k'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Sum of the paper's one-term matrices 'A\_k'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:89](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-sumterms). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.sumTerms_entry" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.sumTerms_entry")
+*Plain-English reading.* Lean checks the proposition indexed as “sum terms entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:93](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-sumterms-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms")
+*Plain-English reading.* Lean checks the proposition indexed as “adjoint sum terms”; the hypotheses and conclusion in the code panel fix its exact scope. Taking the adjoint commutes with the paper's finite sum of one-term matrices.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Taking the adjoint commutes with the paper's finite sum of one-term matrices.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:98](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-adjoint-sumterms). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.homogenizedS" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.homogenizedS")
+*Plain-English reading.* This definition gives the library's named construction or computation for “homogenized s”. Homogenized matrix from the paper, on the direct-sum basis 'ι ⊕ ι': 'S = \[\[A,B\],\[0,0\]\]'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Homogenized matrix from the paper, on the direct-sum basis 'ι ⊕ ι': 'S = \[\[A,B\],\[0,0\]\]'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:108](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-homogenizeds). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.S1" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S1")
+*Plain-English reading.* This definition gives the library's named construction or computation for “s 1”. 'S₁ = (S + S†)/2'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* 'S₁ = (S + S†)/2'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:117](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.S2" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S2")
+*Plain-English reading.* This definition gives the library's named construction or computation for “s 2”. 'S₂ = (S - S†)/(2i)'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* 'S₂ = (S - S†)/(2i)'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:121](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.homogenizedS_eq_S1_add_iS2" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.homogenizedS_eq_S1_add_iS2")
+*Plain-English reading.* Lean checks the proposition indexed as “homogenized s eq s 1 add i s 2”; the hypotheses and conclusion in the code panel fix its exact scope. The homogenized matrix is exactly 'S₁ + i S₂'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The homogenized matrix is exactly 'S₁ + i S₂'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:125](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-homogenizeds-eq-s1-add-is2). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “s 1 is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. The two Schrödingerisation pieces are Hermitian.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The two Schrödingerisation pieces are Hermitian.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:132](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s1-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “s 2 is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:135](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s2-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_upperLeft" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_upperLeft")
+*Plain-English reading.* Lean checks the proposition indexed as “s 1 upper left”; the hypotheses and conclusion in the code panel fix its exact scope. Paper Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Paper Eq. (18), upper-left block of 'S₁'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:139](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s1-upperleft). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_upperRight" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_upperRight")
+*Plain-English reading.* Lean checks the proposition indexed as “s 1 upper right”; the hypotheses and conclusion in the code panel fix its exact scope. Paper Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Paper Eq. (18), upper-right block of 'S₁'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:145](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s1-upperright). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerLeft_of_B_hermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerLeft_of_B_hermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “s 1 lower left of b hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. Under the paper's Hermitian 'B', the lower-left block of 'S₁' is 'B/2'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Under the paper's Hermitian 'B', the lower-left block of 'S₁' is 'B/2'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:150](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s1-lowerleft-of-b-hermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerRight" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerRight")
+*Plain-English reading.* Lean checks the proposition indexed as “s 1 lower right”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:155](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s1-lowerright). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_upperLeft" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_upperLeft")
+*Plain-English reading.* Lean checks the proposition indexed as “s 2 upper left”; the hypotheses and conclusion in the code panel fix its exact scope. Paper Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Paper Eq. (18), upper-left block of 'S₂'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:160](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s2-upperleft). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_upperRight" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_upperRight")
+*Plain-English reading.* Lean checks the proposition indexed as “s 2 upper right”; the hypotheses and conclusion in the code panel fix its exact scope. Paper Eq.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Paper Eq. (18), upper-right block of 'S₂'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:166](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s2-upperright). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_lowerLeft_of_B_hermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_lowerLeft_of_B_hermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “s 2 lower left of b hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. Under Hermitian 'B', the lower-left block is '-B/(2i)'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Under Hermitian 'B', the lower-left block is '-B/(2i)'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:171](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s2-lowerleft-of-b-hermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_lowerRight" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.S2_lowerRight")
+*Plain-English reading.* Lean checks the proposition indexed as “s 2 lower right”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:176](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-s2-lowerright). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.identity" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.identity")
+*Plain-English reading.* This definition gives the library's named construction or computation for “identity”. Matrix identity on an arbitrary finite basis.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Matrix identity on an arbitrary finite basis.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:181](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor")
+*Plain-English reading.* This definition gives the library's named construction or computation for “tensor”. Kronecker product in explicit product-index form.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Kronecker product in explicit product-index form.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:185](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-tensor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian")
+*Plain-English reading.* This definition gives the library's named construction or computation for “one dim hamiltonian”. The paper's one-dimensional Hamiltonian 'H = S₁⊗x\_ξ + S₂⊗I\_ξ'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The paper's one-dimensional Hamiltonian 'H = S₁⊗x\_ξ + S₂⊗I\_ξ'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:190](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_entry" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_entry")
+*Plain-English reading.* Lean checks the proposition indexed as “one dim hamiltonian entry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:195](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.identity_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.identity_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “identity is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. The identity matrix is Hermitian.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The identity matrix is Hermitian.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:204](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-identity-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “tensor is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. Tensor products of Hermitian matrices are Hermitian.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Tensor products of Hermitian matrices are Hermitian.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:213](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-tensor-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “add is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. Sums of Hermitian matrices are Hermitian.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Sums of Hermitian matrices are Hermitian.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:221](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-add-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “one dim hamiltonian is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. The paper's 'H' is Hermitian whenever the coordinate operator is.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The paper's 'H' is Hermitian whenever the coordinate operator is.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:229](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonian-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate")
+*Plain-English reading.* This record groups the data and proof fields needed for “one dim composition certificate”. A proposition-valued field is a requirement until a constructor supplies it. Proof-carrying source bundle for Theorem 4.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Proof-carrying source bundle for Theorem 4. It records the paper's exact composition data: one-term matrices, the inhomogeneous block 'B', and the Schrödingerisation coordinate 'x\_ξ'.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:242](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.A" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.A")
+*Plain-English reading.* This definition gives the library's named construction or computation for “a”. 'A = Σ\_k A\_k', exactly as in Theorem 4.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* 'A = Σ\_k A\_k', exactly as in Theorem 4.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:255](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-a). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger")
+*Plain-English reading.* This definition gives the library's named construction or computation for “adagger”. 'A†', exposed as a named stage because Theorem 4 combines both 'A' and 'A†'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* 'A†', exposed as a named stage because Theorem 4 combines both 'A' and 'A†'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:259](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-adagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints")
+*Plain-English reading.* Lean checks the proposition indexed as “adagger eq sum term adjoints”; the hypotheses and conclusion in the code panel fix its exact scope. The adjoint assembled from the one-term adjoints equals the adjoint of 'A'.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The adjoint assembled from the one-term adjoints equals the adjoint of 'A'.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:263](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-adagger-eq-sum-term-adjoints). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S")
+*Plain-English reading.* This definition gives the library's named construction or computation for “s”. Homogenized source matrix 'S = \[\[A,B\],\[0,0\]\]'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Homogenized source matrix 'S = \[\[A,B\],\[0,0\]\]'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:269](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-s). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.first" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.first")
+*Plain-English reading.* This definition gives the library's named construction or computation for “first”. First Hermitian source block.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* First Hermitian source block.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:274](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-first). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.second" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.second")
+*Plain-English reading.* This definition gives the library's named construction or computation for “second”. Second Hermitian source block.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Second Hermitian source block.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:278](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-second). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H")
+*Plain-English reading.* This definition gives the library's named construction or computation for “h”. Final Schrödingerised Hamiltonian.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Final Schrödingerised Hamiltonian.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:282](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S_decomposition" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.S_decomposition")
+*Plain-English reading.* Lean checks the proposition indexed as “s decomposition”; the hypotheses and conclusion in the code panel fix its exact scope. The certificate reconstructs 'S' from the two Hermitian pieces.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The certificate reconstructs 'S' from the two Hermitian pieces.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:286](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-s-decomposition). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_isHermitian" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_isHermitian")
+*Plain-English reading.* Lean checks the proposition indexed as “h is hermitian”; the hypotheses and conclusion in the code panel fix its exact scope. The final source-level Hamiltonian is Hermitian.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The final source-level Hamiltonian is Hermitian.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:291](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h-ishermitian). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.H_eq_S1_tensor_xXi_add_S2_tensor_I")
+*Plain-English reading.* Lean checks the proposition indexed as “h eq s 1 tensor x xi add s 2 tensor i”; the hypotheses and conclusion in the code panel fix its exact scope. Theorem 4 target formula is definitional in the proof-carrying bundle.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Theorem 4 target formula is definitional in the proof-carrying bundle.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:296](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimcompositioncertificate-h-eq-s1-tensor-xxi-add-s2-tensor-i). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_target_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_target_closed")
+*Plain-English reading.* Lean checks the proposition indexed as “one dim hamiltonian claim target closed”; the hypotheses and conclusion in the code panel fix its exact scope. The paper registry's 1D target is exactly the composition formalized here.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* The paper registry's 1D target is exactly the composition formalized here.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:305](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-target-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_resource_closed" (lean := "QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonianClaim_resource_closed")
+*Plain-English reading.* Lean checks the proposition indexed as “one dim hamiltonian claim resource closed”; the hypotheses and conclusion in the code panel fix its exact scope. Theorem 4's resource expression is the registered source expression.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+
+*Technical source note.* Theorem 4's resource expression is the registered source expression.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/GHLHamiltonian.lean:310](../../../../library/modules/ghlhamiltonian/#decl-quantumblockencoding-ghl2025-hamiltonian-onedimhamiltonianclaim-resource-closed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/Robin/ComplexLCU.lean
 
 29 explicit public declarations, in source order.

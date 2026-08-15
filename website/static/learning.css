@@ -321,8 +321,7 @@ body.reader-mode-enabled[data-reader-mode="lean"] [data-reader-layer="lean"] {
   display: block;
 }
 
-body.reader-mode-enabled:not([data-reader-mode="lean"]) main > .result,
-body.reader-mode-enabled:not([data-reader-mode="lean"]) main > .content-section > .result {
+body.reader-mode-enabled:not([data-reader-mode="lean"]) main .result {
   display: none;
 }
 
