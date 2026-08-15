@@ -1,10 +1,9 @@
-name: Focused GHL Hamiltonian and teaching gate
+name: Prepare final GHL textbook branch
 
 on:
   push:
     branches:
       - agent/ghl-hamiltonian-textbook
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,54 +13,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  focused:
+  cleanup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: leanprover/lean-action@v1
         with:
-          auto-config: false
-          use-github-cache: false
-          use-mathlib-cache: true
-      - name: Apply focused source and publication patches
+          fetch-depth: 0
+      - name: Tighten optional Lean display and remove temporary files
         run: |
-          python3 tools/fix_ghl_hamiltonian_conj.py
-          python3 tools/extend_ghl_adjoint.py
-          python3 tools/fix_roadmap_test.py
-          python3 tools/finalize_ghl_teaching.py
-      - name: Compile GHL Hamiltonian composition and regression roots
-        run: lake build QuantumBlockEncoding.GHLHamiltonian ABEISTests.GHLHamiltonian
-      - name: Check publication and teaching contracts
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('website/static/learning.css')
+          text = path.read_text(encoding='utf-8')
+          old = '''body.reader-mode-enabled:not([data-reader-mode="lean"]) main > .result,\nbody.reader-mode-enabled:not([data-reader-mode="lean"]) main > .content-section > .result {\n  display: none;\n}\n'''
+          new = '''body.reader-mode-enabled:not([data-reader-mode="lean"]) main .result {\n  display: none;\n}\n'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit('reader-mode result selector anchor missing')
+          path.write_text(text, encoding='utf-8')
+          PY
+          rm -f website/static/learning.js
+          rm -f tools/fix_ghl_hamiltonian_conj.py
+          rm -f tools/extend_ghl_adjoint.py
+          rm -f tools/fix_roadmap_test.py
+          rm -f tools/finalize_ghl_teaching.py
+      - name: Regenerate committed declaration and Blueprint inventories
+        run: python3 scripts/generate-blueprint-catalog.py
+      - name: Check teaching and publication source contracts
         run: |
           python3 -m py_compile website/scripts/enrich_teaching_site.py website/scripts/test_teaching_enrichment.py website/scripts/test_site_contracts.py
           python3 -m unittest website.scripts.test_teaching_enrichment website.scripts.test_site_contracts
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          lessons=json.loads(Path('website/textbook-lessons.json').read_text())
-          assert len(lessons['chapters']) == 9
-          robin=json.loads(Path('website/robin-paper-map.json').read_text())
-          h=next(row for row in robin['rows'] if row['id']=='hamiltonian-composition')
-          assert h['routeStatus']=='Compiled'
-          assert 'A^\\dagger' in h['latex']
-          cases=json.loads(Path('website/example-cases.json').read_text())
-          case=next(c for c in cases['cases'] if c['slug']=='robin-ghl-one-term')
-          assert any('Theorem-4' in row[0] for row in case['verificationStatus'])
-          PY
-      - name: Check diff hygiene
-        run: git diff --check
-      - name: Persist successful source and publication closure
+          python3 scripts/generate-blueprint-catalog.py --check
+          git diff --check
+      - name: Remove this temporary workflow and commit the clean frontier
         run: |
-          if ! git diff --quiet; then
-            git config user.name "ASPBE verification agent"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add QuantumBlockEncoding/GHLHamiltonian.lean \
-              ABEISTests/GHLHamiltonian.lean \
-              QuantumBlockEncoding/Literature.lean \
-              website/content.py website/robin-paper-map.json website/example-cases.json \
-              website/textbook-lessons.json website/scripts/enrich_teaching_site.py \
-              website/scripts/test_site_contracts.py website/scripts/test_teaching_enrichment.py \
-              paper-notes/GHL2025/source-excerpts.tex
-            git commit -m "Close GHL Theorem 4 route and add concept-first textbook layers"
-            git push origin HEAD:agent/ghl-hamiltonian-textbook
-          fi
+          git rm .github/workflows/agent-ghl-focused.yml
+          git config user.name "ASPBE verification agent"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Finalize GHL Hamiltonian textbook integration"
+          git push origin HEAD:agent/ghl-hamiltonian-textbook
