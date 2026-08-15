@@ -7,7 +7,7 @@ import Mathlib.Tactic
 # GHL one-dimensional Hamiltonian composition
 
 This module formalizes the composition step that follows the one-term Robin
-block encodings in Guseynov--Huang--Liu.  The paper first combines the
+block encodings in Guseynov--Huang--Liu. The paper first combines the
 one-term matrices `A_k` into `A`, homogenizes the inhomogeneous system as
 `S = [[A,B],[0,0]]`, splits `S` into Hermitian pieces `S₁,S₂`, and finally
 forms `H = S₁ ⊗ x_ξ + S₂ ⊗ I_ξ`.
@@ -21,7 +21,9 @@ namespace QuantumBlockEncoding
 namespace GHL2025
 namespace Hamiltonian
 
-open scoped BigOperators
+open scoped BigOperators ComplexConjugate
+
+noncomputable section
 
 /-- Complex finite matrix with arbitrary finite basis type. -/
 abbrev CMatrix (ι κ : Type*) := _root_.Matrix ι κ ℂ
@@ -40,27 +42,27 @@ def scale (c : ℂ) (A : CMatrix ι κ) : CMatrix ι κ :=
 
 /-- The matrix adjoint written directly as conjugate transpose. -/
 def adjoint (A : CMatrix ι ι) : CMatrix ι ι :=
-  fun i j => Complex.conj (A j i)
+  fun i j => conj (A j i)
 
 /-- Source-level Hermitian predicate. -/
 def IsHermitian (A : CMatrix ι ι) : Prop :=
-  ∀ i j, A i j = Complex.conj (A j i)
+  ∀ i j, A i j = conj (A j i)
 
 /-- The Hermitian part `(A + A†)/2`. -/
 def hermitianPart (A : CMatrix ι ι) : CMatrix ι ι :=
-  fun i j => (A i j + Complex.conj (A j i)) / 2
+  fun i j => (A i j + conj (A j i)) / 2
 
 /-- The second Hermitian piece `(A - A†)/(2i)`. -/
 def antiHermitianPart (A : CMatrix ι ι) : CMatrix ι ι :=
-  fun i j => (A i j - Complex.conj (A j i)) / (2 * Complex.I)
+  fun i j => (A i j - conj (A j i)) / (2 * Complex.I)
 
 /-- The two canonical pieces reconstruct the original matrix. -/
 theorem hermitian_decomposition (A : CMatrix ι ι) :
     ∀ i j, A i j = hermitianPart A i j + Complex.I * antiHermitianPart A i j := by
   intro i j
   simp only [hermitianPart, antiHermitianPart]
-  have hI : (2 : ℂ) * Complex.I ≠ 0 := by
-    exact mul_ne_zero (by norm_num) Complex.I_ne_zero
+  have hI : (2 : ℂ) * Complex.I ≠ 0 :=
+    mul_ne_zero (by norm_num) Complex.I_ne_zero
   field_simp [hI]
   ring
 
@@ -68,18 +70,13 @@ theorem hermitian_decomposition (A : CMatrix ι ι) :
 theorem hermitianPart_isHermitian (A : CMatrix ι ι) :
     IsHermitian (hermitianPart A) := by
   intro i j
-  simp only [hermitianPart]
-  rw [map_div₀]
-  simp
-  ring
+  simp [hermitianPart, add_comm]
 
 /-- `(A - A†)/(2i)` is Hermitian for every complex matrix `A`. -/
 theorem antiHermitianPart_isHermitian (A : CMatrix ι ι) :
     IsHermitian (antiHermitianPart A) := by
   intro i j
-  simp only [antiHermitianPart]
-  rw [map_div₀]
-  simp
+  simp [antiHermitianPart]
   have hI : Complex.I ≠ 0 := Complex.I_ne_zero
   field_simp [hI]
   ring
@@ -130,7 +127,7 @@ theorem S2_isHermitian (A B : CMatrix ι ι) : IsHermitian (S2 A B) :=
 /-- Paper Eq. (18), upper-left block of `S₁`. -/
 theorem S1_upperLeft (A B : CMatrix ι ι) (i j : ι) :
     S1 A B (Sum.inl i) (Sum.inl j) =
-      (A i j + Complex.conj (A j i)) / 2 := by
+      (A i j + conj (A j i)) / 2 := by
   rfl
 
 /-- Paper Eq. (18), upper-right block of `S₁`. -/
@@ -138,7 +135,7 @@ theorem S1_upperRight (A B : CMatrix ι ι) (i j : ι) :
     S1 A B (Sum.inl i) (Sum.inr j) = B i j / 2 := by
   simp [S1, hermitianPart, homogenizedS]
 
-/-- Under the paper's real diagonal `B`, the lower-left block of `S₁` is `B/2`. -/
+/-- Under the paper's Hermitian `B`, the lower-left block of `S₁` is `B/2`. -/
 theorem S1_lowerLeft_of_B_hermitian (A B : CMatrix ι ι)
     (hB : IsHermitian B) (i j : ι) :
     S1 A B (Sum.inr i) (Sum.inl j) = B i j / 2 := by
@@ -151,7 +148,7 @@ theorem S1_lowerLeft_of_B_hermitian (A B : CMatrix ι ι)
 /-- Paper Eq. (18), upper-left block of `S₂`. -/
 theorem S2_upperLeft (A B : CMatrix ι ι) (i j : ι) :
     S2 A B (Sum.inl i) (Sum.inl j) =
-      (A i j - Complex.conj (A j i)) / (2 * Complex.I) := by
+      (A i j - conj (A j i)) / (2 * Complex.I) := by
   rfl
 
 /-- Paper Eq. (18), upper-right block of `S₂`. -/
@@ -198,7 +195,7 @@ theorem identity_isHermitian [DecidableEq ι] : IsHermitian (identity ι) := by
   by_cases h : i = j
   · subst j
     simp [identity]
-  · have h' : j ≠ i := by exact fun hji => h hji.symm
+  · have h' : j ≠ i := fun hji => h hji.symm
     simp [identity, h, h']
 
 /-- Tensor products of Hermitian matrices are Hermitian. -/
@@ -206,8 +203,7 @@ theorem tensor_isHermitian (A : CMatrix ι ι) (B : CMatrix κ κ)
     (hA : IsHermitian A) (hB : IsHermitian B) :
     IsHermitian (tensor A B) := by
   intro row col
-  simp only [tensor]
-  rw [Complex.conj_mul]
+  simp only [tensor, map_mul]
   rw [← hA row.1 col.1, ← hB row.2 col.2]
 
 /-- Sums of Hermitian matrices are Hermitian. -/
@@ -215,8 +211,7 @@ theorem add_isHermitian (A B : CMatrix ι ι)
     (hA : IsHermitian A) (hB : IsHermitian B) :
     IsHermitian (add A B) := by
   intro i j
-  simp only [add]
-  rw [map_add]
+  simp only [add, map_add]
   rw [← hA i j, ← hB i j]
 
 /-- The paper's `H` is Hermitian whenever the coordinate operator is. -/
@@ -229,8 +224,8 @@ theorem oneDimHamiltonian_isHermitian [DecidableEq ξ]
   · exact tensor_isHermitian _ _ (S2_isHermitian A B) identity_isHermitian
 
 /--
-Proof-carrying source bundle for Theorem 4.  It records the paper's exact
-composition data: one-term matrices, the inhomogeneous diagonal block `B`, and
+Proof-carrying source bundle for Theorem 4. It records the paper's exact
+composition data: one-term matrices, the inhomogeneous block `B`, and
 the Schrödingerisation coordinate `x_ξ`.
 -/
 structure OneDimCompositionCertificate (η ι ξ : Type*)
@@ -294,6 +289,8 @@ theorem oneDimHamiltonianClaim_target_closed :
 theorem oneDimHamiltonianClaim_resource_closed :
     oneDimHamiltonianClaim.resource = oneDimHamiltonianResourceExpr := by
   rfl
+
+end
 
 end Hamiltonian
 end GHL2025
