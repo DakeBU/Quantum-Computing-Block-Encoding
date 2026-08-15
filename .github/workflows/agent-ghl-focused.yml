@@ -19,8 +19,9 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - name: Tighten optional Lean display and remove temporary files
+      - name: Tighten optional Lean display and prepare catalog mapping
         run: |
+          python3 tools/fix_catalog_ghl.py
           python3 - <<'PY'
           from pathlib import Path
           path = Path('website/static/learning.css')
@@ -38,6 +39,7 @@ jobs:
           rm -f tools/extend_ghl_adjoint.py
           rm -f tools/fix_roadmap_test.py
           rm -f tools/finalize_ghl_teaching.py
+          rm -f tools/fix_catalog_ghl.py
       - name: Regenerate committed declaration and Blueprint inventories
         run: python3 scripts/generate-blueprint-catalog.py
       - name: Check teaching and publication source contracts
