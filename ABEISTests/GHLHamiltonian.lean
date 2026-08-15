@@ -34,4 +34,24 @@ example (cert : OneDimCompositionCertificate η ι ξ) :
       (tensor cert.second (identity ξ)) :=
   cert.H_eq_S1_tensor_xXi_add_S2_tensor_I
 
+example [DecidableEq ι] (cert : OneDimCompositionCertificate η ι ξ)
+    (normalizerA : ℂ) :
+    eq29PhaseBalancedClean cert.A cert.B normalizerA = cert.first :=
+  eq29PhaseBalancedClean_eq_S1 cert.A cert.B normalizerA cert.B_hermitian
+
+example [DecidableEq ι] (cert : OneDimCompositionCertificate η ι ξ)
+    (normalizerA : ℂ) :
+    eq30Clean cert.A cert.B normalizerA = cert.second :=
+  eq30Clean_eq_S2 cert.A cert.B normalizerA cert.B_hermitian
+
+example [DecidableEq ι] (cert : OneDimCompositionCertificate η ι ξ)
+    (normalizerA : ℂ) :
+    eq29PhaseBalancedClean cert.A cert.B normalizerA = cert.first ∧
+    eq30Clean cert.A cert.B normalizerA = cert.second ∧
+    cert.H = add (tensor cert.first cert.xXi)
+      (tensor cert.second (identity ξ)) ∧
+    oneDimHamiltonianClaim.normalization = "O(kappa * ||H||_max)" ∧
+    oneDimHamiltonianClaim.resource = oneDimHamiltonianResourceExpr :=
+  theorem4_source_lcu_route_closed cert normalizerA
+
 end QuantumBlockEncoding.GHL2025.Hamiltonian
