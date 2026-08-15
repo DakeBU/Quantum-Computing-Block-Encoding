@@ -16,13 +16,15 @@ python3 -m py_compile \
   website/scripts/test_site_contracts.py \
   website/scripts/test_teaching_enrichment.py \
   website/scripts/test_casebook_enrichment.py \
+  website/scripts/test_casebook_polish.py \
   tools/export_robin_evolution.py \
   tools/replay_public_cases.py
 
 python3 -m unittest \
   website.scripts.test_site_contracts \
   website.scripts.test_teaching_enrichment \
-  website.scripts.test_casebook_enrichment
+  website.scripts.test_casebook_enrichment \
+  website.scripts.test_casebook_polish
 
 python3 website/scripts/build_site.py \
   --lean-gate-report _out/lean-gate.json \
@@ -62,6 +64,7 @@ grep -q 'GHL Theorem 3' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'GHL Theorem 4' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'What ASPBE improves' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'Advanced source-fidelity notes' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'data-collapsed-section="verification-status"' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'data-collapsed-section="lean-certificate"' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'data-collapsed-section="correspondence"' _site/case-studies/robin/index.html
 ! grep -q '<h2>Source interpretation decisions</h2>' _site/example-cases/robin-ghl-one-term/index.html
