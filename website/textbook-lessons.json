@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "sources": {
+    "nielsen-chuang": {
+      "title": "Quantum Computation and Quantum Information",
+      "authors": "Michael A. Nielsen and Isaac L. Chuang",
+      "url": "https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE",
+      "role": "Standard textbook reference for quantum mechanics, qubits, gates, and the circuit model.",
+      "quote": "Computers are physical objects, and computations are physical processes."
+    },
+    "mermin": {
+      "title": "Quantum Computer Science",
+      "authors": "N. David Mermin",
+      "url": "https://www.cambridge.org/core/books/quantum-computer-science/9780511813870",
+      "role": "Circuit-first computer-science viewpoint on qubits and quantum information.",
+      "quote": "quantum physics profoundly alters the character of information processing and digital computation."
+    },
+    "ibm-basics": {
+      "title": "Basics of quantum information",
+      "authors": "IBM Quantum Learning / John Watrous",
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information",
+      "role": "Beginner-friendly state-vector, measurement, multi-system, and circuit explanations.",
+      "quote": "quantum state vectors are unit vectors with respect to the Euclidean norm."
+    },
+    "ibm-circuits": {
+      "title": "Quantum circuits",
+      "authors": "IBM Quantum Learning / John Watrous",
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/quantum-circuits/circuits",
+      "role": "Visual circuit-model reference.",
+      "quote": "The flow of information along the wires goes from left to right"
+    },
+    "preskill": {
+      "title": "Quantum Computation lecture notes",
+      "authors": "John Preskill",
+      "url": "https://www.preskill.caltech.edu/ph229/",
+      "role": "Foundations, entanglement, circuits, algorithms, and error correction.",
+      "quote": null
+    },
+    "lin-notes": {
+      "title": "Lecture Notes on Quantum Algorithms for Scientific Computation",
+      "authors": "Lin Lin",
+      "url": "https://math.berkeley.edu/~linlin/qasc/",
+      "role": "Scientific-computing route from quantum preliminaries to block encoding, QSP, and QSVT.",
+      "quote": "A more general input model, as will be discussed in this chapter, is called ‘block encoding’."
+    },
+    "gilyen-qsvt": {
+      "title": "Quantum singular value transformation and beyond",
+      "authors": "András Gilyén, Yuan Su, Guang Hao Low, Nathan Wiebe",
+      "url": "https://arxiv.org/abs/1806.01838",
+      "role": "Research anchor for block encoding and singular-value transformation.",
+      "quote": null
+    },
+    "ghl-robin": {
+      "title": "Quantum framework for simulating linear PDEs with Robin boundary conditions",
+      "authors": "Guseynov, Huang, Liu",
+      "url": "https://arxiv.org/abs/2506.20478",
+      "role": "Source paper for the Robin worked case and the A→S₁,S₂→H Hamiltonian composition.",
+      "quote": null
+    }
+  },
+  "startHere": {
+    "title": "What a quantum computer is doing in this book",
+    "hook": "A classical program updates bits. In the circuit model used here, a quantum program applies reversible linear transformations to complex amplitude vectors and reads classical outcomes through measurement.",
+    "sourceKeys": ["nielsen-chuang", "mermin", "ibm-basics", "preskill"],
+    "formula": "|\\psi\\rangle=\\alpha|0\\rangle+\\beta|1\\rangle,\\qquad |\\alpha|^2+|\\beta|^2=1",
+    "steps": [
+      ["State", "Describe the information by complex amplitudes."],
+      ["Gate", "Apply a unitary matrix; this is the reversible evolution step."],
+      ["Circuit", "Compose gates from left to right in time."],
+      ["Measurement", "Convert amplitudes into classical outcome probabilities."],
+      ["ASPBE", "Use those ingredients to prepare useful states and embed useful non-unitary matrices into unitaries."]
+    ]
+  },
+  "chapters": {
+    "linear-algebra": {
+      "eyebrow": "Beginner layer · before the formal matrix API",
+      "title": "A qubit is a two-entry complex vector",
+      "hook": "Do not start by thinking about a mysterious physical particle. For the algorithms in this library, start with two labels, |0⟩ and |1⟩, and attach a complex amplitude to each.",
+      "sourceKeys": ["ibm-basics", "nielsen-chuang"],
+      "formulas": [
+        "|\\psi\\rangle=\\alpha|0\\rangle+\\beta|1\\rangle",
+        "|\\alpha|^2+|\\beta|^2=1",
+        "P(0)=|\\alpha|^2,\\qquad P(1)=|\\beta|^2"
+      ],
+      "intuitionSteps": [
+        ["Basis", "|0⟩ and |1⟩ are the two computational labels."],
+        ["Amplitude", "α and β are not probabilities; their squared magnitudes are."],
+        ["Normalization", "The two measurement probabilities must add to one."],
+        ["Matrix", "A quantum gate acts on the amplitude vector by matrix multiplication."]
+      ],
+      "circuit": {
+        "caption": "A state before any gate: the wire carries a qubit state, not a classical hidden bit.",
+        "wires": [
+          {"label": "q₀", "input": "|ψ⟩", "gates": ["state"], "output": "α|0⟩+β|1⟩"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: finite indices",
+        "code": "abbrev Matrix (rows cols : Nat) (α : Type u) := Fin rows → Fin cols → α",
+        "explanation": "`Fin 2` means exactly two legal indices. Lean makes an out-of-range basis label impossible to type."
+      }
+    },
+    "circuit-semantics": {
+      "eyebrow": "Beginner layer · the circuit model",
+      "title": "A quantum circuit is a time-ordered product of unitary gates",
+      "hook": "A wire tells you where the state lives; a box tells you which operation happens next. Read time from left to right, but remember that matrix products act on state vectors from the right.",
+      "sourceKeys": ["ibm-circuits", "nielsen-chuang"],
+      "formulas": [
+        "|\\psi_{\\mathrm{out}}\\rangle=G_m\\cdots G_2G_1|\\psi_{\\mathrm{in}}\\rangle",
+        "U^\\dagger U=UU^\\dagger=I"
+      ],
+      "intuitionSteps": [
+        ["Draw", "Place one operation after another on the wire."],
+        ["Read", "The leftmost gate happens first."],
+        ["Multiply", "The total unitary is G_m⋯G_1."],
+        ["Verify", "Lean fixes this order once so diagrams and matrix proofs cannot silently disagree."]
+      ],
+      "circuit": {
+        "caption": "A one-qubit circuit like the standard textbook examples.",
+        "wires": [
+          {"label": "q₀", "input": "|0⟩", "gates": ["H", "S", "H", "T"], "output": "|ψout⟩"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: definitions compute",
+        "code": "evalGateMatrices [G₁, G₂, …, Gₘ] = Gₘ ⬝ … ⬝ G₂ ⬝ G₁",
+        "explanation": "The evaluator is a definition, and later theorems prove that circuit syntax and matrix meaning use the same order."
+      }
+    },
+    "state-preparation": {
+      "eyebrow": "Beginner layer · first ASPBE problem",
+      "title": "State preparation asks: which circuit creates the vector I want?",
+      "hook": "You know the desired amplitudes. The construction problem is to find a unitary whose action on the easy input |0…0⟩ produces exactly those amplitudes.",
+      "sourceKeys": ["ibm-basics", "preskill"],
+      "formulas": [
+        "U|0^n\\rangle=|\\psi\\rangle",
+        "H|0\\rangle=\\frac{|0\\rangle+|1\\rangle}{\\sqrt2}",
+        "X|0\\rangle=|1\\rangle"
+      ],
+      "intuitionSteps": [
+        ["Target", "Write the normalized amplitude vector you want."],
+        ["Candidate", "Choose gates whose product might have that target as column zero."],
+        ["Check", "Prove the whole matrix is unitary, not only that one column looks right."],
+        ["Certify", "Prove the zero-input column equals the target exactly."]
+      ],
+      "circuit": {
+        "caption": "The smallest nontrivial preparation: Hadamard creates |+⟩.",
+        "wires": [
+          {"label": "q₀", "input": "|0⟩", "gates": ["H"], "output": "|+⟩"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: a certificate is a structure",
+        "code": "structure ComplexStatePreparationCertificate where\n  target\n  gate\n  normalizationProof\n  preparationProof",
+        "explanation": "The circuit, target, and proofs travel together. A downstream theorem cannot accidentally forget normalization or unitarity."
+      }
+    },
+    "state-preparation-certificates": {
+      "eyebrow": "Beginner layer · why the first column matters",
+      "title": "Applying U to |0…0⟩ simply selects the first column of U",
+      "hook": "This is the bridge between circuit language and matrix language. Physicists write U|0⟩; Lean can check the same statement one output amplitude at a time.",
+      "sourceKeys": ["ibm-basics"],
+      "formulas": [
+        "U|0^n\\rangle=\\operatorname{column}_0(U)",
+        "U_{i,0}=\\psi_i"
+      ],
+      "intuitionSteps": [
+        ["Input", "The vector |0…0⟩ has a single 1 in the zero position."],
+        ["Multiply", "Every matrix column except column zero is multiplied by 0."],
+        ["Result", "The output is exactly column zero."],
+        ["Reuse", "That theorem becomes a compact interface for later LCU and oracle constructions."]
+      ],
+      "circuit": {
+        "caption": "State-action and first-column views are the same certificate.",
+        "wires": [
+          {"label": "q", "input": "|0…0⟩", "gates": ["U"], "output": "column₀(U)=|ψ⟩"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: `iff` proves two descriptions are equivalent",
+        "code": "firstColumnMatches_iff_applyVec_zeroKet",
+        "explanation": "The theorem is deliberately bidirectional: a column proof can become a state-action proof and vice versa."
+      }
+    },
+    "block-encoding": {
+      "eyebrow": "Beginner layer · second ASPBE problem",
+      "title": "A general matrix is not a quantum gate — block encoding hides it inside one",
+      "hook": "Quantum gates must be unitary, but the matrix A you want to use may be non-unitary. The trick is to build a larger unitary U whose clean ancilla corner equals A up to a known scale.",
+      "sourceKeys": ["lin-notes", "gilyen-qsvt"],
+      "formulas": [
+        "U_A=\\begin{pmatrix}A/\\alpha&*\\\\ *&*\\end{pmatrix}",
+        "\\left\\|A-\\alpha(\\langle0^a|\\otimes I)U_A(|0^a\\rangle\\otimes I)\\right\\|\\le\\varepsilon"
+      ],
+      "intuitionSteps": [
+        ["Problem", "A may shrink, amplify, or otherwise fail the unitary condition."],
+        ["Add room", "Introduce ancilla qubits so a larger matrix can remain unitary."],
+        ["Hide A", "Arrange for the ancilla-zero block to be A/α."],
+        ["Use it", "Later algorithms can manipulate the encoded matrix while only implementing the unitary U_A."]
+      ],
+      "circuit": {
+        "caption": "The ancilla is prepared and projected in |0⟩; the system sees the clean block A/α.",
+        "wires": [
+          {"label": "anc", "input": "|0⟩", "gates": ["U_A", "project 0"], "output": "|0⟩"},
+          {"label": "sys", "input": "|ψ⟩", "gates": ["U_A", ""], "output": "A|ψ⟩/α"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: projection equality is the acceptance test",
+        "code": "candidate.blockContainsTarget : ∀ i j, U (clean i) (clean j) = A i j / α",
+        "explanation": "The library does not accept a circuit because a simulator looks close. The selected matrix entries are an explicit proposition."
+      }
+    },
+    "classic-routes": {
+      "eyebrow": "Beginner layer · how block encodings are constructed",
+      "title": "PREPARE, SELECT, and UNPREPARE turn structured sums into circuits",
+      "hook": "Most useful matrices have structure. Instead of synthesizing one enormous unitary from scratch, expose that structure: sparse locations, sparse values, permutations, or a linear combination of simpler unitaries.",
+      "sourceKeys": ["lin-notes", "gilyen-qsvt"],
+      "formulas": [
+        "A=\\sum_{j=0}^{L-1} a_jU_j",
+        "\\operatorname{PREPARE}|0\\rangle=\\sum_j\\sqrt{p_j}|j\\rangle",
+        "\\operatorname{SELECT}=\\sum_j|j\\rangle\\!\\langle j|\\otimes U_j"
+      ],
+      "intuitionSteps": [
+        ["PREPARE", "Create a superposition over terms or sparse slots."],
+        ["SELECT", "Apply the operation indexed by that slot."],
+        ["Amplitude", "Load the coefficient associated with the chosen term."],
+        ["UNPREPARE", "Interfere the selector branches so the clean block becomes the desired weighted sum."]
+      ],
+      "circuit": {
+        "caption": "The standard LCU skeleton used repeatedly by block-encoding constructions.",
+        "wires": [
+          {"label": "selector", "input": "|0⟩", "gates": ["PREPARE", "SELECT", "PREPARE†"], "output": "|0⟩"},
+          {"label": "system", "input": "|ψ⟩", "gates": ["", "U_j", ""], "output": "A|ψ⟩/α"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: composition becomes reusable lemmas",
+        "code": "productExactCleanBlockCertificate\npartialPermutationCertificate\nQSVTConsumerContract",
+        "explanation": "Instead of proving each paper from zero, ASPBE keeps small proof-producing constructors for recurring routes."
+      }
+    },
+    "certified-cases": {
+      "eyebrow": "Beginner layer · worked examples",
+      "title": "A proof is easier to understand when you can watch one basis state travel through the circuit",
+      "hook": "The case studies are not decoration. Each one freezes a matrix, a register layout, and a circuit, then lets you compare the paper picture, the executable circuit, and the Lean theorem.",
+      "sourceKeys": ["ghl-robin", "lin-notes"],
+      "formulas": [
+        "\\Pi U\\Pi^\\dagger=A/\\alpha",
+        "\\text{score}=(\\text{gates},\\text{depth},\\text{aux qubits},\\text{oracle calls})"
+      ],
+      "intuitionSteps": [
+        ["Freeze", "Name the exact finite target and normalization."],
+        ["Trace", "Follow clean basis inputs through the candidate circuit."],
+        ["Prove", "Promote only after unitarity and every clean-block entry are exact."],
+        ["Compare", "Only candidates at the same semantic tier may be compared by resources."]
+      ],
+      "circuit": {
+        "caption": "Case-study reading order: target → circuit → clean block → resource comparison.",
+        "wires": [
+          {"label": "target", "input": "A", "gates": ["construct U", "Lean ✓", "resource"], "output": "verified BE"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: theorem names are checkpoints",
+        "code": "warmRobinFigure4PrimitiveVerifiedBlockEncoding\nwarmRobinBestVerified",
+        "explanation": "A reader can jump from a diagram directly to the declaration that certifies the same stage."
+      }
+    },
+    "resources-and-exports": {
+      "eyebrow": "Beginner layer · proof versus engineering evidence",
+      "title": "A correct circuit and a cheap circuit are different questions",
+      "hook": "First prove the mathematical contract. Then count gates, depth, ancillas, and oracle calls. Finally export exactly the certified gate list to Qiskit or OpenQASM for independent executable checks.",
+      "sourceKeys": ["ibm-circuits", "lin-notes"],
+      "formulas": [
+        "c(U)=(g,d,a,o)",
+        "c_1\\prec_{\\mathrm{lex}}c_2"
+      ],
+      "intuitionSteps": [
+        ["Correctness", "Lean proves the operator or state contract."],
+        ["Cost", "The resource tuple is computed from the declared circuit."],
+        ["Export", "Qiskit/OpenQASM receive the same canonical circuit."],
+        ["Cross-check", "Numerical operator comparison can catch implementation bugs but does not replace the theorem."]
+      ],
+      "circuit": {
+        "caption": "One source of truth feeds both formal and executable evidence.",
+        "wires": [
+          {"label": "circuit IR", "input": "Lean-owned data", "gates": ["resource", "Qiskit", "OpenQASM"], "output": "audited evidence"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: costs are data, dominance is a theorem",
+        "code": "BlockEncodingCost.betterThan",
+        "explanation": "When the site says one candidate is better, a named Lean theorem fixes the ordering and the compared tuples."
+      }
+    },
+    "automation-and-roadmap": {
+      "eyebrow": "Beginner layer · what the agent system actually does",
+      "title": "The harness proposes; Lean decides what becomes library memory",
+      "hook": "An LLM can generate a plausible construction quickly. ASPBE separates that creative step from verification: failed routes are remembered, accepted routes carry exact proof roots, and only then are they exposed as reusable memory.",
+      "sourceKeys": ["nielsen-chuang", "lin-notes"],
+      "formulas": [
+        "\\text{generate}\\rightarrow\\text{check}\\rightarrow\\text{repair}\\rightarrow\\text{certify}\\rightarrow\\text{reuse}"
+      ],
+      "intuitionSteps": [
+        ["Generate", "Upper agents propose decompositions or candidate circuits."],
+        ["Check", "Executable backends reject obvious circuit mistakes early."],
+        ["Prove", "Lean discharges the exact semantic obligations."],
+        ["Remember", "Only proof-backed constructions enter positive reusable memory."]
+      ],
+      "circuit": {
+        "caption": "The harness is a verification loop around circuit construction, not a replacement for the proof kernel.",
+        "wires": [
+          {"label": "candidate", "input": "idea", "gates": ["review", "Lean", "memory"], "output": "certified route"}
+        ]
+      },
+      "leanLens": {
+        "title": "Lean idea: acceptance is a typed state transition",
+        "code": "threeLayerCanonicalTrace_reachesAccepted",
+        "explanation": "The controller trace can reach `accepted` only through the reviewer stage with a recorded passing Lean gate."
+      }
+    }
+  }
+}
