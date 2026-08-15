@@ -23,30 +23,44 @@ jobs:
           auto-config: false
           use-github-cache: false
           use-mathlib-cache: true
-      - name: Apply focused Hamiltonian source patches
+      - name: Apply focused source and publication patches
         run: |
           python3 tools/fix_ghl_hamiltonian_conj.py
           python3 tools/extend_ghl_adjoint.py
+          python3 tools/finalize_ghl_teaching.py
       - name: Compile GHL Hamiltonian composition and regression roots
         run: lake build QuantumBlockEncoding.GHLHamiltonian ABEISTests.GHLHamiltonian
-      - name: Check teaching data and enrichment code
+      - name: Check publication and teaching contracts
         run: |
-          python3 -m py_compile website/scripts/enrich_teaching_site.py website/scripts/test_teaching_enrichment.py
-          python3 -m unittest website.scripts.test_teaching_enrichment
+          python3 -m py_compile website/scripts/enrich_teaching_site.py website/scripts/test_teaching_enrichment.py website/scripts/test_site_contracts.py
+          python3 -m unittest website.scripts.test_teaching_enrichment website.scripts.test_site_contracts
           python3 - <<'PY'
           import json
           from pathlib import Path
-          data=json.loads(Path('website/textbook-lessons.json').read_text())
-          assert len(data['chapters']) == 9
+          lessons=json.loads(Path('website/textbook-lessons.json').read_text())
+          assert len(lessons['chapters']) == 9
+          robin=json.loads(Path('website/robin-paper-map.json').read_text())
+          h=next(row for row in robin['rows'] if row['id']=='hamiltonian-composition')
+          assert h['routeStatus']=='Compiled'
+          assert 'A^\\dagger' in h['latex']
+          cases=json.loads(Path('website/example-cases.json').read_text())
+          case=next(c for c in cases['cases'] if c['slug']=='robin-ghl-one-term')
+          assert any('Theorem-4' in row[0] for row in case['verificationStatus'])
           PY
       - name: Check diff hygiene
         run: git diff --check
-      - name: Persist successful Lean source repairs
+      - name: Persist successful source and publication closure
         run: |
-          if ! git diff --quiet -- QuantumBlockEncoding/GHLHamiltonian.lean ABEISTests/GHLHamiltonian.lean; then
+          if ! git diff --quiet; then
             git config user.name "ASPBE verification agent"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add QuantumBlockEncoding/GHLHamiltonian.lean ABEISTests/GHLHamiltonian.lean
-            git commit -m "Expose the GHL A-dagger composition stage"
+            git add QuantumBlockEncoding/GHLHamiltonian.lean \
+              ABEISTests/GHLHamiltonian.lean \
+              QuantumBlockEncoding/Literature.lean \
+              website/content.py website/robin-paper-map.json website/example-cases.json \
+              website/textbook-lessons.json website/scripts/enrich_teaching_site.py \
+              website/scripts/test_site_contracts.py website/scripts/test_teaching_enrichment.py \
+              paper-notes/GHL2025/source-excerpts.tex
+            git commit -m "Close GHL Theorem 4 route and add concept-first textbook layers"
             git push origin HEAD:agent/ghl-hamiltonian-textbook
           fi
