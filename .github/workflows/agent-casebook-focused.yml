@@ -20,6 +20,12 @@ jobs:
       - uses: actions/checkout@v5
       - name: Compile and test casebook enrichment
         run: |
-          python3 -m py_compile website/scripts/enrich_casebook.py website/scripts/test_casebook_enrichment.py
-          python3 -m unittest website.scripts.test_casebook_enrichment
+          python3 -m py_compile \
+            website/scripts/enrich_casebook.py \
+            website/scripts/polish_casebook.py \
+            website/scripts/test_casebook_enrichment.py \
+            website/scripts/test_casebook_polish.py
+          python3 -m unittest \
+            website.scripts.test_casebook_enrichment \
+            website.scripts.test_casebook_polish
           git diff --check
