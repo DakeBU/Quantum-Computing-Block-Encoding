@@ -15,4 +15,4 @@ For source-paper cases, source theorem identifiers and displayed mathematical fo
 
 The Robin/GHL case is the reference implementation of this policy. It also teaches the distinction among state preparation, a digital matrix-entry query oracle, and a block encoding before presenting Theorems 3 and 4 or the evolved XOR four-slot circuit.
 
-The machine-readable teaching records live in `website/case-teaching.json`. The rendering and regression checks live in `website/scripts/enrich_casebook.py`, `website/scripts/polish_casebook.py`, and their tests. The normal site build must fail if a named Lean checkpoint is absent from the declaration inventory.
+The machine-readable teaching records live in `website/case-teaching.json`. The rendering and regression checks live in `website/scripts/enrich_casebook.py`, `website/scripts/polish_casebook.py`, and their tests. The normal site build must fail if a named Lean checkpoint is absent from the declaration inventory. Public navigation fragments introduced by the enrichment layer must also be unique; source-fidelity disclosures retain one stable fragment target rather than duplicating the same `id` on nested elements.
