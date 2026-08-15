@@ -4,11 +4,10 @@ from pathlib import Path
 path = Path('QuantumBlockEncoding/GHLHamiltonian.lean')
 text = path.read_text(encoding='utf-8')
 
-# 1. The printed Eq. (29) lower-right check also needs the X⊗B definition
-# unfolded; it is identically zero on the lower-right block. Once unfolded,
-# simp closes the scalar identity directly.
+# 1. The printed Eq. (29) lower-right check needs X⊗B unfolded, then a
+# scalar ring normalization combines the two -N_A/2 contributions.
 old = '''  simp [eq29PrintedClean, add, scale, scaledControlledPhaseSource]\n  ring\n'''
-new = '''  simp [eq29PrintedClean, add, scale, scaledControlledPhaseSource, pauliXTensor]\n'''
+new = '''  simp [eq29PrintedClean, add, scale, scaledControlledPhaseSource, pauliXTensor]\n  ring\n'''
 if old in text:
     text = text.replace(old, new, 1)
 elif new not in text:
@@ -29,7 +28,8 @@ new = '''          · simp [eq29PhaseBalancedClean, add, scale, scaledControlled
 if old in text:
     text = text.replace(old, new, 1)
 
-# 4. Eq. (30) reduces to I^2 = -1 after clearing denominators.
+# 4. Eq. (30) reduces to I^2 = -1 after clearing denominators. The remaining
+# subtraction-vs-add-neg form is normalized explicitly.
 marker = 'theorem eq30Clean_eq_S2'
 pos = text.find(marker)
 if pos < 0:
@@ -37,13 +37,13 @@ if pos < 0:
 head, tail = text[:pos], text[pos:]
 tail = tail.replace(
     '''          field_simp [hI]\n          ring\n''',
-    '''          field_simp [hI]\n          simp [pow_two, Complex.I_mul_I]\n''',
+    '''          field_simp [hI]\n          simp [pow_two, Complex.I_mul_I, sub_eq_add_neg]\n''',
     3,
 )
-# The lower-right diagonal branch does not need ring either when simp closes it.
+# On the lower-right diagonal branch, simp exposes +iN/2-iN/2; ring closes it.
 tail = tail.replace(
     '''          · subst j\n            simp [eq30Clean, add, scale, scaledControlledPhaseSource,\n              pauliYTensor, S2, antiHermitianPart, homogenizedS]\n            ring\n''',
-    '''          · subst j\n            simp [eq30Clean, add, scale, scaledControlledPhaseSource,\n              pauliYTensor, S2, antiHermitianPart, homogenizedS]\n''',
+    '''          · subst j\n            simp [eq30Clean, add, scale, scaledControlledPhaseSource,\n              pauliYTensor, S2, antiHermitianPart, homogenizedS]\n            ring\n''',
     1,
 )
 tail = tail.replace(
