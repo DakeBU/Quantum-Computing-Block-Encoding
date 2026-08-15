@@ -1,0 +1,373 @@
+.home-beginner-callout,
+.start-here-lesson,
+.concept-first-lesson {
+  width: min(920px, calc(100% - 32px));
+  margin: 26px auto 42px;
+}
+
+.home-beginner-callout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 17px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--warm-soft);
+  font-family: var(--ui-font);
+}
+
+.home-beginner-callout strong {
+  font-size: 15px;
+}
+
+.home-beginner-callout span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.home-beginner-callout a {
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.start-here-lesson,
+.concept-first-lesson {
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.start-here-lesson {
+  border-top: 5px solid var(--warm);
+}
+
+.concept-first-lesson {
+  border-top: 5px solid var(--block);
+}
+
+.reader-mode-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -6px 0 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--ui-font);
+}
+
+.reader-mode-switch > span {
+  margin-right: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.reader-mode-switch button {
+  min-width: 76px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.reader-mode-switch button[aria-pressed="true"] {
+  color: #fff;
+  border-color: var(--block-dark);
+  background: var(--block-dark);
+}
+
+.reader-mode-switch small {
+  flex: 1 1 250px;
+  color: var(--quiet);
+  font-size: 12px;
+}
+
+.reader-layer > h2,
+.start-here-lesson > h2 {
+  max-width: 22ch;
+  margin: 4px 0 16px;
+  font-size: clamp(30px, 4vw, 45px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.reader-hook {
+  max-width: 68ch;
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.6;
+}
+
+.reader-formula {
+  overflow-x: auto;
+  margin: 18px 0;
+  padding: 18px 20px;
+  border-left: 4px solid var(--block);
+  background: var(--block-soft);
+  text-align: center;
+}
+
+.reader-note {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.learning-circuit {
+  margin: 28px 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-subtle);
+}
+
+.learning-circuit figcaption {
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-family: var(--ui-font);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.learning-circuit-body {
+  display: grid;
+  gap: 18px;
+}
+
+.learning-wire-row {
+  display: grid;
+  grid-template-columns: 48px minmax(70px, auto) minmax(260px, 1fr) minmax(90px, auto);
+  align-items: center;
+  gap: 10px;
+  font-family: var(--ui-font);
+}
+
+.wire-name {
+  color: var(--quiet);
+  font-family: var(--mono-font);
+  font-size: 12px;
+}
+
+.wire-input,
+.wire-output {
+  font-family: var(--body-font);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.learning-wire {
+  position: relative;
+  min-height: 52px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 22px;
+  padding: 0 12px;
+}
+
+.learning-wire > i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: var(--line-strong);
+}
+
+.learning-gate {
+  position: relative;
+  z-index: 1;
+  min-width: 42px;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  border: 2px solid var(--block-dark);
+  border-radius: 7px;
+  color: var(--block-dark);
+  background: var(--surface);
+  font-family: var(--ui-font);
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.learning-gate.empty {
+  border-color: transparent;
+  background: transparent;
+}
+
+.intuition-steps {
+  counter-reset: lesson-step;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 26px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.intuition-steps li {
+  counter-increment: lesson-step;
+  position: relative;
+  min-height: 106px;
+  padding: 17px 18px 17px 58px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-subtle);
+}
+
+.intuition-steps li::before {
+  content: counter(lesson-step);
+  position: absolute;
+  left: 17px;
+  top: 17px;
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--state-dark);
+  font-family: var(--ui-font);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.intuition-steps strong,
+.intuition-steps span {
+  display: block;
+}
+
+.intuition-steps strong {
+  margin-bottom: 5px;
+  font-family: var(--ui-font);
+  font-size: 14px;
+}
+
+.intuition-steps span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.textbook-source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.textbook-source {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.textbook-source h4 {
+  margin: 2px 0 3px;
+  font-size: 16px;
+}
+
+.textbook-source p {
+  margin: 6px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.textbook-source .source-authors {
+  color: var(--quiet);
+  font-family: var(--ui-font);
+  font-size: 12px;
+}
+
+.textbook-source blockquote {
+  margin: 12px 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--warm);
+  color: var(--ink);
+  font-style: italic;
+  font-size: 15px;
+}
+
+.lean-lens {
+  overflow-x: auto;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 10px;
+  color: var(--code-ink);
+  background: var(--code-bg);
+  font-size: 13px;
+}
+
+body.reader-mode-enabled .reader-layer {
+  display: none;
+}
+
+body.reader-mode-enabled[data-reader-mode="concept"] [data-reader-layer="concept"],
+body.reader-mode-enabled[data-reader-mode="math"] [data-reader-layer="math"],
+body.reader-mode-enabled[data-reader-mode="lean"] [data-reader-layer="lean"] {
+  display: block;
+}
+
+body.reader-mode-enabled:not([data-reader-mode="lean"]) main > .result,
+body.reader-mode-enabled:not([data-reader-mode="lean"]) main > .content-section > .result {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .home-beginner-callout {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .reader-mode-switch {
+    align-items: flex-start;
+  }
+
+  .reader-mode-switch small {
+    flex-basis: 100%;
+  }
+
+  .learning-wire-row {
+    grid-template-columns: 34px minmax(54px, auto) minmax(190px, 1fr) minmax(70px, auto);
+    gap: 5px;
+    overflow-x: auto;
+  }
+
+  .learning-wire {
+    gap: 10px;
+  }
+
+  .intuition-steps,
+  .textbook-source-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .start-here-lesson,
+  .concept-first-lesson,
+  .home-beginner-callout {
+    width: min(100% - 20px, 920px);
+  }
+}
+
+@media print {
+  .reader-mode-switch {
+    display: none;
+  }
+
+  body.reader-mode-enabled .reader-layer {
+    display: block !important;
+  }
+}
