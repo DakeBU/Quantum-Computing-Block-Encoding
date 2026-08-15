@@ -5,9 +5,10 @@ path = Path('QuantumBlockEncoding/GHLHamiltonian.lean')
 text = path.read_text(encoding='utf-8')
 
 # 1. The printed Eq. (29) lower-right check also needs the X⊗B definition
-# unfolded; it is identically zero on the lower-right block.
+# unfolded; it is identically zero on the lower-right block. Once unfolded,
+# simp closes the scalar identity directly.
 old = '''  simp [eq29PrintedClean, add, scale, scaledControlledPhaseSource]\n  ring\n'''
-new = '''  simp [eq29PrintedClean, add, scale, scaledControlledPhaseSource, pauliXTensor]\n  ring\n'''
+new = '''  simp [eq29PrintedClean, add, scale, scaledControlledPhaseSource, pauliXTensor]\n'''
 if old in text:
     text = text.replace(old, new, 1)
 elif new not in text:
