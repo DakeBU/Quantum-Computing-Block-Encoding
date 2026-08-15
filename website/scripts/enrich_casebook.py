@@ -251,6 +251,9 @@ def collapse_source_audit(text: str) -> str:
     if not match:
         return text
     old = match.group(0).replace("Source interpretation decisions", "Advanced source-fidelity notes")
+    # Keep the public fragment on the outer <details>; remove it from the
+    # nested section so every generated page has one unique navigation target.
+    old = old.replace(' id="source-interpretation"', '', 1)
     wrapped = (
         '<details class="advanced-source-audit" id="source-interpretation">'
         '<summary>Advanced source-fidelity notes (implementation details)</summary>'

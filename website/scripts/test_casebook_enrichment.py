@@ -118,6 +118,7 @@ class CasebookEnrichmentTests(unittest.TestCase):
             self.assertIn("What ASPBE improves", robin)
             self.assertIn("Advanced source-fidelity notes", robin)
             self.assertNotIn("<h2>Source interpretation decisions</h2>", robin)
+            self.assertEqual(robin.count('id="source-interpretation"'), 1)
             self.assertIn("<details class=\"casebook-lean\">", robin)
 
             learning = (root / "learning" / "index.html").read_text(encoding="utf-8")
