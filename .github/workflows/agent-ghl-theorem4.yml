@@ -1,4 +1,4 @@
-name: Focused GHL Theorem 4 source LCU gate
+name: Finalize GHL Theorem 4 source-audited textbook branch
 
 on:
   push:
@@ -13,27 +13,46 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  focused:
+  finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: leanprover/lean-action@v1
         with:
-          auto-config: false
-          use-github-cache: false
-          use-mathlib-cache: true
-      - name: Apply Theorem 4 source LCU patch
+          fetch-depth: 0
+      - name: Synchronize the source audit with public teaching data
+        run: python3 tools/finalize_ghl_theorem4_site.py
+      - name: Regenerate declaration and Blueprint inventories
+        run: python3 scripts/generate-blueprint-catalog.py
+      - name: Check teaching, source-audit, and publication contracts
         run: |
-          python3 tools/add_ghl_theorem4_source_lcu.py
-          python3 tools/fix_ghl_theorem4_source_lcu.py
-      - name: Compile source LCU route and regression roots
-        run: lake build QuantumBlockEncoding.GHLHamiltonian ABEISTests.GHLHamiltonian
-      - name: Check diff hygiene
-        run: git diff --check
-      - name: Persist successful source LCU closure
+          python3 -m py_compile \
+            website/scripts/enrich_teaching_site.py \
+            website/scripts/test_teaching_enrichment.py \
+            website/scripts/test_site_contracts.py
+          python3 -m unittest \
+            website.scripts.test_teaching_enrichment \
+            website.scripts.test_site_contracts
+          python3 scripts/generate-blueprint-catalog.py --check
+          git diff --check
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('website/robin-paper-map.json').read_text())
+          h=next(row for row in data['rows'] if row['id']=='hamiltonian-composition')
+          audit=next(row for row in data['rows'] if row['id']=='hamiltonian-phase-audit')
+          assert h['routeStatus']=='Compiled'
+          assert 'theorem4_source_lcu_route_closed' in ' '.join(h['declarations'])
+          assert 'eq29PrintedClean_ne_S1' in ' '.join(audit['declarations'])
+          assert audit['routeStatus']=='Compiled'
+          PY
+      - name: Remove temporary repair machinery and commit the clean branch
         run: |
+          git rm .github/workflows/agent-ghl-theorem4.yml
+          rm -f tools/add_ghl_theorem4_source_lcu.py
+          rm -f tools/fix_ghl_theorem4_source_lcu.py
+          rm -f tools/finalize_ghl_theorem4_site.py
           git config user.name "ASPBE verification agent"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add QuantumBlockEncoding/GHLHamiltonian.lean ABEISTests/GHLHamiltonian.lean
-          git commit -m "Formalize GHL Theorem 4 source LCU phases and resource contract"
+          git add -A
+          git commit -m "Finalize source-audited GHL Theorem 4 and concept-first textbook"
           git push origin HEAD:agent/ghl-hamiltonian-textbook
