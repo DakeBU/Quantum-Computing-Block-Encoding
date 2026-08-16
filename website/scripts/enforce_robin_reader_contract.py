@@ -149,6 +149,13 @@ def inject_contract(
     if not path.is_file():
         raise RuntimeError(f"Robin reader-contract page missing: {path}")
     text = path.read_text(encoding="utf-8")
+
+    # `case-studies/robin/` is two directories below the site root.  The
+    # generic tutorial was originally rendered with a one-level prefix, so
+    # normalize those inherited Lean links here before checking the final DOM.
+    if prefix == "../../":
+        text = text.replace('href="../library/modules/', 'href="../../library/modules/')
+
     marker = '<section class="casebook-improvement" id="case-improvement">'
     if marker not in text:
         raise RuntimeError(f"Robin page lost the ASPBE improvement theorem: {path}")
@@ -157,10 +164,10 @@ def inject_contract(
         fragment += source_assumptions_html(teaching, declarations, prefix)
         text = text.replace(marker, fragment + "\n" + marker, 1)
     path.write_text(text, encoding="utf-8")
-    validate_rendered(path)
+    validate_rendered(path, prefix)
 
 
-def validate_rendered(path: Path) -> None:
+def validate_rendered(path: Path, prefix: str) -> None:
     text = path.read_text(encoding="utf-8")
     ordered = [
         "Source-paper motivation",
@@ -184,6 +191,8 @@ def validate_rendered(path: Path) -> None:
     for label in ("Paper assumption / source issue.", "Plain language.", "Why it matters."):
         if text.count(label) < 6:
             raise RuntimeError(f"Robin source-assumption translation lost {label}: {path}")
+    if prefix == "../../" and 'href="../library/modules/' in text:
+        raise RuntimeError(f"Robin paper-map Lean links use the wrong relative depth: {path}")
 
 
 def enforce(root: Path) -> None:
@@ -198,7 +207,7 @@ def enforce(root: Path) -> None:
     )
     inject_contract(
         root / "case-studies" / "robin" / "index.html",
-        "../",
+        "../../",
         teaching,
         declarations,
     )
