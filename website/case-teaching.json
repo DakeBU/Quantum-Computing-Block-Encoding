@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "foundation": {
     "title": "Before the cases: how a quantum algorithm gets access to data and matrices",
     "lead": "A quantum algorithm is not given a NumPy array for free. Before discussing speedups, we must say how classical data, matrix entries, or a linear operator become quantum operations. State preparation, query oracles, and block encodings are three different access contracts.",
@@ -265,7 +265,7 @@
       ],
       "theorems": [
         {
-          "label": "GHL Theorem 3 · faithful paraphrase",
+          "label": "GHL Theorem 3 · source theorem, faithfully restated",
           "title": "One-term block encoding for f(x) times a sparse Robin derivative",
           "statementFormula": "A_k\\sim f(x)\\,\\frac{\\partial^m}{\\partial x^m},\\qquad U_{A_k}^{(1)}\\text{ is an }(N_DN_f\\kappa,\\lceil\\log_2n\\rceil+\\lceil\\log_2G_f\\rceil+\\lceil\\log_2\\kappa\\rceil+4,0)\\text{-block encoding}",
           "statementProse": "For a piecewise-continuous coefficient f with G_f pieces and polynomial complexity Q_g, and a 2^n by 2^n kappa-sparse finite-difference derivative matrix with Robin boundaries, the paper constructs a one-term block encoding. Its stated gate complexity is O(sum_g Q_g n log n + kappa n) with 2n pure ancillas.",
@@ -278,6 +278,7 @@
             ["Swap and uncompute", "Transport the registers back through the inverse access maps so workspace is clean."],
             ["Read the clean block", "PREPARE/unprepare interference leaves A_k/(N_D N_f kappa) in the ancilla-zero block."]
           ],
+          "formalizationScope": "Paper scope: an arbitrary-width one-term construction with the stated asymptotic resource bound. Lean scope: the theorem metadata and reusable sparse-access semantics are formalized, and the N=8 Figure-4 specialization is closed through an exact primitive VerifiedOperatorBlockEncoding. A uniform arbitrary-width primitive compiler proving every source-oracle gate bound remains a separate planned frontier; the fixed-N=8 roots below must not be read as that stronger compiler theorem.",
           "leanRoots": [
             "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition",
             "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup",
@@ -286,7 +287,7 @@
           ]
         },
         {
-          "label": "GHL Theorem 4 · faithful paraphrase",
+          "label": "GHL Theorem 4 · source theorem, faithfully restated",
           "title": "Combine the one-term blocks into the full Schrodingerised Hamiltonian",
           "statementFormula": "A=\\sum_{k=0}^{\\eta-1}A_k,\\quad S_1=\\begin{pmatrix}(A+A^\\dagger)/2&B/2\\\\B/2&0\\end{pmatrix},\\quad S_2=\\begin{pmatrix}(A-A^\\dagger)/(2i)&B/(2i)\\\\-B/(2i)&0\\end{pmatrix},\\quad H=S_1\\otimes x_\\xi+S_2\\otimes I_\\xi",
           "statementProse": "The paper states that the structured one-dimensional Hamiltonian H has an O(kappa ||H||_max)-normalized block encoding using logarithmic selector/register overhead, with total gate complexity obtained from the coefficient-function loaders, the one-term sparse derivative blocks, and the x_xi diagonal block. The theorem reports 2n+2 pure ancillas.",
@@ -298,6 +299,7 @@
             ["Final LCU", "Combine U_S1, U_S2, and the block encoding of x_xi one last time to obtain H."],
             ["Source-fidelity audit", "ASPBE also checks the printed phase choices in the first S1 LCU line: the literal full-clean-matrix reading leaves a filler term, so the site records the discrepancy and the phase-balanced correction instead of silently changing the paper."]
           ],
+          "formalizationScope": "Paper scope: the one-dimensional A-to-H Hamiltonian composition. Lean scope: the finite-sum adjoint bridge, S1/S2 clean-block algebra, final H formula, normalization/layout records, and the source phase audit are compiled. The printed first S1 phase pair is proved inconsistent under the literal full-clean-matrix reading, and a phase-balanced correction is separately proved before the aggregate Theorem-4 route is marked closed.",
           "leanRoots": [
             "QuantumBlockEncoding.GHL2025.Hamiltonian.adjoint_sumTerms",
             "QuantumBlockEncoding.GHL2025.Hamiltonian.OneDimCompositionCertificate.Adagger_eq_sum_term_adjoints",
@@ -313,6 +315,80 @@
         "title": "Why the website then freezes N=8",
         "body": "The source theorem is a symbolic family statement. To compare actual circuits gate by gate, ASPBE freezes the N=8 Eq. (9) specialization with A1=B1=0, factors out Delta x^{-2}, and fixes alpha=56/3. That gives one exact matrix on which the source Figure-4 realization, a simpler paper-seven normal form, and an evolved candidate can all be compiled to the same primitive basis and compared without changing the target."
       },
+      "sourceAssumptions": [
+        {
+          "title": "A query oracle is an access contract, not a free physical gate",
+          "paperAssumption": "The paper contrasts an abstract digital matrix-entry query O_H with explicit sparse-access and amplitude/block-encoding circuits.",
+          "plainLanguage": "When an algorithm says it makes one query, it means one call to a promised reversible data-access subroutine. The arithmetic, memory lookup, boundary tests, and ancillas hidden inside that call may still be expensive to build.",
+          "whyItMatters": "GHL's construction is useful precisely because it opens this black box for the structured Robin operator; ASPBE therefore reports oracle calls separately from primitive gates.",
+          "leanEvidence": [
+            "QuantumBlockEncoding.GHL2025.BandedSparseAccessPaperContract",
+            "QuantumBlockEncoding.GHL2025.robinBandedSparseAccessCitationChain_eq"
+          ]
+        },
+        {
+          "title": "Figure 4 applies its bulk indicator to D-transpose",
+          "paperAssumption": "The source circuit's indicator is interpreted on a row of D-transpose, so the fixed N=8 realization selects the corresponding columns of D rather than a naively read row window.",
+          "plainLanguage": "The circuit is moving between row and column viewpoints. Reading the indicator against the wrong orientation changes which boundary entries receive special treatment.",
+          "whyItMatters": "This choice changes the executable circuit, so ASPBE proves the transported bulk action before accepting the Figure-4 clean block.",
+          "leanEvidence": [
+            "QuantumBlockEncoding.Robin.warmRobinFigure4TransposeBulk_matches_periodic",
+            "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup"
+          ]
+        },
+        {
+          "title": "Standard RY uses a half angle",
+          "paperAssumption": "Equation (27) prints a single arccos coefficient angle; under the standard RY(theta) convention the executable angle must be 2 arccos(c).",
+          "plainLanguage": "An RY rotation places cos(theta/2), not cos(theta), in the clean amplitude. To load coefficient c exactly, theta must therefore equal 2 arccos(c).",
+          "whyItMatters": "Using the printed single-arccos expression would certify the wrong amplitude. ASPBE retains the typo transcript but proves the corrected standard-RY circuit.",
+          "leanEvidence": [
+            "QuantumBlockEncoding.Robin.warmRobinCorrectedEq27_standardRy_cleanAmplitude",
+            "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveVerifiedBlockEncoding"
+          ]
+        },
+        {
+          "title": "Seven source slots are an LCU decomposition, not a sparse-enumeration oracle",
+          "paperAssumption": "The historical split-seven weighted-permutation representation can send distinct nonzero slots to the same matrix entry.",
+          "plainLanguage": "Two selector labels may contribute amplitudes to the same matrix location. That is legal for a linear-combination-of-unitaries construction, but it is not the promise made by a one-nonzero-per-slot sparse enumerator.",
+          "whyItMatters": "Treating the seven labels as a sparse oracle would silently strengthen the access promise. ASPBE instead proves the weighted-permutation sum and records the duplicate access explicitly.",
+          "leanEvidence": [
+            "QuantumBlockEncoding.Robin.warmRobinSplitSeven_duplicate_nonzero_access",
+            "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"
+          ]
+        },
+        {
+          "title": "Only the clean projected block is the encoded operator",
+          "paperAssumption": "Temporary selector, indicator, coefficient, and address workspaces are uncomputed before the clean block is read.",
+          "plainLanguage": "A block encoding does not claim that the full unitary equals the PDE matrix. It claims that when designated ancillas start and end at zero, the selected submatrix equals the normalized target.",
+          "whyItMatters": "Full-space behavior on dirty workspace states may be compiler-dependent; the theorem must therefore prove the declared zero-workspace projection, not an informal whole-unitary equality.",
+          "leanEvidence": [
+            "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup",
+            "QuantumBlockEncoding.Robin.warmRobinFigure4PrimitiveCircuit_cleanBlock"
+          ]
+        },
+        {
+          "title": "The Theorem-4 phase discrepancy is recorded, not silently repaired",
+          "paperAssumption": "With Eq. (29)'s filler convention, the printed first-line phases pi and -pi in Eq. (30) both contribute -1 and leave a nonzero lower-right filler block.",
+          "plainLanguage": "The two printed phases do not cancel: exp(i*pi)=exp(-i*pi)=-1. A literal matrix sum therefore cannot equal the displayed S1 block unless the filler is corrected.",
+          "whyItMatters": "Source fidelity requires distinguishing what the paper prints from the corrected executable identity. Lean proves the obstruction and then proves a phase-balanced S1 construction; S2 closes as printed.",
+          "leanEvidence": [
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1",
+            "QuantumBlockEncoding.GHL2025.Hamiltonian.theorem4_source_lcu_route_closed"
+          ]
+        },
+        {
+          "title": "The 106-vs-312-vs-881 claim lives on one frozen compiler tier",
+          "paperAssumption": "For the N=8 comparison, all candidates use exact {X, RY, RZ, CX} primitive programs, all-to-all connectivity, the same target/normalizer, and zero abstract oracle calls.",
+          "plainLanguage": "Resource numbers are comparable only after the target, gate vocabulary, connectivity, ancilla convention, and oracle accounting have been frozen. Otherwise a smaller number may simply be using a different cost model.",
+          "whyItMatters": "ASPBE's winner is a strict same-tier theorem, not a universal circuit lower bound. The evolved circuit is better in gate count, depth, and auxiliary-qubit coordinates while oracle calls stay equal.",
+          "leanEvidence": [
+            "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven",
+            "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4",
+            "QuantumBlockEncoding.Robin.warmRobinBestVerified"
+          ]
+        }
+      ],
       "improvement": {
         "title": "Evolved theorem: a strictly cheaper exact block encoding for the frozen Robin benchmark",
         "statementFormula": "c_{\\mathrm{XOR}}=(106,96,3,0)\\prec_{\\mathrm{lex}}c_{\\mathrm{paper7}}=(312,266,5,0),\\qquad c_{\\mathrm{XOR}}\\prec_{\\mathrm{lex}}c_{\\mathrm{Fig.4}}=(881,674,6,0)",
@@ -328,7 +404,7 @@
         ],
         "leanRoots": [
           "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",
-          "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_cleanBlock",
+          "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveBlockContainsTarget_proof",
           "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding",
           "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_paperSeven",
           "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4",
