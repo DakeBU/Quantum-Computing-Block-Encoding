@@ -49,6 +49,7 @@ on:
 # immediately after the integrated pedagogy refs have been deleted.
 permissions:
   contents: write
+  actions: read
   pages: write
   id-token: write
 
@@ -63,8 +64,39 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Detect proof-layer changes
+        id: proof_changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            base="$(git rev-parse HEAD^1)"
+          else
+            git fetch --no-tags origin main
+            base="origin/main"
+          fi
+          echo "comparison_base=${base}"
+          if git diff --quiet "${base}...HEAD" -- \
+              'QuantumBlockEncoding/**' QuantumBlockEncoding.lean \
+              'ABEISTests/**' Tests.lean \
+              'ABEISBlueprint/**' ABEISBlueprint.lean ABEISBlueprintMain.lean \
+              'tools/**' 'docs/**' \
+              scripts/generate-blueprint-catalog.py \
+              scripts/build-blueprint.sh scripts/build-blueprint.ps1 \
+              scripts/sanitize-blueprint-paths.py scripts/test-sanitize-blueprint-paths.py \
+              requirements-executable.txt lakefile.lean lake-manifest.json lean-toolchain; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Proof/Blueprint layer unchanged; reusing the latest green main proof artifacts."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Proof/Blueprint layer changed; running the complete Lean and Blueprint gates."
+          fi
 
       - name: Set up Lean and fetch the Mathlib cache
+        if: steps.proof_changes.outputs.changed == 'true'
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -72,15 +104,19 @@ jobs:
           use-mathlib-cache: true
 
       - name: Install executable-verification dependencies
+        if: steps.proof_changes.outputs.changed == 'true'
         run: python3 -m pip install -r requirements-executable.txt
 
       - name: Build the library and tests
+        if: steps.proof_changes.outputs.changed == 'true'
         run: python3 website/scripts/run_lean_gate.py
 
       - name: Test the ASPBE harness
+        if: steps.proof_changes.outputs.changed == 'true'
         run: python3 tools/qbe.py harness-check
 
       - name: Check proof trust and executable exports
+        if: steps.proof_changes.outputs.changed == 'true'
         run: |
           python3 -m unittest website.scripts.test_site_contracts tools.test_case_memory tools.test_robin_export
           python3 tools/test_proof_trust.py
@@ -90,12 +126,47 @@ jobs:
           python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
 
       - name: Check declaration inventory and Blueprint catalog
+        if: steps.proof_changes.outputs.changed == 'true'
         run: |
           python3 scripts/generate-blueprint-catalog.py --check
           python3 scripts/test-sanitize-blueprint-paths.py
 
       - name: Build the Verso Blueprint
+        if: steps.proof_changes.outputs.changed == 'true'
         run: bash scripts/build-blueprint.sh
+
+      - name: Reuse latest green main proof artifacts
+        if: steps.proof_changes.outputs.changed == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
+          test -n "$run_id"
+          echo "Reusing proof-layer artifact from successful main run ${run_id}."
+          rm -rf /tmp/aspbe-green-pages /tmp/aspbe-green-site
+          mkdir -p /tmp/aspbe-green-pages /tmp/aspbe-green-site _out/blueprint
+          gh run download "$run_id" --repo "$GITHUB_REPOSITORY" --name github-pages --dir /tmp/aspbe-green-pages
+          test -f /tmp/aspbe-green-pages/artifact.tar
+          tar -xf /tmp/aspbe-green-pages/artifact.tar -C /tmp/aspbe-green-site
+          test -f /tmp/aspbe-green-site/build-report.json
+          test -f /tmp/aspbe-green-site/blueprint/html-multi/index.html
+          cp -a /tmp/aspbe-green-site/blueprint/. _out/blueprint/
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('/tmp/aspbe-green-site/build-report.json').read_text(encoding='utf-8'))
+          gate = dict(report['leanGate'])
+          if not gate.get('passed'):
+              raise SystemExit('refusing to inherit a non-green Lean gate')
+          gate['inheritedFromPublishedCommit'] = report['commit']
+          gate['inheritanceReason'] = 'proof/Blueprint paths are unchanged relative to main'
+          out = Path('_out/lean-gate.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(gate, indent=2) + '\n', encoding='utf-8')
+          print(f"Inherited green Lean gate from {report['commit']}")
+          PY
 
       # Keep the website gate intentionally split into named stages. A reader-facing
       # regression should identify whether syntax/tests, generation/enrichment,
