@@ -94,8 +94,8 @@ jobs:
       - name: Build the Verso Blueprint
         run: bash scripts/build-blueprint.sh
 
-      # Keep the website gate intentionally split into named stages.  A reader-facing
-      # regression should tell us whether syntax/tests, generation/enrichment,
+      # Keep the website gate intentionally split into named stages. A reader-facing
+      # regression should identify whether syntax/tests, generation/enrichment,
       # structural verification, or the final pedagogical contract failed.
       - name: Test website generators and reader contracts
         run: |
@@ -103,6 +103,7 @@ jobs:
             website/scripts/build_site.py \
             website/scripts/enrich_teaching_site.py \
             website/scripts/enrich_casebook.py \
+            website/scripts/enforce_robin_reader_contract.py \
             website/scripts/polish_casebook.py \
             website/scripts/check_site.py \
             website/scripts/ide_server.py \
@@ -129,6 +130,7 @@ jobs:
           python3 website/scripts/enrich_teaching_site.py --root _out/site
           python3 website/scripts/enrich_casebook.py --root _out/site
           python3 website/scripts/polish_casebook.py --root _out/site
+          python3 website/scripts/enforce_robin_reader_contract.py --root _out/site
           rm -rf _site
           mkdir -p _site/blueprint
           cp -a _out/site/. _site/
@@ -161,6 +163,11 @@ jobs:
           grep -q 'id="case-tutorial"' _site/example-cases/robin-ghl-one-term/index.html
           grep -q 'GHL Theorem 3' _site/example-cases/robin-ghl-one-term/index.html
           grep -q 'GHL Theorem 4' _site/example-cases/robin-ghl-one-term/index.html
+          grep -q 'id="paper-lean-alignment"' _site/example-cases/robin-ghl-one-term/index.html
+          grep -q 'id="source-assumption-translation"' _site/example-cases/robin-ghl-one-term/index.html
+          grep -q 'Paper assumption / source issue.' _site/example-cases/robin-ghl-one-term/index.html
+          grep -q 'Plain language.' _site/example-cases/robin-ghl-one-term/index.html
+          grep -q 'Why it matters.' _site/example-cases/robin-ghl-one-term/index.html
           grep -q 'What ASPBE improves' _site/example-cases/robin-ghl-one-term/index.html
           grep -q 'Advanced source-fidelity notes' _site/example-cases/robin-ghl-one-term/index.html
           grep -q 'data-collapsed-section="verification-status"' _site/example-cases/robin-ghl-one-term/index.html
