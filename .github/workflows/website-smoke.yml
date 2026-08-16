@@ -1,0 +1,45 @@
+name: Fast website teaching contract
+
+on:
+  push:
+    branches:
+      - main
+      - "agent/**"
+    paths:
+      - "website/**"
+      - "scripts/build-website.sh"
+      - ".github/workflows/website-smoke.yml"
+  pull_request:
+    paths:
+      - "website/**"
+      - "scripts/build-website.sh"
+      - ".github/workflows/website-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  teaching-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Check Python and teaching data
+        run: |
+          python3 -m py_compile \
+            website/scripts/enrich_casebook.py \
+            website/scripts/enforce_robin_reader_contract.py \
+            website/scripts/polish_casebook.py \
+            website/scripts/test_casebook_enrichment.py \
+            website/scripts/test_casebook_polish.py
+          python3 -m unittest \
+            website.scripts.test_casebook_enrichment \
+            website.scripts.test_casebook_polish
+          python3 - <<'PY'
+          from website.scripts import enrich_casebook
+          from website.scripts.enforce_robin_reader_contract import robin_record, validate_data
+          validate_data(robin_record(), enrich_casebook.declaration_map())
+          print("Robin paper -> plain language -> Lean contract: data roots valid")
+          PY
