@@ -44,8 +44,11 @@ on:
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
+# `contents: write` is temporary and used only by the main-only cleanup step
+# after all verification and artifact assembly gates have passed. It is removed
+# immediately after the integrated pedagogy refs have been deleted.
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -209,6 +212,15 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+      - name: Remove integrated pedagogy branches
+        if: github.ref == 'refs/heads/main'
+        run: |
+          for branch in agent/pedagogy-casebook agent/pedagogy-preview; do
+            if git ls-remote --exit-code --heads origin "refs/heads/$branch" >/dev/null 2>&1; then
+              git push origin --delete "$branch"
+            fi
+          done
 
   deploy:
     if: github.ref == 'refs/heads/main'
