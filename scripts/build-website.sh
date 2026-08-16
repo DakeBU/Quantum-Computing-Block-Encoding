@@ -9,6 +9,7 @@ python3 -m py_compile \
   website/scripts/build_site.py \
   website/scripts/enrich_teaching_site.py \
   website/scripts/enrich_casebook.py \
+  website/scripts/enforce_robin_reader_contract.py \
   website/scripts/polish_casebook.py \
   website/scripts/check_site.py \
   website/scripts/ide_server.py \
@@ -33,6 +34,7 @@ python3 website/scripts/build_site.py \
 python3 website/scripts/enrich_teaching_site.py --root _out/site
 python3 website/scripts/enrich_casebook.py --root _out/site
 python3 website/scripts/polish_casebook.py --root _out/site
+python3 website/scripts/enforce_robin_reader_contract.py --root _out/site
 
 rm -rf _site
 mkdir -p _site/blueprint
@@ -62,7 +64,15 @@ grep -q 'data-reader-mode-choice="lean"' _site/chapters/state-preparation/index.
 grep -q 'id="case-tutorial"' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'GHL Theorem 3' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'GHL Theorem 4' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'id="paper-lean-alignment"' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'id="source-assumption-translation"' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'Paper assumption / source issue.' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'Plain language.' _site/example-cases/robin-ghl-one-term/index.html
+grep -q 'Why it matters.' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'What ASPBE improves' _site/example-cases/robin-ghl-one-term/index.html
+grep -q '106,96,3,0' website/case-teaching.json
+grep -q '312,266,5,0' website/case-teaching.json
+grep -q '881,674,6,0' website/case-teaching.json
 grep -q 'Advanced source-fidelity notes' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'data-collapsed-section="verification-status"' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'data-collapsed-section="lean-certificate"' _site/example-cases/robin-ghl-one-term/index.html
