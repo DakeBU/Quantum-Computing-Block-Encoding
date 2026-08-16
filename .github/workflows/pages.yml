@@ -155,17 +155,21 @@ jobs:
           cp -a /tmp/aspbe-green-site/blueprint/. _out/blueprint/
           python3 - <<'PY'
           import json
+          import os
           from pathlib import Path
           report = json.loads(Path('/tmp/aspbe-green-site/build-report.json').read_text(encoding='utf-8'))
           gate = dict(report['leanGate'])
           if not gate.get('passed'):
               raise SystemExit('refusing to inherit a non-green Lean gate')
-          gate['inheritedFromPublishedCommit'] = report['commit']
+          verified_commit = str(gate.get('commit') or report['commit'])
+          gate['inheritedFromPublishedCommit'] = verified_commit
           gate['inheritanceReason'] = 'proof/Blueprint paths are unchanged relative to main'
+          gate['commit'] = os.environ['GITHUB_SHA']
+          gate['proofTreeVerifiedAtCommit'] = verified_commit
           out = Path('_out/lean-gate.json')
           out.parent.mkdir(parents=True, exist_ok=True)
           out.write_text(json.dumps(gate, indent=2) + '\n', encoding='utf-8')
-          print(f"Inherited green Lean gate from {report['commit']}")
+          print(f"Inherited green Lean gate from {verified_commit}; rebound to docs-only checkout {os.environ['GITHUB_SHA']}")
           PY
 
       # Keep the website gate intentionally split into named stages. A reader-facing
