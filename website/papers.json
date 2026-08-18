@@ -7,6 +7,8 @@
       "authors": "Nikita Guseynov, Xiajie Huang, Nana Liu",
       "year": 2025,
       "url": "https://arxiv.org/abs/2506.20478",
+      "category": "blockEncoding",
+      "sourceAnchors": ["Eq. (9)", "Theorem 3", "Theorem 4", "Fig. 4"],
       "status": "reproduced-fixed-benchmark",
       "route": "papers/ghl2025-robin/",
       "summary": "Theorem 3/4 are mapped to explicit Lean scope. The fixed N=8 Robin benchmark closes source normal forms, an exact XOR four-slot winner, and same-tier resource comparisons; the arbitrary-width primitive compiler remains a separate frontier."
@@ -19,9 +21,11 @@
       "authors": "Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa",
       "year": 2005,
       "url": "https://arxiv.org/abs/quant-ph/0407010",
+      "category": "statePreparation",
+      "sourceAnchors": ["Eq. (6)", "Eq. (7)", "Eq. (8)", "Fig. 3"],
       "status": "finite-benchmark-formalized",
-      "formalized": "Exact dense two-qubit target, unitary completion, state-action certificate, and a five-gate binary-tree resource transcript.",
-      "remaining": "General n-qubit state-to-state synthesis, phase layer, analytic rotation-angle construction, and the paper-wide CNOT/one-qubit rotation count theorem."
+      "formalized": "Exact dense two-qubit target, unitary completion, state-action certificate, and a paper-motivated binary-tree/UCRY resource transcript.",
+      "remaining": "General n-qubit state-to-state synthesis, phase layer, analytic rotation-angle construction at arbitrary width, and the paper-wide CNOT/one-qubit rotation count theorem."
     },
     {
       "key": "grover-rudolph-2002",
@@ -29,19 +33,23 @@
       "authors": "Lov Grover, Terry Rudolph",
       "year": 2002,
       "url": "https://arxiv.org/abs/quant-ph/0208112",
+      "category": "statePreparation",
+      "sourceAnchors": ["Eq. (1)", "Eq. (3)", "Eq. (5)", "Eq. (6)"],
       "status": "structured-benchmark-formalized",
-      "formalized": "Exact product-distribution benchmark and a Lean same-target theorem showing the factorized two-rotation route strictly beats a generic five-gate tree transcript.",
+      "formalized": "Exact product-distribution benchmark and a same-target finite resource comparison between a generic tree route and a factorized two-rotation route.",
       "remaining": "The general efficiently-integrable recursive probability-loading theorem and an end-to-end arithmetic/integration oracle compiler."
     },
     {
-      "key": "luo-li-sparse-state-2024",
-      "title": "Circuit Complexity of Sparse Quantum State Preparation",
-      "authors": "Jingquan Luo, Lvzhou Li",
-      "year": 2024,
+      "key": "li-luo-sparse-state-2025",
+      "title": "Nearly Optimal Circuit Size for Sparse Quantum State Preparation",
+      "authors": "Lvzhou Li, Jingquan Luo",
+      "year": 2025,
       "url": "https://arxiv.org/abs/2406.16142",
+      "category": "statePreparation",
+      "sourceAnchors": ["Eq. (1)", "Eq. (2)", "Theorem 1"],
       "status": "finite-sparse-benchmark-formalized",
-      "formalized": "An exact d=3 three-qubit sparse target, unitary completion, and a Lean resource theorem showing zero-branch pruning strictly beats the frozen dense-tree transcript.",
-      "remaining": "The asymptotic sparse synthesis constructions, ancilla/depth tradeoffs, and the matching circuit-size lower bounds."
+      "formalized": "An exact n=3, d=3 sparse target and unitary completion, together with a finite zero-branch-pruning resource comparison. The public case is explicitly a finite witness of Eq. (2), not a reproduction of Theorem 1.",
+      "remaining": "The asymptotic sparse synthesis constructions, ancilla/circuit-size tradeoffs, and the matching lower bounds."
     },
     {
       "key": "low-kliuchnikov-schaeffer-2018",
@@ -49,8 +57,10 @@
       "authors": "Guang Hao Low, Vadym Kliuchnikov, Luke Schaeffer",
       "year": 2018,
       "url": "https://arxiv.org/abs/1812.00954",
+      "category": "statePreparation",
+      "sourceAnchors": ["Eq. (2)", "Eq. (5)", "Table 2", "Fig. 1(c,d)"],
       "status": "resource-lemma-formalized",
-      "formalized": "A machine-checked SelectSwap clean-qubit T-count arithmetic row and a fixed lambda=4 versus lambda=1 tradeoff example.",
+      "formalized": "A machine-checked SelectSwap clean-qubit T-count arithmetic row and a fixed lambda=4 versus lambda=1 tradeoff example, grounded in the data-lookup oracle of Eq. (5) and Table 2.",
       "remaining": "Approximate Clifford+T state preparation, coherent lookup/SelectSwap semantics, dirty-qubit correctness, error accounting, and the full asymptotic optimality theorem."
     },
     {
@@ -59,6 +69,8 @@
       "authors": "Xiaoming Sun, Guojing Tian, Shuai Yang, Pei Yuan, Shengyu Zhang",
       "year": 2021,
       "url": "https://arxiv.org/abs/2108.06150",
+      "category": "statePreparation",
+      "sourceAnchors": [],
       "status": "queued",
       "formalized": "Not yet reproduced in Lean.",
       "remaining": "The ancilla-sensitive state-preparation construction, depth/size upper bounds, and the matching optimal-depth statements across the claimed parameter regimes."
@@ -69,6 +81,8 @@
       "authors": "Martin Plesch, Časlav Brukner",
       "year": 2011,
       "url": "https://arxiv.org/abs/1003.5760",
+      "category": "statePreparation",
+      "sourceAnchors": [],
       "status": "queued",
       "formalized": "Not yet reproduced in Lean.",
       "remaining": "Universal state-preparation decomposition and its CNOT/depth counts, including the four-qubit benchmark."
@@ -79,6 +93,8 @@
       "authors": "Vivek V. Shende, Stephen S. Bullock, Igor L. Markov",
       "year": 2006,
       "url": "https://arxiv.org/abs/quant-ph/0406176",
+      "category": "statePreparation",
+      "sourceAnchors": [],
       "status": "queued",
       "formalized": "The local uniformly-controlled-RY compiler provides a related reusable primitive, but this paper is not claimed reproduced.",
       "remaining": "Paper-faithful quantum-multiplexor/state-initialization synthesis, its CNOT complexity theorem, and the lower-bound comparison."
