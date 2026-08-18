@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "featured": [
+    {
+      "slug": "ghl2025-robin",
+      "title": "Quantum Framework for Simulating Linear PDEs with Robin Boundary Conditions",
+      "authors": "Nikita Guseynov, Xiajie Huang, Nana Liu",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2506.20478",
+      "status": "reproduced-fixed-benchmark",
+      "route": "papers/ghl2025-robin/",
+      "summary": "Theorem 3/4 are mapped to explicit Lean scope. The fixed N=8 Robin benchmark closes source normal forms, an exact XOR four-slot winner, and same-tier resource comparisons; the arbitrary-width primitive compiler remains a separate frontier."
+    }
+  ],
+  "queue": [
+    {
+      "key": "mottonen-2005-state-preparation",
+      "title": "Transformation of quantum states using uniformly controlled rotations",
+      "authors": "Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa",
+      "year": 2005,
+      "url": "https://arxiv.org/abs/quant-ph/0407010",
+      "status": "finite-benchmark-formalized",
+      "formalized": "Exact dense two-qubit target, unitary completion, state-action certificate, and a five-gate binary-tree resource transcript.",
+      "remaining": "General n-qubit state-to-state synthesis, phase layer, and the paper-wide CNOT/one-qubit rotation count theorem."
+    },
+    {
+      "key": "grover-rudolph-2002",
+      "title": "Creating superpositions that correspond to efficiently integrable probability distributions",
+      "authors": "Lov Grover, Terry Rudolph",
+      "year": 2002,
+      "url": "https://arxiv.org/abs/quant-ph/0208112",
+      "status": "structured-benchmark-formalized",
+      "formalized": "Exact product-distribution benchmark and a Lean same-target theorem showing the factorized two-rotation route strictly beats a generic five-gate tree transcript.",
+      "remaining": "The general efficiently-integrable recursive probability-loading theorem and an end-to-end arithmetic/integration oracle compiler."
+    },
+    {
+      "key": "li-luo-2025-sparse-state",
+      "title": "Nearly Optimal Circuit Size for Sparse Quantum State Preparation",
+      "authors": "Xiao-Ming Zhang / authors as indexed by the source paper",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2406.16142",
+      "status": "finite-sparse-benchmark-formalized",
+      "formalized": "An exact d=3 three-qubit sparse target, unitary completion, and a Lean resource theorem showing zero-branch pruning strictly beats the frozen dense-tree transcript.",
+      "remaining": "The asymptotic sparse synthesis construction, ancilla tradeoff, and matching lower-bound statements."
+    },
+    {
+      "key": "low-kliuchnikov-schaeffer-2024",
+      "title": "Trading T gates for dirty qubits in state preparation and unitary synthesis",
+      "authors": "Guang Hao Low, Vadym Kliuchnikov, Luke Schaeffer",
+      "year": 2024,
+      "url": "https://arxiv.org/abs/1812.00954",
+      "status": "resource-lemma-formalized",
+      "formalized": "A machine-checked SelectSwap clean-qubit T-count arithmetic row and a fixed lambda=4 versus lambda=1 tradeoff example.",
+      "remaining": "Approximate Clifford+T state preparation, lookup semantics, dirty-qubit correctness, and the full asymptotic optimality theorem."
+    },
+    {
+      "key": "plesch-brukner-2011",
+      "title": "Quantum-state preparation with universal gate decompositions",
+      "authors": "Martin Plesch, Časlav Brukner",
+      "year": 2011,
+      "url": "https://arxiv.org/abs/1003.5760",
+      "status": "queued",
+      "formalized": "Not yet reproduced in Lean.",
+      "remaining": "Universal state-preparation decomposition and its CNOT/depth counts, including the four-qubit benchmark."
+    },
+    {
+      "key": "shende-bullock-markov-2006",
+      "title": "Synthesis of Quantum Logic Circuits",
+      "authors": "Vivek V. Shende, Stephen S. Bullock, Igor L. Markov",
+      "year": 2006,
+      "url": "https://arxiv.org/abs/quant-ph/0406176",
+      "status": "queued",
+      "formalized": "The local uniformly-controlled-RY compiler provides a related reusable primitive, but this paper is not claimed reproduced.",
+      "remaining": "Paper-faithful multiplexor/state-initialization synthesis and stated CNOT complexity theorems."
+    }
+  ]
+}
