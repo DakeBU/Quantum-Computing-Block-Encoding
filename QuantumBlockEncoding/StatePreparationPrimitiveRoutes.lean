@@ -131,4 +131,56 @@ theorem standardRyMatrix_ryAngle513 :
     standardRyMatrix ryAngleZero.eval = 1 := by
   simp [ryAngleZero, ExactAngle.eval]
 
+/-! ## Reusable little-endian circuit semantics -/
+
+def primitiveLEBits (qubits : Nat) (index : Fin (gridSize qubits)) :
+    PrimitiveBasis qubits :=
+  (primitiveBasisLEEquiv qubits).symm index
+
+theorem evalPrimitiveCircuitLE_append {qubits : Nat}
+    (left right : PrimitiveCircuit qubits) :
+    evalPrimitiveCircuitLE (left ++ right) =
+      evalPrimitiveCircuitLE right * evalPrimitiveCircuitLE left := by
+  unfold evalPrimitiveCircuitLE
+  rw [evalPrimitiveCircuit_append, _root_.Matrix.reindexAlgEquiv_mul]
+
+@[simp] theorem evalPrimitiveCircuitLE_singleton_ry_apply {qubits : Nat}
+    (target : Fin qubits) (angle : ExactAngle)
+    (row column : Fin (gridSize qubits)) :
+    evalPrimitiveCircuitLE ([PrimitiveGate.ry target angle]) row column =
+      if (splitPrimitiveWire target (primitiveLEBits qubits row)).2 =
+          (splitPrimitiveWire target (primitiveLEBits qubits column)).2 then
+        standardRyMatrix angle.eval
+          ((primitiveLEBits qubits row) target)
+          ((primitiveLEBits qubits column) target)
+      else 0 := by
+  simp [evalPrimitiveCircuitLE, primitiveLEBits, evalPrimitiveCircuit,
+    evalPrimitiveGate, _root_.Matrix.reindexAlgEquiv_apply,
+    _root_.Matrix.reindex_apply, _root_.Matrix.submatrix_apply,
+    liftPrimitiveOneQubit_apply]
+
+theorem evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply
+    {qubits controls : Nat}
+    (wires : Fin controls → Fin qubits) (target : Fin qubits)
+    (distinct : ∀ control, wires control ≠ target)
+    (angles : PrimitiveBasis controls → ExactAngle)
+    (row column : Fin (gridSize qubits)) :
+    evalPrimitiveCircuitLE
+        (compileUniformlyControlledRy controls wires target distinct angles)
+        row column =
+      if (splitPrimitiveWire target (primitiveLEBits qubits row)).2 =
+          (splitPrimitiveWire target (primitiveLEBits qubits column)).2 then
+        standardRyMatrix
+          (angles (primitiveControlAssignment wires target distinct
+            (splitPrimitiveWire target (primitiveLEBits qubits row)).2)).eval
+          ((primitiveLEBits qubits row) target)
+          ((primitiveLEBits qubits column) target)
+      else 0 := by
+  unfold evalPrimitiveCircuitLE
+  rw [compileUniformlyControlledRy_eval_controlledRyBlockMatrix]
+  simpa [primitiveLEBits, _root_.Matrix.reindexAlgEquiv_apply,
+    _root_.Matrix.reindex_apply, _root_.Matrix.submatrix_apply] using
+    controlledRyBlockMatrix_apply wires target distinct angles
+      (primitiveLEBits qubits row) (primitiveLEBits qubits column)
+
 end QuantumBlockEncoding.StatePreparationBenchmarks
