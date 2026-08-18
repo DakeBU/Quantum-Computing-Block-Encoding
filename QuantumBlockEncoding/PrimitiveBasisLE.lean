@@ -53,6 +53,20 @@ def primitiveBits2LE (index : Fin 4) : PrimitiveBasis 2
     (primitiveBasisLEEquiv 2).symm index = primitiveBits2LE index := by
   native_decide +revert
 
+/-- Encode the non-target wire of a two-qubit little-endian basis state. -/
+def primitiveBits2LEWithout (target : Fin 2) (index : Fin 4) : Nat :=
+  match target.val with
+  | 0 => index.val / 2
+  | _ => index.val % 2
+
+@[simp] theorem splitPrimitiveWire_primitiveBits2LE_context_eq
+    (target : Fin 2) (left right : Fin 4) :
+    (splitPrimitiveWire target (primitiveBits2LE left)).2 =
+        (splitPrimitiveWire target (primitiveBits2LE right)).2 ↔
+      primitiveBits2LEWithout target left =
+        primitiveBits2LEWithout target right := by
+  native_decide +revert
+
 /-- Explicit inverse used by finite three-wire compiler proofs. -/
 def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
   | 0 => ⟨index.val % 2, by omega⟩
