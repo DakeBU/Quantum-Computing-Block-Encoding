@@ -188,16 +188,17 @@ theorem groverRudolphControlWire_ne_target :
   fin_cases control
   decide
 
-def groverRudolphConstantAngles (_ : PrimitiveBasis 1) : ExactAngle := ryAngle35
+noncomputable def groverRudolphConstantAngles (_ : PrimitiveBasis 1) : ExactAngle :=
+  ryAngle35
 
 /-- Generic binary-tree route: a root split followed by a one-control UCRY. -/
-def groverRudolphTreeCircuit : PrimitiveCircuit 2 :=
+noncomputable def groverRudolphTreeCircuit : PrimitiveCircuit 2 :=
   [PrimitiveGate.ry (1 : Fin 2) ryAngle35] ++
     compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
       groverRudolphControlWire_ne_target groverRudolphConstantAngles
 
 /-- Product-aware route: the two independent rotations can occupy one layer. -/
-def groverRudolphFactorizedCircuit : PrimitiveCircuit 2 :=
+noncomputable def groverRudolphFactorizedCircuit : PrimitiveCircuit 2 :=
   [PrimitiveGate.ry (1 : Fin 2) ryAngle35] ++
     [PrimitiveGate.ry (0 : Fin 2) ryAngle35]
 
@@ -217,6 +218,7 @@ theorem groverRudolphTree_eval_eq_factorized :
   unfold groverRudolphTreeCircuit groverRudolphFactorizedCircuit
   rw [evalPrimitiveCircuit_append, evalPrimitiveCircuit_append,
     groverRudolphConstantUcry_eval]
+  simp [evalPrimitiveCircuit]
 
 theorem groverRudolphTree_evalLE_eq_factorized :
     evalPrimitiveCircuitLE groverRudolphTreeCircuit =
@@ -232,7 +234,8 @@ theorem groverRudolphFactorized_evalLE_eq_matrix :
   ext row column
   fin_cases row <;> fin_cases column <;>
     rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range] <;>
-    norm_num [Finset.sum_range_succ, evalPrimitiveCircuitLE_singleton_ry_apply,
+    norm_num [gridSize, Finset.sum_range_succ,
+      evalPrimitiveCircuitLE_singleton_ry_apply,
       primitiveLEBits, primitiveBasisLEEquiv_two_symm, primitiveBits2LE,
       primitiveBits2LEWithout, standardRyMatrix_ryAngle35,
       realOrthogonalRotation, cosine35, sine35, groverRudolphProductMatrix]
@@ -266,12 +269,12 @@ noncomputable def groverRudolphTreeRoute :
 theorem groverRudolphFactorizedVerified_cost :
     groverRudolphFactorizedRoute.cost =
       { auxiliaryQubits := 0, gateCount := 2, depth := 1, oracleCalls := 0 } := by
-  native_decide
+  decide
 
 theorem groverRudolphTreeVerified_cost :
     groverRudolphTreeRoute.cost =
       { auxiliaryQubits := 0, gateCount := 5, depth := 4, oracleCalls := 0 } := by
-  native_decide
+  decide
 
 theorem groverRudolphFactorized_betterThan_tree :
     groverRudolphFactorizedRoute.cost.betterThan groverRudolphTreeRoute.cost := by
