@@ -1,5 +1,6 @@
 import QuantumBlockEncoding.StatePreparationBenchmarksCoreFixed
 import QuantumBlockEncoding.StatePreparationPrimitiveRoutes
+import QuantumBlockEncoding.StatePreparationPaperRoutes
 
 /-!
 # Representative state-preparation benchmarks
@@ -9,10 +10,12 @@ Stable public entrypoint for the state-preparation benchmark suite.
 * `StatePreparationBenchmarksCoreFixed` contains exact finite target,
   normalization, unitarity, and state-action certificates plus paper resource
   arithmetic.
-* `StatePreparationPrimitiveRoutes` contains typed primitive-circuit semantics
-  and same-target resource comparisons. A scored route is accepted only after
-  the very same primitive circuit proves `U |0^n> = |psi>`.
+* `StatePreparationPrimitiveRoutes` provides the typed primitive-circuit
+  semantics and the Grover--Rudolph same-target comparison.
+* `StatePreparationPaperRoutes` instantiates the same proof-bearing route type
+  for Möttönen-style dense preparation and the Li--Luo sparse finite witness.
 
-Keeping these layers separate prevents a resource transcript from being
-mistaken for a proof that the transcript implements the certified state.
+A resource score is public only after the very same typed circuit proves
+`U |0^n> = |psi>`.  This prevents a resource transcript from being mistaken for
+a proof that the transcript implements the certified state.
 -/
