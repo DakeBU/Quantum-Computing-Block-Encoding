@@ -61,8 +61,8 @@ theorem bellMatrix_unitary :
   ext row column
   fin_cases row <;> fin_cases column <;>
     norm_num [bellMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, gridSize, _root_.Matrix.star_apply,
-      hstar, hmul]
+      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply, hstar, hmul]
 
 noncomputable def bellGate : ComplexUnitaryGate 2 where
   matrix := bellMatrix
@@ -128,7 +128,8 @@ theorem mottonenDenseMatrix_unitary :
   ext row column
   fin_cases row <;> fin_cases column <;>
     norm_num [mottonenDenseMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, gridSize, _root_.Matrix.star_apply]
+      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply]
 
 noncomputable def mottonenDenseGate : ComplexUnitaryGate 2 where
   matrix := mottonenDenseMatrix
@@ -198,7 +199,8 @@ theorem groverRudolphProductMatrix_unitary :
   ext row column
   fin_cases row <;> fin_cases column <;>
     norm_num [groverRudolphProductMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, gridSize, _root_.Matrix.star_apply]
+      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply]
 
 noncomputable def groverRudolphProductGate : ComplexUnitaryGate 2 where
   matrix := groverRudolphProductMatrix
@@ -266,7 +268,8 @@ theorem sparseThreeMatrix_unitary :
   ext row column
   fin_cases row <;> fin_cases column <;>
     norm_num [sparseThreeMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, gridSize, _root_.Matrix.star_apply]
+      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply]
 
 noncomputable def sparseThreeGate : ComplexUnitaryGate 3 where
   matrix := sparseThreeMatrix
