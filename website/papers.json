@@ -34,10 +34,10 @@
       "remaining": "The general efficiently-integrable recursive probability-loading theorem and an end-to-end arithmetic/integration oracle compiler."
     },
     {
-      "key": "li-luo-2025-sparse-state",
-      "title": "Nearly Optimal Circuit Size for Sparse Quantum State Preparation",
-      "authors": "Xiao-Ming Zhang / authors as indexed by the source paper",
-      "year": 2025,
+      "key": "luo-li-sparse-state",
+      "title": "Circuit Complexity of Sparse Quantum State Preparation",
+      "authors": "Jingquan Luo, Lvzhou Li",
+      "year": 2024,
       "url": "https://arxiv.org/abs/2406.16142",
       "status": "finite-sparse-benchmark-formalized",
       "formalized": "An exact d=3 three-qubit sparse target, unitary completion, and a Lean resource theorem showing zero-branch pruning strictly beats the frozen dense-tree transcript.",
