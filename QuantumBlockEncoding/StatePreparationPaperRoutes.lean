@@ -19,12 +19,18 @@ open Robin.ComplexLCU
 theorem standardRyMatrix_ryAngle35_explicit :
     standardRyMatrix ryAngle35.eval =
       realOrthogonalRotation ((3 : Real) / 5) ((4 : Real) / 5) := by
-  exact standardRyMatrix_ryAngle35
+  rw [standardRyMatrix_ryAngle35]
+  ext row column
+  fin_cases row <;> fin_cases column <;>
+    dsimp [realOrthogonalRotation] <;> norm_num
 
 theorem standardRyMatrix_ryAngle513_explicit :
     standardRyMatrix ryAngle513.eval =
       realOrthogonalRotation ((5 : Real) / 13) ((12 : Real) / 13) := by
-  exact standardRyMatrix_ryAngle513
+  rw [standardRyMatrix_ryAngle513]
+  ext row column
+  fin_cases row <;> fin_cases column <;>
+    dsimp [realOrthogonalRotation] <;> norm_num
 
 /-! ## Möttönen Eq. (6)--(8) / Fig. 3 finite UCRY route -/
 
@@ -41,13 +47,18 @@ theorem mottonenDensePrimitive_prepares_target :
     applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
       mottonenDenseTarget.amplitudes := by
   rw [applyVec_zeroKet]
-  change
-    (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit).col (0 : Fin 4) =
-      mottonenDenseState
   funext row
+  change evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit row (0 : Fin 4) =
+    mottonenDenseState row
   unfold mottonenDensePrimitiveCircuit
-  rw [evalPrimitiveCircuitLE_append, _root_.Matrix.mul_apply,
-    Finset.sum_fin_eq_sum_range]
+  rw [evalPrimitiveCircuitLE_append]
+  change
+    (evalPrimitiveCircuitLE
+        (compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
+          groverRudolphControlWire_ne_target mottonenConditionalAngles) *
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513])
+      row (0 : Fin 4) = mottonenDenseState row
+  rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range]
   fin_cases row <;>
     norm_num [gridSize, Finset.sum_range_succ,
       evalPrimitiveCircuitLE_singleton_ry_apply,
@@ -95,12 +106,14 @@ theorem zeroAngleCompiledUcry_eval_eq_one
         apply Prod.ext
         · simpa [splitPrimitiveWire] using targetEqual
         · exact contextsEqual
-    simp [contextsEqual, standardRyMatrix_ryAngleZero, rowEq_iff]
+    rw [if_pos contextsEqual, standardRyMatrix_ryAngleZero]
+    simpa only [_root_.Matrix.one_apply, rowEq_iff]
   · have rowNe : row ≠ column := by
       intro equality
       subst column
       exact contextsEqual rfl
-    simp [contextsEqual, rowNe]
+    rw [if_neg contextsEqual]
+    simp [_root_.Matrix.one_apply, rowNe]
 
 /-! ## Li--Luo Eq. (1)--(2) finite sparse route -/
 
@@ -125,12 +138,18 @@ theorem sparsePruned_prepares_target :
     applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
       sparseThreeTarget.amplitudes := by
   rw [applyVec_zeroKet]
-  change (evalPrimitiveCircuitLE sparsePrunedCircuit).col (0 : Fin 8) =
-    sparseThreeState
   funext row
+  change evalPrimitiveCircuitLE sparsePrunedCircuit row (0 : Fin 8) =
+    sparseThreeState row
   unfold sparsePrunedCircuit
-  rw [evalPrimitiveCircuitLE_append, _root_.Matrix.mul_apply,
-    Finset.sum_fin_eq_sum_range]
+  rw [evalPrimitiveCircuitLE_append]
+  change
+    (evalPrimitiveCircuitLE
+        (compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
+          sparseControlWire_ne_target sparseConditionalAngles) *
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513])
+      row (0 : Fin 8) = sparseThreeState row
+  rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range]
   fin_cases row <;>
     norm_num [gridSize, Finset.sum_range_succ,
       evalPrimitiveCircuitLE_singleton_ry_apply,
