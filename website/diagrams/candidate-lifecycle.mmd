@@ -1,14 +1,12 @@
 flowchart LR
-  G["Generate candidates"] --> P["Maintain diverse<br/>population"]
-  P --> S["Score resources<br/>lexicographically"]
-  S --> V["Verify dimensions,<br/>unitarity, block"]
+  G["Generate candidates"] --> P["Maintain a diverse<br/>population"]
+  P --> S["Compare resources<br/>lexicographically"]
+  S --> V["Check dimensions,<br/>unitarity, clean block"]
   V --> K{"Lean gate"}
-  K -- "Pass" --> E["Executable export<br/>and Qiskit check"]
-  K -- "Failure record" --> F["Structured feedback"]
-  E --> Q{"Validation pass"}
-  Q -- "Yes" --> A["Accept and store<br/>memory card"]
-  Q -- "No" --> F
-  F --> T{"Upper-layer decision"}
-  T -- "Add agents / recombine" --> P
-  T -- "Relax epsilon by schedule" --> G
-
+  K -- "certificate closes" --> E["Optional executable<br/>export"]
+  K -- "proof fails" --> F["Structured obstruction"]
+  E --> A["Accept and store<br/>certified memory"]
+  F --> T{"Controller decision"}
+  T -- "new route / new proof leaf" --> P
+  T -- "adjacent tolerance rung" --> G
+  G -. "ε follows the task schedule" .-> T
