@@ -4,6 +4,37 @@
   const root = document.documentElement;
   const body = document.body;
   const siteRoot = body.dataset.siteRoot || "./";
+
+  // Reader-facing diagrams should look like textbook figures rather than UI cards.
+  // This runs before Mermaid initializes, so both SVG text and HTML labels inherit
+  // the same Times-family typography.  The fallbacks keep Linux builds portable.
+  const figureTypography = document.createElement("style");
+  figureTypography.textContent = `
+    .diagram-panel,
+    .stage-circuit-render {
+      background: #fff !important;
+      border-radius: 2px !important;
+      box-shadow: none !important;
+    }
+    .diagram-panel .mermaid,
+    .diagram-panel .mermaid *,
+    .diagram-panel svg text,
+    .diagram-panel svg foreignObject *,
+    .quantikz-preview text,
+    .stage-circuit-canvas svg text,
+    .circuit-live-preview svg text {
+      font-family: "Times New Roman", Times, "Liberation Serif", serif !important;
+    }
+    .diagram-panel .node rect,
+    .diagram-panel .cluster rect,
+    .diagram-panel .label-container,
+    .quantikz-preview .qc-gate {
+      rx: 2px !important;
+      ry: 2px !important;
+    }
+  `;
+  document.head.append(figureTypography);
+
   const themes = ["blueprint", "modern", "bold"];
   const savedTheme = localStorage.getItem("quantumcomputinglib-theme");
   const requestedTheme = new URLSearchParams(window.location.search).get("theme");
