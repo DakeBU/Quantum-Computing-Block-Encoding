@@ -5,7 +5,7 @@ import Mathlib.Tactic
 # Paper-grounded state-preparation primitive routes
 
 This module instantiates the reusable exact UCRY compiler on two paper-grounded
-finite benchmarks.  Every resource comparison is attached to the same typed
+finite benchmarks. Every resource comparison is attached to the same typed
 primitive circuit whose zero-input state action is proved exactly.
 -/
 
@@ -43,32 +43,45 @@ theorem standardRyMatrix_ryAngle513_explicit :
 noncomputable def mottonenConditionalAngles (bits : PrimitiveBasis 1) : ExactAngle :=
   if bits 0 = 0 then ryAngle35 else ryAngle513
 
+noncomputable def mottonenDenseUcryCircuit : PrimitiveCircuit 2 :=
+  compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
+    groverRudolphControlWire_ne_target mottonenConditionalAngles
+
 /-- Root probability split on q1, then one-control UCRY on q0. -/
 noncomputable def mottonenDensePrimitiveCircuit : PrimitiveCircuit 2 :=
-  [PrimitiveGate.ry (1 : Fin 2) ryAngle513] ++
-    compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
-      groverRudolphControlWire_ne_target mottonenConditionalAngles
+  [PrimitiveGate.ry (1 : Fin 2) ryAngle513] ++ mottonenDenseUcryCircuit
 
-set_option maxRecDepth 20000 in
-theorem mottonenDensePrimitive_prepares_target :
-    applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
-      mottonenDenseTarget.amplitudes := by
+/-- State after the root q1 split. Only the two branch roots are populated. -/
+noncomputable def mottonenRootState : StateVector (gridSize 2) ℂ :=
+  (5 / 13 : ℂ) • basisKet (gridSize 2) (0 : Fin 4) +
+    (12 / 13 : ℂ) • basisKet (gridSize 2) (2 : Fin 4)
+
+theorem mottonenRootRy_prepares :
+    applyVec
+        (evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513])
+        (zeroKet 2) = mottonenRootState := by
   rw [applyVec_zeroKet]
-  funext row
-  change evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit row (0 : Fin 4) =
-    mottonenDenseState row
-  unfold mottonenDensePrimitiveCircuit
-  rw [evalPrimitiveCircuitLE_append]
   change
-    (evalPrimitiveCircuitLE
-        (compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
-          groverRudolphControlWire_ne_target mottonenConditionalAngles) *
-      evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513])
-      row (0 : Fin 4) = mottonenDenseState row
-  rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range]
+    (evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513]).col
+        (0 : Fin 4) = mottonenRootState
+  funext row
   fin_cases row <;>
-    norm_num [gridSize, Finset.sum_range_succ,
+    norm_num [gridSize, mottonenRootState, basisKet,
       evalPrimitiveCircuitLE_singleton_ry_apply,
+      primitiveLEBits, primitiveBasisLEEquiv_two_symm, primitiveBits2LE,
+      primitiveBits2LEWithout, splitPrimitiveWire_primitiveBits2LE_context_eq,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+
+theorem mottonenDenseUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
+      mottonenDenseState := by
+  unfold applyVec mottonenRootState basisKet
+  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
+    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
+    _root_.Matrix.mulVec_single_one]
+  funext row
+  fin_cases row <;>
+    norm_num [mottonenDenseUcryCircuit,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       mottonenConditionalAngles, groverRudolphControlWire,
       groverRudolphControlWire_ne_target, primitiveControlAssignment,
@@ -77,6 +90,21 @@ theorem mottonenDensePrimitive_prepares_target :
       standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
       mottonenDenseState]
+
+theorem mottonenDensePrimitive_prepares_target :
+    applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
+      mottonenDenseTarget.amplitudes := by
+  unfold mottonenDensePrimitiveCircuit
+  rw [evalPrimitiveCircuitLE_append]
+  unfold applyVec
+  rw [← _root_.Matrix.mulVec_mulVec]
+  change
+    applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit)
+        (applyVec
+          (evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513])
+          (zeroKet 2)) = mottonenDenseState
+  rw [mottonenRootRy_prepares]
+  exact mottonenDenseUcry_on_root
 
 noncomputable def mottonenDensePrimitiveRoute :
     ExactPrimitiveStatePreparationRoute 2 where
@@ -135,32 +163,45 @@ theorem sparseControlWire_ne_target :
 noncomputable def sparseConditionalAngles (bits : PrimitiveBasis 1) : ExactAngle :=
   if bits 0 = 0 then ryAngle35 else ryAngleZero
 
+noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
+  compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
+    sparseControlWire_ne_target sparseConditionalAngles
+
 /-- q2 root split followed by q2-controlled preparation of q1; q0 stays zero. -/
 noncomputable def sparsePrunedCircuit : PrimitiveCircuit 3 :=
-  [PrimitiveGate.ry (2 : Fin 3) ryAngle513] ++
-    compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
-      sparseControlWire_ne_target sparseConditionalAngles
+  [PrimitiveGate.ry (2 : Fin 3) ryAngle513] ++ sparsePrunedUcryCircuit
 
-set_option maxRecDepth 20000 in
-theorem sparsePruned_prepares_target :
-    applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
-      sparseThreeTarget.amplitudes := by
+/-- State after the root q2 split. -/
+noncomputable def sparseRootState : StateVector (gridSize 3) ℂ :=
+  (5 / 13 : ℂ) • basisKet (gridSize 3) (0 : Fin 8) +
+    (12 / 13 : ℂ) • basisKet (gridSize 3) (4 : Fin 8)
+
+theorem sparseRootRy_prepares :
+    applyVec
+        (evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513])
+        (zeroKet 3) = sparseRootState := by
   rw [applyVec_zeroKet]
-  funext row
-  change evalPrimitiveCircuitLE sparsePrunedCircuit row (0 : Fin 8) =
-    sparseThreeState row
-  unfold sparsePrunedCircuit
-  rw [evalPrimitiveCircuitLE_append]
   change
-    (evalPrimitiveCircuitLE
-        (compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
-          sparseControlWire_ne_target sparseConditionalAngles) *
-      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513])
-      row (0 : Fin 8) = sparseThreeState row
-  rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range]
+    (evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]).col
+        (0 : Fin 8) = sparseRootState
+  funext row
   fin_cases row <;>
-    norm_num [gridSize, Finset.sum_range_succ,
+    norm_num [gridSize, sparseRootState, basisKet,
       evalPrimitiveCircuitLE_singleton_ry_apply,
+      primitiveLEBits, primitiveBasisLEEquiv_three_symm, primitiveBits3LE,
+      primitiveBits3LEWithout, splitPrimitiveWire_primitiveBits3LE_context_eq,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+
+theorem sparsePrunedUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
+      sparseThreeState := by
+  unfold applyVec sparseRootState basisKet
+  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
+    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
+    _root_.Matrix.mulVec_single_one]
+  funext row
+  fin_cases row <;>
+    norm_num [sparsePrunedUcryCircuit,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       sparseConditionalAngles, sparseControlWire, sparseControlWire_ne_target,
       primitiveControlAssignment, primitiveLEBits,
@@ -169,6 +210,21 @@ theorem sparsePruned_prepares_target :
       standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngle513_explicit, standardRyMatrix_ryAngleZero,
       realOrthogonalRotation, sparseThreeState]
+
+theorem sparsePruned_prepares_target :
+    applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
+      sparseThreeTarget.amplitudes := by
+  unfold sparsePrunedCircuit
+  rw [evalPrimitiveCircuitLE_append]
+  unfold applyVec
+  rw [← _root_.Matrix.mulVec_mulVec]
+  change
+    applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit)
+        (applyVec
+          (evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513])
+          (zeroKet 3)) = sparseThreeState
+  rw [sparseRootRy_prepares]
+  exact sparsePrunedUcry_on_root
 
 noncomputable def sparsePrunedRoute : ExactPrimitiveStatePreparationRoute 3 where
   target := sparseThreeTarget
