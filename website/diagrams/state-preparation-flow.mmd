@@ -1,15 +1,15 @@
 flowchart LR
-  T["Target state<br/>|psi>"] --> N["Check normalization<br/><psi|psi> = 1"]
+  T["Target state<br/>|ψ⟩"] --> N["Check normalization<br/>⟨ψ|ψ⟩ = 1"]
   N --> C["Choose a circuit<br/>or unitary completion"]
   C --> U["Prove U is unitary"]
-  C --> A["Prove the state action<br/>U|0^n> = |psi>"]
+  C --> A["Prove the state action<br/>U|0ⁿ⟩ = |ψ⟩"]
   U --> L["Lean state-preparation<br/>certificate"]
   A --> L
   L --> E["Export one certified<br/>finite instance"]
 
-  classDef target fill:#f8f5ee,stroke:#826a32,color:#222222,stroke-width:1.5px;
+  classDef target fill:#ffffff,stroke:#6b6045,color:#222222,stroke-width:1.5px;
   classDef work fill:#ffffff,stroke:#64747a,color:#222222,stroke-width:1.25px;
-  classDef proof fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
+  classDef proof fill:#ffffff,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
   class T,N target;
   class C,U,A work;
   class L,E proof;
