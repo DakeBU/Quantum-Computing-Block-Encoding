@@ -44,6 +44,15 @@ theorem primitiveBasisLEEquiv_six_value (bits : PrimitiveBasis 6) :
       8 * (bits 3).val + 16 * (bits 4).val + 32 * (bits 5).val := by
   native_decide +revert
 
+/-- Explicit inverse used by finite two-wire state-preparation proofs. -/
+def primitiveBits2LE (index : Fin 4) : PrimitiveBasis 2
+  | 0 => ⟨index.val % 2, by omega⟩
+  | _ => ⟨(index.val / 2) % 2, by omega⟩
+
+@[simp] theorem primitiveBasisLEEquiv_two_symm (index : Fin 4) :
+    (primitiveBasisLEEquiv 2).symm index = primitiveBits2LE index := by
+  native_decide +revert
+
 /-- Explicit inverse used by finite three-wire compiler proofs. -/
 def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
   | 0 => ⟨index.val % 2, by omega⟩
