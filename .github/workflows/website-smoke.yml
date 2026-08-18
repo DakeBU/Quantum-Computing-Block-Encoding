@@ -32,22 +32,39 @@ jobs:
             website/scripts/enrich_casebook.py \
             website/scripts/enforce_robin_reader_contract.py \
             website/scripts/publish_extensions.py \
+            website/scripts/publish_taxonomy.py \
             website/scripts/polish_casebook.py \
             website/scripts/test_casebook_enrichment.py \
             website/scripts/test_casebook_polish.py
           python3 -m unittest \
             website.scripts.test_casebook_enrichment \
             website.scripts.test_casebook_polish
+          python3 website/scripts/publish_taxonomy.py --check-data
           python3 - <<'PY'
           import json
           from pathlib import Path
           from website.scripts import enrich_casebook
           from website.scripts.enforce_robin_reader_contract import robin_record, validate_data
+
           validate_data(robin_record(), enrich_casebook.declaration_map())
           state = json.loads(Path('website/state-prep-cases.json').read_text(encoding='utf-8'))
           papers = json.loads(Path('website/papers.json').read_text(encoding='utf-8'))
+          anchors = json.loads(Path('website/case-source-anchors.json').read_text(encoding='utf-8'))
           assert state['schemaVersion'] == 1 and len(state['cases']) >= 4
           assert set(state['teaching']) == {case['slug'] for case in state['cases']}
           assert papers['schemaVersion'] == 1 and papers['featured'] and papers['queue']
-          print('Robin + Papers + state-preparation teaching data: syntax and static structure valid')
+          paper_categories = {item['category'] for item in papers['featured'] + papers['queue']}
+          assert paper_categories == {'statePreparation', 'blockEncoding'}
+          required = {
+              'bell-state-preparation',
+              'mottonen-dense-state-preparation',
+              'grover-rudolph-product-state-preparation',
+              'sparse-three-state-preparation',
+              'robin-ghl-one-term',
+          }
+          assert required <= set(anchors['cases'])
+          for slug in required:
+              record = anchors['cases'][slug]
+              assert record['paperTitle'] and record['anchorLabel'] and record['anchors']
+          print('Robin + Papers + state-preparation teaching taxonomy: syntax and static structure valid')
           PY
