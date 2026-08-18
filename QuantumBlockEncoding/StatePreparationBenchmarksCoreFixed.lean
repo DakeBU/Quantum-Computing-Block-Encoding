@@ -53,16 +53,13 @@ noncomputable def bellMatrix : FiniteMatrix (gridSize 2) (gridSize 2) ℂ :=
 
 theorem bellMatrix_unitary :
     bellMatrix ∈ _root_.Matrix.unitaryGroup (Fin (gridSize 2)) ℂ := by
-  have hstar : star bellAmplitude = bellAmplitude := by
-    simp [bellAmplitude, TextbookStatePreparation.invSqrtTwo]
-  have hmul : bellAmplitude * bellAmplitude = (1 : ℂ) / 2 :=
-    TextbookStatePreparation.invSqrtTwo_mul_self
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    norm_num [bellMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply, hstar, hmul]
+    simp [bellMatrix, bellAmplitude, TextbookStatePreparation.invSqrtTwo,
+      _root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range,
+      Finset.sum_range_succ, gridSize, _root_.Matrix.star_apply] <;>
+    nlinarith [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 2)]
 
 noncomputable def bellGate : ComplexUnitaryGate 2 where
   matrix := bellMatrix
@@ -127,9 +124,9 @@ theorem mottonenDenseMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    norm_num [mottonenDenseMatrix, _root_.Matrix.mul_apply,
+    simp [mottonenDenseMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply]
+      _root_.Matrix.star_apply] <;> norm_num
 
 noncomputable def mottonenDenseGate : ComplexUnitaryGate 2 where
   matrix := mottonenDenseMatrix
@@ -198,9 +195,9 @@ theorem groverRudolphProductMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    norm_num [groverRudolphProductMatrix, _root_.Matrix.mul_apply,
+    simp [groverRudolphProductMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply]
+      _root_.Matrix.star_apply] <;> norm_num
 
 noncomputable def groverRudolphProductGate : ComplexUnitaryGate 2 where
   matrix := groverRudolphProductMatrix
@@ -267,9 +264,9 @@ theorem sparseThreeMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    norm_num [sparseThreeMatrix, _root_.Matrix.mul_apply,
+    simp [sparseThreeMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply]
+      _root_.Matrix.star_apply] <;> norm_num
 
 noncomputable def sparseThreeGate : ComplexUnitaryGate 3 where
   matrix := sparseThreeMatrix
