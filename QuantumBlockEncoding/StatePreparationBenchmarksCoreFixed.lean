@@ -53,13 +53,17 @@ noncomputable def bellMatrix : FiniteMatrix (gridSize 2) (gridSize 2) ℂ :=
 
 theorem bellMatrix_unitary :
     bellMatrix ∈ _root_.Matrix.unitaryGroup (Fin (gridSize 2)) ℂ := by
+  have hconj : (starRingEnd ℂ) bellAmplitude = bellAmplitude := by
+    simp [bellAmplitude, TextbookStatePreparation.invSqrtTwo]
+  have hmul : bellAmplitude * bellAmplitude = (1 : ℂ) / 2 :=
+    TextbookStatePreparation.invSqrtTwo_mul_self
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    simp [bellMatrix, bellAmplitude, TextbookStatePreparation.invSqrtTwo,
-      _root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range,
-      Finset.sum_range_succ, gridSize, _root_.Matrix.star_apply] <;>
-    nlinarith [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 2)]
+    norm_num [bellMatrix, _root_.Matrix.mul_apply,
+      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply] <;>
+    simp [hconj, hmul]
 
 noncomputable def bellGate : ComplexUnitaryGate 2 where
   matrix := bellMatrix
@@ -124,9 +128,10 @@ theorem mottonenDenseMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    simp [mottonenDenseMatrix, _root_.Matrix.mul_apply,
+    norm_num [mottonenDenseMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply] <;> norm_num
+      _root_.Matrix.star_apply] <;>
+    simp <;> norm_num
 
 noncomputable def mottonenDenseGate : ComplexUnitaryGate 2 where
   matrix := mottonenDenseMatrix
@@ -195,9 +200,10 @@ theorem groverRudolphProductMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    simp [groverRudolphProductMatrix, _root_.Matrix.mul_apply,
+    norm_num [groverRudolphProductMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply] <;> norm_num
+      _root_.Matrix.star_apply] <;>
+    simp <;> norm_num
 
 noncomputable def groverRudolphProductGate : ComplexUnitaryGate 2 where
   matrix := groverRudolphProductMatrix
@@ -230,7 +236,7 @@ noncomputable def sparseThreeState : StateVector (gridSize 3) ℂ := fun index =
 noncomputable def sparseThreeTarget : StatePreparationTarget ℂ 3 where
   amplitudes := sparseThreeState
   normalization := ∑ index, Complex.normSq (sparseThreeState index) = 1
-  source := "Fixed d=3 sparse-state nested-Pythagorean benchmark"
+  source := "Li--Luo sparse-state finite witness of Eq. (2), n=3 and d=3"
 
 theorem sparseThreeTarget_normalized : sparseThreeTarget.normalization := by
   change ∑ index : Fin 8, Complex.normSq (sparseThreeState index) = 1
@@ -264,9 +270,10 @@ theorem sparseThreeMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    simp [sparseThreeMatrix, _root_.Matrix.mul_apply,
+    norm_num [sparseThreeMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply] <;> norm_num
+      _root_.Matrix.star_apply] <;>
+    simp <;> norm_num
 
 noncomputable def sparseThreeGate : ComplexUnitaryGate 3 where
   matrix := sparseThreeMatrix
