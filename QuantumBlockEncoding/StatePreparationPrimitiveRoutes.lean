@@ -55,12 +55,7 @@ theorem unitary (route : ExactPrimitiveStatePreparationRoute qubits) :
 
 end ExactPrimitiveStatePreparationRoute
 
-/-! ## Exact Pythagorean rotations
-
-The fixed benchmarks are chosen so the required RY cosines and sines are
-rational Pythagorean pairs.  This lets Lean reduce the typed angle semantics to
-small exact real-orthogonal matrices before any finite circuit proof.
--/
+/-! ## Exact Pythagorean rotations -/
 
 private theorem amplitudeRotation_eq_pythagorean
     (cosine sine : Real)
@@ -182,5 +177,105 @@ theorem evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply
     _root_.Matrix.reindex_apply, _root_.Matrix.submatrix_apply] using
     controlledRyBlockMatrix_apply wires target distinct angles
       (primitiveLEBits qubits row) (primitiveLEBits qubits column)
+
+/-! ## Grover--Rudolph structured probability benchmark -/
+
+def groverRudolphControlWire : Fin 1 → Fin 2 := fun _ => 1
+
+theorem groverRudolphControlWire_ne_target :
+    ∀ control, groverRudolphControlWire control ≠ (0 : Fin 2) := by
+  intro control
+  fin_cases control
+  decide
+
+def groverRudolphConstantAngles (_ : PrimitiveBasis 1) : ExactAngle := ryAngle35
+
+/-- Generic binary-tree route: a root split followed by a one-control UCRY. -/
+def groverRudolphTreeCircuit : PrimitiveCircuit 2 :=
+  [PrimitiveGate.ry (1 : Fin 2) ryAngle35] ++
+    compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
+      groverRudolphControlWire_ne_target groverRudolphConstantAngles
+
+/-- Product-aware route: the two independent rotations can occupy one layer. -/
+def groverRudolphFactorizedCircuit : PrimitiveCircuit 2 :=
+  [PrimitiveGate.ry (1 : Fin 2) ryAngle35] ++
+    [PrimitiveGate.ry (0 : Fin 2) ryAngle35]
+
+theorem groverRudolphConstantUcry_eval :
+    evalPrimitiveCircuit
+        (compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
+          groverRudolphControlWire_ne_target groverRudolphConstantAngles) =
+      evalPrimitiveGate (PrimitiveGate.ry (0 : Fin 2) ryAngle35) := by
+  rw [compileUniformlyControlledRy_eval_controlledRyBlockMatrix]
+  ext row column
+  simp [controlledRyBlockMatrix_apply, groverRudolphConstantAngles,
+    evalPrimitiveGate, liftPrimitiveOneQubit_apply]
+
+theorem groverRudolphTree_eval_eq_factorized :
+    evalPrimitiveCircuit groverRudolphTreeCircuit =
+      evalPrimitiveCircuit groverRudolphFactorizedCircuit := by
+  unfold groverRudolphTreeCircuit groverRudolphFactorizedCircuit
+  rw [evalPrimitiveCircuit_append, evalPrimitiveCircuit_append,
+    groverRudolphConstantUcry_eval]
+
+theorem groverRudolphTree_evalLE_eq_factorized :
+    evalPrimitiveCircuitLE groverRudolphTreeCircuit =
+      evalPrimitiveCircuitLE groverRudolphFactorizedCircuit := by
+  unfold evalPrimitiveCircuitLE
+  rw [groverRudolphTree_eval_eq_factorized]
+
+theorem groverRudolphFactorized_evalLE_eq_matrix :
+    evalPrimitiveCircuitLE groverRudolphFactorizedCircuit =
+      groverRudolphProductMatrix := by
+  unfold groverRudolphFactorizedCircuit
+  rw [evalPrimitiveCircuitLE_append]
+  ext row column
+  fin_cases row <;> fin_cases column <;>
+    rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range] <;>
+    norm_num [Finset.sum_range_succ, evalPrimitiveCircuitLE_singleton_ry_apply,
+      primitiveLEBits, primitiveBasisLEEquiv_two_symm, primitiveBits2LE,
+      primitiveBits2LEWithout, standardRyMatrix_ryAngle35,
+      realOrthogonalRotation, cosine35, sine35, groverRudolphProductMatrix]
+
+theorem groverRudolphFactorized_prepares_target :
+    applyVec (evalPrimitiveCircuitLE groverRudolphFactorizedCircuit) (zeroKet 2) =
+      groverRudolphProductTarget.amplitudes := by
+  rw [groverRudolphFactorized_evalLE_eq_matrix]
+  exact groverRudolphProductMatrix_prepares_target
+
+theorem groverRudolphTree_prepares_target :
+    applyVec (evalPrimitiveCircuitLE groverRudolphTreeCircuit) (zeroKet 2) =
+      groverRudolphProductTarget.amplitudes := by
+  rw [groverRudolphTree_evalLE_eq_factorized]
+  exact groverRudolphFactorized_prepares_target
+
+noncomputable def groverRudolphFactorizedRoute :
+    ExactPrimitiveStatePreparationRoute 2 where
+  target := groverRudolphProductTarget
+  circuit := groverRudolphFactorizedCircuit
+  normalizationProof := groverRudolphProductTarget_normalized
+  preparationProof := groverRudolphFactorized_prepares_target
+
+noncomputable def groverRudolphTreeRoute :
+    ExactPrimitiveStatePreparationRoute 2 where
+  target := groverRudolphProductTarget
+  circuit := groverRudolphTreeCircuit
+  normalizationProof := groverRudolphProductTarget_normalized
+  preparationProof := groverRudolphTree_prepares_target
+
+theorem groverRudolphFactorizedVerified_cost :
+    groverRudolphFactorizedRoute.cost =
+      { auxiliaryQubits := 0, gateCount := 2, depth := 1, oracleCalls := 0 } := by
+  native_decide
+
+theorem groverRudolphTreeVerified_cost :
+    groverRudolphTreeRoute.cost =
+      { auxiliaryQubits := 0, gateCount := 5, depth := 4, oracleCalls := 0 } := by
+  native_decide
+
+theorem groverRudolphFactorized_betterThan_tree :
+    groverRudolphFactorizedRoute.cost.betterThan groverRudolphTreeRoute.cost := by
+  rw [groverRudolphFactorizedVerified_cost, groverRudolphTreeVerified_cost]
+  exact Or.inl (by decide)
 
 end QuantumBlockEncoding.StatePreparationBenchmarks
