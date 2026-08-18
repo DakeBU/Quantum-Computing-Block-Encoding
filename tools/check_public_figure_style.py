@@ -4,7 +4,8 @@
 The README intentionally uses a small set of academic-style SVG figures.  This
 check prevents regenerated assets from silently falling back to UI/sans fonts or
 ASCII pseudo-mathematics.  Website Mermaid and grouped-register SVGs are styled
-at runtime by ``website/static/site.js``; that override is checked here too.
+at runtime by ``website/static/site.js``; both their typography and their source
+labels are checked here too.
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 SITE_JS = ROOT / "website" / "static" / "site.js"
+DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
 
 IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
@@ -28,7 +30,9 @@ FORBIDDEN_FONTS = (
     "ui-sans-serif",
     "sans-serif",
 )
-ASCII_MATH_TOKENS = re.compile(r"(?i)(?:\|psi>|\bpsi\b|\balpha\b|\btensor\b|\bdagger\b|\bPi\b)")
+ASCII_MATH_TOKENS = re.compile(
+    r"(?i)(?:\|psi>|<psi\||\bpsi\b|\balpha\b|\bepsilon\b|\btensor\b|\bdagger\b|\bPi\b|\|0\^[a-z0-9]+>)"
+)
 
 
 def fail(message: str) -> None:
@@ -65,6 +69,20 @@ def check_readme_svgs() -> None:
             fail(f"{ref} contains ASCII pseudo-mathematics; use TeX/Unicode symbols")
 
 
+def check_mermaid_math_labels() -> None:
+    diagrams = sorted(DIAGRAM_DIR.glob("*.mmd"))
+    if not diagrams:
+        fail("website/diagrams contains no Mermaid sources")
+    for path in diagrams:
+        source = read(path)
+        match = ASCII_MATH_TOKENS.search(source)
+        if match:
+            fail(
+                f"{path.relative_to(ROOT)} contains ASCII pseudo-math {match.group(0)!r}; "
+                "use Unicode mathematical labels"
+            )
+
+
 def check_website_runtime_figures() -> None:
     source = read(SITE_JS)
     required = (
@@ -93,6 +111,7 @@ def check_matplotlib_defaults() -> None:
 
 def main() -> None:
     check_readme_svgs()
+    check_mermaid_math_labels()
     check_website_runtime_figures()
     check_matplotlib_defaults()
     print("public figure typography/formula checks passed")
