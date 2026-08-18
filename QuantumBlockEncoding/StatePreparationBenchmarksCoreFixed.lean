@@ -130,9 +130,11 @@ theorem mottonenDenseMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    norm_num [mottonenDenseMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply, starRingEnd_apply]
+    rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range] <;>
+    norm_num [mottonenDenseMatrix, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply] <;>
+    simp only [starRingEnd_apply, star_ofNat] <;>
+    norm_num
 
 noncomputable def mottonenDenseGate : ComplexUnitaryGate 2 where
   matrix := mottonenDenseMatrix
@@ -201,9 +203,11 @@ theorem groverRudolphProductMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    norm_num [groverRudolphProductMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply, starRingEnd_apply]
+    rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range] <;>
+    norm_num [groverRudolphProductMatrix, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply] <;>
+    simp only [starRingEnd_apply, star_ofNat] <;>
+    norm_num
 
 noncomputable def groverRudolphProductGate : ComplexUnitaryGate 2 where
   matrix := groverRudolphProductMatrix
@@ -270,9 +274,11 @@ theorem sparseThreeMatrix_unitary :
   rw [_root_.Matrix.mem_unitaryGroup_iff']
   ext row column
   fin_cases row <;> fin_cases column <;>
-    norm_num [sparseThreeMatrix, _root_.Matrix.mul_apply,
-      Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply, starRingEnd_apply]
+    rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range] <;>
+    norm_num [sparseThreeMatrix, Finset.sum_range_succ, gridSize,
+      _root_.Matrix.star_apply] <;>
+    simp only [starRingEnd_apply, star_ofNat] <;>
+    norm_num
 
 noncomputable def sparseThreeGate : ComplexUnitaryGate 3 where
   matrix := sparseThreeMatrix
