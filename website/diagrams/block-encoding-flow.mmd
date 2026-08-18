@@ -1,15 +1,15 @@
 flowchart LR
-  T["Target operator A<br/>and scale alpha"] --> R["Fix ancillas, norm,<br/>and register order"]
+  T["Target operator A<br/>and scale α"] --> R["Fix ancillas, norm,<br/>and register order"]
   R --> C["Choose a construction<br/>family and unitary U"]
   C --> U["Prove U is unitary"]
-  C --> B["Prove the clean block<br/>Pi U Pi^dagger ~= A/alpha"]
+  C --> B["Prove the clean block<br/>‖A − α Π U Π†‖ ≤ ε"]
   U --> L["Lean block-encoding<br/>certificate"]
   B --> L
   L --> E["Export and check one<br/>certified finite instance"]
 
-  classDef target fill:#eef3f7,stroke:#49677d,color:#1f2e39,stroke-width:1.5px;
+  classDef target fill:#ffffff,stroke:#49677d,color:#1f2e39,stroke-width:1.5px;
   classDef work fill:#ffffff,stroke:#64747a,color:#222222,stroke-width:1.25px;
-  classDef proof fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
+  classDef proof fill:#ffffff,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
   class T,R target;
   class C,U,B work;
   class L,E proof;
