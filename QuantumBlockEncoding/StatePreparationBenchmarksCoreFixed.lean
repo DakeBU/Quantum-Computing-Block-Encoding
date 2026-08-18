@@ -58,13 +58,14 @@ theorem star_bellMatrix : star bellMatrix = bellMatrix := by
 
 theorem bellMatrix_unitary :
     bellMatrix ∈ _root_.Matrix.unitaryGroup (Fin (gridSize 2)) ℂ := by
+  have hmul : bellAmplitude * bellAmplitude = (1 : ℂ) / 2 := by
+    simpa [bellAmplitude] using TextbookStatePreparation.invSqrtTwo_mul_self
   rw [_root_.Matrix.mem_unitaryGroup_iff, star_bellMatrix]
   ext row column
   fin_cases row <;> fin_cases column <;>
     rw [_root_.Matrix.mul_apply, Finset.sum_fin_eq_sum_range] <;>
-    simp [gridSize, bellMatrix,
-      TextbookStatePreparation.invSqrtTwo_mul_self] <;>
-    norm_num [Finset.sum_range_succ]
+    norm_num [gridSize, bellMatrix, Finset.sum_range_succ] <;>
+    simp [hmul] <;> norm_num
 
 noncomputable def bellGate : ComplexUnitaryGate 2 where
   matrix := bellMatrix
@@ -131,8 +132,7 @@ theorem mottonenDenseMatrix_unitary :
   fin_cases row <;> fin_cases column <;>
     norm_num [mottonenDenseMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply] <;>
-    (try simp) <;> norm_num
+      _root_.Matrix.star_apply, starRingEnd_apply]
 
 noncomputable def mottonenDenseGate : ComplexUnitaryGate 2 where
   matrix := mottonenDenseMatrix
@@ -203,8 +203,7 @@ theorem groverRudolphProductMatrix_unitary :
   fin_cases row <;> fin_cases column <;>
     norm_num [groverRudolphProductMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply] <;>
-    (try simp) <;> norm_num
+      _root_.Matrix.star_apply, starRingEnd_apply]
 
 noncomputable def groverRudolphProductGate : ComplexUnitaryGate 2 where
   matrix := groverRudolphProductMatrix
@@ -273,8 +272,7 @@ theorem sparseThreeMatrix_unitary :
   fin_cases row <;> fin_cases column <;>
     norm_num [sparseThreeMatrix, _root_.Matrix.mul_apply,
       Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, gridSize,
-      _root_.Matrix.star_apply] <;>
-    (try simp) <;> norm_num
+      _root_.Matrix.star_apply, starRingEnd_apply]
 
 noncomputable def sparseThreeGate : ComplexUnitaryGate 3 where
   matrix := sparseThreeMatrix
