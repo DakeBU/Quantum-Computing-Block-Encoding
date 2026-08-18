@@ -1,0 +1,31 @@
+name: State-preparation proof smoke
+
+on:
+  pull_request:
+    paths:
+      - "QuantumBlockEncoding/StatePreparationBenchmarks.lean"
+      - "QuantumBlockEncoding/StatePreparation.lean"
+      - "QuantumBlockEncoding/ConcreteSemantics.lean"
+      - "QuantumBlockEncoding/TextbookStatePreparation.lean"
+      - "QuantumBlockEncoding/Circuit.lean"
+      - "QuantumBlockEncoding/Resources.lean"
+      - "QuantumBlockEncoding.lean"
+      - ".github/workflows/state-prep-proof-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  state-prep-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Set up Lean and Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: false
+          use-mathlib-cache: true
+      - name: Compile representative state-preparation benchmarks
+        run: lake env lean QuantumBlockEncoding/StatePreparationBenchmarks.lean
