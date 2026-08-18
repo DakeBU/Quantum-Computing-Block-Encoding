@@ -31,6 +31,7 @@ jobs:
           python3 -m py_compile \
             website/scripts/enrich_casebook.py \
             website/scripts/enforce_robin_reader_contract.py \
+            website/scripts/publish_extensions.py \
             website/scripts/polish_casebook.py \
             website/scripts/test_casebook_enrichment.py \
             website/scripts/test_casebook_polish.py
@@ -38,8 +39,15 @@ jobs:
             website.scripts.test_casebook_enrichment \
             website.scripts.test_casebook_polish
           python3 - <<'PY'
+          import json
+          from pathlib import Path
           from website.scripts import enrich_casebook
           from website.scripts.enforce_robin_reader_contract import robin_record, validate_data
           validate_data(robin_record(), enrich_casebook.declaration_map())
-          print("Robin paper -> plain language -> Lean contract: data roots valid")
+          state = json.loads(Path('website/state-prep-cases.json').read_text(encoding='utf-8'))
+          papers = json.loads(Path('website/papers.json').read_text(encoding='utf-8'))
+          assert state['schemaVersion'] == 1 and len(state['cases']) >= 4
+          assert set(state['teaching']) == {case['slug'] for case in state['cases']}
+          assert papers['schemaVersion'] == 1 and papers['featured'] and papers['queue']
+          print('Robin + Papers + state-preparation teaching data: syntax and static structure valid')
           PY
