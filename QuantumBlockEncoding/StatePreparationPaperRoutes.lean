@@ -20,17 +20,23 @@ theorem standardRyMatrix_ryAngle35_explicit :
     standardRyMatrix ryAngle35.eval =
       realOrthogonalRotation ((3 : Real) / 5) ((4 : Real) / 5) := by
   rw [standardRyMatrix_ryAngle35]
+  change
+    realOrthogonalRotation ((3 / 5 : Rat) : Real) ((4 / 5 : Rat) : Real) =
+      realOrthogonalRotation ((3 : Real) / 5) ((4 : Real) / 5)
   ext row column
   fin_cases row <;> fin_cases column <;>
-    dsimp [realOrthogonalRotation] <;> norm_num
+    norm_num [realOrthogonalRotation]
 
 theorem standardRyMatrix_ryAngle513_explicit :
     standardRyMatrix ryAngle513.eval =
       realOrthogonalRotation ((5 : Real) / 13) ((12 : Real) / 13) := by
   rw [standardRyMatrix_ryAngle513]
+  change
+    realOrthogonalRotation ((5 / 13 : Rat) : Real) ((12 / 13 : Rat) : Real) =
+      realOrthogonalRotation ((5 : Real) / 13) ((12 : Real) / 13)
   ext row column
   fin_cases row <;> fin_cases column <;>
-    dsimp [realOrthogonalRotation] <;> norm_num
+    norm_num [realOrthogonalRotation]
 
 /-! ## Möttönen Eq. (6)--(8) / Fig. 3 finite UCRY route -/
 
@@ -43,6 +49,7 @@ noncomputable def mottonenDensePrimitiveCircuit : PrimitiveCircuit 2 :=
     compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
       groverRudolphControlWire_ne_target mottonenConditionalAngles
 
+set_option maxRecDepth 20000 in
 theorem mottonenDensePrimitive_prepares_target :
     applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
       mottonenDenseTarget.amplitudes := by
@@ -113,7 +120,7 @@ theorem zeroAngleCompiledUcry_eval_eq_one
       subst column
       exact contextsEqual rfl
     rw [if_neg contextsEqual]
-    simp [_root_.Matrix.one_apply, rowNe]
+    simp [rowNe]
 
 /-! ## Li--Luo Eq. (1)--(2) finite sparse route -/
 
@@ -134,6 +141,7 @@ noncomputable def sparsePrunedCircuit : PrimitiveCircuit 3 :=
     compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
       sparseControlWire_ne_target sparseConditionalAngles
 
+set_option maxRecDepth 20000 in
 theorem sparsePruned_prepares_target :
     applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
       sparseThreeTarget.amplitudes := by
