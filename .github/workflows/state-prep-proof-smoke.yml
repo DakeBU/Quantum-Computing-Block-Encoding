@@ -3,10 +3,15 @@ name: State-preparation proof smoke
 on:
   pull_request:
     paths:
-      - "QuantumBlockEncoding/StatePreparationBenchmarks.lean"
+      - "QuantumBlockEncoding/StatePreparationBenchmarks*.lean"
+      - "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean"
       - "QuantumBlockEncoding/StatePreparation.lean"
       - "QuantumBlockEncoding/ConcreteSemantics.lean"
       - "QuantumBlockEncoding/TextbookStatePreparation.lean"
+      - "QuantumBlockEncoding/PrimitiveCircuit.lean"
+      - "QuantumBlockEncoding/PrimitiveSemantics.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLE.lean"
+      - "QuantumBlockEncoding/UniformlyControlledRy.lean"
       - "QuantumBlockEncoding/Circuit.lean"
       - "QuantumBlockEncoding/Resources.lean"
       - "QuantumBlockEncoding.lean"
@@ -25,7 +30,7 @@ jobs:
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
-          use-github-cache: false
+          use-github-cache: true
           use-mathlib-cache: true
       - name: Compile representative state-preparation benchmarks
         run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
