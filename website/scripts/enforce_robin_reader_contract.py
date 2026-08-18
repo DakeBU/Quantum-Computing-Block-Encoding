@@ -10,9 +10,9 @@ prose:
 2. structured source assumptions in the form
    paper/source statement -> plain-language meaning -> why it matters -> Lean evidence.
 
-The pass also checks the final DOM ordering.  A future renderer refactor may
-change styling, but it may not silently move raw source-audit jargon back ahead
-of the mathematical story.
+After that contract is closed, `publish_extensions.py` places the enriched Robin
+surface under the first-class Papers track and publishes the additional
+state-preparation cases through the same case renderer.
 """
 
 from __future__ import annotations
@@ -24,12 +24,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-# Support both `python -m website.scripts.enforce_robin_reader_contract` and
-# direct execution from the repository root as used by the Pages workflow.
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from website.scripts import enrich_casebook as casebook  # noqa: E402
+from website.scripts import publish_extensions  # noqa: E402
 
 
 TEACHING_PATH = ROOT / "website" / "case-teaching.json"
@@ -150,9 +149,6 @@ def inject_contract(
         raise RuntimeError(f"Robin reader-contract page missing: {path}")
     text = path.read_text(encoding="utf-8")
 
-    # `case-studies/robin/` is two directories below the site root.  The
-    # generic tutorial was originally rendered with a one-level prefix, so
-    # normalize those inherited Lean links here before checking the final DOM.
     if prefix == "../../":
         text = text.replace('href="../library/modules/', 'href="../../library/modules/')
 
@@ -211,6 +207,7 @@ def enforce(root: Path) -> None:
         teaching,
         declarations,
     )
+    publish_extensions.publish(root)
 
 
 def main() -> None:
