@@ -66,11 +66,13 @@ theorem mottonenRootRy_prepares :
         (0 : Fin 4) = mottonenRootState
   funext row
   fin_cases row <;>
-    norm_num [gridSize, mottonenRootState, basisKet,
+    simp [gridSize, mottonenRootState, basisKet,
       evalPrimitiveCircuitLE_singleton_ry_apply,
       primitiveLEBits, primitiveBasisLEEquiv_two_symm, primitiveBits2LE,
-      primitiveBits2LEWithout, splitPrimitiveWire_primitiveBits2LE_context_eq,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+      primitiveBits2LEWithout, splitPrimitiveWire_other_apply,
+      splitPrimitiveWire_primitiveBits2LE_context_eq,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
+    norm_num
 
 theorem mottonenDenseUcry_on_root :
     applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
@@ -81,15 +83,17 @@ theorem mottonenDenseUcry_on_root :
     _root_.Matrix.mulVec_single_one]
   funext row
   fin_cases row <;>
-    norm_num [mottonenDenseUcryCircuit,
+    simp [mottonenDenseUcryCircuit,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       mottonenConditionalAngles, groverRudolphControlWire,
       groverRudolphControlWire_ne_target, primitiveControlAssignment,
       primitiveLEBits, primitiveBasisLEEquiv_two_symm, primitiveBits2LE,
-      primitiveBits2LEWithout, splitPrimitiveWire_primitiveBits2LE_context_eq,
+      primitiveBits2LEWithout, splitPrimitiveWire_other_apply,
+      splitPrimitiveWire_primitiveBits2LE_context_eq,
       standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
-      mottonenDenseState]
+      mottonenDenseState] <;>
+    norm_num
 
 theorem mottonenDensePrimitive_prepares_target :
     applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
@@ -186,11 +190,13 @@ theorem sparseRootRy_prepares :
         (0 : Fin 8) = sparseRootState
   funext row
   fin_cases row <;>
-    norm_num [gridSize, sparseRootState, basisKet,
+    simp [gridSize, sparseRootState, basisKet,
       evalPrimitiveCircuitLE_singleton_ry_apply,
       primitiveLEBits, primitiveBasisLEEquiv_three_symm, primitiveBits3LE,
-      primitiveBits3LEWithout, splitPrimitiveWire_primitiveBits3LE_context_eq,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+      primitiveBits3LEWithout, splitPrimitiveWire_other_apply,
+      splitPrimitiveWire_primitiveBits3LE_context_eq,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
+    norm_num
 
 theorem sparsePrunedUcry_on_root :
     applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
@@ -201,15 +207,17 @@ theorem sparsePrunedUcry_on_root :
     _root_.Matrix.mulVec_single_one]
   funext row
   fin_cases row <;>
-    norm_num [sparsePrunedUcryCircuit,
+    simp [sparsePrunedUcryCircuit,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       sparseConditionalAngles, sparseControlWire, sparseControlWire_ne_target,
       primitiveControlAssignment, primitiveLEBits,
       primitiveBasisLEEquiv_three_symm, primitiveBits3LE,
-      primitiveBits3LEWithout, splitPrimitiveWire_primitiveBits3LE_context_eq,
+      primitiveBits3LEWithout, splitPrimitiveWire_other_apply,
+      splitPrimitiveWire_primitiveBits3LE_context_eq,
       standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngle513_explicit, standardRyMatrix_ryAngleZero,
-      realOrthogonalRotation, sparseThreeState]
+      realOrthogonalRotation, sparseThreeState] <;>
+    norm_num
 
 theorem sparsePruned_prepares_target :
     applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
