@@ -1,5 +1,6 @@
 import QuantumBlockEncoding.StatePreparationBenchmarksCoreFixed
 import QuantumBlockEncoding.StatePreparationPrimitiveRoutes
+import QuantumBlockEncoding.StatePreparationBellRoute
 import QuantumBlockEncoding.StatePreparationPaperRoutesFinal
 
 /-!
@@ -12,9 +13,11 @@ Stable public entrypoint for the state-preparation benchmark suite.
   arithmetic.
 * `StatePreparationPrimitiveRoutes` provides the typed primitive-circuit
   semantics and the Grover--Rudolph same-target comparison.
+* `StatePreparationBellRoute` closes the exact RY(pi/2)+CX Bell-state route and
+  its circuit-derived resource tuple.
 * `StatePreparationPaperRoutesFinal` instantiates the same proof-bearing route
   type for Möttönen-style dense preparation and the Li--Luo sparse finite
-  witness using explicit finite clean-column reductions.
+  witness using explicit finite clean-input reductions.
 
 A resource score is public only after the very same typed circuit proves
 `U |0^n> = |psi>`.  This prevents a resource transcript from being mistaken for
