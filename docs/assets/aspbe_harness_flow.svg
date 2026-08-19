@@ -1,77 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="470" viewBox="0 0 1480 470" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="540" viewBox="0 0 1600 540" role="img" aria-labelledby="title desc">
   <title id="title">ASPBE contract-to-certificate workflow</title>
-  <desc id="desc">A fixed mathematical contract is matched with proved components, turned into a candidate construction, screened, proved in Lean, and exported. Failed proof leaves return a typed obstruction to the construction stage.</desc>
+  <desc id="desc">A spacious six-stage ASPBE workflow from a fixed mathematical contract to a named Lean certificate and deliverable artifacts, with typed failures returning to construction.</desc>
   <defs>
     <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#3f3f3f"/></marker>
+    <marker id="feedbackArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#8a5d52"/></marker>
   </defs>
   <style>
     text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
-    .title { font-size: 34px; font-weight: 700; }
-    .subtitle { font-size: 17px; fill: #555; }
-    .num { font-size: 15px; font-weight: 700; fill: #666; }
-    .head { font-size: 21px; font-weight: 700; }
-    .body { font-size: 16px; fill: #444; }
-    .small { font-size: 15px; fill: #5a5a5a; }
-    .box { fill: #fff; stroke: #555; stroke-width: 1.4; }
-    .lean { stroke: #466b5a; stroke-width: 2.2; }
-    .screen { stroke: #78684b; stroke-width: 1.8; }
-    .feedback { fill: #fff; stroke: #8a5d52; stroke-width: 1.6; }
-    .arrow { stroke: #3f3f3f; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
-    .feedback-arrow { stroke: #8a5d52; stroke-width: 1.4; fill: none; stroke-dasharray: 6 5; marker-end: url(#arrow); }
+    .title { font-size: 38px; font-weight: 700; }
+    .subtitle { font-size: 19px; fill: #555; }
+    .num { font-size: 17px; font-weight: 700; fill: #666; }
+    .head { font-size: 23px; font-weight: 700; }
+    .body { font-size: 17px; fill: #404040; }
+    .small { font-size: 16px; fill: #5a5a5a; }
+    .box { fill: #fff; stroke: #555; stroke-width: 1.5; rx: 8; }
+    .retrieve { stroke: #4d6b8a; }
+    .construct { stroke: #46725f; }
+    .screen { stroke: #8b6b37; }
+    .lean { stroke: #4f7358; stroke-width: 2.2; }
+    .deliver { stroke: #755a79; }
+    .feedback { fill: #fff; stroke: #8a5d52; stroke-width: 1.7; rx: 8; }
+    .arrow { stroke: #3f3f3f; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    .feedback-arrow { stroke: #8a5d52; stroke-width: 1.5; fill: none; stroke-dasharray: 7 6; marker-end: url(#feedbackArrow); }
     .rule { stroke: #d1d1d1; stroke-width: 1.1; }
+    .icon-bg { opacity: .11; }
+    .icon { fill: none; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
   </style>
-  <rect width="1480" height="470" fill="#fff"/>
-  <text x="740" y="50" text-anchor="middle" class="title">ASPBE — from a mathematical contract to checked evidence</text>
-  <text x="740" y="82" text-anchor="middle" class="subtitle">The public workflow stays small; detailed controller state is stored separately for reproducibility.</text>
+  <rect width="1600" height="540" fill="#fff"/>
+  <text x="800" y="50" text-anchor="middle" class="title">ASPBE — from a mathematical contract to checked evidence</text>
+  <text x="800" y="83" text-anchor="middle" class="subtitle">The public workflow stays small; detailed controller state is stored separately for reproducibility.</text>
 
-  <rect x="45" y="135" width="195" height="145" class="box"/>
-  <text x="70" y="164" class="num">01</text>
-  <text x="142" y="190" text-anchor="middle" class="head">Freeze contract</text>
-  <text x="142" y="220" text-anchor="middle" class="body">target + conventions</text>
-  <text x="142" y="246" text-anchor="middle" class="body">oracles + α, ε + costs</text>
+  <!-- stage 1 -->
+  <rect x="35" y="135" width="225" height="165" class="box"/>
+  <text x="58" y="163" class="num">01</text>
+  <circle cx="225" cy="164" r="23" fill="#657789" class="icon-bg"/>
+  <path d="M213 164h24M225 152v24M216.5 155.5l17 17M233.5 155.5l-17 17" class="icon" stroke="#657789"/>
+  <text x="147" y="205" text-anchor="middle" class="head">Freeze contract</text>
+  <text x="147" y="239" text-anchor="middle" class="body">target + conventions</text>
+  <text x="147" y="269" text-anchor="middle" class="body">oracles + α, ε + costs</text>
 
-  <rect x="285" y="135" width="195" height="145" class="box"/>
-  <text x="310" y="164" class="num">02</text>
-  <text x="382" y="190" text-anchor="middle" class="head">Retrieve</text>
-  <text x="382" y="220" text-anchor="middle" class="body">compiled lemmas</text>
-  <text x="382" y="246" text-anchor="middle" class="body">routes + obstructions</text>
+  <!-- stage 2 -->
+  <rect x="300" y="135" width="225" height="165" class="box retrieve"/>
+  <text x="323" y="163" class="num">02</text>
+  <circle cx="490" cy="164" r="23" fill="#4d6b8a" class="icon-bg"/>
+  <circle cx="486" cy="160" r="9" class="icon" stroke="#4d6b8a"/><path d="M493 167l8 8" class="icon" stroke="#4d6b8a"/>
+  <text x="412" y="205" text-anchor="middle" class="head">Retrieve</text>
+  <text x="412" y="239" text-anchor="middle" class="body">compiled lemmas</text>
+  <text x="412" y="269" text-anchor="middle" class="body">routes + obstructions</text>
 
-  <rect x="525" y="135" width="195" height="145" class="box"/>
-  <text x="550" y="164" class="num">03</text>
-  <text x="622" y="190" text-anchor="middle" class="head">Construct</text>
-  <text x="622" y="220" text-anchor="middle" class="body">one candidate route</text>
-  <text x="622" y="246" text-anchor="middle" class="body">one ready proof leaf</text>
+  <!-- stage 3 -->
+  <rect x="565" y="135" width="225" height="165" class="box construct"/>
+  <text x="588" y="163" class="num">03</text>
+  <circle cx="755" cy="164" r="23" fill="#46725f" class="icon-bg"/>
+  <circle cx="746" cy="155" r="3" fill="#46725f"/><circle cx="764" cy="164" r="3" fill="#46725f"/><circle cx="746" cy="173" r="3" fill="#46725f"/><path d="M749 156c7 0 8 7 12 7M761 166c-4 0-5 7-12 7" class="icon" stroke="#46725f"/>
+  <text x="677" y="205" text-anchor="middle" class="head">Construct</text>
+  <text x="677" y="239" text-anchor="middle" class="body">one candidate route</text>
+  <text x="677" y="269" text-anchor="middle" class="body">one ready proof leaf</text>
 
-  <rect x="765" y="135" width="195" height="145" class="box screen"/>
-  <text x="790" y="164" class="num">04</text>
-  <text x="862" y="190" text-anchor="middle" class="head">Finite screen</text>
-  <text x="862" y="220" text-anchor="middle" class="body">dimensions · entries</text>
-  <text x="862" y="246" text-anchor="middle" class="body">unitarity · circuit checks</text>
+  <!-- stage 4 -->
+  <rect x="830" y="135" width="225" height="165" class="box screen"/>
+  <text x="853" y="163" class="num">04</text>
+  <circle cx="1020" cy="164" r="23" fill="#8b6b37" class="icon-bg"/>
+  <rect x="1011" y="153" width="18" height="23" rx="2" class="icon" stroke="#8b6b37"/><path d="M1015 159l3 3 5-6M1015 168h10" class="icon" stroke="#8b6b37"/>
+  <text x="942" y="205" text-anchor="middle" class="head">Finite screen</text>
+  <text x="942" y="239" text-anchor="middle" class="body">dimensions · entries</text>
+  <text x="942" y="269" text-anchor="middle" class="body">unitarity · circuit checks</text>
 
-  <rect x="1005" y="135" width="195" height="145" class="box lean"/>
-  <text x="1030" y="164" class="num">05</text>
-  <text x="1102" y="190" text-anchor="middle" class="head">Lean certificate</text>
-  <text x="1102" y="220" text-anchor="middle" class="body">close named theorem</text>
-  <text x="1102" y="246" text-anchor="middle" class="body">semantic proof authority</text>
+  <!-- stage 5 -->
+  <rect x="1095" y="135" width="225" height="165" class="box lean"/>
+  <text x="1118" y="163" class="num">05</text>
+  <circle cx="1285" cy="164" r="23" fill="#4f7358" class="icon-bg"/>
+  <path d="M1285 151l11 5v8c0 8-5 13-11 17-6-4-11-9-11-17v-8z" class="icon" stroke="#4f7358"/><path d="M1280 164l4 4 7-9" class="icon" stroke="#4f7358"/>
+  <text x="1207" y="205" text-anchor="middle" class="head">Lean certificate</text>
+  <text x="1207" y="239" text-anchor="middle" class="body">close named theorem</text>
+  <text x="1207" y="269" text-anchor="middle" class="body">semantic proof authority</text>
 
-  <rect x="1245" y="135" width="190" height="145" class="box"/>
-  <text x="1270" y="164" class="num">06</text>
-  <text x="1340" y="190" text-anchor="middle" class="head">Deliver</text>
-  <text x="1340" y="220" text-anchor="middle" class="body">human proof + Lean</text>
-  <text x="1340" y="246" text-anchor="middle" class="body">Qiskit / OpenQASM</text>
+  <!-- stage 6 -->
+  <rect x="1360" y="135" width="205" height="165" class="box deliver"/>
+  <text x="1383" y="163" class="num">06</text>
+  <circle cx="1530" cy="164" r="23" fill="#755a79" class="icon-bg"/>
+  <path d="M1519 157h16v13h-16zM1535 162h6l5 6v2h-11z" class="icon" stroke="#755a79"/><circle cx="1524" cy="174" r="3" class="icon" stroke="#755a79"/><circle cx="1540" cy="174" r="3" class="icon" stroke="#755a79"/>
+  <text x="1462" y="205" text-anchor="middle" class="head">Deliver</text>
+  <text x="1462" y="239" text-anchor="middle" class="body">human proof + Lean</text>
+  <text x="1462" y="269" text-anchor="middle" class="body">Qiskit / OpenQASM</text>
 
-  <path d="M240 208 L275 208" class="arrow"/>
-  <path d="M480 208 L515 208" class="arrow"/>
-  <path d="M720 208 L755 208" class="arrow"/>
-  <path d="M960 208 L995 208" class="arrow"/>
-  <path d="M1200 208 L1235 208" class="arrow"/>
+  <path d="M260 217 L290 217" class="arrow"/><path d="M525 217 L555 217" class="arrow"/><path d="M790 217 L820 217" class="arrow"/><path d="M1055 217 L1085 217" class="arrow"/><path d="M1320 217 L1350 217" class="arrow"/>
 
-  <rect x="605" y="340" width="515" height="78" class="feedback"/>
-  <text x="862" y="370" text-anchor="middle" class="head">Typed obstruction / failed proof leaf</text>
-  <text x="862" y="397" text-anchor="middle" class="body">record the exact failure, then change the route, prerequisite, or declared tolerance rung</text>
-  <path d="M1102 280 L1102 330 L1060 330" class="feedback-arrow"/>
-  <path d="M605 379 L500 379 L500 300 L622 300 L622 290" class="feedback-arrow"/>
+  <!-- obstruction -->
+  <rect x="575" y="365" width="690" height="105" class="feedback"/>
+  <circle cx="625" cy="417" r="27" fill="#8a5d52" class="icon-bg"/>
+  <path d="M625 397l18 33h-36zM625 408v10M625 424v1" class="icon" stroke="#8a5d52"/>
+  <text x="920" y="401" text-anchor="middle" class="head">Typed obstruction / failed proof leaf</text>
+  <text x="920" y="432" text-anchor="middle" class="body">record the exact failure, then change the route, prerequisite,</text>
+  <text x="920" y="457" text-anchor="middle" class="body">proof frontier, or declared tolerance rung</text>
+  <path d="M942 300 L942 345 L1040 345 L1040 355" class="feedback-arrow"/>
+  <path d="M1207 300 L1207 335 L1090 335 L1090 355" class="feedback-arrow"/>
+  <path d="M575 418 L520 418 L520 330 L677 330 L677 310" class="feedback-arrow"/>
 
-  <line x1="70" y1="445" x2="1410" y2="445" class="rule"/>
-  <text x="740" y="464" text-anchor="middle" class="small">Finite checks may reject or prioritize a candidate; only the named Lean theorem certifies the advertised mathematical statement.</text>
+  <line x1="70" y1="505" x2="1530" y2="505" class="rule"/>
+  <text x="800" y="529" text-anchor="middle" class="small">Finite checks may reject or prioritize a candidate; only the named Lean theorem certifies the advertised mathematical statement.</text>
 </svg>
