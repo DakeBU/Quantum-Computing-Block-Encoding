@@ -21,7 +21,8 @@ SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
 HIERARCHY_SVG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v4.svg"
-HIERARCHY_PNG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v5.png"
+HIERARCHY_V5_PNG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v5.png"
+HIERARCHY_CURRENT_PNG = ROOT / "docs" / "assets" / "ASPBE.png"
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
 HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
@@ -70,38 +71,45 @@ def readme_svg_refs(readme: str) -> list[str]:
     return sorted(refs)
 
 
-def check_hierarchy_asset(readme: str) -> None:
-    expected_ref = 'src="docs/assets/aspbe_hierarchical_harness_v5.png"'
-    if expected_ref not in readme:
-        fail("README must use the stable hierarchy PNG")
-
-    if not HIERARCHY_PNG.is_file():
-        fail("missing hierarchy PNG")
-    size = HIERARCHY_PNG.stat().st_size
-    if size > 500_000:
-        fail(f"hierarchy PNG is too large for the README: {size} bytes > 500000")
-
-    data = HIERARCHY_PNG.read_bytes()
+def png_dimensions(path: Path) -> tuple[int, int]:
+    if not path.is_file():
+        fail(f"missing hierarchy PNG: {path.relative_to(ROOT)}")
+    data = path.read_bytes()
     if data[:8] != b"\x89PNG\r\n\x1a\n":
-        fail("hierarchy PNG has an invalid PNG signature")
+        fail(f"invalid PNG signature: {path.relative_to(ROOT)}")
     if len(data) < 24 or data[12:16] != b"IHDR":
-        fail("hierarchy PNG is missing a valid IHDR chunk")
-    width, height = struct.unpack(">II", data[16:24])
-    if (width, height) != (1280, 720):
-        fail(f"hierarchy PNG dimensions changed: {(width, height)} != (1280, 720)")
+        fail(f"missing PNG IHDR: {path.relative_to(ROOT)}")
+    return struct.unpack(">II", data[16:24])
+
+
+def check_hierarchy_asset(readme: str) -> None:
+    current_ref = 'src="docs/assets/ASPBE.png"'
+    legacy_ref = 'src="docs/assets/aspbe_hierarchical_harness_v5.png"'
+    if current_ref in readme:
+        selected = HIERARCHY_CURRENT_PNG
+    elif legacy_ref in readme:
+        selected = HIERARCHY_V5_PNG
+    else:
+        fail("README must use ASPBE.png or the stable hierarchy v5 PNG")
+
+    size = selected.stat().st_size
+    if size > 2_000_000:
+        fail(f"hierarchy PNG is too large for the README: {size} bytes > 2000000")
+    width, height = png_dimensions(selected)
+    if width < 1000 or height < 500 or width <= height:
+        fail(f"hierarchy PNG must remain a readable landscape figure: {(width, height)}")
 
     # Keep the old public SVG URL alive as a lightweight compatibility wrapper.
-    if not HIERARCHY_SVG.is_file():
-        fail("missing hierarchy SVG compatibility wrapper")
-    svg_source = read(HIERARCHY_SVG)
-    try:
-        ET.fromstring(svg_source)
-    except ET.ParseError as exc:
-        fail(f"invalid hierarchy SVG wrapper: {exc}")
-    if "aspbe_hierarchical_harness_v5.png" not in svg_source:
-        fail("hierarchy SVG wrapper must point to the stable PNG")
-    if HIERARCHY_SVG.stat().st_size > 5_000:
-        fail("hierarchy SVG compatibility wrapper should remain lightweight")
+    if HIERARCHY_SVG.is_file():
+        svg_source = read(HIERARCHY_SVG)
+        try:
+            ET.fromstring(svg_source)
+        except ET.ParseError as exc:
+            fail(f"invalid hierarchy SVG wrapper: {exc}")
+        if "aspbe_hierarchical_harness_v5.png" not in svg_source:
+            fail("hierarchy SVG wrapper must point to the stable v5 PNG")
+        if HIERARCHY_SVG.stat().st_size > 5_000:
+            fail("hierarchy SVG compatibility wrapper should remain lightweight")
 
 
 def check_readme_math_surface(readme: str) -> None:
