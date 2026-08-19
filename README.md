@@ -54,7 +54,7 @@ State Preparation and Block Encoding traditionally ask one researcher to **inven
 ASPBE instead separates **mathematical strategy**, **Lean-tree planning**, **focused local proof work**, and **verification**.
 
 <p align="center">
-  <img src="docs/assets/aspbe_hierarchical_harness_v4.svg" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1180">
+  <img src="docs/assets/aspbe_hierarchical_harness_v4.webp" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1180">
 </p>
 
 The hierarchy has explicit role boundaries:
