@@ -127,11 +127,13 @@ def check_website_runtime_figures() -> None:
         '.replace(/\\btheta\\b/g, "θ")',
         '.replace(/\\bperp\\b/g, "⊥")',
         '"|$1⟩"',
+        'replace(/\\\\operatorname\\{([^{}]+)\\}/g, "\\\\mathrm{$1}")',
+        "normalizeFragileMath",
         "MutationObserver",
     )
     for needle in required:
         if needle not in source:
-            fail(f"website figure override is missing {needle!r}")
+            fail(f"website figure/math override is missing {needle!r}")
 
 
 def check_matplotlib_defaults() -> None:
