@@ -187,14 +187,11 @@ private theorem mottonenDenseUcry_entry_30 :
   mottonenDenseUcry_entry_zero_of_context_ne
     (3 : Fin 4) (0 : Fin 4) (by native_decide)
 
-set_option maxHeartbeats 1000000 in
 theorem mottonenDenseUcry_on_root :
     applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
       mottonenDenseState := by
-  unfold applyVec mottonenRootState basisKet
-  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
-    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
-    _root_.Matrix.mulVec_single_one]
+  unfold mottonenRootState
+  rw [applyVec_twoBasisSuperposition]
   funext row
   fin_cases row
   · change
@@ -526,14 +523,11 @@ private theorem sparsePrunedUcry_entry_74 :
   sparsePrunedUcry_entry_zero_of_context_ne
     (7 : Fin 8) (4 : Fin 8) (by native_decide)
 
-set_option maxHeartbeats 1000000 in
 theorem sparsePrunedUcry_on_root :
     applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
       sparseThreeState := by
-  unfold applyVec sparseRootState basisKet
-  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
-    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
-    _root_.Matrix.mulVec_single_one]
+  unfold sparseRootState
+  rw [applyVec_twoBasisSuperposition]
   funext row
   fin_cases row
   · change
