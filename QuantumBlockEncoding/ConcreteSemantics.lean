@@ -34,6 +34,18 @@ def basisKet (dimension : Nat) {α : Type u} [Zero α] [One α]
     (index : Fin dimension) : StateVector dimension α :=
   Pi.single index 1
 
+/-- A computational-basis ket is exactly a Kronecker delta at its named index.
+Keeping this lemma in the concrete backend avoids exposing `Pi.single` inside
+fixed-width circuit proofs. -/
+@[simp] theorem basisKet_apply {dimension : Nat} {α : Type u}
+    [Zero α] [One α] (index row : Fin dimension) :
+    basisKet dimension (α := α) index row =
+      if index = row then 1 else 0 := by
+  by_cases hit : index = row
+  · subst row
+    simp [basisKet, Pi.single_apply]
+  · simp [basisKet, Pi.single_apply, hit]
+
 /-- The all-zero computational-basis ket for an `n`-qubit register. -/
 def zeroKet (qubits : Nat) {α : Type u} [Zero α] [One α] :
     StateVector (gridSize qubits) α :=
