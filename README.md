@@ -99,12 +99,33 @@ The Lean library contains reusable interfaces and proof leaves for:
 
 ---
 
-## ASPBE harness — from contract to checked evidence
+## Why a hierarchical harness?
 
-Once one task contract is fixed, ASPBE searches for a construction and turns it into auditable evidence.
+State Preparation and Block Encoding traditionally demand the same person to invent a construction, keep track of the source assumptions, search for a proof, debug failed routes, and verify the final circuit. A single monolithic agent has the same coordination problem at larger speed.
+
+ASPBE instead separates **mathematical strategy**, **proof-tree planning**, **focused local proof work**, and **verification**.
 
 <p align="center">
-  <img src="docs/assets/aspbe_harness_flow.svg" alt="ASPBE contract-to-certificate harness" width="1120">
+  <img src="docs/assets/aspbe_hierarchical_harness.svg" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1180">
+</p>
+
+The actual hierarchy is stricter than a generic multi-agent diagram:
+
+- **Upper strategist:** brainstorms construction families, freezes the intended target, and changes only an authorized capacity or tolerance rung.
+- **Middle planner / Lean-tree manager:** retrieves QuantumComputinglib and memory cards, maintains the Lean tree/network and proof DAG, decomposes a route, and assigns only ready leaves.
+- **Lower workers:** solve one local obligation at a time — a short natural-language proof, one Lean declaration, or one finite diagnostic — rather than redesigning the whole construction.
+- **Reviewer / verifier:** checks assumptions, evidence class, finite screens, target fidelity, and promotion; typed failures are returned to the planner instead of being retried blindly.
+
+**QuantumComputinglib, the textbook, source/paper maps, and certified memory cards act as domain preparation for these agents.** They reduce repeated rediscovery and make the harness specialized in State Preparation and Block Encoding rather than a generic theorem-proving loop.
+
+---
+
+## ASPBE harness — from contract to checked evidence
+
+Once one task contract is fixed, ASPBE turns the hierarchy above into a small public evidence pipeline.
+
+<p align="center">
+  <img src="docs/assets/aspbe_harness_flow.svg" alt="ASPBE contract-to-certificate harness" width="1180">
 </p>
 
 The public loop is intentionally simple:
@@ -128,9 +149,9 @@ The target is the finite non-unitary transfer
 $$
 E_1
 =
-|0\rangle\langle1|_{\mathrm{time}}
+\bigl(|0\rangle\langle1|\bigr)_t
 \otimes
-|0\rangle\langle1|_{\mathrm{type}}
+\bigl(|0\rangle\langle1|\bigr)_{\tau}
 \otimes I_2,
 \qquad
 \langle0|_a U |0\rangle_a = E_1 .
@@ -143,10 +164,10 @@ $$
 \longrightarrow
 (4,4,1,0)
 \longrightarrow
-(4,2,1,0),
+(4,2,1,0) .
 $$
 
-where the tuple records **gate count, depth, auxiliary qubits, unresolved oracle calls**.
+The tuple records **gate count, depth, auxiliary qubits, unresolved oracle calls**.
 
 <p align="center">
   <img src="docs/assets/be_case1_candidates.svg" alt="BE Case 1 certified candidate sequence" width="980">
@@ -156,32 +177,28 @@ where the tuple records **gate count, depth, auxiliary qubits, unresolved oracle
 
 ### BE Case 2 — cubic diagonal operator
 
-Let `N = 2^n`. The target family is
+Let `N = 2^n`. To avoid renderer-specific diagonal-matrix macros, the README states the target entrywise:
 
 $$
-D_n
+(D_n)_{jk}
 =
-\mathrm{diag}\!\left(
-\left(\frac{0}{N}\right)^3,
-\left(\frac{1}{N}\right)^3,
-\ldots,
-\left(\frac{N-1}{N}\right)^3
-\right),
+\begin{cases}
+\left(\dfrac{j}{N}\right)^3, & j=k,\\
+0, & j\ne k,
+\end{cases}
 \qquad
 \Pi U_n \Pi^\dagger = D_n .
 $$
 
-The selected exact family uses **rational Householder completions**. The cold route constructs the cubic branch directly. The hinted route first certifies the linear supplier
+The selected exact family uses **rational Householder completions**. The cold route constructs the cubic branch directly. The hinted route first certifies a linear diagonal supplier
 
 $$
-O_0
+(O_0)_{jk}
 =
-\mathrm{diag}\!\left(
-\frac{0}{N},
-\frac{1}{N},
-\ldots,
-\frac{N-1}{N}
-\right),
+\begin{cases}
+\dfrac{j}{N}, & j=k,\\
+0, & j\ne k,
+\end{cases}
 \qquad
 D_n = O_0^3 .
 $$
