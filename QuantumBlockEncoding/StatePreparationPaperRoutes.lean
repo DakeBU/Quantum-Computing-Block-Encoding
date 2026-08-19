@@ -77,7 +77,8 @@ theorem mottonenRootRy_col_zero :
       splitPrimitiveWire_primitiveBasisLEEquiv_two_symm_context_eq,
       primitiveBits2LEGridWithout, primitiveBits2LE,
       primitiveBits2LEWithout,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
+      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
     norm_num
 
 theorem mottonenRootRy_prepares :
@@ -114,7 +115,8 @@ theorem mottonenDenseUcry_col_zero :
       primitiveBits2LEGridWithout, primitiveBits2LE,
       primitiveBits2LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
+      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
     norm_num
 
 theorem mottonenDenseUcry_col_two :
@@ -134,7 +136,8 @@ theorem mottonenDenseUcry_col_two :
       primitiveBits2LEGridWithout, primitiveBits2LE,
       primitiveBits2LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
+      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
     norm_num
 
 theorem mottonenDenseUcry_on_root :
@@ -153,8 +156,9 @@ theorem mottonenDenseUcry_on_root :
   rw [mottonenDenseUcry_col_zero, mottonenDenseUcry_col_two]
   funext row
   fin_cases row <;>
-    norm_num [mottonenUcryColumnZero, mottonenUcryColumnTwo,
-      basisKet, mottonenDenseState]
+    simp [mottonenUcryColumnZero, mottonenUcryColumnTwo,
+      basisKet, mottonenDenseState, Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+    norm_num
 
 theorem mottonenDensePrimitive_prepares_target :
     applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
@@ -258,7 +262,8 @@ theorem sparseRootRy_col_zero :
       splitPrimitiveWire_primitiveBasisLEEquiv_three_symm_context_eq,
       primitiveBits3LEGridWithout, primitiveBits3LE,
       primitiveBits3LEWithout,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
+      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
     norm_num
 
 theorem sparseRootRy_prepares :
@@ -295,7 +300,8 @@ theorem sparsePrunedUcry_col_zero :
       primitiveBits3LEGridWithout, primitiveBits3LE,
       primitiveBits3LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngleZero, realOrthogonalRotation] <;>
+      standardRyMatrix_ryAngleZero, realOrthogonalRotation,
+      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
     norm_num
 
 theorem sparsePrunedUcry_col_four :
@@ -318,7 +324,8 @@ theorem sparsePrunedUcry_col_four :
       primitiveBits3LEGridWithout, primitiveBits3LE,
       primitiveBits3LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngleZero, realOrthogonalRotation] <;>
+      standardRyMatrix_ryAngleZero, realOrthogonalRotation,
+      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
     norm_num
 
 theorem sparsePrunedUcry_on_root :
@@ -337,8 +344,9 @@ theorem sparsePrunedUcry_on_root :
   rw [sparsePrunedUcry_col_zero, sparsePrunedUcry_col_four]
   funext row
   fin_cases row <;>
-    norm_num [sparseUcryColumnZero, sparseUcryColumnFour,
-      basisKet, sparseThreeState]
+    simp [sparseUcryColumnZero, sparseUcryColumnFour,
+      basisKet, sparseThreeState, Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+    norm_num
 
 theorem sparsePruned_prepares_target :
     applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
