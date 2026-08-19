@@ -2,7 +2,7 @@
 """Guard the reader-facing README/figure typography and formula surface.
 
 The public README is deliberately figure-first and uses conservative GitHub math
-syntax. This check prevents regressions to fragile TeX, oversized hierarchy
+syntax. This check prevents regressions to fragile TeX, oversized/broken hierarchy
 assets, UI/sans typography, or glossy dashboard-style SVG decoration.
 """
 
@@ -20,6 +20,7 @@ SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
 HIERARCHY_SVG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v4.svg"
+HIERARCHY_WEBP = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v4.webp"
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
 HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
@@ -45,7 +46,6 @@ FORBIDDEN_README_TOKENS = (
     r"\begin{cases}",
     r"\dfrac",
     r"\mathrm{diag}",
-    'src="docs/assets/aspbe_hierarchical_harness.webp"',
     'src="docs/assets/aspbe_hierarchical_harness.png"',
     'src="docs/assets/aspbe_hierarchical_harness_display.jpg"',
 )
@@ -66,6 +66,34 @@ def readme_svg_refs(readme: str) -> list[str]:
     refs = set(MARKDOWN_IMAGE_RE.findall(readme))
     refs.update(HTML_SVG_RE.findall(readme))
     return sorted(refs)
+
+
+def check_hierarchy_asset(readme: str) -> None:
+    expected_ref = 'src="docs/assets/aspbe_hierarchical_harness_v4.webp"'
+    if expected_ref not in readme:
+        fail("README must use the optimized hierarchy WebP")
+
+    if not HIERARCHY_WEBP.is_file():
+        fail("missing hierarchy WebP")
+    size = HIERARCHY_WEBP.stat().st_size
+    if size > 110_000:
+        fail(f"hierarchy WebP is too large for the README: {size} bytes > 110000")
+    header = HIERARCHY_WEBP.read_bytes()[:12]
+    if len(header) < 12 or header[:4] != b"RIFF" or header[8:12] != b"WEBP":
+        fail("hierarchy WebP has an invalid RIFF/WEBP header")
+
+    # Keep the old public SVG URL alive as a tiny compatibility wrapper.
+    if not HIERARCHY_SVG.is_file():
+        fail("missing hierarchy SVG compatibility wrapper")
+    svg_source = read(HIERARCHY_SVG)
+    try:
+        ET.fromstring(svg_source)
+    except ET.ParseError as exc:
+        fail(f"invalid hierarchy SVG wrapper: {exc}")
+    if "aspbe_hierarchical_harness_v4.webp" not in svg_source:
+        fail("hierarchy SVG wrapper must point to the optimized WebP")
+    if HIERARCHY_SVG.stat().st_size > 5_000:
+        fail("hierarchy SVG compatibility wrapper should remain lightweight")
 
 
 def check_readme_math_surface(readme: str) -> None:
@@ -98,14 +126,7 @@ def check_readme_math_surface(readme: str) -> None:
     if any(position < 0 for position in positions) or positions != sorted(positions):
         fail("README reader order must be intro → public workflow → hierarchy → SP → BE → cases")
 
-    expected_svg_ref = 'src="docs/assets/aspbe_hierarchical_harness_v4.svg"'
-    if expected_svg_ref not in readme:
-        fail("README must use the stable vector hierarchy figure")
-    if not HIERARCHY_SVG.is_file():
-        fail("missing hierarchy SVG")
-    size = HIERARCHY_SVG.stat().st_size
-    if size > 50_000:
-        fail(f"hierarchy SVG is too large for the README: {size} bytes > 50000")
+    check_hierarchy_asset(readme)
 
 
 def check_readme_svgs(readme: str) -> None:
