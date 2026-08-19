@@ -25,7 +25,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   teaching-contract:
@@ -33,6 +33,47 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Apply stable SVG hierarchy reference
+        if: github.event_name == 'pull_request'
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          readme = Path("README.md")
+          text = readme.read_text(encoding="utf-8")
+          old = 'docs/assets/aspbe_hierarchical_harness_display.jpg'
+          new = 'docs/assets/aspbe_hierarchical_harness_v4.svg'
+          if old not in text:
+              raise SystemExit(f"missing README hierarchy reference: {old}")
+          readme.write_text(text.replace(old, new), encoding="utf-8")
+
+          guard = Path("tools/check_public_figure_style.py")
+          source = guard.read_text(encoding="utf-8")
+          source = source.replace(
+              'HIERARCHY_JPEG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_display.jpg"',
+              'HIERARCHY_SVG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v4.svg"',
+          )
+          source = source.replace(
+              "    'src=\"docs/assets/aspbe_hierarchical_harness.png\"',\n",
+              "    'src=\"docs/assets/aspbe_hierarchical_harness.png\"',\n    'src=\"docs/assets/aspbe_hierarchical_harness_display.jpg\"',\n",
+          )
+          old_block = '''    expected_jpeg_ref = 'src="docs/assets/aspbe_hierarchical_harness_display.jpg"'\n    if expected_jpeg_ref not in readme:\n        fail("README must use the stable JPEG hierarchy figure")\n    if not HIERARCHY_JPEG.is_file():\n        fail("missing hierarchy JPEG")\n    size = HIERARCHY_JPEG.stat().st_size\n    if size > 300_000:\n        fail(f"hierarchy JPEG is too large for the README: {size} bytes > 300000")\n    if not HIERARCHY_JPEG.read_bytes().startswith(b"\\xff\\xd8\\xff"):\n        fail("hierarchy display asset is not a standard JPEG file")\n'''
+          new_block = '''    expected_svg_ref = 'src="docs/assets/aspbe_hierarchical_harness_v4.svg"'\n    if expected_svg_ref not in readme:\n        fail("README must use the stable vector hierarchy figure")\n    if not HIERARCHY_SVG.is_file():\n        fail("missing hierarchy SVG")\n    size = HIERARCHY_SVG.stat().st_size\n    if size > 50_000:\n        fail(f"hierarchy SVG is too large for the README: {size} bytes > 50000")\n'''
+          if old_block not in source:
+              raise SystemExit("could not locate old hierarchy guard block")
+          guard.write_text(source.replace(old_block, new_block), encoding="utf-8")
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md tools/check_public_figure_style.py
+          if ! git diff --cached --quiet; then
+            git commit -m "Use stable vector hierarchy figure"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
 
       - name: Check public figure typography and formulas
         run: python3 tools/check_public_figure_style.py
