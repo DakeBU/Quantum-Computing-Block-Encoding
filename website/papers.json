@@ -23,8 +23,17 @@
       "url": "https://arxiv.org/abs/quant-ph/0407010",
       "category": "statePreparation",
       "sourceAnchors": ["Eq. (6)", "Eq. (7)", "Eq. (8)", "Fig. 3"],
+      "sourceStatement": "Eq. (6) eliminates one qubit by a uniformly controlled y rotation; Eq. (7) composes those eliminations recursively; Eq. (8) specifies the required angles; Fig. 3 displays the resulting state-preparation architecture.",
       "status": "finite-benchmark-formalized",
-      "formalized": "Exact dense two-qubit target, unitary completion, state-action certificate, and a paper-motivated binary-tree/UCRY resource transcript.",
+      "route": "papers/mottonen-2005-state-preparation/",
+      "exampleCase": "mottonen-dense-state-preparation",
+      "formalized": "An exact dense two-qubit target, full unitary completion, typed root-RY plus one-control-UCRY circuit, exact clean-input state action, and the circuit-derived resource tuple (5 gates, depth 4, no auxiliary qubits, no unresolved oracle calls).",
+      "leanRoots": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseTarget_normalized",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix_unitary",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitive_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseVerified_cost"
+      ],
       "remaining": "General n-qubit state-to-state synthesis, phase layer, analytic rotation-angle construction at arbitrary width, and the paper-wide CNOT/one-qubit rotation count theorem."
     },
     {
@@ -35,8 +44,19 @@
       "url": "https://arxiv.org/abs/quant-ph/0208112",
       "category": "statePreparation",
       "sourceAnchors": ["Eq. (1)", "Eq. (3)", "Eq. (5)", "Eq. (6)"],
+      "sourceStatement": "Eq. (1) is the target probability-amplitude state; Eq. (3) gives the recursive probability refinement; Eq. (5)–(6) turn the coherently computed split angle into a controlled rotation.",
       "status": "structured-benchmark-formalized",
-      "formalized": "Exact product-distribution benchmark and a same-target finite resource comparison between a generic tree route and a factorized two-rotation route.",
+      "route": "papers/grover-rudolph-2002/",
+      "exampleCase": "grover-rudolph-product-state-preparation",
+      "formalized": "An exact two-bit product distribution, a typed generic binary-tree circuit and typed factorized circuit preparing the same target, and a Lean-certified resource improvement from (5,4,0,0) to (2,1,0,0).",
+      "leanRoots": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductTarget_normalized",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_betterThan_tree"
+      ],
       "remaining": "The general efficiently-integrable recursive probability-loading theorem and an end-to-end arithmetic/integration oracle compiler."
     },
     {
@@ -47,9 +67,21 @@
       "url": "https://arxiv.org/abs/2406.16142",
       "category": "statePreparation",
       "sourceAnchors": ["Eq. (1)", "Eq. (2)", "Theorem 1"],
+      "sourceStatement": "Eq. (1) records a d-sparse state through its nonzero amplitudes and basis labels; Eq. (2) is the exact state-preparation unitary contract with clean ancillas; Theorem 1 is the asymptotic circuit-size statement that remains outside the finite ASPBE witness.",
       "status": "finite-sparse-benchmark-formalized",
-      "formalized": "An exact n=3, d=3 sparse target and unitary completion, together with a finite zero-branch-pruning resource comparison. The public case is explicitly a finite witness of Eq. (2), not a reproduction of Theorem 1.",
-      "remaining": "The asymptotic sparse synthesis constructions, ancilla/circuit-size tradeoffs, and the matching lower bounds."
+      "route": "papers/li-luo-sparse-state-2025/",
+      "exampleCase": "sparse-three-state-preparation",
+      "formalized": "An exact n=3, d=3 witness of Eq. (2), a typed pruned UCRY route, a same-target typed dense zero-fill baseline, and a Lean-certified resource improvement from (15,13,0,0) to (5,4,0,0).",
+      "leanRoots": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeTarget_normalized",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix_unitary",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTree_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_betterThan_denseTree"
+      ],
+      "remaining": "The asymptotic sparse synthesis constructions, ancilla/circuit-size tradeoffs, and the matching lower bounds of Theorem 1."
     },
     {
       "key": "low-kliuchnikov-schaeffer-2018",
@@ -59,8 +91,15 @@
       "url": "https://arxiv.org/abs/1812.00954",
       "category": "statePreparation",
       "sourceAnchors": ["Eq. (2)", "Eq. (5)", "Table 2", "Fig. 1(c,d)"],
+      "sourceStatement": "Eq. (2) states the arbitrary target-state problem; Eq. (5) gives the coherent data-lookup interface; Table 2 and Fig. 1(c,d) expose the SelectSwap T-count/space tradeoff used by the finite arithmetic witness.",
       "status": "resource-lemma-formalized",
-      "formalized": "A machine-checked SelectSwap clean-qubit T-count arithmetic row and a fixed lambda=4 versus lambda=1 tradeoff example, grounded in the data-lookup oracle of Eq. (5) and Table 2.",
+      "route": "papers/low-kliuchnikov-schaeffer-2018/",
+      "formalized": "The clean-qubit SelectSwap T-count formula at the repository arithmetic tier, including N=16, b=1 values 72 at lambda=1 and 48 at lambda=4, plus the strict finite comparison 48<72.",
+      "leanRoots": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_16_1_1",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_16_1_4",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_lambda4_better_lambda1"
+      ],
       "remaining": "Approximate Clifford+T state preparation, coherent lookup/SelectSwap semantics, dirty-qubit correctness, error accounting, and the full asymptotic optimality theorem."
     },
     {
