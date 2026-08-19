@@ -1,0 +1,157 @@
+name: One-shot state-prep finite proof patch
+
+on:
+  push:
+    branches: [agent/papers-state-prep]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: contains(github.event.head_commit.message, '[apply-state-prep-ci-fix]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/papers-state-prep
+          fetch-depth: 0
+      - name: Patch finite root coordinates and focused heartbeat budgets
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean')
+          text = path.read_text()
+
+          replacements = {
+          '''private theorem mottonenRootState_0 :
+    mottonenRootState (0 : Fin 4) = (5 : ℂ) / 13 := by
+  norm_num [mottonenRootState, basisKet]
+''': '''private theorem mottonenRootState_0 :
+    mottonenRootState (0 : Fin 4) = (5 : ℂ) / 13 := by
+  simp [mottonenRootState, basisKet,
+    show (0 : Fin 4) ≠ (2 : Fin 4) by decide]
+''',
+          '''private theorem mottonenRootState_1 :
+    mottonenRootState (1 : Fin 4) = 0 := by
+  norm_num [mottonenRootState, basisKet]
+''': '''private theorem mottonenRootState_1 :
+    mottonenRootState (1 : Fin 4) = 0 := by
+  simp [mottonenRootState, basisKet,
+    show (1 : Fin 4) ≠ (0 : Fin 4) by decide,
+    show (1 : Fin 4) ≠ (2 : Fin 4) by decide]
+''',
+          '''private theorem mottonenRootState_2 :
+    mottonenRootState (2 : Fin 4) = (12 : ℂ) / 13 := by
+  norm_num [mottonenRootState, basisKet]
+''': '''private theorem mottonenRootState_2 :
+    mottonenRootState (2 : Fin 4) = (12 : ℂ) / 13 := by
+  simp [mottonenRootState, basisKet,
+    show (2 : Fin 4) ≠ (0 : Fin 4) by decide]
+''',
+          '''private theorem mottonenRootState_3 :
+    mottonenRootState (3 : Fin 4) = 0 := by
+  norm_num [mottonenRootState, basisKet]
+''': '''private theorem mottonenRootState_3 :
+    mottonenRootState (3 : Fin 4) = 0 := by
+  simp [mottonenRootState, basisKet,
+    show (3 : Fin 4) ≠ (0 : Fin 4) by decide,
+    show (3 : Fin 4) ≠ (2 : Fin 4) by decide]
+''',
+          '''private theorem sparseRootState_0 :
+    sparseRootState (0 : Fin 8) = (5 : ℂ) / 13 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_0 :
+    sparseRootState (0 : Fin 8) = (5 : ℂ) / 13 := by
+  simp [sparseRootState, basisKet,
+    show (0 : Fin 8) ≠ (4 : Fin 8) by decide]
+''',
+          '''private theorem sparseRootState_1 :
+    sparseRootState (1 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_1 :
+    sparseRootState (1 : Fin 8) = 0 := by
+  simp [sparseRootState, basisKet,
+    show (1 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (1 : Fin 8) ≠ (4 : Fin 8) by decide]
+''',
+          '''private theorem sparseRootState_2 :
+    sparseRootState (2 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_2 :
+    sparseRootState (2 : Fin 8) = 0 := by
+  simp [sparseRootState, basisKet,
+    show (2 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (2 : Fin 8) ≠ (4 : Fin 8) by decide]
+''',
+          '''private theorem sparseRootState_3 :
+    sparseRootState (3 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_3 :
+    sparseRootState (3 : Fin 8) = 0 := by
+  simp [sparseRootState, basisKet,
+    show (3 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (3 : Fin 8) ≠ (4 : Fin 8) by decide]
+''',
+          '''private theorem sparseRootState_4 :
+    sparseRootState (4 : Fin 8) = (12 : ℂ) / 13 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_4 :
+    sparseRootState (4 : Fin 8) = (12 : ℂ) / 13 := by
+  simp [sparseRootState, basisKet,
+    show (4 : Fin 8) ≠ (0 : Fin 8) by decide]
+''',
+          '''private theorem sparseRootState_5 :
+    sparseRootState (5 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_5 :
+    sparseRootState (5 : Fin 8) = 0 := by
+  simp [sparseRootState, basisKet,
+    show (5 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (5 : Fin 8) ≠ (4 : Fin 8) by decide]
+''',
+          '''private theorem sparseRootState_6 :
+    sparseRootState (6 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_6 :
+    sparseRootState (6 : Fin 8) = 0 := by
+  simp [sparseRootState, basisKet,
+    show (6 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (6 : Fin 8) ≠ (4 : Fin 8) by decide]
+''',
+          '''private theorem sparseRootState_7 :
+    sparseRootState (7 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+''': '''private theorem sparseRootState_7 :
+    sparseRootState (7 : Fin 8) = 0 := by
+  simp [sparseRootState, basisKet,
+    show (7 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (7 : Fin 8) ≠ (4 : Fin 8) by decide]
+''',
+          }
+
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'expected proof block not found:\n{old}')
+              text = text.replace(old, new, 1)
+
+          for theorem_name in ('mottonenDenseUcry_on_root', 'sparsePrunedUcry_on_root'):
+              needle = f'theorem {theorem_name} :'
+              if needle not in text:
+                  raise SystemExit(f'missing theorem {theorem_name}')
+              text = text.replace(needle, f'set_option maxHeartbeats 1000000 in\n{needle}', 1)
+
+          path.write_text(text)
+          PY
+          git diff --check
+          git diff -- QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean
+      - name: Commit focused fix
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean
+          git commit -m 'Stabilize finite state-preparation paper proofs'
+          git push origin HEAD:agent/papers-state-prep
