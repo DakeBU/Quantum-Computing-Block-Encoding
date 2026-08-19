@@ -25,7 +25,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   teaching-contract:
@@ -33,43 +33,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Refresh vivid hierarchy PNG (one-shot)
-        run: |
-          python3 -m pip install --disable-pip-version-check pillow
-          python3 - <<'PY'
-          from pathlib import Path
-          from PIL import Image
-
-          src = Path('docs/assets/aspbe_hierarchical_harness.webp')
-          dst = Path('docs/assets/hierarchical_harness.png')
-
-          img = Image.open(src).convert('RGBA')
-          target_width = 1200
-          target_height = round(img.height * target_width / img.width)
-          img = img.resize((target_width, target_height), Image.Resampling.LANCZOS)
-          img = img.convert('P', palette=Image.Palette.ADAPTIVE, colors=192)
-          img.save(dst, format='PNG', optimize=True, compress_level=9)
-
-          size = dst.stat().st_size
-          print(f'{src} -> {dst}: {target_width}x{target_height}, {size} bytes')
-          if size > 300_000:
-              raise SystemExit(f'PNG is unexpectedly large: {size} bytes')
-          PY
-
-      - name: Commit vivid hierarchy PNG (one-shot)
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add docs/assets/hierarchical_harness.png
-          if git diff --cached --quiet; then
-            echo 'No hierarchy image change produced.'
-          else
-            git commit -m 'Use vivid lightweight hierarchy image'
-            git push origin HEAD:main
-          fi
 
       - name: Check public figure typography and formulas
         run: python3 tools/check_public_figure_style.py

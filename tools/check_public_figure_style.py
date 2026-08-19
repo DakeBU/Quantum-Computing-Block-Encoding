@@ -19,7 +19,7 @@ README = ROOT / "README.md"
 SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
-HIERARCHY_PNG = ROOT / "docs" / "assets" / "hierarchical_harness.png"
+HIERARCHY_WEBP = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness.webp"
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
 HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
@@ -45,7 +45,6 @@ FORBIDDEN_README_TOKENS = (
     r"\begin{cases}",
     r"\dfrac",
     r"\mathrm{diag}",
-    "aspbe_hierarchical_harness.webp",
 )
 
 
@@ -96,15 +95,15 @@ def check_readme_math_surface(readme: str) -> None:
     if any(position < 0 for position in positions) or positions != sorted(positions):
         fail("README reader order must be intro → public workflow → hierarchy → SP → BE → cases")
 
-    expected_png_ref = 'src="docs/assets/hierarchical_harness.png"'
-    if expected_png_ref not in readme:
-        fail("README must use the lightweight PNG hierarchy figure")
-    if not HIERARCHY_PNG.is_file():
-        fail("missing hierarchy PNG")
-    if HIERARCHY_PNG.stat().st_size > 250_000:
+    expected_webp_ref = 'src="docs/assets/aspbe_hierarchical_harness.webp"'
+    if expected_webp_ref not in readme:
+        fail("README must use the vivid lightweight hierarchy figure")
+    if not HIERARCHY_WEBP.is_file():
+        fail("missing vivid hierarchy WebP")
+    if HIERARCHY_WEBP.stat().st_size > 100_000:
         fail(
-            "hierarchy PNG is too large for the README: "
-            f"{HIERARCHY_PNG.stat().st_size} bytes > 250000"
+            "vivid hierarchy WebP is too large for the README: "
+            f"{HIERARCHY_WEBP.stat().st_size} bytes > 100000"
         )
 
 
