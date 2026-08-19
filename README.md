@@ -19,6 +19,27 @@
 
 </div>
 
+## Why a hierarchical harness?
+
+State Preparation and Block Encoding traditionally ask one researcher to **invent a construction, remember the literature, decompose the proof, debug failed routes, and verify the final circuit**. A single monolithic solver inherits the same coordination problem at greater speed.
+
+ASPBE instead separates **mathematical strategy**, **Lean-tree planning**, **focused local proof work**, and **verification**.
+
+<p align="center">
+  <img src="docs/assets/aspbe_hierarchical_harness.webp" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1000">
+</p>
+
+The hierarchy has explicit role boundaries:
+
+- **Upper strategist:** brainstorms construction families, freezes the intended target, and changes only an authorized capacity or tolerance rung.
+- **Middle planner / Lean-tree manager:** retrieves QuantumComputinglib and memory cards, maintains the Lean tree/network and proof DAG, decomposes a route, and issues only ready leaves.
+- **Lower workers:** solve one local obligation at a time — one human-readable proof step, one Lean declaration, or one finite diagnostic — rather than redesigning the whole construction.
+- **Reviewer / verifier:** checks assumptions, evidence class, finite screens, target fidelity, and promotion; typed failures are routed back instead of being retried blindly.
+
+**QuantumComputinglib, the textbook, source/paper maps, and certified memory cards act as domain preparation for these agents.** The point is not simply to use more agents, but to give specialized agents a structured map of the field and prevent different levels from interfering with each other's jobs.
+
+---
+
 <p align="center">
   <img src="docs/assets/abeis_application_overview.svg" alt="Two independent ASPBE certification routes" width="1080">
 </p>
@@ -96,27 +117,6 @@ The Lean library contains reusable interfaces and proof leaves for:
 - deterministic resource comparison.
 
 [Read the Block Encoding chapters →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/block-encoding/)
-
----
-
-## Why a hierarchical harness?
-
-State Preparation and Block Encoding traditionally demand the same person to invent a construction, keep track of the source assumptions, search for a proof, debug failed routes, and verify the final circuit. A single monolithic agent has the same coordination problem at larger speed.
-
-ASPBE instead separates **mathematical strategy**, **proof-tree planning**, **focused local proof work**, and **verification**.
-
-<p align="center">
-  <img src="docs/assets/aspbe_hierarchical_harness.svg" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1180">
-</p>
-
-The actual hierarchy is stricter than a generic multi-agent diagram:
-
-- **Upper strategist:** brainstorms construction families, freezes the intended target, and changes only an authorized capacity or tolerance rung.
-- **Middle planner / Lean-tree manager:** retrieves QuantumComputinglib and memory cards, maintains the Lean tree/network and proof DAG, decomposes a route, and assigns only ready leaves.
-- **Lower workers:** solve one local obligation at a time — a short natural-language proof, one Lean declaration, or one finite diagnostic — rather than redesigning the whole construction.
-- **Reviewer / verifier:** checks assumptions, evidence class, finite screens, target fidelity, and promotion; typed failures are returned to the planner instead of being retried blindly.
-
-**QuantumComputinglib, the textbook, source/paper maps, and certified memory cards act as domain preparation for these agents.** They reduce repeated rediscovery and make the harness specialized in State Preparation and Block Encoding rather than a generic theorem-proving loop.
 
 ---
 
