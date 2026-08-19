@@ -68,7 +68,7 @@ theorem mottonenRootRy_col_zero :
         (0 : Fin 4) = mottonenRootState := by
   funext row
   fin_cases row <;>
-    simp [mottonenRootState, basisKet,
+    simp [mottonenRootState,
       evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
       primitiveBasisLEEquiv_two_symm_0, primitiveBasisLEEquiv_two_symm_1,
       primitiveBasisLEEquiv_two_symm_2, primitiveBasisLEEquiv_two_symm_3,
@@ -77,8 +77,7 @@ theorem mottonenRootRy_col_zero :
       splitPrimitiveWire_primitiveBasisLEEquiv_two_symm_context_eq,
       primitiveBits2LEGridWithout, primitiveBits2LE,
       primitiveBits2LEWithout,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
-      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
 
 theorem mottonenRootRy_prepares :
@@ -103,7 +102,7 @@ theorem mottonenDenseUcry_col_zero :
       mottonenUcryColumnZero := by
   funext row
   fin_cases row <;>
-    simp [mottonenDenseUcryCircuit, mottonenUcryColumnZero, basisKet,
+    simp [mottonenDenseUcryCircuit, mottonenUcryColumnZero,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       mottonenConditionalAngles, groverRudolphControlWire,
       primitiveControlAssignment, primitiveLEBits,
@@ -115,8 +114,7 @@ theorem mottonenDenseUcry_col_zero :
       primitiveBits2LEGridWithout, primitiveBits2LE,
       primitiveBits2LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
-      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
 
 theorem mottonenDenseUcry_col_two :
@@ -124,7 +122,7 @@ theorem mottonenDenseUcry_col_two :
       mottonenUcryColumnTwo := by
   funext row
   fin_cases row <;>
-    simp [mottonenDenseUcryCircuit, mottonenUcryColumnTwo, basisKet,
+    simp [mottonenDenseUcryCircuit, mottonenUcryColumnTwo,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       mottonenConditionalAngles, groverRudolphControlWire,
       primitiveControlAssignment, primitiveLEBits,
@@ -136,8 +134,7 @@ theorem mottonenDenseUcry_col_two :
       primitiveBits2LEGridWithout, primitiveBits2LE,
       primitiveBits2LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
-      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
 
 theorem mottonenDenseUcry_on_root :
@@ -157,7 +154,7 @@ theorem mottonenDenseUcry_on_root :
   funext row
   fin_cases row <;>
     simp [mottonenUcryColumnZero, mottonenUcryColumnTwo,
-      basisKet, mottonenDenseState, Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      mottonenDenseState] <;>
     norm_num
 
 theorem mottonenDensePrimitive_prepares_target :
@@ -250,7 +247,7 @@ theorem sparseRootRy_col_zero :
         (0 : Fin 8) = sparseRootState := by
   funext row
   fin_cases row <;>
-    simp [sparseRootState, basisKet,
+    simp [sparseRootState,
       evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
       primitiveBasisLEEquiv_three_symm_0, primitiveBasisLEEquiv_three_symm_1,
       primitiveBasisLEEquiv_three_symm_2, primitiveBasisLEEquiv_three_symm_3,
@@ -262,8 +259,7 @@ theorem sparseRootRy_col_zero :
       splitPrimitiveWire_primitiveBasisLEEquiv_three_symm_context_eq,
       primitiveBits3LEGridWithout, primitiveBits3LE,
       primitiveBits3LEWithout,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation,
-      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
 
 theorem sparseRootRy_prepares :
@@ -285,7 +281,7 @@ theorem sparsePrunedUcry_col_zero :
       sparseUcryColumnZero := by
   funext row
   fin_cases row <;>
-    simp [sparsePrunedUcryCircuit, sparseUcryColumnZero, basisKet,
+    simp [sparsePrunedUcryCircuit, sparseUcryColumnZero,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       sparseConditionalAngles, sparseControlWire, primitiveControlAssignment,
       primitiveLEBits,
@@ -300,8 +296,7 @@ theorem sparsePrunedUcry_col_zero :
       primitiveBits3LEGridWithout, primitiveBits3LE,
       primitiveBits3LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngleZero, realOrthogonalRotation,
-      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      standardRyMatrix_ryAngleZero, realOrthogonalRotation] <;>
     norm_num
 
 theorem sparsePrunedUcry_col_four :
@@ -309,7 +304,7 @@ theorem sparsePrunedUcry_col_four :
       sparseUcryColumnFour := by
   funext row
   fin_cases row <;>
-    simp [sparsePrunedUcryCircuit, sparseUcryColumnFour, basisKet,
+    simp [sparsePrunedUcryCircuit, sparseUcryColumnFour,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       sparseConditionalAngles, sparseControlWire, primitiveControlAssignment,
       primitiveLEBits,
@@ -324,8 +319,7 @@ theorem sparsePrunedUcry_col_four :
       primitiveBits3LEGridWithout, primitiveBits3LE,
       primitiveBits3LEWithout, splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
-      standardRyMatrix_ryAngleZero, realOrthogonalRotation,
-      Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      standardRyMatrix_ryAngleZero, realOrthogonalRotation] <;>
     norm_num
 
 theorem sparsePrunedUcry_on_root :
@@ -345,7 +339,7 @@ theorem sparsePrunedUcry_on_root :
   funext row
   fin_cases row <;>
     simp [sparseUcryColumnZero, sparseUcryColumnFour,
-      basisKet, sparseThreeState, Pi.single_eq_same, Pi.single_eq_of_ne] <;>
+      sparseThreeState] <;>
     norm_num
 
 theorem sparsePruned_prepares_target :
