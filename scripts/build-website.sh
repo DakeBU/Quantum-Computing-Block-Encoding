@@ -12,6 +12,7 @@ python3 -m py_compile \
   website/scripts/enforce_robin_reader_contract.py \
   website/scripts/polish_casebook.py \
   website/scripts/publish_extensions.py \
+  website/scripts/publish_paper_pages.py \
   website/scripts/publish_taxonomy.py \
   website/scripts/check_site.py \
   website/scripts/ide_server.py \
@@ -40,6 +41,7 @@ python3 website/scripts/enrich_casebook.py --root _out/site
 python3 website/scripts/polish_casebook.py --root _out/site
 python3 website/scripts/enforce_robin_reader_contract.py --root _out/site
 python3 website/scripts/publish_extensions.py --root _out/site
+python3 website/scripts/publish_paper_pages.py --root _out/site
 python3 website/scripts/publish_taxonomy.py --root _out/site
 
 rm -rf _site
@@ -64,6 +66,10 @@ test -f _site/papers/index.html
 test -f _site/papers/state-preparation/index.html
 test -f _site/papers/block-encoding/index.html
 test -f _site/papers/ghl2025-robin/index.html
+test -f _site/papers/mottonen-2005-state-preparation/index.html
+test -f _site/papers/grover-rudolph-2002/index.html
+test -f _site/papers/li-luo-sparse-state-2025/index.html
+test -f _site/papers/low-kliuchnikov-schaeffer-2018/index.html
 test -f _site/data/example-cases.json
 test -f _site/data/papers.json
 test -f _site/data/case-source-anchors.json
@@ -93,6 +99,16 @@ grep -q 'Eq. (1), (3), (6)' _site/example-cases/grover-rudolph-product-state-pre
 grep -q 'Li' _site/example-cases/sparse-three-state-preparation/index.html
 grep -q 'Eq. (1)' _site/example-cases/sparse-three-state-preparation/index.html
 grep -q 'Eq. (2)' _site/example-cases/sparse-three-state-preparation/index.html
+
+grep -q 'Eq. (6)' _site/papers/mottonen-2005-state-preparation/index.html
+grep -q 'Fig. 3' _site/papers/mottonen-2005-state-preparation/index.html
+grep -q 'Eq. (5)' _site/papers/grover-rudolph-2002/index.html
+grep -q 'Theorem 1' _site/papers/li-luo-sparse-state-2025/index.html
+grep -q 'Table 2' _site/papers/low-kliuchnikov-schaeffer-2018/index.html
+grep -q 'Paper reproduction boundary' _site/papers/mottonen-2005-state-preparation/index.html
+grep -q 'Paper reproduction boundary' _site/papers/grover-rudolph-2002/index.html
+grep -q 'Paper reproduction boundary' _site/papers/li-luo-sparse-state-2025/index.html
+grep -q 'Paper reproduction boundary' _site/papers/low-kliuchnikov-schaeffer-2018/index.html
 
 grep -q 'id="case-tutorial"' _site/example-cases/robin-ghl-one-term/index.html
 grep -q 'GHL Eq. (9)' _site/example-cases/robin-ghl-one-term/index.html
