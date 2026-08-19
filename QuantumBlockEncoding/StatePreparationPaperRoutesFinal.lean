@@ -60,19 +60,25 @@ noncomputable def mottonenRootState : StateVector (gridSize 2) ℂ :=
 
 private theorem mottonenRootState_0 :
     mottonenRootState (0 : Fin 4) = (5 : ℂ) / 13 := by
-  norm_num [mottonenRootState, basisKet]
+  simp [mottonenRootState, basisKet,
+    show (0 : Fin 4) ≠ (2 : Fin 4) by decide]
 
 private theorem mottonenRootState_1 :
     mottonenRootState (1 : Fin 4) = 0 := by
-  norm_num [mottonenRootState, basisKet]
+  simp [mottonenRootState, basisKet,
+    show (1 : Fin 4) ≠ (0 : Fin 4) by decide,
+    show (1 : Fin 4) ≠ (2 : Fin 4) by decide]
 
 private theorem mottonenRootState_2 :
     mottonenRootState (2 : Fin 4) = (12 : ℂ) / 13 := by
-  norm_num [mottonenRootState, basisKet]
+  simp [mottonenRootState, basisKet,
+    show (2 : Fin 4) ≠ (0 : Fin 4) by decide]
 
 private theorem mottonenRootState_3 :
     mottonenRootState (3 : Fin 4) = 0 := by
-  norm_num [mottonenRootState, basisKet]
+  simp [mottonenRootState, basisKet,
+    show (3 : Fin 4) ≠ (0 : Fin 4) by decide,
+    show (3 : Fin 4) ≠ (2 : Fin 4) by decide]
 
 theorem mottonenRootRy_col_zero :
     (evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513]).col
@@ -181,6 +187,7 @@ private theorem mottonenDenseUcry_entry_30 :
   mottonenDenseUcry_entry_zero_of_context_ne
     (3 : Fin 4) (0 : Fin 4) (by native_decide)
 
+set_option maxHeartbeats 1000000 in
 theorem mottonenDenseUcry_on_root :
     applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
       mottonenDenseState := by
@@ -308,35 +315,49 @@ noncomputable def sparseRootState : StateVector (gridSize 3) ℂ :=
 
 private theorem sparseRootState_0 :
     sparseRootState (0 : Fin 8) = (5 : ℂ) / 13 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (0 : Fin 8) ≠ (4 : Fin 8) by decide]
 
 private theorem sparseRootState_1 :
     sparseRootState (1 : Fin 8) = 0 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (1 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (1 : Fin 8) ≠ (4 : Fin 8) by decide]
 
 private theorem sparseRootState_2 :
     sparseRootState (2 : Fin 8) = 0 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (2 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (2 : Fin 8) ≠ (4 : Fin 8) by decide]
 
 private theorem sparseRootState_3 :
     sparseRootState (3 : Fin 8) = 0 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (3 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (3 : Fin 8) ≠ (4 : Fin 8) by decide]
 
 private theorem sparseRootState_4 :
     sparseRootState (4 : Fin 8) = (12 : ℂ) / 13 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (4 : Fin 8) ≠ (0 : Fin 8) by decide]
 
 private theorem sparseRootState_5 :
     sparseRootState (5 : Fin 8) = 0 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (5 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (5 : Fin 8) ≠ (4 : Fin 8) by decide]
 
 private theorem sparseRootState_6 :
     sparseRootState (6 : Fin 8) = 0 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (6 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (6 : Fin 8) ≠ (4 : Fin 8) by decide]
 
 private theorem sparseRootState_7 :
     sparseRootState (7 : Fin 8) = 0 := by
-  norm_num [sparseRootState, basisKet]
+  simp [sparseRootState, basisKet,
+    show (7 : Fin 8) ≠ (0 : Fin 8) by decide,
+    show (7 : Fin 8) ≠ (4 : Fin 8) by decide]
 
 theorem sparseRootRy_col_zero :
     (evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]).col
@@ -505,6 +526,7 @@ private theorem sparsePrunedUcry_entry_74 :
   sparsePrunedUcry_entry_zero_of_context_ne
     (7 : Fin 8) (4 : Fin 8) (by native_decide)
 
+set_option maxHeartbeats 1000000 in
 theorem sparsePrunedUcry_on_root :
     applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
       sparseThreeState := by
