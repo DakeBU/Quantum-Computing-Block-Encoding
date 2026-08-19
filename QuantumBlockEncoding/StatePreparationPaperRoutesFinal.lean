@@ -76,7 +76,7 @@ theorem mottonenRootRy_col_zero :
         (0 : Fin 4) = mottonenRootState := by
   funext row
   fin_cases row <;>
-    simp [mottonenRootState, basisKet,
+    simp [mottonenRootState, basisKet, Fin.mk.injEq,
       evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
@@ -143,28 +143,44 @@ theorem mottonenDenseUcry_col_zero :
       mottonenUcryColumnZero := by
   funext row
   fin_cases row
-  · simpa [mottonenUcryColumnZero] using mottonenDenseUcry_entry_00
-  · simpa [mottonenUcryColumnZero] using mottonenDenseUcry_entry_10
-  · have h := mottonenDenseUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (0 : Fin 4) =
+        (3 : ℂ) / 5
+    exact mottonenDenseUcry_entry_00
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (0 : Fin 4) =
+        (4 : ℂ) / 5
+    exact mottonenDenseUcry_entry_10
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (0 : Fin 4) = 0
+    exact mottonenDenseUcry_entry_zero_of_context_ne
       (2 : Fin 4) (0 : Fin 4) (by native_decide)
-    simpa [mottonenUcryColumnZero] using h
-  · have h := mottonenDenseUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (0 : Fin 4) = 0
+    exact mottonenDenseUcry_entry_zero_of_context_ne
       (3 : Fin 4) (0 : Fin 4) (by native_decide)
-    simpa [mottonenUcryColumnZero] using h
 
 theorem mottonenDenseUcry_col_two :
     (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (2 : Fin 4) =
       mottonenUcryColumnTwo := by
   funext row
   fin_cases row
-  · have h := mottonenDenseUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (2 : Fin 4) = 0
+    exact mottonenDenseUcry_entry_zero_of_context_ne
       (0 : Fin 4) (2 : Fin 4) (by native_decide)
-    simpa [mottonenUcryColumnTwo] using h
-  · have h := mottonenDenseUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (2 : Fin 4) = 0
+    exact mottonenDenseUcry_entry_zero_of_context_ne
       (1 : Fin 4) (2 : Fin 4) (by native_decide)
-    simpa [mottonenUcryColumnTwo] using h
-  · simpa [mottonenUcryColumnTwo] using mottonenDenseUcry_entry_22
-  · simpa [mottonenUcryColumnTwo] using mottonenDenseUcry_entry_32
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (2 : Fin 4) =
+        (5 : ℂ) / 13
+    exact mottonenDenseUcry_entry_22
+  · change
+      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (2 : Fin 4) =
+        (12 : ℂ) / 13
+    exact mottonenDenseUcry_entry_32
 
 theorem mottonenDenseUcry_on_root :
     applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
@@ -282,7 +298,7 @@ theorem sparseRootRy_col_zero :
         (0 : Fin 8) = sparseRootState := by
   funext row
   fin_cases row <;>
-    simp [sparseRootState, basisKet,
+    simp [sparseRootState, basisKet, Fin.mk.injEq,
       evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
@@ -345,52 +361,74 @@ theorem sparsePrunedUcry_col_zero :
       sparseUcryColumnZero := by
   funext row
   fin_cases row
-  · simpa [sparseUcryColumnZero] using sparsePrunedUcry_entry_00
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (0 : Fin 8) =
+        (3 : ℂ) / 5
+    exact sparsePrunedUcry_entry_00
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (0 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (1 : Fin 8) (0 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnZero] using h
-  · simpa [sparseUcryColumnZero] using sparsePrunedUcry_entry_20
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (0 : Fin 8) =
+        (4 : ℂ) / 5
+    exact sparsePrunedUcry_entry_20
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (0 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (3 : Fin 8) (0 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnZero] using h
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (0 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (4 : Fin 8) (0 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnZero] using h
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (0 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (5 : Fin 8) (0 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnZero] using h
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (0 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (6 : Fin 8) (0 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnZero] using h
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (0 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (7 : Fin 8) (0 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnZero] using h
 
 theorem sparsePrunedUcry_col_four :
     (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8) =
       sparseUcryColumnFour := by
   funext row
   fin_cases row
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (4 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (0 : Fin 8) (4 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnFour] using h
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (4 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (1 : Fin 8) (4 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnFour] using h
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (4 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (2 : Fin 8) (4 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnFour] using h
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (4 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (3 : Fin 8) (4 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnFour] using h
-  · simpa [sparseUcryColumnFour] using sparsePrunedUcry_entry_44
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (4 : Fin 8) = 1
+    exact sparsePrunedUcry_entry_44
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (4 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (5 : Fin 8) (4 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnFour] using h
-  · simpa [sparseUcryColumnFour] using sparsePrunedUcry_entry_64
-  · have h := sparsePrunedUcry_entry_zero_of_context_ne
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (4 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_64
+  · change
+      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (4 : Fin 8) = 0
+    exact sparsePrunedUcry_entry_zero_of_context_ne
       (7 : Fin 8) (4 : Fin 8) (by native_decide)
-    simpa [sparseUcryColumnFour] using h
 
 theorem sparsePrunedUcry_on_root :
     applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
