@@ -1,0 +1,158 @@
+name: One-shot ASPBE harness feedback-loop update
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-harness:
+    if: contains(github.event.head_commit.message, '[apply-harness-loop]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Install raster dependency
+        run: python3 -m pip install --quiet pillow
+      - name: Extend harness with verifier-guided evolution loop
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import math, subprocess
+          from PIL import Image, ImageDraw, ImageFont
+
+          image_path = Path('docs/assets/ASPBE.png')
+          base = Image.open(image_path).convert('RGB')
+          W, H = base.size
+          sx, sy = W / 1672.0, H / 941.0
+          S = min(sx, sy)
+          newH = round(1095 * sy)
+          out = Image.new('RGB', (W, newH), 'white')
+          out.paste(base, (0, 0))
+          draw = ImageDraw.Draw(out)
+
+          X = lambda v: round(v * sx)
+          Y = lambda v: round(v * sy)
+          xL, xR = X(947), X(1643)
+          bg = (252, 253, 249)
+          green = (64, 105, 49)
+          green2 = (84, 126, 63)
+          gold_fill = (250, 247, 229)
+          gold_border = (158, 136, 76)
+          text = (27, 31, 24)
+
+          src_y0, src_y1, dst_y0 = Y(744), Y(939), Y(889)
+          strip = base.crop((xL, src_y0, xR + 1, src_y1))
+          draw.rectangle([xL, src_y0, xR, newH - 1], fill=bg)
+          out.paste(strip, (xL, dst_y0))
+          draw = ImageDraw.Draw(out)
+          draw.line([(xL, Y(744)), (xL, newH - Y(15)),
+                     (xL + X(12), newH - Y(2)), (xR - X(12), newH - Y(2)),
+                     (xR, newH - Y(15)), (xR, Y(744))],
+                    fill=green2, width=max(1, round(2*S)))
+
+          def font_path(pattern, fallback):
+              try:
+                  p = subprocess.check_output(
+                      ['fc-match', '-f', '%{file}', pattern], text=True).strip()
+                  return p if p else fallback
+              except Exception:
+                  return fallback
+
+          regular = font_path('Times New Roman', '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf')
+          bold = font_path('Times New Roman:style=Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf')
+          italic = font_path('Times New Roman:style=Italic', '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf')
+          F = lambda path, size: ImageFont.truetype(path, max(10, round(size*S)))
+          f_head, f_body = F(bold, 20), F(regular, 15)
+          f_small, f_ital, f_badge = F(regular, 13), F(italic, 13), F(bold, 15)
+
+          def poly_arrow(points, color=green, width=3, head=10, dash=None):
+              pts = [(X(x), Y(y)) for x, y in points]
+              w = max(1, round(width*S)); h = max(5, round(head*S))
+              if dash:
+                  d0, d1 = dash[0]*S, dash[1]*S
+                  for (x0,y0),(x1,y1) in zip(pts[:-1],pts[1:]):
+                      dx,dy=x1-x0,y1-y0; length=math.hypot(dx,dy)
+                      if not length: continue
+                      ux,uy=dx/length,dy/length; pos=0; on=True
+                      while pos < length:
+                          seg=min(d0 if on else d1, length-pos)
+                          if on:
+                              draw.line((x0+ux*pos,y0+uy*pos,
+                                         x0+ux*(pos+seg),y0+uy*(pos+seg)),
+                                        fill=color,width=w)
+                          pos += seg; on = not on
+              else:
+                  draw.line(pts, fill=color, width=w, joint='curve')
+              (x0,y0),(x1,y1)=pts[-2],pts[-1]
+              ang=math.atan2(y1-y0,x1-x0); a=math.radians(28)
+              p1=(x1-h*math.cos(ang-a),y1-h*math.sin(ang-a))
+              p2=(x1-h*math.cos(ang+a),y1-h*math.sin(ang+a))
+              draw.polygon([(x1,y1),p1,p2], fill=color)
+
+          bx0,by0,bx1,by1 = X(1060),Y(752),X(1575),Y(868)
+          draw.rounded_rectangle([bx0,by0,bx1,by1], radius=max(6,round(14*S)),
+                                 fill=gold_fill, outline=gold_border,
+                                 width=max(1,round(2*S)))
+          draw.ellipse([X(1076),Y(766),X(1099),Y(789)], fill=green)
+          draw.text((X(1088),Y(777)), '5', font=f_small, fill='white', anchor='mm')
+          draw.text((X(1274),Y(777)), 'verification signals / process reward',
+                    font=f_head, fill=text, anchor='mm')
+          draw.rounded_rectangle([X(1468),Y(763),X(1562),Y(789)],
+                                 radius=max(5,round(12*S)), fill=(237,245,232),
+                                 outline=green2, width=1)
+          draw.text((X(1515),Y(777)), 't → t+1', font=f_badge, fill=green, anchor='mm')
+          draw.text((X(1318),Y(805)),
+                    'Lean verified?  ·  finite checks  ·  target fidelity  ·  obstruction class',
+                    font=f_body, fill=text, anchor='mm')
+          draw.text((X(1318),Y(827)),
+                    'proof progress  ·  gate / depth / ancilla / oracle score',
+                    font=f_body, fill=text, anchor='mm')
+          draw.text((X(1318),Y(850)),
+                    'low reward / failure → strategist changes route; planner replans proof DAG',
+                    font=f_small, fill=(68,78,54), anchor='mm')
+
+          poly_arrow([(1280,738),(1280,749)], green2, 3, 9)
+
+          # Explicit self-evolution spine: verifier/reward → strategist and planner.
+          draw.line([(X(1575),Y(820)),(X(1621),Y(820)),(X(1621),Y(267))],
+                    fill=green,width=max(1,round(3*S)))
+          for y in range(278,812,18):
+              draw.line([(X(1621),Y(y)),(X(1621),Y(min(y+9,812)))],
+                        fill=bg,width=max(1,round(3*S)))
+          poly_arrow([(1621,267),(1508,267)], green, 3, 10, dash=(8,6))
+          poly_arrow([(1621,380),(1527,380)], green, 3, 10, dash=(8,6))
+          draw.text((X(1607),Y(303)), 'strategy update', font=f_ital, fill=green, anchor='ra')
+          draw.text((X(1607),Y(415)), 'proof-DAG update', font=f_ital, fill=green, anchor='ra')
+
+          poly_arrow([(1280,868),(1280,887)], green2, 3, 9)
+          draw.text((X(1265),Y(882)), 'verified winner → accept / export',
+                    font=f_ital, fill=green, anchor='mm')
+
+          out.save(image_path, optimize=True)
+          print('updated', image_path, out.size, image_path.stat().st_size)
+          if image_path.stat().st_size > 2_000_000:
+              raise SystemExit('updated ASPBE.png exceeds 2 MB contract')
+
+          readme = Path('README.md')
+          text_md = readme.read_text()
+          old = '''- **Reviewer / verifier:** checks assumptions, evidence class, finite screens, target fidelity, and promotion; typed failures are routed back instead of being retried blindly.\n\n**QuantumComputinglib, the textbook, source/paper maps, and certified memory cards act as domain preparation for these agents.**'''
+          new = '''- **Reviewer / verifier:** checks assumptions, evidence class, finite screens, target fidelity, and promotion; typed failures are routed back instead of being retried blindly.\n\nVerification is **not** the end of the harness. Lean pass/fail, proof progress, obstruction type, finite checks, target fidelity, and the circuit resource tuple form a process-reward signal. A failed or low-value candidate sends typed feedback to the **Middle planner** to replan the proof DAG and, when the construction itself is the bottleneck, to the **Upper strategist** to change the construction family or authorized policy rung. The next iteration therefore changes either the mathematical route or its proof decomposition; a Lean-verified candidate is exported only after it satisfies the target and promotion criteria.\n\n**QuantumComputinglib, the textbook, source/paper maps, and certified memory cards act as domain preparation for these agents.**'''
+          if old not in text_md:
+              raise SystemExit('README harness paragraph not found')
+          readme.write_text(text_md.replace(old, new, 1))
+          PY
+          python3 tools/check_public_figure_style.py
+      - name: Commit feedback-loop figure and explanation
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/assets/ASPBE.png README.md
+          git commit -m 'Show verifier-guided self-evolution in ASPBE harness'
+          git push origin HEAD:main
