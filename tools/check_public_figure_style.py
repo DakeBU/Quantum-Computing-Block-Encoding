@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Guard the reader-facing figure typography and formula surface.
 
-The README intentionally uses a small set of academic-style SVG figures.  This
+The README intentionally uses a small set of academic-style SVG figures. This
 check prevents regenerated assets from silently falling back to UI/sans fonts or
-ASCII pseudo-mathematics.  Website Mermaid and grouped-register SVGs are styled
+ASCII pseudo-mathematics. Website Mermaid and grouped-register SVGs are styled
 at runtime by ``website/static/site.js``; both their typography and their source
 labels are checked here too.
 """
@@ -90,6 +90,11 @@ def check_website_runtime_figures() -> None:
         ".diagram-panel .mermaid",
         ".quantikz-preview text",
         "box-shadow: none",
+        '.replace(/\\balpha\\b/g, "α")',
+        '.replace(/\\btheta\\b/g, "θ")',
+        '.replace(/\\bperp\\b/g, "⊥")',
+        '"|$1⟩"',
+        "MutationObserver",
     )
     for needle in required:
         if needle not in source:
