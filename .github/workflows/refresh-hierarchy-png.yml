@@ -1,0 +1,62 @@
+name: Refresh vivid hierarchy PNG
+
+on:
+  push:
+    branches:
+      - agent/replace-vivid-hierarchy-png
+    paths:
+      - .github/workflows/refresh-hierarchy-png.yml
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+
+      - name: Convert vivid WebP to lightweight PNG
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          src = Path('docs/assets/aspbe_hierarchical_harness.webp')
+          dst = Path('docs/assets/hierarchical_harness.png')
+
+          image = Image.open(src).convert('RGB')
+          target_width = 1200
+          target_height = round(image.height * target_width / image.width)
+          image = image.resize((target_width, target_height), Image.Resampling.LANCZOS)
+          image = image.quantize(
+              colors=192,
+              method=Image.Quantize.MEDIANCUT,
+              dither=Image.Dither.NONE,
+          )
+          image.save(dst, optimize=True, compress_level=9)
+          print(f'{dst}: {dst.stat().st_size} bytes, {target_width}x{target_height}')
+          PY
+
+      - name: Commit regenerated PNG
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/assets/hierarchical_harness.png
+          if git diff --cached --quiet; then
+            echo 'No image change.'
+          else
+            git commit -m 'Replace hierarchy PNG with vivid illustration'
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
