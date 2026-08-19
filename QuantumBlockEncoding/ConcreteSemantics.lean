@@ -46,6 +46,16 @@ fixed-width circuit proofs. -/
     simp [basisKet, Pi.single_apply]
   · simp [basisKet, Pi.single_apply, hit]
 
+/-- Expanded basis kets use `Pi.single`; expose the same Kronecker-delta rule
+so proofs remain stable even after `basisKet` has been unfolded. -/
+@[simp] theorem piSingle_one_apply {dimension : Nat} {α : Type u}
+    [Zero α] [One α] (index row : Fin dimension) :
+    Pi.single index (1 : α) row = if index = row then 1 else 0 := by
+  by_cases hit : index = row
+  · subst row
+    simp [Pi.single_apply]
+  · simp [Pi.single_apply, hit]
+
 /-- The all-zero computational-basis ket for an `n`-qubit register. -/
 def zeroKet (qubits : Nat) {α : Type u} [Zero α] [One α] :
     StateVector (gridSize qubits) α :=
