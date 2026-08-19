@@ -7,6 +7,7 @@
       text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
       .title { font-size: 28px; font-weight: 700; }
       .formula { font-size: 22px; }
+      .formula-sub { font-size: 15px; }
       .head { font-size: 21px; font-weight: 700; }
       .body { font-size: 17px; fill: #444; }
       .score { font-size: 20px; font-weight: 700; }
@@ -19,7 +20,7 @@
   </defs>
   <rect width="1200" height="390" fill="#fff"/>
   <text x="600" y="40" text-anchor="middle" class="title">BE Case 1 — certified frontier in one logical circuit tier</text>
-  <text x="600" y="75" text-anchor="middle" class="formula">E₁ = |0⟩⟨1|time ⊗ |0⟩⟨1|type ⊗ I₂,   ⟨0|ₐ U |0⟩ₐ = E₁</text>
+  <text x="600" y="75" text-anchor="middle" class="formula"><tspan>E₁ = |0⟩⟨1|</tspan><tspan class="formula-sub" baseline-shift="sub">time</tspan><tspan> ⊗ |0⟩⟨1|</tspan><tspan class="formula-sub" baseline-shift="sub">type</tspan><tspan> ⊗ I₂,   ⟨0|ₐ U |0⟩ₐ = E₁</tspan></text>
 
   <rect x="65" y="112" width="290" height="205" class="box"/>
   <text x="210" y="145" text-anchor="middle" class="head">Depth-5 completion</text>
