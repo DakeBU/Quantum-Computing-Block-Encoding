@@ -37,24 +37,24 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 
-      - name: Refresh vivid hierarchy PNG on conversion branch
-        if: (github.event_name == 'push' && github.ref_name == 'agent/replace-vivid-hierarchy-png') || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/replace-vivid-hierarchy-png')
+      - name: Rebuild approved vivid hierarchy PNG on conversion branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/replace-vivid-hierarchy-png'
         env:
-          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
+          cat .tmp-hierarchy/p*.b64 > /tmp/hierarchy.b64
+          base64 --decode /tmp/hierarchy.b64 > docs/assets/hierarchical_harness.png
           python3 -m pip install --quiet pillow
           python3 - <<'PY'
           from pathlib import Path
           from PIL import Image
-          src = Path('docs/assets/aspbe_hierarchical_harness.webp')
-          dst = Path('docs/assets/hierarchical_harness.png')
-          image = Image.open(src).convert('RGB')
-          width = 1200
-          height = round(image.height * width / image.width)
-          image = image.resize((width, height), Image.Resampling.LANCZOS)
-          image = image.quantize(colors=192, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
-          image.save(dst, optimize=True, compress_level=9)
-          print(f'{dst}: {dst.stat().st_size} bytes, {width}x{height}')
+          path = Path('docs/assets/hierarchical_harness.png')
+          image = Image.open(path)
+          image.verify()
+          image = Image.open(path)
+          print(f'{path}: {path.stat().st_size} bytes, {image.size[0]}x{image.size[1]}')
+          assert image.size[0] == 1000, image.size
+          assert path.stat().st_size < 100_000, path.stat().st_size
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
