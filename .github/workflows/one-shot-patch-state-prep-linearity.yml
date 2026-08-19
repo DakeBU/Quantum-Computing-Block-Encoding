@@ -1,0 +1,74 @@
+name: One-shot patch State Preparation sparse linearity
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: contains(github.event.head_commit.message, '[patch-state-prep-linearity]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/papers-state-prep
+          fetch-depth: 0
+      - name: Replace heavy mulVec expansions with compiled sparse-linearity lemma
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean')
+          text = path.read_text()
+          replacements = [
+          ('''set_option maxHeartbeats 1000000 in
+theorem mottonenDenseUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
+      mottonenDenseState := by
+  unfold applyVec mottonenRootState basisKet
+  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
+    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
+    _root_.Matrix.mulVec_single_one]
+  funext row
+''', '''theorem mottonenDenseUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
+      mottonenDenseState := by
+  unfold mottonenRootState
+  rw [applyVec_twoBasisSuperposition]
+  funext row
+'''),
+          ('''set_option maxHeartbeats 1000000 in
+theorem sparsePrunedUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
+      sparseThreeState := by
+  unfold applyVec sparseRootState basisKet
+  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
+    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
+    _root_.Matrix.mulVec_single_one]
+  funext row
+''', '''theorem sparsePrunedUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
+      sparseThreeState := by
+  unfold sparseRootState
+  rw [applyVec_twoBasisSuperposition]
+  funext row
+''')]
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit('expected heavy proof block not found')
+              text = text.replace(old, new, 1)
+          path.write_text(text)
+          PY
+          git diff --check
+          git diff -- QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean
+      - name: Commit patch to PR branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean
+          git commit -m 'Use compiled sparse linearity in paper routes'
+          git push origin HEAD:agent/papers-state-prep
