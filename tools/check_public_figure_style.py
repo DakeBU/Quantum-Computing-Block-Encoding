@@ -2,10 +2,10 @@
 """Guard the reader-facing figure typography and formula surface.
 
 The README intentionally uses a small set of academic-style SVG figures. This
-check prevents regenerated assets from silently falling back to UI/sans fonts or
-ASCII pseudo-mathematics. Website Mermaid and grouped-register SVGs are styled
-at runtime by ``website/static/site.js``; both their typography and their source
-labels are checked here too.
+check prevents regenerated assets from silently falling back to UI/sans fonts,
+ASCII pseudo-mathematics, or glossy dashboard decoration. Website Mermaid and
+grouped-register SVGs are styled at runtime by ``website/static/site.js``; both
+their typography and their source labels are checked here too.
 """
 
 from __future__ import annotations
@@ -29,6 +29,12 @@ FORBIDDEN_FONTS = (
     "system-ui",
     "ui-sans-serif",
     "sans-serif",
+)
+FORBIDDEN_DECORATION = (
+    "linearGradient",
+    "radialGradient",
+    "drop-shadow",
+    "filter=",
 )
 ASCII_MATH_TOKENS = re.compile(
     r"(?i)(?:\|psi>|<psi\||\bpsi\b|\balpha\b|\bepsilon\b|\btensor\b|\bdagger\b|\bPi\b|\|0\^[a-z0-9]+>)"
@@ -65,6 +71,9 @@ def check_readme_svgs() -> None:
         for font in FORBIDDEN_FONTS:
             if font in source:
                 fail(f"{ref} contains forbidden UI font {font!r}")
+        for token in FORBIDDEN_DECORATION:
+            if token in source:
+                fail(f"{ref} contains dashboard-style SVG decoration {token!r}")
         if ASCII_MATH_TOKENS.search(source):
             fail(f"{ref} contains ASCII pseudo-mathematics; use TeX/Unicode symbols")
 
