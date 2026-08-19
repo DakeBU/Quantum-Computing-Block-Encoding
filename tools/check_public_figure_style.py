@@ -19,7 +19,7 @@ README = ROOT / "README.md"
 SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
-HIERARCHY_PNG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness.png"
+HIERARCHY_JPEG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_display.jpg"
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
 HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
@@ -45,7 +45,8 @@ FORBIDDEN_README_TOKENS = (
     r"\begin{cases}",
     r"\dfrac",
     r"\mathrm{diag}",
-    "aspbe_hierarchical_harness.webp",
+    'src="docs/assets/aspbe_hierarchical_harness.webp"',
+    'src="docs/assets/aspbe_hierarchical_harness.png"',
 )
 
 
@@ -96,16 +97,16 @@ def check_readme_math_surface(readme: str) -> None:
     if any(position < 0 for position in positions) or positions != sorted(positions):
         fail("README reader order must be intro → public workflow → hierarchy → SP → BE → cases")
 
-    expected_png_ref = 'src="docs/assets/aspbe_hierarchical_harness.png"'
-    if expected_png_ref not in readme:
-        fail("README must use the vivid lightweight hierarchy PNG")
-    if not HIERARCHY_PNG.is_file():
-        fail("missing vivid hierarchy PNG")
-    if HIERARCHY_PNG.stat().st_size > 100_000:
-        fail(
-            "vivid hierarchy PNG is too large for the README: "
-            f"{HIERARCHY_PNG.stat().st_size} bytes > 100000"
-        )
+    expected_jpeg_ref = 'src="docs/assets/aspbe_hierarchical_harness_display.jpg"'
+    if expected_jpeg_ref not in readme:
+        fail("README must use the stable JPEG hierarchy figure")
+    if not HIERARCHY_JPEG.is_file():
+        fail("missing hierarchy JPEG")
+    size = HIERARCHY_JPEG.stat().st_size
+    if size > 300_000:
+        fail(f"hierarchy JPEG is too large for the README: {size} bytes > 300000")
+    if not HIERARCHY_JPEG.read_bytes().startswith(b"\xff\xd8\xff"):
+        fail("hierarchy display asset is not a standard JPEG file")
 
 
 def check_readme_svgs(readme: str) -> None:
