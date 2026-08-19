@@ -5,6 +5,7 @@ on:
     paths:
       - "QuantumBlockEncoding/StatePreparationBenchmarks*.lean"
       - "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean"
+      - "QuantumBlockEncoding/StatePreparationBellRoute.lean"
       - "QuantumBlockEncoding/StatePreparation.lean"
       - "QuantumBlockEncoding/ConcreteSemantics.lean"
       - "QuantumBlockEncoding/TextbookStatePreparation.lean"
@@ -16,6 +17,10 @@ on:
       - "QuantumBlockEncoding/Resources.lean"
       - "QuantumBlockEncoding.lean"
       - ".github/workflows/state-prep-proof-smoke.yml"
+
+concurrency:
+  group: state-prep-proof-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
