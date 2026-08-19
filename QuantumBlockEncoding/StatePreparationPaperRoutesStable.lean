@@ -17,8 +17,6 @@ namespace QuantumBlockEncoding.StatePreparationBenchmarks
 open ConcreteSemantics
 open Robin.ComplexLCU
 
-attribute [local simp] Pi.single_apply
-
 /-! ## Exact Pythagorean RY blocks -/
 
 theorem standardRyMatrix_ryAngle35_explicit :
@@ -70,8 +68,10 @@ theorem mottonenRootRy_col_zero :
         (0 : Fin 4) = mottonenRootState := by
   funext row
   fin_cases row <;>
-    simp [mottonenRootState, basisKet,
+    simp [mottonenRootState,
       evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      primitiveBits2LE, primitiveBits2LEWithout,
+      splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
 
@@ -87,10 +87,12 @@ theorem mottonenDenseUcry_col_zero :
       mottonenUcryColumnZero := by
   funext row
   fin_cases row <;>
-    simp [mottonenDenseUcryCircuit, mottonenUcryColumnZero, basisKet,
+    simp [mottonenDenseUcryCircuit, mottonenUcryColumnZero,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       mottonenConditionalAngles, groverRudolphControlWire,
       primitiveControlAssignment, primitiveLEBits,
+      primitiveBits2LE, primitiveBits2LEWithout,
+      splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
@@ -100,10 +102,12 @@ theorem mottonenDenseUcry_col_two :
       mottonenUcryColumnTwo := by
   funext row
   fin_cases row <;>
-    simp [mottonenDenseUcryCircuit, mottonenUcryColumnTwo, basisKet,
+    simp [mottonenDenseUcryCircuit, mottonenUcryColumnTwo,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       mottonenConditionalAngles, groverRudolphControlWire,
       primitiveControlAssignment, primitiveLEBits,
+      primitiveBits2LE, primitiveBits2LEWithout,
+      splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
@@ -125,7 +129,7 @@ theorem mottonenDenseUcry_on_root :
   funext row
   fin_cases row <;>
     simp [mottonenUcryColumnZero, mottonenUcryColumnTwo,
-      basisKet, mottonenDenseState] <;> norm_num
+      mottonenDenseState] <;> norm_num
 
 theorem mottonenDensePrimitive_prepares_target :
     applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
@@ -222,8 +226,10 @@ theorem sparseRootRy_col_zero :
         (0 : Fin 8) = sparseRootState := by
   funext row
   fin_cases row <;>
-    simp [sparseRootState, basisKet,
+    simp [sparseRootState,
       evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      primitiveBits3LE, primitiveBits3LEWithout,
+      splitPrimitiveWire_other_apply,
       standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
     norm_num
 
@@ -239,10 +245,12 @@ theorem sparsePrunedUcry_col_zero :
       sparseUcryColumnZero := by
   funext row
   fin_cases row <;>
-    simp [sparsePrunedUcryCircuit, sparseUcryColumnZero, basisKet,
+    simp [sparsePrunedUcryCircuit, sparseUcryColumnZero,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       sparseConditionalAngles, sparseControlWire, primitiveControlAssignment,
-      primitiveLEBits, standardRyMatrix_ryAngle35_explicit,
+      primitiveLEBits, primitiveBits3LE, primitiveBits3LEWithout,
+      splitPrimitiveWire_other_apply,
+      standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngleZero, realOrthogonalRotation] <;>
     norm_num
 
@@ -251,10 +259,12 @@ theorem sparsePrunedUcry_col_four :
       sparseUcryColumnFour := by
   funext row
   fin_cases row <;>
-    simp [sparsePrunedUcryCircuit, sparseUcryColumnFour, basisKet,
+    simp [sparsePrunedUcryCircuit, sparseUcryColumnFour,
       evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply,
       sparseConditionalAngles, sparseControlWire, primitiveControlAssignment,
-      primitiveLEBits, standardRyMatrix_ryAngle35_explicit,
+      primitiveLEBits, primitiveBits3LE, primitiveBits3LEWithout,
+      splitPrimitiveWire_other_apply,
+      standardRyMatrix_ryAngle35_explicit,
       standardRyMatrix_ryAngleZero, realOrthogonalRotation] <;>
     norm_num
 
@@ -275,7 +285,7 @@ theorem sparsePrunedUcry_on_root :
   funext row
   fin_cases row <;>
     simp [sparseUcryColumnZero, sparseUcryColumnFour,
-      basisKet, sparseThreeState] <;> norm_num
+      sparseThreeState] <;> norm_num
 
 theorem sparsePruned_prepares_target :
     applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
