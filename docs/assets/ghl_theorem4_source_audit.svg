@@ -8,6 +8,7 @@
       .title { font-size: 28px; font-weight: 700; }
       .head { font-size: 20px; font-weight: 700; }
       .formula { font-size: 21px; }
+      .formula-sub { font-size: 15px; }
       .body { font-size: 16px; fill: #444; }
       .small { font-size: 15px; fill: #555; }
       .box { fill: #fff; stroke: #555; stroke-width: 1.3; }
@@ -38,7 +39,7 @@
 
   <rect x="875" y="105" width="270" height="100" class="box closed"/>
   <text x="1010" y="140" text-anchor="middle" class="head">Hamiltonian</text>
-  <text x="1010" y="176" text-anchor="middle" class="formula">H = S₁ ⊗ xξ + S₂ ⊗ Iξ</text>
+  <text x="1010" y="176" text-anchor="middle" class="formula"><tspan>H = S₁ ⊗ x</tspan><tspan class="formula-sub" baseline-shift="sub">ξ</tspan><tspan> + S₂ ⊗ I</tspan><tspan class="formula-sub" baseline-shift="sub">ξ</tspan></text>
   <text x="1010" y="198" text-anchor="middle" class="small">normalization · layout · resources closed</text>
 
   <path d="M260 155 L310 155" class="arrow"/>
