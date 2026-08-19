@@ -16,6 +16,7 @@ on:
       - "QuantumBlockEncoding/Circuit.lean"
       - "QuantumBlockEncoding/Resources.lean"
       - "QuantumBlockEncoding.lean"
+      - "executable-exports/SP-PAPERS-001/qiskit/export.py"
       - ".github/workflows/state-prep-proof-smoke.yml"
 
 concurrency:
@@ -39,3 +40,36 @@ jobs:
           use-mathlib-cache: true
       - name: Compile representative state-preparation benchmarks
         run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
+      - name: Check executable Qiskit mirrors
+        shell: bash
+        run: |
+          python3 -m pip install --quiet 'qiskit>=2,<3'
+          python3 - <<'PY'
+          import importlib.util
+          import math
+          from pathlib import Path
+
+          path = Path('executable-exports/SP-PAPERS-001/qiskit/export.py')
+          spec = importlib.util.spec_from_file_location('sp_export', path)
+          module = importlib.util.module_from_spec(spec)
+          assert spec.loader is not None
+          spec.loader.exec_module(module)
+
+          targets = {
+              'bell': ([1 / math.sqrt(2), 0, 0, 1 / math.sqrt(2)], 2, 2),
+              'mottonen': ([39/169, 52/169, 60/169, 144/169], 5, 4),
+              'grover-rudolph': ([9/25, 12/25, 12/25, 16/25], 2, 1),
+              'sparse': ([3/13, 0, 4/13, 0, 12/13, 0, 0, 0], 5, 4),
+          }
+
+          for name, (expected, gates, depth) in targets.items():
+              circuit = module.BUILDERS[name]()
+              state = module.Statevector.from_instruction(circuit)
+              actual = list(state.data)
+              assert len(actual) == len(expected), (name, len(actual), len(expected))
+              error = max(abs(value - target) for value, target in zip(actual, expected))
+              assert error < 1e-12, (name, error, actual)
+              assert circuit.size() == gates, (name, circuit.size(), gates)
+              assert circuit.depth() == depth, (name, circuit.depth(), depth)
+              print(f'{name}: amplitude error={error:.3e}, gates={gates}, depth={depth}')
+          PY
