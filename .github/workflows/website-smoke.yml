@@ -32,6 +32,7 @@ jobs:
             website/scripts/enrich_casebook.py \
             website/scripts/enforce_robin_reader_contract.py \
             website/scripts/publish_extensions.py \
+            website/scripts/publish_paper_pages.py \
             website/scripts/publish_taxonomy.py \
             website/scripts/polish_casebook.py \
             website/scripts/test_casebook_enrichment.py \
@@ -66,5 +67,11 @@ jobs:
           for slug in required:
               record = anchors['cases'][slug]
               assert record['paperTitle'] and record['anchorLabel'] and record['anchors']
+          formalized_papers = [item for item in papers['queue'] if item['status'] != 'queued']
+          assert len(formalized_papers) >= 4
+          for item in formalized_papers:
+              assert item['route'].startswith('papers/')
+              assert item['sourceAnchors'] and item['sourceStatement']
+              assert item['leanRoots']
           print('Robin + Papers + state-preparation teaching taxonomy: syntax and static structure valid')
           PY
