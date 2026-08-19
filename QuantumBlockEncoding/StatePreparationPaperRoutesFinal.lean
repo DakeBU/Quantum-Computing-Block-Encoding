@@ -6,7 +6,8 @@ import Mathlib.Tactic
 
 Canonical candidate for the Möttönen and Li--Luo finite witnesses.  The scored
 object is the same typed `PrimitiveCircuit` whose clean-input state action is
-proved exactly.  Proofs are column-local and finite bit reductions are explicit.
+proved exactly.  Proofs use only the matrix entries that can contribute to the
+clean-input state; no full UCRY matrix or column equality is materialized.
 -/
 
 namespace QuantumBlockEncoding.StatePreparationBenchmarks
@@ -57,29 +58,51 @@ noncomputable def mottonenRootState : StateVector (gridSize 2) ℂ :=
   (5 / 13 : ℂ) • basisKet (gridSize 2) (0 : Fin 4) +
     (12 / 13 : ℂ) • basisKet (gridSize 2) (2 : Fin 4)
 
-/-- Explicit finite column values keep the UCRY semantics proof independent of
-`Pi.single`; the ket form is only needed for the sparse root state. -/
-noncomputable def mottonenUcryColumnZero : StateVector (gridSize 2) ℂ := fun index =>
-  match index.val with
-  | 0 => (3 : ℂ) / 5
-  | 1 => (4 : ℂ) / 5
-  | _ => 0
+private theorem mottonenRootState_0 :
+    mottonenRootState (0 : Fin 4) = (5 : ℂ) / 13 := by
+  norm_num [mottonenRootState, basisKet]
 
-noncomputable def mottonenUcryColumnTwo : StateVector (gridSize 2) ℂ := fun index =>
-  match index.val with
-  | 2 => (5 : ℂ) / 13
-  | 3 => (12 : ℂ) / 13
-  | _ => 0
+private theorem mottonenRootState_1 :
+    mottonenRootState (1 : Fin 4) = 0 := by
+  norm_num [mottonenRootState, basisKet]
+
+private theorem mottonenRootState_2 :
+    mottonenRootState (2 : Fin 4) = (12 : ℂ) / 13 := by
+  norm_num [mottonenRootState, basisKet]
+
+private theorem mottonenRootState_3 :
+    mottonenRootState (3 : Fin 4) = 0 := by
+  norm_num [mottonenRootState, basisKet]
 
 theorem mottonenRootRy_col_zero :
     (evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513]).col
         (0 : Fin 4) = mottonenRootState := by
   funext row
-  fin_cases row <;>
-    simp [mottonenRootState, basisKet, Fin.mk.injEq,
-      evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
-    norm_num
+  fin_cases row
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513]
+          (0 : Fin 4) (0 : Fin 4) = mottonenRootState (0 : Fin 4)
+    rw [mottonenRootState_0]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513]
+          (1 : Fin 4) (0 : Fin 4) = mottonenRootState (1 : Fin 4)
+    rw [mottonenRootState_1]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513]
+          (2 : Fin 4) (0 : Fin 4) = mottonenRootState (2 : Fin 4)
+    rw [mottonenRootState_2]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (1 : Fin 2) ryAngle513]
+          (3 : Fin 4) (0 : Fin 4) = mottonenRootState (3 : Fin 4)
+    rw [mottonenRootState_3]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
 
 theorem mottonenRootRy_prepares :
     applyVec
@@ -138,49 +161,25 @@ private theorem mottonenDenseUcry_entry_32 :
     primitiveControlAssignment, primitiveLEBits,
     standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
 
-theorem mottonenDenseUcry_col_zero :
-    (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (0 : Fin 4) =
-      mottonenUcryColumnZero := by
-  funext row
-  fin_cases row
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (0 : Fin 4) =
-        (3 : ℂ) / 5
-    exact mottonenDenseUcry_entry_00
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (0 : Fin 4) =
-        (4 : ℂ) / 5
-    exact mottonenDenseUcry_entry_10
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (0 : Fin 4) = 0
-    exact mottonenDenseUcry_entry_zero_of_context_ne
-      (2 : Fin 4) (0 : Fin 4) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (0 : Fin 4) = 0
-    exact mottonenDenseUcry_entry_zero_of_context_ne
-      (3 : Fin 4) (0 : Fin 4) (by native_decide)
+private theorem mottonenDenseUcry_entry_02 :
+    evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (2 : Fin 4) = 0 :=
+  mottonenDenseUcry_entry_zero_of_context_ne
+    (0 : Fin 4) (2 : Fin 4) (by native_decide)
 
-theorem mottonenDenseUcry_col_two :
-    (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (2 : Fin 4) =
-      mottonenUcryColumnTwo := by
-  funext row
-  fin_cases row
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (2 : Fin 4) = 0
-    exact mottonenDenseUcry_entry_zero_of_context_ne
-      (0 : Fin 4) (2 : Fin 4) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (2 : Fin 4) = 0
-    exact mottonenDenseUcry_entry_zero_of_context_ne
-      (1 : Fin 4) (2 : Fin 4) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (2 : Fin 4) =
-        (5 : ℂ) / 13
-    exact mottonenDenseUcry_entry_22
-  · change
-      evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (2 : Fin 4) =
-        (12 : ℂ) / 13
-    exact mottonenDenseUcry_entry_32
+private theorem mottonenDenseUcry_entry_12 :
+    evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (2 : Fin 4) = 0 :=
+  mottonenDenseUcry_entry_zero_of_context_ne
+    (1 : Fin 4) (2 : Fin 4) (by native_decide)
+
+private theorem mottonenDenseUcry_entry_20 :
+    evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (0 : Fin 4) = 0 :=
+  mottonenDenseUcry_entry_zero_of_context_ne
+    (2 : Fin 4) (0 : Fin 4) (by native_decide)
+
+private theorem mottonenDenseUcry_entry_30 :
+    evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (0 : Fin 4) = 0 :=
+  mottonenDenseUcry_entry_zero_of_context_ne
+    (3 : Fin 4) (0 : Fin 4) (by native_decide)
 
 theorem mottonenDenseUcry_on_root :
     applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
@@ -189,17 +188,40 @@ theorem mottonenDenseUcry_on_root :
   rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
     _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
     _root_.Matrix.mulVec_single_one]
-  change
-    (5 / 13 : ℂ) •
-        (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (0 : Fin 4) +
-      (12 / 13 : ℂ) •
-        (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (2 : Fin 4) =
-      mottonenDenseState
-  rw [mottonenDenseUcry_col_zero, mottonenDenseUcry_col_two]
   funext row
-  fin_cases row <;>
-    norm_num [mottonenUcryColumnZero, mottonenUcryColumnTwo,
-      mottonenDenseState]
+  fin_cases row
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (0 : Fin 4) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (2 : Fin 4) =
+        (39 : ℂ) / 169
+    rw [mottonenDenseUcry_entry_00, mottonenDenseUcry_entry_02]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (0 : Fin 4) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (2 : Fin 4) =
+        (52 : ℂ) / 169
+    rw [mottonenDenseUcry_entry_10, mottonenDenseUcry_entry_12]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (0 : Fin 4) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (2 : Fin 4) =
+        (60 : ℂ) / 169
+    rw [mottonenDenseUcry_entry_20, mottonenDenseUcry_entry_22]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (0 : Fin 4) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (2 : Fin 4) =
+        (144 : ℂ) / 169
+    rw [mottonenDenseUcry_entry_30, mottonenDenseUcry_entry_32]
+    norm_num
 
 theorem mottonenDensePrimitive_prepares_target :
     applyVec (evalPrimitiveCircuitLE mottonenDensePrimitiveCircuit) (zeroKet 2) =
@@ -284,24 +306,91 @@ noncomputable def sparseRootState : StateVector (gridSize 3) ℂ :=
   (5 / 13 : ℂ) • basisKet (gridSize 3) (0 : Fin 8) +
     (12 / 13 : ℂ) • basisKet (gridSize 3) (4 : Fin 8)
 
-noncomputable def sparseUcryColumnZero : StateVector (gridSize 3) ℂ := fun index =>
-  match index.val with
-  | 0 => (3 : ℂ) / 5
-  | 2 => (4 : ℂ) / 5
-  | _ => 0
+private theorem sparseRootState_0 :
+    sparseRootState (0 : Fin 8) = (5 : ℂ) / 13 := by
+  norm_num [sparseRootState, basisKet]
 
-noncomputable def sparseUcryColumnFour : StateVector (gridSize 3) ℂ := fun index =>
-  if index.val = 4 then 1 else 0
+private theorem sparseRootState_1 :
+    sparseRootState (1 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+
+private theorem sparseRootState_2 :
+    sparseRootState (2 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+
+private theorem sparseRootState_3 :
+    sparseRootState (3 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+
+private theorem sparseRootState_4 :
+    sparseRootState (4 : Fin 8) = (12 : ℂ) / 13 := by
+  norm_num [sparseRootState, basisKet]
+
+private theorem sparseRootState_5 :
+    sparseRootState (5 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+
+private theorem sparseRootState_6 :
+    sparseRootState (6 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
+
+private theorem sparseRootState_7 :
+    sparseRootState (7 : Fin 8) = 0 := by
+  norm_num [sparseRootState, basisKet]
 
 theorem sparseRootRy_col_zero :
     (evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]).col
         (0 : Fin 8) = sparseRootState := by
   funext row
-  fin_cases row <;>
-    simp [sparseRootState, basisKet, Fin.mk.injEq,
-      evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
-      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation] <;>
-    norm_num
+  fin_cases row
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (0 : Fin 8) (0 : Fin 8) = sparseRootState (0 : Fin 8)
+    rw [sparseRootState_0]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (1 : Fin 8) (0 : Fin 8) = sparseRootState (1 : Fin 8)
+    rw [sparseRootState_1]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (2 : Fin 8) (0 : Fin 8) = sparseRootState (2 : Fin 8)
+    rw [sparseRootState_2]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (3 : Fin 8) (0 : Fin 8) = sparseRootState (3 : Fin 8)
+    rw [sparseRootState_3]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (4 : Fin 8) (0 : Fin 8) = sparseRootState (4 : Fin 8)
+    rw [sparseRootState_4]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (5 : Fin 8) (0 : Fin 8) = sparseRootState (5 : Fin 8)
+    rw [sparseRootState_5]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (6 : Fin 8) (0 : Fin 8) = sparseRootState (6 : Fin 8)
+    rw [sparseRootState_6]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
+  · change
+      evalPrimitiveCircuitLE [PrimitiveGate.ry (2 : Fin 3) ryAngle513]
+          (7 : Fin 8) (0 : Fin 8) = sparseRootState (7 : Fin 8)
+    rw [sparseRootState_7]
+    norm_num [evalPrimitiveCircuitLE_singleton_ry_apply, primitiveLEBits,
+      standardRyMatrix_ryAngle513_explicit, realOrthogonalRotation]
 
 theorem sparseRootRy_prepares :
     applyVec
@@ -356,79 +445,65 @@ private theorem sparsePrunedUcry_entry_64 :
   simp [sparseConditionalAngles, sparseControlWire, primitiveControlAssignment,
     primitiveLEBits, standardRyMatrix_ryAngleZero]
 
-theorem sparsePrunedUcry_col_zero :
-    (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) =
-      sparseUcryColumnZero := by
-  funext row
-  fin_cases row
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (0 : Fin 8) =
-        (3 : ℂ) / 5
-    exact sparsePrunedUcry_entry_00
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (0 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (1 : Fin 8) (0 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (0 : Fin 8) =
-        (4 : ℂ) / 5
-    exact sparsePrunedUcry_entry_20
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (0 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (3 : Fin 8) (0 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (0 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (4 : Fin 8) (0 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (0 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (5 : Fin 8) (0 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (0 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (6 : Fin 8) (0 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (0 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (7 : Fin 8) (0 : Fin 8) (by native_decide)
+private theorem sparsePrunedUcry_entry_10 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (0 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (1 : Fin 8) (0 : Fin 8) (by native_decide)
 
-theorem sparsePrunedUcry_col_four :
-    (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8) =
-      sparseUcryColumnFour := by
-  funext row
-  fin_cases row
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (4 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (0 : Fin 8) (4 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (4 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (1 : Fin 8) (4 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (4 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (2 : Fin 8) (4 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (4 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (3 : Fin 8) (4 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (4 : Fin 8) = 1
-    exact sparsePrunedUcry_entry_44
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (4 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (5 : Fin 8) (4 : Fin 8) (by native_decide)
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (4 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_64
-  · change
-      evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (4 : Fin 8) = 0
-    exact sparsePrunedUcry_entry_zero_of_context_ne
-      (7 : Fin 8) (4 : Fin 8) (by native_decide)
+private theorem sparsePrunedUcry_entry_30 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (0 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (3 : Fin 8) (0 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_40 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (0 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (4 : Fin 8) (0 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_50 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (0 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (5 : Fin 8) (0 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_60 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (0 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (6 : Fin 8) (0 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_70 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (0 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (7 : Fin 8) (0 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_04 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (4 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (0 : Fin 8) (4 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_14 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (4 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (1 : Fin 8) (4 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_24 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (4 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (2 : Fin 8) (4 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_34 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (4 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (3 : Fin 8) (4 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_54 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (4 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (5 : Fin 8) (4 : Fin 8) (by native_decide)
+
+private theorem sparsePrunedUcry_entry_74 :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (4 : Fin 8) = 0 :=
+  sparsePrunedUcry_entry_zero_of_context_ne
+    (7 : Fin 8) (4 : Fin 8) (by native_decide)
 
 theorem sparsePrunedUcry_on_root :
     applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
@@ -437,16 +512,67 @@ theorem sparsePrunedUcry_on_root :
   rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
     _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
     _root_.Matrix.mulVec_single_one]
-  change
-    (5 / 13 : ℂ) •
-        (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
-      (12 / 13 : ℂ) •
-        (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8) =
-      sparseThreeState
-  rw [sparsePrunedUcry_col_zero, sparsePrunedUcry_col_four]
   funext row
-  fin_cases row <;>
-    norm_num [sparseUcryColumnZero, sparseUcryColumnFour, sparseThreeState]
+  fin_cases row
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (4 : Fin 8) =
+        (3 : ℂ) / 13
+    rw [sparsePrunedUcry_entry_00, sparsePrunedUcry_entry_04]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (4 : Fin 8) = 0
+    rw [sparsePrunedUcry_entry_10, sparsePrunedUcry_entry_14]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (4 : Fin 8) =
+        (4 : ℂ) / 13
+    rw [sparsePrunedUcry_entry_20, sparsePrunedUcry_entry_24]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (4 : Fin 8) = 0
+    rw [sparsePrunedUcry_entry_30, sparsePrunedUcry_entry_34]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (4 : Fin 8) =
+        (12 : ℂ) / 13
+    rw [sparsePrunedUcry_entry_40, sparsePrunedUcry_entry_44]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (4 : Fin 8) = 0
+    rw [sparsePrunedUcry_entry_50, sparsePrunedUcry_entry_54]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (4 : Fin 8) = 0
+    rw [sparsePrunedUcry_entry_60, sparsePrunedUcry_entry_64]
+    norm_num
+  · change
+      (5 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (0 : Fin 8) +
+        (12 / 13 : ℂ) *
+          evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (4 : Fin 8) = 0
+    rw [sparsePrunedUcry_entry_70, sparsePrunedUcry_entry_74]
+    norm_num
 
 theorem sparsePruned_prepares_target :
     applyVec (evalPrimitiveCircuitLE sparsePrunedCircuit) (zeroKet 3) =
