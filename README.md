@@ -64,6 +64,8 @@ The hierarchy has explicit role boundaries:
 - **Lower workers:** solve one local obligation at a time — one human-readable proof step, one Lean declaration, or one finite diagnostic — rather than redesigning the whole construction.
 - **Reviewer / verifier:** checks assumptions, evidence class, finite screens, target fidelity, and promotion; typed failures are routed back instead of being retried blindly.
 
+Verification is **not** the end of the harness. Lean pass/fail, proof progress, obstruction type, finite checks, target fidelity, and the circuit resource tuple form a process-reward signal. A failed or low-value candidate sends typed feedback to the **Middle planner** to replan the proof DAG and, when the construction itself is the bottleneck, to the **Upper strategist** to change the construction family or authorized policy rung. The next iteration therefore changes either the mathematical route or its proof decomposition; a Lean-verified candidate is exported only after it satisfies the target and promotion criteria.
+
 **QuantumComputinglib, the textbook, source/paper maps, and certified memory cards act as domain preparation for these agents.** The point is not simply to use more agents, but to give specialized agents a structured map of the field and prevent different levels from interfering with each other's jobs.
 
 ---
