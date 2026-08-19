@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "QuantumBlockEncoding/StatePreparationBenchmarks*.lean"
+      - "QuantumBlockEncoding/StatePreparationPaperRoutes*.lean"
       - "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean"
       - "QuantumBlockEncoding/StatePreparationBellRoute.lean"
       - "QuantumBlockEncoding/StatePreparation.lean"
