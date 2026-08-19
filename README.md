@@ -19,6 +19,34 @@
 
 </div>
 
+ASPBE is designed for a quantum-computing researcher who knows **what state or operator is needed** and **what query oracles are available**, but does not want to hand-design every circuit and proof from scratch.
+
+The project serves two **independent** mathematical routes. State Preparation asks for a unitary that prepares a target state. Block Encoding asks for a larger unitary whose clean projected block equals a scaled target operator.
+
+<p align="center">
+  <img src="docs/assets/abeis_application_overview.svg" alt="Two independent ASPBE certification routes" width="1080">
+</p>
+
+---
+
+## ASPBE harness — from contract to checked evidence
+
+Once a task contract is fixed, ASPBE turns it into a small public evidence pipeline.
+
+<p align="center">
+  <img src="docs/assets/aspbe_harness_flow.svg" alt="ASPBE contract-to-certificate harness" width="1180">
+</p>
+
+The public loop is intentionally simple:
+
+**freeze the contract → retrieve proved components → construct a candidate → run cheap finite screening → close a named Lean theorem → deliver proof/code artifacts.**
+
+A failed proof leaf becomes a typed obstruction. Repeating the same leaf against unchanged evidence is not progress: the next attempt must change a route, prerequisite, proof frontier, or declared tolerance rung.
+
+> **Evidence boundary.** Qiskit, NumPy, and OpenQASM checks may reject or prioritize finite candidates. They do not replace the named Lean theorem for an exact symbolic claim.
+
+---
+
 ## Why a hierarchical harness?
 
 State Preparation and Block Encoding traditionally ask one researcher to **invent a construction, remember the literature, decompose the proof, debug failed routes, and verify the final circuit**. A single monolithic solver inherits the same coordination problem at greater speed.
@@ -26,7 +54,7 @@ State Preparation and Block Encoding traditionally ask one researcher to **inven
 ASPBE instead separates **mathematical strategy**, **Lean-tree planning**, **focused local proof work**, and **verification**.
 
 <p align="center">
-  <img src="docs/assets/aspbe_hierarchical_harness.webp" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1000">
+  <img src="docs/assets/hierarchical_harness.png" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1000">
 </p>
 
 The hierarchy has explicit role boundaries:
@@ -40,27 +68,17 @@ The hierarchy has explicit role boundaries:
 
 ---
 
-<p align="center">
-  <img src="docs/assets/abeis_application_overview.svg" alt="Two independent ASPBE certification routes" width="1080">
-</p>
-
-ASPBE is designed for a quantum-computing researcher who knows **what state or operator is needed** and **what query oracles are available**, but does not want to hand-design every circuit and proof from scratch.
-
-The project has two independent mathematical routes. Choose the one that matches the problem statement.
-
----
-
 ## Route I — State Preparation
 
 **Input.** A normalized target state `|ψ⟩`, the allowed gate/oracle model, and the resources that matter for the application.
 
 **Goal.** Construct a unitary `U` satisfying
 
-$$
-U|0^n\rangle = |\psi\rangle .
-$$
+```math
+U |0^n\rangle = |\psi\rangle.
+```
 
-A complete certificate must establish **target normalization**, **unitarity of U**, **the state-action equality**, and the declared circuit/resource record.
+A complete certificate establishes **target normalization**, **unitarity of U**, **the state-action equality**, and the declared circuit/resource record.
 
 <p align="center">
   <img src="docs/assets/state_preparation_first_column.svg" alt="State preparation as a first-column certificate" width="980">
@@ -72,11 +90,9 @@ The picture is the finite-matrix form of the same statement: acting on the all-z
 
 The textbook route already contains fully checked one-qubit examples:
 
-$$
-X|0\rangle = |1\rangle,
-\qquad
-H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}} .
-$$
+```math
+X|0\rangle = |1\rangle, \qquad H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}}.
+```
 
 `pauliXVerified` and `hadamardVerified` package the normalized target, Mathlib unitarity proof, state-action theorem, circuit, schedule, and resource record.
 
@@ -90,11 +106,11 @@ $$
 
 **Goal.** Construct a larger unitary `U` satisfying
 
-$$
-\|A - \alpha \Pi U \Pi^\dagger\| \le \varepsilon .
-$$
+```math
+\lVert A - \alpha \Pi U \Pi^\dagger \rVert \le \varepsilon.
+```
 
-For an exact block encoding, `ε = 0`. A complete certificate must establish **register layout**, **unitarity**, **the clean projected block**, **normalization/error**, and the declared resource record.
+For an exact block encoding, `ε = 0`. A complete certificate establishes **register layout**, **unitarity**, **the clean projected block**, **normalization/error**, and the declared resource record.
 
 <p align="center">
   <img src="docs/assets/block_encoding_clean_block.svg" alt="Block encoding as a clean projected block of a larger unitary" width="980">
@@ -120,24 +136,6 @@ The Lean library contains reusable interfaces and proof leaves for:
 
 ---
 
-## ASPBE harness — from contract to checked evidence
-
-Once one task contract is fixed, ASPBE turns the hierarchy above into a small public evidence pipeline.
-
-<p align="center">
-  <img src="docs/assets/aspbe_harness_flow.svg" alt="ASPBE contract-to-certificate harness" width="1180">
-</p>
-
-The public loop is intentionally simple:
-
-**freeze the contract → retrieve proved components → construct a candidate → run cheap finite screening → close a named Lean theorem → deliver proof/code artifacts.**
-
-A failed proof leaf is recorded as a typed obstruction. Repeating the same leaf against unchanged evidence is not progress: the next attempt must change a route, prerequisite, proof frontier, or declared tolerance rung.
-
-> **Evidence boundary.** Qiskit, NumPy, and OpenQASM checks can reject or prioritize finite candidates. They do not replace the named Lean theorem for an exact symbolic claim.
-
----
-
 ## Certified block-encoding cases
 
 The examples below are not screenshots of exploratory runs: the advertised mathematical conclusions are linked to named Lean roots.
@@ -146,26 +144,15 @@ The examples below are not screenshots of exploratory runs: the advertised mathe
 
 The target is the finite non-unitary transfer
 
-$$
-E_1
-=
-\bigl(|0\rangle\langle1|\bigr)_t
-\otimes
-\bigl(|0\rangle\langle1|\bigr)_{\tau}
-\otimes I_2,
-\qquad
-\langle0|_a U |0\rangle_a = E_1 .
-$$
+```math
+E_1 = (|0\rangle\langle 1|)_t \otimes (|0\rangle\langle 1|)_s \otimes I_2, \qquad \langle 0|_a U |0\rangle_a = E_1.
+```
 
 Inside one expanded logical resource tier, Lean-certified candidates improve
 
-$$
-(6,5,1,0)
-\longrightarrow
-(4,4,1,0)
-\longrightarrow
-(4,2,1,0) .
-$$
+```math
+(6,5,1,0) \longrightarrow (4,4,1,0) \longrightarrow (4,2,1,0).
+```
 
 The tuple records **gate count, depth, auxiliary qubits, unresolved oracle calls**.
 
@@ -177,31 +164,17 @@ The tuple records **gate count, depth, auxiliary qubits, unresolved oracle calls
 
 ### BE Case 2 — cubic diagonal operator
 
-Let `N = 2^n`. To avoid renderer-specific diagonal-matrix macros, the README states the target entrywise:
+Let `N = 2^n`. The target is diagonal, so it is safest to state it entrywise:
 
-$$
-(D_n)_{jk}
-=
-\begin{cases}
-\left(\dfrac{j}{N}\right)^3, & j=k,\\
-0, & j\ne k,
-\end{cases}
-\qquad
-\Pi U_n \Pi^\dagger = D_n .
-$$
+```math
+(D_n)_{jj} = (j/N)^3, \qquad (D_n)_{jk} = 0 \; (j \ne k), \qquad \Pi U_n \Pi^\dagger = D_n.
+```
 
-The selected exact family uses **rational Householder completions**. The cold route constructs the cubic branch directly. The hinted route first certifies a linear diagonal supplier
+The selected exact family uses **rational Householder completions**. The cold route constructs the cubic branch directly. The hinted route first certifies a linear diagonal supplier:
 
-$$
-(O_0)_{jk}
-=
-\begin{cases}
-\dfrac{j}{N}, & j=k,\\
-0, & j\ne k,
-\end{cases}
-\qquad
-D_n = O_0^3 .
-$$
+```math
+(O_0)_{jj} = j/N, \qquad (O_0)_{jk} = 0 \; (j \ne k), \qquad D_n = O_0^3.
+```
 
 Both routes lead to the same exact cubic Householder root with `α = 1`.
 
@@ -217,13 +190,9 @@ A finite Qiskit/OpenQASM instance is an implementation export; it is not the pro
 
 The compiled one-dimensional composition follows
 
-$$
-A = \sum_k A_k,
-\qquad
-A^\dagger = \sum_k A_k^\dagger,
-\qquad
-H = S_1 \otimes x_\xi + S_2 \otimes I_\xi .
-$$
+```math
+A = \sum_k A_k, \qquad A^\dagger = \sum_k A_k^\dagger, \qquad H = S_1 \otimes x_\xi + S_2 \otimes I_\xi.
+```
 
 <p align="center">
   <img src="docs/assets/ghl_theorem4_source_audit.svg" alt="GHL Theorem 4 source-audited composition" width="980">

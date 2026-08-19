@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Guard the reader-facing README/figure typography and formula surface.
 
-The public README intentionally uses a small set of academic-style SVG figures.
-This check prevents regenerated assets from silently falling back to UI/sans
-fonts, ASCII pseudo-mathematics, glossy dashboard decoration, or fragile README
-math patterns that known renderers reject.
+The public README is deliberately figure-first and uses conservative GitHub math
+syntax. This check prevents regressions to fragile TeX, oversized hierarchy
+assets, UI/sans typography, or glossy dashboard-style SVG decoration.
 """
 
 from __future__ import annotations
@@ -20,9 +19,10 @@ README = ROOT / "README.md"
 SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
+HIERARCHY_PNG = ROOT / "docs" / "assets" / "hierarchical_harness.png"
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
-HTML_IMAGE_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
+HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
 FORBIDDEN_FONTS = (
     "Arial",
     "DejaVu Sans",
@@ -39,8 +39,13 @@ FORBIDDEN_DECORATION = (
 ASCII_MATH_TOKENS = re.compile(
     r"(?i)(?:\|psi>|<psi\||\bpsi\b|\balpha\b|\bepsilon\b|\btensor\b|\bdagger\b|\bPi\b|\|0\^[a-z0-9]+>)"
 )
-FORBIDDEN_README_TEX = (
+FORBIDDEN_README_TOKENS = (
+    "$$",
     r"\operatorname",
+    r"\begin{cases}",
+    r"\dfrac",
+    r"\mathrm{diag}",
+    "aspbe_hierarchical_harness.webp",
 )
 
 
@@ -57,14 +62,17 @@ def read(path: Path) -> str:
 
 def readme_svg_refs(readme: str) -> list[str]:
     refs = set(MARKDOWN_IMAGE_RE.findall(readme))
-    refs.update(HTML_IMAGE_RE.findall(readme))
+    refs.update(HTML_SVG_RE.findall(readme))
     return sorted(refs)
 
 
 def check_readme_math_surface(readme: str) -> None:
-    for macro in FORBIDDEN_README_TEX:
-        if macro in readme:
-            fail(f"README contains renderer-fragile TeX macro {macro!r}")
+    for token in FORBIDDEN_README_TOKENS:
+        if token in readme:
+            fail(f"README contains renderer-fragile token {token!r}")
+
+    if readme.count("```math") < 6:
+        fail("README should use fenced `math` blocks for its public display equations")
 
     for line_number, line in enumerate(readme.splitlines(), start=1):
         stripped = line.lstrip()
@@ -75,6 +83,29 @@ def check_readme_math_surface(readme: str) -> None:
                 f"README line {line_number} puts TeX inside a Markdown table; "
                 "ket/bra bars can be parsed as column separators"
             )
+
+    order = (
+        "ASPBE is designed for a quantum-computing researcher",
+        "## ASPBE harness — from contract to checked evidence",
+        "## Why a hierarchical harness?",
+        "## Route I — State Preparation",
+        "## Route II — Block Encoding",
+        "## Certified block-encoding cases",
+    )
+    positions = [readme.find(marker) for marker in order]
+    if any(position < 0 for position in positions) or positions != sorted(positions):
+        fail("README reader order must be intro → public workflow → hierarchy → SP → BE → cases")
+
+    expected_png_ref = 'src="docs/assets/hierarchical_harness.png"'
+    if expected_png_ref not in readme:
+        fail("README must use the lightweight PNG hierarchy figure")
+    if not HIERARCHY_PNG.is_file():
+        fail("missing hierarchy PNG")
+    if HIERARCHY_PNG.stat().st_size > 250_000:
+        fail(
+            "hierarchy PNG is too large for the README: "
+            f"{HIERARCHY_PNG.stat().st_size} bytes > 250000"
+        )
 
 
 def check_readme_svgs(readme: str) -> None:
@@ -156,7 +187,7 @@ def main() -> None:
     check_mermaid_math_labels()
     check_website_runtime_figures()
     check_matplotlib_defaults()
-    print("public README typography/formula checks passed")
+    print("public README typography/formula/layout checks passed")
 
 
 if __name__ == "__main__":
