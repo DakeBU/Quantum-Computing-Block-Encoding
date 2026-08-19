@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="510" viewBox="0 0 1400 510" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="460" viewBox="0 0 1400 460" role="img" aria-labelledby="title desc">
   <title id="title">Two independent ASPBE certification routes</title>
-  <desc id="desc">State Preparation and Block Encoding are shown as two independent mathematical contracts with separate proof obligations and outputs.</desc>
+  <desc id="desc">State Preparation and Block Encoding are shown as separate mathematical contracts with separate proof obligations and outputs.</desc>
   <style>
     text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
     .title { font-size: 34px; font-weight: 700; }
@@ -15,7 +15,7 @@
     .block { stroke: #48667d; }
     .rule { stroke: #d0d0d0; stroke-width: 1.2; }
   </style>
-  <rect width="1400" height="510" fill="#ffffff"/>
+  <rect width="1400" height="460" fill="#ffffff"/>
   <text x="700" y="52" text-anchor="middle" class="title">Two independent certification routes</text>
   <text x="700" y="83" text-anchor="middle" class="subtitle">Choose the route from the mathematical task; each has its own acceptance contract.</text>
 
@@ -29,7 +29,7 @@
   <text x="196" y="326" class="body">target normalization · U unitary · state action</text>
   <text x="105" y="366" class="label">RETURN</text>
   <text x="188" y="366" class="body">construction · proof · named Lean root · optional circuit export</text>
-  <text x="105" y="405" class="small">Typical mathematical view: certify the first column of a unitary.</text>
+  <text x="105" y="405" class="small">Mathematical view: certify the first column of a unitary.</text>
 
   <rect x="730" y="120" width="600" height="315" class="panel block"/>
   <text x="765" y="164" class="head">Block Encoding</text>
@@ -41,8 +41,5 @@
   <text x="856" y="326" class="body">layout · U unitary · clean block · normalization/error</text>
   <text x="765" y="366" class="label">RETURN</text>
   <text x="848" y="366" class="body">construction · proof · named Lean root · resource/executable data</text>
-  <text x="765" y="405" class="small">Typical mathematical view: certify the clean projected block of a larger unitary.</text>
-
-  <line x1="70" y1="470" x2="1330" y2="470" class="rule"/>
-  <text x="700" y="495" text-anchor="middle" class="small">No relation between the two contracts is assumed: the user chooses one route and ASPBE certifies that route.</text>
+  <text x="765" y="405" class="small">Mathematical view: certify the clean projected block of a larger unitary.</text>
 </svg>
