@@ -53,8 +53,32 @@ def primitiveBits2LE (index : Fin 4) : PrimitiveBasis 2
     (primitiveBasisLEEquiv 2).symm index = primitiveBits2LE index := by
   native_decide +revert
 
+/-- Fixed-width coordinate reductions whose domain exactly matches the
+`gridSize`-indexed finite matrix backend.  These are deliberately separate from
+`primitiveBasisLEEquiv_two_symm`: simplification inside a matrix theorem often
+sees `Fin (gridSize 2)` before reducing that type to `Fin 4`. -/
+@[simp] theorem primitiveBasisLEEquiv_two_symm_wire_zero
+    (index : Fin (gridSize 2)) :
+    ((primitiveBasisLEEquiv 2).symm index) (0 : Fin 2) =
+      ⟨index.val % 2, by omega⟩ := by
+  native_decide +revert
+
+@[simp] theorem primitiveBasisLEEquiv_two_symm_wire_one
+    (index : Fin (gridSize 2)) :
+    ((primitiveBasisLEEquiv 2).symm index) (1 : Fin 2) =
+      ⟨(index.val / 2) % 2, by omega⟩ := by
+  native_decide +revert
+
 /-- Encode the non-target wire of a two-qubit little-endian basis state. -/
 def primitiveBits2LEWithout (target : Fin 2) (index : Fin 4) : Nat :=
+  match target.val with
+  | 0 => index.val / 2
+  | _ => index.val % 2
+
+/-- Same context code, but with the unreduced `gridSize` domain used by the
+concrete matrix semantics. -/
+def primitiveBits2LEGridWithout
+    (target : Fin 2) (index : Fin (gridSize 2)) : Nat :=
   match target.val with
   | 0 => index.val / 2
   | _ => index.val % 2
@@ -67,6 +91,14 @@ def primitiveBits2LEWithout (target : Fin 2) (index : Fin 4) : Nat :=
         primitiveBits2LEWithout target right := by
   native_decide +revert
 
+@[simp] theorem splitPrimitiveWire_primitiveBasisLEEquiv_two_symm_context_eq
+    (target : Fin 2) (left right : Fin (gridSize 2)) :
+    (splitPrimitiveWire target ((primitiveBasisLEEquiv 2).symm left)).2 =
+        (splitPrimitiveWire target ((primitiveBasisLEEquiv 2).symm right)).2 ↔
+      primitiveBits2LEGridWithout target left =
+        primitiveBits2LEGridWithout target right := by
+  native_decide +revert
+
 /-- Explicit inverse used by finite three-wire compiler proofs. -/
 def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
   | 0 => ⟨index.val % 2, by omega⟩
@@ -77,7 +109,34 @@ def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
     (primitiveBasisLEEquiv 3).symm index = primitiveBits3LE index := by
   native_decide +revert
 
+@[simp] theorem primitiveBasisLEEquiv_three_symm_wire_zero
+    (index : Fin (gridSize 3)) :
+    ((primitiveBasisLEEquiv 3).symm index) (0 : Fin 3) =
+      ⟨index.val % 2, by omega⟩ := by
+  native_decide +revert
+
+@[simp] theorem primitiveBasisLEEquiv_three_symm_wire_one
+    (index : Fin (gridSize 3)) :
+    ((primitiveBasisLEEquiv 3).symm index) (1 : Fin 3) =
+      ⟨(index.val / 2) % 2, by omega⟩ := by
+  native_decide +revert
+
+@[simp] theorem primitiveBasisLEEquiv_three_symm_wire_two
+    (index : Fin (gridSize 3)) :
+    ((primitiveBasisLEEquiv 3).symm index) (2 : Fin 3) =
+      ⟨(index.val / 4) % 2, by omega⟩ := by
+  native_decide +revert
+
 def primitiveBits3LEWithout (target : Fin 3) (index : Fin 8) : Nat :=
+  match target.val with
+  | 0 => index.val / 2
+  | 1 => index.val % 2 + 2 * (index.val / 4)
+  | _ => index.val % 4
+
+/-- Grid-sized companion of `primitiveBits3LEWithout`, used before the type
+normalizer has turned `Fin (gridSize 3)` into `Fin 8`. -/
+def primitiveBits3LEGridWithout
+    (target : Fin 3) (index : Fin (gridSize 3)) : Nat :=
   match target.val with
   | 0 => index.val / 2
   | 1 => index.val % 2 + 2 * (index.val / 4)
@@ -89,6 +148,14 @@ def primitiveBits3LEWithout (target : Fin 3) (index : Fin 8) : Nat :=
         (splitPrimitiveWire target (primitiveBits3LE right)).2 ↔
       primitiveBits3LEWithout target left =
         primitiveBits3LEWithout target right := by
+  native_decide +revert
+
+@[simp] theorem splitPrimitiveWire_primitiveBasisLEEquiv_three_symm_context_eq
+    (target : Fin 3) (left right : Fin (gridSize 3)) :
+    (splitPrimitiveWire target ((primitiveBasisLEEquiv 3).symm left)).2 =
+        (splitPrimitiveWire target ((primitiveBasisLEEquiv 3).symm right)).2 ↔
+      primitiveBits3LEGridWithout target left =
+        primitiveBits3LEGridWithout target right := by
   native_decide +revert
 
 end QuantumBlockEncoding
