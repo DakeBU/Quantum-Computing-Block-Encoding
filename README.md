@@ -1,11 +1,11 @@
 <div align="center">
 
-# ASPBE ⚛️
+# ASPBE
 
-### Automatic State Preparation and Block Encoding for Quantum Computing 🔬
+### Automatic State Preparation and Block Encoding for Quantum Computing
 
-Lean-checked quantum construction search, executable validation, and the
-[QuantumComputinglib](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) textbook and formalization workspace.
+A Lean-checked library and construction system for turning **state / query-oracle requirements** into
+**mathematical constructions, Lean certificates, and executable quantum artifacts**.
 
 [![Lean 4](https://img.shields.io/badge/Lean-4-6f42c1?style=flat-square)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-pinned-2f705c?style=flat-square)](https://github.com/leanprover-community/mathlib4)
@@ -13,101 +13,248 @@ Lean-checked quantum construction search, executable validation, and the
 [![QuantumComputinglib](https://img.shields.io/badge/QuantumComputinglib-read_online-0f62fe?style=flat-square)](https://dakebu.github.io/Quantum-Computing-Block-Encoding/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-35657d?style=flat-square)](LICENSE)
 
-[**Read the textbook**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) ·
-[**Explore Lean declarations**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/) ·
-[**Open the formalization workspace**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/ide/) ·
-[**Contribute a lemma**](CONTRIBUTING.md)
+[**Read QuantumComputinglib**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) ·
+[**Browse Lean declarations**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/) ·
+[**Example cases**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/) ·
+[**Implementation map**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/)
 
 </div>
 
 ---
 
-## News 🔥
+## What problem does ASPBE solve?
 
-- **15 August 2026.** QuantumComputinglib added concept-first **Concept / Math / Lean** reading modes, circuit-first beginner lessons, and a source-audited Guseynov--Huang--Liu Theorem-4 route from `A_k,A_k†` through `A,A†,S₁,S₂` to `H`. The Lean audit also records that the literal printed first `S₁` LCU phase pair leaves a nonzero filler block and proves a phase-balanced correction; the remaining GHL frontier is the uniform arbitrary-width primitive compiler/resource theorem for the Theorem-3 source oracles.
-- **12 August 2026.** The textbook track gained complete Mathlib-backed Pauli X
-  and Hadamard state-preparation certificates, including normalization,
-  unitarity, state action, circuit, schedule, and resource records.
-- **10 August 2026.** The project is now named **ASPBE: Automatic State
-  Preparation and Block Encoding for Quantum Computing**. Its public teaching,
-  declaration, and contribution site is **QuantumComputinglib**. The site now
-  keeps the two application contracts separate, includes a local-compilation
-  workspace, and provides a reviewable contributor path.
-- **July 2026.** The public site gained the Verso
-  [Lean Blueprint](https://dakebu.github.io/Quantum-Computing-Block-Encoding/blueprint/html-multi/),
-  the searchable [Lean Library Explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/),
-  and a deterministic declaration inventory shared by both views.
-- **June 2026.** The public testing preview introduced separate State
-  Preparation and Block Encoding directions and the user-facing task builder.
-- **17 May 2026.** The repository's auditable priority record begins with the
-  [initial automation commit](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521)
-  and the timestamped [`MANIFEST.md`](MANIFEST.md). This is the earliest date
-  supported by the repository history; the project does not claim an earlier
-  date without a corresponding public record.
+A quantum-computing researcher should be able to start from the **mathematical oracle contract**, rather than from a pre-existing circuit implementation.
 
-The News dates record project milestones, not the proof status of every route.
-Current mathematical status is generated from the checkout and shown in the
-Implementation Map.
+| Task | Input contract | ASPBE tries to return |
+| --- | --- | --- |
+| **State Preparation** | a normalized target $|\psi\rangle$ | a unitary $U$ with $U|0^n\rangle=|\psi\rangle$, a human proof, a named Lean certificate, and optional circuit exports |
+| **Block Encoding** | an operator $A$, normalization $\alpha$, clean ancilla convention, and optional error $\varepsilon$ | a unitary $U$ with $\|A-\alpha\Pi U\Pi^\dagger\|\le\varepsilon$, together with proof, resources, and optional executable exports |
 
-ASPBE searches for quantum constructions and admits a result only through a
-named Lean certificate. It supports two applications with different contracts:
+A state-preparation theorem can later provide a **PREPARE** primitive inside a block-encoding construction, but the two acceptance contracts remain distinct.
 
-<table>
-  <thead>
-    <tr><th>Application</th><th>Contract</th><th>What must be certified</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>State Preparation</strong></td>
-      <td><code>U|0ⁿ⟩ = |ψ⟩</code></td>
-      <td>Target normalization, unitarity, state action, and circuit resources.</td>
-    </tr>
-    <tr>
-      <td><strong>Block Encoding</strong></td>
-      <td><code>‖A − αΠUΠ†‖ ≤ ε</code></td>
-      <td>Register layout, clean projection, normalization, unitarity, error, and circuit resources.</td>
-    </tr>
-  </tbody>
-</table>
+![State preparation and block encoding contracts](docs/assets/abeis_application_overview.svg)
 
-A state-preparation theorem may supply a `PREPARE` component to a later
-block-encoding route. It does not by itself prove a clean projected block.
+### The intended user interaction
 
-![The two ASPBE application contracts](docs/assets/abeis_application_overview.svg)
+**You specify** the object to prepare or encode, the available query oracles, register conventions, normalization/error requirements, and the resource quantities you care about.
 
-## QuantumComputinglib 📚
+**ASPBE searches** among construction routes such as finite permutations, sparse access, LCU, products, rational Householder completions, dilation, and typed QSVT consumers.
 
-**QuantumComputinglib** is the website built from this repository. It is organized as a
-formal quantum-computing textbook rather than a project dashboard:
+**A result is scientific evidence only after a named Lean root closes the advertised theorem.** Qiskit/OpenQASM checks are useful implementation evidence, not substitutes for the symbolic certificate.
 
-- a persistent chapter map on the left;
-- a beginner-first **Concept / Math / Lean** switch on core chapters: Concept explains qubits, amplitudes, gates, circuits, measurement, state preparation, and block encoding visually; Math reveals the equations; Lean reveals the machine-checked declarations and proof objects;
-- circuit-first teaching diagrams, including a Bell-pair introduction, clean-block pictures, and PREPARE/SELECT/UNPREPARE sketches, plus short attributed textbook/source anchors;
-- formulas beside plain-language readings and exact Lean statements;
-- continuous lessons adapted from the saved quantum-algorithms lecture notes,
-  with learning objectives, hand calculations, checkpoints, and one-click Lean;
-- separate State Preparation and Block Encoding learning tracks;
-- an exhaustive declaration catalog and implementation map;
-- an atlas of ASPBE, Mathlib, and selected external quantum Lean libraries;
-- organizers, contribution guidance, and a versioned lemma-packet contract;
-- generated Example Cases with explicit target formulas, circuit and score
-  evolution, named Lean roots, separate Qiskit exports, copyable English-proof
-  LaTeX, visible circuit rendering, and editable live-preview `quantikz` for
-  every displayed stage;
-- a per-case reader workbench where formulas, proof language, proof steps, and
-  circuit notation can be edited and previewed before copying;
-- a Live Formalization Workspace for bidirectional LaTeX-to-Lean and
-  Lean-to-LaTeX drafts, dependency navigation, copying, and local compiler
-  diagnostics;
-- the existing Verso Blueprint at `/blueprint/html-multi/`.
+---
 
-The site distinguishes **built here**, **imported**, and **reference atlas**.
-External projects are not presented as local proofs merely because QuantumComputinglib
-links or explains them.
+## Current mathematical surface
 
-## Formalization workspace 🧪
+**State Preparation.** Complete one-qubit Pauli-$X$ and Hadamard examples already certify normalization, unitarity, state action, and circuit resources.
 
-Build the site, then start the loopback-only companion server:
+**Block Encoding.** Reusable finite-matrix APIs cover exact/approximate clean blocks, partial permutations, sparse-access interfaces, LCU/product composition, rational Householder routes, resource records, and typed consumer boundaries.
+
+**Paper-facing work.** The Guseynov–Huang–Liu one-dimensional Theorem-4 composition is source-audited through $A,A^\dagger,S_1,S_2$ and $H$; the remaining frontier is the uniform arbitrary-width primitive compiler/resource theorem for the Theorem-3 source oracles.
+
+For exact per-declaration status, use the [Implementation Map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/) rather than prose counts in this README.
+
+<details>
+<summary><strong>Recent project milestones</strong></summary>
+
+- **15 August 2026:** Concept / Math / Lean reading modes and the source-audited GHL Theorem-4 route were added to QuantumComputinglib.
+- **12 August 2026:** complete Mathlib-backed Pauli-$X$ and Hadamard state-preparation certificates were added.
+- **10 August 2026:** the project adopted the name **ASPBE** and the public library/site name **QuantumComputinglib**.
+- **July 2026:** the public site gained the Verso Blueprint and searchable Lean Library Explorer.
+- **17 May 2026:** the public auditable automation history begins with commit [`af59b03`](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and [`MANIFEST.md`](MANIFEST.md).
+
+</details>
+
+---
+
+## Certified examples
+
+### BE Case 1 — transfer operator
+
+The target is the finite non-unitary transfer
+
+$$
+E_1=|0\rangle\!\langle1|_{\mathrm{time}}\otimes |0\rangle\!\langle1|_{\mathrm{type}}\otimes I_2,
+\qquad
+\langle0|_a U |0\rangle_a=E_1.
+$$
+
+One clean signal qubit is enough to complete the target to a permutation unitary. In the same expanded logical resource tier, Lean-certified candidates improve
+
+$$
+(6,5,1,0)\;\longrightarrow\;(4,4,1,0)\;\longrightarrow\;\mathbf{(4,2,1,0)},
+$$
+
+where the tuple records **gate count, depth, auxiliary qubits, unresolved oracle calls**.
+
+![BE Case 1 certified candidate sequence](docs/assets/be_case1_candidates.svg)
+
+**Lean roots:** `coldE1Candidate_blockProjection`, `proEqTransferVerified`, `evolvedEqFlipVerified`.
+
+### BE Case 2 — cubic diagonal operator
+
+For $N=2^n$,
+
+$$
+D_n=\operatorname{diag}_{0\le j<N}\!\left(\frac{j}{N}\right)^3,
+\qquad
+\Pi U_n\Pi^\dagger=D_n.
+$$
+
+The selected exact family uses **rational Householder completions**. A cold route constructs the cubic completion directly; a hinted route first recognizes
+
+$$
+O_0=\operatorname{diag}(j/N),\qquad D_n=O_0^3,
+$$
+
+and reuses the linear supplier. The direct cubic Householder root closes the target exactly with $\alpha=1$; a finite Qiskit instance is an export, not the proof of the family.
+
+![BE Case 2 exact Householder routes](docs/assets/be_case2_candidates.svg)
+
+**Lean root:** `CubicDiagonalOracle.cubicDiagonalHouseholderExactBEContract_complete`.
+
+### Textbook State Preparation — $X$ and $H$
+
+The smallest complete certificates are deliberately elementary:
+
+$$
+X|0\rangle=|1\rangle,
+\qquad
+H|0\rangle=\frac{|0\rangle+|1\rangle}{\sqrt2}.
+$$
+
+`pauliXVerified` and `hadamardVerified` package the normalized target, Mathlib unitarity proof, state-action theorem, circuit, schedule, and resource record. These examples are the bridge from beginner circuit notation to the reusable State Preparation API.
+
+### GHL Robin — source-audited Theorem 4
+
+The compiled composition follows the source-level chain
+
+$$
+A=\sum_k A_k,
+\qquad
+A^\dagger=\sum_k A_k^\dagger,
+\qquad
+H=S_1\otimes x_\xi+S_2\otimes I_\xi.
+$$
+
+![GHL Theorem 4 source-audited composition](docs/assets/ghl_theorem4_source_audit.svg)
+
+Two facts are intentionally kept separate:
+
+- **Closed:** finite-sum/adjoint bridge, the $S_1/S_2$ clean-block algebra, the final Hamiltonian composition, normalization/layout/resource records, and the source-phase audit.
+- **Still open:** a uniform arbitrary-width primitive compiler that expands all Theorem-3 source oracles at the claimed resource tier.
+
+The audit also records a real source-level subtlety: under a literal full-clean-matrix reading, the first printed $S_1$ LCU phase pair leaves a nonzero filler block. Lean proves that obstruction and separately proves a phase-balanced correction giving the intended $S_1$.
+
+<details>
+<summary><strong>Replay and evidence details for the public cases</strong></summary>
+
+```bash
+python3 tools/replay_public_cases.py
+```
+
+The machine-readable replay record is [`reports/public-case-replay/latest.json`](reports/public-case-replay/latest.json). It rebuilds the relevant Lean modules and reruns the applicable Qiskit/QASM exports. **Certification still comes from the named Lean roots**, not from the replay JSON or a floating-point match.
+
+</details>
+
+---
+
+## From oracle contract to certificate
+
+![ASPBE contract-to-certificate flow](docs/assets/aspbe_harness_flow.svg)
+
+The public loop is deliberately simple:
+
+**freeze the contract → retrieve proved components → choose a construction → reject cheap failures → close a Lean root → export the certified construction.**
+
+The internal controller records more detail so that failed routes, population changes, proof dependencies, and resource comparisons are reproducible. Those mechanics are useful to developers, but they should not dominate the mathematical introduction.
+
+<details>
+<summary><strong>One controlled cycle</strong></summary>
+
+1. **Freeze** the State Preparation or Block Encoding contract and its register conventions.
+2. **Retrieve** compatible compiled lemmas, construction memories, and known obstructions.
+3. **Select** one candidate route and one ready proof-DAG leaf.
+4. **Screen** obvious dimension, unitarity, clean-block, or finite-circuit failures.
+5. **Prove** the smallest named Lean obligation and run its tests.
+6. **Promote or revise** the population using typed evidence; otherwise stop with an explicit obstruction.
+7. **Export** only the artifacts requested by the task.
+
+A repeated attempt against the **same leaf and same evidence digest** is not progress. The next cycle must change the proof frontier, candidate population, capacity decision, or declared tolerance rung.
+
+</details>
+
+<details>
+<summary><strong>Candidate and evidence policy</strong></summary>
+
+ASPBE keeps three evidence classes:
+
+| Class | Meaning | May be presented as a theorem? |
+| --- | --- | --- |
+| **Lean-certified** | all advertised named Lean roots compile | **Yes** |
+| **Finite executable** | Qiskit/NumPy/QASM/exact finite checks pass, symbolic root incomplete | **No — provisional evidence** |
+| **Insight** | construction idea, failed route, paper suggestion, or partial argument | **No** |
+
+Within the **same semantic and implementation tier**, certified candidates are compared lexicographically by gate count, depth, auxiliary qubits, and unresolved oracle calls. Correctness and target fidelity are gates, not weighted score terms. An opaque oracle label is never silently cost-compared with its expanded logical circuit.
+
+For the fixed Robin benchmark, displayed `881`, `312`, and `106` counts are exact `{X, RY, RZ, CX}` primitive-list lengths; they are not identified with a simulator count that leaves multi-controlled rotations undecomposed.
+
+</details>
+
+<details>
+<summary><strong>Adaptive capacity and tolerance</strong></summary>
+
+The controller may increase **one named planning/proof capacity level at a time** after a recorded bottleneck.
+
+Exact search begins at $\varepsilon=0$. Approximation opens only after the configured exact-stall condition or an explicit external boundary, and then advances through the task-declared tolerance ladder one adjacent rung at a time.
+
+Relaxing $\varepsilon$ **cannot change** the target state/operator, normalization $\alpha$, register order, clean-state convention, or declared norm.
+
+See [`docs/agent_orchestration.md`](docs/agent_orchestration.md) and [`docs/agent_blueprint_formalization.md`](docs/agent_blueprint_formalization.md) for the operational protocol.
+
+</details>
+
+<details>
+<summary><strong>Optional executable outputs</strong></summary>
+
+Lean is the symbolic acceptance gate. Executable tooling serves two narrower purposes: **early rejection of bad finite candidates** and **delivery of runnable artifacts after certification**.
+
+A task may independently request:
+
+- Qiskit Python;
+- OpenQASM 3;
+- canonical backend-neutral IR;
+- resource/diagnostic JSON;
+- a manifest linking the executable artifact to the matching Lean root.
+
+Both Qiskit and OpenQASM adapters consume the same canonical IR. A floating-point backend match is never promoted as an exact symbolic-family proof.
+
+```bash
+python3 -m pip install -r requirements-executable.txt
+python3 tools/replay_public_cases.py
+```
+
+Generated artifacts live under [`executable-exports/`](executable-exports/).
+
+</details>
+
+---
+
+## QuantumComputinglib
+
+[QuantumComputinglib](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) is the reader-facing textbook and formal library built from this repository. The main reading path is intentionally **Concept → Math → Lean**:
+
+- **Concept:** what the circuit/oracle construction is doing;
+- **Math:** the exact state, matrix, projection, and resource equations;
+- **Lean:** the declaration that certifies the claim and the reusable dependency leaves.
+
+The site also contains the chapter map, implementation map, Example Cases, searchable declaration explorer, external Lean atlas, Verso Blueprint, and editable case workbench.
+
+<details>
+<summary><strong>Formalization workspace</strong></summary>
+
+Build the site and start the loopback-only companion server:
 
 ```bash
 python3 -m pip install -r requirements-executable.txt
@@ -115,14 +262,11 @@ bash scripts/build-all.sh
 python3 website/scripts/ide_server.py --directory _site
 ```
 
-Open <http://127.0.0.1:8000/ide/>. The static page always renders mathematics,
-reviewed LaTeX↔Lean mappings, and dependency links. With the optional local
-translator, users can draft in either direction and copy both panes. The
-companion server adds
-real `lake env lean` compilation in temporary files and never edits repository
-source.
+Then open `http://127.0.0.1:8000/ide/`.
 
-An optional local AI adapter can propose Lean drafts:
+The static workspace always renders mathematics, reviewed LaTeX↔Lean mappings, source links, and dependency navigation. The local companion can additionally run real `lake env lean` compilation in temporary files; it never turns a merely compiling draft into a claim of mathematical equivalence without review.
+
+An optional locally authenticated Codex adapter can propose drafts:
 
 ```bash
 python3 website/scripts/ide_server.py \
@@ -130,16 +274,7 @@ python3 website/scripts/ide_server.py \
   --translator-command "python3 website/scripts/codex_translator.py"
 ```
 
-The bundled adapter starts the locally authenticated Codex CLI in an ephemeral,
-read-only session and instructs it to inspect current declarations and proof
-memory when the local sandbox supports repository reads. Agent output is
-labeled as a draft. Compilation proves only that Lean accepts
-the submitted code; mathematical equivalence to the LaTeX still receives review.
-The workspace can download a contribution packet or open a prefilled GitHub
-lemma request. Public GitHub Pages never runs untrusted Lean code.
-
-The **Run with your API** entry is a separate user-owned execution path. Start
-the loopback companion with the bundled ASPBE runner bridge:
+A separate user-owned runner can execute task packets without project-owned model credits:
 
 ```bash
 python3 website/scripts/ide_server.py \
@@ -147,278 +282,41 @@ python3 website/scripts/ide_server.py \
   --runner-command "python3 website/scripts/qbe_task_runner.py --execute --cycles 1"
 ```
 
-Then open <http://127.0.0.1:8000/task-builder/>. The browser sends the task and
-API key to that loopback runner; the key is placed only in the selected child
-process environment and is not written to the task packet, repository, or
-access log. The runner may write normal ASPBE task, profile, run, and report
-artifacts. A public Pages deployment can instead target a user-owned HTTPS
-runner implementing the same JSON contract; it does not spend project-owned
-model credits.
+Public GitHub Pages never runs untrusted Lean code.
 
-## What the harness actually does 🧭
+</details>
 
-ASPBE is a file-backed controller around the Lean project. The durable state is
-the task contract, candidate population, proof DAG, source correspondence,
-typed feedback, trial memory, and compiled declarations. Chat transcripts are
-not treated as the system of record.
+---
 
-![ASPBE control loop from two separate contracts to checked evidence](docs/assets/aspbe_harness_flow.svg)
+## Lean library
 
-### Roles and owned artifacts 🗂️
-
-| Role | Decision boundary | Primary artifacts |
-| --- | --- | --- |
-| **Upper** | freezes the target; chooses a construction family; authorizes one adjacent capacity or tolerance transition | `tasks/`, `run-presets/`, `runs/*/10_upper_*` |
-| **Middle** | maintains candidate populations, retrieves proof memory, refreshes the DAG, and assigns dependency-ordered leaves | `candidate-populations/`, `proof-blueprints/`, `proof-obligations/`, `conversion-windows/` |
-| **Lower architect** | states one local mathematical argument and its prerequisites | `proof-attempts/`, current leaf packet |
-| **Lower Lean worker** | implements one ready declaration and runs the relevant gate | `QuantumBlockEncoding/`, `ABEISTests/`, verifier feedback |
-| **Necessary-condition verifier** | rejects wrong dimensions, register order, matrix entries, normalization, or finite circuit behavior before expensive proof search | diagnostics and `executable-exports/` |
-| **Reviewer** | rejects target drift, stale evidence, hidden assumptions, invalid promotion, and unsupported resource claims | `reviews/`, signed feedback, intervention packet |
-
-One worker may fill several roles for a small task. Parallelism increases only
-when a current signed decision identifies independent ready leaves or a
-specific layer bottleneck.
-
-### One controlled cycle 🔁
-
-```text
-1  Freeze and hash the application contract
-2  Retrieve compatible compiled lemmas and memory cards
-3  Choose one candidate and record propose/retain/retire/mutate/crossover
-4  Assign the smallest ready proof-DAG leaf
-5  Run cheap exact or Qiskit diagnostics and promote passing routes for proof
-6  Compile the named Lean declaration and tests
-7  Export the certified construction to the requested executable backends
-8  Promote, mutate, change one policy rung, or stop with an intervention packet
-```
-
-The next cycle must change at least one of:
-
-- the compiled proof frontier;
-- the typed candidate-population action;
-- the signed capacity level;
-- the adjacent tolerance rung.
-
-Repeating the same leaf against the same Lean-evidence digest is bounded. A
-stalled representation bridge is assigned as a prerequisite instead of being
-retried by more tactic workers.
-
-### Optional executable outputs ⚛️
-
-Lean is the symbolic acceptance gate, but executable checks can screen a
-candidate before proof and users can independently choose final artifacts.
-The version-2 task packet separates these decisions:
-
-```text
-intermediate check: none | Qiskit Operator | OpenQASM 3 round-trip | both
-export artifacts:  canonical IR | Qiskit Python | OpenQASM 3 | metrics | text
-```
-
-Both adapters consume one backend-neutral canonical IR with structured exact
-angles. Qiskit constructs `x`, `ry`, `rz`, and `cx` gate by gate; the strict
-OpenQASM path writes, parses, imports, canonicalizes, and re-evaluates the
-supported subset. Depending on the task, ASPBE emits:
-
-- runnable Qiskit Python that constructs the selected circuit;
-- OpenQASM 3 for interchange with simulators and hardware toolchains;
-- diagnostic JSON with unitarity, prepared-state, or projected clean-block
-  errors, register order, package versions, and the matching Lean root;
-- a manifest recording normalization, qubit layout, semantic tier, and output
-  files.
-
-These backends are useful both during search and after certification. For state
-preparation they construct and test the requested preparation circuit. For
-block encoding they expose the declared register order and clean ancilla block.
-A fast finite check may reject a bad route, rank surviving exploratory routes,
-and promote one into the executable-validated population before Lean effort is
-allocated. The current logs justify this ordering: individual finite checks
-take roughly `0.04--0.95 s`, while the cached multi-module Lean replay takes
-about `2.75 s`, and agent-led proof search is much more expensive.
-
-A floating-point match is nevertheless not, by itself, a proof of an exact or
-symbolic-family theorem. Final `Lean-certified` promotion requires a named Lean
-root. An external backend may participate directly in mathematical
-certification when it emits an exact witness or proof certificate that a small
-Lean checker verifies; the trusted conclusion still enters through Lean rather
-than an unverified tolerance comparison.
-
-```bash
-python3 -m pip install -r requirements-executable.txt
-python3 tools/replay_public_cases.py
-
-# Individual reproducible exports
-python3 executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py
-python3 executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py
-python3 executable-exports/SP-TEXTBOOK-001/qiskit/export.py --case hadamard
-```
-
-The following circuit view is generated from the certified BE Case 1 export.
-It shows the actual Qiskit gate order: one Toffoli layer followed by three
-parallel `X` gates. The clean-block and unitarity errors are both zero for this
-finite executable instance.
-
-![Qiskit circuit view for the Lean-certified BE Case 1 export](docs/assets/qiskit_circuit_view.svg)
-
-Generated code and reports live under
-[`executable-exports/`](executable-exports/). Task packets may select any
-supported subset of `qiskit`, `qasm3`, and other registered executable targets,
-or disable post-Lean export when only the formal certificate is required.
-
-### Candidate and evidence policy 🧾
-
-Candidates live in three separate populations:
-
-1. **Certified:** all required named Lean declarations compile.
-2. **Finite executable:** Qiskit, NumPy, QASM, or exact finite checks pass, but
-   the matching symbolic certificate is incomplete.
-3. **Insight:** constructions, external suggestions, failed routes, and partial
-   arguments that can guide another proposal.
-
-Finite-executable candidates may be selected as evolutionary parents and may
-receive priority for formalization, but must remain visibly provisional.
-Within one semantic and implementation tier, certified candidates are compared
-lexicographically by gate count, depth, auxiliary qubits, and unresolved oracle
-calls. Correctness and target fidelity are gates, not weighted score terms. An
-opaque oracle and an expanded logical circuit are never ranked as equal-cost
-implementations.
-
-For the fixed Robin benchmark, the displayed `881`, `312`, and `106` counts are
-exact `{X, RY, RZ, CX}` primitive-list lengths. They are not compared with the
-source paper's numerical simulator count, which leaves multi-controlled
-rotations undecomposed. The evolved route also improves depth and auxiliary
-qubits while all three oracle counts are zero, so its winner status is
-independent of how those four score coordinates are ordered.
-
-### Adaptive capacity and tolerance 🎚️
-
-The controller stores upper, middle, and lower capacity levels. A privileged
-upper/reviewer packet may increase exactly one named layer by one level. Replay
-of the same packet is idempotent.
-
-Exact search starts at `epsilon = 0`. Approximation may open only after the
-configured exact-stall condition or an explicit external-contract boundary,
-then advances one task-declared epsilon rung at a time. It cannot change:
-
-- the target state or operator;
-- block-encoding normalization `alpha`;
-- register order or clean-state convention;
-- the declared state-vector or operator norm.
-
-See [agent orchestration](docs/agent_orchestration.md),
-[the proof blueprint](docs/agent_blueprint_formalization.md), and the
-[sleep-run guide](docs/sleep_run_guide.md) for the operational protocol.
-
-## Lean library 🧩
+The public modules are organized around reusable mathematical boundaries rather than benchmark-specific scripts:
 
 ```text
 QuantumBlockEncoding/
-├── Core.lean                    finite matrices and basic contracts
-├── StatePreparation.lean        state targets, candidates, exact/approx certificates
+├── Core.lean                    finite matrices and common contracts
+├── StatePreparation.lean        exact / approximate preparation certificates
 ├── Circuit.lean                 gate and circuit syntax
 ├── CircuitSemantics.lean        circuit evaluation and register semantics
-├── PrimitiveCircuit.lean        typed exact {X, RY, RZ, CX} syntax and resources
-├── PrimitiveSemantics.lean      exact primitive matrices and circuit products
-├── PrimitiveRefinement.lean     exact T3 promotion boundary
-├── ConcreteSemantics.lean       ket/column and projection bridges
-├── TextbookStatePreparation.lean complete Pauli X and Hadamard certificates
+├── PrimitiveCircuit.lean        exact {X, RY, RZ, CX} syntax and resources
+├── PrimitiveSemantics.lean      primitive matrices and products
+├── ConcreteSemantics.lean       ket / column / clean-projection bridges
+├── TextbookStatePreparation.lean
 ├── BlockEncoding.lean           operator targets and verified block encodings
-├── BlockEncodingClassics.lean   permutation, sparse, LCU, product, dilation, QSVT contracts
-├── Resources.lean               deterministic resource records and comparison
+├── BlockEncodingClassics.lean   permutation, sparse, LCU, product, dilation, QSVT APIs
+├── Resources.lean               deterministic resource records
 ├── TechnicalLemmas.lean         reusable proof leaves
-├── MainCase.lean                BE Case 1 certificates
-├── CubicStatePreparation.lean   active state-preparation benchmark
-├── ColdStartTransferE1.lean     isolated cold-start construction
-├── OptimalControl.lean          candidate evolution and resource comparison
-├── Automation.lean              compiled harness contracts
-└── OpenProblems.lean            typed unfinished routes
+├── MainCase.lean                BE Case 1
+├── CubicStatePreparation.lean   cubic diagonal routes
+├── GHLHamiltonian.lean          source-audited Hamiltonian composition
+├── Automation.lean              typed controller contracts
+└── OpenProblems.lean            explicit unfinished routes
 ```
 
-![ASPBE Lean lemma tree](docs/assets/abeis_lean_lemma_tree.svg)
+The [Lean Library Explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/) is the authoritative searchable declaration surface.
 
-The external quantum Lean atlas currently records Mathlib,
-[quantum-computing-lean](https://github.com/duckki/quantum-computing-lean),
-[Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo), and
-[lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum). Exact
-modules, licenses, and adapter rules are under
-[`research-wiki/external-lean-libraries/`](research-wiki/external-lean-libraries/).
-
-## Case studies 🔬
-
-### BE Case 1: transfer operator 🔄
-
-The target is the concrete non-unitary transfer
-
-```text
-E_1 = |0><1|_time tensor |0><1|_type tensor I_2,
-<0|_a U |0>_a = E_1.
-```
-
-One clean signal qubit completes the operator to a permutation unitary. Lean
-proves unitarity, every projected-block entry, each resource tuple, and the two
-strict comparisons. In one fixed logical `{X,CNOT,Toffoli}` tier, certified
-candidates improve `(6,5,1,0) -> (4,4,1,0) -> (4,2,1,0)`.
-
-| Certified candidates | Convergence |
-| --- | --- |
-| ![BE Case 1 candidates](docs/assets/be_case1_candidates.svg) | ![BE Case 1 convergence](docs/assets/be_case1_convergence.svg) |
-
-### BE Case 2: cubic diagonal operator 📐
-
-For every `n`, the target is
-
-```text
-D_n = diag_{0 <= j < 2^n} ((j / 2^n)^3),
-Pi U_n Pi^dagger = D_n.
-```
-
-Cold and hinted routes close this symbolic family through exact rational
-Householder constructions. Lean uses four-square witnesses to prove branch
-normalization, rational orthogonality, the clean block, `alpha=1`, and the
-logical resource record for arbitrary `n`. A finite Qiskit instance is only an
-export. The hinted identity `D_n = O_0^3`, with
-`O_0 = diag(j/2^n)`, selects the route; QSVT is not presented as a certified
-primitive implementation.
-
-| Candidate route | Cold and hinted progress |
-| --- | --- |
-| ![BE Case 2 candidates](docs/assets/be_case2_candidates.svg) | ![BE Case 2 progress](docs/assets/be_case2_cold_hinted.svg) |
-
-These figures show certified candidate and proof milestones, not elapsed time
-or model-token curves. Replay the current certificate surface with:
-
-```bash
-python3 tools/replay_public_cases.py
-```
-
-The machine-readable diagnostic record is
-[`reports/public-case-replay/latest.json`](reports/public-case-replay/latest.json).
-It rebuilds the relevant Lean modules, replays the controller population gate,
-and reruns the State Preparation, BE Case 1, and BE Case 2 Qiskit/QASM exports.
-Case certification comes from the named Lean roots, not this record. It does
-not claim a new isolated cold-start discovery. Historical figures
-change only after a fresh controlled search fixes the model, task, memory
-policy, budget, and acceptance gate.
-
-The normalized cubic **state-preparation** benchmark is tracked separately and
-is not reported as solved merely because the cubic block-encoding family is
-certified.
-
-### Textbook state preparation ⚛️
-
-The one-qubit textbook routes are complete certificates, not interface-only
-examples: `pauliXVerified` and `hadamardVerified` each contain a normalized
-target, Mathlib unitary-group proof, state-action proof, circuit, schedule, and
-resource record. Their runnable Qiskit exports provide the same gate-level
-examples used in the introductory chapters, while the named Lean roots remain
-the proof authority.
-
-### GHL Robin Theorem 4: source-audited Hamiltonian composition 🧮
-
-The one-dimensional Hamiltonian composition itself is no longer listed as open. Lean closes the finite-sum adjoint bridge, the `S₁/S₂` clean-block algebra, `H = S₁ ⊗ x_ξ + S₂ ⊗ I_ξ`, and the paper-facing normalization/layout/resource record. The audit does **not** silently normalize the source: a literal full-clean-matrix reading of the printed first `S₁` LCU phase pair is proved to leave a `-N_A I` filler, while a phase-balanced correction is proved to give exactly `S₁`; the printed `S₂` line closes. See `paper-notes/GHL2025/THEOREM4_SOURCE_AUDIT.md` and the named declarations in `QuantumBlockEncoding/GHLHamiltonian.lean`.
-
-The remaining GHL frontier is a uniform arbitrary-width primitive compiler that expands all Theorem-3 source oracles at the claimed resource tier.
-
-## Build and verify 🛠️
+<details>
+<summary><strong>Build and verify locally</strong></summary>
 
 Linux/macOS:
 
@@ -436,71 +334,46 @@ python tools/qbe.py check
 powershell -ExecutionPolicy Bypass -File scripts/build-all.ps1
 ```
 
-The full site build runs the Lean library and tests, declaration inventory,
-proof-trust checks, the model-free Lean/Qiskit public-case replay, Blueprint
-consistency, Verso build, QuantumComputinglib generation, internal link and
-fragment checks, source-link checks, and local-path leakage scan. Generated
-counts are written to `_site/build-report.json`; the replay record is published
-at `_site/data/public-case-replay.json`. This README does not hard-code
-declaration totals.
+The complete build runs the Lean gate, tests, proof-trust checks, declaration inventory, public-case replay, Blueprint consistency checks, website build, link/source checks, and local-path leakage scans.
 
-## Contribute 🤝
+</details>
 
-QuantumComputinglib supports two contribution routes:
+<details>
+<summary><strong>Contribute</strong></summary>
 
-- use the [Live Formalization Workspace](https://dakebu.github.io/Quantum-Computing-Block-Encoding/ide/)
-  to prepare a versioned lemma packet and open a proposal;
-- develop a focused branch and submit a pull request under
-  [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Two supported routes are available:
 
-The contribution process has four visible stages: agree on scope, develop in
-the owning module, run the pinned whole-repository gates, and submit a focused
-PR with provenance and preferred credit. Accepted work is listed on the
-QuantumComputinglib Contributors page. A locally compiling snippet is not
-listed as integrated until maintainer review and the full repository gate pass.
+1. use the [Live Formalization Workspace](https://dakebu.github.io/Quantum-Computing-Block-Encoding/ide/) to prepare a versioned lemma packet; or
+2. submit a focused pull request following [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-Complete State Preparation and Block Encoding case packets use the exact
-states `draft`, `pendingReview`, `verified`, and `rejected`. Browser saves are
-explicit opt-in IndexedDB records and never include API credentials. Repository
-ingestion is also explicit:
+A contribution becomes public positive retrieval memory only after maintainer review and the full repository gate. Case packets use the review states `draft`, `pendingReview`, `verified`, and `rejected`.
 
 ```bash
 python3 tools/qbe.py ingest-case path/to/case.json --review-only
 python3 tools/qbe.py promote-case case-id --lean-root Namespace.declaration
 ```
 
-The promotion command refuses unpublished review states, missing consent,
-unknown Lean roots, failed full gates, or missing advertised executable
-evidence. Only `verified` packets can enter public positive retrieval memory.
+The promotion command rejects unpublished review states, missing consent, unknown Lean roots, failed full gates, or missing advertised executable evidence.
 
-Historical `QBE-*` task IDs, `ABEISBlueprint` module names, and existing URLs
-remain unchanged for reproducibility and compatibility. New public prose uses
-**ASPBE** for the system and **QuantumComputinglib** for the website.
+</details>
 
-## Related systems and design lineage 🧬
+<details>
+<summary><strong>Related systems and design lineage</strong></summary>
 
-ASPBE adapts useful mechanisms from adjacent systems, but its acceptance
-contracts and proof status remain specific to this repository.
+ASPBE borrows engineering ideas from adjacent systems while keeping its acceptance contracts specific to this repository: durable file-backed state (ARIS), typed layered feedback, population evolution (EoH), proof-DAG decomposition (LeanMarathon), natural-language/formal pairing (Rethlas/Archon), quantum theorem-proving evaluation (QBench), and readable Blueprint-style formal documentation.
 
-| Work | Relevant design pattern | ASPBE use and boundary |
-| --- | --- | --- |
-| [ARIS](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) | Durable file-based research state and review | Task packets, manifests, run logs, and reviews; chat is not the system of record. |
-| [Learning Beyond Gradients](https://github.com/Trinkle23897/learning-beyond-gradients) | Layered feedback and trial memory | Typed upper/middle/lower feedback and bounded policy transitions. |
-| [EoH](https://github.com/FeiLiu36/EoH) | Population maintenance, mutation, and recombination | Candidate routes are retained, retired, mutated, or crossed over under one frozen contract. |
-| [LeanMarathon](https://github.com/YuanheZ/LeanMarathon) | Proof blueprints and dependency-ordered leaves | Middle agents maintain a proof DAG and assign only ready Lean obligations. |
-| [Rethlas](https://github.com/frenzymath/Rethlas) and [Archon](https://github.com/frenzymath/Archon) | Natural-language reasoning paired with formal proof | Natural-language proposals guide search; only named Lean declarations certify results. |
-| [QBench](https://arxiv.org/abs/2607.21533) | Quantum theorem-proving evaluation | External task/library declarations are audited and kept isolated by toolchain and evidence class. |
-| [quantum-computing-lean](https://github.com/duckki/quantum-computing-lean), [Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo), and [lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum) | Quantum formalization APIs | Recorded in the external atlas; a reference becomes local evidence only through an explicit compiled adapter. |
-| [StatsMLlib](https://statsmllib.github.io/) | Textbook navigation and contributor onboarding | Inspires the left-side book map and four-stage contribution path, not theorem content or status data. |
-| [Lean Ridgelet](https://shosonoda.github.io/lean-ridgelet/) and [Verso Blueprint](https://github.com/leanprover/verso-blueprint) | Readable formal blueprints | Provide documentation inspiration and rendering infrastructure. |
+External quantum Lean projects such as [quantum-computing-lean](https://github.com/duckki/quantum-computing-lean), [Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo), and [lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum) are recorded in the reference atlas. A linked external theorem is not presented as a local proof unless an explicit compiled adapter imports or re-establishes the required boundary.
 
-See [`docs/attribution.md`](docs/attribution.md) and [`NOTICE.md`](NOTICE.md)
-for the fuller attribution and evidence boundary.
+See [`docs/attribution.md`](docs/attribution.md) and [`NOTICE.md`](NOTICE.md).
 
-## Citation 📝
+</details>
+
+---
+
+## Citation
 
 ```bibtex
-@misc{abeis2026,
+@misc{aspbe2026,
   author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
   title = {{ASPBE: Automatic State Preparation and Block Encoding for Quantum Computing}},
   year = {2026},
@@ -508,18 +381,6 @@ for the fuller attribution and evidence boundary.
 }
 ```
 
-## Acknowledgements 🙏
+## License
 
-The project thanks Sho Sonoda for the public Lean Ridgelet Blueprint, which
-demonstrated a clear way to connect mathematical exposition with formal source.
-The documentation uses Verso Blueprint and Verso. The harness comparison above
-credits ARIS, Learning Beyond Gradients, EoH, LeanMarathon, Rethlas, Archon,
-QBench, and the cited quantum Lean libraries for the specific patterns or
-reference APIs studied here. Attribution does not imply that their results are
-locally proved or that their licenses transfer to ASPBE.
-
-## License 📄
-
-[MIT](LICENSE). External libraries and cited results retain their own licenses
-and attribution; linking or indexing them does not transfer authorship or
-proof status.
+[MIT](LICENSE). External libraries and cited results retain their own licenses and attribution.

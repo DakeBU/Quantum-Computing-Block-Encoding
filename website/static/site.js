@@ -4,6 +4,88 @@
   const root = document.documentElement;
   const body = document.body;
   const siteRoot = body.dataset.siteRoot || "./";
+
+  // Reader-facing diagrams should look like textbook figures rather than UI cards.
+  // This runs before Mermaid initializes, so both SVG text and HTML labels inherit
+  // the same Times-family typography. The fallbacks keep Linux builds portable.
+  const figureTypography = document.createElement("style");
+  figureTypography.textContent = `
+    .diagram-panel,
+    .stage-circuit-render {
+      background: #fff !important;
+      border-radius: 2px !important;
+      box-shadow: none !important;
+    }
+    .diagram-panel .mermaid,
+    .diagram-panel .mermaid *,
+    .diagram-panel svg text,
+    .diagram-panel svg foreignObject *,
+    .quantikz-preview text,
+    .stage-circuit-canvas svg text,
+    .circuit-live-preview svg text {
+      font-family: "Times New Roman", Times, "Liberation Serif", serif !important;
+      letter-spacing: 0 !important;
+    }
+    .diagram-panel .node rect,
+    .diagram-panel .cluster rect,
+    .diagram-panel .label-container,
+    .quantikz-preview .qc-gate {
+      rx: 2px !important;
+      ry: 2px !important;
+    }
+    .diagram-panel .node rect,
+    .diagram-panel .cluster rect {
+      fill: #fff !important;
+      stroke-width: 1.2px !important;
+    }
+    .diagram-panel .edgeLabel,
+    .diagram-panel .edgeLabel p {
+      background: #fff !important;
+    }
+    .stage-circuit-render figcaption,
+    .diagram-toolbar {
+      box-shadow: none !important;
+    }
+  `;
+  document.head.append(figureTypography);
+
+  // The small browser-side quantikz renderer deliberately supports only a
+  // reviewed subset of TeX. Keep its labels mathematical instead of degrading
+  // common notation to ASCII words such as "alpha", "theta", or "perp".
+  const figureTextSelector = [
+    ".quantikz-preview text",
+    ".stage-circuit-canvas svg text",
+    ".circuit-live-preview svg text",
+  ].join(",");
+
+  function mathematicalFigureLabel(text) {
+    return text
+      .replace(/\balpha\b/g, "α")
+      .replace(/\btheta\b/g, "θ")
+      .replace(/\bperp\b/g, "⊥")
+      .replace(/\|([^>|]{1,48})>/g, "|$1⟩");
+  }
+
+  function normalizeFigureText(scope = document) {
+    if (!(scope instanceof Document || scope instanceof Element)) return;
+    if (scope instanceof Element && scope.matches(figureTextSelector)) {
+      scope.textContent = mathematicalFigureLabel(scope.textContent || "");
+    }
+    scope.querySelectorAll(figureTextSelector).forEach((node) => {
+      node.textContent = mathematicalFigureLabel(node.textContent || "");
+    });
+  }
+
+  normalizeFigureText(document);
+  const figureObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node instanceof Element) normalizeFigureText(node);
+      });
+    });
+  });
+  figureObserver.observe(document.documentElement, { childList: true, subtree: true });
+
   const themes = ["blueprint", "modern", "bold"];
   const savedTheme = localStorage.getItem("quantumcomputinglib-theme");
   const requestedTheme = new URLSearchParams(window.location.search).get("theme");

@@ -1,14 +1,15 @@
 flowchart LR
-  G["Generate candidates"] --> P["Maintain diverse<br/>population"]
-  P --> S["Score resources<br/>lexicographically"]
-  S --> V["Verify dimensions,<br/>unitarity, block"]
-  V --> K{"Lean gate"}
-  K -- "Pass" --> E["Executable export<br/>and Qiskit check"]
-  K -- "Failure record" --> F["Structured feedback"]
-  E --> Q{"Validation pass"}
-  Q -- "Yes" --> A["Accept and store<br/>memory card"]
-  Q -- "No" --> F
-  F --> T{"Upper-layer decision"}
-  T -- "Add agents / recombine" --> P
-  T -- "Relax epsilon by schedule" --> G
+  C["Candidate construction<br/>U"] --> F["Finite screen<br/>dimensions · unitarity · clean block"]
+  F --> L{"Named Lean theorem"}
+  L -- "closed" --> V["Certified construction"]
+  V --> E["Optional Qiskit /<br/>OpenQASM export"]
+  L -- "open" --> O["Explicit obstruction<br/>or missing proof leaf"]
+  O --> R["Change construction route<br/>or one declared ε rung"]
+  R --> C
 
+  classDef math fill:#ffffff,stroke:#5b6670,color:#222222,stroke-width:1.25px;
+  classDef proof fill:#ffffff,stroke:#2f7355,color:#18382b,stroke-width:1.6px;
+  classDef fail fill:#ffffff,stroke:#8a5a4a,color:#4c332c,stroke-width:1.4px;
+  class C,F,R math;
+  class L,V,E proof;
+  class O fail;

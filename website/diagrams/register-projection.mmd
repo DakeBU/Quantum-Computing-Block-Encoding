@@ -1,10 +1,9 @@
 flowchart TB
   U["Unitary U on ancilla + signal registers"]
-  I["Input: |0^a> tensor |j>"] --> U
-  U --> O["Output amplitude at |0^a> tensor |i>"]
-  O --> B["Selected block entry U[(0,i),(0,j)]"]
-  B --> S["Required value A[i,j] / alpha"]
-  N["alpha: normalization"] --> S
+  I["Input: |0ᵃ⟩ ⊗ |j⟩"] --> U
+  U --> O["Output amplitude at |0ᵃ⟩ ⊗ |i⟩"]
+  O --> B["Selected clean-block entry<br/>⟨0ᵃ,i|U|0ᵃ,j⟩"]
+  B --> S["Required value A[i,j] / α"]
+  N["α: normalization"] --> S
   R["RegisterLayout fixes bit and index order"] --> I
   R --> O
-

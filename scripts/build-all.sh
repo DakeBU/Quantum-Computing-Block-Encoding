@@ -8,6 +8,7 @@ if [[ "${QBE_AGENT_INNER_CYCLE:-0}" == "1" ]]; then
 fi
 
 python3 tools/qbe.py harness-check
+python3 tools/check_public_figure_style.py
 python3 tools/test_proof_trust.py
 python3 tools/check_proof_trust.py
 python3 tools/check_technical_lemma_registry.py

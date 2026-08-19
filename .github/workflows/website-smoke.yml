@@ -7,11 +7,19 @@ on:
       - "agent/**"
     paths:
       - "website/**"
+      - "README.md"
+      - "docs/assets/**"
+      - "matplotlibrc"
+      - "tools/check_public_figure_style.py"
       - "scripts/build-website.sh"
       - ".github/workflows/website-smoke.yml"
   pull_request:
     paths:
       - "website/**"
+      - "README.md"
+      - "docs/assets/**"
+      - "matplotlibrc"
+      - "tools/check_public_figure_style.py"
       - "scripts/build-website.sh"
       - ".github/workflows/website-smoke.yml"
   workflow_dispatch:
@@ -25,6 +33,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+
+      - name: Check public figure typography and formulas
+        run: python3 tools/check_public_figure_style.py
 
       - name: Check Python and teaching data
         run: |
