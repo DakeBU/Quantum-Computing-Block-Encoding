@@ -70,16 +70,20 @@ def primitiveBits2LE (index : Fin 4) : PrimitiveBasis 2
 /-- Concrete inverse images used after `fin_cases`; these avoid relying on type
 normalization between `Fin (gridSize 2)` and `Fin 4`. -/
 @[simp] theorem primitiveBasisLEEquiv_two_symm_0 :
-    (primitiveBasisLEEquiv 2).symm (0 : Fin (gridSize 2)) =
+    (primitiveBasisLEEquiv 2).symm
+        (⟨0, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
       primitiveBits2LE (0 : Fin 4) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_two_symm_1 :
-    (primitiveBasisLEEquiv 2).symm (1 : Fin (gridSize 2)) =
+    (primitiveBasisLEEquiv 2).symm
+        (⟨1, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
       primitiveBits2LE (1 : Fin 4) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_two_symm_2 :
-    (primitiveBasisLEEquiv 2).symm (2 : Fin (gridSize 2)) =
+    (primitiveBasisLEEquiv 2).symm
+        (⟨2, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
       primitiveBits2LE (2 : Fin 4) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_two_symm_3 :
-    (primitiveBasisLEEquiv 2).symm (3 : Fin (gridSize 2)) =
+    (primitiveBasisLEEquiv 2).symm
+        (⟨3, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
       primitiveBits2LE (3 : Fin 4) := by native_decide
 
 /-- Encode the non-target wire of a two-qubit little-endian basis state. -/
@@ -142,28 +146,36 @@ def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
 
 /-- Concrete inverse images for all eight three-qubit basis states. -/
 @[simp] theorem primitiveBasisLEEquiv_three_symm_0 :
-    (primitiveBasisLEEquiv 3).symm (0 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨0, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (0 : Fin 8) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_three_symm_1 :
-    (primitiveBasisLEEquiv 3).symm (1 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨1, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (1 : Fin 8) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_three_symm_2 :
-    (primitiveBasisLEEquiv 3).symm (2 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨2, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (2 : Fin 8) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_three_symm_3 :
-    (primitiveBasisLEEquiv 3).symm (3 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨3, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (3 : Fin 8) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_three_symm_4 :
-    (primitiveBasisLEEquiv 3).symm (4 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨4, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (4 : Fin 8) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_three_symm_5 :
-    (primitiveBasisLEEquiv 3).symm (5 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨5, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (5 : Fin 8) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_three_symm_6 :
-    (primitiveBasisLEEquiv 3).symm (6 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨6, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (6 : Fin 8) := by native_decide
 @[simp] theorem primitiveBasisLEEquiv_three_symm_7 :
-    (primitiveBasisLEEquiv 3).symm (7 : Fin (gridSize 3)) =
+    (primitiveBasisLEEquiv 3).symm
+        (⟨7, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
       primitiveBits3LE (7 : Fin 8) := by native_decide
 
 def primitiveBits3LEWithout (target : Fin 3) (index : Fin 8) : Nat :=
