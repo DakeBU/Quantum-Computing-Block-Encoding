@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="910" viewBox="0 0 1600 910">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#252525"/>
+    </marker>
+    <marker id="dashArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#496b42"/>
+    </marker>
+    <style>
+      text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill:#171717; }
+      .title { font-size:46px; font-weight:700; }
+      .subtitle { font-size:22px; fill:#454545; }
+      .panelTitle { font-size:31px; font-weight:700; }
+      .boxTitle { font-size:24px; font-weight:700; }
+      .body { font-size:18px; }
+      .small { font-size:15px; }
+      .tiny { font-size:13px; }
+      .math { font-size:23px; }
+      .line { stroke:#252525; stroke-width:2.2; fill:none; }
+      .thin { stroke:#4b4b4b; stroke-width:1.6; fill:none; }
+      .greenLine { stroke:#496b42; stroke-width:2; fill:none; }
+      .dash { stroke:#496b42; stroke-width:2; fill:none; stroke-dasharray:8 7; }
+    </style>
+  </defs>
+  <rect width="1600" height="910" fill="#ffffff"/>
+  <text x="800" y="52" text-anchor="middle" class="title">From manual quantum construction to the ASPBE hierarchical harness</text>
+  <text x="800" y="86" text-anchor="middle" class="subtitle">State Preparation and Block Encoding need mathematical ideas, Lean-tree planning, focused proof work, and disciplined verification.</text>
+  <rect x="25" y="118" width="460" height="735" rx="28" fill="#fffaf5" stroke="#c87936" stroke-width="2.2"/>
+  <rect x="505" y="118" width="455" height="735" rx="28" fill="#f8fbff" stroke="#5a78c8" stroke-width="2.2"/>
+  <rect x="980" y="118" width="595" height="735" rx="28" fill="#fbfdf8" stroke="#69855b" stroke-width="2.2"/>
+  <text x="255" y="158" text-anchor="middle" class="panelTitle" fill="#9a3f12">(a) Human</text>
+  <rect x="112" y="185" width="286" height="74" rx="16" fill="#fff0e1" stroke="#8e5b3f" stroke-width="1.8"/>
+  <text x="235" y="231" text-anchor="middle" class="boxTitle">Problem</text>
+  <circle cx="348" cy="220" r="13" fill="#fff5c9" stroke="#8f6b22" stroke-width="1.6"/>
+  <path d="M341 233 h14 M344 237 h8" class="thin"/>
+  <path d="M348 197 v-8 M329 205 l-6 -6 M367 205 l6 -6 M325 220 h-9 M371 220 h9" class="thin"/>
+  <line x1="255" y1="259" x2="255" y2="298" class="line" marker-end="url(#arrow)"/>
+  <circle cx="148" cy="368" r="34" fill="#f0d0b0" stroke="#2e2e2e" stroke-width="2"/>
+  <path d="M120 356 q28 -36 58 -3 q-12 -33 -40 -31 q-25 2 -31 30 z" fill="#3e2a20" stroke="#2e2e2e" stroke-width="1.4"/>
+  <path d="M113 413 q35 -31 70 0 l32 112 h-137 z" fill="#e9c79d" stroke="#2e2e2e" stroke-width="2"/>
+  <line x1="108" y1="382" x2="134" y2="382" class="thin"/><line x1="162" y1="382" x2="187" y2="382" class="thin"/>
+  <circle cx="127" cy="380" r="12" fill="none" stroke="#333" stroke-width="1.6"/><circle cx="169" cy="380" r="12" fill="none" stroke="#333" stroke-width="1.6"/>
+  <line x1="139" y1="380" x2="157" y2="380" class="thin"/>
+  <path d="M138 396 q11 8 22 0" class="thin"/>
+  <rect x="62" y="520" width="195" height="18" rx="4" fill="#b47b52" stroke="#2d2d2d" stroke-width="1.5"/>
+  <path d="M88 487 q47 -24 92 0 v39 q-46 -18 -92 0 z" fill="#fff" stroke="#444" stroke-width="1.5"/>
+  <path d="M180 487 q40 -19 74 0 v39 q-36 -15 -74 0 z" fill="#fff" stroke="#444" stroke-width="1.5"/>
+  <line x1="180" y1="487" x2="180" y2="525" class="thin"/>
+  <circle cx="66" cy="329" r="24" fill="#fff" stroke="#666" stroke-width="1.6"/>
+  <circle cx="88" cy="312" r="18" fill="#fff" stroke="#666" stroke-width="1.6"/>
+  <circle cx="90" cy="348" r="18" fill="#fff" stroke="#666" stroke-width="1.6"/>
+  <text x="82" y="335" text-anchor="middle" font-size="24">?</text>
+  <rect x="274" y="309" width="172" height="246" rx="8" fill="#ffffff" stroke="#444" stroke-width="1.8"/>
+  <text x="360" y="346" text-anchor="middle" class="math">|ψ⟩ = Σ αᵢ|i⟩</text>
+  <text x="360" y="392" text-anchor="middle" class="math">[ 0   A ]</text>
+  <text x="360" y="422" text-anchor="middle" class="math">[ A†  0 ]</text>
+  <line x1="304" y1="466" x2="420" y2="466" class="line"/>
+  <line x1="304" y1="500" x2="420" y2="500" class="line"/>
+  <circle cx="337" cy="466" r="5" fill="#222"/><circle cx="337" cy="500" r="5" fill="#222"/>
+  <line x1="337" y1="466" x2="337" y2="500" class="line"/>
+  <rect x="370" y="448" width="45" height="36" rx="5" fill="#f2f2f2" stroke="#333" stroke-width="1.4"/>
+  <text x="392" y="472" text-anchor="middle" class="small">Rᵧ(θ)</text>
+  <text x="255" y="592" text-anchor="middle" class="boxTitle" fill="#b14b18">Trial &amp; error</text>
+  <path d="M110 609 v35 q0 20 22 20 h240 q22 0 22 -20 v-42" stroke="#c85b12" stroke-width="2.4" fill="none" stroke-dasharray="8 6" marker-end="url(#arrow)"/>
+  <line x1="255" y1="676" x2="255" y2="720" class="line" marker-end="url(#arrow)"/>
+  <rect x="70" y="731" width="370" height="86" rx="15" fill="#eef6e9" stroke="#557754" stroke-width="1.8"/>
+  <text x="255" y="770" text-anchor="middle" class="boxTitle">Construction</text>
+  <text x="255" y="797" text-anchor="middle" class="body">state preparation / block encoding</text>
+  <text x="732" y="158" text-anchor="middle" class="panelTitle" fill="#284b9b">(b) Flat automation</text>
+  <rect x="590" y="185" width="285" height="74" rx="16" fill="#eef3ff" stroke="#4f6db7" stroke-width="1.8"/>
+  <text x="714" y="231" text-anchor="middle" class="boxTitle">Problem</text>
+  <path d="M820 205 h12 v10 h10 v12 h-10 v10 h-12 v-10 h-10 v-12 h10 z" fill="#fff" stroke="#555" stroke-width="1.3"/>
+  <line x1="733" y1="259" x2="733" y2="303" class="line" marker-end="url(#arrow)"/>
+  <circle cx="733" cy="391" r="92" fill="#eef3ff" stroke="#4567b1" stroke-width="2.2"/>
+  <text x="733" y="373" text-anchor="middle" font-size="34" font-weight="700">LLM /</text>
+  <text x="733" y="411" text-anchor="middle" font-size="34" font-weight="700">solver</text>
+  <g stroke="#204b78" stroke-width="1.6" fill="#d8e9ff">
+    <line x1="696" y1="441" x2="721" y2="428"/><line x1="721" y1="428" x2="751" y2="441"/><line x1="721" y1="428" x2="722" y2="459"/><line x1="696" y1="441" x2="722" y2="459"/><line x1="751" y1="441" x2="722" y2="459"/>
+    <circle cx="696" cy="441" r="6"/><circle cx="721" cy="428" r="6"/><circle cx="751" cy="441" r="6"/><circle cx="722" cy="459" r="6"/>
+  </g>
+  <text x="560" y="349" class="boxTitle" font-style="italic" fill="#244e9a">Monolithic</text>
+  <text x="574" y="379" class="boxTitle" font-style="italic" fill="#244e9a">search</text>
+  <rect x="837" y="335" width="95" height="112" rx="14" fill="#f8f3ff" stroke="#6b5a94" stroke-width="1.7"/>
+  <text x="884" y="374" text-anchor="middle" class="body" font-weight="700">data /</text>
+  <text x="884" y="399" text-anchor="middle" class="body" font-weight="700">prompts</text>
+  <rect x="862" y="412" width="45" height="24" rx="8" fill="#fff" stroke="#555" stroke-width="1.2"/>
+  <text x="884" y="430" text-anchor="middle" class="small">•••</text>
+  <line x1="837" y1="391" x2="827" y2="391" class="line" marker-end="url(#arrow)"/>
+  <line x1="733" y1="483" x2="733" y2="524" class="line" marker-end="url(#arrow)"/>
+  <rect x="535" y="539" width="395" height="205" rx="20" fill="#ffffff" stroke="#6f8acb" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="733" y="570" text-anchor="middle" class="body" font-style="italic" fill="#314d92">candidate constructions / proofs (uncoordinated)</text>
+  <rect x="557" y="592" width="105" height="122" rx="12" fill="#f2f6ec" stroke="#8a9b77" stroke-width="1.4"/>
+  <rect x="679" y="592" width="105" height="122" rx="12" fill="#fff9e9" stroke="#a99864" stroke-width="1.4"/>
+  <rect x="801" y="592" width="105" height="122" rx="12" fill="#fff0ec" stroke="#b27664" stroke-width="1.4"/>
+  <line x1="579" y1="621" x2="640" y2="621" class="thin"/><line x1="579" y1="640" x2="640" y2="640" class="thin"/>
+  <circle cx="598" cy="621" r="4" fill="#222"/><circle cx="622" cy="640" r="4" fill="#222"/>
+  <text x="609" y="674" text-anchor="middle" class="body" font-weight="700">Candidate A</text><text x="609" y="699" text-anchor="middle" class="small">SP / BE</text>
+  <rect x="707" y="611" width="48" height="42" fill="#fff" stroke="#555" stroke-width="1.3"/><line x1="716" y1="622" x2="746" y2="622" class="thin"/><line x1="716" y1="632" x2="746" y2="632" class="thin"/>
+  <text x="731" y="674" text-anchor="middle" class="body" font-weight="700">Candidate B</text><text x="731" y="699" text-anchor="middle" class="small">Proof sketch</text>
+  <ellipse cx="853" cy="631" rx="22" ry="18" fill="#e86155" stroke="#333" stroke-width="1.4"/><line x1="853" y1="606" x2="853" y2="596" class="thin"/><line x1="834" y1="612" x2="825" y2="604" class="thin"/><line x1="872" y1="612" x2="881" y2="604" class="thin"/>
+  <text x="853" y="674" text-anchor="middle" class="body" font-weight="700">Candidate C</text><text x="853" y="699" text-anchor="middle" class="small">Fails checks</text>
+  <text x="733" y="782" text-anchor="middle" class="body" font-style="italic" fill="#304b8f">Mixed tasks, weak coordination;</text>
+  <text x="733" y="807" text-anchor="middle" class="body" font-style="italic" fill="#304b8f">trial outputs may conflict or repeat.</text>
+  <text x="1278" y="158" text-anchor="middle" class="panelTitle" fill="#294f2b">(c) ASPBE hierarchical harness</text>
+  <rect x="1160" y="180" width="235" height="54" rx="14" fill="#fff1df" stroke="#7e6c55" stroke-width="1.6"/>
+  <text x="1250" y="214" text-anchor="middle" class="boxTitle">Problem</text>
+  <circle cx="1363" cy="207" r="13" fill="#fff" stroke="#b44b3a" stroke-width="1.8"/><circle cx="1363" cy="207" r="7" fill="none" stroke="#b44b3a" stroke-width="1.5"/><circle cx="1363" cy="207" r="2.5" fill="#b44b3a"/>
+  <line x1="1250" y1="234" x2="1250" y2="259" class="line" marker-end="url(#arrow)"/>
+  <rect x="995" y="273" width="160" height="278" rx="14" fill="#ffffff" stroke="#8e9a87" stroke-width="1.4"/>
+  <text x="1075" y="300" text-anchor="middle" class="body" font-weight="700">Domain memory</text>
+  <text x="1075" y="322" text-anchor="middle" class="body" font-weight="700">&amp; resources</text>
+  <rect x="1012" y="341" width="126" height="43" rx="8" fill="#edf4ff" stroke="#7087a8" stroke-width="1.2"/><text x="1075" y="368" text-anchor="middle" class="tiny">QuantumComputinglib</text>
+  <rect x="1012" y="394" width="126" height="43" rx="8" fill="#fff7e8" stroke="#a98b5e" stroke-width="1.2"/><text x="1075" y="421" text-anchor="middle" class="small">textbook</text>
+  <rect x="1012" y="447" width="126" height="43" rx="8" fill="#eef7ea" stroke="#78916e" stroke-width="1.2"/><text x="1075" y="474" text-anchor="middle" class="small">paper map</text>
+  <rect x="1012" y="500" width="126" height="34" rx="8" fill="#f5efff" stroke="#8971a0" stroke-width="1.2"/><text x="1075" y="522" text-anchor="middle" class="small">memory cards</text>
+  <rect x="1175" y="265" width="360" height="78" rx="14" fill="#f3f8ef" stroke="#69855b" stroke-width="1.8"/>
+  <circle cx="1206" cy="286" r="12" fill="#5c7c45"/><text x="1206" y="291" text-anchor="middle" font-size="14" fill="#fff">1</text>
+  <text x="1350" y="292" text-anchor="middle" class="boxTitle">Top strategist</text>
+  <text x="1350" y="322" text-anchor="middle" class="body">brainstorm construction families</text>
+  <line x1="1350" y1="343" x2="1350" y2="367" class="line" marker-end="url(#arrow)"/>
+  <rect x="1158" y="374" width="392" height="146" rx="16" fill="#f5f9f1" stroke="#69855b" stroke-width="1.8"/>
+  <circle cx="1188" cy="397" r="12" fill="#5c7c45"/><text x="1188" y="402" text-anchor="middle" font-size="14" fill="#fff">2</text>
+  <text x="1366" y="402" text-anchor="middle" font-size="21" font-weight="700">Middle planner / Lean-tree manager</text>
+  <text x="1194" y="433" class="small">• plan the route and decompose tasks</text>
+  <text x="1194" y="456" class="small">• maintain the Lean tree / proof DAG</text>
+  <text x="1194" y="479" class="small">• retrieve domain memory</text>
+  <text x="1194" y="502" class="small">• issue ready proof leaves</text>
+  <path d="M1155 456 H1175" class="dash" marker-end="url(#dashArrow)"/>
+  <line x1="1250" y1="520" x2="1250" y2="550" class="line" marker-end="url(#arrow)"/>
+  <line x1="1352" y1="520" x2="1352" y2="550" class="line" marker-end="url(#arrow)"/>
+  <line x1="1454" y1="520" x2="1454" y2="550" class="line" marker-end="url(#arrow)"/>
+  <rect x="1150" y="557" width="126" height="104" rx="14" fill="#f2f8ed" stroke="#69855b" stroke-width="1.5"/>
+  <rect x="1290" y="557" width="126" height="104" rx="14" fill="#f2f8ed" stroke="#69855b" stroke-width="1.5"/>
+  <rect x="1430" y="557" width="126" height="104" rx="14" fill="#f2f8ed" stroke="#69855b" stroke-width="1.5"/>
+  <text x="1213" y="584" text-anchor="middle" class="small" font-weight="700">3a  NL proof</text><text x="1213" y="603" text-anchor="middle" class="small" font-weight="700">worker</text><text x="1213" y="630" text-anchor="middle" class="tiny">local human-</text><text x="1213" y="647" text-anchor="middle" class="tiny">readable proof step</text>
+  <text x="1353" y="584" text-anchor="middle" class="small" font-weight="700">3b  Lean leaf</text><text x="1353" y="603" text-anchor="middle" class="small" font-weight="700">worker</text><text x="1353" y="630" text-anchor="middle" class="tiny">one Lean declaration</text><text x="1353" y="647" text-anchor="middle" class="tiny">/ proof leaf</text>
+  <text x="1493" y="584" text-anchor="middle" class="small" font-weight="700">3c  finite-check</text><text x="1493" y="603" text-anchor="middle" class="small" font-weight="700">worker</text><text x="1493" y="630" text-anchor="middle" class="tiny">one diagnostic</text><text x="1493" y="647" text-anchor="middle" class="tiny">or circuit check</text>
+  <line x1="1213" y1="661" x2="1213" y2="684" class="line" marker-end="url(#arrow)"/>
+  <line x1="1353" y1="661" x2="1353" y2="684" class="line" marker-end="url(#arrow)"/>
+  <line x1="1493" y1="661" x2="1493" y2="684" class="line" marker-end="url(#arrow)"/>
+  <rect x="1145" y="690" width="415" height="76" rx="15" fill="#eef6e9" stroke="#69855b" stroke-width="1.8"/>
+  <circle cx="1180" cy="713" r="14" fill="#4c8548"/><path d="M1173 713 l6 7 l11 -15" stroke="#fff" stroke-width="3" fill="none"/>
+  <text x="1360" y="716" text-anchor="middle" class="boxTitle">4  reviewer / verifier agent</text>
+  <text x="1360" y="743" text-anchor="middle" class="small">checks obligations · finite screens · circuit checks · coordinates feedback</text>
+  <path d="M1558 728 h13 v-300 h-18" class="dash" marker-end="url(#dashArrow)"/>
+  <path d="M1145 728 h-136 v-121 h131" class="dash" marker-end="url(#dashArrow)"/>
+  <line x1="1215" y1="766" x2="1215" y2="784" class="line" marker-end="url(#arrow)"/>
+  <line x1="1352" y1="766" x2="1352" y2="784" class="line" marker-end="url(#arrow)"/>
+  <line x1="1490" y1="766" x2="1490" y2="784" class="line" marker-end="url(#arrow)"/>
+  <rect x="1007" y="790" width="177" height="48" rx="10" fill="#eef7e8" stroke="#728c62" stroke-width="1.4"/>
+  <rect x="1196" y="790" width="177" height="48" rx="10" fill="#eef4ff" stroke="#6f86aa" stroke-width="1.4"/>
+  <rect x="1385" y="790" width="168" height="48" rx="10" fill="#f6efff" stroke="#8d73a4" stroke-width="1.4"/>
+  <text x="1095" y="811" text-anchor="middle" class="small" font-weight="700">Construction</text><text x="1095" y="830" text-anchor="middle" class="tiny">state prep / block encoding</text>
+  <text x="1284" y="811" text-anchor="middle" class="small" font-weight="700">Lean theorem</text><text x="1284" y="830" text-anchor="middle" class="tiny">machine-checked proof</text>
+  <text x="1469" y="811" text-anchor="middle" class="small" font-weight="700">Qiskit / OpenQASM</text><text x="1469" y="830" text-anchor="middle" class="tiny">executable circuits</text>
+  <text x="1278" y="872" text-anchor="middle" class="small" font-weight="700" fill="#294f2b">Specialized hierarchy + disciplined verification + domain memory</text><text x="1278" y="891" text-anchor="middle" class="small" font-weight="700" fill="#294f2b">→ reliable constructions and certified mathematics</text>
+</svg>
