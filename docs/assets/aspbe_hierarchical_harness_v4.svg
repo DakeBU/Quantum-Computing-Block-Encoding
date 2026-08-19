@@ -5,5 +5,5 @@
     text { font-family: "Times New Roman", Times, "Liberation Serif", serif; }
   </style>
   <rect width="1280" height="720" fill="#ffffff"/>
-  <image href="aspbe_hierarchical_harness_v4.webp" x="0" y="0" width="1280" height="720" preserveAspectRatio="xMidYMid meet"/>
+  <image href="aspbe_hierarchical_harness_v5.png" x="0" y="0" width="1280" height="720" preserveAspectRatio="xMidYMid meet"/>
 </svg>
