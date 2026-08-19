@@ -73,6 +73,20 @@ structure ComplexUnitaryGate (qubits : Nat) where
     applyVec operator (basisKet cols index) = operator.col index := by
   exact _root_.Matrix.mulVec_single_one operator index
 
+/-- Acting on a two-term sparse superposition needs only the two named matrix
+columns.  Keeping this linearity fact in the concrete backend prevents every
+finite state-preparation witness from rebuilding a large `mulVec` proof term. -/
+theorem applyVec_twoBasisSuperposition {rows cols : Nat}
+    (operator : FiniteMatrix rows cols ℂ) (a b : ℂ)
+    (left right : Fin cols) :
+    applyVec operator
+        (a • basisKet cols left + b • basisKet cols right) =
+      a • operator.col left + b • operator.col right := by
+  unfold applyVec basisKet
+  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
+    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
+    _root_.Matrix.mulVec_single_one]
+
 /-- Acting on the all-zero ket selects column zero. -/
 @[simp] theorem applyVec_zeroKet {α : Type u} [NonAssocSemiring α]
     {qubits : Nat}
