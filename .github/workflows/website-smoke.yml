@@ -35,15 +35,17 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Refresh vivid hierarchy PNG on conversion branch
-        if: github.event_name == 'push' && github.ref_name == 'agent/replace-vivid-hierarchy-png'
+        if: (github.event_name == 'push' && github.ref_name == 'agent/replace-vivid-hierarchy-png') || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'agent/replace-vivid-hierarchy-png')
+        env:
+          TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
         run: |
           python3 -m pip install --quiet pillow
           python3 - <<'PY'
           from pathlib import Path
           from PIL import Image
-
           src = Path('docs/assets/aspbe_hierarchical_harness.webp')
           dst = Path('docs/assets/hierarchical_harness.png')
           image = Image.open(src).convert('RGB')
@@ -59,7 +61,7 @@ jobs:
           git add docs/assets/hierarchical_harness.png
           if ! git diff --cached --quiet; then
             git commit -m 'Replace hierarchy PNG with vivid illustration'
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            git push origin "HEAD:${TARGET_BRANCH}"
           fi
 
       - name: Check public figure typography and formulas
