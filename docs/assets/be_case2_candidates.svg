@@ -1,47 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="540" viewBox="0 0 1500 540" role="img" aria-labelledby="title desc">
   <title id="title">BE Case 2 exact Householder routes</title>
-  <desc id="desc">Cold and hinted routes for the cubic diagonal operator converge to the same exact rational Householder block encoding.</desc>
+  <desc id="desc">Cold and hinted routes for the cubic diagonal operator are shown on separate lanes and both lead to the same exact rational Householder block encoding.</desc>
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#444"/></marker>
-    <style>
-      text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
-      .title { font-size: 28px; font-weight: 700; }
-      .formula { font-size: 22px; }
-      .head { font-size: 20px; font-weight: 700; }
-      .body { font-size: 16px; fill: #444; }
-      .small { font-size: 15px; fill: #555; }
-      .box { fill: #fff; stroke: #555; stroke-width: 1.3; }
-      .root { stroke: #3d6b57; stroke-width: 2.1; }
-      .arrow { stroke: #444; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
-      .dash { stroke-dasharray: 5 5; }
-    </style>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#444"/></marker>
   </defs>
-  <rect width="1200" height="390" fill="#fff"/>
-  <text x="600" y="40" text-anchor="middle" class="title">BE Case 2 — cubic diagonal operator</text>
-  <text x="600" y="75" text-anchor="middle" class="formula">Dₙ = diag₀≤ⱼ&lt;₂ⁿ ((j / 2ⁿ)³),   Π Uₙ Π† = Dₙ,   α = 1</text>
+  <style>
+    text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
+    .title { font-size: 34px; font-weight: 700; }
+    .formula { font-size: 23px; }
+    .lane { font-size: 20px; font-weight: 700; fill: #4a4a4a; }
+    .head { font-size: 21px; font-weight: 700; }
+    .body { font-size: 17px; fill: #414141; }
+    .small { font-size: 15px; fill: #5a5a5a; }
+    .box { fill: #fff; stroke: #5a5a5a; stroke-width: 1.4; }
+    .hint { stroke: #6f6180; stroke-width: 1.7; }
+    .root { stroke: #466b5a; stroke-width: 2.3; }
+    .arrow { stroke: #444; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .rule { stroke: #d0d0d0; stroke-width: 1.1; }
+  </style>
+  <rect width="1500" height="540" fill="#fff"/>
+  <text x="750" y="48" text-anchor="middle" class="title">BE Case 2 — exact cubic diagonal block encoding</text>
+  <text x="750" y="82" text-anchor="middle" class="formula">Dₙ = diag((0/N)³, (1/N)³, …, ((N−1)/N)³),   Π Uₙ Π† = Dₙ,   α = 1</text>
 
-  <text x="105" y="122" class="head">Cold route</text>
-  <rect x="85" y="145" width="280" height="105" class="box"/>
-  <text x="225" y="177" text-anchor="middle" class="head">Direct cubic completion</text>
-  <text x="225" y="206" text-anchor="middle" class="body">N⁶ − j⁶ = s₁² + s₂² + s₃² + s₄²</text>
-  <text x="225" y="232" text-anchor="middle" class="small">build vⱼ with first coordinate (j/N)³</text>
+  <text x="85" y="142" class="lane">Cold route</text>
+  <rect x="85" y="160" width="395" height="120" class="box"/>
+  <text x="282" y="195" text-anchor="middle" class="head">Direct cubic completion</text>
+  <text x="282" y="229" text-anchor="middle" class="body">N⁶ − j⁶ = s₁² + s₂² + s₃² + s₄²</text>
+  <text x="282" y="258" text-anchor="middle" class="small">construct vⱼ with first coordinate (j/N)³</text>
 
-  <text x="500" y="122" class="head">Hinted route</text>
-  <rect x="480" y="145" width="280" height="105" class="box"/>
-  <text x="620" y="177" text-anchor="middle" class="head">Linear supplier first</text>
-  <text x="620" y="206" text-anchor="middle" class="body">O₀ = diag(j/N),   Dₙ = O₀³</text>
-  <text x="620" y="232" text-anchor="middle" class="small">reuse the exact linear Householder block</text>
+  <text x="85" y="337" class="lane">Hinted route</text>
+  <rect x="85" y="355" width="335" height="115" class="box hint"/>
+  <text x="252" y="390" text-anchor="middle" class="head">Exact linear supplier</text>
+  <text x="252" y="424" text-anchor="middle" class="body">O₀ = diag(0/N, 1/N, …, (N−1)/N)</text>
+  <text x="252" y="452" text-anchor="middle" class="small">certified linear Householder block</text>
 
-  <rect x="855" y="128" width="275" height="138" class="box root"/>
-  <text x="992" y="164" text-anchor="middle" class="head">Exact cubic Householder root</text>
-  <text x="992" y="198" text-anchor="middle" class="body">H(vⱼ)₀₀ = (j/N)³</text>
-  <text x="992" y="224" text-anchor="middle" class="body">⊕ⱼ H(vⱼ) is orthogonal</text>
-  <text x="992" y="250" text-anchor="middle" class="small">named Lean contract closes Dₙ exactly</text>
+  <rect x="505" y="355" width="315" height="115" class="box hint"/>
+  <text x="662" y="390" text-anchor="middle" class="head">Cubic identity</text>
+  <text x="662" y="424" text-anchor="middle" class="formula">Dₙ = O₀³</text>
+  <text x="662" y="452" text-anchor="middle" class="small">route information; not a proof substitute</text>
 
-  <path d="M365 197 L845 197" class="arrow"/>
-  <path d="M760 197 L845 197" class="arrow"/>
-  <text x="600" y="292" text-anchor="middle" class="body">The identity Dₙ = O₀³ is useful route information; QSVT is not required for correctness once the direct exact root is closed.</text>
+  <rect x="1025" y="155" width="390" height="315" class="box root"/>
+  <text x="1220" y="198" text-anchor="middle" class="head">Exact cubic Householder root</text>
+  <text x="1220" y="244" text-anchor="middle" class="formula">H(vⱼ)₀₀ = (j/N)³</text>
+  <text x="1220" y="282" text-anchor="middle" class="body">each H(vⱼ) is orthogonal</text>
+  <text x="1220" y="318" text-anchor="middle" class="body">direct sum ⊕ⱼ H(vⱼ) is orthogonal</text>
+  <line x1="1070" y1="343" x2="1370" y2="343" class="rule"/>
+  <text x="1220" y="380" text-anchor="middle" class="body">clean block = Dₙ</text>
+  <text x="1220" y="411" text-anchor="middle" class="body">normalization α = 1</text>
+  <text x="1220" y="447" text-anchor="middle" class="small">named Lean contract closes the arbitrary-n family</text>
 
-  <line x1="85" y1="322" x2="1130" y2="322" stroke="#bbb" stroke-width="1"/>
-  <text x="600" y="351" text-anchor="middle" class="small">Finite Qiskit / OpenQASM instances validate exported implementations. They are not the proof of the arbitrary-n symbolic family.</text>
+  <path d="M480 220 L990 220 L990 255 L1015 255" class="arrow"/>
+  <path d="M420 412 L495 412" class="arrow"/>
+  <path d="M820 412 L965 412 L965 382 L1015 382" class="arrow"/>
+
+  <line x1="85" y1="500" x2="1415" y2="500" class="rule"/>
+  <text x="750" y="526" text-anchor="middle" class="small">Finite Qiskit / OpenQASM instances validate exported implementations; the symbolic family is certified by the named Lean root above.</text>
 </svg>
