@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Guard the reader-facing figure typography and formula surface.
+"""Guard the reader-facing README/figure typography and formula surface.
 
-The README intentionally uses a small set of academic-style SVG figures. This
-check prevents regenerated assets from silently falling back to UI/sans fonts,
-ASCII pseudo-mathematics, or glossy dashboard decoration. Website Mermaid and
-grouped-register SVGs are styled at runtime by ``website/static/site.js``; both
-their typography and their source labels are checked here too.
+The public README intentionally uses a small set of academic-style SVG figures.
+This check prevents regenerated assets from silently falling back to UI/sans
+fonts, ASCII pseudo-mathematics, glossy dashboard decoration, or fragile README
+math patterns that known renderers reject.
 """
 
 from __future__ import annotations
@@ -22,7 +21,8 @@ SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
 
-IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
+MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
+HTML_IMAGE_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
 FORBIDDEN_FONTS = (
     "Arial",
     "DejaVu Sans",
@@ -39,6 +39,9 @@ FORBIDDEN_DECORATION = (
 ASCII_MATH_TOKENS = re.compile(
     r"(?i)(?:\|psi>|<psi\||\bpsi\b|\balpha\b|\bepsilon\b|\btensor\b|\bdagger\b|\bPi\b|\|0\^[a-z0-9]+>)"
 )
+FORBIDDEN_README_TEX = (
+    r"\operatorname",
+)
 
 
 def fail(message: str) -> None:
@@ -52,11 +55,32 @@ def read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def check_readme_svgs() -> None:
-    readme = read(README)
-    refs = sorted(set(IMAGE_RE.findall(readme)))
-    if not refs:
-        fail("README has no reader-facing SVG figures")
+def readme_svg_refs(readme: str) -> list[str]:
+    refs = set(MARKDOWN_IMAGE_RE.findall(readme))
+    refs.update(HTML_IMAGE_RE.findall(readme))
+    return sorted(refs)
+
+
+def check_readme_math_surface(readme: str) -> None:
+    for macro in FORBIDDEN_README_TEX:
+        if macro in readme:
+            fail(f"README contains renderer-fragile TeX macro {macro!r}")
+
+    for line_number, line in enumerate(readme.splitlines(), start=1):
+        stripped = line.lstrip()
+        if re.match(r"^#{1,6}\s", stripped) and "$" in stripped:
+            fail(f"README line {line_number} puts inline math in a heading")
+        if stripped.startswith("|") and "$" in stripped:
+            fail(
+                f"README line {line_number} puts TeX inside a Markdown table; "
+                "ket/bra bars can be parsed as column separators"
+            )
+
+
+def check_readme_svgs(readme: str) -> None:
+    refs = readme_svg_refs(readme)
+    if len(refs) < 5:
+        fail(f"README should remain figure-first; found only {len(refs)} SVG figures")
 
     for ref in refs:
         path = ROOT / ref
@@ -75,7 +99,7 @@ def check_readme_svgs() -> None:
             if token in source:
                 fail(f"{ref} contains dashboard-style SVG decoration {token!r}")
         if ASCII_MATH_TOKENS.search(source):
-            fail(f"{ref} contains ASCII pseudo-mathematics; use TeX/Unicode symbols")
+            fail(f"{ref} contains ASCII pseudo-mathematics; use Unicode symbols")
 
 
 def check_mermaid_math_labels() -> None:
@@ -103,11 +127,13 @@ def check_website_runtime_figures() -> None:
         '.replace(/\\btheta\\b/g, "θ")',
         '.replace(/\\bperp\\b/g, "⊥")',
         '"|$1⟩"',
+        'replace(/\\\\operatorname\\{([^{}]+)\\}/g, "\\\\mathrm{$1}")',
+        "normalizeFragileMath",
         "MutationObserver",
     )
     for needle in required:
         if needle not in source:
-            fail(f"website figure override is missing {needle!r}")
+            fail(f"website figure/math override is missing {needle!r}")
 
 
 def check_matplotlib_defaults() -> None:
@@ -124,11 +150,13 @@ def check_matplotlib_defaults() -> None:
 
 
 def main() -> None:
-    check_readme_svgs()
+    readme = read(README)
+    check_readme_math_surface(readme)
+    check_readme_svgs(readme)
     check_mermaid_math_labels()
     check_website_runtime_figures()
     check_matplotlib_defaults()
-    print("public figure typography/formula checks passed")
+    print("public README typography/formula checks passed")
 
 
 if __name__ == "__main__":

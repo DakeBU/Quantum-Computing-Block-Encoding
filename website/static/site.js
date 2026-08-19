@@ -5,6 +5,39 @@
   const body = document.body;
   const siteRoot = body.dataset.siteRoot || "./";
 
+  // Some embedded/preview renderers reject \operatorname even though MathJax
+  // itself accepts it. Normalize only raw text nodes and never touch source-code
+  // or editable text areas. This runs before the deferred MathJax script.
+  function compatibleMathText(text) {
+    return text.replace(/\\operatorname\{([^{}]+)\}/g, "\\mathrm{$1}");
+  }
+
+  function normalizeFragileMath(scope = document.body) {
+    if (!(scope instanceof Document || scope instanceof Element)) return;
+    const walker = document.createTreeWalker(
+      scope,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent || parent.closest("pre, code, textarea, script, style")) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return node.nodeValue?.includes("\\operatorname{")
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        },
+      },
+    );
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      node.nodeValue = compatibleMathText(node.nodeValue || "");
+    });
+  }
+
+  normalizeFragileMath(body);
+
   // Reader-facing diagrams should look like textbook figures rather than UI cards.
   // This runs before Mermaid initializes, so both SVG text and HTML labels inherit
   // the same Times-family typography. The fallbacks keep Linux builds portable.
@@ -80,7 +113,10 @@
   const figureObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.addedNodes.forEach((node) => {
-        if (node instanceof Element) normalizeFigureText(node);
+        if (node instanceof Element) {
+          normalizeFragileMath(node);
+          normalizeFigureText(node);
+        }
       });
     });
   });

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="470" viewBox="0 0 1400 470" role="img" aria-labelledby="title desc">
+  <title id="title">Block Encoding as a clean projected block</title>
+  <desc id="desc">A larger unitary U contains the scaled target operator in the block selected by clean ancilla inputs and outputs.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#404040"/></marker>
+  </defs>
+  <style>
+    text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
+    .title { font-size: 32px; font-weight: 700; }
+    .head { font-size: 22px; font-weight: 700; }
+    .formula { font-size: 29px; }
+    .body { font-size: 18px; fill: #3f3f3f; }
+    .small { font-size: 16px; fill: #5a5a5a; }
+    .matrix { fill: #fff; stroke: #4f4f4f; stroke-width: 1.5; }
+    .clean { fill: #edf3f7; stroke: #48667d; stroke-width: 2; }
+    .rule { stroke: #d2d2d2; stroke-width: 1.1; }
+    .arrow { stroke: #404040; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .brace { stroke: #48667d; stroke-width: 1.5; fill: none; }
+  </style>
+  <rect width="1400" height="470" fill="#fff"/>
+  <text x="700" y="48" text-anchor="middle" class="title">Block Encoding — certify the clean block of a larger unitary</text>
+  <text x="700" y="80" text-anchor="middle" class="small">The ancilla convention fixes which rows and columns are selected; α and ε are part of the contract.</text>
+
+  <text x="110" y="142" class="head">Clean ancilla input</text>
+  <text x="195" y="212" text-anchor="middle" class="formula">|0ᵃ⟩ ⊗ |j⟩</text>
+  <text x="195" y="248" text-anchor="middle" class="body">signal input j</text>
+  <path d="M300 220 L390 220" class="arrow"/>
+
+  <text x="650" y="126" text-anchor="middle" class="head">Unitary U on ancilla + signal registers</text>
+  <rect x="410" y="150" width="480" height="245" class="matrix"/>
+  <rect x="410" y="150" width="220" height="112" class="clean"/>
+  <line x1="630" y1="150" x2="630" y2="395" class="rule"/>
+  <line x1="750" y1="150" x2="750" y2="395" class="rule"/>
+  <line x1="410" y1="262" x2="890" y2="262" class="rule"/>
+  <line x1="410" y1="330" x2="890" y2="330" class="rule"/>
+  <text x="520" y="205" text-anchor="middle" class="formula">A / α</text>
+  <text x="520" y="238" text-anchor="middle" class="small">clean block</text>
+  <text x="690" y="208" text-anchor="middle" class="body">⋯</text>
+  <text x="820" y="208" text-anchor="middle" class="body">⋯</text>
+  <text x="520" y="303" text-anchor="middle" class="body">⋮</text>
+  <text x="690" y="303" text-anchor="middle" class="body">other unitary completion</text>
+  <text x="820" y="303" text-anchor="middle" class="body">⋮</text>
+  <text x="650" y="374" text-anchor="middle" class="body">garbage / completion blocks</text>
+  <path d="M410 136 L630 136" class="brace"/>
+  <text x="520" y="120" text-anchor="middle" class="small">clean output ancilla = 0ᵃ</text>
+  <path d="M396 150 L396 262" class="brace"/>
+  <text x="382" y="206" text-anchor="middle" transform="rotate(-90 382 206)" class="small">clean input ancilla = 0ᵃ</text>
+
+  <path d="M915 220 L1005 220" class="arrow"/>
+  <text x="1190" y="142" text-anchor="middle" class="head">Certified contract</text>
+  <text x="1190" y="202" text-anchor="middle" class="formula">Π U Π† = A / α</text>
+  <text x="1190" y="250" text-anchor="middle" class="formula">‖A − α Π U Π†‖ ≤ ε</text>
+  <text x="1190" y="300" text-anchor="middle" class="body">layout fixed</text>
+  <text x="1190" y="331" text-anchor="middle" class="body">U unitary</text>
+  <text x="1190" y="362" text-anchor="middle" class="body">clean block + error certified</text>
+  <text x="1190" y="401" text-anchor="middle" class="small">named Lean root + resource record</text>
+</svg>
