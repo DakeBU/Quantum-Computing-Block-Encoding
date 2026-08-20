@@ -5,6 +5,12 @@ set -euo pipefail
 test -f _out/lean-gate.json
 test -f _out/blueprint/html-multi/index.html
 
+# The declaration inventory is generated from the exact current Lean checkout.
+# This keeps the Library Explorer, Blueprint, and Underlying Lean Graph aligned
+# with newly admitted proof modules instead of relying on a stale JSON snapshot.
+python3 scripts/generate-aspbe-catalog.py
+python3 scripts/generate-aspbe-catalog.py --check
+
 python3 -m py_compile \
   website/scripts/build_site.py \
   website/scripts/lean_graph.py \
