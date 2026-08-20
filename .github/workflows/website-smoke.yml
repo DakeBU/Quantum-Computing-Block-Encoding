@@ -43,190 +43,66 @@ jobs:
           python3 -m py_compile website/scripts/enrich_casebook.py website/scripts/enforce_robin_reader_contract.py website/scripts/polish_casebook.py website/scripts/test_casebook_enrichment.py website/scripts/test_casebook_polish.py
           python3 -m unittest website.scripts.test_casebook_enrichment website.scripts.test_casebook_polish
 
-  patch-paper-entry-certificates:
-    if: contains(github.event.head_commit.message, '[patch-paper-entry-certificates-main]')
+  regenerate-final-integration-catalog:
+    if: contains(github.event.head_commit.message, '[regenerate-final-catalog]')
     permissions:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: agent/papers-state-prep
-          fetch-depth: 0
-      - name: Turn PaperRoutes into a thin imported-certificate composition layer
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          path = Path('QuantumBlockEncoding/StatePreparationPaperRoutes.lean')
-          text = path.read_text(encoding='utf-8')
-
-          if 'import QuantumBlockEncoding.StatePreparationPaperEntryCertificates' not in text:
-              text = text.replace(
-                  'import QuantumBlockEncoding.StatePreparationPrimitiveRoutes\n',
-                  'import QuantumBlockEncoding.StatePreparationPrimitiveRoutes\n'
-                  'import QuantumBlockEncoding.StatePreparationPaperEntryCertificates\n',
-                  1,
-              )
-
-          old = '''noncomputable def mottonenConditionalAngles (bits : PrimitiveBasis 1) : ExactAngle :=
-  if bits 0 = 0 then ryAngle35 else ryAngle513
-
-noncomputable def mottonenDenseUcryCircuit : PrimitiveCircuit 2 :=
-  compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
-    groverRudolphControlWire_ne_target mottonenConditionalAngles
-'''
-          new = '''noncomputable def mottonenConditionalAngles : PrimitiveBasis 1 → ExactAngle :=
-  StatePreparationPaperEntryCertificates.mottonenConditionalAngles
-
-noncomputable def mottonenDenseUcryCircuit : PrimitiveCircuit 2 :=
-  StatePreparationPaperEntryCertificates.mottonenDenseUcryCircuit
-'''
-          if old in text:
-              text = text.replace(old, new, 1)
-
-          old = '''def sparseControlWire : Fin 1 → Fin 3 := fun _ => 2
-
-theorem sparseControlWire_ne_target :
-    ∀ control, sparseControlWire control ≠ (1 : Fin 3) := by
-  intro control
-  fin_cases control
-  decide
-
-noncomputable def sparseConditionalAngles (bits : PrimitiveBasis 1) : ExactAngle :=
-  if bits 0 = 0 then ryAngle35 else ryAngleZero
-
-noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
-  compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
-    sparseControlWire_ne_target sparseConditionalAngles
-'''
-          new = '''def sparseControlWire : Fin 1 → Fin 3 :=
-  StatePreparationPaperEntryCertificates.sparseControlWire
-
-theorem sparseControlWire_ne_target :
-    ∀ control, sparseControlWire control ≠ (1 : Fin 3) := by
-  simpa [sparseControlWire] using
-    StatePreparationPaperEntryCertificates.sparseControlWire_ne_target
-
-noncomputable def sparseConditionalAngles : PrimitiveBasis 1 → ExactAngle :=
-  StatePreparationPaperEntryCertificates.sparseConditionalAngles
-
-noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
-  StatePreparationPaperEntryCertificates.sparsePrunedUcryCircuit
-'''
-          if old in text:
-              text = text.replace(old, new, 1)
-
-          def replace_block(name: str, next_name: str, body: str) -> None:
-              global text
-              start = text.index(f'private theorem {name}')
-              end = text.index(f'\nprivate theorem {next_name}', start)
-              text = text[:start] + body.rstrip() + '\n' + text[end:]
-
-          replace_block('mottonenDenseUcry_entry_zero_of_context_ne','mottonenDenseUcry_entry_00','''private theorem mottonenDenseUcry_entry_zero_of_context_ne
-    (row column : Fin (gridSize 2))
-    (contextNe :
-      (splitPrimitiveWire (0 : Fin 2) (primitiveLEBits 2 row)).2 ≠
-        (splitPrimitiveWire (0 : Fin 2) (primitiveLEBits 2 column)).2) :
-    evalPrimitiveCircuitLE mottonenDenseUcryCircuit row column = 0 := by
-  simpa [mottonenDenseUcryCircuit] using
-    StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_zero_of_context_ne
-      row column contextNe''')
-
-          for name, nxt, row, col, rhs in [
-              ('mottonenDenseUcry_entry_00','mottonenDenseUcry_entry_10','(0 : Fin 4)','(0 : Fin 4)','(3 : ℂ) / 5'),
-              ('mottonenDenseUcry_entry_10','mottonenDenseUcry_entry_22','(1 : Fin 4)','(0 : Fin 4)','(4 : ℂ) / 5'),
-              ('mottonenDenseUcry_entry_22','mottonenDenseUcry_entry_32','(2 : Fin 4)','(2 : Fin 4)','(5 : ℂ) / 13'),
-              ('mottonenDenseUcry_entry_32','mottonenDenseUcry_entry_02','(3 : Fin 4)','(2 : Fin 4)','(12 : ℂ) / 13'),
-          ]:
-              replace_block(name, nxt, f'''private theorem {name} :
-    evalPrimitiveCircuitLE mottonenDenseUcryCircuit {row} {col} = {rhs} := by
-  simpa [mottonenDenseUcryCircuit] using
-    StatePreparationPaperEntryCertificates.{name}''')
-
-          replace_block('sparsePrunedUcry_entry_zero_of_context_ne','sparsePrunedUcry_entry_00','''private theorem sparsePrunedUcry_entry_zero_of_context_ne
-    (row column : Fin (gridSize 3))
-    (contextNe :
-      (splitPrimitiveWire (1 : Fin 3) (primitiveLEBits 3 row)).2 ≠
-        (splitPrimitiveWire (1 : Fin 3) (primitiveLEBits 3 column)).2) :
-    evalPrimitiveCircuitLE sparsePrunedUcryCircuit row column = 0 := by
-  simpa [sparsePrunedUcryCircuit] using
-    StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_zero_of_context_ne
-      row column contextNe''')
-
-          for name, nxt, row, col, rhs in [
-              ('sparsePrunedUcry_entry_00','sparsePrunedUcry_entry_20','(0 : Fin 8)','(0 : Fin 8)','(3 : ℂ) / 5'),
-              ('sparsePrunedUcry_entry_20','sparsePrunedUcry_entry_44','(2 : Fin 8)','(0 : Fin 8)','(4 : ℂ) / 5'),
-              ('sparsePrunedUcry_entry_44','sparsePrunedUcry_entry_64','(4 : Fin 8)','(4 : Fin 8)','1'),
-              ('sparsePrunedUcry_entry_64','sparsePrunedUcry_entry_10','(6 : Fin 8)','(4 : Fin 8)','0'),
-          ]:
-              replace_block(name, nxt, f'''private theorem {name} :
-    evalPrimitiveCircuitLE sparsePrunedUcryCircuit {row} {col} = {rhs} := by
-  simpa [sparsePrunedUcryCircuit] using
-    StatePreparationPaperEntryCertificates.{name}''')
-
-          path.write_text(text, encoding='utf-8')
-          PY
-          git diff --check
-      - name: Commit candidate refactor
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add QuantumBlockEncoding/StatePreparationPaperRoutes.lean
-          git commit -m 'Compose paper routes from compiled UCRY entry certificates'
-          git push origin HEAD:agent/papers-state-prep
-
-  admit-state-prep-candidate:
-    if: contains(github.event.head_commit.message, '[admit-candidate]')
-    runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
-    steps:
-      - name: Checkout exact candidate branch
+      - name: Checkout clean integration branch
         uses: actions/checkout@v5
         with:
-          ref: agent/papers-state-prep
+          ref: agent/finalize-state-prep-site
           fetch-depth: 0
-      - name: Set up Lean and Mathlib cache
-        uses: leanprover/lean-action@v1
-        with:
-          auto-config: false
-          use-github-cache: true
-          use-mathlib-cache: true
-      - name: Compile complete State Preparation suite
-        run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
-      - name: Verify four Qiskit mirrors
+      - name: Register State Preparation modules and regenerate inventory
         shell: bash
         run: |
-          python3 -m pip install --quiet 'qiskit>=2,<3'
+          set -euo pipefail
           python3 - <<'PY'
-          import importlib.util
-          import math
           from pathlib import Path
-          path = Path('executable-exports/SP-PAPERS-001/qiskit/export.py')
-          spec = importlib.util.spec_from_file_location('sp_export', path)
-          module = importlib.util.module_from_spec(spec)
-          assert spec.loader is not None
-          spec.loader.exec_module(module)
-          targets = {
-              'bell': ([1 / math.sqrt(2), 0, 0, 1 / math.sqrt(2)], 2, 2),
-              'mottonen': ([39/169, 52/169, 60/169, 144/169], 5, 4),
-              'grover-rudolph': ([9/25, 12/25, 12/25, 16/25], 2, 1),
-              'sparse': ([3/13, 0, 4/13, 0, 12/13, 0, 0, 0], 5, 4),
-          }
-          for name, (expected, gates, depth) in targets.items():
-              circuit = module.BUILDERS[name]()
-              actual = list(module.Statevector.from_instruction(circuit).data)
-              error = max(abs(value - target) for value, target in zip(actual, expected))
-              assert error < 1e-12, (name, error, actual)
-              assert circuit.size() == gates, (name, circuit.size(), gates)
-              assert circuit.depth() == depth, (name, circuit.depth(), depth)
-              print(f'{name}: error={error:.3e}, gates={gates}, depth={depth}')
+
+          path = Path('scripts/generate-blueprint-catalog.py')
+          text = path.read_text(encoding='utf-8')
+          marker = '''            "Robin/SystemConjugation.lean",
+        },
+    ),'''
+          replacement = '''            "Robin/SystemConjugation.lean",
+            "StatePreparationBenchmarksCoreFixed.lean",
+            "StatePreparationPrimitiveRoutes.lean",
+            "StatePreparationBellRoute.lean",
+            "StatePreparationPaperEntryCertificates.lean",
+            "StatePreparationPaperRoutesCompact.lean",
+            "StatePreparationPaperRoutes.lean",
+            "StatePreparationBenchmarks.lean",
+        },
+    ),'''
+          if '"StatePreparationPaperRoutesCompact.lean"' not in text:
+              if marker not in text:
+                  raise SystemExit('PaperAndExamples catalog marker not found')
+              text = text.replace(marker, replacement, 1)
+          text = text.replace(
+              '"Paper-facing backend models and concrete Robin-boundary example "\n        "artifacts."',
+              '"Paper-facing backend models and concrete State Preparation / Robin "\n        "example artifacts."',
+              1,
+          )
+          path.write_text(text, encoding='utf-8')
           PY
-      - name: Report candidate admission result
-        if: always()
+          python3 scripts/generate-blueprint-catalog.py
+          python3 scripts/generate-blueprint-catalog.py --check
+          git diff --check
+      - name: Commit generated evidence to PR branch
         shell: bash
         run: |
-          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Main-registered candidate admission run **${GITHUB_RUN_ID}** finished with job status **${{ job.status }}**. This run checked out the exact latest \`agent/papers-state-prep\` head, compiled \`StatePreparationBenchmarks\`, and (when Lean passed) checked all four Qiskit mirrors."
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/generate-blueprint-catalog.py \
+            ABEISBlueprint/Catalog/PaperAndExamples.lean \
+            web/library/declarations.json \
+            docs/blueprint-coverage.json
+          if git diff --cached --quiet; then
+            echo 'Catalog already current.'
+            exit 0
+          fi
+          git commit -m 'Regenerate library catalog for State Preparation routes'
+          git push origin HEAD:agent/finalize-state-prep-site
