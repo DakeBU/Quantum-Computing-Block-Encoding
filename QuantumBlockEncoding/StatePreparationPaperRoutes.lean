@@ -187,7 +187,6 @@ private theorem mottonenDenseUcry_entry_30 :
   mottonenDenseUcry_entry_zero_of_context_ne
     (3 : Fin 4) (0 : Fin 4) (by native_decide)
 
-set_option maxHeartbeats 1000000 in
 private theorem mottonenDenseUcry_output_0 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (0 : Fin 4) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (2 : Fin 4))
@@ -196,10 +195,11 @@ private theorem mottonenDenseUcry_output_0 :
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (0 : Fin 4) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (2 : Fin 4) =
       (39 : ℂ) / 169
-  rw [mottonenDenseUcry_entry_00, mottonenDenseUcry_entry_02]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      mottonenDenseUcry_entry_00 mottonenDenseUcry_entry_02).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem mottonenDenseUcry_output_1 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (0 : Fin 4) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (2 : Fin 4))
@@ -208,10 +208,11 @@ private theorem mottonenDenseUcry_output_1 :
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (0 : Fin 4) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (1 : Fin 4) (2 : Fin 4) =
       (52 : ℂ) / 169
-  rw [mottonenDenseUcry_entry_10, mottonenDenseUcry_entry_12]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      mottonenDenseUcry_entry_10 mottonenDenseUcry_entry_12).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem mottonenDenseUcry_output_2 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (0 : Fin 4) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (2 : Fin 4))
@@ -220,10 +221,11 @@ private theorem mottonenDenseUcry_output_2 :
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (0 : Fin 4) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (2 : Fin 4) (2 : Fin 4) =
       (60 : ℂ) / 169
-  rw [mottonenDenseUcry_entry_20, mottonenDenseUcry_entry_22]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      mottonenDenseUcry_entry_20 mottonenDenseUcry_entry_22).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem mottonenDenseUcry_output_3 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (0 : Fin 4) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE mottonenDenseUcryCircuit).col (2 : Fin 4))
@@ -232,8 +234,10 @@ private theorem mottonenDenseUcry_output_3 :
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (0 : Fin 4) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE mottonenDenseUcryCircuit (3 : Fin 4) (2 : Fin 4) =
       (144 : ℂ) / 169
-  rw [mottonenDenseUcry_entry_30, mottonenDenseUcry_entry_32]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      mottonenDenseUcry_entry_30 mottonenDenseUcry_entry_32).trans (by norm_num)
 
 theorem mottonenDenseUcry_on_root :
     applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
@@ -543,7 +547,6 @@ private theorem sparsePrunedUcry_entry_74 :
   sparsePrunedUcry_entry_zero_of_context_ne
     (7 : Fin 8) (4 : Fin 8) (by native_decide)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_0 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -552,10 +555,11 @@ private theorem sparsePrunedUcry_output_0 :
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (4 : Fin 8) =
       (3 : ℂ) / 13
-  rw [sparsePrunedUcry_entry_00, sparsePrunedUcry_entry_04]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_00 sparsePrunedUcry_entry_04).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_1 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -563,10 +567,11 @@ private theorem sparsePrunedUcry_output_1 :
   change
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (1 : Fin 8) (4 : Fin 8) = 0
-  rw [sparsePrunedUcry_entry_10, sparsePrunedUcry_entry_14]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_10 sparsePrunedUcry_entry_14).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_2 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -575,10 +580,11 @@ private theorem sparsePrunedUcry_output_2 :
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (2 : Fin 8) (4 : Fin 8) =
       (4 : ℂ) / 13
-  rw [sparsePrunedUcry_entry_20, sparsePrunedUcry_entry_24]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_20 sparsePrunedUcry_entry_24).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_3 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -586,10 +592,11 @@ private theorem sparsePrunedUcry_output_3 :
   change
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (3 : Fin 8) (4 : Fin 8) = 0
-  rw [sparsePrunedUcry_entry_30, sparsePrunedUcry_entry_34]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_30 sparsePrunedUcry_entry_34).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_4 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -598,10 +605,11 @@ private theorem sparsePrunedUcry_output_4 :
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (4 : Fin 8) (4 : Fin 8) =
       (12 : ℂ) / 13
-  rw [sparsePrunedUcry_entry_40, sparsePrunedUcry_entry_44]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_40 sparsePrunedUcry_entry_44).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_5 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -609,10 +617,11 @@ private theorem sparsePrunedUcry_output_5 :
   change
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (5 : Fin 8) (4 : Fin 8) = 0
-  rw [sparsePrunedUcry_entry_50, sparsePrunedUcry_entry_54]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_50 sparsePrunedUcry_entry_54).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_6 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -620,10 +629,11 @@ private theorem sparsePrunedUcry_output_6 :
   change
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (6 : Fin 8) (4 : Fin 8) = 0
-  rw [sparsePrunedUcry_entry_60, sparsePrunedUcry_entry_64]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_60 sparsePrunedUcry_entry_64).trans (by norm_num)
 
-set_option maxHeartbeats 1000000 in
 private theorem sparsePrunedUcry_output_7 :
     ((5 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (0 : Fin 8) +
       (12 / 13 : ℂ) • (evalPrimitiveCircuitLE sparsePrunedUcryCircuit).col (4 : Fin 8))
@@ -631,8 +641,10 @@ private theorem sparsePrunedUcry_output_7 :
   change
     (5 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (0 : Fin 8) +
       (12 / 13 : ℂ) * evalPrimitiveCircuitLE sparsePrunedUcryCircuit (7 : Fin 8) (4 : Fin 8) = 0
-  rw [sparsePrunedUcry_entry_70, sparsePrunedUcry_entry_74]
-  norm_num
+  exact
+    (congrArg₂
+      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)
+      sparsePrunedUcry_entry_70 sparsePrunedUcry_entry_74).trans (by norm_num)
 
 theorem sparsePrunedUcry_on_root :
     applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
