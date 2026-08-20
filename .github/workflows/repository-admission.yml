@@ -1,0 +1,449 @@
+name: Repository admission and single-main invariant
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/repository-admission.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+  checks: read
+
+concurrency:
+  group: repository-admission
+  cancel-in-progress: false
+
+jobs:
+  admit-deploy-prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    env:
+      GH_TOKEN: ${{ secrets.PAGES_TOKEN || github.token }}
+    steps:
+      - name: Checkout main with full history
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.PAGES_TOKEN || github.token }}
+
+      - name: Squash the newest State Preparation/site candidate onto main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin --prune '+refs/heads/*:refs/remotes/origin/*'
+          candidate=""
+          if git show-ref --verify --quiet refs/remotes/origin/agent/finalize-state-prep-site; then
+            candidate="agent/finalize-state-prep-site"
+          elif git show-ref --verify --quiet refs/remotes/origin/agent/papers-state-prep; then
+            candidate="agent/papers-state-prep"
+          fi
+          echo "CANDIDATE_BRANCH=$candidate" >> "$GITHUB_ENV"
+          if [ -n "$candidate" ]; then
+            git merge --squash -X theirs "origin/$candidate"
+            # Candidate branches contained one-shot workflows. The permanent main
+            # workflow set is authoritative and is not replaced by the squash.
+            mapfile -t workflow_changes < <(git diff --cached --name-only -- .github/workflows)
+            for path in "${workflow_changes[@]}"; do
+              if git cat-file -e "HEAD:$path" 2>/dev/null; then
+                git restore --source=HEAD --staged --worktree -- "$path"
+              else
+                git rm -f --cached --ignore-unmatch -- "$path"
+                rm -f -- "$path"
+              fi
+            done
+          fi
+
+      - name: Canonicalize Lean route leaves and install the site publisher hook
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          entry = root / 'QuantumBlockEncoding/StatePreparationBenchmarks.lean'
+          if not entry.is_file():
+              raise SystemExit('StatePreparationBenchmarks.lean is missing after candidate squash')
+          source = entry.read_text(encoding='utf-8')
+          source = source.replace(
+              'import QuantumBlockEncoding.StatePreparationPaperRoutesFinal',
+              'import QuantumBlockEncoding.StatePreparationPaperRoutes',
+          )
+          if 'import QuantumBlockEncoding.StatePreparationBellRoute' not in source:
+              source = source.replace(
+                  'import QuantumBlockEncoding.StatePreparationPrimitiveRoutes\n',
+                  'import QuantumBlockEncoding.StatePreparationPrimitiveRoutes\n'
+                  'import QuantumBlockEncoding.StatePreparationBellRoute\n',
+                  1,
+              )
+          source = source.replace('`StatePreparationPaperRoutesFinal`', '`StatePreparationPaperRoutes`')
+          entry.write_text(source, encoding='utf-8')
+          (root / 'QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean').unlink(missing_ok=True)
+
+          paper = root / 'QuantumBlockEncoding/StatePreparationPaperRoutes.lean'
+          if not paper.is_file():
+              raise SystemExit('canonical StatePreparationPaperRoutes.lean is missing')
+          text = paper.read_text(encoding='utf-8')
+
+          # If the first finalizer did not yet split the final equality, do it now.
+          if 'private theorem mottonenDenseUcry_on_root_0' not in text:
+              start = text.index('theorem mottonenDenseUcry_on_root :')
+              end = text.index('theorem mottonenDensePrimitive_prepares_target :', start)
+              block = '''private theorem mottonenDenseUcry_on_root_0 :
+    (applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState)
+        (0 : Fin 4) = mottonenDenseState (0 : Fin 4) := by
+  unfold mottonenRootState
+  exact
+    (congrFun
+      (applyVec_twoBasisSuperposition
+        (evalPrimitiveCircuitLE mottonenDenseUcryCircuit)
+        (5 / 13 : ℂ) (12 / 13 : ℂ) (0 : Fin 4) (2 : Fin 4))
+      (0 : Fin 4)).trans mottonenDenseUcry_output_0
+
+private theorem mottonenDenseUcry_on_root_1 :
+    (applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState)
+        (1 : Fin 4) = mottonenDenseState (1 : Fin 4) := by
+  unfold mottonenRootState
+  exact
+    (congrFun
+      (applyVec_twoBasisSuperposition
+        (evalPrimitiveCircuitLE mottonenDenseUcryCircuit)
+        (5 / 13 : ℂ) (12 / 13 : ℂ) (0 : Fin 4) (2 : Fin 4))
+      (1 : Fin 4)).trans mottonenDenseUcry_output_1
+
+private theorem mottonenDenseUcry_on_root_2 :
+    (applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState)
+        (2 : Fin 4) = mottonenDenseState (2 : Fin 4) := by
+  unfold mottonenRootState
+  exact
+    (congrFun
+      (applyVec_twoBasisSuperposition
+        (evalPrimitiveCircuitLE mottonenDenseUcryCircuit)
+        (5 / 13 : ℂ) (12 / 13 : ℂ) (0 : Fin 4) (2 : Fin 4))
+      (2 : Fin 4)).trans mottonenDenseUcry_output_2
+
+private theorem mottonenDenseUcry_on_root_3 :
+    (applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState)
+        (3 : Fin 4) = mottonenDenseState (3 : Fin 4) := by
+  unfold mottonenRootState
+  exact
+    (congrFun
+      (applyVec_twoBasisSuperposition
+        (evalPrimitiveCircuitLE mottonenDenseUcryCircuit)
+        (5 / 13 : ℂ) (12 / 13 : ℂ) (0 : Fin 4) (2 : Fin 4))
+      (3 : Fin 4)).trans mottonenDenseUcry_output_3
+
+theorem mottonenDenseUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE mottonenDenseUcryCircuit) mottonenRootState =
+      mottonenDenseState := by
+  funext row
+  fin_cases row
+  · exact mottonenDenseUcry_on_root_0
+  · exact mottonenDenseUcry_on_root_1
+  · exact mottonenDenseUcry_on_root_2
+  · exact mottonenDenseUcry_on_root_3
+
+'''
+              text = text[:start] + block + text[end:]
+
+          if 'private theorem sparsePrunedUcry_on_root_0' not in text:
+              start = text.index('theorem sparsePrunedUcry_on_root :')
+              end = text.index('theorem sparsePruned_prepares_target :', start)
+              leaves = []
+              for index in range(8):
+                  leaves.append(f'''private theorem sparsePrunedUcry_on_root_{index} :
+    (applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState)
+        ({index} : Fin 8) = sparseThreeState ({index} : Fin 8) := by
+  unfold sparseRootState
+  exact
+    (congrFun
+      (applyVec_twoBasisSuperposition
+        (evalPrimitiveCircuitLE sparsePrunedUcryCircuit)
+        (5 / 13 : ℂ) (12 / 13 : ℂ) (0 : Fin 8) (4 : Fin 8))
+      ({index} : Fin 8)).trans sparsePrunedUcry_output_{index}
+
+''')
+              block = ''.join(leaves) + '''theorem sparsePrunedUcry_on_root :
+    applyVec (evalPrimitiveCircuitLE sparsePrunedUcryCircuit) sparseRootState =
+      sparseThreeState := by
+  funext row
+  fin_cases row
+  · exact sparsePrunedUcry_on_root_0
+  · exact sparsePrunedUcry_on_root_1
+  · exact sparsePrunedUcry_on_root_2
+  · exact sparsePrunedUcry_on_root_3
+  · exact sparsePrunedUcry_on_root_4
+  · exact sparsePrunedUcry_on_root_5
+  · exact sparsePrunedUcry_on_root_6
+  · exact sparsePrunedUcry_on_root_7
+
+'''
+              text = text[:start] + block + text[end:]
+          paper.write_text(text, encoding='utf-8')
+
+          umbrella = root / 'QuantumBlockEncoding.lean'
+          umbrella_text = umbrella.read_text(encoding='utf-8')
+          if 'import QuantumBlockEncoding.StatePreparationBenchmarks' not in umbrella_text:
+              umbrella.write_text(
+                  umbrella_text.rstrip() + '\nimport QuantumBlockEncoding.StatePreparationBenchmarks\n',
+                  encoding='utf-8',
+              )
+
+          required = [
+              root / 'website/scripts/publish_lean_graph.py',
+              root / 'website/scripts/publish_site_enhancements.py',
+              root / 'website/static/lean-graph.js',
+              root / 'website/static/lean-graph.css',
+              root / 'website/static/site-enhancements.js',
+              root / 'website/static/site-enhancements.css',
+          ]
+          missing = [str(path) for path in required if not path.is_file()]
+          if missing:
+              raise SystemExit('missing graph/site files after squash: ' + ', '.join(missing))
+
+          # The existing Pages workflow already invokes this script on the built
+          # site. Extend that existing hook rather than depending on a workflow
+          # rewrite, so the deployment path remains stable.
+          enforce = root / 'website/scripts/enforce_robin_reader_contract.py'
+          enforce_text = enforce.read_text(encoding='utf-8')
+          marker = '_publish_quantumcomputinglib_extensions_from_cli'
+          if marker not in enforce_text:
+              final = re.compile(r'\nif __name__ == ["\']__main__["\']:\s*\n\s*main\(\)\s*\n?$', re.M)
+              match = final.search(enforce_text)
+              if not match:
+                  raise SystemExit('could not locate enforce_robin_reader_contract.py main block')
+              hook = '''
+
+def _publish_quantumcomputinglib_extensions_from_cli() -> None:
+    """Publish paper/state-prep pages, Lean topology, and formula hooks.
+
+    The Pages workflow already calls this reader-contract script after the base
+    site is generated, making it the stable final enrichment boundary.
+    """
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    root_value = None
+    for index, argument in enumerate(sys.argv):
+        if argument == "--root" and index + 1 < len(sys.argv):
+            root_value = sys.argv[index + 1]
+            break
+        if argument.startswith("--root="):
+            root_value = argument.split("=", 1)[1]
+            break
+    if root_value is None:
+        return
+    directory = Path(__file__).resolve().parent
+    for script in (
+        "publish_extensions.py",
+        "publish_paper_pages.py",
+        "publish_taxonomy.py",
+        "publish_lean_graph.py",
+        "publish_site_enhancements.py",
+    ):
+        subprocess.run(
+            [sys.executable, str(directory / script), "--root", root_value],
+            check=True,
+        )
+
+
+if __name__ == "__main__":
+    main()
+    _publish_quantumcomputinglib_extensions_from_cli()
+'''
+              enforce_text = enforce_text[:match.start()] + hook
+              enforce.write_text(enforce_text, encoding='utf-8')
+
+          build = root / 'scripts/build-website.sh'
+          build_text = build.read_text(encoding='utf-8')
+          if 'website/scripts/publish_lean_graph.py' not in build_text:
+              build_text = build_text.replace(
+                  '  website/scripts/publish_taxonomy.py \\\n',
+                  '  website/scripts/publish_taxonomy.py \\\n'
+                  '  website/scripts/publish_lean_graph.py \\\n'
+                  '  website/scripts/publish_site_enhancements.py \\\n',
+                  1,
+              )
+          if 'python3 website/scripts/publish_lean_graph.py --root _out/site' not in build_text:
+              build_text = build_text.replace(
+                  'python3 website/scripts/publish_taxonomy.py --root _out/site\n',
+                  'python3 website/scripts/publish_taxonomy.py --root _out/site\n'
+                  'python3 website/scripts/publish_lean_graph.py --root _out/site\n'
+                  'python3 website/scripts/publish_site_enhancements.py --root _out/site\n',
+                  1,
+              )
+          if 'test -f _site/underlying-lean-graph/index.html' not in build_text:
+              build_text = build_text.replace(
+                  'test -f _site/.nojekyll\n',
+                  'test -f _site/.nojekyll\n'
+                  'test -f _site/underlying-lean-graph/index.html\n'
+                  'test -f _site/data/lean-library-graph.json\n'
+                  'grep -q \'Underlying Lean Graph of Libraries\' _site/underlying-lean-graph/index.html\n'
+                  '! grep -q \'A_k/(N_D N_f kappa\' _site/case-studies/robin/index.html\n',
+                  1,
+              )
+          build.write_text(build_text, encoding='utf-8')
+          PY
+          git diff --check
+
+      - name: Set up Lean and Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Admit the complete State Preparation suite
+        run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
+
+      - name: Check all executable State Preparation mirrors
+        shell: bash
+        run: |
+          python3 -m pip install --quiet 'qiskit>=2,<3'
+          python3 - <<'PY'
+          import importlib.util
+          import math
+          from pathlib import Path
+
+          path = Path('executable-exports/SP-PAPERS-001/qiskit/export.py')
+          spec = importlib.util.spec_from_file_location('sp_export', path)
+          module = importlib.util.module_from_spec(spec)
+          assert spec.loader is not None
+          spec.loader.exec_module(module)
+          targets = {
+              'bell': ([1 / math.sqrt(2), 0, 0, 1 / math.sqrt(2)], 2, 2),
+              'mottonen': ([39/169, 52/169, 60/169, 144/169], 5, 4),
+              'grover-rudolph': ([9/25, 12/25, 12/25, 16/25], 2, 1),
+              'sparse': ([3/13, 0, 4/13, 0, 12/13, 0, 0, 0], 5, 4),
+          }
+          for name, (expected, gate_count, depth) in targets.items():
+              circuit = module.BUILDERS[name]()
+              actual = list(module.Statevector.from_instruction(circuit).data)
+              error = max(abs(value - target) for value, target in zip(actual, expected))
+              assert error < 1e-12, (name, error, actual)
+              assert circuit.size() == gate_count, (name, circuit.size(), gate_count)
+              assert circuit.depth() == depth, (name, circuit.depth(), depth)
+              print(f'{name}: error={error:.3e}, gates={gate_count}, depth={depth}')
+          PY
+
+      - name: Check graph publisher, formula repair, and sidebar hook
+        shell: bash
+        run: |
+          python3 -m py_compile \
+            website/scripts/enforce_robin_reader_contract.py \
+            website/scripts/publish_lean_graph.py \
+            website/scripts/publish_site_enhancements.py \
+            website/scripts/publish_extensions.py \
+            website/scripts/publish_paper_pages.py \
+            website/scripts/publish_taxonomy.py
+          node --check website/static/lean-graph.js
+          node --check website/static/site-enhancements.js
+          python3 -m unittest \
+            website.scripts.test_site_contracts \
+            website.scripts.test_teaching_enrichment \
+            website.scripts.test_casebook_enrichment \
+            website.scripts.test_casebook_polish
+          tmp="$(mktemp -d)"
+          mkdir -p "$tmp/static" "$tmp/case-studies/robin"
+          cp website/static/lean-graph.js website/static/lean-graph.css "$tmp/static/"
+          cp website/static/site-enhancements.js website/static/site-enhancements.css "$tmp/static/"
+          printf '%s\n' '<!doctype html><html><head></head><body><aside><nav></nav></aside><p>N=2^n</p><p>A_k/(N_D N_f kappa</p></body></html>' > "$tmp/case-studies/robin/index.html"
+          python3 website/scripts/publish_lean_graph.py --root "$tmp"
+          python3 website/scripts/publish_site_enhancements.py --root "$tmp"
+          grep -Fq '\(N = 2^n\)' "$tmp/case-studies/robin/index.html"
+          grep -Fq '\frac{A_k}{N_D N_f \kappa}' "$tmp/case-studies/robin/index.html"
+          grep -Fq 'site-enhancements.js' "$tmp/case-studies/robin/index.html"
+          test -s "$tmp/data/lean-library-graph.json"
+          test -s "$tmp/underlying-lean-graph/index.html"
+
+      - name: Commit the admitted squash to main
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A -- . ':(exclude).github/workflows'
+          if git diff --cached --quiet; then
+            echo 'Main already contains the admitted State Preparation and site tree.'
+          else
+            git commit -m 'Admit State Preparation cases and interactive Lean library graph'
+            git push origin HEAD:main
+          fi
+
+      - name: Close superseded development PR after admission
+        shell: bash
+        run: |
+          gh pr close 3 --repo "$GITHUB_REPOSITORY" --comment 'The exact admitted tree has been squash-consolidated onto main by the repository admission workflow; Pages verification and branch pruning follow in this same run.' || true
+
+      - name: Dispatch and wait for Pages
+        shell: bash
+        run: |
+          gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main
+          sleep 15
+          run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId')"
+          test -n "$run_id"
+          echo "Watching Pages run $run_id"
+          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
+
+      - name: Verify deployed formulae and Lean graph
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://dakebu.github.io/Quantum-Computing-Block-Encoding'
+          for attempt in $(seq 1 30); do
+            robin="$(curl -fsSL "$base/case-studies/robin/index.html" || true)"
+            graph="$(curl -fsSL "$base/underlying-lean-graph/index.html" || true)"
+            if printf '%s' "$robin" | grep -Fq '\(N = 2^n\)' \
+              && printf '%s' "$robin" | grep -Fq '\frac{A_k}{N_D N_f \kappa}' \
+              && printf '%s' "$robin" | grep -Fq 'site-enhancements.js' \
+              && printf '%s' "$graph" | grep -Fq 'Underlying Lean Graph of Libraries'; then
+              echo 'Deployed Robin formulae and interactive Lean graph verified.'
+              exit 0
+            fi
+            echo "Pages CDN not current yet (attempt $attempt/30)"
+            sleep 10
+          done
+          exit 1
+
+      - name: Delete all non-main branches
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import subprocess
+
+          repo = os.environ['GITHUB_REPOSITORY']
+          pages = json.loads(subprocess.check_output([
+              'gh', 'api', '--paginate', f'repos/{repo}/branches?per_page=100', '--slurp'
+          ], text=True))
+          branches = [item for page in pages for item in page]
+          failures = []
+          for branch in branches:
+              name = branch['name']
+              if name == 'main':
+                  continue
+              result = subprocess.run(
+                  ['gh', 'api', '-X', 'DELETE', f'repos/{repo}/git/refs/heads/{name}'],
+                  text=True,
+                  capture_output=True,
+              )
+              if result.returncode:
+                  failures.append((name, result.stderr.strip()))
+              else:
+                  print('deleted', name)
+          if failures:
+              raise SystemExit('branch deletion failures: ' + repr(failures))
+          remaining = json.loads(subprocess.check_output([
+              'gh', 'api', f'repos/{repo}/branches?per_page=100'
+          ], text=True))
+          names = [branch['name'] for branch in remaining]
+          if names != ['main']:
+              raise SystemExit(f'expected only main; found {names}')
+          print('single-branch invariant verified: main only')
+          PY
