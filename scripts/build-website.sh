@@ -21,6 +21,7 @@ python3 -m py_compile \
   website/scripts/publish_extensions.py \
   website/scripts/publish_paper_pages.py \
   website/scripts/publish_taxonomy.py \
+  website/scripts/repair_taxonomy_links.py \
   website/scripts/check_site.py \
   website/scripts/ide_server.py \
   website/scripts/qbe_task_runner.py \
@@ -50,6 +51,7 @@ python3 website/scripts/enforce_robin_reader_contract.py --root _out/site
 python3 website/scripts/publish_extensions.py --root _out/site
 python3 website/scripts/publish_paper_pages.py --root _out/site
 python3 website/scripts/publish_taxonomy.py --root _out/site
+python3 website/scripts/repair_taxonomy_links.py --root _out/site
 
 rm -rf _site
 mkdir -p _site/blueprint
