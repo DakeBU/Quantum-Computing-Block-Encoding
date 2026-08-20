@@ -48,6 +48,7 @@ jobs:
             website/scripts/publish_extensions.py \
             website/scripts/publish_paper_pages.py \
             website/scripts/publish_taxonomy.py \
+            website/scripts/finalize_taxonomy_navigation.py \
             website/scripts/test_casebook_enrichment.py \
             website/scripts/test_casebook_polish.py
           python3 -m unittest \
