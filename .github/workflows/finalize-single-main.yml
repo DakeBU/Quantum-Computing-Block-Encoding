@@ -1,0 +1,127 @@
+name: Finalize QuantumComputinglib single-main release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/finalize-single-main.yml"
+
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  finalize:
+    if: contains(github.event.head_commit.message, '[run-finalizer]')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_PAGES_SHA: 2358cff9f405bee658ae08388a839aa00f23ca8b
+      STATUS_PR: 20
+      SITE_ROOT: https://dakebu.github.io/Quantum-Computing-Block-Encoding
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Resolve and watch exact Pages admission
+        id: pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_id=""
+          for _ in $(seq 1 60); do
+            run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --limit 30 --json databaseId,headSha,event --jq '.[] | select(.headSha == env.TARGET_PAGES_SHA) | .databaseId' | head -n1)"
+            if [[ -n "$run_id" ]]; then
+              break
+            fi
+            sleep 5
+          done
+          if [[ -z "$run_id" ]]; then
+            gh pr comment "$STATUS_PR" --repo "$GITHUB_REPOSITORY" --body "Finalizer could not find a Pages run for target commit \`${TARGET_PAGES_SHA}\`; no branches were deleted."
+            exit 1
+          fi
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          gh pr comment "$STATUS_PR" --repo "$GITHUB_REPOSITORY" --body "Finalizer is watching exact Pages run **${run_id}** for target commit \`${TARGET_PAGES_SHA}\`. Cleanup remains locked until deploy + live-site checks pass."
+          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
+
+      - name: Verify deployed QuantumComputinglib surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          fetch_until() {
+            local url="$1" out="$2" token="$3"
+            for _ in $(seq 1 30); do
+              if curl -fsSL --retry 2 --retry-delay 1 "$url" -o "$out" && grep -Fq "$token" "$out"; then
+                return 0
+              fi
+              sleep 10
+            done
+            echo "live verification failed: $url missing $token" >&2
+            return 1
+          }
+          fetch_until "$SITE_ROOT/" "$tmp/root.html" "QuantumComputinglib"
+          fetch_until "$SITE_ROOT/lean-graph/index.html" "$tmp/graph.html" "Underlying Lean Graph of Libraries"
+          fetch_until "$SITE_ROOT/case-studies/robin/index.html" "$tmp/robin.html" '\(N=8\)'
+          grep -Fq '\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)' "$tmp/robin.html"
+          ! grep -Fq 'A_k/(N_D N_f kappa)' "$tmp/robin.html"
+          fetch_until "$SITE_ROOT/example-cases/state-preparation/index.html" "$tmp/sp.html" "State Preparation example cases"
+          grep -Fq 'Bell-state preparation' "$tmp/sp.html"
+          grep -Fq 'Dense real-amplitude preparation' "$tmp/sp.html"
+          grep -Fq 'Structured probability loading' "$tmp/sp.html"
+          grep -Fq 'Sparse state preparation' "$tmp/sp.html"
+          fetch_until "$SITE_ROOT/papers/state-preparation/index.html" "$tmp/papers.html" "State Preparation papers"
+          grep -Fq 'Möttönen' "$tmp/papers.html"
+          grep -Fq 'Grover' "$tmp/papers.html"
+          grep -Fq 'Li' "$tmp/papers.html"
+          gh pr comment "$STATUS_PR" --repo "$GITHUB_REPOSITORY" --body "Pages run **${{ steps.pages.outputs.run_id }}** deployed successfully and live checks passed for QuantumComputinglib root, Underlying Lean Graph, Robin formulas, State Preparation cases, and State Preparation Papers. Starting final single-main cleanup."
+
+      - name: Close obsolete temporary pull requests
+        shell: bash
+        run: |
+          set -euo pipefail
+          for pr in 3 18 19; do
+            if gh pr view "$pr" --repo "$GITHUB_REPOSITORY" --json state --jq '.state' | grep -q '^OPEN$'; then
+              gh pr close "$pr" --repo "$GITHUB_REPOSITORY" --comment "Superseded by the admitted main branch and verified QuantumComputinglib deployment. Closing during final single-main cleanup."
+            fi
+          done
+          # Keep the status PR open until branch pruning and self-removal are ready.
+
+      - name: Delete every non-main branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t branches < <(gh api --paginate "repos/$GITHUB_REPOSITORY/branches?per_page=100" --jq '.[].name')
+          for branch in "${branches[@]}"; do
+            [[ "$branch" == "main" ]] && continue
+            # Close a PR whose head is about to disappear, if any remains.
+            gh pr list --repo "$GITHUB_REPOSITORY" --head "$branch" --state open --json number --jq '.[].number' | while read -r pr; do
+              [[ -z "$pr" ]] && continue
+              gh pr close "$pr" --repo "$GITHUB_REPOSITORY" --comment "Closing before deleting obsolete branch \`$branch\` after successful final deployment."
+            done
+            git push origin --delete "$branch"
+          done
+          remaining="$(gh api --paginate "repos/$GITHUB_REPOSITORY/branches?per_page=100" --jq '.[].name')"
+          test "$remaining" = "main"
+
+      - name: Remove finalizer from main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/finalize-single-main.yml
+          git commit -m 'Remove completed release finalizer'
+          git push origin HEAD:main
+
+      - name: Record final status
+        if: success()
+        shell: bash
+        run: |
+          # PR 20 may already be auto-closed because its branch was removed.
+          echo "Final deployment and single-main cleanup completed."
