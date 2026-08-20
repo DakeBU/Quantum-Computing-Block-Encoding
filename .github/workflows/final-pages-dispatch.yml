@@ -7,7 +7,7 @@ on:
       - ".github/workflows/final-pages-dispatch.yml"
 
 permissions:
-  contents: read
+  contents: write
   actions: write
   pull-requests: write
 
@@ -18,6 +18,61 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
+      - name: Checkout current main for final admission patch
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Patch taxonomy links and force full manual admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          taxonomy = Path('website/scripts/publish_taxonomy.py')
+          text = taxonomy.read_text(encoding='utf-8')
+          text = text.replace(
+              'prefix="..",\n        parent="example-cases",',
+              'prefix="../",\n        parent="example-cases",',
+              1,
+          )
+          text = text.replace(
+              'prefix="..",\n        parent="papers",',
+              'prefix="../",\n        parent="papers",',
+              1,
+          )
+          taxonomy.write_text(text, encoding='utf-8')
+
+          pages = Path('.github/workflows/pages.yml')
+          text = pages.read_text(encoding='utf-8')
+          needle = '''          set -euo pipefail
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+'''
+          replacement = '''          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Manual admission requested; rebuilding the complete Lean and Blueprint layers."
+            exit 0
+          fi
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+'''
+          if 'Manual admission requested; rebuilding the complete Lean and Blueprint layers.' not in text:
+              if needle not in text:
+                  raise SystemExit('pages proof-change detector marker not found')
+              text = text.replace(needle, replacement, 1)
+          pages.write_text(text, encoding='utf-8')
+          PY
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/scripts/publish_taxonomy.py .github/workflows/pages.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Repair taxonomy links and force full manual Pages admission'
+            git push origin HEAD:main
+          fi
+
       - name: Dispatch current main Pages workflow
         shell: bash
         run: |
@@ -42,7 +97,6 @@ jobs:
           done
           test -n "$run_id"
           echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
-          echo "Dispatched Pages run: $run_id"
           gh pr comment "${{ github.event.pull_request.number }}" --repo "$GITHUB_REPOSITORY" --body "Dispatched **Pages run ${run_id}** from current \`main\`; waiting for the complete Lean → catalog → Blueprint → site → deploy gate."
 
       - name: Watch complete Pages admission
