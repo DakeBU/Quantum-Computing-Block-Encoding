@@ -1,6 +1,15 @@
 name: State-preparation proof smoke
 
 on:
+  push:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/PrimitiveMacros.lean"
+      - "QuantumBlockEncoding/ReversibleClassical.lean"
+      - "QuantumBlockEncoding.lean"
+      - ".github/workflows/state-prep-proof-smoke.yml"
   pull_request:
     paths:
       - "QuantumBlockEncoding/StatePreparationBenchmarks*.lean"
@@ -17,6 +26,9 @@ on:
       - "QuantumBlockEncoding/UniformlyControlledRy.lean"
       - "QuantumBlockEncoding/Circuit.lean"
       - "QuantumBlockEncoding/Resources.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/PrimitiveMacros.lean"
+      - "QuantumBlockEncoding/ReversibleClassical.lean"
       - "QuantumBlockEncoding.lean"
       - "executable-exports/SP-PAPERS-001/qiskit/export.py"
       - ".github/workflows/state-prep-proof-smoke.yml"
@@ -41,6 +53,8 @@ jobs:
           auto-config: false
           use-github-cache: true
           use-mathlib-cache: true
+      - name: Compile reversible arithmetic kernel
+        run: lake build QuantumBlockEncoding.ComparatorIncrementer
       - name: Compile representative State Preparation benchmarks
         run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
       - name: Check executable Qiskit mirrors
