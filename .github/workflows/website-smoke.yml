@@ -35,8 +35,8 @@ jobs:
           python3 -m unittest website.scripts.test_casebook_enrichment website.scripts.test_casebook_polish
           python3 website/scripts/publish_taxonomy.py --check-data
 
-  patch-paper-output-congr:
-    if: contains(github.event.head_commit.message, '[patch-paper-output-congr]')
+  patch-paper-entry-certificates:
+    if: contains(github.event.head_commit.message, '[patch-paper-entry-certificates]')
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
         with:
           ref: agent/papers-state-prep
           fetch-depth: 0
-      - name: Replace output-leaf rewrites by congrArg₂
+      - name: Turn PaperRoutes into a thin composition layer
         shell: bash
         run: |
           python3 - <<'PY'
@@ -53,67 +53,131 @@ jobs:
 
           path = Path('QuantumBlockEncoding/StatePreparationPaperRoutes.lean')
           text = path.read_text(encoding='utf-8')
-          pairs = {
-              'mottonenDenseUcry_output_0': ('mottonenDenseUcry_entry_00', 'mottonenDenseUcry_entry_02'),
-              'mottonenDenseUcry_output_1': ('mottonenDenseUcry_entry_10', 'mottonenDenseUcry_entry_12'),
-              'mottonenDenseUcry_output_2': ('mottonenDenseUcry_entry_20', 'mottonenDenseUcry_entry_22'),
-              'mottonenDenseUcry_output_3': ('mottonenDenseUcry_entry_30', 'mottonenDenseUcry_entry_32'),
-              'sparsePrunedUcry_output_0': ('sparsePrunedUcry_entry_00', 'sparsePrunedUcry_entry_04'),
-              'sparsePrunedUcry_output_1': ('sparsePrunedUcry_entry_10', 'sparsePrunedUcry_entry_14'),
-              'sparsePrunedUcry_output_2': ('sparsePrunedUcry_entry_20', 'sparsePrunedUcry_entry_24'),
-              'sparsePrunedUcry_output_3': ('sparsePrunedUcry_entry_30', 'sparsePrunedUcry_entry_34'),
-              'sparsePrunedUcry_output_4': ('sparsePrunedUcry_entry_40', 'sparsePrunedUcry_entry_44'),
-              'sparsePrunedUcry_output_5': ('sparsePrunedUcry_entry_50', 'sparsePrunedUcry_entry_54'),
-              'sparsePrunedUcry_output_6': ('sparsePrunedUcry_entry_60', 'sparsePrunedUcry_entry_64'),
-              'sparsePrunedUcry_output_7': ('sparsePrunedUcry_entry_70', 'sparsePrunedUcry_entry_74'),
-          }
-          for name, (left, right) in pairs.items():
+          cert = 'StatePreparationPaperEntryCertificates'
+
+          if 'import QuantumBlockEncoding.StatePreparationPaperEntryCertificates' not in text:
               text = text.replace(
-                  f'set_option maxHeartbeats 1000000 in\nprivate theorem {name} :',
-                  f'private theorem {name} :',
+                  'import QuantumBlockEncoding.StatePreparationPrimitiveRoutes\n',
+                  'import QuantumBlockEncoding.StatePreparationPrimitiveRoutes\n'
+                  'import QuantumBlockEncoding.StatePreparationPaperEntryCertificates\n',
                   1,
               )
-              old = f'  rw [{left}, {right}]\n  norm_num'
-              new = (
-                  '  exact\n'
-                  '    (congrArg₂\n'
-                  '      (fun x y : ℂ => (5 / 13 : ℂ) * x + (12 / 13 : ℂ) * y)\n'
-                  f'      {left} {right}).trans (by norm_num)'
-              )
-              if old not in text:
-                  raise SystemExit(f'expected rewrite block missing for {name}')
-              text = text.replace(old, new, 1)
+
+          old = '''noncomputable def mottonenConditionalAngles (bits : PrimitiveBasis 1) : ExactAngle :=
+  if bits 0 = 0 then ryAngle35 else ryAngle513
+
+noncomputable def mottonenDenseUcryCircuit : PrimitiveCircuit 2 :=
+  compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
+    groverRudolphControlWire_ne_target mottonenConditionalAngles
+'''
+          new = '''noncomputable def mottonenConditionalAngles : PrimitiveBasis 1 → ExactAngle :=
+  StatePreparationPaperEntryCertificates.mottonenConditionalAngles
+
+noncomputable def mottonenDenseUcryCircuit : PrimitiveCircuit 2 :=
+  StatePreparationPaperEntryCertificates.mottonenDenseUcryCircuit
+'''
+          if old not in text:
+              raise SystemExit('Möttönen circuit definition block not found')
+          text = text.replace(old, new, 1)
+
+          old = '''def sparseControlWire : Fin 1 → Fin 3 := fun _ => 2
+
+theorem sparseControlWire_ne_target :
+    ∀ control, sparseControlWire control ≠ (1 : Fin 3) := by
+  intro control
+  fin_cases control
+  decide
+
+noncomputable def sparseConditionalAngles (bits : PrimitiveBasis 1) : ExactAngle :=
+  if bits 0 = 0 then ryAngle35 else ryAngleZero
+
+noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
+  compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
+    sparseControlWire_ne_target sparseConditionalAngles
+'''
+          new = '''def sparseControlWire : Fin 1 → Fin 3 :=
+  StatePreparationPaperEntryCertificates.sparseControlWire
+
+theorem sparseControlWire_ne_target :
+    ∀ control, sparseControlWire control ≠ (1 : Fin 3) := by
+  simpa [sparseControlWire] using
+    StatePreparationPaperEntryCertificates.sparseControlWire_ne_target
+
+noncomputable def sparseConditionalAngles : PrimitiveBasis 1 → ExactAngle :=
+  StatePreparationPaperEntryCertificates.sparseConditionalAngles
+
+noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
+  StatePreparationPaperEntryCertificates.sparsePrunedUcryCircuit
+'''
+          if old not in text:
+              raise SystemExit('sparse circuit definition block not found')
+          text = text.replace(old, new, 1)
+
+          def replace_block(name: str, next_name: str, body: str) -> None:
+              global text
+              start = text.index(f'private theorem {name} :')
+              end = text.index(f'\nprivate theorem {next_name} :', start)
+              text = text[:start] + body.rstrip() + '\n' + text[end:]
+
+          replace_block(
+              'mottonenDenseUcry_entry_zero_of_context_ne',
+              'mottonenDenseUcry_entry_00',
+              '''private theorem mottonenDenseUcry_entry_zero_of_context_ne
+    (row column : Fin (gridSize 2))
+    (contextNe :
+      (splitPrimitiveWire (0 : Fin 2) (primitiveLEBits 2 row)).2 ≠
+        (splitPrimitiveWire (0 : Fin 2) (primitiveLEBits 2 column)).2) :
+    evalPrimitiveCircuitLE mottonenDenseUcryCircuit row column = 0 := by
+  simpa [mottonenDenseUcryCircuit] using
+    StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_zero_of_context_ne
+      row column contextNe''')
+
+          m_entries = [
+              ('mottonenDenseUcry_entry_00','mottonenDenseUcry_entry_10','(0 : Fin 4)','(0 : Fin 4)','(3 : ℂ) / 5'),
+              ('mottonenDenseUcry_entry_10','mottonenDenseUcry_entry_22','(1 : Fin 4)','(0 : Fin 4)','(4 : ℂ) / 5'),
+              ('mottonenDenseUcry_entry_22','mottonenDenseUcry_entry_32','(2 : Fin 4)','(2 : Fin 4)','(5 : ℂ) / 13'),
+              ('mottonenDenseUcry_entry_32','mottonenDenseUcry_entry_02','(3 : Fin 4)','(2 : Fin 4)','(12 : ℂ) / 13'),
+          ]
+          for name, nxt, row, col, rhs in m_entries:
+              replace_block(name, nxt, f'''private theorem {name} :
+    evalPrimitiveCircuitLE mottonenDenseUcryCircuit {row} {col} = {rhs} := by
+  simpa [mottonenDenseUcryCircuit] using
+    StatePreparationPaperEntryCertificates.{name}''')
+
+          replace_block(
+              'sparsePrunedUcry_entry_zero_of_context_ne',
+              'sparsePrunedUcry_entry_00',
+              '''private theorem sparsePrunedUcry_entry_zero_of_context_ne
+    (row column : Fin (gridSize 3))
+    (contextNe :
+      (splitPrimitiveWire (1 : Fin 3) (primitiveLEBits 3 row)).2 ≠
+        (splitPrimitiveWire (1 : Fin 3) (primitiveLEBits 3 column)).2) :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit row column = 0 := by
+  simpa [sparsePrunedUcryCircuit] using
+    StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_zero_of_context_ne
+      row column contextNe''')
+
+          s_entries = [
+              ('sparsePrunedUcry_entry_00','sparsePrunedUcry_entry_20','(0 : Fin 8)','(0 : Fin 8)','(3 : ℂ) / 5'),
+              ('sparsePrunedUcry_entry_20','sparsePrunedUcry_entry_44','(2 : Fin 8)','(0 : Fin 8)','(4 : ℂ) / 5'),
+              ('sparsePrunedUcry_entry_44','sparsePrunedUcry_entry_64','(4 : Fin 8)','(4 : Fin 8)','1'),
+              ('sparsePrunedUcry_entry_64','sparsePrunedUcry_entry_10','(6 : Fin 8)','(4 : Fin 8)','0'),
+          ]
+          for name, nxt, row, col, rhs in s_entries:
+              replace_block(name, nxt, f'''private theorem {name} :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit {row} {col} = {rhs} := by
+  simpa [sparsePrunedUcryCircuit] using
+    StatePreparationPaperEntryCertificates.{name}''')
+
           path.write_text(text, encoding='utf-8')
           PY
           git diff --check
-          ! git grep -n 'maxHeartbeats 1000000' QuantumBlockEncoding/StatePreparationPaperRoutes.lean
-          git grep -n 'congrArg₂' QuantumBlockEncoding/StatePreparationPaperRoutes.lean
-      - name: Commit direct-congruence output proofs
+          git grep -n 'StatePreparationPaperEntryCertificates' QuantumBlockEncoding/StatePreparationPaperRoutes.lean
+      - name: Commit certificate-layer refactor
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add QuantumBlockEncoding/StatePreparationPaperRoutes.lean
-          git commit -m 'Avoid heavy rewrites in paper-route output proofs'
+          git commit -m 'Compose paper routes from compiled UCRY entry certificates'
           git push origin HEAD:agent/papers-state-prep
-
-  monitor-state-prep-head:
-    if: contains(github.event.head_commit.message, '[monitor-state-prep-head]')
-    runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
-    steps:
-      - name: Watch direct branch admission run
-        shell: bash
-        run: |
-          sleep 8
-          run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow state-prep-proof-smoke.yml --branch agent/papers-state-prep --event push --limit 1 --json databaseId --jq '.[0].databaseId')"
-          test -n "$run_id"
-          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Direct candidate State Preparation admission run: **${run_id}**. It compiles the branch head and then checks all four Qiskit mirrors."
-          set +e
-          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
-          code=$?
-          set -e
-          status="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json status,conclusion,url)"
-          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Direct State Preparation admission **${run_id}** finished: \`${status}\` (exit ${code})."
-          exit "$code"
