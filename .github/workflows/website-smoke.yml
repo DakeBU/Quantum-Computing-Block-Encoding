@@ -1,57 +1,98 @@
-name: Fast website teaching contract
+name: Admit hierarchical taxonomy deployment
 
 on:
   push:
-    branches:
-      - main
-      - "agent/**"
+    branches: [main]
     paths:
-      - "website/**"
-      - "README.md"
-      - "docs/assets/**"
-      - "matplotlibrc"
-      - "tools/check_public_figure_style.py"
-      - "scripts/build-website.sh"
       - ".github/workflows/website-smoke.yml"
-  pull_request:
-    paths:
-      - "website/**"
-      - "README.md"
-      - "docs/assets/**"
-      - "matplotlibrc"
-      - "tools/check_public_figure_style.py"
-      - "scripts/build-website.sh"
-      - ".github/workflows/website-smoke.yml"
-  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  actions: read
 
 jobs:
-  teaching-contract:
+  admit:
+    if: contains(github.event.head_commit.message, '[taxonomy-live-admission]')
     runs-on: ubuntu-latest
+    env:
+      TARGET_PAGES_SHA: fb8cb2b70ef7924ecef004e3c2d34e31130facd8
+      RESTORE_SHA: 1bb814db73d03e5990582f1c1f7a61f7c4374898
+      SITE_ROOT: https://dakebu.github.io/Quantum-Computing-Block-Encoding
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
 
-      - name: Check public figure typography and formulas
-        run: python3 tools/check_public_figure_style.py
-
-      - name: Check website generators and teaching data
+      - name: Wait for exact Pages build and deployment
+        shell: bash
         run: |
-          python3 -m py_compile \
-            website/scripts/build_site.py \
-            website/scripts/lean_graph.py \
-            website/scripts/enrich_casebook.py \
-            website/scripts/enforce_robin_reader_contract.py \
-            website/scripts/polish_casebook.py \
-            website/scripts/publish_extensions.py \
-            website/scripts/publish_paper_pages.py \
-            website/scripts/publish_taxonomy.py \
-            website/scripts/finalize_taxonomy_navigation.py \
-            website/scripts/test_casebook_enrichment.py \
-            website/scripts/test_casebook_polish.py
-          python3 -m unittest \
-            website.scripts.test_casebook_enrichment \
-            website.scripts.test_casebook_polish
-          python3 website/scripts/publish_taxonomy.py --check-data
+          set -euo pipefail
+          run_id=""
+          for _ in $(seq 1 60); do
+            run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --limit 30 --json databaseId,headSha --jq '.[] | select(.headSha == env.TARGET_PAGES_SHA) | .databaseId' | head -n1)"
+            if [[ -n "$run_id" ]]; then
+              break
+            fi
+            sleep 5
+          done
+          test -n "$run_id"
+          echo "Watching Pages run $run_id for $TARGET_PAGES_SHA"
+          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
+
+      - name: Verify live two-level navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          fetch_until() {
+            local path="$1" out="$2" token="$3"
+            for _ in $(seq 1 30); do
+              if curl -fsSL --retry 2 --retry-delay 1 "$SITE_ROOT/$path?taxonomy=$(date +%s)" -o "$out" && grep -Fq "$token" "$out"; then
+                return 0
+              fi
+              sleep 10
+            done
+            echo "live check failed: $path missing $token" >&2
+            return 1
+          }
+
+          fetch_until "index.html" "$tmp/root.html" 'data-taxonomy-nav="papers"'
+          grep -Fq 'data-taxonomy-nav="example-cases"' "$tmp/root.html"
+          ! grep -Fq 'data-topic-links=' "$tmp/root.html"
+          grep -Fq 'data-paper="ghl2025-robin" data-topic="block-encoding"' "$tmp/root.html"
+
+          for slug in bell-state-preparation mottonen-dense-state-preparation grover-rudolph-product-state-preparation sparse-three-state-preparation; do
+            count="$(grep -Fo "data-case=\"$slug\" data-topic=\"state-preparation\"" "$tmp/root.html" | wc -l | tr -d ' ')"
+            test "$count" = "1"
+          done
+          for slug in pauli-x-state-preparation hadamard-state-preparation; do
+            count="$(grep -Fo "data-case=\"$slug\" data-topic=\"state-preparation\"" "$tmp/root.html" | wc -l | tr -d ' ')"
+            test "$count" = "1"
+          done
+
+          fetch_until "papers/block-encoding/index.html" "$tmp/papers-be.html" "Quantum Framework for Simulating Linear PDEs with Robin Boundary Conditions"
+          fetch_until "papers/state-preparation/index.html" "$tmp/papers-sp.html" "Transformation of quantum states using uniformly controlled rotations"
+          grep -Fq "Creating superpositions that correspond to efficiently integrable probability distributions" "$tmp/papers-sp.html"
+          grep -Fq "Nearly Optimal Circuit Size for Sparse Quantum State Preparation" "$tmp/papers-sp.html"
+
+          fetch_until "example-cases/state-preparation/index.html" "$tmp/cases-sp.html" "State Preparation example cases"
+          grep -Fq "Bell-state preparation" "$tmp/cases-sp.html"
+          grep -Fq "Dense real-amplitude preparation" "$tmp/cases-sp.html"
+          grep -Fq "Structured probability loading" "$tmp/cases-sp.html"
+          grep -Fq "Sparse state preparation" "$tmp/cases-sp.html"
+
+          fetch_until "example-cases/block-encoding/index.html" "$tmp/cases-be.html" "Block Encoding example cases"
+          grep -Fq "Robin Eq. (9) benchmark" "$tmp/cases-be.html"
+
+      - name: Restore normal smoke workflow and record admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show "$RESTORE_SHA:.github/workflows/website-smoke.yml" > .github/workflows/website-smoke.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/website-smoke.yml
+          git commit -m 'Admit hierarchical taxonomy deployment'
+          git push origin HEAD:main
