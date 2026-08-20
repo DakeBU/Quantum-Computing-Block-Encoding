@@ -26,6 +26,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   teaching-contract:
@@ -54,3 +55,12 @@ jobs:
           validate_data(robin_record(), enrich_casebook.declaration_map())
           print("Robin paper -> plain language -> Lean contract: data roots valid")
           PY
+
+  dispatch-repository-admission:
+    if: contains(github.event.head_commit.message, '[dispatch-repository-admission]')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Dispatch permanent repository admission workflow
+        run: gh workflow run repository-admission.yml --repo "$GITHUB_REPOSITORY" --ref main
