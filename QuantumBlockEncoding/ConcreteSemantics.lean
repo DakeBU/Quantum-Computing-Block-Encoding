@@ -87,6 +87,18 @@ theorem applyVec_twoBasisSuperposition {rows cols : Nat}
     _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
     _root_.Matrix.mulVec_single_one]
 
+/-- Coordinate form of `applyVec_twoBasisSuperposition`.  Paper-route proofs
+use this compiled scalar interface so the kernel never has to rebuild a whole
+vector rewrite just to read one output amplitude. -/
+theorem applyVec_twoBasisSuperposition_apply {rows cols : Nat}
+    (operator : FiniteMatrix rows cols ℂ) (a b : ℂ)
+    (left right : Fin cols) (row : Fin rows) :
+    applyVec operator
+        (a • basisKet cols left + b • basisKet cols right) row =
+      a * operator row left + b * operator row right := by
+  have h := congrFun (applyVec_twoBasisSuperposition operator a b left right) row
+  simpa using h
+
 /-- Acting on the all-zero ket selects column zero. -/
 @[simp] theorem applyVec_zeroKet {α : Type u} [NonAssocSemiring α]
     {qubits : Nat}
