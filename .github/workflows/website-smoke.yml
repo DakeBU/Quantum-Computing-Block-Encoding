@@ -96,7 +96,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add website/scripts/build_site.py \
                   website/case-teaching.json \
-                  scripts/build-website.sh \
-                  .github/workflows/pages.yml
+                  scripts/build-website.sh
           git commit -m 'Publish the underlying Lean library graph'
           git push origin HEAD:agent/papers-state-prep
