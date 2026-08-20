@@ -94,44 +94,23 @@ jobs:
           print('Robin MathJax + Papers + State Preparation + Lean graph contract: valid')
           PY
 
-  patch-paper-output-budgets:
-    if: contains(github.event.head_commit.message, '[patch-paper-output-budgets]')
-    permissions:
-      contents: write
+  monitor-state-prep-head:
+    if: contains(github.event.head_commit.message, '[monitor-state-prep-head]')
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: agent/papers-state-prep
-          fetch-depth: 0
-      - name: Give each finite output leaf an independent local budget
+      - name: Watch direct branch admission run
         shell: bash
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-
-          path = Path('QuantumBlockEncoding/StatePreparationPaperRoutes.lean')
-          text = path.read_text(encoding='utf-8')
-          names = [f'mottonenDenseUcry_output_{i}' for i in range(4)]
-          names += [f'sparsePrunedUcry_output_{i}' for i in range(8)]
-          for name in names:
-              plain = f'private theorem {name} :'
-              wrapped = f'set_option maxHeartbeats 1000000 in\nprivate theorem {name} :'
-              if wrapped in text:
-                  continue
-              if plain not in text:
-                  raise SystemExit(f'missing finite output leaf: {name}')
-              text = text.replace(plain, wrapped, 1)
-          path.write_text(text, encoding='utf-8')
-          PY
-          git diff --check
-          git grep -n 'set_option maxHeartbeats 1000000 in' QuantumBlockEncoding/StatePreparationPaperRoutes.lean
-      - name: Commit finite output budgets
-        shell: bash
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add QuantumBlockEncoding/StatePreparationPaperRoutes.lean
-          git commit -m 'Bound finite paper-route output proofs locally'
-          git push origin HEAD:agent/papers-state-prep
+          sleep 8
+          run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow state-prep-proof-smoke.yml --branch agent/papers-state-prep --event push --limit 1 --json databaseId --jq '.[0].databaseId')"
+          test -n "$run_id"
+          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Direct candidate State Preparation admission run: **${run_id}**. It compiles the branch head (not the conflicted PR merge ref) and then checks all four Qiskit mirrors."
+          set +e
+          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
+          code=$?
+          set -e
+          status="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json status,conclusion,url)"
+          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Direct State Preparation admission **${run_id}** finished: \`${status}\` (exit ${code})."
+          exit "$code"
