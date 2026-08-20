@@ -1,3 +1,4 @@
+# trigger certificate-layer refactor
 name: Fast website teaching contract
 
 on:
@@ -53,7 +54,6 @@ jobs:
 
           path = Path('QuantumBlockEncoding/StatePreparationPaperRoutes.lean')
           text = path.read_text(encoding='utf-8')
-          cert = 'StatePreparationPaperEntryCertificates'
 
           if 'import QuantumBlockEncoding.StatePreparationPaperEntryCertificates' not in text:
               text = text.replace(
@@ -115,14 +115,11 @@ noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
 
           def replace_block(name: str, next_name: str, body: str) -> None:
               global text
-              start = text.index(f'private theorem {name} :')
-              end = text.index(f'\nprivate theorem {next_name} :', start)
+              start = text.index(f'private theorem {name}')
+              end = text.index(f'\nprivate theorem {next_name}', start)
               text = text[:start] + body.rstrip() + '\n' + text[end:]
 
-          replace_block(
-              'mottonenDenseUcry_entry_zero_of_context_ne',
-              'mottonenDenseUcry_entry_00',
-              '''private theorem mottonenDenseUcry_entry_zero_of_context_ne
+          replace_block('mottonenDenseUcry_entry_zero_of_context_ne','mottonenDenseUcry_entry_00','''private theorem mottonenDenseUcry_entry_zero_of_context_ne
     (row column : Fin (gridSize 2))
     (contextNe :
       (splitPrimitiveWire (0 : Fin 2) (primitiveLEBits 2 row)).2 ≠
@@ -144,10 +141,7 @@ noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
   simpa [mottonenDenseUcryCircuit] using
     StatePreparationPaperEntryCertificates.{name}''')
 
-          replace_block(
-              'sparsePrunedUcry_entry_zero_of_context_ne',
-              'sparsePrunedUcry_entry_00',
-              '''private theorem sparsePrunedUcry_entry_zero_of_context_ne
+          replace_block('sparsePrunedUcry_entry_zero_of_context_ne','sparsePrunedUcry_entry_00','''private theorem sparsePrunedUcry_entry_zero_of_context_ne
     (row column : Fin (gridSize 3))
     (contextNe :
       (splitPrimitiveWire (1 : Fin 3) (primitiveLEBits 3 row)).2 ≠
@@ -172,7 +166,6 @@ noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
           path.write_text(text, encoding='utf-8')
           PY
           git diff --check
-          git grep -n 'StatePreparationPaperEntryCertificates' QuantumBlockEncoding/StatePreparationPaperRoutes.lean
       - name: Commit certificate-layer refactor
         shell: bash
         run: |
