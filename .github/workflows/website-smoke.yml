@@ -26,9 +26,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Check Python and teaching data
+      - name: Check Python, JavaScript, and teaching data
         run: |
           python3 -m py_compile \
+            website/scripts/build_site.py \
+            website/scripts/lean_graph.py \
             website/scripts/enrich_casebook.py \
             website/scripts/enforce_robin_reader_contract.py \
             website/scripts/publish_extensions.py \
@@ -37,6 +39,7 @@ jobs:
             website/scripts/polish_casebook.py \
             website/scripts/test_casebook_enrichment.py \
             website/scripts/test_casebook_polish.py
+          node --check website/static/lean-graph.js
           python3 -m unittest \
             website.scripts.test_casebook_enrichment \
             website.scripts.test_casebook_polish
@@ -51,6 +54,10 @@ jobs:
           state = json.loads(Path('website/state-prep-cases.json').read_text(encoding='utf-8'))
           papers = json.loads(Path('website/papers.json').read_text(encoding='utf-8'))
           anchors = json.loads(Path('website/case-source-anchors.json').read_text(encoding='utf-8'))
+          teaching = json.loads(Path('website/case-teaching.json').read_text(encoding='utf-8'))
+          robin = teaching['cases']['robin-ghl-one-term']
+          robin_text = json.dumps(robin, ensure_ascii=False)
+
           assert state['schemaVersion'] == 1 and len(state['cases']) >= 4
           assert set(state['teaching']) == {case['slug'] for case in state['cases']}
           assert papers['schemaVersion'] == 1 and papers['featured'] and papers['queue']
@@ -73,29 +80,13 @@ jobs:
               assert item['route'].startswith('papers/')
               assert item['sourceAnchors'] and item['sourceStatement']
               assert item['leanRoots']
-          print('Robin + Papers + state-preparation teaching taxonomy: syntax and static structure valid')
-          PY
 
-  apply-site-graph:
-    if: github.event_name == 'pull_request'
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: agent/papers-state-prep
-          fetch-depth: 0
-      - name: Apply integrated graph and formula patch
-        run: python3 tools/apply_lean_graph_patch.py
-      - name: Commit integrated website
-        shell: bash
-        run: |
-          git diff --check
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add website/scripts/build_site.py \
-                  website/case-teaching.json \
-                  scripts/build-website.sh
-          git commit -m 'Publish the underlying Lean library graph'
-          git push origin HEAD:agent/papers-state-prep
+          assert r'\(N=8\)' in robin_text
+          assert r'\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)' in robin_text
+          assert 'A_k/(N_D N_f kappa)' not in robin_text
+          assert 'Underlying Lean Graph of Libraries' in Path('website/scripts/build_site.py').read_text(encoding='utf-8')
+          assert Path('website/scripts/lean_graph.py').is_file()
+          assert Path('website/static/lean-graph.js').is_file()
+          assert Path('website/static/lean-graph.css').is_file()
+          print('Robin MathJax + Papers + State Preparation + Lean graph contract: valid')
+          PY
