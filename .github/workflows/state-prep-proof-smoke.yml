@@ -6,6 +6,7 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/StatePreparationIntervalTree.lean"
       - "QuantumBlockEncoding/PrimitiveMacros.lean"
       - "QuantumBlockEncoding/ReversibleClassical.lean"
       - "QuantumBlockEncoding.lean"
@@ -17,6 +18,7 @@ on:
       - "QuantumBlockEncoding/StatePreparationPaperRoutes*.lean"
       - "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean"
       - "QuantumBlockEncoding/StatePreparationBellRoute.lean"
+      - "QuantumBlockEncoding/StatePreparationIntervalTree.lean"
       - "QuantumBlockEncoding/StatePreparation.lean"
       - "QuantumBlockEncoding/ConcreteSemantics.lean"
       - "QuantumBlockEncoding/TextbookStatePreparation.lean"
@@ -53,8 +55,10 @@ jobs:
           auto-config: false
           use-github-cache: true
           use-mathlib-cache: true
-      - name: Compile reversible arithmetic kernel
-        run: lake build QuantumBlockEncoding.ComparatorIncrementer
+      - name: Compile reversible arithmetic and interval-tree routes
+        run: |
+          lake build QuantumBlockEncoding.ComparatorIncrementer
+          lake build QuantumBlockEncoding.StatePreparationIntervalTree
       - name: Compile representative State Preparation benchmarks
         run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
       - name: Check executable Qiskit mirrors
