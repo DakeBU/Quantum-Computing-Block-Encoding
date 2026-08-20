@@ -1,0 +1,64 @@
+name: Final Pages dispatcher
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - ".github/workflows/final-pages-dispatch.yml"
+
+permissions:
+  contents: read
+  actions: write
+  pull-requests: write
+
+jobs:
+  dispatch-and-watch:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Dispatch current main Pages workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          before="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')"
+          gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main
+          echo "previous_run_id=${before}" >> "$GITHUB_ENV"
+
+      - name: Resolve dispatched run id
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_id=""
+          for _ in $(seq 1 30); do
+            candidate="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')"
+            if [[ -n "$candidate" && "$candidate" != "0" && "$candidate" != "${previous_run_id}" ]]; then
+              run_id="$candidate"
+              break
+            fi
+            sleep 2
+          done
+          test -n "$run_id"
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          echo "Dispatched Pages run: $run_id"
+          gh pr comment "${{ github.event.pull_request.number }}" --repo "$GITHUB_REPOSITORY" --body "Dispatched **Pages run ${run_id}** from current \`main\`; waiting for the complete Lean → catalog → Blueprint → site → deploy gate."
+
+      - name: Watch complete Pages admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh run watch "${{ steps.resolve.outputs.run_id }}" --repo "$GITHUB_REPOSITORY" --exit-status
+
+      - name: Report successful Pages admission
+        if: success()
+        shell: bash
+        run: |
+          gh pr comment "${{ github.event.pull_request.number }}" --repo "$GITHUB_REPOSITORY" --body "Pages run **${{ steps.resolve.outputs.run_id }}** completed successfully, including deploy. Ready for live-site verification and final branch pruning."
+
+      - name: Report failed Pages admission
+        if: failure() && steps.resolve.outputs.run_id != ''
+        shell: bash
+        run: |
+          gh pr comment "${{ github.event.pull_request.number }}" --repo "$GITHUB_REPOSITORY" --body "Pages run **${{ steps.resolve.outputs.run_id }}** failed. Inspect that exact run before any branch deletion."
