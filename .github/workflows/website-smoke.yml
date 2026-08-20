@@ -75,3 +75,59 @@ jobs:
               assert item['leanRoots']
           print('Robin + Papers + state-preparation teaching taxonomy: syntax and static structure valid')
           PY
+
+  apply-state-prep-finalization:
+    if: contains(github.event.head_commit.message, '[apply-state-prep-finalization]')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/papers-state-prep
+          fetch-depth: 0
+      - name: Switch to canonical paper routes and close Bell finite entries
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          bell = Path('QuantumBlockEncoding/StatePreparationBellRoute.lean')
+          text = bell.read_text(encoding='utf-8')
+          old = '''  simp [primitiveLEBits, primitiveBits2LE,
+    Robin.warmRobinUniformBitPrepare, bellAmplitude,
+    TextbookStatePreparation.invSqrtTwo]
+'''
+          new = '''  norm_num [primitiveLEBits,
+    Robin.warmRobinUniformBitPrepare, realOrthogonalRotation,
+    bellAmplitude, TextbookStatePreparation.invSqrtTwo]
+'''
+          if text.count(old) != 2:
+              raise SystemExit(f'expected two Bell RY entry blocks, found {text.count(old)}')
+          bell.write_text(text.replace(old, new), encoding='utf-8')
+
+          entry = Path('QuantumBlockEncoding/StatePreparationBenchmarks.lean')
+          text = entry.read_text(encoding='utf-8')
+          if 'StatePreparationPaperRoutesFinal' not in text:
+              raise SystemExit('public entrypoint no longer names the Final draft')
+          entry.write_text(
+              text.replace('StatePreparationPaperRoutesFinal', 'StatePreparationPaperRoutes'),
+              encoding='utf-8',
+          )
+
+          obsolete = Path('QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean')
+          if not obsolete.is_file():
+              raise SystemExit('obsolete Final route file is missing')
+          obsolete.unlink()
+          PY
+          git diff --check
+      - name: Commit canonical State Preparation route
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add QuantumBlockEncoding/StatePreparationBellRoute.lean \
+                  QuantumBlockEncoding/StatePreparationBenchmarks.lean \
+                  QuantumBlockEncoding/StatePreparationPaperRoutesFinal.lean
+          git commit -m 'Finalize canonical State Preparation routes'
+          git push origin HEAD:agent/papers-state-prep
