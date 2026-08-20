@@ -1,61 +1,118 @@
 # State-Preparation Route-Intuition Guide
 
-State preparation is the first ABEIS application direction.  The target is
-concrete:
+State Preparation asks for a unitary satisfying
 
-```text
-given a normalized state |psi>, construct a unitary U with U |0^n> = |psi>
-```
+\[
+U|0^n\rangle=|\psi\rangle,
+\qquad
+\sum_x |\psi_x|^2=1.
+\]
 
-In matrix form, the same target says that the first computational-basis column
-of `U` is `|psi>`.  This is the main invariant every candidate must preserve.
+Equivalently, the first computational-basis column of \(U\) is the target
+amplitude vector. Every candidate route must preserve this invariant.
 
-If the supplied vector is not normalized, do not call it a unitary-output state
-without repair.  Either normalize it and solve
-`U |0^n> = |v / ||v||>`, or restate the task as a rank-one operator
-`|v><0^n|` and send it to the block-encoding pipeline.
+This page is the **State Preparation route selector**. For the cross-cutting
+question “should this task be constructible under the stated access model?”,
+start with `../construction-methodology/index.md`.
 
-## Quick Gate Anchors
+## Before choosing a circuit: what information can be computed coherently?
 
-Use these as the teaching and sanity-check examples:
+A classical formula for \(\psi_x\) is useful only when the corresponding data
+can be exposed by a coherent reversible procedure at acceptable cost. The
+planner should ask, in this order:
 
-```text
-H |0> = (|0> + |1>) / sqrt(2)
-X |0> = |1>,   X |1> = |0>
-```
+1. Is the target normalized, or is a normalization constant efficiently known?
+2. Can amplitudes, phases, support labels, or conditional masses be computed
+   coherently?
+3. Can intermediate arithmetic be uncomputed so that promised clean ancillas
+   are restored?
+4. Is the requested approximation metric and precision explicit?
+5. Does the same information expose a more structured route than generic dense
+   synthesis?
 
-So Hadamard prepares an equal superposition from the zero state, while Pauli-X
-swaps the two computational-basis states.
+For a tree or interval construction, the central object is often the mass of a
+node \(v\),
 
-## Route Matrix
+\[
+M(v)=\sum_{x\in\mathrm{leaves}(v)} |\psi_x|^2,
+\]
 
-| Target/access model | Route worth trying | Main proof leaf | Deprioritize when |
+and the controlled split probability
+
+\[
+p(b\mid v)=\frac{M(vb)}{M(v)}.
+\]
+
+If these quantities can be evaluated coherently and converted into controlled
+rotations, recursive preparation is a natural route. Comparator and incrementer
+circuits become reusable memory whenever the leaves are ranges, prefixes, or
+piecewise arithmetic regions.
+
+## Route matrix
+
+| Target/access model | Route worth trying first | Main proof leaf | Warning sign |
 | --- | --- | --- | --- |
-| one-qubit or small named gate | direct gate action | compute the first column or basis action | target is formula-defined across many qubits |
-| explicit normalized vector in small dimension | dense unitary completion | prove the first column and unitarity of the completed matrix | vector length grows exponentially and no structure is used |
-| recursively splittable amplitude vector | amplitude-split tree | norm split plus controlled sub-preparation induction | amplitudes are not normalized or lack computable partial norms |
-| formula-defined amplitudes, e.g. grid polynomials | reversible arithmetic amplitude loading | compute value, rotate/load amplitude, uncompute workspace, prove error | arithmetic precision/error budget is not stated |
-| LCU weights or sparse/Gram construction | PREPARE primitive for block encoding | prove state preparation first, then consume it in a clean-block theorem | no downstream block-encoding route uses the prepared state |
-| unnormalized vector | normalize or rank-one fallback | prove norm/nonzero facts, or switch to `|v><0^n|` | task text silently treats an unnormalized vector as a state |
+| one-qubit or small named gate | direct gate action | exact basis/state action | no scaling story |
+| explicit small normalized vector | dense unitary completion / UCRY | normalization, unitarity, first column | dimension grows exponentially |
+| tensor/product state | independent local preparations | factor normalization and tensor action | hidden cross-coordinate correlation |
+| recursively splittable amplitudes | binary split / UCRY tree | partial masses and controlled rotations | partial masses are expensive or unstable |
+| interval/prefix-defined state | interval tree + reversible comparator/incrementer | exact predicate action, ancilla restoration, split amplitudes | range arithmetic dominates the state loader |
+| sparse support + amplitudes | pruned sparse preparation | support routing + amplitude action | support lookup itself is dense |
+| efficiently integrable probability law | Grover–Rudolph-style recursive probabilities | coherent integration / prefix-mass oracle | integration is only classically efficient, not coherently compiled |
+| coherent data lookup | SELECT/SWAP-style loading | lookup correctness + workspace restoration | QRAM/table access assumptions are unclear |
+| formula-defined amplitudes | reversible arithmetic amplitude loading | value computation, controlled rotation, uncompute, error | precision/error not budgeted |
+| approximate target | approximate preparation interface | norm/error theorem in declared metric | finite numerical check used as symbolic proof |
+| unnormalized vector | normalize, or route \(|v\rangle\langle0|\) to BE | nonzero norm / rank-one contract | silently calling an unnormalized vector a state |
 
-## Agent Discipline
+## Useful structural shortcuts
 
-Upper should classify the target before lower work starts:
+### Product structure
 
-1. normalized state preparation;
-2. normalized approximate state preparation with a declared epsilon;
-3. unnormalized rank-one operator, routed to block encoding;
-4. paper benchmark or external contract.
+If
 
-Middle should write proof leaves that expose the first-column invariant:
+\[
+|\psi\rangle=\bigotimes_{j=1}^m |\psi_j\rangle,
+\]
 
-```text
-candidate U
--> prove U is unitary
--> prove U |0^n> = |psi>
--> record resources and export instantiation
-```
+prepare the factors independently before retrieving a generic tree. ASPBE's
+Grover–Rudolph finite benchmark already demonstrates why recognizing this
+structure can remove unnecessary controlled branches.
 
-If a state-preparation candidate later becomes a block-encoding component,
-record that dependency explicitly rather than hiding it inside a larger
-clean-block proof.
+### Sparse structure
+
+If only \(d\) basis labels carry amplitude, route selection should depend on how
+the labels themselves are accessed. “Sparse as a vector” does not automatically
+mean “cheap as a circuit”; the support-address oracle is part of the contract.
+
+### Interval and prefix structure
+
+For states whose amplitudes or labels are piecewise over ranges, prefer an
+arithmetic predicate such as
+
+\[
+[x<\tau],\qquad [a\le x<b],
+\]
+
+computed reversibly into a flag, use the flag for the controlled operation, and
+uncompute it. The comparator/incrementer technical memory card is intended to
+make this pattern reusable rather than rediscovered case by case.
+
+## Certificate boundary
+
+A full exact State Preparation certificate needs all of:
+
+- target normalization;
+- unitary circuit semantics;
+- exact state action \(U|0^n\rangle=|\psi\rangle\);
+- restoration of any promised clean workspace;
+- resource numbers derived from the same circuit that proves the state action.
+
+A source paper's asymptotic circuit-size or depth theorem is a separate claim
+unless ASPBE has formalized that resource proof as well.
+
+## Agent discipline
+
+Upper freezes the target and access model. Middle retrieves the shortest
+compatible route and its memory cards. Lower proves one ready leaf at a time.
+The reviewer rejects any resource comparison whose candidates do not inhabit
+the same semantic fibre.
