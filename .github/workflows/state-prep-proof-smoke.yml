@@ -1,3 +1,4 @@
+# catalog-regeneration child-PR trigger
 name: State-preparation proof smoke
 
 on:
@@ -51,13 +52,11 @@ jobs:
           import importlib.util
           import math
           from pathlib import Path
-
           path = Path('executable-exports/SP-PAPERS-001/qiskit/export.py')
           spec = importlib.util.spec_from_file_location('sp_export', path)
           module = importlib.util.module_from_spec(spec)
           assert spec.loader is not None
           spec.loader.exec_module(module)
-
           targets = {
               'bell': ([1 / math.sqrt(2), 0, 0, 1 / math.sqrt(2)], 2, 2),
               'mottonen': ([39/169, 52/169, 60/169, 144/169], 5, 4),
@@ -88,7 +87,6 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-
           path = Path('scripts/generate-blueprint-catalog.py')
           text = path.read_text(encoding='utf-8')
           marker = '''            "Robin/SystemConjugation.lean",
@@ -124,10 +122,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/generate-blueprint-catalog.py \
-            ABEISBlueprint/Catalog/PaperAndExamples.lean \
-            web/library/declarations.json \
-            docs/blueprint-coverage.json
+          git add scripts/generate-blueprint-catalog.py ABEISBlueprint/Catalog/PaperAndExamples.lean web/library/declarations.json docs/blueprint-coverage.json
           if git diff --cached --quiet; then
             echo 'Catalog already current.'
             exit 0
