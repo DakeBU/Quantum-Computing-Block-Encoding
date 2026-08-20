@@ -67,9 +67,53 @@ def literature : List PaperEntry :=
       year := 2026,
       role := PaperRole.arithmeticCircuits,
       status := ImplementationStatus.skeleton,
-      targetFile := "QuantumBlockEncoding/PromiseGateOptimization.lean",
+      targetFile := "QuantumBlockEncoding/ComparatorIncrementer.lean",
       url := "https://arxiv.org/abs/2603.12917",
-      note := "ASPBE formalizes the controlled-conjugation and involutory dirty-flag identities; the paper's complete comparator and incrementer constructions remain outside current scope."
+      note := "ASPBE has compiled generic promise-gate identities in PromiseGateOptimization and now carries a finite reversible-to-primitive arithmetic kernel with a 3-bit incrementer, a 2-bit <3 comparator, a clean compute/use/uncompute interval selector, and circuit-derived T/Toffoli/depth records pending branch Lean-gate admission. The paper-wide arbitrary-width Theta(n) gate-count, Theta(log n) depth, minimum-qubit, and recursive optimality results remain source-only until reproduced in Lean."
+    },
+    {
+      key := "mottonen-vartiainen-bergholm-salomaa-2005-state-preparation",
+      title := "Transformation of quantum states using uniformly controlled rotations",
+      authors := "Mikko Mottonen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa",
+      year := 2005,
+      role := PaperRole.statePreparation,
+      status := ImplementationStatus.skeleton,
+      targetFile := "QuantumBlockEncoding/StatePreparationPaperRoutes.lean",
+      url := "https://arxiv.org/abs/quant-ph/0407010",
+      note := "ASPBE formalizes an exact dense two-qubit target, full unitary completion, typed root-RY plus one-control-UCRY circuit, exact clean-input state action, and circuit-derived finite resources. General n-qubit state-to-state synthesis, phase loading, arbitrary-width analytic angle construction, and the paper-wide CNOT/rotation count theorem remain open."
+    },
+    {
+      key := "grover-rudolph-2002-state-preparation",
+      title := "Creating superpositions that correspond to efficiently integrable probability distributions",
+      authors := "Lov Grover, Terry Rudolph",
+      year := 2002,
+      role := PaperRole.statePreparation,
+      status := ImplementationStatus.skeleton,
+      targetFile := "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+      url := "https://arxiv.org/abs/quant-ph/0208112",
+      note := "ASPBE formalizes an exact two-bit product-distribution target and two typed routes preparing the same state; the structure-aware factorized circuit is Lean-compared against the generic tree at finite width. The general efficiently-integrable recursive probability-loading theorem and end-to-end coherent integration/arithmetic oracle compiler remain open."
+    },
+    {
+      key := "li-luo-2025-sparse-state-preparation",
+      title := "Nearly Optimal Circuit Size for Sparse Quantum State Preparation",
+      authors := "Lvzhou Li, Jingquan Luo",
+      year := 2025,
+      role := PaperRole.statePreparation,
+      status := ImplementationStatus.skeleton,
+      targetFile := "QuantumBlockEncoding/StatePreparationPaperRoutes.lean",
+      url := "https://arxiv.org/abs/2406.16142",
+      note := "ASPBE formalizes an exact n=3, d=3 sparse witness, a typed pruned preparation route, a same-target dense zero-fill baseline, and a finite Lean-certified resource improvement. The paper's arbitrary-width sparse synthesis, ancilla/circuit-size tradeoffs, and matching lower bounds remain source-only."
+    },
+    {
+      key := "low-kliuchnikov-schaeffer-2018-state-preparation",
+      title := "Trading T gates for dirty qubits in state preparation and unitary synthesis",
+      authors := "Guang Hao Low, Vadym Kliuchnikov, Luke Schaeffer",
+      year := 2018,
+      role := PaperRole.statePreparation,
+      status := ImplementationStatus.skeleton,
+      targetFile := "QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean",
+      url := "https://arxiv.org/abs/1812.00954",
+      note := "ASPBE formalizes the finite clean-qubit SelectSwap T-count arithmetic used by its current benchmark, including a checked finite lambda tradeoff. Coherent lookup/SelectSwap semantics, dirty-qubit correctness, approximation/error accounting, and the full asymptotic state-preparation theorem remain open."
     },
     {
       key := "kharazi-alkadri-liu-mandadapu-whaley-2025-bvp",
