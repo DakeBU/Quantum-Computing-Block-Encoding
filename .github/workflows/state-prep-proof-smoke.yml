@@ -27,7 +27,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   state-prep-proof:
@@ -73,3 +73,64 @@ jobs:
               assert circuit.depth() == depth, (name, circuit.depth(), depth)
               print(f'{name}: amplitude error={error:.3e}, gates={gates}, depth={depth}')
           PY
+
+  regenerate-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout integration branch
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Register State Preparation modules and regenerate generated evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/generate-blueprint-catalog.py')
+          text = path.read_text(encoding='utf-8')
+          marker = '''            "Robin/SystemConjugation.lean",
+        },
+    ),'''
+          replacement = '''            "Robin/SystemConjugation.lean",
+            "StatePreparationBenchmarksCoreFixed.lean",
+            "StatePreparationPrimitiveRoutes.lean",
+            "StatePreparationBellRoute.lean",
+            "StatePreparationPaperEntryCertificates.lean",
+            "StatePreparationPaperRoutesCompact.lean",
+            "StatePreparationPaperRoutes.lean",
+            "StatePreparationBenchmarks.lean",
+        },
+    ),'''
+          if '"StatePreparationPaperRoutesCompact.lean"' not in text:
+              if marker not in text:
+                  raise SystemExit('PaperAndExamples catalog marker not found')
+              text = text.replace(marker, replacement, 1)
+          text = text.replace(
+              '"Paper-facing backend models and concrete Robin-boundary example "\n        "artifacts."',
+              '"Paper-facing backend models and concrete State Preparation / Robin "\n        "example artifacts."',
+              1,
+          )
+          path.write_text(text, encoding='utf-8')
+          PY
+          python3 scripts/generate-blueprint-catalog.py
+          python3 scripts/generate-blueprint-catalog.py --check
+          git diff --check
+      - name: Commit generated catalog evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/generate-blueprint-catalog.py \
+            ABEISBlueprint/Catalog/PaperAndExamples.lean \
+            web/library/declarations.json \
+            docs/blueprint-coverage.json
+          if git diff --cached --quiet; then
+            echo 'Catalog already current.'
+            exit 0
+          fi
+          git commit -m 'Regenerate library catalog for State Preparation routes'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
