@@ -8,6 +8,7 @@ import QuantumBlockEncoding.Circuit
 import QuantumBlockEncoding.CircuitSemantics
 import QuantumBlockEncoding.ComparatorIncrementer
 import QuantumBlockEncoding.ComparatorIncrementerGeneral
+import QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
 import QuantumBlockEncoding.Core
 import QuantumBlockEncoding.ColdStartTransferE1
 import QuantumBlockEncoding.ConcreteSemantics
