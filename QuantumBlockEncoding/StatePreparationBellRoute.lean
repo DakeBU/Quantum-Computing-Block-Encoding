@@ -86,9 +86,9 @@ private theorem bellRy_entry_00 :
   rw [evalPrimitiveCircuitLE_singleton_ry_apply]
   rw [if_pos (by native_decide)]
   rw [standardRyMatrix_bellRyAngle]
-  simp [primitiveLEBits, primitiveBits2LE,
-    Robin.warmRobinUniformBitPrepare, bellAmplitude,
-    TextbookStatePreparation.invSqrtTwo]
+  norm_num [primitiveLEBits,
+    Robin.warmRobinUniformBitPrepare, realOrthogonalRotation,
+    bellAmplitude, TextbookStatePreparation.invSqrtTwo]
 
 private theorem bellRy_entry_10 :
     evalPrimitiveCircuitLE bellRyCircuit (1 : Fin 4) (0 : Fin 4) =
@@ -97,9 +97,9 @@ private theorem bellRy_entry_10 :
   rw [evalPrimitiveCircuitLE_singleton_ry_apply]
   rw [if_pos (by native_decide)]
   rw [standardRyMatrix_bellRyAngle]
-  simp [primitiveLEBits, primitiveBits2LE,
-    Robin.warmRobinUniformBitPrepare, bellAmplitude,
-    TextbookStatePreparation.invSqrtTwo]
+  norm_num [primitiveLEBits,
+    Robin.warmRobinUniformBitPrepare, realOrthogonalRotation,
+    bellAmplitude, TextbookStatePreparation.invSqrtTwo]
 
 private theorem bellRy_entry_20 :
     evalPrimitiveCircuitLE bellRyCircuit (2 : Fin 4) (0 : Fin 4) = 0 := by
