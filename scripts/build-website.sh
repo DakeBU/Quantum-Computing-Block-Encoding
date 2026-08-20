@@ -31,7 +31,8 @@ python3 -m py_compile \
   website/scripts/test_casebook_enrichment.py \
   website/scripts/test_casebook_polish.py \
   tools/export_robin_evolution.py \
-  tools/replay_public_cases.py
+  tools/replay_public_cases.py \
+  tools/lean_graph_reuse_metrics.py
 
 python3 -m unittest \
   website.scripts.test_site_contracts \
@@ -61,6 +62,13 @@ cp -a _out/site/. _site/
 cp -a _out/blueprint/. _site/blueprint/
 touch _site/.nojekyll
 
+# Read-only library-factorization profile.  This consumes the generated graph
+# but never rewrites or replaces it; correctness continues to come from Lean.
+python3 tools/lean_graph_reuse_metrics.py --self-test
+python3 tools/lean_graph_reuse_metrics.py \
+  _site/data/lean-graph.json \
+  --output _site/data/lean-graph-reuse-metrics.json
+
 python3 website/scripts/check_site.py --root _site --require-blueprint
 python3 website/scripts/check_source_links.py --root _site
 python3 website/scripts/test_preview.py
@@ -84,6 +92,7 @@ test -f _site/papers/low-kliuchnikov-schaeffer-2018/index.html
 test -f _site/data/example-cases.json
 test -f _site/data/papers.json
 test -f _site/data/case-source-anchors.json
+test -f _site/data/lean-graph-reuse-metrics.json
 test -f _site/static/learning.css
 test -f _site/static/casebook.css
 
