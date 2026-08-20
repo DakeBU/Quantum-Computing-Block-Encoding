@@ -1,326 +1,56 @@
-name: Patch hierarchical taxonomy navigation once
+name: Fast website teaching contract
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - "agent/**"
     paths:
+      - "website/**"
+      - "README.md"
+      - "docs/assets/**"
+      - "matplotlibrc"
+      - "tools/check_public_figure_style.py"
+      - "scripts/build-website.sh"
       - ".github/workflows/website-smoke.yml"
+  pull_request:
+    paths:
+      - "website/**"
+      - "README.md"
+      - "docs/assets/**"
+      - "matplotlibrc"
+      - "tools/check_public_figure_style.py"
+      - "scripts/build-website.sh"
+      - ".github/workflows/website-smoke.yml"
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  patch-taxonomy:
+  teaching-contract:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout
         uses: actions/checkout@v5
-        with:
-          ref: main
-          fetch-depth: 2
 
-      - name: Patch final taxonomy publisher
-        shell: bash
+      - name: Check public figure typography and formulas
+        run: python3 tools/check_public_figure_style.py
+
+      - name: Check website generators and teaching data
         run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-
-          path = Path("website/scripts/publish_taxonomy.py")
-          text = path.read_text(encoding="utf-8")
-
-          case_topic = '''def case_topic(case: dict[str, object]) -> str:\n    return "statePreparation" if case.get("kind") == "statePreparation" else "blockEncoding"\n\n'''
-          helpers = r'''def dedupe_cases(cases: list[dict[str, object]]) -> list[dict[str, object]]:
-              """Keep one public case per slug, preferring the latest richer record."""
-              order: list[str] = []
-              by_slug: dict[str, dict[str, object]] = {}
-              for case in cases:
-                  slug = str(case["slug"])
-                  if slug not in by_slug:
-                      order.append(slug)
-                  by_slug[slug] = case
-              return [by_slug[slug] for slug in order]
-
-
-          def paper_identifier(item: dict[str, object]) -> str:
-              return str(item.get("slug") or item.get("key") or build_site.slug(str(item["title"])))
-
-
-          PAPER_NAV_LABELS = {
-              "ghl2025-robin": "GHL Robin PDE",
-              "mottonen-2005-state-preparation": "Möttönen UCRY",
-              "grover-rudolph-2002": "Grover–Rudolph",
-              "li-luo-sparse-state-2025": "Li–Luo sparse",
-              "low-kliuchnikov-schaeffer-2018": "Low–Kliuchnikov–Schaeffer",
-              "sun-tian-yang-yuan-zhang-2021": "Sun et al. optimal depth",
-              "plesch-brukner-2011": "Plesch–Brukner",
-              "shende-bullock-markov-2006": "Shende–Bullock–Markov",
-          }
-
-
-          def paper_nav_label(item: dict[str, object]) -> str:
-              return PAPER_NAV_LABELS.get(paper_identifier(item), str(item["title"]))
-
-
-          def case_nav_label(case: dict[str, object]) -> str:
-              label = str(case.get("shortTitle") or case.get("title") or case["slug"])
-              for prefix in ("State prep: ", "BE "):
-                  if label.startswith(prefix):
-                      return label[len(prefix):]
-              return label
-
-
-          '''
-          if "def dedupe_cases(" not in text:
-              if case_topic not in text:
-                  raise SystemExit("case_topic insertion marker missing")
-              text = text.replace(case_topic, case_topic + helpers, 1)
-
-          # Give every paper on a topic page a stable in-page target so queued papers
-          # are also clickable children of SP/BE, not loose top-level sidebar entries.
-          rp_start = text.index("def render_paper_topic_page(")
-          rp_end = text.index("\n\ndef source_anchor_card", rp_start)
-          rp = text[rp_start:rp_end]
-          old_loop = '    for item in selected:\n        route = str(item.get("route", ""))\n'
-          new_loop = '    for item in selected:\n        item_key = paper_identifier(item)\n        route = str(item.get("route", ""))\n'
-          if old_loop in rp:
-              rp = rp.replace(old_loop, new_loop, 1)
-          old_article = "            f'''<article class=\"result\">"
-          new_article = "            f'''<article class=\"result\" id=\"paper-{html.escape(item_key)}\">"
-          if old_article in rp:
-              rp = rp.replace(old_article, new_article, 1)
-          text = text[:rp_start] + rp + text[rp_end:]
-
-          nav_start = text.index("def enhance_navigation(root: Path) -> None:\n")
-          nav_end = text.index("\n\ndef publish(root: Path) -> None:\n", nav_start)
-          nav_code = r'''def _current_attr(current: str, target: str) -> str:
-              return ' aria-current="page"' if current == target else ""
-
-
-          def render_papers_navigation(
-              prefix: str, current: str, papers: dict[str, object]
-          ) -> str:
-              items = [dict(x) for x in papers.get("featured", [])] + [
-                  dict(x) for x in papers.get("queue", [])
-              ]
-              parts = [
-                  '<strong class="nav-group-label">Papers</strong>',
-                  f'<a href="{prefix}papers/index.html"{_current_attr(current, "papers/index.html")}>All papers</a>',
-                  '<div class="taxonomy-nav" data-taxonomy-nav="papers">',
-              ]
-              for topic_key, topic in TOPICS.items():
-                  topic_slug = str(topic["slug"])
-                  topic_title = str(topic["title"])
-                  topic_code = "SP" if topic_key == "statePreparation" else "BE"
-                  topic_target = f"papers/{topic_slug}/index.html"
-                  selected = [item for item in items if item.get("category") == topic_key]
-                  parts.extend([
-                      f'<div class="taxonomy-topic" data-topic="{topic_slug}">',
-                      '<div class="chapter-nav topic-nav">',
-                      f'<a href="{prefix}{topic_target}"{_current_attr(current, topic_target)}><span>{topic_code}</span><span>{html.escape(topic_title)}</span></a>',
-                      '</div>',
-                      '<div class="chapter-nav paper-nav taxonomy-children" style="margin:2px 0 12px 20px;padding-left:10px;border-left:1px solid var(--line);">',
-                  ])
-                  for index, item in enumerate(selected, start=1):
-                      item_key = paper_identifier(item)
-                      route = str(item.get("route", ""))
-                      if route:
-                          target = f"{route}index.html"
-                      else:
-                          target = f"papers/{topic_slug}/index.html#paper-{item_key}"
-                      current_target = target.split("#", 1)[0]
-                      parts.append(
-                          f'<a href="{prefix}{html.escape(target)}" data-paper="{html.escape(item_key)}" data-topic="{topic_slug}"{_current_attr(current, current_target)}>'
-                          f'<span>{index:02d}</span><span>{html.escape(paper_nav_label(item))}</span></a>'
-                      )
-                  parts.extend(['</div>', '</div>'])
-              parts.extend([
-                  '</div>',
-                  f'<a class="taxonomy-utility" href="{prefix}papers/index.html#reproduction-queue">Paper reproduction queue →</a>',
-              ])
-              return "".join(parts)
-
-
-          def render_examples_navigation(
-              prefix: str, current: str, cases: list[dict[str, object]]
-          ) -> str:
-              parts = [
-                  '<strong class="nav-group-label">Example Cases</strong>',
-                  f'<a href="{prefix}example-cases/index.html"{_current_attr(current, "example-cases/index.html")}>All examples</a>',
-                  '<div class="taxonomy-nav" data-taxonomy-nav="example-cases">',
-              ]
-              for topic_key, topic in TOPICS.items():
-                  topic_slug = str(topic["slug"])
-                  topic_title = str(topic["title"])
-                  topic_code = "SP" if topic_key == "statePreparation" else "BE"
-                  topic_target = f"example-cases/{topic_slug}/index.html"
-                  selected = [case for case in cases if case_topic(case) == topic_key]
-                  parts.extend([
-                      f'<div class="taxonomy-topic" data-topic="{topic_slug}">',
-                      '<div class="chapter-nav topic-nav">',
-                      f'<a href="{prefix}{topic_target}"{_current_attr(current, topic_target)}><span>{topic_code}</span><span>{html.escape(topic_title)}</span></a>',
-                      '</div>',
-                      '<div class="chapter-nav example-nav taxonomy-children" style="margin:2px 0 12px 20px;padding-left:10px;border-left:1px solid var(--line);">',
-                  ])
-                  for index, case in enumerate(selected, start=1):
-                      slug = str(case["slug"])
-                      target = f"example-cases/{slug}/index.html"
-                      parts.append(
-                          f'<a href="{prefix}{target}" data-case="{html.escape(slug)}" data-topic="{topic_slug}"{_current_attr(current, target)}>'
-                          f'<span>{index:02d}</span><span>{html.escape(case_nav_label(case))}</span></a>'
-                      )
-                  parts.extend(['</div>', '</div>'])
-              parts.append('</div>')
-              return "".join(parts)
-
-
-          def enhance_navigation(
-              root: Path, cases: list[dict[str, object]], papers: dict[str, object]
-          ) -> None:
-              # Ensure the Papers peer group exists, then replace both old flat groups
-              # with the final two-level taxonomy.  This is deliberately a replacement,
-              # not an insertion: no Robin/case entry may remain beside SP/BE.
-              publish_extensions.rewrite_navigation(root)
-              papers_pattern = re.compile(
-                  r'<strong class="nav-group-label">Papers</strong>.*?(?=<strong class="nav-group-label">Example Cases</strong>)',
-                  flags=re.S,
-              )
-              examples_pattern = re.compile(
-                  r'<strong class="nav-group-label">Example Cases</strong>.*?(?=<strong class="nav-group-label">Reference</strong>)',
-                  flags=re.S,
-              )
-              for path in root.rglob("*.html"):
-                  text = path.read_text(encoding="utf-8")
-                  prefix = publish_extensions.relative_prefix(root, path)
-                  current = path.relative_to(root).as_posix()
-                  if not papers_pattern.search(text):
-                      raise RuntimeError(f"cannot find Papers navigation group in {path}")
-                  if not examples_pattern.search(text):
-                      raise RuntimeError(f"cannot find Example Cases navigation group in {path}")
-                  text = papers_pattern.sub(
-                      render_papers_navigation(prefix, current, papers), text, count=1
-                  )
-                  text = examples_pattern.sub(
-                      render_examples_navigation(prefix, current, cases), text, count=1
-                  )
-                  path.write_text(text, encoding="utf-8")
-          '''
-          text = text[:nav_start] + nav_code + text[nav_end:]
-
-          # Dedupe the extension/base overlap before any public topic page or sidebar
-          # is built, persist the canonical catalog, and rebuild All examples/search
-          # metadata from that canonical list.
-          old_cases = '''    case_payload = load_json(root / "data" / "example-cases.json")
-              cases = [dict(case) for case in case_payload.get("cases", [])]
-              if not cases:
-          '''
-          new_cases = '''    case_payload = load_json(root / "data" / "example-cases.json")
-              raw_cases = [dict(case) for case in case_payload.get("cases", [])]
-              cases = dedupe_cases(raw_cases)
-              case_payload["cases"] = cases
-              (root / "data" / "example-cases.json").write_text(
-                  json.dumps(case_payload, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
-              )
-              if not cases:
-          '''
-          if old_cases not in text:
-              raise SystemExit("publish case block marker missing")
-          text = text.replace(old_cases, new_cases, 1)
-
-          old_context = '''    context = build_site.git_context()
-
-              for key, topic in TOPICS.items():
-          '''
-          new_context = '''    context = build_site.git_context()
-              build_site.write_page(
-                  root,
-                  "example-cases",
-                  build_site.render_example_case_index(cases, coverage, gate, context),
-              )
-              declarations_list, _ = publish_extensions.declarations_from_site(root)
-              publish_extensions.rebuild_search_and_metadata(root, declarations_list, cases)
-
-              for key, topic in TOPICS.items():
-          '''
-          if old_context not in text:
-              raise SystemExit("publish context marker missing")
-          text = text.replace(old_context, new_context, 1)
-
-          text = text.replace(
-              "    enhance_navigation(root)\n    validate_published(root, anchors)\n",
-              "    enhance_navigation(root, cases, papers)\n    validate_published(root, anchors, cases, papers)\n",
-              1,
-          )
-
-          vp_start = text.index("def validate_published(root: Path, anchors: dict[str, object]) -> None:\n")
-          vp_end = text.index("\n\ndef main() -> None:\n", vp_start)
-          validation = r'''def validate_published(
-              root: Path,
-              anchors: dict[str, object],
-              cases: list[dict[str, object]],
-              papers: dict[str, object],
-          ) -> None:
-              for parent in ("example-cases", "papers"):
-                  landing = (root / parent / "index.html").read_text(encoding="utf-8")
-                  for topic in TOPICS.values():
-                      route = root / parent / str(topic["slug"]) / "index.html"
-                      if not route.is_file():
-                          raise RuntimeError(f"missing topic subchapter: {route}")
-                      if str(topic["title"]) not in landing:
-                          raise RuntimeError(f"{parent} landing lost {topic['title']} topic card")
-              for slug, raw in dict(anchors["cases"]).items():
-                  text = (root / "example-cases" / str(slug) / "index.html").read_text(encoding="utf-8")
-                  record = dict(raw)
-                  for token in ("Where this example comes from", "Source anchor.", str(record["anchorLabel"]), "What the paper says.", "What ASPBE does here."):
-                      if token not in text:
-                          raise RuntimeError(f"source-facing case lost {token!r}: {slug}")
-
-              published_cases = [dict(case) for case in load_json(root / "data" / "example-cases.json").get("cases", [])]
-              published_slugs = [str(case["slug"]) for case in published_cases]
-              if len(published_slugs) != len(set(published_slugs)):
-                  raise RuntimeError("published Example Cases catalog still contains duplicate slugs")
-
-              sample = (root / "index.html").read_text(encoding="utf-8")
-              for marker in ('data-taxonomy-nav="papers"', 'data-taxonomy-nav="example-cases"'):
-                  if sample.count(marker) != 1:
-                      raise RuntimeError(f"global navigation lost unique hierarchical taxonomy: {marker}")
-              if 'data-topic-links=' in sample:
-                  raise RuntimeError("legacy flat topic navigation survived final taxonomy replacement")
-
-              for case in cases:
-                  slug = str(case["slug"])
-                  topic_slug = str(TOPICS[case_topic(case)]["slug"])
-                  marker = f'data-case="{slug}" data-topic="{topic_slug}"'
-                  if sample.count(marker) != 1:
-                      raise RuntimeError(f"case is not exactly once under its SP/BE subtree: {slug}")
-
-              paper_items = [dict(x) for x in papers.get("featured", [])] + [dict(x) for x in papers.get("queue", [])]
-              for item in paper_items:
-                  item_key = paper_identifier(item)
-                  topic_key = str(item["category"])
-                  topic_slug = str(TOPICS[topic_key]["slug"])
-                  marker = f'data-paper="{item_key}" data-topic="{topic_slug}"'
-                  if sample.count(marker) != 1:
-                      raise RuntimeError(f"paper is not exactly once under its SP/BE subtree: {item_key}")
-              if 'data-paper="ghl2025-robin" data-topic="block-encoding"' not in sample:
-                  raise RuntimeError("GHL Robin PDE is not nested under Papers / Block Encoding")
-          '''
-          text = text[:vp_start] + validation + text[vp_end:]
-
-          path.write_text(text, encoding="utf-8")
-          PY
-
-          python3 -m py_compile website/scripts/publish_taxonomy.py
+          python3 -m py_compile \
+            website/scripts/build_site.py \
+            website/scripts/lean_graph.py \
+            website/scripts/enrich_casebook.py \
+            website/scripts/enforce_robin_reader_contract.py \
+            website/scripts/polish_casebook.py \
+            website/scripts/publish_extensions.py \
+            website/scripts/publish_paper_pages.py \
+            website/scripts/publish_taxonomy.py \
+            website/scripts/test_casebook_enrichment.py \
+            website/scripts/test_casebook_polish.py
+          python3 -m unittest \
+            website.scripts.test_casebook_enrichment \
+            website.scripts.test_casebook_polish
           python3 website/scripts/publish_taxonomy.py --check-data
-          git diff --check
-
-      - name: Commit fix and restore normal smoke workflow
-        shell: bash
-        run: |
-          set -euo pipefail
-          git show HEAD^:.github/workflows/website-smoke.yml > .github/workflows/website-smoke.yml
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add website/scripts/publish_taxonomy.py .github/workflows/website-smoke.yml
-          git commit -m 'Nest Papers and Example Cases by quantum interface'
-          git push origin HEAD:main
