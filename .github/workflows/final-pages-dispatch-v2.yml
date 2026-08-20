@@ -1,0 +1,108 @@
+name: Final Pages repair dispatcher v2
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - ".github/workflows/final-pages-dispatch-v2.yml"
+
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+
+jobs:
+  repair-dispatch-watch:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Repair taxonomy links and full manual admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          taxonomy = Path('website/scripts/publish_taxonomy.py')
+          text = taxonomy.read_text(encoding='utf-8')
+          text = text.replace(
+              'prefix="..",\n        parent="example-cases",',
+              'prefix="../",\n        parent="example-cases",',
+              1,
+          )
+          text = text.replace(
+              'prefix="..",\n        parent="papers",',
+              'prefix="../",\n        parent="papers",',
+              1,
+          )
+          if 'prefix="../",\n        parent="example-cases",' not in text:
+              raise SystemExit('taxonomy example-case prefix patch did not match')
+          if 'prefix="../",\n        parent="papers",' not in text:
+              raise SystemExit('taxonomy papers prefix patch did not match')
+          taxonomy.write_text(text, encoding='utf-8')
+
+          pages = Path('.github/workflows/pages.yml')
+          text = pages.read_text(encoding='utf-8')
+          marker = 'Manual admission requested; rebuilding the complete Lean and Blueprint layers.'
+          if marker not in text:
+              needle = '''          set -euo pipefail
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+'''
+              replacement = '''          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Manual admission requested; rebuilding the complete Lean and Blueprint layers."
+            exit 0
+          fi
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+'''
+              if needle not in text:
+                  raise SystemExit('pages proof-change detector marker not found')
+              text = text.replace(needle, replacement, 1)
+          pages.write_text(text, encoding='utf-8')
+          PY
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/scripts/publish_taxonomy.py .github/workflows/pages.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Repair taxonomy links and force complete Pages admission'
+            git push origin HEAD:main
+          fi
+
+      - name: Dispatch Pages from repaired main
+        id: dispatch
+        shell: bash
+        run: |
+          set -euo pipefail
+          before="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')"
+          gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main
+          run_id=""
+          for _ in $(seq 1 40); do
+            candidate="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --event workflow_dispatch --limit 1 --json databaseId --jq '.[0].databaseId // 0')"
+            if [[ -n "$candidate" && "$candidate" != "0" && "$candidate" != "$before" ]]; then
+              run_id="$candidate"
+              break
+            fi
+            sleep 2
+          done
+          test -n "$run_id"
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          gh pr comment "${{ github.event.pull_request.number }}" --repo "$GITHUB_REPOSITORY" --body "Repaired main and dispatched **Pages run ${run_id}** with a full Lean → catalog → Blueprint → site → deploy admission."
+
+      - name: Watch complete Pages admission
+        shell: bash
+        run: gh run watch "${{ steps.dispatch.outputs.run_id }}" --repo "$GITHUB_REPOSITORY" --exit-status
+
+      - name: Report result
+        if: always() && steps.dispatch.outputs.run_id != ''
+        shell: bash
+        run: gh pr comment "${{ github.event.pull_request.number }}" --repo "$GITHUB_REPOSITORY" --body "Pages run **${{ steps.dispatch.outputs.run_id }}** finished with dispatcher status **${{ job.status }}**."
