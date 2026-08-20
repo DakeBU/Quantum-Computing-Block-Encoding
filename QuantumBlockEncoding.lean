@@ -22,6 +22,7 @@ import QuantumBlockEncoding.OpenProblemsAudit
 import QuantumBlockEncoding.OptimalControl
 import QuantumBlockEncoding.PrimitiveCircuit
 import QuantumBlockEncoding.PrimitiveBasisLE
+import QuantumBlockEncoding.PrimitiveBasisLE4
 import QuantumBlockEncoding.PrimitiveSemantics
 import QuantumBlockEncoding.PromiseGateOptimization
 import QuantumBlockEncoding.PrimitiveRefinement
@@ -66,6 +67,7 @@ import QuantumBlockEncoding.Robin.ResourceComparison
 import QuantumBlockEncoding.StatePreparation
 import QuantumBlockEncoding.StatePreparationBenchmarks
 import QuantumBlockEncoding.StatePreparationIntervalTree
+import QuantumBlockEncoding.StatePreparationIntervalTreeEndToEnd
 import QuantumBlockEncoding.TechnicalLemmas
 import QuantumBlockEncoding.TextbookStatePreparation
 import QuantumBlockEncoding.TeachingRouteClosures
