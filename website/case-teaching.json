@@ -3,7 +3,11 @@
   "foundation": {
     "title": "Before the cases: how a quantum algorithm gets access to data and matrices",
     "lead": "A quantum algorithm is not given a NumPy array for free. Before discussing speedups, we must say how classical data, matrix entries, or a linear operator become quantum operations. State preparation, query oracles, and block encodings are three different access contracts.",
-    "sourceAnchors": ["ibm-basics", "ibm-circuits", "lin-notes"],
+    "sourceAnchors": [
+      "ibm-basics",
+      "ibm-circuits",
+      "lin-notes"
+    ],
     "accessModels": [
       {
         "name": "State preparation",
@@ -28,13 +32,34 @@
       }
     ],
     "circuitLegend": [
-      ["wire", "A horizontal wire is one qubit/register. Time flows from left to right."],
-      ["|0>", "A ket at the left fixes the input state of that wire."],
-      ["H, X, RY", "A box is a gate. Its matrix acts when the state reaches that box."],
-      ["control", "A control dot means another gate acts only when the control condition is satisfied."],
-      ["dagger", "U† means the inverse/conjugate-transpose circuit; it often uncomputes temporary information."],
-      ["ancilla", "An ancilla is workspace. A clean block-encoding proof normally requires selected ancillas to start and end in |0>."],
-      ["measurement", "Measurement converts quantum amplitudes into classical outcomes; it is different from the coherent unitary part of the circuit."]
+      [
+        "wire",
+        "A horizontal wire is one qubit/register. Time flows from left to right."
+      ],
+      [
+        "|0>",
+        "A ket at the left fixes the input state of that wire."
+      ],
+      [
+        "H, X, RY",
+        "A box is a gate. Its matrix acts when the state reaches that box."
+      ],
+      [
+        "control",
+        "A control dot means another gate acts only when the control condition is satisfied."
+      ],
+      [
+        "dagger",
+        "U† means the inverse/conjugate-transpose circuit; it often uncomputes temporary information."
+      ],
+      [
+        "ancilla",
+        "An ancilla is workspace. A clean block-encoding proof normally requires selected ancillas to start and end in |0>."
+      ],
+      [
+        "measurement",
+        "Measurement converts quantum amplitudes into classical outcomes; it is different from the coherent unitary part of the circuit."
+      ]
     ]
   },
   "cases": {
@@ -43,9 +68,18 @@
       "whyThisCase": "A quantum algorithm must begin in a quantum state. This one-qubit example isolates that input-access problem: can a circuit take the easy state |0> to the requested target |1>?",
       "algorithmContext": "This is not claiming a speedup. It is the smallest possible instance of the same contract used when a larger algorithm asks for an input state |psi>.",
       "circuitReading": [
-        ["Start", "The wire begins in |0>."],
-        ["Gate", "The X box swaps the amplitudes of |0> and |1>."],
-        ["Finish", "The output is exactly |1>; there is no ancilla and no measurement in the certificate."]
+        [
+          "Start",
+          "The wire begins in |0>."
+        ],
+        [
+          "Gate",
+          "The X box swaps the amplitudes of |0> and |1>."
+        ],
+        [
+          "Finish",
+          "The output is exactly |1>; there is no ancilla and no measurement in the certificate."
+        ]
       ],
       "theorems": [
         {
@@ -54,10 +88,22 @@
           "statementFormula": "X|0\\rangle=|1\\rangle,\\qquad X^\\dagger X=I",
           "statementProse": "The target vector is normalized, X is unitary, and applying X to the zero basis state returns the target exactly.",
           "proofSteps": [
-            ["Normalize the target", "The target has one amplitude equal to 1 and all others 0, so its norm is 1."],
-            ["Prove unitarity", "X is a permutation matrix and therefore preserves the computational basis and inner products."],
-            ["Check the zero input", "The first column of X is exactly the vector |1>."],
-            ["Package the certificate", "The target, circuit, semantic proof, and one-gate resource record are stored together."]
+            [
+              "Normalize the target",
+              "The target has one amplitude equal to 1 and all others 0, so its norm is 1."
+            ],
+            [
+              "Prove unitarity",
+              "X is a permutation matrix and therefore preserves the computational basis and inner products."
+            ],
+            [
+              "Check the zero input",
+              "The first column of X is exactly the vector |1>."
+            ],
+            [
+              "Package the certificate",
+              "The target, circuit, semantic proof, and one-gate resource record are stored together."
+            ]
           ],
           "leanRoots": [
             "QuantumBlockEncoding.TextbookStatePreparation.oneTarget_normalized",
@@ -73,9 +119,18 @@
       "whyThisCase": "Many quantum algorithms need interference. The Hadamard gate is the smallest example where two basis states simultaneously have nonzero amplitudes before measurement.",
       "algorithmContext": "Preparing |+> is the first step of countless circuits. The important lesson is that amplitudes, not classical probabilities, are transformed coherently by later gates.",
       "circuitReading": [
-        ["Start", "The wire is |0>, so the amplitude vector is (1,0)."],
-        ["Hadamard", "H maps the vector to (1/sqrt(2),1/sqrt(2))."],
-        ["Interpret", "A computational-basis measurement would return 0 or 1 with equal probability, but before measurement the relative amplitudes can still interfere."]
+        [
+          "Start",
+          "The wire is |0>, so the amplitude vector is (1,0)."
+        ],
+        [
+          "Hadamard",
+          "H maps the vector to (1/sqrt(2),1/sqrt(2))."
+        ],
+        [
+          "Interpret",
+          "A computational-basis measurement would return 0 or 1 with equal probability, but before measurement the relative amplitudes can still interfere."
+        ]
       ],
       "theorems": [
         {
@@ -84,10 +139,22 @@
           "statementFormula": "H|0\\rangle=|+\\rangle=\\frac{|0\\rangle+|1\\rangle}{\\sqrt2},\\qquad H^\\dagger H=I",
           "statementProse": "The exact square-root normalization, unitarity of H, and equality of the zero-input column with |+> are all machine checked.",
           "proofSteps": [
-            ["Normalize |+>", "Each amplitude has squared magnitude 1/2, so the total is 1."],
-            ["Prove H is unitary", "The two columns are normalized and orthogonal."],
-            ["Read column zero", "Multiplying by |0> selects H's first column, which is the desired amplitude vector."],
-            ["Record the circuit", "The exact preparation uses one H gate and no ancilla."]
+            [
+              "Normalize |+>",
+              "Each amplitude has squared magnitude 1/2, so the total is 1."
+            ],
+            [
+              "Prove H is unitary",
+              "The two columns are normalized and orthogonal."
+            ],
+            [
+              "Read column zero",
+              "Multiplying by |0> selects H's first column, which is the desired amplitude vector."
+            ],
+            [
+              "Record the circuit",
+              "The exact preparation uses one H gate and no ancilla."
+            ]
           ],
           "leanRoots": [
             "QuantumBlockEncoding.TextbookStatePreparation.plusTarget_normalized",
@@ -103,10 +170,22 @@
       "whyThisCase": "The transfer E1 maps one labelled sector of the system into another and is not itself a unitary gate. The case shows the basic block-encoding trick without hiding behind a large oracle: add one clean signal qubit and complete the desired action to a reversible permutation.",
       "algorithmContext": "This is the finite toy model for the general situation in scientific computing: the linear map you care about is often not unitary, while the quantum circuit must be.",
       "circuitReading": [
-        ["System registers", "Three qubits carry time, type, and a passive state label."],
-        ["Signal ancilla", "One extra qubit makes enough room for a reversible completion."],
-        ["Clean branch", "When the signal starts and ends at 0, the system block equals E1."],
-        ["Other branch", "The remaining basis states are filled in only to make the full map bijective/unitary."]
+        [
+          "System registers",
+          "Three qubits carry time, type, and a passive state label."
+        ],
+        [
+          "Signal ancilla",
+          "One extra qubit makes enough room for a reversible completion."
+        ],
+        [
+          "Clean branch",
+          "When the signal starts and ends at 0, the system block equals E1."
+        ],
+        [
+          "Other branch",
+          "The remaining basis states are filled in only to make the full map bijective/unitary."
+        ]
       ],
       "theorems": [
         {
@@ -115,10 +194,22 @@
           "statementFormula": "E_1=|0\\rangle\\!\\langle1|_{t}\\otimes|0\\rangle\\!\\langle1|_{y}\\otimes I_2,\\qquad \\langle0|_aU|0\\rangle_a=E_1",
           "statementProse": "The constructed full basis map is a permutation, hence unitary, and every clean-block matrix entry agrees with E1 exactly with alpha=1.",
           "proofSteps": [
-            ["Specify the desired partial action", "Only the labelled input sector (t,y)=(1,1) should move to (0,0); the passive state bit is unchanged."],
-            ["Complete it reversibly", "Use the signal qubit to route collisions into the complementary branch so the full basis map is bijective."],
-            ["Lift the bijection to a unitary", "A finite permutation of basis states gives a permutation matrix."],
-            ["Project the clean block", "Fix signal input/output to 0 and check the remaining 8 by 8 block equals E1."]
+            [
+              "Specify the desired partial action",
+              "Only the labelled input sector (t,y)=(1,1) should move to (0,0); the passive state bit is unchanged."
+            ],
+            [
+              "Complete it reversibly",
+              "Use the signal qubit to route collisions into the complementary branch so the full basis map is bijective."
+            ],
+            [
+              "Lift the bijection to a unitary",
+              "A finite permutation of basis states gives a permutation matrix."
+            ],
+            [
+              "Project the clean block",
+              "Fix signal input/output to 0 and check the remaining 8 by 8 block equals E1."
+            ]
           ],
           "leanRoots": [
             "QuantumBlockEncoding.OptimalControl.reducedDepth5Verified",
@@ -132,10 +223,22 @@
         "statementFormula": "(6,5,1,0)\\;\\succ\\;(4,4,1,0)\\;\\succ\\;(4,2,1,0)",
         "statementProse": "Under one frozen logical gate convention and the lexicographic score (gate count, depth, auxiliary qubits, oracle calls), Lean proves two strict improvements while the clean block stays unchanged.",
         "proofSteps": [
-          ["First reduction", "Remove redundant gates from the direct completion and re-prove the same permutation and clean block."],
-          ["Parallelize", "Rewrite the final candidate so three X operations occupy one parallel layer after a Toffoli."],
-          ["Recompute resources", "The score is derived from the declared circuit/schedule rather than typed by hand."],
-          ["Compare in Lean", "The betterThan theorems prove strict lexicographic dominance only after correctness has already passed."]
+          [
+            "First reduction",
+            "Remove redundant gates from the direct completion and re-prove the same permutation and clean block."
+          ],
+          [
+            "Parallelize",
+            "Rewrite the final candidate so three X operations occupy one parallel layer after a Toffoli."
+          ],
+          [
+            "Recompute resources",
+            "The score is derived from the declared circuit/schedule rather than typed by hand."
+          ],
+          [
+            "Compare in Lean",
+            "The betterThan theorems prove strict lexicographic dominance only after correctness has already passed."
+          ]
         ],
         "leanRoots": [
           "QuantumBlockEncoding.OptimalControl.proEqTransferCost_betterThan_depth5",
@@ -148,10 +251,22 @@
       "whyThisCase": "A benchmark can accidentally become easy if the solver retrieves its previous answer. This case freezes the same E1 contract but reconstructs a different exact reversible completion in an isolated route.",
       "algorithmContext": "The mathematics is the same block-encoding problem as BE Case 1. The scientific question is different: does an independent construction still reach a valid certificate?",
       "circuitReading": [
-        ["Freeze", "The target, ancilla convention, and alpha=1 are fixed before construction."],
-        ["Construct", "A five-gate reversible circuit implements a different full-space completion."],
-        ["Verify", "Lean checks bijectivity and the same clean 8 by 8 block."],
-        ["Do not overclaim", "There is one scored candidate, so the page does not call it a resource winner or a fresh model discovery."]
+        [
+          "Freeze",
+          "The target, ancilla convention, and alpha=1 are fixed before construction."
+        ],
+        [
+          "Construct",
+          "A five-gate reversible circuit implements a different full-space completion."
+        ],
+        [
+          "Verify",
+          "Lean checks bijectivity and the same clean 8 by 8 block."
+        ],
+        [
+          "Do not overclaim",
+          "There is one scored candidate, so the page does not call it a resource winner or a fresh model discovery."
+        ]
       ],
       "theorems": [
         {
@@ -160,10 +275,22 @@
           "statementFormula": "\\langle0|_aU_{\\mathrm{cold}}|0\\rangle_a=E_1,\\qquad c(U_{\\mathrm{cold}})=(5,5,1,0)",
           "statementProse": "The isolated basis map is bijective, its clean block is E1, and its resource record is exact for the declared logical circuit.",
           "proofSteps": [
-            ["Build the image table", "Define where every finite basis state goes."],
-            ["Prove it is a bijection", "No two inputs collide and every output is reached."],
-            ["Check the clean rows and columns", "The signal-zero submatrix is exactly E1."],
-            ["Package the cost", "The score is attached to this route without comparing it to a different semantic tier."]
+            [
+              "Build the image table",
+              "Define where every finite basis state goes."
+            ],
+            [
+              "Prove it is a bijection",
+              "No two inputs collide and every output is reached."
+            ],
+            [
+              "Check the clean rows and columns",
+              "The signal-zero submatrix is exactly E1."
+            ],
+            [
+              "Package the cost",
+              "The score is attached to this route without comparing it to a different semantic tier."
+            ]
           ],
           "leanRoots": [
             "QuantumBlockEncoding.mainCaseColdPartialPermImage_bijective",
@@ -179,10 +306,22 @@
       "whyThisCase": "Scientific algorithms often need functions of an index, coordinate, or eigenvalue. The target here multiplies basis state |j> by the cubic value (j/2^n)^3, which is generally not unitary and therefore cannot simply be declared a gate.",
       "algorithmContext": "Diagonal function loaders are natural ingredients for matrix functions, coefficient operators, Hamiltonians, and QSVT-style pipelines. This case focuses on the block-encoding construction itself.",
       "circuitReading": [
-        ["System label", "The n system qubits hold j and are not overwritten."],
-        ["Branch register", "Three clean qubits provide coordinates for an exact rational unit vector."],
-        ["Controlled reflection", "For each j, a Householder transformation has the desired cubic value as its clean matrix entry."],
-        ["Projection", "Selecting the first branch coordinate returns the diagonal entry (j/2^n)^3."]
+        [
+          "System label",
+          "The n system qubits hold j and are not overwritten."
+        ],
+        [
+          "Branch register",
+          "Three clean qubits provide coordinates for an exact rational unit vector."
+        ],
+        [
+          "Controlled reflection",
+          "For each j, a Householder transformation has the desired cubic value as its clean matrix entry."
+        ],
+        [
+          "Projection",
+          "Selecting the first branch coordinate returns the diagonal entry (j/2^n)^3."
+        ]
       ],
       "theorems": [
         {
@@ -191,11 +330,26 @@
           "statementFormula": "D_n=\\operatorname{diag}_{0\\le j<2^n}\\left(\\frac{j}{2^n}\\right)^3,\\qquad \\Pi U_n\\Pi^\\dagger=D_n",
           "statementProse": "For arbitrary n, Lean constructs exact rational branch vectors, proves their normalization, proves the controlled Householder operator is orthogonal/unitary, and proves every clean diagonal entry equals the cubic target with alpha=1.",
           "proofSteps": [
-            ["Fix one desired diagonal value", "For each j, let c=(j/2^n)^3, which lies in [0,1]."],
-            ["Complete c to an exact rational unit vector", "Use a four-square witness to express 1-c^2 as a sum of rational squares."],
-            ["Build a Householder reflection", "A reflection constructed from that vector is rational and orthogonal."],
-            ["Control by j", "Take the direct sum of the appropriate reflection for every computational-basis label j."],
-            ["Project the clean coordinate", "The first branch coordinate of the direct sum is exactly diag(c_j)."]
+            [
+              "Fix one desired diagonal value",
+              "For each j, let c=(j/2^n)^3, which lies in [0,1]."
+            ],
+            [
+              "Complete c to an exact rational unit vector",
+              "Use a four-square witness to express 1-c^2 as a sum of rational squares."
+            ],
+            [
+              "Build a Householder reflection",
+              "A reflection constructed from that vector is rational and orthogonal."
+            ],
+            [
+              "Control by j",
+              "Take the direct sum of the appropriate reflection for every computational-basis label j."
+            ],
+            [
+              "Project the clean coordinate",
+              "The first branch coordinate of the direct sum is exactly diag(c_j)."
+            ]
           ],
           "leanRoots": [
             "QuantumBlockEncoding.CubicDiagonalOracle.cubicDiagonalRationalCompletion_exists",
@@ -210,10 +364,22 @@
       "whyThisCase": "A human hint says to first encode x_j=j/2^n and then think of the cubic target as x_j^3. That idea is valuable for choosing a route, but it does not by itself establish unitarity or a clean block.",
       "algorithmContext": "This mirrors how research actually proceeds: algebra suggests a decomposition, while each quantum-access object still needs its own exact certificate.",
       "circuitReading": [
-        ["Input block", "Construct an exact block encoding of O0=diag(x_j)."],
-        ["Algebraic observation", "On the target diagonal, D_n=O0^3."],
-        ["Certified endpoint", "The current library separately certifies an exact cubic Householder block rather than pretending the prose hint is a primitive QSVT circuit."],
-        ["Boundary", "No strict resource comparison is claimed because the two constructions use different branch widths and no betterThan theorem connects them."]
+        [
+          "Input block",
+          "Construct an exact block encoding of O0=diag(x_j)."
+        ],
+        [
+          "Algebraic observation",
+          "On the target diagonal, D_n=O0^3."
+        ],
+        [
+          "Certified endpoint",
+          "The current library separately certifies an exact cubic Householder block rather than pretending the prose hint is a primitive QSVT circuit."
+        ],
+        [
+          "Boundary",
+          "No strict resource comparison is claimed because the two constructions use different branch widths and no betterThan theorem connects them."
+        ]
       ],
       "theorems": [
         {
@@ -222,11 +388,26 @@
           "statementFormula": "O_0=\\sum_jx_j|j\\rangle\\langle j|,\\quad D_n=O_0^3=\\sum_jx_j^3|j\\rangle\\langle j|",
           "statementProse": "Lean certifies the linear diagonal block and the cubic diagonal block as separate exact constructions; the identity D_n=O0^3 explains the hint but does not replace those certificates.",
           "proofSteps": [
-            ["Formalize the hint", "Turn the prose suggestion into the two precise operator targets O0 and Dn."],
-            ["Certify O0", "Construct a rational Householder clean block with first coordinate x_j."],
-            ["Identify the desired polynomial", "The target diagonal entry is exactly x_j^3."],
-            ["Certify Dn", "Use the independent exact cubic Householder family theorem."],
-            ["Keep QSVT honest", "Do not label a polynomial identity as a synthesized QSVT phase sequence unless that separate route is proved."]
+            [
+              "Formalize the hint",
+              "Turn the prose suggestion into the two precise operator targets O0 and Dn."
+            ],
+            [
+              "Certify O0",
+              "Construct a rational Householder clean block with first coordinate x_j."
+            ],
+            [
+              "Identify the desired polynomial",
+              "The target diagonal entry is exactly x_j^3."
+            ],
+            [
+              "Certify Dn",
+              "Use the independent exact cubic Householder family theorem."
+            ],
+            [
+              "Keep QSVT honest",
+              "Do not label a polynomial identity as a synthesized QSVT phase sequence unless that separate route is proved."
+            ]
           ],
           "leanRoots": [
             "QuantumBlockEncoding.CubicDiagonalOracle.linearDiagonalHouseholderInputBEContract_complete",
@@ -248,37 +429,94 @@
         "queryExplanation": "A digital query oracle returns the binary representation of one Hamiltonian entry. Counting one oracle call as one abstract operation can hide the arithmetic, boundary logic, and ancilla needed to implement it. GHL instead constructs amplitude/block-encoding circuits explicitly and counts CNOTs and one-qubit rotations."
       },
       "pipeline": [
-        ["1. PDE", "Start with a linear PDE containing derivatives, variable coefficients, a source term, and Robin boundary conditions."],
-        ["2. Finite differences", "Replace spatial derivatives by a sparse matrix A on N=2^n grid points. Boundary rows differ from the periodic bulk."],
-        ["3. Schrodingerisation", "Embed the non-Hermitian evolution into a larger Hermitian Hamiltonian H so it can be simulated by unitary quantum dynamics."],
-        ["4. Block encoding", "Build an explicit unitary U_H whose clean ancilla block equals H/alpha."],
-        ["5. QSVT / Hamiltonian simulation", "Use the block encoding as the input oracle for a polynomial transformation approximating exp(-iHt)."],
-        ["6. Output", "Apply the evolution to the encoded initial state and postselect the auxiliary registers to recover a state proportional to the PDE solution."]
+        [
+          "1. PDE",
+          "Start with a linear PDE containing derivatives, variable coefficients, a source term, and Robin boundary conditions."
+        ],
+        [
+          "2. Finite differences",
+          "Replace spatial derivatives by a sparse matrix A on \\(N=2^n\\) grid points. Boundary rows differ from the periodic bulk."
+        ],
+        [
+          "3. Schrodingerisation",
+          "Embed the non-Hermitian evolution into a larger Hermitian Hamiltonian H so it can be simulated by unitary quantum dynamics."
+        ],
+        [
+          "4. Block encoding",
+          "Build an explicit unitary U_H whose clean ancilla block equals H/alpha."
+        ],
+        [
+          "5. QSVT / Hamiltonian simulation",
+          "Use the block encoding as the input oracle for a polynomial transformation approximating exp(-iHt)."
+        ],
+        [
+          "6. Output",
+          "Apply the evolution to the encoded initial state and postselect the auxiliary registers to recover a state proportional to the PDE solution."
+        ]
       ],
       "circuitReading": [
-        ["Selector/register labels", "The sparse selector s says which finite-difference band/position is being addressed; the system register j stores the grid index."],
-        ["PREPARE", "Create a coherent superposition over sparse slots instead of classically looping over them."],
-        ["Indicator", "Mark whether j belongs to the periodic-like bulk or the Robin boundary region."],
-        ["RY coefficient loading", "Turn a normalized matrix coefficient into an amplitude on a clean coefficient qubit."],
-        ["Sparse access / SELECT", "Reversibly move from (slot,column) to the matrix row addressed by that slot."],
-        ["Uncompute", "Undo temporary address/indicator information so the selected ancillas return to |0>; only then does the clean projected block have the desired matrix meaning."]
+        [
+          "Selector/register labels",
+          "The sparse selector s says which finite-difference band/position is being addressed; the system register j stores the grid index."
+        ],
+        [
+          "PREPARE",
+          "Create a coherent superposition over sparse slots instead of classically looping over them."
+        ],
+        [
+          "Indicator",
+          "Mark whether j belongs to the periodic-like bulk or the Robin boundary region."
+        ],
+        [
+          "RY coefficient loading",
+          "Turn a normalized matrix coefficient into an amplitude on a clean coefficient qubit."
+        ],
+        [
+          "Sparse access / SELECT",
+          "Reversibly move from (slot,column) to the matrix row addressed by that slot."
+        ],
+        [
+          "Uncompute",
+          "Undo temporary address/indicator information so the selected ancillas return to |0>; only then does the clean projected block have the desired matrix meaning."
+        ]
       ],
       "theorems": [
         {
           "label": "GHL Theorem 3 · source theorem, faithfully restated",
           "title": "One-term block encoding for f(x) times a sparse Robin derivative",
           "statementFormula": "A_k\\sim f(x)\\,\\frac{\\partial^m}{\\partial x^m},\\qquad U_{A_k}^{(1)}\\text{ is an }(N_DN_f\\kappa,\\lceil\\log_2n\\rceil+\\lceil\\log_2G_f\\rceil+\\lceil\\log_2\\kappa\\rceil+4,0)\\text{-block encoding}",
-          "statementProse": "For a piecewise-continuous coefficient f with G_f pieces and polynomial complexity Q_g, and a 2^n by 2^n kappa-sparse finite-difference derivative matrix with Robin boundaries, the paper constructs a one-term block encoding. Its stated gate complexity is O(sum_g Q_g n log n + kappa n) with 2n pure ancillas.",
+          "statementProse": "For a piecewise-continuous coefficient f with G_f pieces and polynomial complexity Q_g, and a \\(2^n\\times 2^n\\) \\(\\kappa\\)-sparse finite-difference derivative matrix with Robin boundaries, the paper constructs a one-term block encoding. Its stated gate complexity is O(sum_g Q_g n log n + kappa n) with \\(2n\\) pure ancillas.",
           "proofSteps": [
-            ["Exploit periodic bulk", "Away from the boundary, the Robin stencil agrees with the familiar periodic stencil, so one reusable sparse-amplitude construction handles most indices."],
-            ["Mark the boundary", "An indicator qubit distinguishes bulk indices from the O(1)-width boundary region."],
-            ["Load derivative coefficients", "Use the sparse derivative amplitude oracle in the bulk and controlled RY rotations for individual boundary entries."],
-            ["Apply sparse access", "A reversible banded-sparse-access map transports the selector and grid index to the matrix location required by the derivative stencil."],
-            ["Load f(x)", "Multiply in the piecewise coefficient through its amplitude/block-encoding construction."],
-            ["Swap and uncompute", "Transport the registers back through the inverse access maps so workspace is clean."],
-            ["Read the clean block", "PREPARE/unprepare interference leaves A_k/(N_D N_f kappa) in the ancilla-zero block."]
+            [
+              "Exploit periodic bulk",
+              "Away from the boundary, the Robin stencil agrees with the familiar periodic stencil, so one reusable sparse-amplitude construction handles most indices."
+            ],
+            [
+              "Mark the boundary",
+              "An indicator qubit distinguishes bulk indices from the O(1)-width boundary region."
+            ],
+            [
+              "Load derivative coefficients",
+              "Use the sparse derivative amplitude oracle in the bulk and controlled RY rotations for individual boundary entries."
+            ],
+            [
+              "Apply sparse access",
+              "A reversible banded-sparse-access map transports the selector and grid index to the matrix location required by the derivative stencil."
+            ],
+            [
+              "Load f(x)",
+              "Multiply in the piecewise coefficient through its amplitude/block-encoding construction."
+            ],
+            [
+              "Swap and uncompute",
+              "Transport the registers back through the inverse access maps so workspace is clean."
+            ],
+            [
+              "Read the clean block",
+              "PREPARE/unprepare interference leaves \\(A_k/(\\mathcal N_D\\mathcal N_f\\kappa)\\) in the ancilla-zero block."
+            ]
           ],
-          "formalizationScope": "Paper scope: an arbitrary-width one-term construction with the stated asymptotic resource bound. Lean scope: the theorem metadata and reusable sparse-access semantics are formalized, and the N=8 Figure-4 specialization is closed through an exact primitive VerifiedOperatorBlockEncoding. A uniform arbitrary-width primitive compiler proving every source-oracle gate bound remains a separate planned frontier; the fixed-N=8 roots below must not be read as that stronger compiler theorem.",
+          "formalizationScope": "Paper scope: an arbitrary-width one-term construction with the stated asymptotic resource bound. Lean scope: the theorem metadata and reusable sparse-access semantics are formalized, and the \\(N=8\\) Figure-4 specialization is closed through an exact primitive VerifiedOperatorBlockEncoding. A uniform arbitrary-width primitive compiler proving every source-oracle gate bound remains a separate planned frontier; the fixed-\\(N=8\\) roots below must not be read as that stronger compiler theorem.",
           "leanRoots": [
             "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition",
             "QuantumBlockEncoding.Robin.warmRobinFigure4TransportedPostSwapCleanup",
@@ -290,14 +528,32 @@
           "label": "GHL Theorem 4 · source theorem, faithfully restated",
           "title": "Combine the one-term blocks into the full Schrodingerised Hamiltonian",
           "statementFormula": "A=\\sum_{k=0}^{\\eta-1}A_k,\\quad S_1=\\begin{pmatrix}(A+A^\\dagger)/2&B/2\\\\B/2&0\\end{pmatrix},\\quad S_2=\\begin{pmatrix}(A-A^\\dagger)/(2i)&B/(2i)\\\\-B/(2i)&0\\end{pmatrix},\\quad H=S_1\\otimes x_\\xi+S_2\\otimes I_\\xi",
-          "statementProse": "The paper states that the structured one-dimensional Hamiltonian H has an O(kappa ||H||_max)-normalized block encoding using logarithmic selector/register overhead, with total gate complexity obtained from the coefficient-function loaders, the one-term sparse derivative blocks, and the x_xi diagonal block. The theorem reports 2n+2 pure ancillas.",
+          "statementProse": "The paper states that the structured one-dimensional Hamiltonian H has an \\(O(\\kappa\\lVert H\\rVert_{\\max})\\)-normalized block encoding using logarithmic selector/register overhead, with total gate complexity obtained from the coefficient-function loaders, the one-term sparse derivative blocks, and the x_xi diagonal block. The theorem reports \\(2n+2\\) pure ancillas.",
           "proofSteps": [
-            ["Build every A_k", "Use the one-term result for each coefficient-times-derivative term."],
-            ["LCU to form A", "Combine the A_k block encodings into a block encoding of A=sum_k A_k; the adjoint circuit gives A^dagger."],
-            ["Build B and x_xi", "Use the diagonal-function block-encoding theorem for the source/homogenization block B and the Schrodingerisation coordinate x_xi."],
-            ["LCU to form S1 and S2", "Combine controlled A/A^dagger with X tensor B and Y tensor B so the clean blocks become the two Hermitian matrices S1 and S2."],
-            ["Final LCU", "Combine U_S1, U_S2, and the block encoding of x_xi one last time to obtain H."],
-            ["Source-fidelity audit", "ASPBE also checks the printed phase choices in the first S1 LCU line: the literal full-clean-matrix reading leaves a filler term, so the site records the discrepancy and the phase-balanced correction instead of silently changing the paper."]
+            [
+              "Build every A_k",
+              "Use the one-term result for each coefficient-times-derivative term."
+            ],
+            [
+              "LCU to form A",
+              "Combine the A_k block encodings into a block encoding of A=sum_k A_k; the adjoint circuit gives A^dagger."
+            ],
+            [
+              "Build B and x_xi",
+              "Use the diagonal-function block-encoding theorem for the source/homogenization block B and the Schrodingerisation coordinate x_xi."
+            ],
+            [
+              "LCU to form S1 and S2",
+              "Combine controlled A/A^dagger with X tensor B and Y tensor B so the clean blocks become the two Hermitian matrices S1 and S2."
+            ],
+            [
+              "Final LCU",
+              "Combine U_S1, U_S2, and the block encoding of x_xi one last time to obtain H."
+            ],
+            [
+              "Source-fidelity audit",
+              "ASPBE also checks the printed phase choices in the first S1 LCU line: the literal full-clean-matrix reading leaves a filler term, so the site records the discrepancy and the phase-balanced correction instead of silently changing the paper."
+            ]
           ],
           "formalizationScope": "Paper scope: the one-dimensional A-to-H Hamiltonian composition. Lean scope: the finite-sum adjoint bridge, S1/S2 clean-block algebra, final H formula, normalization/layout records, and the source phase audit are compiled. The printed first S1 phase pair is proved inconsistent under the literal full-clean-matrix reading, and a phase-balanced correction is separately proved before the aggregate Theorem-4 route is marked closed.",
           "leanRoots": [
@@ -394,13 +650,34 @@
         "statementFormula": "c_{\\mathrm{XOR}}=(106,96,3,0)\\prec_{\\mathrm{lex}}c_{\\mathrm{paper7}}=(312,266,5,0),\\qquad c_{\\mathrm{XOR}}\\prec_{\\mathrm{lex}}c_{\\mathrm{Fig.4}}=(881,674,6,0)",
         "statementProse": "All three circuits encode the same dimensionless N=8 target with alpha=56/3, zero error, the same exact primitive basis {X,RY,RZ,CX}, the same all-to-all connectivity convention, and clean workspaces. Lean certifies the XOR four-slot circuit and proves both strict comparisons. This is a benchmark/compiler theorem, not a global lower bound over all possible quantum circuits.",
         "proofSteps": [
-          ["Use centrosymmetry", "Pair matrix indices related by reversal so the 8 by 8 target decomposes into two smaller symmetry sectors."],
-          ["Use four XOR slots", "Within each sector, index the required positions by two selector bits using XOR rather than a carry-producing modular adder."],
-          ["Load exact amplitudes", "A uniformly controlled RY compiler realizes the 32 exact coefficient branches with structured exact-angle semantics."],
-          ["Simplify SELECT", "The XOR addressing rule reduces SELECT to two CX gates on the pair-coordinate bits."],
-          ["Refine to primitives", "Lean proves the product of the emitted X/RY/RZ/CX gates equals the previously verified logical unitary, not merely a floating-point approximation."],
-          ["Inherit the clean-block theorem", "Exact primitive equality transports the already-proved logical clean block to the primitive circuit."],
-          ["Compute and compare cost", "Resource tuples are derived from the primitive programs and the betterThan theorems establish strict same-tier dominance."]
+          [
+            "Use centrosymmetry",
+            "Pair matrix indices related by reversal so the 8 by 8 target decomposes into two smaller symmetry sectors."
+          ],
+          [
+            "Use four XOR slots",
+            "Within each sector, index the required positions by two selector bits using XOR rather than a carry-producing modular adder."
+          ],
+          [
+            "Load exact amplitudes",
+            "A uniformly controlled RY compiler realizes the 32 exact coefficient branches with structured exact-angle semantics."
+          ],
+          [
+            "Simplify SELECT",
+            "The XOR addressing rule reduces SELECT to two CX gates on the pair-coordinate bits."
+          ],
+          [
+            "Refine to primitives",
+            "Lean proves the product of the emitted X/RY/RZ/CX gates equals the previously verified logical unitary, not merely a floating-point approximation."
+          ],
+          [
+            "Inherit the clean-block theorem",
+            "Exact primitive equality transports the already-proved logical clean block to the primitive circuit."
+          ],
+          [
+            "Compute and compare cost",
+            "Resource tuples are derived from the primitive programs and the betterThan theorems establish strict same-tier dominance."
+          ]
         ],
         "leanRoots": [
           "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitive_eval_eq_flatUnitary",

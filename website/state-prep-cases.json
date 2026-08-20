@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "slug": "bell-state-preparation",
+      "title": "Bell-state preparation: the first entangled target",
+      "shortTitle": "State prep: Bell",
+      "kind": "statePreparation",
+      "status": "certified",
+      "semanticTier": "exact finite matrix certificate + exact typed primitive circuit",
+      "leanAnchors": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.bellTarget_normalized",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix_unitary",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitive_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.bellVerified_cost"
+      ],
+      "problem": "Starting from |00>, prepare the Bell state (|00>+|11>)/sqrt(2), so the case introduces entanglement rather than another one-qubit amplitude change.",
+      "formula": "U_{\\mathrm{Bell}}|00\\rangle=|\\Phi^+\\rangle=\\frac{|00\\rangle+|11\\rangle}{\\sqrt2}.",
+      "contract": "Lean proves normalization, a full 4 by 4 unitary completion, and an exact typed primitive route RY(pi/2) followed by CX whose zero-input action is the Bell state. The resource tuple (2,2,0,0) is computed from that same circuit. H followed by CX is an equivalent textbook witness, not the proof-bearing circuit scored here.",
+      "symbols": [
+        ["|Phi+>", "the maximally entangled Bell state"],
+        ["RY(pi/2)", "the exact primitive rotation that creates equal positive amplitudes on q0"],
+        ["CX", "controlled-X that maps the |01> branch to |11>"]
+      ],
+      "circuit": {
+        "registers": "q0 | q1; no ancilla",
+        "stages": [
+          {"label": "Create superposition", "detail": "RY(pi/2) on q0 produces equal positive amplitudes", "gates": ["RY(pi/2, q0)"]},
+          {"label": "Entangle", "detail": "CX(q0,q1) maps the excited q0 branch to |11>", "gates": ["CX(q0,q1)"]}
+        ]
+      },
+      "evolution": {
+        "caption": "This is a proof trace, not a search claim: the scored two-gate circuit is itself the object whose exact state action Lean proves.",
+        "stages": [
+          {"iteration": "0", "name": "Bell RY+CNOT", "score": [2,2,0,0], "status": "Lean certified", "description": "The typed primitive circuit prepares the exact Bell target and supplies its own resource tuple.", "leanAnchor": "QuantumBlockEncoding.StatePreparationBenchmarks.bellVerified_cost"}
+        ]
+      },
+      "qiskit": {"path": "executable-exports/SP-PAPERS-001/qiskit/export.py", "command": "python3 executable-exports/SP-PAPERS-001/qiskit/export.py --case bell", "role": "Numerically mirrors the exact RY(pi/2)+CX Lean route; Qiskit is inspection evidence, not proof authority."},
+      "preset": {"taskName": "SP-BELL-001", "mode": "statePreparation", "target": "(|00>+|11>)/sqrt(2)", "normalizer": "1", "projector": "|00>"},
+      "summary": "The smallest proof-bearing state-preparation case with entanglement: the same typed circuit carries exact semantics and resource accounting.",
+      "source": "Möttönen et al. Eq. (1) + Sec. III as the general state-preparation contract; Bell is an ASPBE pedagogical specialization",
+      "contributor": "ASPBE authors",
+      "limitations": "Fixed two-qubit target. This is a pedagogical specialization, not a claim that Möttönen et al. present this Bell circuit."
+    },
+    {
+      "slug": "mottonen-dense-state-preparation",
+      "title": "Dense real-amplitude preparation: a Möttönen-style two-qubit benchmark",
+      "shortTitle": "State prep: dense UCRY",
+      "kind": "statePreparation",
+      "status": "certified",
+      "semanticTier": "exact dense target + exact typed root-RY/UCRY circuit",
+      "leanAnchors": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseTarget_normalized",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix_unitary",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitive_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseVerified_cost"
+      ],
+      "problem": "Prepare the genuinely dense non-product real state with amplitudes (39,52,60,144)/169 and expose the recursive uniformly-controlled-rotation architecture used by dense state synthesis.",
+      "formula": "|\\psi_{\\mathrm{dense}}\\rangle=\\frac{39|00\\rangle+52|01\\rangle+60|10\\rangle+144|11\\rangle}{169}.",
+      "contract": "The target is an exact nested-Pythagorean instance: the root split uses 5/13 and 12/13, while the two conditional branches use 3/5,4/5 and 5/13,12/13. Lean proves target normalization, a full unitary completion, the exact typed root-RY plus one-control-UCRY state action, and circuit-derived cost (5,4,0,0).",
+      "symbols": [
+        ["UCRY", "a uniformly controlled y rotation whose target angle depends coherently on the control state"],
+        ["Eq. (8)", "Möttönen et al.'s rotation-angle recursion used by the paper architecture"],
+        ["(39,52,60,144)/169", "an exact finite target chosen so all preparation angles have Pythagorean closed forms"]
+      ],
+      "circuit": {
+        "registers": "q0 | q1; no ancilla",
+        "stages": [
+          {"label": "Root probability split", "detail": "RY on q1 sets branch masses 5/13 and 12/13", "gates": ["RY(q1; 5/13,12/13)"]},
+          {"label": "Conditional amplitudes", "detail": "one-control UCRY on q0 resolves 3/5,4/5 in q1=0 and 5/13,12/13 in q1=1", "gates": ["RY", "CX", "RY", "CX"]}
+        ]
+      },
+      "evolution": {
+        "caption": "This is a finite instantiation of Möttönen Eq. (6)–(8)/Fig. 3. The arbitrary-n synthesis theorem remains a Papers reproduction task.",
+        "stages": [
+          {"iteration": "0", "name": "Dense UCRY tree", "score": [5,4,0,0], "status": "Lean certified", "description": "The same typed five-gate circuit supplies exact state action and parallel depth four.", "leanAnchor": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseVerified_cost"}
+        ]
+      },
+      "qiskit": {"path": "executable-exports/SP-PAPERS-001/qiskit/export.py", "command": "python3 executable-exports/SP-PAPERS-001/qiskit/export.py --case mottonen", "role": "Numerically mirrors the exact 5/13,12/13 and 3/5,4/5 Lean angles."},
+      "preset": {"taskName": "SP-MOTTONEN-DENSE-2Q-001", "mode": "statePreparation", "target": "(39,52,60,144)/169", "normalizer": "1", "projector": "|00>"},
+      "summary": "A non-product dense state links the first-column contract to Möttönen's UCRY recursion using an exact proof-bearing primitive circuit.",
+      "source": "Möttönen et al., Eq. (6)–(8) and Fig. 3, arXiv:quant-ph/0407010",
+      "contributor": "ASPBE authors",
+      "limitations": "Only this exact two-qubit instantiation is closed. General n-qubit state-to-state synthesis, phase synthesis, and paper-wide gate-count formulas remain in Papers."
+    },
+    {
+      "slug": "grover-rudolph-product-state-preparation",
+      "title": "Structured probability loading: product structure beats the generic tree",
+      "shortTitle": "State prep: structured probability",
+      "kind": "statePreparation",
+      "status": "certified",
+      "semanticTier": "two exact typed circuits + same-target resource theorem",
+      "leanAnchors": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductTarget_normalized",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductMatrix_unitary",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_betterThan_tree"
+      ],
+      "problem": "Prepare amplitudes (9,12,12,16)/25, whose probabilities come from two identical Bernoulli factors. Compare the generic recursive tree with the circuit obtained by exposing product structure.",
+      "formula": "|\\psi_{\\mathrm{prod}}\\rangle=\\left(\\frac35|0\\rangle+\\frac45|1\\rangle\\right)\\otimes\\left(\\frac35|0\\rangle+\\frac45|1\\rangle\\right)=\\frac{9|00\\rangle+12|01\\rangle+12|10\\rangle+16|11\\rangle}{25}.",
+      "contract": "Lean proves both typed primitive circuits prepare the same exact target. The generic root-RY plus one-control-UCRY circuit has cost (5,4,0,0); the factorized circuit contains two independent RY gates, cost (2,1,0,0). A named betterThan theorem certifies strict lexicographic improvement.",
+      "symbols": [
+        ["Eq. (1)", "Grover–Rudolph's probability-amplitude target state"],
+        ["Eq. (3), Eq. (6)", "the recursive refinement and controlled-rotation mechanism"],
+        ["betterThan", "ASPBE's fixed lexicographic order: gates, depth, auxiliary qubits, oracle calls"]
+      ],
+      "circuit": {
+        "registers": "q0 | q1; no ancilla",
+        "stages": [
+          {"label": "Generic tree", "detail": "root split followed by a one-control conditional split", "gates": ["RY", "RY", "CX", "RY", "CX"]},
+          {"label": "Use factorization", "detail": "two independent identical RY rotations act on disjoint wires", "gates": ["RY(q0) || RY(q1)"]}
+        ]
+      },
+      "evolution": {
+        "caption": "Both points are proof-bearing typed circuits for the same target; only then is the resource comparison allowed.",
+        "stages": [
+          {"iteration": "0", "name": "Generic binary tree", "score": [5,4,0,0], "status": "Lean certified", "description": "Correct but structure-blind root plus UCRY route.", "leanAnchor": "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeVerified_cost"},
+          {"iteration": "1", "name": "Factorized product route", "score": [2,1,0,0], "status": "Strictly better · Lean certified", "description": "Factorization removes conditional branching and exposes two parallel rotations.", "leanAnchor": "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_betterThan_tree"}
+        ]
+      },
+      "qiskit": {"path": "executable-exports/SP-PAPERS-001/qiskit/export.py", "command": "python3 executable-exports/SP-PAPERS-001/qiskit/export.py --case grover-rudolph", "role": "Numerically mirrors the factorized winner; Lean proves both candidate semantics and the resource ordering."},
+      "preset": {"taskName": "SP-GROVER-RUDOLPH-PRODUCT-001", "mode": "statePreparation", "target": "(9,12,12,16)/25", "normalizer": "1", "projector": "|00>"},
+      "summary": "A structured probability-loading example shows how ASPBE can preserve the exact state while removing conditional structure and reducing certified resources.",
+      "source": "Grover–Rudolph Eq. (1), Eq. (3), Eq. (6), arXiv:quant-ph/0208112",
+      "contributor": "ASPBE authors",
+      "limitations": "This is a finite product-distribution witness. The general efficiently-integrable distribution theorem and integration/arithmetic oracle compiler remain in Papers."
+    },
+    {
+      "slug": "sparse-three-state-preparation",
+      "title": "Sparse state preparation: prune the zero branches",
+      "shortTitle": "State prep: sparse",
+      "kind": "statePreparation",
+      "status": "certified",
+      "semanticTier": "exact d=3 target + two exact typed same-target circuits",
+      "leanAnchors": [
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeTarget_normalized",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix_unitary",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTree_prepares_target",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedVerified_cost",
+        "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_betterThan_denseTree"
+      ],
+      "problem": "Prepare a three-qubit state with only d=3 nonzero amplitudes, (3|000>+4|010>+12|100>)/13, and make the savings from a known-zero amplitude layer explicit.",
+      "formula": "|\\psi_{\\mathrm{sparse}}\\rangle=\\frac{3|000\\rangle+4|010\\rangle+12|100\\rangle}{13},\\qquad d=3.",
+      "contract": "Lean proves exact normalization and a full 8 by 8 unitary completion. The pruned typed circuit uses a q2 root RY followed by a q2-controlled UCRY on q1 and has cost (5,4,0,0). The same-target dense baseline appends a two-control zero-angle UCRY on q0; Lean proves that appended block is exactly identity but its reference compiler still costs ten gates, yielding (15,13,0,0).",
+      "symbols": [
+        ["d-sparse", "only d computational-basis amplitudes are nonzero"],
+        ["Eq. (2)", "Li–Luo's exact preparation-unitary contract, specialized here to n=3,d=3"],
+        ["zero-fill baseline", "a semantic identity circuit that deliberately pays for the amplitude subtree known to be zero"]
+      ],
+      "circuit": {
+        "registers": "q0 | q1 | q2; no ancilla at this primitive tier",
+        "stages": [
+          {"label": "Dense zero-fill baseline", "detail": "prepare the sparse target correctly, then compile a two-control zero-angle UCRY on q0", "gates": ["pruned 5-gate route", "+ 10-gate identity UCRY"]},
+          {"label": "Prune zero support", "detail": "q0 remains zero; only root q2 split and q2-controlled q1 split are needed", "gates": ["RY", "RY", "CX", "RY", "CX"]}
+        ]
+      },
+      "evolution": {
+        "caption": "Both candidates are exact typed circuits preparing the same d=3 target. The asymptotic Li–Luo Theorem 1 remains outside this finite comparison.",
+        "stages": [
+          {"iteration": "0", "name": "Dense three-qubit tree", "score": [15,13,0,0], "status": "Lean certified", "description": "Same-target baseline retains an exact-identity zero-angle amplitude layer.", "leanAnchor": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeVerified_cost"},
+          {"iteration": "1", "name": "Sparse pruned tree", "score": [5,4,0,0], "status": "Strictly better · Lean certified", "description": "The known-zero q0 amplitude layer is removed without changing the prepared state.", "leanAnchor": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_betterThan_denseTree"}
+        ]
+      },
+      "qiskit": {"path": "executable-exports/SP-PAPERS-001/qiskit/export.py", "command": "python3 executable-exports/SP-PAPERS-001/qiskit/export.py --case sparse", "role": "Numerically mirrors the pruned exact route; Lean proves the exact target and same-target resource comparison."},
+      "preset": {"taskName": "SP-SPARSE-D3-001", "mode": "statePreparation", "target": "(3|000>+4|010>+12|100>)/13", "normalizer": "1", "projector": "|000>"},
+      "summary": "A finite Li–Luo Eq. (2) witness isolates the mechanism behind sparse preparation: remove a provably identity zero-amplitude subtree while preserving exact state semantics.",
+      "source": "Li–Luo Eq. (1)–(2), arXiv:2406.16142",
+      "contributor": "ASPBE authors",
+      "limitations": "Fixed n=3,d=3 witness only. The asymptotic sparse constructions, ancilla tradeoffs, and Theorem 1 lower/upper bounds remain in Papers."
+    }
+  ],
+  "teaching": {
+    "bell-state-preparation": {
+      "readerGoal": "Understand entanglement as an exact state-preparation contract carried by a concrete two-gate unitary circuit.",
+      "whyThisCase": "The Bell target cannot be represented as two independently prepared one-qubit states. The proof-bearing route creates one coherent branch bit and then correlates the second wire with it.",
+      "algorithmContext": "Small entangled resource states occur throughout teleportation, communication, phase-estimation subroutines, and error-correcting constructions.",
+      "source": {"title":"Transformation of quantum states using uniformly controlled rotations","authors":"Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa","url":"https://arxiv.org/abs/quant-ph/0407010","queryFormula":"U|a\\rangle=|b\\rangle","queryExplanation":"Eq. (1) and Sec. III provide the general state-vector/state-transformation contract. The Bell target and RY(pi/2)+CX witness are an ASPBE pedagogical specialization, not a circuit copied from the paper."},
+      "circuitReading": [["Start","Both qubits begin in |0>."],["Superpose q0","RY(pi/2) produces equal positive |0> and |1> amplitudes."],["Entangle","CX maps the |01> branch to |11>."],["Check the object actually scored","The same typed two-gate circuit is evaluated in Lean and supplies the resource tuple."]],
+      "theorems": [{"label":"Case theorem","title":"The typed Bell circuit prepares the exact Bell state","statementFormula":"U_{\\mathrm{Bell}}|00\\rangle=(|00\\rangle+|11\\rangle)/\\sqrt2","statementProse":"Lean checks target normalization, full unitary completion, exact primitive-circuit state action, and the two-gate/two-layer cost.","proofSteps":[["Normalize","Two amplitudes have squared magnitude 1/2."],["Fix RY convention","Reuse the exact standard RY(pi/2) matrix theorem."],["Apply CX","The basis permutation sends the q0=1 branch to |11>."],["Compose","Chronological circuit evaluation proves the two stages prepare the target."],["Count the same circuit","The typed circuit itself yields cost (2,2,0,0)."]],"leanRoots":["QuantumBlockEncoding.StatePreparationBenchmarks.bellTarget_normalized","QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix_unitary","QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitive_prepares_target","QuantumBlockEncoding.StatePreparationBenchmarks.bellVerified_cost"]}]
+    },
+    "mottonen-dense-state-preparation": {
+      "readerGoal": "See how Möttönen's recursive UCRY architecture becomes a fully exact finite typed-circuit certificate.",
+      "whyThisCase": "A dense non-product target has no sparse or tensor-product shortcut. The nested-Pythagorean amplitudes make every finite rotation exact while retaining the generic binary-tree structure.",
+      "algorithmContext": "Dense amplitude loading is a front-end cost for many amplitude-encoded algorithms. Möttönen et al. supply a general UCRY state-synthesis architecture; ASPBE closes one exact two-qubit instantiation.",
+      "source": {"title":"Transformation of quantum states using uniformly controlled rotations","authors":"Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa","url":"https://arxiv.org/abs/quant-ph/0407010","queryFormula":"|\\psi\\rangle=(39,52,60,144)^T/169","queryExplanation":"The case is a finite instantiation of Eq. (6)–(8) and Fig. 3. The paper-wide arbitrary-n synthesis/count theorem is kept separate."},
+      "circuitReading": [["Root split","RY on q1 sets total branch masses 5/13 and 12/13."],["Conditional split","One-control UCRY on q0 selects the 3/5,4/5 or 5/13,12/13 branch pair."],["Read clean columns","Only the two columns populated by the root state are needed to prove exact action."],["Count the typed route","The compiler emits 5 gates with parallel depth 4."]],
+      "theorems": [{"label":"Finite paper benchmark","title":"Möttönen Eq. (6)–(8)/Fig. 3 has an exact two-qubit typed instantiation","statementFormula":"U|00\\rangle=(39|00\\rangle+52|01\\rangle+60|10\\rangle+144|11\\rangle)/169","statementProse":"Lean certifies normalization, a full unitary completion, the typed root-RY/UCRY state action, and cost (5,4,0,0).","proofSteps":[["Normalize","39^2+52^2+60^2+144^2=169^2."],["Root split","5-12-13 gives the exact first RY."],["Conditional branches","3-4-5 and 5-12-13 give exact branch rotations."],["Use UCRY semantics","The reference compiler equals its controlled block-diagonal specification."],["Compose and count","The exact typed circuit prepares the target and supplies the resource tuple."]],"leanRoots":["QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseTarget_normalized","QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix_unitary","QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitive_prepares_target","QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseVerified_cost"]}]
+    },
+    "grover-rudolph-product-state-preparation": {
+      "readerGoal": "Learn when structure in a probability distribution should remove conditional circuitry rather than merely alter angles.",
+      "whyThisCase": "The four amplitudes factor into two identical one-qubit amplitude pairs. A generic binary tree is correct but needlessly conditional; the factorized route exposes two parallel rotations.",
+      "algorithmContext": "Grover–Rudolph prepares states corresponding to efficiently integrable probability distributions. This finite product instance isolates the structural optimization while leaving the general integration/oracle machinery in Papers.",
+      "source": {"title":"Creating superpositions that correspond to efficiently integrable probability distributions","authors":"Lov Grover, Terry Rudolph","url":"https://arxiv.org/abs/quant-ph/0208112","queryFormula":"|\\psi\\rangle=(3|0\\rangle+4|1\\rangle)^{\\otimes2}/25","queryExplanation":"Eq. (1) gives the target probability-amplitude state; Eq. (3) and Eq. (6) give recursive refinement via controlled rotations."},
+      "circuitReading": [["Generic tree","Root RY followed by one-control UCRY gives a proof-bearing five-gate route."],["Spot the tensor product","Every amplitude is a product of 3/5 and 4/5."],["Remove the conditional","Prepare q0 and q1 independently."],["Parallelize","The two RY gates touch different wires, so depth is one."],["Compare after correctness","Both routes first prove the same state action, then betterThan compares costs."]],
+      "theorems": [{"label":"Correctness theorem","title":"Both typed circuits prepare the same exact product state","statementFormula":"U|00\\rangle=(9|00\\rangle+12|01\\rangle+12|10\\rangle+16|11\\rangle)/25","statementProse":"Lean checks the exact target and proves state action for the generic tree and factorized circuit.","proofSteps":[["Normalize one factor","(3/5)^2+(4/5)^2=1."],["Tensor","The four amplitudes are 9,12,12,16 over 25."],["Evaluate factorized route","Two lifted RY matrices give the explicit product matrix."],["Reduce generic tree","Constant UCRY is exactly the same single-wire RY semantics."],["Package routes","Both become ExactPrimitiveStatePreparationRoute values."]],"leanRoots":["QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductTarget_normalized","QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_prepares_target","QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_prepares_target"]}],
+      "improvement": {"title":"Exploit product structure instead of paying for a conditional tree","statementFormula":"(2,1,0,0)\\prec_{\\mathrm{lex}}(5,4,0,0)","statementProse":"The factorized typed circuit uses two parallel rotations; the generic typed UCRY route uses five gates at depth four. The comparison theorem is downstream of exact state-action proofs.","proofSteps":[["Freeze the target","Both routes prepare exactly the same amplitudes."],["Compute tree resources","The typed root-RY/UCRY route yields (5,4,0,0)."],["Compute factorized resources","Two disjoint RY gates yield (2,1,0,0)."],["Apply lexicographic order","2<5 closes strict dominance already on gate count."]],"leanRoots":["QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeVerified_cost","QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedVerified_cost","QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_betterThan_tree"]}
+    },
+    "sparse-three-state-preparation": {
+      "readerGoal": "See sparsity as a missing amplitude subtree that can be removed from an exact typed circuit.",
+      "whyThisCase": "Only basis indices 0,2,4 carry amplitude. A structure-blind amplitude tree can spend gates compiling a final q0 layer even though q0 is known to remain zero on all support points.",
+      "algorithmContext": "Li–Luo studies sparse-state circuit complexity asymptotically. ASPBE starts with an exact n=3,d=3 witness of Eq. (2), then makes one finite pruning mechanism machine-checkable without claiming Theorem 1.",
+      "source": {"title":"Nearly Optimal Circuit Size for Sparse Quantum State Preparation","authors":"Lvzhou Li, Jingquan Luo","url":"https://arxiv.org/abs/2406.16142","queryFormula":"|\\psi\\rangle=(3|000\\rangle+4|010\\rangle+12|100\\rangle)/13","queryExplanation":"Eq. (1) describes d-sparse input data and Eq. (2) states the exact preparation-unitary contract. The asymptotic Theorem 1 remains a Papers reproduction frontier."},
+      "circuitReading": [["Mark support","Only 0,2,4 are nonzero; q0 is zero on every supported basis state."],["Prepare root","RY on q2 creates masses 5/13 and 12/13."],["Split only the q2=0 branch","One-control UCRY on q1 produces 3/13 and 4/13; the q2=1 branch uses zero angle."],["Define a same-target dense baseline","Append a two-control zero-angle UCRY on q0; Lean proves its exact matrix is identity."],["Prune","Remove that identity subtree and compare the circuit-derived tuples."]],
+      "theorems": [{"label":"Sparse finite theorem","title":"The n=3,d=3 Li–Luo Eq. (2) witness has an exact typed preparation route","statementFormula":"U|000\\rangle=(3|000\\rangle+4|010\\rangle+12|100\\rangle)/13","statementProse":"Lean checks exact normalization, full-unitary completion, the pruned typed circuit state action, and the same-target dense baseline.","proofSteps":[["Normalize","3^2+4^2+12^2=13^2."],["Prepare root","Use the 5-12-13 split on q2."],["Prepare nonzero branch","Use the 3-4-5 split on q1 when q2=0."],["Prove zero-fill identity","A two-control UCRY with every angle zero evaluates exactly to identity."],["Package both routes","Both circuits therefore prepare the same target."]],"leanRoots":["QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeTarget_normalized","QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix_unitary","QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_prepares_target","QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTree_prepares_target"]}],
+      "improvement": {"title":"Prune the provably identity zero-amplitude layer","statementFormula":"(5,4,0,0)\\prec_{\\mathrm{lex}}(15,13,0,0)","statementProse":"The dense reference compiler spends ten extra gates on a two-control zero-angle UCRY whose semantics is exactly identity. Removing it preserves the state and strictly improves the resource tuple.","proofSteps":[["Freeze the sparse target","Both circuits are already exact state-preparation routes."],["Count dense baseline","Pruned route plus the identity UCRY yields (15,13,0,0)."],["Count pruned route","Root plus one-control UCRY yields (5,4,0,0)."],["Apply betterThan","5<15 proves strict lexicographic improvement."]],"leanRoots":["QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeVerified_cost","QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedVerified_cost","QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_betterThan_denseTree"]}
+    }
+  },
+  "circuits": {
+    "bell-state-preparation": {"Bell RY+CNOT": "\\begin{quantikz}[row sep=.4cm,column sep=.55cm]\n\\lstick{$q_0:\\ket0$} & \\gate{R_y(\\pi/2)} & \\ctrl{1} & \\qw \\\\\n\\lstick{$q_1:\\ket0$} & \\qw & \\targ{} & \\rstick{$|\\Phi^+\\rangle$} \\qw\n\\end{quantikz}"},
+    "mottonen-dense-state-preparation": {"Dense UCRY tree": "\\begin{quantikz}[row sep=.4cm,column sep=.45cm]\n\\lstick{$q_1:\\ket0$} & \\gate{R_y(2\\arccos(5/13))} & \\ctrl{1} & \\qw & \\ctrl{1} & \\qw \\\\\n\\lstick{$q_0:\\ket0$} & \\qw & \\gate{R_y} & \\targ{} & \\gate{R_y} & \\targ{}\n\\end{quantikz}"},
+    "grover-rudolph-product-state-preparation": {
+      "Generic binary tree": "\\begin{quantikz}[row sep=.4cm,column sep=.45cm]\n\\lstick{$q_1:\\ket0$} & \\gate{R_y(2\\arccos(3/5))} & \\ctrl{1} & \\qw & \\ctrl{1} & \\qw \\\\\n\\lstick{$q_0:\\ket0$} & \\qw & \\gate{R_y} & \\targ{} & \\gate{R_y} & \\targ{}\n\\end{quantikz}",
+      "Factorized product route": "\\begin{quantikz}[row sep=.4cm,column sep=.65cm]\n\\lstick{$q_0:\\ket0$} & \\gate{R_y(2\\arccos(3/5))} & \\qw \\\\\n\\lstick{$q_1:\\ket0$} & \\gate{R_y(2\\arccos(3/5))} & \\qw\n\\end{quantikz}"
+    },
+    "sparse-three-state-preparation": {
+      "Dense three-qubit tree": "\\begin{quantikz}[row sep=.35cm,column sep=.45cm]\n\\lstick{$q_2$} & \\gate{R_y} & \\ctrl{1} & \\qw & \\qw \\\\\n\\lstick{$q_1$} & \\qw & \\gate{\\mathrm{UCRY}_1} & \\qw & \\ctrl{1} \\\\\n\\lstick{$q_0$} & \\qw & \\qw & \\qw & \\gate{\\mathrm{UCRY}_2(0)}\n\\end{quantikz}",
+      "Sparse pruned tree": "\\begin{quantikz}[row sep=.35cm,column sep=.55cm]\n\\lstick{$q_2:\\ket0$} & \\gate{R_y(2\\arccos(5/13))} & \\ctrl{1} & \\qw & \\ctrl{1} & \\qw \\\\\n\\lstick{$q_1:\\ket0$} & \\qw & \\gate{R_y} & \\targ{} & \\gate{R_y} & \\targ{} \\\\\n\\lstick{$q_0:\\ket0$} & \\qw & \\qw & \\qw & \\qw & \\qw\n\\end{quantikz}"
+    }
+  }
+}

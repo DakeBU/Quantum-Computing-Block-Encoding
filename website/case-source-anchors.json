@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "cases": {
+    "bell-state-preparation": {
+      "sourceKind": "paper-grounded pedagogical specialization",
+      "paperTitle": "Transformation of quantum states using uniformly controlled rotations",
+      "authors": "Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa",
+      "year": 2005,
+      "url": "https://arxiv.org/abs/quant-ph/0407010",
+      "anchorLabel": "Möttönen et al. Eq. (1) + Sec. III",
+      "anchors": [
+        "Eq. (1)",
+        "Sec. III"
+      ],
+      "sourceMeaning": "Eq. (1) fixes the general n-qubit state-vector convention, while Sec. III states the state-preparation problem as finding U with U|a> = |b>.",
+      "caseRelation": "ASPBE specializes that general contract to the Bell target (|00>+|11>)/sqrt(2). The H-then-CX witness is a textbook teaching circuit; we do not claim that this two-gate Bell example is copied from Möttönen et al."
+    },
+    "mottonen-dense-state-preparation": {
+      "sourceKind": "paper-derived finite benchmark",
+      "paperTitle": "Transformation of quantum states using uniformly controlled rotations",
+      "authors": "Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa",
+      "year": 2005,
+      "url": "https://arxiv.org/abs/quant-ph/0407010",
+      "anchorLabel": "Möttönen et al. Eq. (6)–(8) + Fig. 3",
+      "anchors": [
+        "Eq. (6)",
+        "Eq. (7)",
+        "Eq. (8)",
+        "Fig. 3"
+      ],
+      "sourceMeaning": "Eq. (6) shows one uniformly controlled y-rotation eliminating one qubit, Eq. (7) composes the recursive preparation route, Eq. (8) gives the rotation angles, and Fig. 3 displays the resulting state-preparation circuit.",
+      "caseRelation": "ASPBE instantiates this UCRY architecture on one exact two-qubit dense real-amplitude target. The finite target/unitary proof is certified; the paper-wide arbitrary-n gate-count theorem is not claimed reproduced."
+    },
+    "grover-rudolph-product-state-preparation": {
+      "sourceKind": "paper-derived structured finite benchmark",
+      "paperTitle": "Creating superpositions that correspond to efficiently integrable probability distributions",
+      "authors": "Lov Grover, Terry Rudolph",
+      "year": 2002,
+      "url": "https://arxiv.org/abs/quant-ph/0208112",
+      "anchorLabel": "Grover–Rudolph Eq. (1), (3), (6)",
+      "anchors": [
+        "Eq. (1)",
+        "Eq. (3)",
+        "Eq. (6)"
+      ],
+      "sourceMeaning": "Eq. (1) is the target probability-amplitude state, Eq. (3) is the recursive one-qubit refinement, and Eq. (6) realizes that refinement by a controlled rotation after coherently computing the split angle.",
+      "caseRelation": "ASPBE chooses a two-bit product distribution as an exact finite specialization. The factorized two-rotation winner is an ASPBE same-target optimization; it is not stated as a resource theorem in the source paper."
+    },
+    "sparse-three-state-preparation": {
+      "sourceKind": "paper-derived sparse finite benchmark",
+      "paperTitle": "Nearly Optimal Circuit Size for Sparse Quantum State Preparation",
+      "authors": "Lvzhou Li, Jingquan Luo",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2406.16142",
+      "anchorLabel": "Li–Luo Eq. (1)–(2)",
+      "anchors": [
+        "Eq. (1)",
+        "Eq. (2)"
+      ],
+      "sourceMeaning": "Eq. (1) represents a d-sparse state by its nonzero amplitudes and basis labels. Eq. (2) is the exact unitary preparation contract, including clean ancillary qubits.",
+      "caseRelation": "ASPBE sets n=3 and d=3 and proves one exact finite witness of Eq. (2). The 5-vs-15 zero-branch pruning comparison is a finite ASPBE benchmark and is not presented as a reproduction of the paper's asymptotic Theorem 1."
+    },
+    "robin-ghl-one-term": {
+      "sourceKind": "paper reproduction plus certified fixed-benchmark improvement",
+      "paperTitle": "Quantum Framework for Simulating Linear PDEs with Robin Boundary Conditions",
+      "authors": "Nikita Guseynov, Xiajie Huang, Nana Liu",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2506.20478",
+      "anchorLabel": "GHL Eq. (9) + Theorem 3/4 + Fig. 4",
+      "anchors": [
+        "Eq. (9)",
+        "Theorem 3",
+        "Theorem 4",
+        "Fig. 4"
+      ],
+      "sourceMeaning": "Eq. (9) defines the Robin finite-difference operator used by the N=8 benchmark; Theorem 3 supplies sparse Hamiltonian access; Theorem 4 turns that access into a block encoding; Fig. 4 gives the source circuit route used for fixed-instance reconstruction.",
+      "caseRelation": "ASPBE reconstructs the fixed source route, proves exact clean-block semantics, and then certifies a same-target lexicographically better fixed-N circuit. Query-level improvement beyond the paper theorem is not claimed."
+    }
+  }
+}
