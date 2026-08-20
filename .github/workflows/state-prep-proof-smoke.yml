@@ -6,7 +6,9 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLE4.lean"
       - "QuantumBlockEncoding/StatePreparationIntervalTree.lean"
+      - "QuantumBlockEncoding/StatePreparationIntervalTreeEndToEnd.lean"
       - "QuantumBlockEncoding/PrimitiveMacros.lean"
       - "QuantumBlockEncoding/ReversibleClassical.lean"
       - "QuantumBlockEncoding.lean"
@@ -19,12 +21,14 @@ on:
       - "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean"
       - "QuantumBlockEncoding/StatePreparationBellRoute.lean"
       - "QuantumBlockEncoding/StatePreparationIntervalTree.lean"
+      - "QuantumBlockEncoding/StatePreparationIntervalTreeEndToEnd.lean"
       - "QuantumBlockEncoding/StatePreparation.lean"
       - "QuantumBlockEncoding/ConcreteSemantics.lean"
       - "QuantumBlockEncoding/TextbookStatePreparation.lean"
       - "QuantumBlockEncoding/PrimitiveCircuit.lean"
       - "QuantumBlockEncoding/PrimitiveSemantics.lean"
       - "QuantumBlockEncoding/PrimitiveBasisLE.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLE4.lean"
       - "QuantumBlockEncoding/UniformlyControlledRy.lean"
       - "QuantumBlockEncoding/Circuit.lean"
       - "QuantumBlockEncoding/Resources.lean"
@@ -58,7 +62,9 @@ jobs:
       - name: Compile reversible arithmetic and interval-tree routes
         run: |
           lake build QuantumBlockEncoding.ComparatorIncrementer
+          lake build QuantumBlockEncoding.PrimitiveBasisLE4
           lake build QuantumBlockEncoding.StatePreparationIntervalTree
+          lake build QuantumBlockEncoding.StatePreparationIntervalTreeEndToEnd
       - name: Compile representative State Preparation benchmarks
         run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
       - name: Check executable Qiskit mirrors
