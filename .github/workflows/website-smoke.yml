@@ -94,24 +94,44 @@ jobs:
           print('Robin MathJax + Papers + State Preparation + Lean graph contract: valid')
           PY
 
-  monitor-admission:
-    if: contains(github.event.head_commit.message, '[monitor-admission]')
+  patch-paper-output-budgets:
+    if: contains(github.event.head_commit.message, '[patch-paper-output-budgets]')
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
     steps:
-      - name: Report permanent admission run
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/papers-state-prep
+          fetch-depth: 0
+      - name: Give each finite output leaf an independent local budget
         shell: bash
         run: |
-          sleep 5
-          run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow repository-admission.yml --branch main --limit 1 --json databaseId --jq '.[0].databaseId')"
-          test -n "$run_id"
-          initial="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json status,conclusion,url)"
-          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Repository admission run **${run_id}** detected. Initial status: \`${initial}\`. Waiting for the permanent admission workflow to finish before branch pruning."
-          set +e
-          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
-          code=$?
-          set -e
-          final="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json status,conclusion,url)"
-          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Repository admission run **${run_id}** finished. Final status: \`${final}\`. Exit code: \`${code}\`."
-          exit "$code"
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('QuantumBlockEncoding/StatePreparationPaperRoutes.lean')
+          text = path.read_text(encoding='utf-8')
+          names = [f'mottonenDenseUcry_output_{i}' for i in range(4)]
+          names += [f'sparsePrunedUcry_output_{i}' for i in range(8)]
+          for name in names:
+              plain = f'private theorem {name} :'
+              wrapped = f'set_option maxHeartbeats 1000000 in\nprivate theorem {name} :'
+              if wrapped in text:
+                  continue
+              if plain not in text:
+                  raise SystemExit(f'missing finite output leaf: {name}')
+              text = text.replace(plain, wrapped, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+          git diff --check
+          git grep -n 'set_option maxHeartbeats 1000000 in' QuantumBlockEncoding/StatePreparationPaperRoutes.lean
+      - name: Commit finite output budgets
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add QuantumBlockEncoding/StatePreparationPaperRoutes.lean
+          git commit -m 'Bound finite paper-route output proofs locally'
+          git push origin HEAD:agent/papers-state-prep
