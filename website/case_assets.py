@@ -18,6 +18,40 @@ STAGE_CIRCUITS: dict[str, dict[str, str]] = {
 \lstick{$\ket0$} & \gate{H} & \rstick{$\ket+ $} \qw
 \end{quantikz}""",
     },
+    "bell-state-preparation": {
+        "Bell RY+CNOT": r"""\begin{quantikz}[row sep=.4cm,column sep=.55cm]
+\lstick{$q_0:\ket0$} & \gate{R_y(\pi/2)} & \ctrl{1} & \qw \\
+\lstick{$q_1:\ket0$} & \qw & \targ{} & \qw
+\end{quantikz}""",
+    },
+    "mottonen-dense-state-preparation": {
+        "Dense UCRY tree": r"""\begin{quantikz}[row sep=.4cm,column sep=.55cm]
+\lstick{$q_0:\ket0$} & \qw & \gate{\mathrm{UCRY}_{q_1}(3/5,4/5;5/13,12/13)} & \qw \\
+\lstick{$q_1:\ket0$} & \gate{R_y(2\arccos(5/13))} & \ctrl{-1} & \qw
+\end{quantikz}""",
+    },
+    "grover-rudolph-product-state-preparation": {
+        "Generic binary tree": r"""\begin{quantikz}[row sep=.4cm,column sep=.55cm]
+\lstick{$q_0:\ket0$} & \qw & \gate{\mathrm{UCRY}_{q_1}(3/5,4/5)} & \qw \\
+\lstick{$q_1:\ket0$} & \gate{R_y(2\arccos(3/5))} & \ctrl{-1} & \qw
+\end{quantikz}""",
+        "Factorized product route": r"""\begin{quantikz}[row sep=.4cm,column sep=.55cm]
+\lstick{$q_0:\ket0$} & \gate{R_y(2\arccos(3/5))} & \qw \\
+\lstick{$q_1:\ket0$} & \gate{R_y(2\arccos(3/5))} & \qw
+\end{quantikz}""",
+    },
+    "sparse-three-state-preparation": {
+        "Dense three-qubit tree": r"""\begin{quantikz}[row sep=.38cm,column sep=.42cm]
+\lstick{$q_0:\ket0$} & \qw & \qw & \gate{\mathrm{UCRY}_{0}(0)} & \qw \\
+\lstick{$q_1:\ket0$} & \qw & \gate{\mathrm{UCRY}_{q_2}(3/5,4/5;1,0)} & \ctrl{-1} & \qw \\
+\lstick{$q_2:\ket0$} & \gate{R_y(2\arccos(5/13))} & \ctrl{-1} & \ctrl{-2} & \qw
+\end{quantikz}""",
+        "Sparse pruned tree": r"""\begin{quantikz}[row sep=.38cm,column sep=.5cm]
+\lstick{$q_0:\ket0$} & \qw & \qw & \qw \\
+\lstick{$q_1:\ket0$} & \qw & \gate{\mathrm{UCRY}_{q_2}(3/5,4/5;1,0)} & \qw \\
+\lstick{$q_2:\ket0$} & \gate{R_y(2\arccos(5/13))} & \ctrl{-1} & \qw
+\end{quantikz}""",
+    },
     "be-case-1-champion": {
         "Depth-5 completion": r"""\begin{quantikz}[row sep=.35cm, column sep=.3cm]
 \lstick{$a:\ket0$} & \gate{X} & \ctrl{1} & \ctrl{2} & \targ{} & \qw \\
