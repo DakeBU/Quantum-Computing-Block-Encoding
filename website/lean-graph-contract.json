@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "title": "Underlying Lean Graph of Libraries",
+  "generatedEdges": [
+    "internal Lean module imports",
+    "module-to-public-declaration containment"
+  ],
+  "curatedOverlays": [
+    "textbook chapters",
+    "example cases",
+    "paper routes"
+  ],
+  "notYetClaimed": [
+    "theorem-level proof-term dependency graph",
+    "equivalence quotient of proof routes",
+    "compressed proof graph"
+  ]
+}
