@@ -1,6 +1,26 @@
 name: State-preparation proof smoke
 
 on:
+  push:
+    branches:
+      - agent/papers-state-prep
+    paths:
+      - "QuantumBlockEncoding/StatePreparationBenchmarks*.lean"
+      - "QuantumBlockEncoding/StatePreparationPaperRoutes*.lean"
+      - "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean"
+      - "QuantumBlockEncoding/StatePreparationBellRoute.lean"
+      - "QuantumBlockEncoding/StatePreparation.lean"
+      - "QuantumBlockEncoding/ConcreteSemantics.lean"
+      - "QuantumBlockEncoding/TextbookStatePreparation.lean"
+      - "QuantumBlockEncoding/PrimitiveCircuit.lean"
+      - "QuantumBlockEncoding/PrimitiveSemantics.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLE.lean"
+      - "QuantumBlockEncoding/UniformlyControlledRy.lean"
+      - "QuantumBlockEncoding/Circuit.lean"
+      - "QuantumBlockEncoding/Resources.lean"
+      - "QuantumBlockEncoding.lean"
+      - "executable-exports/SP-PAPERS-001/qiskit/export.py"
+      - ".github/workflows/state-prep-proof-smoke.yml"
   pull_request:
     paths:
       - "QuantumBlockEncoding/StatePreparationBenchmarks*.lean"
