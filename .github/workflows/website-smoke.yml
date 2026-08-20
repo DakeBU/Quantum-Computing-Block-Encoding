@@ -26,9 +26,6 @@ on:
 
 permissions:
   contents: read
-  actions: read
-  pull-requests: write
-  issues: write
 
 jobs:
   teaching-contract:
@@ -36,76 +33,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+
       - name: Check public figure typography and formulas
         run: python3 tools/check_public_figure_style.py
-      - name: Check Python and teaching data
-        run: |
-          python3 -m py_compile website/scripts/enrich_casebook.py website/scripts/enforce_robin_reader_contract.py website/scripts/polish_casebook.py website/scripts/test_casebook_enrichment.py website/scripts/test_casebook_polish.py
-          python3 -m unittest website.scripts.test_casebook_enrichment website.scripts.test_casebook_polish
 
-  regenerate-final-integration-catalog:
-    if: contains(github.event.head_commit.message, '[regenerate-final-catalog-v2]')
-    permissions:
-      contents: write
-      pull-requests: write
-      issues: write
-    runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
-    steps:
-      - name: Report catalog run start
-        run: gh pr comment 17 --repo "$GITHUB_REPOSITORY" --body "Catalog regeneration run **${GITHUB_RUN_ID}** started from registered main CI."
-      - name: Checkout clean integration branch
-        uses: actions/checkout@v5
-        with:
-          ref: agent/finalize-state-prep-site
-          fetch-depth: 0
-      - name: Register State Preparation modules and regenerate inventory
-        shell: bash
+      - name: Check website generators and teaching data
         run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          path = Path('scripts/generate-blueprint-catalog.py')
-          text = path.read_text(encoding='utf-8')
-          marker = '''            "Robin/SystemConjugation.lean",
-        },
-    ),'''
-          replacement = '''            "Robin/SystemConjugation.lean",
-            "StatePreparationBenchmarksCoreFixed.lean",
-            "StatePreparationPrimitiveRoutes.lean",
-            "StatePreparationBellRoute.lean",
-            "StatePreparationPaperEntryCertificates.lean",
-            "StatePreparationPaperRoutesCompact.lean",
-            "StatePreparationPaperRoutes.lean",
-            "StatePreparationBenchmarks.lean",
-        },
-    ),'''
-          if '"StatePreparationPaperRoutesCompact.lean"' not in text:
-              if marker not in text:
-                  raise SystemExit('PaperAndExamples catalog marker not found')
-              text = text.replace(marker, replacement, 1)
-          text = text.replace(
-              '"Paper-facing backend models and concrete Robin-boundary example "\n        "artifacts."',
-              '"Paper-facing backend models and concrete State Preparation / Robin "\n        "example artifacts."',
-              1,
-          )
-          path.write_text(text, encoding='utf-8')
-          PY
-          python3 scripts/generate-blueprint-catalog.py
-          python3 scripts/generate-blueprint-catalog.py --check
-          git diff --check
-      - name: Commit generated evidence to PR branch
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/generate-blueprint-catalog.py ABEISBlueprint/Catalog/PaperAndExamples.lean web/library/declarations.json docs/blueprint-coverage.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Regenerate library catalog for State Preparation routes'
-            git push origin HEAD:agent/finalize-state-prep-site
-          fi
-      - name: Report catalog run result
-        if: always()
-        run: gh pr comment 17 --repo "$GITHUB_REPOSITORY" --body "Catalog regeneration run **${GITHUB_RUN_ID}** finished with job status **${{ job.status }}**."
+          python3 -m py_compile \
+            website/scripts/build_site.py \
+            website/scripts/lean_graph.py \
+            website/scripts/enrich_casebook.py \
+            website/scripts/enforce_robin_reader_contract.py \
+            website/scripts/polish_casebook.py \
+            website/scripts/publish_extensions.py \
+            website/scripts/publish_paper_pages.py \
+            website/scripts/publish_taxonomy.py \
+            website/scripts/test_casebook_enrichment.py \
+            website/scripts/test_casebook_polish.py
+          python3 -m unittest \
+            website.scripts.test_casebook_enrichment \
+            website.scripts.test_casebook_polish
+          python3 website/scripts/publish_taxonomy.py --check-data
