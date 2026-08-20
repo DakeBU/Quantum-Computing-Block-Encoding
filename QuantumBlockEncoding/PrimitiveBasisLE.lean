@@ -44,6 +44,78 @@ theorem primitiveBasisLEEquiv_six_value (bits : PrimitiveBasis 6) :
       8 * (bits 3).val + 16 * (bits 4).val + 32 * (bits 5).val := by
   native_decide +revert
 
+/-- Explicit inverse used by finite two-wire state-preparation proofs. -/
+def primitiveBits2LE (index : Fin 4) : PrimitiveBasis 2
+  | 0 => ⟨index.val % 2, by omega⟩
+  | _ => ⟨(index.val / 2) % 2, by omega⟩
+
+@[simp] theorem primitiveBasisLEEquiv_two_symm (index : Fin 4) :
+    (primitiveBasisLEEquiv 2).symm index = primitiveBits2LE index := by
+  native_decide +revert
+
+/-- Fixed-width coordinate reductions whose domain exactly matches the
+`gridSize`-indexed finite matrix backend. -/
+@[simp] theorem primitiveBasisLEEquiv_two_symm_wire_zero
+    (index : Fin (gridSize 2)) :
+    ((primitiveBasisLEEquiv 2).symm index) (0 : Fin 2) =
+      ⟨index.val % 2, by omega⟩ := by
+  native_decide +revert
+
+@[simp] theorem primitiveBasisLEEquiv_two_symm_wire_one
+    (index : Fin (gridSize 2)) :
+    ((primitiveBasisLEEquiv 2).symm index) (1 : Fin 2) =
+      ⟨(index.val / 2) % 2, by omega⟩ := by
+  native_decide +revert
+
+/-- Concrete inverse images used after `fin_cases`; these avoid relying on type
+normalization between `Fin (gridSize 2)` and `Fin 4`. -/
+@[simp] theorem primitiveBasisLEEquiv_two_symm_0 :
+    (primitiveBasisLEEquiv 2).symm
+        (⟨0, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
+      primitiveBits2LE (0 : Fin 4) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_two_symm_1 :
+    (primitiveBasisLEEquiv 2).symm
+        (⟨1, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
+      primitiveBits2LE (1 : Fin 4) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_two_symm_2 :
+    (primitiveBasisLEEquiv 2).symm
+        (⟨2, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
+      primitiveBits2LE (2 : Fin 4) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_two_symm_3 :
+    (primitiveBasisLEEquiv 2).symm
+        (⟨3, by norm_num [gridSize]⟩ : Fin (gridSize 2)) =
+      primitiveBits2LE (3 : Fin 4) := by native_decide
+
+/-- Encode the non-target wire of a two-qubit little-endian basis state. -/
+def primitiveBits2LEWithout (target : Fin 2) (index : Fin 4) : Nat :=
+  match target.val with
+  | 0 => index.val / 2
+  | _ => index.val % 2
+
+/-- Same context code, but with the unreduced `gridSize` domain used by the
+concrete matrix semantics. -/
+def primitiveBits2LEGridWithout
+    (target : Fin 2) (index : Fin (gridSize 2)) : Nat :=
+  match target.val with
+  | 0 => index.val / 2
+  | _ => index.val % 2
+
+@[simp] theorem splitPrimitiveWire_primitiveBits2LE_context_eq
+    (target : Fin 2) (left right : Fin 4) :
+    (splitPrimitiveWire target (primitiveBits2LE left)).2 =
+        (splitPrimitiveWire target (primitiveBits2LE right)).2 ↔
+      primitiveBits2LEWithout target left =
+        primitiveBits2LEWithout target right := by
+  native_decide +revert
+
+@[simp] theorem splitPrimitiveWire_primitiveBasisLEEquiv_two_symm_context_eq
+    (target : Fin 2) (left right : Fin (gridSize 2)) :
+    (splitPrimitiveWire target ((primitiveBasisLEEquiv 2).symm left)).2 =
+        (splitPrimitiveWire target ((primitiveBasisLEEquiv 2).symm right)).2 ↔
+      primitiveBits2LEGridWithout target left =
+        primitiveBits2LEGridWithout target right := by
+  native_decide +revert
+
 /-- Explicit inverse used by finite three-wire compiler proofs. -/
 def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
   | 0 => ⟨index.val % 2, by omega⟩
@@ -54,7 +126,68 @@ def primitiveBits3LE (index : Fin 8) : PrimitiveBasis 3
     (primitiveBasisLEEquiv 3).symm index = primitiveBits3LE index := by
   native_decide +revert
 
+@[simp] theorem primitiveBasisLEEquiv_three_symm_wire_zero
+    (index : Fin (gridSize 3)) :
+    ((primitiveBasisLEEquiv 3).symm index) (0 : Fin 3) =
+      ⟨index.val % 2, by omega⟩ := by
+  native_decide +revert
+
+@[simp] theorem primitiveBasisLEEquiv_three_symm_wire_one
+    (index : Fin (gridSize 3)) :
+    ((primitiveBasisLEEquiv 3).symm index) (1 : Fin 3) =
+      ⟨(index.val / 2) % 2, by omega⟩ := by
+  native_decide +revert
+
+@[simp] theorem primitiveBasisLEEquiv_three_symm_wire_two
+    (index : Fin (gridSize 3)) :
+    ((primitiveBasisLEEquiv 3).symm index) (2 : Fin 3) =
+      ⟨(index.val / 4) % 2, by omega⟩ := by
+  native_decide +revert
+
+/-- Concrete inverse images for all eight three-qubit basis states. -/
+@[simp] theorem primitiveBasisLEEquiv_three_symm_0 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨0, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (0 : Fin 8) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_three_symm_1 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨1, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (1 : Fin 8) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_three_symm_2 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨2, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (2 : Fin 8) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_three_symm_3 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨3, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (3 : Fin 8) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_three_symm_4 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨4, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (4 : Fin 8) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_three_symm_5 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨5, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (5 : Fin 8) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_three_symm_6 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨6, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (6 : Fin 8) := by native_decide
+@[simp] theorem primitiveBasisLEEquiv_three_symm_7 :
+    (primitiveBasisLEEquiv 3).symm
+        (⟨7, by norm_num [gridSize]⟩ : Fin (gridSize 3)) =
+      primitiveBits3LE (7 : Fin 8) := by native_decide
+
 def primitiveBits3LEWithout (target : Fin 3) (index : Fin 8) : Nat :=
+  match target.val with
+  | 0 => index.val / 2
+  | 1 => index.val % 2 + 2 * (index.val / 4)
+  | _ => index.val % 4
+
+/-- Grid-sized companion of `primitiveBits3LEWithout`, used before the type
+normalizer has turned `Fin (gridSize 3)` into `Fin 8`. -/
+def primitiveBits3LEGridWithout
+    (target : Fin 3) (index : Fin (gridSize 3)) : Nat :=
   match target.val with
   | 0 => index.val / 2
   | 1 => index.val % 2 + 2 * (index.val / 4)
@@ -66,6 +199,14 @@ def primitiveBits3LEWithout (target : Fin 3) (index : Fin 8) : Nat :=
         (splitPrimitiveWire target (primitiveBits3LE right)).2 ↔
       primitiveBits3LEWithout target left =
         primitiveBits3LEWithout target right := by
+  native_decide +revert
+
+@[simp] theorem splitPrimitiveWire_primitiveBasisLEEquiv_three_symm_context_eq
+    (target : Fin 3) (left right : Fin (gridSize 3)) :
+    (splitPrimitiveWire target ((primitiveBasisLEEquiv 3).symm left)).2 =
+        (splitPrimitiveWire target ((primitiveBasisLEEquiv 3).symm right)).2 ↔
+      primitiveBits3LEGridWithout target left =
+        primitiveBits3LEGridWithout target right := by
   native_decide +revert
 
 end QuantumBlockEncoding
