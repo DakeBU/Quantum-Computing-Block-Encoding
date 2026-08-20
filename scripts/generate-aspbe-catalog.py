@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,6 +33,10 @@ def load_generator():
     if spec is None or spec.loader is None:
         raise SystemExit(f"cannot load {GENERATOR}")
     module = importlib.util.module_from_spec(spec)
+    # Dataclass and annotation resolution consult sys.modules while the imported
+    # generator is being executed. Register the temporary module first so this
+    # wrapper behaves like a normal Python import on every supported runner.
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
