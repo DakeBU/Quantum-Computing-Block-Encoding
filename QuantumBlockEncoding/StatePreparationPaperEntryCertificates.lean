@@ -14,6 +14,7 @@ namespace QuantumBlockEncoding.StatePreparationPaperEntryCertificates
 
 open ConcreteSemantics
 open Robin.ComplexLCU
+open StatePreparationBenchmarks
 
 attribute [local simp] primitiveBits2LE primitiveBits3LE
 attribute [local simp] primitiveBits2LEWithout primitiveBits3LEWithout
