@@ -130,6 +130,118 @@ construction, and dependent type compatibility. MIP should therefore be used
 only for a clearly isolated combinatorial subproblem with a proved relation to
 the underlying proof objective.
 
+## Library Factorization Profile: measure sharing before compressing
+
+The practical question “can the graph use fewer nodes while more nodes are
+reused by more downstream results?” should first be a **measurement problem**.
+It should not be encoded as a rewrite rule or a scalar optimization target.
+
+For a directed acyclic support graph \(G=(V,E)\) and a chosen set of target
+roots \(T\), let \(S_t\subseteq V\) be the support of target \(t\), including
+\(t\) itself. Define
+
+\[
+U = \left|\bigcup_{t\in T} S_t\right|,
+\qquad
+I = \sum_{t\in T}|S_t|,
+\qquad
+r(v)=|\{t\in T:v\in S_t\}|.
+\]
+
+`U` is the number of unique maintained support nodes. `I` is the number of node
+incidences that would appear if every target were expanded separately into a
+support forest. Their ratio
+
+\[
+F_{\rm share}=\frac{I}{U}
+\]
+
+is ASPBE's **support-sharing factor**. The equivalent reuse gain
+
+\[
+G_{\rm reuse}=1-\frac{U}{I}
+\]
+
+is the fraction of expanded support incidences represented once rather than
+repeated across targets. This is closely related to the standard distinction
+between a shared expression/proof DAG and its tree or formula unfolding.
+
+To prevent this one ratio from hiding topology, record it together with:
+
+\[
+N_{\rm shared}=|\{v:r(v)\ge2\}|,
+\qquad
+\rho_{\rm shared}=\frac{N_{\rm shared}}{U},
+\qquad
+\bar r_{\rm shared}=\frac{\sum_{r(v)\ge2}r(v)}{N_{\rm shared}},
+\qquad
+r_{\max}=\max_v r(v).
+\]
+
+The reuse histogram \(k\mapsto |\{v:r(v)=k\}|\) should also be retained. It
+distinguishes “one giant foundation node used everywhere” from “many meaningful
+shared lemmas with moderate-to-high reuse.”
+
+For the current **module** graph, the target roots are frontier modules after
+excluding the barrel import module `QuantumBlockEncoding.lean`. Direct import
+fan-out is recorded separately from transitive target reuse. The implementation
+is `tools/lean_graph_reuse_metrics.py`; its output is explicitly labeled
+`module-import-proxy`.
+
+When theorem-level proof dependencies are exported, the same definitions can be
+reused with theorem/paper/case roots as \(T\). At that point one may also add a
+nonnegative cost weight \(w(v)\) and compare
+
+\[
+U_w=\sum_{v\in\cup_t S_t}w(v),
+\qquad
+I_w=\sum_{t\in T}\sum_{v\in S_t}w(v),
+\qquad
+F_{\rm share}^{(w)}=I_w/U_w,
+\]
+
+while keeping the unweighted profile. Proof-term size, source size, and checker
+time must remain separate candidate weight choices because they measure
+different phenomena.
+
+### Relation to graph-theoretic notions
+
+The useful analogies are:
+
+- **fan-out / out-degree**: immediate number of consumers of one support node;
+- **DAG versus tree unfolding**: the direct analogue of repeated proof fragments
+  represented once by a reusable lemma;
+- **reachability / descendant count**: how many chosen targets transitively reuse
+  one node;
+- **transitive reduction**: potentially useful for a visualization that preserves
+  reachability, but never a license to delete explicit Lean imports or proof
+  dependencies;
+- **betweenness / bridge diagnostics**: later useful to identify lemmas joining
+  previously weakly connected construction families, but not a correctness or
+  simplicity objective by itself.
+
+Generic k-core or undirected centrality is less aligned with the directed
+support semantics and should not be the primary metric.
+
+### Do not optimize node count blindly
+
+A raw objective such as “minimize \(|V|\), maximize fan-out” is gameable. One
+could hide many unrelated facts inside a giant theorem or definition and obtain
+fewer nodes with worse mathematics, worse elaboration, and worse reuse
+interfaces. Therefore the Factorization Profile is descriptive and comparative.
+Any library-design decision must preserve:
+
+1. exact Lean replay and theorem statements;
+2. source fidelity and semantic resolution;
+3. proof cost / elaboration telemetry;
+4. human-readable lemma boundaries;
+5. the full uncompressed provenance graph.
+
+For a new paper or construction, a useful later contribution profile will
+separate **new nodes**, **new edges between existing nodes**, **reused support**,
+and **new bridge topology**. A paper can then be recognized as structurally
+important even when it adds few nodes but discovers a new reusable connection.
+
 ## Immediate implementation roadmap
 
 ### Phase A — non-lossy graph audit
