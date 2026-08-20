@@ -18,6 +18,9 @@ on:
 
 permissions:
   contents: read
+  actions: read
+  pull-requests: write
+  issues: write
 
 jobs:
   teaching-contract:
@@ -90,3 +93,25 @@ jobs:
           assert Path('website/static/lean-graph.css').is_file()
           print('Robin MathJax + Papers + State Preparation + Lean graph contract: valid')
           PY
+
+  monitor-admission:
+    if: contains(github.event.head_commit.message, '[monitor-admission]')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Report permanent admission run
+        shell: bash
+        run: |
+          sleep 5
+          run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow repository-admission.yml --branch main --limit 1 --json databaseId --jq '.[0].databaseId')"
+          test -n "$run_id"
+          initial="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json status,conclusion,url)"
+          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Repository admission run **${run_id}** detected. Initial status: \`${initial}\`. Waiting for the permanent admission workflow to finish before branch pruning."
+          set +e
+          gh run watch "$run_id" --repo "$GITHUB_REPOSITORY" --exit-status
+          code=$?
+          set -e
+          final="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json status,conclusion,url)"
+          gh pr comment 3 --repo "$GITHUB_REPOSITORY" --body "Repository admission run **${run_id}** finished. Final status: \`${final}\`. Exit code: \`${code}\`."
+          exit "$code"
