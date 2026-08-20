@@ -3,11 +3,11 @@
 - `id`: `tl-comparator-incrementer-arithmetic`
 - `source`: Vivien Vandaele, *Asymptotically Optimal Quantum Circuits for Comparators and Incrementers*, arXiv:2603.12917
 - `statement`: reuse comparator/incrementer arithmetic as a shared reversible routing primitive for interval/prefix State Preparation and arithmetic/sparse Block Encoding
-- `lean_decl`: `QuantumBlockEncoding.ComparatorIncrementer.*` together with `QuantumBlockEncoding.PromiseGateOptimization.*`
-- `lean_status`: `obligation` — branch implementation exists, but this card must not enter `registry.json` as `formalized` until the Lean gate accepts the exact branch
+- `lean_decl`: `QuantumBlockEncoding.ComparatorIncrementer.*`, `ComparatorIncrementerGeneral.*`, `ComparatorIncrementerRecursiveSplit.*`, together with `QuantumBlockEncoding.PromiseGateOptimization.*`
+- `lean_status`: `obligation` — branch implementations exist, but this card must not enter `registry.json` as `formalized` until the Lean gate accepts the exact branch
 - `used_by`: interval-tree State Preparation; piecewise-amplitude routing; sparse-address Block Encoding; finite-difference/banded address logic; promise-register circuit mutations
 - `dependencies`: `ReversibleClassical`, `PrimitiveMacros`, little-endian basis transport, exact CCX refinement
-- `next_action`: close the four-wire address-preparation extension and run/admit the branch Lean gate; then promote the exact local roots to `registry.json`
+- `next_action`: admit the branch Lean gate; then connect the Eq. (34) split/carry semantics to Vandaele's concrete recursive promise-gate circuit and prove the resource recurrence
 - `tags`: `comparator`; `incrementer`; `reversible-arithmetic`; `interval`; `state-preparation`; `block-encoding`; `resource`
 
 ## Why this is a high-value ASPBE memory card
@@ -39,12 +39,12 @@ with a clean oracle required by a parent SP/BE theorem.
 The source paper proves asymptotically optimal comparator and incrementer
 families in a Clifford+Toffoli setting, with linear gate count and logarithmic
 depth and minimum-qubit statements under its declared model.  ASPBE must keep
-those claims separate from its current finite kernel.
+those claims separate from its current branch implementation.
 
 **Do not infer the arbitrary-width source theorem from the finite certificates
-below.**  To reproduce the paper-wide result, ASPBE still needs the recursive
-circuit family, the parameterized correctness induction, resource recurrences,
-and matching lower-bound/model assumptions in Lean.
+below.**  To reproduce the paper-wide result, ASPBE still needs the concrete
+recursive promise-gate family, the parameterized correctness induction,
+resource recurrences, and matching lower-bound/model assumptions in Lean.
 
 ## ASPBE finite proof-bearing seed on the current branch
 
@@ -104,20 +104,60 @@ selector on the address distribution
 \]
 
 With a clean work flag and target bit, the selector routes addresses
-`0,1,2` to target bit one and address `3` to target bit zero.  Under the
+`0,1,2` to target bit one and address `3` to target bit zero. Under the
 repository's little-endian convention the intended four-qubit output support is
 
 \[
 \{8,9,10,3\}
 \]
 
-with amplitudes `9/25, 12/25, 12/25, 16/25` respectively.  This is the first
-concrete SP example in which the arithmetic memory card is consumed rather than
-merely cited.
+with amplitudes `9/25, 12/25, 12/25, 16/25` respectively.
 
-The remaining SP leaf is to extend the already-certified two-qubit address
-preparer to the four-wire clean register and compose it with the selector,
-yielding one end-to-end `|0^4\rangle -> |\psi\rangle` certificate.
+The former missing clean-extension leaf is now implemented in
+`QuantumBlockEncoding/StatePreparationIntervalTreeEndToEnd.lean`. It embeds the
+already-certified two independent Grover--Rudolph address rotations on low
+wires 0 and 1, composes them with the exact selector, packages an intended
+`ComplexStatePreparationCertificate 4`, and derives the intended unified
+primitive cost
+
+\[
+(N_T,N_{1q},N_{CX},D,a_{\rm clean})=(14,26,13,27,1).
+\]
+
+This is **branch implementation evidence only until Lean admission**. The card
+must not describe the end-to-end certificate as compiled before the build is
+observable and green.
+
+## Arbitrary-width semantic bridge now present on the branch
+
+`ComparatorIncrementerGeneral.lean` fixes the parameterized correctness
+contracts before the recursive circuit family is written:
+
+- `IncrementerSpec n` for modular `n`-bit successor;
+- `ClassicalComparatorSpec n c` preserving the address and toggling an arbitrary
+  incoming flag iff the address is below the classical threshold;
+- `QuantumComparatorSpec n` preserving both quantum inputs and toggling the flag
+  iff the left value is less than the right value;
+- proof-bearing family interfaces whose correctness fields must be discharged by
+  real circuit constructions rather than assumed globally.
+
+The finite 3-bit incrementer and 2-bit `<3` comparator are connected to these
+parameterized contracts as finite seed theorems.
+
+`ComparatorIncrementerRecursiveSplit.lean` then formalizes the arithmetic layer
+behind the paper's recursive incrementer split. For an `(n+k)`-bit word it names
+the incremented low block, the low-block carry, and the carry-updated high block,
+and uses exact natural-number division/modulus identities to prove
+
+\[
+(x+1)\bmod 2^{n+k}
+=
+\operatorname{low}'
++2^n\operatorname{high}'.
+\]
+
+This is the semantic induction target for the next circuit layer. It is not yet
+the paper's concrete recursive gate decomposition.
 
 ## Block Encoding consumers to retrieve later
 
@@ -136,8 +176,8 @@ status.
 
 ## Promotion rule
 
-Promote this card to `registry.json` only after the exact branch declarations
-build.  At promotion time, record each declaration's exact signature and source
-file separately.  The source paper's asymptotic theorem should remain a distinct
-`paper-cited`/partial-route record until the parameterized construction and
-optimality proof are themselves formalized.
+Promote local roots to `registry.json` only after the exact branch declarations
+build. At promotion time, record each declaration's exact signature and source
+file separately. The source paper's asymptotic theorem should remain a distinct
+`paper-cited`/partial-route record until the recursive construction, resource
+recurrence, and optimality proof are themselves formalized.
