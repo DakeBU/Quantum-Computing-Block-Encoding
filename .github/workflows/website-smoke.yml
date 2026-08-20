@@ -77,10 +77,7 @@ jobs:
           PY
 
   apply-site-graph:
-    if: >-
-      github.event_name == 'push' &&
-      github.ref == 'refs/heads/agent/papers-state-prep' &&
-      contains(github.event.head_commit.message, '[apply-site-graph]')
+    if: github.event_name == 'pull_request'
     permissions:
       contents: write
     runs-on: ubuntu-latest
