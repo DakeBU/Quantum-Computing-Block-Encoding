@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "Underlying Lean Graph of Libraries",
   "generatedEdges": [
     "internal Lean module imports",
@@ -10,9 +10,15 @@
     "example cases",
     "paper routes"
   ],
+  "auxiliaryReadOnlyAnalyses": [
+    "module-import-proxy Library Factorization Profile derived from the generated graph",
+    "support-sharing factor, reuse gain, shared-node coverage, reuse histogram, and direct fan-out diagnostics"
+  ],
+  "analysisAuthorityBoundary": "Derived factorization metrics may compare or visualize the generated graph but never delete, merge, quotient, or replace authoritative Lean nodes or edges.",
   "notYetClaimed": [
     "theorem-level proof-term dependency graph",
     "equivalence quotient of proof routes",
-    "compressed proof graph"
+    "compressed proof graph",
+    "ZDD or MIP representation of dependent Lean proof state"
   ]
 }
