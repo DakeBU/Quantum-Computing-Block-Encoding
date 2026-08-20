@@ -7,6 +7,7 @@ test -f _out/blueprint/html-multi/index.html
 
 python3 -m py_compile \
   website/scripts/build_site.py \
+  website/scripts/lean_graph.py \
   website/scripts/enrich_teaching_site.py \
   website/scripts/enrich_casebook.py \
   website/scripts/enforce_robin_reader_contract.py \
@@ -129,6 +130,15 @@ grep -q 'data-collapsed-section="lean-certificate"' _site/example-cases/robin-gh
 grep -q 'data-collapsed-section="correspondence"' _site/case-studies/robin/index.html
 ! grep -q '<h2>Source interpretation decisions</h2>' _site/example-cases/robin-ghl-one-term/index.html
 
+test -f _site/lean-graph/index.html
+test -f _site/data/lean-graph.json
+test -f _site/static/lean-graph.js
+test -f _site/static/lean-graph.css
+grep -q 'Underlying Lean Graph of Libraries' _site/lean-graph/index.html
+grep -q 'Underlying Lean Graph of Libraries' _site/case-studies/robin/index.html
+grep -Fq '\(N=8\)' _site/case-studies/robin/index.html
+grep -Fq '\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)' _site/case-studies/robin/index.html
+! grep -Fq 'A_k/(N_D N_f kappa)' _site/case-studies/robin/index.html
 test -f _site/.nojekyll
 
 echo "QuantumComputinglib assembled at _site/index.html"

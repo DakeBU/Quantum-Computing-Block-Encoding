@@ -31,12 +31,14 @@ from content import (  # noqa: E402
     WORKFLOW_STAGES,
 )
 from case_assets import STAGE_CIRCUITS, stage_circuit_latex  # noqa: E402
+from lean_graph import build_lean_graph_payload, render_lean_graph_body  # noqa: E402
 
 
 NAVIGATION = [
     ("Home", ""),
     ("Book map", "learning/"),
     ("Lean library", "library/"),
+    ("Underlying Lean Graph of Libraries", "lean-graph/"),
     ("Implementation map", "implementation-map/"),
     ("Robin paper map", "case-studies/robin/"),
     ("Live workspace", "ide/"),
@@ -350,6 +352,7 @@ def page_template(
     toc: list[tuple[str, str]] | None = None,
     description: str = "QuantumComputinglib: a formal quantum computing textbook and the ASPBE Lean library",
     extra_scripts: tuple[str, ...] = (),
+    extra_styles: tuple[str, ...] = (),
 ) -> str:
     prefix = prefix_for(route)
     toc_html = ""
@@ -368,6 +371,10 @@ def page_template(
     extra_script_html = "".join(
         f'<script src="{prefix}{html.escape(path)}"></script>' for path in extra_scripts
     )
+    extra_style_html = "".join(
+        f'<link rel="stylesheet" href="{prefix}{html.escape(path)}">'
+        for path in extra_styles
+    )
     return f"""<!doctype html>
 <html lang="en" data-theme="blueprint">
 <head>
@@ -377,6 +384,7 @@ def page_template(
   <title>{html.escape(title)} | QuantumComputinglib</title>
   <link rel="icon" href="{prefix}static/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{prefix}static/site.css">
+  {extra_style_html}
   <script>
     window.MathJax = {{
       tex: {{inlineMath: [['\\\\(', '\\\\)']], displayMath: [['\\\\[', '\\\\]']]}},
@@ -997,7 +1005,7 @@ def render_robin_paper_map(
   <h1>Robin boundary block encoding</h1>
   <p class="lede">The source paper proposes a general circuit family for
   differential operators with Robin boundaries. ASPBE separates that general
-  route from a fixed (N=8) benchmark, where three exact primitive block
+  route from a fixed \(N=8\) benchmark, where three exact primitive block
   encodings and their same-tier resource comparison now compile.</p>
   <div class="link-row">
     <a class="button" href="{html.escape(str(paper['url']))}">Open the source paper</a>
@@ -1009,10 +1017,10 @@ def render_robin_paper_map(
   <div class="section-heading"><p class="eyebrow">The concrete case</p>
   <h2>What matrix is being encoded?</h2>
   <p>The benchmark fixes the homogeneous-Robin fourth-derivative matrix. Keeping
-  (M=12A) integral makes every decomposition identity exact in Lean.</p></div>
+  \(M=12A\) integral makes every decomposition identity exact in Lean.</p></div>
   {render_math_tex(r"A=\frac1{12}\begin{pmatrix}-30&32&-2&0&0&0&0&0\\16&-31&16&-1&0&0&0&0\\-1&16&-30&16&-1&0&0&0\\0&-1&16&-30&16&-1&0&0\\0&0&-1&16&-30&16&-1&0\\0&0&0&-1&16&-30&16&-1\\0&0&0&0&-1&16&-31&16\\0&0&0&0&0&-2&32&-30\end{pmatrix},\qquad \Pi U\Pi^\dagger=\frac{A}{56/3}=\frac{M}{224}.")}
   <p>The clean projector fixes selector and coefficient registers to zero. The
-  remaining three-qubit register indexes the rows and columns of (A).</p>
+  remaining three-qubit register indexes the rows and columns of \(A\).</p>
 </section>
 <section class="content-section" id="how-to-read">
   <div class="section-heading">
@@ -1026,8 +1034,8 @@ def render_robin_paper_map(
   theorem.</p>
   <div class="callout warning">
     <strong>Current conclusion.</strong>
-    The arbitrary-size paper theorem remains partial. The fixed (N=8),
-    homogeneous <code>f=1</code> benchmark is closed separately: Lean certifies
+    The arbitrary-size paper theorem remains partial. The fixed \(N=8\),
+    homogeneous \(f=1\) benchmark is closed separately: Lean certifies
     paper-seven, the standard-RY-corrected Figure-4 realization, and the XOR
     four-slot candidate in the exact <code>{{X, RY, RZ, CX}}</code> basis. It
     proves the candidate strictly better than both source realizations under
@@ -1811,6 +1819,37 @@ def workspace_items(
     return items
 
 
+
+def render_lean_graph(
+    payload: dict[str, object],
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    route = "lean-graph/"
+    return page_template(
+        title="Underlying Lean Graph of Libraries",
+        route=route,
+        current=route,
+        body=render_lean_graph_body(payload),
+        coverage=coverage,
+        gate=gate,
+        context=context,
+        toc=[
+            ("graph-purpose", "Purpose"),
+            ("graph-methodology", "Methodology"),
+            ("interactive-graph", "Interactive graph"),
+            ("graph-compression", "Proof-graph compression"),
+        ],
+        description=(
+            "Interactive QuantumComputinglib Lean module and declaration graph, "
+            "with textbook, paper, example-case, and proof-compression context."
+        ),
+        extra_scripts=("static/lean-graph.js",),
+        extra_styles=("static/lean-graph.css",),
+    )
+
+
 def render_ide(
     declarations: dict[str, dict[str, object]],
     coverage: dict[str, object],
@@ -2556,6 +2595,7 @@ def build_search_index(
         ("Implementation Map", "Mathematical goals connected to exact Lean declarations", "implementation-map/index.html"),
         ("Robin paper map", "Original Robin construction statements mapped to compiled Lean structures and open obligations", "case-studies/robin/index.html"),
         ("Lean Library Explorer", "Search the complete public declaration inventory", "library/index.html"),
+        ("Underlying Lean Graph of Libraries", "Explore generated Lean import topology and declaration branches", "lean-graph/index.html"),
         ("Progress and Roadmap", "Compiled, partial, experimental, planned, and blocked routes", "roadmap/index.html"),
         ("ASPBE harness", "Candidate generation, resource scoring, proof, and validation", "workflow/index.html"),
         ("Live formalization workspace", "Compare LaTeX with Lean and compile through the local companion server", "ide/index.html"),
@@ -2651,6 +2691,9 @@ def build(args: argparse.Namespace) -> None:
     EXAMPLE_CASE_NAV = [
         (str(case["shortTitle"]), str(case["slug"])) for case in example_cases
     ]
+    lean_graph_payload = build_lean_graph_payload(
+        ROOT, declarations, CHAPTERS, example_cases
+    )
 
     output: Path = args.output
     if output.exists():
@@ -2667,6 +2710,10 @@ def build(args: argparse.Namespace) -> None:
     )
     data = output / "data"
     data.mkdir(parents=True, exist_ok=True)
+    (data / "lean-graph.json").write_text(
+        json.dumps(lean_graph_payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     (data / "public-case-replay.json").write_text(
         json.dumps(replay_report, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
@@ -2714,6 +2761,10 @@ def build(args: argparse.Namespace) -> None:
             render_chapter(chapter, declaration_map, coverage, gate, context),
         )
     write_page(output, "library", render_library(inventory, coverage, gate, context))
+    write_page(
+        output, "lean-graph",
+        render_lean_graph(lean_graph_payload, coverage, gate, context),
+    )
     by_source: dict[str, list[dict[str, object]]] = {}
     for declaration in declarations:
         by_source.setdefault(str(declaration["source"]), []).append(declaration)
@@ -2788,6 +2839,9 @@ def build(args: argparse.Namespace) -> None:
         "chapterCount": len(CHAPTERS),
         "exampleCaseCount": len(example_cases),
         "diagramCount": len(list((WEBSITE_ROOT / "diagrams").glob("*.mmd"))),
+        "leanGraphModuleCount": lean_graph_payload["stats"]["moduleCount"],
+        "leanGraphDeclarationCount": lean_graph_payload["stats"]["declarationCount"],
+        "leanGraphImportEdgeCount": lean_graph_payload["stats"]["importEdgeCount"],
         "modulePageCount": len(by_source),
         "sourceLinkCount": source_link_count,
         "localStatusCounts": dict(sorted(status_counts.items())),
