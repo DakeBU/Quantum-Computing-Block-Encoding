@@ -1,3 +1,4 @@
+# armed after the current-source Blueprint admission commit
 name: Finalize QuantumComputinglib single-main release
 
 on:
@@ -90,7 +91,6 @@ jobs:
               gh pr close "$pr" --repo "$GITHUB_REPOSITORY" --comment "Superseded by the admitted main branch and verified QuantumComputinglib deployment. Closing during final single-main cleanup."
             fi
           done
-          # Keep the status PR open until branch pruning and self-removal are ready.
 
       - name: Delete every non-main branch
         shell: bash
@@ -99,7 +99,6 @@ jobs:
           mapfile -t branches < <(gh api --paginate "repos/$GITHUB_REPOSITORY/branches?per_page=100" --jq '.[].name')
           for branch in "${branches[@]}"; do
             [[ "$branch" == "main" ]] && continue
-            # Close a PR whose head is about to disappear, if any remains.
             gh pr list --repo "$GITHUB_REPOSITORY" --head "$branch" --state open --json number --jq '.[].number' | while read -r pr; do
               [[ -z "$pr" ]] && continue
               gh pr close "$pr" --repo "$GITHUB_REPOSITORY" --comment "Closing before deleting obsolete branch \`$branch\` after successful final deployment."
@@ -122,6 +121,4 @@ jobs:
       - name: Record final status
         if: success()
         shell: bash
-        run: |
-          # PR 20 may already be auto-closed because its branch was removed.
-          echo "Final deployment and single-main cleanup completed."
+        run: echo "Final deployment and single-main cleanup completed."
