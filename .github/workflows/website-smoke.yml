@@ -75,3 +75,31 @@ jobs:
               assert item['leanRoots']
           print('Robin + Papers + state-preparation teaching taxonomy: syntax and static structure valid')
           PY
+
+  apply-site-graph:
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/agent/papers-state-prep' &&
+      contains(github.event.head_commit.message, '[apply-site-graph]')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: agent/papers-state-prep
+          fetch-depth: 0
+      - name: Apply integrated graph and formula patch
+        run: python3 tools/apply_lean_graph_patch.py
+      - name: Commit integrated website
+        shell: bash
+        run: |
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/scripts/build_site.py \
+                  website/case-teaching.json \
+                  scripts/build-website.sh \
+                  .github/workflows/pages.yml
+          git commit -m 'Publish the underlying Lean library graph'
+          git push origin HEAD:agent/papers-state-prep
