@@ -1,3 +1,4 @@
+# Direct branch admission for the final candidate; this branch is pruned after merge.
 name: State-preparation proof smoke
 
 on:
