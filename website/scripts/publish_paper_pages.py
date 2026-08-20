@@ -128,13 +128,15 @@ def publish(root: Path) -> None:
         if str(item.get("status")) == "queued":
             continue
         route = str(item.get("route") or "")
-        roots = [str(root) for root in item.get("leanRoots", [])]
+        roots = [str(lean_root) for lean_root in item.get("leanRoots", [])]
         anchors = [str(anchor) for anchor in item.get("sourceAnchors", [])]
         if not route or not roots or not anchors:
             raise RuntimeError(f"formalized paper lacks route/roots/anchors: {item.get('key')}")
-        for root in roots:
-            if root not in declarations:
-                raise RuntimeError(f"formalized paper has unknown Lean root: {item.get('key')}: {root}")
+        for lean_root in roots:
+            if lean_root not in declarations:
+                raise RuntimeError(
+                    f"formalized paper has unknown Lean root: {item.get('key')}: {lean_root}"
+                )
         build_site.write_page(
             root,
             route.rstrip("/"),
