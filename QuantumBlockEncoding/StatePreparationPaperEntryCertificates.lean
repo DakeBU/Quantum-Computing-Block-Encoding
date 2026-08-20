@@ -4,10 +4,10 @@ import Mathlib.Tactic
 /-!
 # Finite scalar certificates for paper state-preparation routes
 
-The Möttönen and Li--Luo benchmark routes only need a handful of nonzero UCRY
-matrix entries on the clean-input support.  These scalar facts are compiled in
-a separate module so higher-level state-action proofs can compose already
-checked leaves without rebuilding the UCRY semantic proof terms.
+The Möttönen and Li--Luo benchmark routes only need a handful of UCRY matrix
+entries on the clean-input support.  These scalar facts are compiled in a
+separate module so higher-level state-action proofs can compose already checked
+leaves without rebuilding the UCRY semantic proof terms.
 -/
 
 namespace QuantumBlockEncoding.StatePreparationPaperEntryCertificates
@@ -45,6 +45,16 @@ noncomputable def mottonenConditionalAngles (bits : PrimitiveBasis 1) : ExactAng
 noncomputable def mottonenDenseUcryCircuit : PrimitiveCircuit 2 :=
   compileUniformlyControlledRy 1 groverRudolphControlWire (0 : Fin 2)
     groverRudolphControlWire_ne_target mottonenConditionalAngles
+
+theorem mottonenDenseUcry_entry_zero_of_context_ne
+    (row column : Fin (gridSize 2))
+    (contextNe :
+      (splitPrimitiveWire (0 : Fin 2) (primitiveLEBits 2 row)).2 ≠
+        (splitPrimitiveWire (0 : Fin 2) (primitiveLEBits 2 column)).2) :
+    evalPrimitiveCircuitLE mottonenDenseUcryCircuit row column = 0 := by
+  unfold mottonenDenseUcryCircuit
+  rw [evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply]
+  rw [if_neg contextNe]
 
 theorem mottonenDenseUcry_entry_00 :
     evalPrimitiveCircuitLE mottonenDenseUcryCircuit (0 : Fin 4) (0 : Fin 4) =
@@ -100,6 +110,16 @@ noncomputable def sparseConditionalAngles (bits : PrimitiveBasis 1) : ExactAngle
 noncomputable def sparsePrunedUcryCircuit : PrimitiveCircuit 3 :=
   compileUniformlyControlledRy 1 sparseControlWire (1 : Fin 3)
     sparseControlWire_ne_target sparseConditionalAngles
+
+theorem sparsePrunedUcry_entry_zero_of_context_ne
+    (row column : Fin (gridSize 3))
+    (contextNe :
+      (splitPrimitiveWire (1 : Fin 3) (primitiveLEBits 3 row)).2 ≠
+        (splitPrimitiveWire (1 : Fin 3) (primitiveLEBits 3 column)).2) :
+    evalPrimitiveCircuitLE sparsePrunedUcryCircuit row column = 0 := by
+  unfold sparsePrunedUcryCircuit
+  rw [evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply]
+  rw [if_neg contextNe]
 
 theorem sparsePrunedUcry_entry_00 :
     evalPrimitiveCircuitLE sparsePrunedUcryCircuit (0 : Fin 8) (0 : Fin 8) =
