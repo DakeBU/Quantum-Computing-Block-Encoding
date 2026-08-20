@@ -53,6 +53,10 @@ def _safe_ratio(num: int | float, den: int | float) -> float:
     return float(num) / float(den) if den else 0.0
 
 
+def _choose_two(value: int) -> int:
+    return value * (value - 1) // 2 if value >= 2 else 0
+
+
 def compute_metrics(payload: dict[str, object]) -> dict[str, object]:
     modules, succ, pred = _module_subgraph(payload)
     frontier = sorted(node for node in modules if not succ[node])
@@ -69,6 +73,13 @@ def compute_metrics(payload: dict[str, object]) -> dict[str, object]:
     exclusive_nodes = {node for node, count in reuse.items() if count == 1}
     reuse_excess = expanded - unique
 
+    # Double-counting identity:
+    #   sum_v C(r(v),2) = sum_{unordered target pairs {s,t}} |S_s ∩ S_t|.
+    # This measures whether shared nodes are reused across many targets rather
+    # than merely appearing twice.
+    target_pair_count = _choose_two(len(frontier))
+    pairwise_shared_support_mass = sum(_choose_two(count) for count in reuse.values())
+
     direct_fanout = {node: len(succ[node]) for node in modules}
     direct_shared = {node for node, fanout in direct_fanout.items() if fanout >= 2}
 
@@ -83,14 +94,19 @@ def compute_metrics(payload: dict[str, object]) -> dict[str, object]:
                 ),
                 "targetReuse": int(count),
                 "directFanout": int(direct_fanout[node]),
+                "targetPairSharingContribution": _choose_two(int(count)),
             }
             for node, count in reuse.items()
         ),
-        key=lambda item: (-item["targetReuse"], -item["directFanout"], item["id"]),
+        key=lambda item: (
+            -item["targetReuse"],
+            -item["directFanout"],
+            item["id"],
+        ),
     )[:20]
 
     return {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "evidenceClass": "module-import-proxy",
         "warning": (
             "These are non-lossy measurements of the generated module import DAG. "
@@ -101,6 +117,7 @@ def compute_metrics(payload: dict[str, object]) -> dict[str, object]:
             "moduleCount": len(modules),
             "importEdgeCount": sum(len(targets) for targets in succ.values()),
             "frontierTargetCount": len(frontier),
+            "frontierTargetPairCount": target_pair_count,
         },
         "factorization": {
             "uniqueSupportNodes": unique,
@@ -116,6 +133,10 @@ def compute_metrics(payload: dict[str, object]) -> dict[str, object]:
                 sum(reuse[node] for node in shared_nodes), len(shared_nodes)
             ),
             "maxTargetReuse": max(reuse.values(), default=0),
+            "pairwiseSharedSupportMass": pairwise_shared_support_mass,
+            "meanSharedSupportNodesPerTargetPair": _safe_ratio(
+                pairwise_shared_support_mass, target_pair_count
+            ),
         },
         "directReuse": {
             "directSharedModuleCount": len(direct_shared),
@@ -165,12 +186,15 @@ def _toy_payload() -> dict[str, object]:
 def self_test() -> None:
     metrics = compute_metrics(_toy_payload())
     assert metrics["scope"]["frontierTargetCount"] == 2
+    assert metrics["scope"]["frontierTargetPairCount"] == 1
     # d support = {a,b,d}; e support = {a,b,c,e}
     assert metrics["factorization"]["expandedSupportIncidences"] == 7
     assert metrics["factorization"]["uniqueSupportNodes"] == 5
     assert metrics["factorization"]["reuseExcess"] == 2
     assert metrics["factorization"]["sharedSupportNodeCount"] == 2
     assert metrics["factorization"]["maxTargetReuse"] == 2
+    assert metrics["factorization"]["pairwiseSharedSupportMass"] == 2
+    assert metrics["factorization"]["meanSharedSupportNodesPerTargetPair"] == 2.0
 
 
 def main() -> None:
