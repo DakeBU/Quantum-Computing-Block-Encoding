@@ -21,6 +21,7 @@ python3 -m py_compile \
   website/scripts/publish_extensions.py \
   website/scripts/publish_paper_pages.py \
   website/scripts/publish_taxonomy.py \
+  website/scripts/finalize_taxonomy_navigation.py \
   website/scripts/repair_taxonomy_links.py \
   website/scripts/check_site.py \
   website/scripts/ide_server.py \
@@ -51,6 +52,7 @@ python3 website/scripts/enforce_robin_reader_contract.py --root _out/site
 python3 website/scripts/publish_extensions.py --root _out/site
 python3 website/scripts/publish_paper_pages.py --root _out/site
 python3 website/scripts/publish_taxonomy.py --root _out/site
+python3 website/scripts/finalize_taxonomy_navigation.py --root _out/site
 python3 website/scripts/repair_taxonomy_links.py --root _out/site
 
 rm -rf _site
@@ -96,8 +98,10 @@ grep -q 'State Preparation' _site/example-cases/index.html
 grep -q 'Block Encoding' _site/example-cases/index.html
 grep -q 'State Preparation' _site/papers/index.html
 grep -q 'Block Encoding' _site/papers/index.html
-grep -q 'data-topic-links="example-cases"' _site/index.html
-grep -q 'data-topic-links="papers"' _site/index.html
+grep -q 'data-taxonomy-nav="example-cases"' _site/index.html
+grep -q 'data-taxonomy-nav="papers"' _site/index.html
+! grep -q 'data-topic-links=' _site/index.html
+grep -q 'data-paper="ghl2025-robin" data-topic="block-encoding"' _site/index.html
 
 grep -q 'Source anchor.' _site/example-cases/bell-state-preparation/index.html
 grep -q 'Möttönen et al. Eq. (1) + Sec. III' _site/example-cases/bell-state-preparation/index.html
