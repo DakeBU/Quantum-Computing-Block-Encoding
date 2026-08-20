@@ -10,4 +10,5 @@ lives in `StatePreparationPaperRoutesCompact` and uses coordinate-level sparse
 matrix action to keep finite verification leaves small.  The public declaration
 catalog indexes this re-export together with its certificate and benchmark
 modules, so the website graph exposes the same proof boundary that Lean builds.
+This boundary is intentionally stable for generated catalog and site admission.
 -/
