@@ -19,6 +19,18 @@
 
 </div>
 
+---
+
+## News 🔥
+
+- **April 2026.** The ASPBE/QBE project was already in its conception and early-prototyping stage. This date is retained as project history; it predates the repository's first public/auditable Git timestamp and is therefore not presented as an April public-commit claim.
+- **17 May 2026.** The repository's public, auditable record begins with the [initial automation commit `af59b03`](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and the timestamped [`MANIFEST.md`](MANIFEST.md). The manifest records the first QBE initialization, agent brief, Lean/LaTeX conversion window, multi-agent run cycles, reviewer handoffs, and trial-memory entries from 17–18 May 2026.
+- **May 2026.** The early repository already framed the goal as turning quantum-oracle assumptions into concrete gate-level matrices and Lean-checked block-encoding certificates, with a hierarchical Upper/Middle/Lower/Reviewer automation loop and faithful-paper versus exploratory-construction modes. The May history remains available in the Git record even though the public name and website were redesigned later.
+
+These News items intentionally preserve the **early project chronology**. Routine recent engineering and website updates are not added here; current mathematical status is generated from the checkout and shown in QuantumComputinglib and the Implementation Map.
+
+---
+
 ASPBE is designed for a quantum-computing researcher who knows **what state or operator is needed** and **what query oracles are available**, but does not want to hand-design every circuit and proof from scratch.
 
 The project serves two **independent** mathematical routes. State Preparation asks for a unitary that prepares a target state. Block Encoding asks for a larger unitary whose clean projected block equals a scaled target operator.

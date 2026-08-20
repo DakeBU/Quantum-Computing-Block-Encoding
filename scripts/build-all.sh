@@ -16,7 +16,8 @@ python3 -m unittest website.scripts.test_site_contracts tools.test_case_memory t
 python3 website/scripts/run_lean_gate.py
 python3 tools/replay_public_cases.py
 python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
-python3 scripts/generate-blueprint-catalog.py --check
+python3 scripts/generate-aspbe-catalog.py
+python3 scripts/generate-aspbe-catalog.py --check
 python3 scripts/test-sanitize-blueprint-paths.py
 bash scripts/build-blueprint.sh
 bash scripts/build-website.sh

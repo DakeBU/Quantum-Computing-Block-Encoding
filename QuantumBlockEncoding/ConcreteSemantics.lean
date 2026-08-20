@@ -34,6 +34,18 @@ def basisKet (dimension : Nat) {α : Type u} [Zero α] [One α]
     (index : Fin dimension) : StateVector dimension α :=
   Pi.single index 1
 
+/-- A computational-basis ket is exactly a Kronecker delta at its named index.
+Keeping this lemma in the concrete backend avoids exposing `Pi.single` inside
+fixed-width circuit proofs. -/
+@[simp] theorem basisKet_apply {dimension : Nat} {α : Type u}
+    [Zero α] [One α] (index row : Fin dimension) :
+    basisKet dimension (α := α) index row =
+      if index = row then 1 else 0 := by
+  by_cases hit : index = row
+  · subst row
+    simp [basisKet]
+  · simp [basisKet, hit]
+
 /-- The all-zero computational-basis ket for an `n`-qubit register. -/
 def zeroKet (qubits : Nat) {α : Type u} [Zero α] [One α] :
     StateVector (gridSize qubits) α :=
@@ -60,6 +72,32 @@ structure ComplexUnitaryGate (qubits : Nat) where
     (index : Fin cols) :
     applyVec operator (basisKet cols index) = operator.col index := by
   exact _root_.Matrix.mulVec_single_one operator index
+
+/-- Acting on a two-term sparse superposition needs only the two named matrix
+columns.  Keeping this linearity fact in the concrete backend prevents every
+finite state-preparation witness from rebuilding a large `mulVec` proof term. -/
+theorem applyVec_twoBasisSuperposition {rows cols : Nat}
+    (operator : FiniteMatrix rows cols ℂ) (a b : ℂ)
+    (left right : Fin cols) :
+    applyVec operator
+        (a • basisKet cols left + b • basisKet cols right) =
+      a • operator.col left + b • operator.col right := by
+  unfold applyVec basisKet
+  rw [_root_.Matrix.mulVec_add, _root_.Matrix.mulVec_smul,
+    _root_.Matrix.mulVec_smul, _root_.Matrix.mulVec_single_one,
+    _root_.Matrix.mulVec_single_one]
+
+/-- Coordinate form of `applyVec_twoBasisSuperposition`.  Paper-route proofs
+use this compiled scalar interface so the kernel never has to rebuild a whole
+vector rewrite just to read one output amplitude. -/
+theorem applyVec_twoBasisSuperposition_apply {rows cols : Nat}
+    (operator : FiniteMatrix rows cols ℂ) (a b : ℂ)
+    (left right : Fin cols) (row : Fin rows) :
+    applyVec operator
+        (a • basisKet cols left + b • basisKet cols right) row =
+      a * operator row left + b * operator row right := by
+  have h := congrFun (applyVec_twoBasisSuperposition operator a b left right) row
+  simpa using h
 
 /-- Acting on the all-zero ket selects column zero. -/
 @[simp] theorem applyVec_zeroKet {α : Type u} [NonAssocSemiring α]

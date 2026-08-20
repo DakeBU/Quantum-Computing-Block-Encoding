@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-python3 scripts/generate-blueprint-catalog.py --check
+python3 scripts/generate-aspbe-catalog.py
+python3 scripts/generate-aspbe-catalog.py --check
 lake build ABEISBlueprint.Assembly:olean
 
 rm -rf _out/blueprint
@@ -41,7 +42,7 @@ for chapter in "${chapters[@]}"; do
   test -f "_out/blueprint/html-multi/$chapter/index.html"
 done
 
-# The style picker is provided by Verso Blueprint itself.  Keeping this gate
+# The style picker is provided by Verso Blueprint itself. Keeping this gate
 # catches accidental replacement with a plain Manual renderer.
 grep -q 'blueprint' _out/blueprint/html-multi/index.html
 grep -q 'modern' _out/blueprint/html-multi/index.html
