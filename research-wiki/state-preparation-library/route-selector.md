@@ -15,6 +15,28 @@ This page is the **State Preparation route selector**. For the cross-cutting
 question “should this task be constructible under the stated access model?”,
 start with `../construction-methodology/index.md`.
 
+If a supplied vector is not normalized, do not silently call it a unitary-output
+state. Either normalize it and prepare \(|v/\|v\|\rangle\), or restate the task
+as the rank-one operator \(|v\rangle\langle 0^n|\) and send it to the
+Block-Encoding route selector.
+
+## Quick gate anchors
+
+These tiny cases remain the first sanity checks for new readers and for generated
+circuits:
+
+\[
+H|0\rangle=\frac{|0\rangle+|1\rangle}{\sqrt2},
+\qquad
+X|0\rangle=|1\rangle,
+\qquad
+X|1\rangle=|0\rangle.
+\]
+
+Hadamard prepares an equal superposition from the zero state, while Pauli-X is a
+basis permutation. They are deliberately kept next to the more general route
+logic so the textbook still has a concrete entry point.
+
 ## Before choosing a circuit: what information can be computed coherently?
 
 A classical formula for \(\psi_x\) is useful only when the corresponding data
@@ -61,6 +83,7 @@ piecewise arithmetic regions.
 | efficiently integrable probability law | Grover–Rudolph-style recursive probabilities | coherent integration / prefix-mass oracle | integration is only classically efficient, not coherently compiled |
 | coherent data lookup | SELECT/SWAP-style loading | lookup correctness + workspace restoration | QRAM/table access assumptions are unclear |
 | formula-defined amplitudes | reversible arithmetic amplitude loading | value computation, controlled rotation, uncompute, error | precision/error not budgeted |
+| LCU weights or sparse/Gram BE construction | prepare the PREPARE register first, then consume it in BE | exact state preparation plus explicit downstream clean-block dependency | the parent BE route has not fixed how the prepared state is used |
 | approximate target | approximate preparation interface | norm/error theorem in declared metric | finite numerical check used as symbolic proof |
 | unnormalized vector | normalize, or route \(|v\rangle\langle0|\) to BE | nonzero norm / rank-one contract | silently calling an unnormalized vector a state |
 
@@ -111,6 +134,32 @@ A source paper's asymptotic circuit-size or depth theorem is a separate claim
 unless ASPBE has formalized that resource proof as well.
 
 ## Agent discipline
+
+Upper should first classify the target as one of:
+
+1. normalized exact State Preparation;
+2. normalized approximate State Preparation with a declared error metric and
+   tolerance;
+3. an unnormalized vector that must be normalized or rerouted as a rank-one
+   Block-Encoding target;
+4. a paper benchmark / external contract whose source theorem boundary must be
+   preserved.
+
+Middle then writes proof leaves exposing the first-column invariant:
+
+```text
+candidate U
+-> prove target normalization
+-> prove U is unitary
+-> prove U |0^n> = |psi>
+-> prove promised workspace restoration
+-> derive resources from the same implementation
+```
+
+If the resulting State Preparation becomes a PREPARE component of an LCU,
+Gram, sparse-access, density/purification, or another Block-Encoding route,
+record that edge explicitly in memory and in the proof graph rather than hiding
+it inside the later clean-block theorem.
 
 Upper freezes the target and access model. Middle retrieves the shortest
 compatible route and its memory cards. Lower proves one ready leaf at a time.
