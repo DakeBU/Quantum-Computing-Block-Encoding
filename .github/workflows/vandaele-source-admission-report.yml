@@ -7,6 +7,8 @@ on:
     paths:
       - "QuantumBlockEncoding/Vandaele*.lean"
       - "QuantumBlockEncoding/RemaudVandaele*.lean"
+      - "QuantumBlockEncoding/NieZiSun*.lean"
+      - "QuantumBlockEncoding/MultiControlledXSchedule.lean"
       - "QuantumBlockEncoding/PromiseGate*.lean"
       - "QuantumBlockEncoding/StrongPromise*.lean"
       - "QuantumBlockEncoding/Gidney*.lean"
@@ -46,7 +48,7 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile Vandaele source spines and write report
+      - name: Compile Vandaele and traced upstream source spines
         id: compile
         shell: bash
         run: |
@@ -58,13 +60,16 @@ jobs:
           printf '# Vandaele source Lean admission report\n\n' >> "$report"
           printf -- '- commit: `%s`\n' "$GITHUB_SHA" >> "$report"
           printf -- '- workflow: `vandaele-source-admission-report.yml`\n' >> "$report"
-          printf -- '- policy: each top-level spine is built by Lean; dependencies are compiled transitively.\n\n' >> "$report"
+          printf -- '- policy: each top-level spine is built by Lean; traced upstream dependencies are compiled transitively.\n\n' >> "$report"
 
           modules=(
             QuantumBlockEncoding.PromiseGateUnitaryMux
             QuantumBlockEncoding.PromiseGatePermutationMatrixBridge
             QuantumBlockEncoding.VandaeleNaiveLadderFiniteChecks
             QuantumBlockEncoding.RemaudVandaeleLadder1Family
+            QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedRegister
+            QuantumBlockEncoding.NieZiSunFigure3RecursiveFamily
+            QuantumBlockEncoding.NieZiSunFigure3Resource
             QuantumBlockEncoding.VandaeleStructuralPrimitivesFormalization
             QuantumBlockEncoding.VandaeleQuantumAdderFormalization
             QuantumBlockEncoding.VandaeleComparatorFormalization
