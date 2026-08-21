@@ -84,7 +84,7 @@ theorem multiControlledX_eq_swap (k : Nat) :
       apply controlsNe
       exact congrArg Prod.fst equal
     simp [multiControlledXEquiv, multiControlledXAction, active,
-      Equiv.swap_apply_of_ne_of_ne neZero neOne]
+      Equiv.swap_apply_def, neZero, neOne]
 
 /-- Therefore C^k X has odd sign for every k. -/
 theorem multiControlledX_sign (k : Nat) :
