@@ -27,6 +27,21 @@ namespace ReversibleLayerSemantics
 
 open ReversibleProgramSupport
 
+/-- A targeted wire is necessarily in the gate's touched support. -/
+theorem touches_of_targetsWire
+    {q : Nat} (gate : ReversibleGate q) (wire : Fin q)
+    (targeted : targetsWire gate wire) : gate.touches wire := by
+  cases gate with
+  | x target =>
+      have equal : target = wire := by simpa [targetsWire] using targeted
+      simp [ReversibleGate.touches, equal]
+  | cx control target distinct =>
+      have equal : target = wire := by simpa [targetsWire] using targeted
+      exact Or.inr equal.symm
+  | ccx control0 control1 target c01 c0t c1t =>
+      have equal : target = wire := by simpa [targetsWire] using targeted
+      exact Or.inr (Or.inr equal.symm)
+
 /-- Wire-disjoint gates do not target each other's touched wires. -/
 theorem notTargets_of_wireDisjoint_touched
     {q : Nat} {left right : ReversibleGate q}
@@ -34,8 +49,7 @@ theorem notTargets_of_wireDisjoint_touched
     (wire : Fin q) (rightTouches : right.touches wire) :
     ¬ targetsWire left wire := by
   intro targeted
-  have leftTouches :=
-    ReversibleGateUnusedWireParity.touches_of_targetsWire left wire targeted
+  have leftTouches := touches_of_targetsWire left wire targeted
   exact disjoint wire ⟨leftTouches, rightTouches⟩
 
 /-- If two gates are wire-disjoint, applying the first gate leaves every wire
@@ -97,11 +111,16 @@ theorem eval_validLayer_member_on_touched
   induction layer generalizing state with
   | nil => simp at member
   | cons head rest induction =>
+      have pairwise :
+          (head :: rest).Pairwise ReversibleGate.WireDisjoint := by
+        simpa [ReversibleLayer.Valid] using valid
       have headTail :
           ∀ tailGate ∈ rest,
             ReversibleGate.WireDisjoint head tailGate := by
-        simpa [ReversibleLayer.Valid] using valid
-      rcases member with rfl | tailMember
+        simpa using (List.pairwise_cons.mp pairwise).1
+      have restValid : ReversibleLayer.Valid rest := by
+        simpa [ReversibleLayer.Valid] using (List.pairwise_cons.mp pairwise).2
+      rcases List.mem_cons.mp member with rfl | tailMember
       · have tailPreserves :
           evalReversibleProgram rest
               (evalReversibleGate selected state) wire =
@@ -115,11 +134,6 @@ theorem eval_validLayer_member_on_touched
         exact tailPreserves
       · have selectedDisjoint : ReversibleGate.WireDisjoint head selected :=
           headTail selected tailMember
-        have restValid : ReversibleLayer.Valid rest := by
-          intro left leftMember
-          have pairwise : rest.Pairwise ReversibleGate.WireDisjoint := by
-            simpa [ReversibleLayer.Valid] using valid
-          exact List.pairwise_iff_get.mp pairwise left leftMember
         have tailResult :=
           induction restValid selected tailMember
             (evalReversibleGate head state) wire touched
