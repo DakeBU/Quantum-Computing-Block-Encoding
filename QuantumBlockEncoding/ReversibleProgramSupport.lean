@@ -1,4 +1,4 @@
-import QuantumBlockEncoding.ReversibleClassical
+import QuantumBlockEncoding.ReversibleSchedule
 import Mathlib.Tactic
 
 /-!
@@ -10,7 +10,7 @@ level, the value produced on a touched wire depends only on the values of the
 wires touched by that gate.
 
 These two facts let later proofs reason about compute/use/uncompute without
-expanding the complete basis state.  They are used by the arbitrary-width
+expanding the complete basis state. They are used by the arbitrary-width
 Gidney workspace-restoration induction and are reusable for SP/BE register
 cleanup.
 -/
