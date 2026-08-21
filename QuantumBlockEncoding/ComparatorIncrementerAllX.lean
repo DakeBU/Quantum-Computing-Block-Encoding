@@ -1,5 +1,6 @@
 import QuantumBlockEncoding.ComparatorIncrementerModularConjugation
 import QuantumBlockEncoding.PrimitiveBasisLE
+import QuantumBlockEncoding.ReversibleRegisterLift
 import Mathlib.Tactic
 
 /-!
@@ -8,16 +9,19 @@ import Mathlib.Tactic
 Vandaele Eq. (35) uses X on every target-register wire.  The modular algebra
 layer already proved that `x ↦ -x-1` conjugates successor into predecessor.
 This module connects that arithmetic description to ASPBE's actual
-little-endian computational basis for arbitrary width.
+little-endian computational basis for arbitrary width and then packages the
+operation as a real `ReversibleProgram n`.
 
-The result here is representation-level: flipping every basis bit sends the
-flat integer `x` to `2^n - 1 - x`.  The subsequent gate-level leaf will compile
-this pointwise all-X action to a concrete `ReversibleProgram n` / primitive
-circuit and account for its controlled fan-out cost.
+Flipping every basis bit sends the flat integer `x` to `2^n - 1 - x`.  The
+recursive program below flips the new low wire once and reuses the generic
+successor-register lift for the remaining wires.  The later controlled-fan-out
+leaf will add the external controls and source-model resource accounting.
 -/
 
 namespace QuantumBlockEncoding
 namespace ComparatorIncrementerAllX
+
+open ReversibleRegisterLift
 
 /-- Flip every wire of an n-qubit computational-basis state. -/
 def allXBasisAction {n : Nat} (state : PrimitiveBasis n) : PrimitiveBasis n :=
@@ -105,6 +109,77 @@ theorem allXFlatEquiv_involutive (n : Nat) :
   have indexBound := index.isLt
   have sizePos : 0 < gridSize n := Nat.pow_pos (by decide)
   omega
+
+/-! ## Gate-level reversible implementation -/
+
+/-- One X on every wire.  The recursion deliberately reuses
+`liftProgramSucc`: the new low wire is flipped locally and the old all-X
+program is shifted onto the successor wires. -/
+def allXReversibleProgram : (n : Nat) → ReversibleProgram n
+  | 0 => []
+  | n + 1 =>
+      .x (0 : Fin (n + 1)) ::
+        liftProgramSucc (allXReversibleProgram n)
+
+/-- Exact basis action of the arbitrary-width reversible all-X program. -/
+theorem allXReversibleProgram_action
+    (n : Nat) (state : PrimitiveBasis n) :
+    evalReversibleProgram (allXReversibleProgram n) state =
+      allXBasisAction state := by
+  induction n generalizing state with
+  | zero =>
+      funext wire
+      exact Fin.elim0 wire
+  | succ n induction =>
+      change
+        evalReversibleProgram
+            (liftProgramSucc (allXReversibleProgram n))
+            (xBasisAction (0 : Fin (n + 1)) state) =
+          allXBasisAction state
+      funext wire
+      refine Fin.cases ?_ (fun tailWire => ?_) wire
+      · calc
+          (evalReversibleProgram
+              (liftProgramSucc (allXReversibleProgram n))
+              (xBasisAction (0 : Fin (n + 1)) state)) 0 =
+              (xBasisAction (0 : Fin (n + 1)) state) 0 :=
+            eval_liftProgramSucc_head
+              (allXReversibleProgram n)
+              (xBasisAction (0 : Fin (n + 1)) state)
+          _ = flipBit (state 0) := by simp [xBasisAction]
+          _ = allXBasisAction state 0 := by rfl
+      · have tailLift := tailState_eval_liftProgramSucc
+          (allXReversibleProgram n)
+          (xBasisAction (0 : Fin (n + 1)) state)
+        calc
+          (evalReversibleProgram
+              (liftProgramSucc (allXReversibleProgram n))
+              (xBasisAction (0 : Fin (n + 1)) state)) tailWire.succ =
+              tailState
+                (evalReversibleProgram
+                  (liftProgramSucc (allXReversibleProgram n))
+                  (xBasisAction (0 : Fin (n + 1)) state)) tailWire := by
+            rfl
+          _ = evalReversibleProgram (allXReversibleProgram n)
+                (tailState (xBasisAction (0 : Fin (n + 1)) state))
+                tailWire := congrFun tailLift tailWire
+          _ = allXBasisAction
+                (tailState (xBasisAction (0 : Fin (n + 1)) state))
+                tailWire := congrFun
+                  (induction
+                    (tailState (xBasisAction (0 : Fin (n + 1)) state)))
+                  tailWire
+          _ = allXBasisAction state tailWire.succ := by
+            simp [allXBasisAction, tailState, xBasisAction]
+
+/-- The recursive X-only program evaluates to the representation-level all-X
+permutation, so the Eq. (35) conjugator is now connected to ASPBE's reversible
+proof IR rather than remaining an abstract permutation. -/
+theorem allXReversibleProgram_eval (n : Nat) :
+    evalReversibleProgram (allXReversibleProgram n) = allXBasisEquiv n := by
+  apply Equiv.ext
+  intro state
+  exact allXReversibleProgram_action n state
 
 end ComparatorIncrementerAllX
 end QuantumBlockEncoding
