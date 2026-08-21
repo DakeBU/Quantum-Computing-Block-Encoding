@@ -6,6 +6,7 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/Vandaele*.lean"
+      - "QuantumBlockEncoding/RemaudVandaele*.lean"
       - "QuantumBlockEncoding/PromiseGate*.lean"
       - "QuantumBlockEncoding/StrongPromise*.lean"
       - "QuantumBlockEncoding/Gidney*.lean"
@@ -16,6 +17,7 @@ on:
       - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
       - "QuantumBlockEncoding/PrimitiveBasisRemoveWire.lean"
       - "QuantumBlockEncoding/ReversibleGate*.lean"
+      - "QuantumBlockEncoding/ReversibleLayerSemantics.lean"
       - "QuantumBlockEncoding/ReversibleProgram*.lean"
       - "QuantumBlockEncoding.lean"
       - ".github/workflows/vandaele-source-admission-report.yml"
@@ -62,6 +64,7 @@ jobs:
             QuantumBlockEncoding.PromiseGateUnitaryMux
             QuantumBlockEncoding.PromiseGatePermutationMatrixBridge
             QuantumBlockEncoding.VandaeleNaiveLadderFiniteChecks
+            QuantumBlockEncoding.RemaudVandaeleLadder1Family
             QuantumBlockEncoding.VandaeleStructuralPrimitivesFormalization
             QuantumBlockEncoding.VandaeleQuantumAdderFormalization
             QuantumBlockEncoding.VandaeleComparatorFormalization
