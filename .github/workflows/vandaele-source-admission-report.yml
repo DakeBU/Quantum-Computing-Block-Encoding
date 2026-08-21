@@ -21,15 +21,20 @@ on:
       - "QuantumBlockEncoding/ComparatorSubtractionTargetBridge.lean"
       - "QuantumBlockEncoding/ComparatorQuantumToClassicalRestriction.lean"
       - "QuantumBlockEncoding/VandaeleComparator*.lean"
-      - "QuantumBlockEncoding/VandaeleControlledComparatorResource.lean"
-      - "QuantumBlockEncoding/VandaeleControlledComparatorTargets.lean"
+      - "QuantumBlockEncoding/VandaeleControlledComparator*.lean"
       - "QuantumBlockEncoding/VandaeleControlledV2Resource.lean"
-      - "QuantumBlockEncoding/VandaeleLadderContract.lean"
-      - "QuantumBlockEncoding/VandaeleLadderPermutation.lean"
-      - "QuantumBlockEncoding/VandaeleLadderRefinement.lean"
+      - "QuantumBlockEncoding/VandaeleLadder*.lean"
       - "QuantumBlockEncoding/VandaeleVOperator.lean"
-      - "QuantumBlockEncoding/VandaeleLemma6Contract.lean"
-      - "QuantumBlockEncoding/VandaeleLemma6ResourceClosure.lean"
+      - "QuantumBlockEncoding/VandaeleLemma4*.lean"
+      - "QuantumBlockEncoding/VandaeleCorollary4*.lean"
+      - "QuantumBlockEncoding/VandaeleEquation58*.lean"
+      - "QuantumBlockEncoding/VandaeleLemma6*.lean"
+      - "QuantumBlockEncoding/VandaeleClassicalAdderTarget.lean"
+      - "QuantumBlockEncoding/VandaeleControlledAdderTarget.lean"
+      - "QuantumBlockEncoding/VandaeleCorollary7*.lean"
+      - "QuantumBlockEncoding/VandaeleCorollary8*.lean"
+      - "QuantumBlockEncoding/VandaeleTheorem5*.lean"
+      - "QuantumBlockEncoding/VandaeleAdderFormalization.lean"
       - "QuantumBlockEncoding/VandaeleIncrementerFormalization.lean"
       - "QuantumBlockEncoding/VandaeleComparatorFormalization.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4OptimalityContract.lean"
@@ -113,6 +118,10 @@ jobs:
             QuantumBlockEncoding.VandaeleLadderPermutation
             QuantumBlockEncoding.VandaeleLadderRefinement
             QuantumBlockEncoding.VandaeleVOperator
+            QuantumBlockEncoding.VandaeleEquation58PromiseGadget
+            QuantumBlockEncoding.VandaeleLemma4AppendixResource
+            QuantumBlockEncoding.VandaeleLemma4ProgramFamily
+            QuantumBlockEncoding.VandaeleCorollary4ProgramFamily
             QuantumBlockEncoding.VandaeleLemma6Contract
             QuantumBlockEncoding.VandaeleLemma6ResourceClosure
             QuantumBlockEncoding.ComparatorSemanticTargets
@@ -128,6 +137,15 @@ jobs:
             QuantumBlockEncoding.VandaeleControlledV2Resource
             QuantumBlockEncoding.VandaeleControlledComparatorTargets
             QuantumBlockEncoding.VandaeleControlledComparatorResource
+            QuantumBlockEncoding.VandaeleClassicalAdderTarget
+            QuantumBlockEncoding.VandaeleControlledAdderTarget
+            QuantumBlockEncoding.VandaeleCorollary7ControlledIncrementer
+            QuantumBlockEncoding.VandaeleCorollary8ControlledAdderResource
+            QuantumBlockEncoding.VandaeleTheorem5AdderCarry
+            QuantumBlockEncoding.VandaeleTheorem5AdderBasisSplit
+            QuantumBlockEncoding.VandaeleTheorem5Resource
+            QuantumBlockEncoding.VandaeleTheorem5RecurrenceClosure
+            QuantumBlockEncoding.VandaeleAdderFormalization
             QuantumBlockEncoding.VandaeleIncrementerFormalization
             QuantumBlockEncoding.VandaeleComparatorFormalization
             QuantumBlockEncoding.ComparatorIncrementerTheorem4OptimalityContract
