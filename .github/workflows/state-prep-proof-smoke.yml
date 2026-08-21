@@ -11,8 +11,11 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerRecurrence.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
       - "QuantumBlockEncoding/ReversibleRegisterLift.lean"
       - "QuantumBlockEncoding/PrimitiveBasisLE4.lean"
@@ -47,8 +50,11 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerRecurrence.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
       - "QuantumBlockEncoding/ReversibleRegisterLift.lean"
       - "QuantumBlockEncoding/PrimitiveMacros.lean"
@@ -87,8 +93,11 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerAllX
           lake build QuantumBlockEncoding.ComparatorIncrementerAllXResources
           lake build QuantumBlockEncoding.ComparatorIncrementerControlledAllX
+          lake build QuantumBlockEncoding.ComparatorIncrementerFanoutIdentity
+          lake build QuantumBlockEncoding.ComparatorIncrementerFanoutSource
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
+          lake build QuantumBlockEncoding.ComparatorIncrementerRecurrence
           lake build QuantumBlockEncoding.PrimitiveBasisLE4
           lake build QuantumBlockEncoding.StatePreparationIntervalTree
           lake build QuantumBlockEncoding.StatePreparationIntervalTreeEndToEnd
