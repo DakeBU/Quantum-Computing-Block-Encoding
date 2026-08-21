@@ -40,10 +40,11 @@ comparator. -/
 def cqAddressValue (n : Nat) (state : PrimitiveBasis (n + 1)) : Nat :=
   ∑ wire : Fin n, (state (cqAddressWire n wire)).val * 2 ^ wire.val
 
-/-- Exact reversible comparator contract for a classical threshold `constant`.
-The address register is preserved and an arbitrary incoming flag is toggled iff
-`address < constant`. -/
-def ClassicalComparatorSpec (n constant : Nat)
+/-- Generic threshold-oracle contract used elsewhere in ASPBE: preserve the
+address and toggle the flag iff `address < constant`.  This is deliberately
+kept separate from Vandaele Equation (29), whose comparison direction is the
+opposite one. -/
+def AddressBelowConstantSpec (n constant : Nat)
     (permutation : PrimitiveBasis (n + 1) ≃ PrimitiveBasis (n + 1)) : Prop :=
   ∀ state,
     (∀ wire : Fin n,
@@ -51,6 +52,19 @@ def ClassicalComparatorSpec (n constant : Nat)
         state (cqAddressWire n wire)) ∧
     permutation state (cqFlagWire n) =
       if cqAddressValue n state < constant then
+        flipBit (state (cqFlagWire n))
+      else state (cqFlagWire n)
+
+/-- Vandaele Equation (29): a classical constant `constant` is compared to the
+quantum address `a`, and the flag is toggled iff `constant < a`. -/
+def ClassicalComparatorSpec (n constant : Nat)
+    (permutation : PrimitiveBasis (n + 1) ≃ PrimitiveBasis (n + 1)) : Prop :=
+  ∀ state,
+    (∀ wire : Fin n,
+      permutation state (cqAddressWire n wire) =
+        state (cqAddressWire n wire)) ∧
+    permutation state (cqFlagWire n) =
+      if constant < cqAddressValue n state then
         flipBit (state (cqFlagWire n))
       else state (cqFlagWire n)
 
@@ -95,11 +109,19 @@ structure ReversibleIncrementerFamily where
   correctness : ∀ n,
     IncrementerSpec n (evalReversibleProgram (program n))
 
-/-- Analogous proof-bearing interface for classical-threshold comparators. -/
+/-- Proof-bearing interface for the source Equation-(29) classical comparator. -/
 structure ReversibleClassicalComparatorFamily where
   program : (n constant : Nat) → ReversibleProgram (n + 1)
   correctness : ∀ n constant,
     ClassicalComparatorSpec n constant
+      (evalReversibleProgram (program n constant))
+
+/-- Separate family interface for generic ASPBE `address < constant` threshold
+oracles. -/
+structure ReversibleAddressBelowConstantComparatorFamily where
+  program : (n constant : Nat) → ReversibleProgram (n + 1)
+  correctness : ∀ n constant,
+    AddressBelowConstantSpec n constant
       (evalReversibleProgram (program n constant))
 
 /-- The fixed three-bit arithmetic seed is an actual instance of the
@@ -109,11 +131,11 @@ theorem incrementer3_satisfies_parameterized_spec :
       (evalReversibleProgram ComparatorIncrementer.incrementer3Program) := by
   native_decide
 
-/-- The fixed `<3` seed is an actual instance of the parameterized
-classical--quantum comparator semantics, including arbitrary incoming flag
-behavior and address preservation. -/
-theorem comparatorLtThree_satisfies_parameterized_spec :
-    ClassicalComparatorSpec 2 3
+/-- The fixed `<3` seed belongs to the generic threshold-oracle direction, not
+to Vandaele Equation (29).  Keeping this distinction explicit avoids silently
+reversing the source comparator. -/
+theorem comparatorLtThree_satisfies_addressBelow_spec :
+    AddressBelowConstantSpec 2 3
       (evalReversibleProgram ComparatorIncrementer.comparatorLtThreeProgram) := by
   native_decide
 
