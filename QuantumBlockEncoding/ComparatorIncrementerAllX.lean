@@ -59,7 +59,7 @@ theorem primitiveBasisLEEquiv_allX_value
     (n : Nat) (state : PrimitiveBasis n) :
     (primitiveBasisLEEquiv n (allXBasisAction state)).val =
       gridSize n - 1 - (primitiveBasisLEEquiv n state).val := by
-  induction n with
+  induction n generalizing state with
   | zero =>
       simp [allXBasisAction, gridSize, primitiveBasisLEEquiv_zero_apply]
   | succ n induction =>
