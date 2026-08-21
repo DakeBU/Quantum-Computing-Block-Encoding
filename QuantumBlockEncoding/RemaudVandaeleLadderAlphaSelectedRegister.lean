@@ -105,6 +105,19 @@ def deletedPhysicalWire
     index.val < (recursiveEndOriginalIndex m large).val ∧
     plan.target index = wire
 
+/-- Boolean retention predicate used by the actual list filter. -/
+def keepPhysicalWire
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    (wire : Fin q) : Bool :=
+  decide (¬ deletedPhysicalWire plan large wire)
+
+@[simp] theorem keepPhysicalWire_eq_true_iff
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    (wire : Fin q) :
+    keepPhysicalWire plan large wire = true ↔
+      ¬ deletedPhysicalWire plan large wire := by
+  simp [keepPhysicalWire]
+
 /-- Full ordered physical interval before deleting intermediate targets. -/
 def intervalList
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) : List (Fin q) :=
@@ -114,22 +127,20 @@ def intervalList
 /-- Source-selected physical recursive register X'. -/
 noncomputable def selectedList
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) : List (Fin q) :=
-  (intervalList plan large).filter
-    (fun wire => ¬ deletedPhysicalWire plan large wire)
+  (intervalList plan large).filter (keepPhysicalWire plan large)
 
 /-- Inclusive interval has no duplicate physical wires. -/
 theorem intervalList_nodup
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) :
     (intervalList plan large).Nodup := by
-  apply List.Nodup.map
-  · exact List.nodup_finRange _
-  · exact intervalWire_injective plan large
+  unfold intervalList
+  exact (List.nodup_finRange _).map (intervalWire_injective plan large)
 
 /-- Deleting wires preserves no-duplication. -/
 theorem selectedList_nodup
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) :
     (selectedList plan large).Nodup := by
-  classical
+  unfold selectedList
   exact (intervalList_nodup plan large).filter _
 
 /-- Compact recursive register width. -/
@@ -149,9 +160,14 @@ theorem selectedWire_injective
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) :
     Function.Injective (selectedWire plan large) := by
   intro left right equal
+  let leftIndex : Fin (selectedList plan large).length :=
+    ⟨left.val, by simpa [selectedWidth] using left.isLt⟩
+  let rightIndex : Fin (selectedList plan large).length :=
+    ⟨right.val, by simpa [selectedWidth] using right.isLt⟩
+  have indexEqual : leftIndex = rightIndex :=
+    (selectedList_nodup plan large).injective_get (by
+      simpa [selectedWire, leftIndex, rightIndex] using equal)
   apply Fin.ext
-  have getInjective := List.Nodup.get_injective (selectedList_nodup plan large)
-  have indexEqual := getInjective equal
   exact congrArg Fin.val indexEqual
 
 /-- The first selected physical wire is alpha_0. -/
@@ -159,19 +175,20 @@ theorem selectedList_head
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) :
     (plan.target ⟨0, by omega⟩) ∈ selectedList plan large := by
   classical
-  unfold selectedList intervalList
+  unfold selectedList
   rw [List.mem_filter]
   constructor
-  · rw [List.mem_map]
+  · unfold intervalList
+    rw [List.mem_map]
     let zeroOffset : Fin (selectedRangeLength plan large) :=
       ⟨0, by
         unfold selectedRangeLength
         omega⟩
-    refine ⟨zeroOffset, ?_, ?_⟩
-    · exact List.mem_finRange zeroOffset
-    · apply Fin.ext
-      simp [intervalWire, selectedStart]
-  · intro deleted
+    refine ⟨zeroOffset, List.mem_finRange zeroOffset, ?_⟩
+    apply Fin.ext
+    simp [intervalWire, selectedStart]
+  · apply (keepPhysicalWire_eq_true_iff plan large _).2
+    intro deleted
     rcases deleted with ⟨index,odd,before,equal⟩
     have values := congrArg Fin.val equal
     by_cases zeroIndex : index.val = 0
@@ -187,10 +204,11 @@ theorem selectedList_contains_end
     plan.target (recursiveEndOriginalIndex m large) ∈
       selectedList plan large := by
   classical
-  unfold selectedList intervalList
+  unfold selectedList
   rw [List.mem_filter]
   constructor
-  · rw [List.mem_map]
+  · unfold intervalList
+    rw [List.mem_map]
     let endOffset : Fin (selectedRangeLength plan large) :=
       ⟨selectedEnd plan large - selectedStart plan large, by
         unfold selectedRangeLength
@@ -200,7 +218,8 @@ theorem selectedList_contains_end
     simp [intervalWire, endOffset, selectedEnd]
     have startEnd := selectedStart_le_end plan large
     omega
-  · intro deleted
+  · apply (keepPhysicalWire_eq_true_iff plan large _).2
+    intro deleted
     rcases deleted with ⟨index,odd,before,equal⟩
     apply Nat.not_lt_of_ge (show
       (recursiveEndOriginalIndex m large).val ≤ index.val by
