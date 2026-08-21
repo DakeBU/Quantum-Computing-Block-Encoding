@@ -12,12 +12,13 @@ For positive order `k = localControls + 1`, ASPBE stores the register as one
 initial pivot plus n blocks, each containing `k-1` fresh controls and one target.
 The preceding block target supplies the remaining control.
 
-Crucially, the source ladder is **sequential in reverse block order**.  Figure
-1(b) executes the bottom/last gate first and walks toward the initial pivot.  In
-this order, when block i reads the preceding target `x_{k(i-1)}`, that target
-still has its original input value, exactly matching the closed-form action in
-Equation (5).  Executing `0,1,...,n-1` would instead feed an already-modified
-target into the next gate and is not the source operator.
+The authoritative source semantics below is the closed-form Equation (5): every
+block target is toggled according to the **input** value of its preceding pivot
+and its fresh controls.  Separately, the naive gate realization executes the
+ladder in reverse block order `n-1,...,0`; Figure 1(b) shows this chronology, and
+in that order every gate still reads the input value of its preceding target.
+The equality of the gate realization with the Equation-(5) target is therefore
+a refinement theorem, not a definition-by-construction assumption.
 
 The resource interfaces remain separated from this semantic contract. Big-O
 constants are never re-chosen per fixed ladder instance.
@@ -47,13 +48,49 @@ def allLocalControlsOne {localControls : Nat}
     (controls : PrimitiveBasis localControls) : Prop :=
   ∀ wire, controls wire = 1
 
-/-- Exact activation condition for one `C^(localControls+1) X` ladder step,
-read from the current state. -/
+/-- Exact Equation-(5) activation predicate, evaluated on the source input
+state. -/
 def ladderActive {localControls steps : Nat}
     (state : LadderState localControls steps)
     (index : Fin steps) : Prop :=
   previousPivot state index = 1 ∧
     allLocalControlsOne (state.2 index).1
+
+/-- Authoritative closed-form Equation-(5) action.  Pivot and fresh controls are
+preserved; each target is toggled from the activation predicate of the original
+input state. -/
+def equationFiveAction (localControls steps : Nat)
+    (state : LadderState localControls steps) :
+    LadderState localControls steps :=
+  (state.1, fun index =>
+    ((state.2 index).1,
+      if ladderActive state index then
+        flipBit (state.2 index).2
+      else (state.2 index).2))
+
+@[simp] theorem equationFive_preserves_initialPivot
+    (localControls steps : Nat)
+    (state : LadderState localControls steps) :
+    (equationFiveAction localControls steps state).1 = state.1 := by
+  rfl
+
+@[simp] theorem equationFive_preserves_localControls
+    (localControls steps : Nat)
+    (state : LadderState localControls steps)
+    (index : Fin steps) :
+    ((equationFiveAction localControls steps state).2 index).1 =
+      (state.2 index).1 := by
+  rfl
+
+@[simp] theorem equationFive_target
+    (localControls steps : Nat)
+    (state : LadderState localControls steps)
+    (index : Fin steps) :
+    ((equationFiveAction localControls steps state).2 index).2 =
+      if ladderActive state index then
+        flipBit (state.2 index).2
+      else (state.2 index).2 := by
+  rfl
 
 /-- Execute one ladder gate. Only the current block target is modified; the
 pivot and every fresh control are preserved. -/
@@ -78,18 +115,24 @@ def runLadderSteps {localControls steps : Nat}
       runLadderSteps rest
         (sourceLadderStep localControls steps index state)
 
-/-- Equation (5) source chronology: execute `steps-1,...,1,0`. -/
+/-- Naive gate implementation shown in Figure 1(b): execute `steps-1,...,1,0`. -/
 def sourceLadderAction (localControls steps : Nat)
     (state : LadderState localControls steps) :
     LadderState localControls steps :=
   runLadderSteps (List.finRange steps).reverse state
 
-/-- Source-facing correctness proposition for a positive-order ladder
-implementation. -/
+/-- Source-facing correctness proposition: implementations refine the closed-form
+Equation-(5) target, not merely another gate-list implementation. -/
 def LadderSpec (localControls steps : Nat)
     (implementation : Equiv.Perm (LadderState localControls steps)) : Prop :=
   ∀ state, implementation state =
-    sourceLadderAction localControls steps state
+    equationFiveAction localControls steps state
+
+/-- Explicit refinement target for the naive reverse-order source gate list. -/
+def NaiveLadderRefinement (localControls steps : Nat) : Prop :=
+  ∀ state,
+    sourceLadderAction localControls steps state =
+      equationFiveAction localControls steps state
 
 /-- One source step preserves the initial pivot. -/
 theorem sourceLadderStep_preserves_initialPivot
@@ -164,7 +207,7 @@ theorem runLadderSteps_preserves_localControls
           sourceLadderStep_preserves_localControls
             localControls steps index query state
 
-/-- The complete source ladder preserves the initial pivot. -/
+/-- The complete naive source ladder preserves the initial pivot. -/
 theorem sourceLadder_preserves_initialPivot
     (localControls steps : Nat)
     (state : LadderState localControls steps) :
@@ -172,7 +215,7 @@ theorem sourceLadder_preserves_initialPivot
   exact runLadderSteps_preserves_initialPivot
     (List.finRange steps).reverse state
 
-/-- The complete source ladder preserves every fresh local-control word. -/
+/-- The complete naive source ladder preserves every fresh local-control word. -/
 theorem sourceLadder_preserves_localControls
     (localControls steps : Nat)
     (state : LadderState localControls steps)
@@ -190,8 +233,8 @@ theorem previousPivot_first
   simp [previousPivot]
 
 /-- For a nonfirst block, the preceding block target is the overlapping source
-control `x_{k(i-1)}`.  Under the corrected reverse source chronology this wire
-has not yet been modified when block i executes. -/
+control `x_{k(i-1)}`.  Under the reverse source chronology this wire has not yet
+been modified when block i executes. -/
 theorem previousPivot_nonfirst
     {localControls steps : Nat}
     (state : LadderState localControls steps)
