@@ -8,6 +8,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerAllXResources.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
@@ -43,6 +44,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerAllXResources.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
@@ -84,6 +86,7 @@ jobs:
           lake build QuantumBlockEncoding.ReversibleRegisterLift
           lake build QuantumBlockEncoding.ComparatorIncrementerAllX
           lake build QuantumBlockEncoding.ComparatorIncrementerAllXResources
+          lake build QuantumBlockEncoding.ComparatorIncrementerControlledAllX
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
           lake build QuantumBlockEncoding.PrimitiveBasisLE4
