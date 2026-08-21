@@ -6,7 +6,7 @@ import Mathlib.Tactic
 
 Every gate in ASPBE's reversible proof IR (`X`, `CX`, `CCX`) is self-inverse.
 Consequently, reversing the chronological gate list implements the inverse
-basis permutation.  This is the generic compute/uncompute bridge used by
+basis permutation. This is the generic compute/uncompute bridge used by
 Gidney's incrementer, promise-register cleanup, and later SP/BE arithmetic
 subroutines.
 -/
@@ -31,6 +31,16 @@ theorem evalReversibleGate_symm
       apply Equiv.ext
       intro state
       rfl
+
+/-- Functional form of the same fact, convenient for local
+compute/use/uncompute proofs. -/
+theorem evalReversibleGate_involutive
+    {qubits : Nat} (gate : ReversibleGate qubits) :
+    Function.Involutive (evalReversibleGate gate) := by
+  intro state
+  have inverseLaw := (evalReversibleGate gate).symm_apply_apply state
+  rw [evalReversibleGate_symm] at inverseLaw
+  exact inverseLaw
 
 /-- One singleton program evaluates to the corresponding gate permutation. -/
 @[simp] theorem evalReversibleProgram_singleton
