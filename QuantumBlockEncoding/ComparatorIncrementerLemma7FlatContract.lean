@@ -29,6 +29,39 @@ open PrimitiveBasisRegisterSplit
 def lemmaSevenFlatWidth (k n : Nat) : Nat :=
   k + (lemmaSevenPromiseWidth n + n)
 
+/-- One external control wire in the low prefix. -/
+def controlWire (k n : Nat) (wire : Fin k) :
+    Fin (lemmaSevenFlatWidth k n) :=
+  ⟨wire.val, by unfold lemmaSevenFlatWidth; omega⟩
+
+/-- One promise wire immediately after the controls. -/
+def promiseWire (k n : Nat)
+    (wire : Fin (lemmaSevenPromiseWidth n)) :
+    Fin (lemmaSevenFlatWidth k n) :=
+  ⟨k + wire.val, by unfold lemmaSevenFlatWidth; omega⟩
+
+/-- One target wire in the final n-wire suffix. -/
+def targetWire (k n : Nat) (wire : Fin n) :
+    Fin (lemmaSevenFlatWidth k n) :=
+  ⟨k + lemmaSevenPromiseWidth n + wire.val, by
+    unfold lemmaSevenFlatWidth
+    omega⟩
+
+/-- The three flat regions are pairwise ordered. -/
+theorem control_before_promise
+    (k n : Nat) (control : Fin k)
+    (promise : Fin (lemmaSevenPromiseWidth n)) :
+    (controlWire k n control).val < (promiseWire k n promise).val := by
+  simp [controlWire, promiseWire]
+  omega
+
+theorem promise_before_target
+    (k n : Nat) (promise : Fin (lemmaSevenPromiseWidth n))
+    (target : Fin n) :
+    (promiseWire k n promise).val < (targetWire k n target).val := by
+  simp [promiseWire, targetWire]
+  omega
+
 /-- Canonical flat-to-logical register view. -/
 def lemmaSevenRegisterEquiv (k n : Nat) :
     PrimitiveBasis (lemmaSevenFlatWidth k n) ≃
