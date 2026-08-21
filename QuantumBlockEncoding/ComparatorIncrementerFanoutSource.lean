@@ -4,19 +4,14 @@ import Mathlib.Tactic
 /-!
 # Source contract for Vandaele Definition 2.2 fan-out
 
-Vandaele Definition 2.2 introduces the k-th order fan-out operator
-`F_k^(n)`.  There is one global control bit `c`; for each block `i` there are
-`k` local control bits `x_i` and one target bit `t_i`.  The operator preserves
-all controls and maps
+Vandaele Definition 2.2 introduces the k-th order fan-out operator `F_k^(n)`.
+There is one global control bit `c`; for each block `i` there are `k` local
+control bits `x_i` and one target bit `t_i`. The operator preserves all controls
+and toggles each target by the conjunction of the global and local controls.
 
-`t_i ↦ t_i XOR (c AND AND_j x_{i,j})`.
-
-This file formalizes that source statement as an exact finite permutation.
-Lemma 2 of the paper additionally states that the first- and second-order
-families admit O(n) `{CCX,CX}` gate count and O(log n) depth.  No such resource
-claim is assumed here: a later ASPBE layer must provide an actual circuit family
-and prove those bounds before Lemma 2 can be promoted from source-backed memory
-to a formalized result.
+This file formalizes that source action exactly and records Lemma 2 as a genuine
+uniform family resource target for orders 1 and 2. The low-depth circuit family
+itself remains a construction obligation.
 -/
 
 namespace QuantumBlockEncoding
@@ -69,8 +64,8 @@ def sourceFanoutEquiv (k n : Nat) :
   left_inv := sourceFanoutAction_involutive k n
   right_inv := sourceFanoutAction_involutive k n
 
-/-- Source-facing correctness proposition.  Circuit implementations should
-refine to this object rather than restating the fan-out semantics ad hoc. -/
+/-- Source-facing correctness proposition. Circuit implementations should refine
+to this object rather than restating the fan-out semantics ad hoc. -/
 def FanoutSpec (k n : Nat)
     (permutation : Equiv.Perm (FanoutState k n)) : Prop :=
   permutation = sourceFanoutEquiv k n
@@ -138,9 +133,7 @@ theorem sourceFanout_zero_order_target
     simp [sourceFanoutEquiv, sourceFanoutAction, zeroOrderBlocks,
       fanoutActive, emptyLocalControls, toggleBit]
 
-/-- Data-only reminder of the two orders covered by source Lemma 2.  This is not
-an asymptotic proof object; it prevents downstream code from silently treating
-all k as covered by that lemma. -/
+/-- The two fan-out orders covered by source Lemma 2. -/
 def lemmaTwoCoveredOrder (k : Nat) : Prop := k = 1 ∨ k = 2
 
 @[simp] theorem lemmaTwo_covers_one : lemmaTwoCoveredOrder 1 := by
@@ -148,6 +141,39 @@ def lemmaTwoCoveredOrder (k : Nat) : Prop := k = 1 ∨ k = 2
 
 @[simp] theorem lemmaTwo_covers_two : lemmaTwoCoveredOrder 2 := by
   exact Or.inr rfl
+
+/-- Totalized logarithmic source scale. -/
+def lemmaTwoLogScale (n : Nat) : Nat := Nat.log2 (n + 1) + 1
+
+/-- Genuine uniform Lemma-2 resource target. The same pair of constants must
+work for both covered orders and every fan-out width n. -/
+def LemmaTwoUniformResourceTarget
+    (gateCount depth : Nat → Nat → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ order n,
+      lemmaTwoCoveredOrder order →
+        gateCount order n ≤ gateConstant * (n + 1) ∧
+        depth order n ≤ depthConstant * lemmaTwoLogScale n
+
+/-- First-order specialization used in Lemma 5. -/
+def FirstOrderFanoutUniformResourceTarget
+    (gateCount depth : Nat → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ n,
+      gateCount n ≤ gateConstant * (n + 1) ∧
+      depth n ≤ depthConstant * lemmaTwoLogScale n
+
+/-- Lemma 2 uniformly implies the first-order specialization with the same
+constants. -/
+theorem lemmaTwo_implies_firstOrder
+    (gateCount depth : Nat → Nat → Nat)
+    (resources : LemmaTwoUniformResourceTarget gateCount depth) :
+    FirstOrderFanoutUniformResourceTarget
+      (gateCount 1) (depth 1) := by
+  rcases resources with ⟨gateConstant, depthConstant, bounds⟩
+  refine ⟨gateConstant, depthConstant, ?_⟩
+  intro n
+  exact bounds 1 n lemmaTwo_covers_one
 
 end ComparatorIncrementerFanoutSource
 end QuantumBlockEncoding
