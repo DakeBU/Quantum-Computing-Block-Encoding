@@ -6,8 +6,8 @@ import Mathlib.Tactic
 /-!
 # Reversible promise gates embed into the matrix-level source definitions
 
-Most arithmetic proofs in ASPBE use computational-basis permutations.  The
-source Definitions 3.1 and 3.2 are arbitrary unitaries.  This module proves the
+Most arithmetic proofs in ASPBE use computational-basis permutations. The
+source Definitions 3.1 and 3.2 are arbitrary unitaries. This module proves the
 bridge: taking the permutation matrix of a reversible weak/strong promise gate
 produces a matrix-level weak/strong promise gate with the permutation matrix of
 the target unitary.
@@ -42,15 +42,16 @@ theorem weakPermutation_to_matrix
   · constructor
     · exact equivPermutationMatrix_unitary implementation
     · intro promiseOut targetOut targetIn
+      unfold equivPermutationMatrix
       rw [weak targetIn]
       by_cases clean : promiseOut = cleanPromise
       · subst promiseOut
-        simp [equivPermutationMatrix]
+        simp
       · have miss :
           (promiseOut, targetOut) ≠ (cleanPromise, target targetIn) := by
           intro equal
           exact clean (congrArg Prod.fst equal)
-        simp [equivPermutationMatrix, clean, miss]
+        simp [clean, miss]
 
 /-- Reversible strong promise semantics imply the matrix-level QMUX/block
 contract. -/
@@ -81,10 +82,12 @@ theorem strongPermutation_to_matrix
             promiseOut = (implementation (promiseIn, targetIn)).1 :=
               congrArg Prod.fst equal
             _ = promiseIn := restored
-        simp [equivPermutationMatrix, miss]
+        unfold equivPermutationMatrix
+        simp [miss]
       · intro targetOut targetIn
+        unfold equivPermutationMatrix
         rw [strong.1 targetIn]
-        simp [equivPermutationMatrix]
+        simp
 
 /-- The bridge respects the source statement that every strong promise gate is
 weak. -/
