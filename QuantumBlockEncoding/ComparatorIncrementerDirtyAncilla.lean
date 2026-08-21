@@ -39,6 +39,8 @@ theorem forward_conjugator_forward_conjugator_eq_refl
     (inverseByConjugation : InverseByConjugation conjugator forward) :
     forward.trans (conjugator.trans (forward.trans conjugator)) =
       Equiv.refl α := by
+  change conjugator.trans (forward.trans conjugator) = forward.symm at
+    inverseByConjugation
   rw [inverseByConjugation]
   apply Equiv.ext
   intro value
