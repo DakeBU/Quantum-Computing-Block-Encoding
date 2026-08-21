@@ -13,15 +13,14 @@ The source proof of Theorem 1 has three quantitative ingredients:
 * two `C^k X` gates from Figure 3(b), using Lemma 1.
 
 The important counting point is that the `O(k)` contribution from the two
-multi-controlled X gates is paid once, not once per layer of `U`.  This file
-formalizes the resulting family-level resource algebra.  It still does not
-manufacture gate syntax: the fan-out and `C^k X` implementation families are
-explicit inputs.
+multi-controlled X gates is paid once, not once per layer of `U`.
 
-For totalized zero-width parameters we record the harmless structural condition
-`dU <= cU + 1`.  Any ordinary nonempty layered circuit satisfies the stronger
-`dU <= cU`; the `+1` only avoids making boundary bookkeeping part of the
-asymptotic theorem.
+A `SourceParameters` value is only raw numeric data, so not every arbitrary
+natural-number tuple can come from a real layered circuit.  In particular, a
+real middle circuit satisfies a depth/gate consistency relation.  Uniformity is
+therefore stated *on the realizable subset* rather than requiring that relation
+for every syntactically possible tuple.  The asymptotic constants are still
+chosen once and work uniformly across all realizable source instances.
 -/
 
 namespace QuantumBlockEncoding
@@ -34,6 +33,29 @@ open VandaeleTheorem1Contract
 /-- Minimal structural consistency required of the source `U` resource tuple. -/
 def WellFormedMiddle (p : SourceParameters) : Prop :=
   p.middleDepth ≤ p.middleGateCount + 1
+
+/-- Uniform resource target restricted to actual source-parameter tuples
+satisfying a declared eligibility predicate.  Constants are global over the
+whole eligible family. -/
+def UniformResourceTargetOn
+    (eligible : SourceParameters → Prop)
+    (gateCount depth cleanAncillas : SourceParameters → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ p, eligible p →
+      gateCount p ≤ gateConstant * (gateScale p + 1) ∧
+      depth p ≤ depthConstant * (depthScale p + 1) ∧
+      cleanAncillas p ≤ cleanAncillaBudget p
+
+/-- Strong/involutory variant on the same realizable family. -/
+def UniformDirtyResourceTargetOn
+    (eligible : SourceParameters → Prop)
+    (gateCount depth cleanAncillas dirtyAncillas : SourceParameters → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ p, eligible p →
+      gateCount p ≤ gateConstant * (gateScale p + 1) ∧
+      depth p ≤ depthConstant * (depthScale p + 1) ∧
+      cleanAncillas p ≤ dirtyVariantCleanAncillas p ∧
+      dirtyAncillas p = 1
 
 /-- Gate envelope obtained by reading the proof of Theorem 1 literally. -/
 def theoremOneGateEnvelope
@@ -53,8 +75,8 @@ def theoremOneDepthEnvelope
       (singlyDepthEnvelope fanoutDepth p.targetQubits) +
     2 * multiXDepth p.controls
 
-/-- The `dU * (n+1)` totalized layer mass is already covered by the source gate
-scale once the basic depth/gate consistency of `U` is recorded. -/
+/-- The `dU * (n+1)` totalized layer mass is covered by the source gate scale
+for realizable middle-circuit tuples. -/
 theorem middle_layer_mass_le_gateScale
     (p : SourceParameters) (wellFormed : WellFormedMiddle p) :
     p.middleDepth * (p.targetQubits + 1) ≤ gateScale p + 1 := by
@@ -111,7 +133,7 @@ theorem control_log_le_depthScale (p : SourceParameters) :
   omega
 
 /-- Uniform Lemma-1 and first-order Lemma-2 resources close the clean-ancilla
-resource statement of Theorem 1 for the explicit source envelope. -/
+resource statement of Theorem 1 on every realizable parameter tuple. -/
 theorem theoremOne_uniform_resource_closure
     (fanoutGateCount fanoutDepth : Nat → Nat)
     (multiXGateCount multiXDepth multiXDirtyAncillas : Nat → Nat)
@@ -120,9 +142,8 @@ theorem theoremOne_uniform_resource_closure
         fanoutGateCount fanoutDepth)
     (multiXResources :
       LemmaOneUniformResourceTarget
-        multiXGateCount multiXDepth multiXDirtyAncillas)
-    (wellFormed : ∀ p, WellFormedMiddle p) :
-    UniformResourceTarget
+        multiXGateCount multiXDepth multiXDirtyAncillas) :
+    UniformResourceTargetOn WellFormedMiddle
       (theoremOneGateEnvelope fanoutGateCount multiXGateCount)
       (theoremOneDepthEnvelope fanoutDepth multiXDepth)
       cleanAncillaBudget := by
@@ -133,7 +154,7 @@ theorem theoremOne_uniform_resource_closure
     ⟨multiXGateConstant, multiXDepthConstant, multiXBounds⟩
   refine ⟨2 + 1 + singleGateConstant + 2 * multiXGateConstant,
     2 + singleDepthConstant + 2 * multiXDepthConstant, ?_⟩
-  intro p
+  intro p wellFormed
   have singleAtN := singleBounds p.targetQubits
   have multiAtK := multiXBounds p.controls
 
@@ -151,7 +172,7 @@ theorem theoremOne_uniform_resource_closure
           (p.middleDepth * (p.targetQubits + 1)) := by ring
       _ ≤ singleGateConstant * (gateScale p + 1) :=
         Nat.mul_le_mul_left singleGateConstant
-          (middle_layer_mass_le_gateScale p (wellFormed p))
+          (middle_layer_mass_le_gateScale p wellFormed)
 
   have multiGateGlobal :
       multiXGateCount p.controls ≤
@@ -225,9 +246,8 @@ theorem theoremOne_uniform_resource_closure
             (depthScale p + 1) := by ring
     · exact Nat.le_refl _
 
-/-- Under the strong/involutory hypotheses, the same gate/depth envelope also
-closes the source dirty-ancilla variant: exactly one guaranteed clean bit is
-replaced by one dirty bit. -/
+/-- Under the strong/involutory hypotheses, the same gate/depth envelope closes
+the source dirty-ancilla variant on the same realizable parameter family. -/
 theorem theoremOne_uniform_dirty_resource_closure
     (fanoutGateCount fanoutDepth : Nat → Nat)
     (multiXGateCount multiXDepth multiXDirtyAncillas : Nat → Nat)
@@ -236,20 +256,19 @@ theorem theoremOne_uniform_dirty_resource_closure
         fanoutGateCount fanoutDepth)
     (multiXResources :
       LemmaOneUniformResourceTarget
-        multiXGateCount multiXDepth multiXDirtyAncillas)
-    (wellFormed : ∀ p, WellFormedMiddle p) :
-    UniformDirtyResourceTarget
+        multiXGateCount multiXDepth multiXDirtyAncillas) :
+    UniformDirtyResourceTargetOn WellFormedMiddle
       (theoremOneGateEnvelope fanoutGateCount multiXGateCount)
       (theoremOneDepthEnvelope fanoutDepth multiXDepth)
       dirtyVariantCleanAncillas dirtyVariantDirtyAncillas := by
   rcases theoremOne_uniform_resource_closure
       fanoutGateCount fanoutDepth
       multiXGateCount multiXDepth multiXDirtyAncillas
-      fanoutResources multiXResources wellFormed with
+      fanoutResources multiXResources with
     ⟨gateConstant, depthConstant, bounds⟩
   refine ⟨gateConstant, depthConstant, ?_⟩
-  intro p
-  have bound := bounds p
+  intro p wellFormed
+  have bound := bounds p wellFormed
   exact ⟨bound.1, bound.2.1, Nat.le_refl _, rfl⟩
 
 end VandaeleTheorem1ResourceClosure
