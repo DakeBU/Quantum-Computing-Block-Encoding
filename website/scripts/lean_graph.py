@@ -85,6 +85,11 @@ TRACK_BY_LABEL = {
     "System and evidence": "system-evidence",
 }
 
+# The root barrel imports almost the whole library and is an aggregation surface,
+# not a mathematical target. Including it as a frontier target would make the
+# current module-level reuse proxy degenerate.
+FACTORIZATION_BARREL_MODULES = {"QuantumBlockEncoding"}
+
 
 def _slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
@@ -188,6 +193,109 @@ def _unique_records(records: Iterable[dict[str, str]]) -> list[dict[str, str]]:
         seen.add(key)
         answer.append(record)
     return sorted(answer, key=lambda item: item.get("label", "").lower())
+
+
+def _safe_ratio(numerator: int | float, denominator: int | float) -> float:
+    return float(numerator) / float(denominator) if denominator else 0.0
+
+
+def _module_factorization_profile(
+    modules: dict[str, dict[str, object]],
+) -> dict[str, object]:
+    """Compute a non-lossy structural-sharing profile of the module import DAG.
+
+    This deliberately remains a *proxy*.  Once theorem-level proof-term
+    dependencies are exported, the same definitions are applied to theorem
+    support DAGs with an explicitly selected target family.
+    """
+    selected = {
+        name: module
+        for name, module in modules.items()
+        if name not in FACTORIZATION_BARREL_MODULES
+    }
+    successors: dict[str, set[str]] = {name: set() for name in selected}
+    predecessors: dict[str, set[str]] = {name: set() for name in selected}
+    for name, module in selected.items():
+        for dependency in module.get("imports", []):
+            dependency = str(dependency)
+            if dependency in selected:
+                successors[dependency].add(name)
+                predecessors[name].add(dependency)
+
+    frontier = sorted(name for name in selected if not successors[name])
+
+    def support_set(target: str) -> set[str]:
+        seen: set[str] = set()
+        stack = [target]
+        while stack:
+            current = stack.pop()
+            if current in seen:
+                continue
+            seen.add(current)
+            stack.extend(predecessors[current])
+        return seen
+
+    supports = {target: support_set(target) for target in frontier}
+    reuse: dict[str, int] = defaultdict(int)
+    for support in supports.values():
+        for node in support:
+            reuse[node] += 1
+
+    expanded = sum(len(support) for support in supports.values())
+    unique = len(reuse)
+    shared = {node for node, count in reuse.items() if count >= 2}
+    pairwise_mass = sum(count * (count - 1) // 2 for count in reuse.values())
+    target_pairs = len(frontier) * (len(frontier) - 1) // 2
+    top_reused = sorted(
+        (
+            {
+                "module": name,
+                "label": str(selected[name].get("title", name.rsplit(".", 1)[-1])),
+                "source": str(selected[name].get("source", "")),
+                "targetReuse": count,
+                "directFanout": len(successors[name]),
+            }
+            for name, count in reuse.items()
+        ),
+        key=lambda item: (-int(item["targetReuse"]), -int(item["directFanout"]), str(item["module"])),
+    )[:12]
+
+    return {
+        "schemaVersion": 1,
+        "evidenceClass": "module-import-proxy",
+        "targetPolicy": (
+            "Non-barrel modules with no downstream non-barrel importer. This is a "
+            "temporary module-level frontier, not a theorem target set."
+        ),
+        "barrelModulesExcluded": sorted(FACTORIZATION_BARREL_MODULES),
+        "targetCount": len(frontier),
+        "uniqueSupportNodes": unique,
+        "expandedSupportIncidences": expanded,
+        "supportSharingFactor": _safe_ratio(expanded, unique),
+        "reuseGainFraction": _safe_ratio(expanded - unique, expanded),
+        "sharedSupportNodeCount": len(shared),
+        "sharedSupportCoverage": _safe_ratio(len(shared), unique),
+        "meanTargetReusePerSupportNode": _safe_ratio(expanded, unique),
+        "meanTargetReuseAmongSharedNodes": _safe_ratio(
+            sum(reuse[node] for node in shared), len(shared)
+        ),
+        "maxTargetReuse": max(reuse.values(), default=0),
+        "pairwiseSharingMass": pairwise_mass,
+        "meanPairwiseSharedSupport": _safe_ratio(pairwise_mass, target_pairs),
+        "topReusedModules": top_reused,
+        "definitions": {
+            "support": "S_t = transitive dependency support of target t, including t",
+            "reuse": "r(v) = number of selected targets t with v in S_t",
+            "unique": "U = |union_t S_t|",
+            "expanded": "I = sum_t |S_t| = sum_v r(v)",
+            "sharingFactor": "F_share = I / U",
+            "reuseGain": "G_reuse = 1 - U / I",
+            "sharedCoverage": "C_shared = |{v : r(v) >= 2}| / U",
+            "pairwiseMass": (
+                "P_share = sum_v binom(r(v),2) = sum_{s<t} |S_s intersect S_t|"
+            ),
+        },
+    }
 
 
 def build_lean_graph_payload(
@@ -358,20 +466,25 @@ def build_lean_graph_payload(
         )
         for track in TRACKS
     }
+    factorization = _module_factorization_profile(modules)
     return {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "evidenceClass": {
             "moduleEdges": "Parsed internal Lean import edges",
             "leafEdges": "Generated public declaration containment edges",
             "overlays": "Curated chapter, example-case, and paper associations",
+            "factorizationProfile": (
+                "Read-only structural-sharing diagnostics on the module import DAG"
+            ),
             "notYetClaimed": (
                 "Theorem-level proof-term dependency, equivalence quotienting, and "
-                "proof-graph compression are not claimed by this first graph."
+                "proof-graph compression are not claimed by this graph."
             ),
         },
         "tracks": list(TRACKS),
         "nodes": nodes,
         "edges": edges,
+        "factorizationProfile": factorization,
         "stats": {
             "trackCount": len(TRACKS),
             "moduleCount": sum(node.get("type") == "module" for node in nodes),
@@ -384,6 +497,7 @@ def build_lean_graph_payload(
 
 def render_lean_graph_body(payload: dict[str, object]) -> str:
     stats = dict(payload["stats"])
+    factorization = dict(payload["factorizationProfile"])
     track_cards = "".join(
         f"""<article class="lean-graph-method-card">
   <p class="eyebrow">{html.escape(str(track['short']))}</p>
@@ -457,6 +571,62 @@ def render_lean_graph_body(payload: dict[str, object]) -> str:
       textbook chapters, attached papers/cases, and every public Lean leaf.</p>
     </aside>
   </div>
+</section>
+<section class="content-section" id="library-factorization-profile">
+  <div class="section-heading">
+    <p class="eyebrow">Long-term structural metrics · read-only diagnostics</p>
+    <h2>Library Factorization Profile</h2>
+    <p>For a declared family of proof targets \(T\), let \(S_t\) be the full
+    dependency support of target \(t\). The objective is not to make a graph
+    cosmetically small. We measure how much mathematical support is represented
+    once and reused across many certified targets, while retaining every original
+    node and edge needed for Lean replay.</p>
+  </div>
+  <div class="metric-row">
+    <span><strong>{int(factorization['targetCount']):,}</strong> current module-frontier targets</span>
+    <span><strong>{int(factorization['uniqueSupportNodes']):,}</strong> unique support modules</span>
+    <span><strong>{float(factorization['supportSharingFactor']):.2f}×</strong> support sharing factor</span>
+    <span><strong>{int(factorization['maxTargetReuse']):,}</strong> maximum target reuse</span>
+  </div>
+  <div class="lean-graph-future-grid">
+    <article><h3>Unique support and expanded support</h3>
+      <p>Define \(U=|\bigcup_{{t\in T}}S_t|\) and
+      \(I=\sum_{{t\in T}}|S_t|\). Equivalently, if
+      \(r(v)=|\{{t\in T:v\in S_t}}|\), then \(I=\sum_v r(v)\).
+      Here \(U\) counts maintained support nodes once; \(I\) is the support mass
+      obtained by expanding every target separately.</p></article>
+    <article><h3>Structural sharing</h3>
+      <p>We report \(F_{{\rm share}}=I/U\) and
+      \(G_{{\rm reuse}}=1-U/I\), together with the coverage
+      \(C_{{\rm shared}}=|\{{v:r(v)\ge2}}|/U\). These describe sharing; they do
+      not certify that two proofs are semantically interchangeable.</p></article>
+    <article><h3>Reuse concentration</h3>
+      <p>The pairwise sharing mass is
+      \(P_{{\rm share}}=\sum_v\binom{{r(v)}}2
+      =\sum_{{s&lt;t}}|S_s\cap S_t|\). It distinguishes a genuinely central
+      lemma reused by many targets from many local lemmas each reused only twice.
+      We also retain the full reuse histogram and \(\max_v r(v)\).</p></article>
+    <article><h3>Topology contribution of new work</h3>
+      <p>For a new paper or construction we want a vector: new nodes, new edges,
+      reuse of old support, newly shared nodes, cross-family bridge edges, and
+      changes in sharing statistics. This helps distinguish a marginal new leaf
+      from a lemma that reorganizes several State Preparation or Block Encoding
+      proof families.</p></article>
+  </div>
+  <div class="callout"><strong>Current measured layer.</strong> The displayed
+  numbers use only the generated Lean <em>module import DAG</em>, excluding the
+  root barrel module and taking non-barrel frontier modules as temporary targets.
+  When theorem-level proof-term dependencies are exported, the same definitions
+  will be applied to explicit theorem/case/paper target sets. Historical values
+  must record both the evidence layer and target-selection policy.</div>
+  <div class="callout warning"><strong>Anti-gaming rule.</strong> These metrics
+  are a diagnostic vector, not a scalar objective. Minimizing node count or
+  maximizing fan-out alone is invalid: one giant opaque lemma could score well
+  while making the mathematical library worse. Any refactor must preserve exact
+  types, replayable dependencies, source provenance, checker admission, and
+  reader-meaningful boundaries. ZDD/MIP or quotienting remains downstream of
+  theorem-level dependency extraction and empirical evidence that such a
+  representation helps.</div>
 </section>
 <section class="content-section" id="graph-compression">
   <div class="section-heading">
