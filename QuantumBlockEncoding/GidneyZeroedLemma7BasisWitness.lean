@@ -93,7 +93,9 @@ theorem split_zeroPublicPromise (c : Nat) :
     rfl
 
 /-- Padded implementation is a strong promise gate with the public zero promise
-state. -/
+state.  The arbitrary-promise proof restores the whole `(c+1)`-bit register:
+the extra bit is untouched and the c-bit Gidney workspace is restored by the
+actual source circuit. -/
 theorem paddedGidney_strongPromise (c : Nat) :
     PromiseGateOptimization.StrongPromiseSpec
       (zeroPublicPromise c)
@@ -107,11 +109,19 @@ theorem paddedGidney_strongPromise (c : Nat) :
       reassociatePromiseTarget, split_zeroPublicPromise,
       sourceStrong.1 target]
   · intro promise target
-    have restored := sourceStrong.2
-    apply congrArg Prod.fst
-    apply (paddedRegisterEquiv c).injective
-    simp [paddedGidneyImplementation, paddedRegisterEquiv,
-      reassociatePromiseTarget, restored]
+    let split := promiseSplitEquiv c promise
+    have restored :
+        (GidneyZeroedSourceStrongPromise.implementation c
+          (split.1, target)).1 = split.1 :=
+      sourceStrong.2 split.1 target
+    apply (promiseSplitEquiv c).injective
+    have pairRestored :
+        ((GidneyZeroedSourceStrongPromise.implementation c
+            (split.1, target)).1, split.2) = split := by
+      rw [restored]
+      exact (show (split.1, split.2) = split from Prod.eta split)
+    simpa [paddedGidneyImplementation, paddedRegisterEquiv,
+      reassociatePromiseTarget, split] using pairRestored
 
 /-- Add the external k-control all-ones predicate to the padded actual source
 circuit. -/
