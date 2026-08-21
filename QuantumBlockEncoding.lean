@@ -33,6 +33,7 @@ import QuantumBlockEncoding.PrimitiveSemantics
 import QuantumBlockEncoding.PromiseGateOptimization
 import QuantumBlockEncoding.PrimitiveRefinement
 import QuantumBlockEncoding.ReversibleClassical
+import QuantumBlockEncoding.ReversibleRegisterLift
 import QuantumBlockEncoding.PrimitiveMacros
 import QuantumBlockEncoding.ModularAdder3
 import QuantumBlockEncoding.UniformlyControlledRy
