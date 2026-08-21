@@ -4,13 +4,15 @@ import Mathlib.Tactic
 /-!
 # Wire-support lemmas for reversible programs
 
-A recurring compute/use/uncompute proof only needs a local fact: if no gate in a
-subprogram targets a named wire, that wire is unchanged by the complete
-subprogram.  Controls may read the wire arbitrarily.
+A recurring compute/use/uncompute proof only needs local support facts.  If no
+gate in a subprogram targets a named wire, that wire is unchanged.  At the gate
+level, the value produced on a touched wire depends only on the values of the
+wires touched by that gate.
 
-This module records that support discipline once for the reversible proof IR.
-It is used by the arbitrary-width Gidney workspace-restoration induction and is
-also reusable for SP/BE register-cleanup proofs.
+These two facts let later proofs reason about compute/use/uncompute without
+expanding the complete basis state.  They are used by the arbitrary-width
+Gidney workspace-restoration induction and are reusable for SP/BE register
+cleanup.
 -/
 
 namespace QuantumBlockEncoding
@@ -51,6 +53,89 @@ theorem evalReversibleGate_apply_of_not_targets
           xBasisAction, active, distinct]
       · simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
           xBasisAction, active]
+
+/-- If two basis states agree on every wire touched by one gate, then applying
+that gate gives the same value on every touched wire. -/
+theorem evalReversibleGate_congr_on_touches
+    {qubits : Nat} (gate : ReversibleGate qubits)
+    (left right : PrimitiveBasis qubits)
+    (agree : ∀ wire, gate.touches wire → left wire = right wire) :
+    ∀ wire, gate.touches wire →
+      evalReversibleGate gate left wire =
+        evalReversibleGate gate right wire := by
+  intro wire touched
+  cases gate with
+  | x target =>
+      have wireEq : wire = target := by
+        simpa [ReversibleGate.touches] using touched
+      subst wire
+      simp [evalReversibleGate, xBasisEquiv, xBasisAction,
+        agree target (by simp [ReversibleGate.touches])]
+  | cx control target distinct =>
+      have controlAgree : left control = right control :=
+        agree control (by simp [ReversibleGate.touches])
+      have targetAgree : left target = right target :=
+        agree target (by simp [ReversibleGate.touches])
+      rcases touched with wireControl | wireTarget
+      · subst wire
+        by_cases inactive : left control = 0
+        · have inactiveRight : right control = 0 := by
+            simpa [controlAgree] using inactive
+          simp [evalReversibleGate, cxBasisEquiv, cxBasisAction,
+            inactive, inactiveRight, controlAgree]
+        · have inactiveRight : right control ≠ 0 := by
+            simpa [controlAgree] using inactive
+          simp [evalReversibleGate, cxBasisEquiv, cxBasisAction,
+            xBasisAction, inactive, inactiveRight, distinct,
+            controlAgree]
+      · subst wire
+        by_cases inactive : left control = 0
+        · have inactiveRight : right control = 0 := by
+            simpa [controlAgree] using inactive
+          simp [evalReversibleGate, cxBasisEquiv, cxBasisAction,
+            inactive, inactiveRight, targetAgree]
+        · have inactiveRight : right control ≠ 0 := by
+            simpa [controlAgree] using inactive
+          simp [evalReversibleGate, cxBasisEquiv, cxBasisAction,
+            xBasisAction, inactive, inactiveRight, targetAgree]
+  | ccx control0 control1 target c0_ne_c1 c0_ne_target c1_ne_target =>
+      have c0Agree : left control0 = right control0 :=
+        agree control0 (by simp [ReversibleGate.touches])
+      have c1Agree : left control1 = right control1 :=
+        agree control1 (by simp [ReversibleGate.touches])
+      have targetAgree : left target = right target :=
+        agree target (by simp [ReversibleGate.touches])
+      rcases touched with wireC0 | wireC1 | wireTarget
+      · subst wire
+        by_cases active : left control0 = 1 ∧ left control1 = 1
+        · have activeRight : right control0 = 1 ∧ right control1 = 1 := by
+            simpa [c0Agree, c1Agree] using active
+          simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
+            xBasisAction, active, activeRight, c0_ne_target, c0Agree]
+        · have activeRight : ¬(right control0 = 1 ∧ right control1 = 1) := by
+            simpa [c0Agree, c1Agree] using active
+          simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
+            active, activeRight, c0Agree]
+      · subst wire
+        by_cases active : left control0 = 1 ∧ left control1 = 1
+        · have activeRight : right control0 = 1 ∧ right control1 = 1 := by
+            simpa [c0Agree, c1Agree] using active
+          simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
+            xBasisAction, active, activeRight, c1_ne_target, c1Agree]
+        · have activeRight : ¬(right control0 = 1 ∧ right control1 = 1) := by
+            simpa [c0Agree, c1Agree] using active
+          simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
+            active, activeRight, c1Agree]
+      · subst wire
+        by_cases active : left control0 = 1 ∧ left control1 = 1
+        · have activeRight : right control0 = 1 ∧ right control1 = 1 := by
+            simpa [c0Agree, c1Agree] using active
+          simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
+            xBasisAction, active, activeRight, targetAgree]
+        · have activeRight : ¬(right control0 = 1 ∧ right control1 = 1) := by
+            simpa [c0Agree, c1Agree] using active
+          simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
+            active, activeRight, targetAgree]
 
 /-- Program-level support predicate: no gate writes the named wire. -/
 def PreservesWire {qubits : Nat}
