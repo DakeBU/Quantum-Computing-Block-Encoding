@@ -9,7 +9,7 @@ Vandaele Definition 3.2 writes a strong promise gate as
 `sum_j |j><j| tensor U_j`.
 
 Mathlib's `Matrix.blockDiagonal` has exactly this semantics, with product index
-order `target × promise`.  This module reindexes it to the source-facing
+order `target × promise`. This module reindexes it to the source-facing
 `promise × target` order and proves the complete constructor theorem: a family
 of unitary target blocks gives a unitary QMUX, and fixing the clean block to U
 gives a `StrongPromiseMatrixSpec`.
@@ -31,7 +31,9 @@ def qmuxMatrix
     (Equiv.prodComm α ρ)
     (_root_.Matrix.blockDiagonal blocks)
 
-/-- Entry formula: QMUX has zero off-diagonal promise blocks. -/
+/-- Entry formula: QMUX has zero off-diagonal promise blocks.  The proof first
+reduces the reindexing definitionally to the underlying block-diagonal entry;
+it does not depend on auxiliary simp-lemma names for `reindexAlgEquiv`. -/
 theorem qmuxMatrix_apply
     {ρ α : Type*} [Fintype ρ] [DecidableEq ρ]
     [Fintype α] [DecidableEq α]
@@ -41,9 +43,10 @@ theorem qmuxMatrix_apply
       if promiseOut = promiseIn then
         blocks promiseOut targetOut targetIn
       else 0 := by
-  simp [qmuxMatrix, _root_.Matrix.reindexAlgEquiv_apply,
-    _root_.Matrix.reindex_apply, _root_.Matrix.submatrix_apply,
-    _root_.Matrix.blockDiagonal_apply]
+  change
+    (_root_.Matrix.blockDiagonal blocks)
+        (targetOut, promiseOut) (targetIn, promiseIn) = _
+  simp [_root_.Matrix.blockDiagonal]
 
 /-- A QMUX of unitary blocks is unitary. -/
 theorem qmuxMatrix_unitary
