@@ -7,17 +7,17 @@ import Mathlib.Tactic
 # Controlled comparator resource closures (Corollaries 5 and 6)
 
 The controlled comparator corollaries only add controls to the source components
-that actually affect the comparison flag.  Resource-wise this reduces to three
+that actually affect the comparison flag. Resource-wise this reduces to three
 families:
 
 * the uncontrolled comparator structure, O(n) gates / O(log n) depth;
 * the controlled V2 component from Equation (28), O(k+n) / O(log k + log n);
 * one additional multi-controlled-X style predicate toggle, O(k) / O(log k).
 
-This file closes that algebra uniformly.  For the quantum-quantum comparator the
-source uses no external ancilla; for the classical-quantum comparator the single
-dirty ancilla of Theorem 3 is retained.  Concrete Corollary-5/6 circuits must
-still prove that their actual counts are bounded by the envelopes below.
+The Equation-(28) component naturally contains `C^(k+1) X`, so the totalized
+logarithmic scale below keeps `logScale(k+1)` explicitly.  This avoids an
+unnecessary fragile logarithm identity while representing the same asymptotic
+source statement.
 -/
 
 namespace QuantumBlockEncoding
@@ -27,9 +27,9 @@ open ComparatorIncrementerTheorem4DepthBound
 open VandaeleControlledV2Resource
 open VandaeleLemma1Contract
 
-/-- Common controlled-comparator logarithmic scale. -/
+/-- Totalized controlled-comparator logarithmic scale. -/
 def combinedLogScale (controls n : Nat) : Nat :=
-  logRank n + VandaeleLemma1Contract.logScale controls
+  logRank n + VandaeleLemma1Contract.logScale (controls + 1)
 
 /-- Uncontrolled comparator structural resource target. -/
 def BaseComparatorResourceTarget
@@ -54,6 +54,19 @@ def depthEnvelope
     (multiXDepth : Nat → Nat)
     (controls n : Nat) : Nat :=
   baseDepth n + controlledV2Depth controls n + multiXDepth controls
+
+/-- Ordinary `C^k X` log scale is bounded by the `C^(k+1) X` scale already
+present in Equation (28). -/
+theorem controlLog_mono (controls : Nat) :
+    VandaeleLemma1Contract.logScale controls ≤
+      VandaeleLemma1Contract.logScale (controls + 1) := by
+  unfold VandaeleLemma1Contract.logScale
+  have value : controls + 1 ≤ controls + 2 := by omega
+  have logarithm :
+      Nat.log2 (controls + 1) ≤ Nat.log2 (controls + 2) := by
+    rw [Nat.log2_eq_log_two, Nat.log2_eq_log_two]
+    exact Nat.log_mono_right value
+  omega
 
 /-- Uniform O(k+n)/O(log k + log n) closure shared by Corollaries 5 and 6. -/
 theorem controlledComparator_resource_closure
@@ -104,65 +117,30 @@ theorem controlledComparator_resource_closure
   · unfold depthEnvelope combinedLogScale
     have baseDepthGlobal :
         baseDepth n ≤ baseDepthConstant *
-          (logRank n + VandaeleLemma1Contract.logScale controls) :=
+          (logRank n + VandaeleLemma1Contract.logScale (controls + 1)) :=
       base.2.trans (Nat.mul_le_mul_left baseDepthConstant (by omega))
     have multiDepthGlobal :
         multiXDepth controls ≤ multiDepthConstant *
-          (logRank n + VandaeleLemma1Contract.logScale controls) :=
-      multi.2.1.trans (Nat.mul_le_mul_left multiDepthConstant (by omega))
+          (logRank n + VandaeleLemma1Contract.logScale (controls + 1)) :=
+      multi.2.1.trans
+        (Nat.mul_le_mul_left multiDepthConstant
+          ((controlLog_mono controls).trans (by omega)))
     have v2DepthGlobal :
         controlledV2Depth controls n ≤ v2DepthConstant *
-          (logRank n + VandaeleLemma1Contract.logScale controls) := by
-      have source := v2.2
-      unfold VandaeleControlledV2Resource.combinedLogScale at source
-      have controlScale :
-          VandaeleLemma1Contract.logScale (controls + 1) ≤
-            2 * VandaeleLemma1Contract.logScale controls := by
-        unfold VandaeleLemma1Contract.logScale
-        have positive : 1 ≤ Nat.log2 (controls + 1) + 1 := by omega
-        have argument : controls + 2 ≤ 2 * (controls + 1) := by omega
-        have logBound :
-            Nat.log2 (controls + 2) ≤ Nat.log2 (2 * (controls + 1)) := by
-          rw [Nat.log2_eq_log_two, Nat.log2_eq_log_two]
-          exact Nat.log_mono_right argument
-        have powerBound :
-            Nat.log2 (2 * (controls + 1)) ≤ Nat.log2 (controls + 1) + 1 := by
-          rw [Nat.log2_eq_log_two, Nat.log2_eq_log_two]
-          exact Nat.log_mul_le_add_log 2 (controls + 1)
-        omega
-      have sourceScaled :
-          controlledV2Depth controls n ≤ v2DepthConstant *
-            (logRank n + 2 * VandaeleLemma1Contract.logScale controls) :=
-        source.trans (Nat.mul_le_mul_left v2DepthConstant
-          (Nat.add_le_add_left controlScale (logRank n)))
-      have totalScale :
-          logRank n + 2 * VandaeleLemma1Contract.logScale controls ≤
-            2 * (logRank n + VandaeleLemma1Contract.logScale controls) := by
-        omega
-      exact sourceScaled.trans
-        (Nat.mul_le_mul_left v2DepthConstant totalScale)
+          (logRank n + VandaeleLemma1Contract.logScale (controls + 1)) := by
+      simpa [VandaeleControlledV2Resource.combinedLogScale] using v2.2
     calc
       baseDepth n + controlledV2Depth controls n + multiXDepth controls ≤
           baseDepthConstant *
-              (logRank n + VandaeleLemma1Contract.logScale controls) +
-          (2 * v2DepthConstant) *
-              (logRank n + VandaeleLemma1Contract.logScale controls) +
+              (logRank n + VandaeleLemma1Contract.logScale (controls + 1)) +
+          v2DepthConstant *
+              (logRank n + VandaeleLemma1Contract.logScale (controls + 1)) +
           multiDepthConstant *
-              (logRank n + VandaeleLemma1Contract.logScale controls) := by
-        exact Nat.add_le_add
-          (Nat.add_le_add baseDepthGlobal (by
-            calc
-              controlledV2Depth controls n ≤ v2DepthConstant *
-                    (2 * (logRank n + VandaeleLemma1Contract.logScale controls)) :=
-                v2DepthGlobal
-              _ = (2 * v2DepthConstant) *
-                    (logRank n + VandaeleLemma1Contract.logScale controls) := by ring))
+              (logRank n + VandaeleLemma1Contract.logScale (controls + 1)) :=
+        Nat.add_le_add (Nat.add_le_add baseDepthGlobal v2DepthGlobal)
           multiDepthGlobal
-      _ = (baseDepthConstant + 2 * v2DepthConstant + multiDepthConstant) *
-          (logRank n + VandaeleLemma1Contract.logScale controls) := by ring
-      _ ≤ (baseDepthConstant + v2DepthConstant + multiDepthConstant +
-          v2DepthConstant) *
-          (logRank n + VandaeleLemma1Contract.logScale controls) := by ring_nf
+      _ = (baseDepthConstant + v2DepthConstant + multiDepthConstant) *
+          (logRank n + VandaeleLemma1Contract.logScale (controls + 1)) := by ring
 
 /-- Corollary-5 ancilla target: no external ancilla. -/
 def ControlledQQAncillas (_controls _n : Nat) : Nat := 0
