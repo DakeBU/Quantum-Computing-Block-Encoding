@@ -39,8 +39,13 @@ on:
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
       - "QuantumBlockEncoding/PredicateControlledStrongPromise.lean"
       - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
+      - "QuantumBlockEncoding/ReversibleSchedule.lean"
+      - "QuantumBlockEncoding/VandaeleCorollary4ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLadderContract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
+      - "QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean"
+      - "QuantumBlockEncoding/VandaeleLemma2ProgramFamily.lean"
+      - "QuantumBlockEncoding/VandaeleLemma4ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLemma5Contract.lean"
       - "QuantumBlockEncoding/VandaeleLemma5Equations13_14.lean"
       - "QuantumBlockEncoding/VandaeleLemma5ResourceClosure.lean"
@@ -109,8 +114,13 @@ on:
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
       - "QuantumBlockEncoding/PredicateControlledStrongPromise.lean"
       - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
+      - "QuantumBlockEncoding/ReversibleSchedule.lean"
+      - "QuantumBlockEncoding/VandaeleCorollary4ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLadderContract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
+      - "QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean"
+      - "QuantumBlockEncoding/VandaeleLemma2ProgramFamily.lean"
+      - "QuantumBlockEncoding/VandaeleLemma4ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLemma5Contract.lean"
       - "QuantumBlockEncoding/VandaeleLemma5Equations13_14.lean"
       - "QuantumBlockEncoding/VandaeleLemma5ResourceClosure.lean"
@@ -153,6 +163,7 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerModularConjugation
           lake build QuantumBlockEncoding.ReversibleRegisterLift
           lake build QuantumBlockEncoding.PrimitiveBasisRegisterSplit
+          lake build QuantumBlockEncoding.ReversibleSchedule
           lake build QuantumBlockEncoding.ComparatorIncrementerAllX
           lake build QuantumBlockEncoding.ComparatorIncrementerAllXResources
           lake build QuantumBlockEncoding.ComparatorIncrementerControlledAllX
@@ -160,7 +171,11 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerFanoutSource
           lake build QuantumBlockEncoding.ComparatorIncrementerFanoutResourceClosure
           lake build QuantumBlockEncoding.VandaeleLemma1Contract
+          lake build QuantumBlockEncoding.VandaeleLemma1ProgramFamily
           lake build QuantumBlockEncoding.VandaeleLadderContract
+          lake build QuantumBlockEncoding.VandaeleLemma2ProgramFamily
+          lake build QuantumBlockEncoding.VandaeleLemma4ProgramFamily
+          lake build QuantumBlockEncoding.VandaeleCorollary4ProgramFamily
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ZModPrimitiveBasisBridge
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
