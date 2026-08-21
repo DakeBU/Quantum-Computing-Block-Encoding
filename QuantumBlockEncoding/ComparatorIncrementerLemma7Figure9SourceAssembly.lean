@@ -5,14 +5,14 @@ import Mathlib.Tactic
 /-!
 # Source-faithful Figure-9 strong-promise assembly
 
-Vandaele Figure 9 does **not** control every Gidney slice.  The CCX ladders in
+Vandaele Figure 9 does **not** control every Gidney slice. The CCX ladders in
 slices 1 and 3 remain uncontrolled; only the gates in slices 2 and 4 receive the
-external control.  This is the resource-saving consequence of the controlled
+external control. This is the resource-saving consequence of the controlled
 conjugation identity from Figure 3(a).
 
 At the promise-gate level the required global proof can be isolated from the
-still-open gate-level slice decomposition.  Let the four clean-branch target
-actions be `T1,T2,T3,T4`.  It is sufficient that
+still-open gate-level slice decomposition. Let the four clean-branch target
+actions be `T1,T2,T3,T4`. It is sufficient that
 
 * every stage restores the promise register for arbitrary incoming contents;
 * `T1 ; T3 = I`, so the two uncontrolled slices cancel when the external
@@ -20,7 +20,7 @@ actions be `T1,T2,T3,T4`.  It is sufficient that
 * `T1 ; T2 ; T3 ; T4 = target`, so the active branch implements the desired
   target unitary.
 
-The theorem below proves exactly this statement.  It is the source-faithful
+The theorem below proves exactly this statement. It is the source-faithful
 semantic assembly that later Figure-9 slice refinements must inhabit.
 -/
 
@@ -29,6 +29,7 @@ namespace ComparatorIncrementerLemma7Figure9SourceAssembly
 
 open ComparatorIncrementerLemma7BasisContract
 open ComparatorIncrementerLemma7Contract
+open ComparatorIncrementerLemma8Contract
 open PredicateControlledStrongPromise
 open PromiseGateOptimization
 
