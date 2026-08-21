@@ -11,35 +11,27 @@ on:
       - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
       - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
       - "QuantumBlockEncoding/MixedRadixIncrement.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerEq39BlockCascade.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerEq39SquareRootPlan.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerEq39LocalActivation.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerEq39BasisCascade.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma8BlockCascadeCertificate.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Lemma7LocalBounds.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma8PromiseGateBudget.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma8PromiseDepthBudget.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma8ResourceClosureFromLemma7.lean"
-      - "QuantumBlockEncoding/GidneyZeroedSourceProgram.lean"
-      - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestoration.lean"
-      - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestorationGlobal.lean"
-      - "QuantumBlockEncoding/GidneyZeroedCarryCompute.lean"
-      - "QuantumBlockEncoding/GidneyZeroedDescendingAction.lean"
-      - "QuantumBlockEncoding/GidneyZeroedCleanTargetAction.lean"
-      - "QuantumBlockEncoding/GidneyZeroedSourceCorrectness.lean"
-      - "QuantumBlockEncoding/GidneyZeroedSourceLogicalResources.lean"
-      - "QuantumBlockEncoding/GidneyZeroedSourceStrongPromise.lean"
-      - "QuantumBlockEncoding/GidneyZeroedSourceDecrement.lean"
-      - "QuantumBlockEncoding/BasisIncrementAllXConjugation.lean"
-      - "QuantumBlockEncoding/GidneyZeroedEq35Promise.lean"
-      - "QuantumBlockEncoding/GidneyZeroedScheduledFamily.lean"
-      - "QuantumBlockEncoding/GidneyZeroedControlledStrongPromise.lean"
-      - "QuantumBlockEncoding/GidneyZeroedLemma7BasisWitness.lean"
-      - "QuantumBlockEncoding/GidneyZeroedPrimitive.lean"
-      - "QuantumBlockEncoding/GidneyIncrementerStrongPromise.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq39*.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8*.lean"
+      - "QuantumBlockEncoding/Gidney*.lean"
       - "QuantumBlockEncoding/StrongPromiseInverse.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9SourceAssembly.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9StrongPromiseBridge.lean"
+      - "QuantumBlockEncoding/BasisIncrementAllXConjugation.lean"
+      - "QuantumBlockEncoding/ComparatorSemanticTargets.lean"
+      - "QuantumBlockEncoding/ComparatorSubtractionSemantics.lean"
+      - "QuantumBlockEncoding/ComparatorSubtractionTargetBridge.lean"
+      - "QuantumBlockEncoding/ComparatorQuantumToClassicalRestriction.lean"
+      - "QuantumBlockEncoding/VandaeleComparator*.lean"
+      - "QuantumBlockEncoding/VandaeleControlledComparatorResource.lean"
+      - "QuantumBlockEncoding/VandaeleControlledComparatorTargets.lean"
+      - "QuantumBlockEncoding/VandaeleControlledV2Resource.lean"
+      - "QuantumBlockEncoding/VandaeleLadderContract.lean"
+      - "QuantumBlockEncoding/VandaeleLadderPermutation.lean"
+      - "QuantumBlockEncoding/VandaeleLadderRefinement.lean"
+      - "QuantumBlockEncoding/VandaeleVOperator.lean"
+      - "QuantumBlockEncoding/VandaeleLemma6Contract.lean"
+      - "QuantumBlockEncoding/VandaeleLemma6ResourceClosure.lean"
+      - "QuantumBlockEncoding/VandaeleIncrementerFormalization.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorFormalization.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4OptimalityContract.lean"
       - "QuantumBlockEncoding.lean"
       - ".github/workflows/vandaele-source-admission-report.yml"
@@ -117,6 +109,27 @@ jobs:
             QuantumBlockEncoding.GidneyZeroedPrimitive
             QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9SourceAssembly
             QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9StrongPromiseBridge
+            QuantumBlockEncoding.VandaeleLadderContract
+            QuantumBlockEncoding.VandaeleLadderPermutation
+            QuantumBlockEncoding.VandaeleLadderRefinement
+            QuantumBlockEncoding.VandaeleVOperator
+            QuantumBlockEncoding.VandaeleLemma6Contract
+            QuantumBlockEncoding.VandaeleLemma6ResourceClosure
+            QuantumBlockEncoding.ComparatorSemanticTargets
+            QuantumBlockEncoding.ComparatorSubtractionSemantics
+            QuantumBlockEncoding.ComparatorSubtractionTargetBridge
+            QuantumBlockEncoding.ComparatorQuantumToClassicalRestriction
+            QuantumBlockEncoding.VandaeleComparatorEq3Reduction
+            QuantumBlockEncoding.VandaeleComparatorLowerBoundReduction
+            QuantumBlockEncoding.VandaeleComparatorTheorem2RecursiveSplit
+            QuantumBlockEncoding.VandaeleComparatorTheorem2Resource
+            QuantumBlockEncoding.VandaeleComparatorTheorem3BorrowedInput
+            QuantumBlockEncoding.VandaeleComparatorTheorem3Resource
+            QuantumBlockEncoding.VandaeleControlledV2Resource
+            QuantumBlockEncoding.VandaeleControlledComparatorTargets
+            QuantumBlockEncoding.VandaeleControlledComparatorResource
+            QuantumBlockEncoding.VandaeleIncrementerFormalization
+            QuantumBlockEncoding.VandaeleComparatorFormalization
             QuantumBlockEncoding.ComparatorIncrementerTheorem4OptimalityContract
             QuantumBlockEncoding
           )
