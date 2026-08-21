@@ -3,20 +3,20 @@
 - `id`: `tl-comparator-incrementer-arithmetic`
 - `source`: Vivien Vandaele, *Asymptotically Optimal Quantum Circuits for Comparators and Incrementers*, arXiv:2603.12917
 - `statement`: reuse comparator/incrementer arithmetic as a shared reversible routing primitive for interval/prefix State Preparation and arithmetic/sparse Block Encoding
-- `lean_decl`: `QuantumBlockEncoding.ComparatorIncrementer.*`, `ComparatorIncrementerGeneral.*`, `ComparatorIncrementerRecursiveSplit.*`, together with `QuantumBlockEncoding.PromiseGateOptimization.*`
+- `lean_decl`: `QuantumBlockEncoding.ComparatorIncrementer.*`, `ComparatorIncrementerGeneral.*`, `ComparatorIncrementerRecursiveSplit.*`, `ComparatorIncrementerDirtyAncilla.*`, `ComparatorIncrementerControlledConjugation.*`, `ComparatorIncrementerModularConjugation.*`, `ComparatorIncrementerAllX.*`, together with `QuantumBlockEncoding.PromiseGateOptimization.*`
 - `lean_status`: `obligation` — branch implementations exist, but this card must not enter `registry.json` as `formalized` until the Lean gate accepts the exact branch
 - `used_by`: interval-tree State Preparation; piecewise-amplitude routing; sparse-address Block Encoding; finite-difference/banded address logic; promise-register circuit mutations
 - `dependencies`: `ReversibleClassical`, `PrimitiveMacros`, little-endian basis transport, exact CCX refinement
-- `next_action`: admit the branch Lean gate; then connect the Eq. (34) split/carry semantics to Vandaele's concrete recursive promise-gate circuit and prove the resource recurrence
-- `tags`: `comparator`; `incrementer`; `reversible-arithmetic`; `interval`; `state-preparation`; `block-encoding`; `resource`
+- `next_action`: admit the branch Lean gate; then refine arbitrary-width all-X to a concrete reversible program and controlled fan-out, connect the Eq. (34) split to Vandaele's recursive strong-promise circuit, and prove the resource recurrence
+- `tags`: `comparator`; `incrementer`; `reversible-arithmetic`; `interval`; `state-preparation`; `block-encoding`; `resource`; `dirty-ancilla`; `controlled-conjugation`
 
 ## Why this is a high-value ASPBE memory card
 
 Many constructions that look unrelated at the matrix level share the same
 circuit skeleton: compute an arithmetic predicate or shifted address, use it to
-route amplitudes/operators, then uncompute all promised workspace.  The
-reusable object is therefore not “a comparator paper” in isolation; it is a
-shared proof/circuit interface between State Preparation and Block Encoding.
+route amplitudes/operators, then uncompute all promised workspace. The reusable
+object is therefore not “a comparator paper” in isolation; it is a shared
+proof/circuit interface between State Preparation and Block Encoding.
 
 A typical clean predicate route is
 
@@ -30,7 +30,7 @@ A typical clean predicate route is
 |x\rangle|0\rangle_f|F_{p(x)}(y)\rangle.
 \]
 
-The final restoration equation is part of the reusable contract.  A circuit
+The final restoration equation is part of the reusable contract. A circuit
 that computes the right predicate but leaves garbage is not interchangeable
 with a clean oracle required by a parent SP/BE theorem.
 
@@ -38,13 +38,14 @@ with a clean oracle required by a parent SP/BE theorem.
 
 The source paper proves asymptotically optimal comparator and incrementer
 families in a Clifford+Toffoli setting, with linear gate count and logarithmic
-depth and minimum-qubit statements under its declared model.  ASPBE must keep
+depth and minimum-qubit statements under its declared model. ASPBE must keep
 those claims separate from its current branch implementation.
 
-**Do not infer the arbitrary-width source theorem from the finite certificates
-below.**  To reproduce the paper-wide result, ASPBE still needs the concrete
-recursive promise-gate family, the parameterized correctness induction,
-resource recurrences, and matching lower-bound/model assumptions in Lean.
+**Do not infer the arbitrary-width source theorem from the semantic layers
+below.** To reproduce the paper-wide result, ASPBE still needs the concrete
+recursive strong-promise circuit family, gate-level controlled fan-out,
+parameterized correctness induction, resource recurrences, and matching
+lower-bound/model assumptions in Lean.
 
 ## ASPBE finite proof-bearing seed on the current branch
 
@@ -128,10 +129,14 @@ This is **branch implementation evidence only until Lean admission**. The card
 must not describe the end-to-end certificate as compiled before the build is
 observable and green.
 
-## Arbitrary-width semantic bridge now present on the branch
+## Arbitrary-width source ladder now represented on the branch
 
-`ComparatorIncrementerGeneral.lean` fixes the parameterized correctness
-contracts before the recursive circuit family is written:
+The branch deliberately separates the paper into semantic layers rather than
+encoding Figure 10 first and repairing its meaning afterward.
+
+### Layer 1 — parameterized contracts
+
+`ComparatorIncrementerGeneral.lean` fixes:
 
 - `IncrementerSpec n` for modular `n`-bit successor;
 - `ClassicalComparatorSpec n c` preserving the address and toggling an arbitrary
@@ -144,20 +149,104 @@ contracts before the recursive circuit family is written:
 The finite 3-bit incrementer and 2-bit `<3` comparator are connected to these
 parameterized contracts as finite seed theorems.
 
-`ComparatorIncrementerRecursiveSplit.lean` then formalizes the arithmetic layer
-behind the paper's recursive incrementer split. For an `(n+k)`-bit word it names
-the incremented low block, the low-block carry, and the carry-updated high block,
-and uses exact natural-number division/modulus identities to prove
+### Layer 2 — Eq. (34) recursive split/carry semantics
+
+`ComparatorIncrementerRecursiveSplit.lean` names the incremented low block, the
+low-block carry, and the carry-updated high block of an `(n+k)`-bit word and
+proves the exact decomposition
 
 \[
 (x+1)\bmod 2^{n+k}
 =
-\operatorname{low}'
-+2^n\operatorname{high}'.
+\operatorname{low}' + 2^n\operatorname{high}'.
 \]
 
-This is the semantic induction target for the next circuit layer. It is not yet
-the paper's concrete recursive gate decomposition.
+This is the arithmetic induction target for the paper's recursive circuit.
+
+### Layer 3 — Eq. (35) inverse-by-conjugation
+
+The source incrementer is not involutory, so the existing generic
+`dirtyControlledInvolution_action` is the wrong theorem. The branch instead
+introduces the source-appropriate condition
+
+\[
+X_{\rm all}\,\mathrm{Inc}\,X_{\rm all}=\mathrm{Inc}^{-1}=\mathrm{Dec}.
+\]
+
+`ComparatorIncrementerDirtyAncilla.lean` records the abstract
+`InverseByConjugation` interface and derives the corresponding cancellation
+identity.
+
+`ComparatorIncrementerModularConjugation.lean` then discharges this algebraic
+hypothesis on `ZMod N` with
+
+\[
+\mathrm{Inc}(x)=x+1,
+\qquad
+X_{\rm all}(x)=-x-1.
+\]
+
+Thus Eq. (35) is no longer merely assumed at the arithmetic level.
+
+### Layer 4 — Eq. (36) dirty inverse-pair protocol
+
+`ComparatorIncrementerDirtyAncilla.lean` formalizes a dirty protocol for a
+forward operation and its inverse. When the external control is false the
+forward/backward pair cancels; when it is true the branch is arranged so exactly
+one forward operation remains. The theorem records exact target action and dirty
+flag restoration for every incoming dirty value.
+
+This is strictly more appropriate than pretending the incrementer satisfies
+`U^2=I`.
+
+### Layer 5 — controlled-conjugation realization of the choice
+
+`ComparatorIncrementerControlledConjugation.lean` removes a hidden semantic
+choice from Layer 4. It proves that two externally controlled conjugators around
+the dirty-controlled inverse operation realize the source-style branch:
+
+- control false: the conjugators are identities and increment/decrement cancel;
+- control true, dirty zero: the two conjugators cancel;
+- control true, dirty one: conjugation converts decrement into increment.
+
+The resulting theorem gives the Eq. (36)-style action and dirty restoration as
+an exact finite basis permutation identity.
+
+### Layer 6 — arbitrary-width all-X little-endian semantics
+
+`ComparatorIncrementerAllX.lean` defines all-X directly on
+`PrimitiveBasis n` and proves
+
+\[
+\operatorname{LE}(X^{\otimes n}|x\rangle)
+=2^n-1-\operatorname{LE}(|x\rangle).
+\]
+
+It also transports the operation to `Fin (2^n)` and proves the transported
+permutation is involutory. This connects the modular `-x-1` description to the
+repository's actual little-endian basis convention at the representation level.
+
+The remaining gap is **gate-level**, not semantic: construct the arbitrary-width
+all-X `ReversibleProgram`, prove its evaluation equals this basis permutation,
+and then refine the externally controlled all-X to the paper's controlled
+fan-out resource model.
+
+## Next Vandaele proof leaves
+
+Proceed in this order:
+
+1. compile arbitrary-width all-X from `ReversibleGate.x` and prove exact equality
+   with `allXBasisEquiv`;
+2. define/refine the controlled all-X fan-out used by Eq. (36), including its
+   gate/depth contribution under the source model;
+3. connect the Eq. (34) low/high split to the strong-promise incrementer used in
+   the recursive construction;
+4. encode the Figure 10 / Eq. (44) recursive family with correctness induction;
+5. derive the source recurrences for the chosen split
+   `alpha = 2 * ceil(sqrt n)`;
+6. only then prove the asymptotic `Theta(n)` gate and `Theta(log n)` depth claims;
+7. formalize lower-bound/minimum-qubit assumptions separately before using the
+   word “optimal” in the Lean registry.
 
 ## Block Encoding consumers to retrieve later
 
