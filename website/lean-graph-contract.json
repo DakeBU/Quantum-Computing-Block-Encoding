@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "Underlying Lean Graph of Libraries",
   "generatedEdges": [
     "internal Lean module imports",
@@ -10,9 +10,34 @@
     "example cases",
     "paper routes"
   ],
+  "derivedDiagnostics": {
+    "libraryFactorizationProfile": {
+      "evidenceClass": "module-import-proxy",
+      "authority": "read-only derived view; never replaces Lean source, declarations, imports, or checker replay",
+      "currentTargetPolicy": "non-barrel frontier modules",
+      "definitions": [
+        "S_t: transitive support of selected target t",
+        "r(v): number of selected targets whose support contains node v",
+        "U = |union_t S_t|: unique support nodes",
+        "I = sum_t |S_t| = sum_v r(v): expanded support incidences",
+        "F_share = I/U: structural sharing factor",
+        "G_reuse = 1-U/I: reuse gain fraction",
+        "C_shared = |{v : r(v) >= 2}|/U: shared-node coverage",
+        "P_share = sum_v binom(r(v),2) = sum_{s<t}|S_s intersect S_t|: pairwise sharing mass"
+      ],
+      "antiGaming": "metrics remain a vector; node minimization or fan-out maximization alone is not a valid optimization objective"
+    }
+  },
+  "futureEvidenceUpgrade": [
+    "export theorem-level dependencies from elaborated Lean proof terms",
+    "select explicit theorem/case/paper target families",
+    "apply the same factorization definitions to theorem support DAGs",
+    "record evidence layer and target policy with every historical metric snapshot"
+  ],
   "notYetClaimed": [
     "theorem-level proof-term dependency graph",
     "equivalence quotient of proof routes",
-    "compressed proof graph"
+    "compressed proof graph",
+    "ZDD/MIP proof-state representation"
   ]
 }
