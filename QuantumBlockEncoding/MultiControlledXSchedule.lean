@@ -67,11 +67,13 @@ theorem active_gateAction_iff
   unfold active
   constructor
   · intro after control member
-    rw [gateAction_control gate state control member] at after
-    exact after control member
+    have atControl := after control member
+    rw [gateAction_control gate state control member] at atControl
+    exact atControl
   · intro before control member
+    have atControl := before control member
     rw [gateAction_control gate state control member]
-    exact before control member
+    exact atControl
 
 /-- MCX is involutory. -/
 theorem gateAction_involutive
