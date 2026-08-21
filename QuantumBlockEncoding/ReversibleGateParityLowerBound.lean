@@ -114,6 +114,19 @@ def flatMultiControlledXEquiv (k : Nat) :
     Equiv.Perm (PrimitiveBasis (k + 1)) :=
   (flatControlTargetEquiv k).symm.permCongr (multiControlledXEquiv k)
 
+/-- Commuting square for the flat/product register transport.  Downstream
+semantic lower-bound proofs should use this theorem rather than unfolding
+`permCongr`. -/
+theorem flatControlTargetEquiv_flatMultiControlledX
+    (k : Nat) (state : PrimitiveBasis (k + 1)) :
+    flatControlTargetEquiv k (flatMultiControlledXEquiv k state) =
+      multiControlledXEquiv k (flatControlTargetEquiv k state) := by
+  change
+    flatControlTargetEquiv k
+      ((flatControlTargetEquiv k).symm
+        (multiControlledXEquiv k (flatControlTargetEquiv k state))) = _
+  rw [Equiv.apply_symm_apply]
+
 /-- Flat transport does not change the odd sign of C^k X. -/
 theorem flatMultiControlledX_sign (k : Nat) :
     Equiv.Perm.sign (flatMultiControlledXEquiv k) = -1 := by
