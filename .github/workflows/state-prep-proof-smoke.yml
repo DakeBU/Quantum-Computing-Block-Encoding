@@ -6,9 +6,11 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
       - "QuantumBlockEncoding/PrimitiveBasisLE4.lean"
       - "QuantumBlockEncoding/StatePreparationIntervalTree.lean"
@@ -37,9 +39,11 @@ on:
       - "QuantumBlockEncoding/Circuit.lean"
       - "QuantumBlockEncoding/Resources.lean"
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
       - "QuantumBlockEncoding/PrimitiveMacros.lean"
       - "QuantumBlockEncoding/ReversibleClassical.lean"
@@ -72,6 +76,8 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementer
           lake build QuantumBlockEncoding.ComparatorIncrementerControlledConjugation
           lake build QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
+          lake build QuantumBlockEncoding.ComparatorIncrementerModularConjugation
+          lake build QuantumBlockEncoding.ComparatorIncrementerAllX
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
           lake build QuantumBlockEncoding.PrimitiveBasisLE4
