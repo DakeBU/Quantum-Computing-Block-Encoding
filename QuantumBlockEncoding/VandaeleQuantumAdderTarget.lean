@@ -7,14 +7,14 @@ import Mathlib.Tactic
 # Canonical quantum adder target used by Vandaele Corollary 3
 
 The ripple-carry adder in Figure 4 preserves an n-bit register `a`, adds it into
-an n-bit register `b`, and toggles a final carry bit `z`.  A clean way to state
+an n-bit register `b`, and toggles a final carry bit `z`. A clean way to state
 the reversible target is to regard `(b,z)` as one `(n+1)`-bit little-endian
-register.  For each fixed basis value of `a`, the target simply performs
+register. For each fixed basis value of `a`, the target simply performs
 
 `(b,z) -> (b,z) + value(a) mod 2^(n+1)`.
 
 This automatically gives the usual low-n-bit sum and carry toggle while making
-invertibility immediate.  The construction is a semantic target; Corollary 3
+invertibility immediate. The construction is a semantic target; Corollary 3
 still needs the Figure-4/Theorem-1 circuit realization and resource proof.
 -/
 
@@ -60,8 +60,8 @@ theorem quantumAdder_payload_value
 /-- Split an `(n+1)`-bit payload into the low n-bit sum register and one carry
 bit. -/
 def payloadSplitEquiv (n : Nat) :
-    PrimitiveBasis (n + 1) ≃ PrimitiveBasis n × PrimitiveBasis 1 := by
-  simpa [Nat.add_comm] using basisSplitEquiv n 1
+    PrimitiveBasis (n + 1) ≃ PrimitiveBasis n × PrimitiveBasis 1 :=
+  basisSplitEquiv n 1
 
 /-- Canonical one-bit register embedding/extraction. -/
 def oneBitEquiv : PrimitiveBasis 1 ≃ Fin 2 where
@@ -86,12 +86,16 @@ theorem payloadBZ_value
     basisNat (n + 1) payload =
       basisNat n (payloadBZEquiv n payload).1 +
         gridSize n * (payloadBZEquiv n payload).2.val := by
-  unfold basisNat payloadBZEquiv payloadSplitEquiv oneBitEquiv
-  simpa [Nat.add_comm] using
-    primitiveBasisLEEquiv_splitBasis_recomposition n 1 payload
+  change
+    (primitiveBasisLEEquiv (n + 1) payload).val =
+      (primitiveBasisLEEquiv n (payloadBZEquiv n payload).1).val +
+        gridSize n * (payloadBZEquiv n payload).2.val
+  have source := primitiveBasisLEEquiv_splitBasis_recomposition n 1 payload
+  simpa [payloadBZEquiv, payloadSplitEquiv, oneBitEquiv] using source
 
 /-- On a clean carry bit z=0, the low output register is the usual modular
-n-bit sum. -/
+n-bit sum. The proof uses the fact that two n-bit inputs sum to less than
+`2^(n+1)`, so the combined `(b,z)` addition has no second carry beyond z. -/
 theorem cleanCarry_low_sum
     (n : Nat) (a b : PrimitiveBasis n) :
     let cleanPayload := (payloadBZEquiv n).symm (b, 0)
@@ -100,23 +104,43 @@ theorem cleanCarry_low_sum
         (quantumAdderEquiv n (a, cleanPayload)).2).1 =
       (basisNat n b + basisNat n a) % gridSize n := by
   dsimp
-  have full := quantumAdder_payload_value n
-    (a, (payloadBZEquiv n).symm (b, 0))
-  have splitValue := payloadBZ_value n
-    (quantumAdderEquiv n
-      (a, (payloadBZEquiv n).symm (b, 0))).2
-  have inputValue := payloadBZ_value n ((payloadBZEquiv n).symm (b, 0))
-  simp at inputValue
-  rw [inputValue] at full
-  have lowMod := congrArg (fun value => value % gridSize n) full
-  rw [splitValue] at lowMod
-  have sizePos : 0 < gridSize n := Nat.pow_pos (by decide)
+  let inputPayload := (payloadBZEquiv n).symm (b, 0)
+  let outputPayload := (quantumAdderEquiv n (a, inputPayload)).2
+  let outputLow := (payloadBZEquiv n outputPayload).1
+  let outputCarry := (payloadBZEquiv n outputPayload).2
+  have inputValue : basisNat (n + 1) inputPayload = basisNat n b := by
+    have source := payloadBZ_value n inputPayload
+    have coordinates : payloadBZEquiv n inputPayload = (b, 0) := by
+      exact (payloadBZEquiv n).apply_symm_apply (b, 0)
+    rw [coordinates] at source
+    simpa using source
   have doubleSize : gridSize (n + 1) = 2 * gridSize n := by
     unfold gridSize
     rw [pow_succ]
     ring
-  rw [doubleSize] at lowMod
-  simpa [Nat.add_mod, Nat.mul_mod] using lowMod
+  have aLt : basisNat n a < gridSize n :=
+    (primitiveBasisLEEquiv n a).isLt
+  have bLt : basisNat n b < gridSize n :=
+    (primitiveBasisLEEquiv n b).isLt
+  have sumLt : basisNat n b + basisNat n a < gridSize (n + 1) := by
+    rw [doubleSize]
+    omega
+  have full := quantumAdder_payload_value n (a, inputPayload)
+  change basisNat (n + 1) outputPayload =
+      (basisNat (n + 1) inputPayload + basisNat n a) % gridSize (n + 1) at full
+  rw [inputValue, Nat.mod_eq_of_lt sumLt] at full
+  have splitValue := payloadBZ_value n outputPayload
+  change basisNat (n + 1) outputPayload =
+      basisNat n outputLow + gridSize n * outputCarry.val at splitValue
+  have recomposed :
+      basisNat n outputLow + gridSize n * outputCarry.val =
+        basisNat n b + basisNat n a := by
+    rw [← splitValue, full]
+  have reduced := congrArg (fun value => value % gridSize n) recomposed
+  have outputLowLt : basisNat n outputLow < gridSize n :=
+    (primitiveBasisLEEquiv n outputLow).isLt
+  rw [Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt outputLowLt] at reduced
+  exact reduced
 
 end VandaeleQuantumAdderTarget
 end QuantumBlockEncoding
