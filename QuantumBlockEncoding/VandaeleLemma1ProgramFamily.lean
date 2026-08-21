@@ -53,9 +53,9 @@ def LemmaOneFlatSpec (k : Nat)
       implementation state (controlWire k wire) =
         state (controlWire k wire)) ∧
     implementation state (targetWire k) =
-      if allFlatControlsOne k state then
+      (if allFlatControlsOne k state then
         flipBit (state (targetWire k))
-      else state (targetWire k) ∧
+      else state (targetWire k)) ∧
     implementation state (dirtyWire k) = state (dirtyWire k)
 
 /-- Every wire in the flat layout is either a control, the target, or the dirty
