@@ -166,22 +166,37 @@ theorem embeddedGidney_clean_action
     workspaceClean n
       (gidneyWorkspaceSlice k n
         (evalReversibleProgram (embeddedGidney family k n).program state)) := by
+  have cleanSource :
+      workspaceClean n
+        (registerEquiv n
+          (restrictState (gidneyWireMap k n) state)).2 := by
+    rw [registerEquiv_restrict_gidneyWireMap]
+    exact clean
   have sourceAction := flatSpec_action n
     (evalReversibleProgram (family.scheduled n).program)
     (family.correctness n)
     (restrictState (gidneyWireMap k n) state)
-    (by simpa [registerEquiv_restrict_gidneyWireMap] using clean)
+    cleanSource
   have commuting := restrictState_eval_relabelScheduled
     (gidneyWireMap k n) (gidneyWireMap_injective k n)
     (family.scheduled n) state
-  rw [show embeddedGidney family k n =
-      relabelScheduled (gidneyWireMap k n)
-        (gidneyWireMap_injective k n) (family.scheduled n) by rfl]
-  have registerCommuting := congrArg (registerEquiv n) commuting
+  have commuting' :
+      restrictState (gidneyWireMap k n)
+          (evalReversibleProgram (embeddedGidney family k n).program state) =
+        evalReversibleProgram (family.scheduled n).program
+          (restrictState (gidneyWireMap k n) state) := by
+    simpa [embeddedGidney] using commuting
+  have registerCommuting := congrArg (registerEquiv n) commuting'
   rw [registerEquiv_restrict_gidneyWireMap] at registerCommuting
+  have targetCommuting := congrArg Prod.fst registerCommuting
+  have workspaceCommuting := congrArg Prod.snd registerCommuting
+  simp only [Prod.fst, Prod.snd] at targetCommuting workspaceCommuting
   rw [registerEquiv_restrict_gidneyWireMap] at sourceAction
-  rw [registerCommuting]
-  exact sourceAction
+  constructor
+  · rw [targetCommuting]
+    exact sourceAction.1
+  · rw [workspaceCommuting]
+    exact sourceAction.2
 
 /-- The final promise wire is reserved for the dirty conversion. -/
 def reservedPromiseIndex
