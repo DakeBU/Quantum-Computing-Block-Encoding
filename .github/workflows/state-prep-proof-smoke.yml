@@ -11,12 +11,16 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq40ControlInvariant.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerEq44Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8TwoRoundSchedule.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLowerBoundReduction.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecurrence.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
@@ -55,12 +59,16 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq40ControlInvariant.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerEq44Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8TwoRoundSchedule.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLowerBoundReduction.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecurrence.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
@@ -108,11 +116,15 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
           lake build QuantumBlockEncoding.ComparatorIncrementerRecurrence
+          lake build QuantumBlockEncoding.ComparatorIncrementerEq40ControlInvariant
           lake build QuantumBlockEncoding.ComparatorIncrementerEq44Semantics
           lake build QuantumBlockEncoding.ControlledStrongPromise
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Contract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Budget
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma8TwoRoundSchedule
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Composition
           lake build QuantumBlockEncoding.ComparatorIncrementerTheorem4GateBound
+          lake build QuantumBlockEncoding.ComparatorIncrementerLowerBoundReduction
           lake build QuantumBlockEncoding.PrimitiveBasisLE4
           lake build QuantumBlockEncoding.StatePreparationIntervalTree
           lake build QuantumBlockEncoding.StatePreparationIntervalTreeEndToEnd
