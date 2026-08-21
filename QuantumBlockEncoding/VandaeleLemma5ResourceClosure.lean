@@ -8,19 +8,17 @@ import Mathlib.Tactic
 # Uniform resource closure for Vandaele Lemma 5
 
 The semantic circuit identities (13)/(14) and the split-and-borrow ancilla
-arithmetic are formalized separately.  This file closes the remaining resource
+arithmetic are formalized separately. This file closes the remaining resource
 algebra at the family level.
 
-Assume:
+Assume a first-order fan-out family satisfying Lemma 2 uniformly and a C^k X
+family satisfying Lemma 1 uniformly. Then the source construction has one
+uniform O(n+k) gate constant, O(log n + log k) depth constant, and zero
+additional ancillas.
 
-* a first-order fan-out family satisfying Lemma 2 uniformly;
-* a C^k X family satisfying Lemma 1 uniformly.
-
-Then the source construction has one uniform O(n+k) gate constant,
-O(log n + log k) depth constant, and zero additional ancillas.  The theorem does
-not manufacture the missing gate syntax: it proves that once the two source
-primitive families and Eq. (13)/(14) scheduler are refined to circuits, their
-resource evidence composes exactly as claimed.
+The theorem does not manufacture the missing gate syntax: it proves that once
+the two source primitive families and Eq. (13)/(14) scheduler are refined to
+circuits, their resource evidence composes exactly as claimed.
 -/
 
 namespace QuantumBlockEncoding
@@ -89,8 +87,9 @@ theorem singly_uniform_bounds
         unfold upperHalf lowerHalf
         omega
       have logBound :
-          Nat.log2 (upperHalf n + 1) ≤ Nat.log2 (n + 1) :=
-        Nat.log2_le_log2 halfBound
+          Nat.log2 (upperHalf n + 1) ≤ Nat.log2 (n + 1) := by
+        rw [Nat.log2_eq_log_two, Nat.log2_eq_log_two]
+        exact Nat.log_mono_right halfBound
       unfold ComparatorIncrementerFanoutSource.lemmaTwoLogScale logScale
       omega
     have fanoutDepthAtN :
