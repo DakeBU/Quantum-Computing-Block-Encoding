@@ -1,21 +1,21 @@
 import QuantumBlockEncoding.ComparatorIncrementerLemma7BasisContract
+import QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38BasisImplementation
 import QuantumBlockEncoding.PrimitiveBasisRegisterSplit
 import QuantumBlockEncoding.ReversibleClassical
 
 /-!
 # Flat reversible-program contract for Vandaele Lemma 7
 
-The previous layers now agree on the arithmetic target and the product-register
-promise semantics.  This file fixes the final interface that a real Figure-9
-circuit must inhabit.
-
-Wire order is explicit and little-endian within each logical register:
+The basis-level Equation-(38) construction now provides a concrete semantic
+implementation.  This file keeps the final circuit-facing wire order explicit:
 
 `[ k control wires | n-1 promise wires | n target wires ]`.
 
-No implementation is postulated.  A `LemmaSevenFlatProgramCertificate` can be
-constructed only after an actual `ReversibleProgram` has been proved to satisfy
-the product-register strong-promise contract through the exact split equivalence.
+For `n >= 3`, flattening the Equation-(38) strong-promise permutation gives a
+specific flat permutation satisfying `LemmaSevenFlatSpec`.  The remaining source
+leaf is therefore purely gate-level: construct an actual `ReversibleProgram` in
+this layout whose evaluation is that permutation, then attach the separately
+proved Lemma-7 resource closure.
 -/
 
 namespace QuantumBlockEncoding
@@ -23,6 +23,7 @@ namespace ComparatorIncrementerLemma7FlatContract
 
 open ComparatorIncrementerLemma7BasisContract
 open ComparatorIncrementerLemma7Contract
+open ComparatorIncrementerLemma7Eq38BasisImplementation
 open PrimitiveBasisRegisterSplit
 
 /-- Total flat wire count of the Lemma-7 register layout. -/
@@ -116,19 +117,55 @@ def semanticLemmaSevenFlat (k n : Nat) :
     Equiv.Perm (PrimitiveBasis (lemmaSevenFlatWidth k n)) :=
   flattenProductPermutation k n (semanticLemmaSevenBasis k n)
 
-/-- The flat contract is semantically inhabited.  This does not imply a
-low-resource gate decomposition. -/
+/-- The generic semantic witness inhabits the flat contract. -/
 theorem semanticLemmaSevenFlat_correct (k n : Nat) :
     LemmaSevenFlatSpec k n (semanticLemmaSevenFlat k n) := by
   unfold LemmaSevenFlatSpec semanticLemmaSevenFlat
   rw [productView_flattenProduct]
   exact semanticLemmaSevenBasis_correct k n
 
+/-- Source-structured Equation-(38) flat semantic implementation.  Unlike
+`semanticLemmaSevenFlat`, this object is obtained from the actual half split,
+dirty Eq.-(36) protocol, borrowed promise wire, and recombination chain. -/
+def eq38LemmaSevenFlatEquiv
+    (k n : Nat) (large : 3 ≤ n) :
+    Equiv.Perm (PrimitiveBasis (lemmaSevenFlatWidth k n)) :=
+  flattenProductPermutation k n
+    (eq38LemmaSevenBasisEquiv k n large)
+
+/-- The Equation-(38) flat permutation satisfies the exact public Lemma-7
+contract. -/
+theorem eq38LemmaSevenFlat_correct
+    (k n : Nat) (large : 3 ≤ n) :
+    LemmaSevenFlatSpec k n (eq38LemmaSevenFlatEquiv k n large) := by
+  unfold LemmaSevenFlatSpec eq38LemmaSevenFlatEquiv
+  rw [productView_flattenProduct]
+  exact eq38LemmaSevenBasis_correct k n large
+
 /-- Final proof-bearing target for an actual gate-level Figure-9 construction. -/
 structure LemmaSevenFlatProgramCertificate (k n : Nat) where
   program : ReversibleProgram (lemmaSevenFlatWidth k n)
   correctness :
     LemmaSevenFlatSpec k n (evalReversibleProgram program)
+
+/-- A stronger refinement certificate can target the exact source-structured
+Equation-(38) permutation, not merely the extensional Lemma-7 contract. -/
+structure LemmaSevenEq38ProgramCertificate
+    (k n : Nat) (large : 3 ≤ n) where
+  program : ReversibleProgram (lemmaSevenFlatWidth k n)
+  refinement :
+    evalReversibleProgram program = eq38LemmaSevenFlatEquiv k n large
+
+/-- Refinement to the Equation-(38) permutation automatically yields the public
+flat-program certificate. -/
+def LemmaSevenEq38ProgramCertificate.toFlatCertificate
+    {k n : Nat} {large : 3 ≤ n}
+    (certificate : LemmaSevenEq38ProgramCertificate k n large) :
+    LemmaSevenFlatProgramCertificate k n where
+  program := certificate.program
+  correctness := by
+    rw [certificate.refinement]
+    exact eq38LemmaSevenFlat_correct k n large
 
 /-- Family-level gate target.  A future source reproduction must construct this
 for every k,n and separately discharge `LemmaSevenResourceTarget`; the presence
