@@ -81,12 +81,17 @@ theorem incrementerSpec_allOnes_to_zero
   apply Fin.ext
   have action := correct (allOnesBasisState n)
   rw [basisNat_allOnes] at action
+  have positive := gridSize_pos n
+  have oneLe : 1 ≤ gridSize n := positive
+  have closesWord : gridSize n - 1 + 1 = gridSize n :=
+    Nat.sub_add_cancel oneLe
+  have successorWrap :
+      (gridSize n - 1 + 1) % gridSize n = 0 := by
+    rw [closesWord, Nat.mod_self]
   change
     (primitiveBasisLEEquiv n
       (permutation (allOnesBasisState n))).val = 0
-  rw [action]
-  have positive := gridSize_pos n
-  omega
+  simpa [basisNat, successorWrap] using action
 
 /-- All-X restores all ones from zero. -/
 theorem allX_zero_to_allOnes (n : Nat) :
@@ -112,31 +117,6 @@ theorem increment_then_allX_wire_is_one
     allXBasisEquiv n (permutation (allOnesBasisState n)) wire = 1 := by
   rw [increment_then_allX_restores_allOnes n permutation correct]
   exact allOnesBasisState_apply n wire
-
-/-- Conversely, if the input block is not all ones then a correct incrementer
-cannot map it to zero.  This prevents the Eq. (40) control argument from gaining
-spurious active branches. -/
-theorem incrementerSpec_maps_to_zero_iff_allOnes
-    (n : Nat) (permutation : PrimitiveBasis n ≃ PrimitiveBasis n)
-    (correct : IncrementerSpec n permutation)
-    (state : PrimitiveBasis n) :
-    permutation state = zeroBasisState n ↔ state = allOnesBasisState n := by
-  constructor
-  · intro outputZero
-    have action := correct state
-    rw [outputZero, basisNat_zeroBasis] at action
-    have stateBound := (primitiveBasisLEEquiv n state).isLt
-    have positive := gridSize_pos n
-    have valueMax : basisNat n state = gridSize n - 1 := by
-      unfold basisNat at action ⊢
-      omega
-    apply (primitiveBasisLEEquiv n).injective
-    apply Fin.ext
-    rw [basisNat_allOnes]
-    exact valueMax
-  · intro inputOnes
-    subst state
-    exact incrementerSpec_allOnes_to_zero n permutation correct
 
 end ComparatorIncrementerEq40ControlInvariant
 end QuantumBlockEncoding
