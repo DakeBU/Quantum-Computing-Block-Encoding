@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.PrimitiveSemantics
+import Mathlib.Algebra.BigOperators.Fin
 
 /-!
 # Little-endian primitive basis indexing
@@ -10,6 +11,8 @@ choosing a different register order.
 -/
 
 namespace QuantumBlockEncoding
+
+open scoped BigOperators
 
 /-- Convert named primitive bits to a flat little-endian matrix index. -/
 def primitiveBasisLEEquiv : (q : Nat) -> PrimitiveBasis q ≃ Fin (gridSize q)
@@ -36,6 +39,27 @@ theorem primitiveBasisLEEquiv_succ_value (q : Nat)
       (bits 0).val + 2 *
         (primitiveBasisLEEquiv q (fun wire => bits wire.succ)).val := by
   rfl
+
+/-- General little-endian value formula.  This is the reusable arithmetic bridge
+between named basis wires and flat integers; later register-split theorems can
+use standard `Fin.sum_univ_add` instead of rebuilding dependent-index casts. -/
+theorem primitiveBasisLEEquiv_value_eq_sum (q : Nat)
+    (bits : PrimitiveBasis q) :
+    (primitiveBasisLEEquiv q bits).val =
+      ∑ wire : Fin q, (bits wire).val * 2 ^ wire.val := by
+  induction q generalizing bits with
+  | zero =>
+      simp [primitiveBasisLEEquiv_zero_apply]
+  | succ q induction =>
+      rw [primitiveBasisLEEquiv_succ_value, Fin.sum_univ_succ]
+      rw [induction (fun wire => bits wire.succ)]
+      simp only [Fin.val_zero, pow_zero, Nat.mul_one, Fin.val_succ]
+      apply Nat.add_left_cancel
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro wire _
+      rw [pow_succ]
+      ring
 
 /-- Six-wire expansion used by the fixed Robin executable benchmark. -/
 theorem primitiveBasisLEEquiv_six_value (bits : PrimitiveBasis 6) :
