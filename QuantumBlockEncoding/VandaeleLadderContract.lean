@@ -6,16 +6,18 @@ import Mathlib.Tactic
 
 Definition 2.3 introduces `L_k^(n)`, a ladder of n consecutive `C^k X` gates on
 `kn+1` qubits. Equation (5) has an essential overlap structure: the target of
-one ladder step is one of the controls of the next step.
+one ladder step is one of the controls of the adjacent step.
 
 For positive order `k = localControls + 1`, ASPBE stores the register as one
 initial pivot plus n blocks, each containing `k-1` fresh controls and one target.
-The previous pivot/target supplies the remaining control.
+The preceding block target supplies the remaining control.
 
-Crucially, the source ladder is **sequential**.  Step `i+1` reads the target
-produced by step `i`; it is not a pointwise simultaneous update of all targets.
-The implementation below therefore runs the block indices in chronological order
-and reads every activation predicate from the current state.
+Crucially, the source ladder is **sequential in reverse block order**.  Figure
+1(b) executes the bottom/last gate first and walks toward the initial pivot.  In
+this order, when block i reads the preceding target `x_{k(i-1)}`, that target
+still has its original input value, exactly matching the closed-form action in
+Equation (5).  Executing `0,1,...,n-1` would instead feed an already-modified
+target into the next gate and is not the source operator.
 
 The resource interfaces remain separated from this semantic contract. Big-O
 constants are never re-chosen per fixed ladder instance.
@@ -53,8 +55,8 @@ def ladderActive {localControls steps : Nat}
   previousPivot state index = 1 ∧
     allLocalControlsOne (state.2 index).1
 
-/-- Execute one chronological ladder gate.  Only the current block target is
-modified; the pivot and all fresh controls are preserved. -/
+/-- Execute one ladder gate. Only the current block target is modified; the
+pivot and every fresh control are preserved. -/
 def sourceLadderStep (localControls steps : Nat)
     (index : Fin steps)
     (state : LadderState localControls steps) :
@@ -76,11 +78,11 @@ def runLadderSteps {localControls steps : Nat}
       runLadderSteps rest
         (sourceLadderStep localControls steps index state)
 
-/-- Equation (5) source action: execute steps `0,1,...,steps-1` in order. -/
+/-- Equation (5) source chronology: execute `steps-1,...,1,0`. -/
 def sourceLadderAction (localControls steps : Nat)
     (state : LadderState localControls steps) :
     LadderState localControls steps :=
-  runLadderSteps (List.finRange steps) state
+  runLadderSteps (List.finRange steps).reverse state
 
 /-- Source-facing correctness proposition for a positive-order ladder
 implementation. -/
@@ -111,7 +113,7 @@ theorem sourceLadderStep_preserves_localControls
     · simp [sourceLadderStep, active, Function.update_noteq same]
   · simp [sourceLadderStep, active]
 
-/-- Exact target action of one chronological source step. -/
+/-- Exact target action of one source step. -/
 theorem sourceLadderStep_target
     (localControls steps : Nat) (index : Fin steps)
     (state : LadderState localControls steps) :
@@ -168,7 +170,7 @@ theorem sourceLadder_preserves_initialPivot
     (state : LadderState localControls steps) :
     (sourceLadderAction localControls steps state).1 = state.1 := by
   exact runLadderSteps_preserves_initialPivot
-    (List.finRange steps) state
+    (List.finRange steps).reverse state
 
 /-- The complete source ladder preserves every fresh local-control word. -/
 theorem sourceLadder_preserves_localControls
@@ -178,17 +180,18 @@ theorem sourceLadder_preserves_localControls
     ((sourceLadderAction localControls steps state).2 index).1 =
       (state.2 index).1 := by
   exact runLadderSteps_preserves_localControls
-    (List.finRange steps) state index
+    (List.finRange steps).reverse state index
 
-/-- At the first ladder step, the initial `x_0` is the overlapping control. -/
+/-- At the first ladder block, the initial `x_0` is the overlapping control. -/
 theorem previousPivot_first
     (localControls : Nat) (steps : Nat)
     (state : LadderState localControls (steps + 1)) :
     previousPivot state (0 : Fin (steps + 1)) = state.1 := by
   simp [previousPivot]
 
-/-- For a nonfirst step, the preceding block target is exactly the overlapping
-source control `x_{k(i-1)}` in the **current** state. -/
+/-- For a nonfirst block, the preceding block target is the overlapping source
+control `x_{k(i-1)}`.  Under the corrected reverse source chronology this wire
+has not yet been modified when block i executes. -/
 theorem previousPivot_nonfirst
     {localControls steps : Nat}
     (state : LadderState localControls steps)
