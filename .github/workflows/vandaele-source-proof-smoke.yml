@@ -1,0 +1,74 @@
+name: Vandaele source proof smoke
+
+on:
+  push:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/ReversibleProgramInverse.lean"
+      - "QuantumBlockEncoding/ReversibleProgramSupport.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
+      - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
+      - "QuantumBlockEncoding/GidneyZeroedSourceProgram.lean"
+      - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestoration.lean"
+      - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestorationGlobal.lean"
+      - "QuantumBlockEncoding/GidneyZeroedCarryCompute.lean"
+      - "QuantumBlockEncoding/GidneyZeroedDescendingAction.lean"
+      - "QuantumBlockEncoding/GidneyZeroedCleanTargetAction.lean"
+      - "QuantumBlockEncoding/GidneyZeroedSourceCorrectness.lean"
+      - "QuantumBlockEncoding/GidneyZeroedScheduledFamily.lean"
+      - "QuantumBlockEncoding/GidneyIncrementerStrongPromise.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9SourceAssembly.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9StrongPromiseBridge.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4OptimalityContract.lean"
+      - ".github/workflows/vandaele-source-proof-smoke.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-source-proof-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  vandaele-source-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile shared reversible support
+        run: |
+          lake build QuantumBlockEncoding.ReversibleProgramInverse
+          lake build QuantumBlockEncoding.ReversibleProgramSupport
+          lake build QuantumBlockEncoding.PrimitiveBasisLENumeric
+          lake build QuantumBlockEncoding.BinaryCarryTelescoping
+
+      - name: Compile gate-level Gidney source chain
+        run: |
+          lake build QuantumBlockEncoding.GidneyZeroedSourceProgram
+          lake build QuantumBlockEncoding.GidneyZeroedWorkspaceRestoration
+          lake build QuantumBlockEncoding.GidneyZeroedWorkspaceRestorationGlobal
+          lake build QuantumBlockEncoding.GidneyZeroedCarryCompute
+          lake build QuantumBlockEncoding.GidneyZeroedDescendingAction
+          lake build QuantumBlockEncoding.GidneyZeroedCleanTargetAction
+          lake build QuantumBlockEncoding.GidneyZeroedSourceCorrectness
+
+      - name: Compile proof-bearing family and Figure 9 bridges
+        run: |
+          lake build QuantumBlockEncoding.GidneyIncrementerStrongPromise
+          lake build QuantumBlockEncoding.GidneyZeroedScheduledFamily
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9SourceAssembly
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9StrongPromiseBridge
+
+      - name: Compile Theorem 4 optimality closure
+        run: |
+          lake build QuantumBlockEncoding.ComparatorIncrementerTheorem4OptimalityContract
