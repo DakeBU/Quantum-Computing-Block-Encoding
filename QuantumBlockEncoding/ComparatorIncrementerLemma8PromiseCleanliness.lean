@@ -39,17 +39,14 @@ def promiseViewAfterIncrement (n : Nat)
   incrementer state
 
 /-- All-X turns the active all-ones control block into the all-zero promise
-state. -/
+state.  The proof intentionally reuses the previously certified involution
+rather than redoing flat-index arithmetic. -/
 theorem beforeIncrement_active_is_clean
     (n : Nat) :
     promiseViewBeforeIncrement n (allOnesBasisState n) = zeroBasisState n := by
-  unfold promiseViewBeforeIncrement
-  apply (primitiveBasisLEEquiv n).injective
-  apply Fin.ext
-  rw [allXFlatEquiv_value]
-  rw [primitiveBasisLEEquiv_allOnes_value]
-  have positive := gridSize_pos n
-  omega
+  change
+    allXBasisAction (allXBasisAction (zeroBasisState n)) = zeroBasisState n
+  exact allXBasisAction_involutive (zeroBasisState n)
 
 /-- A correct incrementer also turns the active all-ones control block into the
 all-zero promise state, with no X layer needed. -/
