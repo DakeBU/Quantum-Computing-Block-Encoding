@@ -1,3 +1,4 @@
+import QuantumBlockEncoding.ComparatorIncrementerAllX
 import QuantumBlockEncoding.ComparatorIncrementerGeneral
 import QuantumBlockEncoding.ComparatorIncrementerModularConjugation
 import QuantumBlockEncoding.PrimitiveBasisLE
@@ -11,14 +12,16 @@ actual reversible circuit IR acts on `PrimitiveBasis n`.  This module gives one
 lossless bridge between those representations.
 
 The bridge is deliberately general: any modular basis permutation can be
-transported to the n-wire little-endian basis.  The modular incrementer is only
-the first consumer.  Future modular adders and arithmetic block-encoding routes
-can reuse the same node instead of rebuilding representation lemmas.
+transported to the n-wire little-endian basis.  The modular incrementer is the
+first consumer, and the same node now closes the basis-level form of Vandaele
+Equation (35): bitwise all-X conjugates the basis incrementer to its inverse.
 -/
 
 namespace QuantumBlockEncoding
 namespace ZModPrimitiveBasisBridge
 
+open ComparatorIncrementerAllX
+open ComparatorIncrementerDirtyAncilla
 open ComparatorIncrementerGeneral
 open ComparatorIncrementerModularConjugation
 
@@ -111,9 +114,7 @@ def basisModularIncrementEquiv (n : Nat) :
   transportZModPerm n (modularIncrementEquiv (gridSize n))
 
 /-- This representation-level transport satisfies the same parameterized
-`IncrementerSpec` used by the real reversible gate IR.  Thus a future circuit
-refinement can target `basisModularIncrementEquiv` without any remaining
-`ZMod`/little-endian semantic ambiguity. -/
+`IncrementerSpec` used by the real reversible gate IR. -/
 theorem basisModularIncrement_satisfies_spec (n : Nat) :
     IncrementerSpec n (basisModularIncrementEquiv n) := by
   intro state
@@ -124,6 +125,66 @@ theorem basisModularIncrement_satisfies_spec (n : Nat) :
   rw [basisZModEquiv_apply_val] at valueCommuting
   rw [modularIncrement_val] at valueCommuting
   exact valueCommuting
+
+/-- Bitwise all-X is an involutive conjugator on the actual basis register. -/
+theorem basisAllX_involutive (n : Nat) :
+    ComparatorIncrementerControlledConjugation.InvolutiveConjugator
+      (allXBasisEquiv n) := by
+  intro state
+  exact allXBasisAction_involutive state
+
+/-- Basis-level Vandaele Equation (35): bitwise all-X conjugates the actual
+little-endian modular incrementer into its inverse.  The proof applies one more
+increment to both sides and checks the resulting natural representatives. -/
+theorem basisAllX_increment_inverse (n : Nat) :
+    InverseByConjugation
+      (allXBasisEquiv n)
+      (basisModularIncrementEquiv n) := by
+  apply Equiv.ext
+  intro state
+  apply (basisModularIncrementEquiv n).injective
+  change
+    basisModularIncrementEquiv n
+        (allXBasisEquiv n
+          (basisModularIncrementEquiv n
+            (allXBasisEquiv n state))) = state
+  apply (primitiveBasisLEEquiv n).injective
+  apply Fin.ext
+  have firstAllX := primitiveBasisLEEquiv_allX_value n state
+  have innerIncrement :=
+    basisModularIncrement_satisfies_spec n (allXBasisEquiv n state)
+  have secondAllX := primitiveBasisLEEquiv_allX_value n
+    (basisModularIncrementEquiv n (allXBasisEquiv n state))
+  have outerIncrement :=
+    basisModularIncrement_satisfies_spec n
+      (allXBasisEquiv n
+        (basisModularIncrementEquiv n (allXBasisEquiv n state)))
+  unfold IncrementerSpec basisNat at innerIncrement outerIncrement
+  rw [outerIncrement, secondAllX, innerIncrement, firstAllX]
+  have sizePos : 0 < gridSize n := Nat.pow_pos (by decide)
+  have valueLt := (primitiveBasisLEEquiv n state).isLt
+  by_cases zeroValue : (primitiveBasisLEEquiv n state).val = 0
+  · have innerArg :
+        gridSize n - 1 - (primitiveBasisLEEquiv n state).val + 1 =
+          gridSize n := by omega
+    rw [innerArg, Nat.mod_self]
+    have outerArg : gridSize n - 1 - 0 + 1 = gridSize n := by omega
+    rw [outerArg, Nat.mod_self, zeroValue]
+  · have valuePos : 0 < (primitiveBasisLEEquiv n state).val :=
+      Nat.pos_of_ne_zero zeroValue
+    have innerArg :
+        gridSize n - 1 - (primitiveBasisLEEquiv n state).val + 1 =
+          gridSize n - (primitiveBasisLEEquiv n state).val := by omega
+    rw [innerArg]
+    have innerLt :
+        gridSize n - (primitiveBasisLEEquiv n state).val < gridSize n := by
+      omega
+    rw [Nat.mod_eq_of_lt innerLt]
+    have outerArg :
+        gridSize n - 1 -
+            (gridSize n - (primitiveBasisLEEquiv n state).val) + 1 =
+          (primitiveBasisLEEquiv n state).val := by omega
+    rw [outerArg, Nat.mod_eq_of_lt valueLt]
 
 end ZModPrimitiveBasisBridge
 end QuantumBlockEncoding
