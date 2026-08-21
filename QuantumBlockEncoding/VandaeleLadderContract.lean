@@ -5,30 +5,23 @@ import Mathlib.Tactic
 # Vandaele Definition 2.3: ladder operators
 
 Definition 2.3 introduces `L_k^(n)`, a ladder of n consecutive `C^k X` gates on
-`kn+1` qubits.  Equation (5) has an important overlap structure: the target of
+`kn+1` qubits. Equation (5) has an important overlap structure: the target of
 one ladder step is one of the controls of the next step.
 
-For positive order `k = localControls + 1`, ASPBE therefore stores the register
-as
+For positive order `k = localControls + 1`, ASPBE stores the register as one
+initial pivot plus n blocks, each containing `k-1` fresh controls and one target.
+The previous pivot/target supplies the remaining control.
 
-* one initial pivot `x_0`;
-* n blocks, each containing `k-1 = localControls` fresh control bits and one
-  target bit.
-
-The controls for a block are the previous pivot/target together with its fresh
-local controls.  This representation is definitionally equivalent to the
-source ordering `x_0,...,x_{kn}` but makes the overlap visible to later proofs.
-
-This file fixes the exact source action and resource/certificate interfaces.
-The low-depth Lemmas 3/4 and Corollary 1 remain concrete circuit obligations;
-no asymptotic implementation is assumed merely from this semantic contract.
+This file fixes the exact source action and distinguishes explicit finite
+resource inequalities from genuine uniform Lemma-3/Lemma-4/Corollary-1 family
+targets. Big-O constants are never re-chosen per fixed ladder instance.
 -/
 
 namespace QuantumBlockEncoding
 namespace VandaeleLadderContract
 
 /-- One positive-order ladder block: `localControls` fresh controls plus one
-target.  The previous block target supplies the remaining control. -/
+target. The previous block target supplies the remaining control. -/
 abbrev LadderBlock (localControls : Nat) :=
   PrimitiveBasis localControls × Fin 2
 
@@ -55,7 +48,7 @@ def ladderActive {localControls steps : Nat}
   previousPivot state index = 1 ∧
     allLocalControlsOne (state.2 index).1
 
-/-- Equation (5) source action.  The initial pivot and every fresh local control
+/-- Equation (5) source action. The initial pivot and every fresh local control
 are preserved; each block target toggles by the conjunction of the previous
 pivot and its local controls. -/
 def sourceLadderAction (localControls steps : Nat)
@@ -118,44 +111,60 @@ theorem previousPivot_nonfirst
       (state.2 ⟨index.val - 1, by omega⟩).2 := by
   simp [previousPivot, nonzero]
 
-/-- Totalized resource target corresponding to Corollary 1 for positive order
-`k=localControls+1`: O(k*n) gates, O(log(k*n)) depth, and n ancilla qubits. -/
-def CorollaryOneResourceTarget
-    (localControls steps gateCount depth ancillas : Nat) : Prop :=
-  (∃ constant : Nat,
-    gateCount ≤ constant * ((localControls + 1) * steps + 1)) ∧
-  (∃ constant : Nat,
-    depth ≤ constant *
-      (Nat.log2 ((localControls + 1) * steps + 1) + 1)) ∧
+/-- Totalized depth scale for Corollary 1. -/
+def corollaryOneDepthScale (localControls steps : Nat) : Nat :=
+  Nat.log2 ((localControls + 1) * steps + 1) + 1
+
+/-- Explicit finite-instance Corollary-1 inequality. -/
+def CorollaryOneInstanceResourceBound
+    (localControls steps gateCount depth ancillas
+      gateConstant depthConstant : Nat) : Prop :=
+  gateCount ≤ gateConstant * ((localControls + 1) * steps + 1) ∧
+  depth ≤ depthConstant * corollaryOneDepthScale localControls steps ∧
   ancillas ≤ steps
 
-/-- More specific Lemma 3 target for `L_1^(n)`: linear CX count and logarithmic
-depth without an ancilla requirement. -/
-def LemmaThreeResourceTarget
-    (steps cxCount depth : Nat) : Prop :=
-  (∃ constant : Nat, cxCount ≤ constant * (steps + 1)) ∧
-  (∃ constant : Nat,
-    depth ≤ constant * (Nat.log2 (steps + 1) + 1))
+/-- Genuine uniform Corollary-1 family target. -/
+def CorollaryOneUniformResourceTarget
+    (gateCount depth ancillas : Nat → Nat → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ localControls steps,
+      gateCount localControls steps ≤
+          gateConstant * ((localControls + 1) * steps + 1) ∧
+      depth localControls steps ≤
+          depthConstant * corollaryOneDepthScale localControls steps ∧
+      ancillas localControls steps ≤ steps
 
-/-- Lemma 4 target for `L_2^(n)`: linear CCX count, logarithmic depth, and n
-ancilla qubits. -/
-def LemmaFourResourceTarget
-    (steps ccxCount depth ancillas : Nat) : Prop :=
-  (∃ constant : Nat, ccxCount ≤ constant * (steps + 1)) ∧
-  (∃ constant : Nat,
-    depth ≤ constant * (Nat.log2 (steps + 1) + 1)) ∧
-  ancillas ≤ steps
+/-- Uniform Lemma-3 target for `L_1^(n)`. -/
+def LemmaThreeUniformResourceTarget
+    (cxCount depth : Nat → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ steps,
+      cxCount steps ≤ gateConstant * (steps + 1) ∧
+      depth steps ≤ depthConstant * (Nat.log2 (steps + 1) + 1)
 
-/-- Completion record for a concrete positive-order ladder implementation. -/
-structure LadderCertificate (localControls steps : Nat) where
+/-- Uniform Lemma-4 target for `L_2^(n)`. -/
+def LemmaFourUniformResourceTarget
+    (ccxCount depth ancillas : Nat → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ steps,
+      ccxCount steps ≤ gateConstant * (steps + 1) ∧
+      depth steps ≤ depthConstant * (Nat.log2 (steps + 1) + 1) ∧
+      ancillas steps ≤ steps
+
+/-- Completion record for one concrete positive-order ladder implementation.
+It stores explicit constants but does not alone establish Corollary 1 uniformly. -/
+structure LadderInstanceCertificate (localControls steps : Nat) where
   implementation : Equiv.Perm (LadderState localControls steps)
   gateCount : Nat
   depth : Nat
   ancillas : Nat
+  gateConstant : Nat
+  depthConstant : Nat
   correctness : LadderSpec localControls steps implementation
   resources :
-    CorollaryOneResourceTarget
+    CorollaryOneInstanceResourceBound
       localControls steps gateCount depth ancillas
+      gateConstant depthConstant
 
 end VandaeleLadderContract
 end QuantumBlockEncoding
