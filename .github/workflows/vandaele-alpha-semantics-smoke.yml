@@ -9,6 +9,14 @@ on:
       - "QuantumBlockEncoding/MultiControlledXLayerSemantics.lean"
       - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
       - ".github/workflows/vandaele-alpha-semantics-smoke.yml"
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/MultiControlledXScheduleSemantics.lean"
+      - "QuantumBlockEncoding/MultiControlledXLayerSemantics.lean"
+      - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
+      - ".github/workflows/vandaele-alpha-semantics-smoke.yml"
   workflow_dispatch:
 
 concurrency:
@@ -54,4 +62,5 @@ jobs:
 
       - name: Compile Equation-7 semantic spine
         run: |
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
           lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
