@@ -34,7 +34,6 @@ theorem idxOf_filter_eq_retainedBefore
   | nil => simp at member
   | cons head tail induction =>
       have tailNodup := (List.nodup_cons.mp nodup).2
-      have headFresh := (List.nodup_cons.mp nodup).1
       by_cases same : a = head
       · subst a
         simp [retainedBefore, kept]
@@ -69,8 +68,19 @@ theorem get_filter_retainedBefore
         retainedBefore_lt_filter_length keep list a nodup member kept⟩ = a := by
   have rank := idxOf_filter_eq_retainedBefore keep list a nodup member kept
   have filteredMember : a ∈ list.filter keep := by simpa [kept] using member
-  have source := List.getElem_idxOf filteredMember
-  simpa [rank] using source
+  rcases List.mem_iff_get.mp filteredMember with ⟨index,indexValue⟩
+  have filteredNodup := nodup.filter keep
+  have indexRank : (list.filter keep).idxOf a = index.val := by
+    have source := filteredNodup.get_idxOf index
+    rw [indexValue] at source
+    exact congrArg Fin.val source
+  have indexEq : index =
+      ⟨retainedBefore keep list a,
+        retainedBefore_lt_filter_length keep list a nodup member kept⟩ := by
+    apply Fin.ext
+    omega
+  rw [← indexEq]
+  exact indexValue
 
 end FilteredListRank
 end QuantumBlockEncoding
