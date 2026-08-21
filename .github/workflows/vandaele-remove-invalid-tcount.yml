@@ -1,0 +1,29 @@
+name: One-shot remove unused Vandaele T-count experiment
+
+on:
+  push:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - ".github/workflows/vandaele-remove-invalid-tcount.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Remove unused experiment and cleanup workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -- QuantumBlockEncoding/ReversibleCompilerTCount.lean
+          git rm -- .github/workflows/vandaele-remove-invalid-tcount.yml
+          git commit -m '[vandaele-cleanup] Remove unused invalid T-count experiment'
+          git push origin HEAD:"${GITHUB_REF_NAME}"
