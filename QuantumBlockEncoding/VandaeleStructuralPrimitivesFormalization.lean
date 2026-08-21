@@ -4,6 +4,7 @@ import QuantumBlockEncoding.PromiseGateReversibleComposition
 import QuantumBlockEncoding.PromiseGateUnitary
 import QuantumBlockEncoding.PromiseGateUnitaryMux
 import QuantumBlockEncoding.ReversibleProgramGateLowerBound
+import QuantumBlockEncoding.RemaudVandaeleLadder1Family
 import QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
 import QuantumBlockEncoding.StrongPromiseComputeUseUncompute
 import QuantumBlockEncoding.VandaeleCorollary1ResourceClosure
@@ -50,8 +51,11 @@ nodes keep the source proof graph inspectable:
 * Definition 2.2 / Lemma 2 fan-out, including an actual first-order n-CCX
   gate-level baseline tied to the source semantics;
 * Definition 2.3 ladder semantics and its source-certified gate ordering;
-* Lemma 3 first-order CX-ladder proof-bearing family interface plus an actual
-  reverse-CX gate-level baseline with exact linear count/depth;
+* Lemma 3 first-order CX ladder: besides the simple reverse-CX semantic
+  baseline, the upstream Remaud--Vandaele 2025 Algorithm 1 has now been traced
+  to its source pseudocode and represented by one recursive proof-bearing
+  schedule whose correctness and O(n)/O(log n) resource bounds feed the
+  Vandaele Lemma-3 family interface;
 * Lemma 4 Appendix-A.1 transformation and Equation (58), plus an actual
   reverse-CCX strong-promise baseline with exact linear count/depth;
 * Corollary 1 general ladder resource closure;
@@ -66,9 +70,10 @@ paper's arbitrary-unitary definitions rather than a parallel notion. The
 ancilla lower bound and a constant-factor linear gate lower bound of Lemma 1 are
 now internal to the repository's reversible gate model; the source's more
 general bounded-gate-set theorem and logarithmic depth lower bound remain cited.
-The naive fan-out/ladder programs remain semantic/gate baselines, not substitutes
-for the external logarithmic-depth schedules. Appendix A.1 is formalized as a
-same-target scheduling/resource transformation on top of those source targets.
+For Lemma 3 the previously external logarithmic-depth schedule is no longer a
+black-box citation: the relevant Remaud--Vandaele Algorithm-1 construction is
+now a branch proof dependency.  Lemma 4 still has an upstream Algorithm-2/MCX
+source leaf that is being traced separately.
 
 Comparator, incrementer, quantum-adder, and classical-adder formalization spines
 may depend on this single shared module without hiding the underlying leaf
