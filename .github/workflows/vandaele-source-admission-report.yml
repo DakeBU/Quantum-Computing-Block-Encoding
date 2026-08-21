@@ -14,6 +14,8 @@ on:
       - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
       - "QuantumBlockEncoding/MixedRadixIncrement.lean"
       - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisRemoveWire.lean"
+      - "QuantumBlockEncoding/ReversibleGate*.lean"
       - "QuantumBlockEncoding/ReversibleProgram*.lean"
       - "QuantumBlockEncoding.lean"
       - ".github/workflows/vandaele-source-admission-report.yml"
