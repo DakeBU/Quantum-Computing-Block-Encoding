@@ -84,21 +84,22 @@ theorem readEmbedded_gateAction
     readEmbedded embed (gateAction (mapGate embed injective gate) state) =
       gateAction gate (readEmbedded embed state) := by
   funext wire
-  rw [show
-    active (mapGate embed injective gate) state ↔
-      active gate (readEmbedded embed state) from
-        active_mapGate_iff embed injective gate state]
   by_cases source : active gate (readEmbedded embed state)
   · have mapped : active (mapGate embed injective gate) state :=
       (active_mapGate_iff embed injective gate state).2 source
+    rw [show gateAction (mapGate embed injective gate) state =
+        xBasisAction (embed gate.target) state by
+      simp [gateAction, mapped, mapGate]]
+    rw [show gateAction gate (readEmbedded embed state) =
+        xBasisAction gate.target (readEmbedded embed state) by
+      simp [gateAction, source]]
     by_cases target : wire = gate.target
     · subst wire
-      simp [gateAction, mapped, source, readEmbedded, mapGate, xBasisAction]
+      simp [readEmbedded, xBasisAction]
     · have targetMapped : embed wire ≠ embed gate.target := by
         intro equal
         exact target (injective equal)
-      simp [gateAction, mapped, source, readEmbedded, mapGate,
-        xBasisAction, target, targetMapped]
+      simp [readEmbedded, xBasisAction, target, targetMapped]
   · have mapped : ¬ active (mapGate embed injective gate) state := by
       intro h
       exact source ((active_mapGate_iff embed injective gate state).1 h)
@@ -116,7 +117,10 @@ theorem gateAction_outside
     gateAction (mapGate embed injective gate) state wire = state wire := by
   by_cases mapped : active (mapGate embed injective gate) state
   · have targetNe : wire ≠ embed gate.target := (outside gate.target).symm
-    simp [gateAction, mapped, mapGate, xBasisAction, targetNe]
+    rw [show gateAction (mapGate embed injective gate) state =
+        xBasisAction (embed gate.target) state by
+      simp [gateAction, mapped, mapGate]]
+    simp [xBasisAction, targetNe]
   · simp [gateAction, mapped]
 
 /-- Program wire map. -/
@@ -255,6 +259,19 @@ def mapScheduled
   layers := mapSchedule embed injective scheduled.layers
   valid := mapSchedule_valid embed injective scheduled.valid
 
+/-- Flattening commutes exactly with layerwise embedding. -/
+theorem mapSchedule_program
+    {small large : Nat}
+    (embed : Fin small → Fin large)
+    (injective : Function.Injective embed)
+    (schedule : MCXSchedule small) :
+    scheduleProgram (mapSchedule embed injective schedule) =
+      mapProgram embed injective (scheduleProgram schedule) := by
+  induction schedule with
+  | nil => rfl
+  | cons layer rest induction =>
+      simp [mapSchedule, mapLayer, mapProgram, scheduleProgram, induction]
+
 @[simp] theorem mapScheduled_program
     {small large : Nat}
     (embed : Fin small → Fin large)
@@ -262,11 +279,10 @@ def mapScheduled
     (scheduled : ScheduledMCXProgram small) :
     (mapScheduled embed injective scheduled).program =
       mapProgram embed injective scheduled.program := by
-  induction scheduled.layers with
-  | nil => rfl
-  | cons layer rest induction =>
-      simp [mapScheduled, mapSchedule, mapLayer,
-        ScheduledMCXProgram.program, scheduleProgram, induction]
+  change
+    scheduleProgram (mapSchedule embed injective scheduled.layers) =
+      mapProgram embed injective (scheduleProgram scheduled.layers)
+  exact mapSchedule_program embed injective scheduled.layers
 
 @[simp] theorem mapScheduled_gateCount
     {small large : Nat}
@@ -274,7 +290,9 @@ def mapScheduled
     (injective : Function.Injective embed)
     (scheduled : ScheduledMCXProgram small) :
     (mapScheduled embed injective scheduled).gateCount = scheduled.gateCount := by
-  unfold ScheduledMCXProgram.gateCount MultiControlledXSchedule.gateCount
+  change
+    (mapScheduled embed injective scheduled).program.length =
+      scheduled.program.length
   rw [mapScheduled_program]
   simp [mapProgram]
 
