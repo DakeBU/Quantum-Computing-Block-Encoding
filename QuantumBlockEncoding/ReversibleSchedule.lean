@@ -88,6 +88,24 @@ def depth {qubits : Nat}
 
 end ReversibleSchedule
 
+/-- Reversible-program evaluation respects chronological list append. -/
+theorem evalReversibleProgram_append {qubits : Nat}
+    (left right : ReversibleProgram qubits) :
+    evalReversibleProgram (left ++ right) =
+      (evalReversibleProgram left).trans (evalReversibleProgram right) := by
+  induction left with
+  | nil =>
+      rfl
+  | cons gate rest induction =>
+      change
+        (evalReversibleGate gate).trans
+            (evalReversibleProgram (rest ++ right)) =
+          ((evalReversibleGate gate).trans
+            (evalReversibleProgram rest)).trans
+              (evalReversibleProgram right)
+      rw [induction]
+      rfl
+
 /-- A schedule together with its non-overlap proof. -/
 structure ScheduledReversibleProgram (qubits : Nat) where
   layers : ReversibleSchedule qubits
@@ -142,6 +160,43 @@ def sequential {qubits : Nat}
     (program : ReversibleProgram qubits) :
     (sequential program).depth = program.length := by
   simp [depth, ReversibleSchedule.depth, sequential]
+
+/-- Chronological composition of two valid schedules. -/
+def seq {qubits : Nat}
+    (left right : ScheduledReversibleProgram qubits) :
+    ScheduledReversibleProgram qubits where
+  layers := left.layers ++ right.layers
+  valid := by
+    intro layer member
+    rw [List.mem_append] at member
+    rcases member with member | member
+    · exact left.valid layer member
+    · exact right.valid layer member
+
+@[simp] theorem seq_program {qubits : Nat}
+    (left right : ScheduledReversibleProgram qubits) :
+    (seq left right).program = left.program ++ right.program := by
+  simp [seq, ScheduledReversibleProgram.program,
+    ReversibleSchedule.program, List.flatten_append]
+
+@[simp] theorem seq_gateCount {qubits : Nat}
+    (left right : ScheduledReversibleProgram qubits) :
+    (seq left right).gateCount = left.gateCount + right.gateCount := by
+  unfold gateCount ReversibleSchedule.gateCount
+  rw [seq_program, List.length_append]
+
+@[simp] theorem seq_depth {qubits : Nat}
+    (left right : ScheduledReversibleProgram qubits) :
+    (seq left right).depth = left.depth + right.depth := by
+  simp [depth, ReversibleSchedule.depth, seq]
+
+/-- Semantic action of scheduled sequential composition. -/
+theorem eval_seq {qubits : Nat}
+    (left right : ScheduledReversibleProgram qubits) :
+    evalReversibleProgram (seq left right).program =
+      (evalReversibleProgram left.program).trans
+        (evalReversibleProgram right.program) := by
+  rw [seq_program, evalReversibleProgram_append]
 
 end ScheduledReversibleProgram
 
