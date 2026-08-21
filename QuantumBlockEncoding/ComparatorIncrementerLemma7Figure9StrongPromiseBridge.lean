@@ -15,7 +15,7 @@ while the public Lemma-7 promise contract uses
 `key × promise × target`.
 
 This module proves that the canonical promise-first reindexing commutes with
-predicate control.  Combining that representation theorem with
+predicate control. Combining that representation theorem with
 
 * the source inverse-ladder condition for slices 1/3; and
 * arbitrary-workspace restoration of the same Gidney program
@@ -93,10 +93,11 @@ theorem source_optimized_promise_view
           (evalReversibleProgram (family.scheduled n).program)) := by
   rw [source_optimized_eq_controlledGidney
     family decomposition k n source]
-  exact promiseFirstView_predicateControlled
-    k n (evalReversibleProgram (family.scheduled n).program)
+  simpa [controlledGidneyTarget] using
+    (promiseFirstView_predicateControlled
+      k n (evalReversibleProgram (family.scheduled n).program))
 
-/-- Main semantic bridge for the source Figure-9 construction.  Once the same
+/-- Main semantic bridge for the source Figure-9 construction. Once the same
 Gidney family has an arbitrary-workspace restoration proof and the source
 four-slice decomposition has its inverse-ladder proof, optimized Figure 9 is an
 exact k-controlled strong promise gate whose target is the n-bit incrementer. -/
