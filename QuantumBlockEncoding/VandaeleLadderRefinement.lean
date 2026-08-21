@@ -84,31 +84,30 @@ theorem lower_ladderActive_after_higherStep
     (state : LadderState localControls total) :
     ladderActive (sourceLadderStep localControls total higher state) lower ↔
       ladderActive state lower := by
-  unfold ladderActive
   have controls :
       ((sourceLadderStep localControls total higher state).2 lower).1 =
         (state.2 lower).1 := by
     exact congrArg Prod.fst
       (higherStep_preserves_lower_block
         localControls total higher lower order state)
-  rw [controls]
-  by_cases first : lower.val = 0
-  · simp [previousPivot, first,
-      sourceLadderStep_preserves_initialPivot]
-  · let previous : Fin total := ⟨lower.val - 1, by omega⟩
-    have previousBelow : previous.val < higher.val := by
-      simp [previous]
-      omega
-    have previousState := higherStep_preserves_lower_block
-      localControls total higher previous previousBelow state
-    rw [previousPivot_nonfirst
-      (sourceLadderStep localControls total higher state) lower first]
-    rw [previousPivot_nonfirst state lower first]
-    exact and_congr
-      (by
-        have targetEqual := congrArg Prod.snd previousState
-        exact eq_iff_iff.mpr (by rw [targetEqual]))
-      Iff.rfl
+  have pivot :
+      previousPivot (sourceLadderStep localControls total higher state) lower =
+        previousPivot state lower := by
+    by_cases first : lower.val = 0
+    · simp [previousPivot, first,
+        sourceLadderStep_preserves_initialPivot]
+    · let previous : Fin total := ⟨lower.val - 1, by omega⟩
+      have previousBelow : previous.val < higher.val := by
+        simp [previous]
+        omega
+      have previousState := higherStep_preserves_lower_block
+        localControls total higher previous previousBelow state
+      rw [previousPivot_nonfirst
+        (sourceLadderStep localControls total higher state) lower first]
+      rw [previousPivot_nonfirst state lower first]
+      exact congrArg Prod.snd previousState
+  unfold ladderActive
+  rw [pivot, controls]
 
 /-- One newly executed highest gate advances the partial closed-form invariant by
 one block before the lower descending prefix is run. -/
@@ -136,14 +135,11 @@ theorem prefix_step_rebase
           apply Fin.ext
           simpa [current] using same
         subst query
-        have activeIff := ladderActive_sourceLadderStep_iff
-          localControls total current state
         have target := sourceLadderStep_target
           localControls total current state
         have controls := sourceLadderStep_preserves_localControls
           localControls total current current state
-        simp [equationFivePrefixAction, current, controls, target,
-          activeIff]
+        simp [equationFivePrefixAction, current, controls, target]
     · have above : count < query.val := by omega
       have different : query ≠ current := by
         intro equal
@@ -182,40 +178,7 @@ theorem descendingLadderEquiv_eq_prefix
           (sourceLadderStep localControls total current state) = _
       exact prefix_step_rebase localControls total count strict state
 
-/-- Main Definition-2.3 refinement theorem. -/
-theorem naiveLadderEquiv_eq_equationFive
-    (localControls steps : Nat) :
-    naiveLadderEquiv localControls steps =
-      { toFun := equationFiveAction localControls steps
-        invFun := (naiveLadderEquiv localControls steps).symm
-        left_inv := by
-          intro state
-          have forward := descendingLadderEquiv_eq_prefix
-            localControls steps steps (Nat.le_refl _) state
-          rw [equationFivePrefix_full] at forward
-          change
-            (naiveLadderEquiv localControls steps).symm
-              (equationFiveAction localControls steps state) = state
-          rw [← forward]
-          exact (naiveLadderEquiv localControls steps).symm_apply_apply state
-        right_inv := by
-          intro state
-          have forward := descendingLadderEquiv_eq_prefix
-            localControls steps steps (Nat.le_refl _)
-              ((naiveLadderEquiv localControls steps).symm state)
-          rw [equationFivePrefix_full] at forward
-          change equationFiveAction localControls steps
-              ((naiveLadderEquiv localControls steps).symm state) = state
-          rw [← forward]
-          exact (naiveLadderEquiv localControls steps).apply_symm_apply state } := by
-  apply Equiv.ext
-  intro state
-  have forward := descendingLadderEquiv_eq_prefix
-    localControls steps steps (Nat.le_refl _) state
-  rw [equationFivePrefix_full] at forward
-  exact forward
-
-/-- The actual naive ladder permutation now directly inhabits the authoritative
+/-- The actual naive ladder permutation directly inhabits the authoritative
 Equation-(5) source contract. -/
 theorem naiveLadderEquiv_spec
     (localControls steps : Nat) :
