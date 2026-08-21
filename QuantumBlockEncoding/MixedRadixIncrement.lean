@@ -67,6 +67,62 @@ theorem carry_le_one (base digit : Nat → Nat) :
       simp [carry]
       split <;> omega
 
+/-- Definition-level characterization of an outgoing carry. -/
+theorem carry_succ_eq_one_iff_overflow
+    (base digit : Nat → Nat) (i : Nat) :
+    carry base digit (i + 1) = 1 ↔
+      digit i + carry base digit i = base i := by
+  unfold carry
+  by_cases overflow : digit i + carry base digit i = base i <;>
+    simp [overflow]
+
+/-- Under the radix/digit bounds, an outgoing carry is present exactly when the
+incoming carry is one and the current digit is maximal.  This is the algebraic
+form of the all-ones activation condition used by Vandaele's promise gates. -/
+theorem carry_succ_eq_one_iff_active
+    (base digit : Nat → Nat)
+    (basePositive : ∀ i, 0 < base i)
+    (digitBound : ∀ i, digit i < base i)
+    (i : Nat) :
+    carry base digit (i + 1) = 1 ↔
+      carry base digit i = 1 ∧ digit i = base i - 1 := by
+  rw [carry_succ_eq_one_iff_overflow]
+  have carryBound := carry_le_one base digit i
+  have digitLt := digitBound i
+  have positive := basePositive i
+  constructor
+  · intro overflow
+    constructor <;> omega
+  · rintro ⟨incoming, maximal⟩
+    omega
+
+/-- On an active all-ones block, increment maps that block to zero. -/
+theorem output_eq_zero_of_active
+    (base digit : Nat → Nat)
+    (basePositive : ∀ i, 0 < base i)
+    (i : Nat)
+    (incoming : carry base digit i = 1)
+    (maximal : digit i = base i - 1) :
+    output base digit i = 0 := by
+  have positive := basePositive i
+  have sumEq : digit i + carry base digit i = base i := by
+    omega
+  unfold output
+  rw [sumEq, Nat.mod_self]
+
+/-- Once the carry has stopped, later digits remain unchanged. -/
+theorem output_eq_digit_of_no_carry
+    (base digit : Nat → Nat)
+    (digitBound : ∀ i, digit i < base i)
+    (i : Nat)
+    (inactive : carry base digit i = 0) :
+    output base digit i = digit i := by
+  have bound := digitBound i
+  unfold output
+  rw [inactive]
+  simp only [Nat.add_zero]
+  exact Nat.mod_eq_of_lt bound
+
 /-- The local digit plus outgoing carry is exactly the input digit plus incoming
 carry.  No subtraction is needed. -/
 theorem local_balance
