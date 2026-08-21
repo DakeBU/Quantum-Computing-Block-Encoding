@@ -7,6 +7,7 @@ import QuantumBlockEncoding.BlockEncodingClassics
 import QuantumBlockEncoding.Circuit
 import QuantumBlockEncoding.CircuitSemantics
 import QuantumBlockEncoding.ComparatorIncrementer
+import QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
 import QuantumBlockEncoding.ComparatorIncrementerGeneral
 import QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
 import QuantumBlockEncoding.Core
