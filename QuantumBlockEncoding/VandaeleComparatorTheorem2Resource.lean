@@ -75,13 +75,23 @@ theorem theoremTwo_upper_closure
   constructor
   · exact ⟨gateBaseConstant + 2 * localGateConstant, gateGlobal⟩
   · constructor
-    · exact ⟨4 * localDepthConstant, fun n => by
-        have bound := depthGlobal n
-        exact bound.trans (by
-          apply Nat.add_le_of_le_sub
-          · exact Nat.mul_le_mul_left (4 * localDepthConstant)
-              (Nat.zero_le (logRank n))
-          · omega)⟩
+    · refine ⟨depthBaseConstant + 4 * localDepthConstant, ?_⟩
+      intro n
+      have bound := depthGlobal n
+      have rankPositive : 1 ≤ logRank n := by
+        unfold logRank
+        omega
+      have absorbBase :
+          depthBaseConstant ≤ depthBaseConstant * logRank n := by
+        have scaled := Nat.mul_le_mul_left depthBaseConstant rankPositive
+        simpa using scaled
+      calc
+        depth n ≤ depthBaseConstant +
+            (4 * localDepthConstant) * logRank n := bound
+        _ ≤ depthBaseConstant * logRank n +
+            (4 * localDepthConstant) * logRank n :=
+          Nat.add_le_add_right absorbBase _
+        _ = (depthBaseConstant + 4 * localDepthConstant) * logRank n := by ring
     · exact noAncillas
 
 end VandaeleComparatorTheorem2Resource
