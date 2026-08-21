@@ -66,6 +66,23 @@ def FlatSpec (n : Nat)
     (implementation : Equiv.Perm (PrimitiveBasis (flatWidth n))) : Prop :=
   CleanBranchSpec n (productViewOfFlat n implementation)
 
+/-- Direct action theorem for a flat implementation satisfying `FlatSpec`.  It
+removes the product-conjugation boilerplate for later wire embeddings. -/
+theorem flatSpec_action
+    (n : Nat)
+    (implementation : Equiv.Perm (PrimitiveBasis (flatWidth n)))
+    (spec : FlatSpec n implementation)
+    (state : PrimitiveBasis (flatWidth n))
+    (clean : workspaceClean n (registerEquiv n state).2) :
+    basisNat n (registerEquiv n (implementation state)).1 =
+        (basisNat n (registerEquiv n state).1 + 1) % gridSize n ∧
+    workspaceClean n (registerEquiv n (implementation state)).2 := by
+  unfold FlatSpec CleanBranchSpec at spec
+  have action := spec
+    (registerEquiv n state).1
+    (registerEquiv n state).2 clean
+  simpa [productViewOfFlat] using action
+
 /-- Uniform source resource target.  Constants are fixed once for the entire
 family. -/
 def UniformResourceTarget
