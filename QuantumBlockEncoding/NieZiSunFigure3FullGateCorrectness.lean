@@ -1,5 +1,8 @@
+import QuantumBlockEncoding.NieZiSunControlSplitAllOne
 import QuantumBlockEncoding.NieZiSunFigure3GateCorrectness
+import QuantumBlockEncoding.PromiseGateOptimization
 import QuantumBlockEncoding.ReversibleProgramInverse
+import QuantumBlockEncoding.VandaeleLemma1Contract
 import Mathlib.Tactic
 
 /-!
@@ -54,15 +57,14 @@ theorem reverse_step2Program_refines
     (n : Nat) (large : 5 <= n)
     (state : PrimitiveBasis (totalWidth n)) :
     flatFigure3Coordinate n large
-      (evalReversibleProgram (reverseProgram (step2Program n large)) state) =
+      (evalReversibleProgram (step2Program n large).reverse state) =
       step4 (halfFamily (leftTailWidth n))
         (halfFamily (rightTailWidth n))
         (flatFigure3Coordinate n large state) := by
-  let backward := evalReversibleProgram
-    (reverseProgram (step2Program n large)) state
+  let backward := evalReversibleProgram (step2Program n large).reverse state
   have roundtrip :
       evalReversibleProgram (step2Program n large) backward = state := by
-    unfold backward reverseProgram
+    unfold backward
     have inverse := reverse_then_eval (step2Program n large)
     exact congrArg (fun equiv => equiv state) inverse
   have forward := step2Program_refines n large backward
@@ -79,18 +81,17 @@ theorem reverse_step1Program_refines
     (n : Nat) (large : 5 <= n)
     (state : PrimitiveBasis (totalWidth n)) :
     flatFigure3Coordinate n large
-      (evalReversibleProgram (reverseProgram (step1Program n large)) state) =
+      (evalReversibleProgram (step1Program n large).reverse state) =
       step5 (flatFigure3Coordinate n large state) := by
-  let backward := evalReversibleProgram
-    (reverseProgram (step1Program n large)) state
+  let backward := evalReversibleProgram (step1Program n large).reverse state
   have roundtrip :
       evalReversibleProgram (step1Program n large) backward = state := by
-    unfold backward reverseProgram
+    unfold backward
     have inverse := reverse_then_eval (step1Program n large)
     exact congrArg (fun equiv => equiv state) inverse
   have forward := step1_refines n large backward
   rw [roundtrip] at forward
-  have undo := (@step1_involutive
+  have undo := (@NieZiSunFigure3FirstHalf.step1_involutive
     (leftTailWidth n) (rightTailWidth n))
     (flatFigure3Coordinate n large backward)
   rw [← forward] at undo
@@ -112,23 +113,23 @@ theorem fullProgram_refines_protocol
   let after1 := evalReversibleProgram s1 state
   let after2 := evalReversibleProgram s2 after1
   let after3 := evalReversibleProgram s3 after2
-  let after4 := evalReversibleProgram (reverseProgram s2) after3
+  let after4 := evalReversibleProgram s2.reverse after3
   have h1 := step1_refines n large state
   have h2 := step2Program_refines n large after1
   have h3 := step3_refines n large after2
   have h4 := reverse_step2Program_refines n large after3
   have h5 := reverse_step1Program_refines n large after4
   have decomposition : fullProgram n =
-      (((s1 ++ s2) ++ s3) ++ reverseProgram s2) ++ reverseProgram s1 := by
+      (((s1 ++ s2) ++ s3) ++ s2.reverse) ++ s1.reverse := by
     simp [fullProgram, large, s1, s2, s3, List.append_assoc]
   rw [decomposition, evalReversibleProgram_append,
     evalReversibleProgram_append, evalReversibleProgram_append,
     evalReversibleProgram_append]
   change flatFigure3Coordinate n large
-      (evalReversibleProgram (reverseProgram s1) after4) = _
+      (evalReversibleProgram s1.reverse after4) = _
   calc
     flatFigure3Coordinate n large
-        (evalReversibleProgram (reverseProgram s1) after4) =
+        (evalReversibleProgram s1.reverse after4) =
         step5 (flatFigure3Coordinate n large after4) := h5
     _ = step5 (step4
         (halfFamily (leftTailWidth n))
@@ -170,7 +171,7 @@ theorem fullProgram_clean_action
   by_cases large : 5 <= n
   · let input := (flatProductCoordinate n).symm (controls,0,target)
     have refinement := fullProgram_refines_protocol n large input
-    let parts := splitControls n (by omega) controls
+    let parts := NieZiSunControlSplit.splitControls n (by omega) controls
     have source := protocol_correct
       (halfFamily (leftTailWidth n))
       (halfFamily (rightTailWidth n))
