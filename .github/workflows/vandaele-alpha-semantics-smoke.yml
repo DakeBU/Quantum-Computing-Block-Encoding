@@ -1,0 +1,55 @@
+name: Vandaele alpha semantic frontier
+
+on:
+  push:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/MultiControlledXScheduleSemantics.lean"
+      - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
+      - ".github/workflows/vandaele-alpha-semantics-smoke.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-alpha-semantics-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  alpha-semantics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile generic MCX semantic bridge
+        run: |
+          lake build QuantumBlockEncoding.MultiControlledXScheduleSemantics
+
+      - name: Compile physical X-prime and alpha-prime chain
+        run: |
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveParameters
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedRegister
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveOrder
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetMembership
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaDeletedPrefixCount
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
+
+      - name: Compile proof-bearing Algorithm 2 schedule
+        run: |
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaResource
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterLayers
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
+
+      - name: Compile Equation-7 semantic spine
+        run: |
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
