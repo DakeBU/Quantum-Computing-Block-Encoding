@@ -5,39 +5,16 @@ on:
     branches:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
-      - "QuantumBlockEncoding/ReversibleProgramInverse.lean"
-      - "QuantumBlockEncoding/ReversibleProgramSupport.lean"
-      - "QuantumBlockEncoding/ReversibleProgramCounts.lean"
-      - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
+      - "QuantumBlockEncoding/Vandaele*.lean"
+      - "QuantumBlockEncoding/PromiseGate*.lean"
+      - "QuantumBlockEncoding/StrongPromise*.lean"
+      - "QuantumBlockEncoding/Gidney*.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementer*.lean"
+      - "QuantumBlockEncoding/BasisIncrementAllXConjugation.lean"
       - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
       - "QuantumBlockEncoding/MixedRadixIncrement.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerEq39*.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerLemma8*.lean"
-      - "QuantumBlockEncoding/Gidney*.lean"
-      - "QuantumBlockEncoding/StrongPromiseInverse.lean"
-      - "QuantumBlockEncoding/BasisIncrementAllXConjugation.lean"
-      - "QuantumBlockEncoding/ComparatorSemanticTargets.lean"
-      - "QuantumBlockEncoding/ComparatorSubtractionSemantics.lean"
-      - "QuantumBlockEncoding/ComparatorSubtractionTargetBridge.lean"
-      - "QuantumBlockEncoding/ComparatorQuantumToClassicalRestriction.lean"
-      - "QuantumBlockEncoding/VandaeleComparator*.lean"
-      - "QuantumBlockEncoding/VandaeleControlledComparator*.lean"
-      - "QuantumBlockEncoding/VandaeleControlledV2Resource.lean"
-      - "QuantumBlockEncoding/VandaeleLadder*.lean"
-      - "QuantumBlockEncoding/VandaeleVOperator.lean"
-      - "QuantumBlockEncoding/VandaeleLemma4*.lean"
-      - "QuantumBlockEncoding/VandaeleCorollary4*.lean"
-      - "QuantumBlockEncoding/VandaeleEquation58*.lean"
-      - "QuantumBlockEncoding/VandaeleLemma6*.lean"
-      - "QuantumBlockEncoding/VandaeleClassicalAdderTarget.lean"
-      - "QuantumBlockEncoding/VandaeleControlledAdderTarget.lean"
-      - "QuantumBlockEncoding/VandaeleCorollary7*.lean"
-      - "QuantumBlockEncoding/VandaeleCorollary8*.lean"
-      - "QuantumBlockEncoding/VandaeleTheorem5*.lean"
-      - "QuantumBlockEncoding/VandaeleAdderFormalization.lean"
-      - "QuantumBlockEncoding/VandaeleIncrementerFormalization.lean"
-      - "QuantumBlockEncoding/VandaeleComparatorFormalization.lean"
-      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4OptimalityContract.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
+      - "QuantumBlockEncoding/ReversibleProgram*.lean"
       - "QuantumBlockEncoding.lean"
       - ".github/workflows/vandaele-source-admission-report.yml"
   workflow_dispatch:
@@ -65,7 +42,7 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile Vandaele source frontier and write report
+      - name: Compile Vandaele source spines and write report
         id: compile
         shell: bash
         run: |
@@ -77,78 +54,18 @@ jobs:
           printf '# Vandaele source Lean admission report\n\n' >> "$report"
           printf -- '- commit: `%s`\n' "$GITHUB_SHA" >> "$report"
           printf -- '- workflow: `vandaele-source-admission-report.yml`\n' >> "$report"
-          printf -- '- policy: every listed module must pass `lake build`; report commits are not admission triggers.\n\n' >> "$report"
+          printf -- '- policy: each top-level spine is built by Lean; dependencies are compiled transitively.\n\n' >> "$report"
 
           modules=(
-            QuantumBlockEncoding.ReversibleProgramInverse
-            QuantumBlockEncoding.ReversibleProgramSupport
-            QuantumBlockEncoding.ReversibleProgramCounts
-            QuantumBlockEncoding.PrimitiveBasisLENumeric
-            QuantumBlockEncoding.BinaryCarryTelescoping
-            QuantumBlockEncoding.MixedRadixIncrement
-            QuantumBlockEncoding.ComparatorIncrementerEq39BlockCascade
-            QuantumBlockEncoding.ComparatorIncrementerEq39SquareRootPlan
-            QuantumBlockEncoding.ComparatorIncrementerEq39LocalActivation
-            QuantumBlockEncoding.ComparatorIncrementerEq39BasisCascade
-            QuantumBlockEncoding.ComparatorIncrementerLemma8BlockCascadeCertificate
-            QuantumBlockEncoding.ComparatorIncrementerLemma8Lemma7LocalBounds
-            QuantumBlockEncoding.ComparatorIncrementerLemma8PromiseGateBudget
-            QuantumBlockEncoding.ComparatorIncrementerLemma8PromiseDepthBudget
-            QuantumBlockEncoding.ComparatorIncrementerLemma8ResourceClosureFromLemma7
-            QuantumBlockEncoding.GidneyZeroedSourceProgram
-            QuantumBlockEncoding.GidneyZeroedWorkspaceRestoration
-            QuantumBlockEncoding.GidneyZeroedWorkspaceRestorationGlobal
-            QuantumBlockEncoding.GidneyZeroedCarryCompute
-            QuantumBlockEncoding.GidneyZeroedDescendingAction
-            QuantumBlockEncoding.GidneyZeroedCleanTargetAction
-            QuantumBlockEncoding.GidneyZeroedSourceCorrectness
-            QuantumBlockEncoding.GidneyZeroedSourceLogicalResources
-            QuantumBlockEncoding.GidneyZeroedSourceStrongPromise
-            QuantumBlockEncoding.StrongPromiseInverse
-            QuantumBlockEncoding.GidneyZeroedSourceDecrement
-            QuantumBlockEncoding.BasisIncrementAllXConjugation
-            QuantumBlockEncoding.GidneyZeroedEq35Promise
-            QuantumBlockEncoding.GidneyZeroedScheduledFamily
-            QuantumBlockEncoding.GidneyZeroedControlledStrongPromise
-            QuantumBlockEncoding.GidneyZeroedLemma7BasisWitness
-            QuantumBlockEncoding.GidneyZeroedPrimitive
-            QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9SourceAssembly
-            QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9StrongPromiseBridge
-            QuantumBlockEncoding.VandaeleLadderContract
-            QuantumBlockEncoding.VandaeleLadderPermutation
-            QuantumBlockEncoding.VandaeleLadderRefinement
-            QuantumBlockEncoding.VandaeleVOperator
-            QuantumBlockEncoding.VandaeleEquation58PromiseGadget
-            QuantumBlockEncoding.VandaeleLemma4AppendixResource
-            QuantumBlockEncoding.VandaeleLemma4ProgramFamily
-            QuantumBlockEncoding.VandaeleCorollary4ProgramFamily
-            QuantumBlockEncoding.VandaeleLemma6Contract
-            QuantumBlockEncoding.VandaeleLemma6ResourceClosure
-            QuantumBlockEncoding.ComparatorSemanticTargets
-            QuantumBlockEncoding.ComparatorSubtractionSemantics
-            QuantumBlockEncoding.ComparatorSubtractionTargetBridge
-            QuantumBlockEncoding.ComparatorQuantumToClassicalRestriction
-            QuantumBlockEncoding.VandaeleComparatorEq3Reduction
-            QuantumBlockEncoding.VandaeleComparatorLowerBoundReduction
-            QuantumBlockEncoding.VandaeleComparatorTheorem2RecursiveSplit
-            QuantumBlockEncoding.VandaeleComparatorTheorem2Resource
-            QuantumBlockEncoding.VandaeleComparatorTheorem3BorrowedInput
-            QuantumBlockEncoding.VandaeleComparatorTheorem3Resource
-            QuantumBlockEncoding.VandaeleControlledV2Resource
-            QuantumBlockEncoding.VandaeleControlledComparatorTargets
-            QuantumBlockEncoding.VandaeleControlledComparatorResource
-            QuantumBlockEncoding.VandaeleClassicalAdderTarget
-            QuantumBlockEncoding.VandaeleControlledAdderTarget
-            QuantumBlockEncoding.VandaeleCorollary7ControlledIncrementer
-            QuantumBlockEncoding.VandaeleCorollary8ControlledAdderResource
-            QuantumBlockEncoding.VandaeleTheorem5AdderCarry
-            QuantumBlockEncoding.VandaeleTheorem5AdderBasisSplit
-            QuantumBlockEncoding.VandaeleTheorem5Resource
-            QuantumBlockEncoding.VandaeleTheorem5RecurrenceClosure
-            QuantumBlockEncoding.VandaeleAdderFormalization
-            QuantumBlockEncoding.VandaeleIncrementerFormalization
+            QuantumBlockEncoding.PromiseGateUnitaryMux
+            QuantumBlockEncoding.PromiseGatePermutationMatrixBridge
+            QuantumBlockEncoding.VandaeleNaiveLadderFiniteChecks
+            QuantumBlockEncoding.VandaeleStructuralPrimitivesFormalization
+            QuantumBlockEncoding.VandaeleQuantumAdderFormalization
             QuantumBlockEncoding.VandaeleComparatorFormalization
-            QuantumBlockEncoding.ComparatorIncrementerTheorem4OptimalityContract
+            QuantumBlockEncoding.VandaeleIncrementerFormalization
+            QuantumBlockEncoding.VandaeleAdderFormalization
+            QuantumBlockEncoding.VandaeleShorFormalization
             QuantumBlockEncoding
           )
 
@@ -160,16 +77,16 @@ jobs:
             else
               overall=1
               printf '## FAIL `%s`\n\n```text\n' "$module" >> "$report"
-              tail -n 160 "$log" >> "$report"
+              tail -n 200 "$log" >> "$report"
               printf '\n```\n\n' >> "$report"
             fi
             rm -f "$log"
           done
 
           if [ "$overall" -eq 0 ]; then
-            printf '## Overall: PASS\n\nAll source-frontier modules were accepted by Lean.\n' >> "$report"
+            printf '## Overall: PASS\n\nAll source-spine builds were accepted by Lean.\n' >> "$report"
           else
-            printf '## Overall: FAIL\n\nAt least one source-frontier module failed Lean admission.\n' >> "$report"
+            printf '## Overall: FAIL\n\nAt least one source-spine build failed Lean admission.\n' >> "$report"
           fi
           printf '%s\n' "$overall" > "$status_file"
           exit 0
@@ -185,7 +102,7 @@ jobs:
           if git diff --cached --quiet; then
             echo 'Admission report unchanged.'
           else
-            git commit -m '[vandaele-admission] Record Lean source frontier report'
+            git commit -m '[vandaele-admission] Record Lean source spine report'
             git push origin HEAD:"${GITHUB_REF_NAME}"
           fi
 
