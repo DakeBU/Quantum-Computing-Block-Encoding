@@ -4,7 +4,7 @@ import Mathlib.Tactic
 /-!
 # Source-facing contract for Vandaele Theorem 1
 
-Theorem 1 is the paper's general "add controls, save ancillae" result.  If
+Theorem 1 is the paper's general "add controls, save ancillae" result. If
 `W = V† U V` and V/U admit implementations with m clean ancillas, source gate
 counts `cV,cU`, and depths `dV,dU`, then the k-controlled W construction has
 
@@ -17,10 +17,10 @@ can instead be replaced by one dirty ancilla with the same asymptotic gate/depth
 scales.
 
 The exact controlled-conjugation semantics is already proved in
-`PredicateControlledConjugation`.  This module freezes the source resource
-parameters and ancilla arithmetic.  A complete Theorem 1 reproduction still
-needs the concrete Lemma 5 / promise-register circuit refinement proving the
-resource inequalities; no such implementation is assumed here.
+`PredicateControlledConjugation`. This module freezes the source parameters,
+ancilla arithmetic, explicit finite-instance inequalities, and the genuine
+uniform family target. Big-O constants are never existentially re-chosen for
+each fixed instance.
 -/
 
 namespace QuantumBlockEncoding
@@ -45,9 +45,9 @@ def gateScale (p : SourceParameters) : Nat :=
   p.outerGateCount + p.middleGateCount +
     p.middleDepth * p.targetQubits + p.controls
 
-/-- Totalized logarithmic scale inside the source depth statement.  `+1` makes
-the expression well-defined for zero-width boundary values without changing
-its asymptotic meaning in the source regime. -/
+/-- Totalized logarithmic scale inside the source depth statement. `+1` makes
+the expression total on zero-width boundary values without changing the source
+asymptotic regime. -/
 def depthScale (p : SourceParameters) : Nat :=
   p.outerDepth +
     p.middleDepth * (Nat.log2 (p.targetQubits + 1) + 1) +
@@ -90,22 +90,54 @@ theorem dirty_variant_preserves_workspace_count
   unfold dirtyVariantCleanAncillas dirtyVariantDirtyAncillas
   exact Nat.sub_add_cancel (cleanAncillaBudget_pos p)
 
-/-- Big-O-free target proposition for one concrete output circuit.  The
-constants are explicit evidence supplied by a future implementation proof. -/
-def ResourceTarget (p : SourceParameters)
-    (gateCount depth cleanAncillas : Nat) : Prop :=
-  (∃ constant : Nat, gateCount ≤ constant * (gateScale p + 1)) ∧
-  (∃ constant : Nat, depth ≤ constant * (depthScale p + 1)) ∧
+/-- Explicit finite-instance resource inequality with named constants. This is
+useful proof evidence but is not by itself the asymptotic Theorem 1. -/
+def InstanceResourceBound (p : SourceParameters)
+    (gateCount depth cleanAncillas gateConstant depthConstant : Nat) : Prop :=
+  gateCount ≤ gateConstant * (gateScale p + 1) ∧
+  depth ≤ depthConstant * (depthScale p + 1) ∧
   cleanAncillas ≤ cleanAncillaBudget p
 
-/-- Strong/involutory resource target with one dirty bit replacing one clean
-bit. -/
-def DirtyResourceTarget (p : SourceParameters)
-    (gateCount depth cleanAncillas dirtyAncillas : Nat) : Prop :=
-  (∃ constant : Nat, gateCount ≤ constant * (gateScale p + 1)) ∧
-  (∃ constant : Nat, depth ≤ constant * (depthScale p + 1)) ∧
+/-- Strong/involutory finite-instance resource inequality. -/
+def DirtyInstanceResourceBound (p : SourceParameters)
+    (gateCount depth cleanAncillas dirtyAncillas
+      gateConstant depthConstant : Nat) : Prop :=
+  gateCount ≤ gateConstant * (gateScale p + 1) ∧
+  depth ≤ depthConstant * (depthScale p + 1) ∧
   cleanAncillas ≤ dirtyVariantCleanAncillas p ∧
   dirtyAncillas = 1
+
+/-- Genuine uniform Theorem-1 resource target. The constants are chosen once
+and must work over every source-parameter tuple. -/
+def UniformResourceTarget
+    (gateCount depth cleanAncillas : SourceParameters → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ p,
+      gateCount p ≤ gateConstant * (gateScale p + 1) ∧
+      depth p ≤ depthConstant * (depthScale p + 1) ∧
+      cleanAncillas p ≤ cleanAncillaBudget p
+
+/-- Uniform strong/involutory source target. -/
+def UniformDirtyResourceTarget
+    (gateCount depth cleanAncillas dirtyAncillas : SourceParameters → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ p,
+      gateCount p ≤ gateConstant * (gateScale p + 1) ∧
+      depth p ≤ depthConstant * (depthScale p + 1) ∧
+      cleanAncillas p ≤ dirtyVariantCleanAncillas p ∧
+      dirtyAncillas p = 1
+
+/-- Uniform evidence specializes to every instance with the same constants. -/
+theorem uniformResourceTarget_instance
+    (gateCount depth cleanAncillas : SourceParameters → Nat)
+    (uniform : UniformResourceTarget gateCount depth cleanAncillas) :
+    ∃ gateConstant depthConstant : Nat,
+      ∀ p,
+        InstanceResourceBound p
+          (gateCount p) (depth p) (cleanAncillas p)
+          gateConstant depthConstant := by
+  rcases uniform with ⟨gateConstant, depthConstant, bound⟩
+  exact ⟨gateConstant, depthConstant, bound⟩
 
 /-- Semantic algebraic core of Theorem 1: for an arbitrary k-control predicate,
 controlling `V† U V` is exactly equivalent to leaving V,V† uncontrolled and
@@ -120,10 +152,10 @@ theorem semantic_control_reduction
         (conjugatedTargetEquiv outer middle) :=
   predicateControlledConjugation_equiv active outer middle
 
-/-- Completion certificate expected from a fully formalized source
-implementation.  Merely constructing this record requires both the exact
-semantic identity and explicit resource evidence. -/
-structure TheoremOneCertificate
+/-- Completion certificate for one concrete source instance. The stored
+constants make the finite inequality inspectable, but paper-wide asymptotics
+require a separate `UniformResourceTarget`. -/
+structure TheoremOneInstanceCertificate
     {κ α : Type*} (active : κ → Bool)
     (outer middle : Equiv.Perm α) where
   parameters : SourceParameters
@@ -131,10 +163,14 @@ structure TheoremOneCertificate
   gateCount : Nat
   depth : Nat
   cleanAncillas : Nat
+  gateConstant : Nat
+  depthConstant : Nat
   semanticCorrectness :
     implementation = predicateControlledTargetEquiv active
       (conjugatedTargetEquiv outer middle)
-  resources : ResourceTarget parameters gateCount depth cleanAncillas
+  resources :
+    InstanceResourceBound parameters gateCount depth cleanAncillas
+      gateConstant depthConstant
 
 end VandaeleTheorem1Contract
 end QuantumBlockEncoding
