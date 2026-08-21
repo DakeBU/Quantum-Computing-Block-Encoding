@@ -177,13 +177,11 @@ def smallFirstHalf : (n : Nat) -> ReversibleProgram (totalWidth n)
   | 2 => [.ccx ⟨0, by decide⟩ ⟨1, by decide⟩ ⟨3, by decide⟩
       (by decide) (by decide) (by decide)]
   | 3 => mapProgramWires
-      (fun wire : Fin 5 =>
-        (Equiv.swap (3 : Fin 5) 4 wire))
+      (fun wire : Fin 5 => (Equiv.swap (3 : Fin 5) 4 wire))
       (Equiv.swap (3 : Fin 5) 4).injective
       NieZiSunConstantToffoliMacros.c3Program
   | 4 => mapProgramWires
-      (fun wire : Fin 6 =>
-        (Equiv.swap (4 : Fin 6) 5 wire))
+      (fun wire : Fin 6 => (Equiv.swap (4 : Fin 6) 5 wire))
       (Equiv.swap (4 : Fin 6) 5).injective
       NieZiSunConstantToffoliMacros.c4Program
   | n + 5 => []
@@ -228,7 +226,7 @@ def fullProgram (n : Nat) : ReversibleProgram (totalWidth n) :=
   if large : 5 <= n then
     let s1 := step1Program n large
     let s2 := step2Program n large
-    s1 ++ s2 ++ step3Program n large ++ reverseProgram s2 ++ reverseProgram s1
+    s1 ++ s2 ++ step3Program n large ++ s2.reverse ++ s1.reverse
   else smallFirstHalf n
 
 @[simp] theorem step1Program_length
@@ -256,7 +254,7 @@ theorem fullProgram_length_step
     (fullProgram n).length =
       32 + 2 * (firstHalfProgram (leftTailWidth n)).length +
         2 * (firstHalfProgram (rightTailWidth n)).length := by
-  simp [fullProgram, large, step2Program, reverseProgram,
+  simp [fullProgram, large, step2Program,
     mapProgramWires_length, List.length_reverse]
   omega
 
