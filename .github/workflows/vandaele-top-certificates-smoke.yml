@@ -1,0 +1,40 @@
+name: Vandaele top certificates smoke
+
+on:
+  push:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/ReversibleProgramInverse.lean"
+      - "QuantumBlockEncoding/ReversibleProgramSupport.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
+      - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
+      - "QuantumBlockEncoding/GidneyZeroed*.lean"
+      - "QuantumBlockEncoding/GidneyIncrementerStrongPromise.lean"
+      - "QuantumBlockEncoding/ReversibleProgramCounts.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4OptimalityContract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLowerBoundReduction.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerAncillaLowerBoundReduction.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4ResourceClosure.lean"
+      - ".github/workflows/vandaele-top-certificates-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  top-certificates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile concrete Gidney source family
+        run: lake build QuantumBlockEncoding.GidneyZeroedScheduledFamily
+      - name: Compile exact Gidney logical resource profile
+        run: lake build QuantumBlockEncoding.GidneyZeroedSourceLogicalResources
+      - name: Compile Theorem 4 conditional optimality closure
+        run: lake build QuantumBlockEncoding.ComparatorIncrementerTheorem4OptimalityContract
