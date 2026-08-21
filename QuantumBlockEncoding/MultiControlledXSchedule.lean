@@ -34,6 +34,13 @@ def active {q : Nat} (gate : MCXGate q)
     (state : PrimitiveBasis q) : Prop :=
   ∀ control ∈ gate.controls, state control = 1
 
+/-- Activation is constructively decidable because the control register is a
+finite set and computational-basis bit equality is decidable. -/
+instance instDecidableActive {q : Nat} (gate : MCXGate q)
+    (state : PrimitiveBasis q) : Decidable (active gate state) := by
+  unfold active
+  infer_instance
+
 /-- Exact computational-basis gate action. -/
 def gateAction {q : Nat} (gate : MCXGate q)
     (state : PrimitiveBasis q) : PrimitiveBasis q :=
@@ -57,10 +64,10 @@ theorem active_gateAction_iff
     {q : Nat} (gate : MCXGate q)
     (state : PrimitiveBasis q) :
     active gate (gateAction gate state) ↔ active gate state := by
+  unfold active
   constructor
   · intro after control member
-    have preserved := gateAction_control gate state control member
-    rw [preserved] at after
+    rw [gateAction_control gate state control member] at after
     exact after control member
   · intro before control member
     rw [gateAction_control gate state control member]
@@ -176,8 +183,8 @@ def seq {q : Nat}
 @[simp] theorem seq_gateCount {q : Nat}
     (left right : ScheduledMCXProgram q) :
     (seq left right).gateCount = left.gateCount + right.gateCount := by
-  unfold gateCount MultiControlledXSchedule.gateCount
-  rw [seq_program, List.length_append]
+  simp [gateCount, MultiControlledXSchedule.gateCount,
+    scheduleProgram, seq, List.flatten_append]
 
 @[simp] theorem seq_depth {q : Nat}
     (left right : ScheduledMCXProgram q) :
@@ -192,7 +199,9 @@ def oneLayer {q : Nat} (layer : MCXLayer q) (valid : LayerValid layer) :
   layers := [layer]
   valid := by
     intro query member
-    simpa using member ▸ valid
+    have equal : query = layer := by simpa using member
+    subst query
+    exact valid
 
 @[simp] theorem oneLayer_program {q : Nat}
     (layer : MCXLayer q) (valid : LayerValid layer) :
@@ -206,7 +215,8 @@ def oneLayer {q : Nat} (layer : MCXLayer q) (valid : LayerValid layer) :
 @[simp] theorem oneLayer_gateCount {q : Nat}
     (layer : MCXLayer q) (valid : LayerValid layer) :
     (oneLayer layer valid).gateCount = layer.length := by
-  simp [ScheduledMCXProgram.gateCount, gateCount]
+  simp [ScheduledMCXProgram.gateCount, gateCount,
+    oneLayer, scheduleProgram]
 
 end MultiControlledXSchedule
 end QuantumBlockEncoding
