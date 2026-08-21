@@ -10,6 +10,16 @@ on:
       - "QuantumBlockEncoding/ReversibleProgramCounts.lean"
       - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
       - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
+      - "QuantumBlockEncoding/MixedRadixIncrement.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq39BlockCascade.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq39SquareRootPlan.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq39LocalActivation.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq39BasisCascade.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8BlockCascadeCertificate.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Lemma7LocalBounds.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8PromiseGateBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8PromiseDepthBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8ResourceClosureFromLemma7.lean"
       - "QuantumBlockEncoding/GidneyZeroedSourceProgram.lean"
       - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestoration.lean"
       - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestorationGlobal.lean"
@@ -78,6 +88,16 @@ jobs:
             QuantumBlockEncoding.ReversibleProgramCounts
             QuantumBlockEncoding.PrimitiveBasisLENumeric
             QuantumBlockEncoding.BinaryCarryTelescoping
+            QuantumBlockEncoding.MixedRadixIncrement
+            QuantumBlockEncoding.ComparatorIncrementerEq39BlockCascade
+            QuantumBlockEncoding.ComparatorIncrementerEq39SquareRootPlan
+            QuantumBlockEncoding.ComparatorIncrementerEq39LocalActivation
+            QuantumBlockEncoding.ComparatorIncrementerEq39BasisCascade
+            QuantumBlockEncoding.ComparatorIncrementerLemma8BlockCascadeCertificate
+            QuantumBlockEncoding.ComparatorIncrementerLemma8Lemma7LocalBounds
+            QuantumBlockEncoding.ComparatorIncrementerLemma8PromiseGateBudget
+            QuantumBlockEncoding.ComparatorIncrementerLemma8PromiseDepthBudget
+            QuantumBlockEncoding.ComparatorIncrementerLemma8ResourceClosureFromLemma7
             QuantumBlockEncoding.GidneyZeroedSourceProgram
             QuantumBlockEncoding.GidneyZeroedWorkspaceRestoration
             QuantumBlockEncoding.GidneyZeroedWorkspaceRestorationGlobal
