@@ -1,3 +1,6 @@
+import QuantumBlockEncoding.PromiseGatePermutationMatrixBridge
+import QuantumBlockEncoding.PromiseGateUnitary
+import QuantumBlockEncoding.PromiseGateUnitaryMux
 import QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
 import QuantumBlockEncoding.StrongPromiseComputeUseUncompute
 import QuantumBlockEncoding.VandaeleCorollary1ResourceClosure
@@ -32,6 +35,8 @@ Thin aggregation module for the reusable structural core of
 arXiv:2603.12917. It introduces no new mathematical statement. The imported
 nodes keep the source proof graph inspectable:
 
+* Definitions 3.1/3.2 at the general matrix/unitary level, including the QMUX
+  constructor and the exact embedding of reversible promise permutations;
 * Definition 2.1 / Lemma 1 multi-controlled X;
 * Definition 2.3 ladder semantics and its source-certified gate ordering;
 * Lemma 3 first-order CX-ladder proof-bearing family interface plus an actual
@@ -45,7 +50,9 @@ nodes keep the source proof graph inspectable:
 * Theorem 1 controlled conjugation, resource closure, and clean-to-dirty
   involution upgrade.
 
-The naive ladder programs are semantic/gate baselines, not substitutes for the
+The reversible promise-gate layer is now explicitly a specialization of the
+paper's arbitrary-unitary definitions rather than a parallel notion.  The naive
+ladder programs remain semantic/gate baselines, not substitutes for the
 external [9] logarithmic-depth schedules. Appendix A.1 is formalized as a
 same-target scheduling/resource transformation on top of those source targets.
 
