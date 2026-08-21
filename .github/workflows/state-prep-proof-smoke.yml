@@ -43,6 +43,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4GateBound.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4ResourceClosure.lean"
       - "QuantumBlockEncoding/ControlledStrongPromise.lean"
       - "QuantumBlockEncoding/GidneyIncrementerProgramFamily.lean"
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
@@ -131,6 +132,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4GateBound.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4ResourceClosure.lean"
       - "QuantumBlockEncoding/ControlledStrongPromise.lean"
       - "QuantumBlockEncoding/GidneyIncrementerProgramFamily.lean"
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
@@ -244,6 +246,7 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Composition
           lake build QuantumBlockEncoding.ComparatorIncrementerTheorem4GateBound
           lake build QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound
+          lake build QuantumBlockEncoding.ComparatorIncrementerTheorem4ResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLowerBoundReduction
           lake build QuantumBlockEncoding.PrimitiveBasisLE4
           lake build QuantumBlockEncoding.StatePreparationIntervalTree
