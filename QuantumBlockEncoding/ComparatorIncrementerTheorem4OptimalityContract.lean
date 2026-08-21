@@ -1,6 +1,7 @@
 import QuantumBlockEncoding.ComparatorIncrementerAncillaLowerBoundReduction
 import QuantumBlockEncoding.ComparatorIncrementerLowerBoundReduction
 import QuantumBlockEncoding.ComparatorIncrementerTheorem4ResourceClosure
+import QuantumBlockEncoding.VandaeleLemma1ParityLowerBound
 import Mathlib.Tactic
 
 /-!
@@ -9,19 +10,14 @@ import Mathlib.Tactic
 Theorem 4 has three logically different parts:
 
 1. a concrete incrementer family with O(n) gates and O(log n) depth;
-2. matching lower bounds transferred from `C^k X` through Equation (2);
-3. one auxiliary qubit, together with the source parity obstruction showing that
-   zero auxiliary qubits are impossible in the same gate model for large width.
+2. matching gate/depth lower bounds transferred from `C^k X` through Equation (2);
+3. one auxiliary qubit, together with the parity obstruction showing that zero
+   auxiliary qubits are impossible in the same `{X,CX,CCX}` gate model.
 
-The upper and lower paths are now formalized separately.  This module packages
-their final comparison without hiding the remaining evidence assumptions.
-In particular, lower bounds apply to *minimum* resource functions in a fixed
-gate model, while upper bounds apply to one concrete constructed family.  The
-link `minimum <= construction` is therefore explicit.
-
-No external bounded-gate/parity lower theorem is proved here; this is the
-conditional closure that will become source Theorem 4 once those cited results
-and the concrete Figure-10 family are admitted.
+The gate/depth lower theorem remains the cited bounded-gate result.  The ancilla
+parity obstruction is now proved internally in `VandaeleLemma1ParityLowerBound`.
+This module packages the final comparison while keeping minimum-resource
+functions and construction-resource functions explicitly distinct.
 -/
 
 namespace QuantumBlockEncoding
@@ -31,10 +27,10 @@ open ComparatorIncrementerAncillaLowerBoundReduction
 open ComparatorIncrementerLowerBoundReduction
 open ComparatorIncrementerTheorem4DepthBound
 open ComparatorIncrementerTheorem4ResourceClosure
+open VandaeleLemma1ParityLowerBound
 
 /-- Explicit gate/depth sandwich between one construction and the minimum
-complexity in the same gate model.  The factor-two lower inequalities are the
-normal form produced by Equation (2). -/
+complexity in the same gate model. -/
 def GateDepthOptimalitySandwich
     (constructedGate constructedDepth
       minimumGate minimumDepth : Nat → Nat) : Prop :=
@@ -65,10 +61,7 @@ theorem gateDepth_optimality_closure
     minimumLower.2,
     constructionUpper⟩
 
-/-- Reader-facing explicit linear upper/lower form for gate complexity.  If the
-construction has upper constant `C`, then for every positive width n its
-minimum gate complexity is bounded below linearly at the neighboring Equation-2
-index and the construction is bounded above by `C(n+1)`. -/
+/-- Reader-facing explicit linear upper/lower form for gate complexity. -/
 theorem gate_sandwich_pointwise
     (constructedGate minimumGate : Nat → Nat)
     (upperConstant : Nat)
@@ -124,6 +117,31 @@ theorem ancilla_optimality_closure
     (minimumNeedsOne : IncrementerNeedsAncilla minimumAncillas) :
     AncillaOptimalitySandwich constructedAncillas minimumAncillas := by
   exact ⟨minimumLeConstruction, constructionAtMostOne, minimumNeedsOne⟩
+
+/-- Same optimality closure with the C^kX ancilla premise discharged by the
+internal parity proof.  The remaining assumptions are exactly the Equation-(2)
+workspace reduction and the minimum-complexity model relations. -/
+theorem ancilla_optimality_from_parity
+    (controlledXMinimumAncillas incrementAncillas decrementAncillas
+      constructedAncillas : Nat → Nat)
+    (controlledXModel : MinimumAncillaModel controlledXMinimumAncillas)
+    (eqTwoReduction : EqTwoAncillaReductionBound
+      controlledXMinimumAncillas incrementAncillas decrementAncillas)
+    (inverseSameAncillas : ∀ k,
+      decrementAncillas k = incrementAncillas k)
+    (minimumMonotone : ∀ k,
+      incrementAncillas k ≤ incrementAncillas (k + 1))
+    (minimumLeConstruction : ∀ n,
+      incrementAncillas n ≤ constructedAncillas n)
+    (constructionAtMostOne : ∀ n,
+      constructedAncillas n ≤ 1) :
+    AncillaOptimalitySandwich constructedAncillas incrementAncillas := by
+  have lower := transferred_incrementer_lower_bound_from_parity
+    controlledXMinimumAncillas incrementAncillas decrementAncillas
+    controlledXModel eqTwoReduction inverseSameAncillas minimumMonotone
+  exact ancilla_optimality_closure
+    constructedAncillas incrementAncillas
+    minimumLeConstruction constructionAtMostOne lower
 
 /-- In the source lower-bound regime, both minimum and construction ancillary
 counts are exactly one. -/
