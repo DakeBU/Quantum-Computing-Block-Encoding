@@ -13,7 +13,8 @@ provides the lossless bridge
 
 with the low `a` wires first and the high `b` wires second.  Besides the type
 isomorphism, the module records the corresponding little-endian arithmetic:
-combining low value `x` and high value `y` produces `x + 2^a y`.
+combining low value `x` and high value `y` produces `x + 2^a y`, whose remainder
+modulo `2^a` is `x` and quotient by `2^a` is `y`.
 
 The construction is pure register infrastructure and is intended to be shared
 by promise gates, arithmetic State Preparation, and Block Encoding signal/system
@@ -103,6 +104,28 @@ theorem primitiveBasisLEEquiv_combineBasis_value
     ring
   rw [lowPart, highPart]
 
+/-- The low register is exactly the remainder modulo its register size. -/
+theorem primitiveBasisLEEquiv_combineBasis_mod_low
+    (a b : Nat) (state : PrimitiveBasis a × PrimitiveBasis b) :
+    (primitiveBasisLEEquiv (a + b) (combineBasis a b state)).val %
+        gridSize a =
+      (primitiveBasisLEEquiv a state.1).val := by
+  rw [primitiveBasisLEEquiv_combineBasis_value]
+  rw [Nat.add_mul_mod_self_left]
+  exact Nat.mod_eq_of_lt (primitiveBasisLEEquiv a state.1).isLt
+
+/-- The high register is exactly the quotient by the low-register size. -/
+theorem primitiveBasisLEEquiv_combineBasis_div_low
+    (a b : Nat) (state : PrimitiveBasis a × PrimitiveBasis b) :
+    (primitiveBasisLEEquiv (a + b) (combineBasis a b state)).val /
+        gridSize a =
+      (primitiveBasisLEEquiv b state.2).val := by
+  rw [primitiveBasisLEEquiv_combineBasis_value]
+  have sizePos : 0 < gridSize a := Nat.pow_pos (by decide)
+  rw [Nat.add_mul_div_left _ _ sizePos]
+  rw [Nat.div_eq_of_lt (primitiveBasisLEEquiv a state.1).isLt]
+  simp
+
 /-- Splitting after combination returns the original logical registers. -/
 theorem splitBasis_combineBasis
     (a b : Nat) (state : PrimitiveBasis a × PrimitiveBasis b) :
@@ -143,6 +166,22 @@ theorem primitiveBasisLEEquiv_splitBasis_recomposition
           (primitiveBasisLEEquiv b (splitBasis a b state).2).val := by
   rw [← combineBasis_splitBasis a b state]
   exact primitiveBasisLEEquiv_combineBasis_value a b (splitBasis a b state)
+
+/-- The low split register is the flat integer remainder. -/
+theorem primitiveBasisLEEquiv_splitBasis_low_mod
+    (a b : Nat) (state : PrimitiveBasis (a + b)) :
+    (primitiveBasisLEEquiv (a + b) state).val % gridSize a =
+      (primitiveBasisLEEquiv a (splitBasis a b state).1).val := by
+  rw [← combineBasis_splitBasis a b state]
+  exact primitiveBasisLEEquiv_combineBasis_mod_low a b (splitBasis a b state)
+
+/-- The high split register is the flat integer quotient. -/
+theorem primitiveBasisLEEquiv_splitBasis_high_div
+    (a b : Nat) (state : PrimitiveBasis (a + b)) :
+    (primitiveBasisLEEquiv (a + b) state).val / gridSize a =
+      (primitiveBasisLEEquiv b (splitBasis a b state).2).val := by
+  rw [← combineBasis_splitBasis a b state]
+  exact primitiveBasisLEEquiv_combineBasis_div_low a b (splitBasis a b state)
 
 /-- Canonical low/high register equivalence. -/
 def basisSplitEquiv (a b : Nat) :
