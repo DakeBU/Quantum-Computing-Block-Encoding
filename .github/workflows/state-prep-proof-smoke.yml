@@ -6,6 +6,7 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
@@ -36,6 +37,7 @@ on:
       - "QuantumBlockEncoding/Circuit.lean"
       - "QuantumBlockEncoding/Resources.lean"
       - "QuantumBlockEncoding/ComparatorIncrementer.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
@@ -68,6 +70,7 @@ jobs:
       - name: Compile reversible arithmetic and interval-tree routes
         run: |
           lake build QuantumBlockEncoding.ComparatorIncrementer
+          lake build QuantumBlockEncoding.ComparatorIncrementerControlledConjugation
           lake build QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
