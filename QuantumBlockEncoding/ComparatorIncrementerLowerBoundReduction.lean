@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.ComparatorIncrementerEq40ControlInvariant
+import QuantumBlockEncoding.VandaeleLemma1Contract
 import Mathlib.Tactic
 
 /-!
@@ -13,16 +14,18 @@ cancel. If it was all ones, the full increment carries into the high bit and
 the low decrement restores the all-ones controls. Hence exactly the target bit
 is toggled on the all-ones control branch.
 
-This file proves that reduction identity exactly and then records the resource
-transfer that any gate-model lower bound may use.  The quantitative lower bound
-itself (Omega(k) gates / Omega(log k) depth for C^k X over bounded-size gates) is
-an external source theorem and remains a separate cited-result obligation.
+This file proves that reduction identity exactly and records the conditional
+resource transfer in one fixed gate model.  The quantitative lower bound for
+`C^k X` itself remains the external/source result represented by
+`VandaeleLemma1Contract.BoundedGateLowerBoundTarget`; ASPBE does not manufacture
+that theorem here.
 -/
 
 namespace QuantumBlockEncoding
 namespace ComparatorIncrementerLowerBoundReduction
 
 open ComparatorIncrementerEq40ControlInvariant
+open VandaeleLemma1Contract
 
 /-- Maximum k-bit value, i.e. the all-ones control word. -/
 def maxWord (k : Nat) : Fin (gridSize k) :=
@@ -135,8 +138,7 @@ theorem eqTwoReduction_target
 /-! ## Conditional resource lower-bound transfer -/
 
 /-- Resource statement justified by Equation (2) once concrete increment and
-decrement implementations are supplied in one fixed gate model.  `lower` is a
-lower bound for every k-controlled-X implementation in that same model. -/
+decrement implementations are supplied in one fixed gate model. -/
 def EqTwoGateReductionBound
     (controlledXLower incrementGateCost decrementGateCost : Nat → Nat) : Prop :=
   ∀ k,
@@ -151,7 +153,7 @@ def EqTwoDepthReductionBound
       incrementDepth (k + 1) + decrementDepth k
 
 /-- If decrement is implemented by reversing the increment circuit, it has the
-same gate count.  Equation (2) then lower-bounds the sum of two adjacent
+same gate count. Equation (2) then lower-bounds the sum of two adjacent
 incrementer widths. -/
 theorem gate_lower_transfers_to_adjacent_incrementers
     (controlledXLower incrementGateCost decrementGateCost : Nat → Nat)
@@ -182,8 +184,7 @@ theorem depth_lower_transfers_to_adjacent_incrementers
   simpa [inverseSameDepth k] using reduction k
 
 /-- With monotonic minimum gate complexity, the adjacent-width inequality gives
-`L(k) <= 2*C(k+1)`.  This is the pointwise form used to transfer an Omega(k)
-controlled-X lower bound to incrementers. -/
+`L(k) <= 2*C(k+1)`. -/
 theorem gate_lower_transfers_of_monotone
     (controlledXLower incrementGateCost : Nat → Nat)
     (adjacent : ∀ k,
@@ -212,6 +213,79 @@ theorem depth_lower_transfers_of_monotone
   have source := adjacent k
   have order := monotone k
   omega
+
+/-- Explicit lower-bound target inherited by incrementers after the Equation-(2)
+reduction.  This formulation avoids division of natural-number constants:
+`k <= 2*C(k+1)` and `log2(k+1) <= 2*D(k+1)` are already uniform linear and
+logarithmic lower bounds up to a fixed factor. -/
+def IncrementerTransferredLowerBoundTarget
+    (incrementGateCost incrementDepth : Nat → Nat) : Prop :=
+  (∀ k, k ≤ 2 * incrementGateCost (k + 1)) ∧
+  (∀ k, Nat.log2 (k + 1) ≤ 2 * incrementDepth (k + 1))
+
+/-- The external bounded-gate lower bound for `C^k X`, the exact Equation-(2)
+resource reduction, circuit-reversal invariance, and monotonicity of *minimum*
+incrementer complexity together imply explicit linear/logarithmic incrementer
+lower bounds.
+
+The theorem is intentionally conditional on the gate-model quantities supplied
+by the caller.  In particular, it does not identify an arbitrary candidate
+circuit's cost with the minimum complexity. -/
+theorem transferred_incrementer_lower_bound
+    (controlledXGateLower controlledXDepthLower : Nat → Nat)
+    (incrementGateCost incrementDepth : Nat → Nat)
+    (decrementGateCost decrementDepth : Nat → Nat)
+    (externalLower :
+      BoundedGateLowerBoundTarget
+        controlledXGateLower controlledXDepthLower)
+    (gateReduction :
+      EqTwoGateReductionBound
+        controlledXGateLower incrementGateCost decrementGateCost)
+    (depthReduction :
+      EqTwoDepthReductionBound
+        controlledXDepthLower incrementDepth decrementDepth)
+    (inverseSameCost : ∀ k,
+      decrementGateCost k = incrementGateCost k)
+    (inverseSameDepth : ∀ k,
+      decrementDepth k = incrementDepth k)
+    (gateMonotone : ∀ k,
+      incrementGateCost k ≤ incrementGateCost (k + 1))
+    (depthMonotone : ∀ k,
+      incrementDepth k ≤ incrementDepth (k + 1)) :
+    IncrementerTransferredLowerBoundTarget
+      incrementGateCost incrementDepth := by
+  rcases externalLower with
+    ⟨⟨gateConstant, gatePositive, gateLower⟩,
+      ⟨depthConstant, depthPositive, depthLower⟩⟩
+  have adjacentGate :=
+    gate_lower_transfers_to_adjacent_incrementers
+      controlledXGateLower incrementGateCost decrementGateCost
+      gateReduction inverseSameCost
+  have adjacentDepth :=
+    depth_lower_transfers_to_adjacent_incrementers
+      controlledXDepthLower incrementDepth decrementDepth
+      depthReduction inverseSameDepth
+  have gateTransfer :=
+    gate_lower_transfers_of_monotone
+      controlledXGateLower incrementGateCost adjacentGate gateMonotone
+  have depthTransfer :=
+    depth_lower_transfers_of_monotone
+      controlledXDepthLower incrementDepth adjacentDepth depthMonotone
+  constructor
+  · intro k
+    have unitLe : 1 ≤ gateConstant := by omega
+    have scaled : k ≤ gateConstant * k := by
+      have := Nat.mul_le_mul_right k unitLe
+      simpa using this
+    exact scaled.trans ((gateLower k).trans (gateTransfer k))
+  · intro k
+    have unitLe : 1 ≤ depthConstant := by omega
+    have scaled :
+        Nat.log2 (k + 1) ≤
+          depthConstant * Nat.log2 (k + 1) := by
+      have := Nat.mul_le_mul_right (Nat.log2 (k + 1)) unitLe
+      simpa using this
+    exact scaled.trans ((depthLower k).trans (depthTransfer k))
 
 end ComparatorIncrementerLowerBoundReduction
 end QuantumBlockEncoding
