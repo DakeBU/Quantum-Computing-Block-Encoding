@@ -105,7 +105,7 @@ theorem gate_recurrence_linear_upper
             2 * cost n ≤
               2 * ((baseConstant + 2 * localConstant) * (n + 1)) :=
           doubled.trans rhsBound
-        exact Nat.le_of_mul_le_mul_left doubledFinal (by decide)
+        omega
 
 /-- Pack the same statement using the recurrence interface from the previous
 layer. -/
