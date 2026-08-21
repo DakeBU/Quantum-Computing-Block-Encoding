@@ -46,6 +46,12 @@ def basisWidthEquiv {a b : Nat} (equal : a = b) :
     basisWidthEquiv (rfl : a = a) state = state := by
   rfl
 
+@[simp] theorem basisWidthEquiv_symm
+    {a b : Nat} (equal : a = b) :
+    (basisWidthEquiv equal).symm = basisWidthEquiv equal.symm := by
+  subst b
+  rfl
+
 /-- Width transport commutes exactly with the canonical modular incrementer. -/
 theorem basisWidthEquiv_increment
     {a b : Nat} (equal : a = b) (state : PrimitiveBasis a) :
@@ -127,14 +133,12 @@ def eq38LemmaSevenBasisEquiv
         (lemmaSevenBorrowedDirtyWire n large)).trans
       (eq38LemmaSevenStateEquiv k n).symm)
 
-/-- The output target obtained from a split pair is the public n-bit modular
-increment.  This isolates the only dependent-width transport in the proof. -/
+/-- The only dependent-width transport required by the active branch. -/
 theorem eq38_active_target_transport
     (n : Nat)
     (lowState : PrimitiveBasis (eq38LowWidth n))
     (highState : PrimitiveBasis (eq38HighWidth n)) :
-    let splitInput :=
-      (lowState, highState)
+    let splitInput := (lowState, highState)
     let combinedInput :=
       combineBasis (eq38LowWidth n) (eq38HighWidth n) splitInput
     let incrementedPair :=
@@ -145,18 +149,11 @@ theorem eq38_active_target_transport
       basisModularIncrementEquiv n
         ((eq38TargetSplitEquiv n).symm splitInput) := by
   dsimp
-  unfold eq38TargetSplitEquiv
-  simp only [Equiv.trans_symm, Equiv.trans_apply, Equiv.symm_apply_apply]
   have commute := basisWidthEquiv_increment
     (eq38_width_partition n)
-    (basisModularIncrementEquiv
-      (eq38LowWidth n + eq38HighWidth n) |>.symm
-      ((basisSplitEquiv (eq38LowWidth n) (eq38HighWidth n)).symm
-        (lowState, highState)))
-  -- The explicit term above is only a transport witness; simplify the split
-  -- inverses before using the width-congruence commuting theorem.
-  simp only [Equiv.symm_apply_apply] at commute
-  exact commute
+    (combineBasis (eq38LowWidth n) (eq38HighWidth n)
+      (lowState, highState))
+  simpa [eq38TargetSplitEquiv, basisWidthEquiv_symm] using commute
 
 /-- Strong action theorem for arbitrary promise contents. -/
 theorem eq38LemmaSevenBasis_action
@@ -195,7 +192,11 @@ theorem eq38LemmaSevenBasis_action
       (eq38LowWidth n) (eq38HighWidth n)
       (lemmaSevenBorrowedDirtyWire n large)
       controls split.1 promise split.2
+    dsimp at whole
     rw [eq38BorrowedPromise_action, if_pos external] at whole
+    simp [wholeWordControlledIncrementEquiv,
+      PredicateControlledConjugation.predicateControlledTargetEquiv,
+      external] at whole
     have pairEq :
         (basisModularIncrementEquiv (eq38LowWidth n) split.1,
           if allControlsActive split.1 = true then
@@ -209,8 +210,8 @@ theorem eq38LemmaSevenBasis_action
       simpa using whole
     rw [pairEq]
     have transported := eq38_active_target_transport n split.1 split.2
-    have reconstruct : (eq38TargetSplitEquiv n).symm split = target := by
-      exact (eq38TargetSplitEquiv n).symm_apply_apply target
+    have reconstruct : (eq38TargetSplitEquiv n).symm split = target :=
+      (eq38TargetSplitEquiv n).symm_apply_apply target
     rw [transported, reconstruct]
   · rw [if_neg external]
     rw [eq38LemmaSevenStateEquiv_symm_apply]
@@ -238,14 +239,10 @@ theorem eq38LemmaSevenBasis_correct
     LemmaSevenBasisSpec k n (eq38LemmaSevenBasisEquiv k n large) := by
   constructor
   · intro controls target inactive
-    rw [eq38LemmaSevenBasis_action]
-    rw [inactive]
-    rfl
+    simp [eq38LemmaSevenBasis_action, inactive]
   · constructor
     · intro controls target active
-      rw [eq38LemmaSevenBasis_action]
-      rw [active]
-      rfl
+      simp [eq38LemmaSevenBasis_action, active]
     · intro controls promise target
       exact eq38LemmaSevenBasis_restores
         k n large controls promise target
