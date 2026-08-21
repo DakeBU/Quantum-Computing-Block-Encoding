@@ -100,8 +100,11 @@ def allXFlatEquiv (n : Nat) :
 theorem allXFlatEquiv_involutive (n : Nat) :
     Function.Involutive (allXFlatEquiv n) := by
   intro index
-  apply (primitiveBasisLEEquiv n).injective
-  simp [allXFlatEquiv, allXBasisEquiv, allXBasisAction]
+  apply Fin.ext
+  simp only [allXFlatEquiv_value]
+  have indexBound := index.isLt
+  have sizePos : 0 < gridSize n := Nat.pow_pos (by decide)
+  omega
 
 end ComparatorIncrementerAllX
 end QuantumBlockEncoding
