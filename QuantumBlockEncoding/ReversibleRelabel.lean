@@ -230,9 +230,9 @@ theorem touches_relabelGate_exists
     ∃ source : Fin q, gate.touches source ∧ wireMap source = wire := by
   cases gate with
   | x target =>
-      refine ⟨target, ?_, ?_⟩
-      · simp [ReversibleGate.touches]
-      · simpa [relabelGate, ReversibleGate.touches] using touched.symm
+      have hit : wire = wireMap target := by
+        simpa [relabelGate, ReversibleGate.touches] using touched
+      exact ⟨target, by simp [ReversibleGate.touches], hit.symm⟩
   | cx control target distinct =>
       simp only [relabelGate, ReversibleGate.touches] at touched
       rcases touched with hit | hit
