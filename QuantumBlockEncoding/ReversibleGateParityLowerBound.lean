@@ -1,3 +1,4 @@
+import QuantumBlockEncoding.PrimitiveBasisRegisterSplit
 import QuantumBlockEncoding.ReversibleGateUnusedWireParity
 import QuantumBlockEncoding.ReversibleSchedule
 import QuantumBlockEncoding.VandaeleParityCore
@@ -8,9 +9,9 @@ import Mathlib.Tactic
 # Evenness of X/CX/CCX circuits on at least four qubits
 
 Each logical gate in ASPBE's reversible IR touches at most three physical
-qubits.  Therefore on a register with at least four qubits every gate has one
-unused spectator wire.  `ReversibleGateUnusedWireParity` shows that any gate
-with such a spectator is even.  Multiplicativity of permutation sign then makes
+qubits. Therefore on a register with at least four qubits every gate has one
+unused spectator wire. `ReversibleGateUnusedWireParity` shows that any gate
+with such a spectator is even. Multiplicativity of permutation sign then makes
 every X/CX/CCX circuit even.
 
 Combining this with `VandaeleParityCore.multiControlledX_sign = -1` gives the
@@ -21,8 +22,10 @@ be implemented ancilla-free over {X,CX,CCX}.
 namespace QuantumBlockEncoding
 namespace ReversibleGateParityLowerBound
 
+open PrimitiveBasisRegisterSplit
 open ReversibleGateUnusedWireParity
 open VandaeleParityCore
+open VandaeleLemma1Contract
 
 /-- Finite set of wires touched by one logical reversible gate. -/
 def touchedFinset {q : Nat} (gate : ReversibleGate q) : Finset (Fin q) :=
@@ -74,12 +77,6 @@ theorem gate_sign_eq_one
   rcases exists_unused_wire large gate with ⟨spectator, unused⟩
   exact sign_eq_one_of_unused gate spectator unused
 
-/-- Empty reversible program has positive sign. -/
-@[simp] theorem empty_program_sign
-    {q : Nat} :
-    Equiv.Perm.sign (evalReversibleProgram ([] : ReversibleProgram q)) = 1 := by
-  rfl
-
 /-- Any finite X/CX/CCX program on q>=4 wires is even. -/
 theorem program_sign_eq_one
     {q : Nat} (large : 4 ≤ q)
@@ -95,51 +92,54 @@ theorem program_sign_eq_one
       rw [gate_sign_eq_one large gate, induction]
       simp
 
-/-- An ancilla-free X/CX/CCX program cannot realize C^k X once k>=3.  The data
-register has q=k+1>=4 wires, so every such program is even whereas the target
-permutation is one transposition and hence odd. -/
+/-- The unique one-bit basis is canonically Fin 2. -/
+def oneBitEquiv : PrimitiveBasis 1 ≃ Fin 2 where
+  toFun state := state ⟨0, by decide⟩
+  invFun bit := fun _ => bit
+  left_inv state := by
+    funext wire
+    fin_cases wire
+    rfl
+  right_inv bit := rfl
+
+/-- Flat `(k+1)`-wire basis identified with k controls and one target bit. -/
+def flatControlTargetEquiv (k : Nat) :
+    PrimitiveBasis (k + 1) ≃ PrimitiveBasis k × Fin 2 :=
+  (basisSplitEquiv k 1).trans
+    (Equiv.prodCongr (Equiv.refl (PrimitiveBasis k)) oneBitEquiv)
+
+/-- Canonical flat-register C^k X target obtained by transporting Definition 2.1
+through the register equivalence. -/
+def flatMultiControlledXEquiv (k : Nat) :
+    Equiv.Perm (PrimitiveBasis (k + 1)) :=
+  (flatControlTargetEquiv k).symm.permCongr (multiControlledXEquiv k)
+
+/-- Flat transport does not change the odd sign of C^k X. -/
+theorem flatMultiControlledX_sign (k : Nat) :
+    Equiv.Perm.sign (flatMultiControlledXEquiv k) = -1 := by
+  unfold flatMultiControlledXEquiv
+  rw [Equiv.Perm.sign_permCongr]
+  exact multiControlledX_sign k
+
+/-- An ancilla-free X/CX/CCX program cannot realize C^k X once k>=3. -/
 theorem no_ancilla_program_for_multiControlledX
     {k : Nat} (large : 3 ≤ k)
     (program : ReversibleProgram (k + 1)) :
-    evalReversibleProgram program ≠
-      -- Product-layout C^k X transported to the canonical (k+1)-wire basis.
-      ((PrimitiveBasisRegisterSplit.basisSplitEquiv k 1).trans
-        ((Equiv.prodCongr (Equiv.refl (PrimitiveBasis k))
-          VandaeleQuantumAdderTarget.oneBitEquiv).trans
-          ((VandaeleLemma1Contract.multiControlledXEquiv k).trans
-            (Equiv.prodCongr (Equiv.refl (PrimitiveBasis k))
-              VandaeleQuantumAdderTarget.oneBitEquiv.symm)))).trans
-        (PrimitiveBasisRegisterSplit.basisSplitEquiv k 1).symm := by
+    evalReversibleProgram program ≠ flatMultiControlledXEquiv k := by
   intro equal
   have qLarge : 4 ≤ k + 1 := by omega
   have evenProgram := program_sign_eq_one qLarge program
-  have targetSign :
-      Equiv.Perm.sign
-        (((PrimitiveBasisRegisterSplit.basisSplitEquiv k 1).trans
-          ((Equiv.prodCongr (Equiv.refl (PrimitiveBasis k))
-            VandaeleQuantumAdderTarget.oneBitEquiv).trans
-            ((VandaeleLemma1Contract.multiControlledXEquiv k).trans
-              (Equiv.prodCongr (Equiv.refl (PrimitiveBasis k))
-                VandaeleQuantumAdderTarget.oneBitEquiv.symm)))).trans
-          (PrimitiveBasisRegisterSplit.basisSplitEquiv k 1).symm) = -1 := by
-    -- Sign is invariant under conjugation by the register equivalence.
-    have source := VandaeleParityCore.multiControlledX_sign k
-    simpa using
-      Equiv.Perm.sign_eq_sign_of_equiv
-        (VandaeleLemma1Contract.multiControlledXEquiv k)
-        (((PrimitiveBasisRegisterSplit.basisSplitEquiv k 1).trans
-          ((Equiv.prodCongr (Equiv.refl (PrimitiveBasis k))
-            VandaeleQuantumAdderTarget.oneBitEquiv).trans
-            ((VandaeleLemma1Contract.multiControlledXEquiv k).trans
-              (Equiv.prodCongr (Equiv.refl (PrimitiveBasis k))
-                VandaeleQuantumAdderTarget.oneBitEquiv.symm)))).trans
-          (PrimitiveBasisRegisterSplit.basisSplitEquiv k 1).symm)
-        ((PrimitiveBasisRegisterSplit.basisSplitEquiv k 1).trans
-          (Equiv.prodCongr (Equiv.refl (PrimitiveBasis k))
-            VandaeleQuantumAdderTarget.oneBitEquiv))
-        (by intro state; rfl)
-  rw [equal, targetSign] at evenProgram
+  rw [equal, flatMultiControlledX_sign] at evenProgram
   norm_num at evenProgram
+
+/-- Source-facing existence form of the parity obstruction: no ancilla-free
+reversible program exists for k>=3. -/
+theorem no_ancilla_exists
+    {k : Nat} (large : 3 ≤ k) :
+    ¬ ∃ program : ReversibleProgram (k + 1),
+      evalReversibleProgram program = flatMultiControlledXEquiv k := by
+  rintro ⟨program, correct⟩
+  exact no_ancilla_program_for_multiControlledX large program correct
 
 end ReversibleGateParityLowerBound
 end QuantumBlockEncoding
