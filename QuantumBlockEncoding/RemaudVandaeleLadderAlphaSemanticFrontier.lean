@@ -19,8 +19,9 @@ proof frontier:
 * generic schedule and depth-one layer semantics;
 * the stagewise semantic reduction toward Equation (7).
 
-Once this frontier is green, later source-semantics lemmas can be added below
-this node without re-opening the already closed combinatorial/resource layers.
+The admission PR is rerun whenever a foundational MCX source node changes, so a
+green frontier certifies the current transitive source chain rather than a stale
+cached branch state.
 -/
 
 namespace QuantumBlockEncoding
