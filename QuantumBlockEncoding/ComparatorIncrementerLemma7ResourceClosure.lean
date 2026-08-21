@@ -77,8 +77,8 @@ theorem halfLog_le_lemmaSevenLog (controls n : Nat) :
     exact Nat.log_mono_right valueBound
   omega
 
-/-- The Eq.-(37) joint logarithmic scale is definitionally the Lemma-7 scale up
-to commutativity of multiplication. -/
+/-- The Eq.-(37) joint logarithmic scale is the Lemma-7 scale up to
+commutativity of multiplication. -/
 theorem eq37Log_le_lemmaSevenLog (controls n : Nat) :
     jointLogScale n controls ≤
       Nat.log2 ((controls + 1) * (n + 1)) + 1 := by
@@ -111,15 +111,14 @@ theorem lemmaSeven_uniform_resource_closure
       multiXGateCount multiXDepth multiXDirtyAncillas
       fanoutResources multiXResources with
     ⟨eq37GateConstant, eq37DepthConstant, eq37Bounds⟩
-  refine ⟨4 * halfGateConstant + 2 * eq37GateConstant, ?_⟩
   constructor
-  · intro controls n
+  · refine ⟨4 * halfGateConstant + 2 * eq37GateConstant, ?_⟩
+    intro controls n
     have half := halfBounds (ceilHalf n)
     have eq37 := eq37Bounds n controls
     have halfWidth : ceilHalf n + 1 ≤ controls + n + 1 := by
       unfold ceilHalf
       omega
-    have eq37Width : n + controls + 1 = controls + n + 1 := by omega
     have halfGlobal :
         halfGateCount (ceilHalf n) ≤
           halfGateConstant * (controls + n + 1) :=
@@ -127,7 +126,7 @@ theorem lemmaSeven_uniform_resource_closure
     have eq37Global :
         eq37GateEnvelope fanoutGateCount multiXGateCount n controls ≤
           eq37GateConstant * (controls + n + 1) := by
-      simpa [eq37Width] using eq37.1
+      simpa [Nat.add_comm, Nat.add_left_comm, Nat.add_assoc] using eq37.1
     unfold lemmaSevenGateEnvelope
     calc
       4 * halfGateCount (ceilHalf n) +
