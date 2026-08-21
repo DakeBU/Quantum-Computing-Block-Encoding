@@ -1,3 +1,6 @@
+import QuantumBlockEncoding.MultiControlledXSchedule
+import QuantumBlockEncoding.NieZiSunFigure3RecursiveFamily
+import QuantumBlockEncoding.NieZiSunFigure3Resource
 import QuantumBlockEncoding.PromiseGateCircuitIdentities
 import QuantumBlockEncoding.PromiseGatePermutationMatrixBridge
 import QuantumBlockEncoding.PromiseGateReversibleComposition
@@ -5,6 +8,11 @@ import QuantumBlockEncoding.PromiseGateUnitary
 import QuantumBlockEncoding.PromiseGateUnitaryMux
 import QuantumBlockEncoding.ReversibleProgramGateLowerBound
 import QuantumBlockEncoding.RemaudVandaeleLadder1Family
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaContract
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterLayers
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveParameters
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaResource
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedRegister
 import QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
 import QuantumBlockEncoding.StrongPromiseComputeUseUncompute
 import QuantumBlockEncoding.VandaeleCorollary1ResourceClosure
@@ -39,25 +47,33 @@ import QuantumBlockEncoding.VandaeleTheorem1SemanticClosure
 
 Thin aggregation module for the reusable structural core of
 arXiv:2603.12917. It introduces no new mathematical statement. The imported
-nodes keep the source proof graph inspectable:
+nodes keep the source proof graph inspectable and now include the upstream
+constructions actually used by the 2026 paper.
 
 * Definitions 3.1/3.2 at the general matrix/unitary level, including the QMUX
   constructor and the exact embedding of reversible promise permutations;
-* Equations (10)-(12) plus reusable weak/strong promise composition in the
-  reversible specialization;
-* Definition 2.1 / Lemma 1 multi-controlled X, including two internal lower
-  bounds in the concrete `{X,CX,CCX}` model: `k <= 3 * gateCount` and the parity
-  proof that k>=3 cannot be implemented ancilla-free;
+* Equations (10)-(12) plus reusable weak/strong promise composition;
+* Definition 2.1 / Lemma 1 multi-controlled X, including internal gate-count
+  and ancilla lower bounds in the concrete reversible model;
+* Nie--Zi--Sun 2024 Figure 3 traced upstream: conditional-clean five-step
+  semantics, odd/even physical register split, recursively constructed
+  first-half permutation, complete clean-ancilla n-Toffoli semantic family, and
+  a direct proof that its source recurrence closes to O(log n) depth/O(n) size.
+  Its remaining physical realization leaf is explicitly over Nie's B2 gate set,
+  not silently identified with `{X,CX,CCX}`;
 * Definition 2.2 / Lemma 2 fan-out, including an actual first-order n-CCX
   gate-level baseline tied to the source semantics;
 * Definition 2.3 ladder semantics and its source-certified gate ordering;
-* Lemma 3 first-order CX ladder: besides the simple reverse-CX semantic
-  baseline, the upstream Remaud--Vandaele 2025 Algorithm 1 has now been traced
-  to its source pseudocode and represented by one recursive proof-bearing
-  schedule whose correctness and O(n)/O(log n) resource bounds feed the
-  Vandaele Lemma-3 family interface;
-* Lemma 4 Appendix-A.1 transformation and Equation (58), plus an actual
-  reverse-CCX strong-promise baseline with exact linear count/depth;
+* Lemma 3 first-order CX ladder: the upstream Remaud--Vandaele 2025 Algorithm 1
+  is now represented by one recursive proof-bearing scheduled circuit whose
+  correctness and O(n)/O(log n) resource bounds inhabit the Vandaele family;
+* Lemma 4 upstream trace is active rather than a black-box citation:
+  Remaud--Vandaele Definition 6 `L_alpha`, an arbitrary-MCX source IR,
+  Algorithm-2 outer MCX walls, exact k-recursion resource closure, alpha-prime
+  reindex arithmetic, and the ordered physical recursive register X' are all
+  branch proof nodes. The remaining leaf is to prove target-rank=alpha-prime,
+  recursively assemble the complete Algorithm-2 MCX schedule, and then apply
+  Vandaele Appendix-A.1's already-formalized Eq.(58) transformation;
 * Corollary 1 general ladder resource closure;
 * Corollary 2 direct `{CCX,CX,X}` specialization of Theorem 1;
 * Corollary 4 strong-promise ladder interpretation;
@@ -68,14 +84,8 @@ nodes keep the source proof graph inspectable:
 The reversible promise-gate layer is explicitly a specialization of the
 paper's arbitrary-unitary definitions rather than a parallel notion. The
 ancilla lower bound and a constant-factor linear gate lower bound of Lemma 1 are
-now internal to the repository's reversible gate model; the source's more
-general bounded-gate-set theorem and logarithmic depth lower bound remain cited.
-For Lemma 3 the previously external logarithmic-depth schedule is no longer a
-black-box citation: the relevant Remaud--Vandaele Algorithm-1 construction is
-now a branch proof dependency.  Lemma 4 still has an upstream Algorithm-2/MCX
-source leaf that is being traced separately.
-
-Comparator, incrementer, quantum-adder, and classical-adder formalization spines
-may depend on this single shared module without hiding the underlying leaf
-theorems.
+internal to the repository's reversible gate model; the source's more general
+bounded-gate-set theorem and logarithmic depth lower bound remain separately
+identified. Upstream source tracing never changes gate models without an
+explicit realization theorem.
 -/
