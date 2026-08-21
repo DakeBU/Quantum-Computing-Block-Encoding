@@ -52,12 +52,13 @@ theorem gateAction_control
     (state : PrimitiveBasis q)
     (control : Fin q) (member : control ∈ gate.controls) :
     gateAction gate state control = state control := by
-  by_cases h : active gate state
-  · simp [gateAction, h, xBasisAction]
+  have different : control ≠ gate.target := by
     intro equal
-    subst control
-    exact gate.target_not_control member
-  · simp [gateAction, h]
+    apply gate.target_not_control
+    simpa [equal] using member
+  by_cases enabled : active gate state
+  · simp [gateAction, enabled, xBasisAction, different]
+  · simp [gateAction, enabled]
 
 /-- Therefore the activation predicate is invariant under the gate itself. -/
 theorem active_gateAction_iff
@@ -79,14 +80,19 @@ theorem active_gateAction_iff
 theorem gateAction_involutive
     {q : Nat} (gate : MCXGate q) : Function.Involutive (gateAction gate) := by
   intro state
-  by_cases h : active gate state
-  · have h' : active gate (gateAction gate state) :=
-      (active_gateAction_iff gate state).2 h
-    simp [gateAction, h, h', xBasisAction_involutive]
-  · have h' : ¬ active gate (gateAction gate state) := by
-      intro after
-      exact h ((active_gateAction_iff gate state).1 after)
-    simp [gateAction, h, h']
+  by_cases enabled : active gate state
+  · have first : gateAction gate state = xBasisAction gate.target state := by
+      simp [gateAction, enabled]
+    have enabledAfterX : active gate (xBasisAction gate.target state) := by
+      rw [← first]
+      exact (active_gateAction_iff gate state).2 enabled
+    calc
+      gateAction gate (gateAction gate state) =
+          gateAction gate (xBasisAction gate.target state) := by rw [first]
+      _ = xBasisAction gate.target (xBasisAction gate.target state) := by
+          simp [gateAction, enabledAfterX]
+      _ = state := xBasisAction_involutive gate.target state
+  · simp [gateAction, enabled]
 
 /-- Exact basis permutation of one arbitrary MCX. -/
 def gateEquiv {q : Nat} (gate : MCXGate q) : Equiv.Perm (PrimitiveBasis q) where
