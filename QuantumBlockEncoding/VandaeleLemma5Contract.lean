@@ -6,13 +6,17 @@ import Mathlib.Tactic
 
 Lemma 5 considers a layer `U = ⊗ᵢ Uᵢ` of n independent involutory gates and
 shows that its k-controlled version admits O(n+k) gate count and
-O(log n + log k) depth without ancillas.  The source proof uses the dirty-flag
+O(log n + log k) depth without ancillas. The source proof uses the dirty-flag
 identity, splits the independent gates into two subsets, and combines fan-out
 with two C^k X gates (Equations (13)-(14)).
 
-This file fixes the exact product-register semantics and the quantitative target.
-The actual Equation (13)/(14) circuit is still a construction obligation; no
-resource claim is postulated.
+This file fixes the exact product-register semantics and distinguishes:
+
+* an explicit finite-instance resource inequality with named constants;
+* the genuine uniform asymptotic family target, where the constants are chosen
+  once and must work for every n and k.
+
+The latter distinction prevents a vacuous per-instance interpretation of Big-O.
 -/
 
 namespace QuantumBlockEncoding
@@ -76,19 +80,46 @@ theorem controlledProduct_action
     simp [controlledProductEquiv, predicateControlledTargetEquiv,
       productEquiv, productAction, condition]
 
-/-- Totalized source resource target for Lemma 5. -/
-def LemmaFiveResourceTarget
-    (n controls gateCount depth ancillas : Nat) : Prop :=
-  (∃ constant : Nat,
-    gateCount ≤ constant * (n + controls + 1)) ∧
-  (∃ constant : Nat,
-    depth ≤ constant *
-      ((Nat.log2 (n + 1) + 1) +
-        (Nat.log2 (controls + 1) + 1))) ∧
+/-- Totalized logarithmic scale in the source depth statement. -/
+def depthScale (n controls : Nat) : Nat :=
+  (Nat.log2 (n + 1) + 1) + (Nat.log2 (controls + 1) + 1)
+
+/-- Non-asymptotic evidence for one concrete instance. The constants are stored
+explicitly rather than existentially hidden inside the proposition. -/
+def LemmaFiveInstanceResourceBound
+    (n controls gateCount depth ancillas
+      gateConstant depthConstant : Nat) : Prop :=
+  gateCount ≤ gateConstant * (n + controls + 1) ∧
+  depth ≤ depthConstant * depthScale n controls ∧
   ancillas = 0
 
-/-- Completion record for a concrete Equation (13)/(14) realization. -/
-structure LemmaFiveCertificate
+/-- Genuine uniform O(n+k), O(log n + log k), zero-ancilla target.
+The constants are chosen before n and k and therefore have real asymptotic
+content. -/
+def LemmaFiveUniformResourceTarget
+    (gateCount depth ancillas : Nat → Nat → Nat) : Prop :=
+  ∃ gateConstant depthConstant : Nat,
+    ∀ n controls,
+      gateCount n controls ≤ gateConstant * (n + controls + 1) ∧
+      depth n controls ≤ depthConstant * depthScale n controls ∧
+      ancillas n controls = 0
+
+/-- A uniform target immediately yields an explicit bound for every finite
+instance using the same constants. -/
+theorem uniformResourceTarget_instance
+    (gateCount depth ancillas : Nat → Nat → Nat)
+    (uniform : LemmaFiveUniformResourceTarget gateCount depth ancillas) :
+    ∃ gateConstant depthConstant : Nat,
+      ∀ n controls,
+        LemmaFiveInstanceResourceBound
+          n controls (gateCount n controls) (depth n controls)
+          (ancillas n controls) gateConstant depthConstant := by
+  rcases uniform with ⟨gateConstant, depthConstant, bound⟩
+  exact ⟨gateConstant, depthConstant, bound⟩
+
+/-- Completion record for one concrete Equation (13)/(14) realization.
+This is a finite certificate, not by itself the asymptotic Lemma 5 theorem. -/
+structure LemmaFiveInstanceCertificate
     {κ α : Type*} {n : Nat}
     (active : κ → Bool)
     (gates : Fin n → Equiv.Perm α) where
@@ -97,10 +128,14 @@ structure LemmaFiveCertificate
   gateCount : Nat
   depth : Nat
   ancillas : Nat
+  gateConstant : Nat
+  depthConstant : Nat
   semanticCorrectness :
     implementation = controlledProductEquiv active gates
   resources :
-    LemmaFiveResourceTarget n controlCount gateCount depth ancillas
+    LemmaFiveInstanceResourceBound
+      n controlCount gateCount depth ancillas
+      gateConstant depthConstant
 
 end VandaeleLemma5Contract
 end QuantumBlockEncoding
