@@ -54,9 +54,8 @@ theorem selectedWire_le_end
   have intervalMember := (List.mem_filter.mp selectedMember).1
   unfold intervalList at intervalMember
   rw [List.mem_map] at intervalMember
-  rcases intervalMember with ⟨offset, offsetMember, wireEq⟩
-  have offsetLt : offset.val < selectedRangeLength plan large := by
-    simpa using (List.mem_finRange.mp offsetMember)
+  rcases intervalMember with ⟨offset, _offsetMember, wireEq⟩
+  have offsetLt : offset.val < selectedRangeLength plan large := offset.isLt
   have startEnd := selectedStart_le_end plan large
   have values := congrArg Fin.val wireEq
   simp [intervalWire] at values
