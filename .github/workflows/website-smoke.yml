@@ -49,9 +49,11 @@ jobs:
             website/scripts/publish_paper_pages.py \
             website/scripts/publish_taxonomy.py \
             website/scripts/finalize_taxonomy_navigation.py \
+            website/scripts/test_lean_graph_metrics.py \
             website/scripts/test_casebook_enrichment.py \
             website/scripts/test_casebook_polish.py
           python3 -m unittest \
+            website.scripts.test_lean_graph_metrics \
             website.scripts.test_casebook_enrichment \
             website.scripts.test_casebook_polish
           python3 website/scripts/publish_taxonomy.py --check-data
