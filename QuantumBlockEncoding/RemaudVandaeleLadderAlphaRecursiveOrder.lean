@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveParameters
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedRegister
 import Mathlib.Tactic
 
 /-!
@@ -15,6 +16,7 @@ namespace QuantumBlockEncoding
 namespace RemaudVandaeleLadderAlphaRecursiveOrder
 
 open RemaudVandaeleLadderAlphaRecursiveParameters
+open RemaudVandaeleLadderAlphaSelectedRegister
 
 /-- Original source indices selected by Algorithm 2 are strictly increasing. -/
 theorem recursiveOriginalTargetIndex_strict
@@ -81,10 +83,10 @@ physical recursive-end source index. -/
 theorem recursiveEnd_eq_last
     (m : Nat) (large : 3 ≤ m + 1)
     (nonempty : 0 < recursiveTargetCount m) :
-    RemaudVandaeleLadderAlphaSelectedRegister.recursiveEndOriginalIndex m large =
+    recursiveEndOriginalIndex m large =
       recursiveOriginalTargetIndex m large
         ⟨recursiveTargetCount m - 1, by omega⟩ := by
-  unfold RemaudVandaeleLadderAlphaSelectedRegister.recursiveEndOriginalIndex
+  unfold recursiveEndOriginalIndex
   simp [Nat.ne_of_gt nonempty]
 
 /-- Every recursive source target is no later than the end source target. -/
@@ -92,7 +94,7 @@ theorem recursiveOriginalTargetIndex_le_end
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
     (recursiveOriginalTargetIndex m large j).val ≤
-      (RemaudVandaeleLadderAlphaSelectedRegister.recursiveEndOriginalIndex m large).val := by
+      (recursiveEndOriginalIndex m large).val := by
   have nonempty : 0 < recursiveTargetCount m := Nat.zero_lt_of_lt j.isLt
   rw [recursiveEnd_eq_last m large nonempty]
   let last : Fin (recursiveTargetCount m) :=
@@ -113,7 +115,7 @@ theorem odd_recursiveTarget_eq_end
     (j : Fin (recursiveTargetCount m))
     (odd : (recursiveOriginalTargetIndex m large j).val % 2 = 1) :
     recursiveOriginalTargetIndex m large j =
-      RemaudVandaeleLadderAlphaSelectedRegister.recursiveEndOriginalIndex m large := by
+      recursiveEndOriginalIndex m large := by
   have special := odd_originalIndex_is_special m large j odd
   have last := special.2
   have nonempty : 0 < recursiveTargetCount m := Nat.zero_lt_of_lt j.isLt
