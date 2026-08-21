@@ -13,12 +13,12 @@ strong-promise ladder machinery, while slices 2 and 4 are handled by the
 independent-involution / Lemma-5 machinery.
 
 This module closes the global semantic step without assuming how any individual
-replacement is implemented.  If each replacement permutation is proved equal
+replacement is implemented. If each replacement permutation is proved equal
 to the predicate-controlled source slice, then their chronological composition
 is exactly the predicate-controlled original Gidney incrementer.
 
 Thus later gate-level work is local: prove four slice refinements and their
-resource bounds.  The overall controlled-increment correctness will not need to
+resource bounds. The overall controlled-increment correctness will not need to
 be re-proved from scratch.
 -/
 
@@ -131,6 +131,7 @@ theorem correctness
             (predicateControlledTargetEquiv allControlsActive source2)).trans
             (predicateControlledTargetEquiv allControlsActive source3)).trans
             (predicateControlledTargetEquiv allControlsActive source4) := by
+      unfold implementation
       rw [replacement.slice1.refinement]
       rw [replacement.slice2.refinement]
       rw [replacement.slice3.refinement]
