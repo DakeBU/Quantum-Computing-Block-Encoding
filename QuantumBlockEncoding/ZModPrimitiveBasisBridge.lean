@@ -143,11 +143,8 @@ theorem basisAllX_increment_inverse (n : Nat) :
   apply Equiv.ext
   intro state
   apply (basisModularIncrementEquiv n).injective
-  change
-    basisModularIncrementEquiv n
-        (allXBasisEquiv n
-          (basisModularIncrementEquiv n
-            (allXBasisEquiv n state))) = state
+  simp only [Equiv.trans_apply]
+  rw [Equiv.apply_symm_apply]
   apply (primitiveBasisLEEquiv n).injective
   apply Fin.ext
   have firstAllX := primitiveBasisLEEquiv_allX_value n state
