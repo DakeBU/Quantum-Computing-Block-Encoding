@@ -23,6 +23,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7ResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean"
@@ -98,6 +99,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7ResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean"
@@ -149,7 +151,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-      - name: Set up Lean and Mathlib cache
+      - name: Set up Lean and fetch the Mathlib cache
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -198,6 +200,7 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7FlatContract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7PromiseBudget
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7SingleControlResourceClosure
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7ResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Contract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Budget
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8PromiseCleanliness
