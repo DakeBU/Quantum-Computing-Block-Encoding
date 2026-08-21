@@ -28,6 +28,7 @@ open ComparatorIncrementerEq40ControlInvariant
 open ComparatorIncrementerGeneral
 open ComparatorIncrementerLemma7Contract
 open ComparatorIncrementerLemma7Eq38CleanProtocol
+open ComparatorIncrementerLemma7Eq38Semantics
 open PredicateControlledConjugation
 open PrimitiveBasisRegisterSplit
 open ZModPrimitiveBasisBridge
@@ -104,12 +105,14 @@ theorem combined_low_overflow_iff_allOnes
       ((combinedIndex low high lowState highState).val + 1) % gridSize low =
         ((primitiveBasisLEEquiv low lowState).val + 1) % gridSize low := by
     rw [Nat.add_mod, Nat.add_mod, lowMod]
+    rw [Nat.mod_eq_of_lt (primitiveBasisLEEquiv low lowState).isLt]
   rw [Nat.dvd_iff_mod_eq_zero, successorMod]
   have maxIff :
       ((primitiveBasisLEEquiv low lowState).val + 1) % gridSize low = 0 ↔
         (primitiveBasisLEEquiv low lowState).val = gridSize low - 1 := by
     have lowIndex := primitiveBasisLEEquiv low lowState
-    exact successor_divisible_iff_max low lowIndex
+    simpa [Nat.dvd_iff_mod_eq_zero] using
+      (successor_divisible_iff_max low lowIndex)
   exact maxIff.trans (allControlsActive_iff_value_max low lowState).symm
 
 /-- Low successor in the numerical split is exactly the value of the actual
@@ -127,6 +130,7 @@ theorem incrementLowValue_combined
       ((combinedIndex low high lowState highState).val + 1) % gridSize low =
         ((primitiveBasisLEEquiv low lowState).val + 1) % gridSize low := by
     rw [Nat.add_mod, Nat.add_mod, lowMod]
+    rw [Nat.mod_eq_of_lt (primitiveBasisLEEquiv low lowState).isLt]
   have increment := basisModularIncrement_satisfies_spec low lowState
   unfold IncrementerSpec basisNat at increment
   unfold incrementLowValue
@@ -209,21 +213,47 @@ theorem eq38CleanProtocol_matches_wholeWord
   rw [eq38CleanProtocol_action]
   by_cases external : allControlsActive controls = true
   · rw [if_pos external]
-    simp [wholeWordControlledIncrementEquiv,
-      predicateControlledTargetEquiv, external]
-    apply (primitiveBasisLEEquiv (low + high)).injective
-    apply Fin.ext
-    rw [primitiveBasisLEEquiv_combineBasis_value]
-    rw [incrementLowValue_combined low high lowState highState]
-    rw [incrementHighValue_combined low high lowState highState]
-    have recomposition := increment_eq_low_plus_high
-      low high (combinedIndex low high lowState highState)
-    have targetIncrement :=
-      basisModularIncrement_satisfies_spec (low + high)
-        (combineBasis low high (lowState, highState))
-    unfold IncrementerSpec basisNat at targetIncrement
-    rw [targetIncrement]
-    exact recomposition.symm
+    by_cases carry : allControlsActive lowState = true
+    · rw [if_pos carry]
+      simp [wholeWordControlledIncrementEquiv,
+        predicateControlledTargetEquiv, external]
+      apply (primitiveBasisLEEquiv (low + high)).injective
+      apply Fin.ext
+      rw [primitiveBasisLEEquiv_combineBasis_value]
+      have lowEq := incrementLowValue_combined
+        low high lowState highState
+      have highEq := incrementHighValue_combined
+        low high lowState highState
+      rw [if_pos carry] at highEq
+      rw [← lowEq, ← highEq]
+      have recomposition := increment_eq_low_plus_high
+        low high (combinedIndex low high lowState highState)
+      have targetIncrement :=
+        basisModularIncrement_satisfies_spec (low + high)
+          (combineBasis low high (lowState, highState))
+      unfold IncrementerSpec basisNat at targetIncrement
+      rw [targetIncrement]
+      simpa [combinedIndex] using recomposition.symm
+    · rw [if_neg carry]
+      simp [wholeWordControlledIncrementEquiv,
+        predicateControlledTargetEquiv, external]
+      apply (primitiveBasisLEEquiv (low + high)).injective
+      apply Fin.ext
+      rw [primitiveBasisLEEquiv_combineBasis_value]
+      have lowEq := incrementLowValue_combined
+        low high lowState highState
+      have highEq := incrementHighValue_combined
+        low high lowState highState
+      rw [if_neg carry] at highEq
+      rw [← lowEq, ← highEq]
+      have recomposition := increment_eq_low_plus_high
+        low high (combinedIndex low high lowState highState)
+      have targetIncrement :=
+        basisModularIncrement_satisfies_spec (low + high)
+          (combineBasis low high (lowState, highState))
+      unfold IncrementerSpec basisNat at targetIncrement
+      rw [targetIncrement]
+      simpa [combinedIndex] using recomposition.symm
   · rw [if_neg external]
     simp [wholeWordControlledIncrementEquiv,
       predicateControlledTargetEquiv, external]
@@ -242,9 +272,10 @@ theorem eq38HalfSplit_matches_semantic_target
         (controls,
           combineBasis (eq38LowWidth n) (eq38HighWidth n)
             (lowState, highState))).2 := by
-  exact eq38CleanProtocol_matches_wholeWord
-    k (eq38LowWidth n) (eq38HighWidth n)
-    controls lowState highState
+  simpa [eq38SemanticEquiv, wholeWordControlledIncrementEquiv] using
+    (eq38CleanProtocol_matches_wholeWord
+      k (eq38LowWidth n) (eq38HighWidth n)
+      controls lowState highState)
 
 end ComparatorIncrementerLemma7Eq38Bridge
 end QuantumBlockEncoding
