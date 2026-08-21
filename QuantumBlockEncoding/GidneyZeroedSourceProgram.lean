@@ -1,6 +1,7 @@
 import QuantumBlockEncoding.ComparatorIncrementerGeneral
 import QuantumBlockEncoding.PrimitiveBasisRegisterSplit
 import QuantumBlockEncoding.ReversibleProgramInverse
+import QuantumBlockEncoding.ReversibleSchedule
 import Mathlib.Tactic
 
 /-!
@@ -21,10 +22,10 @@ exact `{CCX,CX,X}` gates:
    restore `carry_j`;
 3. finish with `CX(x_0 -> x_1)` and `X(x_0)`.
 
-The arbitrary-width induction is the next proof layer. This file already gives
-an executable source family and exact finite certificates for the six-bit
-Figure-8 benchmark: clean workspace produces modular increment, while arbitrary
-workspace contents are restored exactly.
+The list generators are structural recursions, so gate-count and later semantic
+inductions follow the same source decomposition.  A conservative sequential
+schedule is attached to the exact list; low-depth Vandaele replacements may
+later improve the schedule without changing this source semantics.
 -/
 
 namespace QuantumBlockEncoding
@@ -125,10 +126,20 @@ def computeCarryGate (carryCount : Nat) (j : Fin carryCount) :
         intro equal
         exact targetWire_ne_workspaceWire carryCount sourceBit j equal)
 
-/-- Ascending carry computation. -/
+/-- Structural recursion producing the ascending compute gates with indices
+`start, ..., start+count-1`. -/
+def computeCarryProgramFrom (carryCount : Nat) :
+    (start count : Nat) → start + count ≤ carryCount →
+      ReversibleProgram (flatWidth carryCount)
+  | _, 0, _ => []
+  | start, count + 1, bound =>
+      computeCarryGate carryCount ⟨start, by omega⟩ ::
+        computeCarryProgramFrom carryCount (start + 1) count (by omega)
+
+/-- Complete ascending carry computation. -/
 def computeCarryProgram (carryCount : Nat) :
     ReversibleProgram (flatWidth carryCount) :=
-  List.ofFn (computeCarryGate carryCount)
+  computeCarryProgramFrom carryCount 0 carryCount (by omega)
 
 /-- Consume one computed carry to update the corresponding target bit, then
 immediately repeat its compute gate so that this workspace bit is restored
@@ -146,11 +157,19 @@ def consumeAndUncomputePair (carryCount : Nat) (j : Fin carryCount) :
     computeCarryGate carryCount j
   ]
 
-/-- Descending consume/uncompute sweep. -/
+/-- Structural descending sweep over workspace indices `count-1,...,0`. -/
+def descendingSweepProgramFrom (carryCount : Nat) :
+    (count : Nat) → count ≤ carryCount →
+      ReversibleProgram (flatWidth carryCount)
+  | 0, _ => []
+  | count + 1, bound =>
+      consumeAndUncomputePair carryCount ⟨count, by omega⟩ ++
+        descendingSweepProgramFrom carryCount count (by omega)
+
+/-- Complete descending consume/uncompute sweep. -/
 def descendingSweepProgram (carryCount : Nat) :
     ReversibleProgram (flatWidth carryCount) :=
-  ((List.ofFn (fun j : Fin carryCount =>
-      consumeAndUncomputePair carryCount j)).reverse).flatten
+  descendingSweepProgramFrom carryCount carryCount (by omega)
 
 /-- Final updates of the two lowest target bits. -/
 def lowBitProgram (carryCount : Nat) :
@@ -173,6 +192,74 @@ def sourceProgram (carryCount : Nat) :
   computeCarryProgram carryCount ++
     descendingSweepProgram carryCount ++
     lowBitProgram carryCount
+
+/-- Length of one recursive ascending prefix. -/
+theorem computeCarryProgramFrom_length
+    (carryCount start count : Nat)
+    (bound : start + count ≤ carryCount) :
+    (computeCarryProgramFrom carryCount start count bound).length = count := by
+  induction count generalizing start with
+  | zero =>
+      rfl
+  | succ count induction =>
+      simp [computeCarryProgramFrom,
+        induction (start := start + 1)]
+
+@[simp] theorem computeCarryProgram_length (carryCount : Nat) :
+    (computeCarryProgram carryCount).length = carryCount := by
+  unfold computeCarryProgram
+  exact computeCarryProgramFrom_length carryCount 0 carryCount (by omega)
+
+@[simp] theorem consumeAndUncomputePair_length
+    (carryCount : Nat) (j : Fin carryCount) :
+    (consumeAndUncomputePair carryCount j).length = 2 := by
+  rfl
+
+/-- Length of one recursive descending prefix. -/
+theorem descendingSweepProgramFrom_length
+    (carryCount count : Nat) (bound : count ≤ carryCount) :
+    (descendingSweepProgramFrom carryCount count bound).length = 2 * count := by
+  induction count with
+  | zero =>
+      rfl
+  | succ count induction =>
+      simp [descendingSweepProgramFrom, induction]
+      ring
+
+@[simp] theorem descendingSweepProgram_length (carryCount : Nat) :
+    (descendingSweepProgram carryCount).length = 2 * carryCount := by
+  unfold descendingSweepProgram
+  exact descendingSweepProgramFrom_length carryCount carryCount (by omega)
+
+@[simp] theorem lowBitProgram_length (carryCount : Nat) :
+    (lowBitProgram carryCount).length = 2 := by
+  rfl
+
+/-- Exact arbitrary-width logical gate count of the serial source program. -/
+theorem sourceProgram_length (carryCount : Nat) :
+    (sourceProgram carryCount).length = 3 * carryCount + 2 := by
+  simp [sourceProgram]
+  ring
+
+/-- Conservative proof-bearing schedule of the exact source gate list. -/
+def sourceScheduled (carryCount : Nat) :
+    ScheduledReversibleProgram (flatWidth carryCount) :=
+  ScheduledReversibleProgram.sequential (sourceProgram carryCount)
+
+@[simp] theorem sourceScheduled_program (carryCount : Nat) :
+    (sourceScheduled carryCount).program = sourceProgram carryCount := by
+  simp [sourceScheduled]
+
+@[simp] theorem sourceScheduled_gateCount (carryCount : Nat) :
+    (sourceScheduled carryCount).gateCount = 3 * carryCount + 2 := by
+  simp [sourceScheduled, sourceProgram_length]
+
+/-- The conservative source schedule has one gate per layer; Figure-9
+replacement is responsible for lowering this depth without changing the source
+semantics. -/
+@[simp] theorem sourceScheduled_depth (carryCount : Nat) :
+    (sourceScheduled carryCount).depth = 3 * carryCount + 2 := by
+  simp [sourceScheduled, sourceProgram_length]
 
 /-- Canonical target/workspace view of the flat source register. -/
 def registerEquiv (carryCount : Nat) :
@@ -221,7 +308,7 @@ theorem figureEightSixBit_restores_arbitrary_workspace :
 /-- The six-bit source program has the expected linear-size finite gate count. -/
 theorem figureEightSixBit_gateCount :
     (sourceProgram figureEightCarryCount).length = 14 := by
-  native_decide
+  simpa using sourceProgram_length figureEightCarryCount
 
 end GidneyZeroedSourceProgram
 end QuantumBlockEncoding
