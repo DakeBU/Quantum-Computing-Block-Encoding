@@ -57,7 +57,9 @@ theorem sourceFanoutAction_involutive (k n : Nat) :
   · funext index
     apply Prod.ext
     · rfl
-    · simp [sourceFanoutAction, toggleBit_involutive]
+    · simpa [sourceFanoutAction] using
+        toggleBit_involutive
+          (fanoutActive global (blocks index).1) (blocks index).2
 
 /-- Exact basis permutation corresponding to Vandaele `F_k^(n)`. -/
 def sourceFanoutEquiv (k n : Nat) :
@@ -86,13 +88,13 @@ theorem sourceFanout_preserves_global
 /-- Every local control word is preserved exactly. -/
 theorem sourceFanout_preserves_local
     (k n : Nat) (state : FanoutState k n) (index : Fin n) :
-    (sourceFanoutEquiv k n state).2 index |>.1 = state.2 index |>.1 := by
+    ((sourceFanoutEquiv k n state).2 index).1 = (state.2 index).1 := by
   rfl
 
 /-- Exact target equation from Definition 2.2. -/
 theorem sourceFanout_target
     (k n : Nat) (state : FanoutState k n) (index : Fin n) :
-    (sourceFanoutEquiv k n state).2 index |>.2 =
+    ((sourceFanoutEquiv k n state).2 index).2 =
       toggleBit
         (fanoutActive state.1 (state.2 index).1)
         (state.2 index).2 := by
@@ -107,7 +109,7 @@ theorem sourceFanout_global_zero
   · funext index
     apply Prod.ext
     · rfl
-    · simp [sourceFanoutEquiv, sourceFanoutAction, fanoutActive]
+    · simp [sourceFanoutEquiv, sourceFanoutAction, fanoutActive, toggleBit]
 
 /-- Empty local-control register used by the order-zero specialization. -/
 def emptyLocalControls : PrimitiveBasis 0 :=
@@ -116,7 +118,8 @@ def emptyLocalControls : PrimitiveBasis 0 :=
 /-- For k=0 the empty local conjunction is true, so the fan-out reduces to one
 single pivot/global control toggling every target. -/
 @[simp] theorem fanoutActive_zero_order (global : Fin 2) :
-    fanoutActive global emptyLocalControls = (global = 1) := by
+    fanoutActive global emptyLocalControls =
+      (if global = 1 then true else false) := by
   fin_cases global <;> simp [fanoutActive, emptyLocalControls]
 
 /-- Pack plain target bits into the k=0 source register. -/
@@ -129,7 +132,7 @@ single-control fan-out semantics. -/
 theorem sourceFanout_zero_order_target
     (n : Nat) (global : Fin 2) (targets : Fin n → Fin 2)
     (index : Fin n) :
-    (sourceFanoutEquiv 0 n (global, zeroOrderBlocks targets)).2 index |>.2 =
+    ((sourceFanoutEquiv 0 n (global, zeroOrderBlocks targets)).2 index).2 =
       if global = 1 then flipBit (targets index) else targets index := by
   fin_cases global <;>
     simp [sourceFanoutEquiv, sourceFanoutAction, zeroOrderBlocks,
