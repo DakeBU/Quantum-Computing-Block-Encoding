@@ -82,13 +82,14 @@ theorem localWire_lt_targetWire
   simp only
   omega
 
-/-- The next block begins immediately after the current target. -/
+/-- For positive order, the next block begins immediately after the current
+target. -/
 theorem next_block_local_start
-    (order blocks : Nat) (block : Fin blocks)
-    (next : block.val + 1 < blocks) :
+    (order blocks : Nat) (positiveOrder : 0 < order)
+    (block : Fin blocks) (next : block.val + 1 < blocks) :
     (localWire order blocks
       ⟨block.val + 1, next⟩
-      ⟨0, by omega⟩).val =
+      ⟨0, positiveOrder⟩).val =
       (targetWire order blocks block).val + 1 := by
   simp [localWire, targetWire]
   ring
