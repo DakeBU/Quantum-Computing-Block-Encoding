@@ -69,63 +69,69 @@ theorem flatProduct_target
     (flatProductCoordinate n state).2.2 = state ⟨n+1, by omega⟩ := by
   rfl
 
-/-- Physical left child view is `(leftTail,I2,I1)`. -/
+/-- Physical left child view, converted through its own flat-product coordinate,
+is exactly `(leftTail,I2,I1)`. -/
+theorem coordinate_read_leftEmbed
+    (n : Nat) (large : 5 <= n)
+    (state : PrimitiveBasis (totalWidth n)) :
+    flatProductCoordinate (leftTailWidth n)
+      (readEmbeddedState (leftEmbed n large) state) =
+      let parts := flatFigure3Coordinate n large state
+      (parts.2.1,parts.1 1,parts.1 0) := by
+  apply Prod.ext
+  · funext wire
+    simp [flatProductCoordinate, readEmbeddedState, leftEmbed,
+      flatFigure3Coordinate, fullCoordinate, splitControls, leftWire,
+      headWire]
+  · apply Prod.ext
+    · simp [flatProductCoordinate, readEmbeddedState, leftEmbed,
+        flatFigure3Coordinate, fullCoordinate, splitControls, headWire]
+    · simp [flatProductCoordinate, readEmbeddedState, leftEmbed,
+        flatFigure3Coordinate, fullCoordinate, splitControls, headWire]
+
+/-- Equivalent raw-flat statement for the left child. -/
 theorem read_leftEmbed
     (n : Nat) (large : 5 <= n)
     (state : PrimitiveBasis (totalWidth n)) :
     readEmbeddedState (leftEmbed n large) state =
-      let parts := flatFigure3Coordinate n large state
-      (parts.2.1,parts.1 1,parts.1 0) := by
-  funext wire
-  unfold readEmbeddedState leftEmbed flatFigure3Coordinate
-  by_cases control : wire.val < leftTailWidth n
-  · simp [control, flatProductCoordinate, fullCoordinate,
-      splitControls, leftWire, headWire]
-  · by_cases work : wire.val = leftTailWidth n
-    · have wireEq : wire = ⟨leftTailWidth n, by omega⟩ := by
-        apply Fin.ext
-        exact work
-      subst wire
-      simp [control, work, flatProductCoordinate, fullCoordinate,
-        splitControls, headWire]
-    · have target : wire.val = leftTailWidth n + 1 := by
-        have bound := wire.isLt
-        omega
-      have wireEq : wire = ⟨leftTailWidth n + 1, by omega⟩ := by
-        apply Fin.ext
-        exact target
-      subst wire
-      simp [control, work, flatProductCoordinate, fullCoordinate,
-        splitControls, headWire]
+      (flatProductCoordinate (leftTailWidth n)).symm
+        (let parts := flatFigure3Coordinate n large state
+         (parts.2.1,parts.1 1,parts.1 0)) := by
+  apply (flatProductCoordinate (leftTailWidth n)).injective
+  rw [Equiv.apply_symm_apply]
+  exact coordinate_read_leftEmbed n large state
 
-/-- Physical right child view is `(rightTail,I4,I3)`. -/
+/-- Physical right child view, in its local flat-product coordinate, is exactly
+`(rightTail,I4,I3)`. -/
+theorem coordinate_read_rightEmbed
+    (n : Nat) (large : 5 <= n)
+    (state : PrimitiveBasis (totalWidth n)) :
+    flatProductCoordinate (rightTailWidth n)
+      (readEmbeddedState (rightEmbed n large) state) =
+      let parts := flatFigure3Coordinate n large state
+      (parts.2.2.1,parts.1 3,parts.1 2) := by
+  apply Prod.ext
+  · funext wire
+    simp [flatProductCoordinate, readEmbeddedState, rightEmbed,
+      flatFigure3Coordinate, fullCoordinate, splitControls, rightWire,
+      headWire]
+  · apply Prod.ext
+    · simp [flatProductCoordinate, readEmbeddedState, rightEmbed,
+        flatFigure3Coordinate, fullCoordinate, splitControls, headWire]
+    · simp [flatProductCoordinate, readEmbeddedState, rightEmbed,
+        flatFigure3Coordinate, fullCoordinate, splitControls, headWire]
+
+/-- Equivalent raw-flat statement for the right child. -/
 theorem read_rightEmbed
     (n : Nat) (large : 5 <= n)
     (state : PrimitiveBasis (totalWidth n)) :
     readEmbeddedState (rightEmbed n large) state =
-      let parts := flatFigure3Coordinate n large state
-      (parts.2.2.1,parts.1 3,parts.1 2) := by
-  funext wire
-  unfold readEmbeddedState rightEmbed flatFigure3Coordinate
-  by_cases control : wire.val < rightTailWidth n
-  · simp [control, flatProductCoordinate, fullCoordinate,
-      splitControls, rightWire, headWire]
-  · by_cases work : wire.val = rightTailWidth n
-    · have wireEq : wire = ⟨rightTailWidth n, by omega⟩ := by
-        apply Fin.ext
-        exact work
-      subst wire
-      simp [control, work, flatProductCoordinate, fullCoordinate,
-        splitControls, headWire]
-    · have target : wire.val = rightTailWidth n + 1 := by
-        have bound := wire.isLt
-        omega
-      have wireEq : wire = ⟨rightTailWidth n + 1, by omega⟩ := by
-        apply Fin.ext
-        exact target
-      subst wire
-      simp [control, work, flatProductCoordinate, fullCoordinate,
-        splitControls, headWire]
+      (flatProductCoordinate (rightTailWidth n)).symm
+        (let parts := flatFigure3Coordinate n large state
+         (parts.2.2.1,parts.1 3,parts.1 2)) := by
+  apply (flatProductCoordinate (rightTailWidth n)).injective
+  rw [Equiv.apply_symm_apply]
+  exact coordinate_read_rightEmbed n large state
 
 /-- The two physical child embeddings are disjoint. -/
 theorem childEmbeddings_disjoint
