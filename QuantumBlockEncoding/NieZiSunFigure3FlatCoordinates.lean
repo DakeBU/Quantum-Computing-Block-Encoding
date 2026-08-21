@@ -2,6 +2,7 @@ import QuantumBlockEncoding.NieZiSunControlSplit
 import QuantumBlockEncoding.NieZiSunFigure3RecursiveFamily
 import QuantumBlockEncoding.NieZiSunFigure3ReversibleProgram
 import QuantumBlockEncoding.PrimitiveBasisRegisterSplit
+import QuantumBlockEncoding.ReversibleDisjointEmbedding
 import QuantumBlockEncoding.ReversibleWireEmbedding
 import Mathlib.Tactic
 
