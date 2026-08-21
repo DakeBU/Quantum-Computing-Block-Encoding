@@ -147,30 +147,26 @@ theorem firstHalf_cleanTarget
     simp [firstHalfEquiv, step1Equiv, step2Equiv, step3Equiv,
       step3, notFull, headActive, ancillaZero]
 
-/-- Reader-facing recursive-half object extracted from one Figure-3 level. -/
+/-- Lift one Figure-3 level to the compact recursive-half interface through one
+canonical control-register equivalence. -/
 def asHalfComputation
-    {leftWidth rightWidth : Nat}
+    {leftWidth rightWidth totalWidth : Nat}
     (left : HalfComputation leftWidth)
     (right : HalfComputation rightWidth)
-    (pack :
-      (PrimitiveBasis leftWidth × PrimitiveBasis rightWidth × Head4) ≃
-        PrimitiveBasis (leftWidth + rightWidth + 4))
-    (unpack :
-      PrimitiveBasis (leftWidth + rightWidth + 4) ≃
-        Head4 × PrimitiveBasis leftWidth × PrimitiveBasis rightWidth)
-    (coordinateRoundtrip : ∀ head leftGroup rightGroup,
-      unpack (pack (leftGroup,rightGroup,head)) =
-        (head,leftGroup,rightGroup)) :
-    HalfComputation (leftWidth + rightWidth + 4) where
+    (coordinate :
+      PrimitiveBasis totalWidth ≃
+        Head4 × PrimitiveBasis leftWidth × PrimitiveBasis rightWidth) :
+    HalfComputation totalWidth where
   forward :=
     let registerEquiv :
-        (PrimitiveBasis (leftWidth + rightWidth + 4) × Fin 2 × Fin 2) ≃
+        (PrimitiveBasis totalWidth × Fin 2 × Fin 2) ≃
           Figure3State leftWidth rightWidth :=
       { toFun := fun state =>
-          let decoded := unpack state.1
+          let decoded := coordinate state.1
           (decoded.1,decoded.2.1,decoded.2.2,state.2.1,state.2.2)
         invFun := fun state =>
-          (pack (state.2.1,state.2.2.1,state.1),state.2.2.2.1,state.2.2.2.2)
+          (coordinate.symm (state.1,state.2.1,state.2.2.1),
+            state.2.2.2.1,state.2.2.2.2)
         left_inv := by
           intro state
           rcases state with ⟨controls,work,target⟩
@@ -178,11 +174,11 @@ def asHalfComputation
         right_inv := by
           intro state
           rcases state with ⟨head,leftGroup,rightGroup,work,target⟩
-          simp [coordinateRoundtrip] }
+          simp }
     (registerEquiv.trans (firstHalfEquiv left right)).trans registerEquiv.symm
   cleanTarget := by
     intro controls
-    let decoded := unpack controls
+    let decoded := coordinate controls
     have source := firstHalf_cleanTarget left right
       decoded.1 decoded.2.1 decoded.2.2
     simpa using source
