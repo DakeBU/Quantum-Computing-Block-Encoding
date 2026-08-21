@@ -9,12 +9,15 @@ The parameterized comparator contracts specify input/output behavior but do not
 name one canonical permutation.  Source circuit refinements are cleaner when all
 implementations target the same object.
 
-This module constructs the computational-basis permutations directly:
+This module constructs three computational-basis permutations directly:
 
-* quantum-quantum: preserve both n-bit inputs and toggle z iff a<b;
-* classical-quantum: preserve the n-bit input and toggle z iff a<constant.
+* quantum-quantum: preserve both n-bit inputs and toggle z iff `a<b`;
+* Vandaele classical-quantum (Equation 29): preserve the n-bit quantum address
+  and toggle z iff `constant<a`;
+* generic ASPBE threshold oracle: preserve the address and toggle z iff
+  `address<constant`.
 
-The comparison predicates do not depend on the flag bit, so both actions are
+All comparison predicates are independent of the flag bit, so the actions are
 involutions.
 -/
 
@@ -128,28 +131,29 @@ theorem cqAddressValue_xFlag
     omega
   simp [xBasisAction, distinct]
 
-/-- Canonical classical-quantum comparator action. -/
+/-- Canonical Vandaele Equation-(29) classical-quantum comparator action:
+`constant < quantum address`. -/
 def classicalComparatorAction (n constant : Nat)
     (state : PrimitiveBasis (n + 1)) : PrimitiveBasis (n + 1) :=
-  if cqAddressValue n state < constant then
+  if constant < cqAddressValue n state then
     xBasisAction (cqFlagWire n) state
   else state
 
-/-- CQ action is self-inverse for the same flag-independence reason. -/
+/-- Source CQ action is self-inverse for the same flag-independence reason. -/
 theorem classicalComparatorAction_involutive (n constant : Nat) :
     Function.Involutive (classicalComparatorAction n constant) := by
   intro state
-  by_cases active : cqAddressValue n state < constant
+  by_cases active : constant < cqAddressValue n state
   · rw [classicalComparatorAction, if_pos active]
     have activeAfter :
-        cqAddressValue n (xBasisAction (cqFlagWire n) state) < constant := by
+        constant < cqAddressValue n (xBasisAction (cqFlagWire n) state) := by
       simpa [cqAddressValue_xFlag] using active
     rw [classicalComparatorAction, if_pos activeAfter]
     exact xBasisAction_involutive (cqFlagWire n) state
   · rw [classicalComparatorAction, if_neg active]
     rw [classicalComparatorAction, if_neg active]
 
-/-- Canonical CQ comparator permutation. -/
+/-- Canonical source CQ comparator permutation. -/
 def classicalComparatorEquiv (n constant : Nat) :
     Equiv.Perm (PrimitiveBasis (n + 1)) where
   toFun := classicalComparatorAction n constant
@@ -157,11 +161,11 @@ def classicalComparatorEquiv (n constant : Nat) :
   left_inv := classicalComparatorAction_involutive n constant
   right_inv := classicalComparatorAction_involutive n constant
 
-/-- Canonical CQ target satisfies the repository contract exactly. -/
+/-- Canonical source CQ target satisfies Equation-(29) contract exactly. -/
 theorem classicalComparatorEquiv_spec (n constant : Nat) :
     ClassicalComparatorSpec n constant (classicalComparatorEquiv n constant) := by
   intro state
-  by_cases active : cqAddressValue n state < constant
+  by_cases active : constant < cqAddressValue n state
   · constructor
     · intro wire
       have distinct : cqAddressWire n wire ≠ cqFlagWire n := by
@@ -177,6 +181,57 @@ theorem classicalComparatorEquiv_spec (n constant : Nat) :
     · intro wire
       simp [classicalComparatorEquiv, classicalComparatorAction, active]
     · simp [classicalComparatorEquiv, classicalComparatorAction, active]
+
+/-- Generic ASPBE `address < constant` threshold action retained separately from
+Vandaele's source direction. -/
+def addressBelowConstantAction (n constant : Nat)
+    (state : PrimitiveBasis (n + 1)) : PrimitiveBasis (n + 1) :=
+  if cqAddressValue n state < constant then
+    xBasisAction (cqFlagWire n) state
+  else state
+
+/-- Generic threshold action is also self-inverse. -/
+theorem addressBelowConstantAction_involutive (n constant : Nat) :
+    Function.Involutive (addressBelowConstantAction n constant) := by
+  intro state
+  by_cases active : cqAddressValue n state < constant
+  · rw [addressBelowConstantAction, if_pos active]
+    have activeAfter :
+        cqAddressValue n (xBasisAction (cqFlagWire n) state) < constant := by
+      simpa [cqAddressValue_xFlag] using active
+    rw [addressBelowConstantAction, if_pos activeAfter]
+    exact xBasisAction_involutive (cqFlagWire n) state
+  · rw [addressBelowConstantAction, if_neg active]
+    rw [addressBelowConstantAction, if_neg active]
+
+/-- Canonical generic threshold permutation. -/
+def addressBelowConstantEquiv (n constant : Nat) :
+    Equiv.Perm (PrimitiveBasis (n + 1)) where
+  toFun := addressBelowConstantAction n constant
+  invFun := addressBelowConstantAction n constant
+  left_inv := addressBelowConstantAction_involutive n constant
+  right_inv := addressBelowConstantAction_involutive n constant
+
+/-- Generic threshold target satisfies the dedicated ASPBE contract. -/
+theorem addressBelowConstantEquiv_spec (n constant : Nat) :
+    AddressBelowConstantSpec n constant (addressBelowConstantEquiv n constant) := by
+  intro state
+  by_cases active : cqAddressValue n state < constant
+  · constructor
+    · intro wire
+      have distinct : cqAddressWire n wire ≠ cqFlagWire n := by
+        intro equal
+        have values := congrArg Fin.val equal
+        simp [cqAddressWire, cqFlagWire] at values
+        omega
+      simp [addressBelowConstantEquiv, addressBelowConstantAction,
+        active, xBasisAction, distinct]
+    · simp [addressBelowConstantEquiv, addressBelowConstantAction,
+        active, xBasisAction]
+  · constructor
+    · intro wire
+      simp [addressBelowConstantEquiv, addressBelowConstantAction, active]
+    · simp [addressBelowConstantEquiv, addressBelowConstantAction, active]
 
 end ComparatorSemanticTargets
 end QuantumBlockEncoding
