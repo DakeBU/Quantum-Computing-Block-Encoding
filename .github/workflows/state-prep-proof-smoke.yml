@@ -21,11 +21,15 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7BasisContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38BasisImplementation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Bridge.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38CleanProtocol.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38DirtyProtocol.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7GidneyEmbedding.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseEmbedding.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7ResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
@@ -40,10 +44,15 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4GateBound.lean"
       - "QuantumBlockEncoding/ControlledStrongPromise.lean"
+      - "QuantumBlockEncoding/GidneyIncrementerProgramFamily.lean"
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
       - "QuantumBlockEncoding/PredicateControlledStrongPromise.lean"
       - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
+      - "QuantumBlockEncoding/PrimitivePromiseBorrow.lean"
+      - "QuantumBlockEncoding/ReversibleRelabel.lean"
       - "QuantumBlockEncoding/ReversibleSchedule.lean"
+      - "QuantumBlockEncoding/ReversibleWireEmbedding.lean"
+      - "QuantumBlockEncoding/ScheduledWireEmbedding.lean"
       - "QuantumBlockEncoding/VandaeleCorollary4ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLadderContract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
@@ -100,11 +109,15 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7BasisContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38BasisImplementation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Bridge.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38CleanProtocol.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38DirtyProtocol.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7GidneyEmbedding.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseEmbedding.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7ResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
@@ -119,10 +132,15 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4GateBound.lean"
       - "QuantumBlockEncoding/ControlledStrongPromise.lean"
+      - "QuantumBlockEncoding/GidneyIncrementerProgramFamily.lean"
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
       - "QuantumBlockEncoding/PredicateControlledStrongPromise.lean"
       - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
+      - "QuantumBlockEncoding/PrimitivePromiseBorrow.lean"
+      - "QuantumBlockEncoding/ReversibleRelabel.lean"
       - "QuantumBlockEncoding/ReversibleSchedule.lean"
+      - "QuantumBlockEncoding/ReversibleWireEmbedding.lean"
+      - "QuantumBlockEncoding/ScheduledWireEmbedding.lean"
       - "QuantumBlockEncoding/VandaeleCorollary4ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLadderContract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
@@ -171,7 +189,11 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerModularConjugation
           lake build QuantumBlockEncoding.ReversibleRegisterLift
           lake build QuantumBlockEncoding.PrimitiveBasisRegisterSplit
+          lake build QuantumBlockEncoding.PrimitivePromiseBorrow
           lake build QuantumBlockEncoding.ReversibleSchedule
+          lake build QuantumBlockEncoding.ReversibleWireEmbedding
+          lake build QuantumBlockEncoding.ScheduledWireEmbedding
+          lake build QuantumBlockEncoding.ReversibleRelabel
           lake build QuantumBlockEncoding.ComparatorIncrementerAllX
           lake build QuantumBlockEncoding.ComparatorIncrementerAllXResources
           lake build QuantumBlockEncoding.ComparatorIncrementerControlledAllX
@@ -206,7 +228,12 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38Semantics
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38CleanProtocol
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38Bridge
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38DirtyProtocol
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7PromiseEmbedding
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38BasisImplementation
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7FlatContract
+          lake build QuantumBlockEncoding.GidneyIncrementerProgramFamily
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7GidneyEmbedding
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7PromiseBudget
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7SingleControlResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7ResourceClosure
