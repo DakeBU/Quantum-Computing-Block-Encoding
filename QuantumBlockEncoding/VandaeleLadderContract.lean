@@ -5,16 +5,20 @@ import Mathlib.Tactic
 # Vandaele Definition 2.3: ladder operators
 
 Definition 2.3 introduces `L_k^(n)`, a ladder of n consecutive `C^k X` gates on
-`kn+1` qubits. Equation (5) has an important overlap structure: the target of
+`kn+1` qubits. Equation (5) has an essential overlap structure: the target of
 one ladder step is one of the controls of the next step.
 
 For positive order `k = localControls + 1`, ASPBE stores the register as one
 initial pivot plus n blocks, each containing `k-1` fresh controls and one target.
 The previous pivot/target supplies the remaining control.
 
-This file fixes the exact source action and distinguishes explicit finite
-resource inequalities from genuine uniform Lemma-3/Lemma-4/Corollary-1 family
-targets. Big-O constants are never re-chosen per fixed ladder instance.
+Crucially, the source ladder is **sequential**.  Step `i+1` reads the target
+produced by step `i`; it is not a pointwise simultaneous update of all targets.
+The implementation below therefore runs the block indices in chronological order
+and reads every activation predicate from the current state.
+
+The resource interfaces remain separated from this semantic contract. Big-O
+constants are never re-chosen per fixed ladder instance.
 -/
 
 namespace QuantumBlockEncoding
@@ -34,31 +38,49 @@ def previousPivot {localControls steps : Nat}
     (state : LadderState localControls steps)
     (index : Fin steps) : Fin 2 :=
   if first : index.val = 0 then state.1
-  else state.2 ⟨index.val - 1, by omega⟩ |>.2
+  else (state.2 ⟨index.val - 1, by omega⟩).2
 
 /-- All fresh controls in one block are active. -/
 def allLocalControlsOne {localControls : Nat}
     (controls : PrimitiveBasis localControls) : Prop :=
   ∀ wire, controls wire = 1
 
-/-- Exact activation condition for one `C^(localControls+1) X` ladder step. -/
+/-- Exact activation condition for one `C^(localControls+1) X` ladder step,
+read from the current state. -/
 def ladderActive {localControls steps : Nat}
     (state : LadderState localControls steps)
     (index : Fin steps) : Prop :=
   previousPivot state index = 1 ∧
     allLocalControlsOne (state.2 index).1
 
-/-- Equation (5) source action. The initial pivot and every fresh local control
-are preserved; each block target toggles by the conjunction of the previous
-pivot and its local controls. -/
+/-- Execute one chronological ladder gate.  Only the current block target is
+modified; the pivot and all fresh controls are preserved. -/
+def sourceLadderStep (localControls steps : Nat)
+    (index : Fin steps)
+    (state : LadderState localControls steps) :
+    LadderState localControls steps :=
+  if active : ladderActive state index then
+    (state.1,
+      Function.update state.2 index
+        ((state.2 index).1, flipBit (state.2 index).2))
+  else state
+
+/-- Run a supplied chronological list of ladder indices. -/
+def runLadderSteps {localControls steps : Nat}
+    (indices : List (Fin steps))
+    (state : LadderState localControls steps) :
+    LadderState localControls steps :=
+  match indices with
+  | [] => state
+  | index :: rest =>
+      runLadderSteps rest
+        (sourceLadderStep localControls steps index state)
+
+/-- Equation (5) source action: execute steps `0,1,...,steps-1` in order. -/
 def sourceLadderAction (localControls steps : Nat)
     (state : LadderState localControls steps) :
     LadderState localControls steps :=
-  (state.1, fun index =>
-    ((state.2 index).1,
-      if ladderActive state index then
-        flipBit (state.2 index).2
-      else (state.2 index).2))
+  runLadderSteps (List.finRange steps) state
 
 /-- Source-facing correctness proposition for a positive-order ladder
 implementation. -/
@@ -67,32 +89,96 @@ def LadderSpec (localControls steps : Nat)
   ∀ state, implementation state =
     sourceLadderAction localControls steps state
 
-/-- The source action preserves the initial pivot. -/
+/-- One source step preserves the initial pivot. -/
+theorem sourceLadderStep_preserves_initialPivot
+    (localControls steps : Nat) (index : Fin steps)
+    (state : LadderState localControls steps) :
+    (sourceLadderStep localControls steps index state).1 = state.1 := by
+  by_cases active : ladderActive state index <;>
+    simp [sourceLadderStep, active]
+
+/-- One source step preserves every fresh local-control word, including the
+controls inside the updated block. -/
+theorem sourceLadderStep_preserves_localControls
+    (localControls steps : Nat) (index query : Fin steps)
+    (state : LadderState localControls steps) :
+    ((sourceLadderStep localControls steps index state).2 query).1 =
+      (state.2 query).1 := by
+  by_cases active : ladderActive state index
+  · by_cases same : query = index
+    · subst query
+      simp [sourceLadderStep, active]
+    · simp [sourceLadderStep, active, Function.update_noteq same]
+  · simp [sourceLadderStep, active]
+
+/-- Exact target action of one chronological source step. -/
+theorem sourceLadderStep_target
+    (localControls steps : Nat) (index : Fin steps)
+    (state : LadderState localControls steps) :
+    ((sourceLadderStep localControls steps index state).2 index).2 =
+      (if ladderActive state index then
+        flipBit (state.2 index).2
+      else (state.2 index).2) := by
+  by_cases active : ladderActive state index <;>
+    simp [sourceLadderStep, active]
+
+/-- An arbitrary chronological sub-run preserves the initial pivot. -/
+theorem runLadderSteps_preserves_initialPivot
+    {localControls steps : Nat}
+    (indices : List (Fin steps))
+    (state : LadderState localControls steps) :
+    (runLadderSteps indices state).1 = state.1 := by
+  induction indices generalizing state with
+  | nil => rfl
+  | cons index rest induction =>
+      calc
+        (runLadderSteps (index :: rest) state).1 =
+            (runLadderSteps rest
+              (sourceLadderStep localControls steps index state)).1 := rfl
+        _ = (sourceLadderStep localControls steps index state).1 :=
+          induction (sourceLadderStep localControls steps index state)
+        _ = state.1 :=
+          sourceLadderStep_preserves_initialPivot
+            localControls steps index state
+
+/-- An arbitrary chronological sub-run preserves every fresh local control. -/
+theorem runLadderSteps_preserves_localControls
+    {localControls steps : Nat}
+    (indices : List (Fin steps))
+    (state : LadderState localControls steps)
+    (query : Fin steps) :
+    ((runLadderSteps indices state).2 query).1 =
+      (state.2 query).1 := by
+  induction indices generalizing state with
+  | nil => rfl
+  | cons index rest induction =>
+      calc
+        ((runLadderSteps (index :: rest) state).2 query).1 =
+            ((runLadderSteps rest
+              (sourceLadderStep localControls steps index state)).2 query).1 := rfl
+        _ = ((sourceLadderStep localControls steps index state).2 query).1 :=
+          induction (sourceLadderStep localControls steps index state)
+        _ = (state.2 query).1 :=
+          sourceLadderStep_preserves_localControls
+            localControls steps index query state
+
+/-- The complete source ladder preserves the initial pivot. -/
 theorem sourceLadder_preserves_initialPivot
     (localControls steps : Nat)
     (state : LadderState localControls steps) :
     (sourceLadderAction localControls steps state).1 = state.1 := by
-  rfl
+  exact runLadderSteps_preserves_initialPivot
+    (List.finRange steps) state
 
-/-- The source action preserves every fresh local-control word. -/
+/-- The complete source ladder preserves every fresh local-control word. -/
 theorem sourceLadder_preserves_localControls
     (localControls steps : Nat)
     (state : LadderState localControls steps)
     (index : Fin steps) :
     ((sourceLadderAction localControls steps state).2 index).1 =
       (state.2 index).1 := by
-  rfl
-
-/-- Exact target equation from Definition 2.3 / Equation (5). -/
-theorem sourceLadder_target
-    (localControls steps : Nat)
-    (state : LadderState localControls steps)
-    (index : Fin steps) :
-    ((sourceLadderAction localControls steps state).2 index).2 =
-      if ladderActive state index then
-        flipBit (state.2 index).2
-      else (state.2 index).2 := by
-  rfl
+  exact runLadderSteps_preserves_localControls
+    (List.finRange steps) state index
 
 /-- At the first ladder step, the initial `x_0` is the overlapping control. -/
 theorem previousPivot_first
@@ -102,7 +188,7 @@ theorem previousPivot_first
   simp [previousPivot]
 
 /-- For a nonfirst step, the preceding block target is exactly the overlapping
-source control `x_{k(i-1)}`. -/
+source control `x_{k(i-1)}` in the **current** state. -/
 theorem previousPivot_nonfirst
     {localControls steps : Nat}
     (state : LadderState localControls steps)
