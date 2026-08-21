@@ -5,6 +5,8 @@ on:
     branches:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
+      - "QuantumBlockEncoding/MultiControlledXSchedule.lean"
+      - "QuantumBlockEncoding/MultiControlledXEmbedding.lean"
       - "QuantumBlockEncoding/MultiControlledXScheduleSemantics.lean"
       - "QuantumBlockEncoding/MultiControlledXLayerSemantics.lean"
       - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
@@ -13,6 +15,8 @@ on:
     branches:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
+      - "QuantumBlockEncoding/MultiControlledXSchedule.lean"
+      - "QuantumBlockEncoding/MultiControlledXEmbedding.lean"
       - "QuantumBlockEncoding/MultiControlledXScheduleSemantics.lean"
       - "QuantumBlockEncoding/MultiControlledXLayerSemantics.lean"
       - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
@@ -42,6 +46,8 @@ jobs:
 
       - name: Compile generic MCX semantic bridge
         run: |
+          lake build QuantumBlockEncoding.MultiControlledXSchedule
+          lake build QuantumBlockEncoding.MultiControlledXEmbedding
           lake build QuantumBlockEncoding.MultiControlledXScheduleSemantics
           lake build QuantumBlockEncoding.MultiControlledXLayerSemantics
 
