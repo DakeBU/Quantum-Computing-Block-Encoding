@@ -1,3 +1,4 @@
+import QuantumBlockEncoding.PromiseGateCircuitIdentities
 import QuantumBlockEncoding.PromiseGatePermutationMatrixBridge
 import QuantumBlockEncoding.PromiseGateUnitary
 import QuantumBlockEncoding.PromiseGateUnitaryMux
@@ -37,6 +38,8 @@ nodes keep the source proof graph inspectable:
 
 * Definitions 3.1/3.2 at the general matrix/unitary level, including the QMUX
   constructor and the exact embedding of reversible promise permutations;
+* Equations (10)-(12) in the reversible specialization: clean-fibre
+  involutory cancellation, adjoint convention, and controlled-promise typing;
 * Definition 2.1 / Lemma 1 multi-controlled X;
 * Definition 2.3 ladder semantics and its source-certified gate ordering;
 * Lemma 3 first-order CX-ladder proof-bearing family interface plus an actual
@@ -51,7 +54,7 @@ nodes keep the source proof graph inspectable:
   involution upgrade.
 
 The reversible promise-gate layer is now explicitly a specialization of the
-paper's arbitrary-unitary definitions rather than a parallel notion.  The naive
+paper's arbitrary-unitary definitions rather than a parallel notion. The naive
 ladder programs remain semantic/gate baselines, not substitutes for the
 external [9] logarithmic-depth schedules. Appendix A.1 is formalized as a
 same-target scheduling/resource transformation on top of those source targets.
