@@ -2,17 +2,18 @@ import QuantumBlockEncoding.PromiseGateOptimization
 import QuantumBlockEncoding.Robin.ComplexLCU
 
 /-!
-# Predicate-controlled conjugation
+# Predicate-controlled conjugation and composition
 
 Vandaele Figure 3(a) / Theorem 1 uses the fact that when
 `W = V† U V`, controls need only be attached to the middle `U`; the outer `V`
-and `V†` remain uncontrolled.  The repository already contains the one-Boolean
-version.  This module lifts the identity to an arbitrary computational-basis
+and `V†` remain uncontrolled. The repository already contains the one-Boolean
+version. This module lifts the identity to an arbitrary computational-basis
 key predicate, which is the natural semantic model of k control qubits.
 
-The theorem is independent of promise-register/resource considerations and is a
-shared algebraic node for Lemma 5/7, comparator constructions, and later SP/BE
-controlled subroutines.
+The same predicate-control operator also preserves chronological composition:
+controlling two consecutive target permutations separately is exactly the same
+as controlling their composite.  This second identity is a shared algebraic
+node for Figure-9 slice replacement and later controlled SP/BE subroutines.
 -/
 
 namespace QuantumBlockEncoding
@@ -40,6 +41,30 @@ def predicateControlledTargetEquiv {κ α : Type*}
   right_inv state := by
     rcases state with ⟨key, value⟩
     cases condition : active key <;> simp [condition]
+
+/-- Predicate control preserves chronological target composition. -/
+theorem predicateControlledTarget_trans
+    {κ α : Type*} (active : κ → Bool)
+    (left right : Equiv.Perm α) :
+    (predicateControlledTargetEquiv active left).trans
+        (predicateControlledTargetEquiv active right) =
+      predicateControlledTargetEquiv active (left.trans right) := by
+  apply Equiv.ext
+  intro state
+  rcases state with ⟨key, value⟩
+  cases condition : active key <;>
+    simp [predicateControlledTargetEquiv, condition]
+
+/-- Controlling the identity remains the identity on key and target. -/
+@[simp] theorem predicateControlledTarget_refl
+    {κ α : Type*} (active : κ → Bool) :
+    predicateControlledTargetEquiv active (Equiv.refl α) =
+      Equiv.refl (κ × α) := by
+  apply Equiv.ext
+  intro state
+  rcases state with ⟨key, value⟩
+  cases condition : active key <;>
+    simp [predicateControlledTargetEquiv, condition]
 
 /-- Figure 3(a) for an arbitrary key predicate: only the middle operation needs
 the external controls. -/
