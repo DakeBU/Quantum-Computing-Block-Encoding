@@ -20,6 +20,12 @@ Equation (7) is a *closed-form input-state specification*: every target is
 toggled by the conjunction of the corresponding interval in the original
 input.  Algorithm 2 is later proved a refinement of this target; the target is
 not defined by the recursive synthesis algorithm.
+
+Important: the complete overlapping ladder is not asserted to be involutory.
+Individual MCX gates are involutions, but a previous target can be a later
+control.  Reversibility of the source construction must therefore come from the
+actual MCX gate schedule/refinement, not from an incorrect global-involution
+shortcut.
 -/
 
 namespace QuantumBlockEncoding
@@ -145,42 +151,7 @@ theorem equationSeven_target
   simp [equationSevenAction, hit,
     chosen_target_eq plan (plan.target index) hit index rfl]
 
-/-- Closed-form Equation (7) is involutory because every activation interval
-contains only wires strictly before its target; target wires of later blocks may
-serve as controls, but the *closed-form* predicate is evaluated on the input.
-Applying the same closed form twice therefore toggles every target twice. -/
-theorem equationSevenAction_involutive
-    {q m : Nat} (plan : AlphaPlan q m) :
-    Function.Involutive (equationSevenAction plan) := by
-  intro state
-  funext wire
-  by_cases hit : ∃ index : Fin m, plan.target index = wire
-  · let index := Classical.choose hit
-    have targetEq := Classical.choose_spec hit
-    have activationPreserved :
-        intervalActive plan (equationSevenAction plan state) index ↔
-          intervalActive plan state index := by
-      constructor <;> intro active control interval
-      · have controlBefore : control.val < (plan.target index).val := interval.2
-        have notTarget : ¬ ∃ j : Fin m, plan.target j = control := by
-          intro targetHit
-          rcases targetHit with ⟨j, equal⟩
-          have values := congrArg Fin.val equal
-          by_cases order : j < index
-          · have lower : (plan.target j).val < (plan.target index).val := plan.strict order
-            -- A previous target may be a control, but Equation (7) changes it.
-            -- The source ladder is not globally involutory in general; this branch
-            -- is intentionally impossible only for a single isolated block.
-            contradiction
-          · contradiction
-        rw [equationSeven_nonTarget plan state control notTarget] at active
-        exact active control interval
-      · -- See note above: the general ladder is not an involution; this theorem is
-        -- not used downstream and is retained only as a placeholder obligation.
-        sorry
-  · simp [equationSevenAction, hit]
-
-/-- Source-facing semantic target; no involution assumption is made. -/
+/-- Source-facing semantic target; no global involution assumption is made. -/
 def LadderAlphaSpec {q m : Nat}
     (plan : AlphaPlan q m)
     (implementation : PrimitiveBasis q → PrimitiveBasis q) : Prop :=
