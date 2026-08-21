@@ -26,6 +26,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38CleanProtocol.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38DirtyProtocol.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Semantics.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9Assembly.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7GidneyEmbedding.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
@@ -115,6 +116,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38CleanProtocol.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38DirtyProtocol.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Semantics.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9Assembly.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7GidneyEmbedding.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
@@ -236,6 +238,7 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7FlatContract
           lake build QuantumBlockEncoding.GidneyIncrementerProgramFamily
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7GidneyEmbedding
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9Assembly
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7PromiseBudget
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7SingleControlResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7ResourceClosure
