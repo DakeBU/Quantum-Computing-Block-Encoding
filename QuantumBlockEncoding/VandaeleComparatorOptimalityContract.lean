@@ -1,25 +1,25 @@
 import QuantumBlockEncoding.VandaeleComparatorLowerBoundReduction
 import QuantumBlockEncoding.VandaeleComparatorTheorem2Resource
 import QuantumBlockEncoding.VandaeleComparatorTheorem3Resource
+import QuantumBlockEncoding.VandaeleLemma1ParityLowerBound
 
 /-!
 # Conditional optimality closure for Vandaele comparator theorems
 
 The source upper constructions and lower-bound reductions are deliberately kept
-separate throughout the library.  This module is the final bookkeeping layer:
-once the external bounded-gate `C^k X` lower theorem is supplied in the same gate
-model as the comparator circuits, the already-proved reductions close the
-optimality claims automatically.
+separate throughout the library.  This module is the final bookkeeping layer.
+The bounded-gate `C^k X` gate/depth lower theorem remains a cited input in the
+same gate model as the comparator circuits.  The ancilla parity obstruction is
+now proved internally by `VandaeleLemma1ParityLowerBound`.
 
 For Theorem 2, the construction has linear gate count, logarithmic depth, and no
 ancillas.  The lower reduction supplies matching gate/depth lower bounds; no
 ancilla lower bound is needed because zero is already minimal.
 
 For Theorem 3, the construction uses one dirty ancilla.  Equation (3) supplies
-hard classical constants for which `C^k X` embeds exactly, so one dirty ancilla
-is necessary in the source bounded-size gate model for those instances.  This
-establishes worst-case optimal qubit count for the uniform classical-comparator
-family.
+hard classical constants for which `C^k X` embeds exactly; the internal parity
+proof then forces one ancillary qubit on those hard instances once the numerical
+minimum-ancilla function is linked to zero-ancilla circuit existence.
 -/
 
 namespace QuantumBlockEncoding
@@ -28,6 +28,7 @@ namespace VandaeleComparatorOptimalityContract
 open VandaeleComparatorLowerBoundReduction
 open VandaeleComparatorTheorem2Resource
 open VandaeleComparatorTheorem3Resource
+open VandaeleLemma1ParityLowerBound
 
 /-- Explicit two-sided asymptotic target for one QQ construction/minimum pair. -/
 def QuantumComparatorOptimalityTarget
@@ -64,9 +65,7 @@ def ClassicalHardInstanceOptimalityTarget
     minimumGate minimumDepth minimumAncillas
 
 /-- Theorem-3 upper family and Equation-(3) transferred lower bounds close
-worst-case CQ optimality.  `upperGate`/`upperDepth` are uniform in the classical
-constant, while the lower theorem is required only on the hard shifted constants
-selected by Equation (3), exactly as in the source argument. -/
+worst-case CQ optimality. -/
 theorem classicalComparator_optimality_closure
     (constructedGate constructedDepth constructedDirty : Nat → Nat → Nat)
     (minimumGate minimumDepth minimumAncillas : Nat → Nat → Nat)
@@ -85,6 +84,42 @@ theorem classicalComparator_optimality_closure
       minimumGate minimumDepth minimumAncillas := by
   exact ⟨⟨gateConstant, upperGate⟩,
     ⟨depthConstant, upperDepth⟩, oneDirty, lower⟩
+
+/-- Same classical-comparator optimality closure with the C^kX ancillary lower
+premise discharged by the repository's parity theorem.  The bounded-gate
+linear/logarithmic lower theorem and Equation-(3) resource inequalities remain
+explicit source/model inputs. -/
+theorem classicalComparator_optimality_from_parity
+    (constructedGate constructedDepth constructedDirty : Nat → Nat → Nat)
+    (minimumGate minimumDepth minimumAncillas : Nat → Nat → Nat)
+    (controlledXGateLower controlledXDepthLower
+      controlledXMinimumAncillas : Nat → Nat)
+    (controlledXModel : MinimumAncillaModel controlledXMinimumAncillas)
+    (externalGateDepth :
+      VandaeleLemma1Contract.BoundedGateLowerBoundTarget
+        controlledXGateLower controlledXDepthLower)
+    (gateReduction : EqThreeGateReductionBound controlledXGateLower minimumGate)
+    (depthReduction : EqThreeDepthReductionBound controlledXDepthLower minimumDepth)
+    (ancillaReduction :
+      EqThreeAncillaReductionBound controlledXMinimumAncillas minimumAncillas)
+    (gateConstant depthConstant : Nat)
+    (upperGate : ∀ n constant,
+      constructedGate n constant ≤ gateConstant * (n + 1))
+    (upperDepth : ∀ n constant,
+      constructedDepth n constant ≤ depthConstant *
+        ComparatorIncrementerTheorem4DepthBound.logRank n)
+    (oneDirty : ∀ n constant, constructedDirty n constant = 1) :
+    ClassicalHardInstanceOptimalityTarget
+      constructedGate constructedDepth constructedDirty
+      minimumGate minimumDepth minimumAncillas := by
+  have lower := classicalComparator_lower_bound_from_parity
+    controlledXGateLower controlledXDepthLower controlledXMinimumAncillas
+    minimumGate minimumDepth minimumAncillas
+    controlledXModel externalGateDepth gateReduction depthReduction ancillaReduction
+  exact classicalComparator_optimality_closure
+    constructedGate constructedDepth constructedDirty
+    minimumGate minimumDepth minimumAncillas
+    gateConstant depthConstant upperGate upperDepth oneDirty lower
 
 end VandaeleComparatorOptimalityContract
 end QuantumBlockEncoding
