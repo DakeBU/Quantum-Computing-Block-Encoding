@@ -102,7 +102,7 @@ theorem algorithm_resources_for_vandaele :
   constructor
   · unfold gateCountBySteps
     exact algorithm_gateCount_linear (steps + 1)
-  · unfold depthBySteps VandaeleLadderContract.lemmaThreeLogScale
+  · unfold depthBySteps
     exact algorithm_depth_logarithmic (steps + 1)
 
 end RemaudVandaeleLadder1ResourceClosure
