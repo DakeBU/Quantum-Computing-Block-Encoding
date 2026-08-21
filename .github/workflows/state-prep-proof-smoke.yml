@@ -11,6 +11,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq44Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
@@ -50,6 +51,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq44Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
@@ -98,6 +100,7 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
           lake build QuantumBlockEncoding.ComparatorIncrementerRecurrence
+          lake build QuantumBlockEncoding.ComparatorIncrementerEq44Semantics
           lake build QuantumBlockEncoding.PrimitiveBasisLE4
           lake build QuantumBlockEncoding.StatePreparationIntervalTree
           lake build QuantumBlockEncoding.StatePreparationIntervalTreeEndToEnd
