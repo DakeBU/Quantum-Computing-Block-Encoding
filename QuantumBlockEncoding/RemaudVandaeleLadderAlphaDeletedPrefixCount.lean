@@ -343,7 +343,7 @@ theorem deletedPrefix_length
   have reverse := Fintype.card_le_of_injective
     (halfToDeleted plan large j)
     (halfToDeleted_injective plan large j)
-  simpa using Nat.le_antisymm reverse forward
+  simpa using Nat.le_antisymm forward reverse
 
 end RemaudVandaeleLadderAlphaDeletedPrefixCount
 end QuantumBlockEncoding
