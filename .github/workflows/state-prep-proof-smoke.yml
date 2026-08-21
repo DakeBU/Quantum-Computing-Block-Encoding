@@ -15,9 +15,13 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Contract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecurrence.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4GateBound.lean"
+      - "QuantumBlockEncoding/ControlledStrongPromise.lean"
       - "QuantumBlockEncoding/ReversibleRegisterLift.lean"
       - "QuantumBlockEncoding/PrimitiveBasisLE4.lean"
       - "QuantumBlockEncoding/StatePreparationIntervalTree.lean"
@@ -55,9 +59,13 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma8Contract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerModularConjugation.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecurrence.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerRecursiveSplit.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4GateBound.lean"
+      - "QuantumBlockEncoding/ControlledStrongPromise.lean"
       - "QuantumBlockEncoding/ReversibleRegisterLift.lean"
       - "QuantumBlockEncoding/PrimitiveMacros.lean"
       - "QuantumBlockEncoding/ReversibleClassical.lean"
@@ -101,6 +109,10 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
           lake build QuantumBlockEncoding.ComparatorIncrementerRecurrence
           lake build QuantumBlockEncoding.ComparatorIncrementerEq44Semantics
+          lake build QuantumBlockEncoding.ControlledStrongPromise
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Contract
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Budget
+          lake build QuantumBlockEncoding.ComparatorIncrementerTheorem4GateBound
           lake build QuantumBlockEncoding.PrimitiveBasisLE4
           lake build QuantumBlockEncoding.StatePreparationIntervalTree
           lake build QuantumBlockEncoding.StatePreparationIntervalTreeEndToEnd
