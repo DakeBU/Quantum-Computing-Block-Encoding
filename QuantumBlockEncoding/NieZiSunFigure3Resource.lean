@@ -33,6 +33,14 @@ def leftTailWidth (n : Nat) : Nat := (n - 4) / 2
 def rightTailWidth (n : Nat) : Nat :=
   n - 4 - leftTailWidth n
 
+/-- The two physical recursive tails partition exactly the controls remaining
+after I1..I4.  This is shared by the semantic control split, actual gate
+embedding, and resource recurrence. -/
+theorem tailWidths_sum (n : Nat) :
+    leftTailWidth n + rightTailWidth n = n - 4 := by
+  unfold leftTailWidth rightTailWidth
+  omega
+
 /-- Larger recursive control count. -/
 def recursiveWidth (n : Nat) : Nat := (n - 3) / 2
 
