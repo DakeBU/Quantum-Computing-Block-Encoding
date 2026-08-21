@@ -5,7 +5,7 @@ import Mathlib.Tactic
 # Vandaele Lemma 5: split-and-borrow resource budget
 
 After Equations (13) and (14), the source removes their apparent dirty-ancilla
-requirement by splitting the n independent gates into two halves.  Qubits acted
+requirement by splitting the n independent gates into two halves. Qubits acted
 on by one half serve as dirty workspace for the other half.
 
 The key inequality is
@@ -13,13 +13,14 @@ The key inequality is
 `ceil(n/2) - 1 <= floor(n/2)`.
 
 Thus Equation (13) on the larger half needs no more dirty bits than are supplied
-by target qubits from the smaller half.  Swapping the roles handles the other
-half.  The source then uses four low-depth fan-outs, while every singly
-controlled `U_i` is used at most twice.
+by target qubits from the smaller half. Swapping the roles handles the other
+half. The source then uses four low-depth fan-outs, while every singly
+controlled `U_i` is used at most twice. For k controls, Equation (14) is applied
+to both halves.
 
-This module proves the exact natural-number borrowing inequalities and exposes
-explicit gate/depth composition bounds.  The fan-out implementation itself is
-still supplied by Lemma 2 / its future concrete certificate.
+This module proves the exact borrowing inequalities and explicit gate/depth
+composition bounds. The low-depth fan-out and C^k X implementations themselves
+remain separately certified source primitives.
 -/
 
 namespace QuantumBlockEncoding
@@ -77,8 +78,12 @@ def canonicalBorrowingBudget (n : Nat) : BorrowingBudget n where
   firstNeedsAtMostSecond := lowerHalf_pred_le_upperHalf n
   secondNeedsAtMostFirst := upperHalf_pred_le_lowerHalf n
 
-/-- Totalized logarithmic scale for the singly controlled source case. -/
+/-- Totalized logarithmic scale for one register-size variable. -/
 def logScale (n : Nat) : Nat := Nat.log2 (n + 1) + 1
+
+/-- Source Lemma-5 combined depth scale. -/
+def combinedLogScale (n controls : Nat) : Nat :=
+  logScale n + logScale controls
 
 /-- Four fan-out layers of width at most the larger half plus at most two
 controlled uses of every source U_i give an explicit linear gate envelope. -/
@@ -123,9 +128,9 @@ theorem singlyControlled_depth_budget
       omega
     _ = (4 * depthConstant + 2) * logScale n := by ring
 
-/-- Equation (14) is applied once to each subset.  Since one Eq. (14)
-application uses two C^k X toggles and two singly-controlled product instances,
-the complete split proof uses at most four of each high-level component. -/
+/-- Equation (14) is applied once to each subset. Since one application uses two
+C^k X toggles and two singly-controlled product instances, the complete split
+proof uses four of each high-level component. -/
 structure KControlledSplitUses where
   eq14Applications : Nat
   multiControlledXToggles : Nat
@@ -175,6 +180,39 @@ theorem kControlled_gate_budget
         (Nat.mul_le_mul_left 4 multiGlobal)
     _ = (4 * singleConstant + 4 * multiXConstant) *
           (n + controls + 1) := by ring
+
+/-- Depth composition for the k-controlled case: four singly-controlled product
+instances plus four C^k X layers remain O(log n + log k). -/
+theorem kControlled_depth_budget
+    (n controls singleDepth multiXDepth totalDepth
+      singleConstant multiXConstant : Nat)
+    (singleBound : singleDepth ≤ singleConstant * logScale n)
+    (multiXBound : multiXDepth ≤ multiXConstant * logScale controls)
+    (totalBound : totalDepth ≤ 4 * singleDepth + 4 * multiXDepth) :
+    totalDepth ≤
+      (4 * singleConstant + 4 * multiXConstant) *
+        combinedLogScale n controls := by
+  have nIntoCombined : logScale n ≤ combinedLogScale n controls := by
+    unfold combinedLogScale
+    omega
+  have kIntoCombined : logScale controls ≤ combinedLogScale n controls := by
+    unfold combinedLogScale
+    omega
+  have singleGlobal :
+      singleDepth ≤ singleConstant * combinedLogScale n controls :=
+    singleBound.trans (Nat.mul_le_mul_left singleConstant nIntoCombined)
+  have multiGlobal :
+      multiXDepth ≤ multiXConstant * combinedLogScale n controls :=
+    multiXBound.trans (Nat.mul_le_mul_left multiXConstant kIntoCombined)
+  calc
+    totalDepth ≤ 4 * singleDepth + 4 * multiXDepth := totalBound
+    _ ≤ 4 * (singleConstant * combinedLogScale n controls) +
+          4 * (multiXConstant * combinedLogScale n controls) :=
+      Nat.add_le_add
+        (Nat.mul_le_mul_left 4 singleGlobal)
+        (Nat.mul_le_mul_left 4 multiGlobal)
+    _ = (4 * singleConstant + 4 * multiXConstant) *
+          combinedLogScale n controls := by ring
 
 end VandaeleLemma5SplitBudget
 end QuantumBlockEncoding
