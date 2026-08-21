@@ -39,21 +39,12 @@ def registerEquiv (n : Nat) :
   exact basisSplitEquiv n (workspaceWidth n)
 
 /-- All workspace qubits are clean. -/
-def workspaceClean (n : Nat) (workspace : PrimitiveBasis (workspaceWidth n)) : Prop :=
+def workspaceClean (n : Nat)
+    (workspace : PrimitiveBasis (workspaceWidth n)) : Prop :=
   ∀ wire, workspace wire = 0
 
-/-- Logical target permutation induced on the clean-workspace branch. -/
-def CleanBranchIncrementSpec (n : Nat)
-    (implementation : Equiv.Perm
-      (PrimitiveBasis n × PrimitiveBasis (workspaceWidth n))) : Prop :=
-  ∀ target workspace, workspaceClean n workspace →
-    IncrementerSpec n (Equiv.refl (PrimitiveBasis n)) → False ∨
-      (basisNat n (implementation (target, workspace)).1 =
-          (basisNat n target + 1) % gridSize n ∧
-       workspaceClean n (implementation (target, workspace)).2)
-
-/-- Equivalent direct formulation without introducing a fake target Equiv.
-This is the actual contract used below. -/
+/-- Direct clean-branch source contract: increment the target modulo `2^n` and
+return every clean workspace qubit to zero. -/
 def CleanBranchSpec (n : Nat)
     (implementation : Equiv.Perm
       (PrimitiveBasis n × PrimitiveBasis (workspaceWidth n))) : Prop :=
