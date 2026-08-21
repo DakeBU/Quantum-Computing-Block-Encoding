@@ -468,7 +468,7 @@ def build_lean_graph_payload(
     }
     factorization = _module_factorization_profile(modules)
     return {
-        "schemaVersion": 2,
+        "schemaVersion": 1,
         "evidenceClass": {
             "moduleEdges": "Parsed internal Lean import edges",
             "leafEdges": "Generated public declaration containment edges",
@@ -507,7 +507,7 @@ def render_lean_graph_body(payload: dict[str, object]) -> str:
 </article>"""
         for track in payload["tracks"]
     )
-    return f"""
+    return rf"""
 <section class="hero lean-graph-hero" id="graph-purpose">
   <p class="eyebrow">Formal topology · clickable library branches</p>
   <h1>Underlying Lean Graph of Libraries</h1>
