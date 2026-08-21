@@ -12,7 +12,7 @@ provides the lossless bridge
 `PrimitiveBasis (a+b) ≃ PrimitiveBasis a × PrimitiveBasis b`
 
 with the low `a` wires first and the high `b` wires second.  Besides the type
-isomorphism, the module now records the corresponding little-endian arithmetic:
+isomorphism, the module records the corresponding little-endian arithmetic:
 combining low value `x` and high value `y` produces `x + 2^a y`.
 
 The construction is pure register infrastructure and is intended to be shared
@@ -103,16 +103,6 @@ theorem primitiveBasisLEEquiv_combineBasis_value
     ring
   rw [lowPart, highPart]
 
-/-- The same value theorem for splitting an existing flat state. -/
-theorem primitiveBasisLEEquiv_splitBasis_recomposition
-    (a b : Nat) (state : PrimitiveBasis (a + b)) :
-    (primitiveBasisLEEquiv (a + b) state).val =
-      (primitiveBasisLEEquiv a (splitBasis a b state).1).val +
-        gridSize a *
-          (primitiveBasisLEEquiv b (splitBasis a b state).2).val := by
-  rw [← combineBasis_splitBasis a b state]
-  exact primitiveBasisLEEquiv_combineBasis_value a b (splitBasis a b state)
-
 /-- Splitting after combination returns the original logical registers. -/
 theorem splitBasis_combineBasis
     (a b : Nat) (state : PrimitiveBasis a × PrimitiveBasis b) :
@@ -143,6 +133,16 @@ theorem combineBasis_splitBasis
       simp [highWire]
       omega
     simp [combineBasis, splitBasis, low, wireEq]
+
+/-- The same value theorem for splitting an existing flat state. -/
+theorem primitiveBasisLEEquiv_splitBasis_recomposition
+    (a b : Nat) (state : PrimitiveBasis (a + b)) :
+    (primitiveBasisLEEquiv (a + b) state).val =
+      (primitiveBasisLEEquiv a (splitBasis a b state).1).val +
+        gridSize a *
+          (primitiveBasisLEEquiv b (splitBasis a b state).2).val := by
+  rw [← combineBasis_splitBasis a b state]
+  exact primitiveBasisLEEquiv_combineBasis_value a b (splitBasis a b state)
 
 /-- Canonical low/high register equivalence. -/
 def basisSplitEquiv (a b : Nat) :
