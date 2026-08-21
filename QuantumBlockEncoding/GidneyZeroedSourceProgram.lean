@@ -8,7 +8,7 @@ import Mathlib.Tactic
 
 Gidney's `n-2` zeroed-ancilla construction accumulates prefix carries into the
 workspace and then sweeps back down, cleaning each carry immediately after it
-has been consumed.  The ordering matters: changing every high target first and
+has been consumed. The ordering matters: changing every high target first and
 only then uncomputing the carries would read modified controls and would not
 restore the workspace.
 
@@ -21,7 +21,7 @@ exact `{CCX,CX,X}` gates:
    restore `carry_j`;
 3. finish with `CX(x_0 -> x_1)` and `X(x_0)`.
 
-The arbitrary-width induction is the next proof layer.  This file already gives
+The arbitrary-width induction is the next proof layer. This file already gives
 an executable source family and exact finite certificates for the six-bit
 Figure-8 benchmark: clean workspace produces modular increment, while arbitrary
 workspace contents are restored exactly.
@@ -85,7 +85,7 @@ theorem workspaceWire_injective
   simp only [workspaceWire_val] at values
   omega
 
-/-- One gate of the ascending carry ladder.  At j=0 it computes
+/-- One gate of the ascending carry ladder. At j=0 it computes
 `x_0 AND x_1`; later gates extend the prefix with `x_{j+1}`. -/
 def computeCarryGate (carryCount : Nat) (j : Fin carryCount) :
     ReversibleGate (flatWidth carryCount) :=
@@ -111,13 +111,15 @@ def computeCarryGate (carryCount : Nat) (j : Fin carryCount) :
       (workspaceWire carryCount j)
       (by
         intro equal
-        apply_fun Fin.val at equal
-        simp only [workspaceWire_val] at equal
+        have values := congrArg Fin.val equal
+        simp only [workspaceWire_val, targetWire_val] at values
+        have sourceBound := sourceBit.isLt
         omega)
       (by
         intro equal
-        apply workspaceWire_injective carryCount equal
-        apply Fin.ext
+        have indices := workspaceWire_injective carryCount equal
+        have values := congrArg Fin.val indices
+        change j.val - 1 = j.val at values
         omega)
       (by
         intro equal
