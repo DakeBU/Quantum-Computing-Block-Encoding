@@ -71,26 +71,34 @@ theorem step1Program_preserves_control
         ⟨wire.val, by unfold totalWidth; omega⟩ =
       state ⟨wire.val, by unfold totalWidth; omega⟩ := by
   rw [step1Program_eq_mapped]
-  by_cases named : wire.val < 5
-  · interval_cases h : wire.val <;>
-      have embedded := readEmbeddedState_eval_mapProgramWires
+  have embedded := readEmbeddedState_eval_mapProgramWires
+    (step1MacroEmbed n large) (step1MacroEmbed_injective n large)
+    c4Program state
+  rw [c4Program_correct] at embedded
+  by_cases head : wire.val < 4
+  · let local : Fin 6 := ⟨wire.val, by omega⟩
+    have image : step1MacroEmbed n large local =
+        (⟨wire.val, by unfold totalWidth; omega⟩ : Fin (totalWidth n)) := by
+      apply Fin.ext
+      simp [step1MacroEmbed, local]
+    have coordinate := congrFun embedded local
+    rw [image] at coordinate
+    simpa [readEmbeddedState, c4Action, xBasisAction, local] using coordinate
+  · by_cases dirty : wire.val = 4
+    · let local : Fin 6 := (5 : Fin 6)
+      have image : step1MacroEmbed n large local =
+          (⟨wire.val, by unfold totalWidth; omega⟩ : Fin (totalWidth n)) := by
+        apply Fin.ext
+        simp [step1MacroEmbed, local, dirty]
+      have coordinate := congrFun embedded local
+      rw [image] at coordinate
+      simpa [readEmbeddedState, c4Action, xBasisAction, local] using coordinate
+    · apply eval_mapProgramWires_outside
         (step1MacroEmbed n large) (step1MacroEmbed_injective n large)
-        c4Program state <;>
-      rw [c4Program_correct] at embedded <;>
-      simpa [readEmbeddedState, step1MacroEmbed, c4Action,
-        xBasisAction] using congrFun embedded
-          (match h with
-           | 0 => (0 : Fin 6)
-           | 1 => (1 : Fin 6)
-           | 2 => (2 : Fin 6)
-           | 3 => (3 : Fin 6)
-           | _ => (5 : Fin 6))
-  · apply eval_mapProgramWires_outside
-      (step1MacroEmbed n large) (step1MacroEmbed_injective n large)
-      c4Program state
-    intro local equal
-    fin_cases local <;>
-      simp [step1MacroEmbed, ancillaWire, totalWidth] at equal <;> omega
+        c4Program state
+      intro local equal
+      fin_cases local <;>
+        simp [step1MacroEmbed, ancillaWire, totalWidth] at equal <;> omega
 
 /-- Final target T is outside Step 1. -/
 theorem step1Program_preserves_finalTarget
@@ -162,15 +170,27 @@ theorem step3Program_preserves_nonTarget
   by_cases hit :
       ∃ local : Fin 5, step3MacroEmbed n large local =
         ⟨wire.val, by unfold totalWidth; omega⟩
-  · rcases hit with ⟨local,rfl⟩
+  · rcases hit with ⟨local,image⟩
+    have notTarget : local ≠ (3 : Fin 5) := by
+      intro target
+      subst local
+      have values := congrArg Fin.val image
+      simp [step3MacroEmbed, finalTargetWire, totalWidth] at values
+      have bound := wire.isLt
+      omega
     have embedded := readEmbeddedState_eval_mapProgramWires
       (step3MacroEmbed n large) (step3MacroEmbed_injective n large)
       c3Program state
     rw [c3Program_correct] at embedded
     have coordinate := congrFun embedded local
-    fin_cases local <;>
-      simpa [readEmbeddedState, step3MacroEmbed, c3Action,
-        xBasisAction, ancillaWire, finalTargetWire] using coordinate
+    rw [image] at coordinate
+    by_cases active :
+        (readEmbeddedState (step3MacroEmbed n large) state) 0 = 1 ∧
+        (readEmbeddedState (step3MacroEmbed n large) state) 1 = 1 ∧
+        (readEmbeddedState (step3MacroEmbed n large) state) 2 = 1
+    · simpa [readEmbeddedState, c3Action, active, xBasisAction, notTarget]
+        using coordinate
+    · simpa [readEmbeddedState, c3Action, active] using coordinate
   · apply eval_mapProgramWires_outside
       (step3MacroEmbed n large) (step3MacroEmbed_injective n large)
       c3Program state
