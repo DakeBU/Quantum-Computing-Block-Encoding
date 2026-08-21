@@ -10,11 +10,11 @@ The source optimal-qubit argument separates cleanly into two facts.
 1. `C^k X` on its k control bits and one target bit is an odd permutation: it
    swaps exactly the two basis states with all controls one and target 0/1.
 2. A local permutation duplicated over one completely unused binary wire has
-   squared sign.  In particular, duplicating an odd local gate over that unused
-   bit produces an even global permutation.
+   squared sign. Since every unit of Z squares to one, **any** such duplicated
+   permutation is even globally; no assumption on the local sign is needed.
 
 The second fact is the mechanism behind the source observation that X/CX/CCX
-are even on sufficiently large registers.  A subsequent wire-support module
+are even on sufficiently large registers. A subsequent wire-support module
 connects arbitrary reversible gates to this duplicated-fibre form.
 -/
 
@@ -109,19 +109,40 @@ theorem duplicateOverBit_sign
   rw [Finset.prod_const]
   simp
 
-/-- In particular, duplicating an odd local permutation over one unused bit is
-even globally. -/
+/-- Every duplicated binary-fibre permutation is even globally, regardless of
+whether the local permutation itself is even or odd. -/
+theorem duplicateOverBit_is_even
+    {β : Type*} [Fintype β] [DecidableEq β]
+    (local : Equiv.Perm β) :
+    Equiv.Perm.sign (duplicateOverBit local) = 1 := by
+  rw [duplicateOverBit_sign]
+  exact Int.units_sq (Equiv.Perm.sign local)
+
+/-- The earlier odd-local specialization follows immediately. -/
 theorem duplicateOdd_is_even
     {β : Type*} [Fintype β] [DecidableEq β]
     (local : Equiv.Perm β)
-    (odd : Equiv.Perm.sign local = -1) :
-    Equiv.Perm.sign (duplicateOverBit local) = 1 := by
-  rw [duplicateOverBit_sign, odd]
-  norm_num
+    (_odd : Equiv.Perm.sign local = -1) :
+    Equiv.Perm.sign (duplicateOverBit local) = 1 :=
+  duplicateOverBit_is_even local
 
-/-- Conjugating a duplicated odd local permutation into any equivalent state
-space preserves its even sign.  This is the exact generic form needed once an
-unused physical qubit is split from a reversible gate. -/
+/-- Conjugating a duplicated local permutation into any equivalent state space
+preserves its even sign. This is the generic form needed once an unused
+physical qubit is split from a reversible gate. -/
+theorem even_of_conjugate_duplicate
+    {α β : Type*}
+    [Fintype α] [DecidableEq α]
+    [Fintype β] [DecidableEq β]
+    (global : Equiv.Perm α)
+    (local : Equiv.Perm β)
+    (split : α ≃ Fin 2 × β)
+    (refines : (split.symm.trans global).trans split = duplicateOverBit local) :
+    Equiv.Perm.sign global = 1 := by
+  have conjugateSign := Equiv.Perm.sign_symm_trans_trans global split
+  rw [refines, duplicateOverBit_is_even local] at conjugateSign
+  exact conjugateSign.symm
+
+/-- Backward-compatible odd-local wrapper. -/
 theorem even_of_conjugate_duplicateOdd
     {α β : Type*}
     [Fintype α] [DecidableEq α]
@@ -130,11 +151,9 @@ theorem even_of_conjugate_duplicateOdd
     (local : Equiv.Perm β)
     (split : α ≃ Fin 2 × β)
     (refines : (split.symm.trans global).trans split = duplicateOverBit local)
-    (odd : Equiv.Perm.sign local = -1) :
-    Equiv.Perm.sign global = 1 := by
-  have conjugateSign := Equiv.Perm.sign_symm_trans_trans global split
-  rw [refines, duplicateOdd_is_even local odd] at conjugateSign
-  exact conjugateSign.symm
+    (_odd : Equiv.Perm.sign local = -1) :
+    Equiv.Perm.sign global = 1 :=
+  even_of_conjugate_duplicate global local split refines
 
 end VandaeleParityCore
 end QuantumBlockEncoding
