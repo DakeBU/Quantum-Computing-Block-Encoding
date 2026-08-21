@@ -8,6 +8,7 @@ import QuantumBlockEncoding.VandaeleComparatorTheorem2RecursiveSplit
 import QuantumBlockEncoding.VandaeleComparatorTheorem2Resource
 import QuantumBlockEncoding.VandaeleComparatorTheorem3BorrowedInput
 import QuantumBlockEncoding.VandaeleComparatorTheorem3Resource
+import QuantumBlockEncoding.VandaeleControlledComparatorResource
 import QuantumBlockEncoding.VandaeleControlledV2Resource
 import QuantumBlockEncoding.VandaeleLadderPermutation
 import QuantumBlockEncoding.VandaeleLadderRefinement
@@ -21,7 +22,9 @@ import QuantumBlockEncoding.VandaeleVOperator
 Thin aggregation module for the current source-facing comparator proof graph.
 It contains no new theorem.  The QQ/CQ semantic targets, subtraction bridge,
 Equation-(3) lower-bound reduction, corrected Equation-(5) ladder realization,
-Definition-2.4 V operator, Lemma-6 promise/resource contract, Theorem-2
-Equation-(25) recursive register split and recurrence closure, and Theorem-3
-real borrowed-input/resource closure remain separately inspectable Lean nodes.
+Definition-2.4 V operator, Lemma-6 promise/resource contract, Equation-(28)
+controlled V2 resources, Theorem-2 Equation-(25) recursive register split and
+recurrence closure, Theorem-3 real borrowed-input/resource closure, and the
+controlled comparator corollary resources remain separately inspectable Lean
+nodes.
 -/
