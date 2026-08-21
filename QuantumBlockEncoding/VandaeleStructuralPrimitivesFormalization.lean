@@ -17,6 +17,7 @@ import QuantumBlockEncoding.VandaeleLadderRefinement
 import QuantumBlockEncoding.VandaeleLemma1Contract
 import QuantumBlockEncoding.VandaeleLemma1ParityLowerBound
 import QuantumBlockEncoding.VandaeleLemma1ProgramFamily
+import QuantumBlockEncoding.VandaeleLemma2FirstOrderNaiveProgram
 import QuantumBlockEncoding.VandaeleLemma2ProgramFamily
 import QuantumBlockEncoding.VandaeleLemma3NaiveProgram
 import QuantumBlockEncoding.VandaeleLemma3ProgramFamily
@@ -44,6 +45,8 @@ nodes keep the source proof graph inspectable:
   reversible specialization;
 * Definition 2.1 / Lemma 1 multi-controlled X, including the internal parity
   proof that k>=3 cannot be implemented ancilla-free over `{X,CX,CCX}`;
+* Definition 2.2 / Lemma 2 fan-out, including an actual first-order n-CCX
+  gate-level baseline tied to the source semantics;
 * Definition 2.3 ladder semantics and its source-certified gate ordering;
 * Lemma 3 first-order CX-ladder proof-bearing family interface plus an actual
   reverse-CX gate-level baseline with exact linear count/depth;
@@ -60,8 +63,8 @@ The reversible promise-gate layer is explicitly a specialization of the
 paper's arbitrary-unitary definitions rather than a parallel notion. The
 ancilla lower bound of Lemma 1 is now internal to the repository's reversible
 gate model; only the linear/logarithmic gate-depth lower bounds remain cited.
-The naive ladder programs remain semantic/gate baselines, not substitutes for
-the external [9] logarithmic-depth schedules. Appendix A.1 is formalized as a
+The naive fan-out/ladder programs remain semantic/gate baselines, not substitutes
+for the external logarithmic-depth schedules. Appendix A.1 is formalized as a
 same-target scheduling/resource transformation on top of those source targets.
 
 Comparator, incrementer, quantum-adder, and classical-adder formalization spines
