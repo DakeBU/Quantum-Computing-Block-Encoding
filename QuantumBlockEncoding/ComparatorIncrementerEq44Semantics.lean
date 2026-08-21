@@ -41,9 +41,15 @@ theorem carryControl_true_iff
     (word : Fin (gridSize (lowWidth + highWidth))) :
     carryControl lowWidth highWidth word = true ↔
       gridSize lowWidth ∣ word.val + 1 := by
-  rw [carryControl]
-  simp only [if_eq_true_eq]
-  exact incrementCarry_eq_one_iff lowWidth highWidth word
+  constructor
+  · intro active
+    by_cases carry : incrementCarry lowWidth highWidth word = 1
+    · exact (incrementCarry_eq_one_iff lowWidth highWidth word).mp carry
+    · simp [carryControl, carry] at active
+  · intro overflow
+    have carry :=
+      (incrementCarry_eq_one_iff lowWidth highWidth word).mpr overflow
+    simp [carryControl, carry]
 
 /-- The source's dirty-ancilla increment/decrement protocol increments the high
 modular register exactly when the low block emits a carry. -/
