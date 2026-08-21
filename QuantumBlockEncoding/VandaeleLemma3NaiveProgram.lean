@@ -7,12 +7,12 @@ import Mathlib.Tactic
 
 The low-depth Lemma-3 schedule is cited from [9], but the source first-order
 ladder has a simple gate-level baseline: execute the CX ladder in reverse block
-order.  This file writes that arbitrary-width `ReversibleProgram` and proves it
+order. This file writes that arbitrary-width `ReversibleProgram` and proves it
 refines the authoritative Equation-(5) target already formalized in
 `VandaeleLadderRefinement`.
 
-This baseline has exactly n CX gates and conservative depth n.  It is **not**
-claimed to be the cited O(log n)-depth implementation.  Its role is to bind the
+This baseline has exactly n CX gates and conservative depth n. It is **not**
+claimed to be the cited O(log n)-depth implementation. Its role is to bind the
 source semantics to real gate syntax so a future [9] schedule can be proved a
 same-target depth optimization rather than a separate oracle.
 -/
@@ -25,6 +25,10 @@ open VandaeleLadderContract
 open VandaeleLadderPermutation
 open VandaeleLadderRefinement
 open VandaeleLemma3ProgramFamily
+
+/-- Every computational-basis bit is either zero or one. -/
+theorem fin2_zero_or_one (bit : Fin 2) : bit = 0 ∨ bit = 1 := by
+  fin_cases bit <;> simp
 
 /-- The preceding pivot/control of first-order block i is flat wire i. -/
 def controlWire (steps : Nat) (index : Fin steps) : Fin (flatWidth steps) :=
@@ -126,11 +130,10 @@ theorem extract_eval_stepGate
     extractLadderState steps (evalReversibleGate (stepGate steps index) state) =
       sourceLadderStep 0 steps index (extractLadderState steps state) := by
   apply Prod.ext
-  · -- The pivot is never a CX target.
-    unfold extractLadderState
-    by_cases active : state (controlWire steps index) = 0
+  · unfold extractLadderState
+    by_cases controlZero : state (controlWire steps index) = 0
     · simp [stepGate, evalReversibleGate, cxBasisEquiv, cxBasisAction,
-        active, pivotWire]
+        controlZero, pivotWire]
     · have targetNotPivot :
         VandaeleLemma3ProgramFamily.targetWire steps index ≠ pivotWire steps := by
         intro equal
@@ -138,7 +141,7 @@ theorem extract_eval_stepGate
         simp [VandaeleLemma3ProgramFamily.targetWire, pivotWire] at values
         omega
       simp [stepGate, evalReversibleGate, cxBasisEquiv, cxBasisAction,
-        active, xBasisAction, targetNotPivot]
+        controlZero, xBasisAction, targetNotPivot]
   · funext query
     apply Prod.ext
     · funext impossible
@@ -146,27 +149,23 @@ theorem extract_eval_stepGate
     · by_cases same : query = index
       · subst query
         have activeIff := ladderActive_extract_iff steps index state
-        by_cases controlOne : state (controlWire steps index) = 1
+        rcases fin2_zero_or_one (state (controlWire steps index)) with
+          controlZero | controlOne
+        · have abstractInactive :
+              ¬ ladderActive (extractLadderState steps state) index := by
+            intro sourceActive
+            have one := activeIff.mp sourceActive
+            simpa [controlZero] using one
+          simp [stepGate, evalReversibleGate, cxBasisEquiv, cxBasisAction,
+            controlZero, extractLadderState, sourceLadderStep,
+            abstractInactive]
         · have controlNonzero : state (controlWire steps index) ≠ 0 := by
-            intro zero
-            have : (1 : Fin 2) = 0 := by simpa [controlOne] using zero.symm
-            decide at this
-        · have abstractActive : ladderActive (extractLadderState steps state) index :=
+            simp [controlOne]
+          have abstractActive : ladderActive (extractLadderState steps state) index :=
             activeIff.mpr controlOne
           simp [stepGate, evalReversibleGate, cxBasisEquiv, cxBasisAction,
             controlNonzero, extractLadderState, sourceLadderStep,
             abstractActive, xBasisAction]
-        · have controlZero : state (controlWire steps index) = 0 := by
-            fin_cases h : state (controlWire steps index) <;> simp_all
-          have abstractInactive :
-              ¬ ladderActive (extractLadderState steps state) index := by
-            intro active
-            have one := activeIff.mp active
-            rw [controlZero] at one
-            decide at one
-          simp [stepGate, evalReversibleGate, cxBasisEquiv, cxBasisAction,
-            controlZero, extractLadderState, sourceLadderStep,
-            abstractInactive]
       · have targetDistinct :
           VandaeleLemma3ProgramFamily.targetWire steps index ≠
             VandaeleLemma3ProgramFamily.targetWire steps query := by
@@ -260,7 +259,7 @@ def scheduled (steps : Nat) : ScheduledReversibleProgram (flatWidth steps) :=
     (scheduled steps).depth = steps := by
   simp [scheduled]
 
-/-- Finite baseline certificate.  This deliberately does not inhabit the
+/-- Finite baseline certificate. This deliberately does not inhabit the
 low-depth Lemma-3 family interface: its certified depth is linear. -/
 structure BaselineCertificate (steps : Nat) where
   scheduledProgram : ScheduledReversibleProgram (flatWidth steps)
