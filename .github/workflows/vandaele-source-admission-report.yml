@@ -7,6 +7,7 @@ on:
     paths:
       - "QuantumBlockEncoding/ReversibleProgramInverse.lean"
       - "QuantumBlockEncoding/ReversibleProgramSupport.lean"
+      - "QuantumBlockEncoding/ReversibleProgramCounts.lean"
       - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
       - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
       - "QuantumBlockEncoding/GidneyZeroedSourceProgram.lean"
@@ -16,11 +17,21 @@ on:
       - "QuantumBlockEncoding/GidneyZeroedDescendingAction.lean"
       - "QuantumBlockEncoding/GidneyZeroedCleanTargetAction.lean"
       - "QuantumBlockEncoding/GidneyZeroedSourceCorrectness.lean"
+      - "QuantumBlockEncoding/GidneyZeroedSourceLogicalResources.lean"
+      - "QuantumBlockEncoding/GidneyZeroedSourceStrongPromise.lean"
+      - "QuantumBlockEncoding/GidneyZeroedSourceDecrement.lean"
+      - "QuantumBlockEncoding/BasisIncrementAllXConjugation.lean"
+      - "QuantumBlockEncoding/GidneyZeroedEq35Promise.lean"
       - "QuantumBlockEncoding/GidneyZeroedScheduledFamily.lean"
+      - "QuantumBlockEncoding/GidneyZeroedControlledStrongPromise.lean"
+      - "QuantumBlockEncoding/GidneyZeroedLemma7BasisWitness.lean"
+      - "QuantumBlockEncoding/GidneyZeroedPrimitive.lean"
       - "QuantumBlockEncoding/GidneyIncrementerStrongPromise.lean"
+      - "QuantumBlockEncoding/StrongPromiseInverse.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9SourceAssembly.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9StrongPromiseBridge.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerTheorem4OptimalityContract.lean"
+      - "QuantumBlockEncoding.lean"
       - ".github/workflows/vandaele-source-admission-report.yml"
   workflow_dispatch:
 
@@ -64,6 +75,7 @@ jobs:
           modules=(
             QuantumBlockEncoding.ReversibleProgramInverse
             QuantumBlockEncoding.ReversibleProgramSupport
+            QuantumBlockEncoding.ReversibleProgramCounts
             QuantumBlockEncoding.PrimitiveBasisLENumeric
             QuantumBlockEncoding.BinaryCarryTelescoping
             QuantumBlockEncoding.GidneyZeroedSourceProgram
@@ -73,11 +85,20 @@ jobs:
             QuantumBlockEncoding.GidneyZeroedDescendingAction
             QuantumBlockEncoding.GidneyZeroedCleanTargetAction
             QuantumBlockEncoding.GidneyZeroedSourceCorrectness
-            QuantumBlockEncoding.GidneyIncrementerStrongPromise
+            QuantumBlockEncoding.GidneyZeroedSourceLogicalResources
+            QuantumBlockEncoding.GidneyZeroedSourceStrongPromise
+            QuantumBlockEncoding.StrongPromiseInverse
+            QuantumBlockEncoding.GidneyZeroedSourceDecrement
+            QuantumBlockEncoding.BasisIncrementAllXConjugation
+            QuantumBlockEncoding.GidneyZeroedEq35Promise
             QuantumBlockEncoding.GidneyZeroedScheduledFamily
+            QuantumBlockEncoding.GidneyZeroedControlledStrongPromise
+            QuantumBlockEncoding.GidneyZeroedLemma7BasisWitness
+            QuantumBlockEncoding.GidneyZeroedPrimitive
             QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9SourceAssembly
             QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9StrongPromiseBridge
             QuantumBlockEncoding.ComparatorIncrementerTheorem4OptimalityContract
+            QuantumBlockEncoding
           )
 
           overall=0
