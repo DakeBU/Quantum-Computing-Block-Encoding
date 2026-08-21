@@ -1,0 +1,125 @@
+name: Vandaele source admission report
+
+on:
+  push:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/ReversibleProgramInverse.lean"
+      - "QuantumBlockEncoding/ReversibleProgramSupport.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisLENumeric.lean"
+      - "QuantumBlockEncoding/BinaryCarryTelescoping.lean"
+      - "QuantumBlockEncoding/GidneyZeroedSourceProgram.lean"
+      - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestoration.lean"
+      - "QuantumBlockEncoding/GidneyZeroedWorkspaceRestorationGlobal.lean"
+      - "QuantumBlockEncoding/GidneyZeroedCarryCompute.lean"
+      - "QuantumBlockEncoding/GidneyZeroedDescendingAction.lean"
+      - "QuantumBlockEncoding/GidneyZeroedCleanTargetAction.lean"
+      - "QuantumBlockEncoding/GidneyZeroedSourceCorrectness.lean"
+      - "QuantumBlockEncoding/GidneyZeroedScheduledFamily.lean"
+      - "QuantumBlockEncoding/GidneyIncrementerStrongPromise.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9SourceAssembly.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Figure9StrongPromiseBridge.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerTheorem4OptimalityContract.lean"
+      - ".github/workflows/vandaele-source-admission-report.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-source-admission-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Vandaele source frontier and write report
+        id: compile
+        shell: bash
+        run: |
+          set +e
+          mkdir -p _out
+          report="_out/vandaele-source-smoke-report.md"
+          status_file="_out/vandaele-source-smoke-status"
+          : > "$report"
+          printf '# Vandaele source Lean admission report\n\n' >> "$report"
+          printf -- '- commit: `%s`\n' "$GITHUB_SHA" >> "$report"
+          printf -- '- workflow: `vandaele-source-admission-report.yml`\n' >> "$report"
+          printf -- '- policy: every listed module must pass `lake build`; report commits are not admission triggers.\n\n' >> "$report"
+
+          modules=(
+            QuantumBlockEncoding.ReversibleProgramInverse
+            QuantumBlockEncoding.ReversibleProgramSupport
+            QuantumBlockEncoding.PrimitiveBasisLENumeric
+            QuantumBlockEncoding.BinaryCarryTelescoping
+            QuantumBlockEncoding.GidneyZeroedSourceProgram
+            QuantumBlockEncoding.GidneyZeroedWorkspaceRestoration
+            QuantumBlockEncoding.GidneyZeroedWorkspaceRestorationGlobal
+            QuantumBlockEncoding.GidneyZeroedCarryCompute
+            QuantumBlockEncoding.GidneyZeroedDescendingAction
+            QuantumBlockEncoding.GidneyZeroedCleanTargetAction
+            QuantumBlockEncoding.GidneyZeroedSourceCorrectness
+            QuantumBlockEncoding.GidneyIncrementerStrongPromise
+            QuantumBlockEncoding.GidneyZeroedScheduledFamily
+            QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9SourceAssembly
+            QuantumBlockEncoding.ComparatorIncrementerLemma7Figure9StrongPromiseBridge
+            QuantumBlockEncoding.ComparatorIncrementerTheorem4OptimalityContract
+          )
+
+          overall=0
+          for module in "${modules[@]}"; do
+            log="$(mktemp)"
+            if lake build "$module" >"$log" 2>&1; then
+              printf '## PASS `%s`\n\n' "$module" >> "$report"
+            else
+              overall=1
+              printf '## FAIL `%s`\n\n```text\n' "$module" >> "$report"
+              tail -n 160 "$log" >> "$report"
+              printf '\n```\n\n' >> "$report"
+            fi
+            rm -f "$log"
+          done
+
+          if [ "$overall" -eq 0 ]; then
+            printf '## Overall: PASS\n\nAll source-frontier modules were accepted by Lean.\n' >> "$report"
+          else
+            printf '## Overall: FAIL\n\nAt least one source-frontier module failed Lean admission.\n' >> "$report"
+          fi
+          printf '%s\n' "$overall" > "$status_file"
+          exit 0
+
+      - name: Commit admission report to proof branch
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f -- _out/vandaele-source-smoke-report.md
+          if git diff --cached --quiet; then
+            echo 'Admission report unchanged.'
+          else
+            git commit -m '[vandaele-admission] Record Lean source frontier report'
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+
+      - name: Fail workflow when Lean admission fails
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(cat _out/vandaele-source-smoke-status)" = '0'
