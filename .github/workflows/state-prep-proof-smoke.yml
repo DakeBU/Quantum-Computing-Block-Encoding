@@ -21,6 +21,8 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7BasisContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38CleanProtocol.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7ResourceClosure.lean"
@@ -97,6 +99,8 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7BasisContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38CleanProtocol.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7Eq38Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7ResourceClosure.lean"
@@ -197,6 +201,8 @@ jobs:
           lake build QuantumBlockEncoding.VandaeleTheorem1ResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Contract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7BasisContract
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38Semantics
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Eq38CleanProtocol
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7FlatContract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7PromiseBudget
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7SingleControlResourceClosure
