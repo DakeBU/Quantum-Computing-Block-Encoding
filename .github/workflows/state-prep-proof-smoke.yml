@@ -10,7 +10,9 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerAllXResources.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerControlledSplit.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq36ResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerEq40ControlInvariant.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerEq44Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
@@ -19,6 +21,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Contract.lean"
@@ -73,7 +76,9 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerAllXResources.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledAllX.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerControlledConjugation.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerControlledSplit.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerDirtyAncilla.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerEq36ResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerEq40ControlInvariant.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerEq44Semantics.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutIdentity.lean"
@@ -82,6 +87,7 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Contract.lean"
@@ -148,9 +154,11 @@ jobs:
           lake build QuantumBlockEncoding.VandaeleLadderContract
           lake build QuantumBlockEncoding.ComparatorIncrementerGeneral
           lake build QuantumBlockEncoding.ComparatorIncrementerRecursiveSplit
+          lake build QuantumBlockEncoding.ComparatorIncrementerControlledSplit
           lake build QuantumBlockEncoding.ComparatorIncrementerRecurrence
           lake build QuantumBlockEncoding.ComparatorIncrementerEq40ControlInvariant
           lake build QuantumBlockEncoding.ComparatorIncrementerEq44Semantics
+          lake build QuantumBlockEncoding.ComparatorIncrementerEq36ResourceClosure
           lake build QuantumBlockEncoding.ControlledStrongPromise
           lake build QuantumBlockEncoding.PredicateControlledStrongPromise
           lake build QuantumBlockEncoding.PredicateControlledConjugation
@@ -162,6 +170,7 @@ jobs:
           lake build QuantumBlockEncoding.VandaeleTheorem1ResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Contract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7PromiseBudget
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7SingleControlResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Contract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Budget
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8PromiseCleanliness
