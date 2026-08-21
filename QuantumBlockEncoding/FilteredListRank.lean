@@ -23,6 +23,28 @@ def retainedBefore
     (keep : α → Bool) (list : List α) (a : α) : Nat :=
   ((list.take (list.idxOf a)).filter keep).length
 
+/-- Boolean complement. -/
+def deleteOfKeep (keep : α → Bool) : α → Bool := fun x => !(keep x)
+
+/-- Every list is partitioned exactly into kept and deleted entries. -/
+theorem filter_partition_length
+    (keep : α → Bool) (list : List α) :
+    (list.filter keep).length +
+      (list.filter (deleteOfKeep keep)).length = list.length := by
+  induction list with
+  | nil => rfl
+  | cons head tail induction =>
+      cases h : keep head <;>
+        simp [deleteOfKeep, h, induction]
+
+/-- The partition identity on a prefix. -/
+theorem take_filter_partition_length
+    (keep : α → Bool) (list : List α) (count : Nat) :
+    ((list.take count).filter keep).length +
+      ((list.take count).filter (deleteOfKeep keep)).length =
+        (list.take count).length :=
+  filter_partition_length keep (list.take count)
+
 /-- Main filter-rank theorem for a retained member of a nodup list. -/
 theorem idxOf_filter_eq_retainedBefore
     (keep : α → Bool) (list : List α) (a : α)
