@@ -13,12 +13,12 @@ target unitary is the n-bit incrementer.
 The existing `GidneyIncrementerProgramFamily.ScheduledFamily` deliberately
 records only what the cited clean-ancilla construction guarantees directly:
 correct increment action on a clean workspace and return of that clean
-workspace.  To justify the stronger promise interpretation we need one extra
+workspace. To justify the stronger promise interpretation we need one extra
 property of the *same scheduled program*: for arbitrary incoming workspace
 contents, the workspace register is restored exactly.
 
 This module packages that additional proof obligation and shows that, once it is
-discharged, the source strong-promise statement follows automatically.  No new
+discharged, the source strong-promise statement follows automatically. No new
 circuit is introduced and no resource number is changed.
 -/
 
@@ -94,6 +94,7 @@ theorem clean_target_eq_basisIncrement
   have action := source target (zeroWorkspace n) (zeroWorkspace_clean n)
   have expected := basisModularIncrement_satisfies_spec n target
   unfold IncrementerSpec basisNat at expected
+  unfold basisNat at action
   apply (primitiveBasisLEEquiv n).injective
   apply Fin.ext
   exact action.1.trans expected.symm
