@@ -6,6 +6,7 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/MultiControlledXScheduleSemantics.lean"
+      - "QuantumBlockEncoding/MultiControlledXLayerSemantics.lean"
       - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
       - ".github/workflows/vandaele-alpha-semantics-smoke.yml"
   workflow_dispatch:
@@ -34,6 +35,7 @@ jobs:
       - name: Compile generic MCX semantic bridge
         run: |
           lake build QuantumBlockEncoding.MultiControlledXScheduleSemantics
+          lake build QuantumBlockEncoding.MultiControlledXLayerSemantics
 
       - name: Compile physical X-prime and alpha-prime chain
         run: |
