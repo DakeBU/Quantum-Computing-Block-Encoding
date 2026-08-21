@@ -3,6 +3,7 @@ import QuantumBlockEncoding.PromiseGatePermutationMatrixBridge
 import QuantumBlockEncoding.PromiseGateReversibleComposition
 import QuantumBlockEncoding.PromiseGateUnitary
 import QuantumBlockEncoding.PromiseGateUnitaryMux
+import QuantumBlockEncoding.ReversibleProgramGateLowerBound
 import QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
 import QuantumBlockEncoding.StrongPromiseComputeUseUncompute
 import QuantumBlockEncoding.VandaeleCorollary1ResourceClosure
@@ -43,8 +44,9 @@ nodes keep the source proof graph inspectable:
   constructor and the exact embedding of reversible promise permutations;
 * Equations (10)-(12) plus reusable weak/strong promise composition in the
   reversible specialization;
-* Definition 2.1 / Lemma 1 multi-controlled X, including the internal parity
-  proof that k>=3 cannot be implemented ancilla-free over `{X,CX,CCX}`;
+* Definition 2.1 / Lemma 1 multi-controlled X, including two internal lower
+  bounds in the concrete `{X,CX,CCX}` model: `k <= 3 * gateCount` and the parity
+  proof that k>=3 cannot be implemented ancilla-free;
 * Definition 2.2 / Lemma 2 fan-out, including an actual first-order n-CCX
   gate-level baseline tied to the source semantics;
 * Definition 2.3 ladder semantics and its source-certified gate ordering;
@@ -61,8 +63,9 @@ nodes keep the source proof graph inspectable:
 
 The reversible promise-gate layer is explicitly a specialization of the
 paper's arbitrary-unitary definitions rather than a parallel notion. The
-ancilla lower bound of Lemma 1 is now internal to the repository's reversible
-gate model; only the linear/logarithmic gate-depth lower bounds remain cited.
+ancilla lower bound and a constant-factor linear gate lower bound of Lemma 1 are
+now internal to the repository's reversible gate model; the source's more
+general bounded-gate-set theorem and logarithmic depth lower bound remain cited.
 The naive fan-out/ladder programs remain semantic/gate baselines, not substitutes
 for the external logarithmic-depth schedules. Appendix A.1 is formalized as a
 same-target scheduling/resource transformation on top of those source targets.
