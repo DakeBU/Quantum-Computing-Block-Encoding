@@ -21,7 +21,8 @@ proof frontier:
 
 The admission PR is rerun whenever a foundational MCX source node changes, so a
 green frontier certifies the current transitive source chain rather than a stale
-cached branch state.
+cached branch state.  In particular this rerun includes the explicit pointwise
+control-preservation and involution proofs in the arbitrary-MCX IR.
 -/
 
 namespace QuantumBlockEncoding
