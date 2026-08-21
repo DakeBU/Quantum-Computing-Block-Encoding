@@ -55,18 +55,19 @@ theorem reverse_scheduled_step2_refines
       step4 (halfFamily (leftTailWidth n))
         (halfFamily (rightTailWidth n))
         (flatFigure3Coordinate n large state) := by
+  let forwardEquiv := evalReversibleProgram (step2Scheduled n large).program
   let backward := evalReversibleProgram
     (ReversibleScheduleReverse.reverse (step2Scheduled n large)).program state
-  have roundtrip :
-      evalReversibleProgram (step2Scheduled n large).program backward = state := by
-    have inverse := ReversibleScheduleReverse.eval_reverse (step2Scheduled n large)
-    have applyInverse := congrArg (fun equiv => equiv state)
-      (Equiv.symm_apply_apply (evalReversibleProgram (step2Scheduled n large).program) |> rfl)
-    rw [inverse] at backward
-    exact (evalReversibleProgram (step2Scheduled n large).program).apply_symm_apply state
+  have backwardEq : backward = forwardEquiv.symm state := by
+    unfold backward forwardEquiv
+    rw [ReversibleScheduleReverse.eval_reverse]
+  have roundtrip : forwardEquiv backward = state := by
+    rw [backwardEq]
+    exact forwardEquiv.apply_symm_apply state
   have forward := step2Scheduled_refines n large
     (firstHalfScheduled_refines (leftTailWidth n))
     (firstHalfScheduled_refines (rightTailWidth n)) backward
+  change flatFigure3Coordinate n large (forwardEquiv backward) = _ at forward
   rw [roundtrip] at forward
   have undo := NieZiSunFigure3FirstHalf.step4_step2
     (halfFamily (leftTailWidth n))
@@ -83,13 +84,17 @@ theorem reverse_scheduled_step1_refines
       (evalReversibleProgram
         (ReversibleScheduleReverse.reverse (step1Scheduled n large)).program state) =
       step5 (flatFigure3Coordinate n large state) := by
+  let forwardEquiv := evalReversibleProgram (step1Scheduled n large).program
   let backward := evalReversibleProgram
     (ReversibleScheduleReverse.reverse (step1Scheduled n large)).program state
-  have roundtrip :
-      evalReversibleProgram (step1Scheduled n large).program backward = state := by
+  have backwardEq : backward = forwardEquiv.symm state := by
+    unfold backward forwardEquiv
     rw [ReversibleScheduleReverse.eval_reverse]
-    exact (evalReversibleProgram (step1Scheduled n large).program).apply_symm_apply state
+  have roundtrip : forwardEquiv backward = state := by
+    rw [backwardEq]
+    exact forwardEquiv.apply_symm_apply state
   have forward := scheduled_step1_refines n large backward
+  change flatFigure3Coordinate n large (forwardEquiv backward) = _ at forward
   rw [roundtrip] at forward
   have undo := (@NieZiSunFigure3FirstHalf.step1_involutive
     (leftTailWidth n) (rightTailWidth n))
