@@ -55,13 +55,19 @@ theorem inverse_conjugates_back_to_forward
     (involutive : InvolutiveConjugator conjugator)
     (inverseByConjugation : InverseByConjugation conjugator forward) :
     conjugator.trans (forward.symm.trans conjugator) = forward := by
+  have inverseEq :
+      conjugator.trans (forward.trans conjugator) = forward.symm :=
+    inverseByConjugation
   apply Equiv.ext
   intro value
   change conjugator (forward.symm (conjugator value)) = forward value
-  rw [← inverseByConjugation]
-  simp only [Equiv.trans_apply]
-  rw [involutive value]
-  rw [involutive (forward value)]
+  have inversePoint :
+      forward.symm (conjugator value) =
+        conjugator (forward (conjugator (conjugator value))) := by
+    have h := congrArg
+      (fun equiv : Equiv.Perm α => equiv (conjugator value)) inverseEq
+    simpa only [Equiv.trans_apply] using h.symm
+  rw [inversePoint, involutive value, involutive (forward value)]
 
 /-- The gate pattern appearing in the final branch of Eq. (36): controlled X
 conjugation, dirty-controlled decrement, controlled X conjugation. -/
@@ -107,7 +113,9 @@ theorem conjugatedDirtyBackward_eq_choice
       (key, true,
         conjugator (forward.symm (conjugator value))) =
       (key, true, forward value)
-    have pointwise := Equiv.congr_fun backToForward value
+    have pointwise :
+        conjugator (forward.symm (conjugator value)) = forward value := by
+      exact congrArg (fun equiv : Equiv.Perm α => equiv value) backToForward
     exact congrArg (fun target => (key, true, target)) pointwise
 
 /-- Eq. (36) with the abstract choice eliminated in favor of controlled
@@ -138,6 +146,10 @@ theorem dirtyControlledConjugationProtocol_action
       inverseByConjugation inversePair
   unfold dirtyControlledConjugationProtocolEquiv
   rw [refinement]
+  change
+    dirtyControlledInversePairEquiv control forward backward
+        (key, flag, value) =
+      (key, flag, if control key then forward value else value)
   exact dirtyControlledInversePair_action
     control forward backward inversePair key flag value
 
