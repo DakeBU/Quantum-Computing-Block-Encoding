@@ -4,22 +4,22 @@ import QuantumBlockEncoding.PredicateControlledConjugation
 import Mathlib.Tactic
 
 /-!
-# Figure-9 semantic assembly from controlled Gidney slices
+# All-slices-controlled Gidney assembly baseline
 
 A proof-bearing Gidney family may be refined into four chronological slices.
-Figure 9 replaces each source slice by a low-resource implementation of the
-*controlled* version of that same slice: slices 1 and 3 are handled by the
-strong-promise ladder machinery, while slices 2 and 4 are handled by the
-independent-involution / Lemma-5 machinery.
+This module proves a generic algebraic baseline: if **all four** source slices
+are replaced by exact predicate-controlled versions, their composition is the
+predicate-controlled original Gidney incrementer.
 
-This module closes the global semantic step without assuming how any individual
-replacement is implemented. If each replacement permutation is proved equal
-to the predicate-controlled source slice, then their chronological composition
-is exactly the predicate-controlled original Gidney incrementer.
+This is deliberately *not* claimed to be the optimized source Figure 9.
+Vandaele Figure 9 controls only slices 2 and 4; the CCX ladders in slices 1 and
+3 remain uncontrolled by the controlled-conjugation argument of Figure 3(a).
+That source-faithful strong-promise assembly is formalized separately and needs
+only clean-branch target identities plus unconditional promise restoration.
 
-Thus later gate-level work is local: prove four slice refinements and their
-resource bounds. The overall controlled-increment correctness will not need to
-be re-proved from scratch.
+Keeping this stronger baseline is still useful: it is a generic correctness
+lemma and a diagnostic reference for later resource comparisons, but it must
+not be used to claim the source Figure-9 gate/depth bound.
 -/
 
 namespace QuantumBlockEncoding
@@ -108,8 +108,7 @@ theorem source_slice_eval_eq_family
   rw [source_slice_eval_composition family decomposition n]
   rw [decomposition.reconstructsProgram n]
 
-/-- Global Figure-9 semantic theorem: local controlled-slice refinements compose
-to the controlled original Gidney incrementer. -/
+/-- Generic all-slices-controlled semantic theorem. -/
 theorem correctness
     (family : ScheduledFamily)
     (decomposition : FourSliceDecomposition family)
