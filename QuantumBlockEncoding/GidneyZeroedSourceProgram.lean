@@ -14,18 +14,16 @@ only then uncomputing the carries would read modified controls and would not
 restore the workspace.
 
 For `carryCount = n-2`, this module writes the chronological source program over
-exact `{CCX,CX,X}` gates:
+exact `{CCX,CX,X}` gates.  Two equivalent views of the same gate list are kept:
 
-1. compute the prefix-AND carry ladder into `carryCount` workspace wires;
-2. descend from the highest carry to the lowest, applying
-   `CX(carry_j -> x_{j+2})` and immediately repeating the corresponding CCX to
-   restore `carry_j`;
-3. finish with `CX(x_0 -> x_1)` and `X(x_0)`.
+* `computeCarryProgram ++ descendingSweepProgram` is the source-readable
+  ascending-compute / descending-consume-uncompute view;
+* `carryCoreProgramFrom` is the nested proof view
+  `G_j ; higherCore ; CX_j ; G_j`.
 
-The list generators are structural recursions, so gate-count and later semantic
-inductions follow the same source decomposition.  A conservative sequential
-schedule is attached to the exact list; low-depth Vandaele replacements may
-later improve the schedule without changing this source semantics.
+The equality of these views is proved exactly.  The authoritative
+`sourceProgram` uses the nested form so arbitrary-width correctness follows the
+same compute/use/uncompute induction that the circuit performs.
 -/
 
 namespace QuantumBlockEncoding
@@ -141,35 +139,52 @@ def computeCarryProgram (carryCount : Nat) :
     ReversibleProgram (flatWidth carryCount) :=
   computeCarryProgramFrom carryCount 0 carryCount (by omega)
 
-/-- Consume one computed carry to update the corresponding target bit, then
-immediately repeat its compute gate so that this workspace bit is restored
-before lower target bits are modified. -/
+/-- High-target update controlled by one computed carry. -/
+def consumeCarryGate (carryCount : Nat) (j : Fin carryCount) :
+    ReversibleGate (flatWidth carryCount) :=
+  .cx
+    (workspaceWire carryCount j)
+    (targetWire carryCount
+      ⟨j.val + 2, by unfold targetWidth; omega⟩)
+    (by
+      intro equal
+      exact targetWire_ne_workspaceWire carryCount _ _ equal.symm)
+
+/-- Consume one computed carry, then immediately repeat its compute gate to
+restore that workspace bit before lower target bits are modified. -/
 def consumeAndUncomputePair (carryCount : Nat) (j : Fin carryCount) :
     ReversibleProgram (flatWidth carryCount) :=
-  [
-    .cx
-      (workspaceWire carryCount j)
-      (targetWire carryCount
-        ⟨j.val + 2, by unfold targetWidth; omega⟩)
-      (by
-        intro equal
-        exact targetWire_ne_workspaceWire carryCount _ _ equal.symm),
-    computeCarryGate carryCount j
-  ]
+  [consumeCarryGate carryCount j, computeCarryGate carryCount j]
 
-/-- Structural descending sweep over workspace indices `count-1,...,0`. -/
+/-- Low-end recursion whose *output order* is descending:
+`start+count-1, ..., start`. -/
 def descendingSweepProgramFrom (carryCount : Nat) :
-    (count : Nat) → count ≤ carryCount →
+    (start count : Nat) → start + count ≤ carryCount →
       ReversibleProgram (flatWidth carryCount)
-  | 0, _ => []
-  | count + 1, bound =>
-      consumeAndUncomputePair carryCount ⟨count, by omega⟩ ++
-        descendingSweepProgramFrom carryCount count (by omega)
+  | _, 0, _ => []
+  | start, count + 1, bound =>
+      descendingSweepProgramFrom carryCount (start + 1) count (by omega) ++
+        consumeAndUncomputePair carryCount ⟨start, by omega⟩
 
 /-- Complete descending consume/uncompute sweep. -/
 def descendingSweepProgram (carryCount : Nat) :
     ReversibleProgram (flatWidth carryCount) :=
-  descendingSweepProgramFrom carryCount carryCount (by omega)
+  descendingSweepProgramFrom carryCount 0 carryCount (by omega)
+
+/-- Nested compute/use/uncompute view of exactly the same carry core. -/
+def carryCoreProgramFrom (carryCount : Nat) :
+    (start count : Nat) → start + count ≤ carryCount →
+      ReversibleProgram (flatWidth carryCount)
+  | _, 0, _ => []
+  | start, count + 1, bound =>
+      [computeCarryGate carryCount ⟨start, by omega⟩] ++
+        carryCoreProgramFrom carryCount (start + 1) count (by omega) ++
+        consumeAndUncomputePair carryCount ⟨start, by omega⟩
+
+/-- Complete nested carry core. -/
+def carryCoreProgram (carryCount : Nat) :
+    ReversibleProgram (flatWidth carryCount) :=
+  carryCoreProgramFrom carryCount 0 carryCount (by omega)
 
 /-- Final updates of the two lowest target bits. -/
 def lowBitProgram (carryCount : Nat) :
@@ -186,12 +201,11 @@ def lowBitProgram (carryCount : Nat) :
     .x (targetWire carryCount ⟨0, by unfold targetWidth; omega⟩)
   ]
 
-/-- Complete gate-level zeroed-ancilla source program. -/
+/-- Complete gate-level zeroed-ancilla source program in induction-friendly
+nested form. -/
 def sourceProgram (carryCount : Nat) :
     ReversibleProgram (flatWidth carryCount) :=
-  computeCarryProgram carryCount ++
-    descendingSweepProgram carryCount ++
-    lowBitProgram carryCount
+  carryCoreProgram carryCount ++ lowBitProgram carryCount
 
 /-- Length of one recursive ascending prefix. -/
 theorem computeCarryProgramFrom_length
@@ -215,21 +229,65 @@ theorem computeCarryProgramFrom_length
     (consumeAndUncomputePair carryCount j).length = 2 := by
   rfl
 
-/-- Length of one recursive descending prefix. -/
+/-- Length of one recursive descending range. -/
 theorem descendingSweepProgramFrom_length
-    (carryCount count : Nat) (bound : count ≤ carryCount) :
-    (descendingSweepProgramFrom carryCount count bound).length = 2 * count := by
-  induction count with
+    (carryCount start count : Nat)
+    (bound : start + count ≤ carryCount) :
+    (descendingSweepProgramFrom carryCount start count bound).length =
+      2 * count := by
+  induction count generalizing start with
   | zero =>
       rfl
   | succ count induction =>
-      simp [descendingSweepProgramFrom, induction]
+      simp [descendingSweepProgramFrom,
+        induction (start := start + 1)]
       ring
 
 @[simp] theorem descendingSweepProgram_length (carryCount : Nat) :
     (descendingSweepProgram carryCount).length = 2 * carryCount := by
   unfold descendingSweepProgram
-  exact descendingSweepProgramFrom_length carryCount carryCount (by omega)
+  exact descendingSweepProgramFrom_length carryCount 0 carryCount (by omega)
+
+/-- Length of the nested carry core. -/
+theorem carryCoreProgramFrom_length
+    (carryCount start count : Nat)
+    (bound : start + count ≤ carryCount) :
+    (carryCoreProgramFrom carryCount start count bound).length =
+      3 * count := by
+  induction count generalizing start with
+  | zero =>
+      rfl
+  | succ count induction =>
+      simp [carryCoreProgramFrom,
+        induction (start := start + 1)]
+      ring
+
+@[simp] theorem carryCoreProgram_length (carryCount : Nat) :
+    (carryCoreProgram carryCount).length = 3 * carryCount := by
+  unfold carryCoreProgram
+  exact carryCoreProgramFrom_length carryCount 0 carryCount (by omega)
+
+/-- Source-readable and induction-friendly carry views are exactly the same gate
+list. -/
+theorem compute_append_sweep_eq_core
+    (carryCount start count : Nat)
+    (bound : start + count ≤ carryCount) :
+    computeCarryProgramFrom carryCount start count bound ++
+        descendingSweepProgramFrom carryCount start count bound =
+      carryCoreProgramFrom carryCount start count bound := by
+  induction count generalizing start with
+  | zero =>
+      rfl
+  | succ count induction =>
+      simp [computeCarryProgramFrom, descendingSweepProgramFrom,
+        carryCoreProgramFrom, induction (start := start + 1),
+        List.append_assoc]
+
+/-- Public equality between the two complete source presentations. -/
+theorem compute_append_sweep_eq_carryCore (carryCount : Nat) :
+    computeCarryProgram carryCount ++ descendingSweepProgram carryCount =
+      carryCoreProgram carryCount := by
+  exact compute_append_sweep_eq_core carryCount 0 carryCount (by omega)
 
 @[simp] theorem lowBitProgram_length (carryCount : Nat) :
     (lowBitProgram carryCount).length = 2 := by
@@ -239,7 +297,16 @@ theorem descendingSweepProgramFrom_length
 theorem sourceProgram_length (carryCount : Nat) :
     (sourceProgram carryCount).length = 3 * carryCount + 2 := by
   simp [sourceProgram]
-  ring
+
+/-- The nested authoritative program is definitionally the same source-readable
+compute/sweep sequence followed by the low-bit tail. -/
+theorem sourceProgram_eq_compute_sweep_low (carryCount : Nat) :
+    sourceProgram carryCount =
+      computeCarryProgram carryCount ++
+        descendingSweepProgram carryCount ++ lowBitProgram carryCount := by
+  unfold sourceProgram
+  rw [← compute_append_sweep_eq_carryCore]
+  simp [List.append_assoc]
 
 /-- Conservative proof-bearing schedule of the exact source gate list. -/
 def sourceScheduled (carryCount : Nat) :
