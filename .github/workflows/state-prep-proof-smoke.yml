@@ -19,7 +19,9 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7BasisContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
@@ -36,6 +38,7 @@ on:
       - "QuantumBlockEncoding/ControlledStrongPromise.lean"
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
       - "QuantumBlockEncoding/PredicateControlledStrongPromise.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
       - "QuantumBlockEncoding/VandaeleLadderContract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
       - "QuantumBlockEncoding/VandaeleLemma5Contract.lean"
@@ -86,7 +89,9 @@ on:
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerFanoutSource.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerGeneral.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7BasisContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7Contract.lean"
+      - "QuantumBlockEncoding/ComparatorIncrementerLemma7FlatContract.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7PromiseBudget.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma7SingleControlResourceClosure.lean"
       - "QuantumBlockEncoding/ComparatorIncrementerLemma8Budget.lean"
@@ -103,6 +108,7 @@ on:
       - "QuantumBlockEncoding/ControlledStrongPromise.lean"
       - "QuantumBlockEncoding/PredicateControlledConjugation.lean"
       - "QuantumBlockEncoding/PredicateControlledStrongPromise.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
       - "QuantumBlockEncoding/VandaeleLadderContract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
       - "QuantumBlockEncoding/VandaeleLemma5Contract.lean"
@@ -146,6 +152,7 @@ jobs:
           lake build QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
           lake build QuantumBlockEncoding.ComparatorIncrementerModularConjugation
           lake build QuantumBlockEncoding.ReversibleRegisterLift
+          lake build QuantumBlockEncoding.PrimitiveBasisRegisterSplit
           lake build QuantumBlockEncoding.ComparatorIncrementerAllX
           lake build QuantumBlockEncoding.ComparatorIncrementerAllXResources
           lake build QuantumBlockEncoding.ComparatorIncrementerControlledAllX
@@ -172,6 +179,8 @@ jobs:
           lake build QuantumBlockEncoding.VandaeleTheorem1Contract
           lake build QuantumBlockEncoding.VandaeleTheorem1ResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7Contract
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7BasisContract
+          lake build QuantumBlockEncoding.ComparatorIncrementerLemma7FlatContract
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7PromiseBudget
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma7SingleControlResourceClosure
           lake build QuantumBlockEncoding.ComparatorIncrementerLemma8Contract
