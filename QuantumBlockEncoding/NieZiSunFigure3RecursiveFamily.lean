@@ -1,6 +1,7 @@
 import QuantumBlockEncoding.NieZiSunControlSplit
 import QuantumBlockEncoding.NieZiSunControlSplitAllOne
 import QuantumBlockEncoding.NieZiSunFigure3FirstHalf
+import QuantumBlockEncoding.PromiseGateOptimization
 import QuantumBlockEncoding.VandaeleLemma1Contract
 import Mathlib.Tactic
 
