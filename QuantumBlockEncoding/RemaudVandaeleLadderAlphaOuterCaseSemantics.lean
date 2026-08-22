@@ -11,7 +11,6 @@ open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaOuterSemantics
 open RemaudVandaeleLadderAlphaSourceCaseClassification
 
-/-- Source target zero is implemented by the right wall. -/
 theorem rightScheduled_zero_target
     {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m)
     (state : PrimitiveBasis q) :
@@ -26,7 +25,22 @@ theorem rightScheduled_zero_target
   rw [slotEq] at source
   exact source
 
-/-- Every ordinary even parent target is implemented by its right-wall slot. -/
+/-- The left wall never targets alpha_0 in the recursive regime. -/
+theorem leftScheduled_preserves_zeroTarget
+    {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m)
+    (state : PrimitiveBasis q) :
+    (leftScheduled plan).eval state (plan.target ⟨0, by omega⟩) =
+      state (plan.target ⟨0, by omega⟩) := by
+  apply leftScheduled_preserves_of_no_target
+  intro slot equal
+  have indexEq := target_injective plan equal
+  have values := congrArg Fin.val indexEq
+  by_cases final : slot.val + 1 = wallCount m
+  · simp [leftSourceIndex, final] at values
+    omega
+  · simp [leftSourceIndex, final] at values
+    omega
+
 theorem rightScheduled_ordinaryEven_target
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m)
@@ -46,8 +60,6 @@ theorem rightScheduled_ordinaryEven_target
   rw [slotEq] at source
   exact source
 
-/-- Every ordinary odd parent target before the tail is implemented by a
-nonfinal left-wall slot. -/
 theorem leftScheduled_ordinaryOdd_target
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m)
@@ -66,7 +78,21 @@ theorem leftScheduled_ordinaryOdd_target
   rw [slotEq] at source
   exact source
 
-/-- The final parent source target `m-1` is always the final left-wall slot. -/
+/-- The right wall never targets an ordinary odd source target. -/
+theorem rightScheduled_preserves_ordinaryOddTarget
+    {q m : Nat} (plan : AlphaPlan q m)
+    (index : Fin m)
+    (odd : index.val % 2 = 1)
+    (state : PrimitiveBasis q) :
+    (rightScheduled plan).eval state (plan.target index) =
+      state (plan.target index) := by
+  apply rightScheduled_preserves_of_no_target
+  intro slot equal
+  have indexEq := target_injective plan equal
+  have values := congrArg Fin.val indexEq
+  simp [rightSourceIndex] at values
+  omega
+
 theorem leftScheduled_final_target
     {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m)
     (state : PrimitiveBasis q) :
@@ -82,8 +108,18 @@ theorem leftScheduled_final_target
   rw [slotEq] at source
   exact source
 
-/-- In the even-k regime (m odd), neither outer wall targets the child special
-source target `m-2`. -/
+/-- The right wall never targets the final source target. -/
+theorem rightScheduled_preserves_finalTarget
+    {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m)
+    (state : PrimitiveBasis q) :
+    (rightScheduled plan).eval state (plan.target ⟨m - 1, by omega⟩) =
+      state (plan.target ⟨m - 1, by omega⟩) := by
+  apply rightScheduled_preserves_of_no_target
+  intro slot equal
+  have indexEq := target_injective plan equal
+  have values := congrArg Fin.val indexEq
+  exact rightSourceIndex_ne_final m large slot values
+
 theorem leftScheduled_preserves_specialTail
     {q m : Nat} (plan : AlphaPlan q m)
     (large : 3 ≤ m) (oddM : m % 2 = 1)
@@ -91,13 +127,11 @@ theorem leftScheduled_preserves_specialTail
     (leftScheduled plan).eval state (plan.target ⟨m - 2, by omega⟩) =
       state (plan.target ⟨m - 2, by omega⟩) := by
   apply leftScheduled_preserves_of_no_target
-  intro slot
-  intro equal
+  intro slot equal
   have indexEq := target_injective plan equal
   have values := congrArg Fin.val indexEq
   exact leftSourceIndex_ne_specialTail m large oddM slot values
 
-/-- Right-wall companion of special-tail preservation. -/
 theorem rightScheduled_preserves_specialTail
     {q m : Nat} (plan : AlphaPlan q m)
     (large : 3 ≤ m) (oddM : m % 2 = 1)
@@ -105,8 +139,7 @@ theorem rightScheduled_preserves_specialTail
     (rightScheduled plan).eval state (plan.target ⟨m - 2, by omega⟩) =
       state (plan.target ⟨m - 2, by omega⟩) := by
   apply rightScheduled_preserves_of_no_target
-  intro slot
-  intro equal
+  intro slot equal
   have indexEq := target_injective plan equal
   have values := congrArg Fin.val indexEq
   exact rightSourceIndex_ne_specialTail m large oddM slot values
