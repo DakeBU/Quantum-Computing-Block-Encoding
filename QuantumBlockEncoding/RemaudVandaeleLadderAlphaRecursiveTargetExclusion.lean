@@ -34,8 +34,8 @@ theorem recursiveEndOriginalIndex_lt_final
       have notEven : (m + 1) % 2 ≠ 0 := by
         intro even
         exact special ⟨even, lastFinal⟩
-      unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at
-        countPos lastFinal
+      unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at countPos
+      unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at lastFinal
       omega
 
 /-- No recursive child target maps to parent source target zero. -/
@@ -43,9 +43,7 @@ theorem recursiveOriginalTargetIndex_ne_zero
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
     recursiveOriginalTargetIndex m large j ≠
-      ⟨0, by
-        have mTwo : 2 ≤ m := by omega
-        omega⟩ := by
+      ⟨0, by omega⟩ := by
   intro equal
   have positive := recursiveOriginalTargetIndex_pos m large j
   have values := congrArg Fin.val equal
@@ -57,9 +55,7 @@ theorem recursiveOriginalTargetIndex_ne_final
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
     recursiveOriginalTargetIndex m large j ≠
-      ⟨m - 1, by
-        have mTwo : 2 ≤ m := by omega
-        omega⟩ := by
+      ⟨m - 1, by omega⟩ := by
   intro equal
   have atMostEnd := recursiveOriginalTargetIndex_le_end m large j
   have endBeforeFinal := recursiveEndOriginalIndex_lt_final m large
