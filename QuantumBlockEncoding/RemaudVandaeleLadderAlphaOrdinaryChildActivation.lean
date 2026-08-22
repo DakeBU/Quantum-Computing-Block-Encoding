@@ -74,18 +74,28 @@ theorem ordinaryCompactedControl_mem_selectedList
     have sourceNotBeforeLower : ¬ source.val < lowerIndex.val := by
       intro sourceBefore
       have strict := plan.strict (show source < lowerIndex by exact sourceBefore)
+      dsimp [lowerIndex] at strict
+      rw [sourceEq] at strict
       omega
     have sourceLower : lowerIndex.val ≤ source.val := by omega
     have sourceBeforeCurrent : source.val < current.val := by
       by_contra notBefore
       have indexOrder : current.val ≤ source.val := by omega
       have targetOrder := target_le_of_index_le plan indexOrder
+      dsimp [current] at targetOrder
       rw [sourceEq] at targetOrder
       omega
     have endpointValues := ordinary_endpoint_values m large j ordinary
+    have lowerVal : lowerIndex.val = 2 * j.val := by
+      simpa [lowerIndex] using endpointValues.1
+    have middleVal : middle.val = 2 * j.val + 1 := by
+      simpa [middle] using endpointValues.2.1
+    have currentVal : current.val = 2 * j.val + 2 := by
+      simpa [current] using endpointValues.2.2
     have sourceMiddleVal : source.val = middle.val := by
-      dsimp [lowerIndex, middle, current] at *
-      simp [ordinaryLowerSourceIndex, ordinaryMiddleSourceIndex] at sourceOdd
+      rw [lowerVal] at sourceLower
+      rw [currentVal] at sourceBeforeCurrent
+      rw [middleVal]
       omega
     have sourceMiddle : source = middle := Fin.ext sourceMiddleVal
     subst source
