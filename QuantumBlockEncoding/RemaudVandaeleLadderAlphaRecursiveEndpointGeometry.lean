@@ -12,10 +12,6 @@ endpoint is identified with an original alpha target.
 * The even-k special child target has physical lower endpoint alpha_(m-3).
 * That special lower endpoint is exactly the source lower endpoint of its parent
   gate at index m-2=k-3.
-
-These identities separate the ordinary cancellation case from the special-tail
-case: the latter already has the exact parent source interval and needs no
-left/right correction.
 -/
 
 namespace QuantumBlockEncoding
@@ -27,8 +23,6 @@ open RemaudVandaeleLadderAlphaRecursiveEndpointArithmetic
 open RemaudVandaeleLadderAlphaRecursiveParameters
 open RemaudVandaeleLadderAlphaSelectedRegister
 
-/-- Parent source index giving the lower physical endpoint of an ordinary child
-target j. -/
 def ordinaryLowerSourceIndex
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -38,7 +32,6 @@ def ordinaryLowerSourceIndex
     rw [recursiveOriginalTargetIndex_ordinary m large j ordinary] at currentLt
     omega⟩
 
-/-- Ordinary child lower endpoint is physical alpha_(2j). -/
 theorem recursiveControlPhysicalLower_ordinary
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -58,8 +51,6 @@ theorem recursiveControlPhysicalLower_ordinary
     simpa [ordinaryLowerSourceIndex, previousChild] using
       previousOriginalTargetIndex_ordinary m large j zero ordinary
 
-/-- Parent source index giving the lower physical endpoint of the even-k special
-child target. -/
 def specialLowerSourceIndex
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -68,7 +59,6 @@ def specialLowerSourceIndex
     have evenK := special.1
     omega⟩
 
-/-- The special child lower endpoint is physical alpha_(m-3)=alpha_(k-4). -/
 theorem recursiveControlPhysicalLower_special
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -90,7 +80,6 @@ theorem recursiveControlPhysicalLower_special
     simpa [specialLowerSourceIndex, previousChild] using
       previousOriginalTargetIndex_special m large j zero special
 
-/-- The source lower endpoint of the special parent target is also alpha_(m-3). -/
 theorem parentLowerEndpoint_special
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -107,10 +96,7 @@ theorem parentLowerEndpoint_special
   apply congrArg (fun index : Fin m => (plan.target index).val)
   apply Fin.ext
   simp [specialLowerSourceIndex]
-  omega
 
-/-- Therefore the child special-tail interval and its parent source gate have
-exactly the same physical lower endpoint. -/
 theorem recursiveControlPhysicalLower_special_eq_parentLowerEndpoint
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
