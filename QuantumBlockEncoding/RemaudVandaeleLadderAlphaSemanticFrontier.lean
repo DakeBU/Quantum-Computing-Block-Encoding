@@ -33,18 +33,19 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 This import-only module checks the current proof DAG from exact physical `X'`
 and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
-The exact rank/canonical-child layer, `m=0,1` semantic base cases, and actual
-outer walls are compiler-verified.  This run rechecks the recursive scheduled
-program after updating the well-founded recursion to Lean 4.29: the termination
-measure binds exactly `(q,m,plan)`, source equations are exposed through the
-well-founded equation compiler rather than bare definitional `rfl`, and the
-resource recurrences explicitly identify `recursiveTargetCount m + 1` with the
-paper boundary count `recursiveK (m+1)`.
+The exact rank/canonical-child layer and actual outer walls are compiler-verified.
+The recursive schedule has now been reduced to transparent source equations and
+paper resource recurrences: the well-founded definition uses target-count as a
+strict measure, the empty/single-gate base programs expose their concrete
+count/depth, and the recursive count identity rewrites the child boundary count
+before applying the Appendix recurrences.
 
-Above that schedule boundary the frontier checks the corrected source-target
-partition, mapped-child target semantics, target support, outer/recursive
-exclusions, ordinary/special activation geometry, stagewise strict-interior
-invariance, and the local cancellation algebra.
+This admission also includes the current Lean-4.29 repairs in the semantic DAG:
+wall-slot coverage avoids dependent `Fin` rewriting, selected-register geometry
+uses explicit natural-subtraction restoration, interval predecessor witnesses
+carry their source bounds explicitly, recursive target exclusion follows the
+actual special-tail classification, and the cancellation core uses the native
+Boolean conditional semantics.
 -/
 
 namespace QuantumBlockEncoding
