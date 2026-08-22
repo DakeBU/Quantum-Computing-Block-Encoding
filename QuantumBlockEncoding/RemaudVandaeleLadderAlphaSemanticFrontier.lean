@@ -34,9 +34,10 @@ This file contains no semantic assumption and no proof shortcut. It forces Lean
 to traverse the exact `X'`/`alpha'` construction, proof-bearing recursive
 schedule, and decomposed Equation-(7) semantics on the isolated proof branch.
 
-The fourth pass checks direct `if_pos`/`if_neg` source-gate evaluation, explicit
-special-tail endpoint arithmetic, and the first/strict-interior stage invariance
-interfaces after opening the concrete outer-wall schedule namespace.
+The fifth pass checks structural outer-wall target exclusions, a canonical
+`Fin 1` base target, source-structural special-tail retention, and an explicit
+ordinary compacted-interval factorization through the consecutive parent
+indices `2j,2j+1,2j+2`.
 -/
 
 namespace QuantumBlockEncoding
