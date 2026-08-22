@@ -33,16 +33,17 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 This import-only module checks the current proof DAG from exact physical `X'`
 and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
-The exact rank/canonical-child layer is compiler-verified.  This run additionally
-checks the repaired proof-bearing outer-wall depth projection and the corrected
-source-target partition: when `m` is even, the penultimate even target `m-2` is
-an ordinary recursive target, so the ordinary-even branch requires only
-`index+1<m`; the stronger `index+2<m` condition is reserved for ordinary odd
-targets because an odd penultimate target at odd `m` is the even-k special tail.
+The exact rank/canonical-child layer and the `m=0,1` semantic base cases are
+compiler-facing proof nodes.  This run also rechecks the actual Algorithm-2
+outer walls after separating dependent `Fin (wallCount m)` data from the
+natural-number identity `wallCount m = m/2`: source-index bounds are projected
+with nondependent arithmetic facts, while wall disjointness is proved from the
+explicit predecessor wire and the strict physical target gap.
 
-Above that arithmetic boundary the frontier checks mapped-child target semantics,
-target support, outer/recursive exclusions, ordinary/special activation geometry,
-stagewise strict-interior invariance, and the local cancellation algebra.
+Above that schedule boundary the frontier checks the corrected source-target
+partition, mapped-child target semantics, target support, outer/recursive
+exclusions, ordinary/special activation geometry, stagewise strict-interior
+invariance, and the local cancellation algebra.
 -/
 
 namespace QuantumBlockEncoding
