@@ -65,9 +65,7 @@ theorem recursiveTarget_ge_start
     selectedStart plan large ≤
       (plan.target (recursiveOriginalTargetIndex m large j)).val := by
   unfold selectedStart
-  exact target_le_of_index_le plan (by
-    have positive := recursiveOriginalTargetIndex_pos m large j
-    omega)
+  exact target_le_of_index_le plan (Nat.zero_le _)
 
 /-- One recursive target lies no later than the selected physical end. -/
 theorem recursiveTarget_le_end
@@ -179,11 +177,11 @@ theorem recursiveTarget_interval_idxOf
       (intervalList plan large).get sourceIndex =
         plan.target (recursiveOriginalTargetIndex m large j) := by
     unfold intervalList
-    simp [sourceIndex, recursiveTargetIntervalIndex,
-      intervalWire_recursiveTargetIndex plan large j]
-  have source := (intervalList_nodup plan large).get_idxOf sourceIndex
+    simpa [sourceIndex, recursiveTargetIntervalIndex] using
+      intervalWire_recursiveTargetIndex plan large j
+  have source := List.get_idxOf (intervalList_nodup plan large) sourceIndex
   rw [value] at source
-  exact congrArg Fin.val source
+  simpa [sourceIndex] using source
 
 end RemaudVandaeleLadderAlphaTargetMembership
 end QuantumBlockEncoding
