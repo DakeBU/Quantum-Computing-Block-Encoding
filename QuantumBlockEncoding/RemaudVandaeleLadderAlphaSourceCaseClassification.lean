@@ -103,13 +103,17 @@ theorem recursiveOriginalTargetIndex_specialChildSlot
 def zeroRightSlot
     (m : Nat) (large : 2 ≤ m) : Fin (wallCount m) :=
   rightSlotOfEvenNonfinal
-    (⟨0, by omega⟩ : Fin m) (by decide) (by omega)
+    (⟨0, by omega⟩ : Fin m)
+    (by change 0 % 2 = 0; rfl)
+    (by change 0 + 1 < m; omega)
 
 @[simp] theorem rightSourceIndex_zeroRightSlot
     (m : Nat) (large : 2 ≤ m) :
     rightSourceIndex m (zeroRightSlot m large) = ⟨0, by omega⟩ := by
   exact rightSourceIndex_rightSlotOfEvenNonfinal
-    (⟨0, by omega⟩ : Fin m) (by decide) (by omega)
+    (⟨0, by omega⟩ : Fin m)
+    (by change 0 % 2 = 0; rfl)
+    (by change 0 + 1 < m; omega)
 
 end RemaudVandaeleLadderAlphaSourceCaseClassification
 end QuantumBlockEncoding
