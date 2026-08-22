@@ -33,6 +33,7 @@ theorem specialParentControl_mem_selectedList
   let current := recursiveOriginalTargetIndex m large j
   let lowerIndex := specialLowerSourceIndex m large j special
   have currentVal := recursiveOriginalTargetIndex_special m large j special
+  have evenK : (m + 1) % 2 = 0 := special.1
   have currentOdd : current.val % 2 = 1 := by
     dsimp [current]
     rw [currentVal]
@@ -62,6 +63,7 @@ theorem specialParentControl_mem_selectedList
       have targetStrict :
           (plan.target source).val < (plan.target lowerIndex).val :=
         plan.strict sourceBeforeLower
+      dsimp [lowerIndex] at targetStrict
       omega
     have sourceLowerBound : lowerIndex.val ≤ source.val := by omega
     rw [← currentEnd] at beforeEnd
