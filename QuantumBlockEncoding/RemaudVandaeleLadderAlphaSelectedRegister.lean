@@ -54,13 +54,14 @@ theorem selectedStart_le_end
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) :
     selectedStart plan large ≤ selectedEnd plan large := by
   unfold selectedStart selectedEnd
-  let endIndex := recursiveEndOriginalIndex m large
-  by_cases zero : endIndex.val = 0
-  · have equal : endIndex = ⟨0, by omega⟩ := by
+  by_cases zero : (recursiveEndOriginalIndex m large).val = 0
+  · have equal : recursiveEndOriginalIndex m large = ⟨0, by omega⟩ := by
       apply Fin.ext
       exact zero
     rw [equal]
-  · have order : (⟨0, by omega⟩ : Fin m) < endIndex := by omega
+  · have order :
+        (⟨0, by omega⟩ : Fin m) < recursiveEndOriginalIndex m large := by
+      omega
     exact (plan.strict order).le
 
 /-- Inclusive physical interval length. -/
@@ -75,9 +76,14 @@ def intervalWire
   ⟨selectedStart plan large + offset.val, by
     have startEnd := selectedStart_le_end plan large
     have offsetLt := offset.isLt
-    have endLt := (plan.target (recursiveEndOriginalIndex m large)).isLt
-    unfold selectedRangeLength selectedEnd at offsetLt
-    omega⟩
+    unfold selectedRangeLength at offsetLt
+    have atMostEnd :
+        selectedStart plan large + offset.val ≤ selectedEnd plan large := by
+      omega
+    have endLt : selectedEnd plan large < q := by
+      unfold selectedEnd
+      exact (plan.target (recursiveEndOriginalIndex m large)).isLt
+    exact lt_of_le_of_lt atMostEnd endLt⟩
 
 @[simp] theorem intervalWire_val
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
@@ -104,6 +110,14 @@ def deletedPhysicalWire
     index.val % 2 = 1 ∧
     index.val < (recursiveEndOriginalIndex m large).val ∧
     plan.target index = wire
+
+/-- Deletion is a finite existential over source indices and is therefore
+constructively decidable. -/
+instance instDecidableDeletedPhysicalWire
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    (wire : Fin q) : Decidable (deletedPhysicalWire plan large wire) := by
+  unfold deletedPhysicalWire
+  exact Fintype.decidableExistsFintype
 
 /-- Boolean retention predicate used by the actual list filter. -/
 def keepPhysicalWire
@@ -186,17 +200,14 @@ theorem selectedList_head
         omega⟩
     refine ⟨zeroOffset, List.mem_finRange zeroOffset, ?_⟩
     apply Fin.ext
-    simp [intervalWire, selectedStart]
+    simp [intervalWire, selectedStart, zeroOffset]
   · apply (keepPhysicalWire_eq_true_iff plan large _).2
     intro deleted
-    rcases deleted with ⟨index,odd,before,equal⟩
-    have values := congrArg Fin.val equal
-    by_cases zeroIndex : index.val = 0
-    · omega
-    · have strict := plan.strict
-        (show (⟨0, by omega⟩ : Fin m) < index by omega)
-      simp [selectedStart] at values
-      omega
+    rcases deleted with ⟨index,odd,_before,equal⟩
+    have indexEq : index = ⟨0, by omega⟩ := target_injective plan equal
+    have values := congrArg Fin.val indexEq
+    simp at values
+    omega
 
 /-- The recursive end target is retained rather than deleted. -/
 theorem selectedList_contains_end
@@ -220,15 +231,11 @@ theorem selectedList_contains_end
     omega
   · apply (keepPhysicalWire_eq_true_iff plan large _).2
     intro deleted
-    rcases deleted with ⟨index,odd,before,equal⟩
-    apply Nat.not_lt_of_ge (show
-      (recursiveEndOriginalIndex m large).val ≤ index.val by
-        by_contra lower
-        have order : index < recursiveEndOriginalIndex m large := by omega
-        have strict := plan.strict order
-        have values := congrArg Fin.val equal
-        omega)
-    exact before
+    rcases deleted with ⟨index,_odd,before,equal⟩
+    have indexEq : index = recursiveEndOriginalIndex m large :=
+      target_injective plan equal
+    have values := congrArg Fin.val indexEq
+    omega
 
 end RemaudVandaeleLadderAlphaSelectedRegister
 end QuantumBlockEncoding
