@@ -290,7 +290,10 @@ theorem flatten_map_map
   induction lists with
   | nil => rfl
   | cons head tail induction =>
-      simp [induction]
+      change
+        head.map f ++ (tail.map (fun list => list.map f)).flatten =
+          (head ++ tail.flatten).map f
+      rw [induction, List.map_append]
 
 /-- Flattening commutes exactly with layerwise embedding. -/
 theorem mapSchedule_program
