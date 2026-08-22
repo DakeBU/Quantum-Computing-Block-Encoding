@@ -6,7 +6,11 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedOrder
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedMembershipGeometry
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveControlGeometry
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointArithmetic
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialTailActivation
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaIntervalFactorization
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaCancellationAlgebra
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
@@ -20,14 +24,14 @@ Algorithm-2 schedule, generic MCX semantics, `C_L` noninterference, the
 recursive-target semantic bridge, and the stagewise reduction toward Equation
 (7).
 
-The exact deleted-prefix rank chain now closes its last physical-offset identity
-with the structural natural-number theorem `Nat.add_sub_of_le`, rather than
-asking arithmetic automation to reconstruct subtraction semantics.  Above that,
-the frontier checks that `X'` is an order embedding of compact coordinates into
-physical wires, translates every child control interval back to its exact
-physical endpoints, distinguishes the even-k child special target `k-3` from
-the extra final left-wall gate `k-2`, and keeps the ordinary Boolean
-left/child/right cancellation as an independent algebraic node.
+The deleted-prefix cardinality and canonical recursive-register certificate are
+now compiler-verified.  This run repairs the shared quantitative alpha-gap lemma
+used to prove alpha-prime strictness, then continues into the source-facing
+semantic geometry: X' membership is an exact interval-minus-deleted-targets
+criterion, ordinary/special child predecessor indices are explicit, the even-k
+special child interval is identified with the parent k-3 source interval, and
+its activation on the original X' input is proved equivalent to the parent
+Equation-(7) activation.
 -/
 
 namespace QuantumBlockEncoding
