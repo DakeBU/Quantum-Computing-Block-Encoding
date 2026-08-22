@@ -15,39 +15,56 @@ source target `m-1`. -/
 theorem recursiveEndOriginalIndex_lt_final
     (m : Nat) (large : 3 ≤ m + 1) :
     (recursiveEndOriginalIndex m large).val < m - 1 := by
+  have mTwo : 2 ≤ m := by omega
   unfold recursiveEndOriginalIndex
   split_ifs with empty
-  · omega
-  · let last : Fin (recursiveTargetCount m) :=
+  · change 0 < m - 1
+    omega
+  · have countPos : 0 < recursiveTargetCount m := Nat.pos_of_ne_zero empty
+    let last : Fin (recursiveTargetCount m) :=
       ⟨recursiveTargetCount m - 1, by omega⟩
+    have lastFinal : last.val + 1 = recursiveTargetCount m := by
+      dsimp [last]
+      omega
     change (recursiveOriginalTargetIndex m large last).val < m - 1
     by_cases special : isSpecialTail m last
     · rw [recursiveOriginalTargetIndex_special m large last special]
       omega
     · rw [recursiveOriginalTargetIndex_ordinary m large last special]
-      have lastLt := last.isLt
-      unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at lastLt
+      have notEven : (m + 1) % 2 ≠ 0 := by
+        intro even
+        exact special ⟨even, lastFinal⟩
+      unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at
+        countPos lastFinal
       omega
 
 /-- No recursive child target maps to parent source target zero. -/
 theorem recursiveOriginalTargetIndex_ne_zero
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
-    recursiveOriginalTargetIndex m large j ≠ ⟨0, by omega⟩ := by
+    recursiveOriginalTargetIndex m large j ≠
+      ⟨0, by
+        have mTwo : 2 ≤ m := by omega
+        omega⟩ := by
   intro equal
   have positive := recursiveOriginalTargetIndex_pos m large j
   have values := congrArg Fin.val equal
+  simp at values
   omega
 
 /-- No recursive child target maps to the final parent source target. -/
 theorem recursiveOriginalTargetIndex_ne_final
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
-    recursiveOriginalTargetIndex m large j ≠ ⟨m - 1, by omega⟩ := by
+    recursiveOriginalTargetIndex m large j ≠
+      ⟨m - 1, by
+        have mTwo : 2 ≤ m := by omega
+        omega⟩ := by
   intro equal
   have atMostEnd := recursiveOriginalTargetIndex_le_end m large j
   have endBeforeFinal := recursiveEndOriginalIndex_lt_final m large
   have values := congrArg Fin.val equal
+  simp at values
   omega
 
 /-- Any odd recursive child source index is exactly the special physical end. -/
@@ -73,9 +90,9 @@ theorem recursiveOriginalTargetIndex_ne_ordinaryOdd
       (recursiveOriginalTargetIndex m large j).val % 2 = 1 := by
     rw [equal]
     exact odd
-  have endEq := recursiveOriginalTargetIndex_odd_eq_end m large j recursiveOdd
-  have endBeforeFinal := recursiveEndOriginalIndex_lt_final m large
-  have values := congrArg Fin.val (equal.symm.trans endEq)
+  have special := odd_originalIndex_is_special m large j recursiveOdd
+  have specialValue := recursiveOriginalTargetIndex_special m large j special
+  have values := congrArg Fin.val equal
   omega
 
 end RemaudVandaeleLadderAlphaRecursiveTargetExclusion
