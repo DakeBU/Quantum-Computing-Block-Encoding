@@ -30,15 +30,13 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 /-!
 # Isolated admission frontier for Remaud--Vandaele Algorithm 2
 
-This file contains no semantic assumption and no proof shortcut.  It is a
-compiler frontier traversing the exact `X'`/`alpha'` construction, recursive
-schedule, and decomposed Equation-(7) semantics on the isolated Algorithm-2
-proof branch.
+This file contains no semantic assumption and no proof shortcut. It forces Lean
+to traverse the exact `X'`/`alpha'` construction, proof-bearing recursive
+schedule, and decomposed Equation-(7) semantics on the isolated proof branch.
 
-The third pass checks explicit source-gate activation case splits (rather than
-dependent rewrites through `Decidable` instances), pointwise child readback
-composition, definitional mapped-gate targets, and the remaining source-index
-case/endpoint arithmetic.
+The fourth pass checks direct `if_pos`/`if_neg` source-gate evaluation, explicit
+special-tail endpoint arithmetic, and the first/strict-interior stage invariance
+interfaces after opening the concrete outer-wall schedule namespace.
 -/
 
 namespace QuantumBlockEncoding
