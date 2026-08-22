@@ -48,23 +48,23 @@ theorem oddBelow_succ (r : Nat) :
     have even : r % 2 = 0 := by omega
     ext i
     simp [oddBelow]
+    intro parity
     constructor
-    · intro h
-      rcases h with ⟨bound, parity⟩
-      refine ⟨?_, parity⟩
+    · intro bound
       by_contra notLt
       have equal : i = r := by omega
       subst i
       omega
-    · intro h
-      exact ⟨by omega, h.2⟩
+    · intro bound
+      omega
 
 /-- There are exactly floor(r/2) odd indices strictly below r. -/
 theorem oddBelow_card (r : Nat) : (oddBelow r).card = r / 2 := by
   induction r with
   | zero => simp [oddBelow]
   | succ r induction =>
-      rw [show r + 1 = Nat.succ r by omega, oddBelow_succ r]
+      change (oddBelow (r + 1)).card = (r + 1) / 2
+      rw [oddBelow_succ r]
       by_cases odd : r % 2 = 1
       · rw [if_pos odd, Finset.card_insert_of_notMem]
         · rw [induction]
