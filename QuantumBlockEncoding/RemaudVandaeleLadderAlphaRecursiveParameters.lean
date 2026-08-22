@@ -39,6 +39,15 @@ final recursive target. -/
 def isSpecialTail (m : Nat) (j : Fin (recursiveTargetCount m)) : Prop :=
   (m + 1) % 2 = 0 ∧ j.val + 1 = recursiveTargetCount m
 
+/-- The special-tail branch is an arithmetic proposition over naturals, hence
+constructively decidable.  Supplying this instance is important because the
+source index itself is a dependent `Fin m` selected by this branch. -/
+instance instDecidableIsSpecialTail
+    (m : Nat) (j : Fin (recursiveTargetCount m)) :
+    Decidable (isSpecialTail m j) := by
+  unfold isSpecialTail
+  infer_instance
+
 /-- Original alpha-vector index selected by recursive target j. -/
 def recursiveOriginalTargetIndex
     (m : Nat) (large : 3 ≤ m + 1)
