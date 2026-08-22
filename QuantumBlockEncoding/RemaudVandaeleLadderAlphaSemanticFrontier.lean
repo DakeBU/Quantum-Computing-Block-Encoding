@@ -39,6 +39,10 @@ Equation-(7) stage semantics.
 The branch is isolated from the long-running shared Vandaele/State-Preparation
 branch so unrelated source-formalization work cannot move the proof base while
 this semantic frontier is being checked.
+
+The second isolated pass additionally checks the repaired `List.ofFn` wall
+membership, explicit predecessor equalities, recursive readback target rewrite,
+base-program semantics, and source-target support.
 -/
 
 namespace QuantumBlockEncoding
