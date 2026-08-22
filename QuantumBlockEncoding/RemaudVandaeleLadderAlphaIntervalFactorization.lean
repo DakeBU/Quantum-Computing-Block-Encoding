@@ -28,7 +28,9 @@ def strictInteriorActive
   if first : index.val = 0 then True
   else
     ∀ wire : Fin q,
-      (plan.target ⟨index.val - 1, by omega⟩).val < wire.val →
+      (plan.target ⟨index.val - 1, by
+        have indexLt := index.isLt
+        omega⟩).val < wire.val →
       wire.val < (plan.target index).val →
       state wire = 1
 
@@ -39,10 +41,14 @@ theorem intervalActive_nonfirst_iff
     (state : PrimitiveBasis q) (index : Fin m)
     (nonzero : index.val ≠ 0) :
     intervalActive plan state index ↔
-      state (plan.target ⟨index.val - 1, by omega⟩) = 1 ∧
+      state (plan.target ⟨index.val - 1, by
+        have indexLt := index.isLt
+        omega⟩) = 1 ∧
         strictInteriorActive plan state index := by
+  have indexLt := index.isLt
   let previous : Fin m := ⟨index.val - 1, by omega⟩
   have previousLt : previous < index := by
+    change previous.val < index.val
     simp [previous]
     omega
   have targetStrict :
@@ -94,6 +100,7 @@ theorem intervalActive_succIndex_iff
     intervalActive plan state current ↔
       state (plan.target previous) = 1 ∧
         strictInteriorActive plan state current := by
+  have currentLt := current.isLt
   have nonzero : current.val ≠ 0 := by omega
   have previousEq :
       (⟨current.val - 1, by omega⟩ : Fin m) = previous := by
