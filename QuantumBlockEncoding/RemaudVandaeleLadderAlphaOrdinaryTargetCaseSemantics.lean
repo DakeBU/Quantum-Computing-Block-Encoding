@@ -116,7 +116,7 @@ theorem ordinaryTarget_stage_action
         else state (plan.target current) := by
     dsimp [childState, childProgram, childPlan, current] at childTargetRaw
     rw [equationSeven_target] at childTargetRaw
-    rw [childActivation] at childTargetRaw
+    simp only [childActivation] at childTargetRaw
     rw [childInputTarget] at childTargetRaw
     rw [leftCurrent] at childTargetRaw
     simpa [middle, current, childPlan, leftState, childProgram, childState] using childTargetRaw
@@ -164,9 +164,9 @@ theorem ordinaryTarget_stage_action
 
   have rightTarget := rightScheduled_ordinaryEven_target
     plan current currentEven currentPositive currentBeforeFinal childState
-  rw [rightActivation] at rightTarget
+  simp only [rightActivation] at rightTarget
   rw [childTarget] at rightTarget
-  rw [parentActivation]
+  simp only [parentActivation]
   exact rightTarget.trans
     (ordinary_pair_cancellation_prop
       (state (plan.target middle))
