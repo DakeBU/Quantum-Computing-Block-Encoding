@@ -38,7 +38,7 @@ theorem selectedList_pairwise_val_lt
   unfold selectedList
   exact (intervalList_pairwise_val_lt plan large).filter _
 
-/-- Compact coordinate order agrees with physical-wire order. -/
+/-- Compact coordinate order gives physical-wire order. -/
 theorem selectedWire_strict
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     {i j : Fin (selectedWidth plan large)} (order : i < j) :
@@ -55,6 +55,23 @@ theorem selectedWire_strict
     (selectedList_pairwise_val_lt plan large).rel_get_of_lt indexOrder
   simpa [selectedWire, i', j'] using physicalOrder
 
+/-- Strict compact and physical orders are equivalent. -/
+theorem selectedWire_lt_iff
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    {i j : Fin (selectedWidth plan large)} :
+    (selectedWire plan large i).val <
+        (selectedWire plan large j).val ↔ i < j := by
+  constructor
+  · intro physical
+    by_contra notOrder
+    have reverse : j ≤ i := by omega
+    rcases Fin.eq_or_lt_of_le reverse with equal | strict
+    · subst i
+      omega
+    · have backward := selectedWire_strict plan large strict
+      omega
+  · exact selectedWire_strict plan large
+
 /-- Weak compact order gives weak physical order. -/
 theorem selectedWire_mono
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
@@ -64,6 +81,20 @@ theorem selectedWire_mono
   rcases Fin.eq_or_lt_of_le order with rfl | strict
   · exact le_rfl
   · exact (selectedWire_strict plan large strict).le
+
+/-- Weak compact and physical orders are equivalent. -/
+theorem selectedWire_le_iff
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    {i j : Fin (selectedWidth plan large)} :
+    (selectedWire plan large i).val ≤
+        (selectedWire plan large j).val ↔ i ≤ j := by
+  constructor
+  · intro physical
+    by_contra notOrder
+    have strict : j < i := by omega
+    have backward := selectedWire_strict plan large strict
+    omega
+  · exact selectedWire_mono plan large
 
 end RemaudVandaeleLadderAlphaSelectedOrder
 end QuantumBlockEncoding
