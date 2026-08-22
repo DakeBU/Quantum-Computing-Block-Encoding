@@ -5,9 +5,9 @@ import Mathlib.Tactic
 # Quantitative gaps in a strictly increasing alpha plan
 
 A strictly increasing natural-number target vector gains at least one physical
-wire for every source-index step.  This elementary fact is used when Algorithm 2
-compacts its selected register: deleting at most one target per two source
-indices cannot destroy strict monotonicity of alpha-prime.
+wire for every source-index step. This is used when Algorithm 2 compacts its
+selected register: deleting at most one target per two source indices cannot
+destroy strict monotonicity of alpha-prime.
 -/
 
 namespace QuantumBlockEncoding
@@ -26,6 +26,9 @@ theorem target_gap_ge_index_gap
   | h d induction =>
       by_cases equal : i = j
       · subst j
+        simp at gapEq
+        have dZero : d = 0 := gapEq.symm
+        subst d
         simp
       · have strictIndex : i.val < j.val := by
           have valuesNe : i.val ≠ j.val := by
@@ -49,10 +52,19 @@ theorem target_gap_ge_index_gap
               simp [previous]
               omega)
           omega
-        simp [previous] at recursive
-        omega
+        have gapStep : d = previous.val - i.val + 1 := by
+          dsimp [previous]
+          omega
+        calc
+          (plan.target i).val + d =
+              (plan.target i).val + (previous.val - i.val) + 1 := by
+                rw [gapStep]
+                omega
+          _ ≤ (plan.target previous).val + 1 :=
+              Nat.add_le_add_right recursive 1
+          _ ≤ (plan.target j).val := lastStep
 
-/-- In particular, target r lies at least r-alpha0 wires after target 0. -/
+/-- Target r lies at least r-alpha0 wires after target 0. -/
 theorem target_from_zero_gap
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m) :
@@ -62,8 +74,7 @@ theorem target_from_zero_gap
       (plan.target index).val := by
   have indexLt := index.isLt
   let zero : Fin m := ⟨0, by omega⟩
-  have source := target_gap_ge_index_gap plan zero index (by
-    simp [zero])
+  have source := target_gap_ge_index_gap plan zero index (by simp [zero])
   simpa [zero] using source
 
 end RemaudVandaeleAlphaGap
