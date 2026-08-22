@@ -24,9 +24,9 @@ theorem eval_validWall_preserves_sourceControl
   have controlMember : wire ∈ (sourceGate plan index).controls :=
     (mem_controlFinset_iff plan index wire).2 control
   have touched : touches (sourceGate plan index) wire := Or.inr controlMember
-  have local := eval_validLayer_member_on_touched
+  have gateAtWire := eval_validLayer_member_on_touched
     layer valid (sourceGate plan index) member state wire touched
-  rw [local]
+  rw [gateAtWire]
   apply gateAction_apply_of_ne_target
   intro targetEq
   have targetNotControl := (sourceGate plan index).target_not_control
@@ -44,14 +44,14 @@ theorem intervalActive_eval_validWall_iff
     intervalActive plan (evalProgram layer state) index ↔
       intervalActive plan state index := by
   constructor
-  · intro active wire control
+  · intro activeAfter wire control
     rw [← eval_validWall_preserves_sourceControl
       plan layer valid index member state wire control]
-    exact active wire control
-  · intro active wire control
+    exact activeAfter wire control
+  · intro activeBefore wire control
     rw [eval_validWall_preserves_sourceControl
       plan layer valid index member state wire control]
-    exact active wire control
+    exact activeBefore wire control
 
 /-- Left-wall specialization. -/
 theorem intervalActive_leftScheduled_iff
@@ -64,7 +64,9 @@ theorem intervalActive_leftScheduled_iff
       (leftSourceIndex m slot) ↔ _
   apply intervalActive_eval_validWall_iff
     plan (leftLayer plan) (leftLayer_valid plan)
-  simp [leftLayer]
+  unfold leftLayer
+  rw [List.mem_ofFn']
+  exact ⟨slot, rfl⟩
 
 /-- Right-wall specialization. -/
 theorem intervalActive_rightScheduled_iff
@@ -77,7 +79,9 @@ theorem intervalActive_rightScheduled_iff
       (rightSourceIndex m slot) ↔ _
   apply intervalActive_eval_validWall_iff
     plan (rightLayer plan) (rightLayer_valid plan)
-  simp [rightLayer]
+  unfold rightLayer
+  rw [List.mem_ofFn']
+  exact ⟨slot, rfl⟩
 
 end RemaudVandaeleLadderAlphaOuterActivationStability
 end QuantumBlockEncoding
