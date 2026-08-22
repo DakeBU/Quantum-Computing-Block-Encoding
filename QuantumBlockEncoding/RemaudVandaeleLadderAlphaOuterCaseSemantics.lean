@@ -60,6 +60,26 @@ theorem rightScheduled_ordinaryEven_target
   rw [slotEq] at source
   exact source
 
+/-- The left wall preserves every ordinary even target; it only changes the odd
+predecessor used later by the right-wall source gate. -/
+theorem leftScheduled_preserves_ordinaryEvenTarget
+    {q m : Nat} (plan : AlphaPlan q m)
+    (index : Fin m)
+    (even : index.val % 2 = 0)
+    (beforeTail : index.val + 2 < m)
+    (state : PrimitiveBasis q) :
+    (leftScheduled plan).eval state (plan.target index) =
+      state (plan.target index) := by
+  apply leftScheduled_preserves_of_no_target
+  intro slot equal
+  have indexEq := target_injective plan equal
+  have values := congrArg Fin.val indexEq
+  by_cases final : slot.val + 1 = wallCount m
+  · simp [leftSourceIndex, final] at values
+    omega
+  · simp [leftSourceIndex, final] at values
+    omega
+
 theorem leftScheduled_ordinaryOdd_target
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m)
