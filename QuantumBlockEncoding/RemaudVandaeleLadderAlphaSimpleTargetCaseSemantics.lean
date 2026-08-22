@@ -179,9 +179,26 @@ theorem specialTarget_stage_action
           flipBit (state (plan.target current))
         else state (plan.target current) := by
     rw [equationSeven_target] at childRaw
-    simp only [childActivation] at childRaw
-    rw [childInputTarget, leftTarget] at childRaw
-    simpa [childState, childProgram, childPlan, current] using childRaw
+    by_cases parentActive : intervalActive plan state current
+    · have childActive :
+          intervalActive
+            (recursivePlan plan large (canonicalCertificate plan large))
+            (readEmbedded (selectedWire plan large) leftState) j := by
+        exact childActivation.mpr parentActive
+      rw [if_pos childActive] at childRaw
+      rw [if_pos parentActive]
+      rw [childInputTarget, leftTarget] at childRaw
+      simpa [childState, childProgram, childPlan, current] using childRaw
+    · have childInactive :
+          ¬ intervalActive
+            (recursivePlan plan large (canonicalCertificate plan large))
+            (readEmbedded (selectedWire plan large) leftState) j := by
+        intro active
+        exact parentActive (childActivation.mp active)
+      rw [if_neg childInactive] at childRaw
+      rw [if_neg parentActive]
+      rw [childInputTarget, leftTarget] at childRaw
+      simpa [childState, childProgram, childPlan, current] using childRaw
   have rightTarget :
       (rightScheduled plan).eval childState (plan.target current) =
         childState (plan.target current) := by
