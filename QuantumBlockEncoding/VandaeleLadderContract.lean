@@ -48,6 +48,13 @@ def allLocalControlsOne {localControls : Nat}
     (controls : PrimitiveBasis localControls) : Prop :=
   ∀ wire, controls wire = 1
 
+/-- Finite fresh-control activation is constructively decidable. -/
+instance instDecidableAllLocalControlsOne
+    {localControls : Nat} (controls : PrimitiveBasis localControls) :
+    Decidable (allLocalControlsOne controls) := by
+  unfold allLocalControlsOne
+  exact Fintype.decidableForallFintype
+
 /-- Exact Equation-(5) activation predicate, evaluated on the source input
 state. -/
 def ladderActive {localControls steps : Nat}
@@ -55,6 +62,14 @@ def ladderActive {localControls steps : Nat}
     (index : Fin steps) : Prop :=
   previousPivot state index = 1 ∧
     allLocalControlsOne (state.2 index).1
+
+/-- Ladder activation is constructively decidable from its finite register. -/
+instance instDecidableLadderActive
+    {localControls steps : Nat}
+    (state : LadderState localControls steps) (index : Fin steps) :
+    Decidable (ladderActive state index) := by
+  unfold ladderActive
+  infer_instance
 
 /-- Authoritative closed-form Equation-(5) action.  Pivot and fresh controls are
 preserved; each target is toggled from the activation predicate of the original
@@ -98,7 +113,7 @@ def sourceLadderStep (localControls steps : Nat)
     (index : Fin steps)
     (state : LadderState localControls steps) :
     LadderState localControls steps :=
-  if active : ladderActive state index then
+  if ladderActive state index then
     (state.1,
       Function.update state.2 index
         ((state.2 index).1, flipBit (state.2 index).2))
@@ -153,7 +168,7 @@ theorem sourceLadderStep_preserves_localControls
   · by_cases same : query = index
     · subst query
       simp [sourceLadderStep, active]
-    · simp [sourceLadderStep, active, Function.update_noteq same]
+    · simp [sourceLadderStep, active, same]
   · simp [sourceLadderStep, active]
 
 /-- Exact target action of one source step. -/
