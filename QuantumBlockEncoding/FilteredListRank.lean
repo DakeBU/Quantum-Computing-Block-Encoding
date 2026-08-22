@@ -59,14 +59,17 @@ theorem idxOf_filter_eq_retainedBefore
       by_cases same : a = head
       · subst a
         simp [retainedBefore, kept]
-      · have tailMember : a ∈ tail := by
+      · have headNe : head ≠ a := by
+          intro equal
+          exact same equal.symm
+        have tailMember : a ∈ tail := by
           simpa [same] using member
         have recursive := induction tailNodup tailMember
         by_cases headKept : keep head = true
-        · simp [retainedBefore, same, headKept, recursive]
+        · simp [retainedBefore, headNe, headKept, recursive]
         · have headFalse : keep head = false := by
             cases h : keep head <;> simp_all
-          simp [retainedBefore, same, headFalse, recursive]
+          simp [retainedBefore, headNe, headFalse, recursive]
 
 /-- The same result stated as an exact position bound, useful for constructing a
 `Fin (filter.length)`. -/
@@ -100,7 +103,7 @@ theorem get_filter_retainedBefore
       ⟨retainedBefore keep list a,
         retainedBefore_lt_filter_length keep list a nodup member kept⟩ := by
     apply Fin.ext
-    omega
+    exact indexRank.symm.trans rank
   rw [← indexEq]
   exact indexValue
 
