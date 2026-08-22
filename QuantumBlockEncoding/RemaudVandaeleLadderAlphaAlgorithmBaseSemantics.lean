@@ -12,41 +12,41 @@ open RemaudVandaeleLadderAlphaContract
 
 theorem baseOne_target
     {q : Nat} (plan : AlphaPlan q 1) (state : PrimitiveBasis q) :
-    (baseOne plan).eval state (plan.target ⟨0, by decide⟩) =
-      if intervalActive plan state ⟨0, by decide⟩ then
-        flipBit (state (plan.target ⟨0, by decide⟩))
-      else state (plan.target ⟨0, by decide⟩) := by
+    (baseOne plan).eval state (plan.target (0 : Fin 1)) =
+      if intervalActive plan state (0 : Fin 1) then
+        flipBit (state (plan.target (0 : Fin 1)))
+      else state (plan.target (0 : Fin 1)) := by
   change evalProgram (baseOne plan).program state _ = _
-  rw [show (baseOne plan).program = [sourceGate plan ⟨0, by decide⟩] by simp [baseOne]]
+  rw [show (baseOne plan).program = [sourceGate plan (0 : Fin 1)] by
+    simp [baseOne]]
   have localAction := eval_validLayer_member_on_touched
-    [sourceGate plan ⟨0, by decide⟩]
+    [sourceGate plan (0 : Fin 1)]
     (by simp [LayerValid, WireDisjoint])
-    (sourceGate plan ⟨0, by decide⟩)
+    (sourceGate plan (0 : Fin 1))
     (by simp) state
-    (plan.target ⟨0, by decide⟩) (Or.inl rfl)
+    (plan.target (0 : Fin 1)) (Or.inl rfl)
   rw [localAction]
-  by_cases enabled : intervalActive plan state ⟨0, by decide⟩
-  · have sourceEnabled : active (sourceGate plan ⟨0, by decide⟩) state :=
-      (sourceGate_active_iff plan state ⟨0, by decide⟩).2 enabled
+  by_cases enabled : intervalActive plan state (0 : Fin 1)
+  · have sourceEnabled : active (sourceGate plan (0 : Fin 1)) state :=
+      (sourceGate_active_iff plan state (0 : Fin 1)).2 enabled
     unfold gateAction
-    rw [if_pos sourceEnabled]
-    simp [enabled, xBasisAction, sourceGate]
-  · have sourceDisabled : ¬ active (sourceGate plan ⟨0, by decide⟩) state := by
+    rw [if_pos sourceEnabled, if_pos enabled]
+    simp [xBasisAction, sourceGate]
+  · have sourceDisabled : ¬ active (sourceGate plan (0 : Fin 1)) state := by
       intro sourceEnabled
-      exact enabled ((sourceGate_active_iff plan state ⟨0, by decide⟩).1 sourceEnabled)
+      exact enabled ((sourceGate_active_iff plan state (0 : Fin 1)).1 sourceEnabled)
     unfold gateAction
-    rw [if_neg sourceDisabled]
-    simp [enabled]
+    rw [if_neg sourceDisabled, if_neg enabled]
 
 theorem baseOne_nonTarget
     {q : Nat} (plan : AlphaPlan q 1) (state : PrimitiveBasis q)
     (wire : Fin q)
-    (different : plan.target ⟨0, by decide⟩ ≠ wire) :
+    (different : plan.target (0 : Fin 1) ≠ wire) :
     (baseOne plan).eval state wire = state wire := by
   change evalProgram (baseOne plan).program state wire = state wire
   apply evalProgram_preserves_of_no_target
   intro gate member
-  have equal : gate = sourceGate plan ⟨0, by decide⟩ := by
+  have equal : gate = sourceGate plan (0 : Fin 1) := by
     simpa [baseOne] using member
   subst gate
   exact different
@@ -67,7 +67,7 @@ theorem algorithm_one_refines
     ∀ state, (algorithm plan).eval state = equationSevenAction plan state := by
   intro state
   funext wire
-  let zero : Fin 1 := ⟨0, by decide⟩
+  let zero : Fin 1 := 0
   by_cases hit : plan.target zero = wire
   · subst wire
     rw [algorithm_one]
