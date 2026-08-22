@@ -34,6 +34,19 @@ def strictInteriorActive
       wire.val < (plan.target index).val →
       state wire = 1
 
+/-- Strict-interior activation is constructively decidable: the physical
+register is finite and all endpoint/order predicates are decidable.  Keeping
+this instance next to the definition lets the ordinary cancellation algebra
+stay Prop-native without importing `Classical.propDecidable`. -/
+instance instDecidableStrictInteriorActive
+    {q m : Nat} (plan : AlphaPlan q m)
+    (state : PrimitiveBasis q) (index : Fin m) :
+    Decidable (strictInteriorActive plan state index) := by
+  unfold strictInteriorActive
+  split
+  · infer_instance
+  · exact Fintype.decidableForallFintype
+
 /-- For a nonfirst source gate, Equation-(7) activation factors into the
 predecessor alpha bit and the strict interior of the physical interval. -/
 theorem intervalActive_nonfirst_iff
