@@ -103,8 +103,8 @@ theorem rightSourceIndex_ne_final
     (m : Nat) (large : 2 ≤ m)
     (j : Fin (wallCount m)) :
     (rightSourceIndex m j).val ≠ m - 1 := by
-  have hj := j.isLt
-  rw [wallCount_eq] at hj
+  have hjHalf : j.val < m / 2 := by
+    simpa only [wallCount_eq] using j.isLt
   simp [rightSourceIndex]
   omega
 
@@ -129,9 +129,9 @@ theorem leftSourceIndex_ne_specialTail
   by_cases final : j.val + 1 = wallCount m
   · simp [leftSourceIndex, final]
     omega
-  · simp [leftSourceIndex, final]
-    have hj := j.isLt
-    rw [wallCount_eq] at hj
+  · have hjHalf : j.val < m / 2 := by
+      simpa only [wallCount_eq] using j.isLt
+    simp [leftSourceIndex, final]
     omega
 
 end RemaudVandaeleLadderAlphaOuterIndexCoverage
