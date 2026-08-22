@@ -2,7 +2,7 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSemanticFrontier
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaEquationSeven
 
 /-!
-# Final admission frontier for Remaud--Vandaele Algorithm 2
+# Final semantic frontier for Remaud--Vandaele Algorithm 2
 
 A successful build of this module certifies both:
 
