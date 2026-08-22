@@ -1,0 +1,68 @@
+import QuantumBlockEncoding.MultiControlledXScheduleSemantics
+import QuantumBlockEncoding.MultiControlledXLayerSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmBaseSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaMappedRecursiveTargetSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStageNoninterference
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterActivationStability
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterCaseSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSourceCaseClassification
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedOrder
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedMembershipGeometry
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveControlGeometry
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointArithmetic
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveTargetExclusion
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveStageExclusionSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialTailActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialAfterLeftActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaIntervalFactorization
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaFirstIntervalNoninterference
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryActivationFactors
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryChildActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryAfterLeftActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryPredecessorSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorNoninterference
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorStageInvariance
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaCancellationAlgebra
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryTargetCaseSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSimpleTargetCaseSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
+
+/-!
+# Admission entry point: Remaud--Vandaele Algorithm 2 semantic frontier
+
+This import-only module is the semantic aggregate for Algorithm 2.  A successful
+build checks the whole source-facing DAG below the final strong induction:
+
+* generic MCX schedule / embedding / depth-one layer semantics;
+* exact physical `X'` and `alpha'` rank certificates;
+* the actual recursive Algorithm-2 schedule and its paper count/depth recurrence;
+* left/right wall semantics and exact source-index coverage;
+* `C_L` noninterference on the recursive register;
+* recursive target readback and parent target-support;
+* ordinary two-interval compaction, special-tail interval identity, and
+  strict-interior invariance;
+* the ordinary cancellation target case and all simple zero/odd/special/final
+  target cases.
+
+The proofs are normalized around Lean 4.29's dependent `Decidable` behavior:
+proposition equivalences are transported with `simp` rather than dependent
+`rw`, and `List.ofFn` membership is witnessed through `List.mem_ofFn'` instead
+of proof-sensitive casts.
+
+The only theorem intentionally above this aggregate is the final strong
+induction `algorithm_refines_equationSeven`.
+-/
+
+namespace QuantumBlockEncoding
+namespace RemaudVandaeleLadderAlphaSemanticFrontier
+
+theorem admitted_frontier_marker : True := by trivial
+
+end RemaudVandaeleLadderAlphaSemanticFrontier
+end QuantumBlockEncoding
