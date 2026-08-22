@@ -19,17 +19,23 @@ theorem baseOne_target
   change evalProgram (baseOne plan).program state _ = _
   rw [show (baseOne plan).program =
       [sourceGate plan ⟨0, by decide⟩] by simp [baseOne]]
-  have local := eval_validLayer_member_on_touched
+  have gateAtTarget := eval_validLayer_member_on_touched
     [sourceGate plan ⟨0, by decide⟩]
     (by simp [LayerValid, WireDisjoint])
     (sourceGate plan ⟨0, by decide⟩)
     (by simp) state
     (plan.target ⟨0, by decide⟩) (Or.inl rfl)
-  rw [local]
-  unfold gateAction
-  rw [sourceGate_active_iff]
-  by_cases enabled : intervalActive plan state ⟨0, by decide⟩ <;>
-    simp [enabled, xBasisAction]
+  rw [gateAtTarget]
+  by_cases enabled : intervalActive plan state ⟨0, by decide⟩
+  · have gateEnabled :
+        active (sourceGate plan ⟨0, by decide⟩) state :=
+      (sourceGate_active_iff plan state ⟨0, by decide⟩).2 enabled
+    simp [gateAction, gateEnabled, enabled, xBasisAction, sourceGate]
+  · have gateDisabled :
+        ¬ active (sourceGate plan ⟨0, by decide⟩) state := by
+      intro activeGate
+      exact enabled ((sourceGate_active_iff plan state ⟨0, by decide⟩).1 activeGate)
+    simp [gateAction, gateDisabled, enabled]
 
 theorem baseOne_nonTarget
     {q : Nat} (plan : AlphaPlan q 1) (state : PrimitiveBasis q)
