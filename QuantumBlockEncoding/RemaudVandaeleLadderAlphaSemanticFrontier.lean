@@ -33,22 +33,20 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 This import-only module checks the current proof DAG from exact physical `X'`
 and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
-The exact rank/canonical-child layer and actual outer walls are compiler-verified.
-The recursive schedule has now been reduced to transparent source equations and
-paper resource recurrences: the well-founded definition uses target-count as a
-strict measure, the empty/single-gate base programs expose their concrete
-count/depth, and the recursive count identity rewrites the child boundary count
-before applying the Appendix recurrences.
+The exact rank/canonical-child layer, actual outer walls, and the recursive
+proof-bearing schedule are compiler-verified.  The schedule uses target count as
+a strict well-founded measure and satisfies the paper's exact gate/depth
+recurrences.
 
-This admission also includes the current Lean-4.29 repairs in the semantic DAG:
-wall-slot coverage avoids dependent `Fin` rewriting, selected-register geometry
-uses explicit natural-subtraction restoration, interval predecessor witnesses
-carry their source bounds explicitly, recursive target exclusion follows the
-actual special-tail classification, and the cancellation core uses the native
-Boolean conditional semantics.
+The current run enters the full semantic spine with the wall semantics repaired
+against Lean 4.29: membership in `List.ofFn` walls is witnessed through
+`List.mem_ofFn'` / function range rather than dependent `Fin.cast`, and the
+layer-action proofs use ordinary theorem names rather than the reserved keyword
+`local`.
 
-The current run additionally checks the final schedule-recurrence reductions
-before entering the full Equation-(7) semantic spine.
+Above this point the frontier checks source-case coverage, selected-register
+geometry, recursive target exclusions, ordinary/special activation geometry,
+stagewise invariance, and the local cancellation algebra.
 -/
 
 namespace QuantumBlockEncoding
