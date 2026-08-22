@@ -2,16 +2,6 @@ import QuantumBlockEncoding.MultiControlledXLayerSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterLayers
 import Mathlib.Tactic
 
-/-!
-# Remaud--Vandaele Algorithm 2: semantics of the two outer MCX walls
-
-`RemaudVandaeleLadderAlphaOuterLayers` proves that `C_L` and `C_R` are actual
-wire-disjoint depth-one layers.  The generic MCX layer semantics now turns that
-resource certificate into local source semantics: every wall target has exactly
-the stand-alone action of its corresponding source MCX, and every physical wire
-not targeted by the wall is preserved.
--/
-
 namespace QuantumBlockEncoding
 namespace RemaudVandaeleLadderAlphaOuterSemantics
 
@@ -49,15 +39,17 @@ theorem rightLayer_target
     (plan.target (rightSourceIndex m j)) (Or.inl rfl)
   rw [localAction]
   by_cases enabled : intervalActive plan state (rightSourceIndex m j)
-  · have sourceEnabled :
-        active (sourceGate plan (rightSourceIndex m j)) state :=
+  · have sourceEnabled : active (sourceGate plan (rightSourceIndex m j)) state :=
       (sourceGate_active_iff plan state (rightSourceIndex m j)).2 enabled
-    simp [gateAction, sourceEnabled, enabled, xBasisAction, sourceGate]
-  · have sourceDisabled :
-        ¬ active (sourceGate plan (rightSourceIndex m j)) state := by
+    unfold gateAction
+    rw [if_pos sourceEnabled]
+    simp [enabled, xBasisAction, sourceGate]
+  · have sourceDisabled : ¬ active (sourceGate plan (rightSourceIndex m j)) state := by
       intro sourceEnabled
       exact enabled ((sourceGate_active_iff plan state (rightSourceIndex m j)).1 sourceEnabled)
-    simp [gateAction, sourceDisabled, enabled]
+    unfold gateAction
+    rw [if_neg sourceDisabled]
+    simp [enabled]
 
 theorem leftLayer_target
     {q m : Nat} (plan : AlphaPlan q m)
@@ -74,15 +66,17 @@ theorem leftLayer_target
     (plan.target (leftSourceIndex m j)) (Or.inl rfl)
   rw [localAction]
   by_cases enabled : intervalActive plan state (leftSourceIndex m j)
-  · have sourceEnabled :
-        active (sourceGate plan (leftSourceIndex m j)) state :=
+  · have sourceEnabled : active (sourceGate plan (leftSourceIndex m j)) state :=
       (sourceGate_active_iff plan state (leftSourceIndex m j)).2 enabled
-    simp [gateAction, sourceEnabled, enabled, xBasisAction, sourceGate]
-  · have sourceDisabled :
-        ¬ active (sourceGate plan (leftSourceIndex m j)) state := by
+    unfold gateAction
+    rw [if_pos sourceEnabled]
+    simp [enabled, xBasisAction, sourceGate]
+  · have sourceDisabled : ¬ active (sourceGate plan (leftSourceIndex m j)) state := by
       intro sourceEnabled
       exact enabled ((sourceGate_active_iff plan state (leftSourceIndex m j)).1 sourceEnabled)
-    simp [gateAction, sourceDisabled, enabled]
+    unfold gateAction
+    rw [if_neg sourceDisabled]
+    simp [enabled]
 
 theorem rightScheduled_target
     {q m : Nat} (plan : AlphaPlan q m)
