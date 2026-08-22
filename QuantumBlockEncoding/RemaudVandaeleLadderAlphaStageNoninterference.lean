@@ -17,7 +17,6 @@ open RemaudVandaeleLadderAlphaRecursiveParameters
 open RemaudVandaeleLadderAlphaSelectedRegister
 open RemaudVandaeleLadderAlphaTargetSupport
 
-/-- The left outer wall preserves every parent non-alpha wire. -/
 theorem leftScheduled_preserves_nonAlpha
     {q m : Nat} (plan : AlphaPlan q m)
     (state : PrimitiveBasis q) (wire : Fin q)
@@ -30,7 +29,6 @@ theorem leftScheduled_preserves_nonAlpha
   rw [targetEq]
   exact notAlpha index
 
-/-- The right outer wall preserves every parent non-alpha wire. -/
 theorem rightScheduled_preserves_nonAlpha
     {q m : Nat} (plan : AlphaPlan q m)
     (state : PrimitiveBasis q) (wire : Fin q)
@@ -43,9 +41,6 @@ theorem rightScheduled_preserves_nonAlpha
   rw [targetEq]
   exact notAlpha index
 
-/-- The embedded recursive child also preserves every parent non-alpha wire.
-The exact physical alpha-prime certificate identifies each mapped child target
-with a parent alpha target. -/
 theorem mappedRecursive_preserves_parent_nonAlpha
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q) (wire : Fin q)
@@ -68,7 +63,7 @@ theorem mappedRecursive_preserves_parent_nonAlpha
   rcases List.mem_map.mp member with ⟨childGate, childMember, rfl⟩
   rcases algorithm_target_source childPlan childGate childMember with
     ⟨j, childTarget⟩
-  simp only [mapGate_target]
+  change selectedWire plan large childGate.target ≠ wire
   rw [childTarget]
   rw [canonical_recursive_target_physical plan large j]
   exact notAlpha (recursiveOriginalTargetIndex m large j)
