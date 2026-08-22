@@ -10,6 +10,7 @@ open MultiControlledXEmbedding
 open RemaudVandaeleLadderAlphaContract
 open RemaudVandaeleLadderAlphaIntervalFactorization
 open RemaudVandaeleLadderAlphaOuterCaseSemantics
+open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaRankCertificate
 open RemaudVandaeleLadderAlphaRecursiveCertificate
 open RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
@@ -61,7 +62,10 @@ theorem intervalActive_special_leftScheduled_iff
         (recursiveOriginalTargetIndex m large j) := by
   let current := recursiveOriginalTargetIndex m large j
   have currentNonzero : current.val ≠ 0 := by
-    have currentVal := recursiveOriginalTargetIndex_special m large j special
+    have positive :=
+      RemaudVandaeleLadderAlphaTargetMembership.recursiveOriginalTargetIndex_pos
+        m large j
+    dsimp [current]
     omega
   rw [intervalActive_nonfirst_iff plan ((leftScheduled plan).eval state)
       current currentNonzero,
@@ -70,8 +74,9 @@ theorem intervalActive_special_leftScheduled_iff
       (⟨current.val - 1, by omega⟩ : Fin m) =
         specialLowerSourceIndex m large j special := by
     apply Fin.ext
-    have currentVal := recursiveOriginalTargetIndex_special m large j special
-    simp [specialLowerSourceIndex]
+    dsimp [current]
+    rw [recursiveOriginalTargetIndex_special m large j special]
+    change (m - 2) - 1 = m - 3
     omega
   rw [previousEq]
   constructor
