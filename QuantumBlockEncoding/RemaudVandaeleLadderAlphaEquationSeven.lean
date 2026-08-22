@@ -73,15 +73,13 @@ theorem algorithm_refines_equationSeven :
         · have indexEq : index = (⟨0, by omega⟩ : Fin m) := by
             apply Fin.ext
             exact zeroIndex
-          subst index
-          simpa [afterLeft, middleScheduled, afterMiddle, afterRight, childPlan] using
+          simpa [indexEq, afterLeft, middleScheduled, afterMiddle, afterRight, childPlan] using
             zeroTarget_stage_action plan sourceLarge state
         · rcases finalOrRest with finalIndex | specialOrRest
           · have indexEq : index = (⟨m - 1, by omega⟩ : Fin m) := by
               apply Fin.ext
               exact finalIndex
-            subst index
-            simpa [afterLeft, middleScheduled, afterMiddle, afterRight, childPlan] using
+            simpa [indexEq, afterLeft, middleScheduled, afterMiddle, afterRight, childPlan] using
               finalTarget_stage_action plan sourceLarge state
           · rcases specialOrRest with specialCase | ordinaryOrOdd
             · rcases specialCase with ⟨oddM, indexSpecial⟩
