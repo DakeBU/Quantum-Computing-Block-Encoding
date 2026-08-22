@@ -11,6 +11,7 @@ open RemaudVandaeleLadderAlphaAlgorithmSchedule
 open RemaudVandaeleLadderAlphaContract
 open RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 open RemaudVandaeleLadderAlphaOuterCaseSemantics
+open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaRankCertificate
 open RemaudVandaeleLadderAlphaRecursiveCertificate
 open RemaudVandaeleLadderAlphaRecursiveParameters
@@ -23,8 +24,15 @@ theorem ordinaryMiddle_beforeTail
     (j : Fin (recursiveTargetCount m))
     (ordinary : ¬ isSpecialTail m j) :
     (ordinaryMiddleSourceIndex m large j ordinary).val + 2 < m := by
-  have currentLt := (recursiveOriginalTargetIndex m large j).isLt
-  rw [recursiveOriginalTargetIndex_ordinary m large j ordinary] at currentLt
+  let current := recursiveOriginalTargetIndex m large j
+  have currentNotFinal := recursiveOriginalTargetIndex_ne_final m large j
+  have currentLt := current.isLt
+  have currentBeforeFinal : current.val + 1 < m := by
+    dsimp [current] at currentNotFinal currentLt ⊢
+    omega
+  have currentVal := recursiveOriginalTargetIndex_ordinary m large j ordinary
+  dsimp [current] at currentBeforeFinal
+  rw [currentVal] at currentBeforeFinal
   simp [ordinaryMiddleSourceIndex]
   omega
 
