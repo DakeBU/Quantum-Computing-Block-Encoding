@@ -178,7 +178,6 @@ theorem specialTarget_stage_action
         if intervalActive plan state current then
           flipBit (state (plan.target current))
         else state (plan.target current) := by
-    dsimp [childState, childProgram, childPlan, current] at childRaw
     rw [equationSeven_target] at childRaw
     simp only [childActivation] at childRaw
     rw [childInputTarget, leftTarget] at childRaw
