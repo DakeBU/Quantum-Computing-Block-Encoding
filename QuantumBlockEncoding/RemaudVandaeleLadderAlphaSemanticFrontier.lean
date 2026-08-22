@@ -30,19 +30,15 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 /-!
 # Isolated admission frontier for Remaud--Vandaele Algorithm 2
 
-This file intentionally contains no semantic assumption and no proof shortcut.
-Its only role is to force one compiler target to traverse the complete current
-proof DAG from the physical recursive register `X'` and exact `alpha'` ranks,
-through the proof-bearing recursive MCX schedule, to the decomposed
-Equation-(7) stage semantics.
+This file contains no semantic assumption and no proof shortcut.  It is a
+compiler frontier traversing the exact `X'`/`alpha'` construction, recursive
+schedule, and decomposed Equation-(7) semantics on the isolated Algorithm-2
+proof branch.
 
-The branch is isolated from the long-running shared Vandaele/State-Preparation
-branch so unrelated source-formalization work cannot move the proof base while
-this semantic frontier is being checked.
-
-The second isolated pass additionally checks the repaired `List.ofFn` wall
-membership, explicit predecessor equalities, recursive readback target rewrite,
-base-program semantics, and source-target support.
+The third pass checks explicit source-gate activation case splits (rather than
+dependent rewrites through `Decidable` instances), pointwise child readback
+composition, definitional mapped-gate targets, and the remaining source-index
+case/endpoint arithmetic.
 -/
 
 namespace QuantumBlockEncoding
