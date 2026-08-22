@@ -146,19 +146,19 @@ theorem middle_recursiveTarget_action
           (RemaudVandaeleLadderAlphaRecursiveParameters.recursiveOriginalTargetIndex
             m large j) := by
     simpa [childPlan] using canonical_recursive_target_physical plan large j
+  have readbackPhysical :
+      afterMiddle plan large state
+          (plan.target
+            (RemaudVandaeleLadderAlphaRecursiveParameters.recursiveOriginalTargetIndex
+              m large j)) =
+        (algorithm childPlan).eval
+          (readEmbedded (selectedWire plan large) state)
+          (childPlan.target j) := by
+    simpa [readEmbedded, physical] using readback
   have childSemantics :=
-    childCorrect (readEmbedded (selectedWire plan large) state)
-  change
-    afterMiddle plan large state
-        (plan.target
-          (RemaudVandaeleLadderAlphaRecursiveParameters.recursiveOriginalTargetIndex
-            m large j)) =
-      equationSevenAction childPlan
-        (readEmbedded (selectedWire plan large) state)
-        (childPlan.target j)
-  rw [physical] at readback
-  rw [childSemantics] at readback
-  exact readback
+    congrFun (childCorrect (readEmbedded (selectedWire plan large) state))
+      (childPlan.target j)
+  exact readbackPhysical.trans childSemantics
 
 /-- The recursive middle stage cannot modify a physical wire outside the image
 of the selected recursive register `X'`. -/
