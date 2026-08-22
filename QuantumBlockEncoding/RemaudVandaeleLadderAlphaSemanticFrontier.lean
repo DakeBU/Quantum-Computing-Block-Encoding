@@ -21,10 +21,10 @@ proof frontier:
 * the stagewise semantic reduction toward Equation (7).
 
 The admission PR is rerun whenever a foundational source node changes.  The
-current run additionally admits the repaired general-alpha source contract:
-finite interval predicates and Equation-(7) activations are constructively
-decidable, while the specification-level target witness is explicitly marked
-noncomputable rather than leaking `Classical.choose` into executable code.
+current run additionally checks the repaired Appendix resource recurrences:
+well-founded recursive equations are consumed through their equation-compiler
+rewrite API rather than fragile definitional `rfl`, and the logarithmic bound
+explicitly rewrites the halving identity before arithmetic closure.
 -/
 
 namespace QuantumBlockEncoding
