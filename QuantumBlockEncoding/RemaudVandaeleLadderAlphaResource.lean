@@ -48,25 +48,40 @@ termination_by k => k
 
 decreasing_by omega
 
-@[simp] theorem depth_zero : depthRecurrence 0 = 0 := rfl
-@[simp] theorem depth_one : depthRecurrence 1 = 0 := rfl
-@[simp] theorem depth_two : depthRecurrence 2 = 1 := rfl
+/-- Lean's well-founded equation compiler supplies rewrite equations for these
+recursive definitions; unlike ordinary structural recursion, they should not be
+proved by definitional `rfl`. -/
+@[simp] theorem depth_zero : depthRecurrence 0 = 0 := by
+  simp [depthRecurrence]
 
-@[simp] theorem gate_zero : gateRecurrence 0 = 0 := rfl
-@[simp] theorem gate_one : gateRecurrence 1 = 0 := rfl
-@[simp] theorem gate_two : gateRecurrence 2 = 1 := rfl
+@[simp] theorem depth_one : depthRecurrence 1 = 0 := by
+  simp [depthRecurrence]
+
+@[simp] theorem depth_two : depthRecurrence 2 = 1 := by
+  simp [depthRecurrence]
+
+@[simp] theorem gate_zero : gateRecurrence 0 = 0 := by
+  simp [gateRecurrence]
+
+@[simp] theorem gate_one : gateRecurrence 1 = 0 := by
+  simp [gateRecurrence]
+
+@[simp] theorem gate_two : gateRecurrence 2 = 1 := by
+  simp [gateRecurrence]
 
 /-- Reader-facing exact depth recurrence. -/
 theorem depth_step {k : Nat} (large : 3 ≤ k) :
     depthRecurrence k = 2 + depthRecurrence (recursiveK k) := by
-  obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le large
-  rfl
+  have decompose : k = (k - 3) + 3 := by omega
+  rw [decompose]
+  simp [depthRecurrence, recursiveK]
 
 /-- Reader-facing exact MCX-count recurrence. -/
 theorem gate_step {k : Nat} (large : 3 ≤ k) :
     gateRecurrence k = 2 * outerCount k + gateRecurrence (recursiveK k) := by
-  obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le large
-  rfl
+  have decompose : k = (k - 3) + 3 := by omega
+  rw [decompose]
+  simp [gateRecurrence, recursiveK]
 
 /-- Recursive ladder size decreases in the non-base regime. -/
 theorem recursiveK_lt {k : Nat} (large : 2 < k) : recursiveK k < k := by
@@ -80,9 +95,9 @@ theorem gateRecurrence_le_two_mul :
   induction k using Nat.strong_induction_on with
   | h k induction =>
       rcases k with (_ | _ | _ | m)
-      · rfl
-      · rfl
-      · norm_num [gateRecurrence]
+      · simp
+      · simp
+      · norm_num
       · have smaller : (m + 3) / 2 < m + 3 := by omega
         have recursive := induction ((m + 3) / 2) smaller
         rw [gate_step (k := m + 3) (by omega)]
@@ -103,14 +118,15 @@ theorem depthRecurrence_le_two_log :
   induction k using Nat.strong_induction_on with
   | h k induction =>
       rcases k with (_ | _ | _ | m)
-      · simp [depthRecurrence]
-      · simp [depthRecurrence]
-      · norm_num [depthRecurrence]
+      · simp
+      · simp
+      · norm_num
       · have smaller : (m + 3) / 2 < m + 3 := by omega
         have recursive := induction ((m + 3) / 2) smaller
         have logarithm := log2_half_add_one (k := m + 3) (by omega)
         rw [depth_step (k := m + 3) (by omega)]
         unfold recursiveK
+        rw [logarithm]
         omega
 
 /-- Source-level resource certificate indexed only by the number of ladder
