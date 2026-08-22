@@ -35,8 +35,10 @@ def finalWallSlot (m : Nat) (large : 2 ≤ m) : Fin (wallCount m) :=
 @[simp] theorem finalWallSlot_is_last
     (m : Nat) (large : 2 ≤ m) :
     (finalWallSlot m large).val + 1 = wallCount m := by
-  simp [finalWallSlot]
-  rw [wallCount_eq]
+  change wallCount m - 1 + 1 = wallCount m
+  have positive : 0 < wallCount m := by
+    rw [wallCount_eq]
+    omega
   omega
 
 /-- The final left-wall slot is exactly source gate `m-1`. -/
@@ -82,8 +84,8 @@ theorem leftSlotOfOddBeforeTail_not_last
     (odd : index.val % 2 = 1)
     (beforeTail : index.val + 2 < m) :
     (leftSlotOfOddBeforeTail index odd beforeTail).val + 1 ≠ wallCount m := by
-  rw [wallCount_eq]
-  simp [leftSlotOfOddBeforeTail]
+  change index.val / 2 + 1 ≠ wallCount m
+  have countEq : wallCount m = m / 2 := wallCount_eq m
   omega
 
 /-- Every ordinary odd source index before the tail occurs in `C_L`. -/
@@ -95,8 +97,11 @@ theorem leftSourceIndex_leftSlotOfOddBeforeTail
       (leftSlotOfOddBeforeTail index odd beforeTail) = index := by
   apply Fin.ext
   have nonfinal := leftSlotOfOddBeforeTail_not_last index odd beforeTail
-  simp [leftSourceIndex, nonfinal, leftSlotOfOddBeforeTail]
-  omega
+  unfold leftSourceIndex
+  split
+  · next h => exact (nonfinal h).elim
+  · simp [leftSlotOfOddBeforeTail]
+    omega
 
 /-- No right-wall gate targets the final source index. -/
 theorem rightSourceIndex_ne_final
@@ -126,12 +131,13 @@ theorem leftSourceIndex_ne_specialTail
     (oddM : m % 2 = 1)
     (j : Fin (wallCount m)) :
     (leftSourceIndex m j).val ≠ m - 2 := by
-  by_cases final : j.val + 1 = wallCount m
-  · simp [leftSourceIndex, final]
+  have countEq : wallCount m = m / 2 := wallCount_eq m
+  have hj := j.isLt
+  unfold leftSourceIndex
+  split
+  · simp
     omega
-  · have hjHalf : j.val < m / 2 := by
-      simpa only [wallCount_eq] using j.isLt
-    simp [leftSourceIndex, final]
+  · simp
     omega
 
 end RemaudVandaeleLadderAlphaOuterIndexCoverage
