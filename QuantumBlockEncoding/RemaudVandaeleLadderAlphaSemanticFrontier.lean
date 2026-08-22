@@ -2,6 +2,7 @@ import QuantumBlockEncoding.MultiControlledXScheduleSemantics
 import QuantumBlockEncoding.MultiControlledXLayerSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmBaseSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
@@ -12,26 +13,25 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointArithmetic
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialTailActivation
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaIntervalFactorization
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaCancellationAlgebra
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 
 /-!
 # Admission entry point: Remaud--Vandaele Algorithm 2 semantic frontier
 
-This import-only module gives the admission PR one stable Lean target whose
-transitive imports cover physical `X'`, exact `alpha'` rank, the proof-bearing
-Algorithm-2 schedule, generic MCX semantics, `C_L` noninterference, the
-recursive-target semantic bridge, and the stagewise reduction toward Equation
-(7).
+This import-only module checks the complete current semantic proof DAG from the
+physical recursive register through the local Equation-(7) case algebra.
 
-The deleted-prefix cardinality and canonical recursive-register certificate are
-now compiler-verified.  This run repairs the shared quantitative alpha-gap lemma
-used to prove alpha-prime strictness, then continues into the source-facing
-semantic geometry: X' membership is an exact interval-minus-deleted-targets
-criterion, ordinary/special child predecessor indices are explicit, the even-k
-special child interval is identified with the parent k-3 source interval, and
-its activation on the original X' input is proved equivalent to the parent
-Equation-(7) activation.
+The exact deleted-prefix cardinality and canonical recursive-register
+certificate are already compiler-verified.  The current run checks the repaired
+quantitative alpha-gap telescoping proof and then continues through alpha-prime
+strictness, the proof-bearing recursive schedule, target support, X' order and
+membership geometry, ordinary/special child endpoint arithmetic, special-tail
+activation equivalence, and the Prop-native cancellation identity.  It also
+checks the m=0 and m=1 semantic base cases and the ordinary compacted physical
+activation factorization into the left-wall source predicate A_j and the current
+strict-interior predicate B_j.
 -/
 
 namespace QuantumBlockEncoding
