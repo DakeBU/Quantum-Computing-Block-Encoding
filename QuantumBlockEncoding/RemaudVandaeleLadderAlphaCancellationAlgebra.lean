@@ -24,7 +24,7 @@ namespace RemaudVandaeleLadderAlphaCancellationAlgebra
 
 /-- Toggle one computational-basis bit under a Boolean condition. -/
 def toggleBy (condition : Bool) (bit : Fin 2) : Fin 2 :=
-  Bool.cond condition (flipBit bit) bit
+  if condition = true then flipBit bit else bit
 
 /-- Boolean test that a computational-basis bit equals one. -/
 def bitIsOne (bit : Fin 2) : Bool := decide (bit = 1)
