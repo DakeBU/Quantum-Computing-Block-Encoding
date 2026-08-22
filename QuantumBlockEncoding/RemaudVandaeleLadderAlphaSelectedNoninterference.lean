@@ -1,5 +1,5 @@
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
-import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveOrder
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveTargetExclusion
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedRegister
 import Mathlib.Tactic
 
@@ -62,24 +62,13 @@ theorem selectedWire_le_end
   unfold selectedRangeLength at offsetLt
   omega
 
-/-- The recursive end source index is always strictly before the final source
-index `m-1` in the recursive regime. -/
+/-- Reuse the already-verified recursive-target exclusion theorem: the physical
+recursive end lies strictly before the final parent source target. -/
 theorem recursiveEndOriginalIndex_lt_final
     (m : Nat) (large : 3 ≤ m + 1) :
-    (recursiveEndOriginalIndex m large).val < m - 1 := by
-  unfold recursiveEndOriginalIndex
-  split_ifs with empty
-  · omega
-  · let last : Fin (recursiveTargetCount m) :=
-      ⟨recursiveTargetCount m - 1, by omega⟩
-    change (recursiveOriginalTargetIndex m large last).val < m - 1
-    by_cases special : isSpecialTail m last
-    · rw [recursiveOriginalTargetIndex_special m large last special]
-      omega
-    · rw [recursiveOriginalTargetIndex_ordinary m large last special]
-      have lastLt := last.isLt
-      unfold recursiveTargetCount recursiveK at lastLt
-      omega
+    (recursiveEndOriginalIndex m large).val < m - 1 :=
+  RemaudVandaeleLadderAlphaRecursiveTargetExclusion.recursiveEndOriginalIndex_lt_final
+    m large
 
 /-- Therefore the final source target is physically strictly after the selected
 recursive interval. -/
@@ -99,14 +88,16 @@ theorem nonfinalLeftTarget_deleted
     (nonfinal : j.val + 1 ≠ wallCount m) :
     deletedPhysicalWire plan large
       (plan.target (leftSourceIndex m j)) := by
+  have hjHalf : j.val < m / 2 := by
+    simpa only [wallCount_eq] using j.isLt
+  have nonfinalHalf : j.val + 1 ≠ m / 2 := by
+    simpa only [wallCount_eq] using nonfinal
   refine ⟨leftSourceIndex m j, ?_, ?_, rfl⟩
   · simp [leftSourceIndex, nonfinal]
   · simp [leftSourceIndex, nonfinal]
     unfold recursiveEndOriginalIndex
     split_ifs with empty
-    · have hj := j.isLt
-      rw [wallCount_eq] at hj
-      unfold recursiveTargetCount recursiveK at empty
+    · unfold recursiveTargetCount recursiveK at empty
       omega
     · let last : Fin (recursiveTargetCount m) :=
         ⟨recursiveTargetCount m - 1, by omega⟩
@@ -114,14 +105,10 @@ theorem nonfinalLeftTarget_deleted
         (recursiveOriginalTargetIndex m large last).val
       by_cases special : isSpecialTail m last
       · rw [recursiveOriginalTargetIndex_special m large last special]
-        have hj := j.isLt
         have specialEven := special.1
-        rw [wallCount_eq] at hj
         omega
       · rw [recursiveOriginalTargetIndex_ordinary m large last special]
-        have hj := j.isLt
         have lastLt := last.isLt
-        rw [wallCount_eq] at hj
         unfold recursiveTargetCount recursiveK at lastLt
         omega
 
