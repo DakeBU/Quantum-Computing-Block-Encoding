@@ -35,7 +35,7 @@ theorem filter_partition_length
   | nil => rfl
   | cons head tail induction =>
       cases h : keep head <;>
-        simp [deleteOfKeep, h, induction]
+        simp [deleteOfKeep, h] <;> omega
 
 /-- The partition identity on a prefix. -/
 theorem take_filter_partition_length
@@ -61,7 +61,7 @@ theorem idxOf_filter_eq_retainedBefore
         simp [retainedBefore, kept]
       · have tailMember : a ∈ tail := by
           simpa [same] using member
-        have recursive := induction tailNodup tailMember kept
+        have recursive := induction tailNodup tailMember
         by_cases headKept : keep head = true
         · simp [retainedBefore, same, headKept, recursive]
         · have headFalse : keep head = false := by
@@ -77,7 +77,7 @@ theorem retainedBefore_lt_filter_length
     (kept : keep a = true) :
     retainedBefore keep list a < (list.filter keep).length := by
   rw [← idxOf_filter_eq_retainedBefore keep list a nodup member kept]
-  exact List.idxOf_lt_length.2 (by simpa [kept] using member)
+  exact List.idxOf_lt_length_iff.2 (by simpa [kept] using member)
 
 /-- At the retained rank, `get` returns the requested element. -/
 theorem get_filter_retainedBefore
