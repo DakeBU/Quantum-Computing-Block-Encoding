@@ -18,8 +18,6 @@ open RemaudVandaeleLadderAlphaRecursiveTargetExclusion
 open RemaudVandaeleLadderAlphaSelectedRegister
 open RemaudVandaeleLadderAlphaTargetSupport
 
-/-- If a parent source target is outside the recursive source-index image, the
-embedded child preserves that physical alpha wire. -/
 theorem mappedRecursive_preserves_sourceTarget_of_excluded
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q) (index : Fin m)
@@ -44,12 +42,11 @@ theorem mappedRecursive_preserves_sourceTarget_of_excluded
   rcases List.mem_map.mp member with ⟨childGate, childMember, rfl⟩
   rcases algorithm_target_source childPlan childGate childMember with
     ⟨j, childTarget⟩
-  simp only [mapGate_target]
+  change selectedWire plan large childGate.target ≠ plan.target index
   rw [childTarget, canonical_recursive_target_physical plan large j]
   intro targetEqual
   exact excluded j (target_injective plan targetEqual)
 
-/-- The child preserves parent target alpha_0. -/
 theorem mappedRecursive_preserves_zeroTarget
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q) :
@@ -63,7 +60,6 @@ theorem mappedRecursive_preserves_zeroTarget
   intro j
   exact recursiveOriginalTargetIndex_ne_zero m large j
 
-/-- The child preserves every ordinary odd parent target. -/
 theorem mappedRecursive_preserves_ordinaryOddTarget
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q) (index : Fin m)
@@ -79,7 +75,6 @@ theorem mappedRecursive_preserves_ordinaryOddTarget
   exact recursiveOriginalTargetIndex_ne_ordinaryOdd
     m large j index odd beforeTail
 
-/-- The child preserves the final parent source target. -/
 theorem mappedRecursive_preserves_finalTarget
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q) :
