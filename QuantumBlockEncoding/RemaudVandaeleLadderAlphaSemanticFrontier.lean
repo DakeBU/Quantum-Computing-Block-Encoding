@@ -8,6 +8,7 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStageNoninterference
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterActivationStability
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterCaseSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSourceCaseClassification
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedOrder
@@ -18,39 +19,44 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveTargetExclusion
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveStageExclusionSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialTailActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialAfterLeftActivation
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaIntervalFactorization
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaFirstIntervalNoninterference
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryChildActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryAfterLeftActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryPredecessorSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorNoninterference
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorStageInvariance
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaCancellationAlgebra
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryTargetCaseSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSimpleTargetCaseSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 
 /-!
 # Admission entry point: Remaud--Vandaele Algorithm 2 semantic frontier
 
-This import-only module checks the current proof DAG from exact physical `X'`
-and `alpha'` rank through the source-facing Equation-(7) case decomposition.
+This import-only module is the semantic aggregate for Algorithm 2.  A successful
+build checks the whole source-facing DAG below the final strong induction:
 
-The generic MCX layer, exact `X'`/`alpha'` rank chain, actual outer walls, and
-the recursive proof-bearing schedule are compiler-verified. The schedule uses
-target count as a strict well-founded measure and satisfies the paper's exact
-gate/depth recurrences.
+* generic MCX schedule / embedding / depth-one layer semantics;
+* exact physical `X'` and `alpha'` rank certificates;
+* the actual recursive Algorithm-2 schedule and its paper count/depth recurrence;
+* left/right wall semantics and exact source-index coverage;
+* `C_L` noninterference on the recursive register;
+* recursive target readback and parent target-support;
+* ordinary two-interval compaction, special-tail interval identity, and
+  strict-interior invariance;
+* the ordinary cancellation target case and all simple zero/odd/special/final
+  target cases.
 
-The semantic layer is normalized around Lean 4.29's dependent `Decidable`
-behavior: MCX target actions use explicit activation cases; wall slot equalities
-and child activation equivalences are transported with `simp`; wall and target
-support membership in `List.ofFn` is exposed through `List.mem_ofFn'`; and the
-`C_L`-versus-`X'` proof reuses the verified recursive-target exclusion layer.
-The recursive target-support proof also uses the explicit well-founded
-`algorithm_zero`, `algorithm_one`, and `algorithm_step` equations rather than
-relying on definitional reduction.
+The proofs are normalized around Lean 4.29's dependent `Decidable` behavior:
+proposition equivalences are transported with `simp` rather than dependent
+`rw`, and `List.ofFn` membership is witnessed through `List.mem_ofFn'` instead
+of proof-sensitive casts.
 
-The next compiler frontier is therefore the actual Equation-(7) semantic DAG:
-source-case coverage, selected-register geometry, recursive target exclusions,
-ordinary/special activation geometry, stagewise invariance, cancellation, and
-the final strong induction.
+The only theorem intentionally above this aggregate is the final strong
+induction `algorithm_refines_equationSeven`.
 -/
 
 namespace QuantumBlockEncoding
