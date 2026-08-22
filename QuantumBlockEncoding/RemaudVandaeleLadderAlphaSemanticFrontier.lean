@@ -17,13 +17,14 @@ proof frontier:
 * proof-bearing recursive MCX schedule;
 * exact source count/depth recurrences;
 * generic schedule and depth-one layer semantics;
+* `C_L` noninterference on `X'` and original-input recursive readback;
 * the stagewise semantic reduction toward Equation (7).
 
 The admission PR is rerun whenever a foundational MCX source node changes, so a
 green frontier certifies the current transitive source chain rather than a stale
-cached branch state.  The current run checks both the constructive MCX action
-and its exact injective wire embedding/readback semantics before admitting the
-higher Algorithm-2 layers.
+cached branch state.  The current run checks the constructive MCX action, exact
+injective wire embedding/readback semantics, and the explicit list-flatten
+transport proof before admitting the higher Algorithm-2 layers.
 -/
 
 namespace QuantumBlockEncoding
