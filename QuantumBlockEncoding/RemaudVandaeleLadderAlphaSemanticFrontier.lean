@@ -4,6 +4,9 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedOrder
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaIntervalFactorization
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaCancellationAlgebra
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 
@@ -16,14 +19,14 @@ Algorithm-2 schedule, generic MCX semantics, `C_L` noninterference, the
 recursive-target semantic bridge, and the stagewise reduction toward Equation
 (7).
 
-The current admission checks the repaired filtered-rank and odd-target
-cardinality foundations, the current-Mathlib recursive-register certificate,
-and alpha-prime strictness with the even-k special tail exposed explicitly.  It
-also validates a structural target-support theorem: every recursively emitted
-MCX target is one of the parent source `alpha_i`, with embedded child targets
-identified through the canonical physical alpha-prime certificate.  Finally,
-the ordinary left/child/right Boolean cancellation identity is checked as an
-independent algebra node.
+The current frontier additionally exposes the geometry needed by the final
+strong induction.  The two outer walls now have an explicit source-index
+coverage API distinguishing the even-k child special target `k-3` from the
+extra final left-wall gate `k-2`; the filtered recursive register is certified
+to preserve strict physical order; and every nonfirst source interval factors
+into its predecessor alpha bit times the strict interior interval.  Together
+with the independent finite-bit cancellation identity, these nodes isolate the
+ordinary pair, special-tail, final-target, and non-alpha cases of Equation (7).
 -/
 
 namespace QuantumBlockEncoding
