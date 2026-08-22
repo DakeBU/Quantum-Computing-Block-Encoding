@@ -19,13 +19,13 @@ theorem baseOne_target
   change evalProgram (baseOne plan).program state _ = _
   rw [show (baseOne plan).program =
       [sourceGate plan ⟨0, by decide⟩] by simp [baseOne]]
-  have local := eval_validLayer_member_on_touched
+  have localAction := eval_validLayer_member_on_touched
     [sourceGate plan ⟨0, by decide⟩]
     (by simp [LayerValid, WireDisjoint])
     (sourceGate plan ⟨0, by decide⟩)
     (by simp) state
     (plan.target ⟨0, by decide⟩) (Or.inl rfl)
-  rw [local]
+  rw [localAction]
   unfold gateAction
   rw [sourceGate_active_iff]
   by_cases enabled : intervalActive plan state ⟨0, by decide⟩ <;>
@@ -51,7 +51,8 @@ theorem algorithm_zero_refines
   funext wire
   have miss : ¬ ∃ index : Fin 0, plan.target index = wire := by simp
   rw [equationSeven_nonTarget plan state wire miss]
-  simp [algorithm, emptyScheduled, ScheduledMCXProgram.eval,
+  rw [algorithm_zero]
+  simp [emptyScheduled, ScheduledMCXProgram.eval,
     ScheduledMCXProgram.program, scheduleProgram, evalProgram]
 
 theorem algorithm_one_refines
