@@ -64,3 +64,4 @@ jobs:
         run: |
           lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
           lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaSemanticFrontier
