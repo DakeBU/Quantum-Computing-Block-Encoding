@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryChildActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryPredecessorSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterActivationStability
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorStageInvariance
@@ -12,6 +13,7 @@ open RemaudVandaeleLadderAlphaContract
 open RemaudVandaeleLadderAlphaIntervalFactorization
 open RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 open RemaudVandaeleLadderAlphaOrdinaryChildActivation
+open RemaudVandaeleLadderAlphaOrdinaryPredecessorSemantics
 open RemaudVandaeleLadderAlphaOuterActivationStability
 open RemaudVandaeleLadderAlphaOuterIndexCoverage
 open RemaudVandaeleLadderAlphaOuterLayers
@@ -30,11 +32,7 @@ def ordinaryMiddleLeftSlot
   leftSlotOfOddBeforeTail
     (ordinaryMiddleSourceIndex m large j ordinary)
     (by simp [ordinaryMiddleSourceIndex])
-    (by
-      have currentLt := (recursiveOriginalTargetIndex m large j).isLt
-      rw [recursiveOriginalTargetIndex_ordinary m large j ordinary] at currentLt
-      simp [ordinaryMiddleSourceIndex]
-      omega)
+    (ordinaryMiddle_beforeTail m large j ordinary)
 
 /-- That slot really is the ordinary odd source index `2j+1`. -/
 theorem leftSourceIndex_ordinaryMiddleLeftSlot
@@ -47,11 +45,7 @@ theorem leftSourceIndex_ordinaryMiddleLeftSlot
   exact leftSourceIndex_leftSlotOfOddBeforeTail
     (ordinaryMiddleSourceIndex m large j ordinary)
     (by simp [ordinaryMiddleSourceIndex])
-    (by
-      have currentLt := (recursiveOriginalTargetIndex m large j).isLt
-      rw [recursiveOriginalTargetIndex_ordinary m large j ordinary] at currentLt
-      simp [ordinaryMiddleSourceIndex]
-      omega)
+    (ordinaryMiddle_beforeTail m large j ordinary)
 
 /-- On the state actually entering the embedded child, ordinary child
 activation is exactly the original parent factors A_j and B_j. -/
