@@ -26,13 +26,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Set up Lean and Mathlib cache
+      - name: Set up Lean and caches
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
-          use-github-cache: false
+          use-github-cache: true
           use-mathlib-cache: true
 
       - name: Compile final Algorithm 2 semantic frontier
         run: |
+          set -euxo pipefail
           lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaFinalFrontier
