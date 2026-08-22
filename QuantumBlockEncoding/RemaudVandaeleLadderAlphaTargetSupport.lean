@@ -34,8 +34,11 @@ theorem leftScheduled_target_source
     {q m : Nat} (plan : AlphaPlan q m)
     (gate : MCXGate q) (member : gate ∈ (leftScheduled plan).program) :
     ∃ index : Fin m, gate.target = plan.target index := by
-  simp [leftScheduled, leftLayer] at member
-  rcases member with ⟨j, rfl⟩
+  have layerMember : gate ∈ leftLayer plan := by
+    simpa [leftScheduled] using member
+  unfold leftLayer at layerMember
+  rw [List.mem_ofFn'] at layerMember
+  rcases layerMember with ⟨j, rfl⟩
   exact ⟨leftSourceIndex m j, rfl⟩
 
 /-- Every gate in the right source wall targets a source alpha target. -/
@@ -43,8 +46,11 @@ theorem rightScheduled_target_source
     {q m : Nat} (plan : AlphaPlan q m)
     (gate : MCXGate q) (member : gate ∈ (rightScheduled plan).program) :
     ∃ index : Fin m, gate.target = plan.target index := by
-  simp [rightScheduled, rightLayer] at member
-  rcases member with ⟨j, rfl⟩
+  have layerMember : gate ∈ rightLayer plan := by
+    simpa [rightScheduled] using member
+  unfold rightLayer at layerMember
+  rw [List.mem_ofFn'] at layerMember
+  rcases layerMember with ⟨j, rfl⟩
   exact ⟨rightSourceIndex m j, rfl⟩
 
 /-- Main target-support theorem: every recursively emitted MCX target is one of
@@ -59,19 +65,21 @@ theorem algorithm_target_source :
   | h m induction =>
       intro plan gate member
       rcases m with (_ | _ | r)
-      · simp [algorithm, emptyScheduled] at member
-      · have baseMember : gate = sourceGate plan ⟨0, by decide⟩ := by
-          simpa [algorithm, baseOne] using member
+      · rw [algorithm_zero] at member
+        simp [emptyScheduled] at member
+      · rw [algorithm_one] at member
+        have baseMember : gate = sourceGate plan ⟨0, by decide⟩ := by
+          simpa [baseOne] using member
         subst gate
         exact ⟨⟨0, by decide⟩, rfl⟩
       · let parentM := r + 2
-        have large : 2 ≤ parentM := by omega
+        have recursiveRegime : 2 ≤ parentM := by omega
         let sourceLarge : 3 ≤ parentM + 1 := by omega
         let certificate := canonicalCertificate plan sourceLarge
         let childPlan := recursivePlan plan sourceLarge certificate
         have smaller : recursiveTargetCount parentM < parentM :=
-          recursiveTargetCount_lt large
-        rw [algorithm_step plan large] at member
+          recursiveTargetCount_lt recursiveRegime
+        rw [algorithm_step plan recursiveRegime] at member
         simp only [ScheduledMCXProgram.seq_program, List.mem_append] at member
         rcases member with (leftOrChild | rightMember)
         · rcases leftOrChild with leftMember | childMember
