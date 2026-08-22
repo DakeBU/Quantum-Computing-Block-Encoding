@@ -61,7 +61,12 @@ theorem recursivePlan_inControlInterval_iff_physical
         exact interval.2
       have physicalUpper := selectedWire_strict plan large upperCompact
       rw [upperPhysical] at physicalUpper
-      exact ⟨selectedWire_ge_start plan large wire, physicalUpper⟩
+      have physicalLower :
+          recursiveControlPhysicalLower plan large j ≤
+            (selectedWire plan large wire).val := by
+        simpa [recursiveControlPhysicalLower, first] using
+          selectedWire_ge_start plan large wire
+      exact ⟨physicalLower, physicalUpper⟩
     · rintro ⟨_physicalLower, physicalUpper⟩
       have upperCompact : wire < childPlan.target j := by
         apply (selectedWire_lt_iff plan large).mp
