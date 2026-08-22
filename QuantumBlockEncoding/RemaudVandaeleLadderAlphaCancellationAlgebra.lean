@@ -15,14 +15,8 @@ For an ordinary source pair, write:
 * `B` for activation of the remaining child/right part.
 
 The left wall first toggles `x` under `A`.  The recursive child toggles `y`
-under `A && B`.  The right wall then toggles `y` when the *updated* predecessor
-bit is one and `B` holds.  The theorem below says that these two target
-corrections collapse exactly to the original source action: toggle `y` iff the
-*original* predecessor bit is one and `B` holds.
-
-This is the algebraic reason Algorithm 2's odd/even wall construction works.
-The geometric proof later only has to identify the source control interval with
-the two predicates `A` and `B`.
+under `A ∧ B`.  The right wall then toggles `y` when the updated predecessor
+bit is one and `B` holds.  Their net effect is the original source gate.
 -/
 
 namespace QuantumBlockEncoding
@@ -41,12 +35,7 @@ def bitIsOne (bit : Fin 2) : Bool := decide (bit = 1)
 @[simp] theorem toggleBy_true (bit : Fin 2) :
     toggleBy true bit = flipBit bit := rfl
 
-/-- Core ordinary-pair cancellation identity.
-
-`A` toggles the predecessor; `A && B` is the child correction; and the final
-right-wall correction tests the updated predecessor together with `B`.  Their
-net action is the parent source gate controlled by the original predecessor and
-`B`. -/
+/-- Boolean form of the ordinary-pair cancellation identity. -/
 theorem ordinary_pair_cancellation
     (x y : Fin 2) (A B : Bool) :
     toggleBy (bitIsOne (toggleBy A x) && B)
@@ -54,9 +43,7 @@ theorem ordinary_pair_cancellation
       toggleBy (bitIsOne x && B) y := by
   fin_cases x <;> fin_cases y <;> cases A <;> cases B <;> rfl
 
-/-- The same identity exposed as a two-stage correction equation, convenient
-when the child target value has already been rewritten by an induction
-hypothesis. -/
+/-- Boolean form with the intermediate values named. -/
 theorem ordinary_pair_cancellation_after_child
     (x y : Fin 2) (A B : Bool) :
     let predecessorAfterLeft := toggleBy A x
@@ -64,6 +51,22 @@ theorem ordinary_pair_cancellation_after_child
     toggleBy (bitIsOne predecessorAfterLeft && B) targetAfterChild =
       toggleBy (bitIsOne x && B) y := by
   exact ordinary_pair_cancellation x y A B
+
+/-- Prop-native form matching the source `intervalActive` statements directly.
+
+This theorem is the exact algebra needed after rewriting the left-wall target,
+child induction hypothesis, and right-wall target formulas. -/
+theorem ordinary_pair_cancellation_prop
+    (x y : Fin 2) (A B : Prop) [Decidable A] [Decidable B] :
+    let predecessorAfterLeft := if A then flipBit x else x
+    let targetAfterChild := if A ∧ B then flipBit y else y
+    (if predecessorAfterLeft = 1 ∧ B then
+        flipBit targetAfterChild
+      else targetAfterChild) =
+      (if x = 1 ∧ B then flipBit y else y) := by
+  by_cases a : A <;> by_cases b : B <;>
+    fin_cases x <;> fin_cases y <;>
+    simp [a, b, flipBit]
 
 end RemaudVandaeleLadderAlphaCancellationAlgebra
 end QuantumBlockEncoding
