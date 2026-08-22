@@ -59,8 +59,7 @@ theorem specialParentControl_mem_selectedList
       selectedStart plan large ≤ (plan.target lowerIndex).val := by
     unfold selectedStart
     exact target_le_of_index_le plan (by
-      simp [lowerIndex, specialLowerSourceIndex]
-      omega)
+      simp [lowerIndex, specialLowerSourceIndex])
   have selectedLower : selectedStart plan large ≤ wire.val :=
     startToLower.trans controlLower
   have selectedUpper : wire.val ≤ selectedEnd plan large := by
@@ -70,21 +69,29 @@ theorem specialParentControl_mem_selectedList
     exact controlUpper.le
   have retained : ¬ deletedPhysicalWire plan large wire := by
     intro deleted
-    rcases deleted with ⟨source, sourceOdd, beforeEnd, sourceEq⟩
-    have sourceValues := congrArg Fin.val sourceEq
+    rcases deleted with ⟨source, sourceOdd, _beforeEnd, sourceEq⟩
     have sourceNotBeforeLower : ¬ source.val < lowerIndex.val := by
       intro sourceBeforeLower
       have targetStrict :
           (plan.target source).val < (plan.target lowerIndex).val :=
-        plan.strict (by exact sourceBeforeLower)
+        plan.strict sourceBeforeLower
+      rw [sourceEq] at targetStrict
       omega
     have sourceLowerBound : lowerIndex.val ≤ source.val := by omega
-    rw [← currentEnd] at beforeEnd
+    have sourceBeforeCurrent : source.val < current.val := by
+      by_contra notBefore
+      have currentLeSource : current.val ≤ source.val := by omega
+      have targetOrder := target_le_of_index_le plan currentLeSource
+      rw [sourceEq] at targetOrder
+      have upper := control.2
+      dsimp [current] at targetOrder upper
+      omega
     have lowerVal : lowerIndex.val = m - 3 := by
       simp [lowerIndex, specialLowerSourceIndex]
+    have currentVal' : current.val = m - 2 := by
+      dsimp [current]
+      exact currentVal
     have sourceVal : source.val = m - 3 := by
-      dsimp [current] at beforeEnd
-      rw [currentVal] at beforeEnd
       omega
     rw [sourceVal] at sourceOdd
     omega
@@ -104,7 +111,6 @@ theorem recursiveIntervalActive_special_iff_parent
       intervalActive plan state
         (recursiveOriginalTargetIndex m large j) := by
   let childPlan := recursivePlan plan large (canonicalCertificate plan large)
-  let current := recursiveOriginalTargetIndex m large j
   have lowerEq :=
     recursiveControlPhysicalLower_special_eq_parentLowerEndpoint
       plan large j special
