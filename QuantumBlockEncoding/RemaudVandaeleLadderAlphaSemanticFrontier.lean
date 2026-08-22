@@ -33,12 +33,13 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 This import-only module checks the current proof DAG from exact physical `X'`
 and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
-The exact rank/canonical-child layer and the `m=0,1` semantic base cases are
-compiler-facing proof nodes.  This run also rechecks the actual Algorithm-2
-outer walls after separating dependent `Fin (wallCount m)` data from the
-natural-number identity `wallCount m = m/2`: source-index bounds are projected
-with nondependent arithmetic facts, while wall disjointness is proved from the
-explicit predecessor wire and the strict physical target gap.
+The exact rank/canonical-child layer, `m=0,1` semantic base cases, and actual
+outer walls are compiler-verified.  This run rechecks the recursive scheduled
+program after updating the well-founded recursion to Lean 4.29: the termination
+measure binds exactly `(q,m,plan)`, source equations are exposed through the
+well-founded equation compiler rather than bare definitional `rfl`, and the
+resource recurrences explicitly identify `recursiveTargetCount m + 1` with the
+paper boundary count `recursiveK (m+1)`.
 
 Above that schedule boundary the frontier checks the corrected source-target
 partition, mapped-child target semantics, target support, outer/recursive
