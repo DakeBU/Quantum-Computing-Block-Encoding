@@ -21,7 +21,7 @@ theorem target_gap_ge_index_gap
     {q m : Nat} (plan : AlphaPlan q m)
     (i j : Fin m) (order : i.val ≤ j.val) :
     (plan.target i).val + (j.val - i.val) ≤ (plan.target j).val := by
-  let d := j.val - i.val
+  generalize gapEq : j.val - i.val = d
   induction d using Nat.strong_induction_on generalizing i j with
   | h d induction =>
       by_cases equal : i = j
@@ -38,16 +38,17 @@ theorem target_gap_ge_index_gap
           simp [previous]
           omega
         have smaller : previous.val - i.val < d := by
-          dsimp [d, previous]
+          simp [previous]
           omega
         have recursive := induction (previous.val - i.val) smaller
-          plan i previous previousOrder
+          i previous previousOrder rfl
         have lastStep :
             (plan.target previous).val + 1 ≤ (plan.target j).val := by
           have strict := plan.strict
-            (show previous < j by simp [previous]; omega)
+            (show previous < j by
+              simp [previous]
+              omega)
           omega
-        dsimp [d] at *
         simp [previous] at recursive
         omega
 
@@ -55,9 +56,15 @@ theorem target_gap_ge_index_gap
 theorem target_from_zero_gap
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m) :
-    (plan.target ⟨0, by omega⟩).val + index.val ≤
+    (plan.target ⟨0, by
+      have indexLt := index.isLt
+      omega⟩).val + index.val ≤
       (plan.target index).val := by
-  exact target_gap_ge_index_gap plan ⟨0, by omega⟩ index (by omega)
+  have indexLt := index.isLt
+  let zero : Fin m := ⟨0, by omega⟩
+  have source := target_gap_ge_index_gap plan zero index (by
+    simp [zero])
+  simpa [zero] using source
 
 end RemaudVandaeleAlphaGap
 end QuantumBlockEncoding
