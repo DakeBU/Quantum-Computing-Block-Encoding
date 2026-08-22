@@ -2,6 +2,7 @@ import QuantumBlockEncoding.MultiControlledXScheduleSemantics
 import QuantumBlockEncoding.MultiControlledXLayerSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaCancellationAlgebra
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
@@ -15,13 +16,14 @@ Algorithm-2 schedule, generic MCX semantics, `C_L` noninterference, the
 recursive-target semantic bridge, and the stagewise reduction toward Equation
 (7).
 
-The current admission also checks two purified combinatorial foundations.  The
-generic filtered-list rank API now targets current Mathlib `idxOf` theorems, and
-the count of deleted odd source targets is proved by the correct one-step
-parity recurrence: moving from `r` to `r+1` adds the endpoint `r` iff `r` is
-odd.  Finally, the ordinary Algorithm-2 left/child/right correction is isolated
-as a finite-bit cancellation identity, so the remaining semantic proof can
-focus on interval geometry rather than Boolean case algebra.
+The current admission checks the repaired filtered-rank and odd-target
+cardinality foundations, the current-Mathlib recursive-register certificate,
+and alpha-prime strictness with the even-k special tail exposed explicitly.  It
+also validates a structural target-support theorem: every recursively emitted
+MCX target is one of the parent source `alpha_i`, with embedded child targets
+identified through the canonical physical alpha-prime certificate.  Finally,
+the ordinary left/child/right Boolean cancellation identity is checked as an
+independent algebra node.
 -/
 
 namespace QuantumBlockEncoding
