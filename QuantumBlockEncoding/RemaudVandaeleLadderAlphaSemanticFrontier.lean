@@ -46,6 +46,9 @@ uses explicit natural-subtraction restoration, interval predecessor witnesses
 carry their source bounds explicitly, recursive target exclusion follows the
 actual special-tail classification, and the cancellation core uses the native
 Boolean conditional semantics.
+
+The current run additionally checks the final schedule-recurrence reductions
+before entering the full Equation-(7) semantic spine.
 -/
 
 namespace QuantumBlockEncoding
