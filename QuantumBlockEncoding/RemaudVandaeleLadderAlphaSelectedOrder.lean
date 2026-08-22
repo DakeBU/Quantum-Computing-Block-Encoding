@@ -38,6 +38,20 @@ theorem selectedList_pairwise_val_lt
   unfold selectedList
   exact (intervalList_pairwise_val_lt plan large).filter _
 
+/-- Every retained physical wire has a compact `X'` coordinate. -/
+theorem exists_selectedWire_eq_of_mem
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    {wire : Fin q} (member : wire ∈ selectedList plan large) :
+    ∃ index : Fin (selectedWidth plan large),
+      selectedWire plan large index = wire := by
+  classical
+  rcases List.mem_iff_get.mp member with ⟨physicalIndex, value⟩
+  let index : Fin (selectedWidth plan large) :=
+    ⟨physicalIndex.val, by
+      simpa [selectedWidth] using physicalIndex.isLt⟩
+  refine ⟨index, ?_⟩
+  simpa [selectedWire, index] using value
+
 /-- Compact coordinate order gives physical-wire order. -/
 theorem selectedWire_strict
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
