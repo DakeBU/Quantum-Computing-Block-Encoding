@@ -4,6 +4,7 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmBaseSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStageNoninterference
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedOrder
@@ -14,6 +15,9 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialTailActivation
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaIntervalFactorization
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryActivationFactors
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryChildActivation
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorNoninterference
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorStageInvariance
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaCancellationAlgebra
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 
@@ -23,15 +27,19 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 This import-only module checks the complete current semantic proof DAG from the
 physical recursive register through the local Equation-(7) case algebra.
 
-The exact deleted-prefix cardinality and canonical recursive-register
-certificate are already compiler-verified.  The current run checks the repaired
-quantitative alpha-gap telescoping proof and then continues through alpha-prime
-strictness, the proof-bearing recursive schedule, target support, X' order and
+The exact deleted-prefix cardinality, canonical recursive-register certificate,
+and quantitative alpha-gap theorem are compiler-verified.  Alpha-prime
+strictness now uses the correct parity argument: the earlier recursive source
+index is ordinary and even, so halving grows strictly slower than any positive
+source-index gap, including the final even-to-odd special-tail transition where
+the gap can be one.
+
+Above the rank layer this run checks the actual semantic ingredients for strong
+induction: target support and stagewise non-alpha preservation, X' order and
 membership geometry, ordinary/special child endpoint arithmetic, special-tail
-activation equivalence, and the Prop-native cancellation identity.  It also
-checks the m=0 and m=1 semantic base cases and the ordinary compacted physical
-activation factorization into the left-wall source predicate A_j and the current
-strict-interior predicate B_j.
+activation equivalence, ordinary child activation as A_j and B_j, invariance of
+strict-interior B_j across all three Algorithm-2 stages, the Prop-native
+left/child/right cancellation identity, and the m=0/m=1 semantic base cases.
 -/
 
 namespace QuantumBlockEncoding
