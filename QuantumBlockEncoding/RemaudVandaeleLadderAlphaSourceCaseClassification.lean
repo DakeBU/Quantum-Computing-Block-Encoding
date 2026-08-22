@@ -10,13 +10,18 @@ open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaRecursiveParameters
 
 /-- Exhaustive arithmetic classification of parent source-target indices in the
-recursive regime `m ≥ 2`. -/
+recursive regime `m ≥ 2`.
+
+An ordinary even target may be the penultimate source target when `m` is even;
+it therefore only needs to be nonfinal. Ordinary odd targets use the stronger
+`index+2<m` condition because the odd penultimate target for odd `m` is exactly
+the even-k special child tail. -/
 theorem sourceIndex_cases
     (m : Nat) (large : 2 ≤ m) (index : Fin m) :
     index.val = 0 ∨
     index.val = m - 1 ∨
     (m % 2 = 1 ∧ index.val = m - 2) ∨
-    (index.val % 2 = 0 ∧ 2 ≤ index.val ∧ index.val + 2 < m) ∨
+    (index.val % 2 = 0 ∧ 2 ≤ index.val ∧ index.val + 1 < m) ∨
     (index.val % 2 = 1 ∧ index.val + 2 < m) := by
   have indexLt := index.isLt
   omega
@@ -27,7 +32,7 @@ def ordinaryEvenChildSlot
     {m : Nat} (index : Fin m)
     (even : index.val % 2 = 0)
     (positive : 2 ≤ index.val)
-    (beforeTail : index.val + 2 < m) :
+    (beforeFinal : index.val + 1 < m) :
     Fin (recursiveTargetCount m) :=
   ⟨index.val / 2 - 1, by
     unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK
@@ -38,9 +43,9 @@ theorem ordinaryEvenChildSlot_not_special
     {m : Nat} (large : 3 ≤ m + 1) (index : Fin m)
     (even : index.val % 2 = 0)
     (positive : 2 ≤ index.val)
-    (beforeTail : index.val + 2 < m) :
+    (beforeFinal : index.val + 1 < m) :
     ¬ isSpecialTail m
-      (ordinaryEvenChildSlot index even positive beforeTail) := by
+      (ordinaryEvenChildSlot index even positive beforeFinal) := by
   intro special
   rcases special with ⟨evenK,last⟩
   simp [ordinaryEvenChildSlot] at last
@@ -53,12 +58,12 @@ theorem recursiveOriginalTargetIndex_ordinaryEvenChildSlot
     {m : Nat} (large : 3 ≤ m + 1) (index : Fin m)
     (even : index.val % 2 = 0)
     (positive : 2 ≤ index.val)
-    (beforeTail : index.val + 2 < m) :
+    (beforeFinal : index.val + 1 < m) :
     recursiveOriginalTargetIndex m large
-      (ordinaryEvenChildSlot index even positive beforeTail) = index := by
-  let child := ordinaryEvenChildSlot index even positive beforeTail
+      (ordinaryEvenChildSlot index even positive beforeFinal) = index := by
+  let child := ordinaryEvenChildSlot index even positive beforeFinal
   have ordinary : ¬ isSpecialTail m child :=
-    ordinaryEvenChildSlot_not_special large index even positive beforeTail
+    ordinaryEvenChildSlot_not_special large index even positive beforeFinal
   apply Fin.ext
   rw [recursiveOriginalTargetIndex_ordinary m large child ordinary]
   simp [child, ordinaryEvenChildSlot]
