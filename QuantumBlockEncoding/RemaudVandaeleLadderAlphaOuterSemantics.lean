@@ -54,10 +54,17 @@ theorem rightLayer_target
     (rightSourceGate_mem plan j) state
     (plan.target (rightSourceIndex m j)) (Or.inl rfl)
   rw [gateAtTarget]
-  unfold gateAction
-  rw [sourceGate_active_iff]
-  by_cases enabled : intervalActive plan state (rightSourceIndex m j) <;>
-    simp [enabled, xBasisAction]
+  by_cases enabled : intervalActive plan state (rightSourceIndex m j)
+  · have gateEnabled :
+        active (sourceGate plan (rightSourceIndex m j)) state :=
+      (sourceGate_active_iff plan state (rightSourceIndex m j)).2 enabled
+    simp [gateAction, gateEnabled, enabled, xBasisAction, sourceGate]
+  · have gateDisabled :
+        ¬ active (sourceGate plan (rightSourceIndex m j)) state := by
+      intro activeGate
+      exact enabled
+        ((sourceGate_active_iff plan state (rightSourceIndex m j)).1 activeGate)
+    simp [gateAction, gateDisabled, enabled]
 
 /-- Exact left-wall action at one of its source targets. -/
 theorem leftLayer_target
@@ -74,10 +81,17 @@ theorem leftLayer_target
     (leftSourceGate_mem plan j) state
     (plan.target (leftSourceIndex m j)) (Or.inl rfl)
   rw [gateAtTarget]
-  unfold gateAction
-  rw [sourceGate_active_iff]
-  by_cases enabled : intervalActive plan state (leftSourceIndex m j) <;>
-    simp [enabled, xBasisAction]
+  by_cases enabled : intervalActive plan state (leftSourceIndex m j)
+  · have gateEnabled :
+        active (sourceGate plan (leftSourceIndex m j)) state :=
+      (sourceGate_active_iff plan state (leftSourceIndex m j)).2 enabled
+    simp [gateAction, gateEnabled, enabled, xBasisAction, sourceGate]
+  · have gateDisabled :
+        ¬ active (sourceGate plan (leftSourceIndex m j)) state := by
+      intro activeGate
+      exact enabled
+        ((sourceGate_active_iff plan state (leftSourceIndex m j)).1 activeGate)
+    simp [gateAction, gateDisabled, enabled]
 
 /-- Scheduled right-wall form of the target theorem. -/
 theorem rightScheduled_target
