@@ -38,6 +38,19 @@ theorem recursiveEndOriginalIndex_lt_final
       unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at lastFinal
       omega
 
+/-- Every recursive child target is strictly before the final parent source
+target.  This Nat-valued form is the stable arithmetic API used by downstream
+ordinary-target proofs; it avoids transporting a disequality between dependent
+`Fin m` terms. -/
+theorem recursiveOriginalTargetIndex_before_final
+    (m : Nat) (large : 3 ≤ m + 1)
+    (j : Fin (recursiveTargetCount m)) :
+    (recursiveOriginalTargetIndex m large j).val + 1 < m := by
+  have atMostEnd := recursiveOriginalTargetIndex_le_end m large j
+  have endBeforeFinal := recursiveEndOriginalIndex_lt_final m large
+  have mTwo : 2 ≤ m := by omega
+  omega
+
 /-- No recursive child target maps to parent source target zero. -/
 theorem recursiveOriginalTargetIndex_ne_zero
     (m : Nat) (large : 3 ≤ m + 1)
