@@ -44,7 +44,6 @@ theorem retainedBefore_recursiveTarget
       (intervalList plan large)
       (plan.target (recursiveOriginalTargetIndex m large j)) =
         recursiveAlphaValue plan large j := by
-  let target := plan.target (recursiveOriginalTargetIndex m large j)
   let offset := recursiveTargetOffset plan large j
   have intervalRank := recursiveTarget_interval_idxOf plan large j
   have partition := FilteredListRank.take_filter_partition_length
@@ -54,15 +53,22 @@ theorem retainedBefore_recursiveTarget
   have alphaRank := recursiveAlphaValue_eq_compactRank plan large j
   unfold FilteredListRank.retainedBefore
   rw [intervalRank]
+  change
+    ((targetPrefix plan large j).filter (keepPhysicalWire plan large)).length =
+      recursiveAlphaValue plan large j
   have partition' :
       ((targetPrefix plan large j).filter (keepPhysicalWire plan large)).length +
         (deletedPrefix plan large j).length =
           (targetPrefix plan large j).length := by
-    simpa [targetPrefix, deletedPrefix, deletePhysicalWireBool] using partition
+    simpa [targetPrefix, deletedPrefix, deletePhysicalWireBool, offset] using partition
   rw [deleteCount, prefixLength] at partition'
-  unfold compactRank at alphaRank
-  unfold recursiveTargetOffset selectedStart at partition'
-  omega
+  have keptRank :
+      ((targetPrefix plan large j).filter (keepPhysicalWire plan large)).length =
+        recursiveTargetOffset plan large j -
+          (recursiveOriginalTargetIndex m large j).val / 2 := by
+    omega
+  rw [keptRank, alphaRank]
+  rfl
 
 /-- Main source rank equation: the recursive physical alpha target occurs in X'
 at exactly the pseudocode alpha-prime coordinate. -/
