@@ -38,14 +38,14 @@ the recursive proof-bearing schedule are compiler-verified. The schedule uses
 target count as a strict well-founded measure and satisfies the paper's exact
 gate/depth recurrences.
 
-The semantic layer has now been normalized around Lean 4.29's dependent
-`Decidable` behavior: MCX target actions use explicit activation cases; wall
-slot equalities are transported with `simp` rather than dependent `rw`; wall
-activation stability uses explicit `List.mem_ofFn'` witnesses; and the
-ordinary/special target cases transport activation equivalences without
-rewriting the proposition beneath an `ite`. The `C_L`-versus-`X'` proof reuses
-the verified recursive-target exclusion layer rather than duplicating tail
-arithmetic.
+The semantic layer is normalized around Lean 4.29's dependent `Decidable`
+behavior: MCX target actions use explicit activation cases; wall slot equalities
+and child activation equivalences are transported with `simp`; wall and target
+support membership in `List.ofFn` is exposed through `List.mem_ofFn'`; and the
+`C_L`-versus-`X'` proof reuses the verified recursive-target exclusion layer.
+The recursive target-support proof also uses the explicit well-founded
+`algorithm_zero`, `algorithm_one`, and `algorithm_step` equations rather than
+relying on definitional reduction.
 
 The next compiler frontier is therefore the actual Equation-(7) semantic DAG:
 source-case coverage, selected-register geometry, recursive target exclusions,
