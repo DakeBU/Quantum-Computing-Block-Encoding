@@ -44,7 +44,7 @@ theorem mappedRecursive_preserves_sourceTarget_of_excluded
   rcases List.mem_map.mp member with ⟨childGate, childMember, rfl⟩
   rcases algorithm_target_source childPlan childGate childMember with
     ⟨j, childTarget⟩
-  simp only [mapGate_target]
+  change selectedWire plan large childGate.target ≠ plan.target index
   rw [childTarget, canonical_recursive_target_physical plan large j]
   intro targetEqual
   exact excluded j (target_injective plan targetEqual)
