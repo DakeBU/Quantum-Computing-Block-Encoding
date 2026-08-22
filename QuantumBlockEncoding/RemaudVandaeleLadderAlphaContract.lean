@@ -55,6 +55,14 @@ def inControlInterval {q m : Nat}
     (plan : AlphaPlan q m) (index : Fin m) (wire : Fin q) : Prop :=
   lowerEndpoint plan index ≤ wire.val ∧ wire.val < upperEndpoint plan index
 
+/-- Membership in one finite physical interval is constructively decidable. -/
+instance instDecidablePredInControlInterval
+    {q m : Nat} (plan : AlphaPlan q m) (index : Fin m) :
+    DecidablePred (inControlInterval plan index) :=
+  fun _ => by
+    unfold inControlInterval
+    infer_instance
+
 /-- Finite control set of the i-th source MCX. -/
 def controlFinset {q m : Nat}
     (plan : AlphaPlan q m) (index : Fin m) : Finset (Fin q) :=
@@ -86,6 +94,15 @@ def intervalActive {q m : Nat}
     (index : Fin m) : Prop :=
   ∀ wire, inControlInterval plan index wire → state wire = 1
 
+/-- Equation-(7) activation is constructively decidable because the parent
+register is finite. -/
+instance instDecidableIntervalActive
+    {q m : Nat} (plan : AlphaPlan q m)
+    (state : PrimitiveBasis q) (index : Fin m) :
+    Decidable (intervalActive plan state index) := by
+  unfold intervalActive
+  exact Fintype.decidableForallFintype
+
 /-- MCX-gate activation agrees with the source interval predicate. -/
 theorem sourceGate_active_iff
     {q m : Nat} (plan : AlphaPlan q m)
@@ -99,8 +116,10 @@ theorem sourceGate_active_iff
     exact active wire ((mem_controlFinset_iff plan index wire).1 member)
 
 /-- Authoritative Equation-(7) action: targets are toggled from the original
-input predicates; all non-target wires are unchanged. -/
-def equationSevenAction {q m : Nat}
+input predicates; all non-target wires are unchanged.  The unique target witness
+is a specification-level choice, so this closed-form target is intentionally
+noncomputable rather than pretending `Classical.choose` is executable code. -/
+noncomputable def equationSevenAction {q m : Nat}
     (plan : AlphaPlan q m)
     (state : PrimitiveBasis q) : PrimitiveBasis q :=
   fun wire =>
@@ -176,7 +195,11 @@ theorem l2_control_interval
     inControlInterval (l2Plan steps) index wire ↔
       (if index.val = 0 then 0 else 2 * index.val) ≤ wire.val ∧
         wire.val < 2 * (index.val + 1) := by
-  simp [inControlInterval, lowerEndpoint, upperEndpoint, l2Plan]
+  by_cases first : index.val = 0
+  · simp [inControlInterval, lowerEndpoint, upperEndpoint, l2Plan, first]
+  · have oneLe : 1 ≤ index.val := by omega
+    simp [inControlInterval, lowerEndpoint, upperEndpoint, l2Plan, first,
+      Nat.sub_add_cancel oneLe]
 
 end RemaudVandaeleLadderAlphaContract
 end QuantumBlockEncoding
