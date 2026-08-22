@@ -21,10 +21,9 @@ proof frontier:
 * the stagewise semantic reduction toward Equation (7).
 
 The admission PR is rerun whenever a foundational source node changes.  The
-current run additionally checks the repaired Appendix resource recurrences:
-well-founded recursive equations are consumed through their equation-compiler
-rewrite API rather than fragile definitional `rfl`, and the logarithmic bound
-explicitly rewrites the halving identity before arithmetic closure.
+current run additionally checks that Algorithm 2's ordinary/special alpha-prime
+source-index branch is constructively decidable, so dependent `Fin` witnesses
+are real proof terms rather than unresolved placeholders.
 -/
 
 namespace QuantumBlockEncoding
