@@ -25,33 +25,54 @@ open RemaudVandaeleLadderAlphaRecursiveParameters
 def oddBelow (r : Nat) : Finset Nat :=
   (Finset.range r).filter (fun i => i % 2 = 1)
 
+/-- Passing from `r` to `r+1` adds exactly the new endpoint `r` when `r` is
+odd, and adds nothing when `r` is even. -/
+theorem oddBelow_succ (r : Nat) :
+    oddBelow (r + 1) =
+      if r % 2 = 1 then insert r (oddBelow r) else oddBelow r := by
+  by_cases odd : r % 2 = 1
+  · rw [if_pos odd]
+    ext i
+    simp [oddBelow, odd]
+    constructor
+    · intro h
+      rcases h with ⟨bound, parity⟩
+      by_cases equal : i = r
+      · exact Or.inl equal
+      · exact Or.inr ⟨by omega, parity⟩
+    · intro h
+      rcases h with rfl | h
+      · exact ⟨by omega, odd⟩
+      · exact ⟨by omega, h.2⟩
+  · rw [if_neg odd]
+    have even : r % 2 = 0 := by omega
+    ext i
+    simp [oddBelow]
+    constructor
+    · intro h
+      rcases h with ⟨bound, parity⟩
+      refine ⟨?_, parity⟩
+      by_contra notLt
+      have equal : i = r := by omega
+      subst i
+      omega
+    · intro h
+      exact ⟨by omega, h.2⟩
+
 /-- There are exactly floor(r/2) odd indices strictly below r. -/
 theorem oddBelow_card (r : Nat) : (oddBelow r).card = r / 2 := by
-  induction r using Nat.twoStepInduction with
+  induction r with
   | zero => simp [oddBelow]
-  | one => simp [oddBelow]
-  | more r induction =>
-      have parity : (r + 1) % 2 = 1 ↔ r % 2 = 0 := by omega
-      rw [show oddBelow (r + 2) =
-          insert (r + 1) (oddBelow r) by
-        ext i
-        simp [oddBelow]
-        constructor
-        · intro h
-          rcases h with ⟨lt,odd⟩
-          by_cases equal : i = r + 1
-          · exact Or.inl equal
-          · right
-            constructor <;> omega
-        · intro h
-          rcases h with rfl | h
-          · constructor <;> omega
-          · rcases h with ⟨lt,odd⟩
-            exact ⟨by omega,odd⟩]
-      have fresh : r + 1 ∉ oddBelow r := by
-        simp [oddBelow]
-      rw [Finset.card_insert_of_not_mem fresh, induction]
-      omega
+  | succ r induction =>
+      rw [show r + 1 = Nat.succ r by omega, oddBelow_succ r]
+      by_cases odd : r % 2 = 1
+      · rw [if_pos odd, Finset.card_insert_of_notMem]
+        · rw [induction]
+          omega
+        · simp [oddBelow]
+      · rw [if_neg odd, induction]
+        have even : r % 2 = 0 := by omega
+        omega
 
 /-- Number of deleted targets before one recursive source target is exactly half
 its original target index. -/
