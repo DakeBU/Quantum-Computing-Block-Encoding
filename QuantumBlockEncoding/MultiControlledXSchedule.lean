@@ -34,12 +34,12 @@ def active {q : Nat} (gate : MCXGate q)
     (state : PrimitiveBasis q) : Prop :=
   ∀ control ∈ gate.controls, state control = 1
 
-/-- Activation is constructively decidable because the control register is a
-finite set and computational-basis bit equality is decidable. -/
+/-- Activation is constructively decidable because `Fin q` is a finite type;
+the inner membership implication and basis-bit equality are decidable. -/
 instance instDecidableActive {q : Nat} (gate : MCXGate q)
     (state : PrimitiveBasis q) : Decidable (active gate state) := by
   unfold active
-  infer_instance
+  exact Fintype.decidableForallFintype
 
 /-- Exact computational-basis gate action. -/
 def gateAction {q : Nat} (gate : MCXGate q)
