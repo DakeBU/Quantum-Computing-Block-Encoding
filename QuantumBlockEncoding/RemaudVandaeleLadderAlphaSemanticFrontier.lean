@@ -20,11 +20,11 @@ proof frontier:
 * `C_L` noninterference on `X'` and original-input recursive readback;
 * the stagewise semantic reduction toward Equation (7).
 
-The admission PR is rerun whenever a foundational MCX source node changes, so a
+The admission PR is rerun whenever a foundational source node changes, so a
 green frontier certifies the current transitive source chain rather than a stale
-cached branch state.  The current run additionally checks the explicit local
-MCX-layer induction proofs before the source-specific Algorithm-2 semantics are
-allowed to advance.
+cached branch state.  The current run also admits the repaired Definition-2.3
+ladder contract: finite activation decidability and exact one-step preservation
+are now part of the checked upstream foundation.
 -/
 
 namespace QuantumBlockEncoding
