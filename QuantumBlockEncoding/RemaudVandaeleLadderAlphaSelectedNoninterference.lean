@@ -92,25 +92,29 @@ theorem nonfinalLeftTarget_deleted
     simpa only [wallCount_eq] using j.isLt
   have nonfinalHalf : j.val + 1 ≠ m / 2 := by
     simpa only [wallCount_eq] using nonfinal
+  have beforeLast : j.val + 1 < m / 2 := by omega
+  have countPos : 0 < recursiveTargetCount m := by
+    unfold recursiveTargetCount recursiveK
+    omega
+  have sourceVal : (leftSourceIndex m j).val = 2 * j.val + 1 := by
+    unfold leftSourceIndex
+    rw [dif_neg nonfinal]
+    rfl
   refine ⟨leftSourceIndex m j, ?_, ?_, rfl⟩
-  · simp [leftSourceIndex, nonfinal]
-  · simp [leftSourceIndex, nonfinal]
+  · rw [sourceVal]
+    omega
+  · rw [sourceVal]
     unfold recursiveEndOriginalIndex
-    split_ifs with empty
-    · unfold recursiveTargetCount recursiveK at empty
+    rw [dif_neg (Nat.ne_of_gt countPos)]
+    let last : Fin (recursiveTargetCount m) :=
+      ⟨recursiveTargetCount m - 1, by omega⟩
+    by_cases special : isSpecialTail m last
+    · rw [recursiveOriginalTargetIndex_special m large last special]
       omega
-    · let last : Fin (recursiveTargetCount m) :=
-        ⟨recursiveTargetCount m - 1, by omega⟩
-      change 2 * j.val + 1 <
-        (recursiveOriginalTargetIndex m large last).val
-      by_cases special : isSpecialTail m last
-      · rw [recursiveOriginalTargetIndex_special m large last special]
-        have specialEven := special.1
-        omega
-      · rw [recursiveOriginalTargetIndex_ordinary m large last special]
-        have lastLt := last.isLt
-        unfold recursiveTargetCount recursiveK at lastLt
-        omega
+    · rw [recursiveOriginalTargetIndex_ordinary m large last special]
+      dsimp [last]
+      unfold recursiveTargetCount recursiveK at countPos ⊢
+      omega
 
 /-- No left-wall source target is one of the selected physical X' wires. -/
 theorem leftSourceTarget_ne_selectedWire
@@ -123,7 +127,9 @@ theorem leftSourceTarget_ne_selectedWire
   · intro equal
     have sourceIndex : leftSourceIndex m j = ⟨m - 1, by omega⟩ := by
       apply Fin.ext
-      simp [leftSourceIndex, final]
+      unfold leftSourceIndex
+      rw [dif_pos final]
+      rfl
     have recursiveBound := selectedWire_le_end plan large index
     have finalBound := selectedEnd_lt_finalTarget plan large
     rw [sourceIndex] at equal
