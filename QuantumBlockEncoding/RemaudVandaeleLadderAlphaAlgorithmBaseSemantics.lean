@@ -28,11 +28,15 @@ theorem baseOne_target
   by_cases enabled : intervalActive plan state ⟨0, by decide⟩
   · have sourceEnabled : active (sourceGate plan ⟨0, by decide⟩) state :=
       (sourceGate_active_iff plan state ⟨0, by decide⟩).2 enabled
-    simp [gateAction, sourceEnabled, enabled, xBasisAction, sourceGate]
+    unfold gateAction
+    rw [if_pos sourceEnabled]
+    simp [enabled, xBasisAction, sourceGate]
   · have sourceDisabled : ¬ active (sourceGate plan ⟨0, by decide⟩) state := by
       intro sourceEnabled
       exact enabled ((sourceGate_active_iff plan state ⟨0, by decide⟩).1 sourceEnabled)
-    simp [gateAction, sourceDisabled, enabled]
+    unfold gateAction
+    rw [if_neg sourceDisabled]
+    simp [enabled]
 
 theorem baseOne_nonTarget
     {q : Nat} (plan : AlphaPlan q 1) (state : PrimitiveBasis q)
