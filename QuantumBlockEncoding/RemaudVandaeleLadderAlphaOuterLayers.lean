@@ -41,8 +41,8 @@ def wallCount (m : Nat) : Nat := outerCount (boundaryCount m)
 def rightSourceIndex
     (m : Nat) (j : Fin (wallCount m)) : Fin m :=
   ⟨2 * j.val, by
-    have hj := j.isLt
-    rw [wallCount_eq] at hj
+    have hjHalf : j.val < m / 2 := by
+      simpa only [wallCount_eq] using j.isLt
     omega⟩
 
 /-- Left wall source-gate index.  Every nonfinal slot uses `2j+1`; the last slot
@@ -51,14 +51,13 @@ def leftSourceIndex
     (m : Nat) (j : Fin (wallCount m)) : Fin m :=
   if last : j.val + 1 = wallCount m then
     ⟨m - 1, by
-      have positive : 0 < m := by
-        have hj := j.isLt
-        omega
+      have hjHalf : j.val < m / 2 := by
+        simpa only [wallCount_eq] using j.isLt
       omega⟩
   else
     ⟨2 * j.val + 1, by
-      have hj := j.isLt
-      rw [wallCount_eq] at hj
+      have hjHalf : j.val < m / 2 := by
+        simpa only [wallCount_eq] using j.isLt
       omega⟩
 
 /-- Right source indices are strictly separated by at least two. -/
@@ -72,21 +71,30 @@ theorem rightSourceIndex_gap
 theorem leftSourceIndex_gap
     (m : Nat) {i j : Fin (wallCount m)} (order : i < j) :
     (leftSourceIndex m i).val + 2 ≤ (leftSourceIndex m j).val := by
-  have hi := i.isLt
-  have hj := j.isLt
+  have hiHalf : i.val < m / 2 := by
+    simpa only [wallCount_eq] using i.isLt
+  have hjHalf : j.val < m / 2 := by
+    simpa only [wallCount_eq] using j.isLt
   have iNotLast : i.val + 1 ≠ wallCount m := by omega
+  have iNotLastHalf : i.val + 1 ≠ m / 2 := by
+    simpa only [wallCount_eq] using iNotLast
   by_cases jLast : j.val + 1 = wallCount m
-  · simp [leftSourceIndex, iNotLast, jLast]
-    rw [wallCount_eq] at hi hj
+  · have jLastHalf : j.val + 1 = m / 2 := by
+      simpa only [wallCount_eq] using jLast
+    simp [leftSourceIndex, iNotLastHalf, jLastHalf]
     omega
-  · simp [leftSourceIndex, iNotLast, jLast]
+  · have jNotLastHalf : j.val + 1 ≠ m / 2 := by
+      simpa only [wallCount_eq] using jLast
+    simp [leftSourceIndex, iNotLastHalf, jNotLastHalf]
     omega
 
 /-- Lower endpoint is the preceding target for every nonfirst source gate. -/
 theorem lowerEndpoint_ge_previous
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m) (nonzero : index.val ≠ 0) :
-    (plan.target ⟨index.val - 1, by omega⟩).val = lowerEndpoint plan index := by
+    (plan.target ⟨index.val - 1, by
+      have indexLt := index.isLt
+      omega⟩).val = lowerEndpoint plan index := by
   simp [lowerEndpoint, nonzero]
 
 /-- The support of source gate i lies from its lower endpoint through its target. -/
@@ -97,14 +105,21 @@ theorem sourceGate_touches_bounds
     lowerEndpoint plan index ≤ wire.val ∧
       wire.val ≤ (plan.target index).val := by
   rcases touches with target | control
-  · subst wire
-    simp [lowerEndpoint]
-    by_cases first : index.val = 0
-    · simp [first]
-    · have strict := plan.strict (show
-          (⟨index.val - 1, by omega⟩ : Fin m) < index by omega)
-      simp [lowerEndpoint, first]
-      omega
+  · have wireEq : wire = plan.target index := by
+      simpa [sourceGate] using target
+    subst wire
+    constructor
+    · by_cases first : index.val = 0
+      · simp [lowerEndpoint, first]
+      · have indexLt := index.isLt
+        let previous : Fin m := ⟨index.val - 1, by omega⟩
+        have previousLt : previous < index := by
+          change previous.val < index.val
+          simp [previous]
+          omega
+        have strict := plan.strict previousLt
+        simpa [lowerEndpoint, first, previous] using strict.le
+    · exact le_rfl
   · have interval := (mem_controlFinset_iff plan index wire).1 control
     exact ⟨interval.1, interval.2.le⟩
 
@@ -117,13 +132,23 @@ theorem sourceGate_disjoint_of_gap
   intro wire overlap
   have leftBounds := sourceGate_touches_bounds plan left wire overlap.1
   have rightBounds := sourceGate_touches_bounds plan right wire overlap.2
-  have leftBefore : (plan.target left).val <
-      (plan.target ⟨right.val - 1, by omega⟩).val := by
-    apply plan.strict
-    omega
   have rightNonzero : right.val ≠ 0 := by omega
-  have rightLower := lowerEndpoint_ge_previous plan right rightNonzero
-  rw [← rightLower] at rightBounds
+  have rightLt := right.isLt
+  let previous : Fin m := ⟨right.val - 1, by omega⟩
+  have leftPrevious : left < previous := by
+    change left.val < previous.val
+    simp [previous]
+    omega
+  have leftBefore :
+      (plan.target left).val < (plan.target previous).val :=
+    plan.strict leftPrevious
+  have rightLower :
+      (plan.target previous).val = lowerEndpoint plan right := by
+    simpa [previous] using lowerEndpoint_ge_previous plan right rightNonzero
+  have leftBelowRightLower :
+      (plan.target left).val < lowerEndpoint plan right := by
+    rw [← rightLower]
+    exact leftBefore
   omega
 
 /-- Actual right MCX wall. -/
