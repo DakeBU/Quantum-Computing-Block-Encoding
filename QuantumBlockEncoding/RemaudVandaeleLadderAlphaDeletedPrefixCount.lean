@@ -7,17 +7,9 @@ import Mathlib.Tactic
 # Algorithm 2: exact deleted-target count before one recursive target
 
 For recursive source target r, the unfiltered physical interval prefix ends
-immediately before alpha_r.  Algorithm 2 deletes exactly alpha_i with odd source
-index i<r.  There are floor(r/2) such indices.
-
-Rather than proving an equality of two filtered lists, we prove the cardinality
-by two injections:
-
-* every actually deleted prefix wire has a unique odd source index i<r and hence
-  a unique half-index i/2;
-* every half-index j<r/2 produces the deleted physical target alpha_(2j+1).
-
-This closes the only combinatorial count needed for `alpha'`.
+immediately before alpha_r. Algorithm 2 deletes exactly alpha_i with odd source
+index i<r. There are floor(r/2) such indices. We prove the cardinality by two
+injections, one in each direction.
 -/
 
 namespace QuantumBlockEncoding
@@ -31,14 +23,11 @@ open RemaudVandaeleLadderAlphaRecursiveParameters
 open RemaudVandaeleLadderAlphaSelectedRegister
 open RemaudVandaeleLadderAlphaTargetMembership
 
-/-- Prefix strictly before one recursive target in the unfiltered physical
-interval. -/
 def targetPrefix
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) : List (Fin q) :=
   (intervalList plan large).take (recursiveTargetOffset plan large j)
 
-/-- Boolean predicate selecting the wires deleted by Algorithm 2. -/
 def deletePhysicalWireBool
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) :
     Fin q → Bool :=
@@ -54,13 +43,11 @@ def deletePhysicalWireBool
   · simp [keepPhysicalWire, deleted]
   · simp [keepPhysicalWire, deleted]
 
-/-- Actual deleted prefix list. -/
 def deletedPrefix
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) : List (Fin q) :=
   (targetPrefix plan large j).filter (deletePhysicalWireBool plan large)
 
-/-- Prefix length is exactly the physical target offset. -/
 theorem targetPrefix_length
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
@@ -72,7 +59,6 @@ theorem targetPrefix_length
     simpa [intervalList] using strict.le
   exact min_eq_left bound
 
-/-- Physical target for any source index preceding r is a member of the prefix. -/
 theorem earlierTarget_mem_prefix
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -97,8 +83,7 @@ theorem earlierTarget_mem_prefix
   have fullValue : (intervalList plan large).get fullIndex = plan.target source := by
     unfold intervalList
     apply Fin.ext
-    simp [fullIndex, offset, intervalWire, selectedStart]
-    omega
+    simpa [fullIndex, intervalWire, offset] using Nat.add_sub_of_le startLower
   let prefixIndex : Fin (targetPrefix plan large j).length :=
     ⟨offset, by simpa [targetPrefix_length plan large j] using offsetLt⟩
   apply List.mem_iff_get.mpr
@@ -106,7 +91,6 @@ theorem earlierTarget_mem_prefix
   unfold targetPrefix
   simpa [prefixIndex, fullIndex] using fullValue
 
-/-- Every wire occurring in the prefix is physically before alpha_r. -/
 theorem mem_prefix_lt_recursiveTarget
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -130,8 +114,6 @@ theorem mem_prefix_lt_recursiveTarget
   have lower := recursiveTarget_ge_start plan large j
   omega
 
-/-- If a prefix member is deleted, its witnessing source index is actually
-strictly before r (not merely before the global recursive end). -/
 theorem deleted_prefix_source_before
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -154,7 +136,6 @@ theorem deleted_prefix_source_before
     omega
   exact ⟨source,odd,sourceBefore,equal⟩
 
-/-- Deleted-prefix list inherits nodup. -/
 theorem deletedPrefix_nodup
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
@@ -162,7 +143,6 @@ theorem deletedPrefix_nodup
   unfold deletedPrefix targetPrefix
   exact (intervalList_nodup plan large).take.filter _
 
-/-- Extract the unique source index witnessing one deleted-list entry. -/
 noncomputable def deletedSourceIndex
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -179,7 +159,6 @@ noncomputable def deletedSourceIndex
       exact (deletePhysicalWireBool_eq_true_iff plan large _).1
         (List.mem_filter.mp member).2))
 
-/-- Witness properties of the extracted source index. -/
 theorem deletedSourceIndex_spec
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -201,8 +180,6 @@ theorem deletedSourceIndex_spec
       exact (deletePhysicalWireBool_eq_true_iff plan large _).1
         (List.mem_filter.mp member).2))
 
-/-- Forward injection: deleted physical entry -> half-index of its odd source
-index. -/
 noncomputable def deletedToHalf
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
@@ -214,7 +191,6 @@ noncomputable def deletedToHalf
       have spec := deletedSourceIndex_spec plan large j entry
       omega⟩
 
-/-- Forward map is injective. -/
 theorem deletedToHalf_injective
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
@@ -237,17 +213,15 @@ theorem deletedToHalf_injective
     rw [← leftSpec.2.2, ← rightSpec.2.2, sourceEq]
   exact (deletedPrefix_nodup plan large j).injective_get getEq
 
-/-- Odd source index generated by one half-index. -/
 def halfSourceIndex
-    {q m : Nat} (_plan : AlphaPlan q m) (_large : 3 ≤ m + 1)
+    {q m : Nat} (_plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
-    (half : Fin ((recursiveOriginalTargetIndex m _large j).val / 2)) : Fin m :=
+    (half : Fin ((recursiveOriginalTargetIndex m large j).val / 2)) : Fin m :=
   ⟨2 * half.val + 1, by
     have halfLt := half.isLt
-    have targetLt := (recursiveOriginalTargetIndex m _large j).isLt
+    have targetLt := (recursiveOriginalTargetIndex m large j).isLt
     omega⟩
 
-/-- Generated odd index is strictly before r. -/
 theorem halfSourceIndex_before
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -258,7 +232,6 @@ theorem halfSourceIndex_before
   simp [halfSourceIndex]
   omega
 
-/-- The generated odd target is actually present in the deleted prefix. -/
 theorem halfSource_target_mem_deletedPrefix
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -278,7 +251,6 @@ theorem halfSource_target_mem_deletedPrefix
       exact sourceBefore.trans_le
         (recursiveOriginalTargetIndex_le_end m large j)
 
-/-- Reverse injection: half-index -> actual deleted-list position. -/
 noncomputable def halfToDeleted
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
@@ -290,8 +262,6 @@ noncomputable def halfToDeleted
       List.idxOf_lt_length_iff.2
         (halfSource_target_mem_deletedPrefix plan large j half)⟩
 
-/-- Reverse map is injective because alpha targets are injective and the deleted
-list is nodup. -/
 theorem halfToDeleted_injective
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
@@ -332,7 +302,6 @@ theorem halfToDeleted_injective
   simp [halfSourceIndex] at values
   omega
 
-/-- Exact source deletion count before recursive target r. -/
 theorem deletedPrefix_length
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m)) :
