@@ -2,18 +2,6 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveControlGeometry
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointArithmetic
 import Mathlib.Tactic
 
-/-!
-# Algorithm 2: physical lower endpoints of recursive child gates
-
-The compact child interval geometry becomes source-facing once its lower
-endpoint is identified with an original alpha target.
-
-* Ordinary child target j has physical lower endpoint alpha_(2j).
-* The even-k special child target has physical lower endpoint alpha_(m-3).
-* That special lower endpoint is exactly the source lower endpoint of its parent
-  gate at index m-2=k-3.
--/
-
 namespace QuantumBlockEncoding
 namespace RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
 
@@ -68,11 +56,7 @@ theorem recursiveControlPhysicalLower_special
   by_cases zero : j.val = 0
   · have mThree := specialTail_zero_forces_m_three m large j special zero
     subst m
-    unfold recursiveControlPhysicalLower selectedStart specialLowerSourceIndex
-    rw [dif_pos zero]
-    apply congrArg (fun index : Fin 3 => (plan.target index).val)
-    apply Fin.ext
-    simp
+    simp [recursiveControlPhysicalLower, selectedStart, specialLowerSourceIndex, zero]
   · unfold recursiveControlPhysicalLower
     rw [dif_neg zero]
     apply congrArg (fun index : Fin m => (plan.target index).val)
@@ -95,7 +79,9 @@ theorem parentLowerEndpoint_special
   rw [dif_neg currentNonzero]
   apply congrArg (fun index : Fin m => (plan.target index).val)
   apply Fin.ext
-  simp [specialLowerSourceIndex]
+  change (recursiveOriginalTargetIndex m large j).val - 1 = m - 3
+  rw [currentVal]
+  omega
 
 theorem recursiveControlPhysicalLower_special_eq_parentLowerEndpoint
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
