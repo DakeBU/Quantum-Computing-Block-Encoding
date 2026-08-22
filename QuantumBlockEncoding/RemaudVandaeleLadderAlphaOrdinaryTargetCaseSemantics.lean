@@ -20,6 +20,7 @@ open RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 open RemaudVandaeleLadderAlphaOrdinaryAfterLeftActivation
 open RemaudVandaeleLadderAlphaOrdinaryPredecessorSemantics
 open RemaudVandaeleLadderAlphaOuterCaseSemantics
+open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaRankCertificate
 open RemaudVandaeleLadderAlphaRecursiveCertificate
 open RemaudVandaeleLadderAlphaRecursiveParameters
@@ -112,7 +113,6 @@ theorem ordinaryTarget_stage_action
             strictInteriorActive plan state current then
           flipBit (state (plan.target current))
         else state (plan.target current) := by
-    dsimp [childState, childProgram, childPlan, current] at childTargetRaw
     rw [equationSeven_target] at childTargetRaw
     simp only [childActivation] at childTargetRaw
     rw [childInputTarget] at childTargetRaw
