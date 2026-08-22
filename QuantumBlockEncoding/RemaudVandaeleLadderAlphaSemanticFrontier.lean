@@ -21,9 +21,10 @@ proof frontier:
 * the stagewise semantic reduction toward Equation (7).
 
 The admission PR is rerun whenever a foundational source node changes.  The
-current run additionally checks that Algorithm 2's ordinary/special alpha-prime
-source-index branch is constructively decidable, so dependent `Fin` witnesses
-are real proof terms rather than unresolved placeholders.
+current run additionally checks the repaired physical selected-register layer:
+its inclusive alpha interval has explicit endpoint bounds, deletion is a finite
+decidable existential, and retention of alpha_0 / the recursive end is proved
+by target injectivity rather than opaque arithmetic automation.
 -/
 
 namespace QuantumBlockEncoding
