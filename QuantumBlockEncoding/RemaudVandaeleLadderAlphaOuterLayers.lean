@@ -16,8 +16,7 @@ depth-one walls.  In source-gate numbering:
 
 The loop bounds in the pseudocode are exactly chosen so that both walls contain
 `floor((k-1)/2)=floor(m/2)` gates.  Source gates two positions apart act on
-disjoint contiguous intervals, hence each wall is a valid one-layer MCX
-schedule.
+disjoint contiguous intervals, hence each nonempty wall is one valid MCX layer.
 -/
 
 namespace QuantumBlockEncoding
@@ -82,7 +81,7 @@ theorem leftSourceIndex_gap
   · simp [leftSourceIndex, iNotLast, jLast]
     omega
 
-/-- Lower endpoint lies no earlier than the preceding target. -/
+/-- Lower endpoint is the preceding target for every nonfirst source gate. -/
 theorem lowerEndpoint_ge_previous
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m) (nonzero : index.val ≠ 0) :
@@ -175,15 +174,59 @@ def leftScheduled
     {q m : Nat} (plan : AlphaPlan q m) : ScheduledMCXProgram q :=
   oneLayer (leftLayer plan) (leftLayer_valid plan)
 
-@[simp] theorem rightScheduled_depth
+/-- Exact all-m depth of the right wall: an empty wall has depth zero. -/
+theorem rightScheduled_depth_exact
     {q m : Nat} (plan : AlphaPlan q m) :
-    (rightScheduled plan).depth = 1 := by
-  simp [rightScheduled]
+    (rightScheduled plan).depth =
+      if rightLayer plan = [] then 0 else 1 := by
+  change
+    (oneLayer (rightLayer plan) (rightLayer_valid plan)).depth =
+      if rightLayer plan = [] then 0 else 1
+  exact oneLayer_depth (rightLayer plan) (rightLayer_valid plan)
 
-@[simp] theorem leftScheduled_depth
+/-- Exact all-m depth of the left wall: an empty wall has depth zero. -/
+theorem leftScheduled_depth_exact
     {q m : Nat} (plan : AlphaPlan q m) :
+    (leftScheduled plan).depth =
+      if leftLayer plan = [] then 0 else 1 := by
+  change
+    (oneLayer (leftLayer plan) (leftLayer_valid plan)).depth =
+      if leftLayer plan = [] then 0 else 1
+  exact oneLayer_depth (leftLayer plan) (leftLayer_valid plan)
+
+/-- In the recursive regime each right wall is nonempty. -/
+theorem rightLayer_ne_nil_of_two_le
+    {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m) :
+    rightLayer plan ≠ [] := by
+  intro empty
+  have length := rightLayer_length plan
+  rw [empty] at length
+  simp at length
+  rw [wallCount_eq] at length
+  omega
+
+/-- In the recursive regime each left wall is nonempty. -/
+theorem leftLayer_ne_nil_of_two_le
+    {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m) :
+    leftLayer plan ≠ [] := by
+  intro empty
+  have length := leftLayer_length plan
+  rw [empty] at length
+  simp at length
+  rw [wallCount_eq] at length
+  omega
+
+@[simp] theorem rightScheduled_depth_of_two_le
+    {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m) :
+    (rightScheduled plan).depth = 1 := by
+  rw [rightScheduled_depth_exact,
+    if_neg (rightLayer_ne_nil_of_two_le plan large)]
+
+@[simp] theorem leftScheduled_depth_of_two_le
+    {q m : Nat} (plan : AlphaPlan q m) (large : 2 ≤ m) :
     (leftScheduled plan).depth = 1 := by
-  simp [leftScheduled]
+  rw [leftScheduled_depth_exact,
+    if_neg (leftLayer_ne_nil_of_two_le plan large)]
 
 end RemaudVandaeleLadderAlphaOuterLayers
 end QuantumBlockEncoding
