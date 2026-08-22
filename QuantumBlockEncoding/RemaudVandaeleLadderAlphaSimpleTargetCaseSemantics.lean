@@ -179,7 +179,7 @@ theorem specialTarget_stage_action
         else state (plan.target current) := by
     dsimp [childState, childProgram, childPlan, current] at childRaw
     rw [equationSeven_target] at childRaw
-    rw [childActivation] at childRaw
+    simp only [childActivation] at childRaw
     rw [childInputTarget, leftTarget] at childRaw
     simpa [childState, childProgram, childPlan, current] using childRaw
   have rightTarget :
