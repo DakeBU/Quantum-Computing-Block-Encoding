@@ -34,9 +34,9 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSimpleTargetCaseSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 
 /-!
-# Admission entry point: Remaud--Vandaele Algorithm 2 semantic frontier
+# Remaud--Vandaele Algorithm 2 semantic frontier
 
-This import-only module is the semantic aggregate for Algorithm 2.  A successful
+This import-only module is the semantic aggregate for Algorithm 2. A successful
 build checks the whole source-facing DAG below the final strong induction:
 
 * generic MCX schedule / embedding / depth-one layer semantics;
@@ -51,9 +51,8 @@ build checks the whole source-facing DAG below the final strong induction:
   target cases.
 
 The proofs are normalized around Lean 4.29's dependent `Decidable` behavior:
-proposition equivalences are transported with `simp` rather than dependent
-`rw`, and `List.ofFn` membership is witnessed through `List.mem_ofFn'` instead
-of proof-sensitive casts.
+proposition equivalences are transported without proof-sensitive dependent
+rewrites, and `List.ofFn` membership is witnessed through `List.mem_ofFn'`.
 
 The only theorem intentionally above this aggregate is the final strong
 induction `algorithm_refines_equationSeven`.
@@ -62,7 +61,7 @@ induction `algorithm_refines_equationSeven`.
 namespace QuantumBlockEncoding
 namespace RemaudVandaeleLadderAlphaSemanticFrontier
 
-theorem admitted_frontier_marker : True := by trivial
+theorem semantic_frontier_marker : True := by trivial
 
 end RemaudVandaeleLadderAlphaSemanticFrontier
 end QuantumBlockEncoding
