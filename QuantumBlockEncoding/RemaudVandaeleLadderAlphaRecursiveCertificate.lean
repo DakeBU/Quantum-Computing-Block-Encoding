@@ -82,7 +82,7 @@ def ofRankTheorem
   target := fun j =>
     ⟨recursiveAlphaValue plan large j, by
       have member := recursiveTarget_mem_selectedList plan large j
-      have bound := List.idxOf_lt_length.2 member
+      have bound := List.idxOf_lt_length_iff.2 member
       rw [rank j] at bound
       simpa [selectedWidth] using bound⟩
   target_rank := fun _ => rfl
@@ -92,17 +92,17 @@ def ofRankTheorem
     let index : Fin (selectedList plan large).length :=
       ⟨recursiveAlphaValue plan large j, by
         have member := recursiveTarget_mem_selectedList plan large j
-        have bound := List.idxOf_lt_length.2 member
+        have bound := List.idxOf_lt_length_iff.2 member
         rw [rank j] at bound
         exact bound⟩
     have nodup := selectedList_nodup plan large
     have member := recursiveTarget_mem_selectedList plan large j
     rcases List.mem_iff_get.mp member with ⟨actual,actualValue⟩
-    have actualRank := nodup.get_idxOf actual
+    have actualRank := List.get_idxOf nodup actual
     rw [actualValue, rank j] at actualRank
     have actualEq : actual = index := by
       apply Fin.ext
-      exact congrArg Fin.val actualRank
+      simpa [index] using actualRank.symm
     simpa [index, actualEq] using actualValue
   strict := by
     intro i j order
