@@ -68,10 +68,8 @@ theorem ordinaryTarget_stage_action
     rw [currentVal]
     omega
   have currentBeforeFinal : current.val + 1 < m := by
-    have currentNotFinal := recursiveOriginalTargetIndex_ne_final m large j
-    have currentLt := current.isLt
-    dsimp [current] at currentNotFinal currentLt ⊢
-    omega
+    dsimp [current]
+    exact recursiveOriginalTargetIndex_before_final m large j
   have currentNonzero : current.val ≠ 0 := by omega
   have middleEqPrevious :
       (⟨current.val - 1, by omega⟩ : Fin m) = middle := by
