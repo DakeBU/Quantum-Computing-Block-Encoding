@@ -26,8 +26,9 @@ theorem gateAction_apply_of_ne_target
     {q : Nat} (gate : MCXGate q) (wire : Fin q)
     (state : PrimitiveBasis q) (different : gate.target ≠ wire) :
     gateAction gate state wire = state wire := by
+  have wireNe : wire ≠ gate.target := different.symm
   by_cases enabled : active gate state
-  · simp [gateAction, enabled, xBasisAction, different]
+  · simp [gateAction, enabled, xBasisAction, wireNe]
   · simp [gateAction, enabled]
 
 /-- A wire touched by the right gate cannot be the target of a disjoint left
@@ -106,7 +107,7 @@ theorem evalProgram_preserves_gate_touches
         evalProgram rest (gateAction head state) wire = state wire
       calc
         _ = gateAction head state wire :=
-          induction restDisjoint (gateAction head state) wire touched
+          induction restDisjoint (gateAction head state)
         _ = state wire :=
           gateAction_preserves_touches_of_disjoint
             headDisjoint state wire touched
@@ -161,8 +162,7 @@ theorem eval_validLayer_member_on_touched
       · have selectedDisjoint : WireDisjoint head selected :=
           headTail selected tailMember
         have tailResult :=
-          induction restValid selected tailMember
-            (gateAction head state) wire touched
+          induction restValid tailMember (gateAction head state)
         have inputAgreement : ∀ query, touches selected query →
             gateAction head state query = state query := by
           intro query queryTouched
