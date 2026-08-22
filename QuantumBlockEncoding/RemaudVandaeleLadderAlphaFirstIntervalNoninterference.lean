@@ -8,13 +8,13 @@ namespace RemaudVandaeleLadderAlphaFirstIntervalNoninterference
 open MultiControlledXEmbedding
 open RemaudVandaeleLadderAlphaAlgorithmSchedule
 open RemaudVandaeleLadderAlphaContract
+open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaRankCertificate
 open RemaudVandaeleLadderAlphaRecursiveCertificate
 open RemaudVandaeleLadderAlphaSelectedRegister
 open RemaudVandaeleLadderAlphaStageNoninterference
 open RemaudVandaeleLadderAlphaTargetMembership
 
-/-- Every control wire of source gate zero is non-alpha. -/
 theorem firstInterval_wire_not_alpha
     {q m : Nat} (plan : AlphaPlan q m)
     (zero : Fin m) (zeroVal : zero.val = 0)
@@ -29,8 +29,6 @@ theorem firstInterval_wire_not_alpha
   rw [equal] at targetOrder
   omega
 
-/-- Any two states agreeing on parent non-alpha wires have the same source-gate
-zero activation. -/
 theorem firstIntervalActive_congr_nonAlpha
     {q m : Nat} (plan : AlphaPlan q m)
     (zero : Fin m) (zeroVal : zero.val = 0)
@@ -49,7 +47,6 @@ theorem firstIntervalActive_congr_nonAlpha
       plan zero zeroVal wire control)]
     exact active wire control
 
-/-- The left wall leaves source-gate-zero activation unchanged. -/
 theorem firstIntervalActive_leftScheduled_iff
     {q m : Nat} (plan : AlphaPlan q m)
     (zero : Fin m) (zeroVal : zero.val = 0)
@@ -60,7 +57,6 @@ theorem firstIntervalActive_leftScheduled_iff
   intro wire notAlpha
   exact leftScheduled_preserves_nonAlpha plan state wire notAlpha
 
-/-- The embedded child also leaves source-gate-zero activation unchanged. -/
 theorem firstIntervalActive_mappedRecursive_iff
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (zero : Fin m) (zeroVal : zero.val = 0)
