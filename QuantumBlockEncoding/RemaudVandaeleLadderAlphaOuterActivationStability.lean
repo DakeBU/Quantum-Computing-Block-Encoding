@@ -60,8 +60,11 @@ theorem intervalActive_leftScheduled_iff
     intervalActive plan ((leftScheduled plan).eval state)
         (leftSourceIndex m slot) ↔
       intervalActive plan state (leftSourceIndex m slot) := by
-  change intervalActive plan (evalProgram (leftLayer plan) state)
+  change intervalActive plan
+      (evalProgram (leftScheduled plan).program state)
       (leftSourceIndex m slot) ↔ _
+  rw [show (leftScheduled plan).program = leftLayer plan by
+    simp [leftScheduled]]
   apply intervalActive_eval_validWall_iff
     plan (leftLayer plan) (leftLayer_valid plan)
   unfold leftLayer
@@ -75,8 +78,11 @@ theorem intervalActive_rightScheduled_iff
     intervalActive plan ((rightScheduled plan).eval state)
         (rightSourceIndex m slot) ↔
       intervalActive plan state (rightSourceIndex m slot) := by
-  change intervalActive plan (evalProgram (rightLayer plan) state)
+  change intervalActive plan
+      (evalProgram (rightScheduled plan).program state)
       (rightSourceIndex m slot) ↔ _
+  rw [show (rightScheduled plan).program = rightLayer plan by
+    simp [rightScheduled]]
   apply intervalActive_eval_validWall_iff
     plan (rightLayer plan) (rightLayer_valid plan)
   unfold rightLayer
