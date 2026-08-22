@@ -25,16 +25,17 @@ theorem recursiveOriginalTargetIndex_strict
     (recursiveOriginalTargetIndex m large i).val <
       (recursiveOriginalTargetIndex m large j).val := by
   by_cases specialJ : isSpecialTail m j
-  · have jLast := specialJ.2
+  · unfold isSpecialTail at specialJ
+    rcases specialJ with ⟨evenK, jLast⟩
     have notSpecialI : ¬ isSpecialTail m i := by
       intro specialI
       have iLast := specialI.2
       omega
-    rw [recursiveOriginalTargetIndex_ordinary m large i notSpecialI,
-      recursiveOriginalTargetIndex_special m large j specialJ]
+    rw [recursiveOriginalTargetIndex_ordinary m large i notSpecialI]
+    have specialJ' : isSpecialTail m j := ⟨evenK, jLast⟩
+    rw [recursiveOriginalTargetIndex_special m large j specialJ']
     have hi := i.isLt
-    have evenK := specialJ.1
-    unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at hi
+    unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at hi jLast
     omega
   · have notSpecialI : ¬ isSpecialTail m i := by
       intro specialI
@@ -103,8 +104,13 @@ theorem recursiveOriginalTargetIndex_le_end
   · subst j
     rfl
   · have order : j < last := by
+      change j.val < recursiveTargetCount m - 1
       have hj := j.isLt
-      simp [last]
+      have valuesNe : j.val ≠ recursiveTargetCount m - 1 := by
+        intro values
+        apply equal
+        apply Fin.ext
+        exact values
       omega
     exact (recursiveOriginalTargetIndex_strict m large order).le
 
@@ -120,7 +126,7 @@ theorem odd_recursiveTarget_eq_end
   have last := special.2
   have nonempty : 0 < recursiveTargetCount m := Nat.zero_lt_of_lt j.isLt
   rw [recursiveEnd_eq_last m large nonempty]
-  apply recursiveOriginalTargetIndex_injective m large
+  apply congrArg (recursiveOriginalTargetIndex m large)
   apply Fin.ext
   simp
   omega
