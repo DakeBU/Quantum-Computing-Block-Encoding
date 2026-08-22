@@ -35,8 +35,10 @@ def finalWallSlot (m : Nat) (large : 2 ≤ m) : Fin (wallCount m) :=
 @[simp] theorem finalWallSlot_is_last
     (m : Nat) (large : 2 ≤ m) :
     (finalWallSlot m large).val + 1 = wallCount m := by
-  simp [finalWallSlot]
-  rw [wallCount_eq]
+  have positive : 0 < wallCount m := by
+    rw [wallCount_eq]
+    omega
+  change wallCount m - 1 + 1 = wallCount m
   omega
 
 /-- The final left-wall slot is exactly source gate `m-1`. -/
@@ -82,8 +84,8 @@ theorem leftSlotOfOddBeforeTail_not_last
     (odd : index.val % 2 = 1)
     (beforeTail : index.val + 2 < m) :
     (leftSlotOfOddBeforeTail index odd beforeTail).val + 1 ≠ wallCount m := by
+  change index.val / 2 + 1 ≠ wallCount m
   rw [wallCount_eq]
-  simp [leftSlotOfOddBeforeTail]
   omega
 
 /-- Every ordinary odd source index before the tail occurs in `C_L`. -/
@@ -93,9 +95,11 @@ theorem leftSourceIndex_leftSlotOfOddBeforeTail
     (beforeTail : index.val + 2 < m) :
     leftSourceIndex m
       (leftSlotOfOddBeforeTail index odd beforeTail) = index := by
-  apply Fin.ext
   have nonfinal := leftSlotOfOddBeforeTail_not_last index odd beforeTail
-  simp [leftSourceIndex, nonfinal, leftSlotOfOddBeforeTail]
+  unfold leftSourceIndex
+  rw [dif_neg nonfinal]
+  apply Fin.ext
+  change 2 * (index.val / 2) + 1 = index.val
   omega
 
 /-- No right-wall gate targets the final source index. -/
@@ -126,12 +130,21 @@ theorem leftSourceIndex_ne_specialTail
     (oddM : m % 2 = 1)
     (j : Fin (wallCount m)) :
     (leftSourceIndex m j).val ≠ m - 2 := by
+  intro equal
   by_cases final : j.val + 1 = wallCount m
-  · simp [leftSourceIndex, final]
+  · have sourceVal : (leftSourceIndex m j).val = m - 1 := by
+      simp [leftSourceIndex, final]
+    rw [sourceVal] at equal
     omega
   · have hjHalf : j.val < m / 2 := by
       simpa only [wallCount_eq] using j.isLt
-    simp [leftSourceIndex, final]
+    have sourceVal : (leftSourceIndex m j).val = 2 * j.val + 1 := by
+      simp [leftSourceIndex, final]
+    rw [sourceVal] at equal
+    have nonlastHalf : j.val + 1 ≠ m / 2 := by
+      intro lastHalf
+      apply final
+      simpa only [wallCount_eq] using lastHalf
     omega
 
 end RemaudVandaeleLadderAlphaOuterIndexCoverage
