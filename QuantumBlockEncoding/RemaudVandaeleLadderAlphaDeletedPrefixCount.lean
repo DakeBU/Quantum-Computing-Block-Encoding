@@ -285,7 +285,7 @@ noncomputable def halfToDeleted
   fun half =>
     ⟨(deletedPrefix plan large j).idxOf
         (plan.target (halfSourceIndex plan large j half)),
-      List.idxOf_lt_length.2
+      List.idxOf_lt_length_iff.2
         (halfSource_target_mem_deletedPrefix plan large j half)⟩
 
 /-- Reverse map is injective because alpha targets are injective and the deleted
