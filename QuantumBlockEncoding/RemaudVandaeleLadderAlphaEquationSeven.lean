@@ -53,10 +53,11 @@ theorem algorithm_refines_equationSeven :
       by_cases oneM : m = 1
       · subst m
         exact algorithm_one_refines plan state
-      have large : 2 ≤ m := by omega
+      have recursiveRegime : 2 ≤ m := by omega
       have sourceLarge : 3 ≤ m + 1 := by omega
       let childPlan := recursivePlan plan sourceLarge (canonicalCertificate plan sourceLarge)
-      have smaller : recursiveTargetCount m < m := recursiveTargetCount_lt large
+      have smaller : recursiveTargetCount m < m :=
+        recursiveTargetCount_lt recursiveRegime
       have childCorrect : ChildAlgorithmSpec childPlan := by
         intro childState
         exact induction (recursiveTargetCount m) smaller childPlan childState
@@ -64,9 +65,10 @@ theorem algorithm_refines_equationSeven :
       by_cases hit : ∃ index : Fin m, plan.target index = wire
       · rcases hit with ⟨index, rfl⟩
         rw [equationSeven_target plan state index]
-        have staged := congrFun (algorithm_step_eval plan large state) (plan.target index)
+        have staged :=
+          congrFun (algorithm_step_eval plan sourceLarge state) (plan.target index)
         rw [staged]
-        rcases sourceIndex_cases m large index with
+        rcases sourceIndex_cases m recursiveRegime index with
           zeroIndex | finalOrRest
         · have indexEq : index = (⟨0, by omega⟩ : Fin m) := by
             apply Fin.ext
