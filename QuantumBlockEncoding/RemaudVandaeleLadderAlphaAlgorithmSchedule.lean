@@ -158,7 +158,8 @@ theorem algorithm_gateCount_eq_source :
   | h m induction =>
       rcases m with (_ | _ | r)
       · rw [algorithm_zero]
-        simp [emptyScheduled]
+        simp [emptyScheduled, ScheduledMCXProgram.gateCount,
+          MultiControlledXSchedule.gateCount, scheduleProgram]
       · rw [algorithm_one]
         simp [baseOne]
       · let m := r + 2
@@ -174,7 +175,7 @@ theorem algorithm_gateCount_eq_source :
         rw [child]
         rw [boundaries]
         rw [gate_step (k := m + 1) (by omega)]
-        simp [wallCount, boundaryCount]
+        simp [wallCount, boundaryCount, m]
 
 /-- Exact depth recurrence from [9] Appendix Equation (26), attached to the
 same physical MCX schedule. -/
@@ -186,7 +187,8 @@ theorem algorithm_depth_eq_source :
   | h m induction =>
       rcases m with (_ | _ | r)
       · rw [algorithm_zero]
-        simp [emptyScheduled]
+        simp [emptyScheduled, ScheduledMCXProgram.depth,
+          MultiControlledXSchedule.depth]
       · rw [algorithm_one]
         simp [baseOne]
       · let m := r + 2
