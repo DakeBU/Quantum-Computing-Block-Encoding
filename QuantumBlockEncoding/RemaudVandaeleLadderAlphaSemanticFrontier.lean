@@ -21,8 +21,9 @@ proof frontier:
 
 The admission PR is rerun whenever a foundational MCX source node changes, so a
 green frontier certifies the current transitive source chain rather than a stale
-cached branch state.  The current run checks the constructive finite activation
-decider before admitting the higher semantic layers.
+cached branch state.  The current run checks both the constructive MCX action
+and its exact injective wire embedding/readback semantics before admitting the
+higher Algorithm-2 layers.
 -/
 
 namespace QuantumBlockEncoding
