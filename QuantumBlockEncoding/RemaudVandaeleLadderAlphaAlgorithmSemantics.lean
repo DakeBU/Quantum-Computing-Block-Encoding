@@ -1,5 +1,6 @@
 import QuantumBlockEncoding.MultiControlledXScheduleSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedNoninterference
 import Mathlib.Tactic
 
 /-!
@@ -20,13 +21,14 @@ assumption.  It exposes the three source stages
 `C_L ; embedded Algorithm(X') ; C_R`,
 
 proves that the assembled schedule evaluates exactly as those stages, proves
-exact logical readback through the physical `X'` embedding, proves
-noninterference outside `X'`, and reduces full Algorithm-2 correctness to one
-explicit stagewise Equation-(7) identity.
+exact logical readback through the physical `X'` embedding, proves that `C_L`
+does not alter the recursive register seen by the child, proves noninterference
+outside `X'`, and reduces full Algorithm-2 correctness to one explicit
+stagewise Equation-(7) identity.
 
-The next proof node is therefore mathematically sharp: characterize the action
-of the outer walls on retained/deleted alpha targets and close that final
-stagewise identity by strong induction on the alpha-vector length.
+The next proof node is therefore mathematically sharp: translate the recursive
+child's Equation-(7) predicates/targets back to parent physical coordinates and
+then characterize the final `C_R` cancellation on the parent alpha targets.
 -/
 
 namespace QuantumBlockEncoding
@@ -40,6 +42,7 @@ open RemaudVandaeleLadderAlphaContract
 open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaRankCertificate
 open RemaudVandaeleLadderAlphaRecursiveCertificate
+open RemaudVandaeleLadderAlphaSelectedNoninterference
 open RemaudVandaeleLadderAlphaSelectedRegister
 
 /-- Source-facing semantic correctness proposition for one alpha plan. -/
@@ -103,6 +106,23 @@ theorem middle_readback
     (selectedWire_injective plan large)
     (algorithm (recursivePlan plan large (canonicalCertificate plan large)))
     (afterLeft plan state)
+
+/-- Because `C_L` targets only deleted odd alpha wires (plus the final source
+target beyond `X'`), the recursive child sees the *original parent input*
+restricted to `X'`.  This is the exact induction entrance for Algorithm 2. -/
+theorem middle_readback_from_original
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    (state : PrimitiveBasis q) :
+    readEmbedded (selectedWire plan large) (afterMiddle plan large state) =
+      (algorithm
+        (recursivePlan plan large (canonicalCertificate plan large))).eval
+        (readEmbedded (selectedWire plan large) state) := by
+  rw [middle_readback]
+  have leftReadback :
+      readEmbedded (selectedWire plan large) (afterLeft plan state) =
+        readEmbedded (selectedWire plan large) state := by
+    simpa [afterLeft] using readEmbedded_leftScheduled plan large state
+  rw [leftReadback]
 
 /-- The recursive middle stage cannot modify a physical wire outside the image
 of the selected recursive register `X'`. -/
