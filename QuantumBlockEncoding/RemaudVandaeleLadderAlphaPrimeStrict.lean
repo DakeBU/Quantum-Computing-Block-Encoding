@@ -31,15 +31,17 @@ theorem recursiveOriginalTargetIndex_gap_two
     (recursiveOriginalTargetIndex m large i).val + 2 ≤
       (recursiveOriginalTargetIndex m large j).val := by
   by_cases specialJ : isSpecialTail m j
-  · have jLast := specialJ.2
+  · unfold isSpecialTail at specialJ
+    rcases specialJ with ⟨evenK, jLast⟩
     have ordinaryI : ¬ isSpecialTail m i := by
       intro specialI
       have iLast := specialI.2
       omega
-    rw [recursiveOriginalTargetIndex_ordinary m large i ordinaryI,
-      recursiveOriginalTargetIndex_special m large j specialJ]
+    rw [recursiveOriginalTargetIndex_ordinary m large i ordinaryI]
+    have specialJ' : isSpecialTail m j := ⟨evenK, jLast⟩
+    rw [recursiveOriginalTargetIndex_special m large j specialJ']
     have hi := i.isLt
-    unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at hi
+    unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at hi jLast
     omega
   · have ordinaryI : ¬ isSpecialTail m i := by
       intro specialI
