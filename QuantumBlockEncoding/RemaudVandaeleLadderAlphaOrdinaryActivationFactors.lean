@@ -115,6 +115,9 @@ theorem ordinaryCompactedPhysicalActive_iff
     rw [dif_neg middleNonzero] at middleInterior
     rw [dif_neg currentNonzero] at currentInterior
     intro wire lowerWire upperWire notMiddle
+    change (plan.target lower).val ≤ wire.val at lowerWire
+    change wire.val < (plan.target current).val at upperWire
+    change wire ≠ plan.target middle at notMiddle
     by_cases beforeMiddle : wire.val < (plan.target middle).val
     · by_cases atLower : wire = plan.target lower
       · simpa [atLower] using lowerOne
