@@ -33,12 +33,15 @@ theorem leftScheduled_preserves_zeroTarget
       state (plan.target ⟨0, by omega⟩) := by
   apply leftScheduled_preserves_of_no_target
   intro slot equal
-  have indexEq := target_injective plan equal
-  have values := congrArg Fin.val indexEq
-  by_cases final : slot.val + 1 = wallCount m
-  · simp [leftSourceIndex, final] at values
-    omega
-  · simp [leftSourceIndex, final] at values
+  have sourceEq :
+      leftSourceIndex m slot = (⟨0, by omega⟩ : Fin m) :=
+    target_injective plan equal
+  have sourceVal : (leftSourceIndex m slot).val = 0 :=
+    congrArg Fin.val sourceEq
+  unfold leftSourceIndex at sourceVal
+  split at sourceVal
+  · omega
+  · simp at sourceVal
     omega
 
 /-- Every ordinary even parent target is implemented by its right-wall slot.
@@ -75,12 +78,14 @@ theorem leftScheduled_preserves_ordinaryEvenTarget
       state (plan.target index) := by
   apply leftScheduled_preserves_of_no_target
   intro slot equal
-  have indexEq := target_injective plan equal
-  have values := congrArg Fin.val indexEq
-  by_cases final : slot.val + 1 = wallCount m
-  · simp [leftSourceIndex, final] at values
-    omega
-  · simp [leftSourceIndex, final] at values
+  have sourceEq : leftSourceIndex m slot = index :=
+    target_injective plan equal
+  have sourceVal : (leftSourceIndex m slot).val = index.val :=
+    congrArg Fin.val sourceEq
+  unfold leftSourceIndex at sourceVal
+  split at sourceVal
+  · omega
+  · simp at sourceVal
     omega
 
 theorem leftScheduled_ordinaryOdd_target
