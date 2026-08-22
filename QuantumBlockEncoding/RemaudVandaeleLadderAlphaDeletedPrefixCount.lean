@@ -80,7 +80,7 @@ theorem earlierTarget_mem_prefix
     plan.target source ∈ targetPrefix plan large j := by
   have startLower : selectedStart plan large ≤ (plan.target source).val := by
     unfold selectedStart
-    exact target_le_of_index_le plan (by omega)
+    exact target_le_of_index_le plan (Nat.zero_le _)
   have targetStrict :
       (plan.target source).val <
         (plan.target (recursiveOriginalTargetIndex m large j)).val :=
@@ -302,22 +302,22 @@ theorem halfToDeleted_injective
         plan.target (halfSourceIndex plan large j left) := by
     have member := halfSource_target_mem_deletedPrefix plan large j left
     rcases List.mem_iff_get.mp member with ⟨actual,actualValue⟩
-    have rank := (deletedPrefix_nodup plan large j).get_idxOf actual
+    have rank := List.get_idxOf (deletedPrefix_nodup plan large j) actual
     rw [actualValue] at rank
     have actualEq : actual = leftEntry := by
       apply Fin.ext
-      exact congrArg Fin.val rank
+      simpa [leftEntry, halfToDeleted] using rank.symm
     simpa [leftEntry, actualEq] using actualValue
   have rightValue :
       (deletedPrefix plan large j).get rightEntry =
         plan.target (halfSourceIndex plan large j right) := by
     have member := halfSource_target_mem_deletedPrefix plan large j right
     rcases List.mem_iff_get.mp member with ⟨actual,actualValue⟩
-    have rank := (deletedPrefix_nodup plan large j).get_idxOf actual
+    have rank := List.get_idxOf (deletedPrefix_nodup plan large j) actual
     rw [actualValue] at rank
     have actualEq : actual = rightEntry := by
       apply Fin.ext
-      exact congrArg Fin.val rank
+      simpa [rightEntry, halfToDeleted] using rank.symm
     simpa [rightEntry, actualEq] using actualValue
   have entryEq : leftEntry = rightEntry := by
     exact equal
