@@ -78,7 +78,6 @@ theorem ordinaryTarget_stage_action
     dsimp [current, middle]
     rw [currentVal]
     simp [ordinaryMiddleSourceIndex]
-    omega
 
   have leftCurrent :
       leftState (plan.target current) = state (plan.target current) := by
@@ -114,10 +113,28 @@ theorem ordinaryTarget_stage_action
           flipBit (state (plan.target current))
         else state (plan.target current) := by
     rw [equationSeven_target] at childTargetRaw
-    simp only [childActivation] at childTargetRaw
-    rw [childInputTarget] at childTargetRaw
-    rw [leftCurrent] at childTargetRaw
-    simpa [middle, current, childPlan, leftState, childProgram, childState] using childTargetRaw
+    by_cases factors :
+        intervalActive plan state middle ∧
+          strictInteriorActive plan state current
+    · have childActive :
+          intervalActive
+            (recursivePlan plan large (canonicalCertificate plan large))
+            (readEmbedded (selectedWire plan large) leftState) j := by
+        exact childActivation.mpr factors
+      rw [if_pos childActive] at childTargetRaw
+      rw [if_pos factors]
+      rw [childInputTarget, leftCurrent] at childTargetRaw
+      simpa [middle, current, childPlan, leftState, childProgram, childState] using childTargetRaw
+    · have childInactive :
+          ¬ intervalActive
+            (recursivePlan plan large (canonicalCertificate plan large))
+            (readEmbedded (selectedWire plan large) leftState) j := by
+        intro active
+        exact factors (childActivation.mp active)
+      rw [if_neg childInactive] at childTargetRaw
+      rw [if_neg factors]
+      rw [childInputTarget, leftCurrent] at childTargetRaw
+      simpa [middle, current, childPlan, leftState, childProgram, childState] using childTargetRaw
 
   have childMiddle :
       childState (plan.target middle) = leftState (plan.target middle) := by
@@ -164,13 +181,31 @@ theorem ordinaryTarget_stage_action
     plan current currentEven currentPositive currentBeforeFinal childState
   simp only [rightActivation] at rightTarget
   rw [childTarget] at rightTarget
-  simp only [parentActivation]
-  exact rightTarget.trans
-    (ordinary_pair_cancellation_prop
+
+  have cancellation :=
+    ordinary_pair_cancellation_prop
       (state (plan.target middle))
       (state (plan.target current))
       (intervalActive plan state middle)
-      (strictInteriorActive plan state current))
+      (strictInteriorActive plan state current)
+  have parentFactorization :
+      (if state (plan.target middle) = 1 ∧
+            strictInteriorActive plan state current then
+          flipBit (state (plan.target current))
+        else state (plan.target current)) =
+      (if intervalActive plan state current then
+          flipBit (state (plan.target current))
+        else state (plan.target current)) := by
+    by_cases active : intervalActive plan state current
+    · have factors := parentActivation.mp active
+      rw [if_pos factors, if_pos active]
+    · have factors :
+          ¬ (state (plan.target middle) = 1 ∧
+              strictInteriorActive plan state current) := by
+        intro factored
+        exact active (parentActivation.mpr factored)
+      rw [if_neg factors, if_neg active]
+  exact rightTarget.trans (cancellation.trans parentFactorization)
 
 end RemaudVandaeleLadderAlphaOrdinaryTargetCaseSemantics
 end QuantumBlockEncoding
