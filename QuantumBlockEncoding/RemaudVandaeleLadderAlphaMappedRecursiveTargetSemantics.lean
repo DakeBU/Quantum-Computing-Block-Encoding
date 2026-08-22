@@ -61,6 +61,7 @@ theorem mappedRecursive_target_action
       equationSevenAction childPlan
         (readEmbedded (selectedWire plan large) state)
         (childPlan.target j)
+  unfold readEmbedded at readback
   rw [physical] at readback
   rw [childSemantics] at readback
   exact readback
