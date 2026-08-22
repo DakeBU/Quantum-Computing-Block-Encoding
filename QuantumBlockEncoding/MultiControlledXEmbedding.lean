@@ -52,8 +52,9 @@ def mapGate {small large : Nat}
     intro member
     rcases (mem_mapControls_iff embed gate.controls (embed gate.target)).1 member with
       ⟨logical,logicalMember,equal⟩
-    exact gate.target_not_control
-      (by simpa [injective equal] using logicalMember)
+    have same : logical = gate.target := injective equal
+    subst logical
+    exact gate.target_not_control logicalMember
 
 /-- Source activation predicate is invariant under embedding. -/
 theorem active_mapGate_iff
@@ -87,12 +88,18 @@ theorem readEmbedded_gateAction
   by_cases source : active gate (readEmbedded embed state)
   · have mapped : active (mapGate embed injective gate) state :=
       (active_mapGate_iff embed injective gate state).2 source
-    rw [show gateAction (mapGate embed injective gate) state =
-        xBasisAction (embed gate.target) state by
-      simp [gateAction, mapped, mapGate]]
-    rw [show gateAction gate (readEmbedded embed state) =
-        xBasisAction gate.target (readEmbedded embed state) by
-      simp [gateAction, source]]
+    have mappedAction :
+        gateAction (mapGate embed injective gate) state =
+          xBasisAction (embed gate.target) state := by
+      unfold gateAction
+      rw [if_pos mapped]
+      rfl
+    have sourceAction :
+        gateAction gate (readEmbedded embed state) =
+          xBasisAction gate.target (readEmbedded embed state) := by
+      unfold gateAction
+      rw [if_pos source]
+    rw [mappedAction, sourceAction]
     by_cases target : wire = gate.target
     · subst wire
       simp [readEmbedded, xBasisAction]
@@ -103,7 +110,15 @@ theorem readEmbedded_gateAction
   · have mapped : ¬ active (mapGate embed injective gate) state := by
       intro h
       exact source ((active_mapGate_iff embed injective gate state).1 h)
-    simp [gateAction, mapped, source, readEmbedded]
+    have mappedAction :
+        gateAction (mapGate embed injective gate) state = state := by
+      unfold gateAction
+      rw [if_neg mapped]
+    have sourceAction :
+        gateAction gate (readEmbedded embed state) = readEmbedded embed state := by
+      unfold gateAction
+      rw [if_neg source]
+    rw [mappedAction, sourceAction]
 
 /-- Mapped MCX leaves every physical wire outside the embedding image unchanged. -/
 theorem gateAction_outside
@@ -117,11 +132,19 @@ theorem gateAction_outside
     gateAction (mapGate embed injective gate) state wire = state wire := by
   by_cases mapped : active (mapGate embed injective gate) state
   · have targetNe : wire ≠ embed gate.target := (outside gate.target).symm
-    rw [show gateAction (mapGate embed injective gate) state =
-        xBasisAction (embed gate.target) state by
-      simp [gateAction, mapped, mapGate]]
+    have mappedAction :
+        gateAction (mapGate embed injective gate) state =
+          xBasisAction (embed gate.target) state := by
+      unfold gateAction
+      rw [if_pos mapped]
+      rfl
+    rw [mappedAction]
     simp [xBasisAction, targetNe]
-  · simp [gateAction, mapped]
+  · have mappedAction :
+        gateAction (mapGate embed injective gate) state = state := by
+      unfold gateAction
+      rw [if_neg mapped]
+    rw [mappedAction]
 
 /-- Program wire map. -/
 def mapProgram {small large : Nat}
@@ -259,6 +282,16 @@ def mapScheduled
   layers := mapSchedule embed injective scheduled.layers
   valid := mapSchedule_valid embed injective scheduled.valid
 
+/-- Generic list identity used by schedule flattening: map every inner list and
+then flatten is the same as flattening first and mapping once. -/
+theorem flatten_map_map
+    {α β : Type*} (f : α → β) (lists : List (List α)) :
+    (lists.map (fun list => list.map f)).flatten = lists.flatten.map f := by
+  induction lists with
+  | nil => rfl
+  | cons head tail induction =>
+      simp [induction]
+
 /-- Flattening commutes exactly with layerwise embedding. -/
 theorem mapSchedule_program
     {small large : Nat}
@@ -267,10 +300,8 @@ theorem mapSchedule_program
     (schedule : MCXSchedule small) :
     scheduleProgram (mapSchedule embed injective schedule) =
       mapProgram embed injective (scheduleProgram schedule) := by
-  induction schedule with
-  | nil => rfl
-  | cons layer rest induction =>
-      simp [mapSchedule, mapLayer, mapProgram, scheduleProgram, induction]
+  unfold scheduleProgram mapSchedule mapProgram mapLayer
+  exact flatten_map_map (mapGate embed injective) schedule
 
 @[simp] theorem mapScheduled_program
     {small large : Nat}
