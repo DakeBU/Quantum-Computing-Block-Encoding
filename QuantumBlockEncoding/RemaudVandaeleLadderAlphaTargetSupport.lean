@@ -34,8 +34,11 @@ theorem leftScheduled_target_source
     {q m : Nat} (plan : AlphaPlan q m)
     (gate : MCXGate q) (member : gate ∈ (leftScheduled plan).program) :
     ∃ index : Fin m, gate.target = plan.target index := by
-  simp [leftScheduled, leftLayer] at member
-  rcases member with ⟨j, rfl⟩
+  have layerMember : gate ∈ leftLayer plan := by
+    simpa [leftScheduled] using member
+  unfold leftLayer at layerMember
+  rw [List.mem_ofFn'] at layerMember
+  rcases layerMember with ⟨j, rfl⟩
   exact ⟨leftSourceIndex m j, rfl⟩
 
 /-- Every gate in the right source wall targets a source alpha target. -/
@@ -43,8 +46,11 @@ theorem rightScheduled_target_source
     {q m : Nat} (plan : AlphaPlan q m)
     (gate : MCXGate q) (member : gate ∈ (rightScheduled plan).program) :
     ∃ index : Fin m, gate.target = plan.target index := by
-  simp [rightScheduled, rightLayer] at member
-  rcases member with ⟨j, rfl⟩
+  have layerMember : gate ∈ rightLayer plan := by
+    simpa [rightScheduled] using member
+  unfold rightLayer at layerMember
+  rw [List.mem_ofFn'] at layerMember
+  rcases layerMember with ⟨j, rfl⟩
   exact ⟨rightSourceIndex m j, rfl⟩
 
 /-- Main target-support theorem: every recursively emitted MCX target is one of
@@ -59,9 +65,11 @@ theorem algorithm_target_source :
   | h m induction =>
       intro plan gate member
       rcases m with (_ | _ | r)
-      · simp [algorithm, emptyScheduled] at member
-      · have baseMember : gate = sourceGate plan ⟨0, by decide⟩ := by
-          simpa [algorithm, baseOne] using member
+      · rw [algorithm_zero] at member
+        simp [emptyScheduled, ScheduledMCXProgram.program, scheduleProgram] at member
+      · rw [algorithm_one] at member
+        have baseMember : gate = sourceGate plan ⟨0, by decide⟩ := by
+          simpa [baseOne] using member
         subst gate
         exact ⟨⟨0, by decide⟩, rfl⟩
       · let parentM := r + 2
@@ -86,8 +94,11 @@ theorem algorithm_target_source :
             rcases childTarget with ⟨j, targetEq⟩
             subst gate
             refine ⟨recursiveOriginalTargetIndex parentM sourceLarge j, ?_⟩
-            simp [mapGate, targetEq, childPlan, certificate]
-            exact canonical_recursive_target_physical plan sourceLarge j
+            change selectedWire plan sourceLarge childGate.target =
+              plan.target (recursiveOriginalTargetIndex parentM sourceLarge j)
+            rw [targetEq]
+            simpa [childPlan, certificate] using
+              canonical_recursive_target_physical plan sourceLarge j
         · exact rightScheduled_target_source plan gate rightMember
 
 /-- Consequently any physical wire which is not an alpha target cannot be a
