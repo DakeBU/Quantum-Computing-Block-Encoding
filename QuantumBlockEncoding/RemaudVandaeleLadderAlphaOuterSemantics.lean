@@ -10,9 +10,6 @@ wire-disjoint depth-one layers.  The generic MCX layer semantics now turns that
 resource certificate into local source semantics: every wall target has exactly
 the stand-alone action of its corresponding source MCX, and every physical wire
 not targeted by the wall is preserved.
-
-This is the local semantic interface used by the Equation-(7) induction.  It
-keeps source-index arithmetic separate from gate evaluation.
 -/
 
 namespace QuantumBlockEncoding
@@ -23,7 +20,6 @@ open MultiControlledXSchedule
 open RemaudVandaeleLadderAlphaContract
 open RemaudVandaeleLadderAlphaOuterLayers
 
-/-- Every right-wall source gate occurs in the concrete right layer. -/
 theorem rightSourceGate_mem
     {q m : Nat} (plan : AlphaPlan q m) (j : Fin (wallCount m)) :
     sourceGate plan (rightSourceIndex m j) ∈ rightLayer plan := by
@@ -31,7 +27,6 @@ theorem rightSourceGate_mem
   rw [List.mem_ofFn']
   exact ⟨j, rfl⟩
 
-/-- Every left-wall source gate occurs in the concrete left layer. -/
 theorem leftSourceGate_mem
     {q m : Nat} (plan : AlphaPlan q m) (j : Fin (wallCount m)) :
     sourceGate plan (leftSourceIndex m j) ∈ leftLayer plan := by
@@ -39,7 +34,6 @@ theorem leftSourceGate_mem
   rw [List.mem_ofFn']
   exact ⟨j, rfl⟩
 
-/-- Exact right-wall action at one of its source targets. -/
 theorem rightLayer_target
     {q m : Nat} (plan : AlphaPlan q m)
     (j : Fin (wallCount m)) (state : PrimitiveBasis q) :
@@ -54,12 +48,17 @@ theorem rightLayer_target
     (rightSourceGate_mem plan j) state
     (plan.target (rightSourceIndex m j)) (Or.inl rfl)
   rw [localAction]
-  unfold gateAction
-  rw [sourceGate_active_iff]
-  by_cases enabled : intervalActive plan state (rightSourceIndex m j) <;>
-    simp [enabled, xBasisAction]
+  by_cases enabled : intervalActive plan state (rightSourceIndex m j)
+  · have sourceEnabled :
+        active (sourceGate plan (rightSourceIndex m j)) state :=
+      (sourceGate_active_iff plan state (rightSourceIndex m j)).2 enabled
+    simp [gateAction, sourceEnabled, enabled, xBasisAction, sourceGate]
+  · have sourceDisabled :
+        ¬ active (sourceGate plan (rightSourceIndex m j)) state := by
+      intro sourceEnabled
+      exact enabled ((sourceGate_active_iff plan state (rightSourceIndex m j)).1 sourceEnabled)
+    simp [gateAction, sourceDisabled, enabled]
 
-/-- Exact left-wall action at one of its source targets. -/
 theorem leftLayer_target
     {q m : Nat} (plan : AlphaPlan q m)
     (j : Fin (wallCount m)) (state : PrimitiveBasis q) :
@@ -74,12 +73,17 @@ theorem leftLayer_target
     (leftSourceGate_mem plan j) state
     (plan.target (leftSourceIndex m j)) (Or.inl rfl)
   rw [localAction]
-  unfold gateAction
-  rw [sourceGate_active_iff]
-  by_cases enabled : intervalActive plan state (leftSourceIndex m j) <;>
-    simp [enabled, xBasisAction]
+  by_cases enabled : intervalActive plan state (leftSourceIndex m j)
+  · have sourceEnabled :
+        active (sourceGate plan (leftSourceIndex m j)) state :=
+      (sourceGate_active_iff plan state (leftSourceIndex m j)).2 enabled
+    simp [gateAction, sourceEnabled, enabled, xBasisAction, sourceGate]
+  · have sourceDisabled :
+        ¬ active (sourceGate plan (leftSourceIndex m j)) state := by
+      intro sourceEnabled
+      exact enabled ((sourceGate_active_iff plan state (leftSourceIndex m j)).1 sourceEnabled)
+    simp [gateAction, sourceDisabled, enabled]
 
-/-- Scheduled right-wall form of the target theorem. -/
 theorem rightScheduled_target
     {q m : Nat} (plan : AlphaPlan q m)
     (j : Fin (wallCount m)) (state : PrimitiveBasis q) :
@@ -89,11 +93,9 @@ theorem rightScheduled_target
         flipBit (state (plan.target (rightSourceIndex m j)))
       else state (plan.target (rightSourceIndex m j)) := by
   change evalProgram (rightScheduled plan).program state _ = _
-  rw [show (rightScheduled plan).program = rightLayer plan by
-    simp [rightScheduled]]
+  rw [show (rightScheduled plan).program = rightLayer plan by simp [rightScheduled]]
   exact rightLayer_target plan j state
 
-/-- Scheduled left-wall form of the target theorem. -/
 theorem leftScheduled_target
     {q m : Nat} (plan : AlphaPlan q m)
     (j : Fin (wallCount m)) (state : PrimitiveBasis q) :
@@ -103,20 +105,16 @@ theorem leftScheduled_target
         flipBit (state (plan.target (leftSourceIndex m j)))
       else state (plan.target (leftSourceIndex m j)) := by
   change evalProgram (leftScheduled plan).program state _ = _
-  rw [show (leftScheduled plan).program = leftLayer plan by
-    simp [leftScheduled]]
+  rw [show (leftScheduled plan).program = leftLayer plan by simp [leftScheduled]]
   exact leftLayer_target plan j state
 
-/-- A physical wire not targeted by any right-wall source gate is preserved. -/
 theorem rightScheduled_preserves_of_no_target
     {q m : Nat} (plan : AlphaPlan q m)
     (state : PrimitiveBasis q) (wire : Fin q)
-    (miss : ∀ j : Fin (wallCount m),
-      plan.target (rightSourceIndex m j) ≠ wire) :
+    (miss : ∀ j : Fin (wallCount m), plan.target (rightSourceIndex m j) ≠ wire) :
     (rightScheduled plan).eval state wire = state wire := by
   change evalProgram (rightScheduled plan).program state wire = state wire
-  rw [show (rightScheduled plan).program = rightLayer plan by
-    simp [rightScheduled]]
+  rw [show (rightScheduled plan).program = rightLayer plan by simp [rightScheduled]]
   apply eval_layer_preserves_of_no_target
   intro gate member
   unfold rightLayer at member
@@ -124,16 +122,13 @@ theorem rightScheduled_preserves_of_no_target
   rcases member with ⟨j, rfl⟩
   exact miss j
 
-/-- A physical wire not targeted by any left-wall source gate is preserved. -/
 theorem leftScheduled_preserves_of_no_target
     {q m : Nat} (plan : AlphaPlan q m)
     (state : PrimitiveBasis q) (wire : Fin q)
-    (miss : ∀ j : Fin (wallCount m),
-      plan.target (leftSourceIndex m j) ≠ wire) :
+    (miss : ∀ j : Fin (wallCount m), plan.target (leftSourceIndex m j) ≠ wire) :
     (leftScheduled plan).eval state wire = state wire := by
   change evalProgram (leftScheduled plan).program state wire = state wire
-  rw [show (leftScheduled plan).program = leftLayer plan by
-    simp [leftScheduled]]
+  rw [show (leftScheduled plan).program = leftLayer plan by simp [leftScheduled]]
   apply eval_layer_preserves_of_no_target
   intro gate member
   unfold leftLayer at member
