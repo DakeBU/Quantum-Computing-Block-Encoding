@@ -66,7 +66,9 @@ theorem algorithm_target_source :
       intro plan gate member
       rcases m with (_ | _ | r)
       · rw [algorithm_zero] at member
-        simp [emptyScheduled] at member
+        have impossible : False := by
+          simpa [emptyScheduled, ScheduledMCXProgram.program, scheduleProgram] using member
+        exact impossible.elim
       · rw [algorithm_one] at member
         have baseMember : gate = sourceGate plan ⟨0, by decide⟩ := by
           simpa [baseOne] using member
