@@ -3,22 +3,6 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveTargetExclusion
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedRegister
 import Mathlib.Tactic
 
-/-!
-# Algorithm 2: the left outer wall preserves the recursive register X'
-
-The source recursion is only semantically useful once the state entering the
-embedded child can be identified with the original state restricted to the
-selected physical register `X'`.
-
-Algorithm 2 was designed exactly for this.  Every nonfinal target of the left
-wall is an odd intermediate alpha target and is therefore deleted from `X'`;
-the final left-wall target is the final source target and lies strictly after
-the recursive end.  Consequently `C_L` cannot target any selected wire.
-
-This module turns that source geometry into the exact readback theorem needed by
-the Equation-(7) induction.
--/
-
 namespace QuantumBlockEncoding
 namespace RemaudVandaeleLadderAlphaSelectedNoninterference
 
@@ -31,8 +15,6 @@ open RemaudVandaeleLadderAlphaResource
 open RemaudVandaeleLadderAlphaSelectedRegister
 open MultiControlledXEmbedding
 
-/-- Every compact coordinate denotes an actual member of the physical selected
-register list. -/
 theorem selectedWire_mem_selectedList
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (index : Fin (selectedWidth plan large)) :
@@ -43,7 +25,6 @@ theorem selectedWire_mem_selectedList
   have member := (selectedList plan large).get_mem physicalIndex
   simpa [selectedWire, physicalIndex] using member
 
-/-- Every selected physical wire lies no later than the physical recursive end. -/
 theorem selectedWire_le_end
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (index : Fin (selectedWidth plan large)) :
@@ -62,16 +43,12 @@ theorem selectedWire_le_end
   unfold selectedRangeLength at offsetLt
   omega
 
-/-- Reuse the already-verified recursive-target exclusion theorem: the physical
-recursive end lies strictly before the final parent source target. -/
 theorem recursiveEndOriginalIndex_lt_final
     (m : Nat) (large : 3 ≤ m + 1) :
     (recursiveEndOriginalIndex m large).val < m - 1 :=
   RemaudVandaeleLadderAlphaRecursiveTargetExclusion.recursiveEndOriginalIndex_lt_final
     m large
 
-/-- Therefore the final source target is physically strictly after the selected
-recursive interval. -/
 theorem selectedEnd_lt_finalTarget
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1) :
     selectedEnd plan large <
@@ -80,8 +57,6 @@ theorem selectedEnd_lt_finalTarget
   apply plan.strict
   exact recursiveEndOriginalIndex_lt_final m large
 
-/-- A nonfinal left-wall slot is exactly one of the deleted odd intermediate
-source targets. -/
 theorem nonfinalLeftTarget_deleted
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (wallCount m))
@@ -99,7 +74,6 @@ theorem nonfinalLeftTarget_deleted
   have sourceVal : (leftSourceIndex m j).val = 2 * j.val + 1 := by
     unfold leftSourceIndex
     rw [dif_neg nonfinal]
-    rfl
   refine ⟨leftSourceIndex m j, ?_, ?_, rfl⟩
   · rw [sourceVal]
     omega
@@ -116,7 +90,6 @@ theorem nonfinalLeftTarget_deleted
       unfold recursiveTargetCount recursiveK at countPos ⊢
       omega
 
-/-- No left-wall source target is one of the selected physical X' wires. -/
 theorem leftSourceTarget_ne_selectedWire
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (wallCount m))
@@ -129,7 +102,6 @@ theorem leftSourceTarget_ne_selectedWire
       apply Fin.ext
       unfold leftSourceIndex
       rw [dif_pos final]
-      rfl
     have recursiveBound := selectedWire_le_end plan large index
     have finalBound := selectedEnd_lt_finalTarget plan large
     rw [sourceIndex] at equal
@@ -146,8 +118,6 @@ theorem leftSourceTarget_ne_selectedWire
     apply notDeleted
     simpa [equal] using deleted
 
-/-- The concrete left wall preserves every coordinate of the selected physical
-recursive register. -/
 theorem leftScheduled_preserves_selectedWire
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q)
@@ -158,8 +128,6 @@ theorem leftScheduled_preserves_selectedWire
   intro j
   exact leftSourceTarget_ne_selectedWire plan large j index
 
-/-- Exact readback statement: entering the recursive child after `C_L` sees the
-same logical X' basis state as restricting the original parent input to X'. -/
 theorem readEmbedded_leftScheduled
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q) :
