@@ -41,22 +41,25 @@ theorem leftScheduled_preserves_zeroTarget
   · simp [leftSourceIndex, final] at values
     omega
 
+/-- Every ordinary even parent target is implemented by its right-wall slot.
+It need only be nonfinal; when m is even, the penultimate target m-2 is an
+ordinary recursive target and must be included here. -/
 theorem rightScheduled_ordinaryEven_target
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m)
     (even : index.val % 2 = 0)
     (positive : 2 ≤ index.val)
-    (beforeTail : index.val + 2 < m)
+    (beforeFinal : index.val + 1 < m)
     (state : PrimitiveBasis q) :
     (rightScheduled plan).eval state (plan.target index) =
       if intervalActive plan state index then
         flipBit (state (plan.target index))
       else state (plan.target index) := by
-  let slot := rightSlotOfEvenNonfinal index even (by omega)
+  let slot := rightSlotOfEvenNonfinal index even beforeFinal
   have source := rightScheduled_target plan slot state
   have slotEq : rightSourceIndex m slot = index := by
     simpa [slot] using
-      rightSourceIndex_rightSlotOfEvenNonfinal index even (by omega)
+      rightSourceIndex_rightSlotOfEvenNonfinal index even beforeFinal
   rw [slotEq] at source
   exact source
 
@@ -66,7 +69,7 @@ theorem leftScheduled_preserves_ordinaryEvenTarget
     {q m : Nat} (plan : AlphaPlan q m)
     (index : Fin m)
     (even : index.val % 2 = 0)
-    (beforeTail : index.val + 2 < m)
+    (beforeFinal : index.val + 1 < m)
     (state : PrimitiveBasis q) :
     (leftScheduled plan).eval state (plan.target index) =
       state (plan.target index) := by
