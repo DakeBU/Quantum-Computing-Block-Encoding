@@ -3,6 +3,7 @@ import QuantumBlockEncoding.MultiControlledXLayerSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmBaseSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaMappedRecursiveTargetSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStageNoninterference
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
@@ -32,14 +33,15 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 This import-only module checks the current proof DAG from exact physical `X'`
 and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
-The rank closure is now expressed as a short structural equality chain: the
-retained prefix plus exactly floor(r/2) deleted odd targets equals the physical
-offset, and that offset-minus-deletions is the source compact rank.  Above it,
-the frontier checks the proof-bearing schedule, target support, source-index
-classification, outer-wall case semantics, child target exclusions, first and
-strict-interior noninterference, ordinary/special child activation geometry,
-and the local cancellation algebra.  The intended final induction is therefore
-reduced to source cases rather than a monolithic wire-level proof.
+The exact rank/canonical-child layer is now compiler-verified.  The outer-wall
+schedule uses the repository's proof-bearing layer-count depth semantics
+explicitly: `oneLayer` has schedule depth one, even when its gate list is empty,
+while Algorithm 2 only instantiates the walls in its recursive branch.  Above
+the schedule, the frontier separates the child induction hypothesis from left
+wall noninterference by checking a generic mapped-child target-action theorem,
+then continues through target support, source-index classification,
+outer/recursive exclusions, ordinary/special activation geometry, stagewise
+strict-interior invariance, and the local cancellation algebra.
 -/
 
 namespace QuantumBlockEncoding
