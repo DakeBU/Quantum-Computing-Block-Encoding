@@ -30,12 +30,15 @@ theorem baseOne_target
   · have gateEnabled :
         active (sourceGate plan ⟨0, by decide⟩) state :=
       (sourceGate_active_iff plan state ⟨0, by decide⟩).2 enabled
-    simp [gateAction, gateEnabled, enabled, xBasisAction, sourceGate]
+    unfold gateAction
+    rw [if_pos gateEnabled, if_pos enabled]
+    simp [sourceGate, xBasisAction]
   · have gateDisabled :
         ¬ active (sourceGate plan ⟨0, by decide⟩) state := by
       intro activeGate
       exact enabled ((sourceGate_active_iff plan state ⟨0, by decide⟩).1 activeGate)
-    simp [gateAction, gateDisabled, enabled]
+    unfold gateAction
+    rw [if_neg gateDisabled, if_neg enabled]
 
 theorem baseOne_nonTarget
     {q : Nat} (plan : AlphaPlan q 1) (state : PrimitiveBasis q)
@@ -57,7 +60,7 @@ theorem algorithm_zero_refines
   funext wire
   have miss : ¬ ∃ index : Fin 0, plan.target index = wire := by simp
   rw [equationSeven_nonTarget plan state wire miss]
-  simp [algorithm, emptyScheduled, ScheduledMCXProgram.eval,
+  simp [emptyScheduled, ScheduledMCXProgram.eval,
     ScheduledMCXProgram.program, scheduleProgram, evalProgram]
 
 theorem algorithm_one_refines
