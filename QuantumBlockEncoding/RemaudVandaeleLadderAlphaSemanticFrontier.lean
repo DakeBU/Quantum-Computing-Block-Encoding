@@ -7,13 +7,18 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetSupport
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStageNoninterference
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterIndexCoverage
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterCaseSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSourceCaseClassification
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedOrder
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedMembershipGeometry
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveControlGeometry
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointArithmetic
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveTargetExclusion
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveStageExclusionSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaSpecialTailActivation
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaIntervalFactorization
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaFirstIntervalNoninterference
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryChildActivation
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaStrictInteriorNoninterference
@@ -24,22 +29,17 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 /-!
 # Admission entry point: Remaud--Vandaele Algorithm 2 semantic frontier
 
-This import-only module checks the complete current semantic proof DAG from the
-physical recursive register through the local Equation-(7) case algebra.
+This import-only module checks the current proof DAG from exact physical `X'`
+and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
-The exact deleted-prefix cardinality, canonical recursive-register certificate,
-and quantitative alpha-gap theorem are compiler-verified.  Alpha-prime
-strictness now uses the correct parity argument: the earlier recursive source
-index is ordinary and even, so halving grows strictly slower than any positive
-source-index gap, including the final even-to-odd special-tail transition where
-the gap can be one.
-
-Above the rank layer this run checks the actual semantic ingredients for strong
-induction: target support and stagewise non-alpha preservation, X' order and
-membership geometry, ordinary/special child endpoint arithmetic, special-tail
-activation equivalence, ordinary child activation as A_j and B_j, invariance of
-strict-interior B_j across all three Algorithm-2 stages, the Prop-native
-left/child/right cancellation identity, and the m=0/m=1 semantic base cases.
+The rank closure is now expressed as a short structural equality chain: the
+retained prefix plus exactly floor(r/2) deleted odd targets equals the physical
+offset, and that offset-minus-deletions is the source compact rank.  Above it,
+the frontier checks the proof-bearing schedule, target support, source-index
+classification, outer-wall case semantics, child target exclusions, first and
+strict-interior noninterference, ordinary/special child activation geometry,
+and the local cancellation algebra.  The intended final induction is therefore
+reduced to source cases rather than a monolithic wire-level proof.
 -/
 
 namespace QuantumBlockEncoding
