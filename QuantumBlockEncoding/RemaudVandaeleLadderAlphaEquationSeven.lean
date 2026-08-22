@@ -98,9 +98,8 @@ theorem algorithm_refines_equationSeven :
                 omega
               have specialStage := specialTarget_stage_action
                 plan sourceLarge state child childSpecial childCorrect
-              rw [← childIndex]
               simpa [afterLeft, middleScheduled, afterMiddle, afterRight,
-                childPlan, child] using specialStage
+                childPlan, child, childIndex] using specialStage
             · rcases ordinaryOrOdd with ordinaryEven | ordinaryOdd
               · rcases ordinaryEven with ⟨even, positive, beforeFinal⟩
                 let child := ordinaryEvenChildSlot index even positive beforeFinal
@@ -113,9 +112,8 @@ theorem algorithm_refines_equationSeven :
                     sourceLarge index even positive beforeFinal
                 have ordinaryStage := ordinaryTarget_stage_action
                   plan sourceLarge state child childOrdinary childCorrect
-                rw [← childIndex]
                 simpa [afterLeft, middleScheduled, afterMiddle, afterRight,
-                  childPlan, child] using ordinaryStage
+                  childPlan, child, childIndex] using ordinaryStage
               · rcases ordinaryOdd with ⟨odd, beforeTail⟩
                 simpa [afterLeft, middleScheduled, afterMiddle, afterRight, childPlan] using
                   ordinaryOddTarget_stage_action
