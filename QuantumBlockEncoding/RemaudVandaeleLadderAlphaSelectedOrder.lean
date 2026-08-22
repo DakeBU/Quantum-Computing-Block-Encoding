@@ -38,6 +38,17 @@ theorem selectedList_pairwise_val_lt
   unfold selectedList
   exact (intervalList_pairwise_val_lt plan large).filter _
 
+/-- Every compact coordinate is an actual retained physical wire. -/
+theorem selectedWire_mem_selectedList
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    (index : Fin (selectedWidth plan large)) :
+    selectedWire plan large index ∈ selectedList plan large := by
+  classical
+  let physicalIndex : Fin (selectedList plan large).length :=
+    ⟨index.val, by simpa [selectedWidth] using index.isLt⟩
+  have member := (selectedList plan large).get_mem physicalIndex
+  simpa [selectedWire, physicalIndex] using member
+
 /-- Every retained physical wire has a compact `X'` coordinate. -/
 theorem exists_selectedWire_eq_of_mem
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
@@ -51,6 +62,22 @@ theorem exists_selectedWire_eq_of_mem
       simpa [selectedWidth] using physicalIndex.isLt⟩
   refine ⟨index, ?_⟩
   simpa [selectedWire, index] using value
+
+/-- Every selected wire lies at or to the right of physical `alpha_0`. -/
+theorem selectedWire_ge_start
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    (index : Fin (selectedWidth plan large)) :
+    selectedStart plan large ≤ (selectedWire plan large index).val := by
+  classical
+  have selectedMember := selectedWire_mem_selectedList plan large index
+  unfold selectedList at selectedMember
+  have intervalMember := (List.mem_filter.mp selectedMember).1
+  unfold intervalList at intervalMember
+  rw [List.mem_map] at intervalMember
+  rcases intervalMember with ⟨offset, _offsetMember, wireEq⟩
+  have values := congrArg Fin.val wireEq
+  simp [intervalWire] at values
+  omega
 
 /-- Compact coordinate order gives physical-wire order. -/
 theorem selectedWire_strict
@@ -109,6 +136,31 @@ theorem selectedWire_le_iff
     have backward := selectedWire_strict plan large strict
     omega
   · exact selectedWire_mono plan large
+
+/-- If `X'` is nonempty, compact coordinate zero is exactly physical
+`alpha_0`. -/
+theorem selectedWire_zero
+    {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
+    (nonempty : 0 < selectedWidth plan large) :
+    selectedWire plan large ⟨0, nonempty⟩ =
+      plan.target ⟨0, by omega⟩ := by
+  classical
+  rcases exists_selectedWire_eq_of_mem plan large (selectedList_head plan large) with
+    ⟨index, indexValue⟩
+  have indexZero : index.val = 0 := by
+    by_contra nonzero
+    have order : (⟨0, nonempty⟩ : Fin (selectedWidth plan large)) < index := by
+      omega
+    have physicalStrict := selectedWire_strict plan large order
+    rw [indexValue] at physicalStrict
+    have lower := selectedWire_ge_start plan large
+      (⟨0, nonempty⟩ : Fin (selectedWidth plan large))
+    unfold selectedStart at lower
+    omega
+  have indexEq : index = (⟨0, nonempty⟩ : Fin (selectedWidth plan large)) :=
+    Fin.ext indexZero
+  rw [indexEq] at indexValue
+  exact indexValue
 
 end RemaudVandaeleLadderAlphaSelectedOrder
 end QuantumBlockEncoding
