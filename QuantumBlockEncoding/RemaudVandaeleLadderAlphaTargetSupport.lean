@@ -1,3 +1,4 @@
+import QuantumBlockEncoding.MultiControlledXLayerSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
 import Mathlib.Tactic
 
@@ -98,6 +99,31 @@ theorem algorithm_no_target_of_not_alpha
   intro gate member equal
   rcases algorithm_target_source plan gate member with ⟨index, targetEq⟩
   exact notAlpha index (targetEq.symm.trans equal)
+
+/-- Every non-alpha physical wire is preserved by the complete recursively
+synthesized Algorithm-2 circuit. -/
+theorem algorithm_preserves_nonAlpha
+    {q m : Nat} (plan : AlphaPlan q m)
+    (state : PrimitiveBasis q) (wire : Fin q)
+    (notAlpha : ∀ index : Fin m, plan.target index ≠ wire) :
+    (algorithm plan).eval state wire = state wire := by
+  change evalProgram (algorithm plan).program state wire = state wire
+  exact MultiControlledXLayerSemantics.evalProgram_preserves_of_no_target
+    (algorithm plan).program wire
+    (algorithm_no_target_of_not_alpha plan wire notAlpha) state
+
+/-- The non-alpha branch of Equation (7) is therefore already closed. -/
+theorem algorithm_eq_equationSeven_nonAlpha
+    {q m : Nat} (plan : AlphaPlan q m)
+    (state : PrimitiveBasis q) (wire : Fin q)
+    (notAlpha : ∀ index : Fin m, plan.target index ≠ wire) :
+    (algorithm plan).eval state wire = equationSevenAction plan state wire := by
+  rw [algorithm_preserves_nonAlpha plan state wire notAlpha]
+  symm
+  apply equationSeven_nonTarget
+  intro hit
+  rcases hit with ⟨index, equal⟩
+  exact notAlpha index equal
 
 end RemaudVandaeleLadderAlphaTargetSupport
 end QuantumBlockEncoding
