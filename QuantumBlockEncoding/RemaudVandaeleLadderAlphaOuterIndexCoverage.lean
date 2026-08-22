@@ -133,13 +133,17 @@ theorem leftSourceIndex_ne_specialTail
   intro equal
   by_cases final : j.val + 1 = wallCount m
   · have sourceVal : (leftSourceIndex m j).val = m - 1 := by
-      simp [leftSourceIndex, final]
+      unfold leftSourceIndex
+      rw [dif_pos final]
+      rfl
     rw [sourceVal] at equal
     omega
   · have hjHalf : j.val < m / 2 := by
       simpa only [wallCount_eq] using j.isLt
     have sourceVal : (leftSourceIndex m j).val = 2 * j.val + 1 := by
-      simp [leftSourceIndex, final]
+      unfold leftSourceIndex
+      rw [dif_neg final]
+      rfl
     rw [sourceVal] at equal
     have nonlastHalf : j.val + 1 ≠ m / 2 := by
       intro lastHalf
