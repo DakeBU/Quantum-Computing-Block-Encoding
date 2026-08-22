@@ -20,11 +20,11 @@ proof frontier:
 * `C_L` noninterference on `X'` and original-input recursive readback;
 * the stagewise semantic reduction toward Equation (7).
 
-The admission PR is rerun whenever a foundational source node changes, so a
-green frontier certifies the current transitive source chain rather than a stale
-cached branch state.  The current run also admits the repaired Definition-2.3
-ladder contract: finite activation decidability and exact one-step preservation
-are now part of the checked upstream foundation.
+The admission PR is rerun whenever a foundational source node changes.  The
+current run additionally admits the repaired general-alpha source contract:
+finite interval predicates and Equation-(7) activations are constructively
+decidable, while the specification-level target witness is explicitly marked
+noncomputable rather than leaking `Classical.choose` into executable code.
 -/
 
 namespace QuantumBlockEncoding
