@@ -33,22 +33,24 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
 This import-only module checks the current proof DAG from exact physical `X'`
 and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
-The exact rank/canonical-child layer, actual outer walls, and the recursive
-proof-bearing schedule are compiler-verified. The schedule uses target count as
-a strict well-founded measure and satisfies the paper's exact gate/depth
-recurrences.
+The generic MCX layer, exact `X'`/`alpha'` rank chain, actual outer walls, and
+the recursive proof-bearing schedule are compiler-verified. The schedule uses
+target count as a strict well-founded measure and satisfies the paper's exact
+gate/depth recurrences.
 
-The semantic layer now avoids proposition rewrites underneath dependent `if`
-expressions. Outer-wall and base-MCX target actions derive the actual MCX
-activation from the source interval predicate by cases; ordinary and special
-child activation equivalences are transported with `simp`, which preserves the
-correct `Decidable` instances. The `C_L`-versus-`X'` proof also reuses the
-verified recursive-target exclusion layer instead of duplicating its tail
+The semantic layer has now been normalized around Lean 4.29's dependent
+`Decidable` behavior: MCX target actions use explicit activation cases; wall
+slot equalities are transported with `simp` rather than dependent `rw`; wall
+activation stability uses explicit `List.mem_ofFn'` witnesses; and the
+ordinary/special target cases transport activation equivalences without
+rewriting the proposition beneath an `ite`. The `C_L`-versus-`X'` proof reuses
+the verified recursive-target exclusion layer rather than duplicating tail
 arithmetic.
 
-Above this point the frontier checks source-case coverage, selected-register
-geometry, recursive target exclusions, ordinary/special activation geometry,
-stagewise invariance, and the local cancellation algebra.
+The next compiler frontier is therefore the actual Equation-(7) semantic DAG:
+source-case coverage, selected-register geometry, recursive target exclusions,
+ordinary/special activation geometry, stagewise invariance, cancellation, and
+the final strong induction.
 -/
 
 namespace QuantumBlockEncoding
