@@ -27,13 +27,17 @@ open RemaudVandaeleLadderAlphaOuterLayers
 theorem rightSourceGate_mem
     {q m : Nat} (plan : AlphaPlan q m) (j : Fin (wallCount m)) :
     sourceGate plan (rightSourceIndex m j) ∈ rightLayer plan := by
-  simp [rightLayer]
+  unfold rightLayer
+  rw [List.mem_ofFn']
+  exact ⟨j, rfl⟩
 
 /-- Every left-wall source gate occurs in the concrete left layer. -/
 theorem leftSourceGate_mem
     {q m : Nat} (plan : AlphaPlan q m) (j : Fin (wallCount m)) :
     sourceGate plan (leftSourceIndex m j) ∈ leftLayer plan := by
-  simp [leftLayer]
+  unfold leftLayer
+  rw [List.mem_ofFn']
+  exact ⟨j, rfl⟩
 
 /-- Exact right-wall action at one of its source targets. -/
 theorem rightLayer_target
@@ -44,12 +48,12 @@ theorem rightLayer_target
       if intervalActive plan state (rightSourceIndex m j) then
         flipBit (state (plan.target (rightSourceIndex m j)))
       else state (plan.target (rightSourceIndex m j)) := by
-  have local := eval_validLayer_member_on_touched
+  have localAction := eval_validLayer_member_on_touched
     (rightLayer plan) (rightLayer_valid plan)
     (sourceGate plan (rightSourceIndex m j))
     (rightSourceGate_mem plan j) state
     (plan.target (rightSourceIndex m j)) (Or.inl rfl)
-  rw [local]
+  rw [localAction]
   unfold gateAction
   rw [sourceGate_active_iff]
   by_cases enabled : intervalActive plan state (rightSourceIndex m j) <;>
@@ -64,12 +68,12 @@ theorem leftLayer_target
       if intervalActive plan state (leftSourceIndex m j) then
         flipBit (state (plan.target (leftSourceIndex m j)))
       else state (plan.target (leftSourceIndex m j)) := by
-  have local := eval_validLayer_member_on_touched
+  have localAction := eval_validLayer_member_on_touched
     (leftLayer plan) (leftLayer_valid plan)
     (sourceGate plan (leftSourceIndex m j))
     (leftSourceGate_mem plan j) state
     (plan.target (leftSourceIndex m j)) (Or.inl rfl)
-  rw [local]
+  rw [localAction]
   unfold gateAction
   rw [sourceGate_active_iff]
   by_cases enabled : intervalActive plan state (leftSourceIndex m j) <;>
@@ -115,7 +119,8 @@ theorem rightScheduled_preserves_of_no_target
     simp [rightScheduled]]
   apply eval_layer_preserves_of_no_target
   intro gate member
-  simp [rightLayer] at member
+  unfold rightLayer at member
+  rw [List.mem_ofFn'] at member
   rcases member with ⟨j, rfl⟩
   exact miss j
 
@@ -131,7 +136,8 @@ theorem leftScheduled_preserves_of_no_target
     simp [leftScheduled]]
   apply eval_layer_preserves_of_no_target
   intro gate member
-  simp [leftLayer] at member
+  unfold leftLayer at member
+  rw [List.mem_ofFn'] at member
   rcases member with ⟨j, rfl⟩
   exact miss j
 
