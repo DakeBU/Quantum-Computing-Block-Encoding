@@ -93,9 +93,9 @@ theorem get_filter_retainedBefore
   rcases List.mem_iff_get.mp filteredMember with ⟨index,indexValue⟩
   have filteredNodup := nodup.filter keep
   have indexRank : (list.filter keep).idxOf a = index.val := by
-    have source := filteredNodup.get_idxOf index
+    have source := List.get_idxOf filteredNodup index
     rw [indexValue] at source
-    exact congrArg Fin.val source
+    exact source
   have indexEq : index =
       ⟨retainedBefore keep list a,
         retainedBefore_lt_filter_length keep list a nodup member kept⟩ := by
