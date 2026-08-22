@@ -34,15 +34,17 @@ This import-only module checks the current proof DAG from exact physical `X'`
 and `alpha'` rank through the source-facing Equation-(7) case decomposition.
 
 The exact rank/canonical-child layer, actual outer walls, and the recursive
-proof-bearing schedule are compiler-verified.  The schedule uses target count as
+proof-bearing schedule are compiler-verified. The schedule uses target count as
 a strict well-founded measure and satisfies the paper's exact gate/depth
 recurrences.
 
-The current run enters the full semantic spine with the wall semantics repaired
-against Lean 4.29: membership in `List.ofFn` walls is witnessed through
-`List.mem_ofFn'` / function range rather than dependent `Fin.cast`, and the
-layer-action proofs use ordinary theorem names rather than the reserved keyword
-`local`.
+The semantic layer now avoids proposition rewrites underneath dependent `if`
+expressions. Outer-wall and base-MCX target actions derive the actual MCX
+activation from the source interval predicate by cases; ordinary and special
+child activation equivalences are transported with `simp`, which preserves the
+correct `Decidable` instances. The `C_L`-versus-`X'` proof also reuses the
+verified recursive-target exclusion layer instead of duplicating its tail
+arithmetic.
 
 Above this point the frontier checks source-case coverage, selected-register
 geometry, recursive target exclusions, ordinary/special activation geometry,
