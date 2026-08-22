@@ -89,18 +89,20 @@ noncomputable def algorithm :
       ScheduledMCXProgram.seq
         (ScheduledMCXProgram.seq (leftScheduled plan) embedded)
         (rightScheduled plan)
-termination_by _ q m plan => m
+termination_by q m plan => m
 
 decreasing_by
   exact recursiveTargetCount_lt (m := m + 2) (by omega)
 
 @[simp] theorem algorithm_zero
     {q : Nat} (plan : AlphaPlan q 0) :
-    algorithm plan = emptyScheduled q := rfl
+    algorithm plan = emptyScheduled q := by
+  simp [algorithm]
 
 @[simp] theorem algorithm_one
     {q : Nat} (plan : AlphaPlan q 1) :
-    algorithm plan = baseOne plan := rfl
+    algorithm plan = baseOne plan := by
+  simp [algorithm]
 
 /-- Reader-facing source structural equation in the recursive regime. -/
 theorem algorithm_step
@@ -117,8 +119,10 @@ theorem algorithm_step
       ScheduledMCXProgram.seq
         (ScheduledMCXProgram.seq (leftScheduled plan) embedded)
         (rightScheduled plan) := by
-  obtain ⟨r, rfl⟩ := Nat.exists_eq_add_of_le large
-  rfl
+  rcases m with (_ | _ | r)
+  · omega
+  · omega
+  · simp [algorithm]
 
 /-- Gate count of the actual source schedule obeys the Algorithm-2 recurrence. -/
 theorem algorithm_gateCount_step
@@ -142,6 +146,7 @@ theorem algorithm_depth_step
             (canonicalCertificate plan (by omega)))).depth := by
   rw [algorithm_step plan large]
   simp [leftScheduled, rightScheduled]
+  omega
 
 /-- Exact gate-count recurrence from [9] Appendix Equation (29), now attached
 to the actual MCX schedule. -/
@@ -152,8 +157,10 @@ theorem algorithm_gateCount_eq_source :
   induction m using Nat.strong_induction_on generalizing q with
   | h m induction =>
       rcases m with (_ | _ | r)
-      · rfl
-      · simp [algorithm, gateRecurrence, baseOne]
+      · rw [algorithm_zero]
+        simp [emptyScheduled]
+      · rw [algorithm_one]
+        simp [baseOne]
       · let m := r + 2
         have large : 2 ≤ m := by omega
         let sourceLarge : 3 ≤ m + 1 := by omega
@@ -162,12 +169,12 @@ theorem algorithm_gateCount_eq_source :
         have smaller : recursiveTargetCount m < m :=
           recursiveTargetCount_lt large
         have child := induction (recursiveTargetCount m) smaller childPlan
+        have boundaries := recursiveBoundaryCount_eq large
         rw [algorithm_gateCount_step plan large]
         rw [child]
+        rw [boundaries]
         rw [gate_step (k := m + 1) (by omega)]
-        have boundaries := recursiveBoundaryCount_eq large
-        simp [wallCount, boundaryCount, outerCount]
-        omega
+        simp [wallCount, boundaryCount]
 
 /-- Exact depth recurrence from [9] Appendix Equation (26), attached to the
 same physical MCX schedule. -/
@@ -178,8 +185,10 @@ theorem algorithm_depth_eq_source :
   induction m using Nat.strong_induction_on generalizing q with
   | h m induction =>
       rcases m with (_ | _ | r)
-      · rfl
-      · simp [algorithm, depthRecurrence, baseOne]
+      · rw [algorithm_zero]
+        simp [emptyScheduled]
+      · rw [algorithm_one]
+        simp [baseOne]
       · let m := r + 2
         have large : 2 ≤ m := by omega
         let sourceLarge : 3 ≤ m + 1 := by omega
@@ -188,11 +197,11 @@ theorem algorithm_depth_eq_source :
         have smaller : recursiveTargetCount m < m :=
           recursiveTargetCount_lt large
         have child := induction (recursiveTargetCount m) smaller childPlan
+        have boundaries := recursiveBoundaryCount_eq large
         rw [algorithm_depth_step plan large]
         rw [child]
+        rw [boundaries]
         rw [depth_step (k := m + 1) (by omega)]
-        have boundaries := recursiveBoundaryCount_eq large
-        omega
 
 /-- The actual source schedule therefore has the already-proved uniform MCX
 resource bounds, independent of physical interval lengths. -/
