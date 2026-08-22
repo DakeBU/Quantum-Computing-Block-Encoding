@@ -1,0 +1,39 @@
+name: Vandaele alpha final frontier
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/MultiControlledX*.lean"
+      - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
+      - "QuantumBlockEncoding/RemaudVandaeleAlphaGap.lean"
+      - "QuantumBlockEncoding/FilteredListRank.lean"
+      - ".github/workflows/vandaele-alpha-final-frontier.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-alpha-final-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  final-frontier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile final Algorithm 2 semantic frontier
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaFinalFrontier
