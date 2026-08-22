@@ -105,6 +105,7 @@ theorem intervalActive_succIndex_iff
   have previousEq :
       (⟨current.val - 1, by omega⟩ : Fin m) = previous := by
     apply Fin.ext
+    change current.val - 1 = previous.val
     omega
   rw [intervalActive_nonfirst_iff plan state current nonzero, previousEq]
 
