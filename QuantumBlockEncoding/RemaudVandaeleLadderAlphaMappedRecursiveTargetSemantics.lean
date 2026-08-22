@@ -51,7 +51,10 @@ theorem mappedRecursive_target_action
       selectedWire plan large (childPlan.target j) =
         plan.target (recursiveOriginalTargetIndex m large j) := by
     simpa [childPlan] using canonical_recursive_target_physical plan large j
-  have childSemantics := childCorrect (readEmbedded (selectedWire plan large) state)
+  have childSemantics :
+      (algorithm childPlan).eval (readEmbedded (selectedWire plan large) state) =
+        equationSevenAction childPlan (readEmbedded (selectedWire plan large) state) := by
+    simpa [childPlan] using childCorrect (readEmbedded (selectedWire plan large) state)
   change
     (mapScheduled
       (selectedWire plan large)
@@ -61,6 +64,15 @@ theorem mappedRecursive_target_action
       equationSevenAction childPlan
         (readEmbedded (selectedWire plan large) state)
         (childPlan.target j)
+  change
+    (mapScheduled
+      (selectedWire plan large)
+      (selectedWire_injective plan large)
+      (algorithm childPlan)).eval state
+        (selectedWire plan large (childPlan.target j)) =
+      (algorithm childPlan).eval
+        (readEmbedded (selectedWire plan large) state)
+        (childPlan.target j) at readback
   rw [physical] at readback
   rw [childSemantics] at readback
   exact readback
