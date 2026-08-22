@@ -6,11 +6,16 @@ import Mathlib.Tactic
 /-!
 # Algorithm 2: alpha-prime is strictly increasing
 
-The recursive source indices are separated by at least two original alpha
-indices.  A strict alpha plan therefore gains at least two physical wires, while
-compaction deletes at most one additional target over that step.  Hence the
-pseudocode alpha-prime vector remains strictly increasing and is a valid
-recursive ladder target vector.
+The recursive source-index map is strictly increasing.  Every source index on
+the *left* of a recursive comparison is ordinary (the special tail, when it
+exists, is final), hence even.  For an even a<b,
+
+  floor(b/2)-floor(a/2) < b-a.
+
+Thus physical alpha growth dominates the number of deleted odd targets even in
+the even-k special transition, where the final source-index gap can be exactly
+one.  This is the correct uniform argument; no false two-index-gap assumption is
+made.
 -/
 
 namespace QuantumBlockEncoding
@@ -23,39 +28,31 @@ open RemaudVandaeleLadderAlphaRecursiveOrder
 open RemaudVandaeleLadderAlphaRecursiveParameters
 open RemaudVandaeleLadderAlphaSelectedRegister
 
-/-- Consecutive recursive source targets are separated by at least two original
-source indices. -/
-theorem recursiveOriginalTargetIndex_gap_two
+/-- A recursive target which has a later recursive target cannot be the special
+final tail. -/
+theorem earlier_recursive_target_not_special
     (m : Nat) (large : 3 ≤ m + 1)
     {i j : Fin (recursiveTargetCount m)} (order : i < j) :
-    (recursiveOriginalTargetIndex m large i).val + 2 ≤
-      (recursiveOriginalTargetIndex m large j).val := by
-  by_cases specialJ : isSpecialTail m j
-  · unfold isSpecialTail at specialJ
-    rcases specialJ with ⟨evenK, jLast⟩
-    have ordinaryI : ¬ isSpecialTail m i := by
-      intro specialI
-      have iLast := specialI.2
-      omega
-    rw [recursiveOriginalTargetIndex_ordinary m large i ordinaryI]
-    have specialJ' : isSpecialTail m j := ⟨evenK, jLast⟩
-    rw [recursiveOriginalTargetIndex_special m large j specialJ']
-    have hi := i.isLt
-    unfold recursiveTargetCount RemaudVandaeleLadderAlphaResource.recursiveK at hi jLast
-    omega
-  · have ordinaryI : ¬ isSpecialTail m i := by
-      intro specialI
-      have iLast := specialI.2
-      have hj := j.isLt
-      omega
-    rw [recursiveOriginalTargetIndex_ordinary m large i ordinaryI,
-      recursiveOriginalTargetIndex_ordinary m large j specialJ]
-    omega
+    ¬ isSpecialTail m i := by
+  intro special
+  have iLast := special.2
+  have jLt := j.isLt
+  omega
 
-/-- Half-index deletion count grows strictly slower than the physical source
-index gap relevant to recursive targets. -/
-theorem half_gap_strict
-    {a b : Nat} (gap : a + 2 ≤ b) :
+/-- Therefore every source index appearing on the left of a recursive target
+comparison is even. -/
+theorem earlier_recursive_originalIndex_even
+    (m : Nat) (large : 3 ≤ m + 1)
+    {i j : Fin (recursiveTargetCount m)} (order : i < j) :
+    (recursiveOriginalTargetIndex m large i).val % 2 = 0 :=
+  ordinary_originalIndex_even m large i
+    (earlier_recursive_target_not_special m large order)
+
+/-- If the left source index is even, halving grows strictly slower than the
+source-index gap.  This covers both even-to-even ordinary transitions and the
+final even-to-odd special-tail transition. -/
+theorem half_gap_strict_of_left_even
+    {a b : Nat} (leftEven : a % 2 = 0) (strict : a < b) :
     b / 2 - a / 2 < b - a := by
   omega
 
@@ -71,13 +68,16 @@ theorem recursiveAlphaValue_strict
   unfold compactRank
   let ri := recursiveOriginalTargetIndex m large i
   let rj := recursiveOriginalTargetIndex m large j
-  have sourceGap : ri.val + 2 ≤ rj.val :=
-    recursiveOriginalTargetIndex_gap_two m large order
-  have indexOrder : ri.val ≤ rj.val := by omega
+  have sourceStrict : ri.val < rj.val :=
+    recursiveOriginalTargetIndex_strict m large order
+  have leftEven : ri.val % 2 = 0 := by
+    dsimp [ri]
+    exact earlier_recursive_originalIndex_even m large order
+  have indexOrder : ri.val ≤ rj.val := sourceStrict.le
   have targetGap := target_gap_ge_index_gap plan ri rj indexOrder
   have startToI := target_from_zero_gap plan ri
   have startToJ := target_from_zero_gap plan rj
-  have deleteGap := half_gap_strict sourceGap
+  have deleteGap := half_gap_strict_of_left_even leftEven sourceStrict
   dsimp [ri, rj] at *
   omega
 
