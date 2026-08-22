@@ -17,8 +17,7 @@ theorem baseOne_target
         flipBit (state (plan.target ⟨0, by decide⟩))
       else state (plan.target ⟨0, by decide⟩) := by
   change evalProgram (baseOne plan).program state _ = _
-  rw [show (baseOne plan).program =
-      [sourceGate plan ⟨0, by decide⟩] by simp [baseOne]]
+  rw [show (baseOne plan).program = [sourceGate plan ⟨0, by decide⟩] by simp [baseOne]]
   have localAction := eval_validLayer_member_on_touched
     [sourceGate plan ⟨0, by decide⟩]
     (by simp [LayerValid, WireDisjoint])
@@ -26,10 +25,14 @@ theorem baseOne_target
     (by simp) state
     (plan.target ⟨0, by decide⟩) (Or.inl rfl)
   rw [localAction]
-  unfold gateAction
-  rw [sourceGate_active_iff]
-  by_cases enabled : intervalActive plan state ⟨0, by decide⟩ <;>
-    simp [enabled, xBasisAction]
+  by_cases enabled : intervalActive plan state ⟨0, by decide⟩
+  · have sourceEnabled : active (sourceGate plan ⟨0, by decide⟩) state :=
+      (sourceGate_active_iff plan state ⟨0, by decide⟩).2 enabled
+    simp [gateAction, sourceEnabled, enabled, xBasisAction, sourceGate]
+  · have sourceDisabled : ¬ active (sourceGate plan ⟨0, by decide⟩) state := by
+      intro sourceEnabled
+      exact enabled ((sourceGate_active_iff plan state ⟨0, by decide⟩).1 sourceEnabled)
+    simp [gateAction, sourceDisabled, enabled]
 
 theorem baseOne_nonTarget
     {q : Nat} (plan : AlphaPlan q 1) (state : PrimitiveBasis q)
