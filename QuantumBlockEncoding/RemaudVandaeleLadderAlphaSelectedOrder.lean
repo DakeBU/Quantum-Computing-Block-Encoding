@@ -150,7 +150,8 @@ theorem selectedWire_zero
   have indexZero : index.val = 0 := by
     by_contra nonzero
     have order : (⟨0, nonempty⟩ : Fin (selectedWidth plan large)) < index := by
-      omega
+      change 0 < index.val
+      exact Nat.pos_of_ne_zero nonzero
     have physicalStrict := selectedWire_strict plan large order
     rw [indexValue] at physicalStrict
     have lower := selectedWire_ge_start plan large
