@@ -24,11 +24,23 @@ theorem mem_intervalList_iff_bounds
     have values := congrArg Fin.val equal
     simp [intervalWire] at values
     unfold selectedRangeLength at offsetLt
+    have startEnd := selectedStart_le_end plan large
+    have endRestore := Nat.add_sub_of_le startEnd
     omega
   · rintro ⟨lower, upper⟩
     let offsetValue := wire.val - selectedStart plan large
+    have startEnd := selectedStart_le_end plan large
+    have wireRestore :
+        selectedStart plan large + offsetValue = wire.val := by
+      unfold offsetValue
+      exact Nat.add_sub_of_le lower
+    have endRestore :
+        selectedStart plan large +
+            (selectedEnd plan large - selectedStart plan large) =
+          selectedEnd plan large :=
+      Nat.add_sub_of_le startEnd
     have offsetLt : offsetValue < selectedRangeLength plan large := by
-      unfold offsetValue selectedRangeLength
+      unfold selectedRangeLength
       omega
     let offset : Fin (selectedRangeLength plan large) :=
       ⟨offsetValue, offsetLt⟩
