@@ -22,8 +22,7 @@ theorem rightScheduled_zero_target
   have source := rightScheduled_target plan slot state
   have slotEq : rightSourceIndex m slot = (⟨0, by omega⟩ : Fin m) := by
     simpa [slot] using rightSourceIndex_zeroRightSlot m large
-  rw [slotEq] at source
-  exact source
+  simpa only [slotEq] using source
 
 /-- The left wall never targets alpha_0 in the recursive regime. -/
 theorem leftScheduled_preserves_zeroTarget
@@ -60,8 +59,7 @@ theorem rightScheduled_ordinaryEven_target
   have slotEq : rightSourceIndex m slot = index := by
     simpa [slot] using
       rightSourceIndex_rightSlotOfEvenNonfinal index even beforeFinal
-  rw [slotEq] at source
-  exact source
+  simpa only [slotEq] using source
 
 /-- The left wall preserves every ordinary even target; it only changes the odd
 predecessor used later by the right-wall source gate. -/
@@ -98,8 +96,7 @@ theorem leftScheduled_ordinaryOdd_target
   have slotEq : leftSourceIndex m slot = index := by
     simpa [slot] using
       leftSourceIndex_leftSlotOfOddBeforeTail index odd beforeTail
-  rw [slotEq] at source
-  exact source
+  simpa only [slotEq] using source
 
 /-- The right wall never targets an ordinary odd source target. -/
 theorem rightScheduled_preserves_ordinaryOddTarget
@@ -128,8 +125,7 @@ theorem leftScheduled_final_target
   have slotEq : leftSourceIndex m slot = (⟨m - 1, by omega⟩ : Fin m) := by
     apply Fin.ext
     simpa [slot] using leftSourceIndex_finalWallSlot m large
-  rw [slotEq] at source
-  exact source
+  simpa only [slotEq] using source
 
 /-- The right wall never targets the final source target. -/
 theorem rightScheduled_preserves_finalTarget
