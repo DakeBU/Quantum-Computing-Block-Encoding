@@ -37,36 +37,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Set up Lean and fetch Mathlib cache
+      - name: Set up Lean and caches
         uses: leanprover/lean-action@v1
         with:
           auto-config: false
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile generic MCX semantic bridge
+      - name: Compile complete Equation-7 semantic DAG
         run: |
-          lake build QuantumBlockEncoding.MultiControlledXSchedule
-          lake build QuantumBlockEncoding.MultiControlledXEmbedding
-          lake build QuantumBlockEncoding.MultiControlledXScheduleSemantics
-          lake build QuantumBlockEncoding.MultiControlledXLayerSemantics
-
-      - name: Compile physical X-prime and alpha-prime chain
-        run: |
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveParameters
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedRegister
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveOrder
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetMembership
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaDeletedPrefixCount
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaRankCertificate
-
-      - name: Compile proof-bearing Algorithm 2 schedule
-        run: |
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaResource
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterLayers
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSchedule
-
-      - name: Compile Equation-7 semantic spine
-        run: |
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
-          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaSemanticFrontier
