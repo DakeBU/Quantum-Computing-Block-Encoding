@@ -32,7 +32,8 @@ open RemaudVandaeleLadderAlphaContract
     {localControls steps : Nat}
     (tail : Fin (steps * blockWidth localControls)) :
     blockTailIndex (decodeTail tail).1 (decodeTail tail).2 = tail := by
-  simp [blockTailIndex, decodeTail]
+  simpa [blockTailIndex, decodeTail] using
+    (Equiv.apply_symm_apply finProdFinEquiv tail)
 
 /-- No regular alpha target is the leading pivot wire. -/
 theorem regularTarget_ne_pivotWire
@@ -107,8 +108,9 @@ theorem regularPhysicalWire_cases
       have offsetEqual : offset = targetOffset localControls := by
         apply Fin.ext
         simpa [targetOffset] using offsetValue
-      apply Fin.ext
-      simp [regularTarget, blockWire, recovered, offsetEqual]
+      change tail.succ =
+        (blockTailIndex block (targetOffset localControls)).succ
+      rw [← recovered, offsetEqual]
 
 /-- Equation (7) preserves the initial pivot, matching Equation (5). -/
 theorem equationSeven_regular_pivot
@@ -173,8 +175,8 @@ theorem equationSeven_regular_target
   have targetFormula := equationSeven_target
     (regularAlphaPlan localControls steps)
     (flattenLadderState state) block
-  simpa [regularAlphaPlan,
-    regular_intervalActive_iff_ladderActive state block] using targetFormula
+  rw [regular_intervalActive_iff_ladderActive state block] at targetFormula
+  simpa using targetFormula
 
 /-- Commuting semantic square for the regular ladder specialization:
 flattening Equation (5) is exactly general-alpha Equation (7). -/
