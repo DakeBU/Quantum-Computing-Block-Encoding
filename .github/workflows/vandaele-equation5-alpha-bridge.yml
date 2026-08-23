@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 jobs:
-  activation-bridge:
+  action-bridge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile Equation 5 / Equation 7 activation bridge
+      - name: Compile Equation 5 / Equation 7 action bridge
         run: |
           set -euxo pipefail
-          lake build QuantumBlockEncoding.VandaeleLadderAlphaActivationBridge
+          lake build QuantumBlockEncoding.VandaeleLadderAlphaEquationBridge
