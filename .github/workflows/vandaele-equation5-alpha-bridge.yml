@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 jobs:
-  interval-geometry:
+  activation-bridge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile regular-ladder alpha interval geometry
+      - name: Compile Equation 5 / Equation 7 activation bridge
         run: |
           set -euxo pipefail
-          lake build QuantumBlockEncoding.VandaeleLadderAlphaIntervalGeometry
+          lake build QuantumBlockEncoding.VandaeleLadderAlphaActivationBridge
