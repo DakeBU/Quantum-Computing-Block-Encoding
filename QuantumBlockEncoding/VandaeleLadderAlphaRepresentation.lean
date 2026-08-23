@@ -133,6 +133,35 @@ def regularAlphaPlan (localControls steps : Nat) :
     apply (Nat.mul_lt_mul_left widthPositive).2
     omega
 
+/-- Read one block-major tail wire after decoding its exact block coordinate.
+This is kept separate from the leading pivot so later interval-classification
+lemmas can reason directly in `(block, offset)` coordinates. -/
+def flattenTail
+    {localControls steps : Nat}
+    (state : LadderState localControls steps)
+    (tail : Fin (steps * blockWidth localControls)) : Fin 2 :=
+  let coordinates := decodeTail tail
+  if fresh : coordinates.2.val < localControls then
+    (state.2 coordinates.1).1 ⟨coordinates.2.val, fresh⟩
+  else
+    (state.2 coordinates.1).2
+
+@[simp] theorem flattenTail_blockTailIndex_fresh
+    {localControls steps : Nat}
+    (state : LadderState localControls steps)
+    (block : Fin steps) (control : Fin localControls) :
+    flattenTail state (blockTailIndex block (freshOffset control)) =
+      (state.2 block).1 control := by
+  simp [flattenTail, freshOffset, control.isLt]
+
+@[simp] theorem flattenTail_blockTailIndex_target
+    {localControls steps : Nat}
+    (state : LadderState localControls steps)
+    (block : Fin steps) :
+    flattenTail state (blockTailIndex block (targetOffset localControls)) =
+      (state.2 block).2 := by
+  simp [flattenTail, targetOffset, blockWidth]
+
 /-- Flatten the structured Equation-(5) ladder state into the physical
 computational-basis register used by the alpha-ladder semantics. -/
 def flattenLadderState
@@ -141,12 +170,7 @@ def flattenLadderState
     PrimitiveBasis (physicalQ localControls steps) := by
   unfold physicalQ
   intro wire
-  refine Fin.cases state.1 ?_ wire
-  intro tail
-  let coordinates := decodeTail tail
-  by_cases fresh : coordinates.2.val < localControls
-  · exact (state.2 coordinates.1).1 ⟨coordinates.2.val, fresh⟩
-  · exact (state.2 coordinates.1).2
+  exact Fin.cases state.1 (flattenTail state) wire
 
 @[simp] theorem flattenLadderState_pivot
     {localControls steps : Nat}
@@ -160,8 +184,7 @@ def flattenLadderState
     (block : Fin steps) (control : Fin localControls) :
     flattenLadderState state (regularFreshWire block control) =
       (state.2 block).1 control := by
-  simp [flattenLadderState, regularFreshWire, blockWire, blockTailIndex,
-    decodeTail, freshOffset, physicalQ]
+  simp [flattenLadderState, regularFreshWire, blockWire, physicalQ]
 
 @[simp] theorem flattenLadderState_target
     {localControls steps : Nat}
@@ -169,8 +192,7 @@ def flattenLadderState
     (block : Fin steps) :
     flattenLadderState state (regularTarget (localControls := localControls) block) =
       (state.2 block).2 := by
-  simp [flattenLadderState, regularTarget, blockWire, blockTailIndex,
-    decodeTail, targetOffset, physicalQ, blockWidth]
+  simp [flattenLadderState, regularTarget, blockWire, physicalQ]
 
 end VandaeleLadderAlphaRepresentation
 end QuantumBlockEncoding
