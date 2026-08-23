@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  descending-chronology:
+  equation-five-semantics:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,7 +30,7 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile descending chronology proof node
+      - name: Compile Equation 5 source-semantics frontier
         run: |
           set -euxo pipefail
-          lake build QuantumBlockEncoding.VandaeleLadderDescendingIndices
+          lake build QuantumBlockEncoding.VandaeleLadderEquationFiveSemantics
