@@ -175,8 +175,19 @@ theorem equationSeven_regular_target
   have targetFormula := equationSeven_target
     (regularAlphaPlan localControls steps)
     (flattenLadderState state) block
-  rw [regular_intervalActive_iff_ladderActive state block] at targetFormula
-  simpa using targetFormula
+  by_cases sourceActive : ladderActive state block
+  · have intervalActive' :
+        intervalActive (regularAlphaPlan localControls steps)
+            (flattenLadderState state) block :=
+      (regular_intervalActive_iff_ladderActive state block).2 sourceActive
+    simpa [intervalActive', sourceActive] using targetFormula
+  · have intervalInactive :
+        ¬ intervalActive (regularAlphaPlan localControls steps)
+            (flattenLadderState state) block := by
+      intro contradiction
+      exact sourceActive
+        ((regular_intervalActive_iff_ladderActive state block).1 contradiction)
+    simpa [intervalInactive, sourceActive] using targetFormula
 
 /-- Commuting semantic square for the regular ladder specialization:
 flattening Equation (5) is exactly general-alpha Equation (7). -/
