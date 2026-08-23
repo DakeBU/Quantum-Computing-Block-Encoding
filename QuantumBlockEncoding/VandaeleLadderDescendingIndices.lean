@@ -70,7 +70,7 @@ theorem exists_descending_split {steps : Nat} (index : Fin steps) :
   · intro earlier earlierMem
     exact cross earlier earlierMem index (by simp)
   · intro later laterMem
-    exact rel_of_pairwise_cons restPairwise laterMem
+    exact List.rel_of_pairwise_cons restPairwise laterMem
 
 end VandaeleLadderDescendingIndices
 end QuantumBlockEncoding
