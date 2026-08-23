@@ -1,0 +1,36 @@
+name: Vandaele Equation 5 proof frontier
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLadder*.lean"
+      - ".github/workflows/vandaele-equation5.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-equation5-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  equation-five-semantics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Equation 5 source-semantics frontier
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLadderEquationFiveSemantics
