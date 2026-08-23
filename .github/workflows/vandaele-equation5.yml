@@ -5,7 +5,9 @@ on:
     branches:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
-      - "QuantumBlockEncoding/VandaeleLadder*.lean"
+      - "QuantumBlockEncoding/VandaeleLadderContract.lean"
+      - "QuantumBlockEncoding/VandaeleLadderDescendingIndices.lean"
+      - "QuantumBlockEncoding/VandaeleLadderEquationFiveSemantics.lean"
       - ".github/workflows/vandaele-equation5.yml"
   workflow_dispatch:
 
