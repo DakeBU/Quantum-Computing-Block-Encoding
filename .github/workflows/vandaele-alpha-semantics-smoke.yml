@@ -70,3 +70,7 @@ jobs:
         run: |
           lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterSemantics
           lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaAlgorithmSemantics
+
+      - name: Compile selected-register readback node
+        run: |
+          lake build QuantumBlockEncoding.RemaudVandaeleLadderAlphaSelectedNoninterference
