@@ -78,11 +78,8 @@ theorem recursiveControlPhysicalLower_special
   by_cases zero : j.val = 0
   · have mThree := specialTail_zero_forces_m_three m large j special zero
     subst m
-    unfold recursiveControlPhysicalLower selectedStart specialLowerSourceIndex
-    rw [dif_pos zero]
-    apply congrArg (fun index : Fin 3 => (plan.target index).val)
-    apply Fin.ext
-    simp
+    simp [recursiveControlPhysicalLower, selectedStart,
+      specialLowerSourceIndex, zero]
   · unfold recursiveControlPhysicalLower
     rw [dif_neg zero]
     apply congrArg (fun index : Fin m => (plan.target index).val)

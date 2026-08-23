@@ -1,5 +1,6 @@
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOuterCaseSemantics
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveStageExclusionSemantics
+import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveTargetExclusion
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 import Mathlib.Tactic
 
@@ -11,10 +12,12 @@ open RemaudVandaeleLadderAlphaAlgorithmSchedule
 open RemaudVandaeleLadderAlphaContract
 open RemaudVandaeleLadderAlphaOrdinaryActivationFactors
 open RemaudVandaeleLadderAlphaOuterCaseSemantics
+open RemaudVandaeleLadderAlphaOuterLayers
 open RemaudVandaeleLadderAlphaRankCertificate
 open RemaudVandaeleLadderAlphaRecursiveCertificate
 open RemaudVandaeleLadderAlphaRecursiveParameters
 open RemaudVandaeleLadderAlphaRecursiveStageExclusionSemantics
+open RemaudVandaeleLadderAlphaRecursiveTargetExclusion
 open RemaudVandaeleLadderAlphaSelectedRegister
 
 /-- The ordinary middle source index `2j+1` is an ordinary odd parent target. -/
@@ -23,8 +26,10 @@ theorem ordinaryMiddle_beforeTail
     (j : Fin (recursiveTargetCount m))
     (ordinary : ¬ isSpecialTail m j) :
     (ordinaryMiddleSourceIndex m large j ordinary).val + 2 < m := by
-  have currentLt := (recursiveOriginalTargetIndex m large j).isLt
-  rw [recursiveOriginalTargetIndex_ordinary m large j ordinary] at currentLt
+  have currentBeforeFinal :=
+    recursiveOriginalTargetIndex_before_final m large j
+  have currentVal := recursiveOriginalTargetIndex_ordinary m large j ordinary
+  rw [currentVal] at currentBeforeFinal
   simp [ordinaryMiddleSourceIndex]
   omega
 

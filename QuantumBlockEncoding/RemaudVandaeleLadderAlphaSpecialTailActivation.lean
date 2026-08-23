@@ -6,16 +6,6 @@ import QuantumBlockEncoding.RemaudVandaeleLadderAlphaRecursiveOrder
 import QuantumBlockEncoding.RemaudVandaeleLadderAlphaTargetMembership
 import Mathlib.Tactic
 
-/-!
-# Algorithm 2: special-tail activation equivalence
-
-For even k, the final child target is the special parent source target k-3.
-Unlike an ordinary child target, its parent source interval contains no deleted
-intermediate alpha target: it is the single consecutive interval from
-alpha_(k-4) to alpha_(k-3).  Hence the child interval on X' and the parent source
-interval contain exactly the same physical control wires.
--/
-
 namespace QuantumBlockEncoding
 namespace RemaudVandaeleLadderAlphaSpecialTailActivation
 
@@ -32,8 +22,6 @@ open RemaudVandaeleLadderAlphaSelectedOrder
 open RemaudVandaeleLadderAlphaSelectedRegister
 open RemaudVandaeleLadderAlphaTargetMembership
 
-/-- Every physical wire in the parent special-tail source interval is retained
-in X'. -/
 theorem specialParentControl_mem_selectedList
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -45,8 +33,7 @@ theorem specialParentControl_mem_selectedList
   let current := recursiveOriginalTargetIndex m large j
   let lowerIndex := specialLowerSourceIndex m large j special
   have currentVal := recursiveOriginalTargetIndex_special m large j special
-  have evenK := special.1
-  have mOdd : m % 2 = 1 := by omega
+  have evenK : (m + 1) % 2 = 0 := special.1
   have currentOdd : current.val % 2 = 1 := by
     dsimp [current]
     rw [currentVal]
@@ -59,8 +46,7 @@ theorem specialParentControl_mem_selectedList
       selectedStart plan large ≤ (plan.target lowerIndex).val := by
     unfold selectedStart
     exact target_le_of_index_le plan (by
-      simp [lowerIndex, specialLowerSourceIndex]
-      omega)
+      simp [lowerIndex, specialLowerSourceIndex])
   have selectedLower : selectedStart plan large ≤ wire.val :=
     startToLower.trans controlLower
   have selectedUpper : wire.val ≤ selectedEnd plan large := by
@@ -76,12 +62,14 @@ theorem specialParentControl_mem_selectedList
       intro sourceBeforeLower
       have targetStrict :
           (plan.target source).val < (plan.target lowerIndex).val :=
-        plan.strict (by exact sourceBeforeLower)
+        plan.strict sourceBeforeLower
+      dsimp [lowerIndex] at targetStrict
       omega
     have sourceLowerBound : lowerIndex.val ≤ source.val := by omega
     rw [← currentEnd] at beforeEnd
     have lowerVal : lowerIndex.val = m - 3 := by
       simp [lowerIndex, specialLowerSourceIndex]
+    rw [lowerVal] at sourceLowerBound
     have sourceVal : source.val = m - 3 := by
       dsimp [current] at beforeEnd
       rw [currentVal] at beforeEnd
@@ -91,8 +79,6 @@ theorem specialParentControl_mem_selectedList
   exact (mem_selectedList_iff plan large wire).2
     ⟨selectedLower, selectedUpper, retained⟩
 
-/-- Child activation on the original parent input restricted to X' is exactly
-parent special-tail source activation. -/
 theorem recursiveIntervalActive_special_iff_parent
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q)
@@ -104,7 +90,6 @@ theorem recursiveIntervalActive_special_iff_parent
       intervalActive plan state
         (recursiveOriginalTargetIndex m large j) := by
   let childPlan := recursivePlan plan large (canonicalCertificate plan large)
-  let current := recursiveOriginalTargetIndex m large j
   have lowerEq :=
     recursiveControlPhysicalLower_special_eq_parentLowerEndpoint
       plan large j special

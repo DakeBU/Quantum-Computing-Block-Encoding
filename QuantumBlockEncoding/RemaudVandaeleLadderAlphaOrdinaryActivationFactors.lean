@@ -10,7 +10,6 @@ open RemaudVandaeleLadderAlphaIntervalFactorization
 open RemaudVandaeleLadderAlphaRecursiveEndpointGeometry
 open RemaudVandaeleLadderAlphaRecursiveParameters
 
-/-- The odd parent source gate immediately between ordinary child endpoints. -/
 def ordinaryMiddleSourceIndex
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -20,7 +19,6 @@ def ordinaryMiddleSourceIndex
     rw [recursiveOriginalTargetIndex_ordinary m large j ordinary] at currentLt
     omega⟩
 
-/-- The three parent source indices are consecutive: 2j,2j+1,2j+2. -/
 theorem ordinary_endpoint_values
     (m : Nat) (large : 3 ≤ m + 1)
     (j : Fin (recursiveTargetCount m))
@@ -31,7 +29,6 @@ theorem ordinary_endpoint_values
   simp [ordinaryLowerSourceIndex, ordinaryMiddleSourceIndex,
     recursiveOriginalTargetIndex_ordinary m large j ordinary]
 
-/-- Physical activation after compacting away the odd middle alpha target. -/
 def ordinaryCompactedPhysicalActive
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q)
@@ -44,8 +41,6 @@ def ordinaryCompactedPhysicalActive
     wire ≠ plan.target (ordinaryMiddleSourceIndex m large j ordinary) →
     state wire = 1
 
-/-- The compacted physical predicate is exactly left-wall activation times the
-strict interior of the current even source gate. -/
 theorem ordinaryCompactedPhysicalActive_iff
     {q m : Nat} (plan : AlphaPlan q m) (large : 3 ≤ m + 1)
     (state : PrimitiveBasis q)
@@ -59,7 +54,7 @@ theorem ordinaryCompactedPhysicalActive_iff
   let lower := ordinaryLowerSourceIndex m large j ordinary
   let middle := ordinaryMiddleSourceIndex m large j ordinary
   let current := recursiveOriginalTargetIndex m large j
-  have values := ordinary_endpoint_values m large j ordinary
+  have endpointValues := ordinary_endpoint_values m large j ordinary
   have lowerMiddle : middle.val = lower.val + 1 := by
     dsimp [lower, middle]
     omega
@@ -74,6 +69,16 @@ theorem ordinaryCompactedPhysicalActive_iff
     plan.strict (by omega)
   have middleNonzero : middle.val ≠ 0 := by omega
   have currentNonzero : current.val ≠ 0 := by omega
+  have middlePreviousEq :
+      (⟨middle.val - 1, by omega⟩ : Fin m) = lower := by
+    apply Fin.ext
+    change middle.val - 1 = lower.val
+    omega
+  have currentPreviousEq :
+      (⟨current.val - 1, by omega⟩ : Fin m) = middle := by
+    apply Fin.ext
+    change current.val - 1 = middle.val
+    omega
   constructor
   · intro compacted
     constructor
@@ -83,45 +88,55 @@ theorem ordinaryCompactedPhysicalActive_iff
           (lowerMiddleStrict.trans middleCurrentStrict)
         intro equal
         have valuesEq := congrArg Fin.val equal
-        omega
-      · simp [strictInteriorActive, middleNonzero]
+        exact (ne_of_lt lowerMiddleStrict) valuesEq
+      · unfold strictInteriorActive
+        rw [dif_neg middleNonzero]
         intro wire lowerWire upperWire
+        rw [middlePreviousEq] at lowerWire
         apply compacted wire lowerWire.le (upperWire.trans middleCurrentStrict)
         intro equal
-        have valuesEq := congrArg Fin.val equal
-        omega
-    · simp [strictInteriorActive, currentNonzero]
+        rw [equal] at upperWire
+        exact (lt_irrefl _ upperWire)
+    · unfold strictInteriorActive
+      rw [dif_neg currentNonzero]
       intro wire lowerWire upperWire
+      rw [currentPreviousEq] at lowerWire
       apply compacted wire
       · exact lowerMiddleStrict.le.trans lowerWire.le
       · exact upperWire
       · intro equal
-        have valuesEq := congrArg Fin.val equal
-        omega
+        rw [equal] at lowerWire
+        exact (lt_irrefl _ lowerWire)
   · rintro ⟨leftActive, currentInterior⟩
     rw [intervalActive_succIndex_iff plan state lower middle lowerMiddle] at leftActive
     have lowerOne := leftActive.1
     have middleInterior := leftActive.2
-    simp [strictInteriorActive, middleNonzero] at middleInterior
-    simp [strictInteriorActive, currentNonzero] at currentInterior
+    unfold strictInteriorActive at middleInterior currentInterior
+    rw [dif_neg middleNonzero] at middleInterior
+    rw [dif_neg currentNonzero] at currentInterior
     intro wire lowerWire upperWire notMiddle
+    change (plan.target lower).val ≤ wire.val at lowerWire
+    change wire.val < (plan.target current).val at upperWire
+    change wire ≠ plan.target middle at notMiddle
     by_cases beforeMiddle : wire.val < (plan.target middle).val
     · by_cases atLower : wire = plan.target lower
       · simpa [atLower] using lowerOne
       · apply middleInterior wire
-        · have valueNe : wire.val ≠ (plan.target lower).val := by
+        · rw [middlePreviousEq]
+          have valueNe : (plan.target lower).val ≠ wire.val := by
             intro equal
             apply atLower
             apply Fin.ext
-            exact equal
+            exact equal.symm
           omega
         · exact beforeMiddle
     · apply currentInterior wire
-      · have middleNe : wire.val ≠ (plan.target middle).val := by
+      · rw [currentPreviousEq]
+        have middleNe : (plan.target middle).val ≠ wire.val := by
           intro equal
           apply notMiddle
           apply Fin.ext
-          exact equal
+          exact equal.symm
         omega
       · exact upperWire
 
