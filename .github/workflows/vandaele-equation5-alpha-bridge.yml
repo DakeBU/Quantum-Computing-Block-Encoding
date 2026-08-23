@@ -1,0 +1,37 @@
+name: Vandaele Equation 5 alpha bridge
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLadderAlpha*.lean"
+      - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
+      - ".github/workflows/vandaele-equation5-alpha-bridge.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-equation5-alpha-bridge-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  representation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile regular-ladder alpha representation
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLadderAlphaRepresentation
