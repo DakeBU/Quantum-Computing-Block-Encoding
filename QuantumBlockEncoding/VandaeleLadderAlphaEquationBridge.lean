@@ -175,6 +175,10 @@ theorem equationSeven_regular_target
   have targetFormula := equationSeven_target
     (regularAlphaPlan localControls steps)
     (flattenLadderState state) block
+  have targetWire :
+      (regularAlphaPlan localControls steps).target block =
+        regularTarget (localControls := localControls) block := rfl
+  rw [targetWire] at targetFormula
   by_cases sourceActive : ladderActive state block
   · have intervalActive' :
         intervalActive (regularAlphaPlan localControls steps)
