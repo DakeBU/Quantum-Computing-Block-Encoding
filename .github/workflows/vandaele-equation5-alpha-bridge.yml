@@ -1,25 +1,24 @@
-name: Vandaele Equation 5 proof frontier
+name: Vandaele Equation 5 alpha bridge
 
 on:
   pull_request:
     branches:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
-      - "QuantumBlockEncoding/VandaeleLadderContract.lean"
-      - "QuantumBlockEncoding/VandaeleLadderDescendingIndices.lean"
-      - "QuantumBlockEncoding/VandaeleLadderEquationFiveSemantics.lean"
-      - ".github/workflows/vandaele-equation5.yml"
+      - "QuantumBlockEncoding/VandaeleLadderAlpha*.lean"
+      - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
+      - ".github/workflows/vandaele-equation5-alpha-bridge.yml"
   workflow_dispatch:
 
 concurrency:
-  group: vandaele-equation5-${{ github.ref }}
+  group: vandaele-equation5-alpha-bridge-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  equation-five-semantics:
+  action-bridge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,7 +31,7 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile Equation 5 source-semantics frontier
+      - name: Compile Equation 5 / Equation 7 action bridge
         run: |
           set -euxo pipefail
-          lake build QuantumBlockEncoding.VandaeleLadderEquationFiveSemantics
+          lake build QuantumBlockEncoding.VandaeleLadderAlphaEquationBridge
