@@ -124,6 +124,7 @@ theorem comparatorSpec_left {n : Nat}
     (state : ComparatorState n) :
     (implementation state).left = state.left := by
   rw [spec state]
+  exact equationSeventeenAction_left state
 
 /-- A correct comparator preserves its right input register. -/
 theorem comparatorSpec_right {n : Nat}
@@ -132,6 +133,7 @@ theorem comparatorSpec_right {n : Nat}
     (state : ComparatorState n) :
     (implementation state).right = state.right := by
   rw [spec state]
+  exact equationSeventeenAction_right state
 
 end VandaeleComparatorContract
 end QuantumBlockEncoding
