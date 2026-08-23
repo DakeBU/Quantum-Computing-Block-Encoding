@@ -1,0 +1,39 @@
+name: Vandaele Algorithm 2 Equation 5 final bridge
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLadderAlgorithmTwoEquationFiveBridge.lean"
+      - "QuantumBlockEncoding/VandaeleLadderAlpha*.lean"
+      - "QuantumBlockEncoding/VandaeleLadderEquationFiveSemantics.lean"
+      - "QuantumBlockEncoding/RemaudVandaeleLadderAlpha*.lean"
+      - ".github/workflows/vandaele-algorithm2-equation5-final-bridge.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-algorithm2-equation5-final-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  final-semantic-bridge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Algorithm 2 to Equation 5 final bridge
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLadderAlgorithmTwoEquationFiveBridge
