@@ -30,6 +30,15 @@ def blockWidth (localControls : Nat) : Nat := localControls + 1
 def physicalQ (localControls steps : Nat) : Nat :=
   steps * blockWidth localControls + 1
 
+/-- The named initial pivot wire.  Naming it avoids asking typeclass inference
+to manufacture a numeral in `Fin (physicalQ ...)` before positivity is known. -/
+def pivotWire (localControls steps : Nat) :
+    Fin (physicalQ localControls steps) :=
+  ⟨0, by simp [physicalQ]⟩
+
+@[simp] theorem pivotWire_val (localControls steps : Nat) :
+    (pivotWire localControls steps).val = 0 := rfl
+
 /-- The final position inside a block is its target slot. -/
 def targetOffset (localControls : Nat) : Fin (blockWidth localControls) :=
   ⟨localControls, by simp [blockWidth]⟩
@@ -39,8 +48,7 @@ def freshOffset {localControls : Nat} (control : Fin localControls) :
     Fin (blockWidth localControls) :=
   ⟨control.val, by
     have controlLt := control.isLt
-    simp [blockWidth]
-    omega⟩
+    simp [blockWidth]⟩
 
 /-- Block-major index inside the tail register after the initial pivot. -/
 def blockTailIndex
@@ -48,6 +56,19 @@ def blockTailIndex
     (block : Fin steps) (offset : Fin (blockWidth localControls)) :
     Fin (steps * blockWidth localControls) :=
   finProdFinEquiv (block, offset)
+
+/-- Decode one tail-register index back to its block and within-block offset. -/
+def decodeTail
+    {localControls steps : Nat}
+    (tail : Fin (steps * blockWidth localControls)) :
+    Fin steps × Fin (blockWidth localControls) :=
+  finProdFinEquiv.symm tail
+
+@[simp] theorem decodeTail_blockTailIndex
+    {localControls steps : Nat}
+    (block : Fin steps) (offset : Fin (blockWidth localControls)) :
+    decodeTail (blockTailIndex block offset) = (block, offset) := by
+  simp [decodeTail, blockTailIndex]
 
 /-- Physical wire obtained by putting the initial pivot in front of the
 block-major tail register. -/
@@ -109,7 +130,8 @@ def regularAlphaPlan (localControls steps : Nat) :
     simp only [regularTarget_val]
     have widthPositive : 0 < blockWidth localControls := by
       simp [blockWidth]
-    nlinarith
+    apply (Nat.mul_lt_mul_left widthPositive).2
+    omega
 
 /-- Flatten the structured Equation-(5) ladder state into the physical
 computational-basis register used by the alpha-ladder semantics. -/
@@ -121,17 +143,16 @@ def flattenLadderState
   intro wire
   refine Fin.cases state.1 ?_ wire
   intro tail
-  let coordinates := finProdFinEquiv.symm tail
+  let coordinates := decodeTail tail
   by_cases fresh : coordinates.2.val < localControls
   · exact (state.2 coordinates.1).1 ⟨coordinates.2.val, fresh⟩
   · exact (state.2 coordinates.1).2
 
-@[simp] theorem flattenLadderState_zero
+@[simp] theorem flattenLadderState_pivot
     {localControls steps : Nat}
     (state : LadderState localControls steps) :
-    flattenLadderState state (0 : Fin (physicalQ localControls steps)) =
-      state.1 := by
-  simp [flattenLadderState, physicalQ]
+    flattenLadderState state (pivotWire localControls steps) = state.1 := by
+  simp [flattenLadderState, pivotWire, physicalQ]
 
 @[simp] theorem flattenLadderState_fresh
     {localControls steps : Nat}
@@ -140,7 +161,7 @@ def flattenLadderState
     flattenLadderState state (regularFreshWire block control) =
       (state.2 block).1 control := by
   simp [flattenLadderState, regularFreshWire, blockWire, blockTailIndex,
-    freshOffset, physicalQ]
+    decodeTail, freshOffset, physicalQ]
 
 @[simp] theorem flattenLadderState_target
     {localControls steps : Nat}
@@ -149,7 +170,7 @@ def flattenLadderState
     flattenLadderState state (regularTarget (localControls := localControls) block) =
       (state.2 block).2 := by
   simp [flattenLadderState, regularTarget, blockWire, blockTailIndex,
-    targetOffset, physicalQ, blockWidth]
+    decodeTail, targetOffset, physicalQ, blockWidth]
 
 end VandaeleLadderAlphaRepresentation
 end QuantumBlockEncoding
