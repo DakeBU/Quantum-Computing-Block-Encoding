@@ -49,7 +49,10 @@ theorem pairwise_descendingIndices_gt (steps : Nat) :
 /-- Every source block occurs exactly once in descending chronology. -/
 theorem nodup_descendingIndices (steps : Nat) :
     (descendingIndices steps).Nodup := by
-  exact (pairwise_descendingIndices_gt steps).nodup
+  exact (pairwise_descendingIndices_gt steps).imp (fun order => by
+    intro equal
+    subst equal
+    exact (lt_irrefl _ order))
 
 /-- Split the descending chronology at an arbitrary source block.
 
