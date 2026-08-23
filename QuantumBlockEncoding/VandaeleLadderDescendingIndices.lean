@@ -32,11 +32,6 @@ def descendingIndices (steps : Nat) : List (Fin steps) :=
     index ∈ descendingIndices steps := by
   simp [descendingIndices]
 
-/-- Every source block occurs exactly once in descending chronology. -/
-theorem nodup_descendingIndices (steps : Nat) :
-    (descendingIndices steps).Nodup := by
-  simpa [descendingIndices] using (List.nodup_finRange steps).reverse
-
 /-- `finRange` is strictly increasing in its list order. -/
 theorem pairwise_finRange_lt (steps : Nat) :
     (List.finRange steps).Pairwise (fun left right : Fin steps => left < right) := by
@@ -51,22 +46,27 @@ theorem pairwise_descendingIndices_gt (steps : Nat) :
   have increasing := pairwise_finRange_lt steps
   simpa [descendingIndices] using increasing.reverse
 
+/-- Every source block occurs exactly once in descending chronology. -/
+theorem nodup_descendingIndices (steps : Nat) :
+    (descendingIndices steps).Nodup := by
+  exact (pairwise_descendingIndices_gt steps).nodup
+
 /-- Split the descending chronology at an arbitrary source block.
 
-All already-executed indices in `prefix` are strictly larger than `index`, and
-all not-yet-executed indices in `suffix` are strictly smaller. -/
+All already-executed indices in `earlierPart` are strictly larger than `index`,
+and all not-yet-executed indices in `laterPart` are strictly smaller. -/
 theorem exists_descending_split {steps : Nat} (index : Fin steps) :
-    ∃ prefix suffix : List (Fin steps),
-      descendingIndices steps = prefix ++ index :: suffix ∧
-      (∀ earlier ∈ prefix, index < earlier) ∧
-      (∀ later ∈ suffix, later < index) := by
+    ∃ earlierPart laterPart : List (Fin steps),
+      descendingIndices steps = earlierPart ++ index :: laterPart ∧
+      (∀ earlier ∈ earlierPart, index < earlier) ∧
+      (∀ later ∈ laterPart, later < index) := by
   have member : index ∈ descendingIndices steps := mem_descendingIndices index
   rw [List.mem_iff_append] at member
-  rcases member with ⟨prefix, suffix, split⟩
+  rcases member with ⟨earlierPart, laterPart, split⟩
   have pairwise := pairwise_descendingIndices_gt steps
   rw [split, List.pairwise_append] at pairwise
-  rcases pairwise with ⟨prefixPairwise, restPairwise, cross⟩
-  refine ⟨prefix, suffix, split, ?_, ?_⟩
+  rcases pairwise with ⟨earlierPairwise, restPairwise, cross⟩
+  refine ⟨earlierPart, laterPart, split, ?_, ?_⟩
   · intro earlier earlierMem
     exact cross earlier earlierMem index (by simp)
   · intro later laterMem
