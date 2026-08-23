@@ -55,7 +55,7 @@ theorem regular_intervalActive_iff_ladderActive
     · rw [previous]
       simpa using previousOne
     · rw [fresh]
-      exact freshOne control
+      simpa using (freshOne control)
 
 /-- The actual generic MCX source gate for the regular alpha plan fires exactly
 under the Vandaele Equation-(5) source predicate. -/
