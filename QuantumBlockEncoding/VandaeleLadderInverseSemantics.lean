@@ -67,23 +67,26 @@ theorem sourceLadderStep_involutive
     Function.Involutive (sourceLadderStep localControls steps index) := by
   intro state
   by_cases active : ladderActive state index
-  · have activeAfter :
-        ladderActive (sourceLadderStep localControls steps index state) index :=
-      (ladderActive_sourceLadderStep_self index state).2 active
+  · let updatedState : LadderState localControls steps :=
+      (state.1,
+        Function.update state.2 index
+          ((state.2 index).1, flipBit (state.2 index).2))
+    have stepEq :
+        sourceLadderStep localControls steps index state = updatedState := by
+      simp [sourceLadderStep, active, updatedState]
+    have activeUpdated : ladderActive updatedState index := by
+      rw [← stepEq]
+      exact (ladderActive_sourceLadderStep_self index state).2 active
+    rw [stepEq]
+    simp only [sourceLadderStep, activeUpdated, if_pos]
     apply Prod.ext
-    · simp [sourceLadderStep, active, activeAfter]
+    · rfl
     · funext query
-      apply Prod.ext
-      · simp [sourceLadderStep, active, activeAfter]
-      · by_cases same : query = index
-        · subst query
-          simp [sourceLadderStep, active, activeAfter, flipBit_flipBit]
-        · simp [sourceLadderStep, active, activeAfter, same]
-  · have inactiveAfter :
-        ¬ ladderActive (sourceLadderStep localControls steps index state) index := by
-      intro contradiction
-      exact active ((ladderActive_sourceLadderStep_self index state).1 contradiction)
-    simp [sourceLadderStep, active, inactiveAfter]
+      by_cases same : query = index
+      · subst query
+        simp [updatedState, flipBit_flipBit]
+      · simp [updatedState, same]
+  · simp [sourceLadderStep, active]
 
 /-- Running a gate list and then the reversed gate list restores the state. -/
 theorem runLadderSteps_reverse_after
