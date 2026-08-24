@@ -42,7 +42,7 @@ theorem sourceLadderStep_preserves_other_target
     ((sourceLadderStep localControls steps index state).2 query).2 =
       (state.2 query).2 := by
   by_cases active : ladderActive state index
-  · simp [sourceLadderStep, active, Function.update_noteq different]
+  · simp [sourceLadderStep, active, different]
   · simp [sourceLadderStep, active]
 
 /-- The preceding pivot used by one gate is unchanged when that same gate is
@@ -91,22 +91,26 @@ theorem sourceLadderStep_involutive
         ladderActive (sourceLadderStep localControls steps index state) index :=
       (ladderActive_sourceLadderStep_iff
         localControls steps index state).2 active
-    unfold sourceLadderStep
-    rw [dif_pos active, dif_pos activeAfter]
+    let updated : LadderState localControls steps :=
+      (state.1,
+        Function.update state.2 index
+          ((state.2 index).1, flipBit (state.2 index).2))
+    have firstStep :
+        sourceLadderStep localControls steps index state = updated := by
+      simp [sourceLadderStep, active, updated]
+    have activeUpdated : ladderActive updated index := by
+      rw [← firstStep]
+      exact activeAfter
+    rw [firstStep]
+    simp only [sourceLadderStep, if_pos activeUpdated]
     apply Prod.ext
     · rfl
     · funext query
       by_cases same : query = index
       · subst query
-        simp [Function.update_same, flipBit_flipBit]
-      · simp [Function.update_noteq same]
-  · have inactiveAfter :
-        ¬ ladderActive (sourceLadderStep localControls steps index state) index := by
-      intro after
-      exact active ((ladderActive_sourceLadderStep_iff
-        localControls steps index state).1 after)
-    unfold sourceLadderStep
-    rw [dif_neg active, dif_neg inactiveAfter]
+        simp [updated, flipBit_flipBit]
+      · simp [updated, same]
+  · simp [sourceLadderStep, active]
 
 /-- Proof-bearing permutation of one naive ladder gate. -/
 def ladderStepEquiv
