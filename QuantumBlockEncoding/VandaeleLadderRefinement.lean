@@ -137,7 +137,18 @@ theorem prefix_step_rebase
       simp only [equationFivePrefixAction]
       rw [dif_pos lower, dif_pos lowerNew]
       rw [blockPreserved]
-      rw [activePreserved]
+      by_cases active : ladderActive state query
+      · have activeAfter :
+            ladderActive
+              (sourceLadderStep localControls total current state) query :=
+          activePreserved.mpr active
+        simp [active, activeAfter]
+      · have inactiveAfter :
+            ¬ ladderActive
+              (sourceLadderStep localControls total current state) query := by
+          intro after
+          exact active (activePreserved.mp after)
+        simp [active, inactiveAfter]
     · by_cases same : query.val = count
       · have queryEq : query = current := by
           apply Fin.ext
@@ -156,12 +167,11 @@ theorem prefix_step_rebase
         apply Prod.ext
         · exact controls
         · exact target
-      · have above : count < query.val := by omega
-        have different : query ≠ current := by
+      · have different : query ≠ current := by
           intro equal
           have values := congrArg Fin.val equal
           simp [current] at values
-          omega
+          exact same values
         have controls := sourceLadderStep_preserves_localControls
           localControls total current query state
         have target :=
