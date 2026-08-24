@@ -52,18 +52,59 @@ def oneBitFigureFiveAction
       VandaeleComparatorContract.flipFlag ((output.2 0).1 0)
     flag := (output.2 0).2 }
 
+/-- Canonical one-bit comparator input used to exhaust the source truth table. -/
+def oneBitState (a b z : Fin 2) :
+    VandaeleComparatorContract.ComparatorState 1 :=
+  { left := fun _ => a
+    right := fun _ => b
+    flag := z }
+
+/-- The literal Figure-5 one-bit specialization restores the left input bit. -/
+theorem oneBitFigureFive_preserves_left
+    (a b z : Fin 2) :
+    (oneBitFigureFiveAction (oneBitState a b z)).left =
+      (oneBitState a b z).left := by
+  funext index
+  fin_cases index
+  fin_cases a <;> fin_cases b <;> fin_cases z <;> native_decide
+
+/-- The literal Figure-5 one-bit specialization restores the right input bit. -/
+theorem oneBitFigureFive_preserves_right
+    (a b z : Fin 2) :
+    (oneBitFigureFiveAction (oneBitState a b z)).right =
+      (oneBitState a b z).right := by
+  funext index
+  fin_cases index
+  fin_cases a <;> fin_cases b <;> fin_cases z <;> native_decide
+
+/-- Complete one-bit source orientation certificate.  Under the literal Figure-5
+wiring, the flag is toggled iff `b < a`, i.e. iff `a > b`. -/
+theorem oneBitFigureFive_flag_truthTable
+    (a b z : Fin 2) :
+    (oneBitFigureFiveAction (oneBitState a b z)).flag =
+      if b.val < a.val then
+        VandaeleComparatorContract.flipFlag z
+      else z := by
+  fin_cases a <;> fin_cases b <;> fin_cases z <;> native_decide
+
+/-- In contrast, the already-formalized Equation (17) contract toggles iff
+`a < b`.  This theorem puts both orientations in the same one-bit notation. -/
+theorem equationSeventeen_oneBit_flag_truthTable
+    (a b z : Fin 2) :
+    (VandaeleComparatorContract.equationSeventeenAction
+      (oneBitState a b z)).flag =
+      if a.val < b.val then
+        VandaeleComparatorContract.flipFlag z
+      else z := by
+  fin_cases a <;> fin_cases b <;> fin_cases z <;> native_decide
+
 /-- Concrete source-audit input `a=1, b=0, z=0`. -/
 def oneBitAOneBZero : VandaeleComparatorContract.ComparatorState 1 :=
-  { left := fun _ => 1
-    right := fun _ => 0
-    flag := 0 }
+  oneBitState 1 0 0
 
-/-- Concrete input in the opposite ordering, retained for the next generic
-orientation audit. -/
+/-- Concrete input in the opposite ordering. -/
 def oneBitAZeroBOne : VandaeleComparatorContract.ComparatorState 1 :=
-  { left := fun _ => 0
-    right := fun _ => 1
-    flag := 0 }
+  oneBitState 0 1 0
 
 /-- The literal one-bit Figure-5 circuit toggles the flag on `a=1,b=0,z=0`. -/
 theorem oneBitFigureFive_aOne_bZero_flag :
@@ -75,6 +116,18 @@ same input. -/
 theorem equationSeventeen_aOne_bZero_flag :
     (VandaeleComparatorContract.equationSeventeenAction
       oneBitAOneBZero).flag = 0 := by
+  native_decide
+
+/-- The opposite ordering makes the orientation mismatch visible in the other
+direction as well: literal Figure 5 does not toggle on `a=0,b=1`. -/
+theorem oneBitFigureFive_aZero_bOne_flag :
+    (oneBitFigureFiveAction oneBitAZeroBOne).flag = 0 := by
+  native_decide
+
+/-- Equation (17) does toggle on that opposite ordering. -/
+theorem equationSeventeen_aZero_bOne_flag :
+    (VandaeleComparatorContract.equationSeventeenAction
+      oneBitAZeroBOne).flag = 1 := by
   native_decide
 
 /-- Therefore the displayed one-bit Figure-5 specialization does not inhabit
