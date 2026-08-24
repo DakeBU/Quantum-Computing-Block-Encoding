@@ -1,0 +1,38 @@
+name: Vandaele V2 behavior semantics frontier
+
+on:
+  pull_request:
+    branches:
+      - "agent/vandaele-equation18-semantics"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLadderVSemantics.lean"
+      - "QuantumBlockEncoding/VandaeleLadderEquationEighteenSemantics.lean"
+      - "QuantumBlockEncoding/VandaeleLadderVBehaviorSemantics.lean"
+      - ".github/workflows/vandaele-v2-behavior-semantics.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-v2-behavior-semantics-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  v2-behavior:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile V2 behavior semantics frontier
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLadderVBehaviorSemantics
