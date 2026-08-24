@@ -1,4 +1,4 @@
-import QuantumBlockEncoding.VandaeleLadderContract
+import QuantumBlockEncoding.VandaeleLadderInverseSemantics
 import Mathlib.Tactic
 
 /-!
@@ -34,16 +34,18 @@ namespace VandaeleLadderPermutation
 
 open VandaeleLadderContract
 
-/-- A source step preserves every other block target. -/
+/-- A source step preserves every other block target.  Delegate this basic
+wire-locality fact to the already-green Equation-(5) semantic layer rather than
+relying on version-sensitive simplifier theorem names for `Function.update`. -/
 theorem sourceLadderStep_preserves_other_target
     (localControls steps : Nat)
     (index query : Fin steps) (different : query ≠ index)
     (state : LadderState localControls steps) :
     ((sourceLadderStep localControls steps index state).2 query).2 =
       (state.2 query).2 := by
-  by_cases active : ladderActive state index
-  · simp [sourceLadderStep, active, Function.update_noteq different]
-  · simp [sourceLadderStep, active]
+  exact
+    VandaeleLadderEquationFiveSemantics.sourceLadderStep_preserves_other_target
+      index query state different
 
 /-- The preceding pivot used by one gate is unchanged when that same gate is
 applied. -/
@@ -81,32 +83,13 @@ theorem ladderActive_sourceLadderStep_iff
   rw [sourceLadderStep_preserves_localControls
     localControls steps index index]
 
-/-- One source ladder gate is self-inverse. -/
+/-- One source ladder gate is self-inverse.  The proof is shared with the
+Equation-(5) inverse-semantics node, whose explicit updated-state argument is
+stable under Lean 4.29. -/
 theorem sourceLadderStep_involutive
     (localControls steps : Nat) (index : Fin steps) :
     Function.Involutive (sourceLadderStep localControls steps index) := by
-  intro state
-  by_cases active : ladderActive state index
-  · have activeAfter :
-        ladderActive (sourceLadderStep localControls steps index state) index :=
-      (ladderActive_sourceLadderStep_iff
-        localControls steps index state).2 active
-    unfold sourceLadderStep
-    rw [dif_pos active, dif_pos activeAfter]
-    apply Prod.ext
-    · rfl
-    · funext query
-      by_cases same : query = index
-      · subst query
-        simp [Function.update_same, flipBit_flipBit]
-      · simp [Function.update_noteq same]
-  · have inactiveAfter :
-        ¬ ladderActive (sourceLadderStep localControls steps index state) index := by
-      intro after
-      exact active ((ladderActive_sourceLadderStep_iff
-        localControls steps index state).1 after)
-    unfold sourceLadderStep
-    rw [dif_neg active, dif_neg inactiveAfter]
+  exact VandaeleLadderInverseSemantics.sourceLadderStep_involutive index
 
 /-- Proof-bearing permutation of one naive ladder gate. -/
 def ladderStepEquiv
