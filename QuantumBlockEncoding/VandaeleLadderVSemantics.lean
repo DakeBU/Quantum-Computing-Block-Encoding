@@ -100,28 +100,29 @@ theorem restrictPrefixState_sourceLadderStep
       rfl
     · by_cases same : query = index
       · subst query
+        change
+          ((sourceLadderStep localControls (prefixSteps + 1)
+            index.castSucc state).2 index.castSucc).2 =
+            ((sourceLadderStep localControls prefixSteps index
+              (restrictPrefixState state)).2 index).2
+        rw [sourceLadderStep_target, sourceLadderStep_target]
         by_cases activeFull : ladderActive state index.castSucc
-        · have activePrefix : ladderActive (restrictPrefixState state) index :=
-            (ladderActive_restrictPrefixState state index).2 activeFull
-          change
-            ((sourceLadderStep localControls (prefixSteps + 1)
-              index.castSucc state).2 index.castSucc).2 =
-              ((sourceLadderStep localControls prefixSteps index
-                (restrictPrefixState state)).2 index).2
-          rw [sourceLadderStep_target, sourceLadderStep_target]
-          simp [activeFull, activePrefix, restrictPrefixState]
-        · have inactivePrefix :
-              ¬ ladderActive (restrictPrefixState state) index := by
+        · have activePrefixRaw :
+              ladderActive (state.1, fun query => state.2 query.castSucc) index := by
+            have activePrefix :
+                ladderActive (restrictPrefixState state) index :=
+              (ladderActive_restrictPrefixState state index).2 activeFull
+            simpa only [restrictPrefixState] using activePrefix
+          rw [if_pos activeFull, if_pos activePrefixRaw]
+        · have inactivePrefixRaw :
+              ¬ ladderActive (state.1, fun query => state.2 query.castSucc) index := by
             intro contradiction
+            have contradictionPrefix :
+                ladderActive (restrictPrefixState state) index := by
+              simpa only [restrictPrefixState] using contradiction
             exact activeFull
-              ((ladderActive_restrictPrefixState state index).1 contradiction)
-          change
-            ((sourceLadderStep localControls (prefixSteps + 1)
-              index.castSucc state).2 index.castSucc).2 =
-              ((sourceLadderStep localControls prefixSteps index
-                (restrictPrefixState state)).2 index).2
-          rw [sourceLadderStep_target, sourceLadderStep_target]
-          simp [activeFull, inactivePrefix, restrictPrefixState]
+              ((ladderActive_restrictPrefixState state index).1 contradictionPrefix)
+          rw [if_neg activeFull, if_neg inactivePrefixRaw]
       · have castNe : query.castSucc ≠ index.castSucc := by
           intro equalCast
           apply same
