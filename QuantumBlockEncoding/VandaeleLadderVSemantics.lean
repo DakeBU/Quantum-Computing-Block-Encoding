@@ -68,10 +68,30 @@ theorem ladderActive_restrictPrefixState
   rw [previousPivot_restrictPrefixState state index]
   rfl
 
+/-- Restricting a block-function update at an embedded prefix index is exactly
+updating the restricted block function at the original prefix index.  This is
+the dependent-coordinate cut used by all later embedded-prefix semantics. -/
+theorem restrictPrefix_update
+    {localControls prefixSteps : Nat}
+    (blocks : Fin (prefixSteps + 1) → LadderBlock localControls)
+    (index : Fin prefixSteps)
+    (replacement : LadderBlock localControls) :
+    (fun query : Fin prefixSteps =>
+        Function.update blocks index.castSucc replacement query.castSucc) =
+      Function.update
+        (fun query : Fin prefixSteps => blocks query.castSucc)
+        index replacement := by
+  funext query
+  by_cases same : query = index
+  · subst query
+    simp
+  · have castNe : query.castSucc ≠ index.castSucc := by
+      intro equalCast
+      exact same (Fin.castSucc_injective prefixSteps equalCast)
+    simp [same, castNe]
+
 /-- Restricting one embedded source gate is the same as executing the
-corresponding source gate directly on the prefix register.  The proof is kept
-at the semantic wire level rather than relying on simplification of dependent
-`Function.update` terms. -/
+corresponding source gate directly on the prefix register. -/
 theorem restrictPrefixState_sourceLadderStep
     {localControls prefixSteps : Nat}
     (state : LadderState localControls (prefixSteps + 1))
@@ -80,65 +100,30 @@ theorem restrictPrefixState_sourceLadderStep
         (sourceLadderStep localControls (prefixSteps + 1) index.castSucc state) =
       sourceLadderStep localControls prefixSteps index
         (restrictPrefixState state) := by
-  apply Prod.ext
-  · change
-      (sourceLadderStep localControls (prefixSteps + 1) index.castSucc state).1 =
-        (sourceLadderStep localControls prefixSteps index
-          (restrictPrefixState state)).1
-    rw [sourceLadderStep_preserves_initialPivot,
-      sourceLadderStep_preserves_initialPivot]
-    rfl
-  · funext query
+  by_cases activeFull : ladderActive state index.castSucc
+  · have activePrefix : ladderActive (restrictPrefixState state) index :=
+      (ladderActive_restrictPrefixState state index).2 activeFull
+    simp only [sourceLadderStep, if_pos activeFull, if_pos activePrefix]
     apply Prod.ext
+    · rfl
     · change
-        ((sourceLadderStep localControls (prefixSteps + 1)
-          index.castSucc state).2 query.castSucc).1 =
-          ((sourceLadderStep localControls prefixSteps index
-            (restrictPrefixState state)).2 query).1
-      rw [sourceLadderStep_preserves_localControls,
-        sourceLadderStep_preserves_localControls]
-      rfl
-    · by_cases same : query = index
-      · subst query
-        change
-          ((sourceLadderStep localControls (prefixSteps + 1)
-            index.castSucc state).2 index.castSucc).2 =
-            ((sourceLadderStep localControls prefixSteps index
-              (restrictPrefixState state)).2 index).2
-        rw [sourceLadderStep_target, sourceLadderStep_target]
-        by_cases activeFull : ladderActive state index.castSucc
-        · have activePrefixRaw :
-              ladderActive (state.1, fun query => state.2 query.castSucc) index := by
-            have activePrefix :
-                ladderActive (restrictPrefixState state) index :=
-              (ladderActive_restrictPrefixState state index).2 activeFull
-            simpa only [restrictPrefixState] using activePrefix
-          rw [if_pos activeFull, if_pos activePrefixRaw]
-        · have inactivePrefixRaw :
-              ¬ ladderActive (state.1, fun query => state.2 query.castSucc) index := by
-            intro contradiction
-            have contradictionPrefix :
-                ladderActive (restrictPrefixState state) index := by
-              simpa only [restrictPrefixState] using contradiction
-            exact activeFull
-              ((ladderActive_restrictPrefixState state index).1 contradictionPrefix)
-          rw [if_neg activeFull, if_neg inactivePrefixRaw]
-      · have castNe : query.castSucc ≠ index.castSucc := by
-          intro equalCast
-          apply same
-          apply Fin.ext
-          exact congrArg
-            (fun x : Fin (prefixSteps + 1) => x.val) equalCast
-        change
-          ((sourceLadderStep localControls (prefixSteps + 1)
-            index.castSucc state).2 query.castSucc).2 =
-            ((sourceLadderStep localControls prefixSteps index
-              (restrictPrefixState state)).2 query).2
-        rw [sourceLadderStep_preserves_other_target
-              index.castSucc query.castSucc state castNe,
-          sourceLadderStep_preserves_other_target
-              index query (restrictPrefixState state) same]
-        rfl
+        (fun query : Fin prefixSteps =>
+          Function.update state.2 index.castSucc
+            ((state.2 index.castSucc).1,
+              flipBit (state.2 index.castSucc).2)
+            query.castSucc) =
+          Function.update
+            (fun query : Fin prefixSteps => state.2 query.castSucc)
+            index
+            ((state.2 index.castSucc).1,
+              flipBit (state.2 index.castSucc).2)
+      exact restrictPrefix_update state.2 index _
+  · have inactivePrefix :
+        ¬ ladderActive (restrictPrefixState state) index := by
+      intro contradiction
+      exact activeFull
+        ((ladderActive_restrictPrefixState state index).1 contradiction)
+    simpa only [sourceLadderStep, if_neg activeFull, if_neg inactivePrefix]
 
 /-- Restriction commutes with an arbitrary chronological list of prefix gates
 embedded into the full register. -/
