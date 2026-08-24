@@ -142,13 +142,21 @@ theorem prefix_step_rebase
             ladderActive
               (sourceLadderStep localControls total current state) query :=
           activePreserved.mpr active
-        simp [active, activeAfter]
+        have activeAfterRaw :
+            ladderActive
+              (sourceLadderStep localControls total ⟨count, bound⟩ state) query := by
+          simpa [current] using activeAfter
+        rw [if_pos activeAfterRaw, if_pos active]
       · have inactiveAfter :
             ¬ ladderActive
               (sourceLadderStep localControls total current state) query := by
           intro after
           exact active (activePreserved.mp after)
-        simp [active, inactiveAfter]
+        have inactiveAfterRaw :
+            ¬ ladderActive
+              (sourceLadderStep localControls total ⟨count, bound⟩ state) query := by
+          simpa [current] using inactiveAfter
+        rw [if_neg inactiveAfterRaw, if_neg active]
     · by_cases same : query.val = count
       · have queryEq : query = current := by
           apply Fin.ext
