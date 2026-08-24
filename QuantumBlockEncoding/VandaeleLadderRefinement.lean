@@ -135,7 +135,7 @@ theorem prefix_step_rebase
       have activePreserved := lower_ladderActive_after_higherStep
         localControls total current query order state
       simp only [equationFivePrefixAction]
-      rw [if_pos lower, if_pos lowerNew]
+      rw [dif_pos lower, dif_pos lowerNew]
       rw [blockPreserved]
       rw [activePreserved]
     · by_cases same : query.val = count
@@ -152,7 +152,7 @@ theorem prefix_step_rebase
         have controls := sourceLadderStep_preserves_localControls
           localControls total current current state
         simp only [equationFivePrefixAction]
-        rw [if_neg notOld, if_pos doneNew]
+        rw [dif_neg notOld, dif_pos doneNew]
         apply Prod.ext
         · exact controls
         · exact target
@@ -176,7 +176,7 @@ theorem prefix_step_rebase
         have notDoneOld : ¬ query.val < count := by omega
         have notDoneNew : ¬ query.val < count + 1 := by omega
         simp only [equationFivePrefixAction]
-        rw [if_neg notDoneOld, if_neg notDoneNew]
+        rw [dif_neg notDoneOld, dif_neg notDoneNew]
         exact blockPreserved
 
 /-- Descending gate permutation realizes the partial Equation-(5) action. -/
