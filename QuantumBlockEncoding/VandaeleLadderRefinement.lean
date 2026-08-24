@@ -57,7 +57,7 @@ theorem equationFivePrefix_full
   apply Prod.ext
   · rfl
   · funext index
-    simp [equationFivePrefixAction, equationFiveAction, index.isLt]
+    simp [equationFivePrefixAction, equationFiveAction]
 
 /-- A gate at a strictly higher block index preserves the entire lower block. -/
 theorem higherStep_preserves_lower_block
@@ -67,13 +67,16 @@ theorem higherStep_preserves_lower_block
     (state : LadderState localControls total) :
     (sourceLadderStep localControls total higher state).2 lower =
       state.2 lower := by
-  by_cases active : ladderActive state higher
-  · have different : lower ≠ higher := by
-      intro equal
-      have values := congrArg Fin.val equal
-      omega
-    simp [sourceLadderStep, active, Function.update_noteq different]
-  · simp [sourceLadderStep, active]
+  have different : lower ≠ higher := by
+    intro equal
+    have values := congrArg Fin.val equal
+    omega
+  apply Prod.ext
+  · exact sourceLadderStep_preserves_localControls
+      localControls total higher lower state
+  · exact
+      VandaeleLadderEquationFiveSemantics.sourceLadderStep_preserves_other_target
+        higher lower state different
 
 /-- More importantly, a higher gate preserves the lower gate's Equation-(5)
 activation predicate, including its preceding pivot. -/
@@ -124,37 +127,57 @@ theorem prefix_step_rebase
       sourceLadderStep_preserves_initialPivot]
   · funext query
     by_cases lower : query.val < count
-    · have order : query.val < current.val := by simpa [current] using lower
+    · have lowerNew : query.val < count + 1 := by omega
+      have order : query.val < current.val := by
+        simpa [current] using lower
       have blockPreserved := higherStep_preserves_lower_block
         localControls total current query order state
       have activePreserved := lower_ladderActive_after_higherStep
         localControls total current query order state
-      simp [equationFivePrefixAction, lower, blockPreserved, activePreserved]
+      simp only [equationFivePrefixAction]
+      rw [if_pos lower, if_pos lowerNew]
+      rw [blockPreserved]
+      rw [activePreserved]
     · by_cases same : query.val = count
       · have queryEq : query = current := by
           apply Fin.ext
           simpa [current] using same
         subst query
+        have notOld : ¬ current.val < count := by
+          simp [current]
+        have doneNew : current.val < count + 1 := by
+          simp [current]
         have target := sourceLadderStep_target
           localControls total current state
         have controls := sourceLadderStep_preserves_localControls
           localControls total current current state
-        simp [equationFivePrefixAction, current, controls, target]
-    · have above : count < query.val := by omega
-      have different : query ≠ current := by
-        intro equal
-        have values := congrArg Fin.val equal
-        simp [current] at values
-        omega
-      have blockPreserved :
-          (sourceLadderStep localControls total current state).2 query =
-            state.2 query := by
-        by_cases active : ladderActive state current
-        · simp [sourceLadderStep, active, Function.update_noteq different]
-        · simp [sourceLadderStep, active]
-      have notDoneOld : ¬ query.val < count := by omega
-      have notDoneNew : ¬ query.val < count + 1 := by omega
-      simp [equationFivePrefixAction, notDoneOld, notDoneNew, blockPreserved]
+        simp only [equationFivePrefixAction]
+        rw [if_neg notOld, if_pos doneNew]
+        apply Prod.ext
+        · exact controls
+        · exact target
+      · have above : count < query.val := by omega
+        have different : query ≠ current := by
+          intro equal
+          have values := congrArg Fin.val equal
+          simp [current] at values
+          omega
+        have controls := sourceLadderStep_preserves_localControls
+          localControls total current query state
+        have target :=
+          VandaeleLadderEquationFiveSemantics.sourceLadderStep_preserves_other_target
+            current query state different
+        have blockPreserved :
+            (sourceLadderStep localControls total current state).2 query =
+              state.2 query := by
+          apply Prod.ext
+          · exact controls
+          · exact target
+        have notDoneOld : ¬ query.val < count := by omega
+        have notDoneNew : ¬ query.val < count + 1 := by omega
+        simp only [equationFivePrefixAction]
+        rw [if_neg notDoneOld, if_neg notDoneNew]
+        exact blockPreserved
 
 /-- Descending gate permutation realizes the partial Equation-(5) action. -/
 theorem descendingLadderEquiv_eq_prefix
