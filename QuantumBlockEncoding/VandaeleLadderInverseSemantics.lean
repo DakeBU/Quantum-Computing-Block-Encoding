@@ -13,6 +13,11 @@ For the source ladder `L_k^(n)`, whose forward chronology is descending
 `n-1,...,0`, the adjoint/inverse chronology is ascending `0,...,n-1`.
 This is the semantic fact needed to formalize Vandaele Definition 2.4,
 `V_k^(n) = L_k^(n) (L_k^(n-1)† ⊗ I)`.
+
+The final layer below transports this gate-list inverse through the already
+verified refinement theorem `sourceLadder_refines_equationFive`.  Consequently
+the authoritative closed-form Equation (5) is exposed as an actual permutation,
+with the ascending source chronology as its certified inverse.
 -/
 
 namespace QuantumBlockEncoding
@@ -134,6 +139,52 @@ theorem sourceLadder_after_inverseSourceLadder
         (inverseSourceLadderAction localControls steps state) = state := by
   unfold inverseSourceLadderAction sourceLadderAction
   exact runLadderSteps_reverse_after (List.finRange steps) state
+
+/-- The ascending source chronology is a left inverse of the authoritative
+closed-form Equation (5), not merely of the gate-list implementation. -/
+theorem inverseSourceLadder_after_equationFive
+    (localControls steps : Nat)
+    (state : LadderState localControls steps) :
+    inverseSourceLadderAction localControls steps
+        (equationFiveAction localControls steps state) = state := by
+  rw [← sourceLadder_refines_equationFive localControls steps state]
+  exact inverseSourceLadder_after_sourceLadder localControls steps state
+
+/-- The ascending source chronology is also a right inverse of the authoritative
+closed-form Equation (5). -/
+theorem equationFive_after_inverseSourceLadder
+    (localControls steps : Nat)
+    (state : LadderState localControls steps) :
+    equationFiveAction localControls steps
+        (inverseSourceLadderAction localControls steps state) = state := by
+  rw [← sourceLadder_refines_equationFive localControls steps
+    (inverseSourceLadderAction localControls steps state)]
+  exact sourceLadder_after_inverseSourceLadder localControls steps state
+
+/-- Equation (5) packaged as a certified permutation.  This is the reusable
+interface for downstream `L_k^(n)†`, `V_k^(n)`, comparator, incrementer, and
+adder semantics: users of this node no longer need to unfold the source gate
+chronology. -/
+def equationFiveEquiv (localControls steps : Nat) :
+    Equiv.Perm (LadderState localControls steps) where
+  toFun := equationFiveAction localControls steps
+  invFun := inverseSourceLadderAction localControls steps
+  left_inv := inverseSourceLadder_after_equationFive localControls steps
+  right_inv := equationFive_after_inverseSourceLadder localControls steps
+
+@[simp] theorem equationFiveEquiv_apply
+    (localControls steps : Nat)
+    (state : LadderState localControls steps) :
+    equationFiveEquiv localControls steps state =
+      equationFiveAction localControls steps state := by
+  rfl
+
+@[simp] theorem equationFiveEquiv_symm_apply
+    (localControls steps : Nat)
+    (state : LadderState localControls steps) :
+    (equationFiveEquiv localControls steps).symm state =
+      inverseSourceLadderAction localControls steps state := by
+  rfl
 
 end VandaeleLadderInverseSemantics
 end QuantumBlockEncoding
