@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.ReversibleClassical
+import QuantumBlockEncoding.PrimitiveBasisLE
 import Mathlib.Tactic
 
 /-!
@@ -116,6 +117,19 @@ theorem sourceProgram_stepLengths :
       (4, 4, 5, 8, 3, 5) := by
   native_decide
 
+/-- Flat-index version of the exhaustive source check.  Indexing through the
+existing little-endian equivalence avoids asking the decision procedure to
+enumerate a function space representation of the same 2048 basis states. -/
+private theorem sourceProgram_arithmetic_certificate_index
+    (index : Fin (gridSize 11)) :
+    let state := (primitiveBasisLEEquiv 11).symm index
+    let output := evalReversibleProgram sourceProgram state
+    aValue output = aValue state ∧
+      bValue output = (aValue state + bValue state) % 32 ∧
+      zValue output =
+        (zValue state + (aValue state + bValue state) / 32) % 2 := by
+  native_decide +revert
+
 /-- Exact gate-level arithmetic certificate for the displayed five-bit source
 adder.  The third equality is XOR written as addition modulo two; since
 `a+b < 64`, `(a+b)/32` is exactly the outgoing carry bit. -/
@@ -125,7 +139,9 @@ theorem sourceProgram_arithmetic_certificate (state : SourceBasis) :
       bValue output = (aValue state + bValue state) % 32 ∧
       zValue output =
         (zValue state + (aValue state + bValue state) / 32) % 2 := by
-  native_decide +revert
+  let index := primitiveBasisLEEquiv 11 state
+  have checked := sourceProgram_arithmetic_certificate_index index
+  simpa [index] using checked
 
 /-- The first addend register is preserved. -/
 theorem sourceProgram_preserves_a (state : SourceBasis) :
