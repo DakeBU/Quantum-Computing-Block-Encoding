@@ -1,0 +1,40 @@
+name: Vandaele X-adder-X arithmetic orientation
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleComparatorCarryArithmetic.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorBitArithmetic.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorConjugatedAdderArithmetic.lean"
+      - ".github/workflows/vandaele-x-adder-x-arithmetic.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-x-adder-x-arithmetic-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  arithmetic-orientation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile complemented-adder arithmetic spine
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleComparatorCarryArithmetic
+          lake build QuantumBlockEncoding.VandaeleComparatorBitArithmetic
+          lake build QuantumBlockEncoding.VandaeleComparatorConjugatedAdderArithmetic
