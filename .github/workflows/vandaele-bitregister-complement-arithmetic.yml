@@ -3,7 +3,7 @@ name: Vandaele comparator bit-register arithmetic
 on:
   pull_request:
     branches:
-      - "agent/vandaele-complement-carry-arithmetic"
+      - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/VandaeleComparatorCarryArithmetic.lean"
       - "QuantumBlockEncoding/VandaeleComparatorBitArithmetic.lean"
