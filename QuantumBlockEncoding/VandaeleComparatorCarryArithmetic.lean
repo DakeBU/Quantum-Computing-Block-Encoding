@@ -36,6 +36,15 @@ provided the original value lies in the word range. -/
 def onesComplementValue (n b : Nat) : Nat :=
   wordModulus n - 1 - b
 
+/-- Pure modulus form of the ones-complement carry identity.  Stating the lemma
+with an abstract `m` keeps the proof in Presburger arithmetic; the word modulus
+`2^n` can then be substituted without asking `omega` to reason about powers. -/
+theorem onesComplement_add_carry_iff_modulus
+    (m a b : Nat)
+    (hb : b < m) :
+    m ≤ a + (m - 1 - b) ↔ b < a := by
+  omega
+
 /-- The carry produced by `a + (~b)` is exactly the strict predicate `b < a`.
 This is the arithmetic orientation visible in the literal Figure-5 construction
 when the adder's target register is `b`. -/
@@ -43,7 +52,14 @@ theorem onesComplement_add_carry_iff
     (n a b : Nat)
     (hb : b < wordModulus n) :
     wordModulus n ≤ a + onesComplementValue n b ↔ b < a := by
-  unfold onesComplementValue wordModulus
+  simpa [onesComplementValue] using
+    (onesComplement_add_carry_iff_modulus (wordModulus n) a b hb)
+
+/-- Pure modulus form of the two's-complement carry identity. -/
+theorem twosComplement_add_carry_iff_modulus
+    (m a b : Nat)
+    (hb : b < m) :
+    m ≤ a + (m - 1 - b) + 1 ↔ b ≤ a := by
   omega
 
 /-- Adding the missing two's-complement `+1` changes the carry predicate from
@@ -52,8 +68,8 @@ theorem twosComplement_add_carry_iff
     (n a b : Nat)
     (hb : b < wordModulus n) :
     wordModulus n ≤ a + onesComplementValue n b + 1 ↔ b ≤ a := by
-  unfold onesComplementValue wordModulus
-  omega
+  simpa [onesComplementValue] using
+    (twosComplement_add_carry_iff_modulus (wordModulus n) a b hb)
 
 /-- Therefore the borrow bit of genuine `a - b` is exactly `a < b`. -/
 theorem twosComplement_borrow_iff
