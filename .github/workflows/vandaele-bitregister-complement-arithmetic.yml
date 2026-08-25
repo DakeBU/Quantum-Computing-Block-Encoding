@@ -1,0 +1,38 @@
+name: Vandaele comparator bit-register arithmetic
+
+on:
+  pull_request:
+    branches:
+      - "agent/vandaele-complement-carry-arithmetic"
+    paths:
+      - "QuantumBlockEncoding/VandaeleComparatorCarryArithmetic.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorBitArithmetic.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorContract.lean"
+      - ".github/workflows/vandaele-bitregister-complement-arithmetic.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-bitregister-complement-arithmetic-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  bit-arithmetic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile bit-register arithmetic
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleComparatorBitArithmetic
