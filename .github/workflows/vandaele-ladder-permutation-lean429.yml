@@ -1,0 +1,41 @@
+name: Vandaele canonical ladder permutation Lean 4.29
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLadderPermutation.lean"
+      - "QuantumBlockEncoding/VandaeleLadderRefinement.lean"
+      - "QuantumBlockEncoding/VandaeleVOperator.lean"
+      - "QuantumBlockEncoding/VandaeleLadderInverseSemantics.lean"
+      - ".github/workflows/vandaele-ladder-permutation-lean429.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-ladder-permutation-lean429-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  canonical-v-operator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile canonical ladder through V2
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLadderPermutation
+          lake build QuantumBlockEncoding.VandaeleLadderRefinement
+          lake build QuantumBlockEncoding.VandaeleVOperator
