@@ -76,7 +76,7 @@ theorem littleEndianValue_succ {n : Nat}
 theorem littleEndianValue_lt_wordModulus
     (n : Nat) (bits : BitRegister n) :
     littleEndianValue bits < wordModulus n := by
-  induction n generalizing bits with
+  induction n with
   | zero =>
       simp [littleEndianValue, wordModulus]
   | succ n induction =>
@@ -91,7 +91,7 @@ theorem littleEndianValue_bitwiseNot
     (n : Nat) (bits : BitRegister n) :
     littleEndianValue (bitwiseNot bits) =
       onesComplementValue n (littleEndianValue bits) := by
-  induction n generalizing bits with
+  induction n with
   | zero =>
       simp [littleEndianValue, bitwiseNot, onesComplementValue, wordModulus]
   | succ n induction =>
@@ -110,6 +110,9 @@ theorem littleEndianValue_bitwiseNot
         _ = onesComplementValue (n + 1) (littleEndianValue bits) := by
           have tailBound :=
             littleEndianValue_lt_wordModulus n (tailBits bits)
+          have tailBoundPow :
+              littleEndianValue (tailBits bits) < 2 ^ n := by
+            simpa [wordModulus] using tailBound
           have bitBound : (bits 0).val < 2 := (bits 0).isLt
           rw [littleEndianValue_succ bits]
           simp only [onesComplementValue, wordModulus, pow_succ]
