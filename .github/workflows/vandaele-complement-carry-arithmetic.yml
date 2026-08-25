@@ -1,0 +1,37 @@
+name: Vandaele complemented subtraction carry arithmetic
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleComparatorCarryArithmetic.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorContract.lean"
+      - ".github/workflows/vandaele-complement-carry-arithmetic.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-complement-carry-arithmetic-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  carry-arithmetic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile complemented carry arithmetic
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleComparatorCarryArithmetic
