@@ -2,14 +2,13 @@
 """Guard the reader-facing README/figure typography and formula surface.
 
 The public README is deliberately figure-first and uses conservative GitHub math
-syntax. This check prevents regressions to fragile TeX, broken hierarchy assets,
+syntax. This check prevents regressions to fragile TeX, broken harness assets,
 UI/sans typography, or glossy dashboard-style SVG decoration.
 """
 
 from __future__ import annotations
 
 import re
-import struct
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -20,9 +19,7 @@ README = ROOT / "README.md"
 SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
-HIERARCHY_SVG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v4.svg"
-HIERARCHY_V5_PNG = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness_v5.png"
-HIERARCHY_CURRENT_PNG = ROOT / "docs" / "assets" / "ASPBE.png"
+FRONTIER_SVG = ROOT / "docs" / "assets" / "aspbe_master_worker_frontier.svg"
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
 HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
@@ -71,45 +68,32 @@ def readme_svg_refs(readme: str) -> list[str]:
     return sorted(refs)
 
 
-def png_dimensions(path: Path) -> tuple[int, int]:
-    if not path.is_file():
-        fail(f"missing hierarchy PNG: {path.relative_to(ROOT)}")
-    data = path.read_bytes()
-    if data[:8] != b"\x89PNG\r\n\x1a\n":
-        fail(f"invalid PNG signature: {path.relative_to(ROOT)}")
-    if len(data) < 24 or data[12:16] != b"IHDR":
-        fail(f"missing PNG IHDR: {path.relative_to(ROOT)}")
-    return struct.unpack(">II", data[16:24])
+def check_frontier_asset(readme: str) -> None:
+    reference = 'src="docs/assets/aspbe_master_worker_frontier.svg"'
+    if reference not in readme:
+        fail("README must use the Harness v2 Frontier Master–Worker SVG")
 
+    source = read(FRONTIER_SVG)
+    try:
+        root = ET.fromstring(source)
+    except ET.ParseError as exc:
+        fail(f"invalid Frontier Master–Worker SVG: {exc}")
 
-def check_hierarchy_asset(readme: str) -> None:
-    current_ref = 'src="docs/assets/ASPBE.png"'
-    legacy_ref = 'src="docs/assets/aspbe_hierarchical_harness_v5.png"'
-    if current_ref in readme:
-        selected = HIERARCHY_CURRENT_PNG
-    elif legacy_ref in readme:
-        selected = HIERARCHY_V5_PNG
-    else:
-        fail("README must use ASPBE.png or the stable hierarchy v5 PNG")
+    if root.attrib.get("viewBox") != "0 0 1600 1240":
+        fail("Frontier Master–Worker SVG must keep the readable 1600×1240 viewBox")
+    if FRONTIER_SVG.stat().st_size > 100_000:
+        fail("Frontier Master–Worker SVG is unexpectedly large")
 
-    size = selected.stat().st_size
-    if size > 2_000_000:
-        fail(f"hierarchy PNG is too large for the README: {size} bytes > 2000000")
-    width, height = png_dimensions(selected)
-    if width < 1000 or height < 500 or width <= height:
-        fail(f"hierarchy PNG must remain a readable landscape figure: {(width, height)}")
-
-    # Keep the old public SVG URL alive as a lightweight compatibility wrapper.
-    if HIERARCHY_SVG.is_file():
-        svg_source = read(HIERARCHY_SVG)
-        try:
-            ET.fromstring(svg_source)
-        except ET.ParseError as exc:
-            fail(f"invalid hierarchy SVG wrapper: {exc}")
-        if "aspbe_hierarchical_harness_v5.png" not in svg_source:
-            fail("hierarchy SVG wrapper must point to the stable v5 PNG")
-        if HIERARCHY_SVG.stat().st_size > 5_000:
-            fail("hierarchy SVG compatibility wrapper should remain lightweight")
+    required_labels = (
+        "Frontier Master",
+        "Universal Worker A",
+        "Hard promotion gates",
+        "Accepted substantive advance",
+        "Skills are lenses, not walls",
+    )
+    for label in required_labels:
+        if label not in source:
+            fail(f"Frontier Master–Worker SVG is missing reader label {label!r}")
 
 
 def check_readme_math_surface(readme: str) -> None:
@@ -132,17 +116,16 @@ def check_readme_math_surface(readme: str) -> None:
 
     order = (
         "ASPBE is designed for a quantum-computing researcher",
-        "## ASPBE harness — from contract to checked evidence",
-        "## Why a hierarchical harness?",
+        "## ASPBE harness v2 — substantive advances at the proof frontier",
         "## Route I — State Preparation",
         "## Route II — Block Encoding",
         "## Certified block-encoding cases",
     )
     positions = [readme.find(marker) for marker in order]
     if any(position < 0 for position in positions) or positions != sorted(positions):
-        fail("README reader order must be intro → public workflow → hierarchy → SP → BE → cases")
+        fail("README reader order must be intro → Harness v2 → SP → BE → cases")
 
-    check_hierarchy_asset(readme)
+    check_frontier_asset(readme)
 
 
 def check_readme_svgs(readme: str) -> None:

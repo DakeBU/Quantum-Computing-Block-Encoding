@@ -41,44 +41,37 @@ The project serves two **independent** mathematical routes. State Preparation as
 
 ---
 
-## ASPBE harness — from contract to checked evidence
+## ASPBE harness v2 — substantive advances at the proof frontier
 
-Once a task contract is fixed, ASPBE turns it into a small public evidence pipeline.
-
-<p align="center">
-  <img src="docs/assets/aspbe_harness_flow.svg" alt="ASPBE contract-to-certificate harness" width="1180">
-</p>
-
-The public loop is intentionally simple:
-
-**freeze the contract → retrieve proved components → construct a candidate → run cheap finite screening → close a named Lean theorem → deliver proof/code artifacts.**
-
-A failed proof leaf becomes a typed obstruction. Repeating the same leaf against unchanged evidence is not progress: the next attempt must change a route, prerequisite, proof frontier, or declared tolerance rung.
-
-> **Evidence boundary.** Qiskit, NumPy, and OpenQASM checks may reject or prioritize finite candidates. They do not replace the named Lean theorem for an exact symbolic claim.
-
----
-
-## Why a hierarchical harness?
-
-State Preparation and Block Encoding traditionally ask one researcher to **invent a construction, remember the literature, decompose the proof, debug failed routes, and verify the final circuit**. A single monolithic solver inherits the same coordination problem at greater speed.
-
-ASPBE instead separates **mathematical strategy**, **Lean-tree planning**, **focused local proof work**, and **verification**.
+ASPBE keeps a frozen mathematical contract and a global proof DAG, then assigns a small number of independent **Universal Workers**. Each Worker may cross source reading, mathematical derivation, Lean implementation, finite diagnostics, resource analysis, diagrams, and exposition. The **Frontier Master** reconciles their evidence and promotes only a theorem-backed advance or a sharp obstruction that changes the proof plan.
 
 <p align="center">
-  <img src="docs/assets/ASPBE.png" alt="Human, flat automation, and the ASPBE hierarchical harness" width="1180">
+  <img src="docs/assets/aspbe_master_worker_frontier.svg" alt="ASPBE Frontier Master and Universal Worker harness" width="1180">
 </p>
 
-The hierarchy has explicit role boundaries:
+The public loop is:
 
-- **Upper strategist:** brainstorms construction families, freezes the intended target, and changes only an authorized capacity or tolerance rung.
-- **Middle planner / Lean-tree manager:** retrieves QuantumComputinglib and memory cards, maintains the Lean tree/network and proof DAG, decomposes a route, and issues only ready leaves.
-- **Lower workers:** solve one local obligation at a time — one human-readable proof step, one Lean declaration, or one finite diagnostic — rather than redesigning the whole construction.
-- **Reviewer / verifier:** checks assumptions, evidence class, finite screens, target fidelity, and promotion; typed failures are routed back instead of being retried blindly.
+**freeze the contract → identify the real proof bottleneck → run independent end-to-end Worker objectives → apply source/semantic/Lean/integration/exposition gates → update the certified frontier.**
 
-Verification is **not** the end of the harness. Lean pass/fail, proof progress, obstruction type, finite checks, target fidelity, and the circuit resource tuple form a process-reward signal. A failed or low-value candidate sends typed feedback to the **Middle planner** to replan the proof DAG and, when the construction itself is the bottleneck, to the **Upper strategist** to change the construction family or authorized policy rung. The next iteration therefore changes either the mathematical route or its proof decomposition; a Lean-verified candidate is exported only after it satisfies the target and promotion criteria.
+The key change from the original fixed Upper/Middle/Lower role stack is that **skills are lenses, not walls**. A Worker who discovers an operand-order error may immediately build a counterexample, repair the formal statement, inspect the Lean dependency, and update the circuit explanation. Verification remains hard, but it is an acceptance function rather than a cognitively narrow caste.
 
-**QuantumComputinglib, the textbook, source/paper maps, and certified memory cards act as domain preparation for these agents.** The point is not simply to use more agents, but to give specialized agents a structured map of the field and prevent different levels from interfering with each other's jobs.
+One invocation counts as progress only when it closes a named theorem or reusable interface, integrates several layers into a higher proof node, or returns a typed obstruction strong enough to retire a route. Branches, commits, files, longer logs, isolated arithmetic lemmas, and repeated unchanged attempts are observability data—not mathematical progress.
+
+For the current comparator audit, the acceptance chain is deliberately explicit:
+
+```text
+individual X/CNOT/Toffoli gates
+  -> source subcircuits U₁,...,U₈
+  -> Figure 4 adder semantics
+  -> Figure 5 data and carry/flag semantics
+  -> comparator theorem and resource claim.
+```
+
+Thus `BinaryCarryTelescoping.lean` may certify an internal carry identity, but cannot by itself be advertised as a proof of the printed adder circuit. The reader-facing figure must separately show the overwritten data register and the carry/flag wire, state the operand convention, and attach named Lean declarations to the arrows.
+
+> **Evidence boundary.** Qiskit, NumPy, OpenQASM, truth tables, and one-bit audits may reject or prioritize candidates. They do not replace the named Lean theorem for an exact arbitrary-width claim.
+
+The detailed protocol, handoff schema, Master-bottleneck controls, efficiency metrics, legacy CLI mapping, and worked Vandaele schedule are in [`HARNESS.md`](HARNESS.md). Existing `upper`, `middle`, `lower1`–`lower4`, and `reviewer` profile keys remain replay-compatible execution slots; they no longer define what an agent is allowed to think about.
 
 ---
 

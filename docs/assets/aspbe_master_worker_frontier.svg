@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1240" viewBox="0 0 1600 1240" role="img" aria-labelledby="title desc">
+  <title id="title">ASPBE Harness v2: Frontier Master and Universal Workers</title>
+  <desc id="desc">A frozen mathematical contract feeds a global proof frontier. A Master selects independent uncertainties and sends substantive objectives to universal Workers. Workers may cross source reading, mathematics, Lean, tests, and explanation. Structured evidence passes five hard gates before an accepted theorem or sharp obstruction updates the frontier.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#22384a"/></marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#35657d"/></marker>
+    <style>
+      .t { font-family: "Times New Roman", Times, serif; fill: #162a38; }
+      .title { font-size: 42px; font-weight: 700; }
+      .subtitle { font-size: 22px; }
+      .h { font-size: 27px; font-weight: 700; }
+      .b { font-size: 20px; }
+      .s { font-size: 17px; }
+      .tiny { font-size: 15px; }
+      .box { stroke: #22384a; stroke-width: 2.4; rx: 18; ry: 18; }
+      .arrow { stroke: #22384a; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .feedback { stroke: #35657d; stroke-width: 3; fill: none; stroke-dasharray: 10 7; marker-end: url(#arrowBlue); }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1240" fill="#ffffff"/>
+  <text class="t title" x="800" y="58" text-anchor="middle">ASPBE Harness v2</text>
+  <text class="t subtitle" x="800" y="94" text-anchor="middle">Universal mathematical Workers; hard evidence gates; one global proof frontier</text>
+
+  <rect class="box" x="210" y="126" width="1180" height="112" fill="#edf4f7"/>
+  <text class="t h" x="800" y="164" text-anchor="middle">1. Freeze the mathematical contract</text>
+  <text class="t b" x="800" y="198" text-anchor="middle">target state/operator · oracle model · register order · source claim · exact/approximate rung · promotion theorem</text>
+  <text class="t s" x="800" y="224" text-anchor="middle">The contract may be challenged by evidence, but never silently changed by a Worker.</text>
+  <path class="arrow" d="M800 238 L800 278"/>
+
+  <rect class="box" x="285" y="278" width="1030" height="170" fill="#e3eef4"/>
+  <text class="t h" x="800" y="319" text-anchor="middle">2. Frontier Master</text>
+  <text class="t b" x="800" y="354" text-anchor="middle">maintains the proof DAG · finds the real bottleneck · selects independent uncertainties</text>
+  <text class="t b" x="800" y="385" text-anchor="middle">issues end-to-end objectives · reconciles conventions · retires stale work · synthesizes the global delta</text>
+  <rect x="415" y="406" width="770" height="27" fill="#ffffff" stroke="#7691a2" stroke-width="1.5" rx="8" ry="8"/>
+  <text class="t s" x="800" y="426" text-anchor="middle">Progress = a higher certified frontier node or a sharp obstruction that changes the graph</text>
+
+  <path class="arrow" d="M800 448 L800 483"/>
+  <path d="M270 483 L1330 483" stroke="#22384a" stroke-width="3" fill="none"/>
+  <path class="arrow" d="M270 483 L270 520"/>
+  <path class="arrow" d="M800 483 L800 520"/>
+  <path class="arrow" d="M1330 483 L1330 520"/>
+
+  <rect class="box" x="90" y="520" width="360" height="276" fill="#f4f0e5"/>
+  <text class="t h" x="270" y="559" text-anchor="middle">Universal Worker A</text>
+  <text class="t b" x="270" y="592" text-anchor="middle">one substantive objective</text>
+  <line x1="125" y1="611" x2="415" y2="611" stroke="#8a7a58" stroke-width="1.5"/>
+  <text class="t s" x="145" y="642">• inspect the literal source</text>
+  <text class="t s" x="145" y="672">• derive exact semantics</text>
+  <text class="t s" x="145" y="702">• implement Lean and tests</text>
+  <text class="t s" x="145" y="732">• preserve cross-layer ideas</text>
+  <text class="t s" x="145" y="762">• return theorem or obstruction</text>
+
+  <rect class="box" x="620" y="520" width="360" height="276" fill="#edf3e8"/>
+  <text class="t h" x="800" y="559" text-anchor="middle">Universal Worker B</text>
+  <text class="t b" x="800" y="592" text-anchor="middle">an independent uncertainty</text>
+  <line x1="655" y1="611" x2="945" y2="611" stroke="#66805b" stroke-width="1.5"/>
+  <text class="t s" x="675" y="642">• search reusable library blocks</text>
+  <text class="t s" x="675" y="672">• compress repeated proof traces</text>
+  <text class="t s" x="675" y="702">• build finite discriminators</text>
+  <text class="t s" x="675" y="732">• update the proof/explanation map</text>
+  <text class="t s" x="675" y="762">• expose residual assumptions</text>
+
+  <rect class="box" x="1150" y="520" width="360" height="276" fill="#f3e9ec"/>
+  <text class="t h" x="1330" y="559" text-anchor="middle">Universal Worker C</text>
+  <text class="t b" x="1330" y="592" text-anchor="middle">a competing route or audit</text>
+  <line x1="1185" y1="611" x2="1475" y2="611" stroke="#936878" stroke-width="1.5"/>
+  <text class="t s" x="1205" y="642">• challenge operand conventions</text>
+  <text class="t s" x="1205" y="672">• seek minimal counterexamples</text>
+  <text class="t s" x="1205" y="702">• connect gates to root claims</text>
+  <text class="t s" x="1205" y="732">• improve theorem-linked figures</text>
+  <text class="t s" x="1205" y="762">• reject attractive false routes</text>
+
+  <rect x="145" y="816" width="1310" height="56" fill="#ffffff" stroke="#6f8795" stroke-width="1.8" rx="14" ry="14"/>
+  <text class="t b" x="800" y="841" text-anchor="middle">Skills are lenses, not walls:</text>
+  <text class="t s" x="800" y="863" text-anchor="middle">source ↔ mathematics ↔ Lean ↔ finite diagnostics ↔ resources ↔ diagrams ↔ exposition</text>
+
+  <path class="arrow" d="M270 796 L270 902 L800 902 L800 930"/>
+  <path class="arrow" d="M800 796 L800 930"/>
+  <path class="arrow" d="M1330 796 L1330 902 L800 902 L800 930"/>
+
+  <rect class="box" x="125" y="930" width="1350" height="136" fill="#f7f8f8"/>
+  <text class="t h" x="800" y="968" text-anchor="middle">3. Hard promotion gates</text>
+  <rect x="165" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
+  <text class="t b" x="277" y="1022" text-anchor="middle">Source fidelity</text>
+  <rect x="426" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
+  <text class="t b" x="538" y="1022" text-anchor="middle">Semantic action</text>
+  <rect x="688" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
+  <text class="t b" x="800" y="1022" text-anchor="middle">Lean theorem</text>
+  <rect x="950" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
+  <text class="t b" x="1062" y="1022" text-anchor="middle">Integration</text>
+  <rect x="1211" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
+  <text class="t b" x="1323" y="1022" text-anchor="middle">Readable proof</text>
+  <path class="arrow" d="M800 1066 L800 1100"/>
+
+  <rect class="box" x="260" y="1100" width="1080" height="100" fill="#e6f2ea"/>
+  <text class="t h" x="800" y="1139" text-anchor="middle">4. Accepted substantive advance</text>
+  <text class="t b" x="800" y="1173" text-anchor="middle">named theorem / reusable block / integrated circuit semantics / sharp typed obstruction</text>
+  <path class="feedback" d="M1340 1150 C1515 1150 1540 410 1317 382"/>
+  <text class="t tiny" x="1502" y="760" text-anchor="middle" transform="rotate(-90 1502 760)">update the frontier; do not replay unchanged work</text>
+</svg>
