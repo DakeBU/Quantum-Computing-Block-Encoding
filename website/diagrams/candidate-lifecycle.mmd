@@ -1,15 +1,28 @@
 flowchart LR
-  C["Candidate construction<br/>U"] --> F["Finite screen<br/>dimensions · unitarity · clean block"]
-  F --> L{"Named Lean theorem"}
-  L -- "closed" --> V["Certified construction"]
-  V --> E["Optional Qiskit /<br/>OpenQASM export"]
-  L -- "open" --> O["Explicit obstruction<br/>or missing proof leaf"]
-  O --> R["Change construction route<br/>or one declared ε rung"]
-  R --> C
+  T["Frozen mathematical contract<br/>target · registers · α · ε · resource order"] --> M["Frontier Master<br/>choose one real bottleneck"]
 
-  classDef math fill:#ffffff,stroke:#5b6670,color:#222222,stroke-width:1.25px;
-  classDef proof fill:#ffffff,stroke:#2f7355,color:#18382b,stroke-width:1.6px;
-  classDef fail fill:#ffffff,stroke:#8a5a4a,color:#4c332c,stroke-width:1.4px;
-  class C,F,R math;
-  class L,V,E proof;
+  M --> W1["Universal Worker A<br/>source ↔ math ↔ Lean"]
+  M --> W2["Universal Worker B<br/>independent route / counterexample"]
+  M --> W3["Universal Worker C<br/>finite diagnostics / resources / exposition"]
+
+  W1 --> I["Local integrator<br/>compare evidence, salvage ideas"]
+  W2 --> I
+  W3 --> I
+
+  I --> G{"Progress certificate gates<br/>source · semantics · Lean · integration · exposition"}
+  G -- "pass" --> C["Certified frontier advance<br/>named theorem / reusable interface"]
+  G -- "typed obstruction" --> O["Retire or repair route<br/>record exact failure and reusable lesson"]
+  O --> M
+  C --> N["Update theorem graph<br/>schedule next substantive frontier"]
+  N --> M
+
+  C --> E["Optional executable / teaching exports<br/>Qiskit · OpenQASM · circuit figure"]
+
+  classDef master fill:#ffffff,stroke:#465f7a,color:#203040,stroke-width:1.8px;
+  classDef worker fill:#ffffff,stroke:#71608f,color:#302640,stroke-width:1.4px;
+  classDef proof fill:#ffffff,stroke:#2f7355,color:#18382b,stroke-width:1.8px;
+  classDef fail fill:#ffffff,stroke:#8a5a4a,color:#4c332c,stroke-width:1.5px;
+  class T,M,N master;
+  class W1,W2,W3,I worker;
+  class G,C,E proof;
   class O fail;
