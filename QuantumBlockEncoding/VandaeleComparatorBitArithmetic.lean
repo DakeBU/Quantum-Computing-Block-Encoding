@@ -39,6 +39,14 @@ def bitwiseNot {n : Nat} (bits : BitRegister n) : BitRegister n :=
     bitwiseNot bits index = flipFlag (bits index) := by
   rfl
 
+/-- Bitwise X is itself an involution, matching the two X-layers displayed
+around the subtraction/comparator construction. -/
+@[simp] theorem bitwiseNot_bitwiseNot {n : Nat}
+    (bits : BitRegister n) :
+    bitwiseNot (bitwiseNot bits) = bits := by
+  funext index
+  simp [bitwiseNot]
+
 @[simp] theorem flipFlag_val (bit : Fin 2) :
     (flipFlag bit).val = 1 - bit.val := by
   fin_cases bit <;> rfl
