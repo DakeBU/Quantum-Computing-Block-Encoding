@@ -12,6 +12,15 @@ For one-bit inputs, the two outer CX ladders and the parallel CX layers are
 empty.  The displayed circuit therefore consists only of the X conjugation on
 `b`, the middle `V₂^(1)` block, and the inverse X conjugation on `b`.
 
+Source cross-check (arXiv:2603.12917v1, Figures 4--5 and Equation (17)):
+Figure 4 keeps `a` unchanged, writes `s = a + b` into the `b` wires, and XORs
+the outgoing carry into `z`.  The text immediately before Figure 5 says that
+the subtraction circuit is obtained by conjugating this adder with X gates on
+the register holding `b`, while Equation (17) labels the intended predicate as
+`a < b`.  Thus the one-bit specialization is a useful convention-independent
+audit of the direction of the displayed carry predicate.  We keep the generic
+carry/sign question separate from the finite certificate in this file.
+
 We do **not** change the Figure-5 wiring to make it agree with Equation (17).
 Instead we encode the displayed one-bit circuit literally and compare it with
 the already-formalized Equation-(17) contract.  Any mismatch is therefore a
