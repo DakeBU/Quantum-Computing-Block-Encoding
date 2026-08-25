@@ -1,0 +1,39 @@
+name: Vandaele Figure 5 source orientation audit
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleComparatorFigure5Audit.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorContract.lean"
+      - "QuantumBlockEncoding/VandaeleVOperator.lean"
+      - "QuantumBlockEncoding/VandaeleLadder*.lean"
+      - ".github/workflows/vandaele-figure5-audit-on-lean429-fix.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-figure5-source-orientation-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  figure5-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile complete one-bit Figure 5 audit
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleComparatorFigure5Audit
