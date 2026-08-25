@@ -1,9 +1,9 @@
-name: Vandaele Figure 5 audit on canonical fix
+name: Vandaele Figure 5 source orientation audit
 
 on:
   pull_request:
     branches:
-      - "agent/vandaele-ladder-permutation-lean429-fix"
+      - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/VandaeleComparatorFigure5Audit.lean"
       - "QuantumBlockEncoding/VandaeleComparatorContract.lean"
@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: vandaele-figure5-audit-on-fix-${{ github.ref }}
+  group: vandaele-figure5-source-orientation-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -33,7 +33,7 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile literal one-bit Figure 5 audit
+      - name: Compile complete one-bit Figure 5 audit
         run: |
           set -euxo pipefail
           lake build QuantumBlockEncoding.VandaeleComparatorFigure5Audit
