@@ -1,5 +1,4 @@
 import QuantumBlockEncoding.ReversibleClassical
-import QuantumBlockEncoding.PrimitiveBasisLE
 import Mathlib.Tactic
 
 /-!
@@ -29,6 +28,33 @@ namespace VandaeleFigure4TakahashiSourceProgram
 
 /-- Five-bit Vandaele/Takahashi source layout has ten data wires plus `z`. -/
 abbrev SourceBasis := PrimitiveBasis 11
+
+/-- Canonical constructor for all eleven displayed source wires.  Quantifying
+its arguments separately lets `native_decide` enumerate the 2^11 bit strings
+without depending on any external flat-index helper. -/
+def sourceState
+    (a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z : Fin 2) : SourceBasis :=
+  fun wire =>
+    match wire.val with
+    | 0 => a0
+    | 1 => b0
+    | 2 => a1
+    | 3 => b1
+    | 4 => a2
+    | 5 => b2
+    | 6 => a3
+    | 7 => b3
+    | 8 => a4
+    | 9 => b4
+    | _ => z
+
+/-- Every source basis state is recovered from its eleven displayed wires. -/
+theorem sourceState_eta (state : SourceBasis) :
+    sourceState
+      (state 0) (state 1) (state 2) (state 3) (state 4) (state 5)
+      (state 6) (state 7) (state 8) (state 9) (state 10) = state := by
+  funext wire
+  fin_cases wire <;> rfl
 
 /-- Unsigned little-endian value of the displayed `a` register. -/
 def aValue (state : SourceBasis) : Nat :=
@@ -117,12 +143,10 @@ theorem sourceProgram_stepLengths :
       (4, 4, 5, 8, 3, 5) := by
   native_decide
 
-/-- Flat-index version of the exhaustive source check.  Indexing through the
-existing little-endian equivalence avoids asking the decision procedure to
-enumerate a function space representation of the same 2048 basis states. -/
-private theorem sourceProgram_arithmetic_certificate_index
-    (index : Fin (gridSize 11)) :
-    let state := (primitiveBasisLEEquiv 11).symm index
+/-- Exhaustive scalar-bit form of the five-bit arithmetic certificate. -/
+private theorem sourceProgram_arithmetic_certificate_bits
+    (a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z : Fin 2) :
+    let state := sourceState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z
     let output := evalReversibleProgram sourceProgram state
     aValue output = aValue state ∧
       bValue output = (aValue state + bValue state) % 32 ∧
@@ -139,9 +163,12 @@ theorem sourceProgram_arithmetic_certificate (state : SourceBasis) :
       bValue output = (aValue state + bValue state) % 32 ∧
       zValue output =
         (zValue state + (aValue state + bValue state) / 32) % 2 := by
-  let index := primitiveBasisLEEquiv 11 state
-  have checked := sourceProgram_arithmetic_certificate_index index
-  simpa [index] using checked
+  have checked :=
+    sourceProgram_arithmetic_certificate_bits
+      (state 0) (state 1) (state 2) (state 3) (state 4) (state 5)
+      (state 6) (state 7) (state 8) (state 9) (state 10)
+  rw [sourceState_eta state] at checked
+  exact checked
 
 /-- The first addend register is preserved. -/
 theorem sourceProgram_preserves_a (state : SourceBasis) :
