@@ -1,100 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1240" viewBox="0 0 1600 1240" role="img" aria-labelledby="title desc">
-  <title id="title">ASPBE Harness v2: Frontier Master and Universal Workers</title>
-  <desc id="desc">A frozen mathematical contract feeds a global proof frontier. A Master selects independent uncertainties and sends substantive objectives to universal Workers. Workers may cross source reading, mathematics, Lean, tests, and explanation. Structured evidence passes five hard gates before an accepted theorem or sharp obstruction updates the frontier.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1180" viewBox="0 0 1800 1180" role="img" aria-labelledby="title desc">
+  <title id="title">ASPBE Research Harness: human reasoning, LLM-only reasoning, and machine-checked synthesis</title>
+  <desc id="desc">The left column compares human expert derivation with unverified LLM-only guessing for state preparation and block encoding. The right column shows ASPBE: a Frontier Master coordinates generalist workers, preserves the original Paper Scout, Planner, Worker, Checker and L0 through L3 review spine, and promotes only source-audited Lean-checked mathematical advances.</desc>
   <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#22384a"/></marker>
-    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#35657d"/></marker>
+    <marker id="arrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#263b49"/></marker>
+    <marker id="redArrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#8f5656"/></marker>
     <style>
-      .t { font-family: "Times New Roman", Times, serif; fill: #162a38; }
-      .title { font-size: 42px; font-weight: 700; }
-      .subtitle { font-size: 22px; }
-      .h { font-size: 27px; font-weight: 700; }
-      .b { font-size: 20px; }
-      .s { font-size: 17px; }
-      .tiny { font-size: 15px; }
-      .box { stroke: #22384a; stroke-width: 2.4; rx: 18; ry: 18; }
-      .arrow { stroke: #22384a; stroke-width: 3; fill: none; marker-end: url(#arrow); }
-      .feedback { stroke: #35657d; stroke-width: 3; fill: none; stroke-dasharray: 10 7; marker-end: url(#arrowBlue); }
+      .t{font-family:"Times New Roman",Times,serif;fill:#172b38}.title{font-size:42px;font-weight:700}.sub{font-size:21px}.h{font-size:25px;font-weight:700}.b{font-size:18px}.s{font-size:16px}.tiny{font-size:14px}.box{stroke-width:2;rx:15;ry:15}.line{stroke:#263b49;stroke-width:2.6;fill:none;marker-end:url(#arrow)}.thin{stroke:#516875;stroke-width:2;fill:none;marker-end:url(#arrow)}.bad{stroke:#8f5656;stroke-width:2.4;fill:none;stroke-dasharray:8 6;marker-end:url(#redArrow)}
     </style>
   </defs>
-  <rect x="0" y="0" width="1600" height="1240" fill="#ffffff"/>
-  <text class="t title" x="800" y="58" text-anchor="middle">ASPBE Harness v2</text>
-  <text class="t subtitle" x="800" y="94" text-anchor="middle">Universal mathematical Workers; hard evidence gates; one global proof frontier</text>
+  <rect width="1800" height="1180" fill="#fff"/>
+  <text class="t title" x="900" y="55" text-anchor="middle">ASPBE Research Harness</text>
+  <text class="t sub" x="900" y="88" text-anchor="middle">Why machine-checked synthesis is different from human-only work and one-pass LLM guessing</text>
 
-  <rect class="box" x="210" y="126" width="1180" height="112" fill="#edf4f7"/>
-  <text class="t h" x="800" y="164" text-anchor="middle">1. Freeze the mathematical contract</text>
-  <text class="t b" x="800" y="198" text-anchor="middle">target state/operator · oracle model · register order · source claim · exact/approximate rung · promotion theorem</text>
-  <text class="t s" x="800" y="224" text-anchor="middle">The contract may be challenged by evidence, but never silently changed by a Worker.</text>
-  <path class="arrow" d="M800 238 L800 278"/>
+  <!-- Human path -->
+  <rect class="box" x="55" y="125" width="615" height="420" fill="#f8f5ed" stroke="#756a54"/>
+  <text class="t h" x="362" y="164" text-anchor="middle">A. Human expert reasoning</text>
+  <rect class="box" x="145" y="188" width="435" height="62" fill="#fff" stroke="#8b806b"/>
+  <text class="t b" x="362" y="215" text-anchor="middle">Query-oracle / mathematical I/O conditions</text>
+  <text class="t s" x="362" y="238" text-anchor="middle">target state or operator · available oracles · resources</text>
+  <path class="thin" d="M362 250 L362 276"/>
+  <path d="M230 276 L495 276" stroke="#516875" stroke-width="2"/>
+  <path class="thin" d="M230 276 L230 300"/><path class="thin" d="M495 276 L495 300"/>
+  <rect class="box" x="90" y="300" width="280" height="92" fill="#fff" stroke="#8b806b"/>
+  <text class="t b" x="230" y="330" text-anchor="middle">State Preparation</text>
+  <text class="t s" x="230" y="357" text-anchor="middle">derive U with</text><text class="t s" x="230" y="380" text-anchor="middle">U|0…0⟩ = |ψ⟩</text>
+  <rect class="box" x="355" y="300" width="280" height="92" fill="#fff" stroke="#8b806b"/>
+  <text class="t b" x="495" y="330" text-anchor="middle">Block Encoding</text>
+  <text class="t s" x="495" y="357" text-anchor="middle">derive U with</text><text class="t s" x="495" y="380" text-anchor="middle">α Π U Π† ≈ A</text>
+  <path class="thin" d="M230 392 L230 415 L362 415 L362 438"/><path class="thin" d="M495 392 L495 415 L362 415"/>
+  <rect class="box" x="135" y="438" width="455" height="78" fill="#eee9dc" stroke="#756a54"/>
+  <text class="t b" x="362" y="467" text-anchor="middle">Human circuit design + proof + expert checking</text>
+  <text class="t s" x="362" y="494" text-anchor="middle">high insight · trustworthy after review · manual and difficult to scale</text>
 
-  <rect class="box" x="285" y="278" width="1030" height="170" fill="#e3eef4"/>
-  <text class="t h" x="800" y="319" text-anchor="middle">2. Frontier Master</text>
-  <text class="t b" x="800" y="354" text-anchor="middle">maintains the proof DAG · finds the real bottleneck · selects independent uncertainties</text>
-  <text class="t b" x="800" y="385" text-anchor="middle">issues end-to-end objectives · reconciles conventions · retires stale work · synthesizes the global delta</text>
-  <rect x="415" y="406" width="770" height="27" fill="#ffffff" stroke="#7691a2" stroke-width="1.5" rx="8" ry="8"/>
-  <text class="t s" x="800" y="426" text-anchor="middle">Progress = a higher certified frontier node or a sharp obstruction that changes the graph</text>
+  <!-- LLM-only path -->
+  <rect class="box" x="55" y="575" width="615" height="500" fill="#fbf2f2" stroke="#985f5f"/>
+  <text class="t h" x="362" y="614" text-anchor="middle">B. LLM-only guessed reasoning</text>
+  <rect class="box" x="155" y="638" width="415" height="57" fill="#fff" stroke="#a66f6f"/>
+  <text class="t b" x="362" y="673" text-anchor="middle">Prompt + paper context</text>
+  <path class="thin" d="M362 695 L362 720"/><path d="M230 720 L495 720" stroke="#516875" stroke-width="2"/>
+  <path class="thin" d="M230 720 L230 744"/><path class="thin" d="M495 720 L495 744"/>
+  <rect class="box" x="90" y="744" width="280" height="75" fill="#fff" stroke="#a66f6f"/>
+  <text class="t b" x="230" y="776" text-anchor="middle">Guess State Preparation</text><text class="t s" x="230" y="801" text-anchor="middle">construction / proof sketch</text>
+  <rect class="box" x="355" y="744" width="280" height="75" fill="#fff" stroke="#a66f6f"/>
+  <text class="t b" x="495" y="776" text-anchor="middle">Guess Block Encoding</text><text class="t s" x="495" y="801" text-anchor="middle">construction / proof sketch</text>
+  <path class="bad" d="M230 819 L230 844 L362 844 L362 871"/><path class="bad" d="M495 819 L495 844 L362 844"/>
+  <rect class="box" x="125" y="871" width="475" height="88" fill="#fff" stroke="#985f5f"/>
+  <text class="t b" x="362" y="901" text-anchor="middle">Plausible formulas / prose / code</text>
+  <text class="t s" x="362" y="928" text-anchor="middle">semantic drift · hidden assumptions · register / sign / oracle mistakes</text>
+  <path class="bad" d="M362 959 L362 982"/>
+  <rect class="box" x="115" y="982" width="495" height="72" fill="#f4dddd" stroke="#985f5f"/>
+  <text class="t b" x="362" y="1011" text-anchor="middle">Verification gap → not a trusted artifact</text>
+  <text class="t s" x="362" y="1038" text-anchor="middle">one-pass “generate the whole Lean proof from scratch” is too brittle to be the verifier</text>
 
-  <path class="arrow" d="M800 448 L800 483"/>
-  <path d="M270 483 L1330 483" stroke="#22384a" stroke-width="3" fill="none"/>
-  <path class="arrow" d="M270 483 L270 520"/>
-  <path class="arrow" d="M800 483 L800 520"/>
-  <path class="arrow" d="M1330 483 L1330 520"/>
+  <!-- ASPBE path -->
+  <rect class="box" x="720" y="125" width="1025" height="950" fill="#f5f8fa" stroke="#465f7a"/>
+  <text class="t h" x="1232" y="164" text-anchor="middle">C. ASPBE: search + formal memory + proof-gated synthesis</text>
+  <rect class="box" x="875" y="188" width="715" height="72" fill="#fff" stroke="#607b8d"/>
+  <text class="t b" x="1232" y="216" text-anchor="middle">Formal State Preparation / Block Encoding / query-oracle contract</text>
+  <text class="t s" x="1232" y="243" text-anchor="middle">register order · source statement · α · ε · resource tier · theorem target</text>
+  <path class="line" d="M1232 260 L1232 294"/>
 
-  <rect class="box" x="90" y="520" width="360" height="276" fill="#f4f0e5"/>
-  <text class="t h" x="270" y="559" text-anchor="middle">Universal Worker A</text>
-  <text class="t b" x="270" y="592" text-anchor="middle">one substantive objective</text>
-  <line x1="125" y1="611" x2="415" y2="611" stroke="#8a7a58" stroke-width="1.5"/>
-  <text class="t s" x="145" y="642">• inspect the literal source</text>
-  <text class="t s" x="145" y="672">• derive exact semantics</text>
-  <text class="t s" x="145" y="702">• implement Lean and tests</text>
-  <text class="t s" x="145" y="732">• preserve cross-layer ideas</text>
-  <text class="t s" x="145" y="762">• return theorem or obstruction</text>
+  <rect class="box" x="855" y="294" width="755" height="91" fill="#e6eff4" stroke="#465f7a"/>
+  <text class="t h" x="1232" y="329" text-anchor="middle">Frontier Master</text>
+  <text class="t s" x="1232" y="357" text-anchor="middle">maintain theorem graph · choose real bottlenecks · schedule independent uncertainty · reconcile evidence</text>
+  <path class="line" d="M1232 385 L1232 416"/><path d="M895 416 L1568 416" stroke="#263b49" stroke-width="2.5"/>
+  <path class="line" d="M895 416 L895 447"/><path class="line" d="M1232 416 L1232 447"/><path class="line" d="M1568 416 L1568 447"/>
 
-  <rect class="box" x="620" y="520" width="360" height="276" fill="#edf3e8"/>
-  <text class="t h" x="800" y="559" text-anchor="middle">Universal Worker B</text>
-  <text class="t b" x="800" y="592" text-anchor="middle">an independent uncertainty</text>
-  <line x1="655" y1="611" x2="945" y2="611" stroke="#66805b" stroke-width="1.5"/>
-  <text class="t s" x="675" y="642">• search reusable library blocks</text>
-  <text class="t s" x="675" y="672">• compress repeated proof traces</text>
-  <text class="t s" x="675" y="702">• build finite discriminators</text>
-  <text class="t s" x="675" y="732">• update the proof/explanation map</text>
-  <text class="t s" x="675" y="762">• expose residual assumptions</text>
+  <rect class="box" x="765" y="447" width="260" height="142" fill="#f2edf7" stroke="#71608f"/>
+  <text class="t b" x="895" y="478" text-anchor="middle">Generalist Worker A</text>
+  <text class="t s" x="895" y="507" text-anchor="middle">source ↔ mathematics</text><text class="t s" x="895" y="533" text-anchor="middle">Lean ↔ counterexamples</text><text class="t s" x="895" y="559" text-anchor="middle">one substantive objective</text>
+  <rect class="box" x="1102" y="447" width="260" height="142" fill="#f2edf7" stroke="#71608f"/>
+  <text class="t b" x="1232" y="478" text-anchor="middle">Generalist Worker B</text>
+  <text class="t s" x="1232" y="507" text-anchor="middle">reuse proof memory</text><text class="t s" x="1232" y="533" text-anchor="middle">independent construction</text><text class="t s" x="1232" y="559" text-anchor="middle">or sharp obstruction</text>
+  <rect class="box" x="1438" y="447" width="260" height="142" fill="#f2edf7" stroke="#71608f"/>
+  <text class="t b" x="1568" y="478" text-anchor="middle">Generalist Worker C</text>
+  <text class="t s" x="1568" y="507" text-anchor="middle">semantics ↔ resources</text><text class="t s" x="1568" y="533" text-anchor="middle">circuits ↔ diagrams</text><text class="t s" x="1568" y="559" text-anchor="middle">cross-layer ideas survive</text>
 
-  <rect class="box" x="1150" y="520" width="360" height="276" fill="#f3e9ec"/>
-  <text class="t h" x="1330" y="559" text-anchor="middle">Universal Worker C</text>
-  <text class="t b" x="1330" y="592" text-anchor="middle">a competing route or audit</text>
-  <line x1="1185" y1="611" x2="1475" y2="611" stroke="#936878" stroke-width="1.5"/>
-  <text class="t s" x="1205" y="642">• challenge operand conventions</text>
-  <text class="t s" x="1205" y="672">• seek minimal counterexamples</text>
-  <text class="t s" x="1205" y="702">• connect gates to root claims</text>
-  <text class="t s" x="1205" y="732">• improve theorem-linked figures</text>
-  <text class="t s" x="1205" y="762">• reject attractive false routes</text>
+  <path class="line" d="M895 589 L895 620 L1232 620 L1232 644"/><path class="line" d="M1232 589 L1232 644"/><path class="line" d="M1568 589 L1568 620 L1232 620"/>
+  <rect class="box" x="900" y="644" width="665" height="72" fill="#fff" stroke="#71608f"/>
+  <text class="t b" x="1232" y="672" text-anchor="middle">Local integration + substantive progress packet</text>
+  <text class="t s" x="1232" y="699" text-anchor="middle">compare evidence · salvage ideas · name residual assumptions · compress context</text>
+  <path class="line" d="M1232 716 L1232 744"/>
 
-  <rect x="145" y="816" width="1310" height="56" fill="#ffffff" stroke="#6f8795" stroke-width="1.8" rx="14" ry="14"/>
-  <text class="t b" x="800" y="841" text-anchor="middle">Skills are lenses, not walls:</text>
-  <text class="t s" x="800" y="863" text-anchor="middle">source ↔ mathematics ↔ Lean ↔ finite diagnostics ↔ resources ↔ diagrams ↔ exposition</text>
+  <rect class="box" x="825" y="744" width="815" height="105" fill="#edf3f6" stroke="#526f81"/>
+  <text class="t b" x="1232" y="773" text-anchor="middle">Original Harness structure is retained as the review / checkpoint spine</text>
+  <text class="t h" x="1232" y="807" text-anchor="middle">Paper Scout → Planner → Worker → Checker</text>
+  <text class="t b" x="1232" y="836" text-anchor="middle">L0 → L1 → L2 → L3 · checkpoints, not cognitive walls</text>
+  <path class="line" d="M1232 849 L1232 877"/>
 
-  <path class="arrow" d="M270 796 L270 902 L800 902 L800 930"/>
-  <path class="arrow" d="M800 796 L800 930"/>
-  <path class="arrow" d="M1330 796 L1330 902 L800 902 L800 930"/>
+  <rect class="box" x="810" y="877" width="845" height="91" fill="#edf6ef" stroke="#2f7355"/>
+  <text class="t h" x="1232" y="910" text-anchor="middle">Hard acceptance gates</text>
+  <text class="t s" x="1232" y="940" text-anchor="middle">source fidelity · circuit semantics · Lean compilation · integration theorem · proof/diagram consistency</text>
+  <path class="line" d="M1232 968 L1232 994"/>
 
-  <rect class="box" x="125" y="930" width="1350" height="136" fill="#f7f8f8"/>
-  <text class="t h" x="800" y="968" text-anchor="middle">3. Hard promotion gates</text>
-  <rect x="165" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
-  <text class="t b" x="277" y="1022" text-anchor="middle">Source fidelity</text>
-  <rect x="426" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
-  <text class="t b" x="538" y="1022" text-anchor="middle">Semantic action</text>
-  <rect x="688" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
-  <text class="t b" x="800" y="1022" text-anchor="middle">Lean theorem</text>
-  <rect x="950" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
-  <text class="t b" x="1062" y="1022" text-anchor="middle">Integration</text>
-  <rect x="1211" y="990" width="224" height="51" fill="#eef3f6" stroke="#355a70" stroke-width="1.8" rx="10" ry="10"/>
-  <text class="t b" x="1323" y="1022" text-anchor="middle">Readable proof</text>
-  <path class="arrow" d="M800 1066 L800 1100"/>
+  <rect class="box" x="835" y="994" width="795" height="62" fill="#e3f0e7" stroke="#2f7355"/>
+  <text class="t b" x="1232" y="1020" text-anchor="middle">Certified outputs: LaTeX theorem + proof · Lean source · circuit · Qiskit/OpenQASM · editable interface</text>
+  <text class="t tiny" x="1232" y="1045" text-anchor="middle">Failure is retained too: a typed counterexample retires the false route and updates the theorem graph.</text>
 
-  <rect class="box" x="260" y="1100" width="1080" height="100" fill="#e6f2ea"/>
-  <text class="t h" x="800" y="1139" text-anchor="middle">4. Accepted substantive advance</text>
-  <text class="t b" x="800" y="1173" text-anchor="middle">named theorem / reusable block / integrated circuit semantics / sharp typed obstruction</text>
-  <path class="feedback" d="M1340 1150 C1515 1150 1540 410 1317 382"/>
-  <text class="t tiny" x="1502" y="760" text-anchor="middle" transform="rotate(-90 1502 760)">update the frontier; do not replay unchanged work</text>
+  <path class="bad" d="M670 820 C705 820 700 820 720 820"/>
+  <text class="t tiny" x="695" y="800" text-anchor="middle">verification gap</text>
+  <path class="thin" d="M670 350 C700 350 695 350 720 350"/>
+  <text class="t tiny" x="695" y="330" text-anchor="middle">scaling gap</text>
+
+  <text class="t s" x="900" y="1122" text-anchor="middle">The point is not “LLM writes Lean.” The point is a closed scientific loop in which search, formal memory, source audit, executable diagnostics, and Lean proof constrain one another.</text>
 </svg>
