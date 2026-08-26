@@ -1,0 +1,41 @@
+name: Vandaele Figure 4 Takahashi step semantics
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiSourceProgram.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiCarryAlgebra.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiStepSemantics.lean"
+      - ".github/workflows/vandaele-figure4-takahashi-step-semantics.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-figure4-takahashi-step-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  step-semantics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile source and carry layers
+        run: |
+          lake build QuantumBlockEncoding.VandaeleFigure4TakahashiSourceProgram
+          lake build QuantumBlockEncoding.VandaeleFigure4TakahashiCarryAlgebra
+
+      - name: Compile six-step local gate refinement
+        run: lake build QuantumBlockEncoding.VandaeleFigure4TakahashiStepSemantics
