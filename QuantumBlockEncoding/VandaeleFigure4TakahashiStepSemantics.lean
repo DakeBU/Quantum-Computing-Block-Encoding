@@ -106,6 +106,19 @@ theorem evalReversibleProgram_append_local {qubits : Nat}
       rw [induction]
       rfl
 
+/-- Pointwise append form used to compose the six source steps without
+expanding the underlying gate lists. -/
+theorem evalReversibleProgram_append_apply_local {qubits : Nat}
+    (left right : ReversibleProgram qubits)
+    (state : PrimitiveBasis qubits) :
+    evalReversibleProgram (left ++ right) state =
+      evalReversibleProgram right (evalReversibleProgram left state) := by
+  have equality := congrArg
+    (fun permutation : PrimitiveBasis qubits ≃ PrimitiveBasis qubits =>
+      permutation state)
+    (evalReversibleProgram_append_local left right)
+  exact equality
+
 /-- Lowest-bit carry is the ordinary AND because its incoming carry is zero. -/
 theorem leastCarry_eq_and (a b : Fin 2) :
     c1 a b = andBit a b := by
@@ -119,6 +132,12 @@ theorem leastCarry_uncompute (a b next : Fin 2) :
 /-- Same least-carry cleanup in the exact operand order produced by Step 4. -/
 @[simp] theorem leastCarry_uncompute_reordered (a b next : Fin 2) :
     xorBit (andBit b a) (xorBit next (c1 a b)) = next := by
+  fin_cases a <;> fin_cases b <;> fin_cases next <;> rfl
+
+/-- Same cleanup after `andBit_comm` has normalized the controls but the inner
+XOR remains in target-first order. -/
+@[simp] theorem leastCarry_uncompute_targetFirst (a b next : Fin 2) :
+    xorBit (andBit a b) (xorBit next (c1 a b)) = next := by
   fin_cases a <;> fin_cases b <;> fin_cases next <;> rfl
 
 /-- State after TTK Step 1. -/
@@ -234,7 +253,7 @@ theorem step4_semantics
       evalReversibleGate_cx_eq_update, evalReversibleGate_ccx_eq_update,
       cxUpdate, ccxUpdate, sourceState, afterStep3, afterStep4,
       c2, c3, c4, c5, uncomputeCarry_reordered,
-      leastCarry_uncompute_reordered]
+      leastCarry_uncompute_targetFirst]
 
 /-- TTK Step 5 restores all higher `A` wires. -/
 theorem step5_semantics
@@ -267,17 +286,17 @@ theorem sourceProgram_finalState
         (sourceState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z) =
       finalState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z := by
   unfold sourceProgram
-  simp only [evalReversibleProgram_append_local]
-  change
-    evalReversibleProgram step6
-      (evalReversibleProgram step5
-        (evalReversibleProgram step4
-          (evalReversibleProgram step3
-            (evalReversibleProgram step2
-              (evalReversibleProgram step1
-                (sourceState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z)))))) = _
-  rw [step1_semantics, step2_semantics, step3_semantics,
-    step4_semantics, step5_semantics, step6_semantics]
+  rw [evalReversibleProgram_append_apply_local]
+  rw [step1_semantics]
+  rw [evalReversibleProgram_append_apply_local]
+  rw [step2_semantics]
+  rw [evalReversibleProgram_append_apply_local]
+  rw [step3_semantics]
+  rw [evalReversibleProgram_append_apply_local]
+  rw [step4_semantics]
+  rw [evalReversibleProgram_append_apply_local]
+  rw [step5_semantics]
+  exact step6_semantics a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z
 
 end VandaeleFigure4TakahashiStepSemantics
 end QuantumBlockEncoding
