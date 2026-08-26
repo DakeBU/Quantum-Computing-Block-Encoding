@@ -71,29 +71,34 @@ def readme_svg_refs(readme: str) -> list[str]:
 def check_frontier_asset(readme: str) -> None:
     reference = 'src="docs/assets/aspbe_master_worker_frontier.svg"'
     if reference not in readme:
-        fail("README must use the Harness v2 Frontier Master–Worker SVG")
+        fail("README must use the ASPBE Research Harness comparison SVG")
 
     source = read(FRONTIER_SVG)
     try:
         root = ET.fromstring(source)
     except ET.ParseError as exc:
-        fail(f"invalid Frontier Master–Worker SVG: {exc}")
+        fail(f"invalid ASPBE Research Harness SVG: {exc}")
 
-    if root.attrib.get("viewBox") != "0 0 1600 1240":
-        fail("Frontier Master–Worker SVG must keep the readable 1600×1240 viewBox")
+    if root.attrib.get("viewBox") != "0 0 1800 1180":
+        fail("ASPBE Research Harness SVG must keep the readable 1800×1180 comparison viewBox")
     if FRONTIER_SVG.stat().st_size > 100_000:
-        fail("Frontier Master–Worker SVG is unexpectedly large")
+        fail("ASPBE Research Harness SVG is unexpectedly large")
 
     required_labels = (
+        "Human expert reasoning",
+        "LLM-only guessed reasoning",
         "Frontier Master",
-        "Universal Worker A",
-        "Hard promotion gates",
-        "Accepted substantive advance",
-        "Skills are lenses, not walls",
+        "Generalist Worker A",
+        "Original Harness structure",
+        "Paper Scout",
+        "Hard acceptance gates",
+        "Certified outputs",
     )
     for label in required_labels:
         if label not in source:
-            fail(f"Frontier Master–Worker SVG is missing reader label {label!r}")
+            fail(f"ASPBE Research Harness SVG is missing reader label {label!r}")
+    if "Harness v2" in source or "harness v2" in source:
+        fail("public ASPBE Research Harness SVG must not expose an internal version label")
 
 
 def check_readme_math_surface(readme: str) -> None:
@@ -114,16 +119,23 @@ def check_readme_math_surface(readme: str) -> None:
                 "ket/bra bars can be parsed as column separators"
             )
 
-    order = (
-        "ASPBE is designed for a quantum-computing researcher",
+    # Keep the public reader flow stable while allowing the Harness copy to be
+    # renamed without exposing internal protocol version numbers.
+    harness_markers = (
+        "## ASPBE harness — substantive advances at the proof frontier",
         "## ASPBE harness v2 — substantive advances at the proof frontier",
-        "## Route I — State Preparation",
-        "## Route II — Block Encoding",
-        "## Certified block-encoding cases",
     )
-    positions = [readme.find(marker) for marker in order]
-    if any(position < 0 for position in positions) or positions != sorted(positions):
-        fail("README reader order must be intro → Harness v2 → SP → BE → cases")
+    harness_positions = [readme.find(marker) for marker in harness_markers]
+    harness_position = max(harness_positions)
+    order = (
+        readme.find("ASPBE is designed for a quantum-computing researcher"),
+        harness_position,
+        readme.find("## Route I — State Preparation"),
+        readme.find("## Route II — Block Encoding"),
+        readme.find("## Certified block-encoding cases"),
+    )
+    if any(position < 0 for position in order) or list(order) != sorted(order):
+        fail("README reader order must be intro → Harness → SP → BE → cases")
 
     check_frontier_asset(readme)
 
