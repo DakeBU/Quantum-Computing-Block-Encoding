@@ -286,16 +286,9 @@ theorem sourceProgram_finalState
         (sourceState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z) =
       finalState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z := by
   unfold sourceProgram
-  rw [evalReversibleProgram_append_apply_local]
-  rw [step1_semantics]
-  rw [evalReversibleProgram_append_apply_local]
-  rw [step2_semantics]
-  rw [evalReversibleProgram_append_apply_local]
-  rw [step3_semantics]
-  rw [evalReversibleProgram_append_apply_local]
-  rw [step4_semantics]
-  rw [evalReversibleProgram_append_apply_local]
-  rw [step5_semantics]
+  repeat rw [evalReversibleProgram_append_apply_local]
+  rw [step1_semantics, step2_semantics, step3_semantics, step4_semantics,
+    step5_semantics]
   exact step6_semantics a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z
 
 end VandaeleFigure4TakahashiStepSemantics
