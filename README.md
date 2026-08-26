@@ -33,15 +33,15 @@ These News items intentionally preserve the **early project chronology**. Routin
 
 ASPBE is designed for a quantum-computing researcher who knows **what state or operator is needed** and **what query oracles are available**, but does not want to hand-design every circuit and proof from scratch.
 
-The project serves two **independent** mathematical routes. State Preparation asks for a unitary that prepares a target state. Block Encoding asks for a larger unitary whose clean projected block equals a scaled target operator.
+The project serves two **independent** mathematical routes. State Preparation asks for a unitary that prepares a target state. Block Encoding asks for a larger unitary whose clean projected block equals a scaled target operator. Human experts and standalone LLMs can attempt the same two tasks; ASPBE differs by placing candidate construction, formal-library reuse, and bounded proof generation inside a mechanically checked Lean/semantic feedback loop.
 
 <p align="center">
-  <img src="docs/assets/abeis_application_overview.svg" alt="Two independent ASPBE certification routes" width="1080">
+  <img src="docs/assets/abeis_application_overview.svg" alt="Human, standalone LLM, and ASPBE reasoning for State Preparation and Block Encoding" width="1280">
 </p>
 
 ---
 
-## ASPBE harness v2 — substantive advances at the proof frontier
+## ASPBE harness — substantive advances at the proof frontier
 
 ASPBE keeps a frozen mathematical contract and a global proof DAG, then assigns a small number of independent **Universal Workers**. Each Worker may cross source reading, mathematical derivation, Lean implementation, finite diagnostics, resource analysis, diagrams, and exposition. The **Frontier Master** reconciles their evidence and promotes only a theorem-backed advance or a sharp obstruction that changes the proof plan.
 
