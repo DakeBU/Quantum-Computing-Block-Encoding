@@ -1,17 +1,37 @@
 flowchart LR
-  C["Fixed mathematical<br/>contract"] --> O["Named proof<br/>obligations"]
-  O --> P["Candidate routes<br/>with provenance"]
-  P --> L{"Lean gate"}
-  L -- "proof fails" --> F["Classified failure<br/>and next local lemma"]
-  F --> P
-  L -- "certificate compiles" --> X["Finite export<br/>and circuit check"]
-  X --> D["Documented result<br/>with stated scope"]
+  subgraph BASE["Two baseline routes"]
+    direction TB
+    H["Human expert reasoning<br/><b>State Preparation</b>: derive U|0ⁿ⟩ = |ψ⟩<br/><b>Block Encoding</b>: derive ‖A − αΠUΠ†‖ ≤ ε"]
+    HC["Manual mathematical checking<br/>deep insight and flexible proof search<br/>but expensive to scale, replay, and formalize case by case"]
+    H --> HC
 
-  classDef contract fill:#f8f5ee,stroke:#826a32,color:#222222,stroke-width:1.5px;
-  classDef process fill:#ffffff,stroke:#64747a,color:#222222,stroke-width:1.25px;
-  classDef gate fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
-  classDef feedback fill:#fff2ef,stroke:#a44b3f,color:#4a2520,stroke-width:1.25px;
-  class C contract;
-  class O,P,X,D process;
-  class L gate;
-  class F feedback;
+    LLM["Standalone LLM reasoning<br/>guesses State Preparation / Block Encoding constructions<br/>and can produce plausible prose, code, or Lean-shaped text"]
+    LV["No proof-checker-backed acceptance loop<br/>plausible answer ≠ verified theorem<br/>nontrivial end-to-end Lean from a blank context is brittle and unreliable"]
+    LLM --> LV
+  end
+
+  subgraph ASPBE["ASPBE · generation inside a mechanically checked loop"]
+    direction TB
+    Q["Natural-language / query-oracle contract<br/>target state or operator · available oracles · α · ε · resources"]
+    F["Freeze and normalize semantics<br/>register order · clean ancilla · exact/approximate rung · theorem target"]
+    R["Retrieve formalized recipes + construct a proof plan<br/>reuse Lean library blocks and theorem-graph dependencies"]
+    O["Generate bounded named obligations<br/>small mathematical / circuit / Lean subproblems instead of one giant proof"]
+    G{"Lean kernel + semantic / regression gates"}
+    D["Typed diagnostic feedback<br/>counterexample · missing interface · failed theorem · convention mismatch"]
+    OUT["Accepted State Preparation / Block Encoding result<br/>human-readable derivation · named Lean certificate<br/>optional circuit, Qiskit/OpenQASM, and resource data"]
+    Q --> F --> R --> O --> G
+    G -- "fails" --> D --> R
+    G -- "passes" --> OUT
+  end
+
+  HC -. "same mathematical tasks" .-> Q
+  LV -. "verification gap is closed by the harness" .-> G
+
+  classDef human fill:#f7f2e8,stroke:#8b7654,color:#2f2a22,stroke-width:1.4px;
+  classDef llm fill:#fff1ee,stroke:#a44b3f,color:#4a2520,stroke-width:1.4px;
+  classDef system fill:#eef4f7,stroke:#35657d,color:#1e2c36,stroke-width:1.5px;
+  classDef gate fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.8px;
+  class H,HC human;
+  class LLM,LV llm;
+  class Q,F,R,O,D,OUT system;
+  class G gate;
