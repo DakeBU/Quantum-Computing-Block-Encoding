@@ -86,6 +86,26 @@ theorem evalReversibleGate_ccx_eq_update
     · simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction,
         ccxUpdate, andBit, xorBit, active, same]
 
+/-- Program evaluation respects chronological append.  This is kept local so
+this source-refinement node depends only on `ReversibleClassical`, not on the
+larger scheduling frontier. -/
+theorem evalReversibleProgram_append_local {qubits : Nat}
+    (left right : ReversibleProgram qubits) :
+    evalReversibleProgram (left ++ right) =
+      (evalReversibleProgram left).trans (evalReversibleProgram right) := by
+  induction left with
+  | nil =>
+      rfl
+  | cons gate rest induction =>
+      change
+        (evalReversibleGate gate).trans
+            (evalReversibleProgram (rest ++ right)) =
+          ((evalReversibleGate gate).trans
+            (evalReversibleProgram rest)).trans
+              (evalReversibleProgram right)
+      rw [induction]
+      rfl
+
 /-- Lowest-bit carry is the ordinary AND because its incoming carry is zero. -/
 theorem leastCarry_eq_and (a b : Fin 2) :
     c1 a b = andBit a b := by
@@ -94,6 +114,11 @@ theorem leastCarry_eq_and (a b : Fin 2) :
 /-- The special final Toffoli of the descending sweep removes the least carry. -/
 theorem leastCarry_uncompute (a b next : Fin 2) :
     xorBit (andBit a b) (xorBit (c1 a b) next) = next := by
+  fin_cases a <;> fin_cases b <;> fin_cases next <;> rfl
+
+/-- Same least-carry cleanup in the exact operand order produced by Step 4. -/
+@[simp] theorem leastCarry_uncompute_reordered (a b next : Fin 2) :
+    xorBit (andBit b a) (xorBit next (c1 a b)) = next := by
   fin_cases a <;> fin_cases b <;> fin_cases next <;> rfl
 
 /-- State after TTK Step 1. -/
@@ -194,8 +219,7 @@ theorem step3_semantics
   fin_cases wire <;>
     simp [step3, evalReversibleProgram, evalReversibleGate_ccx_eq_update,
       ccxUpdate, sourceState, afterStep2, afterStep3,
-      leastCarry_eq_and, c2, c3, c4, c5,
-      forwardCarry_identity]
+      leastCarry_eq_and, c2, c3, c4, c5, forwardCarry_nested]
 
 /-- TTK Step 4 writes the carry contribution into each `B_i` and uncomputes
 the temporary carry in the corresponding `A_i`. -/
@@ -209,7 +233,8 @@ theorem step4_semantics
     simp [step4, evalReversibleProgram,
       evalReversibleGate_cx_eq_update, evalReversibleGate_ccx_eq_update,
       cxUpdate, ccxUpdate, sourceState, afterStep3, afterStep4,
-      c2, c3, c4, c5, uncomputeCarry_identity, leastCarry_uncompute]
+      c2, c3, c4, c5, uncomputeCarry_reordered,
+      leastCarry_uncompute_reordered]
 
 /-- TTK Step 5 restores all higher `A` wires. -/
 theorem step5_semantics
@@ -241,7 +266,8 @@ theorem sourceProgram_finalState
     evalReversibleProgram sourceProgram
         (sourceState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z) =
       finalState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z := by
-  simp only [sourceProgram, evalReversibleProgram_append]
+  unfold sourceProgram
+  simp only [evalReversibleProgram_append_local]
   change
     evalReversibleProgram step6
       (evalReversibleProgram step5
