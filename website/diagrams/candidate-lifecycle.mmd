@@ -1,28 +1,56 @@
 flowchart LR
-  T["Frozen mathematical contract<br/>target · registers · α · ε · resource order"] --> M["Frontier Master<br/>choose one real bottleneck"]
+  subgraph H["Human expert reasoning"]
+    direction TB
+    H0["Query-oracle / mathematical I/O conditions"]
+    H0 --> HSP["State Preparation<br/>derive U with U|0…0⟩ = |ψ⟩"]
+    H0 --> HBE["Block Encoding<br/>derive U with αΠUΠ† ≈ A"]
+    HSP --> HP["Human circuit design + proof"]
+    HBE --> HP
+    HP --> HH["Expert-checked result<br/>high insight · manual · slow to scale"]
+  end
 
-  M --> W1["Universal Worker A<br/>source ↔ math ↔ Lean"]
-  M --> W2["Universal Worker B<br/>independent route / counterexample"]
-  M --> W3["Universal Worker C<br/>finite diagnostics / resources / exposition"]
+  subgraph L["LLM-only guessed reasoning"]
+    direction TB
+    L0["Prompt / paper context"]
+    L0 --> LSP["Guess a State Preparation construction"]
+    L0 --> LBE["Guess a Block Encoding construction"]
+    LSP --> LO["Plausible prose / formulas / code"]
+    LBE --> LO
+    LO --> LF["Verification gap<br/>semantic drift · hidden assumptions · convention errors"]
+    LF --> LX["Not a trusted artifact<br/>one-pass Lean-from-scratch is too brittle to be the verifier"]
+  end
 
-  W1 --> I["Local integrator<br/>compare evidence, salvage ideas"]
-  W2 --> I
-  W3 --> I
+  subgraph A["ASPBE Research Harness"]
+    direction TB
+    A0["Formal state / operator / oracle contract<br/>registers · α · ε · resource order"]
+    A0 --> M["Frontier Master<br/>maintain theorem graph · select real bottlenecks"]
+    M --> W1["Generalist Worker A<br/>source ↔ math ↔ Lean"]
+    M --> W2["Generalist Worker B<br/>independent construction / counterexample"]
+    M --> W3["Generalist Worker C<br/>semantics ↔ resources ↔ diagrams"]
+    W1 --> I["Local integration<br/>compare evidence · preserve useful ideas"]
+    W2 --> I
+    W3 --> I
+    I --> R["Review / checkpoint spine retained from the original Harness<br/>Paper Scout → Planner → Worker → Checker<br/>L0 → L1 → L2 → L3"]
+    R --> G{"Hard acceptance gates<br/>source fidelity · semantics · Lean · integration · readable proof"}
+    G -- "pass" --> C["Certified substantive advance<br/>named Lean theorem + proof-linked construction"]
+    G -- "typed obstruction" --> F["Retire / repair route<br/>store counterexample and exact failure"]
+    F --> M
+    C --> O["Researcher-facing outputs<br/>LaTeX theorem + proof · Lean · circuit figure · Qiskit/OpenQASM · editable interface"]
+    C --> M
+  end
 
-  I --> G{"Progress certificate gates<br/>source · semantics · Lean · integration · exposition"}
-  G -- "pass" --> C["Certified frontier advance<br/>named theorem / reusable interface"]
-  G -- "typed obstruction" --> O["Retire or repair route<br/>record exact failure and reusable lesson"]
-  O --> M
-  C --> N["Update theorem graph<br/>schedule next substantive frontier"]
-  N --> M
+  HH -. "human baseline" .-> A0
+  LX -. "verification is the missing ingredient" .-> A0
 
-  C --> E["Optional executable / teaching exports<br/>Qiskit · OpenQASM · circuit figure"]
-
-  classDef master fill:#ffffff,stroke:#465f7a,color:#203040,stroke-width:1.8px;
-  classDef worker fill:#ffffff,stroke:#71608f,color:#302640,stroke-width:1.4px;
-  classDef proof fill:#ffffff,stroke:#2f7355,color:#18382b,stroke-width:1.8px;
-  classDef fail fill:#ffffff,stroke:#8a5a4a,color:#4c332c,stroke-width:1.5px;
-  class T,M,N master;
+  classDef human fill:#f7f4ec,stroke:#756a54,color:#302b22,stroke-width:1.5px;
+  classDef llm fill:#fbf1f1,stroke:#985f5f,color:#4d2e2e,stroke-width:1.5px;
+  classDef master fill:#eef4f7,stroke:#465f7a,color:#203040,stroke-width:1.8px;
+  classDef worker fill:#f4f0f8,stroke:#71608f,color:#302640,stroke-width:1.4px;
+  classDef proof fill:#edf6ef,stroke:#2f7355,color:#18382b,stroke-width:1.8px;
+  classDef fail fill:#fbf3ee,stroke:#8a5a4a,color:#4c332c,stroke-width:1.5px;
+  class H0,HSP,HBE,HP,HH human;
+  class L0,LSP,LBE,LO,LF,LX llm;
+  class A0,M,R master;
   class W1,W2,W3,I worker;
-  class G,C,E proof;
-  class O fail;
+  class G,C,O proof;
+  class F fail;
