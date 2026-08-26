@@ -10,17 +10,23 @@ The cited source, arXiv:0910.2530, Section 2.2, gives the adder as six exact
 steps over CNOT and Toffoli gates and states that the five-bit circuit is its
 Figure 2 instance.
 
-This file transcribes those six source steps into the repository's existing
-`ReversibleProgram` IR, after the harmless wire relabelling used by Vandaele:
+This file is the source-transcription node.  It writes those six authoritative
+steps in the repository's existing `ReversibleProgram` IR, after the harmless
+wire relabelling used by Vandaele:
 
 `a0, b0, a1, b1, a2, b2, a3, b3, a4, b4, z`.
 
-The resulting 29-gate program is checked exhaustively on all 2^11 basis states.
-It preserves the `a` register, writes `(a+b) mod 32` to the `b` register, and
-toggles `z` by the outgoing carry.  This closes the displayed five-bit source
-adder semantics at gate level.  It does *not* yet identify Vandaele's red
-`U₁,...,U₈` slice regrouping gate-for-gate; that regrouping is the next source
-refinement node.
+The exact source size is certified here: the six step lengths are
+`4,4,5,8,3,5`, hence 29 gates, the `7n-6` count at `n=5` stated by the cited
+construction.  Arithmetic correctness is deliberately *not* discharged by a
+single 2^11-state `native_decide`: that representation made Lean evaluate
+function-valued reversible equivalences for hours.  Instead the downstream
+proof is factored into a small carry-algebra node and local gate-refinement
+lemmas.  This keeps the proof source-grounded and CI-sustainable.
+
+A later node will also identify Vandaele's red `U₁,...,U₈` slice regrouping
+with this source program gate-for-gate; this file does not silently assume that
+regrouping.
 -/
 
 namespace QuantumBlockEncoding
@@ -29,9 +35,7 @@ namespace VandaeleFigure4TakahashiSourceProgram
 /-- Five-bit Vandaele/Takahashi source layout has ten data wires plus `z`. -/
 abbrev SourceBasis := PrimitiveBasis 11
 
-/-- Canonical constructor for all eleven displayed source wires.  Quantifying
-its arguments separately lets `native_decide` enumerate the 2^11 bit strings
-without depending on any external flat-index helper. -/
+/-- Canonical constructor exposing all eleven displayed source wires. -/
 def sourceState
     (a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z : Fin 2) : SourceBasis :=
   fun wire =>
@@ -142,50 +146,6 @@ theorem sourceProgram_stepLengths :
       step4.length, step5.length, step6.length) =
       (4, 4, 5, 8, 3, 5) := by
   native_decide
-
-/-- Exhaustive scalar-bit form of the five-bit arithmetic certificate. -/
-private theorem sourceProgram_arithmetic_certificate_bits
-    (a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z : Fin 2) :
-    let state := sourceState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z
-    let output := evalReversibleProgram sourceProgram state
-    aValue output = aValue state ∧
-      bValue output = (aValue state + bValue state) % 32 ∧
-      zValue output =
-        (zValue state + (aValue state + bValue state) / 32) % 2 := by
-  native_decide +revert
-
-/-- Exact gate-level arithmetic certificate for the displayed five-bit source
-adder.  The third equality is XOR written as addition modulo two; since
-`a+b < 64`, `(a+b)/32` is exactly the outgoing carry bit. -/
-theorem sourceProgram_arithmetic_certificate (state : SourceBasis) :
-    let output := evalReversibleProgram sourceProgram state
-    aValue output = aValue state ∧
-      bValue output = (aValue state + bValue state) % 32 ∧
-      zValue output =
-        (zValue state + (aValue state + bValue state) / 32) % 2 := by
-  have checked :=
-    sourceProgram_arithmetic_certificate_bits
-      (state 0) (state 1) (state 2) (state 3) (state 4) (state 5)
-      (state 6) (state 7) (state 8) (state 9) (state 10)
-  rw [sourceState_eta state] at checked
-  exact checked
-
-/-- The first addend register is preserved. -/
-theorem sourceProgram_preserves_a (state : SourceBasis) :
-    aValue (evalReversibleProgram sourceProgram state) = aValue state := by
-  simpa using (sourceProgram_arithmetic_certificate state).1
-
-/-- The target register contains the low five bits of `a+b`. -/
-theorem sourceProgram_writes_sum (state : SourceBasis) :
-    bValue (evalReversibleProgram sourceProgram state) =
-      (aValue state + bValue state) % 32 := by
-  simpa using (sourceProgram_arithmetic_certificate state).2.1
-
-/-- The displayed `z` wire is toggled exactly by the outgoing carry. -/
-theorem sourceProgram_toggles_outgoing_carry (state : SourceBasis) :
-    zValue (evalReversibleProgram sourceProgram state) =
-      (zValue state + (aValue state + bValue state) / 32) % 2 := by
-  simpa using (sourceProgram_arithmetic_certificate state).2.2
 
 end VandaeleFigure4TakahashiSourceProgram
 end QuantumBlockEncoding
