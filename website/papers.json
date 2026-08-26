@@ -16,6 +16,27 @@
   ],
   "queue": [
     {
+      "key": "vandaele-2026-comparators-incrementers",
+      "title": "Asymptotically Optimal Quantum Circuits for Comparators and Incrementers",
+      "authors": "Vivien Vandaele",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2603.12917",
+      "category": "blockEncoding",
+      "sourceAnchors": ["Fig. 4", "Fig. 5", "Eq. (17)", "Takahashi–Tani–Kunihiro [12], Sec. 2.2 / Fig. 2"],
+      "sourceStatement": "Figure 4 reuses the five-bit ancilla-free Takahashi–Tani–Kunihiro ripple-carry adder; Figure 5 surrounds the displayed b register with X layers and states the comparator contract z ↦ z XOR [a<b]. ASPBE therefore audits the cited ADD5 gate program before accepting any comparator-level interpretation.",
+      "status": "source-program-and-carry-algebra-formalized",
+      "route": "papers/vandaele-2026-comparators-incrementers/",
+      "formalized": "The authoritative six-step ADD5 source has been transcribed into the exact X/CX/CCX reversible-program IR with Lean-certified step lengths (4,4,5,8,3,5) and total gate count 29 = 7·5−6. A separate Lean layer proves the TTK majority/carry recurrence, local sum/carry conservation, forward/uncompute identities, and the scalar five-bit arithmetic certificate. The six-step gate-by-gate semantic refinement is the active frontier and is not yet advertised as closed here.",
+      "leanRoots": [
+        "QuantumBlockEncoding.VandaeleFigure4TakahashiSourceProgram.sourceProgram_gateCount",
+        "QuantumBlockEncoding.VandaeleFigure4TakahashiSourceProgram.sourceProgram_stepLengths",
+        "QuantumBlockEncoding.VandaeleFigure4TakahashiCarryAlgebra.carryNext_value",
+        "QuantumBlockEncoding.VandaeleFigure4TakahashiCarryAlgebra.sumBit_add_twice_carryNext",
+        "QuantumBlockEncoding.VandaeleFigure4TakahashiCarryAlgebra.fiveBit_arithmetic_certificate"
+      ],
+      "remaining": "Close the six displayed gate-step semantics, identify Vandaele's red U₁,…,U₈ Figure-4 regrouping gate-for-gate, lift the five-bit source audit to the intended width-parametric theorem, and only then compose the X–adder–X layers into the full Figure-5 data/flag comparator audit and resource claim."
+    },
+    {
       "key": "mottonen-2005-state-preparation",
       "title": "Transformation of quantum states using uniformly controlled rotations",
       "authors": "Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa",
@@ -69,7 +90,7 @@
       "sourceAnchors": ["Eq. (1)", "Eq. (2)", "Theorem 1"],
       "sourceStatement": "Eq. (1) records a d-sparse state through its nonzero amplitudes and basis labels; Eq. (2) is the exact state-preparation unitary contract with clean ancillas; Theorem 1 is the asymptotic circuit-size statement that remains outside the finite ASPBE witness.",
       "status": "finite-sparse-benchmark-formalized",
-      "route": "papers/li-luo-sparse-state-2025/",
+      "route": "papers/li-luo-sparse-state-preparation/",
       "exampleCase": "sparse-three-state-preparation",
       "formalized": "An exact n=3, d=3 witness of Eq. (2), a typed pruned UCRY route, a same-target typed dense zero-fill baseline, and a Lean-certified resource improvement from (15,13,0,0) to (5,4,0,0).",
       "leanRoots": [
