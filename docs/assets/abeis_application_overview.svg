@@ -1,45 +1,96 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="460" viewBox="0 0 1400 460" role="img" aria-labelledby="title desc">
-  <title id="title">Two independent ASPBE certification routes</title>
-  <desc id="desc">State Preparation and Block Encoding are shown as separate mathematical contracts with separate proof obligations and outputs.</desc>
-  <style>
-    text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
-    .title { font-size: 34px; font-weight: 700; }
-    .subtitle { font-size: 18px; fill: #555; }
-    .head { font-size: 27px; font-weight: 700; }
-    .label { font-size: 17px; font-weight: 700; letter-spacing: .4px; fill: #4a4a4a; }
-    .formula { font-size: 34px; }
-    .body { font-size: 18px; fill: #343434; }
-    .small { font-size: 16px; fill: #575757; }
-    .panel { fill: #fff; stroke-width: 1.8; }
-    .state { stroke: #466b5a; }
-    .block { stroke: #48667d; }
-    .rule { stroke: #d0d0d0; stroke-width: 1.2; }
-  </style>
-  <rect width="1400" height="460" fill="#ffffff"/>
-  <text x="700" y="52" text-anchor="middle" class="title">Two independent certification routes</text>
-  <text x="700" y="83" text-anchor="middle" class="subtitle">Choose the route from the mathematical task; each has its own acceptance contract.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Human, standalone LLM, and ASPBE reasoning for State Preparation and Block Encoding</title>
+  <desc id="desc">Two baseline routes are shown on the left: human expert reasoning and standalone LLM guessing for State Preparation and Block Encoding. ASPBE is shown on the right as a structured generation and verification loop with formal library reuse, bounded Lean obligations, Lean kernel checks, semantic feedback, and certified outputs.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#29485a"/></marker>
+    <marker id="feedbackArrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#8a4e45"/></marker>
+    <style>
+      text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #172a36; }
+      .title { font-size: 39px; font-weight: 700; }
+      .subtitle { font-size: 20px; fill: #53636b; }
+      .head { font-size: 28px; font-weight: 700; }
+      .section { font-size: 18px; font-weight: 700; letter-spacing: .5px; fill: #53636b; }
+      .body { font-size: 18px; }
+      .small { font-size: 16px; fill: #4f5b60; }
+      .formula { font-size: 22px; }
+      .box { stroke-width: 2; rx: 18; ry: 18; }
+      .mini { stroke-width: 1.7; rx: 13; ry: 13; }
+      .arrow { stroke: #29485a; stroke-width: 2.8; fill: none; marker-end: url(#arrow); }
+      .feedback { stroke: #8a4e45; stroke-width: 2.5; fill: none; stroke-dasharray: 8 6; marker-end: url(#feedbackArrow); }
+    </style>
+  </defs>
 
-  <rect x="70" y="120" width="600" height="315" class="panel state"/>
-  <text x="105" y="164" class="head">State Preparation</text>
-  <text x="105" y="202" class="label">INPUT</text>
-  <text x="174" y="202" class="body">normalized target |ψ⟩, allowed gates/oracles, resource priorities</text>
-  <line x1="105" y1="222" x2="635" y2="222" class="rule"/>
-  <text x="370" y="278" text-anchor="middle" class="formula">U |0ⁿ⟩ = |ψ⟩</text>
-  <text x="105" y="326" class="label">CERTIFY</text>
-  <text x="196" y="326" class="body">target normalization · U unitary · state action</text>
-  <text x="105" y="366" class="label">RETURN</text>
-  <text x="188" y="366" class="body">construction · proof · named Lean root · optional circuit export</text>
-  <text x="105" y="405" class="small">Mathematical view: certify the first column of a unitary.</text>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <text x="800" y="55" text-anchor="middle" class="title">From plausible reasoning to mechanically checked synthesis</text>
+  <text x="800" y="88" text-anchor="middle" class="subtitle">The mathematical tasks are the same; the difference is how construction, reuse, and verification are organized.</text>
 
-  <rect x="730" y="120" width="600" height="315" class="panel block"/>
-  <text x="765" y="164" class="head">Block Encoding</text>
-  <text x="765" y="202" class="label">INPUT</text>
-  <text x="834" y="202" class="body">operator A, α, ε, clean ancilla/register convention, query oracles</text>
-  <line x1="765" y1="222" x2="1295" y2="222" class="rule"/>
-  <text x="1030" y="278" text-anchor="middle" class="formula">‖A − α Π U Π†‖ ≤ ε</text>
-  <text x="765" y="326" class="label">CERTIFY</text>
-  <text x="856" y="326" class="body">layout · U unitary · clean block · normalization/error</text>
-  <text x="765" y="366" class="label">RETURN</text>
-  <text x="848" y="366" class="body">construction · proof · named Lean root · resource/executable data</text>
-  <text x="765" y="405" class="small">Mathematical view: certify the clean projected block of a larger unitary.</text>
+  <text x="300" y="128" text-anchor="middle" class="section">TWO BASELINE ROUTES</text>
+  <text x="1080" y="128" text-anchor="middle" class="section">ASPBE</text>
+
+  <rect x="55" y="150" width="500" height="290" class="box" fill="#f8f4ea" stroke="#8b7654"/>
+  <text x="90" y="192" class="head">Human expert reasoning</text>
+  <text x="90" y="230" class="body">State Preparation</text>
+  <text x="90" y="260" class="formula">derive U|0ⁿ⟩ = |ψ⟩</text>
+  <text x="90" y="305" class="body">Block Encoding</text>
+  <text x="90" y="335" class="formula">derive ‖A − α ΠUΠ†‖ ≤ ε</text>
+  <line x1="90" y1="360" x2="520" y2="360" stroke="#c9bfa9" stroke-width="1.4"/>
+  <text x="90" y="389" class="small">Flexible insight and proof search; experts can audit subtle conventions.</text>
+  <text x="90" y="415" class="small">But checking, formalization, and reuse remain largely manual case by case.</text>
+
+  <rect x="55" y="470" width="500" height="300" class="box" fill="#fff1ee" stroke="#a44b3f"/>
+  <text x="90" y="512" class="head">Standalone LLM reasoning</text>
+  <text x="90" y="550" class="body">Guesses State Preparation / Block Encoding constructions</text>
+  <text x="90" y="580" class="body">and may produce plausible prose, code, or Lean-shaped text.</text>
+  <line x1="90" y1="606" x2="520" y2="606" stroke="#d9aaa4" stroke-width="1.4"/>
+  <text x="90" y="637" class="small">No proof-checker-backed acceptance loop:</text>
+  <text x="90" y="665" class="small">plausible answer ≠ verified theorem.</text>
+  <text x="90" y="699" class="small">For nontrivial tasks, end-to-end Lean from a blank context is brittle</text>
+  <text x="90" y="727" class="small">and not a reliable replacement for structured proof construction.</text>
+
+  <rect x="610" y="150" width="935" height="620" class="box" fill="#f7fafb" stroke="#35657d"/>
+  <text x="1080" y="194" text-anchor="middle" class="head">Generation inside a formal verification loop</text>
+  <text x="1080" y="224" text-anchor="middle" class="small">ASPBE does not ask one model call to invent the entire proof and Lean file from scratch.</text>
+
+  <rect x="655" y="270" width="250" height="128" class="mini" fill="#eef4f7" stroke="#35657d"/>
+  <text x="780" y="300" text-anchor="middle" class="section">1 · CONTRACT</text>
+  <text x="780" y="332" text-anchor="middle" class="body">target state / operator</text>
+  <text x="780" y="359" text-anchor="middle" class="body">query oracles · α · ε</text>
+  <text x="780" y="384" text-anchor="middle" class="small">freeze registers and semantics</text>
+
+  <rect x="950" y="270" width="250" height="128" class="mini" fill="#eef4f7" stroke="#35657d"/>
+  <text x="1075" y="300" text-anchor="middle" class="section">2 · RETRIEVE + PLAN</text>
+  <text x="1075" y="332" text-anchor="middle" class="body">reuse formalized recipes</text>
+  <text x="1075" y="359" text-anchor="middle" class="body">and theorem-graph leaves</text>
+  <text x="1075" y="384" text-anchor="middle" class="small">choose a structured proof route</text>
+
+  <rect x="1245" y="270" width="250" height="128" class="mini" fill="#eef4f7" stroke="#35657d"/>
+  <text x="1370" y="300" text-anchor="middle" class="section">3 · OBLIGATIONS</text>
+  <text x="1370" y="332" text-anchor="middle" class="body">small named math / circuit</text>
+  <text x="1370" y="359" text-anchor="middle" class="body">and Lean subproblems</text>
+  <text x="1370" y="384" text-anchor="middle" class="small">bounded, auditable work units</text>
+
+  <path class="arrow" d="M905 334 L950 334"/>
+  <path class="arrow" d="M1200 334 L1245 334"/>
+
+  <rect x="840" y="465" width="480" height="120" class="mini" fill="#e8f3ec" stroke="#2f7355"/>
+  <text x="1080" y="499" text-anchor="middle" class="section">4 · HARD ACCEPTANCE GATES</text>
+  <text x="1080" y="532" text-anchor="middle" class="body">Lean kernel · source fidelity · semantic checks · regression</text>
+  <text x="1080" y="562" text-anchor="middle" class="small">a candidate is promoted only when its named obligations pass</text>
+  <path class="arrow" d="M1370 398 L1370 430 L1080 430 L1080 465"/>
+
+  <rect x="765" y="635" width="630" height="95" class="mini" fill="#edf4f7" stroke="#35657d"/>
+  <text x="1080" y="668" text-anchor="middle" class="section">5 · CERTIFIED OUTPUTS</text>
+  <text x="1080" y="698" text-anchor="middle" class="body">State Preparation / Block Encoding construction · LaTeX proof · named Lean certificate</text>
+  <text x="1080" y="721" text-anchor="middle" class="small">optional theorem-linked circuit · Qiskit/OpenQASM · resource record</text>
+  <path class="arrow" d="M1080 585 L1080 635"/>
+
+  <path class="feedback" d="M840 525 C700 525 700 410 950 380"/>
+  <text x="690" y="495" class="small" fill="#8a4e45">typed failure / counterexample / missing interface</text>
+
+  <path d="M555 294 C585 294 585 315 610 315" stroke="#8b7654" stroke-width="2" fill="none"/>
+  <path d="M555 620 C585 620 585 605 610 605" stroke="#a44b3f" stroke-width="2" fill="none"/>
+  <text x="580" y="282" text-anchor="middle" class="small">same SP / BE tasks</text>
+
+  <text x="800" y="828" text-anchor="middle" class="body">Core distinction: ASPBE is not “an LLM that guesses better”; it is a construction system whose promoted claims are tied to explicit proof obligations and mechanical checks.</text>
+  <text x="800" y="858" text-anchor="middle" class="small">“Verified” is scoped to the stated contract and accepted Lean/evidence gates; finite executable checks do not by themselves prove a symbolic family.</text>
 </svg>
