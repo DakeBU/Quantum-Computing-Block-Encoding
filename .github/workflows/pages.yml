@@ -77,11 +77,15 @@ jobs:
             base="origin/main"
           fi
           echo "comparison_base=${base}"
+          # Reader-facing static assets are rebuilt and checked by the website
+          # contract below, but they do not change the Lean/Blueprint proof tree.
+          # Reuse the latest green proof artifact for asset-only edits instead of
+          # reinstalling Lean/Mathlib and rerunning the full proof gate.
           if git diff --quiet "${base}...HEAD" -- \
               'QuantumBlockEncoding/**' QuantumBlockEncoding.lean \
               'ABEISTests/**' Tests.lean \
               'ABEISBlueprint/**' ABEISBlueprint.lean ABEISBlueprintMain.lean \
-              'tools/**' 'docs/**' \
+              'tools/**' 'docs/**' ':(exclude)docs/assets/**' \
               scripts/generate-blueprint-catalog.py scripts/generate-aspbe-catalog.py \
               scripts/build-blueprint.sh scripts/build-blueprint.ps1 \
               scripts/sanitize-blueprint-paths.py scripts/test-sanitize-blueprint-paths.py \
@@ -178,37 +182,39 @@ jobs:
         run: |
           test -f _site/index.html
           test -f _site/library/index.html
+          test -f _site/library/declarations.json
+          test -f _site/library/search-index.json
+          test -f _site/library/catalog.json
+          test -f _site/implementation-map/index.html
+          test -f _site/example-cases/index.html
+          test -f _site/learning-roadmap/index.html
           test -f _site/lean-graph/index.html
-          test -f _site/data/lean-graph.json
-          test -f _site/example-cases/state-preparation/index.html
-          test -f _site/papers/state-preparation/index.html
-          test -f _site/case-studies/robin/index.html
+          test -f _site/ide/index.html
+          test -f _site/workspace/index.html
+          test -f _site/blueprint/index.html
           test -f _site/blueprint/html-multi/index.html
-          test -f _site/search-index.json
           test -f _site/build-report.json
-          find _site -maxdepth 2 -type f | sort
+          echo "=== root ==="
+          find _site -maxdepth 1 -type f -printf '%f\n' | sort
+          echo "=== top-level directories ==="
+          find _site -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort
 
       - name: Configure Pages
-        if: github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v6
-        with:
-          token: ${{ secrets.PAGES_TOKEN || github.token }}
-          enablement: ${{ secrets.PAGES_TOKEN != '' }}
 
       - name: Upload combined site
-        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
   deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: verify
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: verify
+    if: github.ref == 'refs/heads/main'
     steps:
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
