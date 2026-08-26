@@ -6,7 +6,9 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/VandaeleFigure4TakahashiSourceProgram.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiCarryAlgebra.lean"
       - "QuantumBlockEncoding/ReversibleClassical.lean"
+      - "QuantumBlockEncoding/PrimitiveSemantics.lean"
       - ".github/workflows/vandaele-figure4-takahashi-source.yml"
   workflow_dispatch:
 
@@ -34,5 +36,8 @@ jobs:
       - name: Compile reversible source IR
         run: lake build QuantumBlockEncoding.ReversibleClassical
 
-      - name: Compile five-bit Figure 4 source certificate
+      - name: Compile local Takahashi carry algebra
+        run: lake build QuantumBlockEncoding.VandaeleFigure4TakahashiCarryAlgebra
+
+      - name: Compile authoritative five-bit source transcription
         run: lake build QuantumBlockEncoding.VandaeleFigure4TakahashiSourceProgram
