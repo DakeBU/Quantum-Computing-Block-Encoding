@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1180" viewBox="0 0 1800 1180" role="img" aria-labelledby="title desc">
   <title id="title">ASPBE Research Harness: human reasoning, LLM-only reasoning, and machine-checked synthesis</title>
-  <desc id="desc">The left column compares human expert derivation with unverified LLM-only guessing for state preparation and block encoding. The right column shows ASPBE: a Frontier Master coordinates generalist workers, preserves the original Paper Scout, Planner, Worker, Checker and L0 through L3 review spine, and promotes only source-audited Lean-checked mathematical advances.</desc>
+  <desc id="desc">The left column compares human expert derivation with unverified LLM-only guessing for state preparation and block encoding. The right column shows ASPBE: a Frontier Master coordinates generalist workers, preserves the previous Upper strategist, Middle Lean-tree manager, Lower focused workers, and Reviewer/verifier architecture as visible history, and promotes only source-audited Lean-checked mathematical advances. Earlier checkpoint labels such as Paper Scout, Planner, Worker, and Checker remain audit metadata rather than the name of that prior layered architecture.</desc>
   <defs>
     <marker id="arrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#263b49"/></marker>
     <marker id="redArrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#8f5656"/></marker>
@@ -83,9 +83,9 @@
   <path class="line" d="M1232 716 L1232 744"/>
 
   <rect class="box" x="825" y="744" width="815" height="105" fill="#edf3f6" stroke="#526f81"/>
-  <text class="t b" x="1232" y="773" text-anchor="middle">Original Harness structure is retained as the review / checkpoint spine</text>
-  <text class="t h" x="1232" y="807" text-anchor="middle">Paper Scout → Planner → Worker → Checker</text>
-  <text class="t b" x="1232" y="836" text-anchor="middle">L0 → L1 → L2 → L3 · checkpoints, not cognitive walls</text>
+  <text class="t b" x="1232" y="772" text-anchor="middle">Original Harness structure · previous layered roles</text>
+  <text class="t h" x="1232" y="803" text-anchor="middle">Upper strategist → Middle Lean-tree manager</text>
+  <text class="t b" x="1232" y="832" text-anchor="middle">Lower focused workers → Reviewer / verifier · feedback retained, cognitive walls removed</text>
   <path class="line" d="M1232 849 L1232 877"/>
 
   <rect class="box" x="810" y="877" width="845" height="91" fill="#edf6ef" stroke="#2f7355"/>
