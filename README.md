@@ -41,7 +41,7 @@ The project serves two **independent** mathematical routes. State Preparation as
 
 ---
 
-## ASPBE harness v2 — substantive advances at the proof frontier
+## ASPBE harness — substantive advances at the proof frontier
 
 ASPBE keeps a frozen mathematical contract and a global proof DAG, then assigns a small number of independent **Universal Workers**. Each Worker may cross source reading, mathematical derivation, Lean implementation, finite diagnostics, resource analysis, diagrams, and exposition. The **Frontier Master** reconciles their evidence and promotes only a theorem-backed advance or a sharp obstruction that changes the proof plan.
 
