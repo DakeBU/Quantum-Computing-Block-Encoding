@@ -1,11 +1,11 @@
-# ASPBE Harness v2: Frontier Master–Worker Protocol
+# ASPBE Harness: Frontier Master–Worker Protocol
 
 ASPBE formalizes state-preparation and block-encoding mathematics all the way
 from a source or oracle contract to named Lean theorems, readable derivations,
 circuit figures, and optional executable exports. The harness therefore needs
 both broad mathematical freedom and hard evidence gates.
 
-Harness v2 keeps the useful proof-DAG and verification infrastructure of the
+The current harness keeps the useful proof-DAG and verification infrastructure of the
 original Upper/Middle/Lower/Reviewer pipeline, but changes the unit of work and
 the meaning of a role:
 
@@ -233,7 +233,7 @@ Upper/Middle/Lower castes.
 
 ## 9. Efficiency measurements
 
-Harness v2 records quantities tied to scientific output:
+The current harness records quantities tied to scientific output:
 
 - accepted substantive advances per Worker invocation;
 - root-frontier nodes closed per 100k input/output tokens;
@@ -251,7 +251,7 @@ are observability data, not success metrics.
 ## 10. Backward-compatible execution slots
 
 `tools/qbe.py` currently exposes `upper`, `middle`, `lower1`–`lower4`, and
-`reviewer` profile keys. Harness v2 interprets them as scheduling slots:
+`reviewer` profile keys. The current harness interprets them as scheduling slots:
 
 - `upper` is normally a Master/frontier refresh pass;
 - `middle` may be a Master synthesis pass or a Universal Worker owning a
