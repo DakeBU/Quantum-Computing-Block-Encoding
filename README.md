@@ -57,17 +57,22 @@ The key change from the original fixed Upper/Middle/Lower role stack is that **s
 
 One invocation counts as progress only when it closes a named theorem or reusable interface, integrates several layers into a higher proof node, or returns a typed obstruction strong enough to retire a route. Branches, commits, files, longer logs, isolated arithmetic lemmas, and repeated unchanged attempts are observability data—not mathematical progress.
 
-For the current comparator audit, the acceptance chain is deliberately explicit:
+For the current Vandaele comparator audit, the source-grounded acceptance chain is deliberately explicit:
 
 ```text
-individual X/CNOT/Toffoli gates
-  -> source subcircuits U₁,...,U₈
-  -> Figure 4 adder semantics
-  -> Figure 5 data and carry/flag semantics
+Takahashi–Tani–Kunihiro Sec. 2.2 six-step ADD5 source
+  -> exact 29-gate X/CX/CCX ReversibleProgram
+  -> local majority/carry and sum algebra
+  -> six source-step gate semantics
+  -> Vandaele Figure 4 U₁,...,U₈ regrouping
+  -> Figure 4 arithmetic semantics
+  -> Figure 5 X–adder–X data and carry/flag audit
   -> comparator theorem and resource claim.
 ```
 
-Thus `BinaryCarryTelescoping.lean` may certify an internal carry identity, but cannot by itself be advertised as a proof of the printed adder circuit. The reader-facing figure must separately show the overwritten data register and the carry/flag wire, state the operand convention, and attach named Lean declarations to the arrows.
+This ordering matters. Vandaele Figure 4 explicitly cites the Takahashi–Tani–Kunihiro ancilla-free ripple-carry adder, so ASPBE first transcribes that cited gate program instead of guessing the red slices from the picture. `VandaeleFigure4TakahashiSourceProgram.sourceProgram_gateCount` and `sourceProgram_stepLengths` certify the six displayed source stages and the exact 29-gate count; `VandaeleFigure4TakahashiCarryAlgebra.fiveBit_arithmetic_certificate` certifies the corresponding five-bit scalar carry/sum recurrence. The later Figure-4 and Figure-5 claims are accepted only after their own gate-level refinement nodes close.
+
+Thus `BinaryCarryTelescoping.lean` or any other internal arithmetic lemma may certify a useful identity, but cannot by itself be advertised as a proof of the printed adder circuit. The reader-facing figure must separately show the overwritten data register and the carry/flag wire, state the operand convention, and attach named Lean declarations to the arrows.
 
 > **Evidence boundary.** Qiskit, NumPy, OpenQASM, truth tables, and one-bit audits may reject or prioritize candidates. They do not replace the named Lean theorem for an exact arbitrary-width claim.
 
@@ -237,6 +242,7 @@ For exact status, use the generated [Implementation Map](https://dakebu.github.i
 <details>
 <summary><strong>Recent milestones</strong></summary>
 
+- **26 August 2026:** Harness v2 and the source-grounded Vandaele Figure-4 route: cited TTK six-step ADD5 transcription, exact 29-gate source count, and local carry/sum algebra.
 - **15 August 2026:** Concept / Math / Lean reading modes and the source-audited GHL Theorem-4 route.
 - **12 August 2026:** complete Mathlib-backed Pauli X and Hadamard State Preparation certificates.
 - **10 August 2026:** project name **ASPBE** and public library/site name **QuantumComputinglib**.
@@ -351,6 +357,7 @@ QuantumBlockEncoding/
 ├── CircuitSemantics.lean        circuit evaluation and register semantics
 ├── PrimitiveCircuit.lean        exact {X, RY, RZ, CX} syntax and resources
 ├── PrimitiveSemantics.lean      primitive matrices and products
+├── ReversibleClassical.lean     exact X/CX/CCX source-proof IR
 ├── ConcreteSemantics.lean       ket / column / clean-projection bridges
 ├── TextbookStatePreparation.lean
 ├── BlockEncoding.lean           operator targets and verified block encodings
@@ -360,6 +367,10 @@ QuantumBlockEncoding/
 ├── MainCase.lean                BE Case 1
 ├── CubicStatePreparation.lean   cubic diagonal routes
 ├── GHLHamiltonian.lean          source-audited Hamiltonian composition
+├── VandaeleFigure4TakahashiSourceProgram.lean
+│                                  cited six-step ADD5 gate transcription
+├── VandaeleFigure4TakahashiCarryAlgebra.lean
+│                                  local majority/carry and five-bit arithmetic
 ├── Automation.lean              typed controller contracts
 └── OpenProblems.lean            explicit unfinished routes
 ```
