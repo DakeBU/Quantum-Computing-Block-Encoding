@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1240" viewBox="0 0 1600 1240" role="img" aria-labelledby="title desc">
-  <title id="title">ASPBE Harness v2: Frontier Master and Universal Workers</title>
+  <title id="title">ASPBE Harness: Frontier Master and Universal Workers</title>
   <desc id="desc">A frozen mathematical contract feeds a global proof frontier. A Master selects independent uncertainties and sends substantive objectives to universal Workers. Workers may cross source reading, mathematics, Lean, tests, and explanation. Structured evidence passes five hard gates before an accepted theorem or sharp obstruction updates the frontier.</desc>
   <defs>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 z" fill="#22384a"/></marker>
@@ -18,7 +18,7 @@
     </style>
   </defs>
   <rect x="0" y="0" width="1600" height="1240" fill="#ffffff"/>
-  <text class="t title" x="800" y="58" text-anchor="middle">ASPBE Harness v2</text>
+  <text class="t title" x="800" y="58" text-anchor="middle">ASPBE Harness</text>
   <text class="t subtitle" x="800" y="94" text-anchor="middle">Universal mathematical Workers; hard evidence gates; one global proof frontier</text>
 
   <rect class="box" x="210" y="126" width="1180" height="112" fill="#edf4f7"/>
