@@ -42,6 +42,7 @@ on:
       - "lake-manifest.json"
       - "lean-toolchain"
       - "README.md"
+      - "HARNESS.md"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -77,11 +78,16 @@ jobs:
             base="origin/main"
           fi
           echo "comparison_base=${base}"
+          # Reader-facing figures and their style checker are documentation
+          # artifacts. They still pass the website teaching contract, but they
+          # must not force a fresh Lean toolchain download when the proof tree
+          # itself is byte-for-byte unchanged.
           if git diff --quiet "${base}...HEAD" -- \
               'QuantumBlockEncoding/**' QuantumBlockEncoding.lean \
               'ABEISTests/**' Tests.lean \
               'ABEISBlueprint/**' ABEISBlueprint.lean ABEISBlueprintMain.lean \
               'tools/**' 'docs/**' \
+              ':!tools/check_public_figure_style.py' ':!docs/assets/**' \
               scripts/generate-blueprint-catalog.py scripts/generate-aspbe-catalog.py \
               scripts/build-blueprint.sh scripts/build-blueprint.ps1 \
               scripts/sanitize-blueprint-paths.py scripts/test-sanitize-blueprint-paths.py \
