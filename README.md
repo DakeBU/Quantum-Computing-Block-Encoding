@@ -25,7 +25,7 @@
 
 - **April 2026.** The ASPBE/QBE project was already in its conception and early-prototyping stage. This date is retained as project history; it predates the repository's first public/auditable Git timestamp and is therefore not presented as an April public-commit claim.
 - **17 May 2026.** The repository's public, auditable record begins with the [initial automation commit `af59b03`](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and the timestamped [`MANIFEST.md`](MANIFEST.md). The manifest records the first QBE initialization, agent brief, Lean/LaTeX conversion window, multi-agent run cycles, reviewer handoffs, and trial-memory entries from 17–18 May 2026.
-- **May 2026.** The early repository already framed the goal as turning quantum-oracle assumptions into concrete gate-level matrices and Lean-checked block-encoding certificates, with a hierarchical Upper/Middle/Lower/Reviewer automation loop and faithful-paper versus exploratory-construction modes. The May history remains available in the Git record even though the public name and website were redesigned later.
+- **May 2026.** The early repository already framed the goal as turning quantum-oracle assumptions into concrete gate-level matrices and Lean-checked block-encoding certificates, with faithful-paper versus exploratory-construction modes. The May history remains available in the Git record even though the public name and website were redesigned later.
 
 These News items intentionally preserve the **early project chronology**. Routine recent engineering and website updates are not added here; current mathematical status is generated from the checkout and shown in QuantumComputinglib and the Implementation Map.
 
@@ -41,37 +41,17 @@ The project serves two **independent** mathematical routes. State Preparation as
 
 ---
 
-## ASPBE harness — substantive advances at the proof frontier
+## ASPBE harness — proof-gated synthesis
 
-ASPBE keeps a frozen mathematical contract and a global proof DAG, then assigns a small number of independent **Universal Workers**. Each Worker may cross source reading, mathematical derivation, Lean implementation, finite diagnostics, resource analysis, diagrams, and exposition. The **Frontier Master** reconciles their evidence and promotes only a theorem-backed advance or a sharp obstruction that changes the proof plan.
+ASPBE freezes the mathematical contract, reuses certified formal memory, searches the global proof frontier with generalist Workers, and promotes a construction only after its source, semantic, Lean, integration, and exposition obligations pass.
 
 <p align="center">
-  <img src="docs/assets/aspbe_master_worker_frontier.svg" alt="ASPBE Frontier Master and Universal Worker harness" width="1180">
+  <img src="docs/assets/aspbe_master_worker_frontier.svg" alt="Human expert reasoning, LLM-only reasoning, and the current ASPBE proof-gated synthesis loop" width="1180">
 </p>
 
-The public loop is:
+**Loop:** contract → formal memory → independent frontier work → mechanical verification → certified LaTeX + Lean + optional circuit/Qiskit outputs.
 
-**freeze the contract → identify the real proof bottleneck → run independent end-to-end Worker objectives → apply source/semantic/Lean/integration/exposition gates → update the certified frontier.**
-
-The key change from the original fixed Upper/Middle/Lower role stack is that **skills are lenses, not walls**. A Worker who discovers an operand-order error may immediately build a counterexample, repair the formal statement, inspect the Lean dependency, and update the circuit explanation. Verification remains hard, but it is an acceptance function rather than a cognitively narrow caste.
-
-One invocation counts as progress only when it closes a named theorem or reusable interface, integrates several layers into a higher proof node, or returns a typed obstruction strong enough to retire a route. Branches, commits, files, longer logs, isolated arithmetic lemmas, and repeated unchanged attempts are observability data—not mathematical progress.
-
-For the current comparator audit, the acceptance chain is deliberately explicit:
-
-```text
-individual X/CNOT/Toffoli gates
-  -> source subcircuits U₁,...,U₈
-  -> Figure 4 adder semantics
-  -> Figure 5 data and carry/flag semantics
-  -> comparator theorem and resource claim.
-```
-
-Thus `BinaryCarryTelescoping.lean` may certify an internal carry identity, but cannot by itself be advertised as a proof of the printed adder circuit. The reader-facing figure must separately show the overwritten data register and the carry/flag wire, state the operand convention, and attach named Lean declarations to the arrows.
-
-> **Evidence boundary.** Qiskit, NumPy, OpenQASM, truth tables, and one-bit audits may reject or prioritize candidates. They do not replace the named Lean theorem for an exact arbitrary-width claim.
-
-The detailed protocol, handoff schema, Master-bottleneck controls, efficiency metrics, legacy CLI mapping, and worked Vandaele schedule are in [`HARNESS.md`](HARNESS.md). Existing `upper`, `middle`, `lower1`–`lower4`, and `reviewer` profile keys remain replay-compatible execution slots; they no longer define what an agent is allowed to think about.
+[**Compare the previous and current Harness on QuantumComputinglib →**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/workflow/index.html) · [Protocol details](HARNESS.md)
 
 ---
 
