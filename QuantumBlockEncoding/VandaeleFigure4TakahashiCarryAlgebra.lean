@@ -70,6 +70,20 @@ def sumBit (a b carry : Fin 2) : Fin 2 :=
     xorBit (xorBit a b) c = xorBit a (xorBit b c) := by
   fin_cases a <;> fin_cases b <;> fin_cases c <;> rfl
 
+@[simp] theorem andBit_comm (left right : Fin 2) :
+    andBit left right = andBit right left := by
+  fin_cases left <;> fin_cases right <;> rfl
+
+/-- Cancellation in the syntactic orientation produced by a CNOT ladder. -/
+@[simp] theorem xorBit_cancel_left (a b : Fin 2) :
+    xorBit a (xorBit a b) = b := by
+  fin_cases a <;> fin_cases b <;> rfl
+
+/-- Cancellation when the repeated bit is separated by one XOR term. -/
+@[simp] theorem xorBit_cancel_middle (a b c : Fin 2) :
+    xorBit a (xorBit b (xorBit a c)) = xorBit b c := by
+  fin_cases a <;> fin_cases b <;> fin_cases c <;> rfl
+
 /-- The TTK carry formula is exactly the majority bit. -/
 theorem carryNext_value (a b carry : Fin 2) :
     (carryNext a b carry).val =
@@ -94,6 +108,15 @@ theorem forwardCarry_identity (a b carry next : Fin 2) :
   fin_cases a <;> fin_cases b <;> fin_cases carry <;>
     fin_cases next <;> rfl
 
+/-- Same carry step in the nested XOR orientation produced by symbolic
+execution of the source gate list. -/
+@[simp] theorem forwardCarry_nested (a b carry next : Fin 2) :
+    xorBit a
+        (xorBit next (andBit (xorBit a b) (xorBit a carry))) =
+      xorBit next (carryNext a b carry) := by
+  fin_cases a <;> fin_cases b <;> fin_cases carry <;>
+    fin_cases next <;> rfl
+
 /-- Repeating the same Toffoli after the higher carry has been consumed removes
 that temporary carry contribution.  This is the local algebraic heart of the
 TTK descending uncompute sweep. -/
@@ -101,6 +124,15 @@ theorem uncomputeCarry_identity (a b carry next : Fin 2) :
     xorBit
         (andBit (xorBit a b) (xorBit a carry))
         (xorBit (carryNext a b carry) next) =
+      xorBit a next := by
+  fin_cases a <;> fin_cases b <;> fin_cases carry <;>
+    fin_cases next <;> rfl
+
+/-- Same uncompute identity with the carry and `next` terms reversed. -/
+@[simp] theorem uncomputeCarry_reordered (a b carry next : Fin 2) :
+    xorBit
+        (andBit (xorBit a b) (xorBit a carry))
+        (xorBit next (carryNext a b carry)) =
       xorBit a next := by
   fin_cases a <;> fin_cases b <;> fin_cases carry <;>
     fin_cases next <;> rfl
