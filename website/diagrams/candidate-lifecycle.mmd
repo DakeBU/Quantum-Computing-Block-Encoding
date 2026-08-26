@@ -1,28 +1,32 @@
 flowchart LR
-  T["Frozen mathematical contract<br/>target · registers · α · ε · resource order"] --> M["Frontier Master<br/>choose one real bottleneck"]
+  subgraph PREV["Previous layered harness · historical structure"]
+    direction TB
+    U["Upper strategist / proof architect<br/>choose objectives · compress mathematics · maintain candidate/resource goals"]
+    M["Middle Lean-tree manager<br/>decompose the proof DAG · normalize interfaces · scope TODO subtrees"]
+    L["Lower focused workers ×N<br/>derive one bounded construction / Lean subtree · return auditable evidence"]
+    R["Reviewer / verifier<br/>source + semantic + Lean + resource gates"]
+    A["Accepted theorem / reusable certificate"]
+    U --> M --> L --> R
+    R -- "pass" --> A
+    R -- "fail + typed diagnostic" --> M
+  end
 
-  M --> W1["Universal Worker A<br/>source ↔ math ↔ Lean"]
-  M --> W2["Universal Worker B<br/>independent route / counterexample"]
-  M --> W3["Universal Worker C<br/>finite diagnostics / resources / exposition"]
+  subgraph CURR["Current execution contract · frontier ownership"]
+    direction TB
+    C["Frozen mathematical contract<br/>State Preparation or Block Encoding"]
+    F["Frontier Master<br/>own the global proof DAG · identify the real bottleneck · dispatch independent uncertainties"]
+    W["Universal Workers ×N<br/>own one substantive mathematical advance end to end<br/>source ↔ math ↔ Lean ↔ diagnostics ↔ exposition"]
+    G["Hard promotion gates<br/>source fidelity · semantics · Lean · integration · readable proof"]
+    P["Promoted frontier delta<br/>named theorem / reusable interface / sharp obstruction"]
+    C --> F --> W --> G --> P
+    P -. "update frontier" .-> F
+  end
 
-  W1 --> I["Local integrator<br/>compare evidence, salvage ideas"]
-  W2 --> I
-  W3 --> I
+  R -. "verification remains hard;<br/>fixed cognitive castes are removed" .-> G
 
-  I --> G{"Progress certificate gates<br/>source · semantics · Lean · integration · exposition"}
-  G -- "pass" --> C["Certified frontier advance<br/>named theorem / reusable interface"]
-  G -- "typed obstruction" --> O["Retire or repair route<br/>record exact failure and reusable lesson"]
-  O --> M
-  C --> N["Update theorem graph<br/>schedule next substantive frontier"]
-  N --> M
-
-  C --> E["Optional executable / teaching exports<br/>Qiskit · OpenQASM · circuit figure"]
-
-  classDef master fill:#ffffff,stroke:#465f7a,color:#203040,stroke-width:1.8px;
-  classDef worker fill:#ffffff,stroke:#71608f,color:#302640,stroke-width:1.4px;
-  classDef proof fill:#ffffff,stroke:#2f7355,color:#18382b,stroke-width:1.8px;
-  classDef fail fill:#ffffff,stroke:#8a5a4a,color:#4c332c,stroke-width:1.5px;
-  class T,M,N master;
-  class W1,W2,W3,I worker;
-  class G,C,E proof;
-  class O fail;
+  classDef old fill:#f7f2e8,stroke:#8b7654,color:#2f2a22,stroke-width:1.4px;
+  classDef current fill:#eef4f7,stroke:#35657d,color:#1e2c36,stroke-width:1.6px;
+  classDef gate fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.6px;
+  class U,M,L,R,A old;
+  class C,F,W,P current;
+  class G gate;
