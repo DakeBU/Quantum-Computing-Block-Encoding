@@ -86,19 +86,31 @@ def check_frontier_asset(readme: str) -> None:
 
     required_labels = (
         "Human expert reasoning",
-        "LLM-only guessed reasoning",
+        "LLM-only reasoning",
+        "State Preparation",
+        "Block Encoding",
+        "Formal memory + theorem graph",
         "Frontier Master",
-        "Generalist Worker A",
-        "Original Harness structure",
-        "Paper Scout",
+        "Worker A",
         "Hard acceptance gates",
+        "Typed feedback",
         "Certified outputs",
     )
     for label in required_labels:
         if label not in source:
             fail(f"ASPBE Research Harness SVG is missing reader label {label!r}")
-    if "Harness v2" in source or "harness v2" in source:
-        fail("public ASPBE Research Harness SVG must not expose an internal version label")
+
+    forbidden_history_labels = (
+        "Original Harness structure",
+        "Upper strategist",
+        "Middle Lean-tree manager",
+        "Paper Scout",
+        "Harness v2",
+        "harness v2",
+    )
+    for label in forbidden_history_labels:
+        if label in source:
+            fail(f"README Harness SVG must describe only the current system; found {label!r}")
 
 
 def check_readme_math_surface(readme: str) -> None:
@@ -119,14 +131,7 @@ def check_readme_math_surface(readme: str) -> None:
                 "ket/bra bars can be parsed as column separators"
             )
 
-    # Keep the public reader flow stable while allowing the Harness copy to be
-    # renamed without exposing internal protocol version numbers.
-    harness_markers = (
-        "## ASPBE harness — substantive advances at the proof frontier",
-        "## ASPBE harness v2 — substantive advances at the proof frontier",
-    )
-    harness_positions = [readme.find(marker) for marker in harness_markers]
-    harness_position = max(harness_positions)
+    harness_position = readme.find("## ASPBE harness — proof-gated synthesis")
     order = (
         readme.find("ASPBE is designed for a quantum-computing researcher"),
         harness_position,
@@ -136,6 +141,9 @@ def check_readme_math_surface(readme: str) -> None:
     )
     if any(position < 0 for position in order) or list(order) != sorted(order):
         fail("README reader order must be intro → Harness → SP → BE → cases")
+
+    if "Upper/Middle/Lower" in readme or "original fixed Upper" in readme:
+        fail("README should not explain historical Harness role stacks; link the workflow page instead")
 
     check_frontier_asset(readme)
 
