@@ -1,0 +1,35 @@
+name: Vandaele Figure 5 comparator semantics
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiSourceProgram.lean"
+      - "QuantumBlockEncoding/VandaeleFigure5ComparatorSemantics.lean"
+      - ".github/workflows/vandaele-figure5-comparator-semantics.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-figure5-comparator-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  comparator-semantics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Figure 5 source audit
+        run: lake build QuantumBlockEncoding.VandaeleFigure5ComparatorSemantics
