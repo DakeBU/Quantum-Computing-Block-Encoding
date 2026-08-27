@@ -19,7 +19,7 @@ README = ROOT / "README.md"
 SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
-FRONTIER_SVG = ROOT / "docs" / "assets" / "aspbe_master_worker_frontier.svg"
+CURRENT_HARNESS_WEBP = ROOT / "docs" / "assets" / "aspbe_current_harness.webp"
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
 HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
@@ -69,49 +69,18 @@ def readme_svg_refs(readme: str) -> list[str]:
 
 
 def check_frontier_asset(readme: str) -> None:
-    reference = 'src="docs/assets/aspbe_master_worker_frontier.svg"'
+    reference = 'src="docs/assets/aspbe_current_harness.webp"'
     if reference not in readme:
-        fail("README must use the ASPBE Research Harness comparison SVG")
-
-    source = read(FRONTIER_SVG)
-    try:
-        root = ET.fromstring(source)
-    except ET.ParseError as exc:
-        fail(f"invalid ASPBE Research Harness SVG: {exc}")
-
-    if root.attrib.get("viewBox") != "0 0 1800 1180":
-        fail("ASPBE Research Harness SVG must keep the readable 1800×1180 comparison viewBox")
-    if FRONTIER_SVG.stat().st_size > 100_000:
-        fail("ASPBE Research Harness SVG is unexpectedly large")
-
-    required_labels = (
-        "Human expert reasoning",
-        "LLM-only reasoning",
-        "State Preparation",
-        "Block Encoding",
-        "Formal memory + theorem graph",
-        "Frontier Master",
-        "Worker A",
-        "Hard acceptance gates",
-        "Typed feedback",
-        "Certified outputs",
-    )
-    for label in required_labels:
-        if label not in source:
-            fail(f"ASPBE Research Harness SVG is missing reader label {label!r}")
-
-    forbidden_history_labels = (
-        "Original Harness structure",
-        "Upper strategist",
-        "Middle Lean-tree manager",
-        "Paper Scout",
-        "Harness v2",
-        "harness v2",
-    )
-    for label in forbidden_history_labels:
-        if label in source:
-            fail(f"README Harness SVG must describe only the current system; found {label!r}")
-
+        fail("README must use the generated current ASPBE Harness comic")
+    if "aspbe_master_worker_frontier.svg" in readme:
+        fail("README still references the superseded Harness SVG")
+    if not CURRENT_HARNESS_WEBP.is_file():
+        fail("missing generated current ASPBE Harness WebP")
+    payload = CURRENT_HARNESS_WEBP.read_bytes()
+    if not (payload.startswith(b"RIFF") and payload[8:12] == b"WEBP"):
+        fail("current ASPBE Harness asset is not a valid WebP container")
+    if len(payload) < 10_000 or len(payload) > 120_000:
+        fail(f"current ASPBE Harness WebP has unexpected size: {len(payload)} bytes")
 
 def check_readme_math_surface(readme: str) -> None:
     for token in FORBIDDEN_README_TOKENS:

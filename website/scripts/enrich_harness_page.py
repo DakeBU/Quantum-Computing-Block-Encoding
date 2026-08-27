@@ -9,8 +9,8 @@ import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OLD_COMIC = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness.webp"
-CURRENT_COMIC = ROOT / "docs" / "assets" / "aspbe_master_worker_frontier.svg"
+OLD_COMIC = ROOT / "docs" / "assets" / "ASPBE.png"
+CURRENT_COMIC = ROOT / "docs" / "assets" / "aspbe_current_harness.webp"
 
 
 NEW_LEDE = (
@@ -33,13 +33,13 @@ COMPARISON = """
     <article class="case-card">
       <p class="eyebrow">Previous Harness</p>
       <h3>Layered roles</h3>
-      <img src="../static/aspbe_hierarchical_harness.webp" alt="Previous ASPBE hierarchical Harness comic" style="display:block;width:100%;height:auto;border-radius:18px;">
+      <img src="../static/ASPBE.png" alt="Previous ASPBE hierarchical Harness comic" style="display:block;width:100%;height:auto;border-radius:18px;">
       <p><strong>Upper strategist → Middle Lean-tree manager → focused workers → reviewer.</strong></p>
     </article>
     <article class="case-card">
       <p class="eyebrow">Current Harness</p>
       <h3>Proof-frontier search</h3>
-      <img src="../static/aspbe_master_worker_frontier.svg" alt="Current ASPBE Frontier Master and generalist Workers comic" style="display:block;width:100%;height:auto;border-radius:18px;">
+      <img src="../static/aspbe_current_harness.webp" alt="Current ASPBE Frontier Master and generalist Workers comic" style="display:block;width:100%;height:auto;border-radius:18px;">
       <p><strong>Frontier Master → parallel generalist Workers → hard proof gates → certified outputs.</strong></p>
     </article>
   </div>

@@ -50,7 +50,7 @@ The project serves two **independent** mathematical routes. State Preparation as
 ASPBE freezes the mathematical contract, reuses certified formal memory, searches the global proof frontier with generalist Workers, and promotes a construction only after its source, semantic, Lean, integration, and exposition obligations pass.
 
 <p align="center">
-  <img src="docs/assets/aspbe_master_worker_frontier.svg" alt="Human expert reasoning, LLM-only reasoning, and the current ASPBE proof-gated synthesis loop" width="1180">
+  <img src="docs/assets/aspbe_current_harness.webp" alt="Human expert reasoning, LLM-only reasoning, and the current ASPBE proof-gated synthesis loop" width="1000">
 </p>
 
 **Loop:** contract → formal memory → independent frontier work → mechanical verification → certified LaTeX + Lean + optional circuit/Qiskit outputs.
