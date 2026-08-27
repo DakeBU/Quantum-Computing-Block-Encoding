@@ -1,195 +1,175 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1180" viewBox="0 0 1800 1180" role="img" aria-labelledby="title desc">
   <title id="title">Human expert reasoning, LLM-only reasoning, and the current ASPBE proof-gated synthesis loop</title>
-  <desc id="desc">A colorful three-panel storyboard compares human expert derivation, LLM-only guessed reasoning, and the current ASPBE system for State Preparation and Block Encoding. ASPBE combines a formal contract, reusable theorem memory, a Frontier Master, generalist Workers, hard source-semantic-Lean gates, typed feedback, and certified researcher-facing outputs.</desc>
+  <desc id="desc">A comic-style comparison. Human expert reasoning derives State Preparation and Block Encoding manually. LLM-only reasoning produces plausible but unverified drafts. The current ASPBE system freezes a formal contract, reuses formal memory and a theorem graph, lets a Frontier Master coordinate parallel generalist Workers, applies hard acceptance gates, routes typed feedback, and emits certified outputs.</desc>
   <defs>
-    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#376d91"/></marker>
-    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#38815b"/></marker>
-    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#b05b63"/></marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#356f94"/></marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#36805a"/></marker>
+    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#b45a67"/></marker>
     <style>
       text { font-family: "Times New Roman", Times, serif; fill: #20313d; }
       .title { font-size: 42px; font-weight: 700; }
-      .subtitle { font-size: 20px; fill: #5c6d76; }
-      .panelTitle { font-size: 28px; font-weight: 700; }
+      .subtitle { font-size: 20px; fill: #5a6d77; }
+      .panelTitle { font-size: 29px; font-weight: 700; }
       .head { font-size: 21px; font-weight: 700; }
-      .body { font-size: 17px; }
-      .small { font-size: 15px; fill: #53636c; }
-      .tiny { font-size: 13px; fill: #60717a; }
+      .body { font-size: 18px; }
+      .small { font-size: 15px; fill: #52656f; }
+      .tiny { font-size: 13px; fill: #5d7079; }
       .chip { font-size: 14px; font-weight: 700; letter-spacing: .4px; }
-      .panel { stroke-width: 2.4; rx: 24; ry: 24; }
+      .panel { stroke-width: 2.6; rx: 28; ry: 28; }
       .card { stroke-width: 1.8; rx: 16; ry: 16; }
-      .mini { stroke-width: 1.5; rx: 12; ry: 12; }
-      .blueArrow { stroke: #376d91; stroke-width: 3; fill: none; marker-end: url(#arrowBlue); }
-      .greenArrow { stroke: #38815b; stroke-width: 3; fill: none; marker-end: url(#arrowGreen); }
-      .redArrow { stroke: #b05b63; stroke-width: 2.8; fill: none; stroke-dasharray: 9 7; marker-end: url(#arrowRed); }
+      .blueArrow { stroke: #356f94; stroke-width: 3; fill: none; marker-end: url(#arrowBlue); }
+      .greenArrow { stroke: #36805a; stroke-width: 3; fill: none; marker-end: url(#arrowGreen); }
+      .redArrow { stroke: #b45a67; stroke-width: 2.8; fill: none; stroke-dasharray: 8 7; marker-end: url(#arrowRed); }
     </style>
   </defs>
 
-  <rect width="1800" height="1180" fill="#fffdf9"/>
-  <circle cx="77" cy="75" r="21" fill="#ffd96a"/>
-  <circle cx="119" cy="75" r="9" fill="#ff9e78"/>
-  <circle cx="1722" cy="76" r="22" fill="#94d9ca"/>
-  <circle cx="1680" cy="75" r="9" fill="#a6c8f5"/>
-  <text class="title" x="900" y="58" text-anchor="middle">Same quantum construction problem, three reasoning systems</text>
-  <text class="subtitle" x="900" y="92" text-anchor="middle">State Preparation and Block Encoding are the same mathematical targets; verification and reusable formal memory change the workflow.</text>
+  <rect width="1800" height="1180" fill="#fffdf8"/>
+  <circle cx="78" cy="70" r="18" fill="#f6c85f"/>
+  <circle cx="118" cy="70" r="8" fill="#ef8d75"/>
+  <circle cx="1722" cy="70" r="18" fill="#79c9b2"/>
+  <circle cx="1684" cy="70" r="8" fill="#87addb"/>
+  <text class="title" x="900" y="58" text-anchor="middle">From plausible construction to certified quantum artifact</text>
+  <text class="subtitle" x="900" y="92" text-anchor="middle">The mathematics is the same; reusable formal memory and proof gates change how the result is produced.</text>
 
-  <!-- Human expert storyboard -->
-  <rect class="panel" x="55" y="132" width="555" height="405" fill="#fff5d7" stroke="#c79a35"/>
-  <rect x="55" y="132" width="555" height="67" rx="24" ry="24" fill="#ffe39a"/>
-  <text class="panelTitle" x="332" y="174" text-anchor="middle">Human expert reasoning</text>
-  <circle cx="125" cy="255" r="37" fill="#f3b88d" stroke="#9a6748" stroke-width="1.8"/>
-  <path d="M84 335 Q125 282 166 335 L166 377 L84 377 Z" fill="#76a9d2" stroke="#456f91" stroke-width="1.8"/>
-  <rect x="93" y="302" width="66" height="44" rx="6" fill="#fff" stroke="#8b795d" stroke-width="1.4"/>
-  <path d="M107 316 L146 316 M107 327 L139 327 M107 338 L132 338" stroke="#9c8a70" stroke-width="1.5"/>
-  <text class="small" x="125" y="408" text-anchor="middle">derive · inspect · revise</text>
+  <rect class="panel" x="45" y="130" width="420" height="1005" fill="#fff5d8" stroke="#c79532"/>
+  <rect x="45" y="130" width="420" height="68" rx="28" ry="28" fill="#ffe39d"/>
+  <text class="panelTitle" x="255" y="173" text-anchor="middle">Human expert reasoning</text>
+  <circle cx="150" cy="276" r="48" fill="#f0b48f" stroke="#8a5c45" stroke-width="2"/>
+  <path d="M108 262 Q120 218 157 226 Q185 228 193 263 Q172 245 149 247 Q127 245 108 262 Z" fill="#5f493f"/>
+  <circle cx="134" cy="278" r="4" fill="#3b302a"/><circle cx="167" cy="278" r="4" fill="#3b302a"/>
+  <path d="M137 299 Q151 308 165 299" stroke="#7d4e44" stroke-width="2.2" fill="none"/>
+  <path d="M83 399 Q104 330 150 330 Q196 330 217 399 L217 454 L83 454 Z" fill="#6fa8d2" stroke="#416e90" stroke-width="2"/>
+  <path d="M125 337 L150 365 L175 337" fill="#fff" stroke="#d7e2ea" stroke-width="1.4"/>
+  <rect x="238" y="230" width="183" height="215" rx="16" fill="#fffdf7" stroke="#a88443" stroke-width="2"/>
+  <path d="M258 264 L399 264 M258 294 L383 294 M258 324 L405 324 M258 354 L372 354 M258 384 L394 384" stroke="#b89e70" stroke-width="2"/>
+  <path d="M209 344 Q236 325 255 309" stroke="#8a5c45" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <circle cx="260" cy="305" r="7" fill="#f0b48f"/>
+  <text class="small" x="255" y="485" text-anchor="middle">derive · inspect · revise</text>
+  <rect class="card" x="78" y="535" width="354" height="135" fill="#ffffff" stroke="#c69b3b"/>
+  <rect x="98" y="557" width="58" height="26" rx="13" fill="#9ecff0"/>
+  <text class="chip" x="127" y="575" text-anchor="middle">SP</text>
+  <text class="head" x="172" y="578">State Preparation</text>
+  <text class="body" x="255" y="616" text-anchor="middle">U|0…0⟩ = |ψ⟩</text>
+  <text class="small" x="255" y="646" text-anchor="middle">construct + prove + count resources</text>
+  <rect class="card" x="78" y="697" width="354" height="135" fill="#ffffff" stroke="#c69b3b"/>
+  <rect x="98" y="719" width="58" height="26" rx="13" fill="#a9dfc5"/>
+  <text class="chip" x="127" y="737" text-anchor="middle">BE</text>
+  <text class="head" x="172" y="740">Block Encoding</text>
+  <text class="body" x="255" y="778" text-anchor="middle">‖A − αΠUΠ†‖ ≤ ε</text>
+  <text class="small" x="255" y="808" text-anchor="middle">construct + prove + count resources</text>
+  <path class="blueArrow" d="M255 850 L255 895"/>
+  <rect class="card" x="100" y="900" width="310" height="126" fill="#f9e9bd" stroke="#b8872b"/>
+  <text class="head" x="255" y="940" text-anchor="middle">High mathematical insight</text>
+  <text class="body" x="255" y="976" text-anchor="middle">but the loop is manual</text>
+  <text class="small" x="255" y="1005" text-anchor="middle">hard to scale across many oracle contracts</text>
 
-  <rect class="card" x="202" y="220" width="365" height="105" fill="#fff" stroke="#d0a54d"/>
-  <rect x="220" y="238" width="45" height="25" rx="12" fill="#89c6ef"/>
-  <text class="chip" x="242" y="256" text-anchor="middle">SP</text>
-  <text class="head" x="285" y="258">State Preparation</text>
-  <text class="body" x="220" y="289">Construct U and prove</text>
-  <text class="body" x="395" y="289">U|0…0⟩ = |ψ⟩</text>
+  <rect class="panel" x="495" y="130" width="420" height="1005" fill="#fff0f4" stroke="#c56979"/>
+  <rect x="495" y="130" width="420" height="68" rx="28" ry="28" fill="#ffd5dd"/>
+  <text class="panelTitle" x="705" y="173" text-anchor="middle">LLM-only reasoning</text>
+  <rect x="610" y="236" width="190" height="146" rx="32" fill="#ccb9eb" stroke="#72588b" stroke-width="2.4"/>
+  <rect x="643" y="264" width="124" height="72" rx="20" fill="#f8f5ff" stroke="#8f79aa" stroke-width="1.8"/>
+  <circle cx="674" cy="298" r="9" fill="#69517e"/>
+  <circle cx="736" cy="298" r="9" fill="#69517e"/>
+  <path d="M677 320 Q705 335 733 320" stroke="#69517e" stroke-width="2.4" fill="none"/>
+  <path d="M652 236 L640 215 M758 236 L770 215" stroke="#72588b" stroke-width="3"/>
+  <circle cx="639" cy="212" r="6" fill="#ef9ea9"/><circle cx="771" cy="212" r="6" fill="#ef9ea9"/>
+  <path d="M590 335 L550 365 M820 335 L860 365" stroke="#72588b" stroke-width="9" stroke-linecap="round"/>
+  <rect x="549" y="362" width="92" height="112" rx="10" fill="#fff" stroke="#c06d7a"/>
+  <path d="M565 386 L624 386 M565 409 L617 409 M565 432 L628 432" stroke="#ca9da5" stroke-width="2"/>
+  <rect x="769" y="362" width="92" height="112" rx="10" fill="#fff" stroke="#c06d7a"/>
+  <path d="M785 386 L844 386 M785 409 L837 409 M785 432 L848 432" stroke="#ca9da5" stroke-width="2"/>
+  <text class="small" x="705" y="505" text-anchor="middle">prompt → plausible drafts</text>
+  <rect class="card" x="530" y="545" width="350" height="126" fill="#ffffff" stroke="#b781bf"/>
+  <text class="head" x="705" y="582" text-anchor="middle">SP / BE candidates</text>
+  <text class="body" x="705" y="617" text-anchor="middle">formulas · prose · code</text>
+  <rect x="617" y="635" width="176" height="24" rx="12" fill="#ece0f7"/>
+  <text class="chip" x="705" y="652" text-anchor="middle">LOOKS PLAUSIBLE</text>
+  <path class="redArrow" d="M705 674 L705 720"/>
+  <rect class="card" x="550" y="725" width="310" height="162" fill="#fff9fa" stroke="#c45e70"/>
+  <circle cx="705" cy="771" r="27" fill="#f6d2d8" stroke="#b14e60" stroke-width="2"/>
+  <path d="M692 758 L718 784 M718 758 L692 784" stroke="#a34252" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <text class="head" x="705" y="828" text-anchor="middle">No proof gate</text>
+  <text class="small" x="705" y="857" text-anchor="middle">hidden convention errors can survive</text>
+  <path class="redArrow" d="M705 895 L705 940"/>
+  <rect class="card" x="550" y="946" width="310" height="110" fill="#f7dfe4" stroke="#b55264"/>
+  <text class="head" x="705" y="985" text-anchor="middle">Verification gap</text>
+  <text class="body" x="705" y="1021" text-anchor="middle">plausible ≠ certified</text>
 
-  <rect class="card" x="202" y="342" width="365" height="105" fill="#fff" stroke="#d0a54d"/>
-  <rect x="220" y="360" width="45" height="25" rx="12" fill="#9cdbc1"/>
-  <text class="chip" x="242" y="378" text-anchor="middle">BE</text>
-  <text class="head" x="285" y="380">Block Encoding</text>
-  <text class="body" x="220" y="411">Construct U and prove</text>
-  <text class="body" x="373" y="411">‖A − αΠUΠ†‖ ≤ ε</text>
-
-  <rect class="mini" x="187" y="466" width="395" height="48" fill="#f9e8b9" stroke="#bc8d2e"/>
-  <text class="body" x="385" y="487" text-anchor="middle">Expert checking can be deep and reliable,</text>
-  <text class="small" x="385" y="507" text-anchor="middle">but formalization and reuse are largely manual.</text>
-
-  <!-- LLM-only storyboard -->
-  <rect class="panel" x="55" y="568" width="555" height="535" fill="#fff0f3" stroke="#c26978"/>
-  <rect x="55" y="568" width="555" height="67" rx="24" ry="24" fill="#ffd4dc"/>
-  <text class="panelTitle" x="332" y="610" text-anchor="middle">LLM-only reasoning</text>
-
-  <rect class="card" x="85" y="664" width="150" height="132" fill="#fff" stroke="#9e6a9f"/>
-  <rect x="112" y="684" width="96" height="70" rx="18" fill="#cbb5eb" stroke="#74568e" stroke-width="1.8"/>
-  <circle cx="140" cy="717" r="8" fill="#5f4775"/>
-  <circle cx="180" cy="717" r="8" fill="#5f4775"/>
-  <path d="M142 738 Q160 749 178 738" stroke="#5f4775" stroke-width="2" fill="none"/>
-  <path d="M129 684 L121 668 M191 684 L199 668" stroke="#74568e" stroke-width="2"/>
-  <text class="small" x="160" y="780" text-anchor="middle">prompt + paper context</text>
-
-  <rect class="card" x="266" y="653" width="301" height="93" fill="#fff" stroke="#ca7c89"/>
-  <text class="head" x="416" y="682" text-anchor="middle">Generate plausible candidates</text>
-  <text class="body" x="416" y="709" text-anchor="middle">SP circuit / proof sketch</text>
-  <text class="body" x="416" y="733" text-anchor="middle">BE circuit / proof sketch</text>
-
-  <path class="redArrow" d="M416 746 L416 783"/>
-  <rect class="card" x="266" y="783" width="301" height="121" fill="#fff8f8" stroke="#c26978"/>
-  <text class="head" x="416" y="814" text-anchor="middle">Looks mathematically reasonable</text>
-  <text class="small" x="416" y="842" text-anchor="middle">but hidden assumptions, register order, signs,</text>
-  <text class="small" x="416" y="865" text-anchor="middle">or oracle semantics can silently drift.</text>
-  <rect x="303" y="878" width="226" height="24" rx="12" fill="#ffd9dd"/>
-  <text class="chip" x="416" y="895" text-anchor="middle" fill="#8f3e4a">NO MECHANICAL ACCEPTANCE</text>
-
-  <path class="redArrow" d="M416 904 L416 944"/>
-  <rect class="card" x="105" y="944" width="462" height="120" fill="#f6dce1" stroke="#b95767"/>
-  <text class="head" x="336" y="977" text-anchor="middle">Verification gap</text>
-  <text class="body" x="336" y="1006" text-anchor="middle">Plausible answer ≠ verified theorem</text>
-  <text class="small" x="336" y="1034" text-anchor="middle">One-pass generation of a nontrivial Lean development</text>
-  <text class="small" x="336" y="1057" text-anchor="middle">from a blank context is too brittle to be the verifier.</text>
-
-  <!-- ASPBE storyboard -->
-  <rect class="panel" x="650" y="132" width="1095" height="971" fill="#eef8fb" stroke="#477c9e"/>
-  <rect x="650" y="132" width="1095" height="67" rx="24" ry="24" fill="#cceaf4"/>
-  <text class="panelTitle" x="1197" y="174" text-anchor="middle">ASPBE · proof-gated synthesis</text>
-
-  <circle cx="707" cy="234" r="17" fill="#6cb4de"/>
-  <text class="chip" x="707" y="239" text-anchor="middle" fill="#fff">1</text>
-  <rect class="card" x="741" y="215" width="924" height="88" fill="#fff" stroke="#5c94b5"/>
-  <text class="head" x="1203" y="244" text-anchor="middle">Freeze the mathematical contract</text>
-  <text class="body" x="1203" y="271" text-anchor="middle">State Preparation or Block Encoding · query oracles · registers · α · ε · resource priorities</text>
-  <text class="small" x="1203" y="293" text-anchor="middle">The target is explicit before search begins.</text>
-  <path class="blueArrow" d="M1203 303 L1203 337"/>
-
-  <!-- Formal memory -->
-  <rect class="card" x="702" y="352" width="330" height="300" fill="#fff8e8" stroke="#c6953a"/>
-  <circle cx="737" cy="386" r="17" fill="#f0b94e"/>
-  <text class="chip" x="737" y="391" text-anchor="middle" fill="#fff">2</text>
-  <text class="head" x="867" y="390" text-anchor="middle">Formal memory + theorem graph</text>
-  <rect class="mini" x="735" y="422" width="264" height="48" fill="#d8edff" stroke="#6fa2c7"/>
-  <text class="body" x="867" y="451" text-anchor="middle">State-preparation lemmas</text>
-  <rect class="mini" x="735" y="483" width="264" height="48" fill="#dcf3e6" stroke="#6ca582"/>
-  <text class="body" x="867" y="512" text-anchor="middle">Block-encoding routes</text>
-  <rect class="mini" x="735" y="544" width="264" height="48" fill="#ede3fb" stroke="#9276b4"/>
-  <text class="body" x="867" y="573" text-anchor="middle">Reusable proof interfaces</text>
-  <rect class="mini" x="735" y="605" width="264" height="28" fill="#ffe0df" stroke="#c97470"/>
-  <text class="small" x="867" y="624" text-anchor="middle">typed failures stay searchable too</text>
-
-  <!-- Master and Workers -->
-  <rect class="card" x="1065" y="352" width="600" height="300" fill="#f4efff" stroke="#7b63a5"/>
-  <circle cx="1101" cy="386" r="17" fill="#8f73bd"/>
-  <text class="chip" x="1101" y="391" text-anchor="middle" fill="#fff">3</text>
-  <rect class="mini" x="1131" y="374" width="498" height="73" fill="#fff" stroke="#7b63a5"/>
-  <text class="head" x="1380" y="402" text-anchor="middle">Frontier Master</text>
-  <text class="small" x="1380" y="427" text-anchor="middle">select real bottlenecks · reconcile evidence · update the global frontier</text>
-  <path class="blueArrow" d="M1380 447 L1380 477"/>
-
-  <rect class="mini" x="1098" y="491" width="162" height="129" fill="#e7f3ff" stroke="#6d9cc2"/>
-  <text class="head" x="1179" y="519" text-anchor="middle">Worker A</text>
-  <text class="tiny" x="1179" y="545" text-anchor="middle">source ↔ math</text>
-  <text class="tiny" x="1179" y="568" text-anchor="middle">Lean ↔ tests</text>
-  <text class="tiny" x="1179" y="591" text-anchor="middle">one objective</text>
-  <text class="tiny" x="1179" y="611" text-anchor="middle">end to end</text>
-
-  <rect class="mini" x="1299" y="491" width="162" height="129" fill="#e9f8ef" stroke="#66a27c"/>
-  <text class="head" x="1380" y="519" text-anchor="middle">Worker B</text>
-  <text class="tiny" x="1380" y="545" text-anchor="middle">reuse blocks</text>
-  <text class="tiny" x="1380" y="568" text-anchor="middle">derive bridge</text>
-  <text class="tiny" x="1380" y="591" text-anchor="middle">or produce a</text>
-  <text class="tiny" x="1380" y="611" text-anchor="middle">counterexample</text>
-
-  <rect class="mini" x="1500" y="491" width="132" height="129" fill="#fff0e3" stroke="#cb8a55"/>
-  <text class="head" x="1566" y="519" text-anchor="middle">Worker C</text>
-  <text class="tiny" x="1566" y="545" text-anchor="middle">resources</text>
-  <text class="tiny" x="1566" y="568" text-anchor="middle">circuits</text>
-  <text class="tiny" x="1566" y="591" text-anchor="middle">exposition</text>
-  <text class="tiny" x="1566" y="611" text-anchor="middle">audit</text>
-
-  <path class="blueArrow" d="M1032 502 L1065 502"/>
-  <path class="blueArrow" d="M1203 652 L1203 692"/>
-
-  <!-- Gates -->
-  <circle cx="707" cy="725" r="17" fill="#4ba173"/>
-  <text class="chip" x="707" y="730" text-anchor="middle" fill="#fff">4</text>
-  <rect class="card" x="741" y="688" width="924" height="151" fill="#ecf9f0" stroke="#438462"/>
-  <text class="head" x="1203" y="718" text-anchor="middle">Hard acceptance gates</text>
-  <rect class="mini" x="776" y="746" width="158" height="58" fill="#fff" stroke="#5c9471"/>
-  <text class="body" x="855" y="781" text-anchor="middle">Source fidelity</text>
-  <rect class="mini" x="949" y="746" width="158" height="58" fill="#fff" stroke="#5c9471"/>
-  <text class="body" x="1028" y="781" text-anchor="middle">Semantics</text>
-  <rect class="mini" x="1122" y="746" width="158" height="58" fill="#fff" stroke="#5c9471"/>
-  <text class="body" x="1201" y="781" text-anchor="middle">Lean theorem</text>
-  <rect class="mini" x="1295" y="746" width="158" height="58" fill="#fff" stroke="#5c9471"/>
-  <text class="body" x="1374" y="781" text-anchor="middle">Integration</text>
-  <rect class="mini" x="1468" y="746" width="158" height="58" fill="#fff" stroke="#5c9471"/>
-  <text class="body" x="1547" y="781" text-anchor="middle">Readable proof</text>
-  <text class="small" x="1203" y="827" text-anchor="middle">Only named obligations that pass are promoted.</text>
-
-  <!-- Feedback and outputs -->
-  <path class="redArrow" d="M905 839 L905 878"/>
-  <rect class="card" x="741" y="878" width="330" height="150" fill="#fff0f0" stroke="#bd6268"/>
-  <circle cx="775" cy="910" r="16" fill="#cf6f75"/>
-  <text class="chip" x="775" y="915" text-anchor="middle" fill="#fff">↺</text>
-  <text class="head" x="906" y="914" text-anchor="middle">Typed feedback</text>
-  <text class="small" x="906" y="944" text-anchor="middle">counterexample · missing interface</text>
-  <text class="small" x="906" y="969" text-anchor="middle">convention mismatch · failed theorem</text>
-  <text class="small" x="906" y="1002" text-anchor="middle">repair or retire the route, then search again</text>
-  <path class="redArrow" d="M741 954 C674 954 677 594 702 594"/>
-
-  <path class="greenArrow" d="M1450 839 L1450 878"/>
-  <rect class="card" x="1105" y="878" width="560" height="150" fill="#e6f7ec" stroke="#438462"/>
-  <circle cx="1142" cy="910" r="16" fill="#4c9e70"/>
-  <text class="chip" x="1142" y="915" text-anchor="middle" fill="#fff">5</text>
-  <text class="head" x="1385" y="914" text-anchor="middle">Certified outputs</text>
-  <text class="body" x="1385" y="946" text-anchor="middle">LaTeX theorem + proof · named Lean certificate</text>
-  <text class="body" x="1385" y="975" text-anchor="middle">theorem-linked circuit · resources · editable interface</text>
-  <text class="small" x="1385" y="1004" text-anchor="middle">optional Qiskit / OpenQASM exports after certification</text>
-
-  <rect class="mini" x="739" y="1051" width="928" height="31" fill="#dceef5" stroke="#6c9ab3"/>
-  <text class="small" x="1203" y="1072" text-anchor="middle">ASPBE is not “an LLM that guesses better”: generation is constrained by formal memory, explicit obligations, and mechanical acceptance.</text>
+  <rect class="panel" x="945" y="130" width="810" height="1005" fill="#edf8fb" stroke="#427b9f"/>
+  <rect x="945" y="130" width="810" height="68" rx="28" ry="28" fill="#ccebf4"/>
+  <text class="panelTitle" x="1350" y="173" text-anchor="middle">Current ASPBE · proof-gated synthesis</text>
+  <circle cx="1024" cy="285" r="34" fill="#efb28d" stroke="#8a5c45" stroke-width="1.8"/>
+  <path d="M994 277 Q1000 246 1029 248 Q1051 250 1058 279 Q1042 264 1025 265 Q1008 264 994 277 Z" fill="#4f4641"/>
+  <circle cx="1014" cy="286" r="3.5" fill="#3b302a"/><circle cx="1038" cy="286" r="3.5" fill="#3b302a"/>
+  <path d="M1015 302 Q1026 309 1037 302" stroke="#7d4e44" stroke-width="2" fill="none"/>
+  <path d="M981 390 Q994 329 1024 329 Q1054 329 1067 390 L1067 425 L981 425 Z" fill="#6fa8d2" stroke="#416e90" stroke-width="1.8"/>
+  <rect class="card" x="1092" y="232" width="250" height="145" fill="#fff" stroke="#5d96b5"/>
+  <text class="head" x="1217" y="267" text-anchor="middle">Formal contract</text>
+  <text class="small" x="1217" y="300" text-anchor="middle">target · oracles · registers</text>
+  <text class="small" x="1217" y="328" text-anchor="middle">ε · resource order</text>
+  <rect x="1139" y="344" width="156" height="22" rx="11" fill="#dceefa"/>
+  <text class="chip" x="1217" y="360" text-anchor="middle">FREEZE FIRST</text>
+  <path class="blueArrow" d="M1347 304 L1392 304"/>
+  <rect class="card" x="1395" y="222" width="310" height="175" fill="#fff8e9" stroke="#c29035"/>
+  <text class="body" x="1550" y="252" text-anchor="middle" font-weight="700">Formal memory + theorem graph</text>
+  <circle cx="1460" cy="314" r="16" fill="#80b8e0"/>
+  <circle cx="1550" cy="290" r="16" fill="#91cfa9"/>
+  <circle cx="1638" cy="320" r="16" fill="#b49ddd"/>
+  <circle cx="1555" cy="353" r="16" fill="#f0b96b"/>
+  <path d="M1476 310 L1534 295 M1566 295 L1622 315 M1561 306 L1557 337 M1476 320 L1539 347 M1571 350 L1623 326" stroke="#7a8990" stroke-width="2.2"/>
+  <text class="tiny" x="1550" y="384" text-anchor="middle">reuse proved blocks; keep typed failures</text>
+  <path class="blueArrow" d="M1350 408 L1350 454"/>
+  <rect class="card" x="1130" y="460" width="440" height="150" fill="#f2edff" stroke="#7860a4"/>
+  <circle cx="1198" cy="523" r="34" fill="#efb28d" stroke="#8a5c45" stroke-width="1.8"/>
+  <path d="M1168 514 Q1179 482 1204 486 Q1226 489 1231 516 Q1214 501 1198 503 Q1183 501 1168 514 Z" fill="#634b43"/>
+  <circle cx="1188" cy="524" r="3.5" fill="#3b302a"/><circle cx="1209" cy="524" r="3.5" fill="#3b302a"/>
+  <path d="M1188 541 Q1198 548 1209 541" stroke="#7d4e44" stroke-width="2" fill="none"/>
+  <rect x="1250" y="488" width="288" height="91" rx="12" fill="#fff" stroke="#9a86bb"/>
+  <path d="M1273 515 L1320 515 L1348 541 L1398 513 L1454 542 L1512 516" stroke="#7860a4" stroke-width="3" fill="none"/>
+  <circle cx="1320" cy="515" r="5" fill="#7860a4"/><circle cx="1348" cy="541" r="5" fill="#7860a4"/><circle cx="1398" cy="513" r="5" fill="#7860a4"/><circle cx="1454" cy="542" r="5" fill="#7860a4"/>
+  <text class="head" x="1350" y="595" text-anchor="middle">Frontier Master</text>
+  <path class="blueArrow" d="M1240 612 L1118 675"/>
+  <path class="blueArrow" d="M1350 612 L1350 675"/>
+  <path class="blueArrow" d="M1460 612 L1582 675"/>
+  <rect class="card" x="1010" y="683" width="215" height="170" fill="#e8f3ff" stroke="#6596ba"/>
+  <circle cx="1117" cy="730" r="29" fill="#eeb48e" stroke="#8a5c45" stroke-width="1.6"/>
+  <circle cx="1108" cy="731" r="3.2" fill="#3b302a"/><circle cx="1127" cy="731" r="3.2" fill="#3b302a"/>
+  <path d="M1109 746 Q1118 751 1127 746" stroke="#7d4e44" stroke-width="1.8" fill="none"/>
+  <path d="M1084 798 Q1093 763 1117 763 Q1141 763 1150 798 L1150 818 L1084 818 Z" fill="#82b5d9"/>
+  <text class="head" x="1117" y="839" text-anchor="middle">Worker A</text>
+  <rect class="card" x="1243" y="683" width="215" height="170" fill="#eaf7ef" stroke="#67a17d"/>
+  <circle cx="1350" cy="730" r="29" fill="#e8ad8c" stroke="#8a5c45" stroke-width="1.6"/>
+  <path d="M1323 720 Q1332 696 1355 701 Q1371 704 1377 722 Q1360 710 1348 711 Q1337 710 1323 720 Z" fill="#49423e"/>
+  <circle cx="1341" cy="731" r="3.2" fill="#3b302a"/><circle cx="1360" cy="731" r="3.2" fill="#3b302a"/>
+  <path d="M1342 746 Q1351 751 1360 746" stroke="#7d4e44" stroke-width="1.8" fill="none"/>
+  <path d="M1317 798 Q1326 763 1350 763 Q1374 763 1383 798 L1383 818 L1317 818 Z" fill="#79bd92"/>
+  <text class="head" x="1350" y="839" text-anchor="middle">Worker B</text>
+  <rect class="card" x="1475" y="683" width="215" height="170" fill="#fff0e4" stroke="#c58452"/>
+  <circle cx="1582" cy="730" r="29" fill="#efb591" stroke="#8a5c45" stroke-width="1.6"/>
+  <path d="M1555 718 Q1567 697 1586 701 Q1604 704 1609 721 Q1592 710 1581 711 Q1569 710 1555 718 Z" fill="#65473e"/>
+  <circle cx="1573" cy="731" r="3.2" fill="#3b302a"/><circle cx="1592" cy="731" r="3.2" fill="#3b302a"/>
+  <path d="M1574 746 Q1583 751 1592 746" stroke="#7d4e44" stroke-width="1.8" fill="none"/>
+  <path d="M1549 798 Q1558 763 1582 763 Q1606 763 1615 798 L1615 818 L1549 818 Z" fill="#e0a06c"/>
+  <text class="head" x="1582" y="839" text-anchor="middle">Worker C</text>
+  <text class="small" x="1350" y="878" text-anchor="middle">parallel, cross-layer, one substantive objective each</text>
+  <path class="greenArrow" d="M1117 858 Q1136 915 1245 925"/>
+  <path class="greenArrow" d="M1350 858 L1350 918"/>
+  <path class="greenArrow" d="M1582 858 Q1564 915 1455 925"/>
+  <rect class="card" x="1160" y="920" width="335" height="115" fill="#e5f5eb" stroke="#3e865f"/>
+  <path d="M1242 944 L1270 932 L1298 944 L1295 976 Q1280 1002 1270 1009 Q1260 1002 1245 976 Z" fill="#77bf94" stroke="#367354" stroke-width="2"/>
+  <path d="M1256 969 L1267 980 L1286 956" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="body" x="1396" y="958" text-anchor="middle" font-weight="700">Hard acceptance gates</text>
+  <text class="small" x="1396" y="986" text-anchor="middle">source · semantics · Lean · integration</text>
+  <text class="small" x="1396" y="1012" text-anchor="middle">only proved candidates advance</text>
+  <path class="redArrow" d="M1170 980 Q1020 980 1015 836"/>
+  <text class="small" x="1057" y="948" text-anchor="middle">Typed feedback</text>
+  <path class="greenArrow" d="M1498 978 L1530 978"/>
+  <rect class="card" x="1535" y="918" width="175" height="180" fill="#ffffff" stroke="#4f86a7"/>
+  <text class="body" x="1622" y="950" text-anchor="middle" font-weight="700">Certified outputs</text>
+  <rect x="1554" y="970" width="68" height="35" rx="9" fill="#dceefa"/><text class="tiny" x="1588" y="993" text-anchor="middle">LaTeX</text>
+  <rect x="1631" y="970" width="60" height="35" rx="9" fill="#e9e0f8"/><text class="tiny" x="1661" y="993" text-anchor="middle">Lean</text>
+  <rect x="1554" y="1014" width="68" height="35" rx="9" fill="#e2f3e7"/><text class="tiny" x="1588" y="1037" text-anchor="middle">Circuit</text>
+  <rect x="1631" y="1014" width="60" height="35" rx="9" fill="#fff0dc"/><text class="tiny" x="1661" y="1037" text-anchor="middle">Qiskit</text>
+  <text class="tiny" x="1622" y="1076" text-anchor="middle">copy · inspect · edit</text>
+  <text class="small" x="1350" y="1110" text-anchor="middle">proof frontier moves only when a theorem closes, a reusable interface lands, or a route is sharply falsified</text>
 </svg>

@@ -18,6 +18,7 @@ python3 -m py_compile \
   website/scripts/enrich_casebook.py \
   website/scripts/enforce_robin_reader_contract.py \
   website/scripts/polish_casebook.py \
+  website/scripts/enrich_harness_page.py \
   website/scripts/publish_extensions.py \
   website/scripts/publish_paper_pages.py \
   website/scripts/publish_taxonomy.py \
@@ -45,6 +46,7 @@ python3 website/scripts/build_site.py \
   --lean-gate-report _out/lean-gate.json \
   --output _out/site
 
+python3 website/scripts/enrich_harness_page.py --root _out/site
 python3 website/scripts/enrich_teaching_site.py --root _out/site
 python3 website/scripts/enrich_casebook.py --root _out/site
 python3 website/scripts/polish_casebook.py --root _out/site
@@ -86,6 +88,8 @@ test -f _site/data/papers.json
 test -f _site/data/case-source-anchors.json
 test -f _site/static/learning.css
 test -f _site/static/casebook.css
+test -f _site/static/aspbe_hierarchical_harness.webp
+test -f _site/static/aspbe_master_worker_frontier.svg
 
 grep -q 'id="start-here"' _site/learning/index.html
 grep -q 'id="quantum-access-models"' _site/learning/index.html
@@ -99,7 +103,6 @@ grep -q 'Block Encoding' _site/example-cases/index.html
 grep -q 'State Preparation' _site/papers/index.html
 grep -q 'Block Encoding' _site/papers/index.html
 grep -q 'data-taxonomy-nav="example-cases"' _site/index.html
-grep -q 'data-taxonomy-nav="papers"' _site/index.html
 ! grep -q 'data-topic-links=' _site/index.html
 grep -q 'data-paper="ghl2025-robin" data-topic="block-encoding"' _site/index.html
 
@@ -151,6 +154,13 @@ grep -q 'Underlying Lean Graph of Libraries' _site/case-studies/robin/index.html
 grep -Fq '\(N=8\)' _site/case-studies/robin/index.html
 grep -Fq '\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)' _site/case-studies/robin/index.html
 ! grep -Fq 'A_k/(N_D N_f kappa)' _site/case-studies/robin/index.html
+
+grep -q 'id="harness-evolution"' _site/workflow/index.html
+grep -q 'Previous Harness' _site/workflow/index.html
+grep -q 'Current Harness' _site/workflow/index.html
+grep -q 'Upper strategist' _site/workflow/index.html
+grep -q 'Frontier Master' _site/workflow/index.html
+
 test -f _site/.nojekyll
 
 echo "QuantumComputinglib assembled at _site/index.html"
