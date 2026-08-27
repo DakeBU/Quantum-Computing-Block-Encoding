@@ -1,6 +1,6 @@
 # Vandaele source Lean admission report
 
-- commit: `84d2f2d646773a34d5da751741016cb38e03e28b`
+- commit: `bba0256e12c6b47b958bc47c959aabef6e761375`
 - workflow: `vandaele-source-admission-report.yml`
 - policy: each top-level spine is built by Lean; traced upstream dependencies are compiled transitively.
 
@@ -19,19 +19,19 @@ Hint: Omit it from the simp argument list.
   simp [h̵i̵t̵,̵ ̵forward]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-✔ [3294/3325] Built QuantumBlockEncoding.PrimitiveCircuit (4.5s)
-✔ [3296/3325] Built QuantumBlockEncoding.VandaeleLadderDescendingIndices (4.0s)
-✔ [3297/3325] Built QuantumBlockEncoding.Robin.ComplexLCUProjection (6.3s)
-✔ [3298/3325] Built QuantumBlockEncoding.GHL2025 (16s)
-✔ [3299/3325] Built QuantumBlockEncoding.Examples.RobinHeat (499ms)
-✔ [3300/3325] Built QuantumBlockEncoding.RobinMatrix (44s)
-✔ [3301/3325] Built QuantumBlockEncoding.RobinEvolution (3.2s)
-✔ [3302/3325] Built QuantumBlockEncoding.Robin.FixedN3Data (3.5s)
-✔ [3303/3325] Built QuantumBlockEncoding.Robin.SourceBaseline (2.5s)
-✔ [3304/3325] Built QuantumBlockEncoding.Robin.WeightedPermutation (6.0s)
-✔ [3305/3325] Built QuantumBlockEncoding.Robin.EvolvedCandidates (5.1s)
-✔ [3306/3325] Built QuantumBlockEncoding.Robin.Hadamard8Verified (5.6s)
-⚠ [3307/3325] Built QuantumBlockEncoding.PrimitiveSemantics (5.0s)
+✔ [3294/3325] Built QuantumBlockEncoding.PrimitiveCircuit (3.0s)
+✔ [3296/3325] Built QuantumBlockEncoding.VandaeleLadderDescendingIndices (3.6s)
+✔ [3297/3325] Built QuantumBlockEncoding.Robin.ComplexLCUProjection (4.3s)
+✔ [3298/3325] Built QuantumBlockEncoding.GHL2025 (12s)
+✔ [3299/3325] Built QuantumBlockEncoding.Examples.RobinHeat (350ms)
+✔ [3300/3325] Built QuantumBlockEncoding.RobinMatrix (35s)
+✔ [3301/3325] Built QuantumBlockEncoding.RobinEvolution (2.4s)
+✔ [3302/3325] Built QuantumBlockEncoding.Robin.FixedN3Data (2.7s)
+✔ [3303/3325] Built QuantumBlockEncoding.Robin.SourceBaseline (1.9s)
+✔ [3304/3325] Built QuantumBlockEncoding.Robin.WeightedPermutation (4.8s)
+✔ [3305/3325] Built QuantumBlockEncoding.Robin.EvolvedCandidates (4.0s)
+✔ [3306/3325] Built QuantumBlockEncoding.Robin.Hadamard8Verified (4.2s)
+⚠ [3307/3325] Built QuantumBlockEncoding.PrimitiveSemantics (3.7s)
 warning: QuantumBlockEncoding/PrimitiveSemantics.lean:217:10: This simp argument is unused:
   contextsEqual
 
@@ -46,9 +46,8 @@ Hint: Omit it from the simp argument list.
   simp [̵c̵o̵n̵t̵e̵x̵t̵s̵E̵q̵u̵a̵l̵,̵ ̵s̵p̵l̵i̵t̵P̵r̵i̵m̵i̵t̵i̵v̵e̵W̵i̵r̵e̵]̵[̲s̲p̲l̲i̲t̲P̲r̲i̲m̲i̲t̲i̲v̲e̲W̲i̲r̲e̲]̲
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-✔ [3308/3325] Built QuantumBlockEncoding.PrimitiveRefinement (2.5s)
-✔ [3309/3325] Built QuantumBlockEncoding.VandaeleLadderContract (3.8s)
-✖ [3310/3325] Building QuantumBlockEncoding.VandaeleEquation58PromiseGadget (3.9s)
+✔ [3308/3325] Built QuantumBlockEncoding.PrimitiveRefinement (1.0s)
+✖ [3309/3325] Building QuantumBlockEncoding.VandaeleEquation58PromiseGadget (2.7s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.setup.json --json
 warning: QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean:68:17: This simp argument is unused:
   ccxToggle_involutive
@@ -66,10 +65,11 @@ state : GadgetState
 ⊢ (equation58Equiv state).1 = state.1 ∧
     (equation58Equiv state).2.1 = state.2.1 ∧ (equation58Equiv state).2.2.1 = state.2.2.1
 error: Lean exited with code 1
-✔ [3311/3325] Built QuantumBlockEncoding.ReversibleClassical (3.7s)
-✔ [3312/3325] Built QuantumBlockEncoding.VandaeleLemma4AppendixResource (3.2s)
-✔ [3313/3325] Built QuantumBlockEncoding.VandaeleLadderEquationFiveSemantics (3.9s)
-✖ [3314/3325] Building QuantumBlockEncoding.ReversibleProgramInverse (3.6s)
+✔ [3310/3325] Built QuantumBlockEncoding.VandaeleLadderContract (2.8s)
+✔ [3311/3325] Built QuantumBlockEncoding.ReversibleClassical (2.3s)
+✔ [3312/3325] Built QuantumBlockEncoding.VandaeleLadderEquationFiveSemantics (3.1s)
+✔ [3313/3325] Built QuantumBlockEncoding.VandaeleLemma4AppendixResource (3.1s)
+✖ [3314/3325] Building QuantumBlockEncoding.ReversibleProgramInverse (2.7s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleProgramInverse.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.setup.json --json
 error: QuantumBlockEncoding/ReversibleProgramInverse.lean:60:29: Unknown identifier `evalReversibleProgram_append`
 error: QuantumBlockEncoding/ReversibleProgramInverse.lean:73:8: Function expected at
@@ -80,7 +80,7 @@ but this term has type
 Note: Expected a function because this term is being applied to the argument
   program
 error: Lean exited with code 1
-✖ [3315/3325] Building QuantumBlockEncoding.ReversibleSchedule (3.7s)
+✖ [3315/3325] Building QuantumBlockEncoding.ReversibleSchedule (2.7s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleSchedule.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.setup.json --json
 error: QuantumBlockEncoding/ReversibleSchedule.lean:150:29: unsolved goals
 case cons
@@ -109,9 +109,9 @@ qubits : ℕ
 left right : ScheduledReversibleProgram qubits
 ⊢ List.length (left.seq right).layers.program = List.length left.layers.program + List.length right.layers.program
 error: Lean exited with code 1
-✔ [3319/3325] Built QuantumBlockEncoding.VandaeleLadderInverseSemantics (2.8s)
-✔ [3320/3325] Built QuantumBlockEncoding.VandaeleLadderPermutation (2.5s)
-⚠ [3321/3325] Built QuantumBlockEncoding.VandaeleLadderRefinement (2.6s)
+✔ [3319/3325] Built QuantumBlockEncoding.VandaeleLadderInverseSemantics (2.0s)
+✔ [3320/3325] Built QuantumBlockEncoding.VandaeleLadderPermutation (1.9s)
+⚠ [3321/3325] Built QuantumBlockEncoding.VandaeleLadderRefinement (1.0s)
 warning: QuantumBlockEncoding/VandaeleLadderRefinement.lean:35:7: unused variable `done`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
@@ -153,7 +153,7 @@ Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
 warning: QuantumBlockEncoding/VandaeleLadderRefinement.lean:35:7: unused variable `done`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-✖ [3314/3326] Building QuantumBlockEncoding.ReversibleSchedule (2.6s)
+✖ [3314/3326] Building QuantumBlockEncoding.ReversibleSchedule (1.9s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleSchedule.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.setup.json --json
 error: QuantumBlockEncoding/ReversibleSchedule.lean:150:29: unsolved goals
 case cons
@@ -182,7 +182,7 @@ qubits : ℕ
 left right : ScheduledReversibleProgram qubits
 ⊢ List.length (left.seq right).layers.program = List.length left.layers.program + List.length right.layers.program
 error: Lean exited with code 1
-⚠ [3318/3326] Built QuantumBlockEncoding.ReversibleWireEmbedding (2.8s)
+⚠ [3318/3326] Built QuantumBlockEncoding.ReversibleWireEmbedding (2.1s)
 warning: QuantumBlockEncoding/ReversibleWireEmbedding.lean:86:52: This simp argument is unused:
   smallControlZero
 
@@ -745,7 +745,7 @@ Hint: Omit it from the simp argument list.
   simp [̵c̵c̵x̵T̵a̵r̵g̵e̵t̵B̵l̵o̵c̵k̵,̵ ̵c̵o̵n̵t̵e̵x̵t̵,̵[̲c̲o̲n̲t̲e̲x̲t̲,̲ ccxBasisEquiv, actionMiss]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-✖ [3389/3397] Building QuantumBlockEncoding.ComparatorIncrementer (8.2s)
+✖ [3389/3397] Building QuantumBlockEncoding.ComparatorIncrementer (6.1s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementer.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.setup.json --json
 error: QuantumBlockEncoding/ComparatorIncrementer.lean:84:8: unsolved goals
 case nil
@@ -863,7 +863,7 @@ error: build failed
 warning: QuantumBlockEncoding/RemaudVandaeleLadderAlphaSelectedRegister.lean:144:19: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-✖ [3368/3388] Building QuantumBlockEncoding.PromiseGateCircuitIdentities (4.2s)
+✖ [3369/3408] Building QuantumBlockEncoding.PromiseGateCircuitIdentities (2.0s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/PromiseGateCircuitIdentities.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/PromiseGateCircuitIdentities.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/PromiseGateCircuitIdentities.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/PromiseGateCircuitIdentities.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/PromiseGateCircuitIdentities.setup.json --json
 error: QuantumBlockEncoding/PromiseGateCircuitIdentities.lean:84:23: Application type mismatch: The argument
   firstEq
@@ -874,102 +874,7 @@ but is expected to have type
 in the application
   Eq.trans source firstEq
 error: Lean exited with code 1
-✖ [3373/3408] Building QuantumBlockEncoding.ComparatorIncrementer (14s)
-trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementer.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.setup.json --json
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:84:8: unsolved goals
-case nil
-qubits : ℕ
-⊢ 1 = equivPermutationMatrix (Equiv.refl (PrimitiveBasis qubits))
-warning: QuantumBlockEncoding/ComparatorIncrementer.lean:86:8: This simp argument is unused:
-  equivPermutationMatrix
-
-Hint: Omit it from the simp argument list.
-  simp [compileReversibleProgram, evalReversibleProgram,̵
-  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵e̵q̵u̵i̵v̵P̵e̵r̵m̵u̵t̵a̵t̵i̵o̵n̵M̵a̵t̵r̵i̵x̵]
-
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:116:48: Invalid field `xCount`: The environment does not contain `QuantumBlockEncoding.ReversibleGate.xCount`, so it is not possible to project the field `xCount` from an expression
-  gate
-of type `ReversibleGate qubits`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:119:48: Invalid field `cxCount`: The environment does not contain `QuantumBlockEncoding.ReversibleGate.cxCount`, so it is not possible to project the field `cxCount` from an expression
-  gate
-of type `ReversibleGate qubits`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:122:48: Invalid field `toffoliCount`: The environment does not contain `QuantumBlockEncoding.ReversibleGate.toffoliCount`, so it is not possible to project the field `toffoliCount` from an expression
-  gate
-of type `ReversibleGate qubits`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:136:48: Invalid field `tCount`: The environment does not contain `QuantumBlockEncoding.PrimitiveGate.tCount`, so it is not possible to project the field `tCount` from an expression
-  gate
-of type `PrimitiveGate qubits`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:155:24: Invalid field `xCount`: The environment does not contain `List.xCount`, so it is not possible to project the field `xCount` from an expression
-  program
-of type `List (ReversibleGate qubits)`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:156:27: Invalid field `cxCount`: The environment does not contain `List.cxCount`, so it is not possible to project the field `cxCount` from an expression
-  program
-of type `List (ReversibleGate qubits)`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:157:30: Invalid field `toffoliCount`: The environment does not contain `List.toffoliCount`, so it is not possible to project the field `toffoliCount` from an expression
-  program
-of type `List (ReversibleGate qubits)`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:158:31: Invalid field `tCount`: The environment does not contain `List.tCount`, so it is not possible to project the field `tCount` from an expression
-  compiled.circuit
-of type `List (PrimitiveGate qubits)`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:223:2: Tactic `decide` failed for proposition
-  compilationCost incrementer3Program =
-    { logicalX := 1, logicalCnot := 1, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 7,
-      primitiveDepth := 14, cleanAncillas := 0 }
-because its `Decidable` instance
-  instDecidableEqCompilationCost (compilationCost incrementer3Program)
-    { logicalX := 1, logicalCnot := 1, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 7,
-      primitiveDepth := 14, cleanAncillas := 0 }
-did not reduce to `isTrue` or `isFalse`.
-
-After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableEqCompilationCost`, and `instDecidableEqCompilationCost.decEq`, reduction got stuck at the `Decidable` instance
-  match h : sorry.beq 1 with
-  | true => isTrue ⋯
-  | false => isFalse ⋯
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:258:52: unsolved goals
-state : PrimitiveBasis 3
-clean : state 2 = 0
-⊢ (if state 0 = 1 ∧ state 1 = 1 then state else Function.update state 2 1) 2 =
-    if state 0 = 1 ∧ state 1 = 1 then 0 else 1
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:283:2: Tactic `decide` failed for proposition
-  compilationCost comparatorLtThreeProgram =
-    { logicalX := 1, logicalCnot := 0, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 6,
-      primitiveDepth := 13, cleanAncillas := 0 }
-because its `Decidable` instance
-  instDecidableEqCompilationCost (compilationCost comparatorLtThreeProgram)
-    { logicalX := 1, logicalCnot := 0, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 6,
-      primitiveDepth := 13, cleanAncillas := 0 }
-did not reduce to `isTrue` or `isFalse`.
-
-After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableEqCompilationCost`, and `instDecidableEqCompilationCost.decEq`, reduction got stuck at the `Decidable` instance
-  match h : sorry.beq 1 with
-  | true => isTrue ⋯
-  | false => isFalse ⋯
-warning: QuantumBlockEncoding/ComparatorIncrementer.lean:331:16: This simp argument is unused:
-  h2
-
-Hint: Omit it from the simp argument list.
-  simp [intervalLtThreeSelectProgram, evalReversibleProgram, evalReversibleGate, ccxBasisEquiv,
-  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲ccxBasisAction, cxBasisEquiv, cxBasisAction, xBasisEquiv, xBasisAction, flipBit, clean, h0,
-  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲h1, h̵2̵,̵ ̵h3]
-
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:356:2: Tactic `decide` failed for proposition
-  compilationCost intervalLtThreeSelectProgram 1 =
-    { logicalX := 2, logicalCnot := 1, logicalToffoli := 2, tCount := 14, primitiveOneQubit := 24, primitiveCnot := 13,
-      primitiveDepth := 27, cleanAncillas := 1 }
-because its `Decidable` instance
-  instDecidableEqCompilationCost (compilationCost intervalLtThreeSelectProgram 1)
-    { logicalX := 2, logicalCnot := 1, logicalToffoli := 2, tCount := 14, primitiveOneQubit := 24, primitiveCnot := 13,
-      primitiveDepth := 27, cleanAncillas := 1 }
-did not reduce to `isTrue` or `isFalse`.
-
-After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableEqCompilationCost`, and `instDecidableEqCompilationCost.decEq`, reduction got stuck at the `Decidable` instance
-  match h : sorry.beq 2 with
-  | true => isTrue ⋯
-  | false => isFalse ⋯
-error: Lean exited with code 1
-✖ [3394/3408] Building QuantumBlockEncoding.ReversibleProgramInverse (3.5s)
+✖ [3371/3408] Building QuantumBlockEncoding.ReversibleProgramInverse (2.7s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleProgramInverse.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.setup.json --json
 error: QuantumBlockEncoding/ReversibleProgramInverse.lean:60:29: Unknown identifier `evalReversibleProgram_append`
 error: QuantumBlockEncoding/ReversibleProgramInverse.lean:73:8: Function expected at
@@ -980,7 +885,7 @@ but this term has type
 Note: Expected a function because this term is being applied to the argument
   program
 error: Lean exited with code 1
-✖ [3400/3408] Building QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution (3.5s)
+✖ [3388/3408] Building QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution (2.5s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/StrongPromiseCleanToDirtyInvolution.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/StrongPromiseCleanToDirtyInvolution.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/StrongPromiseCleanToDirtyInvolution.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/StrongPromiseCleanToDirtyInvolution.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/StrongPromiseCleanToDirtyInvolution.setup.json --json
 error: QuantumBlockEncoding/StrongPromiseCleanToDirtyInvolution.lean:73:7: Function expected at
   predicateControlledTargetEquiv
@@ -1027,108 +932,7 @@ Hint: Omit it from the simp argument list.
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
 error: Lean exited with code 1
-✖ [3403/3408] Building QuantumBlockEncoding.VandaeleEquation58PromiseGadget (2.8s)
-trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.setup.json --json
-warning: QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean:68:17: This simp argument is unused:
-  ccxToggle_involutive
-
-Hint: Omit it from the simp argument list.
-  simp [compute,̵ ̵c̵c̵x̵T̵o̵g̵g̵l̵e̵_̵i̵n̵v̵o̵l̵u̵t̵i̵v̵e̵]
-
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-error: QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean:101:2: Tactic `rfl` failed: The left-hand side
-  (equation58Equiv state).1 = state.1
-is not definitionally equal to the right-hand side
-  (equation58Equiv state).2.1 = state.2.1 ∧ (equation58Equiv state).2.2.1 = state.2.2.1
-
-state : GadgetState
-⊢ (equation58Equiv state).1 = state.1 ∧
-    (equation58Equiv state).2.1 = state.2.1 ∧ (equation58Equiv state).2.2.1 = state.2.2.1
-error: Lean exited with code 1
-Some required targets logged failures:
-- QuantumBlockEncoding.ReversibleSchedule
-- QuantumBlockEncoding.VandaeleLemma5Contract
-- QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
-- QuantumBlockEncoding.PrimitiveBasisLE
-- QuantumBlockEncoding.ReversibleRegisterLift
-- QuantumBlockEncoding.PredicateControlledStrongPromise
-- QuantumBlockEncoding.VandaeleLemma1Contract
-- QuantumBlockEncoding.NieZiSunFigure3Protocol
-- QuantumBlockEncoding.PromiseGateCircuitIdentities
-- QuantumBlockEncoding.ComparatorIncrementer
-- QuantumBlockEncoding.ReversibleProgramInverse
-- QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
-- QuantumBlockEncoding.VandaeleEquation58PromiseGadget
-error: build failed
-
-```
-
-## FAIL `QuantumBlockEncoding.VandaeleComparatorFormalization`
-
-```text
-  g ≥ 0
-  g - i ≥ 3
-  f ≥ -2
-  f - g ≥ -2
-  -1 ≤ 2*f - h ≤ 0
-  e ≥ 0
-  d - e ≥ 2
-  c ≥ 0
-  b ≥ 0
-  b - c ≥ -1
-  a ≥ 1
-  2*a - b ≥ 1
-  2*a - c ≥ 0
-where
- a := ↑2 ^ (logRank n / 2)
- b := ↑n.sqrt
- c := ↑(ceilSqrt n)
- d := ↑2 ^ (logRank n / 2 + 3)
- e := ↑(alpha n)
- f := ↑(logRank n) / 2
- g := ↑(Nat.log 2 (alpha n + 1))
- h := ↑(logRank n)
- i := ↑((n + 1).log2 + 1) / 2
- j := ↑(n + 1).log2
-error: Lean exited with code 1
-✔ [3321/3347] Built QuantumBlockEncoding.ComparatorIncrementerTheorem4GateBound (6.2s)
-✖ [3323/3361] Building QuantumBlockEncoding.VandaeleLemma5Contract (4.0s)
-trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleLemma5Contract.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.setup.json --json
-error: QuantumBlockEncoding/VandaeleLemma5Contract.lean:78:27: unsolved goals
-case true
-κ : Type u_1
-α : Type u_2
-n : ℕ
-active : κ → Bool
-gates : Fin n → Equiv.Perm α
-key : κ
-state : Fin n → α
-condition : active key = true
-⊢ productAction gates state = fun index => (gates index) (state index)
-warning: QuantumBlockEncoding/VandaeleLemma5Contract.lean:81:20: This simp argument is unused:
-  productAction
-
-Hint: Omit it from the simp argument list.
-  simp [controlledProductEquiv, predicateControlledTargetEquiv, productEquiv, p̵r̵o̵d̵u̵c̵t̵A̵c̵t̵i̵o̵n̵,̵ ̵condition]
-
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-error: Lean exited with code 1
-⚠ [3337/3361] Replayed QuantumBlockEncoding.VandaeleLadderRefinement
-warning: QuantumBlockEncoding/VandaeleLadderRefinement.lean:35:7: unused variable `done`
-
-Note: This linter can be disabled with `set_option linter.unusedVariables false`
-✖ [3340/3364] Building QuantumBlockEncoding.ReversibleProgramInverse (3.6s)
-trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleProgramInverse.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.setup.json --json
-error: QuantumBlockEncoding/ReversibleProgramInverse.lean:60:29: Unknown identifier `evalReversibleProgram_append`
-error: QuantumBlockEncoding/ReversibleProgramInverse.lean:73:8: Function expected at
-  List.length_reverse
-but this term has type
-  (List.reverse ?m.7).length = List.length ?m.7
-
-Note: Expected a function because this term is being applied to the argument
-  program
-error: Lean exited with code 1
-✖ [3341/3364] Building QuantumBlockEncoding.ComparatorIncrementer (14s)
+✖ [3391/3408] Building QuantumBlockEncoding.ComparatorIncrementer (10s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementer.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.setup.json --json
 error: QuantumBlockEncoding/ComparatorIncrementer.lean:84:8: unsolved goals
 case nil
@@ -1223,7 +1027,203 @@ After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableE
   | true => isTrue ⋯
   | false => isFalse ⋯
 error: Lean exited with code 1
-✖ [3354/3364] Building QuantumBlockEncoding.ReversibleSchedule (3.9s)
+✖ [3403/3408] Building QuantumBlockEncoding.VandaeleEquation58PromiseGadget (1.9s)
+trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleEquation58PromiseGadget.setup.json --json
+warning: QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean:68:17: This simp argument is unused:
+  ccxToggle_involutive
+
+Hint: Omit it from the simp argument list.
+  simp [compute,̵ ̵c̵c̵x̵T̵o̵g̵g̵l̵e̵_̵i̵n̵v̵o̵l̵u̵t̵i̵v̵e̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: QuantumBlockEncoding/VandaeleEquation58PromiseGadget.lean:101:2: Tactic `rfl` failed: The left-hand side
+  (equation58Equiv state).1 = state.1
+is not definitionally equal to the right-hand side
+  (equation58Equiv state).2.1 = state.2.1 ∧ (equation58Equiv state).2.2.1 = state.2.2.1
+
+state : GadgetState
+⊢ (equation58Equiv state).1 = state.1 ∧
+    (equation58Equiv state).2.1 = state.2.1 ∧ (equation58Equiv state).2.2.1 = state.2.2.1
+error: Lean exited with code 1
+Some required targets logged failures:
+- QuantumBlockEncoding.ReversibleSchedule
+- QuantumBlockEncoding.VandaeleLemma5Contract
+- QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
+- QuantumBlockEncoding.ReversibleRegisterLift
+- QuantumBlockEncoding.PrimitiveBasisLE
+- QuantumBlockEncoding.PredicateControlledStrongPromise
+- QuantumBlockEncoding.VandaeleLemma1Contract
+- QuantumBlockEncoding.NieZiSunFigure3Protocol
+- QuantumBlockEncoding.PromiseGateCircuitIdentities
+- QuantumBlockEncoding.ReversibleProgramInverse
+- QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
+- QuantumBlockEncoding.ComparatorIncrementer
+- QuantumBlockEncoding.VandaeleEquation58PromiseGadget
+error: build failed
+
+```
+
+## FAIL `QuantumBlockEncoding.VandaeleComparatorFormalization`
+
+```text
+  g ≥ 0
+  g - i ≥ 3
+  f ≥ -2
+  f - g ≥ -2
+  -1 ≤ 2*f - h ≤ 0
+  e ≥ 0
+  d - e ≥ 2
+  c ≥ 0
+  b ≥ 0
+  b - c ≥ -1
+  a ≥ 1
+  2*a - b ≥ 1
+  2*a - c ≥ 0
+where
+ a := ↑2 ^ (logRank n / 2)
+ b := ↑n.sqrt
+ c := ↑(ceilSqrt n)
+ d := ↑2 ^ (logRank n / 2 + 3)
+ e := ↑(alpha n)
+ f := ↑(logRank n) / 2
+ g := ↑(Nat.log 2 (alpha n + 1))
+ h := ↑(logRank n)
+ i := ↑((n + 1).log2 + 1) / 2
+ j := ↑(n + 1).log2
+error: Lean exited with code 1
+✔ [3321/3347] Built QuantumBlockEncoding.ComparatorIncrementerTheorem4GateBound (4.4s)
+✖ [3324/3364] Building QuantumBlockEncoding.VandaeleLemma5Contract (2.8s)
+trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleLemma5Contract.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.setup.json --json
+error: QuantumBlockEncoding/VandaeleLemma5Contract.lean:78:27: unsolved goals
+case true
+κ : Type u_1
+α : Type u_2
+n : ℕ
+active : κ → Bool
+gates : Fin n → Equiv.Perm α
+key : κ
+state : Fin n → α
+condition : active key = true
+⊢ productAction gates state = fun index => (gates index) (state index)
+warning: QuantumBlockEncoding/VandaeleLemma5Contract.lean:81:20: This simp argument is unused:
+  productAction
+
+Hint: Omit it from the simp argument list.
+  simp [controlledProductEquiv, predicateControlledTargetEquiv, productEquiv, p̵r̵o̵d̵u̵c̵t̵A̵c̵t̵i̵o̵n̵,̵ ̵condition]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+✖ [3339/3364] Building QuantumBlockEncoding.ReversibleProgramInverse (2.7s)
+trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleProgramInverse.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.setup.json --json
+error: QuantumBlockEncoding/ReversibleProgramInverse.lean:60:29: Unknown identifier `evalReversibleProgram_append`
+error: QuantumBlockEncoding/ReversibleProgramInverse.lean:73:8: Function expected at
+  List.length_reverse
+but this term has type
+  (List.reverse ?m.7).length = List.length ?m.7
+
+Note: Expected a function because this term is being applied to the argument
+  program
+error: Lean exited with code 1
+⚠ [3340/3364] Replayed QuantumBlockEncoding.VandaeleLadderRefinement
+warning: QuantumBlockEncoding/VandaeleLadderRefinement.lean:35:7: unused variable `done`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3341/3364] Building QuantumBlockEncoding.ComparatorIncrementer (10s)
+trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementer.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.setup.json --json
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:84:8: unsolved goals
+case nil
+qubits : ℕ
+⊢ 1 = equivPermutationMatrix (Equiv.refl (PrimitiveBasis qubits))
+warning: QuantumBlockEncoding/ComparatorIncrementer.lean:86:8: This simp argument is unused:
+  equivPermutationMatrix
+
+Hint: Omit it from the simp argument list.
+  simp [compileReversibleProgram, evalReversibleProgram,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵e̵q̵u̵i̵v̵P̵e̵r̵m̵u̵t̵a̵t̵i̵o̵n̵M̵a̵t̵r̵i̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:116:48: Invalid field `xCount`: The environment does not contain `QuantumBlockEncoding.ReversibleGate.xCount`, so it is not possible to project the field `xCount` from an expression
+  gate
+of type `ReversibleGate qubits`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:119:48: Invalid field `cxCount`: The environment does not contain `QuantumBlockEncoding.ReversibleGate.cxCount`, so it is not possible to project the field `cxCount` from an expression
+  gate
+of type `ReversibleGate qubits`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:122:48: Invalid field `toffoliCount`: The environment does not contain `QuantumBlockEncoding.ReversibleGate.toffoliCount`, so it is not possible to project the field `toffoliCount` from an expression
+  gate
+of type `ReversibleGate qubits`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:136:48: Invalid field `tCount`: The environment does not contain `QuantumBlockEncoding.PrimitiveGate.tCount`, so it is not possible to project the field `tCount` from an expression
+  gate
+of type `PrimitiveGate qubits`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:155:24: Invalid field `xCount`: The environment does not contain `List.xCount`, so it is not possible to project the field `xCount` from an expression
+  program
+of type `List (ReversibleGate qubits)`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:156:27: Invalid field `cxCount`: The environment does not contain `List.cxCount`, so it is not possible to project the field `cxCount` from an expression
+  program
+of type `List (ReversibleGate qubits)`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:157:30: Invalid field `toffoliCount`: The environment does not contain `List.toffoliCount`, so it is not possible to project the field `toffoliCount` from an expression
+  program
+of type `List (ReversibleGate qubits)`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:158:31: Invalid field `tCount`: The environment does not contain `List.tCount`, so it is not possible to project the field `tCount` from an expression
+  compiled.circuit
+of type `List (PrimitiveGate qubits)`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:223:2: Tactic `decide` failed for proposition
+  compilationCost incrementer3Program =
+    { logicalX := 1, logicalCnot := 1, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 7,
+      primitiveDepth := 14, cleanAncillas := 0 }
+because its `Decidable` instance
+  instDecidableEqCompilationCost (compilationCost incrementer3Program)
+    { logicalX := 1, logicalCnot := 1, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 7,
+      primitiveDepth := 14, cleanAncillas := 0 }
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableEqCompilationCost`, and `instDecidableEqCompilationCost.decEq`, reduction got stuck at the `Decidable` instance
+  match h : sorry.beq 1 with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:258:52: unsolved goals
+state : PrimitiveBasis 3
+clean : state 2 = 0
+⊢ (if state 0 = 1 ∧ state 1 = 1 then state else Function.update state 2 1) 2 =
+    if state 0 = 1 ∧ state 1 = 1 then 0 else 1
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:283:2: Tactic `decide` failed for proposition
+  compilationCost comparatorLtThreeProgram =
+    { logicalX := 1, logicalCnot := 0, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 6,
+      primitiveDepth := 13, cleanAncillas := 0 }
+because its `Decidable` instance
+  instDecidableEqCompilationCost (compilationCost comparatorLtThreeProgram)
+    { logicalX := 1, logicalCnot := 0, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 6,
+      primitiveDepth := 13, cleanAncillas := 0 }
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableEqCompilationCost`, and `instDecidableEqCompilationCost.decEq`, reduction got stuck at the `Decidable` instance
+  match h : sorry.beq 1 with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+warning: QuantumBlockEncoding/ComparatorIncrementer.lean:331:16: This simp argument is unused:
+  h2
+
+Hint: Omit it from the simp argument list.
+  simp [intervalLtThreeSelectProgram, evalReversibleProgram, evalReversibleGate, ccxBasisEquiv,
+  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲ccxBasisAction, cxBasisEquiv, cxBasisAction, xBasisEquiv, xBasisAction, flipBit, clean, h0,
+  ̲  ̲ ̲ ̲ ̲ ̲ ̲ ̲h1, h̵2̵,̵ ̵h3]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: QuantumBlockEncoding/ComparatorIncrementer.lean:356:2: Tactic `decide` failed for proposition
+  compilationCost intervalLtThreeSelectProgram 1 =
+    { logicalX := 2, logicalCnot := 1, logicalToffoli := 2, tCount := 14, primitiveOneQubit := 24, primitiveCnot := 13,
+      primitiveDepth := 27, cleanAncillas := 1 }
+because its `Decidable` instance
+  instDecidableEqCompilationCost (compilationCost intervalLtThreeSelectProgram 1)
+    { logicalX := 2, logicalCnot := 1, logicalToffoli := 2, tCount := 14, primitiveOneQubit := 24, primitiveCnot := 13,
+      primitiveDepth := 27, cleanAncillas := 1 }
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableEqCompilationCost`, and `instDecidableEqCompilationCost.decEq`, reduction got stuck at the `Decidable` instance
+  match h : sorry.beq 2 with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: Lean exited with code 1
+✖ [3353/3364] Building QuantumBlockEncoding.ReversibleSchedule (2.8s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleSchedule.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.setup.json --json
 error: QuantumBlockEncoding/ReversibleSchedule.lean:150:29: unsolved goals
 case cons
@@ -1252,12 +1252,12 @@ qubits : ℕ
 left right : ScheduledReversibleProgram qubits
 ⊢ List.length (left.seq right).layers.program = List.length left.layers.program + List.length right.layers.program
 error: Lean exited with code 1
-✔ [3360/3364] Built QuantumBlockEncoding.VandaeleVOperator (2.0s)
-✔ [3361/3364] Built QuantumBlockEncoding.ComparatorIncrementerLemma8Budget (3.2s)
-✔ [3362/3364] Built QuantumBlockEncoding.VandaeleLemma6Contract (2.5s)
+✔ [3360/3364] Built QuantumBlockEncoding.ComparatorIncrementerLemma8Budget (2.4s)
+✔ [3361/3364] Built QuantumBlockEncoding.VandaeleVOperator (2.0s)
+✔ [3362/3364] Built QuantumBlockEncoding.VandaeleLemma6Contract (1.8s)
 Some required targets logged failures:
-- QuantumBlockEncoding.ReversibleRegisterLift
 - QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
+- QuantumBlockEncoding.ReversibleRegisterLift
 - QuantumBlockEncoding.PrimitiveBasisLE
 - QuantumBlockEncoding.VandaeleLemma1Contract
 - QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound
@@ -1273,23 +1273,23 @@ error: build failed
 
 ```text
 
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-error: QuantumBlockEncoding/ComparatorIncrementer.lean:356:2: Tactic `decide` failed for proposition
-  compilationCost intervalLtThreeSelectProgram 1 =
-    { logicalX := 2, logicalCnot := 1, logicalToffoli := 2, tCount := 14, primitiveOneQubit := 24, primitiveCnot := 13,
-      primitiveDepth := 27, cleanAncillas := 1 }
-because its `Decidable` instance
-  instDecidableEqCompilationCost (compilationCost intervalLtThreeSelectProgram 1)
-    { logicalX := 2, logicalCnot := 1, logicalToffoli := 2, tCount := 14, primitiveOneQubit := 24, primitiveCnot := 13,
-      primitiveDepth := 27, cleanAncillas := 1 }
-did not reduce to `isTrue` or `isFalse`.
-
 After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableEqCompilationCost`, and `instDecidableEqCompilationCost.decEq`, reduction got stuck at the `Decidable` instance
   match h : sorry.beq 2 with
   | true => isTrue ⋯
   | false => isFalse ⋯
 error: Lean exited with code 1
-✖ [3338/3370] Building QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound (4.5s)
+✖ [3338/3351] Building QuantumBlockEncoding.ComparatorIncrementerLemma8Composition (2.8s)
+trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.setup.json --json
+error: QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean:119:4: Unknown identifier `ComparatorIncrementerLemma8Contract.LemmaEightResourceTarget`
+error: QuantumBlockEncoding/ComparatorIncrementerLemma8Composition.lean:121:2: Tactic `constructor` failed: target is not an inductive datatype
+
+gateCount depth : ℕ → ℕ
+gateConstant depthConstant : ℕ
+gateBound : ∀ (n : ℕ), gateCount n ≤ gateConstant * (n + 1)
+depthBound : ∀ (n : ℕ), depth n ≤ depthConstant * logScale n
+⊢ sorry
+error: Lean exited with code 1
+✖ [3339/3370] Building QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound (2.9s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.setup.json --json
 error: QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean:191:2: omega could not prove the goal:
 a possible counterexample may satisfy the constraints
@@ -1321,7 +1321,7 @@ where
  i := ↑((n + 1).log2 + 1) / 2
  j := ↑(n + 1).log2
 error: Lean exited with code 1
-✖ [3346/3379] Building QuantumBlockEncoding.VandaeleLemma1Contract (3.8s)
+✖ [3346/3379] Building QuantumBlockEncoding.VandaeleLemma1Contract (2.8s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleLemma1Contract.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma1Contract.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma1Contract.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma1Contract.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma1Contract.setup.json --json
 error: QuantumBlockEncoding/VandaeleLemma1Contract.lean:30:2: failed to synthesize instance of type class
   Decidable (allControlsOne state.1)
@@ -1401,7 +1401,7 @@ Hint: Omit it from the simp argument list.
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
 error: Lean exited with code 1
-✖ [3349/3379] Building QuantumBlockEncoding.ReversibleProgramInverse (3.6s)
+✖ [3354/3379] Building QuantumBlockEncoding.ReversibleProgramInverse (2.6s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleProgramInverse.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleProgramInverse.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleProgramInverse.setup.json --json
 error: QuantumBlockEncoding/ReversibleProgramInverse.lean:60:29: Unknown identifier `evalReversibleProgram_append`
 error: QuantumBlockEncoding/ReversibleProgramInverse.lean:73:8: Function expected at
@@ -1412,22 +1412,7 @@ but this term has type
 Note: Expected a function because this term is being applied to the argument
   program
 error: Lean exited with code 1
-✖ [3355/3379] Building QuantumBlockEncoding.StrongPromiseInverse (3.1s)
-trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/StrongPromiseInverse.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/StrongPromiseInverse.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/StrongPromiseInverse.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/StrongPromiseInverse.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/StrongPromiseInverse.setup.json --json
-error: QuantumBlockEncoding/StrongPromiseInverse.lean:35:4: Type mismatch: After simplification, term
-  inverse
- has type
-  (cleanPromise, (Equiv.symm target) value) = (Equiv.symm implementation) (cleanPromise, value)
-but is expected to have type
-  (Equiv.symm implementation) (cleanPromise, value) = (cleanPromise, (Equiv.symm target) value)
-error: QuantumBlockEncoding/StrongPromiseInverse.lean:42:6: Type mismatch: After simplification, term
-  firstRoundTrip
- has type
-  True
-but is expected to have type
-  ((Equiv.symm implementation) (promise, value)).1 = promise
-error: Lean exited with code 1
-✖ [3356/3379] Building QuantumBlockEncoding.ReversibleSchedule (3.2s)
+✖ [3355/3379] Building QuantumBlockEncoding.ReversibleSchedule (2.5s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ReversibleSchedule.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ReversibleSchedule.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ReversibleSchedule.setup.json --json
 error: QuantumBlockEncoding/ReversibleSchedule.lean:150:29: unsolved goals
 case cons
@@ -1456,21 +1441,36 @@ qubits : ℕ
 left right : ScheduledReversibleProgram qubits
 ⊢ List.length (left.seq right).layers.program = List.length left.layers.program + List.length right.layers.program
 error: Lean exited with code 1
+✖ [3376/3379] Building QuantumBlockEncoding.StrongPromiseInverse (2.3s)
+trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/StrongPromiseInverse.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/StrongPromiseInverse.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/StrongPromiseInverse.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/StrongPromiseInverse.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/StrongPromiseInverse.setup.json --json
+error: QuantumBlockEncoding/StrongPromiseInverse.lean:35:4: Type mismatch: After simplification, term
+  inverse
+ has type
+  (cleanPromise, (Equiv.symm target) value) = (Equiv.symm implementation) (cleanPromise, value)
+but is expected to have type
+  (Equiv.symm implementation) (cleanPromise, value) = (cleanPromise, (Equiv.symm target) value)
+error: QuantumBlockEncoding/StrongPromiseInverse.lean:42:6: Type mismatch: After simplification, term
+  firstRoundTrip
+ has type
+  True
+but is expected to have type
+  ((Equiv.symm implementation) (promise, value)).1 = promise
+error: Lean exited with code 1
 Some required targets logged failures:
 - QuantumBlockEncoding.ReversibleRegisterLift
 - QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
 - QuantumBlockEncoding.PrimitiveBasisLE
-- QuantumBlockEncoding.ComparatorIncrementerLemma8TwoRoundSchedule
 - QuantumBlockEncoding.BinaryCarryTelescoping
+- QuantumBlockEncoding.ComparatorIncrementerLemma8TwoRoundSchedule
 - QuantumBlockEncoding.MixedRadixIncrement
 - QuantumBlockEncoding.PredicateControlledStrongPromise
-- QuantumBlockEncoding.ComparatorIncrementerLemma8Composition
 - QuantumBlockEncoding.ComparatorIncrementer
+- QuantumBlockEncoding.ComparatorIncrementerLemma8Composition
 - QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound
 - QuantumBlockEncoding.VandaeleLemma1Contract
 - QuantumBlockEncoding.ReversibleProgramInverse
-- QuantumBlockEncoding.StrongPromiseInverse
 - QuantumBlockEncoding.ReversibleSchedule
+- QuantumBlockEncoding.StrongPromiseInverse
 error: build failed
 
 ```
@@ -1521,7 +1521,28 @@ Hint: Omit it from the simp argument list.
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
 error: Lean exited with code 1
-✖ [3320/3337] Building QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound (6.1s)
+✖ [3320/3337] Building QuantumBlockEncoding.VandaeleLemma5Contract (3.2s)
+trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleLemma5Contract.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.setup.json --json
+error: QuantumBlockEncoding/VandaeleLemma5Contract.lean:78:27: unsolved goals
+case true
+κ : Type u_1
+α : Type u_2
+n : ℕ
+active : κ → Bool
+gates : Fin n → Equiv.Perm α
+key : κ
+state : Fin n → α
+condition : active key = true
+⊢ productAction gates state = fun index => (gates index) (state index)
+warning: QuantumBlockEncoding/VandaeleLemma5Contract.lean:81:20: This simp argument is unused:
+  productAction
+
+Hint: Omit it from the simp argument list.
+  simp [controlledProductEquiv, predicateControlledTargetEquiv, productEquiv, p̵r̵o̵d̵u̵c̵t̵A̵c̵t̵i̵o̵n̵,̵ ̵condition]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+✖ [3323/3337] Building QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound (4.0s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.setup.json --json
 error: QuantumBlockEncoding/ComparatorIncrementerTheorem4DepthBound.lean:191:2: omega could not prove the goal:
 a possible counterexample may satisfy the constraints
@@ -1553,28 +1574,7 @@ where
  i := ↑((n + 1).log2 + 1) / 2
  j := ↑(n + 1).log2
 error: Lean exited with code 1
-✖ [3321/3337] Building QuantumBlockEncoding.VandaeleLemma5Contract (5.1s)
-trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/VandaeleLemma5Contract.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/VandaeleLemma5Contract.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/VandaeleLemma5Contract.setup.json --json
-error: QuantumBlockEncoding/VandaeleLemma5Contract.lean:78:27: unsolved goals
-case true
-κ : Type u_1
-α : Type u_2
-n : ℕ
-active : κ → Bool
-gates : Fin n → Equiv.Perm α
-key : κ
-state : Fin n → α
-condition : active key = true
-⊢ productAction gates state = fun index => (gates index) (state index)
-warning: QuantumBlockEncoding/VandaeleLemma5Contract.lean:81:20: This simp argument is unused:
-  productAction
-
-Hint: Omit it from the simp argument list.
-  simp [controlledProductEquiv, predicateControlledTargetEquiv, productEquiv, p̵r̵o̵d̵u̵c̵t̵A̵c̵t̵i̵o̵n̵,̵ ̵condition]
-
-Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-error: Lean exited with code 1
-✖ [3326/3337] Building QuantumBlockEncoding.ComparatorIncrementer (12s)
+✖ [3326/3337] Building QuantumBlockEncoding.ComparatorIncrementer (9.2s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementer.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.setup.json --json
 error: QuantumBlockEncoding/ComparatorIncrementer.lean:84:8: unsolved goals
 case nil
@@ -1670,12 +1670,12 @@ After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableE
   | false => isFalse ⋯
 error: Lean exited with code 1
 Some required targets logged failures:
-- QuantumBlockEncoding.ReversibleRegisterLift
 - QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
+- QuantumBlockEncoding.ReversibleRegisterLift
 - QuantumBlockEncoding.PrimitiveBasisLE
 - QuantumBlockEncoding.VandaeleLemma1Contract
-- QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound
 - QuantumBlockEncoding.VandaeleLemma5Contract
+- QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound
 - QuantumBlockEncoding.ComparatorIncrementer
 error: build failed
 
@@ -1779,7 +1779,7 @@ warning: QuantumBlockEncoding/VandaeleModularAdditionSemantics.lean:103:2: this 
 
 Note: This linter can be disabled with `set_option linter.unreachableTactic false`
 error: Lean exited with code 1
-✖ [3332/3345] Building QuantumBlockEncoding.ComparatorIncrementer (13s)
+✖ [3332/3345] Building QuantumBlockEncoding.ComparatorIncrementer (9.0s)
 trace: .> LEAN_PATH=/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/subverso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/MD4Lean/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/verso/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/VersoBlueprint/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.29.1/bin/lean /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/QuantumBlockEncoding/ComparatorIncrementer.lean -o /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.olean -i /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/lib/lean/QuantumBlockEncoding/ComparatorIncrementer.ilean -c /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.c --setup /home/runner/work/Quantum-Computing-Block-Encoding/Quantum-Computing-Block-Encoding/.lake/build/ir/QuantumBlockEncoding/ComparatorIncrementer.setup.json --json
 error: QuantumBlockEncoding/ComparatorIncrementer.lean:84:8: unsolved goals
 case nil
@@ -1890,6 +1890,7 @@ error: build failed
 ## FAIL `QuantumBlockEncoding`
 
 ```text
+  compilationCost comparatorLtThreeProgram =
     { logicalX := 1, logicalCnot := 0, logicalToffoli := 1, tCount := 7, primitiveOneQubit := 12, primitiveCnot := 6,
       primitiveDepth := 13, cleanAncillas := 0 }
 because its `Decidable` instance
@@ -1926,8 +1927,7 @@ After unfolding the instances `instDecidableEqNat`, `Nat.decEq`, `instDecidableE
   | true => isTrue ⋯
   | false => isFalse ⋯
 error: Lean exited with code 1
-✔ [3543/3569] Built QuantumBlockEncoding.TextbookStatePreparation (4.6s)
-⚠ [3544/3569] Built QuantumBlockEncoding.ModularAdder3 (15s)
+⚠ [3470/3569] Built QuantumBlockEncoding.ModularAdder3 (9.9s)
 warning: QuantumBlockEncoding/ModularAdder3.lean:138:8: This simp argument is unused:
   c0_ne_work
 
@@ -2031,9 +2031,8 @@ Hint: Omit it from the simp argument list.
   ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵w̵o̵r̵k̵_ne_c2, Ne.symm work_ne_target]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-✔ [3555/3569] Built QuantumBlockEncoding.TeachingRouteClosures (4.6s)
-✔ [3556/3569] Built QuantumBlockEncoding.BandedSparseAccessPrimitive (21s)
-⚠ [3557/3569] Built QuantumBlockEncoding.CubicStatePreparation (59s)
+✔ [3555/3569] Built QuantumBlockEncoding.TeachingRouteClosures (3.0s)
+⚠ [3556/3569] Built QuantumBlockEncoding.CubicStatePreparation (46s)
 warning: QuantumBlockEncoding/CubicStatePreparation.lean:452:2: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
@@ -2066,25 +2065,26 @@ Hint: Omit it from the simp argument list.
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
 warning: QuantumBlockEncoding/CubicStatePreparation.lean:3653:4: Try this: intro hRoute _hScalar
-✔ [3559/3569] Built QuantumBlockEncoding.StatePreparationBenchmarksCoreFixed (100s)
+✔ [3558/3569] Built QuantumBlockEncoding.BandedSparseAccessPrimitive (11s)
+✔ [3559/3569] Built QuantumBlockEncoding.StatePreparationBenchmarksCoreFixed (76s)
 Some required targets logged failures:
-- QuantumBlockEncoding.MixedRadixIncrement
 - QuantumBlockEncoding.ComparatorIncrementerDirtyAncilla
+- QuantumBlockEncoding.MixedRadixIncrement
 - QuantumBlockEncoding.ComparatorIncrementerLemma8TwoRoundSchedule
-- QuantumBlockEncoding.StrongPromiseInverse
 - QuantumBlockEncoding.ComparatorIncrementerTheorem4DepthBound
-- QuantumBlockEncoding.PredicateControlledStrongPromise
 - QuantumBlockEncoding.PromiseGateCircuitIdentities
+- QuantumBlockEncoding.StrongPromiseInverse
 - QuantumBlockEncoding.VandaeleLemma5Contract
-- QuantumBlockEncoding.VandaeleModularAdditionSemantics
+- QuantumBlockEncoding.PredicateControlledStrongPromise
 - QuantumBlockEncoding.ComparatorIncrementerLemma8Composition
+- QuantumBlockEncoding.VandaeleModularAdditionSemantics
+- QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
 - QuantumBlockEncoding.VandaeleEquation58PromiseGadget
 - QuantumBlockEncoding.NieZiSunFigure3Protocol
 - QuantumBlockEncoding.PrimitivePromiseBorrow
 - QuantumBlockEncoding.VandaeleLemma1Contract
 - QuantumBlockEncoding.BinaryCarryTelescoping
 - QuantumBlockEncoding.PrimitiveBasisLE
-- QuantumBlockEncoding.StrongPromiseCleanToDirtyInvolution
 - QuantumBlockEncoding.ReversibleProgramInverse
 - QuantumBlockEncoding.ReversibleSchedule
 - QuantumBlockEncoding.ReversibleRegisterLift
