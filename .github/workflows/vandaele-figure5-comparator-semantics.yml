@@ -6,9 +6,6 @@ on:
       - "codex/sp-papers-comparator-proof-cost"
     paths:
       - "QuantumBlockEncoding/VandaeleFigure4TakahashiSourceProgram.lean"
-      - "QuantumBlockEncoding/VandaeleFigure4TakahashiCarryAlgebra.lean"
-      - "QuantumBlockEncoding/VandaeleFigure4TakahashiStepSemantics.lean"
-      - "QuantumBlockEncoding/VandaeleFigure4TakahashiArithmeticSemantics.lean"
       - "QuantumBlockEncoding/VandaeleFigure5ComparatorSemantics.lean"
       - ".github/workflows/vandaele-figure5-comparator-semantics.yml"
   workflow_dispatch:
@@ -34,8 +31,5 @@ jobs:
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Compile Figure 4 arithmetic interface
-        run: lake build QuantumBlockEncoding.VandaeleFigure4TakahashiArithmeticSemantics
-
-      - name: Compile Figure 5 comparator semantics
+      - name: Compile Figure 5 source audit
         run: lake build QuantumBlockEncoding.VandaeleFigure5ComparatorSemantics
