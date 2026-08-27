@@ -1,0 +1,100 @@
+name: Temporary Harness reference patch
+
+on:
+  push:
+    branches:
+      - work/use-generated-harness-comic-20260827
+    paths:
+      - tools/harness_reference_patch/READY
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Switch README and workflow Harness images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace(path, old, new):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'missing expected text in {path}: {old!r}')
+              p.write_text(text.replace(old, new), encoding='utf-8', newline='\n')
+
+          replace(
+              'README.md',
+              '<img src="docs/assets/aspbe_master_worker_frontier.svg" alt="Human expert reasoning, LLM-only reasoning, and the current ASPBE proof-gated synthesis loop" width="1180">',
+              '<img src="docs/assets/aspbe_current_harness.webp" alt="Human expert reasoning, LLM-only reasoning, and the current ASPBE proof-gated synthesis loop" width="1000">',
+          )
+          replace(
+              'website/scripts/enrich_harness_page.py',
+              'OLD_COMIC = ROOT / "docs" / "assets" / "aspbe_hierarchical_harness.webp"',
+              'OLD_COMIC = ROOT / "docs" / "assets" / "ASPBE.png"',
+          )
+          replace(
+              'website/scripts/enrich_harness_page.py',
+              'CURRENT_COMIC = ROOT / "docs" / "assets" / "aspbe_master_worker_frontier.svg"',
+              'CURRENT_COMIC = ROOT / "docs" / "assets" / "aspbe_current_harness.webp"',
+          )
+          replace(
+              'website/scripts/enrich_harness_page.py',
+              '../static/aspbe_hierarchical_harness.webp',
+              '../static/ASPBE.png',
+          )
+          replace(
+              'website/scripts/enrich_harness_page.py',
+              '../static/aspbe_master_worker_frontier.svg',
+              '../static/aspbe_current_harness.webp',
+          )
+          replace(
+              'scripts/build-website.sh',
+              'test -f _site/static/aspbe_hierarchical_harness.webp',
+              'test -f _site/static/ASPBE.png',
+          )
+          replace(
+              'scripts/build-website.sh',
+              'test -f _site/static/aspbe_master_worker_frontier.svg',
+              'test -f _site/static/aspbe_current_harness.webp',
+          )
+
+          checker = Path('tools/check_public_figure_style.py')
+          text = checker.read_text(encoding='utf-8')
+          old_const = 'FRONTIER_SVG = ROOT / "docs" / "assets" / "aspbe_master_worker_frontier.svg"'
+          if old_const not in text:
+              raise SystemExit('style checker Harness constant changed')
+          text = text.replace(
+              old_const,
+              'CURRENT_HARNESS_WEBP = ROOT / "docs" / "assets" / "aspbe_current_harness.webp"',
+          )
+          start = text.index('def check_frontier_asset(readme: str) -> None:')
+          end = text.index('\ndef check_readme_math_surface', start)
+          new_fn = '''def check_frontier_asset(readme: str) -> None:\n    reference = 'src="docs/assets/aspbe_current_harness.webp"'\n    if reference not in readme:\n        fail("README must use the generated current ASPBE Harness comic")\n    if "aspbe_master_worker_frontier.svg" in readme:\n        fail("README still references the superseded Harness SVG")\n    if not CURRENT_HARNESS_WEBP.is_file():\n        fail("missing generated current ASPBE Harness WebP")\n    payload = CURRENT_HARNESS_WEBP.read_bytes()\n    if not (payload.startswith(b"RIFF") and payload[8:12] == b"WEBP"):\n        fail("current ASPBE Harness asset is not a valid WebP container")\n    if len(payload) < 10_000 or len(payload) > 120_000:\n        fail(f"current ASPBE Harness WebP has unexpected size: {len(payload)} bytes")\n\n'''
+          text = text[:start] + new_fn + text[end + 1:]
+          checker.write_text(text, encoding='utf-8', newline='\n')
+          PY
+
+          python3 -m py_compile website/scripts/enrich_harness_page.py tools/check_public_figure_style.py
+          python3 tools/check_public_figure_style.py
+
+      - name: Commit clean reference switch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -r tools/harness_reference_patch
+          git rm .github/workflows/temp-harness-image-upload.yml
+          git rm .github/workflows/temp-harness-reference-patch.yml
+          git add README.md website/scripts/enrich_harness_page.py scripts/build-website.sh tools/check_public_figure_style.py
+          git commit -m 'Use generated current Harness comic and canonical old image'
+          git push origin HEAD:${GITHUB_REF_NAME}
