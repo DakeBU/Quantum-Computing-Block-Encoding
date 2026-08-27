@@ -198,7 +198,8 @@ theorem evalReversibleProgram_preserves_wire_of_avoidsTarget
 /-- The concrete Figure-5 uncompute suffix contains no gate targeting `z`. -/
 theorem dataSuffix_avoids_z :
     programAvoidsTarget (10 : Fin 11) dataSuffix := by
-  native_decide
+  simp [programAvoidsTarget, dataSuffix, undoStep3Data, undoStep2Data,
+    step3, step2, step1, complementB, reversibleGateTarget]
 
 /-- Every gate in the data-uncompute suffix leaves the flag wire untouched. -/
 theorem dataSuffix_preserves_z (state : SourceBasis) :
