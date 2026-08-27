@@ -19,13 +19,15 @@ source-grounded Takahashi Figure-4 pieces:
   then complement all `B` wires again.
 
 The resulting displayed program contains 34 reversible gates.  A concrete Lean
-basis-state calculation below is already sufficient to refute the printed
-`a < b` label: on `a=1`, `b=0`, `z=0`, the program returns the data registers
-unchanged and flips `z` to one.  Since `1 < 0` is false, the discrepancy is a
-machine-checkable source obstruction, not an interpretive claim.
+basis-state calculation below is sufficient to refute the printed `a < b`
+label: on `a=1`, `b=0`, `z=0`, the program flips the flag wire to one.  Since
+`1 < 0` is false, the discrepancy is a machine-checkable source obstruction.
 
-The universal characterization of the flag (`b < a`) is deliberately left as
-the next proof node rather than forcing a global `2^11` evaluator through CI.
+Only the output flag coordinate is evaluated here.  This is intentional: the
+repository represents basis states as functions, and asking `native_decide` to
+compare whole function-valued eleven-wire states turns a tiny source audit into
+an unnecessarily expensive global evaluator.  Universal semantics and data
+restoration remain separate proof-DAG nodes.
 -/
 
 namespace QuantumBlockEncoding
@@ -76,24 +78,30 @@ theorem figure5_gateCount : figure5Program.length = 34 := by
 def directionWitness : SourceBasis :=
   sourceState 1 0 0 0 0 0 0 0 0 0 0
 
-/-- Gate-level evaluation of the witness.  The data registers are restored and
-`z` is flipped to one. -/
-theorem figure5_directionWitness_output :
-    evalReversibleProgram figure5Program directionWitness =
-      sourceState 1 0 0 0 0 0 0 0 0 0 1 := by
+/-- Direct gate-level evaluation of only the output flag coordinate for the
+witness.  Restricting to one coordinate avoids whole-function equality. -/
+theorem figure5_directionWitness_flag :
+    zValue (evalReversibleProgram figure5Program directionWitness) = 1 := by
   native_decide
 
 /-- Typed obstruction to the printed Figure-5 semantics `z XOR (a < b)`.
-For this exact gate list, the witness has `a=1`, `b=0`, and output flag one,
-although `a < b` is false. -/
+The exact displayed gate list flips the flag on `a=1`, `b=0`, although
+`a < b` is false. -/
 theorem figure5_direction_counterexample :
     aValue directionWitness = 1 ∧
       bValue directionWitness = 0 ∧
       zValue directionWitness = 0 ∧
       zValue (evalReversibleProgram figure5Program directionWitness) = 1 ∧
       ¬ aValue directionWitness < bValue directionWitness := by
-  rw [figure5_directionWitness_output]
-  native_decide
+  constructor
+  · native_decide
+  constructor
+  · native_decide
+  constructor
+  · native_decide
+  constructor
+  · exact figure5_directionWitness_flag
+  · native_decide
 
 end VandaeleFigure5ComparatorSemantics
 end QuantumBlockEncoding
