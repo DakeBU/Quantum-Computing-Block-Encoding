@@ -88,8 +88,8 @@ test -f _site/data/papers.json
 test -f _site/data/case-source-anchors.json
 test -f _site/static/learning.css
 test -f _site/static/casebook.css
-test -f _site/static/aspbe_hierarchical_harness.webp
-test -f _site/static/aspbe_master_worker_frontier.svg
+test -f _site/static/ASPBE.png
+test -f _site/static/aspbe_current_harness.webp
 
 grep -q 'id="start-here"' _site/learning/index.html
 grep -q 'id="quantum-access-models"' _site/learning/index.html
