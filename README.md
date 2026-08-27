@@ -39,6 +39,10 @@ The project serves two **independent** mathematical routes. State Preparation as
   <img src="docs/assets/abeis_application_overview.svg" alt="Two independent ASPBE certification routes" width="1080">
 </p>
 
+> **For block-encoding / state-preparation researchers.** Give ASPBE the target state/operator, available query oracles/gates, register convention, exact/approximate tolerance, and resource priorities. ASPBE evolves **certifiable** candidates and keeps the best candidate it finds under your **lexicographic objective**: optimize priority #1 first; only on ties compare #2, then #3, and so on. It never calls an unproved candidate globally optimal. Outputs can include copyable circuit LaTeX/quantikz, a natural-language derivation, Lean source/proof, and Qiskit/OpenQASM.
+>
+> **Use it:** [Run with your API →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/task-builder/) · [Use this repo in ChatGPT Work / Claude Code →](AGENTS.md) · [Browse certified cases →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/)
+
 ---
 
 ## ASPBE harness — proof-gated synthesis
