@@ -1,0 +1,36 @@
+name: Vandaele Figure 5 comparator direction
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiCarryAlgebra.lean"
+      - "QuantumBlockEncoding/VandaeleFigure5ComparatorSemantics.lean"
+      - "QuantumBlockEncoding/VandaeleFigure5ComparatorDirection.lean"
+      - ".github/workflows/vandaele-figure5-comparator-direction.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-figure5-direction-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  comparator-direction:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Figure 5 arithmetic direction theorem
+        run: lake build QuantumBlockEncoding.VandaeleFigure5ComparatorDirection
