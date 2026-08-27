@@ -111,17 +111,102 @@ theorem carryPrefix_semantics
         z := by
   simp only [carryPrefix, evalReversibleProgram_append_apply_local]
   rw [complementB_semantics]
-  rw [step1_semantics]
-  rw [step2_semantics]
-  rw [step3_semantics]
+  change
+    evalReversibleProgram step3
+        (evalReversibleProgram step2
+          (evalReversibleProgram step1
+            (sourceState
+              a0 (flipBit b0)
+              a1 (flipBit b1)
+              a2 (flipBit b2)
+              a3 (flipBit b3)
+              a4 (flipBit b4)
+              z))) =
+      afterStep3
+        a0 (flipBit b0)
+        a1 (flipBit b1)
+        a2 (flipBit b2)
+        a3 (flipBit b3)
+        a4 (flipBit b4)
+        z
+  rw [step1_semantics, step2_semantics, step3_semantics]
+
+/-- Target wire of a reversible-classical gate.  Exposing this once avoids
+expanding the gate evaluator merely to prove that an unrelated wire is fixed. -/
+def reversibleGateTarget {qubits : Nat} : ReversibleGate qubits → Fin qubits
+  | .x target => target
+  | .cx _ target _ => target
+  | .ccx _ _ target _ _ _ => target
+
+/-- A single reversible gate fixes every wire other than its target. -/
+theorem evalReversibleGate_preserves_other_wire
+    {qubits : Nat} (gate : ReversibleGate qubits)
+    (wire : Fin qubits) (state : PrimitiveBasis qubits)
+    (different : reversibleGateTarget gate ≠ wire) :
+    evalReversibleGate gate state wire = state wire := by
+  cases gate with
+  | x target =>
+      have target_ne : target ≠ wire := by
+        simpa [reversibleGateTarget] using different
+      have wire_ne : wire ≠ target := Ne.symm target_ne
+      simp [evalReversibleGate, xBasisEquiv, xBasisAction,
+        target_ne, wire_ne]
+  | cx control target distinct =>
+      have target_ne : target ≠ wire := by
+        simpa [reversibleGateTarget] using different
+      have wire_ne : wire ≠ target := Ne.symm target_ne
+      by_cases controlZero : state control = 0
+      · simp [evalReversibleGate, cxBasisEquiv, cxBasisAction, controlZero]
+      · simp [evalReversibleGate, cxBasisEquiv, cxBasisAction, controlZero,
+          xBasisAction, target_ne, wire_ne]
+  | ccx control0 control1 target c0_ne_c1 c0_ne_target c1_ne_target =>
+      have target_ne : target ≠ wire := by
+        simpa [reversibleGateTarget] using different
+      have wire_ne : wire ≠ target := Ne.symm target_ne
+      by_cases active : state control0 = 1 ∧ state control1 = 1
+      · simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction, active,
+          xBasisAction, target_ne, wire_ne]
+      · simp [evalReversibleGate, ccxBasisEquiv, ccxBasisAction, active]
+
+/-- Structural predicate saying that no gate in a program targets one named
+wire.  This is a proof-DAG interface, not a truth-table evaluator. -/
+def programAvoidsTarget {qubits : Nat} (wire : Fin qubits) :
+    ReversibleProgram qubits → Prop
+  | [] => True
+  | gate :: rest =>
+      reversibleGateTarget gate ≠ wire ∧ programAvoidsTarget wire rest
+
+/-- Any program satisfying `programAvoidsTarget` preserves that wire. -/
+theorem evalReversibleProgram_preserves_wire_of_avoidsTarget
+    {qubits : Nat} (wire : Fin qubits) (program : ReversibleProgram qubits)
+    (state : PrimitiveBasis qubits) (avoids : programAvoidsTarget wire program) :
+    evalReversibleProgram program state wire = state wire := by
+  induction program generalizing state with
+  | nil =>
+      rfl
+  | cons gate rest induction =>
+      rcases avoids with ⟨gateAvoids, restAvoids⟩
+      change
+        evalReversibleProgram rest (evalReversibleGate gate state) wire =
+          state wire
+      calc
+        _ = evalReversibleGate gate state wire :=
+          induction (evalReversibleGate gate state) restAvoids
+        _ = state wire :=
+          evalReversibleGate_preserves_other_wire gate wire state gateAvoids
+
+/-- The concrete Figure-5 uncompute suffix contains no gate targeting `z`. -/
+theorem dataSuffix_avoids_z :
+    programAvoidsTarget (10 : Fin 11) dataSuffix := by
+  native_decide
 
 /-- Every gate in the data-uncompute suffix leaves the flag wire untouched. -/
 theorem dataSuffix_preserves_z (state : SourceBasis) :
     zValue (evalReversibleProgram dataSuffix state) = zValue state := by
-  simp [dataSuffix, undoStep3Data, undoStep2Data, step3, step2, step1,
-    evalReversibleProgram, evalReversibleGate,
-    xBasisEquiv, xBasisAction, cxBasisEquiv, cxBasisAction,
-    ccxBasisEquiv, ccxBasisAction, zValue]
+  unfold zValue
+  rw [evalReversibleProgram_preserves_wire_of_avoidsTarget
+    (wire := (10 : Fin 11)) (program := dataSuffix)
+    (state := state) dataSuffix_avoids_z]
 
 /-- Source-level flag semantics of Figure 5 before interpreting the carry as
 an inequality. -/
