@@ -117,7 +117,7 @@ grep -q 'Eq. (1)' _site/example-cases/sparse-three-state-preparation/index.html
 grep -q 'Eq. (2)' _site/example-cases/sparse-three-state-preparation/index.html
 
 grep -q 'Eq. (6)' _site/papers/mottonen-2005-state-preparation/index.html
-grep -q 'Fig. 3' _site/papers/mottonen-dense-state-preparation/index.html
+grep -q 'Fig. 3' _site/papers/mottonen-2005-state-preparation/index.html
 grep -q 'Eq. (5)' _site/papers/grover-rudolph-2002/index.html
 grep -q 'Theorem 1' _site/papers/li-luo-sparse-state-2025/index.html
 grep -q 'Table 2' _site/papers/low-kliuchnikov-schaeffer-2018/index.html
