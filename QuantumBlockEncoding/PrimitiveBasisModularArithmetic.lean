@@ -114,7 +114,7 @@ theorem basisModularAddNat_value
   have commuting := basisModularAddNat_commutes n constant state
   have values := congrArg ZMod.val commuting
   rw [ZMod.val_add, ZMod.val_natCast] at values
-  rw [basisZModEquiv_apply_val] at values
+  simp only [basisZModEquiv_apply_val] at values
   have reduced : basisNat n state % gridSize n = basisNat n state := by
     exact Nat.mod_eq_of_lt (primitiveBasisLEEquiv n state).isLt
   calc
