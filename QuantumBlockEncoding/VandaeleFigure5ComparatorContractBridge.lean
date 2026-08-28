@@ -75,12 +75,24 @@ def comparatorStateToSource (state : ComparatorState 5) : SourceBasis :=
     (state.left 4) (state.right 4)
     state.flag
 
+/-- Local extensionality helper for the pure three-field comparator contract. -/
+theorem comparatorState_ext {n : Nat} {leftState rightState : ComparatorState n}
+    (leftEq : leftState.left = rightState.left)
+    (rightEq : leftState.right = rightState.right)
+    (flagEq : leftState.flag = rightState.flag) :
+    leftState = rightState := by
+  rcases leftState with ⟨left₁, right₁, flag₁⟩
+  rcases rightState with ⟨left₂, right₂, flag₂⟩
+  cases leftEq
+  cases rightEq
+  cases flagEq
+  rfl
+
 /-- Reading after writing the interleaved source layout is exact. -/
 theorem sourceToComparator_comparatorStateToSource
     (state : ComparatorState 5) :
     sourceToComparatorState (comparatorStateToSource state) = state := by
-  rcases state with ⟨left, right, flag⟩
-  apply ComparatorState.ext
+  apply comparatorState_ext
   · funext index
     fin_cases index <;> rfl
   · funext index
@@ -155,7 +167,10 @@ theorem xorBit_strictLtBit_eq_contractFlag
     xorBit flag (strictLtBit left right) =
       if left < right then flipFlag flag else flag := by
   by_cases less : left < right
-  · fin_cases flag <;> simp [strictLtBit, less, xorBit, flipFlag]
+  · have comparisonBit : strictLtBit left right = 1 := by
+      simp [strictLtBit, less]
+    rw [comparisonBit, if_pos less]
+    fin_cases flag <;> native_decide
   · simp [strictLtBit, less]
 
 /-- Transport the concrete repaired Figure-5 source action into the canonical
@@ -167,7 +182,7 @@ theorem repairedFigure5_transport
           (comparatorStateToSource state)) =
       equationSeventeenAction state := by
   rw [repairedFigure5_full_semantics]
-  apply ComparatorState.ext
+  apply comparatorState_ext
   · funext index
     fin_cases index <;> rfl
   · funext index
@@ -191,17 +206,21 @@ def repairedFigure5ComparatorEquiv : Equiv.Perm (ComparatorState 5) :=
       (evalReversibleProgram repairedFigure5Program)).trans
     sourceComparatorEquiv)
 
+/-- Pointwise unfolding of the transported repaired Figure-5 equivalence. -/
+theorem repairedFigure5ComparatorEquiv_apply (state : ComparatorState 5) :
+    repairedFigure5ComparatorEquiv state =
+      sourceToComparatorState
+        (evalReversibleProgram repairedFigure5Program
+          (comparatorStateToSource state)) := by
+  rfl
+
 /-- Root source-to-contract theorem: the concrete repaired 34-gate Figure-5
 program realizes Vandaele Equation (17) on every five-bit computational-basis
 comparator state. -/
 theorem repairedFigure5_comparatorSpec :
     ComparatorSpec repairedFigure5ComparatorEquiv := by
   intro state
-  change
-    sourceToComparatorState
-        (evalReversibleProgram repairedFigure5Program
-          (comparatorStateToSource state)) =
-      equationSeventeenAction state
+  rw [repairedFigure5ComparatorEquiv_apply]
   exact repairedFigure5_transport state
 
 /-- Reader-facing certificate pairing exact source resources with the canonical
