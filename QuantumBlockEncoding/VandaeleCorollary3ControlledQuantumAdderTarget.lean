@@ -66,8 +66,7 @@ theorem controlledQuantumAdder_action
       if allControlsActive controls then
         (controls, quantumAdderEquiv n state)
       else (controls, state) := by
-  cases condition : allControlsActive controls <;>
-    simp [controlledQuantumAdderEquiv, controlledTargetEquiv, condition]
+  rfl
 
 /-- External controls are preserved exactly. -/
 theorem preserves_controls
