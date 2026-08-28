@@ -176,8 +176,9 @@ middle block written in Takahashi order. -/
 theorem sourceProgram_eq_chunks :
     sourceProgram =
       figure4Prefix ++ figure4SourceMiddle ++ figure4Suffix := by
-  unfold sourceProgram figure4Prefix figure4SourceMiddle figure4Suffix
+  unfold sourceProgram figure4Prefix figure4Suffix
   rw [step3_eq_figure4U3_then_tail]
+  unfold figure4SourceMiddle
   simp [List.append_assoc]
 
 /-- Named-chunk form of the already certified middle semantic refactor. -/
