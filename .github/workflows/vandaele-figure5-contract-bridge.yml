@@ -1,0 +1,36 @@
+name: Vandaele Figure 5 contract bridge
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleComparatorContract.lean"
+      - "QuantumBlockEncoding/VandaeleComparatorBitArithmetic.lean"
+      - "QuantumBlockEncoding/VandaeleFigure5Comparator*.lean"
+      - ".github/workflows/vandaele-figure5-contract-bridge.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-figure5-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  contract-bridge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Figure 5 source-to-contract bridge
+        run: lake build QuantumBlockEncoding.VandaeleFigure5ComparatorContractBridge
