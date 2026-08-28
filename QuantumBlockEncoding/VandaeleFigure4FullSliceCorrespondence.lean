@@ -82,7 +82,7 @@ theorem step1_step2_eq_figure4U1_U2 :
 
 /-- Takahashi Step 5 is exactly the displayed adjoint CX ladder `U₇`. -/
 theorem step5_eq_figure4U7 : step5 = figure4U7 := by
-  native_decide
+  simp [step5, figure4U7, figure4U2, step2]
 
 /-- Takahashi Step 6 is exactly displayed slice `U₈`. -/
 theorem step6_eq_figure4U8 : step6 = figure4U8 := by
@@ -139,6 +139,54 @@ theorem figure4_middle_refactor (state : SourceBasis) :
   rw [sourceState_eta state] at bits
   exact bits
 
+/-- Shared prefix before the source-refactored middle block. -/
+def figure4Prefix : ReversibleProgram 11 :=
+  step1 ++ step2 ++ figure4U3
+
+/-- Middle block as literally displayed by Vandaele. -/
+def figure4SlicedMiddle : ReversibleProgram 11 :=
+  figure4U4 ++ figure4U5 ++ figure4U6
+
+/-- Same middle computation in the optimized Takahashi source order. -/
+def figure4SourceMiddle : ReversibleProgram 11 :=
+  step3.drop 4 ++ step4
+
+/-- Shared suffix after the middle block. -/
+def figure4Suffix : ReversibleProgram 11 :=
+  step5 ++ step6
+
+/-- The literal eight-slice circuit factors into one shared prefix, the
+Vandaele middle refactor, and one shared suffix. -/
+theorem figure4EightSliceProgram_eq_chunks :
+    figure4EightSliceProgram =
+      figure4Prefix ++ figure4SlicedMiddle ++ figure4Suffix := by
+  unfold figure4EightSliceProgram figure4Prefix figure4SlicedMiddle figure4Suffix
+  rw [← step1_step2_eq_figure4U1_U2]
+  rw [← step5_eq_figure4U7]
+  rw [← step6_eq_figure4U8]
+  simp [List.append_assoc]
+
+/-- Step 3 splits into the displayed `U₃` and its final outgoing-carry gate. -/
+theorem step3_eq_figure4U3_then_tail :
+    step3 = figure4U3 ++ step3.drop 4 := by
+  simp [step3, figure4U3]
+
+/-- The optimized 29-gate source has the same prefix and suffix, with only the
+middle block written in Takahashi order. -/
+theorem sourceProgram_eq_chunks :
+    sourceProgram =
+      figure4Prefix ++ figure4SourceMiddle ++ figure4Suffix := by
+  unfold sourceProgram figure4Prefix figure4SourceMiddle figure4Suffix
+  rw [step3_eq_figure4U3_then_tail]
+  simp [List.append_assoc]
+
+/-- Named-chunk form of the already certified middle semantic refactor. -/
+theorem figure4_middle_refactor_chunks (state : SourceBasis) :
+    evalReversibleProgram figure4SourceMiddle state =
+      evalReversibleProgram figure4SlicedMiddle state := by
+  simpa [figure4SourceMiddle, figure4SlicedMiddle] using
+    figure4_middle_refactor state
+
 /-- Semantic equality between the cited optimized 29-gate TTK source and the
 literal 35-gate eight-slice Vandaele Figure-4 drawing. -/
 theorem figure4EightSlice_refines_sourceProgram :
@@ -146,33 +194,9 @@ theorem figure4EightSlice_refines_sourceProgram :
       evalReversibleProgram sourceProgram := by
   apply Equiv.ext
   intro state
-  simp only [figure4EightSliceProgram, sourceProgram,
-    evalReversibleProgram_append_apply_local]
-  rw [← step1_step2_eq_figure4U1_U2]
-  rw [step3_eq_figure4U3_then_flagWrite]
-  change
-    evalReversibleProgram figure4U8
-      (evalReversibleProgram figure4U7
-        (evalReversibleProgram figure4U6
-          (evalReversibleProgram figure4U5
-            (evalReversibleProgram figure4U4
-              (evalReversibleProgram
-                [ReversibleGate.ccx 9 8 10 (by decide) (by decide) (by decide)]
-                (evalReversibleProgram figure4U3
-                  (evalReversibleProgram step2
-                    (evalReversibleProgram step1 state)))))))) =
-      evalReversibleProgram step6
-        (evalReversibleProgram step5
-          (evalReversibleProgram step4
-            (evalReversibleProgram
-              [ReversibleGate.ccx 9 8 10 (by decide) (by decide) (by decide)]
-              (evalReversibleProgram figure4U3
-                (evalReversibleProgram step2
-                  (evalReversibleProgram step1 state))))))
-  rw [← evalReversibleProgram_append_apply_local]
-  rw [← evalReversibleProgram_append_apply_local]
-  rw [figure4_middle_refactor]
-  rw [step5_eq_figure4U7, step6_eq_figure4U8]
+  rw [figure4EightSliceProgram_eq_chunks, sourceProgram_eq_chunks]
+  simp only [evalReversibleProgram_append_apply_local]
+  rw [← figure4_middle_refactor_chunks]
 
 end VandaeleFigure4FullSliceCorrespondence
 end QuantumBlockEncoding
