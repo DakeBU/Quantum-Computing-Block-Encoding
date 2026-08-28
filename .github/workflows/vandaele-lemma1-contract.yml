@@ -1,0 +1,34 @@
+name: Vandaele Lemma 1 semantic contract
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
+      - ".github/workflows/vandaele-lemma1-contract.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-lemma1-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  semantic-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Lemma 1 semantic contract
+        run: lake build QuantumBlockEncoding.VandaeleLemma1Contract
