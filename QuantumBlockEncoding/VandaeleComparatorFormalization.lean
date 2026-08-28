@@ -12,7 +12,6 @@ import QuantumBlockEncoding.VandaeleComparatorTheorem3Resource
 import QuantumBlockEncoding.VandaeleControlledComparatorResource
 import QuantumBlockEncoding.VandaeleControlledComparatorTargets
 import QuantumBlockEncoding.VandaeleControlledV2Resource
-import QuantumBlockEncoding.VandaeleFigure5ComparatorContractBridge
 import QuantumBlockEncoding.VandaeleLadderPermutation
 import QuantumBlockEncoding.VandaeleLadderRefinement
 import QuantumBlockEncoding.VandaeleLemma1ParityLowerBound
@@ -31,12 +30,6 @@ Equation-(28) controlled V2 resources, Theorem-2 Equation-(25) recursive
 register split and recurrence closure, Theorem-3 real borrowed-input/resource
 closure, and parity-backed ancilla optimality remain separately inspectable
 Lean nodes.
-
-The Figure-5 source path is now connected back to the canonical Equation-(17)
-contract as well: the displayed 34-gate circuit is certified to have the
-reversed predicate `b < a`, while the minimal endpoint-X repair restores both
-data registers and satisfies `ComparatorSpec` for the intended `a < b`
-action, with the same 34-gate count.
 
 The bounded-gate linear/logarithmic lower theorem for C^kX remains source-backed;
 the one-ancilla parity obstruction is now proved internally in the repository.

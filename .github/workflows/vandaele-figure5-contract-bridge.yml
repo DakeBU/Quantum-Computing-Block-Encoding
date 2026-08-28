@@ -7,7 +7,6 @@ on:
     paths:
       - "QuantumBlockEncoding/VandaeleComparatorContract.lean"
       - "QuantumBlockEncoding/VandaeleComparatorBitArithmetic.lean"
-      - "QuantumBlockEncoding/VandaeleComparatorFormalization.lean"
       - "QuantumBlockEncoding/VandaeleFigure5Comparator*.lean"
       - ".github/workflows/vandaele-figure5-contract-bridge.yml"
   workflow_dispatch:
@@ -35,6 +34,3 @@ jobs:
 
       - name: Compile Figure 5 source-to-contract bridge
         run: lake build QuantumBlockEncoding.VandaeleFigure5ComparatorContractBridge
-
-      - name: Compile public Vandaele comparator spine
-        run: lake build QuantumBlockEncoding.VandaeleComparatorFormalization
