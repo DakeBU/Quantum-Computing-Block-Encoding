@@ -199,34 +199,29 @@ theorem repairedFigure5_transport
     exact xorBit_strictLtBit_eq_contractFlag state.flag
       (littleEndianValue state.left) (littleEndianValue state.right)
 
-/-- The repaired Figure-5 reversible circuit, conjugated only by the explicit
-source-layout equivalence. -/
-def repairedFigure5ComparatorEquiv : Equiv.Perm (ComparatorState 5) :=
-  ((sourceComparatorEquiv.symm.trans
-      (evalReversibleProgram repairedFigure5Program)).trans
-    sourceComparatorEquiv)
-
-/-- Pointwise unfolding of the transported repaired Figure-5 equivalence. -/
-theorem repairedFigure5ComparatorEquiv_apply (state : ComparatorState 5) :
-    repairedFigure5ComparatorEquiv state =
-      sourceToComparatorState
-        (evalReversibleProgram repairedFigure5Program
-          (comparatorStateToSource state)) := by
-  rfl
+/-- The exact repaired Figure-5 source action, expressed directly in the
+canonical Equation-(17) representation.  The source evaluator and the layout
+map are separately certified equivalences; this function form matches the
+minimal `ComparatorSpec` interface without forcing Lean to elaborate a deeply
+nested `Equiv.trans`. -/
+def repairedFigure5ComparatorAction
+    (state : ComparatorState 5) : ComparatorState 5 :=
+  sourceToComparatorState
+    (evalReversibleProgram repairedFigure5Program
+      (comparatorStateToSource state))
 
 /-- Root source-to-contract theorem: the concrete repaired 34-gate Figure-5
 program realizes Vandaele Equation (17) on every five-bit computational-basis
 comparator state. -/
 theorem repairedFigure5_comparatorSpec :
-    ComparatorSpec repairedFigure5ComparatorEquiv := by
+    ComparatorSpec repairedFigure5ComparatorAction := by
   intro state
-  rw [repairedFigure5ComparatorEquiv_apply]
   exact repairedFigure5_transport state
 
 /-- Reader-facing certificate pairing exact source resources with the canonical
 Equation-(17) functional specification. -/
 theorem repairedFigure5_source_certificate :
-    ComparatorSpec repairedFigure5ComparatorEquiv ∧
+    ComparatorSpec repairedFigure5ComparatorAction ∧
       repairedFigure5Program.length = 34 :=
   ⟨repairedFigure5_comparatorSpec, repairedFigure5_gateCount⟩
 
