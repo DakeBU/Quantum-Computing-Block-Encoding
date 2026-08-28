@@ -1,0 +1,40 @@
+name: Vandaele quantum adder pure semantic target
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/PrimitiveBasisLE.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisModularArithmetic.lean"
+      - "QuantumBlockEncoding/VandaeleQuantumAdderTarget.lean"
+      - ".github/workflows/vandaele-quantum-adder-pure-target.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-quantum-adder-pure-target-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  pure-target:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile pure modular basis arithmetic
+        run: lake build QuantumBlockEncoding.PrimitiveBasisModularArithmetic
+
+      - name: Compile Vandaele quantum-adder semantic target
+        run: lake build QuantumBlockEncoding.VandaeleQuantumAdderTarget

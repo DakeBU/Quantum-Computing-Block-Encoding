@@ -1,6 +1,5 @@
-import QuantumBlockEncoding.ComparatorIncrementerGeneral
+import QuantumBlockEncoding.PrimitiveBasisModularArithmetic
 import QuantumBlockEncoding.PrimitiveBasisRegisterSplit
-import QuantumBlockEncoding.VandaeleClassicalAdderTarget
 import Mathlib.Tactic
 
 /-!
@@ -14,16 +13,17 @@ register. For each fixed basis value of `a`, the target simply performs
 `(b,z) -> (b,z) + value(a) mod 2^(n+1)`.
 
 This automatically gives the usual low-n-bit sum and carry toggle while making
-invertibility immediate. The construction is a semantic target; Corollary 3
-still needs the Figure-4/Theorem-1 circuit realization and resource proof.
+invertibility immediate. The target now depends only on pure primitive-basis
+arithmetic and register splitting; comparator/incrementer circuit modules are
+not part of this semantic layer. Corollary 3 still needs the Figure-4/Theorem-1
+circuit realization and resource proof.
 -/
 
 namespace QuantumBlockEncoding
 namespace VandaeleQuantumAdderTarget
 
-open ComparatorIncrementerGeneral
+open PrimitiveBasisModularArithmetic
 open PrimitiveBasisRegisterSplit
-open VandaeleClassicalAdderTarget
 
 /-- Product state with the second component holding `b` plus its carry bit. -/
 abbrev QuantumAdderState (n : Nat) :=
@@ -33,10 +33,10 @@ abbrev QuantumAdderState (n : Nat) :=
 def quantumAdderEquiv (n : Nat) : Equiv.Perm (QuantumAdderState n) where
   toFun state :=
     (state.1,
-      basisModularAddEquiv (n + 1) (basisNat n state.1) state.2)
+      basisModularAddNatEquiv (n + 1) (basisNat n state.1) state.2)
   invFun state :=
     (state.1,
-      (basisModularAddEquiv (n + 1) (basisNat n state.1)).symm state.2)
+      (basisModularAddNatEquiv (n + 1) (basisNat n state.1)).symm state.2)
   left_inv state := by
     rcases state with ⟨a,payload⟩
     simp
@@ -55,7 +55,7 @@ theorem quantumAdder_payload_value
     (n : Nat) (state : QuantumAdderState n) :
     basisNat (n + 1) (quantumAdderEquiv n state).2 =
       (basisNat (n + 1) state.2 + basisNat n state.1) % gridSize (n + 1) := by
-  exact basisModularAdd_spec (n + 1) (basisNat n state.1) state.2
+  exact basisModularAddNat_value (n + 1) (basisNat n state.1) state.2
 
 /-- Split an `(n+1)`-bit payload into the low n-bit sum register and one carry
 bit. -/
