@@ -199,5 +199,16 @@ theorem figure4EightSlice_refines_sourceProgram :
   simp only [evalReversibleProgram_append_apply_local]
   rw [← figure4_middle_refactor_chunks]
 
+/-- Direct arithmetic certificate for the literal 35-gate Vandaele Figure-4
+drawing.  Its eight displayed slices induce exactly the same five-bit
+carry/sum final state as the certified 29-gate Takahashi source program. -/
+theorem figure4EightSlice_finalState
+    (a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z : Fin 2) :
+    evalReversibleProgram figure4EightSliceProgram
+        (sourceState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z) =
+      finalState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z := by
+  rw [figure4EightSlice_refines_sourceProgram]
+  exact sourceProgram_finalState a0 b0 a1 b1 a2 b2 a3 b3 a4 b4 z
+
 end VandaeleFigure4FullSliceCorrespondence
 end QuantumBlockEncoding
