@@ -164,24 +164,48 @@ theorem primitiveBasisLEEquiv_splitBasis_recomposition
       (primitiveBasisLEEquiv a (splitBasis a b state).1).val +
         gridSize a *
           (primitiveBasisLEEquiv b (splitBasis a b state).2).val := by
-  rw [← combineBasis_splitBasis a b state]
-  exact primitiveBasisLEEquiv_combineBasis_value a b (splitBasis a b state)
+  calc
+    (primitiveBasisLEEquiv (a + b) state).val =
+        (primitiveBasisLEEquiv (a + b)
+          (combineBasis a b (splitBasis a b state))).val := by
+      exact congrArg
+        (fun flat => (primitiveBasisLEEquiv (a + b) flat).val)
+        (combineBasis_splitBasis a b state).symm
+    _ =
+        (primitiveBasisLEEquiv a (splitBasis a b state).1).val +
+          gridSize a *
+            (primitiveBasisLEEquiv b (splitBasis a b state).2).val :=
+      primitiveBasisLEEquiv_combineBasis_value a b (splitBasis a b state)
 
 /-- The low split register is the flat integer remainder. -/
 theorem primitiveBasisLEEquiv_splitBasis_low_mod
     (a b : Nat) (state : PrimitiveBasis (a + b)) :
     (primitiveBasisLEEquiv (a + b) state).val % gridSize a =
       (primitiveBasisLEEquiv a (splitBasis a b state).1).val := by
-  rw [← combineBasis_splitBasis a b state]
-  exact primitiveBasisLEEquiv_combineBasis_mod_low a b (splitBasis a b state)
+  calc
+    (primitiveBasisLEEquiv (a + b) state).val % gridSize a =
+        (primitiveBasisLEEquiv (a + b)
+          (combineBasis a b (splitBasis a b state))).val % gridSize a := by
+      exact congrArg
+        (fun flat => (primitiveBasisLEEquiv (a + b) flat).val % gridSize a)
+        (combineBasis_splitBasis a b state).symm
+    _ = (primitiveBasisLEEquiv a (splitBasis a b state).1).val :=
+      primitiveBasisLEEquiv_combineBasis_mod_low a b (splitBasis a b state)
 
 /-- The high split register is the flat integer quotient. -/
 theorem primitiveBasisLEEquiv_splitBasis_high_div
     (a b : Nat) (state : PrimitiveBasis (a + b)) :
     (primitiveBasisLEEquiv (a + b) state).val / gridSize a =
       (primitiveBasisLEEquiv b (splitBasis a b state).2).val := by
-  rw [← combineBasis_splitBasis a b state]
-  exact primitiveBasisLEEquiv_combineBasis_div_low a b (splitBasis a b state)
+  calc
+    (primitiveBasisLEEquiv (a + b) state).val / gridSize a =
+        (primitiveBasisLEEquiv (a + b)
+          (combineBasis a b (splitBasis a b state))).val / gridSize a := by
+      exact congrArg
+        (fun flat => (primitiveBasisLEEquiv (a + b) flat).val / gridSize a)
+        (combineBasis_splitBasis a b state).symm
+    _ = (primitiveBasisLEEquiv b (splitBasis a b state).2).val :=
+      primitiveBasisLEEquiv_combineBasis_div_low a b (splitBasis a b state)
 
 /-- Canonical low/high register equivalence. -/
 def basisSplitEquiv (a b : Nat) :
