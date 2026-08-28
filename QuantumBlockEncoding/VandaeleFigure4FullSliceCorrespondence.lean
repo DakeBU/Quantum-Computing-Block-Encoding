@@ -169,7 +169,7 @@ theorem figure4EightSliceProgram_eq_chunks :
 /-- Step 3 splits into the displayed `U₃` and its final outgoing-carry gate. -/
 theorem step3_eq_figure4U3_then_tail :
     step3 = figure4U3 ++ step3.drop 4 := by
-  simp [step3, figure4U3]
+  simpa only [figure4U3] using (List.take_append_drop 4 step3).symm
 
 /-- The optimized 29-gate source has the same prefix and suffix, with only the
 middle block written in Takahashi order. -/
