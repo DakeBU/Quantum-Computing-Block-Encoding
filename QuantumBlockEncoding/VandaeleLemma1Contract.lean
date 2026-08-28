@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.PrimitiveSemantics
+import Mathlib.Data.Fintype.Basic
 import Mathlib.Tactic
 
 /-!
@@ -24,22 +25,18 @@ namespace VandaeleLemma1Contract
 def allControlsOne {k : Nat} (controls : PrimitiveBasis k) : Prop :=
   ∀ wire, controls wire = 1
 
-/-- Exact Definition-2.1 basis action.  The predicate is finite but its
-`Decidable` instance is intentionally kept local so this semantic definition
-does not require downstream callers to carry an implementation-specific
-instance. -/
+/-- Exact Definition-2.1 basis action.  `Fin k` is finite, so the all-controls
+predicate has a computable `Decidable` instance once the finite-type instances
+are imported explicitly. -/
 def multiControlledXAction (k : Nat)
-    (state : PrimitiveBasis k × Fin 2) : PrimitiveBasis k × Fin 2 := by
-  classical
-  exact
-    if allControlsOne state.1 then
-      (state.1, flipBit state.2)
-    else state
+    (state : PrimitiveBasis k × Fin 2) : PrimitiveBasis k × Fin 2 :=
+  if allControlsOne state.1 then
+    (state.1, flipBit state.2)
+  else state
 
 /-- C^kX is involutory. -/
 theorem multiControlledXAction_involutive (k : Nat) :
     Function.Involutive (multiControlledXAction k) := by
-  classical
   intro state
   rcases state with ⟨controls, target⟩
   by_cases active : allControlsOne controls
@@ -58,7 +55,6 @@ def multiControlledXEquiv (k : Nat) :
 theorem multiControlledX_preserves_controls
     (k : Nat) (state : PrimitiveBasis k × Fin 2) :
     (multiControlledXEquiv k state).1 = state.1 := by
-  classical
   by_cases active : allControlsOne state.1 <;>
     simp [multiControlledXEquiv, multiControlledXAction, active]
 
@@ -67,7 +63,6 @@ theorem multiControlledX_target
     (k : Nat) (state : PrimitiveBasis k × Fin 2) :
     (multiControlledXEquiv k state).2 =
       if allControlsOne state.1 then flipBit state.2 else state.2 := by
-  classical
   by_cases active : allControlsOne state.1 <;>
     simp [multiControlledXEquiv, multiControlledXAction, active]
 
