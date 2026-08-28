@@ -1,0 +1,28 @@
+name: Vandaele Figure 4 full slice correspondence
+
+on:
+  pull_request:
+    paths:
+      - "QuantumBlockEncoding/VandaeleFigure4FullSliceCorrespondence.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4LadderSliceCorrespondence.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiSourceProgram.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiStepSemantics.lean"
+      - ".github/workflows/vandaele-figure4-full-slices.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-slices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile full Figure 4 slice correspondence
+        run: lake build QuantumBlockEncoding.VandaeleFigure4FullSliceCorrespondence

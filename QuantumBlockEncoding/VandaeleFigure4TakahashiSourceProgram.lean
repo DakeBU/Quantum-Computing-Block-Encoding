@@ -24,9 +24,10 @@ function-valued reversible equivalences for hours.  Instead the downstream
 proof is factored into a small carry-algebra node and local gate-refinement
 lemmas.  This keeps the proof source-grounded and CI-sustainable.
 
-A later node will also identify Vandaele's red `U₁,...,U₈` slice regrouping
-with this source program gate-for-gate; this file does not silently assume that
-regrouping.
+A downstream source-correspondence node audits Vandaele's red `U₁,...,U₈`
+slices separately.  The literal Figure 4 is not a gate-for-gate regrouping of
+this optimized list: its displayed X-conjugation layers give 35 gates, with
+semantic equivalence proved compositionally.
 -/
 
 namespace QuantumBlockEncoding
