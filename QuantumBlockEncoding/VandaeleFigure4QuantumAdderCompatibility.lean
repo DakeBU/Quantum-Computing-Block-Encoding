@@ -21,6 +21,7 @@ namespace VandaeleFigure4QuantumAdderCompatibility
 
 open VandaeleComparatorContract
 open VandaeleFigure4AdderContractBridge
+open VandaeleFigure4FullSliceCorrespondence
 open VandaeleQuantumAdderTarget
 open PrimitiveBasisModularArithmetic
 
@@ -69,11 +70,10 @@ theorem figure4QuantumAdder_payload_value (state : Figure4AdderState) :
   simpa [figure4QuantumAdderEquiv, basisNat_eq_littleEndianValue, gridSize]
     using source
 
-/-- Arithmetic core of the compatibility proof.  Adding two five-bit words
-produces one low five-bit remainder and one carry bit; an existing carry bit is
-therefore updated modulo two in the six-bit payload. -/
-theorem fiveBitPayloadAddIdentity
-    (a b z : Nat) (aLt : a < 32) (bLt : b < 32) (zLt : z < 2) :
+/-- Arithmetic core of the compatibility proof.  The identity is simply the
+base-32 decomposition of a six-bit modular sum, and in fact holds for arbitrary
+natural `a`, `b`, and `z`. -/
+theorem fiveBitPayloadAddIdentity (a b z : Nat) :
     (a + b) % 32 + 32 * ((z + (a + b) / 32) % 2) =
       (b + 32 * z + a) % 64 := by
   omega
@@ -94,18 +94,10 @@ theorem literalFigure4_quantumAdder_commutes (state : Figure4AdderState) :
     simp only [figure4QuantumAdderEquiv]
     rw [basisNat_eq_littleEndianValue]
     norm_num [gridSize]
-    have addendLt : littleEndianValue state.addend < 32 := by
-      rw [← basisNat_eq_littleEndianValue]
-      simpa [basisNat, gridSize] using
-        (primitiveBasisLEEquiv 5 state.addend).isLt
-    have targetLt : littleEndianValue state.target < 32 := by
-      rw [← basisNat_eq_littleEndianValue]
-      simpa [basisNat, gridSize] using
-        (primitiveBasisLEEquiv 5 state.target).isLt
     exact fiveBitPayloadAddIdentity
       (littleEndianValue state.addend)
       (littleEndianValue state.target)
-      state.carry.val addendLt targetLt state.carry.isLt
+      state.carry.val
 
 /-- The literal Figure-4 action transported into the canonical product-register
 representation. -/
