@@ -137,6 +137,9 @@ theorem cleanCarry_low_sum
         basisNat n b + basisNat n a := by
     rw [← splitValue, full]
   have reduced := congrArg (fun value => value % gridSize n) recomposed
+  change
+    (basisNat n outputLow + gridSize n * outputCarry.val) % gridSize n =
+      (basisNat n b + basisNat n a) % gridSize n at reduced
   have outputLowLt : basisNat n outputLow < gridSize n :=
     (primitiveBasisLEEquiv n outputLow).isLt
   rw [Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt outputLowLt] at reduced
