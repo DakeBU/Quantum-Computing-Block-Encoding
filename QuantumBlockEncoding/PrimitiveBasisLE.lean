@@ -47,14 +47,14 @@ theorem primitiveBasisLEEquiv_value_eq_sum (q : Nat)
     (bits : PrimitiveBasis q) :
     (primitiveBasisLEEquiv q bits).val =
       ∑ wire : Fin q, (bits wire).val * 2 ^ wire.val := by
-  induction q generalizing bits with
+  induction q with
   | zero =>
       simp [primitiveBasisLEEquiv_zero_apply]
   | succ q induction =>
       rw [primitiveBasisLEEquiv_succ_value, Fin.sum_univ_succ]
       rw [induction (fun wire => bits wire.succ)]
       simp only [Fin.val_zero, pow_zero, Nat.mul_one, Fin.val_succ]
-      apply Nat.add_left_cancel
+      congr 1
       rw [Finset.mul_sum]
       apply Finset.sum_congr rfl
       intro wire _
