@@ -1,0 +1,36 @@
+name: Vandaele Figure 4 ladder slice correspondence
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiSourceProgram.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4TakahashiStepSemantics.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4LadderSliceCorrespondence.lean"
+      - ".github/workflows/vandaele-figure4-ladder-slices.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-figure4-ladder-slices-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ladder-slices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Figure 4 ladder slice correspondence
+        run: lake build QuantumBlockEncoding.VandaeleFigure4LadderSliceCorrespondence
