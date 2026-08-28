@@ -1,0 +1,38 @@
+name: Vandaele Figure 4 canonical quantum-adder compatibility
+
+on:
+  pull_request:
+    branches:
+      - "codex/sp-papers-comparator-proof-cost"
+    paths:
+      - "QuantumBlockEncoding/PrimitiveBasisModularArithmetic.lean"
+      - "QuantumBlockEncoding/PrimitiveBasisRegisterSplit.lean"
+      - "QuantumBlockEncoding/VandaeleQuantumAdderTarget.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4AdderContractBridge.lean"
+      - "QuantumBlockEncoding/VandaeleFigure4QuantumAdderCompatibility.lean"
+      - ".github/workflows/vandaele-figure4-quantum-adder-compat.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-figure4-quantum-adder-compat-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  compatibility:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and fetch Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile Figure 4 canonical quantum-adder compatibility
+        run: lake build QuantumBlockEncoding.VandaeleFigure4QuantumAdderCompatibility
