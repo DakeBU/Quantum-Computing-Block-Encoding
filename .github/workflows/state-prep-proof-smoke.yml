@@ -17,6 +17,9 @@ on:
       - "QuantumBlockEncoding/UniformlyControlledRy.lean"
       - "QuantumBlockEncoding/Circuit.lean"
       - "QuantumBlockEncoding/Resources.lean"
+      - "QuantumBlockEncoding/BlockEncoding.lean"
+      - "QuantumBlockEncoding/GHL2025.lean"
+      - "QuantumBlockEncoding/SemanticFidelityEvidence.lean"
       - "QuantumBlockEncoding.lean"
       - "executable-exports/SP-PAPERS-001/qiskit/export.py"
       - ".github/workflows/state-prep-proof-smoke.yml"
@@ -43,6 +46,8 @@ jobs:
           use-mathlib-cache: true
       - name: Compile representative State Preparation benchmarks
         run: lake build QuantumBlockEncoding.StatePreparationBenchmarks
+      - name: Compile semantic fidelity evidence
+        run: lake build QuantumBlockEncoding.SemanticFidelityEvidence
       - name: Check executable Qiskit mirrors
         shell: bash
         run: |
