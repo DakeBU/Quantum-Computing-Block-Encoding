@@ -20,6 +20,11 @@ SITE_JS = ROOT / "website" / "static" / "site.js"
 DIAGRAM_DIR = ROOT / "website" / "diagrams"
 MPL_RC = ROOT / "matplotlibrc"
 CURRENT_HARNESS_WEBP = ROOT / "docs" / "assets" / "aspbe_current_harness.webp"
+# The current reader-facing Harness is a high-resolution generated comic rather
+# than the earlier compact diagram. Keep a bounded guard, but match the asset
+# intentionally committed on main instead of the obsolete 120 KB ceiling.
+CURRENT_HARNESS_WEBP_MIN_BYTES = 10_000
+CURRENT_HARNESS_WEBP_MAX_BYTES = 1_500_000
 
 MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((docs/assets/[^)]+\.svg)\)")
 HTML_SVG_RE = re.compile(r"<img\s+[^>]*src=[\"'](docs/assets/[^\"']+\.svg)[\"']", re.I)
@@ -79,8 +84,13 @@ def check_frontier_asset(readme: str) -> None:
     payload = CURRENT_HARNESS_WEBP.read_bytes()
     if not (payload.startswith(b"RIFF") and payload[8:12] == b"WEBP"):
         fail("current ASPBE Harness asset is not a valid WebP container")
-    if len(payload) < 10_000 or len(payload) > 120_000:
+    if not (
+        CURRENT_HARNESS_WEBP_MIN_BYTES
+        <= len(payload)
+        <= CURRENT_HARNESS_WEBP_MAX_BYTES
+    ):
         fail(f"current ASPBE Harness WebP has unexpected size: {len(payload)} bytes")
+
 
 def check_readme_math_surface(readme: str) -> None:
     for token in FORBIDDEN_README_TOKENS:
