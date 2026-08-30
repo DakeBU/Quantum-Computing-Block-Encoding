@@ -58,11 +58,10 @@ theorem valid_append {qubits : Nat}
       rcases leftValid with ⟨gateRest, restValid⟩
       apply List.Pairwise.cons
       · intro other member
-        rw [List.mem_append] at member
-        rcases member with member | member
+        rcases List.mem_append.mp member with member | member
         · exact gateRest other member
         · exact cross gate (by simp) other member
-      · apply induction restValid rightValid
+      · apply induction restValid
         intro leftGate leftMember rightGate rightMember
         exact cross leftGate
           (List.mem_cons_of_mem gate leftMember)
@@ -161,17 +160,8 @@ theorem parallelLayers_program_length {qubits : Nat}
       | nil =>
           simp [parallelLayers, program]
       | cons rightHead rightTail =>
-          have tail := induction rightTail
-          change
-            (parallelLayers leftTail rightTail).flatten.length =
-              leftTail.flatten.length + rightTail.flatten.length at tail
-          change
-            (leftHead ++ rightHead).length +
-                (parallelLayers leftTail rightTail).flatten.length =
-              (leftHead.length + leftTail.flatten.length) +
-                (rightHead.length + rightTail.flatten.length)
-          rw [List.length_append, tail]
-          omega
+          simp [parallelLayers, program, induction rightTail,
+            Nat.add_assoc, Nat.add_left_comm, Nat.add_comm]
 
 end ReversibleSchedule
 
