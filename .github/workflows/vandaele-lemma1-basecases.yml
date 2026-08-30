@@ -5,12 +5,14 @@ on:
     branches:
       - "work/vandaele-lemma1-basecases-*"
     paths:
+      - "QuantumBlockEncoding/ReversibleSchedule.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean"
       - ".github/workflows/vandaele-lemma1-basecases.yml"
   pull_request:
     paths:
+      - "QuantumBlockEncoding/ReversibleSchedule.lean"
       - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
       - "QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean"
       - "QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean"
