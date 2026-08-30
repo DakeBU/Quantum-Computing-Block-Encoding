@@ -49,13 +49,13 @@ theorem valid_append {qubits : Nat}
     (rightValid : Valid right)
     (cross : CrossWireDisjoint left right) :
     Valid (left ++ right) := by
+  unfold Valid at leftValid rightValid ⊢
   induction left with
   | nil =>
       simpa using rightValid
   | cons gate rest induction =>
-      rw [List.pairwise_cons] at leftValid
+      rw [List.pairwise_cons] at leftValid ⊢
       rcases leftValid with ⟨gateRest, restValid⟩
-      rw [List.pairwise_cons]
       constructor
       · intro other member
         rw [List.mem_append] at member
@@ -64,7 +64,9 @@ theorem valid_append {qubits : Nat}
         · exact cross gate (by simp) other member
       · apply induction restValid rightValid
         intro leftGate leftMember rightGate rightMember
-        exact cross leftGate (by simp [leftMember]) rightGate rightMember
+        exact cross leftGate
+          (List.mem_cons_of_mem gate leftMember)
+          rightGate rightMember
 
 end ReversibleLayer
 
@@ -122,12 +124,16 @@ theorem parallelLayers_valid {qubits : Nat}
               (cross leftHead (by simp) rightHead (by simp))
           · apply induction
             · intro tailLayer tailMember
-              exact leftValid tailLayer (by simp [tailMember])
+              exact leftValid tailLayer
+                (List.mem_cons_of_mem leftHead tailMember)
             · intro tailLayer tailMember
-              exact rightValid tailLayer (by simp [tailMember])
+              exact rightValid tailLayer
+                (List.mem_cons_of_mem rightHead tailMember)
             · intro leftLayer leftMember rightLayer rightMember
-              exact cross leftLayer (by simp [leftMember])
-                rightLayer (by simp [rightMember])
+              exact cross leftLayer
+                (List.mem_cons_of_mem leftHead leftMember)
+                rightLayer
+                (List.mem_cons_of_mem rightHead rightMember)
             · exact member
 
 /-- The merged schedule has the maximum, not the sum, of the two depths. -/
@@ -148,13 +154,20 @@ theorem parallelLayers_program_length {qubits : Nat}
     (parallelLayers left right).program.length =
       left.program.length + right.program.length := by
   induction left generalizing right with
-  | nil => simp [parallelLayers, program]
+  | nil =>
+      simp [parallelLayers, program]
   | cons leftHead leftTail induction =>
       cases right with
-      | nil => simp [parallelLayers, program]
+      | nil =>
+          simp [parallelLayers, program]
       | cons rightHead rightTail =>
-          simp [parallelLayers, program, induction, Nat.add_assoc,
-            Nat.add_comm, Nat.add_left_comm]
+          change
+            (leftHead ++ rightHead).length +
+                (parallelLayers leftTail rightTail).program.length =
+              (leftHead.length + leftTail.program.length) +
+                (rightHead.length + rightTail.program.length)
+          rw [List.length_append, induction rightTail]
+          omega
 
 end ReversibleSchedule
 
