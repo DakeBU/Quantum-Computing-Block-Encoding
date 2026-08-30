@@ -1,0 +1,44 @@
+name: Vandaele Lemma 1 dirty semantic bridge
+
+on:
+  push:
+    branches:
+      - "work/vandaele-lemma1-dirty-semantic-*"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
+      - "QuantumBlockEncoding/VandaeleLemma1DirtySemantic.lean"
+      - "QuantumBlockEncoding/PromiseGateOptimization.lean"
+      - ".github/workflows/vandaele-lemma1-dirty-semantic.yml"
+  pull_request:
+    paths:
+      - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
+      - "QuantumBlockEncoding/VandaeleLemma1DirtySemantic.lean"
+      - "QuantumBlockEncoding/PromiseGateOptimization.lean"
+      - ".github/workflows/vandaele-lemma1-dirty-semantic.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-lemma1-dirty-semantic-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  dirty-semantic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile CkX dirty semantic bridge
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1DirtySemantic
