@@ -6,7 +6,7 @@ import Mathlib.Tactic
 
 Nie's logarithmic-depth multi-controlled-X recursion does not recursively place
 a complete child circuit in both Step 2 and Step 4.  It places the child's
-compute-plus-central-action prefix in Step 2 and only the cleanup suffix in
+compute-plus-central-action first half in Step 2 and only the cleanup suffix in
 Step 4.  Together those pieces have exactly the depth of one complete child
 circuit.
 
@@ -31,7 +31,8 @@ theorem valid_reverse {qubits : Nat}
     {layer : ReversibleLayer qubits}
     (valid : layer.Valid) :
     (reverseLayer layer).Valid := by
-  unfold reverseLayer Valid at valid ⊢
+  unfold Valid at valid ⊢
+  unfold reverseLayer
   rw [List.pairwise_reverse]
   exact valid.imp (fun _ _ relation =>
     ReversibleGate.wireDisjoint_symm relation)
@@ -40,11 +41,13 @@ end ReversibleLayer
 
 namespace ReversibleSchedule
 
-/-- Reverse a schedule as a circuit: reverse the layer order and the gate order
-inside every layer. -/
+/-- Reverse a schedule as a circuit: reverse the gate order inside each layer,
+then reverse the layer order.  This presentation is extensionally the same as
+`schedule.reverse.map reverseLayer`, but its recursive normal form exposes the
+induction hypothesis directly. -/
 def reverseSchedule {qubits : Nat}
     (schedule : ReversibleSchedule qubits) : ReversibleSchedule qubits :=
-  schedule.reverse.map ReversibleLayer.reverseLayer
+  (schedule.map ReversibleLayer.reverseLayer).reverse
 
 /-- The reversed schedule remains proof-bearing valid. -/
 theorem reverseSchedule_valid {qubits : Nat}
@@ -52,11 +55,12 @@ theorem reverseSchedule_valid {qubits : Nat}
     (valid : schedule.Valid) :
     (reverseSchedule schedule).Valid := by
   intro layer member
-  simp only [reverseSchedule, List.mem_map] at member
-  rcases member with ⟨source, sourceMember, rfl⟩
-  apply ReversibleLayer.valid_reverse
-  apply valid source
-  simpa using sourceMember
+  have mappedMember :
+      layer ∈ schedule.map ReversibleLayer.reverseLayer := by
+    simpa [reverseSchedule] using member
+  simp only [List.mem_map] at mappedMember
+  rcases mappedMember with ⟨source, sourceMember, rfl⟩
+  exact ReversibleLayer.valid_reverse (valid source sourceMember)
 
 /-- Flattening the reversed schedule gives exactly the reversed flat program. -/
 theorem reverseSchedule_program {qubits : Nat}
@@ -65,7 +69,7 @@ theorem reverseSchedule_program {qubits : Nat}
   induction schedule with
   | nil => rfl
   | cons layer rest induction =>
-      simp [reverseSchedule, program, induction, ReversibleLayer.reverseLayer]
+      simp [reverseSchedule, program, ReversibleLayer.reverseLayer, induction]
 
 @[simp] theorem reverseSchedule_length {qubits : Nat}
     (schedule : ReversibleSchedule qubits) :
@@ -145,9 +149,9 @@ theorem eval_reverse_after {qubits : Nat}
 
 end ScheduledReversibleProgram
 
-/-- A reversible compute/action/uncompute object.  `prefix` is exactly the piece
-that a parent Nie recursion may consume before its own central action; `cleanup`
-is delayed until after the parent's central action. -/
+/-- A reversible compute/action/uncompute object.  `forwardHalf` is exactly the
+piece that a parent Nie recursion may consume before its own central action;
+`cleanup` is delayed until after the parent's central action. -/
 structure ReversibleComputeActionUncompute (qubits : Nat) where
   prepare : ScheduledReversibleProgram qubits
   commit : ScheduledReversibleProgram qubits
@@ -156,7 +160,7 @@ namespace ReversibleComputeActionUncompute
 
 /-- The first recursive half used in Nie Step 2: prepare, then perform the
 child's persistent central action. -/
-def prefix {qubits : Nat}
+def forwardHalf {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
     ScheduledReversibleProgram qubits :=
   ScheduledReversibleProgram.seq split.prepare split.commit
@@ -167,21 +171,22 @@ def cleanup {qubits : Nat}
     ScheduledReversibleProgram qubits :=
   split.prepare.reverse
 
-/-- Complete child circuit: prefix followed by delayed cleanup. -/
+/-- Complete child circuit: first half followed by delayed cleanup. -/
 def full {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
     ScheduledReversibleProgram qubits :=
-  ScheduledReversibleProgram.seq split.prefix split.cleanup
+  ScheduledReversibleProgram.seq split.forwardHalf split.cleanup
 
-@[simp] theorem prefix_gateCount {qubits : Nat}
+@[simp] theorem forwardHalf_gateCount {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
-    split.prefix.gateCount = split.prepare.gateCount + split.commit.gateCount := by
-  simp [prefix]
+    split.forwardHalf.gateCount =
+      split.prepare.gateCount + split.commit.gateCount := by
+  simp [forwardHalf]
 
-@[simp] theorem prefix_depth {qubits : Nat}
+@[simp] theorem forwardHalf_depth {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
-    split.prefix.depth = split.prepare.depth + split.commit.depth := by
-  simp [prefix]
+    split.forwardHalf.depth = split.prepare.depth + split.commit.depth := by
+  simp [forwardHalf]
 
 @[simp] theorem cleanup_gateCount {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
@@ -197,29 +202,30 @@ def full {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
     split.full.gateCount =
       2 * split.prepare.gateCount + split.commit.gateCount := by
-  simp [full, prefix, cleanup]
+  simp [full, forwardHalf, cleanup]
   omega
 
 @[simp] theorem full_depth {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
     split.full.depth = 2 * split.prepare.depth + split.commit.depth := by
-  simp [full, prefix, cleanup]
+  simp [full, forwardHalf, cleanup]
   omega
 
-/-- The key recurrence accounting identity: the Step-2 prefix plus Step-4
+/-- The key recurrence accounting identity: the Step-2 first half plus Step-4
 cleanup costs exactly one complete child depth, not two complete child depths. -/
-theorem prefix_depth_add_cleanup_depth {qubits : Nat}
+theorem forwardHalf_depth_add_cleanup_depth {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
-    split.prefix.depth + split.cleanup.depth = split.full.depth := by
-  simp [full, prefix, cleanup]
+    split.forwardHalf.depth + split.cleanup.depth = split.full.depth := by
+  simp [full, forwardHalf, cleanup]
   omega
 
 /-- Likewise, the two delayed pieces contain exactly the gates of one full child
 circuit. -/
-theorem prefix_gateCount_add_cleanup_gateCount {qubits : Nat}
+theorem forwardHalf_gateCount_add_cleanup_gateCount {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
-    split.prefix.gateCount + split.cleanup.gateCount = split.full.gateCount := by
-  simp [full, prefix, cleanup]
+    split.forwardHalf.gateCount + split.cleanup.gateCount =
+      split.full.gateCount := by
+  simp [full, forwardHalf, cleanup]
   omega
 
 /-- Cleanup really is the inverse of the preparation state transformation. -/
