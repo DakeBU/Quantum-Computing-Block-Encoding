@@ -18,11 +18,11 @@ ASPBE separates these claims:
 * the quantitative lower bounds remain external cited-result obligations until
   their assumptions/theorem are imported or re-proved.
 
-The semantic permutation below is intentionally `noncomputable`: Lean 4.29 does
-not synthesize a `Decidable` instance for the finite universal proposition in
-this representation without help, and choosing classical decidability here does
-not weaken the theorem. Executability belongs to the concrete
-`ReversibleProgram` refinement, whose evaluator is computable.
+The finite all-controls predicate is decidable because the control register has
+finitely many wires and each bit equality is decidable.  We keep that instance
+local to this semantic module: downstream APIs see the source-facing predicate,
+not a global classical-decidability assumption.  Executability still belongs to
+the concrete `ReversibleProgram` refinement, whose evaluator is computable.
 -/
 
 namespace QuantumBlockEncoding
@@ -32,19 +32,22 @@ namespace VandaeleLemma1Contract
 def allControlsOne {k : Nat} (controls : PrimitiveBasis k) : Prop :=
   ∀ wire, controls wire = 1
 
+/-- Local finite decidability for the Definition-2.1 control predicate. -/
+local instance instDecidableAllControlsOne {k : Nat}
+    (controls : PrimitiveBasis k) : Decidable (allControlsOne controls) := by
+  unfold allControlsOne
+  infer_instance
+
 /-- Exact Definition-2.1 basis action. -/
-noncomputable def multiControlledXAction (k : Nat)
-    (state : PrimitiveBasis k × Fin 2) : PrimitiveBasis k × Fin 2 := by
-  classical
-  exact
-    if allControlsOne state.1 then
-      (state.1, flipBit state.2)
-    else state
+def multiControlledXAction (k : Nat)
+    (state : PrimitiveBasis k × Fin 2) : PrimitiveBasis k × Fin 2 :=
+  if allControlsOne state.1 then
+    (state.1, flipBit state.2)
+  else state
 
 /-- C^kX is involutory. -/
 theorem multiControlledXAction_involutive (k : Nat) :
     Function.Involutive (multiControlledXAction k) := by
-  classical
   intro state
   rcases state with ⟨controls, target⟩
   by_cases active : allControlsOne controls
@@ -52,7 +55,7 @@ theorem multiControlledXAction_involutive (k : Nat) :
   · simp [multiControlledXAction, active]
 
 /-- Exact C^kX permutation. -/
-noncomputable def multiControlledXEquiv (k : Nat) :
+def multiControlledXEquiv (k : Nat) :
     Equiv.Perm (PrimitiveBasis k × Fin 2) where
   toFun := multiControlledXAction k
   invFun := multiControlledXAction k
@@ -63,7 +66,6 @@ noncomputable def multiControlledXEquiv (k : Nat) :
 theorem multiControlledX_preserves_controls
     (k : Nat) (state : PrimitiveBasis k × Fin 2) :
     (multiControlledXEquiv k state).1 = state.1 := by
-  classical
   by_cases active : allControlsOne state.1 <;>
     simp [multiControlledXEquiv, multiControlledXAction, active]
 
@@ -72,7 +74,6 @@ theorem multiControlledX_target
     (k : Nat) (state : PrimitiveBasis k × Fin 2) :
     (multiControlledXEquiv k state).2 =
       if allControlsOne state.1 then flipBit state.2 else state.2 := by
-  classical
   by_cases active : allControlsOne state.1 <;>
     simp [multiControlledXEquiv, multiControlledXAction, active]
 
