@@ -7,15 +7,22 @@ import Mathlib.Tactic
 
 Definition 2.1 fixes the exact k-controlled X action. Lemma 1 (citing Nie et
 al.) supplies an implementation over `{CCX,CX,X}` with Theta(k) gate count,
-Theta(log k) depth, and one dirty ancilla.  The source also recalls matching
+Theta(log k) depth, and one dirty ancilla. The source also recalls matching
 Omega(k) / Omega(log k) lower bounds for bounded-size gate sets.
 
 ASPBE separates these claims:
 
 * exact C^kX semantics are formalized here;
 * a genuine uniform upper-resource target is recorded here;
+* the executable gate program is a downstream refinement of this semantic leaf;
 * the quantitative lower bounds remain external cited-result obligations until
   their assumptions/theorem are imported or re-proved.
+
+The semantic permutation below is intentionally `noncomputable`: Lean 4.29 does
+not synthesize a `Decidable` instance for the finite universal proposition in
+this representation without help, and choosing classical decidability here does
+not weaken the theorem. Executability belongs to the concrete
+`ReversibleProgram` refinement, whose evaluator is computable.
 -/
 
 namespace QuantumBlockEncoding
@@ -25,18 +32,19 @@ namespace VandaeleLemma1Contract
 def allControlsOne {k : Nat} (controls : PrimitiveBasis k) : Prop :=
   ∀ wire, controls wire = 1
 
-/-- Exact Definition-2.1 basis action.  `Fin k` is finite, so the all-controls
-predicate has a computable `Decidable` instance once the finite-type instances
-are imported explicitly. -/
-def multiControlledXAction (k : Nat)
-    (state : PrimitiveBasis k × Fin 2) : PrimitiveBasis k × Fin 2 :=
-  if allControlsOne state.1 then
-    (state.1, flipBit state.2)
-  else state
+/-- Exact Definition-2.1 basis action. -/
+noncomputable def multiControlledXAction (k : Nat)
+    (state : PrimitiveBasis k × Fin 2) : PrimitiveBasis k × Fin 2 := by
+  classical
+  exact
+    if allControlsOne state.1 then
+      (state.1, flipBit state.2)
+    else state
 
 /-- C^kX is involutory. -/
 theorem multiControlledXAction_involutive (k : Nat) :
     Function.Involutive (multiControlledXAction k) := by
+  classical
   intro state
   rcases state with ⟨controls, target⟩
   by_cases active : allControlsOne controls
@@ -44,7 +52,7 @@ theorem multiControlledXAction_involutive (k : Nat) :
   · simp [multiControlledXAction, active]
 
 /-- Exact C^kX permutation. -/
-def multiControlledXEquiv (k : Nat) :
+noncomputable def multiControlledXEquiv (k : Nat) :
     Equiv.Perm (PrimitiveBasis k × Fin 2) where
   toFun := multiControlledXAction k
   invFun := multiControlledXAction k
@@ -55,6 +63,7 @@ def multiControlledXEquiv (k : Nat) :
 theorem multiControlledX_preserves_controls
     (k : Nat) (state : PrimitiveBasis k × Fin 2) :
     (multiControlledXEquiv k state).1 = state.1 := by
+  classical
   by_cases active : allControlsOne state.1 <;>
     simp [multiControlledXEquiv, multiControlledXAction, active]
 
@@ -63,13 +72,14 @@ theorem multiControlledX_target
     (k : Nat) (state : PrimitiveBasis k × Fin 2) :
     (multiControlledXEquiv k state).2 =
       if allControlsOne state.1 then flipBit state.2 else state.2 := by
+  classical
   by_cases active : allControlsOne state.1 <;>
     simp [multiControlledXEquiv, multiControlledXAction, active]
 
 /-- Totalized logarithmic scale used by the source upper bound. -/
 def logScale (k : Nat) : Nat := Nat.log2 (k + 1) + 1
 
-/-- Genuine uniform implementation target for Lemma 1.  The constants are
+/-- Genuine uniform implementation target for Lemma 1. The constants are
 chosen once for every k. `dirtyAncillas <= 1` permits the elementary k<=2 cases
 to use fewer ancillas while matching the source worst-case statement. -/
 def LemmaOneUniformResourceTarget
@@ -90,8 +100,8 @@ def LemmaOneInstanceResourceBound
   dirtyAncillas ≤ 1
 
 /-- A complete source implementation family must refine the exact C^kX
-permutation and satisfy the uniform resource target.  The circuit syntax itself
-will live in the future gate-level refinement layer. -/
+permutation and satisfy the uniform resource target. The circuit syntax itself
+lives in the downstream gate-level refinement layer. -/
 structure LemmaOneResourceFamily where
   gateCount : Nat → Nat
   depth : Nat → Nat
