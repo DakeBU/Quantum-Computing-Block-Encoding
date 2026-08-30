@@ -1,0 +1,37 @@
+name: Reversible disjoint commutation
+
+on:
+  push:
+    branches:
+      - 'work/reversible-disjoint-commutation-*'
+    paths:
+      - 'QuantumBlockEncoding/ReversibleDisjointCommutation.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - 'QuantumBlockEncoding/ReversibleClassical.lean'
+      - 'QuantumBlockEncoding/PrimitiveSemantics.lean'
+      - '.github/workflows/reversible-disjoint-commutation.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/ReversibleDisjointCommutation.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - 'QuantumBlockEncoding/ReversibleClassical.lean'
+      - 'QuantumBlockEncoding/PrimitiveSemantics.lean'
+      - '.github/workflows/reversible-disjoint-commutation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  disjoint-commutation:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile disjoint commutation theorem
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.ReversibleDisjointCommutation
