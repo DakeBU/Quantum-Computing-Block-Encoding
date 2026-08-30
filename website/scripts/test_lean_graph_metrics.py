@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 
 import unittest
+from pathlib import Path
 
 from website.scripts import lean_graph
+
+
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class LeanGraphFactorizationTests(unittest.TestCase):
@@ -51,6 +55,68 @@ class LeanGraphFactorizationTests(unittest.TestCase):
         self.assertIn("Anti-gaming rule", rendered)
         self.assertIn("theorem-level proof-term dependencies", rendered)
         self.assertIn("P_{\\rm share}", rendered)
+
+    def test_semantic_fidelity_is_a_system_evidence_graph_branch(self) -> None:
+        module_name = "QuantumBlockEncoding.SemanticFidelityEvidence"
+        source = "QuantumBlockEncoding/SemanticFidelityEvidence.lean"
+        modules = lean_graph._parse_modules(ROOT)
+
+        self.assertIn(module_name, modules)
+        self.assertEqual(
+            lean_graph._track_for_source(source, {}),
+            "system-evidence",
+        )
+        self.assertTrue(
+            {
+                "QuantumBlockEncoding.BlockEncoding",
+                "QuantumBlockEncoding.StatePreparation",
+                "QuantumBlockEncoding.GHL2025",
+            }.issubset(set(modules[module_name]["imports"]))
+        )
+
+        source_text = (ROOT / source).read_text(encoding="utf-8")
+        self.assertIn("def semanticRoundTripRegistry", source_text)
+        self.assertIn("def verifiedOperatorBlockEncodingRoundTrip", source_text)
+        self.assertIn("def verifiedStatePreparationRoundTrip", source_text)
+
+        registry_name = (
+            "QuantumBlockEncoding.SemanticFidelity.semanticRoundTripRegistry"
+        )
+        payload = lean_graph.build_lean_graph_payload(
+            ROOT,
+            [
+                {
+                    "fullName": registry_name,
+                    "source": source,
+                    "line": 1,
+                    "kind": "def",
+                    "catalog": "AutomationAndMemory",
+                    "plainEnglish": "Registry of source-to-Lean semantic round-trip audits.",
+                }
+            ],
+            [],
+            [],
+        )
+        nodes = {node["id"]: node for node in payload["nodes"]}
+        edges = {(edge["source"], edge["target"], edge["type"]) for edge in payload["edges"]}
+
+        module_id = f"module:{module_name}"
+        declaration_id = f"declaration:{registry_name}"
+        self.assertEqual(nodes[module_id]["track"], "system-evidence")
+        self.assertIn(declaration_id, nodes)
+        self.assertIn(
+            (module_id, declaration_id, "module-declares-leaf"),
+            edges,
+        )
+        for dependency in (
+            "QuantumBlockEncoding.BlockEncoding",
+            "QuantumBlockEncoding.StatePreparation",
+            "QuantumBlockEncoding.GHL2025",
+        ):
+            self.assertIn(
+                (f"module:{dependency}", module_id, "module-supports-importer"),
+                edges,
+            )
 
 
 if __name__ == "__main__":

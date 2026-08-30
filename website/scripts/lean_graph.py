@@ -68,12 +68,12 @@ TRACKS: tuple[dict[str, str], ...] = (
         "label": "Harness, evidence, and publication",
         "short": "Evidence",
         "description": (
-            "Candidate contracts, verification policy, executable mirrors, resource "
-            "scores, literature maps, publication gates, and automation records."
+            "Candidate contracts, source-to-Lean semantic round-trip audits, executable "
+            "mirrors, resource scores, literature maps, publication gates, and automation records."
         ),
         "methodology": (
-            "First freeze the semantic fibre of correct candidates; only then compare "
-            "gate count, depth, ancillas, and oracle calls lexicographically."
+            "Freeze the semantic fibre, reconstruct theorem meaning from Lean without "
+            "source prose, review any delta, and only then compare certified resources."
         ),
     },
 )
@@ -156,7 +156,10 @@ def _track_for_source(
         track = TRACK_BY_LABEL.get(label)
         if track:
             return track
-    lower = source.lower()
+    # Classify by the library-relative source path. Using the full repository path
+    # would make every module contain the directory token `QuantumBlockEncoding`
+    # and would incorrectly bias uncategorized evidence modules toward this track.
+    lower = source.removeprefix("QuantumBlockEncoding/").lower()
     if any(token in lower for token in (
         "statepreparation", "uniformlycontrolledry", "textbookstatepreparation",
         "primitivebasisle",
@@ -543,7 +546,7 @@ def render_lean_graph_body(payload: dict[str, object]) -> str:
   </div>
   <div class="lean-graph-toolbar" role="group" aria-label="Lean graph controls">
     <label>Search<input type="search" data-graph-search
-      placeholder="UCRY, Robin, clean block, betterThan…"></label>
+      placeholder="SemanticFidelity, UCRY, Robin, clean block…"></label>
     <label>Track<select data-graph-track><option value="">All tracks</option></select></label>
     <button type="button" data-graph-zoom-in aria-label="Zoom in">+</button>
     <button type="button" data-graph-zoom-out aria-label="Zoom out">−</button>

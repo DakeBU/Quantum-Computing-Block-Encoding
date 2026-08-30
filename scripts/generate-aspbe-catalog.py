@@ -27,6 +27,10 @@ STATE_PREP_MODULES = {
     "StatePreparationBenchmarks.lean",
 }
 
+SEMANTIC_FIDELITY_MODULES = {
+    "SemanticFidelityEvidence.lean",
+}
+
 
 def load_generator():
     spec = importlib.util.spec_from_file_location("aspbe_blueprint_catalog", GENERATOR)
@@ -42,16 +46,24 @@ def load_generator():
 
 
 def register_public_modules(module) -> None:
-    for name, _slug, sources in module.CATALOGS:
-        if name == "PaperAndExamples":
-            sources.update(STATE_PREP_MODULES)
-            break
-    else:
-        raise SystemExit("PaperAndExamples catalog not found")
+    sources_by_catalog = {
+        name: sources for name, _slug, sources in module.CATALOGS
+    }
+    try:
+        sources_by_catalog["PaperAndExamples"].update(STATE_PREP_MODULES)
+        sources_by_catalog["AutomationAndMemory"].update(
+            SEMANTIC_FIDELITY_MODULES
+        )
+    except KeyError as error:
+        raise SystemExit(f"required catalog not found: {error.args[0]}") from error
 
     module.CATALOG_PURPOSES["PaperAndExamples"] = (
         "Paper-facing backend models and concrete State Preparation / Robin "
         "example artifacts."
+    )
+    module.CATALOG_PURPOSES["AutomationAndMemory"] = (
+        "Typed controller state, agent contracts, literature memory, open-problem "
+        "records, and source-to-Lean semantic-fidelity audits."
     )
 
 

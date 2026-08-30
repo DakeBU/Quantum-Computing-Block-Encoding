@@ -150,10 +150,45 @@ test -f _site/data/lean-graph.json
 test -f _site/static/lean-graph.js
 test -f _site/static/lean-graph.css
 grep -q 'Underlying Lean Graph of Libraries' _site/lean-graph/index.html
+grep -q 'SemanticFidelity' _site/lean-graph/index.html
 grep -q 'Underlying Lean Graph of Libraries' _site/case-studies/robin/index.html
 grep -Fq '\(N=8\)' _site/case-studies/robin/index.html
 grep -Fq '\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)' _site/case-studies/robin/index.html
 ! grep -Fq 'A_k/(N_D N_f kappa)' _site/case-studies/robin/index.html
+
+python3 - <<'PY'
+import json
+from pathlib import Path
+
+payload = json.loads(Path('_site/data/lean-graph.json').read_text(encoding='utf-8'))
+nodes = {node['id']: node for node in payload['nodes']}
+edges = {(edge['source'], edge['target'], edge['type']) for edge in payload['edges']}
+module_name = 'QuantumBlockEncoding.SemanticFidelityEvidence'
+module_id = f'module:{module_name}'
+assert module_id in nodes, 'semantic-fidelity module missing from published Lean Graph'
+assert nodes[module_id]['track'] == 'system-evidence', nodes[module_id]
+required_leaves = {
+    'QuantumBlockEncoding.SemanticFidelity.verifiedOperatorBlockEncodingRoundTrip',
+    'QuantumBlockEncoding.SemanticFidelity.approximateBlockEncodingNormRoundTrip',
+    'QuantumBlockEncoding.SemanticFidelity.verifiedStatePreparationRoundTrip',
+    'QuantumBlockEncoding.SemanticFidelity.oneTermRobinClaimRoundTrip',
+    'QuantumBlockEncoding.SemanticFidelity.candidateImprovementRoundTrip',
+    'QuantumBlockEncoding.SemanticFidelity.semanticRoundTripRegistry',
+}
+for full_name in required_leaves:
+    declaration_id = f'declaration:{full_name}'
+    assert declaration_id in nodes, f'missing semantic-fidelity graph leaf: {full_name}'
+    assert (module_id, declaration_id, 'module-declares-leaf') in edges
+for dependency in (
+    'QuantumBlockEncoding.BlockEncoding',
+    'QuantumBlockEncoding.StatePreparation',
+    'QuantumBlockEncoding.GHL2025',
+):
+    assert (
+        f'module:{dependency}', module_id, 'module-supports-importer'
+    ) in edges, f'missing audited-module graph edge: {dependency}'
+print('semantic-fidelity Lean Graph publication contract passed')
+PY
 
 grep -q 'id="harness-evolution"' _site/workflow/index.html
 grep -q 'Previous Harness' _site/workflow/index.html

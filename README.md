@@ -55,6 +55,8 @@ ASPBE freezes the mathematical contract, reuses certified formal memory, searche
 
 **Loop:** contract → formal memory → independent frontier work → mechanical verification → certified LaTeX + Lean + optional circuit/Qiskit outputs.
 
+**Semantic fidelity gate:** every promoted theorem also passes **original text → Lean → blind Lean-only reconstruction**; ASPBE checks normalization/register/ancilla/error/oracle semantics, and any mismatch becomes a **review-gated repair proposal**, never an automatic source edit.
+
 [**Compare the previous and current Harness on QuantumComputinglib →**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/workflow/index.html) · [Protocol details](HARNESS.md)
 
 ---
@@ -344,6 +346,7 @@ QuantumBlockEncoding/
 ├── MainCase.lean                BE Case 1
 ├── CubicStatePreparation.lean   cubic diagonal routes
 ├── GHLHamiltonian.lean          source-audited Hamiltonian composition
+├── SemanticFidelityEvidence.lean source↔Lean round-trip audits and review-gated repairs
 ├── Automation.lean              typed controller contracts
 └── OpenProblems.lean            explicit unfinished routes
 ```
