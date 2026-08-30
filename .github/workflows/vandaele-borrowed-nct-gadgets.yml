@@ -1,0 +1,39 @@
+name: Vandaele borrowed NCT gadgets
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-borrowed-nct-gadgets-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1BorrowedNCTGadgets.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean'
+      - 'QuantumBlockEncoding/ReversibleClassical.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - '.github/workflows/vandaele-borrowed-nct-gadgets.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1BorrowedNCTGadgets.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean'
+      - 'QuantumBlockEncoding/ReversibleClassical.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - '.github/workflows/vandaele-borrowed-nct-gadgets.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  borrowed-nct-gadgets:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile fixed borrowed-bit NCT gadgets
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1BorrowedNCTGadgets
