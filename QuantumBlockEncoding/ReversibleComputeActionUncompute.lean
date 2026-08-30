@@ -34,8 +34,7 @@ theorem valid_reverse {qubits : Nat}
   unfold Valid at valid ⊢
   unfold reverseLayer
   rw [List.pairwise_reverse]
-  exact valid.imp (fun _ _ relation =>
-    ReversibleGate.wireDisjoint_symm relation)
+  exact valid.imp ReversibleGate.wireDisjoint_symm
 
 end ReversibleLayer
 
@@ -69,7 +68,11 @@ theorem reverseSchedule_program {qubits : Nat}
   induction schedule with
   | nil => rfl
   | cons layer rest induction =>
-      simp [reverseSchedule, program, ReversibleLayer.reverseLayer, induction]
+      have restReverse :
+          (rest.map ReversibleLayer.reverseLayer).reverse.flatten =
+            rest.flatten.reverse := by
+        simpa [reverseSchedule, program] using induction
+      simp [reverseSchedule, program, ReversibleLayer.reverseLayer, restReverse]
 
 @[simp] theorem reverseSchedule_length {qubits : Nat}
     (schedule : ReversibleSchedule qubits) :
@@ -217,7 +220,6 @@ theorem forwardHalf_depth_add_cleanup_depth {qubits : Nat}
     (split : ReversibleComputeActionUncompute qubits) :
     split.forwardHalf.depth + split.cleanup.depth = split.full.depth := by
   simp [full, forwardHalf, cleanup]
-  omega
 
 /-- Likewise, the two delayed pieces contain exactly the gates of one full child
 circuit. -/
@@ -226,7 +228,6 @@ theorem forwardHalf_gateCount_add_cleanup_gateCount {qubits : Nat}
     split.forwardHalf.gateCount + split.cleanup.gateCount =
       split.full.gateCount := by
   simp [full, forwardHalf, cleanup]
-  omega
 
 /-- Cleanup really is the inverse of the preparation state transformation. -/
 theorem cleanup_restores_prepare {qubits : Nat}
