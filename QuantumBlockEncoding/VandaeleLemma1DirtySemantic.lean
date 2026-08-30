@@ -86,6 +86,12 @@ theorem dirtyControlledCkX_action
     dirtyControlledCkXEquiv k (controls, dirty, target) =
       (controls, dirty,
         if allControlsOne controls then flipBit target else target) := by
+  change
+    dirtyControlledInvolutionEquiv
+        (fun controls : PrimitiveBasis k => allControlsBool controls)
+        targetXEquiv (controls, dirty, target) =
+      (controls, dirty,
+        if allControlsOne controls then flipBit target else target)
   rw [dirtyControlledInvolution_action
     (fun controls : PrimitiveBasis k => allControlsBool controls)
     targetXEquiv targetXEquiv_involutive]
