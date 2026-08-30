@@ -148,13 +148,20 @@ def sequential {qubits : Nat}
   induction program with
   | nil => rfl
   | cons gate rest induction =>
+      have induction' :
+          (rest.map (fun gate => [gate])).flatten = rest := by
+        simpa [sequential, ScheduledReversibleProgram.program,
+          ReversibleSchedule.program] using induction
       simp [sequential, ScheduledReversibleProgram.program,
-        ReversibleSchedule.program, induction]
+        ReversibleSchedule.program, induction']
 
 @[simp] theorem sequential_gateCount {qubits : Nat}
     (program : ReversibleProgram qubits) :
     (sequential program).gateCount = program.length := by
-  simp [gateCount, ReversibleSchedule.gateCount]
+  calc
+    (sequential program).gateCount =
+        (sequential program).program.length := rfl
+    _ = program.length := congrArg List.length (sequential_program program)
 
 @[simp] theorem sequential_depth {qubits : Nat}
     (program : ReversibleProgram qubits) :
@@ -182,8 +189,13 @@ def seq {qubits : Nat}
 @[simp] theorem seq_gateCount {qubits : Nat}
     (left right : ScheduledReversibleProgram qubits) :
     (seq left right).gateCount = left.gateCount + right.gateCount := by
-  unfold gateCount ReversibleSchedule.gateCount
-  rw [seq_program, List.length_append]
+  calc
+    (seq left right).gateCount = (seq left right).program.length := rfl
+    _ = (left.program ++ right.program).length :=
+      congrArg List.length (seq_program left right)
+    _ = left.program.length + right.program.length := by
+      rw [List.length_append]
+    _ = left.gateCount + right.gateCount := by rfl
 
 @[simp] theorem seq_depth {qubits : Nat}
     (left right : ScheduledReversibleProgram qubits) :
