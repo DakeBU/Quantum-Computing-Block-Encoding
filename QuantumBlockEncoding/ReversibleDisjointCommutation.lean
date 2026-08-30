@@ -36,6 +36,14 @@ def Active {qubits : Nat}
   | .ccx control0 control1 _ _ _ _ =>
       state control0 = 1 ∧ state control1 = 1
 
+/-- Activation is decidable because every control is a finite computational
+basis bit.  Keeping this instance local avoids changing the public proposition
+API of the reversible IR. -/
+local instance instDecidableActive {qubits : Nat}
+    (gate : ReversibleGate qubits) (state : PrimitiveBasis qubits) :
+    Decidable (gate.Active state) := by
+  cases gate <;> unfold Active <;> infer_instance
+
 /-- A gate always touches its own target. -/
 @[simp] theorem targetWire_touches {qubits : Nat}
     (gate : ReversibleGate qubits) :
