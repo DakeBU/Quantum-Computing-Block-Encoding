@@ -1,4 +1,5 @@
 import QuantumBlockEncoding.PrimitiveSemantics
+import Mathlib.Data.Fintype.Basic
 import Mathlib.Tactic
 
 /-!
@@ -6,15 +7,22 @@ import Mathlib.Tactic
 
 Definition 2.1 fixes the exact k-controlled X action. Lemma 1 (citing Nie et
 al.) supplies an implementation over `{CCX,CX,X}` with Theta(k) gate count,
-Theta(log k) depth, and one dirty ancilla.  The source also recalls matching
+Theta(log k) depth, and one dirty ancilla. The source also recalls matching
 Omega(k) / Omega(log k) lower bounds for bounded-size gate sets.
 
 ASPBE separates these claims:
 
 * exact C^kX semantics are formalized here;
 * a genuine uniform upper-resource target is recorded here;
+* the executable gate program is a downstream refinement of this semantic leaf;
 * the quantitative lower bounds remain external cited-result obligations until
   their assumptions/theorem are imported or re-proved.
+
+The finite all-controls predicate is decidable because the control register has
+finitely many wires and each bit equality is decidable.  We keep that instance
+local to this semantic module: downstream APIs see the source-facing predicate,
+not a global classical-decidability assumption.  Executability still belongs to
+the concrete `ReversibleProgram` refinement, whose evaluator is computable.
 -/
 
 namespace QuantumBlockEncoding
@@ -23,6 +31,12 @@ namespace VandaeleLemma1Contract
 /-- All k computational-basis controls are one. -/
 def allControlsOne {k : Nat} (controls : PrimitiveBasis k) : Prop :=
   ∀ wire, controls wire = 1
+
+/-- Local finite decidability for the Definition-2.1 control predicate. -/
+local instance instDecidableAllControlsOne {k : Nat}
+    (controls : PrimitiveBasis k) : Decidable (allControlsOne controls) := by
+  unfold allControlsOne
+  infer_instance
 
 /-- Exact Definition-2.1 basis action. -/
 def multiControlledXAction (k : Nat)
@@ -66,7 +80,7 @@ theorem multiControlledX_target
 /-- Totalized logarithmic scale used by the source upper bound. -/
 def logScale (k : Nat) : Nat := Nat.log2 (k + 1) + 1
 
-/-- Genuine uniform implementation target for Lemma 1.  The constants are
+/-- Genuine uniform implementation target for Lemma 1. The constants are
 chosen once for every k. `dirtyAncillas <= 1` permits the elementary k<=2 cases
 to use fewer ancillas while matching the source worst-case statement. -/
 def LemmaOneUniformResourceTarget
@@ -87,8 +101,8 @@ def LemmaOneInstanceResourceBound
   dirtyAncillas ≤ 1
 
 /-- A complete source implementation family must refine the exact C^kX
-permutation and satisfy the uniform resource target.  The circuit syntax itself
-will live in the future gate-level refinement layer. -/
+permutation and satisfy the uniform resource target. The circuit syntax itself
+lives in the downstream gate-level refinement layer. -/
 structure LemmaOneResourceFamily where
   gateCount : Nat → Nat
   depth : Nat → Nat
