@@ -56,7 +56,17 @@ theorem flatSpec_refines_source
   constructor
   · apply Prod.ext
     · funext wire
-      simpa [externalView] using controls wire
+      change
+        implementation state (controlWire k wire) =
+          (multiControlledXEquiv k (externalView k state)).1 wire
+      calc
+        implementation state (controlWire k wire) =
+            state (controlWire k wire) := controls wire
+        _ = (externalView k state).1 wire := rfl
+        _ = (multiControlledXEquiv k (externalView k state)).1 wire := by
+          symm
+          exact congrFun
+            (multiControlledX_preserves_controls k (externalView k state)) wire
     · rw [multiControlledX_target]
       simpa [externalView, allFlatControlsOne_iff_external] using target
   · exact dirty
@@ -86,6 +96,16 @@ theorem targetWire_ne_dirty (k : Nat) :
   have values := congrArg Fin.val equal
   simp [targetWire, dirtyWire] at values
 
+/-- The orientation needed by `Function.update` simplification. -/
+theorem dirtyWire_ne_target (k : Nat) :
+    dirtyWire k ≠ targetWire k :=
+  (targetWire_ne_dirty k).symm
+
+/-- A computational-basis bit different from zero is one. -/
+private theorem finTwo_eq_one_of_ne_zero
+    (bit : Fin 2) (nonzero : bit ≠ 0) : bit = 1 := by
+  fin_cases bit <;> simp_all
+
 /-! ## k = 0: X -/
 
 /-- `C^0 X` is a single `X` on the target wire. -/
@@ -113,9 +133,9 @@ theorem k0_correct :
     · have active := allFlatControlsOne_zero state
       simp [k0Scheduled, k0Program, evalReversibleProgram,
         evalReversibleGate, xBasisEquiv, xBasisAction, active]
-    · simp [k0Scheduled, k0Program, evalReversibleProgram,
-        evalReversibleGate, xBasisEquiv, xBasisAction,
-        targetWire_ne_dirty]
+    · have distinct : dirtyWire 0 ≠ targetWire 0 := dirtyWire_ne_target 0
+      simp [k0Scheduled, k0Program, evalReversibleProgram,
+        evalReversibleGate, xBasisEquiv, xBasisAction, distinct]
 
 /-- The `k=0` circuit therefore refines Definition 2.1 and restores workspace. -/
 theorem k0_refines_source
@@ -173,13 +193,12 @@ theorem k1_correct :
     · by_cases zero : state (controlWire 1 k1Control) = 0
       · have inactive : ¬ allFlatControlsOne 1 state := by
           rw [allFlatControlsOne_one_iff]
-          simpa [zero]
+          intro one
+          exact zero (by simpa [one])
         simp [k1Scheduled, k1Program, evalReversibleProgram,
           evalReversibleGate, cxBasisEquiv, cxBasisAction, zero, inactive]
-      · have one : state (controlWire 1 k1Control) = 1 := by
-          fin_cases value : state (controlWire 1 k1Control)
-          · exact False.elim (zero value)
-          · exact value
+      · have one : state (controlWire 1 k1Control) = 1 :=
+          finTwo_eq_one_of_ne_zero _ zero
         have active : allFlatControlsOne 1 state :=
           (allFlatControlsOne_one_iff state).2 one
         simp [k1Scheduled, k1Program, evalReversibleProgram,
@@ -188,9 +207,10 @@ theorem k1_correct :
     · by_cases zero : state (controlWire 1 k1Control) = 0
       · simp [k1Scheduled, k1Program, evalReversibleProgram,
           evalReversibleGate, cxBasisEquiv, cxBasisAction, zero]
-      · simp [k1Scheduled, k1Program, evalReversibleProgram,
+      · have distinct : dirtyWire 1 ≠ targetWire 1 := dirtyWire_ne_target 1
+        simp [k1Scheduled, k1Program, evalReversibleProgram,
           evalReversibleGate, cxBasisEquiv, cxBasisAction, zero,
-          xBasisAction, targetWire_ne_dirty]
+          xBasisAction, distinct]
 
 /-- The `k=1` circuit refines Definition 2.1 and restores workspace. -/
 theorem k1_refines_source
@@ -283,9 +303,10 @@ theorem k2_correct :
           evalReversibleGate, ccxBasisEquiv, ccxBasisAction, active, enabled,
           flatInactive]
     · by_cases enabled : active
-      · simp [k2Scheduled, k2Program, evalReversibleProgram,
+      · have distinct : dirtyWire 2 ≠ targetWire 2 := dirtyWire_ne_target 2
+        simp [k2Scheduled, k2Program, evalReversibleProgram,
           evalReversibleGate, ccxBasisEquiv, ccxBasisAction, active, enabled,
-          xBasisAction, targetWire_ne_dirty]
+          xBasisAction, distinct]
       · simp [k2Scheduled, k2Program, evalReversibleProgram,
           evalReversibleGate, ccxBasisEquiv, ccxBasisAction, active, enabled]
 
