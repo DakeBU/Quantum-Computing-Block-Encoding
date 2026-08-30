@@ -160,7 +160,12 @@ theorem parallelLayers_program_length {qubits : Nat}
       | nil =>
           simp [parallelLayers, program]
       | cons rightHead rightTail =>
-          simp [parallelLayers, program, induction rightTail,
+          have tail :
+              (List.map List.length (parallelLayers leftTail rightTail)).sum =
+                (List.map List.length leftTail).sum +
+                  (List.map List.length rightTail).sum := by
+            simpa [program] using induction rightTail
+          simp [parallelLayers, program, tail,
             Nat.add_assoc, Nat.add_left_comm, Nat.add_comm]
 
 end ReversibleSchedule
