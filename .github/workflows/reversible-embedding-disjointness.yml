@@ -1,0 +1,37 @@
+name: Reversible embedding disjointness
+
+on:
+  push:
+    branches:
+      - 'work/reversible-embedding-disjointness-*'
+    paths:
+      - 'QuantumBlockEncoding/ReversibleEmbeddingDisjointness.lean'
+      - 'QuantumBlockEncoding/ScheduledWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - '.github/workflows/reversible-embedding-disjointness.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/ReversibleEmbeddingDisjointness.lean'
+      - 'QuantumBlockEncoding/ScheduledWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - '.github/workflows/reversible-embedding-disjointness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  embedding-disjointness:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile embedding disjointness certificate
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.ReversibleEmbeddingDisjointness
