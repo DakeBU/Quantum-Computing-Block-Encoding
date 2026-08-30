@@ -54,9 +54,9 @@ theorem valid_append {qubits : Nat}
   | nil =>
       simpa using rightValid
   | cons gate rest induction =>
-      rw [List.pairwise_cons] at leftValid ⊢
+      rw [List.pairwise_cons] at leftValid
       rcases leftValid with ⟨gateRest, restValid⟩
-      constructor
+      apply List.Pairwise.cons
       · intro other member
         rw [List.mem_append] at member
         rcases member with member | member
@@ -161,12 +161,16 @@ theorem parallelLayers_program_length {qubits : Nat}
       | nil =>
           simp [parallelLayers, program]
       | cons rightHead rightTail =>
+          have tail := induction rightTail
+          change
+            (parallelLayers leftTail rightTail).flatten.length =
+              leftTail.flatten.length + rightTail.flatten.length at tail
           change
             (leftHead ++ rightHead).length +
-                (parallelLayers leftTail rightTail).program.length =
-              (leftHead.length + leftTail.program.length) +
-                (rightHead.length + rightTail.program.length)
-          rw [List.length_append, induction rightTail]
+                (parallelLayers leftTail rightTail).flatten.length =
+              (leftHead.length + leftTail.flatten.length) +
+                (rightHead.length + rightTail.flatten.length)
+          rw [List.length_append, tail]
           omega
 
 end ReversibleSchedule
