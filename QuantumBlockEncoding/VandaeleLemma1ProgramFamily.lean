@@ -44,6 +44,16 @@ def allFlatControlsOne (k : Nat)
     (state : PrimitiveBasis (lemmaOneFlatWidth k)) : Prop :=
   ∀ wire : Fin k, state (controlWire k wire) = 1
 
+/-- `allFlatControlsOne` quantifies over a finite index type, so the activation
+predicate used by the source `if` is decidable without introducing classical
+choice.  Keeping this instance local avoids changing the global proposition
+API while making the flat contract robust on Lean 4.29. -/
+local instance instDecidableAllFlatControlsOne
+    (k : Nat) (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
+    Decidable (allFlatControlsOne k state) := by
+  unfold allFlatControlsOne
+  infer_instance
+
 /-- Exact flat basis contract for the source `C^k X` implementation with one
 unknown dirty workspace bit. -/
 def LemmaOneFlatSpec (k : Nat)
@@ -64,17 +74,20 @@ correctness. -/
 theorem wire_classification
     (k : Nat) (wire : Fin (lemmaOneFlatWidth k)) :
     wire.val < k ∨ wire = targetWire k ∨ wire = dirtyWire k := by
-  unfold lemmaOneFlatWidth at wire
   by_cases control : wire.val < k
   · exact Or.inl control
   · right
     by_cases target : wire.val = k
     · left
       apply Fin.ext
-      exact target
+      simpa [targetWire] using target
     · right
+      have upper : wire.val < k + 2 := by
+        simpa [lemmaOneFlatWidth] using wire.isLt
+      have value : wire.val = k + 1 := by
+        omega
       apply Fin.ext
-      omega
+      simpa [dirtyWire] using value
 
 /-- Final source implementation interface for Lemma 1. -/
 structure LemmaOneScheduledFamily where
