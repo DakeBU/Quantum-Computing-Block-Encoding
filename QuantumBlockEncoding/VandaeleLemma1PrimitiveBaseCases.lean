@@ -194,7 +194,8 @@ theorem k1_correct :
       · have inactive : ¬ allFlatControlsOne 1 state := by
           rw [allFlatControlsOne_one_iff]
           intro one
-          exact zero (by simpa [one])
+          have values := congrArg Fin.val (zero.symm.trans one)
+          norm_num at values
         simp [k1Scheduled, k1Program, evalReversibleProgram,
           evalReversibleGate, cxBasisEquiv, cxBasisAction, zero, inactive]
       · have one : state (controlWire 1 k1Control) = 1 :=
