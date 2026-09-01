@@ -1619,6 +1619,7 @@ def render_ecosystem(
     <article><div><h3><a href="https://github.com/duckki/quantum-computing-lean">quantum-computing-lean</a></h3><p>Named states, gates, projectors, gate actions, decompositions, and compact finite-dimensional module organization.</p></div><span class="status status-partial-route">Reference atlas</span></article>
     <article><div><h3><a href="https://github.com/Timeroot/Lean-QuantumInfo">Lean-QuantumInfo</a></h3><p>Finite-dimensional quantum and classical information, channels, distributions, entropy, and capacity.</p></div><span class="status status-partial-route">Reference atlas</span></article>
     <article><div><h3><a href="https://github.com/Hayata-Yamasaki-Group/lean-quantum">lean-quantum</a></h3><p>Quantum states, channels, qudits, operator conventions, and higher-level quantum-information semantics.</p></div><span class="status status-partial-route">Reference atlas</span></article>
+    <article><div><h3><a href="https://rammalahmad.github.io/atlas/">ATLAS v1</a></h3><p>A pinned external memory over broad textbook mathematics. ASPBE preserves upstream compilation and quality distinctions, then admits only narrow locally compiled adapters.</p></div><span class="status status-partial-route">External memory</span></article>
   </div>
 </section>
 <section class="content-section" id="policy">
@@ -1967,6 +1968,14 @@ def render_attribution(
   <p>This site is tailored to ASPBE state preparation, block encoding, circuit
   semantics, resource evaluation, and automation records. It does not import
   unrelated application terminology or status data from reference documentation.</p>
+  <h2>External textbook memory</h2>
+  <p><a href="https://github.com/facebookresearch/atlas-lean">ATLAS v1</a>, by
+  Ahmad Rammal, Niket Patel, Fabian Gloeckle, Amaury Hayat, Julia Kempe, Remi
+  Munos, Charles Arnal, and Vivien Cabannes, is indexed locally as a pinned
+  external theorem-retrieval surface. Its source and generated theorem text
+  remain under its CC BY-NC 4.0 and no-training terms; they are not copied into
+  ASPBE MIT tree. Upstream compilation or evaluation does not replace an
+  ASPBE adapter and Lean gate.</p>
   <h2>Interface inspiration</h2>
   <p><a href="https://statsmllib.github.io/">StatsMLlib</a> demonstrates a useful
   textbook organization: a persistent book map, selected formulas, natural-language

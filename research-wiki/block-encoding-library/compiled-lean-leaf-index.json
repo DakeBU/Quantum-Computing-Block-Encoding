@@ -1,5 +1,5 @@
 {
-  "total": 1108,
+  "total": 1111,
   "files": [
     {
       "file": "QuantumBlockEncoding/Core.lean",
@@ -563,7 +563,7 @@
     },
     {
       "file": "QuantumBlockEncoding/ConcreteSemantics.lean",
-      "count": 22,
+      "count": 25,
       "declarations": [
         {
           "kind": "abbrev",
@@ -581,99 +581,114 @@
           "line": 33
         },
         {
+          "kind": "theorem",
+          "name": "basisKet_apply",
+          "line": 40
+        },
+        {
           "kind": "def",
           "name": "zeroKet",
-          "line": 38
+          "line": 50
         },
         {
           "kind": "def",
           "name": "applyVec",
-          "line": 43
+          "line": 55
         },
         {
           "kind": "structure",
           "name": "ComplexUnitaryGate",
-          "line": 52
+          "line": 64
         },
         {
           "kind": "theorem",
           "name": "applyVec_basisKet",
-          "line": 58
+          "line": 70
+        },
+        {
+          "kind": "theorem",
+          "name": "applyVec_twoBasisSuperposition",
+          "line": 79
+        },
+        {
+          "kind": "theorem",
+          "name": "applyVec_twoBasisSuperposition_apply",
+          "line": 93
         },
         {
           "kind": "theorem",
           "name": "applyVec_zeroKet",
-          "line": 65
+          "line": 103
         },
         {
           "kind": "theorem",
           "name": "firstColumnMatches_iff_applyVec_zeroKet",
-          "line": 76
+          "line": 114
         },
         {
           "kind": "structure",
           "name": "ComplexStatePreparationCertificate",
-          "line": 95
+          "line": 133
         },
         {
           "kind": "def",
           "name": "candidate",
-          "line": 105
+          "line": 143
         },
         {
           "kind": "def",
           "name": "verified",
-          "line": 124
+          "line": 162
         },
         {
           "kind": "theorem",
           "name": "preparesVector",
-          "line": 137
+          "line": 175
         },
         {
           "kind": "abbrev",
           "name": "ProductRegisterMatrix",
-          "line": 145
+          "line": 183
         },
         {
           "kind": "def",
           "name": "flatToProductRegister",
-          "line": 152
+          "line": 190
         },
         {
           "kind": "def",
           "name": "productRegisterBlockProjection",
-          "line": 163
+          "line": 201
         },
         {
           "kind": "theorem",
           "name": "productRegisterBlockProjection_flatToProductRegister",
-          "line": 172
+          "line": 210
         },
         {
           "kind": "theorem",
           "name": "productIndex_val_eq_signalSystemBlockRowIndex",
-          "line": 182
+          "line": 220
         },
         {
           "kind": "theorem",
           "name": "signalSystemBlockProjection_eq_cleanBlockProduct",
-          "line": 194
+          "line": 232
         },
         {
           "kind": "def",
           "name": "cleanBasisActionAmplitude",
-          "line": 211
+          "line": 249
         },
         {
           "kind": "theorem",
           "name": "cleanBasisActionAmplitude_eq_signalSystemBlockProjection",
-          "line": 221
+          "line": 259
         },
         {
           "kind": "theorem",
           "name": "pointwiseProjection_iff_cleanBasisAction",
-          "line": 239
+          "line": 277
         }
       ]
     },
@@ -5405,12 +5420,12 @@
         {
           "kind": "def",
           "name": "literatureCount",
-          "line": 219
+          "line": 230
         },
         {
           "kind": "def",
           "name": "primaryPapers",
-          "line": 221
+          "line": 232
         }
       ]
     },

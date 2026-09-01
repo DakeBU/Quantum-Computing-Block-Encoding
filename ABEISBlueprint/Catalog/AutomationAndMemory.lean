@@ -20,7 +20,7 @@ This chapter is generated from the Lean source. Every node denotes one explicit 
 declaration, and every Lean link is checked during the Blueprint build. Definitions appear
 in source order before later results whenever the source module does so.
 
-Reader orientation: Typed controller state, agent contracts, literature memory, and explicit open-problem records. Each card separates an accessible
+Reader orientation: Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits. Each card separates an accessible
 reading cue from formal status, the source docstring, and the authoritative Lean panel.
 The standalone Library Explorer adds full-text search and filters across every chapter.
 
@@ -33,7 +33,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -47,7 +47,7 @@ Source: [QuantumBlockEncoding/Automation.lean:12](../../../../library/modules/au
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -61,7 +61,7 @@ Source: [QuantumBlockEncoding/Automation.lean:22](../../../../library/modules/au
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -75,7 +75,7 @@ Source: [QuantumBlockEncoding/Automation.lean:33](../../../../library/modules/au
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -89,7 +89,7 @@ Source: [QuantumBlockEncoding/Automation.lean:41](../../../../library/modules/au
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -103,7 +103,7 @@ Source: [QuantumBlockEncoding/Automation.lean:49](../../../../library/modules/au
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -117,7 +117,7 @@ Source: [QuantumBlockEncoding/Automation.lean:56](../../../../library/modules/au
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -131,7 +131,7 @@ Source: [QuantumBlockEncoding/Automation.lean:67](../../../../library/modules/au
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -145,7 +145,7 @@ Source: [QuantumBlockEncoding/Automation.lean:77](../../../../library/modules/au
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -159,7 +159,7 @@ Source: [QuantumBlockEncoding/Automation.lean:87](../../../../library/modules/au
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -173,7 +173,7 @@ Source: [QuantumBlockEncoding/Automation.lean:94](../../../../library/modules/au
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -187,7 +187,7 @@ Source: [QuantumBlockEncoding/Automation.lean:101](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -201,7 +201,7 @@ Source: [QuantumBlockEncoding/Automation.lean:113](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -215,7 +215,7 @@ Source: [QuantumBlockEncoding/Automation.lean:120](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -229,7 +229,7 @@ Source: [QuantumBlockEncoding/Automation.lean:127](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -243,7 +243,7 @@ Source: [QuantumBlockEncoding/Automation.lean:135](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -257,7 +257,7 @@ Source: [QuantumBlockEncoding/Automation.lean:142](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -271,7 +271,7 @@ Source: [QuantumBlockEncoding/Automation.lean:149](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -285,7 +285,7 @@ Source: [QuantumBlockEncoding/Automation.lean:154](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -299,7 +299,7 @@ Source: [QuantumBlockEncoding/Automation.lean:159](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -313,7 +313,7 @@ Source: [QuantumBlockEncoding/Automation.lean:168](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -327,7 +327,7 @@ Source: [QuantumBlockEncoding/Automation.lean:176](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -341,7 +341,7 @@ Source: [QuantumBlockEncoding/Automation.lean:185](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -355,7 +355,7 @@ Source: [QuantumBlockEncoding/Automation.lean:195](../../../../library/modules/a
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -369,7 +369,7 @@ Source: [QuantumBlockEncoding/Automation.lean:203](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -383,7 +383,7 @@ Source: [QuantumBlockEncoding/Automation.lean:211](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -397,7 +397,7 @@ Source: [QuantumBlockEncoding/Automation.lean:217](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -411,7 +411,7 @@ Source: [QuantumBlockEncoding/Automation.lean:223](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -425,7 +425,7 @@ Source: [QuantumBlockEncoding/Automation.lean:226](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -439,7 +439,7 @@ Source: [QuantumBlockEncoding/Automation.lean:243](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -453,7 +453,7 @@ Source: [QuantumBlockEncoding/Automation.lean:271](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -467,7 +467,7 @@ Source: [QuantumBlockEncoding/Automation.lean:287](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -481,7 +481,7 @@ Source: [QuantumBlockEncoding/Automation.lean:333](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -495,7 +495,7 @@ Source: [QuantumBlockEncoding/Automation.lean:353](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -509,7 +509,7 @@ Source: [QuantumBlockEncoding/Automation.lean:393](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -523,7 +523,7 @@ Source: [QuantumBlockEncoding/Automation.lean:493](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -537,7 +537,7 @@ Source: [QuantumBlockEncoding/Automation.lean:518](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -551,7 +551,7 @@ Source: [QuantumBlockEncoding/Automation.lean:546](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -565,7 +565,7 @@ Source: [QuantumBlockEncoding/Automation.lean:568](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -583,7 +583,7 @@ Source: [QuantumBlockEncoding/Automation.lean:605](../../../../library/modules/a
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -597,7 +597,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:15](../../../../library/modul
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -611,7 +611,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:24](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Executable transition guard. Acceptance is possible only from review.
 
@@ -625,7 +625,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:35](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Propositional view of the executable transition guard.
 
@@ -639,7 +639,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:48](../../../../library/modul
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* One execution trace with an explicit starting phase.
 
@@ -653,7 +653,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:56](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Follow a handoff only when it starts at the current phase and is valid.
 
@@ -667,7 +667,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:62](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Execute a trace left-to-right, rejecting the first invalid handoff.
 
@@ -681,7 +681,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:68](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Every handoff in a trace is locally valid.
 
@@ -695,7 +695,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:72](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Canonical upper-to-reviewer trace used as the finite teaching witness.
 
@@ -709,7 +709,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:76](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -723,7 +723,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:109](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The canonical trace reaches acceptance without an external semantic axiom.
 
@@ -737,7 +737,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:117](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Any locally valid acceptance transition records a passing Lean gate.
 
@@ -751,7 +751,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:122](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Any locally valid acceptance transition also records reviewer approval.
 
@@ -765,7 +765,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:134](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Removing the final Lean gate prevents the same trace from being accepted.
 
@@ -779,7 +779,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:146](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -797,7 +797,7 @@ Source: [QuantumBlockEncoding/AutomationTrace.lean:158](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -811,7 +811,7 @@ Source: [QuantumBlockEncoding/Literature.lean:11](../../../../library/modules/li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -825,7 +825,7 @@ Source: [QuantumBlockEncoding/Literature.lean:17](../../../../library/modules/li
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -839,7 +839,7 @@ Source: [QuantumBlockEncoding/Literature.lean:27](../../../../library/modules/li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -853,7 +853,7 @@ Source: [QuantumBlockEncoding/Literature.lean:39](../../../../library/modules/li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -867,7 +867,7 @@ Source: [QuantumBlockEncoding/Literature.lean:230](../../../../library/modules/l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -885,7 +885,7 @@ Source: [QuantumBlockEncoding/Literature.lean:232](../../../../library/modules/l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -899,7 +899,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:13](../../../../library/modules/
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -913,7 +913,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:19](../../../../library/modules/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -927,7 +927,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:28](../../../../library/modules/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -945,7 +945,7 @@ Source: [QuantumBlockEncoding/OpenProblems.lean:88](../../../../library/modules/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Stable list of the published problem identifiers.
 
@@ -959,7 +959,7 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:18](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Every public registry entry carries enough data to be actionable.
 
@@ -973,7 +973,7 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:21](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The current registry contains seven explicitly scoped problems.
 
@@ -987,7 +987,7 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:33](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Problem identifiers are unique, so memories and task packets cannot collide.
 
@@ -1001,7 +1001,7 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:37](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* Every current problem has a nonempty statement, acceptance test, and source list.
 
@@ -1015,11 +1015,351 @@ Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:41](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, and explicit open-problem records.
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
 
 *Technical source note.* The registry itself is a compiled artifact even though its entries remain open research.
 
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/OpenProblemsAudit.lean:49](../../../../library/modules/openproblemsaudit/#decl-quantumblockencoding-openproblemregistry-compiled). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/SemanticFidelityEvidence.lean
+
+24 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.ReconstructionProtocol" (lean := "QuantumBlockEncoding.SemanticFidelity.ReconstructionProtocol")
+*Plain-English reading.* This type lists the allowed alternatives for “reconstruction protocol”; its constructors are the cases that downstream code must handle. Whether the natural-language reconstruction was produced without seeing the source prose.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* Whether the natural-language reconstruction was produced without seeing the source prose.
+
+*Declaration kind.* inductive.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:35](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-reconstructionprotocol). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.SemanticSlot" (lean := "QuantumBlockEncoding.SemanticFidelity.SemanticSlot")
+*Plain-English reading.* This type lists the allowed alternatives for “semantic slot”; its constructors are the cases that downstream code must handle. ASPBE-specific theorem slots whose meaning must survive formalization.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* ASPBE-specific theorem slots whose meaning must survive formalization.
+
+*Declaration kind.* inductive.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:41](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-semanticslot). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.FidelityVerdict" (lean := "QuantumBlockEncoding.SemanticFidelity.FidelityVerdict")
+*Plain-English reading.* This type lists the allowed alternatives for “fidelity verdict”; its constructors are the cases that downstream code must handle. Slotwise verdict for the complete source-to-Lean-to-text round trip.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* Slotwise verdict for the complete source-to-Lean-to-text round trip.
+
+*Declaration kind.* inductive.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:58](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-fidelityverdict). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.RepairStatus" (lean := "QuantumBlockEncoding.SemanticFidelity.RepairStatus")
+*Plain-English reading.* This type lists the allowed alternatives for “repair status”; its constructors are the cases that downstream code must handle. Review state of a proposed clarification or theorem repair.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* Review state of a proposed clarification or theorem repair.
+
+*Declaration kind.* inductive.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:68](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-repairstatus). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.SemanticDelta" (lean := "QuantumBlockEncoding.SemanticFidelity.SemanticDelta")
+*Plain-English reading.* This record groups the data and proof fields needed for “semantic delta”. A proposition-valued field is a requirement until a constructor supplies it. One explicit semantic discrepancy between the source reading and blind reconstruction.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* One explicit semantic discrepancy between the source reading and blind reconstruction.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:76](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-semanticdelta). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.RepairProposal" (lean := "QuantumBlockEncoding.SemanticFidelity.RepairProposal")
+*Plain-English reading.* This record groups the data and proof fields needed for “repair proposal”. A proposition-valued field is a requirement until a constructor supplies it. A non-destructive replacement candidate.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* A non-destructive replacement candidate. It never mutates 'RoundTripAudit.originalText'.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:84](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-repairproposal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit" (lean := "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit")
+*Plain-English reading.* This record groups the data and proof fields needed for “round trip audit”. A proposition-valued field is a requirement until a constructor supplies it. A theorem-fidelity certificate record.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* A theorem-fidelity certificate record. 'originalText' is immutable evidence. 'reconstructedText' must come from the Lean declaration and imported definitions under 'blindLeanOnly'. Any suggested repair is stored separately and requires an independent reviewer.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:97](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-roundtripaudit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.Admissible" (lean := "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.Admissible")
+*Plain-English reading.* This definition gives the library's named construction or computation for “admissible”. Minimal admission contract for a publishable semantic round-trip record.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* Minimal admission contract for a publishable semantic round-trip record.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:115](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-roundtripaudit-admissible). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.publishedStatement" (lean := "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.publishedStatement")
+*Plain-English reading.* This definition gives the library's named construction or computation for “published statement”. The statement exposed as source evidence remains the original, never an automatic repair.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The statement exposed as source evidence remains the original, never an automatic repair.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:127](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-roundtripaudit-publishedstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.proposedStatement" (lean := "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.proposedStatement")
+*Plain-English reading.* This definition gives the library's named construction or computation for “proposed statement”. The repair candidate is available separately for human/source review.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The repair candidate is available separately for human/source review.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:131](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-roundtripaudit-proposedstatement). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.requiresHumanReview" (lean := "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.requiresHumanReview")
+*Plain-English reading.* This definition gives the library's named construction or computation for “requires human review”. Mismatches and underspecified statements must enter the independent review queue.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* Mismatches and underspecified statements must enter the independent review queue.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:135](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-roundtripaudit-requireshumanreview). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.publishedStatement_eq_original" (lean := "QuantumBlockEncoding.SemanticFidelity.RoundTripAudit.publishedStatement_eq_original")
+*Plain-English reading.* Lean checks the proposition indexed as “published statement eq original”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:144](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-roundtripaudit-publishedstatement-eq-original). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.verifiedOperatorBlockEncodingRoundTrip" (lean := "QuantumBlockEncoding.SemanticFidelity.verifiedOperatorBlockEncodingRoundTrip")
+*Plain-English reading.* This definition gives the library's named construction or computation for “verified operator block encoding round trip”. \*\*Equivalent after elaboration.\*\* The source contract says that a verified exact operator block encoding consists of a candidate unitary plus proofs of unitarity and clean-block containment.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* \*\*Equivalent after elaboration.\*\* The source contract says that a verified exact operator block encoding consists of a candidate unitary plus proofs of unitarity and clean-block containment. The blind reconstruction recovers the same claim while making target dimensions, normalizer, layout, circuit, resources, and 'layoutMatches' explicit. No repair is proposed.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:156](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-verifiedoperatorblockencodingroundtrip). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.SemanticFidelity.verifiedOperatorBlockEncodingRoundTrip_admissible" (lean := "QuantumBlockEncoding.SemanticFidelity.verifiedOperatorBlockEncodingRoundTrip_admissible")
+*Plain-English reading.* Lean checks the proposition indexed as “verified operator block encoding round trip admissible”; the hypotheses and conclusion in the code panel fix its exact scope. The core exact block-encoding round trip satisfies the independent-audit contract.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The core exact block-encoding round trip satisfies the independent-audit contract.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:171](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-verifiedoperatorblockencodingroundtrip-admissible). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.approximateBlockEncodingNormRoundTrip" (lean := "QuantumBlockEncoding.SemanticFidelity.approximateBlockEncodingNormRoundTrip")
+*Plain-English reading.* This definition gives the library's named construction or computation for “approximate block encoding norm round trip”. \*\*Lean conclusion is weaker than the public analytic formula.\*\* The public route states '‖A - α Π U Π†‖ ≤ ε' in a declared norm and register convention.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* \*\*Lean conclusion is weaker than the public analytic formula.\*\* The public route states '‖A - α Π U Π†‖ ≤ ε' in a declared norm and register convention. The current Lean interface stores 'epsilon' and an arbitrary proposition 'approximationBound'; it deliberately does not yet identify that proposition with a concrete norm, projector, or register order. The repair proposal lists what must be fixed before a theorem is advertised as an analytic approximate block encoding.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:184](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-approximateblockencodingnormroundtrip). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.SemanticFidelity.approximateBlockEncodingNormRoundTrip_admissible" (lean := "QuantumBlockEncoding.SemanticFidelity.approximateBlockEncodingNormRoundTrip_admissible")
+*Plain-English reading.* Lean checks the proposition indexed as “approximate block encoding norm round trip admissible”; the hypotheses and conclusion in the code panel fix its exact scope. The approximate-interface audit is blind, explicit, and independently review-gated.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The approximate-interface audit is blind, explicit, and independently review-gated.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:216](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-approximateblockencodingnormroundtrip-admissible). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.verifiedStatePreparationRoundTrip" (lean := "QuantumBlockEncoding.SemanticFidelity.verifiedStatePreparationRoundTrip")
+*Plain-English reading.* This definition gives the library's named construction or computation for “verified state preparation round trip”. \*\*Equivalent after elaboration.\*\* State preparation is reconstructed as a proof that the target is normalized, the candidate matrix is unitary, and its first computational-basis column equals the target amplitudes.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* \*\*Equivalent after elaboration.\*\* State preparation is reconstructed as a proof that the target is normalized, the candidate matrix is unitary, and its first computational-basis column equals the target amplitudes. This is exactly the finite-matrix form of 'U |0…0⟩ = |ψ⟩'; no extra assumption or weakened conclusion appears.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:227](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-verifiedstatepreparationroundtrip). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.SemanticFidelity.verifiedStatePreparationRoundTrip_admissible" (lean := "QuantumBlockEncoding.SemanticFidelity.verifiedStatePreparationRoundTrip_admissible")
+*Plain-English reading.* Lean checks the proposition indexed as “verified state preparation round trip admissible”; the hypotheses and conclusion in the code panel fix its exact scope. The exact state-preparation round trip satisfies the independent-audit contract.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The exact state-preparation round trip satisfies the independent-audit contract.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:242](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-verifiedstatepreparationroundtrip-admissible). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.oneTermRobinClaimRoundTrip" (lean := "QuantumBlockEncoding.SemanticFidelity.oneTermRobinClaimRoundTrip")
+*Plain-English reading.* This definition gives the library's named construction or computation for “one term robin claim round trip”. \*\*Paper theorem is not yet reconstructed as a proved block encoding.\*\* The GHL source-facing branch records the one-term Robin claim, normalizer, register and resource formulas, and the full theorem-facing transcript.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* \*\*Paper theorem is not yet reconstructed as a proved block encoding.\*\* The GHL source-facing branch records the one-term Robin claim, normalizer, register and resource formulas, and the full theorem-facing transcript. The blind reconstruction also sees the explicit repository boundary: matrix-level oracle correctness and the claimed resource theorem are not yet proved, and the active seven-gate backend is not identical to the full source transcript. The proposed repair prevents a compiled skeleton from being described as a completed paper theorem.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:256](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-onetermrobinclaimroundtrip). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.SemanticFidelity.oneTermRobinClaimRoundTrip_admissible" (lean := "QuantumBlockEncoding.SemanticFidelity.oneTermRobinClaimRoundTrip_admissible")
+*Plain-English reading.* Lean checks the proposition indexed as “one term robin claim round trip admissible”; the hypotheses and conclusion in the code panel fix its exact scope. The GHL source-fidelity audit satisfies the independent-audit contract.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The GHL source-fidelity audit satisfies the independent-audit contract.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:294](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-onetermrobinclaimroundtrip-admissible). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.candidateImprovementRoundTrip" (lean := "QuantumBlockEncoding.SemanticFidelity.candidateImprovementRoundTrip")
+*Plain-English reading.* This definition gives the library's named construction or computation for “candidate improvement round trip”. \*\*Source wording is underspecified without a correctness fibre.\*\* 'BlockEncodingCost.betterThan' proves only a lexicographic comparison of gate count, depth, auxiliary qubits, and unresolved oracle calls.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* \*\*Source wording is underspecified without a correctness fibre.\*\* 'BlockEncodingCost.betterThan' proves only a lexicographic comparison of gate count, depth, auxiliary qubits, and unresolved oracle calls. It does not say that two candidates encode the same target under the same normalization, projection/error convention, or that both candidates are semantically certified. Any natural-language claim that one algorithm is better must add those assumptions.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:307](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-candidateimprovementroundtrip). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.SemanticFidelity.candidateImprovementRoundTrip_admissible" (lean := "QuantumBlockEncoding.SemanticFidelity.candidateImprovementRoundTrip_admissible")
+*Plain-English reading.* Lean checks the proposition indexed as “candidate improvement round trip admissible”; the hypotheses and conclusion in the code panel fix its exact scope. The same-semantic-fibre audit satisfies the independent-audit contract.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The same-semantic-fibre audit satisfies the independent-audit contract.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:333](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-candidateimprovementroundtrip-admissible). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.SemanticFidelity.semanticRoundTripRegistry" (lean := "QuantumBlockEncoding.SemanticFidelity.semanticRoundTripRegistry")
+*Plain-English reading.* This definition gives the library's named construction or computation for “semantic round trip registry”. The initial public semantic-fidelity registry shown as declaration leaves in the Underlying Lean Graph.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The initial public semantic-fidelity registry shown as declaration leaves in the Underlying Lean Graph. Two core contracts round-trip faithfully; three records enter the review queue because an analytic norm bridge, a paper theorem closure, or a same-target premise is still required.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:343](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-semanticroundtripregistry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.SemanticFidelity.semanticRoundTripRegistry_length" (lean := "QuantumBlockEncoding.SemanticFidelity.semanticRoundTripRegistry_length")
+*Plain-English reading.* Lean checks the proposition indexed as “semantic round trip registry length”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Typed controller state, agent contracts, literature memory, open-problem records, and source-to-Lean semantic-fidelity audits.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/SemanticFidelityEvidence.lean:351](../../../../library/modules/semanticfidelityevidence/#decl-quantumblockencoding-semanticfidelity-semanticroundtripregistry-length). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

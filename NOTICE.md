@@ -13,6 +13,17 @@ block-encoding proof automation.
 
 This project also references:
 
+- `facebookresearch/atlas-lean` (ATLAS v1)
+  - Repository: https://github.com/facebookresearch/atlas-lean
+  - Visualizer: https://rammalahmad.github.io/atlas/
+  - Paper: https://arxiv.org/abs/2605.29955
+  - Authors: Ahmad Rammal, Niket Patel, Fabian Gloeckle, Amaury Hayat, Julia
+    Kempe, Remi Munos, Charles Arnal, and Vivien Cabannes
+  - License: CC BY-NC 4.0 with the upstream no-training rider for v1
+  - ASPBE use: pinned external theorem retrieval and relevance mapping. Source
+    and generated theorem text remain outside this MIT repository; an ATLAS
+    result becomes positive ASPBE memory only through a local compiled adapter.
+
 - Jiayi Weng, Learning Beyond Gradients
   - Article: https://trinkle23897.github.io/learning-beyond-gradients/
   - Artifact repository: https://github.com/Trinkle23897/learning-beyond-gradients

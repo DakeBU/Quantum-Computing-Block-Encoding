@@ -402,6 +402,19 @@ The README presentation is intentionally figure-first and concise, inspired by c
 
 External quantum Lean projects such as [quantum-computing-lean](https://github.com/duckki/quantum-computing-lean), [Lean-QuantumInfo](https://github.com/Timeroot/Lean-QuantumInfo), and [lean-quantum](https://github.com/Hayata-Yamasaki-Group/lean-quantum) are recorded in the reference atlas. A linked external theorem is not presented as a local proof unless an explicit compiled adapter imports or re-establishes the required boundary.
 
+[ATLAS v1](https://github.com/facebookresearch/atlas-lean/tree/e8b31c5cb0bec89b487ce33fe525a2c0b0f8b9c6/v1) is available as a pinned, license-aware external textbook memory. Its theorem bodies remain outside this MIT repository; agents can build a local all-lemma index and retrieve one reviewed result at a time:
+
+```bash
+python3 tools/qbe.py atlas-verify
+python3 tools/qbe.py atlas-search "matrix adjoint" --clean-only
+python3 tools/qbe.py atlas-show Matrix.cayleyHamilton_fin_two
+```
+
+An ATLAS hit is never labeled an ASPBE theorem until a narrow local adapter
+passes the ASPBE Lean and test gates. See
+[`research-wiki/external-lean-libraries/atlas-lean.md`](research-wiki/external-lean-libraries/atlas-lean.md)
+for the quality statuses and CC BY-NC/no-training boundary.
+
 See [`docs/attribution.md`](docs/attribution.md) and [`NOTICE.md`](NOTICE.md).
 
 </details>

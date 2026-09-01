@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.326083,
+      "elapsed_seconds": 0.312681,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.043082,
+      "elapsed_seconds": 0.044249,
       "passed": true
     },
     {
@@ -106,7 +106,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.712289,
+      "elapsed_seconds": 0.738701,
       "passed": true
     },
     {
@@ -160,7 +160,7 @@
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.95248,
+      "elapsed_seconds": 0.955759,
       "passed": true
     },
     {
@@ -200,14 +200,14 @@
         "passed": true
       },
       "case": "Robin XOR four-slot T3",
-      "elapsed_seconds": 19.671707,
+      "elapsed_seconds": 19.907839,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 3.033739,
-    "population_controller": 0.061342,
-    "total": 24.819011
+    "lean_modules": 2.577844,
+    "population_controller": 0.060588,
+    "total": 24.6166
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -218,7 +218,7 @@
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
   "git_branch": "main",
-  "git_commit": "610762da49c392a5a2c4c728b9476e4461949094",
+  "git_commit": "469a96613217d80c6d1b242cc66d77e712051824",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -289,5 +289,5 @@
     "status": "Three exact primitive block encodings; frozen same-tier winner certified"
   },
   "schema_version": 1,
-  "source_digest": "29962cbfe38af779d479e616758392ba5c082bc20ca2a1ec21d2e5f6d2f37bfd"
+  "source_digest": "e14dfb699b81986187dd85acf154ec8f46f18a876a1ff89746b9e5bf2c37bc2d"
 }

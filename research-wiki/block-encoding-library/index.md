@@ -23,6 +23,11 @@ Lean or natural language.
 7. Promote a construction to the certified population only after Lean proves
    the claimed local theorem.
 
+For broad textbook mathematics not already present in Mathlib, the separately
+licensed ATLAS v1 checkout is searchable through `python3 tools/qbe.py
+atlas-search "<query>" --clean-only`. Its entries are external memory, not
+compiled ASPBE leaves; see `../external-lean-libraries/atlas-lean.md`.
+
 For expert block-encoding work, read the files in this order:
 
 ```text

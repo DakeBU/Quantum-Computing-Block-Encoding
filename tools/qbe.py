@@ -1071,6 +1071,7 @@ def cmd_harness_check(_: argparse.Namespace) -> int:
             "tools.test_qbe_lifecycle",
             "tools.test_qbe_control",
             "tools.test_enforce_mutation_scope",
+            "tools.test_atlas_memory",
         ]
     )
 
@@ -1141,6 +1142,24 @@ def cmd_mathlib_search(args: argparse.Namespace) -> int:
             printable = printable.replace(root_str, display_path(root), 1)
         print(printable)
     return 0
+
+
+def cmd_atlas_memory(args: argparse.Namespace) -> int:
+    command = [sys.executable, str(ROOT / "tools" / "atlas_memory.py"), args.atlas_action]
+    if args.atlas_action == "search":
+        command.append(args.query)
+        command.extend(["--limit", str(args.limit)])
+        if args.include_private:
+            command.append("--include-private")
+        if args.clean_only:
+            command.append("--clean-only")
+        if args.relevance:
+            command.extend(["--relevance", args.relevance])
+        if args.json:
+            command.append("--json")
+    elif args.atlas_action == "show":
+        command.append(args.declaration)
+    return subprocess.run(command, cwd=ROOT, check=False).returncode
 
 
 def cmd_status(_: argparse.Namespace) -> int:
@@ -7277,6 +7296,28 @@ def mathlib_retrieval_context() -> str:
 """
 
 
+def atlas_retrieval_context() -> str:
+    return """ATLAS external-textbook retrieval discipline:
+
+- ATLAS v1 is a separately licensed external memory source, not an imported
+  ASPBE proof package. Search it only after checking the local ASPBE inventory
+  and Mathlib.
+- Preferred conservative command:
+
+  ```bash
+  python3 tools/qbe.py atlas-search "<concept-or-theorem-name>" --clean-only
+  ```
+
+- Use `atlas-show <exact-name>` only for a result selected for one current
+  proof-DAG edge. Preserve the pinned source URL and upstream quality status.
+- `upstream-evaluated-clean` still means `external-memory-only` in ASPBE.
+  Promote only an independently maintained local adapter that passes the Lean
+  and Tests gates.
+- Never copy the ATLAS corpus or generated theorem text into this MIT tree.
+  Respect its CC BY-NC 4.0 license and upstream no-training rider.
+"""
+
+
 def failure_trace_and_judge_context() -> str:
     return """Failure-memory and decomposed-judge discipline:
 
@@ -7330,12 +7371,14 @@ def role_prompt(
     verifier_feedback = verifier_feedback_contract(task_id, task_text)
     blueprint = blueprint_context(task_id)
     mathlib_context = mathlib_retrieval_context()
+    atlas_context = atlas_retrieval_context()
     failure_judge_context = failure_trace_and_judge_context()
     if evaluation_mode == "task-only":
         trial_memory = ""
         paper_sources = ""
         blueprint = ""
         mathlib_context = ""
+        atlas_context = ""
         failure_judge_context = ""
     elif evaluation_mode == "isolated-abeis":
         # Keep only this fresh task's evolving ledger and blueprint.  Do not
@@ -7343,6 +7386,7 @@ def role_prompt(
         # failure packets into a cold-start benchmark.
         paper_sources = ""
         mathlib_context = ""
+        atlas_context = ""
         failure_judge_context = ""
     elif evaluation_mode == "lad":
         trial_memory = ""
@@ -7473,6 +7517,8 @@ Local paper-source archive for agent work:
 {operator_scoped_retrieval}
 
 {mathlib_context}
+
+{atlas_context}
 
 {failure_judge_context}
 
@@ -7791,6 +7837,8 @@ Focused hard rules:
 
 - Work only on a controller-ready leaf and preserve the declared route lock.
 - Search existing declarations before adding a helper; edit the narrow named Lean module.
+- In full-memory runs, search ATLAS only after local ASPBE and Mathlib retrieval;
+  an ATLAS hit remains external until a narrow local adapter passes the Lean gate.
 - For polynomial transforms, try compiled product/LCU arithmetic before opening a QSVT external dependency. QSVT is an optimization route unless the task explicitly requires QSVT itself.
 - Lean build evidence is the correctness gate. Never add `sorry`, `admit`, an axiom, or a vacuous contract.
 - External/QSVT nodes stay explicit supplier contracts; do not reopen broad theorem search unless assigned.
@@ -10596,6 +10644,23 @@ def build_parser() -> argparse.ArgumentParser:
     p_mathlib.add_argument("--ignore-case", action="store_true")
     p_mathlib.add_argument("--word", action="store_true", help="pass word-boundary search to ripgrep when available")
     p_mathlib.set_defaults(func=cmd_mathlib_search)
+    p_atlas_index = sub.add_parser("atlas-index", help="index every theorem and lemma in the pinned local ATLAS v1 checkout")
+    p_atlas_index.set_defaults(func=cmd_atlas_memory, atlas_action="index")
+    p_atlas_search = sub.add_parser("atlas-search", help="search the license-aware local ATLAS theorem memory")
+    p_atlas_search.add_argument("query")
+    p_atlas_search.add_argument("--limit", type=int, default=20)
+    p_atlas_search.add_argument("--include-private", action="store_true")
+    p_atlas_search.add_argument("--clean-only", action="store_true")
+    p_atlas_search.add_argument("--relevance", default="")
+    p_atlas_search.add_argument("--json", action="store_true")
+    p_atlas_search.set_defaults(func=cmd_atlas_memory, atlas_action="search")
+    p_atlas_show = sub.add_parser("atlas-show", help="show one declaration from the pinned ATLAS checkout")
+    p_atlas_show.add_argument("declaration")
+    p_atlas_show.set_defaults(func=cmd_atlas_memory, atlas_action="show")
+    p_atlas_verify = sub.add_parser("atlas-verify", help="index and build ATLAS v1 with its own pinned toolchain")
+    p_atlas_verify.set_defaults(func=cmd_atlas_memory, atlas_action="verify")
+    p_atlas_status = sub.add_parser("atlas-status", help="show the local ATLAS index and external build gate")
+    p_atlas_status.set_defaults(func=cmd_atlas_memory, atlas_action="status")
     sub.add_parser("list-literature", help="list literature registry entries").set_defaults(
         func=cmd_list_literature
     )

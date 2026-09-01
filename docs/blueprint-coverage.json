@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 2822,
-  "privateDeclarationExclusionCount": 196,
-  "sourceDocstringCount": 1788,
-  "generatedReaderCueCount": 2822,
+  "publicDeclarationCount": 3010,
+  "privateDeclarationExclusionCount": 274,
+  "sourceDocstringCount": 1827,
+  "generatedReaderCueCount": 3010,
   "byKind": {
-    "abbrev": 31,
-    "def": 1156,
-    "inductive": 27,
+    "abbrev": 32,
+    "def": 1231,
+    "inductive": 31,
     "opaque": 7,
-    "structure": 184,
-    "theorem": 1417
+    "structure": 188,
+    "theorem": 1521
   },
   "bySource": {
     "QuantumBlockEncoding/Automation.lean": 39,
@@ -23,7 +23,7 @@
     "QuantumBlockEncoding/Circuit.lean": 12,
     "QuantumBlockEncoding/CircuitSemantics.lean": 41,
     "QuantumBlockEncoding/ColdStartTransferE1.lean": 28,
-    "QuantumBlockEncoding/ConcreteSemantics.lean": 22,
+    "QuantumBlockEncoding/ConcreteSemantics.lean": 25,
     "QuantumBlockEncoding/Core.lean": 36,
     "QuantumBlockEncoding/CubicAmplitudePrimitive.lean": 25,
     "QuantumBlockEncoding/CubicStatePreparation.lean": 269,
@@ -36,7 +36,7 @@
     "QuantumBlockEncoding/OpenProblems.lean": 4,
     "QuantumBlockEncoding/OpenProblemsAudit.lean": 6,
     "QuantumBlockEncoding/OptimalControl.lean": 133,
-    "QuantumBlockEncoding/PrimitiveBasisLE.lean": 8,
+    "QuantumBlockEncoding/PrimitiveBasisLE.lean": 33,
     "QuantumBlockEncoding/PrimitiveCircuit.lean": 39,
     "QuantumBlockEncoding/PrimitiveMacros.lean": 43,
     "QuantumBlockEncoding/PrimitiveRefinement.lean": 5,
@@ -77,7 +77,13 @@
     "QuantumBlockEncoding/Robin/WeightedPermutation.lean": 15,
     "QuantumBlockEncoding/RobinEvolution.lean": 18,
     "QuantumBlockEncoding/RobinMatrix.lean": 395,
+    "QuantumBlockEncoding/SemanticFidelityEvidence.lean": 24,
     "QuantumBlockEncoding/StatePreparation.lean": 11,
+    "QuantumBlockEncoding/StatePreparationBellRoute.lean": 17,
+    "QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean": 38,
+    "QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean": 16,
+    "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean": 34,
+    "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean": 31,
     "QuantumBlockEncoding/TeachingRouteClosures.lean": 35,
     "QuantumBlockEncoding/TextbookStatePreparation.lean": 29,
     "QuantumBlockEncoding/UniformlyControlledRy.lean": 11
@@ -1397,6 +1403,552 @@
       "name": "QuantumBlockEncoding.Examples.RobinHeat.oneTermRobinGamma3BoundaryFinSevenFoldEval_eq_slotTwo_of_vanish_n3",
       "source": "QuantumBlockEncoding/RobinMatrix.lean",
       "line": 17758,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellAfterRy_0",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 62,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellAfterRy_1",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 66,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellAfterRy_2",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 70,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellAfterRy_3",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 76,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_entry_00",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 82,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_entry_10",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 93,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_entry_20",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 104,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_entry_30",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 110,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_00",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 138,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_10",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 144,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_20",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 150,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_30",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 156,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_01",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 162,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_11",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 168,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_21",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 174,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_entry_31",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 180,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_output_0",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 186,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_output_1",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 197,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_output_2",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 208,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_output_3",
+      "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "line": 219,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.standardRyMatrix_ryAngle35_explicit",
+      "source": "QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean",
+      "line": 23,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.standardRyMatrix_ryAngle513_explicit",
+      "source": "QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean",
+      "line": 33,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_ryAngle513_explicit_paper",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 25,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootState_0",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 50,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootState_1",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 54,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootState_2",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 58,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootState_3",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 62,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_00",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 103,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_10",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 109,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_22",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 115,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_32",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 121,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenZeroEntry",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 127,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_02",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 136,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_12",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 140,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_20",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 144,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_entry_30",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 148,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_scalar_0",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 152,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_scalar_1",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 159,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_scalar_2",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 166,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_scalar_3",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 173,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_0",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 308,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_1",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 310,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_2",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 312,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_3",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 314,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_4",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 316,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_5",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 318,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_6",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 320,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState_7",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 322,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_00",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 378,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_20",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 384,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_44",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 390,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_64",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 395,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparseZeroEntry",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 400,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_10",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 409,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_30",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 412,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_40",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 415,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_50",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 418,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_60",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 421,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_70",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 424,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_04",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 427,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_14",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 430,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_24",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 433,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_34",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 436,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_54",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 439,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_entry_74",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 442,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_0",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 446,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_1",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 453,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_2",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 459,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_3",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 466,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_4",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 472,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_5",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 479,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_6",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 485,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_scalar_7",
+      "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "line": 491,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.amplitudeRotation_eq_pythagorean",
+      "source": "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+      "line": 60,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.cosine35",
+      "source": "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+      "line": 78,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sine35",
+      "source": "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+      "line": 79,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.cosine513",
+      "source": "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+      "line": 80,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.StatePreparationBenchmarks.sine513",
+      "source": "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+      "line": 81,
       "reason": "private declaration"
     },
     {

@@ -26,6 +26,18 @@ paper or repository.
 
 ## Automation References
 
+- Ahmad Rammal, Niket Patel, Fabian Gloeckle, Amaury Hayat, Julia Kempe,
+  Remi Munos, Charles Arnal, and Vivien Cabannes,
+  [Formalizing Mathematics at Scale](https://arxiv.org/abs/2605.29955),
+  [facebookresearch/atlas-lean](https://github.com/facebookresearch/atlas-lean),
+  and the [ATLAS visualizer](https://rammalahmad.github.io/atlas/).
+  ASPBE indexes the pinned ATLAS v1 checkout as a separately licensed external
+  textbook-memory surface. It preserves ATLAS compilation, faithfulness,
+  proof-integrity, and code-quality distinctions and requires a local ASPBE
+  adapter before promotion. ATLAS source and full theorem text are not copied
+  into this MIT repository because v1 uses CC BY-NC 4.0 with an upstream
+  no-training rider.
+
 - [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep),
   MIT License. Borrowed ideas: plain-file agent workflow, artifact contracts,
   conversion windows, research wiki layout, and review gates.

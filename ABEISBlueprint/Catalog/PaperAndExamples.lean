@@ -20,7 +20,7 @@ This chapter is generated from the Lean source. Every node denotes one explicit 
 declaration, and every Lean link is checked during the Blueprint build. Definitions appear
 in source order before later results whenever the source module does so.
 
-Reader orientation: Paper-facing backend models and concrete Robin-boundary example artifacts. Each card separates an accessible
+Reader orientation: Paper-facing backend models and concrete State Preparation / Robin example artifacts. Each card separates an accessible
 reading cue from formal status, the source docstring, and the authoritative Lean panel.
 The standalone Library Explorer adds full-text search and filters across every chapter.
 
@@ -33,7 +33,7 @@ The standalone Library Explorer adds full-text search and filters across every c
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -47,7 +47,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:18](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -61,7 +61,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:24](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -75,7 +75,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:33](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -89,7 +89,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:34](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* First row after eliminating the left Robin ghost points.
 
@@ -103,7 +103,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:37](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Second row after eliminating the left Robin ghost points.
 
@@ -117,7 +117,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:45](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Penultimate row after eliminating the right Robin ghost points.
 
@@ -131,7 +131,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:54](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Last row after eliminating the right Robin ghost points.
 
@@ -145,7 +145,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:63](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -159,7 +159,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:70](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -173,7 +173,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:74](../../../../library/mo
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -187,7 +187,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:80](../../../../library/mo
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -205,7 +205,7 @@ Source: [QuantumBlockEncoding/Examples/RobinHeat.lean:83](../../../../library/mo
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -219,7 +219,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:18](../../../../library/modules/ghl20
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Classical specification of the indicator oracle U\_indic(K1,K2). Returns 'true' when row index 'i' is in the bulk region \[K1, K2\], meaning U\_indic maps |i⟩|0⟩ → |i⟩|1⟩. Returns 'false' for boundary rows (0 ≤ i < K1 or K2 < i), meaning U\_indic maps |i⟩|0⟩ → |i⟩|0⟩. main.tex:1060-1065 -
 
@@ -233,7 +233,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:32](../../../../library/modules/ghl20
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Complement of isBulkRow: returns true for boundary rows (j < K1 or K2 < j). The paper's boundary set is \{0,...,K1-1\} union \{K2+1,...,2^n-1\}. main.tex:1113, 1035-1038 -
 
@@ -247,7 +247,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:39](../../../../library/modules/ghl20
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Detailed register partition matching the wavefunction ket labels in Eq. ROBIN clarified (main.tex:1113-1117). Each field is the qubit count for one register in the circuit. Total signal qubits = m\_f + 1 + ceil(log2 kappa) + 4 (indicator + ancilla + 1), plus n system qubits. Pure ancillas appear in two groups totaling 2n. figure:1\_term\_ROBIN caption -
 
@@ -261,7 +261,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:49](../../../../library/modules/ghl20
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Total qubits used by the register partition (all registers summed).
 
@@ -275,7 +275,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:69](../../../../library/modules/ghl20
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default register partition from concrete parameters. figure:1\_term\_ROBIN -
 
@@ -289,7 +289,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:76](../../../../library/modules/ghl20
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Pure ancilla qubits visible in the Eq. ROBIN register partition: '(n - ceil(log2 kappa)) + 1' from the O\_D^BS register plus the trailing ancilla. This is intentionally narrower than the theorem's full '2n' pure-ancilla budget. The theorem-level count in 'oneTermRobinLayout' and 'oneTermRobinResourceExpr' also includes internal workspace required by the banded sparse-access and oracle subcircuits. Keep this distinction explicit to avoid treating the ket-level register partition as the full resource proof. figure:1\_term\_ROBIN caption, main.tex:1149, main.tex:1131-1136
 
@@ -303,7 +303,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:96](../../../../library/modules/ghl20
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem 1-term Robin resource shape: 'O(sum\_g Q\_g n log n + kappa n)' gates and '2n' pure ancillas.
 
@@ -317,7 +317,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:103](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Number of deviating (boundary) indices: K1 + 2^n - K2. The paper notes this is O(1) as it depends on the finite-difference accuracy order. main.tex:1092-1095 -
 
@@ -331,7 +331,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:112](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Precise gate cost formula from the text (main.tex:1088-1089), before absorbing the O(1) boundary deviation count into the Theorem's simplified formula. 'O(sum\_g Q\_g n log n + kappa \* (K1 + 2^n - K2) \* n)' gates. The term 'K1 + 2^n - K2' is the number of deviating rows, which is O(1). main.tex:1088-1089 -
 
@@ -345,7 +345,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:121](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* deviatingIndices computes K1 + gridSize - K2, the number of boundary rows. For the fourth-order stencil with K1=2, K2=gridSize(n)-3, this gives 2+3=5. main.tex:1092-1095 -
 
@@ -359,7 +359,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:130](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Numeric resource useful for concrete search runs with fixed parameters.
 
@@ -373,7 +373,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:134](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -387,7 +387,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:140](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Register layout for the one-term Robin block encoding. Signal qubits = ⌈log₂ n⌉ + ⌈log₂ G\_f⌉ + ⌈log₂ κ⌉ + 4 match the paper's Theorem (main.tex:1098-1109). System qubits address 'n' grid points; pure ancillas are workspace.
 
@@ -401,7 +401,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:149](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Placeholder circuit for the one-term Robin block encoding. Gate order matches Fig. 1\_term\_ROBIN (main.tex:1125-1163): 1. U\_indic sets bulk/boundary indicator ancilla. 2. O\_DT^S encodes D^T amplitudes (bulk) via sparse-amplitude oracle. 3. Ry\_boundary applies controlled rotations for boundary entries. 4. O\_D^BS is the banded-sparse-access oracle for D. 5. O\_f encodes f(x\_j) via amplitude oracle. 6. SWAP between two n-qubit registers. 7. (O\_D^BS)^† uncomputes the sparse-access register. Oracle names match 'defaultRobinCircuitSkeleton' field values. figure:1\_term\_ROBIN -
 
@@ -415,7 +415,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:166](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem-facing Fig. 1-term Robin transcript. This label list is the source-facing circuit map used by the conversion window. It deliberately differs from the active seven-gate backend list: the backend matrix product still uses 'oneTermRobinCircuit', while this transcript keeps the sparse-register preparation sides, the explicit 'U\_indic^dagger' cleanup slot, and the pre-SWAP 'O\_DT^BS' label visible for paper audit. figure:1\_term\_ROBIN, eq:arbitrary sparcity -
 
@@ -429,7 +429,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:185](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem-facing transcript exposes the source-correction slots explicitly. This theorem is a transcript guard only. It does not replace 'oneTermRobinCircuit', does not change 'oneTermRobinGateMatrixPlaceholders', and does not promote any oracle correctness or unitarity flag.
 
@@ -443,7 +443,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:205](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The active backend circuit remains the seven-gate product currently used by the finite matrix semantics. Theorem-facing proof maps must not call this list the full Fig. 1-term Robin transcript, because it omits both 'H\_W^(kappa)' sides and the explicit 'U\_indic^dagger' source slot.
 
@@ -457,7 +457,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:227](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic normalizer α = N\_D · N\_f · κ for the one-term Robin construction.
 
@@ -471,7 +471,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:239](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Block-encoding spec for the one-term Robin derivative operator. Takes the target matrix as a parameter so the spec is reusable across different stencil choices and boundary data without creating import cycles. Normalizer: symbolic 'N\_D · N\_f · κ'. Error: zero (exact encoding, no approximation yet).
 
@@ -485,7 +485,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:249](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The spec's pure ancilla matches the resource formula.
 
@@ -499,7 +499,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:260](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The spec's circuit local cost: the SWAP placeholder costs 3 CNOTs and each unexpanded oracle call is counted as one unresolved call in the candidate score. figure:1\_term\_ROBIN
 
@@ -513,7 +513,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:269](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Evaluating the symbolic normalizer 'N\_D · N\_f · κ' under an environment gives the product of the three symbol values.
 
@@ -527,7 +527,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:274](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper's one-term Robin block-encoding construction claim.
 
@@ -541,7 +541,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:279](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* One-dimensional Hamiltonian block-encoding resource shape.
 
@@ -555,7 +555,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:288](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper's 1D Hamiltonian block-encoding construction claim.
 
@@ -569,7 +569,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:296](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Multidimensional Hamiltonian block-encoding resource shape.
 
@@ -583,7 +583,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:305](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper's multidimensional Hamiltonian block-encoding construction claim.
 
@@ -597,7 +597,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:313](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A proof obligation tracked by description and paper source anchor. 'proved' is 'Bool' (not 'Prop') so that unproved obligations are honest data, not mathematically false claims. main.tex -
 
@@ -611,7 +611,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:324](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Circuit skeleton matching Fig. 1\_term\_ROBIN (main.tex:1137-1167). Each field corresponds to a labeled box or operation in the figure. All oracles are recorded as symbolic names; their implementation is delegated to separate oracle-contract structures. figure:1\_term\_ROBIN -
 
@@ -625,7 +625,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:334](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Eq. ROBIN clarified, gamma\_1 component (main.tex:1113). State after U\_indic sets the indicator ancilla. The boundary and bulk summation terms have different normalizers: boundary: 1/(N\_D · sqrt(kappa)), indicator |0> bulk: 1/sqrt(kappa), indicator |1> main.tex:1113 -
 
@@ -639,7 +639,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:373](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Eq. ROBIN clarified, gamma\_2 component (main.tex:1115). State after sparse-amplitude oracle encodes D^T values. main.tex:1115 -
 
@@ -653,7 +653,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:396](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Eq. ROBIN clarified, gamma\_3 component (main.tex:1117). State after O\_f encodes f(x\_j) values. main.tex:1117 -
 
@@ -667,7 +667,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:413](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bundle of the three intermediate wavefunction states from Eq. ROBIN clarified. Captures the full circuit state evolution from input through U\_indic, O\_DT^S, and O\_f. main.tex:1113-1117, figure:1\_term\_ROBIN -
 
@@ -681,7 +681,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:433](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default wavefunction decomposition from concrete parameters. figure:1\_term\_ROBIN, main.tex:1113-1117 -
 
@@ -695,7 +695,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:452](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bundle of proof obligations for the one-term Robin block encoding. Each obligation references a specific claim in the paper and tracks whether it has been formally proved. None are proved in the current version. Guseynov-Huang-Liu 2025, one-term Robin theorem, arXiv:2506.20478. -
 
@@ -709,7 +709,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:488](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default circuit skeleton for the one-term Robin construction, with oracle names matching the paper's notation. figure:1\_term\_ROBIN -
 
@@ -723,7 +723,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:553](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper-level source contract for the banded sparse-access oracle in Lemma 1. The input register is the padded sparse-index register '|0>^(n-l)|s>^l' followed by the row register '|i>^n'; the output is '|r\_si>^n|i>^n'. This record is intentionally separate from the current 'bandedSparseAccessMatrix' helper, which overwrites the system register with a Robin column map and therefore does not yet implement this paper contract. Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478.
 
@@ -737,7 +737,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:577](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default Lemma 1 register contract for the one-term Robin parameters. The 'widthCompatible' obligation stays explicit because the current parameter type does not enforce 'clog2 kappa <= n'; faithful proofs should discharge that side condition or specialize to a parameter family where it is available.
 
@@ -751,7 +751,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:602](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Contract for the derivative oracle O\_D: sparse-access oracle for the banded stencil matrix. Records stencil metadata, bandwidth, and a correctness obligation. main.tex:784-801 -
 
@@ -765,7 +765,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:650](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Contract for the function oracle O\_f: amplitude oracle encoding f(x) on the grid. Records the piece count, normalization bound, and a correctness obligation. main.tex:870-910
 
@@ -779,7 +779,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:661](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Resource for the derivative oracle O\_D using the banded sparse-access formula from Lemma 1 of Guseynov-Huang-Liu 2025. The half-bandwidth parameter is 'stencil.leftRadius' (assumes a symmetric stencil where leftRadius = rightRadius).
 
@@ -793,7 +793,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:671](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The derivative oracle's pure ancilla count is n - 1 (from Lemma 1).
 
@@ -807,7 +807,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:675](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Typed theorem data for Theorem one-term block-encoding (main.tex:1098-1109). Captures the exact block-encoding tuple (α, m, a) from the paper: α = N\_D · N\_f · κ (normalizer) m = ⌈log₂ n⌉ + ⌈log₂ G\_f⌉ + ⌈log₂ κ⌉ + 4 (signal ancilla qubits) a = 0 (zero approximation error) along with the gate-count and pure-ancilla resource claims.
 
@@ -821,7 +821,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:684](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default theorem data instance from concrete parameters. main.tex:1098-1109 -
 
@@ -835,7 +835,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:700](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A controlled R\_y rotation angle for a single boundary row entry. The paper (Eq. angles for Ry, main.tex:1081-1083) defines: theta\_j^s = arccos(D\_j^(s) / N\_D) for sparse index s in \{0,...,kappa-1\} and boundary row j. main.tex:1081-1083 -
 
@@ -849,7 +849,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:714](../../../../library/modules/ghl2
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The set of all boundary-controlled rotation angles for a given Robin construction. For each boundary row j and sparse index s, there is one angle theta\_j^s. Total count = kappa \* (K1 + gridSize - K2) = kappa \* deviatingIndices. main.tex:1081-1083, 1088-1089 -
 
@@ -863,7 +863,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:732](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Number of boundary rows = K1 + gridSize - K2. Each boundary row has kappa rotation angles (one per sparse index). main.tex:1092-1095 -
 
@@ -877,7 +877,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:752](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -891,7 +891,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:755](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Total number of qubits in the one-term Robin circuit. Uses the register partition total: sum of all register widths. main.tex:1098-1109 -
 
@@ -905,7 +905,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:770](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Effective signal qubits: total circuit qubits minus the system register width. This is the number of non-system qubits in the register partition. main.tex:1098-1109 -
 
@@ -919,7 +919,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:777](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem tuple uses the paper's signal-qubit count. This is the block-encoding parameter 'ceil(log2 n) + ceil(log2 G\_f) + ceil(log2 kappa) + 4', not the number of all non-system wires in the concrete circuit register partition. Guseynov-Huang-Liu 2025, Theorem one-term block-encoding, arXiv:2506.20478.
 
@@ -933,7 +933,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:789](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem tuple and the reusable layout record carry the same '2n' pure-ancilla resource count.
 
@@ -947,7 +947,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:798](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem tuple and concrete resource record carry the same '2n' pure-ancilla count.
 
@@ -961,7 +961,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:807](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The concrete block projection has to project all non-system wires. Compared with the theorem-level signal parameter, the circuit-level projection also includes the visible padded 'O\_D^BS' pure-register qubits and the trailing one-qubit ancilla in the register partition. This is an arithmetic bridge between the theorem tuple and the matrix backend, not a block-correctness proof.
 
@@ -975,7 +975,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:821](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Same projection bridge, stated directly against the theorem-data tuple. This pins the matrix backend's projection dimension to the paper theorem's signal parameter plus the visible padded 'O\_D^BS' workspace and the one-qubit ancilla. It is still only a layout bridge, not an ancilla-cleanup or block correctness proof.
 
@@ -989,7 +989,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:839](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bit position of the indicator qubit in the compound register. = ancillaQubit + systemQubits + odPureAncillaQubits + sparseIndexQubits = 1 + n + (n - clog2 κ) + clog2 κ = 1 + 2n main.tex:1113 -
 
@@ -1003,7 +1003,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:852](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Column mapping for the banded sparse access oracle O\_D^BS. Returns the column index for sparse index s in row i of the Robin derivative matrix. For bulk rows (K1 ≤ i ≤ K2): 5 entries, col(s,i) = i - 2 + s for s < 5. For left boundary: - Row 0 (3 entries): col(s,0) = s for s < 3 - Row 1 (4 entries): col(s,1) = s for s < 4 For right boundary (N = gridSize n): - Row N-2 (4 entries): col(s,N-2) = N-4+s for s < 4 - Row N-1 (3 entries): col(s,N-1) = N-3+s for s < 3 For unused sparse indices (s ≥ entry count): returns i (identity on system register). main.tex:784-801 -
 
@@ -1017,7 +1017,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:869](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Global sparse-slot offset table for the one-term Robin 'κ = 7' construction. The first five slots keep the existing fourth-order stencil order '\{-2,-1,0,1,2\}'. The final two slots record the boundary-effect diagonals '\{-3,3\}' required by the source audit. The active Lemma 1 address uses this global slot table; row-dependent branch deletion remains only a rejected-model helper. Guseynov-Huang-Liu 2025, Lemma 'Diagonal sparsity', Lemma 'Banded-sparse-access-oracle', and Remark 'sparsity maximum', arXiv:2506.20478.
 
@@ -1031,7 +1031,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:897](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Global sparse-access address 'r\_\{si\}=r\_\{s0\}+i mod 2^n'. This is the active paper address for 'O\_D^BS'; it does not remove zero boundary-amplitude slots from the sparse register.
 
@@ -1045,7 +1045,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:915](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The global sparse-slot address is always an 'n'-bit row address.
 
@@ -1059,7 +1059,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:919](../../../../library/modules/ghl2
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Inverse sparse slot used by the post-SWAP cleanup candidate for the global offset table. This is only an executable preimage witness helper. It does not assert inverse uniqueness or promote the dagger-cleanup obligation.
 
@@ -1073,7 +1073,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:934](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The global inverse-slot helper fits in the three-bit sparse register.
 
@@ -1087,7 +1087,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:946](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The inverse sparse-slot helper stays in the active seven-slot table.
 
@@ -1101,7 +1101,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:952](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The inverse sparse-slot helper is an involution on the active 'κ = 7' slot set. This is a finite-table proof block for the global-source preimage route; it does not prove uniqueness of the full 'O\_D^BS' matrix image.
 
@@ -1115,7 +1115,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:967](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The inverse sparse-slot helper is injective on the active 'κ = 7' slot set. This feeds the later clean-preimage uniqueness proof for the corrected global slot model, but it intentionally leaves the semantic cleanup and unitarity obligations false.
 
@@ -1129,7 +1129,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:985](../../../../library/modules/ghl2
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Global sparse-address roundtrip for the supplied inverse-slot helper. For an 'n >= 3' grid and any encoded sparse value below '8', addressing by a slot and then by the inverse slot returns the original row modulo '2^n'. This is the arithmetic block needed by the conditional post-SWAP preimage candidate; it is not an injectivity or cleanup proof.
 
@@ -1143,7 +1143,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1009](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every active global sparse-slot offset is an 'n'-bit address when '3 ≤ n'.
 
@@ -1157,7 +1157,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1131](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Composing two global sparse-slot addresses is addition by the sum of their global offsets modulo the grid size.
 
@@ -1171,7 +1171,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1149](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* If two active global sparse-slot offsets sum to zero modulo the grid, the first slot is the reverse slot of the second. This is only a finite arithmetic block for the corrected 'O\_D^BS' address route; it does not prove dagger cleanup, unitarity, or block extraction.
 
@@ -1185,7 +1185,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1183](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Uniqueness of the reverse sparse slot for the corrected global-slot address. For active one-term Robin slots 's,t < 7', if applying slot 't' after slot 's' returns every in-range row 'i', then 't' must be the table inverse of 's'. This feeds the future clean-preimage uniqueness route while leaving all semantic 'O\_D^BS' proof flags false.
 
@@ -1199,7 +1199,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1228](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* For a fixed in-range row, the corrected seven-slot global address table is injective in the sparse slot. The proof reuses the reverse-slot uniqueness block rather than repeating the finite offset table. It is still only an address-level arithmetic lemma; it does not promote any 'O\_D^BS' semantic flag.
 
@@ -1213,7 +1213,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1261](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Row-dependent sparse-branch domain for the executable one-term Robin stencil. This predicate is a source-contract correction candidate for Lemma 1 'O\_D^BS': it marks exactly the sparse indices that correspond to nonzero stencil entries in the same five row regions used by 'robinSparseColumnMap'. The active matrix is not changed by this predicate; unused branches still remain a separate unitary-extension obligation. Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478.
 
@@ -1227,7 +1227,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1295](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The proposed valid-branch predicate separates the boundary unused branch that caused the recorded 'n = 3' collision, while the current executable map still sends both branches to the same address.
 
@@ -1241,7 +1241,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1314](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Proof-DAG block for the Lemma 1 address-range route. For the fourth-order Robin stencil, if the input row is an 'n'-bit value and 'n >= 2', then the executable one-term column map also returns an 'n'-bit value. The paper-level contract still records 'addressRange.proved := false' because the parameter-family side condition is not yet part of 'OneTermRobinParameters'.
 
@@ -1255,7 +1255,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1329](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Candidate reverse sparse index for the one-term Robin stencil. Given a target row 'target' and a post-SWAP row 'row', this returns the sparse index that would make 'row' address 'target' in the executable fourth-order Robin column map. It is only a reverse-index candidate: the checked roundtrip and cleanup obligations remain separate proof blocks. Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478.
 
@@ -1269,7 +1269,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1386](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Normal form for the leftmost row of the executable Robin sparse map.
 
@@ -1283,7 +1283,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1396](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Normal form for the second row of the executable Robin sparse map.
 
@@ -1297,7 +1297,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1401](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Normal form for a bulk row of the executable Robin sparse map.
 
@@ -1311,7 +1311,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1406](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Normal form for the penultimate row of the executable Robin sparse map.
 
@@ -1325,7 +1325,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1412](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Normal form for the last row of the executable Robin sparse map.
 
@@ -1339,7 +1339,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1427](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reverse-index normal form for row zero.
 
@@ -1353,7 +1353,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1443](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reverse-index normal form for row one.
 
@@ -1367,7 +1367,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1448](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reverse-index normal form for a bulk row.
 
@@ -1381,7 +1381,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1453](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reverse-index normal form for the penultimate row.
 
@@ -1395,7 +1395,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1461](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reverse-index normal form for the last row.
 
@@ -1409,7 +1409,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1477](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The reverse sparse-index candidate is a left inverse for the executable one-term Robin column map on the three-bit sparse-index range used by the current one-term parameter family. This is only the arithmetic roundtrip needed by the O\_D^BS post-SWAP cleanup route. It does not prove uniqueness of the preimage, dagger cleanup, unitarity, or block correctness.
 
@@ -1423,7 +1423,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1502](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The reverse-index candidate stays inside the three-bit sparse register for columns produced by the executable one-term Robin map. This is paired with 'robinSparseReverseColumnRoundtrip\_of\_lt\_eight'; it is a local arithmetic block for the post-SWAP preimage route, not a uniqueness or dagger-cleanup proof.
 
@@ -1437,7 +1437,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1715](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Executable finite audit for the reverse-index candidate. For each sparse-index value below 'sparseBound' and each row of the 'n'-qubit grid, this checks that forward addressing followed by 'robinSparseReverseColumnIndex' returns to the original row. A true result is local evidence for the inverse-on-range route; it is not a semantic cleanup proof for 'O\_D^BS'.
 
@@ -1451,7 +1451,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1875](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Register values used by the faithful Lemma 1 'O\_D^BS' contract. The current compound-index convention stores the row register in bits '\[1, 1+n)' and the paper's padded sparse-address register in bits '\[1+n, 1+2n)'. Inside that address block, the low 'n - clog2 kappa' bits are the padded-zero workspace and the remaining bits encode the sparse index 's'. Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478.
 
@@ -1465,7 +1465,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1890](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Extract the Lemma 1 padded sparse-address and row registers from a compound basis index. This is a source-contract skeleton only; it does not alter the interim 'bandedSparseAccessMatrix' helper and does not prove unitarity.
 
@@ -1479,7 +1479,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1902](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The row field extracted for Lemma 1 is always an 'n'-bit row value.
 
@@ -1493,7 +1493,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1919](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The sparse-index field is the high sparse slice of the full O\_D register.
 
@@ -1507,7 +1507,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1928](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The padded-zero field is the low padded slice of the full O\_D register.
 
@@ -1521,7 +1521,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1936](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The extracted sparse-index field always fits in its declared bit width.
 
@@ -1535,7 +1535,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1944](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The extracted O\_D register value always fits in its declared 'n'-bit block.
 
@@ -1549,7 +1549,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1955](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Rejected row-dependent paper-address helper. This is the old active address model: it used 'robinSparseColumnMap', which deletes boundary zero-amplitude sparse slots by folding them back to the row. It is retained only for regression tests and proof-attempt memory.
 
@@ -1563,7 +1563,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1971](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper address value 'r\_si' for the one-term Robin sparse-access oracle. The active address follows the global sparse-slot formula 'r\_si = r\_s0 + i mod 2^n'. Boundary or zero-amplitude slots remain present in the sparse register; the coefficient layer supplies zero values where needed.
 
@@ -1577,7 +1577,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1983](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Executable check that the paper address 'r\_si' fits in the n-bit address register.
 
@@ -1591,7 +1591,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1988](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Boolean form of the executable 'O\_D^BS' address-range check.
 
@@ -1605,7 +1605,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:1992](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The executable paper address is in range for the fourth-order grid regime '2 <= n'. This is a reusable arithmetic block; it does not promote the paper-level semantic obligation.
 
@@ -1619,7 +1619,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2004](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The executable address-range Boolean evaluates to true for the fourth-order grid regime '2 <= n'. The contract flag remains false until the paper parameter family records this side condition.
 
@@ -1633,7 +1633,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2017](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Executable Lemma 1 image skeleton for 'O\_D^BS'. It preserves the row/system register and replaces the padded sparse-address register by 'r\_si'. Correctness, unitarity, and dagger cleanup remain recorded in 'defaultBandedSparseAccessPaperContract p' with 'proved := false'.
 
@@ -1647,7 +1647,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2031](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Rejected row-dependent image helper corresponding to the old active address. This has the same register splice as 'bandedSparseAccessPaperImage', but writes the row-dependent helper address. It is not the active paper image.
 
@@ -1661,7 +1661,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2047](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bit-slice extraction as arithmetic division followed by an 'n'-bit remainder. This keeps later register-splice proofs in ordinary arithmetic form.
 
@@ -1675,7 +1675,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2062](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The O\_D^BS address block ends before the full one-term Robin basis width.
 
@@ -1689,7 +1689,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2076](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The low block of the paper image fits below the high-tail boundary whenever the written O\_D^BS address is an n-bit value.
 
@@ -1703,7 +1703,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2087](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper image preserves the low ancilla-and-row block modulo its width.
 
@@ -1717,7 +1717,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2133](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* After shifting past the low block, the paper image exposes the written address modulo the n-bit O\_D^BS register.
 
@@ -1731,7 +1731,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2172](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The executable paper image remains inside the full finite basis when the input column is in range and the written O\_D^BS address is n-bit.
 
@@ -1745,7 +1745,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2219](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Finite-basis index for the executable Lemma 1 'O\_D^BS' paper image. This constructor is available only when the source column is already in the full finite basis and the written 'O\_D^BS' address is n-bit. It is a bridge from the arithmetic image function to matrix entries, not a unitarity proof.
 
@@ -1759,7 +1759,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2268](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -1773,7 +1773,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2276](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Register extraction from the paper image preserves the row register.
 
@@ -1787,7 +1787,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2284](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Register extraction from the paper image reports the written O\_D^BS address.
 
@@ -1801,7 +1801,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2303](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* High signal/workspace bits above the n-bit 'O\_D^BS' address register.
 
@@ -1815,7 +1815,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2315](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The arithmetic register-splice form of 'bandedSparseAccessPaperImage' preserves all bits above the 'O\_D^BS' address register when the written address is n-bit. This is a proof-DAG block for Lemma 1 register safety. It does not promote the paper-level 'noSpill' obligation because the parameter-family side conditions are still tracked by 'defaultBandedSparseAccessPaperContract'.
 
@@ -1829,7 +1829,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2326](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Executable check that the paper-image skeleton does not write past the n-bit 'O\_D^BS' address register into the indicator or 'm\_f' bits above it.
 
@@ -1843,7 +1843,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2361](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Boolean form of the executable high-tail no-spill check. The high-tail theorem above discharges this Boolean under an n-bit written address, while the paper-level semantic obligation remains a separate flag.
 
@@ -1857,7 +1857,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2371](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The no-spill Boolean follows from the executable n-bit address bound.
 
@@ -1871,7 +1871,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2380](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The no-spill Boolean is true in the fourth-order grid regime '2 <= n', reusing the address-range proof-DAG block. Semantic obligation flags remain false.
 
@@ -1885,7 +1885,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2391](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Clean-domain predicate for the Lemma 1 'O\_D^BS' source equation. The paper specifies columns whose padded zero register is '|0>^(n-l)'. Columns outside this domain still need a separate unitary-completion proof; the current paper-image matrix is only a Phase 1 skeleton for that full-space extension.
 
@@ -1899,7 +1899,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2406](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Faithful sparse-slot range for the Lemma 1 'O\_D^BS' source equation. The paper source domain keeps the global slot 's' whenever 's < kappa'. Whether a boundary coefficient is zero is handled by the amplitude layer, not by deleting the sparse-register slot from the index oracle.
 
@@ -1913,7 +1913,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2416](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Faithful clean source domain for the active global-slot 'O\_D^BS' address. This predicate is the padded clean input from Lemma 1 together with the global slot range 's < kappa'. It supersedes the row-dependent nonzero-branch classifier as the active source-domain contract for 'bandedSparseAccessPaperImage'.
 
@@ -1927,7 +1927,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2427](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A faithful global-slot source column is clean in the padded O\_D register.
 
@@ -1941,7 +1941,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2433](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A faithful global-slot source column has sparse index below 'kappa'.
 
@@ -1955,7 +1955,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2442](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Global-source wrapper for inverse-slot injectivity. For the one-term Robin 'κ = 7' family, two active global-source columns with the same reverse sparse slot have the same extracted sparse slot. This is a local source-domain block for the later unique-preimage proof; it does not promote inverse-on-range, cleanup, or unitarity obligations.
 
@@ -1969,7 +1969,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2461](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Same-row injectivity of the active paper address on the global-slot source domain. This lifts the seven-slot address lemma through the Lemma 1 register extractor: if two active global-source columns have the same row and the same corrected paper address, then their sparse slots are equal. It does not assert matrix unitarity or dagger cleanup.
 
@@ -1983,7 +1983,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2493](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Candidate row-dependent sparse-branch domain for a basis column of Lemma 1. This is deliberately separate from 'bandedSparseAccessPaperCleanInput'. The paper clean-input condition only checks the padded zero register, while this candidate also excludes row-boundary sparse indices that do not correspond to nonzero stencil entries. It is now a rejected-model audit helper; the active paper source domain is 'bandedSparseAccessPaperGlobalSlotSource'.
 
@@ -1997,7 +1997,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2541](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Candidate corrected clean source domain for Lemma 1: padded-zero input plus a row-dependent valid sparse branch. This is a rejected-model contract-audit predicate only. Use 'bandedSparseAccessPaperGlobalSlotSource' for the active global-slot source contract.
 
@@ -2011,7 +2011,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2552](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The corrected source-domain candidate implies the original clean input.
 
@@ -2025,7 +2025,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2558](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The corrected source-domain candidate implies a valid sparse branch.
 
@@ -2039,7 +2039,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2567](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The row-dependent valid-source audit excludes the concrete unused sparse branch from the recorded 'n = 3', 'kappa = 7' rejected-model collision. The active global-slot paper image now separates the same two clean columns.
 
@@ -2053,7 +2053,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2580](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Classifier for clean padded-register columns whose sparse branch is invalid for the row-dependent Robin stencil. This is the source-domain side of the unused-branch extension obligation. The active O\_D^BS matrices are not changed by this predicate.
 
@@ -2067,7 +2067,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2601](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* An unused sparse branch is still in the padded clean-input domain.
 
@@ -2081,7 +2081,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2607](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* An unused sparse branch is outside the row-dependent valid-branch classifier.
 
@@ -2095,7 +2095,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2616](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The executable clean padded-input domain splits into valid sparse branches and clean unused sparse branches. This is only the local Boolean classifier split for the source-contract audit. It does not choose an image for unused branches and does not promote the semantic 'cleanDomainSplit' obligation in the full-domain wrapper.
 
@@ -2109,7 +2109,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2632](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The two branches in 'bandedSparseAccessPaperCleanDomainSplit\_iff' are disjoint. This is a classifier fact only; injectivity and unitary extension for the eventual image rule remain separate false obligations.
 
@@ -2123,7 +2123,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2657](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Interface for the missing reversible image rule on clean unused sparse branches. No paper-backed formula has been selected yet, so 'proposedImageIndex' is 'none' and every semantic claim remains an explicit false obligation. The active 'bandedSparseAccessPaperImage' skeleton is not changed by this record.
 
@@ -2137,7 +2137,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2680](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default image-rule interface for one unused-branch source column. The missing reversible image is intentionally represented by 'none'; later faithful work must replace this with a paper-compatible extension before any injectivity, dagger-cleanup, or unitarity proof is attempted.
 
@@ -2151,7 +2151,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2702](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The unused-branch image-rule interface is obligation-only in Phase 1.
 
@@ -2165,7 +2165,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2735](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Classifier bridge for the unused-branch image-rule interface. For a clean invalid sparse branch, Lean records the branch classification and keeps the image-rule target unspecified with false proof fields.
 
@@ -2179,7 +2179,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2750](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Contract slot for a faithful reversible extension on unused sparse branches. GHL2025 keeps zero-amplitude sparse branches inside the kappa-wide register. The current active image skeleton can collide on such branches, so Phase 1 records the missing extension as obligations instead of proving injectivity or unitarity for the colliding skeleton.
 
@@ -2193,7 +2193,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2775](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default unused-branch extension contract for one O\_D^BS basis column. All semantic fields remain false. The record exists so later work can state the reversible completion separately from the paper image on valid branches.
 
@@ -2207,7 +2207,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2797](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The unused-branch extension contract is obligation-only in Phase 1.
 
@@ -2221,7 +2221,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2837](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The unused-branch contract classifies the recorded row-dependent boundary collision without promoting any O\_D^BS semantic proof flag. The active global-slot image no longer has this concrete collision; the extension fields remain false because this packet does not prove full clean-domain injectivity, dagger cleanup, or unitarity.
 
@@ -2235,7 +2235,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2856](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Package the unused-branch classifier with the reversible-extension obligations. This is a contract bridge only: it exposes that an unused clean branch is in the clean padded-input domain, is outside the row-dependent valid sparse-branch classifier, and still has only false extension proof fields.
 
@@ -2249,7 +2249,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2875](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper-level wrapper for the full clean-domain extension obligation of 'O\_D^BS'. The paper clean domain contains every padded-zero source '|0>^(n-l)|s>^l|i>^n', including zero-amplitude sparse branches. QBE currently has only the active Lemma 1 image on valid row-dependent branches and a per-column interface for clean unused branches. This record lifts those pieces into one contract without choosing a reversible unused-branch image and without changing the active forward or dagger matrices.
 
@@ -2263,7 +2263,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2906](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default full clean-domain extension contract for Lemma 1 'O\_D^BS'. All semantic fields are false obligations. The nested per-column image-rule contract still has 'proposedImageIndex = none', so this declaration only records the missing proof interface for later source-domain reconciliation.
 
@@ -2277,7 +2277,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2932](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The full clean-domain wrapper is obligation-only in Phase 1.
 
@@ -2291,7 +2291,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:2986](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The full clean-domain wrapper reuses the existing per-column unused-branch classifier bridge and keeps every extension proof flag false.
 
@@ -2305,7 +2305,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3006](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Wrapper-facing form of the local clean-domain split audit. The classifier split is Lean-proved, while the full semantic wrapper still keeps 'cleanDomainSplit.proved = false' because no unused-branch image rule, injectivity proof, or unitary extension has been supplied.
 
@@ -2319,7 +2319,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3032](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Lean-facing source decision for unused zero-amplitude 'O\_D^BS' branches. Cycle 14 records that no paper-backed image formula and no accepted external reversible-extension theorem currently supplies the missing image rule for clean unused sparse branches. This is a blocking dependency record, not a new oracle construction.
 
@@ -2333,7 +2333,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3049](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default cycle-14 source decision for unused zero-amplitude sparse branches. The false Boolean fields deliberately prevent lower proof work from treating the current colliding active image as a permutation or unitary extension.
 
@@ -2347,7 +2347,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3064](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The cycle-14 source decision is a blocking obligation, not a proof ticket.
 
@@ -2361,7 +2361,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3078](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source decision keeps the full clean-domain wrapper in obligation mode. This ties the cited-results dependency to the existing wrapper fields without changing any active matrix or promoting any semantic proof flag.
 
@@ -2375,7 +2375,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3091](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The blocking source decision keeps every unused-branch image slot unspecified. This is a guard for later lower packets: disabling proof search also means the per-column image-rule contract and the full-domain wrapper still expose 'proposedImageIndex = none' with false image-rule obligations.
 
@@ -2389,7 +2389,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3112](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The blocking source decision also keeps the paper-level O\_D^BS contract obligations false. This is separate from the full clean-domain wrapper: it pins the original Lemma 1 contract fields that a later proof packet would otherwise try to close.
 
@@ -2403,7 +2403,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3134](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Source transcript for the Robin zero-inclusion sentence near Theorem 1. The paper states that zeros may be included in the sparse enumeration and then uses the range 's = 0, ..., kappa - 1' in Eq. ROBIN clarified. This source fact explains why the row-dependent nonzero-stencil classifier is not a faithful full domain restriction. It still does not choose an injective image for clean unused zero-amplitude branches.
 
@@ -2417,7 +2417,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3152](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default transcript of the GHL2025 Robin zero-inclusion source text. The source records that zero-amplitude sparse branches remain in the kappa-wide sparse register. The missing image rule and any reversible extension theorem are intentionally absent, so this declaration does not unblock O\_D^BS proof search.
 
@@ -2431,7 +2431,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3176](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The Robin zero-inclusion source transcript keeps the unused-branch route blocked. This guard records the exact source-backed inclusion of zero-amplitude sparse branches while preserving the absence of a branch image rule or reversible extension theorem.
 
@@ -2445,7 +2445,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3211](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The zero-inclusion transcript does not fill the per-column image-rule slot. For every one-term parameter choice and source column, the direct image-rule contract remains unspecified while lower proof search is disabled.
 
@@ -2459,7 +2459,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3239](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Source contract imported from the prior PDE block-encoding paper. The prior paper supplies the same padded-register equation and an appendix decomposition into a first-row index unitary and modular addition. This record is intentionally only a source transcript: it does not provide a Robin-specific image rule for clean unused zero-amplitude sparse branches.
 
@@ -2473,7 +2473,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3264](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default transcript of arXiv:2405.12855v3 Definition 6, Lemma 1, and the appendix construction for 'O\_A^BS'. The field 'robinUnusedBranchImageRule = none' records the audit result: this source supports the imported sparse-access primitive, but not the missing Robin unused-branch image formula.
 
@@ -2487,7 +2487,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3285](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The explicit citation chain for the displayed Robin sparse-address equation. Lemma 2 of arXiv:2506.20478 invokes Lemma 1 of arXiv:2405.12855; older transcript fields above retain their historical labels for drift auditing.
 
@@ -2501,7 +2501,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3308](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -2515,7 +2515,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3313](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The prior PDE source does not unblock the QBE unused-zero-branch extension. This is the compiled guard for the source audit: the cited theorem is recorded, but lower proof search for Robin unused-branch injectivity, cleanup, and unitarity remains disabled.
 
@@ -2529,7 +2529,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3326](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The prior PDE source contract records the exact sparse-access equation.
 
@@ -2543,7 +2543,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3335](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The prior PDE resource claim remains an external obligation in QBE.
 
@@ -2557,7 +2557,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3340](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Boolean form of the Lemma 1 clean-input domain. The executable predicate is exactly the statement that the padded part of the 'O\_D^BS' sparse-address register is zero. This only classifies columns; it does not prove the clean-input source equation or a unitary extension.
 
@@ -2571,7 +2571,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3350](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Per-column audit record for the executable Lemma 1 paper image. This records the source-domain flag, the image index, and the two register properties expected from the paper equation. The Boolean fields are executable checks for the current skeleton; they are not promoted to theorem-level correctness. The obligation fields keep the clean-domain and full-unitary extension gaps explicit.
 
@@ -2585,7 +2585,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3366](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default per-column contract for the 'O\_D^BS' paper image skeleton.
 
@@ -2599,7 +2599,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3385](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column contract uses the shared Lemma 1 register extractor.
 
@@ -2613,7 +2613,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3409](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column clean-domain flag is the executable padded-zero predicate.
 
@@ -2627,7 +2627,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3415](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column clean-domain flag is true exactly on Lemma 1 clean columns. Columns with a nonzero padded register are still covered only by the explicit unitary-extension obligation.
 
@@ -2641,7 +2641,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3426](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column audit keeps the full-space unitary extension as an open obligation for every column, including non-clean padded-register inputs.
 
@@ -2655,7 +2655,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3437](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column contract records the same image index as the paper-image skeleton.
 
@@ -2669,7 +2669,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3442](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column contract records the executable n-bit address range check.
 
@@ -2683,7 +2683,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3448](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column contract records the executable high-bit no-spill check.
 
@@ -2697,7 +2697,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3454](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column audit records that the paper image preserves the row register. This is an executable register-safety fact for the Phase 1 skeleton; it does not promote the paper-level 'forwardCorrect' obligation.
 
@@ -2711,7 +2711,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3465](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column audit records that the paper image writes the O\_D register to the computed address whenever that address is an n-bit value.
 
@@ -2725,7 +2725,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3475](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column address-range audit Boolean follows from the address bound.
 
@@ -2739,7 +2739,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3483](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The per-column no-spill audit Boolean follows from the address bound.
 
@@ -2753,7 +2753,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3491](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reusable per-column register-safety package for the active Lemma 1 image skeleton. The package is deliberately conditional on the existing n-bit address hypothesis, so it does not hide the paper parameter-family obligation.
 
@@ -2767,7 +2767,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3503](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Matrix entries for the faithful Lemma 1 'O\_D^BS' paper-image skeleton. The column 'j' has a candidate '1' entry at 'bandedSparseAccessPaperImage p j.val', which replaces the padded sparse-address register by 'r\_si' and preserves the row register. This declaration is the active 'oneTermRobinGate\_O\_D\_BS' matrix, but it does not prove that the image is in range, injective, unitary, or cleaned up by the dagger.
 
@@ -2781,7 +2781,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3525](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper-image matrix entry is governed by 'bandedSparseAccessPaperImage'.
 
@@ -2795,7 +2795,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3531](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Forward paper-image matrix entry at the finite image column. The hypotheses are the same explicit range hypotheses used to construct 'bandedSparseAccessPaperImageFin'. This theorem does not assert that the image function is injective or that the matrix is unitary.
 
@@ -2809,7 +2809,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3544](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Transpose-style matrix for the faithful Lemma 1 'O\_D^BS' paper-image skeleton. The entry 'M†\[i,j\]' is '1' exactly when column index 'j' is the forward paper image of row index 'i'. This is only the matrix-level transpose of the current executable image skeleton; the inverse, unitarity, and post-SWAP cleanup claims remain tracked by 'defaultBandedSparseAccessPaperContract p' with 'proved := false'.
 
@@ -2823,7 +2823,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3561](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper-image dagger matrix is the transpose-style matrix for the image skeleton.
 
@@ -2837,7 +2837,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3567](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Transpose-style paper-image matrix entry paired with the finite forward image. This is the entry relation needed before an inverse-on-range proof. It does not prove that the transpose-style matrix cleans the ancillas after SWAP.
 
@@ -2851,7 +2851,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3579](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Sparse amplitude value: the s-th nonzero stencil coefficient of row i in the Robin derivative matrix, returned as a Coeff value. This is the data layer that both O\_DT^S (sparse amplitude oracle, Lemma 3) and Ry\_boundary (boundary-controlled rotations) need. The column index corresponding to each (s, i) pair is given by 'robinSparseColumnMap'. For the fourth-order central second-derivative stencil: - Bulk rows (K1 ≤ i ≤ K2): 5 entries at offsets \{-2,-1,0,1,2\} - Left boundary row 0: 3 entries with Robin correction (A1\*dx term) - Left boundary row 1: 4 entries with Robin correction (A1\*dx term) - Right boundary row N-2: 4 entries with Robin correction (B1\*dx term) - Right boundary row N-1: 3 entries with Robin correction (B1\*dx term) - Unused sparse indices (s ≥ entry count): Coeff.rat 0 main.tex:822-849, 1081-1083, 1113-1117 -
 
@@ -2865,7 +2865,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3604](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Global sparse-slot coefficient source for the one-term Robin table. Unlike 'robinSparseAmplitudeValue', the sparse index is interpreted through the active global slot table used by 'oneTermRobinGlobalSparseAddress'. Thus slot '2' is the zero-offset diagonal slot in every row. Boundary slots that are present in the global sparse register but absent from the Robin row carry coefficient '0'; the slot itself is not deleted. Guseynov-Huang-Liu 2025, Lemma 'Diagonal sparsity', Lemma 'Banded-sparse-access-oracle', the zero-inclusion paragraph before Theorem '1 term robin', and Eq. 'ROBIN clarified', arXiv:2506.20478.
 
@@ -2879,7 +2879,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3661](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Focused boundary regression: global slot '2' is the row-'0' diagonal.
 
@@ -2893,7 +2893,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3707](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The focused global slot is not the old row-local sparse entry. This records the contract drift found by the gamma3 boundary packet without promoting any analytic normalizer or block-encoding flag.
 
@@ -2907,7 +2907,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3719](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Shared Phase-1 contract for every paper route that uses the normalized derivative coefficient 'D\_j^(s) / N\_D'. Both Lemma 3 'O\_DT^S' and the boundary 'R\_y' angle formulas use the same global sparse-slot coefficient source and the same normalizer symbol 'N\_D'. This record keeps the common analytic gaps in one Lean object: nonzero normalizer, division semantics, coefficient bound, absolute-square semantics, square-root complement, arccos semantics, and two-by-two unitarity. It is a contract only; every obligation is false in Phase 1. Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), Fig. 1-term Robin, and boundary rotation equations, arXiv:2506.20478.
 
@@ -2921,7 +2921,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3737](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default shared 'N\_D' normalizer contract for one Robin coefficient. The normalized coefficient is represented by multiplying the sparse derivative coefficient by the formal symbol 'N\_D\_inv'. This is not a proof that 'N\_D' is nonzero or that a division operation has been interpreted.
 
@@ -2935,7 +2935,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3761](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -2949,7 +2949,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3808](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -2963,7 +2963,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3813](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -2977,7 +2977,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3818](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Phase-1 source/bound view for the shared 'N\_D' normalizer contract. This does not prove the analytic inequality. It only packages the exact coefficient source and the paper normalizer symbol used by the future bound obligation, so 'O\_DT^S' and 'Ry\_boundary' can point to the same fixed interface.
 
@@ -2991,7 +2991,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3831](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default source/bound interface for the paper statement '|D\_j^(s)| <= N\_D'. The coefficient and obligation are reused from 'derivativeNormalizerNDContract'; the obligation remains false until the coefficient semantics and analytic normalizer bound are formalized.
 
@@ -3005,7 +3005,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3849](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3019,7 +3019,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3863](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3033,7 +3033,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3868](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3047,7 +3047,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3873](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3061,7 +3061,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3878](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3075,7 +3075,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3883](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Honest U\_indic matrix: controlled-X on the indicator qubit, conditioned on the system register being in the bulk window \[K1, K2\]. For each basis state |j⟩: - Extract systemVal = bits \[1, 1+n) of j - If K1 ≤ systemVal ≤ K2 (bulk row): flip indicator bit - Otherwise (boundary row): identity main.tex:1088-1099 -
 
@@ -3089,7 +3089,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3896](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Gate matrix for U\_indic using the honest permutation matrix. Controlled-X on indicator bit at position 1+2n, conditioned on bulk membership. Unitarity proved: indicatorOracleMatrix\_is\_permutation shows each row and column has exactly one entry equal to 1, so the matrix is a permutation matrix (hence unitary). main.tex:1088-1099 -
 
@@ -3103,7 +3103,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3914](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem-facing Hermitian-conjugate slot for 'U\_indic'. The indicator permutation is self-inverse, so its dagger is represented by the same matrix. This gate record exists to keep the Fig. 1-term Robin transcript faithful; the active backend product is still the seven-gate list unless a separate theorem rewires it.
 
@@ -3117,7 +3117,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3931](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem-facing 'U\_indic^dagger' slot has the same matrix as 'U\_indic'. This is only a transcript bridge. It does not insert the dagger slot into the active seven-gate backend product.
 
@@ -3131,7 +3131,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3947](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Honest O\_DT^S diagonal matrix: encodes the sparse amplitude data on the diagonal for bulk rows (indicator=1) and acts as identity for boundary rows (indicator=0). For each compound basis state |j⟩: - If indicator bit = 0 (boundary row): diagonal entry = Coeff.rat 1 (identity) - If indicator bit = 1 (bulk row): diagonal entry = robinSparseAmplitudeValue(n, s, i) - Off-diagonal entries are zero. NOTE: The paper's actual O\_\{D^T\}^S (Lemma 3, main.tex:822-849) is a controlled rotation on the ancilla qubit, not a diagonal matrix. This diagonal encoding exercises the amplitude data pathway; the rotation structure is a proof obligation. main.tex:822-849 -
 
@@ -3145,7 +3145,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3965](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Register values used by the faithful Lemma 3 'O\_DT^S' contract. The compound-index convention stores the rotation ancilla in bit 0, the system row in bits '\[1, 1+n)', the padded sparse register in bits '\[1+n, 1+2n)', and the indicator bit at 'robinIndicatorBitPosition p'. The 'nonAncillaValue' field is 'j >>> 1'; preserving it means that only the ancilla bit may change. Guseynov-Huang-Liu 2025, Lemma 3, arXiv:2506.20478.
 
@@ -3159,7 +3159,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:3994](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Extract the Lemma 3 sparse-amplitude oracle registers from a compound basis index. This is a source-contract skeleton for the paper's controlled rotation on the ancilla qubit; it leaves the legacy diagonal data helper available.
 
@@ -3173,7 +3173,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4007](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic cosine half-angle entry for the Lemma 3 O\_DT^S rotation.
 
@@ -3187,7 +3187,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4025](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic sine half-angle entry for the Lemma 3 O\_DT^S rotation.
 
@@ -3201,7 +3201,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4029](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Explicit unresolved source obligation for the symbolic entries in the Lemma 3 'O\_DT^S' rotation skeleton. Equation (20) of Guseynov-Huang-Liu 2025 maps '|0>|s>' to an amplitude whose '|0>' component is 'D^(s) / N\_D' and whose complementary component is the square-root normalizer term. The Lean symbols 'sparseAmplitudeOracleDTCosHalf row sparse' and 'sparseAmplitudeOracleDTSinHalf row sparse' are only placeholders until this coefficient/normalizer relation and the corresponding two-by-two unitarity identity are formalized.
 
@@ -3215,7 +3215,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4044](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Typed Eq. (20) coefficient-normalizer contract for one 'O\_DT^S' rotation block. This binds the symbolic rotation entries to the concrete Robin sparse coefficient data and the paper's 'N\_D' normalizer without proving the analytic identities. The three obligations stay false until Lean has a coefficient language with the required division, square-root, absolute-value, and unitarity facts.
 
@@ -3229,7 +3229,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4059](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default Eq. (20) coefficient-normalizer contract for a Robin row and global sparse slot. The coefficient is 'robinGlobalSparseAmplitudeValue p.n sparse row'; the rotation entries are the symbols used by 'sparseAmplitudeOracleDTRotationMatrix'.
 
@@ -3243,7 +3243,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4079](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic stand-in for the Lemma 3 normalized coefficient 'D\_j^(s) / N\_D'. The factor 'Coeff.symbol "N\_D\_inv"' records the intended division by 'N\_D'. It is not a proof that 'N\_D' is nonzero or that the coefficient lies in the unit interval required by Eq. (20); those remain separate obligations.
 
@@ -3257,7 +3257,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4114](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Refined proof route for the 'odts\_coeff\_normalizer' block. This record separates the typed Eq. (20) data from the analytic obligations: division by 'N\_D', the paper's normalizer bound, the absolute-square term, the complementary square root, and the two-by-two unitarity identity. All proof obligations stay false in Phase 1.
 
@@ -3271,7 +3271,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4126](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default refined proof route for one 'O\_DT^S' Eq. (20) coefficient-normalizer block. The route keeps the construction fixed to the paper's controlled rotation and does not promote the gate-level unitarity claim.
 
@@ -3285,7 +3285,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4150](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3299,7 +3299,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4174](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3313,7 +3313,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4179](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3327,7 +3327,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4184](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3341,7 +3341,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4189](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3355,7 +3355,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4201](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3369,7 +3369,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4211](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3383,7 +3383,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4216](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Faithful Lemma 3 controlled-rotation skeleton for 'O\_DT^S'. For columns whose indicator bit is 0, the matrix acts as identity. For columns whose indicator bit is 1, it preserves every non-ancilla bit and applies a symbolic two-by-two rotation on ancilla bit 0. The symbols are indexed by the extracted row and sparse-index values; their connection to the Eq. (20) amplitudes determined by 'robinGlobalSparseAmplitudeValue p.n sparse row / N\_D' remains the coefficient-normalizer proof obligation. Guseynov-Huang-Liu 2025, Lemma 3, arXiv:2506.20478.
 
@@ -3397,7 +3397,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4231](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Gate matrix for O\_DT^S using the faithful controlled-rotation skeleton. The legacy diagonal helper 'sparseAmplitudeOracleDTMatrix' remains available as the coefficient-data path, but the active gate now preserves all non-ancilla bits and rotates bit 0 when the indicator bit is 1. Unitarity and the normalizer-bound trigonometric identity are not yet formally proved. main.tex:822-849 -
 
@@ -3411,7 +3411,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4256](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Register values used by the faithful 'Ry\_boundary' source contract. The compound-index convention is the same one used by the active matrix: ancilla bit 0 is the rotated qubit, bits '\[1, 1+n)' contain the Robin row, the high part of the O\_D register contains sparse index 's', and the indicator bit determines whether the boundary rotation is active. The 'nonAncillaValue' field is preserved by the controlled rotation. Guseynov-Huang-Liu 2025, Fig. 1-term Robin and Eq. angles for Ry, arXiv:2506.20478.
 
@@ -3425,7 +3425,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4275](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Extract the 'Ry\_boundary' register fields from a compound basis index. This is a source-contract skeleton; it does not prove the angle identities or unitarity of the symbolic rotation block.
 
@@ -3439,7 +3439,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4288](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic cosine half-angle entry for the 'Ry\_boundary' rotation.
 
@@ -3453,7 +3453,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4306](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic sine half-angle entry for the 'Ry\_boundary' rotation.
 
@@ -3467,7 +3467,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4310](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Explicit unresolved source obligation for the 'Ry\_boundary' angle/normalizer relation. The paper uses angles 'theta\_j^s = arccos(D\_j^(s) / N\_D)' for boundary rows. The Lean symbols 'boundaryRotationCosHalf row sparse' and 'boundaryRotationSinHalf row sparse' are placeholders until the half-angle identities and the two-by-two unitarity relation are formalized.
 
@@ -3481,7 +3481,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4322](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Typed angle/normalizer contract for one 'Ry\_boundary' rotation block. This binds the symbolic half-angle entries used by 'boundaryRotationMatrix' to the Robin sparse coefficient source and the paper normalizer 'N\_D'. It records the exact obligations without asserting the arccos relation, half-angle formulas, control condition, or unitarity.
 
@@ -3495,7 +3495,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4336](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default 'Ry\_boundary' angle/normalizer contract for one Robin row and global sparse slot. The coefficient is 'robinGlobalSparseAmplitudeValue p.n sparse row'; the rotation entries are the symbols used by 'boundaryRotationMatrix'.
 
@@ -3509,7 +3509,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4359](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The coefficient source of the 'Ry\_boundary' angle contract is definitionally the Robin global sparse-slot amplitude data layer.
 
@@ -3523,7 +3523,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4402](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic stand-in for the paper argument 'D\_j^(s) / N\_D'. The factor 'Coeff.symbol "N\_D\_inv"' is not a proof that 'N\_D' is invertible. It only records the intended normalized coefficient while the required division semantics and nonzero normalizer condition remain explicit obligations.
 
@@ -3537,7 +3537,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4414](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Refined proof route for the 'ryb\_angle\_normalizer' block. This record separates the typed data already present in 'BoundaryRotationAngleNormalizerContract' from the missing analytic semantics: division by 'N\_D', real arccos, square roots, the paper's normalizer bound, and the resulting two-by-two unitarity identity. All proof obligations stay false in Phase 1.
 
@@ -3551,7 +3551,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4427](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default refined proof route for one 'Ry\_boundary' angle-normalizer block. The route keeps the construction fixed to the paper formula 'theta\_j^s = arccos(D\_j^(s) / N\_D)'. It does not introduce a replacement angle or promote the gate-level unitarity claim.
 
@@ -3565,7 +3565,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4454](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3579,7 +3579,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4483](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3593,7 +3593,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4488](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3607,7 +3607,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4493](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3621,7 +3621,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4503](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -3635,7 +3635,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4513](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge showing that the shared 'N\_D' route is now sourced from the active global sparse-slot coefficient table. This only wires coefficient data through the existing contracts. It does not prove the analytic division, arccos, half-angle, or unitarity obligations.
 
@@ -3649,7 +3649,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4530](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Honest Ry\_boundary matrix: controlled R\_y rotation on the ancilla qubit (bit 0), conditioned on the indicator bit being 0 (boundary row). For bulk rows (indicator=1): acts as identity (no rotation). For boundary rows (indicator=0): applies R\_y(θ\_j^s) on the ancilla qubit, where θ\_j^s = arccos(D\_j^(s) / N\_D) (main.tex:1115-1120, Eq. angles for Ry). The R\_y(θ) matrix on the ancilla qubit: M(|0⟩, |0⟩) = cos(θ/2), M(|1⟩, |0⟩) = sin(θ/2) M(|0⟩, |1⟩) = -sin(θ/2), M(|1⟩, |1⟩) = cos(θ/2) Rotation entries are symbolic since the exact trigonometric values involve square roots: cos(θ/2) = √((1 + D/N\_D)/2), sin(θ/2) = √((1 - D/N\_D)/2). main.tex:1115-1120 -
 
@@ -3663,7 +3663,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4557](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Gate matrix for Ry\_boundary using the honest controlled rotation matrix. R\_y rotation on the ancilla qubit for boundary rows (indicator=0); identity for bulk rows (indicator=1). Unitarity not yet formally proved. main.tex:1115-1120 -
 
@@ -3677,7 +3677,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4592](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Guard for the shared 'N\_D' Phase-1 route. The source-bound bridges only synchronize the two proof routes. This theorem records that the analytic obligations and the two affected gate unitarity flags still have not been promoted. Guseynov-Huang-Liu 2025, Lemma 3, Eq. (20), and Eq. angles for Ry, arXiv:2506.20478.
 
@@ -3691,7 +3691,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4610](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Combined Phase-1 guard for the shared 'N\_D' route. This packages the source-bound bridges for 'O\_DT^S' and 'Ry\_boundary' together with the current false-flag state. It is bookkeeping only: the analytic division, bound, square-root, arccos, half-angle, and unitarity obligations are still unproved.
 
@@ -3705,7 +3705,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4642](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Interim O\_D^BS column-map helper, not the faithful Lemma 1 paper oracle. It maps |s⟩|i⟩ → |s⟩|col(s,i)⟩ by replacing the system register bits. Bits outside the system register are preserved. The paper contract |0>^(n-l)|s>^l|i>^n -> |r\_si>^n|i>^n is recorded separately in 'defaultBandedSparseAccessPaperContract'; do not use this helper as the unitarity or block-extraction target for the paper oracle. main.tex:784-801 -
 
@@ -3719,7 +3719,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4695](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Gate record for the faithful Lemma 1 O\_D^BS paper-image matrix skeleton. The matrix uses 'bandedSparseAccessPaperMatrix', which preserves the row register and writes 'r\_si' into the padded sparse-address register. Unitarity, forward correctness, and block extraction remain unproved obligations. Guseynov-Huang-Liu 2025, Lemma 1, arXiv:2506.20478.
 
@@ -3733,7 +3733,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4718](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Active forward 'O\_D^BS' gate entry at the finite paper image.
 
@@ -3747,7 +3747,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4728](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Concrete contract-drift guard separating the active Lemma 1 paper-image matrix from the legacy sparse-column helper. For the one-term parameters 'n = 3', 'kappa = 7', source column '8' is sent by the paper-image skeleton to row '40'. The active 'O\_D^BS' gate therefore has entry '(40, 8) = 1' and no entry at '(4, 8)', while the legacy helper still has its historical row-'4' entry. This is only a regression guard; it does not promote unitarity, cleanup, or block extraction.
 
@@ -3761,7 +3761,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4748](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Concrete rejected-model collision for the old row-dependent 'O\_D^BS' address. For the one-term parameters 'n = 3', 'kappa = 7', boundary row '0' has only three nonzero Robin stencil entries. The old row-dependent address folded sparse index '3' back to the row address, colliding with sparse index '0'. The active global-slot paper image separates these columns; this theorem is retained only as regression memory for the rejected address model.
 
@@ -3775,7 +3775,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4770](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Concrete regression that the corrected active global-slot image separates the old boundary unused-sparse collision columns. No semantic proof flag is promoted: this only checks the active image entries for the two concrete clean columns.
 
@@ -3789,7 +3789,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4796](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The old boundary collision columns are both in the faithful global-slot source domain even though one of them is outside the rejected row-dependent nonzero-branch classifier. This is the regression that prevents future lower packets from treating 'bandedSparseAccessPaperValidCleanSource' as the active source predicate.
 
@@ -3803,7 +3803,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4821](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Encoded sparse value '7' is the first out-of-range slot for the one-term 'kappa = 7' contract. It is clean in the padded O\_D register but not in the faithful global-slot source domain.
 
@@ -3817,7 +3817,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4836](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic function value at grid point j. Returns Coeff.symbol "f\_x\_j" for each grid index. The paper's O\_f (Theorem amplitude-oracle for piece-wise polynomial function, main.tex:870-910) encodes f(x\_j)/N\_f; the 1/N\_f factor is absorbed into the normalizer α = N\_D · N\_f · κ. main.tex:870-910 -
 
@@ -3831,7 +3831,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4853](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Register values used by the paper-level function oracle 'O\_f' contract. The compound-index convention stores the system row in bits '\[1, 1+n)' and stores the 'm\_f' function-oracle workspace immediately above the indicator bit, starting at 'robinIndicatorBitPosition p + 1'. This record is a source-contract skeleton for the paper's clean-workspace equation; it does not assert the amplitude relation or workspace cleanup. Guseynov-Huang-Liu 2025, function-oracle construction, arXiv:2506.20478.
 
@@ -3845,7 +3845,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4865](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Extract the system register and the 'm\_f' function workspace from a compound basis index for the 'O\_f' source contract. The 'nonMFValue' field is the input index with the 'm\_f' workspace bits cleared. For clean-workspace columns this is the clean-branch basis index appearing in the paper equation.
 
@@ -3859,7 +3859,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4880](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic normalized clean-branch amplitude for the paper's function oracle. The reciprocal symbol records the intended factor '1 / N\_f' without proving that 'N\_f' is nonzero or that the amplitude is bounded.
 
@@ -3873,7 +3873,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4901](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper-image source contract for one column of the function oracle 'O\_f'. The clean branch records the displayed paper component '(f(x\_i)/N\_f)|0>^mf|i>'. The orthogonal component and all analytic side conditions are tracked as false obligations; this record is not a matrix proof and does not promote the current diagonal helper to a faithful oracle.
 
@@ -3887,7 +3887,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4912](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Build the paper-level 'O\_f' image contract for one compound basis column. This captures the register-level target '|0>^mf|i> ↦ (f(x\_i)/N\_f)|0>^mf|i> + |orth\_f(i)>' as data and keeps every unproved semantic claim explicit.
 
@@ -3901,7 +3901,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4936](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge lemma: the 'O\_f' paper image uses the shared register extractor.
 
@@ -3915,7 +3915,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4977](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge lemma: the clean 'O\_f' branch clears only the 'm\_f' workspace bits.
 
@@ -3929,7 +3929,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4983](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge lemma: the clean 'O\_f' branch preserves the extracted system value.
 
@@ -3943,7 +3943,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4989](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge lemma: the clean 'O\_f' branch has zero 'm\_f' workspace value.
 
@@ -3957,7 +3957,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:4995](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge lemma: the clean 'O\_f' branch amplitude is the normalized function value at the system value extracted from the same column.
 
@@ -3971,7 +3971,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5003](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge lemma: the clean-workspace branch flag is inherited from the extractor.
 
@@ -3985,7 +3985,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5009](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* External source transcript for the O\_f amplitude-oracle theorem cited by GHL2025. This records the theorem and coordinate-oracle equation used as a source contract for the function oracle. It does not formalize the cited theorem and does not close the analytic facts needed for the Lean 'O\_f' contract.
 
@@ -3999,7 +3999,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5022](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default source transcript for GHL2025's function-oracle dependency. The GHL2025 theorem cites Guseynov--Liu 2024, arXiv:2411.01131, Theorem 5. The QBE status remains obligation-only: this declaration gives later proof packets a typed source anchor, not a proof of the theorem.
 
@@ -4013,7 +4013,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5047](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4027,7 +4027,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5088](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4041,7 +4041,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5092](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Refined proof route for the 'of\_nf\_amplitude\_route' block. The route ties the paper's coordinate-oracle equation to the current Lean source-contract data: the symbolic function value, the 'N\_f' normalizer symbol, the clean-branch amplitude in 'functionOraclePaperImage', and the theorem-level function-oracle obligation. It does not prove that 'N\_f' is nonzero, that 'N\_f\_inv' is an inverse, that the normalizer bound holds, or that the orthogonal component gives a unitary completion.
 
@@ -4055,7 +4055,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5114](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default O\_f amplitude-route contract for one compound basis column. The route reuses 'functionOraclePaperImage'; it only packages the dependencies needed before any future proof of the clean-branch amplitude or theorem-level 'FunctionOracleContract.amplitudeCorrect' field.
 
@@ -4069,7 +4069,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5141](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4083,7 +4083,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5166](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4097,7 +4097,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5171](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4111,7 +4111,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5176](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4125,7 +4125,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5181](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4139,7 +4139,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5186](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4153,7 +4153,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5196](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4167,7 +4167,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5208](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -4181,7 +4181,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5224](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Combined Phase-1 guard for the 'O\_f' external-source route. The bridge to the cited amplitude-oracle theorem and the false analytic flags are packaged together so later proof packets cannot use the source transcript as a proof of 'O\_f' amplitude correctness or unitarity.
 
@@ -4195,7 +4195,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5242](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Symbolic matrix entry for the unresolved orthogonal component of 'O\_f'. The paper only fixes the clean 'm\_f' branch amplitude 'f(x\_i) / N\_f'; the remaining orthogonal completion is a unitarity obligation. This symbol records one placeholder entry for that unresolved completion without proving orthogonality, normalizer bounds, or unitarity.
 
@@ -4209,7 +4209,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5285](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Faithful Phase 1 matrix skeleton for the paper-level function oracle 'O\_f'. For each clean-workspace input column, the clean 'm\_f' branch entry is the normalized amplitude recorded by 'functionOraclePaperImage', namely 'f(x\_i) / N\_f' represented as 'functionOracleNormalizedValue'. Other clean-workspace output rows are zero, matching the paper statement that the unresolved component is orthogonal to the clean workspace branch. Non-clean-workspace rows carry symbolic completion entries. For non-clean input columns, the paper does not fix a branch equation, so this skeleton leaves all entries symbolic. The symbolic completion does not prove amplitude correctness, the 'N\_f' bound, orthogonality, or unitarity; those obligations remain false in 'functionOraclePaperImage' and the gate record.
 
@@ -4223,7 +4223,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5305](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The 'O\_f' paper matrix exposes the clean branch amplitude for clean input columns.
 
@@ -4237,7 +4237,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5320](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Other clean-workspace rows have zero 'O\_f' orthogonal-completion entry.
 
@@ -4251,7 +4251,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5330](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Non-clean input columns are left in the symbolic 'O\_f' completion branch.
 
@@ -4265,7 +4265,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5340](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Helper-only O\_f diagonal matrix: records function values f(x\_j) on the diagonal. For each compound basis state |j⟩, extracts the system register value i and sets the diagonal entry to 'robinFunctionValue n i' = Coeff.symbol "f\_x\_i". All off-diagonal entries are zero. The entry depends only on the system register (grid point index), not on the sparse index. The paper's O\_f (Theorem amplitude-oracle for piece-wise polynomial function, main.tex:870-910) encodes f(x\_j)/N\_f via amplitude oracle. The 1/N\_f normalization is absorbed into the block-encoding normalizer α = N\_D · N\_f · κ. This diagonal matrix is not the paper image; the paper-level clean branch and orthogonal-component obligations are recorded by 'functionOraclePaperImage', and the active gate keeps 'unitary.proved := false'. main.tex:870-910 -
 
@@ -4279,7 +4279,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5365](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Gate matrix for 'O\_f' using the faithful paper-image matrix skeleton. The active matrix now exposes the clean 'm\_f' branch amplitude from 'functionOraclePaperImage'. The legacy diagonal helper 'functionOracleMatrix' remains available only as a function-value data check. Unitarity, amplitude correctness, the 'N\_f' bound, and the orthogonal completion are still unproved. Guseynov-Huang-Liu 2025, Theorem amplitude-oracle for piece-wise polynomial function and Fig. 1-term Robin, arXiv:2506.20478.
 
@@ -4293,7 +4293,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5384](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Honest SWAP matrix: permutation matrix swapping the system register (n qubits at bits \[1, 1+n)) with the O\_D^BS register (n qubits at bits \[1+n, 1+2n)). For each basis state |j⟩: - Extract block1 = bits \[1, 1+n) of j (system register value) - Extract block2 = bits \[1+n, 1+2n) of j (O\_D^BS register value) - diff = block1 XOR block2 - Swapped index = j XOR (diff <<< 1) XOR (diff <<< (1+n)) When block1 = block2 the SWAP is the identity. All bits outside the two n-qubit blocks (ancilla bit 0, indicator bit 1+2n, mf MSBs) are preserved. The SWAP image-level proof is now promoted: 'swapOracleImage' is proved self-inverse, 'swapOracleMatrix' is proved a finite permutation matrix, and 'oneTermRobinGate\_SWAP.unitary.proved = true'. figure:1\_term\_ROBIN, main.tex:1140 -
 
@@ -4307,7 +4307,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5410](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Image function for the SWAP oracle: swaps two n-qubit register blocks. For each basis state j, swaps block1 (bits \[1,1+n)) with block2 (bits \[1+n,1+2n)) by XORing with the block difference shifted to each block position. main.tex:1140 -
 
@@ -4321,7 +4321,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5426](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The n-bit XOR difference between the two register blocks exchanged by SWAP. This is the reusable proof-DAG interface for the SWAP image route: preservation of this value after one SWAP is the local ingredient for self-inverse and later finite-domain permutation proofs.
 
@@ -4335,7 +4335,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5441](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The SWAP image is the source index XORed by the same difference in both blocks.
 
@@ -4349,7 +4349,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5449](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* swapOracleMatrix entry equals image function check.
 
@@ -4363,7 +4363,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5456](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Gate matrix for SWAP using the honest permutation matrix. Swaps system register (bits \[1,n+1)) with O\_D^BS register (bits \[n+1,2n+1)). Unitarity is backed by the proof-DAG permutation bridge below: 'swapOracleMatrix\_is\_permutation'. main.tex:1140 -
 
@@ -4377,7 +4377,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5468](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Transpose-style matrix for O\_D^BS, sharing the forward sparse-access image map. For each i: compute image(i) using the forward mapping, then check if j = image(i). This is the matrix transpose of bandedSparseAccessMatrix. The inverse/unitarity proof is blocked until the forward boundary column-map contract is reconciled. main.tex:1148 -
 
@@ -4391,7 +4391,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5483](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Gate matrix for '(O\_D^BS)^†' using the transpose-style paper-image matrix. This is paired with 'bandedSparseAccessPaperMatrix'; it does not prove that the transpose is a true inverse on the relevant post-SWAP states. figure:1\_term\_ROBIN and Lemma 1, arXiv:2506.20478.
 
@@ -4405,7 +4405,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5505](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Active '(O\_D^BS)^†' gate entry paired with the finite forward image.
 
@@ -4419,7 +4419,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5515](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Post-SWAP dagger entry from an explicitly supplied paper-image preimage. The hypothesis 'hpre' is the whole inverse-on-range input for this lemma: it does not prove that such a 'pre' exists, that it is unique, or that the dagger cleans the padded sparse-index register. The post-SWAP relation is recorded by 'hpost' for the cleanup proof-DAG interface, but the matrix entry itself is just the active transpose-style paper-image entry.
 
@@ -4433,7 +4433,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5534](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Proof-carrying interface for a supplied post-SWAP cleanup preimage. The fields intentionally include the hypotheses that are not yet derived: 'postSwap', 'preimage', 'preCleanInput', and 'preAddressBound'. The record only packages consequences of those inputs: the active dagger entry and executable register-cleanup checks for the chosen preimage. Existence, uniqueness, and the paper-level 'daggerCleanup' obligation remain open.
 
@@ -4447,7 +4447,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5555](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Build the post-SWAP cleanup witness from an explicitly supplied preimage. This is the fixed inverse-on-range interface for the next cleanup proof: it does not construct the preimage and does not promote any semantic proof flag.
 
@@ -4461,7 +4461,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5585](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reusable image witness for the active Lemma 1 'O\_D^BS' gate pair. This packages the forward entry, transpose-style dagger entry, row roundtrip, written-address roundtrip, and no-spill Boolean under the explicit n-bit address hypothesis. It is not an injectivity, inverse uniqueness, cleanup, or unitarity proof.
 
@@ -4475,7 +4475,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5626](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Global-source specialization of the active Lemma 1 'O\_D^BS' entry witness. For a finite column in the faithful source domain, the global-slot source predicate supplies the clean padded input and sparse-slot bound, while the '2 <= n' parameter-family hypothesis supplies the n-bit address bound. The result packages the finite image index and paired forward/dagger entries, but does not prove injectivity, cleanup, or unitarity.
 
@@ -4489,7 +4489,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5660](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* List of all 7 gate matrix placeholders for the one-term Robin circuit, in the same order as 'oneTermRobinCircuit'. figure:1\_term\_ROBIN -
 
@@ -4503,7 +4503,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5706](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The placeholder gate matrices match the circuit gate labels. This is trivially true because the placeholders were constructed with matching gate constructors. figure:1\_term\_ROBIN -
 
@@ -4517,7 +4517,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5722](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The active matrix placeholder list uses the same gate order as Fig. 1-term Robin and 'oneTermRobinCircuit'. This is a structural guard only: it prevents a later proof packet from keeping similar-looking proof flags while changing the circuit order.
 
@@ -4531,7 +4531,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5738](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The active seven-gate matrix list keeps only the locally certified indicator and SWAP gates marked as proved. This is a Phase 1 guard for Fig. 1-term Robin. It records the current gate-level proof flags without promoting the paper-oracle obligations for 'O\_DT^S', 'Ry\_boundary', 'O\_D^BS', 'O\_f', or '(O\_D^BS)^dagger'.
 
@@ -4545,7 +4545,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5757](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Indicator oracle image function: for each basis state j, computes the image by XORing the indicator bit at position indPos when the system register value is in the bulk window \[K1, K2\]. This is a self-inverse permutation. main.tex:1088-1099 -
 
@@ -4559,7 +4559,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5773](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The indicator oracle matrix entry is 1 exactly when i = indicatorOracleImage j. main.tex:1088-1099 -
 
@@ -4573,7 +4573,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5785](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Self-inverse property for n=1: applying indicatorOracleImage twice returns the original value for all j in Fin domain (128 elements). Checked by native\_decide over the finite Fin type. main.tex:1088-1099 -
 
@@ -4587,7 +4587,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5796](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Self-inverse property for n=3: applying indicatorOracleImage twice returns the original value for all j in Fin domain (8192 elements). Checked by native\_decide over the finite Fin type. main.tex:1088-1099 -
 
@@ -4601,7 +4601,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5810](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Injectivity for n=1: derived from self-inverse property. main.tex:1088-1099 -
 
@@ -4615,7 +4615,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5822](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Injectivity for n=3: derived from self-inverse property. main.tex:1088-1099 -
 
@@ -4629,7 +4629,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5838](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12 helper: (b <<< pos) &&& ((1 <<< n) - 1) = 0 when pos >= n, because b <<< pos has all zeros in bits \[0, pos) >= \[0, n).
 
@@ -4643,7 +4643,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5855](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12 helper: XOR with a value shifted left by 'pos' preserves the low 'n' bits when 'pos >= n'. Uses AND-XOR distributivity and the zero mask lemma.
 
@@ -4657,7 +4657,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5872](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12 helper: XOR with a high-shifted value preserves low bits after right-shifting. ((x ^^^ (b <<< pos)) >>> 1) &&& ((1 <<< n) - 1) = (x >>> 1) &&& ((1 <<< n) - 1) when pos >= 1 + n.
 
@@ -4671,7 +4671,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5883](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG helper: the XOR difference between the two n-bit blocks is itself an n-bit value. main.tex:1140 -
 
@@ -4685,7 +4685,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5908](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG helper: right-shifting the n-bit block difference by n removes it. main.tex:1140 -
 
@@ -4699,7 +4699,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5926](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG helper: shifting the block difference into the high block leaves zero in the low n-bit mask. main.tex:1140 -
 
@@ -4713,7 +4713,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5941](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Shifting a bounded value into a register block keeps it inside the total basis width.
 
@@ -4727,7 +4727,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5954](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG range block: the image of the register-block SWAP stays inside the same full finite basis. This is only a range lemma; the finite permutation bridge is proved separately by 'swapOracleMatrix\_is\_permutation'.
 
@@ -4741,7 +4741,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:5972](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG block: after 'swapOracleImage', the low n-bit register equals the old high n-bit register. This is the first register-level bit-slice lemma needed for the eventual SWAP self-inverse/permutation proof. main.tex:1140 -
 
@@ -4755,7 +4755,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6003](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG block: after 'swapOracleImage', the high n-bit register equals the old low n-bit register. This is the symmetric register equation paired with 'swapOracleImage\_block1\_eq\_block2'; it is still only a bit-slice block, not a SWAP unitarity proof. main.tex:1140 -
 
@@ -4769,7 +4769,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6031](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG block: the XOR difference between the two exchanged registers is preserved by one SWAP application. This uses only the two register block equations and is independent of any gate unitarity flag.
 
@@ -4783,7 +4783,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6065](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* XORing the same two shifted masks twice cancels them bitwise.
 
@@ -4797,7 +4797,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6074](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG block: the image function is self-inverse. This is the arithmetic image fact reused by the finite permutation-matrix bridge.
 
@@ -4811,7 +4811,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6091](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG block: injectivity of the image function, derived from the self-inverse arithmetic block without opening the bit-slice proof again.
 
@@ -4825,7 +4825,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6102](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP proof-DAG block: bijectivity of 'swapOracleImage' on the finite full Hilbert-space basis. The finite map uses 'swapOracleImage\_lt\_qubitDim' for the 'Fin' constructor and 'swapOracleImage\_self\_inverse' for both injectivity and surjectivity.
 
@@ -4839,7 +4839,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6116](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* For each SWAP matrix column, the row indexed by 'swapOracleImage' contains the unique '1' entry.
 
@@ -4853,7 +4853,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6139](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* For each SWAP matrix column, any '1' entry must occur at the row indexed by 'swapOracleImage'.
 
@@ -4867,7 +4867,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6151](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every SWAP matrix row has a '1' entry, by finite surjectivity.
 
@@ -4881,7 +4881,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6161](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every SWAP matrix row has a unique '1' entry, by finite injectivity.
 
@@ -4895,7 +4895,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6176](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SWAP matrix is a finite permutation matrix: every row and column has exactly one entry equal to '1'. This closes the SWAP gate-level matrix-semantics bridge while leaving the paper-specific O\_D^BS, O\_f, LCU, and block-extraction obligations unchanged.
 
@@ -4909,7 +4909,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6194](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* After the active Lemma 1 paper image and the SWAP gate, the system-row register contains the paper address 'r\_si'. This is a post-SWAP register equation under the same n-bit address hypothesis used by the finite image bridge; it does not construct a dagger preimage or promote cleanup.
 
@@ -4923,7 +4923,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6221](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* After the active Lemma 1 paper image and the SWAP gate, the O\_D register contains the original row value. This is the second post-SWAP register equation needed before inverse-on-range cleanup search.
 
@@ -4937,7 +4937,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6238](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* After the active paper image and SWAP, the post-SWAP column is still a finite basis index whenever the source column is finite and the written paper address is n-bit. This does not prove inverse-on-range or cleanup.
 
@@ -4951,7 +4951,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6254](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Replace the 'O\_D^BS' n-bit register of a compound index while preserving the low ancilla/system block and all high-tail bits. This is the local splice used to build a post-SWAP cleanup preimage candidate. It does not assert that the chosen 'odValue' is the correct reverse address.
 
@@ -4965,7 +4965,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6274](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper image is the O\_D-register splice with the computed paper address.
 
@@ -4979,7 +4979,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6283](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The spliced low-and-O\_D block fits below the high-tail boundary for n-bit O\_D values.
 
@@ -4993,7 +4993,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6291](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Splicing an O\_D value preserves the low ancilla-and-row block.
 
@@ -5007,7 +5007,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6329](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Splicing an n-bit O\_D value exposes that value when the O\_D register is extracted.
 
@@ -5021,7 +5021,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6364](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Splicing preserves the row field.
 
@@ -5035,7 +5035,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6407](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Splicing an n-bit value into the O\_D block makes that value the extracted O\_D register.
 
@@ -5049,7 +5049,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6427](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Splicing an n-bit O\_D value preserves all bits above the O\_D register.
 
@@ -5063,7 +5063,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6439](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Splicing an n-bit O\_D value into a finite compound basis index preserves the full finite-basis range. This is the range counterpart of the splice register equations and does not assert that the chosen O\_D value is semantically correct.
 
@@ -5077,7 +5077,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6471](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Replacing the O\_D block twice is the same as keeping the second replacement.
 
@@ -5091,7 +5091,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6515](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reconstructing an index from its low, O\_D, and high blocks gives the same index.
 
@@ -5105,7 +5105,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6530](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Clean 'O\_D^BS' register value whose padded-low part is zero and sparse part is 'sparseValue'.
 
@@ -5119,7 +5119,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6572](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean O\_D value has zeroes in the padded low slice.
 
@@ -5133,7 +5133,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6577](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A clean sparse value fits in the n-bit O\_D register when the sparse width fits in n.
 
@@ -5147,7 +5147,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6586](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Extracting the sparse slice from a clean O\_D value recovers the sparse value.
 
@@ -5161,7 +5161,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6601](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* On a clean Lemma 1 source column, the extracted O\_D register is exactly the canonical clean sparse-register value for its sparse slot. This is the bit-slice reconstruction block needed to lift address injectivity to full paper-image injectivity. It only uses the executable clean-input predicate; it does not prove any semantic cleanup flag.
 
@@ -5175,7 +5175,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6621](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The corrected active 'O\_D^BS' paper image is injective on the faithful global-slot clean source domain. This is a finite-register proof-DAG block, not a semantic-flag promotion. It combines low-prefix preservation, high-tail preservation, the written-address roundtrip, same-row global-address injectivity, and clean O\_D register reconstruction. The obligation records for inverse-on-range, dagger cleanup, and unitarity remain false.
 
@@ -5189,7 +5189,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6695](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The reverse sparse index used by the post-SWAP cleanup candidate fits in the three-bit sparse register for the one-term Robin parameter family.
 
@@ -5203,7 +5203,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6822](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean O\_D register value spliced into the post-SWAP preimage candidate is n-bit for the one-term Robin parameter family.
 
@@ -5217,7 +5217,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6837](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Candidate clean preimage for the column reached by 'O\_D^BS', SWAP, and then '(O\_D^BS)^dagger'. The candidate keeps the post-SWAP row and high-tail bits, and replaces the 'O\_D^BS' register by a clean padded register whose sparse field is the inverse global slot for the original source slot. The separate Boolean audit below checks whether this candidate is actually a paper-image preimage.
 
@@ -5231,7 +5231,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6865](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Executable audit for the post-SWAP preimage candidate. It checks three local facts: the candidate maps by the active paper-image skeleton to the post-SWAP column, the candidate is in the clean padded domain, and the candidate address is n-bit. Even when this Boolean is true for a finite parameter scan, the paper-level dagger cleanup and unitarity flags remain unproved.
 
@@ -5245,7 +5245,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6882](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The post-SWAP preimage candidate passes the executable image, clean-domain, and address-range checks for clean one-term Robin source columns. The assumptions keep the current Phase 1 contract explicit: the source column is in the finite basis, the source padded register is clean, and the one-term family uses a three-bit sparse register ('kappa = 7', 'clog2 kappa = 3'). This does not prove uniqueness, dagger cleanup, unitarity, or block extraction.
 
@@ -5259,7 +5259,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:6899](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean post-SWAP preimage candidate is a finite basis index for finite clean one-term Robin source columns. This only discharges the 'Fin' constructor premise for the conditional cleanup witness; uniqueness and semantic cleanup remain open.
 
@@ -5273,7 +5273,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7006](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Instantiate the conditional post-SWAP cleanup witness with the clean-source preimage candidate. The finite 'post' and 'pre' range facts remain explicit hypotheses. This wrapper converts the accepted Boolean candidate audit into the supplied preimage equality, clean-domain proof, and n-bit address bound required by 'bandedSparseAccessPostSwapCleanup\_of\_preimage'. It does not prove finite range, uniqueness, semantic dagger cleanup, or unitarity.
 
@@ -5287,7 +5287,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7055](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Instantiate the clean-source post-SWAP cleanup witness without caller-supplied finite-range premises. The theorem only supplies the 'Fin' range proofs for the already conditional candidate witness; it does not prove uniqueness, dagger cleanup, or either O\_D^BS unitarity flag.
 
@@ -5301,7 +5301,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7096](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Feed the row-dependent valid-clean-source predicate into the existing post-SWAP cleanup candidate wrapper. The predicate 'bandedSparseAccessPaperValidCleanSource' is only a Phase 1 source-domain classifier. This theorem records that it supplies the clean padded-register hypothesis required by the cleanup candidate. It does not prove source-domain completeness, unused-branch unitary extension, preimage uniqueness, semantic dagger cleanup, or either O\_D^BS unitarity flag.
 
@@ -5315,7 +5315,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7144](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Feed the faithful global-slot source predicate into the existing post-SWAP cleanup candidate wrapper. This is the active-source analogue of the row-dependent valid-clean-source bridge. It only extracts the padded clean-input fact from 'bandedSparseAccessPaperGlobalSlotSource' and reuses the conditional cleanup candidate. It does not prove preimage uniqueness, semantic dagger cleanup, unitarity, LCU correctness, or block extraction.
 
@@ -5329,7 +5329,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7186](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The post-SWAP preimage candidate audit is available on the active global-slot source domain. This is the global-source wrapper around the existing clean-source arithmetic block. It proves only the executable candidate check; inverse uniqueness, semantic dagger cleanup, and unitarity remain separate obligations.
 
@@ -5343,7 +5343,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7226](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The global-source post-SWAP preimage candidate is a finite basis index. This theorem only names the range premise needed by the conditional cleanup witness. It does not prove that the candidate is unique or that the dagger cleans every in-range image.
 
@@ -5357,7 +5357,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7245](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The post-SWAP preimage candidate has the reverse sparse slot in its extracted clean O\_D register. This names the splice/sparse-slice calculation used by the cleanup-candidate audit so the unique-preimage route can reuse it instead of repeating the bit-level proof.
 
@@ -5371,7 +5371,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7267](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The post-SWAP preimage candidate is itself an active global-slot source. The proof combines the executable candidate audit for clean input with the named reverse-slot sparse-slice lemma above. It still does not promote the inverse-on-range, uniqueness, dagger-cleanup, or unitarity obligation flags.
 
@@ -5385,7 +5385,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7312](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Uniqueness of the active global-slot clean preimage for the post-SWAP target. Any active global-source column that maps by the corrected paper image to the post-SWAP target must be the named reverse-slot preimage candidate. This is a finite basis-index lemma for the dagger-cleanup route; semantic obligation records remain false.
 
@@ -5399,7 +5399,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7360](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Proof-obligation interface for the active global-slot inverse-on-range route. The record fixes the source predicate, image function, post-SWAP target, and candidate preimage used by the corrected 'O\_D^BS' route. The executable 'candidateChecks' field can be proved from 'bandedSparseAccessPaperGlobalSlotSource' by 'bandedSparseAccessPaperPostSwapPreimageCandidateChecks\_of\_globalSlotSource'. The semantic inverse, uniqueness, injectivity, cleanup, and unitary-extension fields remain false in Phase 1.
 
@@ -5413,7 +5413,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7419](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default global-source inverse-on-range contract for one 'O\_D^BS' source column. This records the fixed route for future proof work without promoting any semantic flag or changing the active forward/dagger matrices.
 
@@ -5427,7 +5427,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7443](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The global-source inverse-on-range contract is obligation-only in Phase 1.
 
@@ -5441,7 +5441,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7485](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Global-source columns feed the fixed inverse-on-range interface and satisfy the executable candidate audit. The final fields remain false: this theorem does not assert uniqueness, injectivity, semantic dagger cleanup, or unitarity.
 
@@ -5455,7 +5455,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7506](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Record-level bridge from the compiled post-SWAP unique-preimage theorem to the global-slot inverse-on-range contract. This theorem reflects the finite basis-index evidence in the contract fields: any active global-source preimage of the contract's post-SWAP target is the contract's candidate preimage. It deliberately keeps every semantic obligation flag in the contract false; dagger cleanup and unitarity remain separate Phase 1 obligations.
 
@@ -5469,7 +5469,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7541](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Bridge the global-slot inverse-on-range contract to the concrete post-SWAP dagger cleanup witness. This theorem constructs the finite post-SWAP column and the named preimage candidate from the active global-source route, then reuses 'BandedSparseAccessPostSwapCleanup' to expose the transpose-style dagger entry and executable register checks. It deliberately keeps the semantic 'daggerCleanup' and 'unitaryExtension' flags false.
 
@@ -5483,7 +5483,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7608](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reviewed cleanup-contract map for the active global-slot 'O\_D^BS' route. This wrapper is intentionally non-promoting. It combines the compiled post-SWAP cleanup witness with the record-level unique-preimage bridge, so later cleanup work can consume one theorem exposing the contract target, candidate preimage, active-source uniqueness, and transpose-style dagger entry. The semantic inverse, uniqueness, injectivity, cleanup, and unitary-extension obligation flags remain false.
 
@@ -5497,7 +5497,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7681](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default-paper-contract cleanup-route bridge for the active global-slot 'O\_D^BS' route. This theorem ties the compiled cleanup-contract map back to 'defaultBandedSparseAccessPaperContract p'. It exposes the post-SWAP cleanup witness, active-source uniqueness, and transpose-style dagger entry while recording that the paper-contract cleanup and unitary-extension flags, and the two active 'O\_D^BS' gate-unitarity flags, remain false.
 
@@ -5511,7 +5511,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7775](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Off-candidate dagger entries are zero on the active global-slot source domain. For the fixed post-SWAP target in the global-slot inverse-on-range contract, any other active global-source preimage whose index is not the named candidate cannot have a transpose-style '(O\_D^BS)^†' entry into that target. This is a matrix-entry bridge only: it does not promote dagger cleanup or unitary flags.
 
@@ -5525,7 +5525,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7820](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Restricted active-domain dagger-column cleanup for the global-slot route. For the contract post-SWAP target, the named candidate has dagger entry '1', and every other active global-source row has dagger entry '0'. This is only a column statement over 'bandedSparseAccessPaperGlobalSlotSource'; it does not promote semantic cleanup, unitarity, circuit-unitarity, or block-extraction obligations.
 
@@ -5539,7 +5539,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7883](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Indicator form of the restricted active-domain dagger column. This is the same active-source-only column statement as 'bandedSparseAccessGlobalSlotInverseOnRangeContract\_restrictedDaggerColumnCleanup', rewritten as one if-then-else formula. It does not promote inverse, cleanup, unitarity, circuit-unitarity, or block-extraction obligations.
 
@@ -5553,7 +5553,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:7972](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Allowed scopes for the next 'O\_D^BS' cleanup theorem packet. This is planning data for Phase 1 faithful-paper work. Selecting a scope here does not prove cleanup, full-domain injectivity, or unitary extension.
 
@@ -5567,7 +5567,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8059](../../../../library/modules/ghl
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Non-promoting decision for the next 'O\_D^BS' cleanup theorem domain. The current compiled matrix-entry theorem is restricted to active global-source rows. Full clean-domain cleanup still needs a reversible image rule for every clean unused sparse branch, and full-space cleanup/unitarity still needs a separate reversible-extension argument. This record keeps that boundary machine-checkable before any lower proof packet tries to promote 'daggerCleanup'.
 
@@ -5581,7 +5581,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8075](../../../../library/modules/ghl
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Default cleanup-scope decision after the restricted dagger-column indicator. The selected theorem domain is active global-source only. The surrounding obligation records are copied from the existing paper and full-domain contracts so their 'proved = false' status stays synchronized with the actual contracts.
 
@@ -5595,7 +5595,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8095](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The cleanup-scope decision selects the active global-source theorem and keeps all broader cleanup/unitarity obligations closed to proof-flag promotion.
 
@@ -5609,7 +5609,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8116](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The cleanup-scope decision does not accept the prior PDE sparse-access transcript as a full-space unitary-extension proof. This is a guard for the next Phase 1 source-contract packet: the prior paper's equation is recorded as a source anchor, while its resource proof and any Robin-specific reversible-extension use remain unproved in QBE.
 
@@ -5623,7 +5623,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8147](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The cleanup-scope decision keeps the full clean-domain image-rule slot blocked. This guard ties the active-global-source scope choice to the unused-branch source decision and the full clean-domain wrapper. It is not a cleanup or unitarity theorem: the missing image rule remains 'none', proof search remains disabled, and every full clean-domain semantic field stays false.
 
@@ -5637,7 +5637,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8177](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Concrete boundary-source regression for the default paper-contract cleanup route. The historical source column '48' is outside the rejected row-dependent valid source predicate, but it is an active global-slot source for Lemma 1. This instance routes that column through the default cleanup bridge without promoting any 'O\_D^BS' semantic proof flag.
 
@@ -5651,7 +5651,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8216](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: robinIndicatorBitPosition = 1 + 2\*p.n, hence >= 1 + p.n.
 
@@ -5665,7 +5665,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8265](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: The system register value is preserved by indicatorOracleImage. XORing with a bit at position indPos = 1 + 2n does not affect bits \[1, 1+n). main.tex:1088-1099 -
 
@@ -5679,7 +5679,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8275](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: The isBulk predicate gives the same result for j and indicatorOracleImage p j, because isBulk only depends on the system register value, which is preserved. main.tex:1088-1099 -
 
@@ -5693,7 +5693,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8289](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: General self-inverse property for indicatorOracleImage. Applying the indicator oracle image twice returns the original value for all j, because the indicator bit is XORed twice (and isBulk is preserved). main.tex:1088-1099 -
 
@@ -5707,7 +5707,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8304](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Source-facing bridge for the explicit 'U\_indic^dagger' transcript slot. The dagger slot uses the same matrix as 'U\_indic' because the underlying indicator image is self-inverse. This theorem records the bridge used by the conversion window; it does not change the active backend gate list.
 
@@ -5721,7 +5721,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8319](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: General injectivity for indicatorOracleImage, derived from self-inverse. main.tex:1088-1099 -
 
@@ -5735,7 +5735,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8330](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: robinIndicatorBitPosition is strictly below oneTermRobinTotalQubits. indPos = 1 + 2n < 2n + clog2 n + clog2 fp + 5 = totalQubits, since clog2 ≥ 0 and 5 > 1.
 
@@ -5749,7 +5749,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8341](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: indicatorOracleImage preserves the qubitDim bound. When j < 2^totalQubits, the image is also < 2^totalQubits, because the XOR operand is either 0 or a single bit at position indPos < totalQubits.
 
@@ -5763,7 +5763,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8352](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: Bijectivity of indicatorOracleImage on the Fin domain. A self-inverse function on a finite type is bijective: injective by cancellation, surjective because image(image(j)) = j. main.tex:1088-1099 -
 
@@ -5777,7 +5777,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8370](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: For each column j, there is exactly one row i with M\[i\]\[j\] = 1, namely i = ⟨indicatorOracleImage p j.val, ...⟩. main.tex:1088-1099 -
 
@@ -5791,7 +5791,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8393](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: For each column j, any row i with M\[i\]\[j\] = 1 must equal ⟨indicatorOracleImage p j.val, ...⟩, so the 1-entry is unique per column. main.tex:1088-1099 -
 
@@ -5805,7 +5805,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8405](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: For each row i, there exists a column j with M\[i\]\[j\] = 1, from surjectivity of indicatorOracleImage. main.tex:1088-1099 -
 
@@ -5819,7 +5819,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8418](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: For each row i, the column j with M\[i\]\[j\] = 1 is unique, from injectivity of indicatorOracleImage. main.tex:1088-1099 -
 
@@ -5833,7 +5833,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8436](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cycle 12: indicatorOracleMatrix is a permutation matrix: each row has exactly one entry equal to 1, and each column has exactly one entry equal to 1. This follows from indicatorOracleImage being a bijection on the Fin domain. main.tex:1088-1099 -
 
@@ -5851,7 +5851,7 @@ Source: [QuantumBlockEncoding/GHL2025.lean:8452](../../../../library/modules/ghl
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Complex conjugation fixes the real scalar two.
 
@@ -5865,7 +5865,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:29](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Complex finite matrix with arbitrary finite basis type.
 
@@ -5879,7 +5879,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:33](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Entrywise addition, kept explicit so source formulas remain readable.
 
@@ -5893,7 +5893,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:36](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Entrywise subtraction.
 
@@ -5907,7 +5907,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:40](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Scalar multiplication.
 
@@ -5921,7 +5921,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:44](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The matrix adjoint written directly as conjugate transpose.
 
@@ -5935,7 +5935,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:48](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Source-level Hermitian predicate.
 
@@ -5949,7 +5949,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:52](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The Hermitian part '(A + A†)/2'.
 
@@ -5963,7 +5963,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:56](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The second Hermitian piece '(A - A†)/(2i)'.
 
@@ -5977,7 +5977,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:60](../../../../library/module
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The two canonical pieces reconstruct the original matrix.
 
@@ -5991,7 +5991,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:64](../../../../library/module
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* '(A + A†)/2' is Hermitian for every complex matrix 'A'.
 
@@ -6005,7 +6005,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:74](../../../../library/module
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* '(A - A†)/(2i)' is Hermitian for every complex matrix 'A'.
 
@@ -6019,7 +6019,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:80](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Sum of the paper's one-term matrices 'A\_k'.
 
@@ -6033,7 +6033,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:89](../../../../library/module
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6047,7 +6047,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:93](../../../../library/module
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Taking the adjoint commutes with the paper's finite sum of one-term matrices.
 
@@ -6061,7 +6061,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:98](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Homogenized matrix from the paper, on the direct-sum basis 'ι ⊕ ι': 'S = \[\[A,B\],\[0,0\]\]'.
 
@@ -6075,7 +6075,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:108](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* 'S₁ = (S + S†)/2'.
 
@@ -6089,7 +6089,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:117](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* 'S₂ = (S - S†)/(2i)'.
 
@@ -6103,7 +6103,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:121](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The homogenized matrix is exactly 'S₁ + i S₂'.
 
@@ -6117,7 +6117,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:125](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The two Schrödingerisation pieces are Hermitian.
 
@@ -6131,7 +6131,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:132](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6145,7 +6145,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:135](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper Eq. (18), upper-left block of 'S₁'.
 
@@ -6159,7 +6159,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:139](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper Eq. (18), upper-right block of 'S₁'.
 
@@ -6173,7 +6173,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:145](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Under the paper's Hermitian 'B', the lower-left block of 'S₁' is 'B/2'.
 
@@ -6187,7 +6187,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:150](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6201,7 +6201,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:155](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper Eq. (18), upper-left block of 'S₂'.
 
@@ -6215,7 +6215,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:160](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Paper Eq. (18), upper-right block of 'S₂'.
 
@@ -6229,7 +6229,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:166](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Under Hermitian 'B', the lower-left block is '-B/(2i)'.
 
@@ -6243,7 +6243,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:171](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6257,7 +6257,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:176](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Matrix identity on an arbitrary finite basis.
 
@@ -6271,7 +6271,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:181](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean-block matrix contributed by 'N\_A L₁(φ)' or 'N\_A L₂(φ)' in Eq. (29). The upper block is already rescaled from 'A/N\_A' to 'A'; the lower filler block is 'N\_A e^\{iφ\} I'. We expose the filler because cancellation of these entries is a real source-level proof obligation in the next LCU.
 
@@ -6285,7 +6285,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:191](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* 'X ⊗ B' in the paper's Eq. (30), written on the 'ι ⊕ ι' basis.
 
@@ -6299,7 +6299,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:201](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* 'Y ⊗ B' in the paper's Eq. (30), written on the 'ι ⊕ ι' basis.
 
@@ -6313,7 +6313,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:209](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Literal clean-block algebra of the first line of the printed Eq. (30): both filler phases are 'e^\{±iπ\} = -1'. The selected 'A,A†,B' entries are correct, but the lower-right filler blocks add instead of canceling.
 
@@ -6327,7 +6327,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:221](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Phase-balanced interpretation of the first line of Eq. (30). Replacing one of the two equal 'π,-π' filler phases by phase '0' makes the irrelevant identity blocks cancel while preserving the desired 'A' and 'A†' clean blocks.
 
@@ -6341,7 +6341,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:236](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The printed Eq. (29) leaves the lower-right clean filler equal to '-N\_A'.
 
@@ -6355,7 +6355,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:247](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Therefore the literal printed phase choice cannot equal 'S₁' when 'N\_A ≠ 0'.
 
@@ -6369,7 +6369,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:254](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The phase-balanced Eq. (29) clean block is exactly the paper's 'S₁' whenever 'B' is Hermitian (in the PDE theorem 'B' is real diagonal).
 
@@ -6383,7 +6383,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:268](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Literal clean-block algebra of the second line of Eq. (30).
 
@@ -6397,7 +6397,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:299](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The second line of Eq. (30) has the required filler cancellation and equals 'S₂'.
 
@@ -6411,7 +6411,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:311](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem 4's source normalization is registered exactly.
 
@@ -6425,7 +6425,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:349](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem 4's source signal-qubit expression is registered exactly.
 
@@ -6439,7 +6439,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:354](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem 4's source pure-ancilla expression is exactly '2n+2'.
 
@@ -6453,7 +6453,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:360](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Kronecker product in explicit product-index form.
 
@@ -6467,7 +6467,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:367](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper's one-dimensional Hamiltonian 'H = S₁⊗x\_ξ + S₂⊗I\_ξ'.
 
@@ -6481,7 +6481,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:372](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6495,7 +6495,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:377](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The identity matrix is Hermitian.
 
@@ -6509,7 +6509,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:386](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Tensor products of Hermitian matrices are Hermitian.
 
@@ -6523,7 +6523,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:395](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Sums of Hermitian matrices are Hermitian.
 
@@ -6537,7 +6537,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:403](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper's 'H' is Hermitian whenever the coordinate operator is.
 
@@ -6551,7 +6551,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:411](../../../../library/modul
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Proof-carrying source bundle for Theorem 4. It records the paper's exact composition data: one-term matrices, the inhomogeneous block 'B', and the Schrödingerisation coordinate 'x\_ξ'.
 
@@ -6565,7 +6565,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:424](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* 'A = Σ\_k A\_k', exactly as in Theorem 4.
 
@@ -6579,7 +6579,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:437](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* 'A†', exposed as a named stage because Theorem 4 combines both 'A' and 'A†'.
 
@@ -6593,7 +6593,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:441](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The adjoint assembled from the one-term adjoints equals the adjoint of 'A'.
 
@@ -6607,7 +6607,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:445](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Homogenized source matrix 'S = \[\[A,B\],\[0,0\]\]'.
 
@@ -6621,7 +6621,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:451](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* First Hermitian source block.
 
@@ -6635,7 +6635,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:456](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Second Hermitian source block.
 
@@ -6649,7 +6649,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:460](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Final Schrödingerised Hamiltonian.
 
@@ -6663,7 +6663,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:464](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The certificate reconstructs 'S' from the two Hermitian pieces.
 
@@ -6677,7 +6677,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:468](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The final source-level Hamiltonian is Hermitian.
 
@@ -6691,7 +6691,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:473](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem 4 target formula is definitional in the proof-carrying bundle.
 
@@ -6705,7 +6705,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:478](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The paper registry's 1D target is exactly the composition formalized here.
 
@@ -6719,7 +6719,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:487](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Theorem 4's resource expression is the registered source expression.
 
@@ -6733,7 +6733,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:492](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Single proof root for the paper-level Theorem 4 composition. This closes the source clean-block algebra of Eqs. (29)-(30), the final 'H' formula, and the normalization/layout/resource records. Primitive arbitrary-width realization of every Theorem-3 input oracle remains a separate compiler layer.
 
@@ -6751,7 +6751,7 @@ Source: [QuantumBlockEncoding/GHLHamiltonian.lean:502](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A real planar rotation with explicit cosine and sine entries, embedded in 'ℂ'.
 
@@ -6765,7 +6765,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:23](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A real planar rotation is unitary whenever its two entries lie on the unit circle.
 
@@ -6779,7 +6779,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:32](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A real planar rotation, parameterized by an angle.
 
@@ -6793,7 +6793,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:60](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6807,7 +6807,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:64](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6821,7 +6821,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:68](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6835,7 +6835,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:72](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -6849,7 +6849,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:76](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every real planar rotation is unitary over 'ℂ'.
 
@@ -6863,7 +6863,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:81](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Rotation whose clean entry is intended to encode 'coefficient'.
 
@@ -6877,7 +6877,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:88](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The amplitude rotation is unitary without any domain hypothesis.
 
@@ -6891,7 +6891,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:93](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Under the standard arccos domain, the clean entry is exactly the coefficient.
 
@@ -6905,7 +6905,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:99](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reindexing rows and columns by the same equivalence preserves unitarity.
 
@@ -6919,7 +6919,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:105](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A finite family of unitary blocks is unitary when placed block-diagonally.
 
@@ -6933,7 +6933,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:122](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Matrix of a finite basis permutation.
 
@@ -6947,7 +6947,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:148](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every equivalence induces a unitary permutation matrix.
 
@@ -6961,7 +6961,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:154](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Multiplication by a permutation matrix applies the inverse permutation to rows.
 
@@ -6975,7 +6975,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:167](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Multiplication on the right by a permutation matrix applies the permutation to columns.
 
@@ -6989,7 +6989,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:191](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Chronological composition of finite basis permutations.
 
@@ -7003,7 +7003,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:206](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Conjugating a reindexed operator by an involutive basis permutation is the same as composing that permutation into the indexing equivalence.
 
@@ -7017,7 +7017,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:227](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Product-register index for coefficient, selector, and system registers.
 
@@ -7031,7 +7031,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:250](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Lift selector PREPARE to coefficient × selector × system.
 
@@ -7045,7 +7045,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:254](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A unitary selector PREPARE remains unitary after tensoring with identities.
 
@@ -7059,7 +7059,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:267](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Lift a coefficient-unitary family controlled by selector and system.
 
@@ -7073,7 +7073,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:284](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A controlled family of unitary amplitude blocks is unitary.
 
@@ -7087,7 +7087,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:297](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SELECT equivalence preserving coefficient and selector and permuting the system.
 
@@ -7101,7 +7101,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:315](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Logical SELECT matrix for a family of system permutations.
 
@@ -7115,7 +7115,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:330](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SELECT is unitary because it is a basis permutation.
 
@@ -7129,7 +7129,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:340](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* PREPARE → amplitude → SELECT → unprepare logical matrix.
 
@@ -7143,7 +7143,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:352](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The complete logical LCU composition is unitary from its local certificates.
 
@@ -7161,7 +7161,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCU.lean:370](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7175,7 +7175,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:17](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7189,7 +7189,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:31](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A selector lift has one coefficient/system delta on a clean input column.
 
@@ -7203,7 +7203,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:43](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean PREPARE bra has the conjugate selector entry and two deltas.
 
@@ -7217,7 +7217,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:63](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Amplitude followed by selector preparation, evaluated on a clean input.
 
@@ -7231,7 +7231,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:83](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* SELECT applied after amplitude and PREPARE, on one clean input column.
 
@@ -7245,7 +7245,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:113](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Project an arbitrary right factor through the clean PREPARE bra.
 
@@ -7259,7 +7259,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:147](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact projected clean entry of PREPARE/amplitude/SELECT/unprepare.
 
@@ -7277,7 +7277,7 @@ Source: [QuantumBlockEncoding/Robin/ComplexLCUProjection.lean:172](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Clean branch predicted by the uniform-five LCU construction.
 
@@ -7291,7 +7291,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:19](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7305,7 +7305,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:25](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Clean branch predicted by the uniform Hadamard-8 LCU construction.
 
@@ -7319,7 +7319,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:32](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7333,7 +7333,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:38](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7347,7 +7347,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:44](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7361,7 +7361,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:48](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7375,7 +7375,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:51](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7389,7 +7389,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:56](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The historical split-seven route is a weighted-permutation LCU, not a sparse-access enumeration: two nonzero terms can address the same entry.
 
@@ -7403,7 +7403,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:66](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7417,7 +7417,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:73](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7431,7 +7431,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:76](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7445,7 +7445,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:80](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7459,7 +7459,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:86](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Precise promotion blocker for the genuinely structural-only routes.
 
@@ -7473,7 +7473,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:93](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Historical compatibility alias scoped to structural-only candidates.
 
@@ -7491,7 +7491,7 @@ Source: [QuantumBlockEncoding/Robin/EvolvedCandidates.lean:97](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7505,7 +7505,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:13](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7519,7 +7519,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:17](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Corrected reading of Eq. (27) for the standard quantum-computing 'R\_y' convention. The displayed single-'arccos' expression in arXiv:2506.20478 is retained above only as a literal transcript of the source typo.
 
@@ -7533,7 +7533,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:26](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7547,7 +7547,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:30](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7561,7 +7561,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:35](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7575,7 +7575,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:44](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7589,7 +7589,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:52](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7603,7 +7603,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:58](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7617,7 +7617,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:66](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7631,7 +7631,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:72](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7645,7 +7645,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:77](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7659,7 +7659,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:80](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7673,7 +7673,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:89](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7687,7 +7687,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:111](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7701,7 +7701,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:116](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7715,7 +7715,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:120](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7729,7 +7729,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:133](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7743,7 +7743,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:142](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7757,7 +7757,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:147](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7771,7 +7771,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:150](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7785,7 +7785,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:153](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7799,7 +7799,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:165](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7813,7 +7813,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:193](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7827,7 +7827,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:198](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7841,7 +7841,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:202](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7855,7 +7855,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:215](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7869,7 +7869,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:219](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7883,7 +7883,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:232](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7897,7 +7897,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:235](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7911,7 +7911,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:242](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7925,7 +7925,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:252](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7939,7 +7939,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:258](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7953,7 +7953,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:263](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7967,7 +7967,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:269](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7981,7 +7981,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:275](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -7999,7 +7999,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Loaders.lean:280](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8013,7 +8013,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:17](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8027,7 +8027,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:25](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8041,7 +8041,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:34](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The physical loader's clean coefficient entry is the exact source coefficient. The proof reduces the two nine-wire block diagonals to their single two-dimensional standard-RY product.
 
@@ -8055,7 +8055,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:46](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8069,7 +8069,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:65](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8083,7 +8083,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:72](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8097,7 +8097,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:80](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8111,7 +8111,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:93](../../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8125,7 +8125,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:158](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8139,7 +8139,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:162](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The homogeneous 'f=1' stage is constant-folded to the exact identity.
 
@@ -8153,7 +8153,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:169](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8167,7 +8167,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:172](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8181,7 +8181,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:176](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8195,7 +8195,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:183](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8209,7 +8209,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:190](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The post-loader basis permutation restores both work wires and the physical selector, while transporting the selected source row into the system register.
 
@@ -8223,7 +8223,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:213](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8237,7 +8237,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:248](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8251,7 +8251,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:252](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8265,7 +8265,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:257](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8279,7 +8279,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:263](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8293,7 +8293,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:275](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8307,7 +8307,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:280](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8321,7 +8321,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:291](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The post-loader basis permutation restores both work wires and the physical selector, while transporting the selected source row into the system register. -/ theorem warmRobinFigure4PostLoader\_cleanAction (slot column : Fin 8) (coefficient : Fin 2) : warmRobinFigure4PostLoaderBasisEquiv (warmRobinFigure4TransportInput slot column coefficient (warmRobinFigure4IndicatorValue column)) = warmRobinFigure4TransportInput slot (warmRobinSourceDTRow slot column) coefficient 0 := by rw \[warmRobinFigure4PostLoaderBasisEquiv\] simp only \[Equiv.trans\_apply\] rw \[warmRobinFigure4DTSparseAccess\_transportInput\] have indicatorForward := warmRobinFigure4IndicatorBasisEquiv\_clean (warmRobinSourceDTRow slot column) column coefficient have indicatorCleanup : warmRobinFigure4DTIndicatorBasisEquiv.symm (warmRobinFigure4TransportInput (warmRobinSourceDTRow slot column) column coefficient (warmRobinFigure4IndicatorValue column)) = warmRobinFigure4TransportInput (warmRobinSourceDTRow slot column) column coefficient 0 := by rw \[← indicatorForward, Equiv.symm\_apply\_apply\] rw \[indicatorCleanup\] rw \[warmRobinFigure4RegisterSwap\_transportInput\] let sourceRow := warmRobinSourceDTRow slot column have dForward : warmRobinFigure4DSparseAccessBasisEquiv (warmRobinFigure4TransportInput slot sourceRow coefficient 0) = warmRobinFigure4TransportInput column sourceRow coefficient 0 := by rw \[warmRobinFigure4DSparseAccess\_transportInput\] rw \[show (⟨(sourceRow.val + (warmRobinFigure4DOffset slot).val) % 8, Nat.mod\_lt \_ (by decide)⟩ : Fin 8) = column by exact warmRobinFigure4DOffset\_after\_DT slot column\] rw \[← dForward, Equiv.symm\_apply\_apply\] def warmRobinFigure4SourceDTColumn (slot row : Fin 8) : Fin 8 := ⟨(row.val + 8 - (warmRobinSourceDTOffset slot).val) % 8, Nat.mod\_lt \_ (by decide)⟩ theorem warmRobinFigure4SourceDTColumn\_inverse (slot row : Fin 8) : warmRobinSourceDTRow slot (warmRobinFigure4SourceDTColumn slot row) = row := by fin\_cases slot <;> fin\_cases row <;> native\_decide theorem warmRobinFigure4SourceDTColumn\_eq\_iff (slot row column : Fin 8) : warmRobinFigure4SourceDTColumn slot row = column ↔ warmRobinSourceDTRow slot column = row := by fin\_cases slot <;> fin\_cases row <;> fin\_cases column <;> native\_decide theorem warmRobinFigure4PostLoader\_inverseCleanAction (slot row : Fin 8) (coefficient : Fin 2) : warmRobinFigure4PostLoaderBasisEquiv.symm (warmRobinFigure4TransportInput slot row coefficient 0) = warmRobinFigure4TransportInput slot (warmRobinFigure4SourceDTColumn slot row) coefficient (warmRobinFigure4IndicatorValue (warmRobinFigure4SourceDTColumn slot row)) := by apply warmRobinFigure4PostLoaderBasisEquiv.injective rw \[Equiv.apply\_symm\_apply, warmRobinFigure4PostLoader\_cleanAction, warmRobinFigure4SourceDTColumn\_inverse\] noncomputable def warmRobinFigure4MiddleProgram : PrimitiveProgram 9 := PrimitiveProgram.seq warmRobinFigure4DTIndicatorProgram (PrimitiveProgram.seq warmRobinFigure4DerivativeLoaderProgram warmRobinFigure4PostLoaderProgram) theorem warmRobinFigure4MiddleProgram\_eval : evalPrimitiveProgram warmRobinFigure4MiddleProgram = ComplexLCU.equivPermutationMatrix warmRobinFigure4PostLoaderBasisEquiv \* evalPrimitiveProgram warmRobinFigure4DerivativeLoaderProgram \* ComplexLCU.equivPermutationMatrix warmRobinFigure4DTIndicatorBasisEquiv := by unfold warmRobinFigure4MiddleProgram rw \[evalPrimitiveProgram\_seq, evalPrimitiveProgram\_seq, warmRobinFigure4DTIndicatorProgram\_eval, warmRobinFigure4PostLoaderProgram\_eval\] theorem warmRobinFigure4MiddleProgram\_cleanEntry (coefficientRow coefficientColumn : Fin 2) (leftSlot rightSlot row column : Fin 8) : evalPrimitiveProgram warmRobinFigure4MiddleProgram (warmRobinFigure4TransportInput leftSlot row coefficientRow 0) (warmRobinFigure4TransportInput rightSlot column coefficientColumn 0) = if leftSlot = rightSlot ∧ warmRobinSourceDTRow rightSlot column = row then ComplexLCU.amplitudeRotation (((warmRobinFigure4SourceCoefficient rightSlot column : Rat) : Real)) coefficientRow coefficientColumn else 0 := by rw \[warmRobinFigure4MiddleProgram\_eval\] rw \[ComplexLCU.mul\_equivPermutationMatrix\_apply, ComplexLCU.equivPermutationMatrix\_mul\_apply\] rw \[warmRobinFigure4IndicatorBasisEquiv\_clean\] rw \[warmRobinFigure4PostLoader\_inverseCleanAction, warmRobinFigure4DerivativeLoader\_entry\] by\_cases slots : leftSlot = rightSlot · subst leftSlot simp only \[true\_and\] simp only \[warmRobinFigure4SourceDTColumn\_eq\_iff\] · simp \[slots\] /-! Named chronological stage roots used by the generated documentation.
 
@@ -8335,7 +8335,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:317](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8349,7 +8349,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:321](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8363,7 +8363,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:327](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8377,7 +8377,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:331](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8391,7 +8391,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:337](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8405,7 +8405,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:341](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8419,7 +8419,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:347](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8433,7 +8433,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:351](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8447,7 +8447,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:357](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8461,7 +8461,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:361](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8475,7 +8475,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:367](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8493,7 +8493,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean:371](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8507,7 +8507,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:15](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8521,7 +8521,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:17](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8535,7 +8535,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:30](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8549,7 +8549,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:35](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8563,7 +8563,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:39](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8577,7 +8577,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:45](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8591,7 +8591,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:48](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8605,7 +8605,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:57](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8619,7 +8619,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:59](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8633,7 +8633,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:64](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8647,7 +8647,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:68](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8661,7 +8661,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:72](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8675,7 +8675,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:78](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8689,7 +8689,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:91](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8703,7 +8703,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:125](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8717,7 +8717,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:138](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8731,7 +8731,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:184](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8745,7 +8745,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:197](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8759,7 +8759,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:243](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8773,7 +8773,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:252](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Required stage root: the physical first stage is the exact selector lift.
 
@@ -8787,7 +8787,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:257](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8801,7 +8801,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:288](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8819,7 +8819,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean:291](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Historical row-bulk indicator for rows 2 through 5 of 'D'. Figure 4 acts on 'D^T', so this circuit is retained only as a source-audit guard.
 
@@ -8833,7 +8833,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:19](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8847,7 +8847,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:22](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8861,7 +8861,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:27](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8875,7 +8875,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:37](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* One physical SWAP expanded into the allowed primitive basis.
 
@@ -8889,7 +8889,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:46](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8903,7 +8903,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:51](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8917,7 +8917,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:57](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Swap the two fixed three-qubit registers with three actual SWAPs.
 
@@ -8931,7 +8931,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:69](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8945,7 +8945,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:74](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8959,7 +8959,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:80](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8973,7 +8973,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:92](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -8987,7 +8987,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:99](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* For homogeneous 'f=1', the coefficient oracle is physically empty.
 
@@ -9001,7 +9001,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:105](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9015,7 +9015,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:107](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9029,7 +9029,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:111](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Two disjoint pattern-controlled flips: '011' and '100'. Wires 'q3-q5' hold the system column, 'q7' is the indicator, and 'q8' is reusable clean workspace.
 
@@ -9043,7 +9043,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:125](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9057,7 +9057,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:134](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9071,7 +9071,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:138](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9085,7 +9085,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:141](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9099,7 +9099,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:151](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9113,7 +9113,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:156](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9127,7 +9127,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:159](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9141,7 +9141,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:165](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Two disjoint pattern-controlled flips: '011' and '100'. Wires 'q3-q5' hold the system column, 'q7' is the indicator, and 'q8' is reusable clean workspace. -/ def warmRobinFigure4DTIndicatorReversibleProgram : ReversibleProgram 9 := \[ .x 5 \] ++ cleanC3XReversibleProgram 3 4 5 7 8 (by decide) (by decide) (by decide) (by decide) (by decide) (by decide) ++ \[ .x 5, .x 3, .x 4 \] ++ cleanC3XReversibleProgram 3 4 5 7 8 (by decide) (by decide) (by decide) (by decide) (by decide) (by decide) ++ \[ .x 4, .x 3 \] def warmRobinFigure4DTIndicatorBasisEquiv : PrimitiveBasis 9 ≃ PrimitiveBasis 9 := evalReversibleProgram warmRobinFigure4DTIndicatorReversibleProgram def warmRobinFigure4SystemBits (bits : PrimitiveBasis 9) : Fin 8 := ⟨(bits 3).val + 2 \* (bits 4).val + 4 \* (bits 5).val, by omega⟩ theorem warmRobinFigure4DTIndicatorProgram\_basisAction (bits : PrimitiveBasis 9) (workspaceClean : bits 8 = 0) : let output := warmRobinFigure4DTIndicatorBasisEquiv bits output 7 = (if warmRobinFigure4TransposeBulk (warmRobinFigure4SystemBits bits) then flipBit (bits 7) else bits 7) ∧ output 8 = 0 ∧ (∀ wire : Fin 9, wire ≠ 7 → wire ≠ 8 → output wire = bits wire) := by native\_decide +revert theorem warmRobinFigure4DTIndicatorProgram\_workspaceClean (bits : PrimitiveBasis 9) (workspaceClean : bits 8 = 0) : warmRobinFigure4DTIndicatorBasisEquiv bits 8 = 0 := (warmRobinFigure4DTIndicatorProgram\_basisAction bits workspaceClean).2.1 noncomputable def warmRobinFigure4DTIndicatorProgram : PrimitiveProgram 9 := compileReversibleProgram warmRobinFigure4DTIndicatorReversibleProgram theorem warmRobinFigure4DTIndicatorProgram\_eval : evalPrimitiveProgram warmRobinFigure4DTIndicatorProgram = ComplexLCU.equivPermutationMatrix warmRobinFigure4DTIndicatorBasisEquiv := by exact compileReversibleProgram\_eval \_ theorem warmRobinFigure4DTIndicatorProgram\_noOracleCalls : warmRobinFigure4DTIndicatorProgram.resource.oracleCalls = 0 := PrimitiveCircuit.resource\_oracleCalls\_eq\_zero \_ /-! number number  Distinct D-transpose and D sparse-access programs
 
@@ -9155,7 +9155,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:171](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Convert slot 's' to 's XOR 3', then add the system column modulo eight.
 
@@ -9169,7 +9169,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:175](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9183,7 +9183,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:187](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9197,7 +9197,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:191](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9211,7 +9211,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:201](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9225,7 +9225,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:204](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Convert slot 's' to 's+5', then add the second register modulo eight.
 
@@ -9239,7 +9239,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:211](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9253,7 +9253,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:226](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9267,7 +9267,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:230](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9281,7 +9281,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:241](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9295,7 +9295,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:244](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9309,7 +9309,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:250](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9323,7 +9323,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:263](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9337,7 +9337,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:268](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9351,7 +9351,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:275](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9365,7 +9365,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:282](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9379,7 +9379,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:288](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9393,7 +9393,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:294](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9407,7 +9407,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:300](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9421,7 +9421,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:304](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9435,7 +9435,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:310](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9449,7 +9449,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:316](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9463,7 +9463,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:337](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9477,7 +9477,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:355](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9491,7 +9491,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:362](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9505,7 +9505,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:369](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Central cleanup root: D-transpose access, register transport, and inverse D access restore the original slot while leaving the transported row in the system register and returning 'q8' to zero.
 
@@ -9519,7 +9519,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:391](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9533,7 +9533,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:430](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Historical pre-T3 audit list. 'Figure4T3.lean' now closes these obligations for fixed N=8, homogeneous f=1, and the standard-RY-corrected executable convention.
 
@@ -9547,7 +9547,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:442](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* No primitive obligations remain open for the fixed-N8 Figure-4 route.
 
@@ -9561,7 +9561,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:451](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9579,7 +9579,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4Primitive.lean:453](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Offset table for the non-transposed sparse access used after register transport.
 
@@ -9593,7 +9593,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:16](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9607,7 +9607,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:19](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9621,7 +9621,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:23](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Periodic fourth-order integer stencil indexed by cyclic row offset.
 
@@ -9635,7 +9635,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:29](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9649,7 +9649,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:36](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9663,7 +9663,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:43](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Figure 4 acts on a row of 'D^T', equivalently a column of 'D'.
 
@@ -9677,7 +9677,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:50](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9691,7 +9691,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:58](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9705,7 +9705,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:64](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9719,7 +9719,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:69](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Interior derivative coefficients by physical selector slot.
 
@@ -9733,7 +9733,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:75](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9747,7 +9747,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:85](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9761,7 +9761,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:88](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9775,7 +9775,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:91](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9793,7 +9793,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4SourceData.lean:96](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9807,7 +9807,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:18](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Both Figure-4 work wires return clean on every selector/system branch. The coefficient loader may superpose 'q6', but it does not alter this classical context, so the statement is quantified over both coefficient basis values.
 
@@ -9821,7 +9821,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:26](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9835,7 +9835,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:37](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9849,7 +9849,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:44](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9863,7 +9863,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:53](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact physical-program semantics, including all macro compiler phases.
 
@@ -9877,7 +9877,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:88](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9891,7 +9891,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:136](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9905,7 +9905,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:226](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9919,7 +9919,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:231](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9933,7 +9933,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:237](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Required whole-circuit clean entry; this is symbolic, not numerical.
 
@@ -9947,7 +9947,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:243](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9961,7 +9961,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:267](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9975,7 +9975,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:276](../../../../library/modu
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -9989,7 +9989,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:284](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10003,7 +10003,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:290](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10017,7 +10017,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:298](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10031,7 +10031,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:301](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10045,7 +10045,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:318](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fixed-N8, f=1, standard-RY-corrected Figure-4 realization.
 
@@ -10063,7 +10063,7 @@ Source: [QuantumBlockEncoding/Robin/Figure4T3.lean:333](../../../../library/modu
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The integer matrix 'M = 12 A', kept integral for finite decomposition proofs.
 
@@ -10077,7 +10077,7 @@ Source: [QuantumBlockEncoding/Robin/FixedN3Data.lean:17](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Rational view of the frozen integer target.
 
@@ -10091,7 +10091,7 @@ Source: [QuantumBlockEncoding/Robin/FixedN3Data.lean:30](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact fixed-instance identity 'M = 12 A'.
 
@@ -10105,7 +10105,7 @@ Source: [QuantumBlockEncoding/Robin/FixedN3Data.lean:34](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact normalized target identity 'A / (56/3) = M / 224'.
 
@@ -10119,7 +10119,7 @@ Source: [QuantumBlockEncoding/Robin/FixedN3Data.lean:40](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Signal-first clean embedding for the fixed 'signal x system' convention.
 
@@ -10133,7 +10133,7 @@ Source: [QuantumBlockEncoding/Robin/FixedN3Data.lean:47](../../../../library/mod
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10151,7 +10151,7 @@ Source: [QuantumBlockEncoding/Robin/FixedN3Data.lean:50](../../../../library/mod
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Flatten coefficient × selector × system into the seven-qubit basis.
 
@@ -10165,7 +10165,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:22](../../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean coefficient/selector branch embedded in the flat seven-qubit basis.
 
@@ -10179,7 +10179,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:28](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10193,7 +10193,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:31](../../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The product-register logical unitary reindexed as a seven-qubit matrix.
 
@@ -10207,7 +10207,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:36](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reindexing preserves the exact Mathlib unitary-group certificate.
 
@@ -10221,7 +10221,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:42](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Applying the reindexed matrix at reindexed indices recovers the product entry.
 
@@ -10235,7 +10235,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:49](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every row of the one-bit PREPARE has the same clean-column amplitude.
 
@@ -10249,7 +10249,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:58](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The three-bit tensor PREPARE has a uniform clean column.
 
@@ -10263,7 +10263,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:64](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The flattened selector PREPARE still has a uniform clean column.
 
@@ -10277,7 +10277,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:75](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Squared magnitude of each selector amplitude is exactly '1/8'.
 
@@ -10291,7 +10291,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:90](../../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Rational and real-complex views of a slot coefficient agree.
 
@@ -10305,7 +10305,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:110](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The reusable clean-entry expansion specializes to the Robin eight-slot formula.
 
@@ -10319,7 +10319,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:117](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The product-register clean entry is the normalized fixed Robin target.
 
@@ -10333,7 +10333,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:155](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The flat seven-qubit clean block is the normalized fixed Robin operator.
 
@@ -10347,7 +10347,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:165](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Complex view of the fixed Robin target used by the operator-first API.
 
@@ -10361,7 +10361,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:177](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Operator-first target contract for the fixed homogeneous Robin benchmark.
 
@@ -10375,7 +10375,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:181](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Four logical stages with the three selector Hadamards made explicit.
 
@@ -10389,7 +10389,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:190](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Logical gate list associated with the fair T2 schedule.
 
@@ -10403,7 +10403,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:202](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Resource record under the logical-stage convention, not a T3 primitive count.
 
@@ -10417,7 +10417,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:206](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The exact block predicate attached to the operator candidate.
 
@@ -10431,7 +10431,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:210](../../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean-block predicate follows from the specialized clean-entry theorem.
 
@@ -10445,7 +10445,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:219](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fixed 'N=8' Hadamard-8 candidate at the exact logical-unitary tier.
 
@@ -10459,7 +10459,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:226](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fully verified T2 block encoding of the fixed Robin matrix.
 
@@ -10473,7 +10473,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:246](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Honest boundary: primitive synthesis/refinement is still a separate T3 theorem.
 
@@ -10491,7 +10491,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean:253](../../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Three binary selector wires before flattening to 'Fin 8'.
 
@@ -10505,7 +10505,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:20](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Signal-register order used by the eight-slot selector.
 
@@ -10519,7 +10519,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:23](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* One uniform binary PREPARE rotation.
 
@@ -10533,7 +10533,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:28](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10547,7 +10547,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:32](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Tensor product PREPARE on three binary selector wires.
 
@@ -10561,7 +10561,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:41](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10575,7 +10575,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:46](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The eight-dimensional selector PREPARE in the flattened selector basis.
 
@@ -10589,7 +10589,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:56](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10603,7 +10603,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:61](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Real clean amplitude used by selector slot and system column.
 
@@ -10617,7 +10617,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:68](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10631,7 +10631,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:71](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Controlled two-dimensional amplitude block.
 
@@ -10645,7 +10645,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:79](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10659,7 +10659,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:83](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10673,7 +10673,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:88](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Each certified system permutation is packaged as an equivalence.
 
@@ -10687,7 +10687,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:96](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Product-register matrix before flattening to seven qubits.
 
@@ -10701,7 +10701,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:102](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The complete Hadamard-8 logical matrix is a standard complex unitary.
 
@@ -10719,7 +10719,7 @@ Source: [QuantumBlockEncoding/Robin/Hadamard8Verified.lean:112](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10733,7 +10733,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:14](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10747,7 +10747,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:17](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10761,7 +10761,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:24](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10775,7 +10775,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:28](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10789,7 +10789,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:32](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10803,7 +10803,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:44](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10817,7 +10817,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:58](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10831,7 +10831,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:70](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10845,7 +10845,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:74](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10859,7 +10859,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:80](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10873,7 +10873,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:85](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact equality between the physical six-control RY block and the logical amplitude lift, including the otherwise dirty 'q7' workspace coordinate.
 
@@ -10887,7 +10887,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:100](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10901,7 +10901,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:135](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10915,7 +10915,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:140](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10929,7 +10929,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:144](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10947,7 +10947,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean:158](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10961,7 +10961,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:20](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10975,7 +10975,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:23](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -10989,7 +10989,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:27](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11003,7 +11003,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:32](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11017,7 +11017,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:37](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11031,7 +11031,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:40](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11045,7 +11045,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:45](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11059,7 +11059,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:48](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11073,7 +11073,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:57](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11087,7 +11087,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:61](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11101,7 +11101,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:66](../../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11115,7 +11115,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:73](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11129,7 +11129,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:82](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11143,7 +11143,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:90](../../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11157,7 +11157,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:135](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Flatten coefficient, selector, and system registers to seven qubits.
 
@@ -11171,7 +11171,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:147](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11185,7 +11185,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:152](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11199,7 +11199,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:156](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11213,7 +11213,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:161](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11227,7 +11227,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:167](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11241,7 +11241,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:183](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11255,7 +11255,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:191](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11269,7 +11269,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:197](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11283,7 +11283,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:203](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11297,7 +11297,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:206](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11311,7 +11311,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:209](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11329,7 +11329,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean:227](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11343,7 +11343,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:17](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11357,7 +11357,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:20](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11371,7 +11371,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:23](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11385,7 +11385,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:28](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11399,7 +11399,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:33](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11413,7 +11413,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:35](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11427,7 +11427,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:40](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11441,7 +11441,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:44](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11455,7 +11455,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:48](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11469,7 +11469,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:56](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Independent stagewise matrix specification for the padded selector.
 
@@ -11483,7 +11483,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:61](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11497,7 +11497,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:70](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11511,7 +11511,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:84](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11525,7 +11525,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:90](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11539,7 +11539,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:94](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source selector has eight physical states even though only seven are active. This prevents accidental use of 'Fin 7' as a three-qubit register.
 
@@ -11553,7 +11553,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:111](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11567,7 +11567,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:114](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The physical three-qubit PREPARE, flattened with the repository's declared little-endian convention.
 
@@ -11581,7 +11581,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:119](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11595,7 +11595,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:124](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem uses probabilities directly, so no arbitrary clean-column phase convention for '1 / sqrt 7' enters the LCU proof.
 
@@ -11613,7 +11613,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrepare.lean:134](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11627,7 +11627,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:13](../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11641,7 +11641,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:18](../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11655,7 +11655,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:25](../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11669,7 +11669,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:31](../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11683,7 +11683,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:43](../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11697,7 +11697,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:45](../../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11711,7 +11711,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:51](../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11725,7 +11725,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:55](../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11739,7 +11739,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:60](../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11753,7 +11753,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:66](../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11767,7 +11767,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:79](../../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11781,7 +11781,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:113](../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11795,7 +11795,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:126](../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11809,7 +11809,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:173](../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11823,7 +11823,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:186](../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11837,7 +11837,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:233](../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11851,7 +11851,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:243](../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11865,7 +11865,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:270](../../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11883,7 +11883,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean:273](../../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Physical SELECT in the declared eight-wire order. CCX remains only in the proof IR and is compiled away by 'compileReversibleProgram'.
 
@@ -11897,7 +11897,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:19](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11911,7 +11911,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:34](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11925,7 +11925,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:38](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11939,7 +11939,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:41](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Clean-workspace action of the source SELECT.
 
@@ -11953,7 +11953,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:45](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11967,7 +11967,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:56](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -11981,7 +11981,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:61](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact primitive matrix for source SELECT, including its exact compiler phase.
 
@@ -11995,7 +11995,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:66](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12009,7 +12009,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:72](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12023,7 +12023,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:76](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Encode the declared register product into the physical wire order.
 
@@ -12037,7 +12037,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:79](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12051,7 +12051,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:91](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12065,7 +12065,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:96](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12079,7 +12079,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:100](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12093,7 +12093,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:106](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12107,7 +12107,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:110](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12121,7 +12121,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:113](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Explicit full-space action of the reversible adder. On dirty workspace this records the actual extension instead of claiming tensor identity.
 
@@ -12135,7 +12135,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:118](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12149,7 +12149,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:133](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12163,7 +12163,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:137](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12177,7 +12177,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:142](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12191,7 +12191,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:147](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12205,7 +12205,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:154](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12219,7 +12219,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:173](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12233,7 +12233,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:196](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12247,7 +12247,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:201](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12261,7 +12261,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:207](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12275,7 +12275,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:218](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12293,7 +12293,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean:227](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12307,7 +12307,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:13](../../../../library/mo
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12321,7 +12321,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:18](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Chronological exact primitive source program.
 
@@ -12335,7 +12335,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:33](../../../../library/mo
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Required T3 semantic root. Equality includes the exact accumulated global phase and uses the actual reversible extension on dirty 'q7'.
 
@@ -12349,7 +12349,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:41](../../../../library/mo
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12363,7 +12363,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:71](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Flat eight-qubit unitary used by the operator-first block-encoding API.
 
@@ -12377,7 +12377,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:81](../../../../library/mo
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12391,7 +12391,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:86](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12405,7 +12405,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:92](../../../../library/mo
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The physical primitive program has the exact 'M/224 = A/(56/3)' clean block; no numerical matrix comparison is used.
 
@@ -12419,7 +12419,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:99](../../../../library/mo
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12433,7 +12433,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:117](../../../../library/m
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12447,7 +12447,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:125](../../../../library/m
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12461,7 +12461,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:193](../../../../library/m
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Matrix-level workspace restoration: a clean input column has no amplitude on a dirty workspace output row.
 
@@ -12475,7 +12475,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:227](../../../../library/m
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12489,7 +12489,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:239](../../../../library/m
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12503,7 +12503,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:247](../../../../library/m
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12517,7 +12517,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:250](../../../../library/m
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12531,7 +12531,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:254](../../../../library/m
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12545,7 +12545,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:271](../../../../library/m
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact primitive verified block encoding for the paper-seven source route.
 
@@ -12563,7 +12563,7 @@ Source: [QuantumBlockEncoding/Robin/PaperSevenT3.lean:280](../../../../library/m
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12577,7 +12577,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:9](../../../../libra
 
 *Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12591,7 +12591,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:16](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12605,7 +12605,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:24](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Historical paper-literal transcript row. This is not the certified fixed-N8 standard-RY realization, whose exact primitive cost is recorded in 'T3ResourceComparison.lean'.
 
@@ -12619,7 +12619,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:30](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12633,7 +12633,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:38](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12647,7 +12647,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:45](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12661,7 +12661,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:52](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12675,7 +12675,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:58](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12689,7 +12689,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:71](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12703,7 +12703,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:78](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Historical compatibility alias; this row is generic and paper-literal, not the certified fixed-N8 standard-RY source realization.
 
@@ -12717,7 +12717,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:87](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12731,7 +12731,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:90](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12749,7 +12749,7 @@ Source: [QuantumBlockEncoding/Robin/ResourceComparison.lean:95](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Six finite basis permutations, represented column-to-row.
 
@@ -12763,7 +12763,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:17](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Integer coefficient table for the six-slot certificate.
 
@@ -12777,7 +12777,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:34](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Per-slot absolute coefficient caps.
 
@@ -12791,7 +12791,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:49](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -12805,7 +12805,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:56](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact reconstruction of the integer target.
 
@@ -12819,7 +12819,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:61](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every coefficient is bounded by its declared slot cap.
 
@@ -12833,7 +12833,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:70](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The six caps sum to 80.
 
@@ -12847,7 +12847,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:77](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Probability assigned to one selector slot by the intrinsic PREPARE.
 
@@ -12861,7 +12861,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:82](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Intrinsic clean coefficient 'weight / cap'.
 
@@ -12875,7 +12875,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:86](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* All intrinsic amplitude coefficients lie in '\[-1,1\]'.
 
@@ -12889,7 +12889,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:92](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Coefficient for the fixed 'M/224' comparison contract.
 
@@ -12903,7 +12903,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:98](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fixed-normalizer amplitudes are uniformly bounded by '5/14'.
 
@@ -12917,7 +12917,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:103](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Structural clean formula at the intrinsic normalizer.
 
@@ -12931,7 +12931,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:109](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The intrinsic formula is exactly 'A / (20/3) = M/80'.
 
@@ -12945,7 +12945,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:117](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Structural clean formula under the established fixed normalizer.
 
@@ -12959,7 +12959,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:124](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The fixed formula is exactly 'A / (56/3) = M/224'.
 
@@ -12973,7 +12973,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:132](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Absolute column sum of the integer target.
 
@@ -12987,7 +12987,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:140](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13001,7 +13001,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:143](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13015,7 +13015,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:147](../../../../library
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The cap sum attains the largest absolute column sum of the target.
 
@@ -13033,7 +13033,7 @@ Source: [QuantumBlockEncoding/Robin/SixSlotOptimal.lean:152](../../../../library
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Literal angle printed in the source-side formula.
 
@@ -13047,7 +13047,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:16](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Angle required by the standard 'Ry(theta)' half-angle convention.
 
@@ -13061,7 +13061,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:20](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13075,7 +13075,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:23](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The actual logical wire pairs for swapping two three-qubit registers.
 
@@ -13089,7 +13089,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:29](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Executable transcript fragment: three real SWAPs, never 'swap 0 0'.
 
@@ -13103,7 +13103,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:33](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13117,7 +13117,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:36](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13131,7 +13131,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:41](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fixed wire-index action induced by the register swap.
 
@@ -13145,7 +13145,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:46](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13159,7 +13159,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:52](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13173,7 +13173,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:56](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Obligations outside the fixed benchmark: arbitrary size and literal-source routes.
 
@@ -13187,7 +13187,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:66](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13201,7 +13201,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:73](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The fixed-N8, f=1, standard-RY-corrected source route is closed.
 
@@ -13215,7 +13215,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:78](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13229,7 +13229,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:80](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Historical compatibility alias for the generic, arbitrary-n and paper-literal obligations. It does not describe the certified fixed-N8 route.
 
@@ -13243,7 +13243,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:85](../../../../library/
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13261,7 +13261,7 @@ Source: [QuantumBlockEncoding/Robin/SourceBaseline.lean:88](../../../../library/
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source 'D^T' offset ordering, expressed in the physical selector.
 
@@ -13275,7 +13275,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:16](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13289,7 +13289,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:19](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Sparse row addressed by one physical slot at a fixed source column.
 
@@ -13303,7 +13303,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:24](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact integer value returned by the source sparse-value oracle.
 
@@ -13317,7 +13317,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:29](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Slot seven is the zero diagonal used only for physical padding.
 
@@ -13331,7 +13331,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:33](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* At a fixed column, the eight physical slots enumerate eight distinct rows.
 
@@ -13345,7 +13345,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:38](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* At a fixed slot, cyclic sparse access is a permutation of the columns.
 
@@ -13359,7 +13359,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:43](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact sparse-access decomposition with seven active physical states.
 
@@ -13373,7 +13373,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:48](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13387,7 +13387,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:56](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13401,7 +13401,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:57](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13415,7 +13415,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:58](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13429,7 +13429,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:60](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13443,7 +13443,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:67](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Selector probability in the clean column of padded-seven PREPARE.
 
@@ -13457,7 +13457,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:72](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Coefficient loaded by an active sparse slot. The padded slot is assigned the identity coefficient because its clean PREPARE probability is zero.
 
@@ -13471,7 +13471,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:77](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13485,7 +13485,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:80](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13499,7 +13499,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:87](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13517,7 +13517,7 @@ Source: [QuantumBlockEncoding/Robin/SourceSevenSparseData.lean:93](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reverse an eight-dimensional basis index.
 
@@ -13531,7 +13531,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:17](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13545,7 +13545,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:20](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13559,7 +13559,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:24](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The fixed integer Robin matrix is invariant under simultaneous reversal.
 
@@ -13573,7 +13573,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:29](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Embed the low representative of a reversal pair.
 
@@ -13587,7 +13587,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:36](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Embed the high representative paired with 'index'.
 
@@ -13601,7 +13601,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:40](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Integer matrix in the symmetric reversal sector.
 
@@ -13615,7 +13615,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:44](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Integer matrix in the antisymmetric reversal sector.
 
@@ -13629,7 +13629,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:49](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The four cyclic permutations used in both symmetry sectors.
 
@@ -13643,7 +13643,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:54](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13657,7 +13657,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:57](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Integer weights for the symmetric sector.
 
@@ -13671,7 +13671,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:62](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Integer weights for the antisymmetric sector.
 
@@ -13685,7 +13685,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:70](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact four-shift decomposition of the symmetric sector.
 
@@ -13699,7 +13699,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:78](../../../../librar
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact four-shift decomposition of the antisymmetric sector.
 
@@ -13713,7 +13713,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:87](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Select the weight table by symmetry sector ('0' symmetric, '1' antisymmetric).
 
@@ -13727,7 +13727,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:96](../../../../librar
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Clean coefficient used by the four-slot amplitude loader.
 
@@ -13741,7 +13741,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:104](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every four-slot amplitude lies in the unit interval.
 
@@ -13755,7 +13755,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:109](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Structural clean formula in one symmetry sector.
 
@@ -13769,7 +13769,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:116](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The symmetric-sector clean formula is exactly 'M₊ / 224'.
 
@@ -13783,7 +13783,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:124](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The antisymmetric-sector clean formula is exactly 'M₋ / 224'.
 
@@ -13797,7 +13797,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:131](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Both symmetry blocks have four nonzero entries in column one.
 
@@ -13815,7 +13815,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlot.lean:138](../../../../libra
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Map a reversal-pair coordinate back to the original 'Fin 8' basis.
 
@@ -13829,7 +13829,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:24](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13843,7 +13843,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:31](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13857,7 +13857,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:35](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Pair coordinates enumerate the original eight basis states exactly once.
 
@@ -13871,7 +13871,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:40](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Equivalence between pair coordinates and the original Robin basis.
 
@@ -13885,7 +13885,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:45](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13899,7 +13899,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:50](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -13913,7 +13913,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:55](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The symmetry-sector-to-pair basis change: one exact Hadamard-like rotation.
 
@@ -13927,7 +13927,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:61](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The symmetry basis change is unitary.
 
@@ -13941,7 +13941,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:67](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every entry of the real two-dimensional basis change is self-conjugate.
 
@@ -13955,7 +13955,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:75](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The common real selector amplitude has squared magnitude '1/2'.
 
@@ -13969,7 +13969,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:88](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Entry formula for the exact symmetry basis change.
 
@@ -13983,7 +13983,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:101](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Entry formula for the adjoint symmetry basis change.
 
@@ -13997,7 +13997,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:111](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Left multiplication preserves the pair index and sums only over sectors.
 
@@ -14011,7 +14011,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:123](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Right multiplication by the adjoint also preserves the pair index.
 
@@ -14025,7 +14025,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:145](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Lower-left pair block equals the upper-right pair block by centrosymmetry.
 
@@ -14039,7 +14039,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:167](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The high-high pair block equals the low-low block.
 
@@ -14053,7 +14053,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:176](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The fixed integer target, reordered by reversal pairs and divided by '224'.
 
@@ -14067,7 +14067,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:185](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14081,7 +14081,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:192](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14095,7 +14095,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:199](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14109,7 +14109,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:206](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14123,7 +14123,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:216](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Complex view of the pair-ordered normalized Robin target.
 
@@ -14137,7 +14137,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:226](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Complex view of the direct-sum sector target.
 
@@ -14151,7 +14151,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:231](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The exact symmetry transform reconstructs the pair-ordered Robin matrix.
 
@@ -14165,7 +14165,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:276](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Conjugate the sector logical unitary back to reversal-pair coordinates.
 
@@ -14179,7 +14179,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:322](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The pair-basis logical unitary remains exactly unitary.
 
@@ -14193,7 +14193,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:330](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Its clean system block is the pair-ordered normalized Robin target.
 
@@ -14207,7 +14207,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:339](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Entry form of the pair-basis clean-block certificate.
 
@@ -14221,7 +14221,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:348](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reindex only the system component from pair order to original 'Fin 8'.
 
@@ -14235,7 +14235,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:358](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Flatten coefficient × selector × original system into six qubits.
 
@@ -14249,7 +14249,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:365](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The six primitive wires interpreted as coefficient, selector, and system registers through the already-certified T2 flattening. Consequently q0--q2 are system, q3--q4 are selector, and q5 is coefficient.
 
@@ -14263,7 +14263,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:373](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Primitive little-endian indexing is exactly the original T2 index map.
 
@@ -14277,7 +14277,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:378](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Regression over all 64 basis states, stated as the concrete register formula consumed by executable backends.
 
@@ -14291,7 +14291,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:386](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Combined system reindexing and six-qubit flattening.
 
@@ -14305,7 +14305,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:397](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Flat clean index for an original Robin system basis state.
 
@@ -14319,7 +14319,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:404](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Six-qubit matrix in the original system order.
 
@@ -14333,7 +14333,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:409](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reindexing preserves exact unitarity.
 
@@ -14347,7 +14347,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:415](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Applying the flat matrix at flattened indices recovers the product entry.
 
@@ -14361,7 +14361,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:422](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Pair-ordered target at inverse-reindexed indices is the original target.
 
@@ -14375,7 +14375,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:432](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The flat clean block is exactly the original fixed Robin target.
 
@@ -14389,7 +14389,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:442](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fair T2 logical-stage schedule for the four-slot construction.
 
@@ -14403,7 +14403,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:458](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The corresponding logical gate list.
 
@@ -14417,7 +14417,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:470](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact resource row under the declared T2 logical-stage convention.
 
@@ -14431,7 +14431,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:474](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The operator-first clean-block predicate for the four-slot route.
 
@@ -14445,7 +14445,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:478](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean-block predicate is discharged by the original-basis theorem.
 
@@ -14459,7 +14459,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:487](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Four-slot T2 candidate for the fixed 'N=8' Robin target.
 
@@ -14473,7 +14473,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:494](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fully verified T2 block encoding for the four-slot symmetry route.
 
@@ -14487,7 +14487,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:514](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Under one T2 logical-stage convention, four slots strictly improve the Hadamard-8 route: gate count and depth tie, while the clean layout uses one fewer auxiliary qubit.
 
@@ -14501,7 +14501,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:523](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Honest boundary: primitive synthesis and refinement remain a T3 obligation.
 
@@ -14519,7 +14519,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean:535](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Two binary selector wires before flattening to 'Fin 4'.
 
@@ -14533,7 +14533,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:21](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Flatten the two selector wires.
 
@@ -14547,7 +14547,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:24](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Uniform two-bit selector PREPARE.
 
@@ -14561,7 +14561,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:28](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The two-bit selector PREPARE is unitary.
 
@@ -14575,7 +14575,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:33](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Flattened four-slot selector PREPARE.
 
@@ -14589,7 +14589,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:41](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Reindexing preserves selector unitarity.
 
@@ -14603,7 +14603,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:47](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Uniform clean-column amplitude before selector flattening.
 
@@ -14617,7 +14617,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:54](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Uniform clean-column amplitude after selector flattening.
 
@@ -14631,7 +14631,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:63](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every selector slot has probability exactly '1/4' in the clean column.
 
@@ -14645,7 +14645,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:76](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Sector and reversal-pair coordinate used by the middle logical unitary.
 
@@ -14659,7 +14659,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:94](../.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A four-shift SELECT preserves the symmetry sector.
 
@@ -14673,7 +14673,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:97](../.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Each sector-preserving four-shift SELECT is a basis bijection.
 
@@ -14687,7 +14687,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:103](../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Package the sector-preserving SELECT as an equivalence.
 
@@ -14701,7 +14701,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:108](../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Real amplitude encoded by a selector slot and sector-system column.
 
@@ -14715,7 +14715,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:114](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every four-slot real amplitude lies in '\[-1,1\]'.
 
@@ -14729,7 +14729,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:119](../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Controlled coefficient rotation for the four-slot route.
 
@@ -14743,7 +14743,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:131](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every controlled coefficient rotation is unitary.
 
@@ -14757,7 +14757,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:137](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean coefficient entry is the desired signed amplitude.
 
@@ -14771,7 +14771,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:144](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Rational and real-complex views of the four-slot coefficient agree.
 
@@ -14785,7 +14785,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:153](../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Product-register logical unitary in the symmetry-sector system basis.
 
@@ -14799,7 +14799,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:161](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The complete four-slot middle construction is exactly unitary.
 
@@ -14813,7 +14813,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:171](../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Structural clean formula on the full sector-system basis.
 
@@ -14827,7 +14827,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:180](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* On one sector, the full-system formula is the existing four-shift formula.
 
@@ -14841,7 +14841,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:190](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Cross-sector clean entries vanish because SELECT preserves the sector.
 
@@ -14855,7 +14855,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:200](../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Direct-sum normalized target in the symmetry-sector basis.
 
@@ -14869,7 +14869,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:210](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The structural clean formula is exactly the normalized direct sum.
 
@@ -14883,7 +14883,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:221](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The reusable clean-entry expansion specializes to the four-slot sector formula.
 
@@ -14897,7 +14897,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:239](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The middle logical clean block is exactly the normalized sector target.
 
@@ -14911,7 +14911,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:278](../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Matrix form of the middle clean-block certificate.
 
@@ -14929,7 +14929,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean:287](../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* System-wire order is '(p0, p1, sector)'.
 
@@ -14943,7 +14943,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:17](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14957,7 +14957,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:20](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14971,7 +14971,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:25](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14985,7 +14985,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:51](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -14999,7 +14999,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:58](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The two CX gates implement the non-free pair-coordinate reindex exactly.
 
@@ -15013,7 +15013,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:62](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15027,7 +15027,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:70](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Lean-owned exact standard-RY angle for one loader branch.
 
@@ -15041,7 +15041,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:75](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15055,7 +15055,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:83](../../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15073,7 +15073,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean:89](../../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15087,7 +15087,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:17](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15101,7 +15101,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:21](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15115,7 +15115,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:25](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15129,7 +15129,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:29](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15143,7 +15143,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:34](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15157,7 +15157,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:38](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15171,7 +15171,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:43](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15185,7 +15185,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:52](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15199,7 +15199,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:57](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15213,7 +15213,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:61](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15227,7 +15227,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:66](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15241,7 +15241,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:71](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15255,7 +15255,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:75](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15269,7 +15269,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:84](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15283,7 +15283,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:89](.
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15297,7 +15297,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:95](.
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15311,7 +15311,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:103](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15325,7 +15325,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:112](
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15339,7 +15339,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:120](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15353,7 +15353,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:128](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15367,7 +15367,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:137](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15381,7 +15381,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:178](
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15395,7 +15395,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:187](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15409,7 +15409,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:194](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15423,7 +15423,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:202](
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15437,7 +15437,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:210](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15451,7 +15451,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:215](
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15469,7 +15469,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean:221](
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15483,7 +15483,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:18](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15497,7 +15497,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:21](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The two selected system bits are XORed with the selector, while the sector, selector, and coefficient wires are unchanged.
 
@@ -15511,7 +15511,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:28](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact matrix semantics of the physical XOR SELECT program.
 
@@ -15525,7 +15525,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:39](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15539,7 +15539,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:65](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15553,7 +15553,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:69](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15567,7 +15567,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:72](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15581,7 +15581,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:78](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15595,7 +15595,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:82](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15609,7 +15609,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:85](../../
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact standard-RY angle for each of the 32 multiplexor branches.
 
@@ -15623,7 +15623,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:90](../../
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15637,7 +15637,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:102](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Every exact angle denotes the corresponding T2 amplitude rotation.
 
@@ -15651,7 +15651,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:113](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15665,7 +15665,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:130](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15679,7 +15679,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:139](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15693,7 +15693,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:143](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15707,7 +15707,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:149](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15721,7 +15721,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:154](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15735,7 +15735,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:161](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15749,7 +15749,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:169](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Matrix-level SELECT refinement under the exact middle-register reindex.
 
@@ -15763,7 +15763,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:190](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The generic five-control multiplexor is exactly the T2 amplitude lift after the explicit little-endian product-register reindexing.
 
@@ -15777,7 +15777,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:217](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15791,7 +15791,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:260](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15805,7 +15805,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:265](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15819,7 +15819,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:270](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15833,7 +15833,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:282](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15847,7 +15847,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:285](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15861,7 +15861,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:291](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15875,7 +15875,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:300](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15889,7 +15889,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:309](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15903,7 +15903,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:334](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15917,7 +15917,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:359](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15931,7 +15931,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:378](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15945,7 +15945,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:381](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15959,7 +15959,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:394](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15973,7 +15973,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:399](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -15987,7 +15987,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:403](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16001,7 +16001,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:416](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16015,7 +16015,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:425](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16029,7 +16029,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:432](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16043,7 +16043,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:449](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16057,7 +16057,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:452](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16071,7 +16071,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:457](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16085,7 +16085,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:485](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16099,7 +16099,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:491](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16113,7 +16113,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:502](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16127,7 +16127,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:505](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16141,7 +16141,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:531](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16155,7 +16155,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:534](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The middle logical unitary conjugated back from symmetry-sector to pair coordinates, still expressed on the six named primitive wires.
 
@@ -16169,7 +16169,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:548](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16183,7 +16183,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:554](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The basis interpretation after the physical pair-coordinate CX stage.
 
@@ -16197,7 +16197,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:569](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The pair-coordinate circuit, the logical pair circuit, and its inverse in the chronological physical order required by the six-wire implementation.
 
@@ -16211,7 +16211,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:577](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16225,7 +16225,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:582](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The physical pair-coordinate convention agrees with the original Robin system order and the repository-wide six-wire little-endian convention.
 
@@ -16239,7 +16239,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:600](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact T3 refinement root: the primitive '\{X, RY, RZ, CX\}' circuit denotes the XOR four-slot T2 unitary after the explicit little-endian reindexing.
 
@@ -16253,7 +16253,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:618](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16267,7 +16267,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:640](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16281,7 +16281,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:644](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16295,7 +16295,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:657](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The executable primitive circuit has the required exact clean block.
 
@@ -16309,7 +16309,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:662](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16323,7 +16323,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:675](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16337,7 +16337,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:680](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Presentation-only conversion into the repository's legacy circuit list. The authoritative T3 semantics and resources remain those of PrimitiveCircuit.
 
@@ -16351,7 +16351,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:686](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16365,7 +16365,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:694](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Resource ownership is definitional: no handwritten gate or depth tuple is used by the promoted candidate.
 
@@ -16379,7 +16379,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:699](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16393,7 +16393,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:703](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16407,7 +16407,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:711](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* T3 candidate whose resource row is computed from its exact primitive program. The refinement theorem above links this circuit to this unitary.
 
@@ -16421,7 +16421,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:719](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16435,7 +16435,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:736](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact primitive verified block encoding for the XOR evolved route.
 
@@ -16449,7 +16449,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:744](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Dashboard-compatible names explicitly pointing to the XOR T3 route.
 
@@ -16463,7 +16463,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:751](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16477,7 +16477,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:754](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16491,7 +16491,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:761](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16505,7 +16505,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:764](../..
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16523,7 +16523,7 @@ Source: [QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean:769](../..
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Lift a system-register matrix through coefficient and selector identities.
 
@@ -16537,7 +16537,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:19](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* A unitary system operation remains unitary after the identity lifts.
 
@@ -16551,7 +16551,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:32](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Entry formula: coefficient and selector are Kronecker deltas.
 
@@ -16565,7 +16565,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:49](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Entry formula for the adjoint system lift.
 
@@ -16579,7 +16579,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:68](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Left multiplication by a lifted system matrix on a clean row.
 
@@ -16593,7 +16593,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:89](../../../../libra
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Right multiplication by the adjoint lift on a clean column.
 
@@ -16607,7 +16607,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:121](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Extract the coefficient/selector clean block as a system matrix.
 
@@ -16621,7 +16621,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:154](../../../../libr
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Conjugate a full logical matrix only on its system register.
 
@@ -16635,7 +16635,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:165](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* System conjugation preserves unitarity.
 
@@ -16649,7 +16649,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:182](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Conjugating the full logical matrix conjugates exactly its clean system block.
 
@@ -16667,7 +16667,7 @@ Source: [QuantumBlockEncoding/Robin/SystemConjugation.lean:209](../../../../libr
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16681,7 +16681,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:20](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16695,7 +16695,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:30](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16709,7 +16709,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:40](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The accepted XOR route uses 106 gates versus the source normal form's 312; the later score fields therefore do not decide this comparison.
 
@@ -16723,7 +16723,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:52](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Under the fixed exact primitive convention, the XOR four-slot route uses 106 gates while the fixed-N8 Figure-4 realization uses 881. This theorem does not assert optimality outside that declared compiler and score convention.
 
@@ -16737,7 +16737,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:66](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The evolved route improves every nonconstant score coordinate against the paper-seven normal form. Consequently its winner status does not depend on the chosen ordering of the four displayed coordinates.
 
@@ -16751,7 +16751,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:80](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The same componentwise dominance holds against the fixed-N8 Figure-4 realization.
 
@@ -16765,7 +16765,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:94](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The best fully verified Robin candidate under the frozen T3 comparison.
 
@@ -16779,7 +16779,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:107](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Machine-readable publication guard, enabled only after both source-side same-tier comparisons have compiled.
 
@@ -16793,7 +16793,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:113](../../../../l
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Publication guard tying the certified fixed-instance winner to empty fixed-N8 source and primitive-obligation lists.
 
@@ -16811,7 +16811,7 @@ Source: [QuantumBlockEncoding/Robin/T3ResourceComparison.lean:117](../../../../l
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16825,7 +16825,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:10](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16839,7 +16839,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:19](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16853,7 +16853,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:28](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16867,7 +16867,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:36](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16881,7 +16881,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:40](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16895,7 +16895,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:44](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact 64-entry five-shift decomposition, with columns mapped to rows.
 
@@ -16909,7 +16909,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:55](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16923,7 +16923,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:63](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16937,7 +16937,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:66](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16951,7 +16951,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:70](../../../../lib
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16965,7 +16965,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:81](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16979,7 +16979,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:92](../../../../lib
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -16993,7 +16993,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:100](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -17007,7 +17007,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:104](../../../../li
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
 
@@ -17025,7 +17025,7 @@ Source: [QuantumBlockEncoding/Robin/WeightedPermutation.lean:107](../../../../li
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The fixed eight-dimensional homogeneous-Robin benchmark matrix.
 
@@ -17039,7 +17039,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:14](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Exact normalizer frozen by the warm/cold comparison contract.
 
@@ -17053,7 +17053,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:53](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean signal basis index is zero.
 
@@ -17067,7 +17067,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:56](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Signal-first flattening of a signal index and an eight-dimensional system index.
 
@@ -17081,7 +17081,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:59](../../../../library/module
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Evaluating the symbolic Robin stencil at homogeneous boundary data gives the fixed rational benchmark entrywise.
 
@@ -17095,7 +17095,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:64](../../../../library/module
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Relation to Guseynov--Huang--Liu Eq. (9). The paper writes the physical finite-difference matrix as 'A\_GHL^(9) = Delta x^(-2) \* A\_tilde', with boundary entries depending on 'A1 \* Delta x' and 'B1 \* Delta x'. The frozen ASPBE target is the dimensionless stencil 'A\_tilde' at 'A1 = B1 = 0'; the inhomogeneous constants 'A2' and 'B2' belong to the source vector rather than this matrix.
 
@@ -17109,7 +17109,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:80](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Fixed paper-seeded parameters for the eight-dimensional warm instance.
 
@@ -17123,7 +17123,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:94](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem-level register layout specialized to the warm instance.
 
@@ -17137,7 +17137,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:98](../../../../library/module
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The visible source register partition specialized to the warm instance.
 
@@ -17151,7 +17151,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:102](../../../../library/modul
 
 *Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source-ordered ten-label paper transcript for the warm instance. The register SWAP remains a label here; executable semantics live in 'Robin.SourceBaseline.warmRobinRegisterSwapCircuit'.
 
@@ -17165,7 +17165,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:108](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The warm adapter preserves the exact source order of all ten blocks.
 
@@ -17179,7 +17179,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:122](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The source-facing warm transcript contains exactly ten blocks.
 
@@ -17193,7 +17193,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:138](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* Concrete fields of the fixed warm parameter adapter.
 
@@ -17207,7 +17207,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:144](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The theorem layout is '(system, signal, pure ancilla) = (3, 9, 6)'.
 
@@ -17221,7 +17221,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:152](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The visible source partition has widths '(5, 1, 3, 0, 3, 1)'.
 
@@ -17235,7 +17235,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:159](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The visible source register partition occupies thirteen qubits.
 
@@ -17249,7 +17249,7 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:169](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The clean projection covers all ten non-system wires.
 
@@ -17263,11 +17263,1935 @@ Source: [QuantumBlockEncoding/RobinEvolution.lean:174](../../../../library/modul
 
 *Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
 
-*Why it is in this chapter.* Paper-facing backend models and concrete Robin-boundary example artifacts.
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
 
 *Technical source note.* The fixed warm indicator and its dagger form one self-inverse permutation pair.
 
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/RobinEvolution.lean:180](../../../../library/modules/robinevolution/#decl-quantumblockencoding-robinevolution-warmrobinindicatorcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StatePreparationBellRoute.lean
+
+17 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellRyAngle" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellRyAngle")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell ry angle”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:18](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellryangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellRyAngle_eval" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellRyAngle_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “bell ry angle eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:21](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellryangle-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_bellRyAngle" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_bellRyAngle")
+*Plain-English reading.* Lean checks the proposition indexed as “standard ry matrix bell ry angle”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:26](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-standardrymatrix-bellryangle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellControl" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellControl")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell control”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:31](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellcontrol). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellTargetWire" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellTargetWire")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell target wire”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:33](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-belltargetwire). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellControl_ne_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellControl_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “bell control ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:35](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellcontrol-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellRyCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellRyCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell ry circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:38](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellrycircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellCxCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellCxCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell cx circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:41](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellcxcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitiveCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitiveCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell primitive circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:44](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellprimitivecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellAfterRy" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellAfterRy")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell after ry”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:47](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellafterry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_singleton_cx_apply" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_singleton_cx_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “eval primitive circuit le singleton cx apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:51](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-evalprimitivecircuitle-singleton-cx-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_col_zero" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_col_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “bell ry col zero”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:116](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellry-col-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_prepares" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellRy_prepares")
+*Plain-English reading.* Lean checks the proposition indexed as “bell ry prepares”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:133](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellry-prepares). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_on_afterRy" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellCx_on_afterRy")
+*Plain-English reading.* Lean checks the proposition indexed as “bell cx on after ry”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:230](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellcx-on-afterry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitive_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitive_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “bell primitive prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:241](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellprimitive-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitiveRoute" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellPrimitiveRoute")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell primitive route”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:254](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellprimitiveroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellVerified_cost" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “bell verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBellRoute.lean:260](../../../../library/modules/statepreparationbellroute/#decl-quantumblockencoding-statepreparationbenchmarks-bellverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean
+
+38 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellAmplitude" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellAmplitude")
+*Plain-English reading.* This abbreviation gives a shorter name to the type or expression used for “bell amplitude”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* abbrev.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:22](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-bellamplitude). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellState" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell state”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:25](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-bellstate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellTarget" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:28](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-belltarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellTarget_normalized" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellTarget_normalized")
+*Plain-English reading.* Lean checks the proposition indexed as “bell target normalized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:33](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-belltarget-normalized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:41](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-bellmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.star_bellMatrix" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.star_bellMatrix")
+*Plain-English reading.* Lean checks the proposition indexed as “star bell matrix”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:54](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-star-bellmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix_unitary" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “bell matrix unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:59](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-bellmatrix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellGate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:70](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-bellgate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellMatrix_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “bell matrix prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:74](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-bellmatrix-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.bellCertificate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.bellCertificate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “bell certificate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:81](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-bellcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseState" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense state”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:89](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensestate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseTarget" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:96](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensetarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseTarget_normalized" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseTarget_normalized")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense target normalized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:101](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensetarget-normalized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense matrix”. Rational quaternion completion with first column '(39,52,60,144)/169'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Rational quaternion completion with first column '(39,52,60,144)/169'.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:107](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix_unitary" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense matrix unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:127](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensematrix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseGate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:139](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseMatrix_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense matrix prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:143](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensematrix-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseCertificate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseCertificate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense certificate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:151](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendensecertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductState" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph product state”. Rational quaternion completion with first column '(39,52,60,144)/169'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Rational quaternion completion with first column '(39,52,60,144)/169'. -/ noncomputable def mottonenDenseMatrix : FiniteMatrix (gridSize 2) (gridSize 2) ℂ := fun row column => match row.val, column.val with | 0, 0 => (39 : ℂ) / 169 | 0, 1 => -(52 : ℂ) / 169 | 0, 2 => -(60 : ℂ) / 169 | 0, 3 => -(144 : ℂ) / 169 | 1, 0 => (52 : ℂ) / 169 | 1, 1 => (39 : ℂ) / 169 | 1, 2 => -(144 : ℂ) / 169 | 1, 3 => (60 : ℂ) / 169 | 2, 0 => (60 : ℂ) / 169 | 2, 1 => (144 : ℂ) / 169 | 2, 2 => (39 : ℂ) / 169 | 2, 3 => -(52 : ℂ) / 169 | 3, 0 => (144 : ℂ) / 169 | 3, 1 => -(60 : ℂ) / 169 | 3, 2 => (52 : ℂ) / 169 | \_, \_ => (39 : ℂ) / 169 theorem mottonenDenseMatrix\_unitary : mottonenDenseMatrix ∈ \_root\_.Matrix.unitaryGroup (Fin (gridSize 2)) ℂ := by rw \[\_root\_.Matrix.mem\_unitaryGroup\_iff'\] ext row column fin\_cases row <;> fin\_cases column <;> rw \[\_root\_.Matrix.mul\_apply, Finset.sum\_fin\_eq\_sum\_range\] <;> norm\_num \[mottonenDenseMatrix, Finset.sum\_range\_succ, gridSize, \_root\_.Matrix.star\_apply\] <;> simp only \[starRingEnd\_apply, star\_ofNat\] <;> norm\_num noncomputable def mottonenDenseGate : ComplexUnitaryGate 2 where matrix := mottonenDenseMatrix unitary := mottonenDenseMatrix\_unitary theorem mottonenDenseMatrix\_prepares\_target : applyVec mottonenDenseMatrix (zeroKet 2) = mottonenDenseTarget.amplitudes := by rw \[applyVec\_zeroKet\] change mottonenDenseMatrix.col (0 : Fin 4) = mottonenDenseState funext row fin\_cases row <;> norm\_num \[mottonenDenseMatrix, mottonenDenseState\] noncomputable def mottonenDenseCertificate : ComplexStatePreparationCertificate 2 where target := mottonenDenseTarget gate := mottonenDenseGate normalizationProof := mottonenDenseTarget\_normalized preparationProof := mottonenDenseMatrix\_prepares\_target /-! number number  Structured Grover--Rudolph-style product distribution
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:160](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproductstate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductTarget" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph product target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:168](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproducttarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductTarget_normalized" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductTarget_normalized")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph product target normalized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:173](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproducttarget-normalized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductMatrix" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph product matrix”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:180](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproductmatrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductMatrix_unitary" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductMatrix_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph product matrix unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:200](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproductmatrix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductGate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph product gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:212](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproductgate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductMatrix_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductMatrix_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph product matrix prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:216](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproductmatrix-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductCertificate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphProductCertificate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph product certificate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:225](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphproductcertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeState" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse three state”. Rational quaternion completion with first column '(39,52,60,144)/169'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Rational quaternion completion with first column '(39,52,60,144)/169'. -/ noncomputable def mottonenDenseMatrix : FiniteMatrix (gridSize 2) (gridSize 2) ℂ := fun row column => match row.val, column.val with | 0, 0 => (39 : ℂ) / 169 | 0, 1 => -(52 : ℂ) / 169 | 0, 2 => -(60 : ℂ) / 169 | 0, 3 => -(144 : ℂ) / 169 | 1, 0 => (52 : ℂ) / 169 | 1, 1 => (39 : ℂ) / 169 | 1, 2 => -(144 : ℂ) / 169 | 1, 3 => (60 : ℂ) / 169 | 2, 0 => (60 : ℂ) / 169 | 2, 1 => (144 : ℂ) / 169 | 2, 2 => (39 : ℂ) / 169 | 2, 3 => -(52 : ℂ) / 169 | 3, 0 => (144 : ℂ) / 169 | 3, 1 => -(60 : ℂ) / 169 | 3, 2 => (52 : ℂ) / 169 | \_, \_ => (39 : ℂ) / 169 theorem mottonenDenseMatrix\_unitary : mottonenDenseMatrix ∈ \_root\_.Matrix.unitaryGroup (Fin (gridSize 2)) ℂ := by rw \[\_root\_.Matrix.mem\_unitaryGroup\_iff'\] ext row column fin\_cases row <;> fin\_cases column <;> rw \[\_root\_.Matrix.mul\_apply, Finset.sum\_fin\_eq\_sum\_range\] <;> norm\_num \[mottonenDenseMatrix, Finset.sum\_range\_succ, gridSize, \_root\_.Matrix.star\_apply\] <;> simp only \[starRingEnd\_apply, star\_ofNat\] <;> norm\_num noncomputable def mottonenDenseGate : ComplexUnitaryGate 2 where matrix := mottonenDenseMatrix unitary := mottonenDenseMatrix\_unitary theorem mottonenDenseMatrix\_prepares\_target : applyVec mottonenDenseMatrix (zeroKet 2) = mottonenDenseTarget.amplitudes := by rw \[applyVec\_zeroKet\] change mottonenDenseMatrix.col (0 : Fin 4) = mottonenDenseState funext row fin\_cases row <;> norm\_num \[mottonenDenseMatrix, mottonenDenseState\] noncomputable def mottonenDenseCertificate : ComplexStatePreparationCertificate 2 where target := mottonenDenseTarget gate := mottonenDenseGate normalizationProof := mottonenDenseTarget\_normalized preparationProof := mottonenDenseMatrix\_prepares\_target /-! number number  Structured Grover--Rudolph-style product distribution -/ noncomputable def groverRudolphProductState : StateVector (gridSize 2) ℂ := fun index => match index.val with | 0 => (9 : ℂ) / 25 | 1 => (12 : ℂ) / 25 | 2 => (12 : ℂ) / 25 | \_ => (16 : ℂ) / 25 noncomputable def groverRudolphProductTarget : StatePreparationTarget ℂ 2 where amplitudes := groverRudolphProductState normalization := ∑ index, Complex.normSq (groverRudolphProductState index) = 1 source := "Grover--Rudolph structured product-distribution benchmark" theorem groverRudolphProductTarget\_normalized : groverRudolphProductTarget.normalization := by change ∑ index : Fin 4, Complex.normSq (groverRudolphProductState index) = 1 rw \[Finset.sum\_fin\_eq\_sum\_range\] norm\_num \[groverRudolphProductState, Complex.normSq\_apply, Finset.sum\_range\_succ\] noncomputable def groverRudolphProductMatrix : FiniteMatrix (gridSize 2) (gridSize 2) ℂ := fun row column => match row.val, column.val with | 0, 0 => (9 : ℂ) / 25 | 0, 1 => -(12 : ℂ) / 25 | 0, 2 => -(12 : ℂ) / 25 | 0, 3 => (16 : ℂ) / 25 | 1, 0 => (12 : ℂ) / 25 | 1, 1 => (9 : ℂ) / 25 | 1, 2 => -(16 : ℂ) / 25 | 1, 3 => -(12 : ℂ) / 25 | 2, 0 => (12 : ℂ) / 25 | 2, 1 => -(16 : ℂ) / 25 | 2, 2 => (9 : ℂ) / 25 | 2, 3 => -(12 : ℂ) / 25 | 3, 0 => (16 : ℂ) / 25 | 3, 1 => (12 : ℂ) / 25 | 3, 2 => (12 : ℂ) / 25 | \_, \_ => (9 : ℂ) / 25 theorem groverRudolphProductMatrix\_unitary : groverRudolphProductMatrix ∈ \_root\_.Matrix.unitaryGroup (Fin (gridSize 2)) ℂ := by rw \[\_root\_.Matrix.mem\_unitaryGroup\_iff'\] ext row column fin\_cases row <;> fin\_cases column <;> rw \[\_root\_.Matrix.mul\_apply, Finset.sum\_fin\_eq\_sum\_range\] <;> norm\_num \[groverRudolphProductMatrix, Finset.sum\_range\_succ, gridSize, \_root\_.Matrix.star\_apply\] <;> simp only \[starRingEnd\_apply, star\_ofNat\] <;> norm\_num noncomputable def groverRudolphProductGate : ComplexUnitaryGate 2 where matrix := groverRudolphProductMatrix unitary := groverRudolphProductMatrix\_unitary theorem groverRudolphProductMatrix\_prepares\_target : applyVec groverRudolphProductMatrix (zeroKet 2) = groverRudolphProductTarget.amplitudes := by rw \[applyVec\_zeroKet\] change groverRudolphProductMatrix.col (0 : Fin 4) = groverRudolphProductState funext row fin\_cases row <;> norm\_num \[groverRudolphProductMatrix, groverRudolphProductState\] noncomputable def groverRudolphProductCertificate : ComplexStatePreparationCertificate 2 where target := groverRudolphProductTarget gate := groverRudolphProductGate normalizationProof := groverRudolphProductTarget\_normalized preparationProof := groverRudolphProductMatrix\_prepares\_target /-! number number  Fixed three-sparse benchmark
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:234](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreestate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeTarget" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeTarget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse three target”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:240](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreetarget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeTarget_normalized" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeTarget_normalized")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse three target normalized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:245](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreetarget-normalized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse three matrix”. Rational orthogonal completion on rows '0,2,4', identity on the complement.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Rational orthogonal completion on rows '0,2,4', identity on the complement.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:251](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreematrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix_unitary" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse three matrix unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:271](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreematrix-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeGate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeGate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse three gate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:283](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeMatrix_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse three matrix prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:287](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreematrix-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeCertificate" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseThreeCertificate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse three certificate”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:294](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-sparsethreecertificate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount")
+*Plain-English reading.* This definition gives the library's named construction or computation for “select swap clean t count”. Rational orthogonal completion on rows '0,2,4', identity on the complement.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Rational orthogonal completion on rows '0,2,4', identity on the complement. -/ noncomputable def sparseThreeMatrix : FiniteMatrix (gridSize 3) (gridSize 3) ℂ := fun row column => match row.val, column.val with | 0, 0 => (3 : ℂ) / 13 | 0, 1 => -(4 : ℂ) / 5 | 0, 2 => -(36 : ℂ) / 65 | 2, 0 => (4 : ℂ) / 13 | 2, 1 => (3 : ℂ) / 5 | 2, 2 => -(48 : ℂ) / 65 | 4, 0 => (12 : ℂ) / 13 | 4, 1 => 0 | 4, 2 => (25 : ℂ) / 65 | 1, 3 => 1 | 3, 4 => 1 | 5, 5 => 1 | 6, 6 => 1 | 7, 7 => 1 | \_, \_ => 0 set\_option maxHeartbeats 1000000 in theorem sparseThreeMatrix\_unitary : sparseThreeMatrix ∈ \_root\_.Matrix.unitaryGroup (Fin (gridSize 3)) ℂ := by rw \[\_root\_.Matrix.mem\_unitaryGroup\_iff'\] ext row column fin\_cases row <;> fin\_cases column <;> rw \[\_root\_.Matrix.mul\_apply, Finset.sum\_fin\_eq\_sum\_range\] <;> norm\_num \[sparseThreeMatrix, Finset.sum\_range\_succ, gridSize, \_root\_.Matrix.star\_apply\] <;> simp only \[starRingEnd\_apply, star\_ofNat\] <;> norm\_num noncomputable def sparseThreeGate : ComplexUnitaryGate 3 where matrix := sparseThreeMatrix unitary := sparseThreeMatrix\_unitary theorem sparseThreeMatrix\_prepares\_target : applyVec sparseThreeMatrix (zeroKet 3) = sparseThreeTarget.amplitudes := by rw \[applyVec\_zeroKet\] change sparseThreeMatrix.col (0 : Fin 8) = sparseThreeState funext row fin\_cases row <;> norm\_num \[sparseThreeMatrix, sparseThreeState\] noncomputable def sparseThreeCertificate : ComplexStatePreparationCertificate 3 where target := sparseThreeTarget gate := sparseThreeGate normalizationProof := sparseThreeTarget\_normalized preparationProof := sparseThreeMatrix\_prepares\_target /-! number number  Low--Kliuchnikov--Schaeffer SelectSwap resource arithmetic
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:302](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-selectswapcleantcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_16_1_1" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_16_1_1")
+*Plain-English reading.* Lean checks the proposition indexed as “select swap clean t count 16 1 1”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:305](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-selectswapcleantcount-16-1-1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_16_1_4" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_16_1_4")
+*Plain-English reading.* Lean checks the proposition indexed as “select swap clean t count 16 1 4”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:308](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-selectswapcleantcount-16-1-4). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_lambda4_better_lambda1" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.selectSwapCleanTCount_lambda4_better_lambda1")
+*Plain-English reading.* Lean checks the proposition indexed as “select swap clean t count lambda 4 better lambda 1”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean:311](../../../../library/modules/statepreparationbenchmarkscorefixed/#decl-quantumblockencoding-statepreparationbenchmarks-selectswapcleantcount-lambda4-better-lambda1). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean
+
+16 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenConditionalAngles" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenConditionalAngles")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen conditional angles”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:43](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-mottonenconditionalangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcryCircuit" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcryCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense ucry circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:46](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-mottonendenseucrycircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_zero_of_context_ne" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_zero_of_context_ne")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense ucry entry zero of context ne”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:50](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-mottonendenseucry-entry-zero-of-context-ne). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_00" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_00")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense ucry entry 00”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:60](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-mottonendenseucry-entry-00). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_10" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_10")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense ucry entry 10”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:70](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-mottonendenseucry-entry-10). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_22" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_22")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense ucry entry 22”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:80](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-mottonendenseucry-entry-22). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_32" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.mottonenDenseUcry_entry_32")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense ucry entry 32”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:90](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-mottonendenseucry-entry-32). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparseControlWire" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparseControlWire")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse control wire”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:100](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsecontrolwire). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparseControlWire_ne_target" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparseControlWire_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse control wire ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:102](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsecontrolwire-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparseConditionalAngles" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparseConditionalAngles")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse conditional angles”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:108](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparseconditionalangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcryCircuit" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcryCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse pruned ucry circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:111](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsepruneducrycircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_zero_of_context_ne" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_zero_of_context_ne")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned ucry entry zero of context ne”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:115](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsepruneducry-entry-zero-of-context-ne). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_00" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_00")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned ucry entry 00”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:125](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsepruneducry-entry-00). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_20" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_20")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned ucry entry 20”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:135](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsepruneducry-entry-20). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_44" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_44")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned ucry entry 44”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:145](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsepruneducry-entry-44). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_64" (lean := "QuantumBlockEncoding.StatePreparationPaperEntryCertificates.sparsePrunedUcry_entry_64")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned ucry entry 64”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean:153](../../../../library/modules/statepreparationpaperentrycertificates/#decl-quantumblockencoding-statepreparationpaperentrycertificates-sparsepruneducry-entry-64). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean
+
+34 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenConditionalAngles" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenConditionalAngles")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen conditional angles”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:37](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonenconditionalangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcryCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcryCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense ucry circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:40](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendenseucrycircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitiveCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitiveCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense primitive circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:43](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendenseprimitivecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootState" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen root state”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:46](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonenrootstate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootRy_col_zero" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootRy_col_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen root ry col zero”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:66](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonenrootry-col-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootRy_prepares" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenRootRy_prepares")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen root ry prepares”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:96](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonenrootry-prepares). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_on_root" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseUcry_on_root")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense ucry on root”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:180](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendenseucry-on-root). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitive_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitive_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense primitive prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:226](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendenseprimitive-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitiveRoute" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDensePrimitiveRoute")
+*Plain-English reading.* This definition gives the library's named construction or computation for “mottonen dense primitive route”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:241](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendenseprimitiveroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseVerified_cost" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.mottonenDenseVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “mottonen dense verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:248](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-mottonendenseverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.zeroAngleCompiledUcry_eval_eq_one" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.zeroAngleCompiledUcry_eval_eq_one")
+*Plain-English reading.* Lean checks the proposition indexed as “zero angle compiled ucry eval eq one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:255](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-zeroanglecompileducry-eval-eq-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseControlWire" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseControlWire")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse control wire”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:287](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsecontrolwire). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseControlWire_ne_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseControlWire_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse control wire ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:290](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsecontrolwire-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseConditionalAngles" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseConditionalAngles")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse conditional angles”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:295](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparseconditionalangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcryCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcryCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse pruned ucry circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:298](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsepruneducrycircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse pruned circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:301](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparseprunedcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootState")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse root state”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:304](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparserootstate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootRy_col_zero" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootRy_col_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse root ry col zero”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:325](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparserootry-col-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootRy_prepares" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseRootRy_prepares")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse root ry prepares”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:371](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparserootry-prepares). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_on_root" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedUcry_on_root")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned ucry on root”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:497](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsepruneducry-on-root). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:577](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsepruned-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedRoute" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedRoute")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse pruned route”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:592](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparseprunedroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseControlWires" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseControlWires")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse dense control wires”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:598](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsedensecontrolwires). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseControlWires_ne_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseControlWires_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse dense control wires ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:602](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsedensecontrolwires-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseZeroFillCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseZeroFillCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse zero fill circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:607](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsezerofillcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse dense tree circuit”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:611](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsedensetreecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseZeroFill_eval_eq_one" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseZeroFill_eval_eq_one")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse zero fill eval eq one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:614](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsezerofill-eval-eq-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseZeroFill_evalLE_eq_one" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseZeroFill_evalLE_eq_one")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse zero fill eval le eq one”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:620](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsezerofill-evalle-eq-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTree_evalLE_eq_pruned" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTree_evalLE_eq_pruned")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse dense tree eval le eq pruned”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:626](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsedensetree-evalle-eq-pruned). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTree_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTree_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse dense tree prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:633](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsedensetree-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeRoute" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeRoute")
+*Plain-English reading.* This definition gives the library's named construction or computation for “sparse dense tree route”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:639](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsedensetreeroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedVerified_cost" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePrunedVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:645](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparseprunedverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeVerified_cost" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparseDenseTreeVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse dense tree verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:650](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsedensetreeverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_betterThan_denseTree" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.sparsePruned_betterThan_denseTree")
+*Plain-English reading.* Lean checks the proposition indexed as “sparse pruned better than dense tree”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean:655](../../../../library/modules/statepreparationpaperroutescompact/#decl-quantumblockencoding-statepreparationbenchmarks-sparsepruned-betterthan-densetree). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean
+
+31 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE")
+*Plain-English reading.* This definition gives the library's named construction or computation for “eval primitive circuit le”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:21](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-evalprimitivecircuitle). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_unitary" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “eval primitive circuit le unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:27](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-evalprimitivecircuitle-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.ExactPrimitiveStatePreparationRoute" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.ExactPrimitiveStatePreparationRoute")
+*Plain-English reading.* This record groups the data and proof fields needed for “exact primitive state preparation route”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:34](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-exactprimitivestatepreparationroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.ExactPrimitiveStatePreparationRoute.cost" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.ExactPrimitiveStatePreparationRoute.cost")
+*Plain-English reading.* This definition gives the library's named construction or computation for “cost”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:44](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-exactprimitivestatepreparationroute-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.ExactPrimitiveStatePreparationRoute.unitary" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.ExactPrimitiveStatePreparationRoute.unitary")
+*Plain-English reading.* Lean checks the proposition indexed as “unitary”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:51](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-exactprimitivestatepreparationroute-unitary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.ryAngle35" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.ryAngle35")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ry angle 35”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:83](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-ryangle35). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.ryAngle513" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.ryAngle513")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ry angle 513”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:87](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-ryangle513). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.ryAngleZero" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.ryAngleZero")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ry angle zero”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:91](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-ryanglezero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_ryAngle35" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_ryAngle35")
+*Plain-English reading.* Lean checks the proposition indexed as “standard ry matrix ry angle 35”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:93](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-standardrymatrix-ryangle35). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_ryAngle513" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_ryAngle513")
+*Plain-English reading.* Lean checks the proposition indexed as “standard ry matrix ry angle 513”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:109](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-standardrymatrix-ryangle513). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_ryAngleZero" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.standardRyMatrix_ryAngleZero")
+*Plain-English reading.* Lean checks the proposition indexed as “standard ry matrix ry angle zero”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:125](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-standardrymatrix-ryanglezero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.primitiveLEBits" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.primitiveLEBits")
+*Plain-English reading.* This definition gives the library's named construction or computation for “primitive le bits”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:131](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-primitivelebits). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_append" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_append")
+*Plain-English reading.* Lean checks the proposition indexed as “eval primitive circuit le append”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:135](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-evalprimitivecircuitle-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_singleton_ry_apply" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_singleton_ry_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “eval primitive circuit le singleton ry apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:142](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-evalprimitivecircuitle-singleton-ry-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.evalPrimitiveCircuitLE_compileUniformlyControlledRy_apply")
+*Plain-English reading.* Lean checks the proposition indexed as “eval primitive circuit le compile uniformly controlled ry apply”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:157](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-evalprimitivecircuitle-compileuniformlycontrolledry-apply). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphControlWire" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphControlWire")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph control wire”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:183](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphcontrolwire). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphControlWire_ne_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphControlWire_ne_target")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph control wire ne target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:185](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphcontrolwire-ne-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphConstantAngles" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphConstantAngles")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph constant angles”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:191](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphconstantangles). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph tree circuit”. Generic binary-tree route: a root split followed by a one-control UCRY.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Generic binary-tree route: a root split followed by a one-control UCRY.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:195](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphtreecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedCircuit" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedCircuit")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph factorized circuit”. Product-aware route: the two independent rotations can occupy one layer.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Product-aware route: the two independent rotations can occupy one layer.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:201](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphfactorizedcircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphConstantUcry_eval" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphConstantUcry_eval")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph constant ucry eval”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:205](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphconstantucry-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_eval_eq_factorized" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_eval_eq_factorized")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph tree eval eq factorized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:215](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphtree-eval-eq-factorized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_evalLE_eq_factorized" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_evalLE_eq_factorized")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph tree eval le eq factorized”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:223](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphtree-evalle-eq-factorized). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_evalLE_eq_matrix" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_evalLE_eq_matrix")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph factorized eval le eq matrix”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:229](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphfactorized-evalle-eq-matrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph factorized prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:243](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphfactorized-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_prepares_target" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTree_prepares_target")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph tree prepares target”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:249](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphtree-prepares-target). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedRoute" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedRoute")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph factorized route”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:255](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphfactorizedroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeRoute" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeRoute")
+*Plain-English reading.* This definition gives the library's named construction or computation for “grover rudolph tree route”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:262](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphtreeroute). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedVerified_cost" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorizedVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph factorized verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:269](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphfactorizedverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeVerified_cost" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphTreeVerified_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph tree verified cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:274](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphtreeverified-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_betterThan_tree" (lean := "QuantumBlockEncoding.StatePreparationBenchmarks.groverRudolphFactorized_betterThan_tree")
+*Plain-English reading.* Lean checks the proposition indexed as “grover rudolph factorized better than tree”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean:279](../../../../library/modules/statepreparationprimitiveroutes/#decl-quantumblockencoding-statepreparationbenchmarks-groverrudolphfactorized-betterthan-tree). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

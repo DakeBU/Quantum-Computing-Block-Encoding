@@ -161,6 +161,8 @@ Use repository skills whenever they help the current objective:
   trust review;
 - `qbe-block-encoding-library` for route retrieval before inventing duplicate
   constructions;
+- `python3 tools/qbe.py atlas-search "<query>" --clean-only` for separately
+  licensed textbook lemmas after local ASPBE and Mathlib search;
 - `qbe-conversion-window` for Markdown/LaTeX/Lean correspondence;
 - `qbe-math-writing` and `qbe-proof-export` for exact reader-facing proofs;
 - `qbe-formalize-paper`, `qbe-cited-results`, and `qbe-verifier-feedback` when
@@ -181,6 +183,8 @@ ideas in the handoff even when they do not match the initial lens.
   root and tests compile.
 - Do not promote a local arithmetic theorem as gate-level correctness without
   the gate/subcircuit composition bridge.
+- Do not treat an ATLAS upstream build or quality score as an ASPBE proof. A
+  narrow local adapter must pass the repository Lean gate before promotion.
 - For open problems, include an acceptance test precise enough that Lean can
   eventually check it.
 - Fresh-context review should inspect evidence and conventions, not merely the

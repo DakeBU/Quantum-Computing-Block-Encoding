@@ -4,7 +4,7 @@ This generated index backs `abeis_lean_leaf_module_graph.svg` and its PNG copy.
 It lists ABEIS declarations by file so upper/middle agents can
 retrieve existing leaves before asking lower workers to reprove them.
 
-Total declarations indexed: **1108**.
+Total declarations indexed: **1111**.
 
 | File | Count | Role |
 | --- | ---: | --- |
@@ -13,7 +13,7 @@ Total declarations indexed: **1108**.
 | `QuantumBlockEncoding/Circuit.lean` | 12 | gate/circuit syntax |
 | `QuantumBlockEncoding/BlockEncoding.lean` | 22 | target, candidate, verified records |
 | `QuantumBlockEncoding/StatePreparation.lean` | 11 | first-column state-preparation certificates |
-| `QuantumBlockEncoding/ConcreteSemantics.lean` | 22 | finite state action and product-register bridges |
+| `QuantumBlockEncoding/ConcreteSemantics.lean` | 25 | finite state action and product-register bridges |
 | `QuantumBlockEncoding/CircuitSemantics.lean` | 42 | evaluated matrix/path and extraction lemmas |
 | `QuantumBlockEncoding/BlockEncodingClassics.lean` | 84 | classic reusable block-encoding leaves |
 | `QuantumBlockEncoding/MainCase.lean` | 127 | main transfer-operator certificates |
@@ -164,25 +164,28 @@ Total declarations indexed: **1108**.
 | 25 | `abbrev` | `FiniteMatrix` |
 | 29 | `abbrev` | `StateVector` |
 | 33 | `def` | `basisKet` |
-| 38 | `def` | `zeroKet` |
-| 43 | `def` | `applyVec` |
-| 52 | `structure` | `ComplexUnitaryGate` |
-| 58 | `theorem` | `applyVec_basisKet` |
-| 65 | `theorem` | `applyVec_zeroKet` |
-| 76 | `theorem` | `firstColumnMatches_iff_applyVec_zeroKet` |
-| 95 | `structure` | `ComplexStatePreparationCertificate` |
-| 105 | `def` | `candidate` |
-| 124 | `def` | `verified` |
-| 137 | `theorem` | `preparesVector` |
-| 145 | `abbrev` | `ProductRegisterMatrix` |
-| 152 | `def` | `flatToProductRegister` |
-| 163 | `def` | `productRegisterBlockProjection` |
-| 172 | `theorem` | `productRegisterBlockProjection_flatToProductRegister` |
-| 182 | `theorem` | `productIndex_val_eq_signalSystemBlockRowIndex` |
-| 194 | `theorem` | `signalSystemBlockProjection_eq_cleanBlockProduct` |
-| 211 | `def` | `cleanBasisActionAmplitude` |
-| 221 | `theorem` | `cleanBasisActionAmplitude_eq_signalSystemBlockProjection` |
-| 239 | `theorem` | `pointwiseProjection_iff_cleanBasisAction` |
+| 40 | `theorem` | `basisKet_apply` |
+| 50 | `def` | `zeroKet` |
+| 55 | `def` | `applyVec` |
+| 64 | `structure` | `ComplexUnitaryGate` |
+| 70 | `theorem` | `applyVec_basisKet` |
+| 79 | `theorem` | `applyVec_twoBasisSuperposition` |
+| 93 | `theorem` | `applyVec_twoBasisSuperposition_apply` |
+| 103 | `theorem` | `applyVec_zeroKet` |
+| 114 | `theorem` | `firstColumnMatches_iff_applyVec_zeroKet` |
+| 133 | `structure` | `ComplexStatePreparationCertificate` |
+| 143 | `def` | `candidate` |
+| 162 | `def` | `verified` |
+| 175 | `theorem` | `preparesVector` |
+| 183 | `abbrev` | `ProductRegisterMatrix` |
+| 190 | `def` | `flatToProductRegister` |
+| 201 | `def` | `productRegisterBlockProjection` |
+| 210 | `theorem` | `productRegisterBlockProjection_flatToProductRegister` |
+| 220 | `theorem` | `productIndex_val_eq_signalSystemBlockRowIndex` |
+| 232 | `theorem` | `signalSystemBlockProjection_eq_cleanBlockProduct` |
+| 249 | `def` | `cleanBasisActionAmplitude` |
+| 259 | `theorem` | `cleanBasisActionAmplitude_eq_signalSystemBlockProjection` |
+| 277 | `theorem` | `pointwiseProjection_iff_cleanBasisAction` |
 
 ## `QuantumBlockEncoding/CircuitSemantics.lean`
 
@@ -1161,8 +1164,8 @@ _No declarations indexed._
 | 17 | `inductive` | `PaperRole` |
 | 27 | `structure` | `PaperEntry` |
 | 39 | `def` | `literature` |
-| 219 | `def` | `literatureCount` |
-| 221 | `def` | `primaryPapers` |
+| 230 | `def` | `literatureCount` |
+| 232 | `def` | `primaryPapers` |
 
 ## `QuantumBlockEncoding/OpenProblems.lean`
 
@@ -1219,10 +1222,11 @@ _No declarations indexed._
 
 ## External Lean Reference Surfaces
 
-External quantum Lean libraries are indexed as memory cards rather than
+External Lean libraries are indexed as memory cards rather than
 copied into the declaration ledger:
 
 - `research-wiki/external-lean-libraries/quantum-computing-lean.md`
 - `research-wiki/external-lean-libraries/lean-quantuminfo.md`
 - `research-wiki/external-lean-libraries/lean-quantum.md`
+- `research-wiki/external-lean-libraries/atlas-lean.md`
 - `research-wiki/mathlib-lemmas/`
