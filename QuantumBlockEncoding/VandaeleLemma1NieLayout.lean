@@ -91,7 +91,6 @@ theorem leftChildEmbed_injective (k : Nat) (four_le : 4 ≤ k) :
     · by_cases bt : b.val = leftSize k
       · simp [leftChildEmbed, ac, bc, bt, controlWire, r0,
           reservedControl] at values
-        omega
       · simp [leftChildEmbed, ac, bc, bt, controlWire, r1,
           reservedControl] at values
         omega
