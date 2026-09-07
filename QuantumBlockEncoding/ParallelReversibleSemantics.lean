@@ -232,6 +232,17 @@ theorem eval_parallelLayers_apply {qubits : Nat}
                 (ReversibleSchedule.program (rightHead :: rightTail))
                 (evalReversibleProgram
                   (ReversibleSchedule.program (leftHead :: leftTail)) state) := by
+              change
+                evalReversibleProgram (ReversibleSchedule.program rightTail)
+                    (evalReversibleProgram rightHead
+                      (evalReversibleProgram
+                        (ReversibleSchedule.program leftTail)
+                        (evalReversibleProgram leftHead state))) =
+                  evalReversibleProgram
+                    (rightHead ++ ReversibleSchedule.program rightTail)
+                    (evalReversibleProgram
+                      (leftHead ++ ReversibleSchedule.program leftTail) state)
+              rw [evalReversibleProgram_append, evalReversibleProgram_append]
               rfl
 
 /-- Equivalence-level form of `eval_parallelLayers_apply`. -/
