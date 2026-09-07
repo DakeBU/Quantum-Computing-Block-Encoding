@@ -28,6 +28,16 @@ open VandaeleLemma1PrimitiveBaseCases
 open VandaeleLemma1BorrowedNCTGadgets
 open ReversibleComputeActionUncompute
 
+/-- `allFlatControlsOne` is finite but its decidability is deliberately local in
+the source-facing contract.  Re-create the same local instance here so the
+promise statements can use the executable `if` without exporting a global
+classical assumption. -/
+local instance instDecidableAllFlatControlsOne
+    (k : Nat) (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
+    Decidable (allFlatControlsOne k state) := by
+  unfold allFlatControlsOne
+  infer_instance
+
 /-- Exact `C^k X` semantics under a clean-workspace input promise. -/
 def CleanFlatSpec (k : Nat)
     (implementation : Equiv.Perm (PrimitiveBasis (lemmaOneFlatWidth k))) : Prop :=
