@@ -1,0 +1,37 @@
+name: Vandaele Nie recursive step
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveStep.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - 'QuantumBlockEncoding/ReversibleComputeUseUncompute.lean'
+      - 'QuantumBlockEncoding/ParallelReversibleSemantics.lean'
+      - '.github/workflows/vandaele-nie-recursive-step.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveStep.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - 'QuantumBlockEncoding/ReversibleComputeUseUncompute.lean'
+      - 'QuantumBlockEncoding/ParallelReversibleSemantics.lean'
+      - '.github/workflows/vandaele-nie-recursive-step.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-recursive-step:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile generic Figure 3 recursive step
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieRecursiveStep
