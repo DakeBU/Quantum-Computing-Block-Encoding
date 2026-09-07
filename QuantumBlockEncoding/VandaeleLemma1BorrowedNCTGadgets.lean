@@ -49,6 +49,17 @@ local instance instDecidableAllFlatControlsOne
   unfold allFlatControlsOne
   infer_instance
 
+/-- `LemmaOneFlatSpec` quantifies over a finite computational-basis function
+space.  Mathlib intentionally does not always synthesize nested finite-forall
+decidability through an outer binder, so expose that one layer explicitly for
+these exhaustive fixed-gadget certificates. -/
+local instance instDecidableLemmaOneFlatSpec
+    (k : Nat)
+    (implementation : Equiv.Perm (PrimitiveBasis (lemmaOneFlatWidth k))) :
+    Decidable (LemmaOneFlatSpec k implementation) := by
+  unfold LemmaOneFlatSpec
+  exact Fintype.decidableForallFintype
+
 private theorem controlWire_injective (k : Nat) :
     Function.Injective (controlWire k) := by
   intro left right equal
