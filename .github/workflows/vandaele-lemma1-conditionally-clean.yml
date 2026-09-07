@@ -1,0 +1,42 @@
+name: Vandaele Lemma 1 conditionally-clean invariant
+
+on:
+  push:
+    branches:
+      - "work/vandaele-lemma1-conditionally-clean-*"
+    paths:
+      - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
+      - "QuantumBlockEncoding/VandaeleLemma1ConditionallyClean.lean"
+      - ".github/workflows/vandaele-lemma1-conditionally-clean.yml"
+  pull_request:
+    paths:
+      - "QuantumBlockEncoding/VandaeleLemma1Contract.lean"
+      - "QuantumBlockEncoding/VandaeleLemma1ConditionallyClean.lean"
+      - ".github/workflows/vandaele-lemma1-conditionally-clean.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: vandaele-lemma1-conditionally-clean-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  conditionally-clean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Lean and caches
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Compile conditionally-clean invariant
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1ConditionallyClean
