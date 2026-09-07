@@ -95,25 +95,23 @@ theorem leftChildEmbed_injective (k : Nat) (four_le : 4 ≤ k) :
       · simp [leftChildEmbed, ac, bc, bt, controlWire, r1,
           reservedControl] at values
         omega
-  · by_cases at : a.val = leftSize k
+  · by_cases aTarget : a.val = leftSize k
     · by_cases bc : b.val < leftSize k
-      · simp [leftChildEmbed, ac, at, bc, controlWire, r0,
+      · simp [leftChildEmbed, ac, aTarget, bc, controlWire, r0,
           reservedControl] at values
         omega
       · by_cases bt : b.val = leftSize k
         · apply Fin.ext
           omega
-        · simp [leftChildEmbed, ac, at, bc, bt, controlWire, r0, r1,
+        · simp [leftChildEmbed, ac, aTarget, bc, bt, controlWire, r0, r1,
             reservedControl] at values
-          omega
     · by_cases bc : b.val < leftSize k
-      · simp [leftChildEmbed, ac, at, bc, controlWire, r1,
+      · simp [leftChildEmbed, ac, aTarget, bc, controlWire, r1,
           reservedControl] at values
         omega
       · by_cases bt : b.val = leftSize k
-        · simp [leftChildEmbed, ac, at, bc, bt, controlWire, r0, r1,
+        · simp [leftChildEmbed, ac, aTarget, bc, bt, controlWire, r0, r1,
             reservedControl] at values
-          omega
         · apply Fin.ext
           have a_lt : a.val < leftSize k + 2 := by
             simpa [lemmaOneFlatWidth] using a.isLt
@@ -153,25 +151,23 @@ theorem rightChildEmbed_injective (k : Nat) (four_le : 4 ≤ k) :
       · simp [rightChildEmbed, ac, bc, bt, controlWire, r3,
           reservedControl] at values
         omega
-  · by_cases at : a.val = rightSize k
+  · by_cases aTarget : a.val = rightSize k
     · by_cases bc : b.val < rightSize k
-      · simp [rightChildEmbed, ac, at, bc, controlWire, r2,
+      · simp [rightChildEmbed, ac, aTarget, bc, controlWire, r2,
           reservedControl] at values
         omega
       · by_cases bt : b.val = rightSize k
         · apply Fin.ext
           omega
-        · simp [rightChildEmbed, ac, at, bc, bt, controlWire, r2, r3,
+        · simp [rightChildEmbed, ac, aTarget, bc, bt, controlWire, r2, r3,
             reservedControl] at values
-          omega
     · by_cases bc : b.val < rightSize k
-      · simp [rightChildEmbed, ac, at, bc, controlWire, r3,
+      · simp [rightChildEmbed, ac, aTarget, bc, controlWire, r3,
           reservedControl] at values
         omega
       · by_cases bt : b.val = rightSize k
-        · simp [rightChildEmbed, ac, at, bc, bt, controlWire, r2, r3,
+        · simp [rightChildEmbed, ac, aTarget, bc, bt, controlWire, r2, r3,
             reservedControl] at values
-          omega
         · apply Fin.ext
           have a_lt : a.val < rightSize k + 2 := by
             simpa [lemmaOneFlatWidth] using a.isLt
@@ -204,10 +200,8 @@ theorem childImagesDisjoint (k : Nat) (four_le : 4 ≤ k) :
       · by_cases rt : rightWire.val = rightSize k
         · simp [leftChildEmbed, rightChildEmbed, lc, lt, rc, rt, controlWire,
             r0, r2, reservedControl] at values
-          omega
         · simp [leftChildEmbed, rightChildEmbed, lc, lt, rc, rt, controlWire,
             r0, r3, reservedControl] at values
-          omega
     · by_cases rc : rightWire.val < rightSize k
       · simp [leftChildEmbed, rightChildEmbed, lc, lt, rc, controlWire, r1,
           reservedControl] at values
@@ -215,10 +209,8 @@ theorem childImagesDisjoint (k : Nat) (four_le : 4 ≤ k) :
       · by_cases rt : rightWire.val = rightSize k
         · simp [leftChildEmbed, rightChildEmbed, lc, lt, rc, rt, controlWire,
             r1, r2, reservedControl] at values
-          omega
         · simp [leftChildEmbed, rightChildEmbed, lc, lt, rc, rt, controlWire,
             r1, r3, reservedControl] at values
-          omega
 
 /-- Wire renaming for the fixed `C⁴X` in Figure-3 Step 1.  The native gadget's
 workspace wire is mapped to the outer target `T`, which it restores exactly. -/
@@ -247,21 +239,19 @@ theorem stepOneEmbed_injective (k : Nat) (four_le : 4 ≤ k) :
         omega
       · simp [stepOneEmbed, ac, bc, bt, targetWire] at values
         omega
-  · by_cases at : a.val = 4
+  · by_cases aTarget : a.val = 4
     · by_cases bc : b.val < 4
-      · simp [stepOneEmbed, ac, at, bc, dirtyWire] at values
+      · simp [stepOneEmbed, ac, aTarget, bc, dirtyWire] at values
         omega
       · by_cases bt : b.val = 4
         · apply Fin.ext
           omega
-        · simp [stepOneEmbed, ac, at, bc, bt, dirtyWire, targetWire] at values
-          omega
+        · simp [stepOneEmbed, ac, aTarget, bc, bt, dirtyWire, targetWire] at values
     · by_cases bc : b.val < 4
-      · simp [stepOneEmbed, ac, at, bc, targetWire] at values
+      · simp [stepOneEmbed, ac, aTarget, bc, targetWire] at values
         omega
       · by_cases bt : b.val = 4
-        · simp [stepOneEmbed, ac, at, bc, bt, dirtyWire, targetWire] at values
-          omega
+        · simp [stepOneEmbed, ac, aTarget, bc, bt, dirtyWire, targetWire] at values
         · apply Fin.ext
           have a_lt : a.val < 6 := by
             simpa [lemmaOneFlatWidth] using a.isLt
