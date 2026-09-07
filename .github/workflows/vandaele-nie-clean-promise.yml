@@ -1,0 +1,35 @@
+name: Vandaele Nie clean promise
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1CleanPromise.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1BorrowedNCTGadgets.lean'
+      - '.github/workflows/vandaele-nie-clean-promise.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1CleanPromise.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1BorrowedNCTGadgets.lean'
+      - '.github/workflows/vandaele-nie-clean-promise.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-clean-promise:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile clean recursive correctness interface
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1CleanPromise
