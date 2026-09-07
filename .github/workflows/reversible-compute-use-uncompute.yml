@@ -1,0 +1,33 @@
+name: Reversible compute use uncompute
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/ReversibleComputeActionUncompute.lean'
+      - 'QuantumBlockEncoding/ReversibleComputeUseUncompute.lean'
+      - '.github/workflows/reversible-compute-use-uncompute.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/ReversibleComputeActionUncompute.lean'
+      - 'QuantumBlockEncoding/ReversibleComputeUseUncompute.lean'
+      - '.github/workflows/reversible-compute-use-uncompute.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compute-use-uncompute:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile recursive half accounting
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.ReversibleComputeUseUncompute
