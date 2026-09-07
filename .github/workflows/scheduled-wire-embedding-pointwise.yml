@@ -1,0 +1,35 @@
+name: Scheduled wire embedding pointwise
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/ScheduledWireEmbeddingPointwise.lean'
+      - 'QuantumBlockEncoding/ScheduledWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleWireEmbedding.lean'
+      - '.github/workflows/scheduled-wire-embedding-pointwise.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/ScheduledWireEmbeddingPointwise.lean'
+      - 'QuantumBlockEncoding/ScheduledWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleWireEmbedding.lean'
+      - '.github/workflows/scheduled-wire-embedding-pointwise.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pointwise-embedding:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile pointwise embedding corollaries
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.ScheduledWireEmbeddingPointwise
