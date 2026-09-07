@@ -159,7 +159,8 @@ theorem mapScheduleWires_program
       change
         mapLayerWires embed injective layer ++
             (mapScheduleWires embed injective rest).program =
-          mapProgramWires embed injective (layer ++ rest.program)
+          mapProgramWires embed injective
+            (layer ++ ReversibleSchedule.program rest)
       rw [induction, mapProgramWires_append]
       rfl
 
