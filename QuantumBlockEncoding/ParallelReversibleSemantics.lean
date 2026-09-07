@@ -117,16 +117,33 @@ theorem evalReversibleProgram_commute_of_crossWireDisjoint
 
 namespace ReversibleSchedule
 
+/-- Membership in the authoritative flattened schedule program is exactly
+membership in one of its layers.  Keeping this as an explicit helper avoids
+fragile `List.flatten` elaboration in downstream schedule proofs. -/
+theorem mem_program_iff {qubits : Nat}
+    {gate : ReversibleGate qubits}
+    {schedule : ReversibleSchedule qubits} :
+    gate ∈ ReversibleSchedule.program schedule ↔
+      ∃ layer ∈ schedule, gate ∈ layer := by
+  induction schedule with
+  | nil =>
+      simp [ReversibleSchedule.program]
+  | cons head tail induction =>
+      simp [ReversibleSchedule.program, induction]
+
 /-- Strong schedule cross-disjointness implies cross-disjointness of the exact
 flattened programs used by the evaluator. -/
 theorem programs_crossWireDisjoint {qubits : Nat}
     {left right : ReversibleSchedule qubits}
     (cross : CrossWireDisjoint left right) :
-    ReversibleProgram.CrossWireDisjoint left.program right.program := by
+    ReversibleProgram.CrossWireDisjoint
+      (ReversibleSchedule.program left)
+      (ReversibleSchedule.program right) := by
   intro leftGate leftMember rightGate rightMember
-  simp only [program, List.mem_flatten] at leftMember rightMember
-  rcases leftMember with ⟨leftLayer, leftLayerMember, leftGateMember⟩
-  rcases rightMember with ⟨rightLayer, rightLayerMember, rightGateMember⟩
+  rcases mem_program_iff.mp leftMember with
+    ⟨leftLayer, leftLayerMember, leftGateMember⟩
+  rcases mem_program_iff.mp rightMember with
+    ⟨rightLayer, rightLayerMember, rightGateMember⟩
   exact cross leftLayer leftLayerMember rightLayer rightLayerMember
     leftGate leftGateMember rightGate rightGateMember
 
@@ -136,9 +153,10 @@ theorem eval_parallelLayers_apply {qubits : Nat}
     (left right : ReversibleSchedule qubits)
     (cross : CrossWireDisjoint left right)
     (state : PrimitiveBasis qubits) :
-    evalReversibleProgram (parallelLayers left right).program state =
-      evalReversibleProgram right.program
-        (evalReversibleProgram left.program state) := by
+    evalReversibleProgram
+        (ReversibleSchedule.program (parallelLayers left right)) state =
+      evalReversibleProgram (ReversibleSchedule.program right)
+        (evalReversibleProgram (ReversibleSchedule.program left) state) := by
   revert right cross state
   induction left with
   | nil =>
@@ -157,10 +175,10 @@ theorem eval_parallelLayers_apply {qubits : Nat}
               rightLayer
               (List.mem_cons_of_mem rightHead rightMember)
           have rightHeadLeftTailCross :
-              ReversibleProgram.CrossWireDisjoint rightHead leftTail.program := by
+              ReversibleProgram.CrossWireDisjoint rightHead
+                (ReversibleSchedule.program leftTail) := by
             intro rightGate rightGateMember leftGate leftGateMember
-            simp only [program, List.mem_flatten] at leftGateMember
-            rcases leftGateMember with
+            rcases mem_program_iff.mp leftGateMember with
               ⟨leftLayer, leftLayerMember, leftGateMember⟩
             exact ReversibleGate.wireDisjoint_symm
               (cross leftLayer
@@ -168,49 +186,64 @@ theorem eval_parallelLayers_apply {qubits : Nat}
                 rightHead (by simp)
                 leftGate leftGateMember rightGate rightGateMember)
           have parallelProgram :
-              (parallelLayers
-                (leftHead :: leftTail)
-                (rightHead :: rightTail)).program =
+              ReversibleSchedule.program
+                (parallelLayers
+                  (leftHead :: leftTail)
+                  (rightHead :: rightTail)) =
                 (leftHead ++ rightHead) ++
-                  (parallelLayers leftTail rightTail).program := by
+                  ReversibleSchedule.program
+                    (parallelLayers leftTail rightTail) := by
             rfl
           calc
             evalReversibleProgram
-                (parallelLayers
-                  (leftHead :: leftTail)
-                  (rightHead :: rightTail)).program state =
+                (ReversibleSchedule.program
+                  (parallelLayers
+                    (leftHead :: leftTail)
+                    (rightHead :: rightTail))) state =
               evalReversibleProgram
-                (parallelLayers leftTail rightTail).program
+                (ReversibleSchedule.program
+                  (parallelLayers leftTail rightTail))
                 (evalReversibleProgram (leftHead ++ rightHead) state) := by
               rw [parallelProgram, evalReversibleProgram_append]
               rfl
-            _ = evalReversibleProgram rightTail.program
-                (evalReversibleProgram leftTail.program
+            _ = evalReversibleProgram
+                (ReversibleSchedule.program rightTail)
+                (evalReversibleProgram
+                  (ReversibleSchedule.program leftTail)
                   (evalReversibleProgram (leftHead ++ rightHead) state)) :=
               induction rightTail tailCross
                 (evalReversibleProgram (leftHead ++ rightHead) state)
-            _ = evalReversibleProgram rightTail.program
+            _ = evalReversibleProgram
+                (ReversibleSchedule.program rightTail)
                 (evalReversibleProgram rightHead
-                  (evalReversibleProgram leftTail.program
+                  (evalReversibleProgram
+                    (ReversibleSchedule.program leftTail)
                     (evalReversibleProgram leftHead state))) := by
               rw [evalReversibleProgram_append]
               exact congrArg
-                (fun next => evalReversibleProgram rightTail.program next)
+                (fun next =>
+                  evalReversibleProgram
+                    (ReversibleSchedule.program rightTail) next)
                 (evalReversibleProgram_commute_of_crossWireDisjoint
-                  rightHead leftTail.program rightHeadLeftTailCross
+                  rightHead (ReversibleSchedule.program leftTail)
+                  rightHeadLeftTailCross
                   (evalReversibleProgram leftHead state))
-            _ = evalReversibleProgram (rightHead :: rightTail).program
-                (evalReversibleProgram (leftHead :: leftTail).program state) := by
+            _ = evalReversibleProgram
+                (ReversibleSchedule.program (rightHead :: rightTail))
+                (evalReversibleProgram
+                  (ReversibleSchedule.program (leftHead :: leftTail)) state) := by
               rfl
 
 /-- Equivalence-level form of `eval_parallelLayers_apply`. -/
 theorem eval_parallelLayers {qubits : Nat}
     (left right : ReversibleSchedule qubits)
     (cross : CrossWireDisjoint left right) :
-    evalReversibleProgram (parallelLayers left right).program =
-      (evalReversibleProgram left.program).trans
-        (evalReversibleProgram right.program) := by
-  ext state
+    evalReversibleProgram
+        (ReversibleSchedule.program (parallelLayers left right)) =
+      (evalReversibleProgram (ReversibleSchedule.program left)).trans
+        (evalReversibleProgram (ReversibleSchedule.program right)) := by
+  apply Equiv.ext
+  intro state
   exact eval_parallelLayers_apply left right cross state
 
 end ReversibleSchedule
