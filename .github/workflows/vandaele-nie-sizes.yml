@@ -1,0 +1,33 @@
+name: Vandaele Nie child sizes
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSizes.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - '.github/workflows/vandaele-nie-sizes.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSizes.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - '.github/workflows/vandaele-nie-sizes.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-sizes:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile balanced child-size facts
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieSizes
