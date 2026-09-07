@@ -30,12 +30,56 @@ theorem mapGateWires_touches_iff_exists
       ∃ logical, gate.touches logical ∧ embed logical = wire := by
   cases gate with
   | x target =>
-      simp [mapGateWires, ReversibleGate.touches, eq_comm]
+      change
+        wire = embed target ↔
+          ∃ logical, logical = target ∧ embed logical = wire
+      constructor
+      · intro hit
+        exact ⟨target, rfl, hit.symm⟩
+      · rintro ⟨logical, same, image⟩
+        subst logical
+        exact image.symm
   | cx control target distinct =>
-      simp [mapGateWires, ReversibleGate.touches, eq_comm, or_and_right]
+      change
+        (wire = embed control ∨ wire = embed target) ↔
+          ∃ logical,
+            (logical = control ∨ logical = target) ∧
+              embed logical = wire
+      constructor
+      · intro hit
+        rcases hit with hit | hit
+        · exact ⟨control, Or.inl rfl, hit.symm⟩
+        · exact ⟨target, Or.inr rfl, hit.symm⟩
+      · rintro ⟨logical, touched, image⟩
+        rcases touched with same | same
+        · subst logical
+          exact Or.inl image.symm
+        · subst logical
+          exact Or.inr image.symm
   | ccx control0 control1 target c0_ne_c1 c0_ne_target c1_ne_target =>
-      simp [mapGateWires, ReversibleGate.touches, eq_comm,
-        or_and_right, exists_or]
+      change
+        (wire = embed control0 ∨
+          wire = embed control1 ∨
+          wire = embed target) ↔
+          ∃ logical,
+            (logical = control0 ∨
+              logical = control1 ∨
+              logical = target) ∧
+              embed logical = wire
+      constructor
+      · intro hit
+        rcases hit with hit | hit | hit
+        · exact ⟨control0, Or.inl rfl, hit.symm⟩
+        · exact ⟨control1, Or.inr (Or.inl rfl), hit.symm⟩
+        · exact ⟨target, Or.inr (Or.inr rfl), hit.symm⟩
+      · rintro ⟨logical, touched, image⟩
+        rcases touched with same | same | same
+        · subst logical
+          exact Or.inl image.symm
+        · subst logical
+          exact Or.inr (Or.inl image.symm)
+        · subst logical
+          exact Or.inr (Or.inr image.symm)
 
 /-- Injective wire renaming preserves pairwise wire-disjointness. -/
 theorem mapGateWires_wireDisjoint
@@ -109,10 +153,15 @@ theorem mapScheduleWires_program
     (mapScheduleWires embed injective schedule).program =
       mapProgramWires embed injective schedule.program := by
   induction schedule with
-  | nil => rfl
+  | nil =>
+      rfl
   | cons layer rest induction =>
-      simp [mapScheduleWires, mapLayerWires,
-        ReversibleSchedule.program, mapProgramWires, induction]
+      change
+        mapLayerWires embed injective layer ++
+            (mapScheduleWires embed injective rest).program =
+          mapProgramWires embed injective (layer ++ rest.program)
+      rw [induction, mapProgramWires_append]
+      rfl
 
 /-- Proof-bearing scheduled-program embedding. -/
 def mapScheduledWires
@@ -141,8 +190,10 @@ def mapScheduledWires
     (scheduled : ScheduledReversibleProgram small) :
     (mapScheduledWires embed injective scheduled).gateCount =
       scheduled.gateCount := by
-  unfold ScheduledReversibleProgram.gateCount ReversibleSchedule.gateCount
-  rw [mapScheduledWires_program]
+  change
+    (mapScheduleWires embed injective scheduled.layers).program.length =
+      scheduled.layers.program.length
+  rw [mapScheduleWires_program]
   exact mapProgramWires_length embed injective scheduled.program
 
 /-- Certified parallel depth is preserved exactly. -/
@@ -153,8 +204,10 @@ def mapScheduledWires
     (scheduled : ScheduledReversibleProgram small) :
     (mapScheduledWires embed injective scheduled).depth =
       scheduled.depth := by
-  simp [mapScheduledWires, ScheduledReversibleProgram.depth,
-    ReversibleSchedule.depth]
+  change
+    (mapScheduleWires embed injective scheduled.layers).length =
+      scheduled.layers.length
+  simp [mapScheduleWires]
 
 /-- Embedded-wire semantics of the scheduled program. -/
 theorem readEmbeddedState_eval_mapScheduledWires
