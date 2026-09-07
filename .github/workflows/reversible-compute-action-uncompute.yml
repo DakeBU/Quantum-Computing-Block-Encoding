@@ -1,0 +1,35 @@
+name: Reversible compute action uncompute
+
+on:
+  push:
+    branches:
+      - 'work/reversible-split-computation-*'
+    paths:
+      - 'QuantumBlockEncoding/ReversibleComputeActionUncompute.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - 'QuantumBlockEncoding/ReversibleClassical.lean'
+      - '.github/workflows/reversible-compute-action-uncompute.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/ReversibleComputeActionUncompute.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - 'QuantumBlockEncoding/ReversibleClassical.lean'
+      - '.github/workflows/reversible-compute-action-uncompute.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compute-action-uncompute:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile split reversible computation certificate
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.ReversibleComputeActionUncompute
