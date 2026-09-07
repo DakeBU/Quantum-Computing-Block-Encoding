@@ -1,0 +1,37 @@
+name: Reversible parallel semantics
+
+on:
+  push:
+    branches:
+      - 'work/reversible-parallel-semantics-*'
+    paths:
+      - 'QuantumBlockEncoding/ParallelReversibleSchedule.lean'
+      - 'QuantumBlockEncoding/ReversibleDisjointCommutation.lean'
+      - 'QuantumBlockEncoding/ParallelReversibleSemantics.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - '.github/workflows/reversible-parallel-semantics.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/ParallelReversibleSchedule.lean'
+      - 'QuantumBlockEncoding/ReversibleDisjointCommutation.lean'
+      - 'QuantumBlockEncoding/ParallelReversibleSemantics.lean'
+      - 'QuantumBlockEncoding/ReversibleSchedule.lean'
+      - '.github/workflows/reversible-parallel-semantics.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  parallel-semantics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile parallel semantic certificate
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.ParallelReversibleSemantics
