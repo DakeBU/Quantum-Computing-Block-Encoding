@@ -40,6 +40,15 @@ open VandaeleLemma1Contract
 open VandaeleLemma1ProgramFamily
 open VandaeleLemma1PrimitiveBaseCases
 
+/-- Re-create the finite decidability instance locally.  The source contract
+keeps this instance local as well, so downstream modules do not accidentally
+acquire a global classical proposition API. -/
+local instance instDecidableAllFlatControlsOne
+    (k : Nat) (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
+    Decidable (allFlatControlsOne k state) := by
+  unfold allFlatControlsOne
+  infer_instance
+
 private theorem controlWire_injective (k : Nat) :
     Function.Injective (controlWire k) := by
   intro left right equal
@@ -55,11 +64,16 @@ private def k3c2 : Fin 3 := ⟨2, by omega⟩
 
 private theorem k3c0_ne_k3c1 : k3c0 ≠ k3c1 := by decide
 
+private theorem k3wire0_ne_wire1 :
+    controlWire 3 k3c0 ≠ controlWire 3 k3c1 := by
+  intro equal
+  exact k3c0_ne_k3c1 (controlWire_injective 3 equal)
+
 /-- Exact `C³X` over NCT with one arbitrary dirty workspace. -/
 def k3Program : ReversibleProgram (lemmaOneFlatWidth 3) :=
   [ .ccx
       (controlWire 3 k3c0) (controlWire 3 k3c1) (dirtyWire 3)
-      (controlWire_injective 3 k3c0_ne_k3c1)
+      k3wire0_ne_wire1
       (controlWire_ne_dirty 3 k3c0)
       (controlWire_ne_dirty 3 k3c1),
     .ccx
@@ -69,7 +83,7 @@ def k3Program : ReversibleProgram (lemmaOneFlatWidth 3) :=
       (dirtyWire_ne_target 3),
     .ccx
       (controlWire 3 k3c0) (controlWire 3 k3c1) (dirtyWire 3)
-      (controlWire_injective 3 k3c0_ne_k3c1)
+      k3wire0_ne_wire1
       (controlWire_ne_dirty 3 k3c0)
       (controlWire_ne_dirty 3 k3c1),
     .ccx
@@ -112,12 +126,17 @@ private def k4c3 : Fin 4 := ⟨3, by omega⟩
 
 private theorem k4c0_ne_k4c1 : k4c0 ≠ k4c1 := by decide
 
+private theorem k4wire0_ne_wire1 :
+    controlWire 4 k4c0 ≠ controlWire 4 k4c1 := by
+  intro equal
+  exact k4c0_ne_k4c1 (controlWire_injective 4 equal)
+
 /-- Four-gate inner gadget: toggle the outer dirty bit by the first three
 controls while using the final target itself as an arbitrary borrowed wire. -/
 def k4InnerProgram : ReversibleProgram (lemmaOneFlatWidth 4) :=
   [ .ccx
       (controlWire 4 k4c0) (controlWire 4 k4c1) (targetWire 4)
-      (controlWire_injective 4 k4c0_ne_k4c1)
+      k4wire0_ne_wire1
       (controlWire_ne_target 4 k4c0)
       (controlWire_ne_target 4 k4c1),
     .ccx
@@ -127,7 +146,7 @@ def k4InnerProgram : ReversibleProgram (lemmaOneFlatWidth 4) :=
       (targetWire_ne_dirty 4),
     .ccx
       (controlWire 4 k4c0) (controlWire 4 k4c1) (targetWire 4)
-      (controlWire_injective 4 k4c0_ne_k4c1)
+      k4wire0_ne_wire1
       (controlWire_ne_target 4 k4c0)
       (controlWire_ne_target 4 k4c1),
     .ccx
