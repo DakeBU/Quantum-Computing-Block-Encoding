@@ -215,6 +215,7 @@ theorem eval_parallelForward_eq_seq {k : Nat} (five_le : 5 ≤ k)
     (prepare five_le left right).gateCount =
       14 + left.forwardHalf.gateCount + right.forwardHalf.gateCount := by
   simp [prepare, Nat.add_assoc]
+  omega
 
 @[simp] theorem prepare_depth {k : Nat} (five_le : 5 ≤ k)
     (left : ReversibleComputeActionUncompute
@@ -224,6 +225,7 @@ theorem eval_parallelForward_eq_seq {k : Nat} (five_le : 5 ≤ k)
     (prepare five_le left right).depth =
       14 + max left.forwardHalf.depth right.forwardHalf.depth := by
   simp [prepare]
+  omega
 
 @[simp] theorem commit_gateCount {k : Nat} (five_le : 5 ≤ k) :
     (commit five_le).gateCount = 4 := by
@@ -245,9 +247,6 @@ theorem recursiveSplit_full_gateCount {k : Nat} (five_le : 5 ≤ k)
         (right.full.gateCount + right.commit.gateCount) := by
   rw [ReversibleComputeActionUncompute.full_gateCount]
   simp [recursiveSplit]
-  rw [← ReversibleComputeActionUncompute.forwardHalf_gateCount_add_backwardHalf_gateCount]
-  rw [← ReversibleComputeActionUncompute.forwardHalf_gateCount_add_backwardHalf_gateCount]
-  simp [backwardHalf]
   omega
 
 /-- Exact full depth recurrence.  The two child first halves run in parallel, so
