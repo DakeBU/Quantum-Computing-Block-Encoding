@@ -33,13 +33,7 @@ theorem rawSplit_commit_gateCount_le_ten (k : Nat) :
         rawSplit_three, rawSplit_four] <;> assumption
   · have five_le : 5 ≤ k := by omega
     obtain ⟨n, rfl⟩ := Nat.exists_eq_add_of_le five_le
-    have unfoldRaw :
-        rawSplit (5 + n) =
-          recursiveSplit (k := 5 + n) (by omega)
-            (rawSplit (VandaeleLemma1NieLayout.leftSize (5 + n)))
-            (rawSplit (VandaeleLemma1NieLayout.rightSize (5 + n))) := by
-      simpa [Nat.add_comm] using rawSplit_succ5 n
-    rw [unfoldRaw]
+    rw [show 5 + n = n + 5 by omega, rawSplit_succ5]
     simp [recursiveSplit]
 
 /-- Uniform depth cap on the persistent central commit of every node. -/
@@ -53,13 +47,7 @@ theorem rawSplit_commit_depth_le_ten (k : Nat) :
         rawSplit_three, rawSplit_four] <;> assumption
   · have five_le : 5 ≤ k := by omega
     obtain ⟨n, rfl⟩ := Nat.exists_eq_add_of_le five_le
-    have unfoldRaw :
-        rawSplit (5 + n) =
-          recursiveSplit (k := 5 + n) (by omega)
-            (rawSplit (VandaeleLemma1NieLayout.leftSize (5 + n)))
-            (rawSplit (VandaeleLemma1NieLayout.rightSize (5 + n))) := by
-      simpa [Nat.add_comm] using rawSplit_succ5 n
-    rw [unfoldRaw]
+    rw [show 5 + n = n + 5 by omega, rawSplit_succ5]
     simp [recursiveSplit]
 
 end VandaeleLemma1NieResourceBounds
