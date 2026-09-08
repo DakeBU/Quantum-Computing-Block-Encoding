@@ -38,7 +38,7 @@ theorem leftChildEmbed_val_lt_k
     (leftChildEmbed k four_le wire).val < k := by
   by_cases control : wire.val < leftSize k
   · simp [leftChildEmbed, control]
-    have left_le := leftSize_le_remainder k
+    have partition := split_size k four_le
     omega
   · by_cases target : wire.val = leftSize k
     · simp [leftChildEmbed, control, target, controlWire]
@@ -237,10 +237,16 @@ theorem rightView_eval_parallelForward {k : Nat} (five_le : 5 ≤ k)
           (evalReversibleProgram (leftForward five_le left).program state)
     _ = evalReversibleProgram right.forwardHalf.program
         (readEmbeddedState (rightChildEmbed k four_le) state) := by
-        rw [readEmbeddedState_eval_mapScheduledWires_other
-          (leftChildEmbed k four_le) (leftChildEmbed_injective k four_le)
-          (rightChildEmbed k four_le) (childImagesDisjoint k four_le)
-          left.forwardHalf state]
+        have unchanged :
+            readEmbeddedState (rightChildEmbed k four_le)
+                (evalReversibleProgram (leftForward five_le left).program state) =
+              readEmbeddedState (rightChildEmbed k four_le) state := by
+          simpa [leftForward, four_le] using
+            (readEmbeddedState_eval_mapScheduledWires_other
+              (leftChildEmbed k four_le) (leftChildEmbed_injective k four_le)
+              (rightChildEmbed k four_le) (childImagesDisjoint k four_le)
+              left.forwardHalf state)
+        rw [unchanged]
 
 /-- The complete low-depth child merge leaves the parent target unchanged. -/
 theorem parallelForward_preserves_target {k : Nat} (five_le : 5 ≤ k)
