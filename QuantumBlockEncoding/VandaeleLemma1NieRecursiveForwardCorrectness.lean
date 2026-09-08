@@ -87,7 +87,9 @@ theorem recursive_forwardAnd
           (parallelForward five_le left.split right.split).program seed
           (targetWire k) = 0
     rw [parallelForward_preserves_target five_le left.split right.split seed]
-    simpa [seed] using seed_preserves_target k four_le state
+    change seedState k four_le state (targetWire k) = 0
+    rw [seed_preserves_target k four_le state]
+    exact targetZero
 
   by_cases reservedActive : ReservedAllOne k four_le state
   · have leftClean :=
@@ -110,64 +112,70 @@ theorem recursive_forwardAnd
       leftView_eval_parallelForward five_le left.split right.split seed
     have rightView :=
       rightView_eval_parallelForward five_le left.split right.split seed
+    have leftViewAt := congrFun leftView (targetWire (leftSize k))
+    have rightViewAt := congrFun rightView (targetWire (rightSize k))
+    simp [readEmbeddedState, left_target_eq_i1] at leftViewAt
+    simp [readEmbeddedState, right_target_eq_i3] at rightViewAt
 
     have leftBit :
         children (i1Wire k four_le) =
           if LeftBlockAllOne k four_le state then 1 else 0 := by
-      calc
-        children (i1Wire k four_le) =
-            readEmbeddedState (leftChildEmbed k four_le) children
-              (targetWire (leftSize k)) := by
-          simp [readEmbeddedState]
-        _ = evalReversibleProgram left.split.forwardHalf.program
-              (readEmbeddedState (leftChildEmbed k four_le) seed)
-              (targetWire (leftSize k)) := by
-          exact congrFun leftView (targetWire (leftSize k))
-        _ = if allFlatControlsOne (leftSize k)
+      by_cases active : LeftBlockAllOne k four_le state
+      · have childActive :
+            allFlatControlsOne (leftSize k)
+              (readEmbeddedState (leftChildEmbed k four_le) seed) :=
+          (leftSeed_allControls_iff k four_le state).2 active
+        rw [if_pos childActive] at leftForwardTarget
+        calc
+          children (i1Wire k four_le) =
+              evalReversibleProgram left.split.forwardHalf.program
                 (readEmbeddedState (leftChildEmbed k four_le) seed)
-              then 1 else 0 := leftForwardTarget
-        _ = if LeftBlockAllOne k four_le state then 1 else 0 := by
-          by_cases active : LeftBlockAllOne k four_le state
-          · have childActive :
-                allFlatControlsOne (leftSize k)
-                  (readEmbeddedState (leftChildEmbed k four_le) seed) := by
-              exact (leftSeed_allControls_iff k four_le state).2 active
-            simp [active, childActive]
-          · have childInactive :
-                ¬ allFlatControlsOne (leftSize k)
-                  (readEmbeddedState (leftChildEmbed k four_le) seed) := by
-              intro childActive
-              exact active ((leftSeed_allControls_iff k four_le state).1 childActive)
-            simp [active, childInactive]
+                (targetWire (leftSize k)) := leftViewAt
+          _ = 1 := leftForwardTarget
+          _ = if LeftBlockAllOne k four_le state then 1 else 0 := by simp [active]
+      · have childInactive :
+            ¬ allFlatControlsOne (leftSize k)
+              (readEmbeddedState (leftChildEmbed k four_le) seed) := by
+          intro childActive
+          exact active ((leftSeed_allControls_iff k four_le state).1 childActive)
+        rw [if_neg childInactive] at leftForwardTarget
+        calc
+          children (i1Wire k four_le) =
+              evalReversibleProgram left.split.forwardHalf.program
+                (readEmbeddedState (leftChildEmbed k four_le) seed)
+                (targetWire (leftSize k)) := leftViewAt
+          _ = 0 := leftForwardTarget
+          _ = if LeftBlockAllOne k four_le state then 1 else 0 := by simp [active]
 
     have rightBit :
         children (i3Wire k four_le) =
           if RightBlockAllOne k four_le state then 1 else 0 := by
-      calc
-        children (i3Wire k four_le) =
-            readEmbeddedState (rightChildEmbed k four_le) children
-              (targetWire (rightSize k)) := by
-          simp [readEmbeddedState]
-        _ = evalReversibleProgram right.split.forwardHalf.program
-              (readEmbeddedState (rightChildEmbed k four_le) seed)
-              (targetWire (rightSize k)) := by
-          exact congrFun rightView (targetWire (rightSize k))
-        _ = if allFlatControlsOne (rightSize k)
+      by_cases active : RightBlockAllOne k four_le state
+      · have childActive :
+            allFlatControlsOne (rightSize k)
+              (readEmbeddedState (rightChildEmbed k four_le) seed) :=
+          (rightSeed_allControls_iff k four_le state).2 active
+        rw [if_pos childActive] at rightForwardTarget
+        calc
+          children (i3Wire k four_le) =
+              evalReversibleProgram right.split.forwardHalf.program
                 (readEmbeddedState (rightChildEmbed k four_le) seed)
-              then 1 else 0 := rightForwardTarget
-        _ = if RightBlockAllOne k four_le state then 1 else 0 := by
-          by_cases active : RightBlockAllOne k four_le state
-          · have childActive :
-                allFlatControlsOne (rightSize k)
-                  (readEmbeddedState (rightChildEmbed k four_le) seed) := by
-              exact (rightSeed_allControls_iff k four_le state).2 active
-            simp [active, childActive]
-          · have childInactive :
-                ¬ allFlatControlsOne (rightSize k)
-                  (readEmbeddedState (rightChildEmbed k four_le) seed) := by
-              intro childActive
-              exact active ((rightSeed_allControls_iff k four_le state).1 childActive)
-            simp [active, childInactive]
+                (targetWire (rightSize k)) := rightViewAt
+          _ = 1 := rightForwardTarget
+          _ = if RightBlockAllOne k four_le state then 1 else 0 := by simp [active]
+      · have childInactive :
+            ¬ allFlatControlsOne (rightSize k)
+              (readEmbeddedState (rightChildEmbed k four_le) seed) := by
+          intro childActive
+          exact active ((rightSeed_allControls_iff k four_le state).1 childActive)
+        rw [if_neg childInactive] at rightForwardTarget
+        calc
+          children (i3Wire k four_le) =
+              evalReversibleProgram right.split.forwardHalf.program
+                (readEmbeddedState (rightChildEmbed k four_le) seed)
+                (targetWire (rightSize k)) := rightViewAt
+          _ = 0 := rightForwardTarget
+          _ = if RightBlockAllOne k four_le state then 1 else 0 := by simp [active]
 
     have childrenDirtyOne : children (dirtyWire k) = 1 := by
       change
