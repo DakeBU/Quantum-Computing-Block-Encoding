@@ -82,25 +82,32 @@ theorem stepThree_preserves_non_target
       k3Scheduled.program state wire
       (fun logical equal => inImage ⟨logical, equal⟩)
 
-/-- Extensional source-facing semantics: Step 3 is exactly a conditional X on
-`T`, with activation predicate `I₁ ∧ I₃ ∧ A`. -/
+local instance instDecidableStepThreeActive
+    (k : Nat) (four_le : 4 ≤ k)
+    (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
+    Decidable (StepThreeActive k four_le state) := by
+  unfold StepThreeActive
+  infer_instance
+
+/-- Extensional source-facing semantics: Step 3 is exactly a conditional update
+of `T`, with activation predicate `I₁ ∧ I₃ ∧ A`. -/
 theorem stepThree_state_action
     (k : Nat) (four_le : 4 ≤ k)
     (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
     evalReversibleProgram (stepThreeScheduled k four_le).program state =
       if StepThreeActive k four_le state then
-        xBasisAction (targetWire k) state
+        Function.update state (targetWire k)
+          (flipBit (state (targetWire k)))
       else state := by
-  classical
   funext wire
   by_cases hit : wire = targetWire k
   · subst wire
     rw [stepThree_target_action]
     by_cases active : StepThreeActive k four_le state <;>
-      simp [active, xBasisAction]
+      simp [active]
   · rw [stepThree_preserves_non_target k four_le state wire hit]
     by_cases active : StepThreeActive k four_le state <;>
-      simp [active, xBasisAction, hit]
+      simp [active, hit]
 
 end VandaeleLemma1NieStepThreeStateSemantics
 end QuantumBlockEncoding
