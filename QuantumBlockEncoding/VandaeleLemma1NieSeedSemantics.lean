@@ -140,7 +140,7 @@ theorem normalize_reserved_action
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (reservedWire k four_le index) =
       flipBit (state (reservedWire k four_le index)) := by
-  rw [sequential_program, normalizeProgram_eq_public]
+  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
   fin_cases index <;>
     simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
       xBasisEquiv, xBasisAction, reservedWire, reservedControl, controlWire,
@@ -153,7 +153,7 @@ theorem normalize_preserves_nonreserved_control
     (wire : Fin k) (nonreserved : 4 ≤ wire.val) :
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (controlWire k wire) = state (controlWire k wire) := by
-  rw [sequential_program, normalizeProgram_eq_public]
+  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
   have ne0 : controlWire k wire ≠ reservedWire k four_le s0 := by
     intro equal
     have values := congrArg Fin.val equal
@@ -183,7 +183,7 @@ theorem normalize_preserves_target
     (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (targetWire k) = state (targetWire k) := by
-  rw [sequential_program, normalizeProgram_eq_public]
+  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
   simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
     xBasisEquiv, xBasisAction, reservedWire, controlWire_ne_target]
 
@@ -193,7 +193,7 @@ theorem normalize_preserves_dirty
     (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (dirtyWire k) = state (dirtyWire k) := by
-  rw [sequential_program, normalizeProgram_eq_public]
+  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
   simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
     xBasisEquiv, xBasisAction, reservedWire, controlWire_ne_dirty]
 
@@ -249,25 +249,33 @@ theorem seed_dirty_one
     (k : Nat) (four_le : 4 ≤ k) :
     leftChildEmbed k four_le (targetWire (leftSize k)) =
       reservedWire k four_le s0 := by
-  rfl
+  apply Fin.ext
+  simp [leftChildEmbed, targetWire, reservedWire, s0, controlWire,
+    reservedControl]
 
 @[simp] theorem leftChildEmbed_dirty_reserved1
     (k : Nat) (four_le : 4 ≤ k) :
     leftChildEmbed k four_le (dirtyWire (leftSize k)) =
       reservedWire k four_le s1 := by
-  rfl
+  apply Fin.ext
+  simp [leftChildEmbed, dirtyWire, reservedWire, s1, controlWire,
+    reservedControl]
 
 @[simp] theorem rightChildEmbed_target_reserved2
     (k : Nat) (four_le : 4 ≤ k) :
     rightChildEmbed k four_le (targetWire (rightSize k)) =
       reservedWire k four_le s2 := by
-  rfl
+  apply Fin.ext
+  simp [rightChildEmbed, targetWire, reservedWire, s2, controlWire,
+    reservedControl]
 
 @[simp] theorem rightChildEmbed_dirty_reserved3
     (k : Nat) (four_le : 4 ≤ k) :
     rightChildEmbed k four_le (dirtyWire (rightSize k)) =
       reservedWire k four_le s3 := by
-  rfl
+  apply Fin.ext
+  simp [rightChildEmbed, dirtyWire, reservedWire, s3, controlWire,
+    reservedControl]
 
 /-- Active seed gives the left recursive child a clean target and clean borrowed
 workspace. -/
@@ -302,15 +310,17 @@ theorem leftSeed_allControls_iff
         (readEmbeddedState (leftChildEmbed k four_le) (seedState k four_le state)) ↔
       LeftBlockAllOne k four_le state := by
   rw [leftChild_allFlatControlsOne_iff]
-  constructor <;> intro all j
-  · have hit := all j
+  constructor
+  · intro all j
+    have hit := all j
     have nonreserved : 4 ≤ (leftParentControl k four_le j).val := by
       simp [leftParentControl]
-    simpa [LeftBlockAllOne] using
-      (seed_preserves_nonreserved_control k four_le state
-        (leftParentControl k four_le j) nonreserved)
-        ▸ hit
-  · have nonreserved : 4 ≤ (leftParentControl k four_le j).val := by
+    have unchanged := seed_preserves_nonreserved_control k four_le state
+      (leftParentControl k four_le j) nonreserved
+    rw [unchanged] at hit
+    exact hit
+  · intro all j
+    have nonreserved : 4 ≤ (leftParentControl k four_le j).val := by
       simp [leftParentControl]
     have unchanged := seed_preserves_nonreserved_control k four_le state
       (leftParentControl k four_le j) nonreserved
@@ -325,15 +335,20 @@ theorem rightSeed_allControls_iff
         (readEmbeddedState (rightChildEmbed k four_le) (seedState k four_le state)) ↔
       RightBlockAllOne k four_le state := by
   rw [rightChild_allFlatControlsOne_iff]
-  constructor <;> intro all j
-  · have nonreserved : 4 ≤ (rightParentControl k four_le j).val := by
+  constructor
+  · intro all j
+    have hit := all j
+    have nonreserved : 4 ≤ (rightParentControl k four_le j).val := by
       simp [rightParentControl]
+      omega
     have unchanged := seed_preserves_nonreserved_control k four_le state
       (rightParentControl k four_le j) nonreserved
-    rw [unchanged] at all
-    exact all j
-  · have nonreserved : 4 ≤ (rightParentControl k four_le j).val := by
+    rw [unchanged] at hit
+    exact hit
+  · intro all j
+    have nonreserved : 4 ≤ (rightParentControl k four_le j).val := by
       simp [rightParentControl]
+      omega
     have unchanged := seed_preserves_nonreserved_control k four_le state
       (rightParentControl k four_le j) nonreserved
     rw [unchanged]
