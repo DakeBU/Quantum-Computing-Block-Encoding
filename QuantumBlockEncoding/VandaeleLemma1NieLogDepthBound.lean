@@ -72,7 +72,8 @@ private theorem base_depth_bound (k : Nat) (small : k < 5) :
     simp [rawScheduled, rawSplit_zero, rawSplit_one, rawSplit_two,
       rawSplit_three, rawSplit_four,
       k0Certificate, k1Certificate, k2Certificate, k3Certificate, k4Certificate,
-      atomicCertificate, atomicSplit, logScale]
+      atomicCertificate, atomicSplit, logScale] <;>
+    omega
 
 /-- Every generated clean-recursion circuit has depth at most
 `42 * (Nat.log2 (k+1)+1)`. -/
