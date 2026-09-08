@@ -116,8 +116,14 @@ theorem stepOne_dirty_action
     _ = if ReservedAllOne k four_le state then
           flipBit (state (dirtyWire k))
         else state (dirtyWire k) := by
-      rw [stepOne_allFlatControlsOne_iff]
-      simp [childState, readEmbeddedState]
+      by_cases active : ReservedAllOne k four_le state
+      · have childActive : allFlatControlsOne 4 childState :=
+          (stepOne_allFlatControlsOne_iff k four_le state).2 active
+        simp [active, childActive, childState, readEmbeddedState]
+      · have childInactive : ¬ allFlatControlsOne 4 childState := by
+          intro childActive
+          exact active ((stepOne_allFlatControlsOne_iff k four_le state).1 childActive)
+        simp [active, childInactive, childState, readEmbeddedState]
 
 /-- Step 1 restores the outer target `T` used as its arbitrary borrowed bit. -/
 theorem stepOne_restores_target
@@ -150,35 +156,29 @@ private def c2 : Fin 3 := ⟨2, by omega⟩
     (k : Nat) (four_le : 4 ≤ k) :
     stepThreeEmbed k four_le (controlWire 3 c0) =
       reservedWire k four_le i0 := by
-  apply Fin.ext
-  simp [stepThreeEmbed, reservedWire, controlWire, reservedControl, c0, i0]
+  rfl
 
 @[simp] theorem stepThreeEmbed_c1
     (k : Nat) (four_le : 4 ≤ k) :
     stepThreeEmbed k four_le (controlWire 3 c1) =
       reservedWire k four_le i2 := by
-  apply Fin.ext
-  simp [stepThreeEmbed, reservedWire, controlWire, reservedControl, c1, i2]
+  rfl
 
 @[simp] theorem stepThreeEmbed_c2
     (k : Nat) (four_le : 4 ≤ k) :
     stepThreeEmbed k four_le (controlWire 3 c2) = dirtyWire k := by
-  apply Fin.ext
-  simp [stepThreeEmbed, controlWire, c2, dirtyWire]
+  rfl
 
 @[simp] theorem stepThreeEmbed_target
     (k : Nat) (four_le : 4 ≤ k) :
     stepThreeEmbed k four_le (targetWire 3) = targetWire k := by
-  apply Fin.ext
-  simp [stepThreeEmbed, targetWire]
+  rfl
 
 @[simp] theorem stepThreeEmbed_dirty
     (k : Nat) (four_le : 4 ≤ k) :
     stepThreeEmbed k four_le (dirtyWire 3) =
       reservedWire k four_le i1 := by
-  apply Fin.ext
-  simp [stepThreeEmbed, reservedWire, dirtyWire, controlWire,
-    reservedControl, i1]
+  rfl
 
 /-- Parent-register activation predicate of the fixed Step-3 `C³X`. -/
 def StepThreeActive (k : Nat) (four_le : 4 ≤ k)
@@ -242,8 +242,14 @@ theorem stepThree_target_action
     _ = if StepThreeActive k four_le state then
           flipBit (state (targetWire k))
         else state (targetWire k) := by
-      rw [stepThree_allFlatControlsOne_iff]
-      simp [childState, readEmbeddedState]
+      by_cases active : StepThreeActive k four_le state
+      · have childActive : allFlatControlsOne 3 childState :=
+          (stepThree_allFlatControlsOne_iff k four_le state).2 active
+        simp [active, childActive, childState, readEmbeddedState]
+      · have childInactive : ¬ allFlatControlsOne 3 childState := by
+          intro childActive
+          exact active ((stepThree_allFlatControlsOne_iff k four_le state).1 childActive)
+        simp [active, childInactive, childState, readEmbeddedState]
 
 /-- Step 3 restores `I₂`, the arbitrary borrowed bit of its embedded `C³X`. -/
 theorem stepThree_restores_i1
