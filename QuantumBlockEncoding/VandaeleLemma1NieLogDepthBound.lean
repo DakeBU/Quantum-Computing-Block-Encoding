@@ -30,6 +30,7 @@ recursive level.
 namespace QuantumBlockEncoding
 namespace VandaeleLemma1NieLogDepthBound
 
+open VandaeleLemma1Contract
 open VandaeleLemma1ProgramFamily
 open VandaeleLemma1NieLayout
 open VandaeleLemma1NieSizes
