@@ -1,0 +1,39 @@
+name: Vandaele Nie fixed semantics
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1BorrowedNCTGadgets.lean'
+      - 'QuantumBlockEncoding/ScheduledWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleWireEmbedding.lean'
+      - '.github/workflows/vandaele-nie-fixed-semantics.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1BorrowedNCTGadgets.lean'
+      - 'QuantumBlockEncoding/ScheduledWireEmbedding.lean'
+      - 'QuantumBlockEncoding/ReversibleWireEmbedding.lean'
+      - '.github/workflows/vandaele-nie-fixed-semantics.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-fixed-semantics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile fixed Figure 3 semantic bridges
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieFixedSemantics
