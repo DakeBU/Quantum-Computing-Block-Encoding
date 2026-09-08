@@ -1,0 +1,37 @@
+name: Vandaele Nie parallel child semantics
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieParallelChildSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveStep.lean'
+      - 'QuantumBlockEncoding/ReversibleEmbeddingNoninterference.lean'
+      - 'QuantumBlockEncoding/ParallelReversibleSemantics.lean'
+      - '.github/workflows/vandaele-nie-parallel-child-semantics.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieParallelChildSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveStep.lean'
+      - 'QuantumBlockEncoding/ReversibleEmbeddingNoninterference.lean'
+      - 'QuantumBlockEncoding/ParallelReversibleSemantics.lean'
+      - '.github/workflows/vandaele-nie-parallel-child-semantics.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-parallel-child-semantics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile logical child-view semantics
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieParallelChildSemantics
