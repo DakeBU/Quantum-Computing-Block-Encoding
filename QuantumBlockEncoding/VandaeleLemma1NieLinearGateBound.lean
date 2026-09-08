@@ -53,10 +53,12 @@ theorem rawScheduled_gateCount_le_linear (k : Nat) :
         rw [show 5 + n = n + 5 by omega]
         change (rawSplit (n + 5)).full.gateCount ≤ 18 * (n + 5 + 1)
         rw [rawSplit_succ5, recursiveSplit_full_gateCount]
-        have left_lt : leftSize (n + 5) < n + 5 :=
-          leftSize_lt_parent (k := n + 5) (by omega)
-        have right_lt : rightSize (n + 5) < n + 5 :=
-          rightSize_lt_parent (k := n + 5) (by omega)
+        have left_lt : leftSize (n + 5) < 5 + n := by
+          have h := leftSize_lt_parent (k := n + 5) (by omega)
+          omega
+        have right_lt : rightSize (n + 5) < 5 + n := by
+          have h := rightSize_lt_parent (k := n + 5) (by omega)
+          omega
         have leftBound := induction (leftSize (n + 5)) left_lt
         have rightBound := induction (rightSize (n + 5)) right_lt
         have leftCommit :=
