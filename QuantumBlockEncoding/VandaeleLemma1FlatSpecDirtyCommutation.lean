@@ -60,10 +60,11 @@ theorem flatSpec_commutes_dirtyX
     have same : wire = controlWire k logical := by
       apply Fin.ext
       rfl
-    subst wire
     calc
-      implementation flipped (controlWire k logical) =
-          flipped (controlWire k logical) := flippedControls logical
+      implementation flipped wire =
+          implementation flipped (controlWire k logical) := by
+        exact congrArg (fun w => implementation flipped w) same
+      _ = flipped (controlWire k logical) := flippedControls logical
       _ = state (controlWire k logical) := by
         simp [flipped, xBasisAction, controlWire_ne_dirty]
       _ = implementation state (controlWire k logical) :=
@@ -71,12 +72,16 @@ theorem flatSpec_commutes_dirtyX
       _ = xBasisAction (dirtyWire k) (implementation state)
           (controlWire k logical) := by
         simp [xBasisAction, controlWire_ne_dirty]
+      _ = xBasisAction (dirtyWire k) (implementation state) wire := by
+        exact congrArg
+          (fun w => xBasisAction (dirtyWire k) (implementation state) w)
+          same.symm
   · subst wire
     have predicate :
         allFlatControlsOne k flipped ↔ allFlatControlsOne k state := by
       simpa [flipped] using allFlatControlsOne_xBasisAction_dirty_iff k state
     have targetInput : flipped (targetWire k) = state (targetWire k) := by
-      simp [flipped, xBasisAction, dirtyWire_ne_target]
+      simp [flipped, xBasisAction, targetWire_ne_dirty]
     calc
       implementation flipped (targetWire k) =
           (if allFlatControlsOne k flipped then
@@ -95,7 +100,7 @@ theorem flatSpec_commutes_dirtyX
       _ = implementation state (targetWire k) := originalTarget.symm
       _ = xBasisAction (dirtyWire k) (implementation state)
           (targetWire k) := by
-        simp [xBasisAction, dirtyWire_ne_target]
+        simp [xBasisAction, targetWire_ne_dirty]
   · subst wire
     calc
       implementation flipped (dirtyWire k) = flipped (dirtyWire k) :=
