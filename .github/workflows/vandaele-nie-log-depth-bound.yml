@@ -1,0 +1,39 @@
+name: Vandaele Nie logarithmic depth bound
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLogDepthBound.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieResourceBounds.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRawFamily.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveStep.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1Contract.lean'
+      - '.github/workflows/vandaele-nie-log-depth-bound.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLogDepthBound.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieResourceBounds.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRawFamily.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveStep.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1Contract.lean'
+      - '.github/workflows/vandaele-nie-log-depth-bound.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-log-depth-bound:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile explicit logarithmic depth bound
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieLogDepthBound
