@@ -1,0 +1,37 @@
+name: Vandaele Nie seed semantics
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSeedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieControlPartition.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - '.github/workflows/vandaele-nie-seed-semantics.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSeedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieControlPartition.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - '.github/workflows/vandaele-nie-seed-semantics.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-seed-semantics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile Figure 3 seed promise semantics
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieSeedSemantics
