@@ -195,8 +195,16 @@ theorem normalize_preserves_target
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (targetWire k) = state (targetWire k) := by
   rw [normalizeScheduled_program_public]
+  have ne0 : targetWire k ≠ reservedWire k four_le s0 :=
+    (controlWire_ne_target k (reservedControl k four_le s0)).symm
+  have ne1 : targetWire k ≠ reservedWire k four_le s1 :=
+    (controlWire_ne_target k (reservedControl k four_le s1)).symm
+  have ne2 : targetWire k ≠ reservedWire k four_le s2 :=
+    (controlWire_ne_target k (reservedControl k four_le s2)).symm
+  have ne3 : targetWire k ≠ reservedWire k four_le s3 :=
+    (controlWire_ne_target k (reservedControl k four_le s3)).symm
   simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
-    xBasisEquiv, xBasisAction, reservedWire, controlWire_ne_target]
+    xBasisEquiv, xBasisAction, ne0, ne1, ne2, ne3]
 
 /-- Nor does normalization touch the Step-1 flag / outer dirty wire. -/
 theorem normalize_preserves_dirty
@@ -205,8 +213,16 @@ theorem normalize_preserves_dirty
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (dirtyWire k) = state (dirtyWire k) := by
   rw [normalizeScheduled_program_public]
+  have ne0 : dirtyWire k ≠ reservedWire k four_le s0 :=
+    (controlWire_ne_dirty k (reservedControl k four_le s0)).symm
+  have ne1 : dirtyWire k ≠ reservedWire k four_le s1 :=
+    (controlWire_ne_dirty k (reservedControl k four_le s1)).symm
+  have ne2 : dirtyWire k ≠ reservedWire k four_le s2 :=
+    (controlWire_ne_dirty k (reservedControl k four_le s2)).symm
+  have ne3 : dirtyWire k ≠ reservedWire k four_le s3 :=
+    (controlWire_ne_dirty k (reservedControl k four_le s3)).symm
   simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
-    xBasisEquiv, xBasisAction, reservedWire, controlWire_ne_dirty]
+    xBasisEquiv, xBasisAction, ne0, ne1, ne2, ne3]
 
 /-- State immediately before the two recursive child first halves. -/
 def seedState (k : Nat) (four_le : 4 ≤ k)
@@ -263,7 +279,7 @@ program equality, so downstream proofs never mention the layout's private
     (k : Nat) (four_le : 4 ≤ k) :
     leftChildEmbed k four_le (targetWire (leftSize k)) =
       reservedWire k four_le s0 := by
-  have slot := congrArg (fun program => List.get? program 0)
+  have slot := congrArg (fun program => program[0]?)
     (normalizeProgram_eq_public k four_le)
   simpa [normalizeProgram, publicNormalizeProgram, leftChildEmbed, targetWire]
     using slot
@@ -272,7 +288,7 @@ program equality, so downstream proofs never mention the layout's private
     (k : Nat) (four_le : 4 ≤ k) :
     leftChildEmbed k four_le (dirtyWire (leftSize k)) =
       reservedWire k four_le s1 := by
-  have slot := congrArg (fun program => List.get? program 1)
+  have slot := congrArg (fun program => program[1]?)
     (normalizeProgram_eq_public k four_le)
   simpa [normalizeProgram, publicNormalizeProgram, leftChildEmbed, dirtyWire]
     using slot
@@ -281,7 +297,7 @@ program equality, so downstream proofs never mention the layout's private
     (k : Nat) (four_le : 4 ≤ k) :
     rightChildEmbed k four_le (targetWire (rightSize k)) =
       reservedWire k four_le s2 := by
-  have slot := congrArg (fun program => List.get? program 2)
+  have slot := congrArg (fun program => program[2]?)
     (normalizeProgram_eq_public k four_le)
   simpa [normalizeProgram, publicNormalizeProgram, rightChildEmbed, targetWire]
     using slot
@@ -290,7 +306,7 @@ program equality, so downstream proofs never mention the layout's private
     (k : Nat) (four_le : 4 ≤ k) :
     rightChildEmbed k four_le (dirtyWire (rightSize k)) =
       reservedWire k four_le s3 := by
-  have slot := congrArg (fun program => List.get? program 3)
+  have slot := congrArg (fun program => program[3]?)
     (normalizeProgram_eq_public k four_le)
   simpa [normalizeProgram, publicNormalizeProgram, rightChildEmbed, dirtyWire]
     using slot
