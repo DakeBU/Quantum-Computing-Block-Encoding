@@ -1,0 +1,35 @@
+name: Vandaele Nie control partition
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieControlPartition.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - '.github/workflows/vandaele-nie-control-partition.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieControlPartition.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieLayout.lean'
+      - '.github/workflows/vandaele-nie-control-partition.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-control-partition:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile Figure 3 control partition certificate
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieControlPartition
