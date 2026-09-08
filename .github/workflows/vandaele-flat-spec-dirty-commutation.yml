@@ -1,0 +1,35 @@
+name: Vandaele flat-spec dirty commutation
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1FlatSpecDirtyCommutation.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean'
+      - '.github/workflows/vandaele-flat-spec-dirty-commutation.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1FlatSpecDirtyCommutation.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1PrimitiveBaseCases.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1ProgramFamily.lean'
+      - '.github/workflows/vandaele-flat-spec-dirty-commutation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  flat-spec-dirty-commutation:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile dirty-wire commutation theorem
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1FlatSpecDirtyCommutation
