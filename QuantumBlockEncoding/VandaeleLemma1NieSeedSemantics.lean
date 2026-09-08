@@ -54,6 +54,17 @@ theorem normalizeProgram_eq_public (k : Nat) (four_le : 4 ≤ k) :
     normalizeProgram k four_le = publicNormalizeProgram k four_le := by
   rfl
 
+/-- Scheduled normalization exposes the same public four-gate program. -/
+@[simp] theorem normalizeScheduled_program_public
+    (k : Nat) (four_le : 4 ≤ k) :
+    (normalizeScheduled k four_le).program =
+      publicNormalizeProgram k four_le := by
+  calc
+    (normalizeScheduled k four_le).program = normalizeProgram k four_le := by
+      simp [normalizeScheduled]
+    _ = publicNormalizeProgram k four_le :=
+      normalizeProgram_eq_public k four_le
+
 /-- Step 1 preserves every one of its four source controls. -/
 theorem stepOne_preserves_reserved
     (k : Nat) (four_le : 4 ≤ k)
@@ -140,7 +151,7 @@ theorem normalize_reserved_action
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (reservedWire k four_le index) =
       flipBit (state (reservedWire k four_le index)) := by
-  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
+  rw [normalizeScheduled_program_public]
   fin_cases index <;>
     simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
       xBasisEquiv, xBasisAction, reservedWire, reservedControl, controlWire,
@@ -153,7 +164,7 @@ theorem normalize_preserves_nonreserved_control
     (wire : Fin k) (nonreserved : 4 ≤ wire.val) :
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (controlWire k wire) = state (controlWire k wire) := by
-  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
+  rw [normalizeScheduled_program_public]
   have ne0 : controlWire k wire ≠ reservedWire k four_le s0 := by
     intro equal
     have values := congrArg Fin.val equal
@@ -183,7 +194,7 @@ theorem normalize_preserves_target
     (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (targetWire k) = state (targetWire k) := by
-  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
+  rw [normalizeScheduled_program_public]
   simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
     xBasisEquiv, xBasisAction, reservedWire, controlWire_ne_target]
 
@@ -193,7 +204,7 @@ theorem normalize_preserves_dirty
     (state : PrimitiveBasis (lemmaOneFlatWidth k)) :
     evalReversibleProgram (normalizeScheduled k four_le).program state
         (dirtyWire k) = state (dirtyWire k) := by
-  rw [ScheduledReversibleProgram.sequential_program, normalizeProgram_eq_public]
+  rw [normalizeScheduled_program_public]
   simp [publicNormalizeProgram, evalReversibleProgram, evalReversibleGate,
     xBasisEquiv, xBasisAction, reservedWire, controlWire_ne_dirty]
 
@@ -245,37 +256,44 @@ theorem seed_dirty_one
   rw [seedState, normalize_preserves_dirty, stepOne_dirty_action]
   simp [active, clean, flipBit]
 
+/-- The endpoint identities are derived from the already-public normalization
+program equality, so downstream proofs never mention the layout's private
+`r0,...,r3` implementation names. -/
 @[simp] theorem leftChildEmbed_target_reserved0
     (k : Nat) (four_le : 4 ≤ k) :
     leftChildEmbed k four_le (targetWire (leftSize k)) =
       reservedWire k four_le s0 := by
-  apply Fin.ext
-  simp [leftChildEmbed, targetWire, reservedWire, s0, controlWire,
-    reservedControl]
+  have slot := congrArg (fun program => List.get? program 0)
+    (normalizeProgram_eq_public k four_le)
+  simpa [normalizeProgram, publicNormalizeProgram, leftChildEmbed, targetWire]
+    using slot
 
 @[simp] theorem leftChildEmbed_dirty_reserved1
     (k : Nat) (four_le : 4 ≤ k) :
     leftChildEmbed k four_le (dirtyWire (leftSize k)) =
       reservedWire k four_le s1 := by
-  apply Fin.ext
-  simp [leftChildEmbed, dirtyWire, reservedWire, s1, controlWire,
-    reservedControl]
+  have slot := congrArg (fun program => List.get? program 1)
+    (normalizeProgram_eq_public k four_le)
+  simpa [normalizeProgram, publicNormalizeProgram, leftChildEmbed, dirtyWire]
+    using slot
 
 @[simp] theorem rightChildEmbed_target_reserved2
     (k : Nat) (four_le : 4 ≤ k) :
     rightChildEmbed k four_le (targetWire (rightSize k)) =
       reservedWire k four_le s2 := by
-  apply Fin.ext
-  simp [rightChildEmbed, targetWire, reservedWire, s2, controlWire,
-    reservedControl]
+  have slot := congrArg (fun program => List.get? program 2)
+    (normalizeProgram_eq_public k four_le)
+  simpa [normalizeProgram, publicNormalizeProgram, rightChildEmbed, targetWire]
+    using slot
 
 @[simp] theorem rightChildEmbed_dirty_reserved3
     (k : Nat) (four_le : 4 ≤ k) :
     rightChildEmbed k four_le (dirtyWire (rightSize k)) =
       reservedWire k four_le s3 := by
-  apply Fin.ext
-  simp [rightChildEmbed, dirtyWire, reservedWire, s3, controlWire,
-    reservedControl]
+  have slot := congrArg (fun program => List.get? program 3)
+    (normalizeProgram_eq_public k four_le)
+  simpa [normalizeProgram, publicNormalizeProgram, rightChildEmbed, dirtyWire]
+    using slot
 
 /-- Active seed gives the left recursive child a clean target and clean borrowed
 workspace. -/
