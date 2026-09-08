@@ -49,19 +49,19 @@ def rawScheduled (k : Nat) :
   (rawSplit k).full
 
 @[simp] theorem rawSplit_zero : rawSplit 0 = k0Certificate.split := by
-  rfl
+  rw [rawSplit]
 
 @[simp] theorem rawSplit_one : rawSplit 1 = k1Certificate.split := by
-  rfl
+  rw [rawSplit]
 
 @[simp] theorem rawSplit_two : rawSplit 2 = k2Certificate.split := by
-  rfl
+  rw [rawSplit]
 
 @[simp] theorem rawSplit_three : rawSplit 3 = k3Certificate.split := by
-  rfl
+  rw [rawSplit]
 
 @[simp] theorem rawSplit_four : rawSplit 4 = k4Certificate.split := by
-  rfl
+  rw [rawSplit]
 
 /-- Definitional unfolding at every recursive node. -/
 theorem rawSplit_succ5 (k : Nat) :
