@@ -35,6 +35,7 @@ open VandaeleLemma1NieSeedSemantics
 open VandaeleLemma1NieParallelChildSemantics
 open VandaeleLemma1NieControlPartition
 open VandaeleLemma1NiePublicLogic
+open ReversibleWireEmbedding
 
 /-- Exact state exposed to the central Step-3 gadget by the parent's
 `forwardHalf`. -/
@@ -52,8 +53,7 @@ private theorem eval_recursive_forwardHalf_eq_stepThree
         (evalReversibleProgram (parallelForward five_le left right).program
           (seedState k (by omega : 4 ≤ k) state)) := by
   simp [recursiveSplit, ReversibleComputeActionUncompute.forwardHalf,
-    prepare, stepTwo, commit, seedState,
-    ScheduledReversibleProgram.eval_seq]
+    prepare, stepTwo, commit, seedState, evalReversibleProgram_append]
 
 /-- The generic Figure-3 recursive node preserves the stronger intermediate
 invariant required by its own parent: on zero child target / clean outer flag,
@@ -82,9 +82,12 @@ theorem recursive_forwardAnd
         five_le left.split right.split state)
 
   have childrenTargetZero : children (targetWire k) = 0 := by
-    rw [children,
-      parallelForward_preserves_target five_le left.split right.split seed]
-    simpa [seed, targetZero] using seed_preserves_target k four_le state
+    change
+      evalReversibleProgram
+          (parallelForward five_le left.split right.split).program seed
+          (targetWire k) = 0
+    rw [parallelForward_preserves_target five_le left.split right.split seed]
+    simpa [seed] using seed_preserves_target k four_le state
 
   by_cases reservedActive : ReservedAllOne k four_le state
   · have leftClean :=
@@ -115,7 +118,7 @@ theorem recursive_forwardAnd
         children (i1Wire k four_le) =
             readEmbeddedState (leftChildEmbed k four_le) children
               (targetWire (leftSize k)) := by
-          simp [children, readEmbeddedState]
+          simp [readEmbeddedState]
         _ = evalReversibleProgram left.split.forwardHalf.program
               (readEmbeddedState (leftChildEmbed k four_le) seed)
               (targetWire (leftSize k)) := by
@@ -129,7 +132,6 @@ theorem recursive_forwardAnd
                 allFlatControlsOne (leftSize k)
                   (readEmbeddedState (leftChildEmbed k four_le) seed) := by
               exact (leftSeed_allControls_iff k four_le state).2 active
-          
             simp [active, childActive]
           · have childInactive :
                 ¬ allFlatControlsOne (leftSize k)
@@ -145,7 +147,7 @@ theorem recursive_forwardAnd
         children (i3Wire k four_le) =
             readEmbeddedState (rightChildEmbed k four_le) children
               (targetWire (rightSize k)) := by
-          simp [children, readEmbeddedState]
+          simp [readEmbeddedState]
         _ = evalReversibleProgram right.split.forwardHalf.program
               (readEmbeddedState (rightChildEmbed k four_le) seed)
               (targetWire (rightSize k)) := by
@@ -168,8 +170,11 @@ theorem recursive_forwardAnd
             simp [active, childInactive]
 
     have childrenDirtyOne : children (dirtyWire k) = 1 := by
-      rw [children,
-        parallelForward_preserves_dirty five_le left.split right.split seed]
+      change
+        evalReversibleProgram
+            (parallelForward five_le left.split right.split).program seed
+            (dirtyWire k) = 1
+      rw [parallelForward_preserves_dirty five_le left.split right.split seed]
       simpa [seed] using
         seed_dirty_one k four_le state dirtyZero reservedActive
 
@@ -196,7 +201,7 @@ theorem recursive_forwardAnd
         allFlatControlsOne k state ↔
           LeftBlockAllOne k four_le state ∧
           RightBlockAllOne k four_le state := by
-      rw [allFlatControlsOne_iff_parts]
+      rw [allFlatControlsOne_iff_parts k four_le state]
       simp [reservedActive]
 
     have stepParentIff :
@@ -215,24 +220,30 @@ theorem recursive_forwardAnd
       simpa [parentActive, stepInactive, childrenTargetZero] using stepTarget
 
   · have seedDirtyZero : seed (dirtyWire k) = 0 := by
-      rw [seed, seedState, normalize_preserves_dirty, stepOne_dirty_action]
+      change seedState k four_le state (dirtyWire k) = 0
+      rw [seedState, normalize_preserves_dirty, stepOne_dirty_action]
       simp [reservedActive, dirtyZero]
 
     have childrenDirtyZero : children (dirtyWire k) = 0 := by
-      rw [children,
-        parallelForward_preserves_dirty five_le left.split right.split seed]
+      change
+        evalReversibleProgram
+            (parallelForward five_le left.split right.split).program seed
+            (dirtyWire k) = 0
+      rw [parallelForward_preserves_dirty five_le left.split right.split seed]
       exact seedDirtyZero
 
     have stepInactive : ¬ StepThreeActive k four_le children := by
       intro active
-      have public := (stepThreeActive_iff_public k four_le children).1 active
-      have aOne := public.2.2
+      have activePublic :=
+        (stepThreeActive_iff_public k four_le children).1 active
+      have aOne := activePublic.2.2
       rw [childrenDirtyZero] at aOne
-      contradiction
+      exact zero_ne_one aOne
 
     have parentInactive : ¬ allFlatControlsOne k state := by
       intro active
-      have parts := (allFlatControlsOne_iff_parts k four_le state).1 active
+      have parts :=
+        (allFlatControlsOne_iff_parts k four_le state).1 active
       exact reservedActive parts.1
 
     have stepTarget := stepThree_target_action k four_le children
