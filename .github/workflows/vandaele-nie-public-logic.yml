@@ -1,0 +1,35 @@
+name: Vandaele Nie public logic
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NiePublicLogic.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSeedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - '.github/workflows/vandaele-nie-public-logic.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NiePublicLogic.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSeedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieFixedSemantics.lean'
+      - '.github/workflows/vandaele-nie-public-logic.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-public-logic:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile public logical wire aliases
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NiePublicLogic
