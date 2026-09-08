@@ -1,0 +1,41 @@
+name: Vandaele Nie recursive forward correctness
+
+on:
+  push:
+    branches:
+      - 'work/vandaele-nie-recursion-integration-*'
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveForwardCorrectness.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NiePublicLogic.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieParallelChildSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSeedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieControlPartition.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1CleanPromise.lean'
+      - '.github/workflows/vandaele-nie-recursive-forward-correctness.yml'
+  pull_request:
+    paths:
+      - 'QuantumBlockEncoding/VandaeleLemma1NieRecursiveForwardCorrectness.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NiePublicLogic.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieParallelChildSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieSeedSemantics.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1NieControlPartition.lean'
+      - 'QuantumBlockEncoding/VandaeleLemma1CleanPromise.lean'
+      - '.github/workflows/vandaele-nie-recursive-forward-correctness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nie-recursive-forward-correctness:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile recursive forward-AND induction step
+        run: |
+          set -euxo pipefail
+          lake build QuantumBlockEncoding.VandaeleLemma1NieRecursiveForwardCorrectness
