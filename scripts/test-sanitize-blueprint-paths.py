@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -17,6 +18,19 @@ SPEC.loader.exec_module(SANITIZER)
 
 
 class SanitizerTests(unittest.TestCase):
+    def _find_page(self, inline: str) -> str:
+        return (
+            '<!doctype html><html><head><script>\n      window.xref = '
+            + inline + SANITIZER.FIND_XREF_DRIVER_PREFIX
+            + 'let params = new URLSearchParams(document.location.search);\n'
+            + '</script></head><body>Search the theorem library.</body></html>'
+        )
+
+    def _inline_value(self, page: str):
+        start = SANITIZER.FIND_XREF_ASSIGNMENT_RE.search(page).end()
+        end = page.index(SANITIZER.FIND_XREF_DRIVER_PREFIX)
+        return json.loads(page[start:end])
+
     def test_xref_without_source_paths_is_already_safe(self) -> None:
         value, changed, seen = SANITIZER._normalize_source_paths(
             {"declarations": []}, Path.cwd().resolve()
@@ -99,6 +113,75 @@ class SanitizerTests(unittest.TestCase):
             self.assertEqual(
                 SANITIZER._assert_no_local_paths(output, root), 1
             )
+
+    def test_inline_xref_preserves_every_entry_html_and_source_anchor(self) -> None:
+        root = Path.cwd().resolve()
+        source = str(root / "QuantumBlockEncoding" / "Core.lean")
+        url = "https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/abc123/" + source + "#L14-L16"
+        original = {"Lean": {"contents": {
+            "first": [{"sourceHref": url, "html": '<a href="' + url + '">theorem & proof</a>'}],
+            "second": [{"statement": r"f : X → Y", "proof": "by\n  exact h"}],
+        }}}
+        normalized, _ = SANITIZER._scrub_json_strings(original, root)
+        expected_url = "https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/abc123/QuantumBlockEncoding/Core.lean#L14-L16"
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            page = output / "index.html"
+            before = self._find_page(json.dumps(original))
+            # Reproduce the old raw-text pass before the fail-closed scan.
+            before, _ = SANITIZER._scrub_local_paths_from_text(before, root)
+            page.write_text(before, encoding="utf-8")
+            with self.assertRaises(ValueError):
+                SANITIZER._assert_no_local_paths(output, root)
+            changed, _ = SANITIZER._rewrite_find_xref(page, normalized, root)
+            self.assertEqual(changed, 1)
+            rewritten = page.read_text(encoding="utf-8")
+            self.assertEqual(self._inline_value(rewritten), normalized)
+            self.assertEqual(normalized["Lean"]["contents"]["first"][0]["sourceHref"], expected_url)
+            self.assertEqual(normalized["Lean"]["contents"]["first"][0]["html"], '<a href="' + expected_url + '">theorem & proof</a>')
+            self.assertEqual(normalized["Lean"]["contents"]["second"], original["Lean"]["contents"]["second"])
+            self.assertTrue(rewritten.endswith(before[before.index(SANITIZER.FIND_XREF_DRIVER_PREFIX):]))
+            self.assertEqual(SANITIZER._assert_no_local_paths(output, root), 1)
+            self.assertEqual(SANITIZER._rewrite_find_xref(page, normalized, root), (0, 0))
+
+    def test_inline_xref_repairs_previously_corrupted_json_from_canonical_data(self) -> None:
+        root = Path.cwd().resolve()
+        normalized = {"entries": [{"html": '<a href="https://example.org/Core.lean#L1-L2">proof</a>'}]}
+        # Shape left by the previous URL regex: a JSON-escaped attribute quote
+        # became a path separator. The canonical xref remains valid JSON.
+        damaged = '{"entries":[{"html":"<a href=\\"https://example.org/Core.lean#L1-L2/">proof</a>"}]}'
+        with self.assertRaises(json.JSONDecodeError):
+            json.loads(damaged)
+        with tempfile.TemporaryDirectory() as temporary:
+            page = Path(temporary) / "index.html"
+            page.write_text(self._find_page(damaged), encoding="utf-8")
+            SANITIZER._rewrite_find_xref(page, normalized, root)
+            self.assertEqual(self._inline_value(page.read_text(encoding="utf-8")), normalized)
+
+    def test_inline_serialization_cannot_terminate_script_and_roundtrips_html(self) -> None:
+        value = {"html": '</script><script>alert("not executable")</script><!-- & >',
+                 "text": "line\u2028paragraph\u2029end", "entries": [1, 2, 3]}
+        serialized = SANITIZER._script_safe_json(value)
+        for character in ("<", ">", "&", "\u2028", "\u2029"):
+            self.assertNotIn(character, serialized)
+        self.assertEqual(json.loads(serialized), value)
+
+    def test_unknown_inline_layout_fails_without_modification(self) -> None:
+        root = Path.cwd().resolve()
+        valid = self._find_page("{}")
+        for text in ("<html>no inline data</html>", valid + valid,
+                     valid.replace("// @ts-check", "// unexpected driver")):
+            with self.subTest(prefix=text[:25]), tempfile.TemporaryDirectory() as temporary:
+                page = Path(temporary) / "index.html"
+                page.write_text(text, encoding="utf-8")
+                with self.assertRaises(ValueError):
+                    SANITIZER._rewrite_find_xref(page, {}, root)
+                self.assertEqual(page.read_text(encoding="utf-8"), text)
+
+    def test_missing_inline_page_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            with self.assertRaises(FileNotFoundError):
+                SANITIZER._rewrite_find_xref(Path(temporary) / "missing.html", {}, Path.cwd())
 
 
 if __name__ == "__main__":

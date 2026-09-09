@@ -3,7 +3,11 @@
 Task id: `SP-HERMITE-001`
 Kind: `statePreparation`
 Mode: `faithful-source construction`
-Status: `all 88 Lean modules and executable replay passed locally; final Blueprint assembly and deployment pending`
+Status: `all 88 Lean modules, executable replay, the 99-page Blueprint and unified-site checks passed locally; online release is independently gated by Pages CI`
+
+Release status: [Pages build and deployment records](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/workflows/pages.yml).
+Local compilation and browser checks are not a substitute for a successful
+deployment record and inspection of that deployed revision.
 
 ## Frozen scientific target
 

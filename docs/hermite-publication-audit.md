@@ -26,8 +26,12 @@ The public case supplies full source, not only selected declaration previews.
 | Windows and Linux disagreed on artifact hashes | Generated packet files had CRLF while Git normalized their committed text. | The exporter writes LF explicitly, tests byte-level portability, and scoped Git attributes preserve it. |
 | Windows Python execution failed before acceptance | Concurrent lock reads and transient file-sharing violations failed; subprocess tests assumed a `python3` executable. | See [bounded Windows compatibility fixes](windows-runtime-compatibility.md). No failing proof/test gate is skipped. |
 | Full Blueprint traversal ended with an absent search-resource destination | Pinned Verso embedded native backslashes but stripped a forward-slash-only source prefix, leaving parent-directory segments in output names. | A Windows-only, exact-pin/exact-pattern compatibility patch normalizes separators; the real search emitter is exercised before the long document render. Unknown pins or unsafe output names fail. |
+| The completed Blueprint still exposed local paths in its search page | `find/index.html` embeds a second, JSON-escaped copy of the cross-reference data. Raw text replacement missed doubled separators and could damage cached HTML quoting. | Re-embed the complete normalized `xref.json` using script-safe JSON serialization at the pinned renderer's exact boundary. Preserve all entries and keep the strict privacy scan; unknown layouts fail. |
 | A different local entry point omitted publication stages | The PowerShell website entry point stopped before teaching enrichment and case publishing. | Native Windows commands now mirror the canonical pipeline, propagate every nonzero exit, and reject output reparse points before cleanup; parity and negative tests cover the entry points. |
 | A new case crashed rendering or exceeded mobile width | Actual render exposed absent evolution fields; real browser testing measured a 933px page on a 390px viewport. | The case has truthful reference-stage metadata and a complete-render test; constrained grid tracks retain independently scrollable formulas, with browser tests at 390/768/1440px. |
+| The complete site rejected eleven correctly rendered replay explanations | The checker demanded the obsolete phrase `Qiskit Operator`; the renderer labels the actual backend `Qiskit replay`, and the Hermite replay uses Statevector. | Check the actual evidence section for its replay row, QASM round trip and both numerical-versus-Lean trust boundaries. Missing sections or rows still fail, including when their words are copied elsewhere on the page. |
+| The website's selected downloads were not a self-contained replay packet | Four accepted files existed in the repository but were omitted from the download registry: `circuit.qasm2`, `circuit.qasm3`, `mass-tree.json`, `endpoint-jets.json`. | Publish those exact existing bytes with the original directory structure. A download-only test runs the copied replay script in isolated Python, and deleting any restored file fails the assembled-site gate. |
+| Blueprint quick-jump search did not find compiled declarations | Cross-reference JSON contained the informal declaration domains, but the emitted search registry registered only standard Manual domains. Actual short-name and fully qualified queries returned no declaration result. | A deterministic adapter uses Verso's existing `DomainMapper` interface, verifies each local page/anchor, and registers 3,129 unique declarations. It does not change proofs, HTML or the upstream dependency. |
 
 The first integrated Lean attempt failed at test-module discovery and did not
 produce a success report. The repaired configuration is evaluated by a fresh
@@ -48,10 +52,38 @@ full run; this document does not promote the failed attempt to success.
 - `tools.test_powershell_builds` and `tools.test_verso_windows_compat`: publication
   step parity, immediate failure propagation, bounded output cleanup, exact
   dependency pin/pattern matching, patch idempotence and platform no-op behavior.
+- `scripts/test-sanitize-blueprint-paths.py`: twelve tests cover portable paths,
+  complete inline cross-reference preservation, repair of previously damaged
+  JSON, script-safe round trips, and missing or unfamiliar search-page layouts.
+  On the actual 99-page Blueprint, normalization and an independent scan passed
+  over 204 text files. The embedded data equals the normalized source JSON,
+  retaining 3,129 source links and 28,043 cached HTML fields.
+- The real assembled site passed checks for 226 HTML pages, 3,129 declaration
+  search entries and nine diagrams after the replay-label contract repair.
+  The native website pipeline then passed its remaining source-link, preview,
+  required-file, teaching-marker and 359-text privacy checks. This component
+  rerun follows the failed full-pipeline attempts; it does not relabel those
+  earlier nonzero exits as successful single-command runs.
 - The executable suite checks primitives, endpoint interpolation, little-endian
   order, zero subtrees, backend round trips, stale/missing/tampered output,
   forged success fields, and LF portability. Independent replay reconstructs
   the target polynomial separately before executing saved QASM.
+- `website.scripts.test_hermite_download_packet`: four tests check the complete
+  acceptance-bound file set, byte-identical real publisher output and links,
+  missing-file rejection, and independent replay with only the temporary
+  website download tree available. Replay leaves all accepted bytes unchanged.
+  The actual final-site download tree was also replayed directly: all three
+  saved QASM representations passed with maximum componentwise amplitude
+  error approximately `1.94e-16`. A later real-browser check confirmed all 16
+  download links, two figures and six mathematical containers at both 1440px
+  and 390px, with no page overflow, browser exceptions or failed requests.
+- `website.scripts.test_blueprint_search`: eleven tests cover exact names and
+  anchors, duplicate elimination, missing inputs, stale adapters, unknown
+  upstream contracts and escaping output paths. Both native build entry points
+  run these tests and generate/check the adapter after fragment repair. In the
+  actual Blueprint search box, `hermiteStatePreparation_complete` and its full
+  namespace each produced one exact result; clicking it reached the existing
+  root declaration anchor. The short query `Hermite` produced 88 matches.
 
 The representative export is `k=1,n=3,L=1`, with seven RY gates, eight CX gates
 and Qiskit scheduled depth thirteen. Recorded maximum componentwise amplitude

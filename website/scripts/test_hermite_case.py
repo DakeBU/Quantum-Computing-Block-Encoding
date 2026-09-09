@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from website.scripts import publish_extensions as publisher
-from website.scripts.check_site import check_hermite_publication
+from website.scripts.check_site import check_case_teaching, check_hermite_publication
 
 
 class HermitePublicationTests(unittest.TestCase):
@@ -80,6 +80,7 @@ class HermitePublicationTests(unittest.TestCase):
         for anchor in case["leanAnchors"]:
             self.assertIn(html.escape(anchor), page)
         self.assertNotIn("Strictly better", page)
+        self.assertEqual(check_case_teaching(page, case["slug"]), [])
 
     def test_extension_and_renderer_share_the_circuit_registry(self):
         data = json.loads(publisher.HERMITE_PATH.read_text(encoding="utf-8"))

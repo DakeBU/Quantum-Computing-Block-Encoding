@@ -235,6 +235,49 @@ The first two commands reproduce the finite evidence reviewed here. The
 remaining commands are the independent obligations for symbolic and website
 publication acceptance; this review note does not claim to be their log.
 
+### Replaying the website downloads without a repository checkout
+
+The current source registry publishes 18 assets. Eleven of these form the
+self-contained finite replay packet below; the remaining assets are the Lean
+sources, mathematical write-up, review, and proof-flow figure. Both numbered
+QASM files and both JSON evidence files are required, even though the main
+`circuit.qasm` already uses OpenQASM 3.
+
+Website URLs preserve the original directory hierarchy. A browser's individual
+**Download** action may save only a basename: place the downloaded files into
+this layout yourself, keeping both Python scripts inside `qiskit/`:
+
+```text
+SP-HERMITE-001/
+  acceptance.json
+  manifest.json
+  circuit.qasm
+  circuit.qasm2
+  circuit.qasm3
+  circuit.svg
+  samples.csv
+  mass-tree.json
+  endpoint-jets.json
+  qiskit/
+    export.py
+    replay.py
+```
+
+In a Python environment, install the replay dependencies pinned by
+`requirements-executable.txt`, then run from `SP-HERMITE-001/`:
+
+```bash
+python -m pip install numpy==1.26.4 qiskit==2.4.2 "openqasm3[parser]==1.0.1" qiskit-qasm3-import==0.6.0
+python qiskit/replay.py
+```
+
+Replay reads only this downloaded packet and does not regenerate it. It checks
+the accepted hashes, independently reconstructs the interpolation target, and
+simulates all three saved QASM files. The website regression runs the copied
+program in an isolated temporary directory, checks success, and verifies that
+no accepted bytes changed. A missing required download fails the publication
+check; this finite replay still does not replace the repository's Lean build.
+
 ## Local browser acceptance (2026-09-09)
 
 The genuine generated Hermite case was opened in a headless Chromium-based
@@ -259,6 +302,10 @@ complete LaTeX panel match their repository sources. Copying the LaTeX panel
 also matches exactly after normalizing only Windows clipboard CRLF to LF.
 No browser runtime errors, failed requests, or mathematical-rendering errors
 were observed in these two viewport checks.
+
+That twelve-link browser snapshot predates the download-completeness correction
+above. The current registry has 16 direct download links and two displayed
+figures; the later download-only regression covers all 18 asset files.
 
 These observations do not establish remote availability, a successful GitHub
 Actions run, completion of the full Blueprint site, or the contents of a later

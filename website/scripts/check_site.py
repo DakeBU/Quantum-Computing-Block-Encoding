@@ -163,6 +163,40 @@ def check_encoding(site: Path) -> list[str]:
     return errors
 
 
+def check_case_teaching(case_page: str, slug: str) -> list[str]:
+    """Require reader-facing replay evidence without claiming a full Operator check."""
+    errors: list[str] = []
+    for marker in (
+        "The equation being studied",
+        "Circuit anatomy",
+        "Candidate and proof progression",
+        "Named Lean certificates",
+    ):
+        if marker not in case_page:
+            errors.append(f"example case lacks teaching marker {marker!r}: {slug}")
+    # Check the actual evidence section: embedded source downloads or unrelated
+    # prose must not hide a missing backend row or a missing trust boundary.
+    evidence = re.search(
+        r'<section\b[^>]*\bid=[\"\']executable-evidence[\"\'][^>]*>(.*?)</section>',
+        case_page, re.S,
+    )
+    if evidence is None:
+        errors.append(f"example case lacks executable evidence section: {slug}")
+        return errors
+    for marker in (
+        "Executable verification and exports",
+        "Checking and artifact selection are independent",
+        "<th>Qiskit replay</th>",
+        "Gate-by-gate numerical screening",
+        "OpenQASM 3 round-trip",
+        "Fast executable checks may reject, rank, or queue a route for formalization",
+        "Floating-point tolerances do not replace the exact Lean roots above",
+    ):
+        if marker not in evidence.group(1):
+            errors.append(f"example case lacks executable teaching marker {marker!r}: {slug}")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=ROOT / "_site")
@@ -320,20 +354,7 @@ def main() -> int:
         case_page = route.read_text(encoding="utf-8")
         if f"?case={case['slug']}" not in case_page:
             errors.append(f"example case lacks task-builder preset link: {case['slug']}")
-        for marker in (
-            "The equation being studied",
-            "Circuit anatomy",
-            "Candidate and proof progression",
-            "Named Lean certificates",
-            "Executable verification and exports",
-            "Checking and artifact selection are independent",
-            "Qiskit Operator",
-            "OpenQASM 3 round-trip",
-            "Fast executable checks may reject, rank, or queue a route for formalization",
-            "Floating-point tolerances do not replace the exact Lean roots above",
-        ):
-            if marker not in case_page:
-                errors.append(f"example case lacks teaching marker {marker!r}: {case['slug']}")
+        errors.extend(check_case_teaching(case_page, str(case["slug"])))
     if re.search(r"(?:file://|/home/|[A-Za-z]:\\\\Users\\\\)", combined):
         errors.append("local filesystem path leaked into unified HTML")
 

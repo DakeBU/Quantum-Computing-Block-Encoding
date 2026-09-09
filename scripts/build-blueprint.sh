@@ -19,6 +19,9 @@ cp web/assets/abeis-library-map.svg _out/blueprint/html-multi/assets/
 python3 scripts/sanitize-blueprint-paths.py _out/blueprint
 python3 website/scripts/repair_blueprint_fragments.py _out/blueprint/html-multi
 python3 website/scripts/repair_blueprint_fragments.py --check _out/blueprint/html-multi
+python3 -m unittest website.scripts.test_blueprint_search
+python3 website/scripts/augment_blueprint_search.py _out/blueprint/html-multi
+python3 website/scripts/augment_blueprint_search.py --check _out/blueprint/html-multi
 
 test -f _out/blueprint/html-multi/index.html
 test -f _out/blueprint/html-multi/xref.json

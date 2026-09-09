@@ -72,6 +72,12 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/repair_blueprint_fragments.py --check _out/blueprint/html-multi
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand -m unittest website.scripts.test_blueprint_search
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/augment_blueprint_search.py _out/blueprint/html-multi
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/augment_blueprint_search.py --check _out/blueprint/html-multi
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $required = @(
   "_out/blueprint/html-multi/index.html",

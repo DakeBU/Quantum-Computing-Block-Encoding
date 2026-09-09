@@ -28,6 +28,16 @@ PORTABLE_PATH_RE = re.compile(
     r"[A-Za-z0-9_. -]+(?:[\\/][A-Za-z0-9_. -]+)+"
     r"(?:(?:#|\?)[^\s\"'<>]*)?"
 )
+# Pinned Verso's `xref`/`emitFindHtml` embeds xref.json immediately before
+# static-web/find.js. Match that exact boundary, not arbitrary JavaScript.
+FIND_XREF_ASSIGNMENT_RE = re.compile(r"<script>\s*window\.xref = ")
+FIND_XREF_DRIVER_PREFIX = (
+    ";\n/**\n"
+    " * Copyright (c) 2024 Lean FRO LLC. All rights reserved.\n"
+    " * Released under Apache 2.0 license as described in the file LICENSE.\n"
+    " * Author: David Thrane Christiansen\n"
+    " */\n\n// Enable typescript\n// @ts-check\n"
+)
 
 
 def _is_absolute(path: str) -> bool:
@@ -182,6 +192,53 @@ def _scrub_json_strings(value: Any, repo_root: Path) -> tuple[Any, int]:
     return value, 0
 
 
+def _script_safe_json(value: Any) -> str:
+    """Serialize data without allowing cached HTML to terminate its script."""
+
+    serialized = json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    for character, escaped in (
+        ("<", r"\u003c"), (">", r"\u003e"), ("&", r"\u0026"),
+        ("\u2028", r"\u2028"), ("\u2029", r"\u2029"),
+    ):
+        serialized = serialized.replace(character, escaped)
+    return serialized
+
+
+def _rewrite_find_xref(
+    find_path: Path, normalized_xref: Any, repo_root: Path
+) -> tuple[int, int]:
+    """Restore the inline copy from the same build's canonical xref.json.
+
+    A text regex must never scrub serialized JSON: JSON-escaped Windows
+    separators differ from source paths, and a trailing `\\` can be the escape
+    of an HTML attribute quote. The previous text pass both missed the root
+    and damaged that quote in find/index.html. Re-embedding the complete,
+    structured, normalized xref retains every entry, cached HTML field, and
+    source anchor; it also repairs output already touched by that old pass.
+
+    Unknown or ambiguous script layouts fail closed. Only the exact generated
+    assignment is replaced; the page shell and find.js driver are preserved.
+    """
+
+    if not find_path.is_file():
+        raise FileNotFoundError("generated Blueprint find/index.html was not found")
+    text = find_path.read_text(encoding="utf-8")
+    starts = list(FIND_XREF_ASSIGNMENT_RE.finditer(text))
+    if len(starts) != 1 or text.count(FIND_XREF_DRIVER_PREFIX) != 1:
+        raise ValueError("unknown or ambiguous Blueprint inline xref layout")
+    start = starts[0].end()
+    end = text.index(FIND_XREF_DRIVER_PREFIX)
+    if end <= start:
+        raise ValueError("invalid Blueprint inline xref boundaries")
+    prefix, prefix_changed = _scrub_local_paths_from_text(text[:start], repo_root)
+    suffix, suffix_changed = _scrub_local_paths_from_text(text[end:], repo_root)
+    replacement = prefix + _script_safe_json(normalized_xref) + suffix
+    changed = int(replacement != text)
+    if changed:
+        find_path.write_text(replacement, encoding="utf-8", newline="\n")
+    return changed, changed + prefix_changed + suffix_changed
+
+
 def _scrub_output_text_files(
     output_root: Path, repo_root: Path, skipped: set[Path]
 ) -> tuple[int, int]:
@@ -260,6 +317,7 @@ def main() -> int:
     changed = 0
     seen = 0
     embedded_changed = 0
+    find_files_changed = 0
     skipped: set[Path] = set()
     if not args.scan_only:
         xref_path = Path(args.output) / "html-multi" / "xref.json"
@@ -278,12 +336,21 @@ def main() -> int:
             newline="\n",
         )
         skipped.add(xref_path)
+        find_path = xref_path.parent / "find" / "index.html"
+        find_files_changed, find_replacements = _rewrite_find_xref(
+            find_path, normalized, repo_root
+        )
+        embedded_changed += find_replacements
+        # Its JSON has already been sanitized structurally. A later text pass
+        # would corrupt escaped quotes even when every source URL is portable.
+        skipped.add(find_path)
     files_changed = 0
     text_replacements = 0
     if not args.scan_only:
         files_changed, text_replacements = _scrub_output_text_files(
             Path(args.output), repo_root, skipped
         )
+        files_changed += find_files_changed
     checked = _assert_no_local_paths(Path(args.output), repo_root)
     if args.scan_only:
         print(

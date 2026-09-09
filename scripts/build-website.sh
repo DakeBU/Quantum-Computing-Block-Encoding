@@ -36,6 +36,7 @@ python3 -m py_compile \
 
 python3 -m unittest \
   website.scripts.test_hermite_case \
+  website.scripts.test_hermite_download_packet \
   website.scripts.test_proof_inputs \
   website.scripts.test_lean_publication_gate \
   website.scripts.test_site_contracts \

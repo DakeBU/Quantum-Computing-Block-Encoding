@@ -18,9 +18,57 @@ SPEC.loader.exec_module(build_site)
 
 from website.content import CHAPTERS, IMPLEMENTATION_MAP, ROADMAP
 from website.case_assets import STAGE_CIRCUITS
+from website.scripts.check_site import check_case_teaching
 
 
 TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
+
+
+class CaseTeachingGateTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))
+        cls.case = next(case for case in data["cases"]
+                        if case["slug"] == "pauli-x-state-preparation")
+        declarations = {
+            name: {"fullName": name, "source": "QuantumBlockEncoding/Textbook.lean",
+                   "line": 1, "localSourceUrl": "library/modules/textbook/index.html"}
+            for name in cls.case["leanAnchors"]
+        }
+        cls.page = build_site.render_example_case(
+            cls.case, declarations, {"publicDeclarationCount": len(declarations)},
+            {"passed": True}, {"shortCommit": "render-fixture"},
+        )
+
+    def test_actual_renderer_passes_without_claiming_full_operator_check(self) -> None:
+        self.assertNotIn("Qiskit Operator", self.page)
+        self.assertEqual(check_case_teaching(self.page, self.case["slug"]), [])
+
+    def test_missing_replay_row_cannot_be_hidden_by_unrelated_prose(self) -> None:
+        page = re.sub(r"<tr><th>Qiskit replay</th>.*?</tr>", "", self.page, flags=re.S)
+        page += "<aside><th>Qiskit replay</th>Gate-by-gate numerical screening</aside>"
+        errors = check_case_teaching(page, self.case["slug"])
+        self.assertTrue(any("Qiskit replay" in error for error in errors))
+
+    def test_missing_trust_boundary_is_rejected_even_if_quoted_elsewhere(self) -> None:
+        for marker in (
+            "Fast executable checks may reject, rank, or queue a route for formalization",
+            "Floating-point tolerances do not replace the exact Lean roots above",
+        ):
+            with self.subTest(marker=marker):
+                page = self.page.replace(marker, "") + f"<aside>{marker}</aside>"
+                self.assertTrue(any(marker in error for error in
+                                    check_case_teaching(page, self.case["slug"])))
+
+    def test_missing_evidence_section_is_rejected(self) -> None:
+        page = self.page.replace('id="executable-evidence"', 'id="unrelated-section"')
+        self.assertTrue(any("lacks executable evidence section" in error for error in
+                            check_case_teaching(page, self.case["slug"])))
+
+    def test_existing_mathematical_teaching_markers_remain_required(self) -> None:
+        page = self.page.replace("Named Lean certificates", "")
+        self.assertTrue(any("Named Lean certificates" in error for error in
+                            check_case_teaching(page, self.case["slug"])))
 
 
 class SiteContractTests(unittest.TestCase):

@@ -175,8 +175,26 @@
           "language": "qasm"
         },
         {
+          "path": "executable-exports/SP-HERMITE-001/circuit.qasm2",
+          "label": "Accepted finite packet: OpenQASM 2 replay circuit",
+          "language": "qasm"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/circuit.qasm3",
+          "label": "Accepted finite packet: OpenQASM 3 replay circuit",
+          "language": "qasm"
+        },
+        {
           "path": "executable-exports/SP-HERMITE-001/samples.csv",
           "label": "Sample positions and target amplitudes (CSV)"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/mass-tree.json",
+          "label": "Saved mass-tree evidence required by independent replay (JSON)"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/endpoint-jets.json",
+          "label": "Saved endpoint-jet evidence required by independent replay (JSON)"
         },
         {
           "path": "executable-exports/SP-HERMITE-001/acceptance.json",

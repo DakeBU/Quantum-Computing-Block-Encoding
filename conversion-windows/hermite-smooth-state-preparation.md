@@ -50,7 +50,7 @@ assumed preparation oracle, or replacement scientific target was introduced.
 | H | `HermitePolynomial.sourceInterpolant_eval`, endpoint derivative theorems, positivity and uniqueness; `HermiteSmoothness.smoothInitial_contDiff` | compiled general-order construction and global smoothness |
 | S | `RealAmplitudePreparation.prepareCircuit_firstColumn`, primitive unitarity and exact reference RY/CX counts | compiled reusable nonnegative-amplitude constructor |
 | E | Mandatory artifact checks, 15 executable tests and independent saved-QASM replay | passed finite numerical acceptance; not a symbolic family certificate |
-| R | `HermiteStatePreparation.hermiteStatePreparation_complete`, normalized literal grid samples, zero ancillary wires; full rendered case and source downloads | Lean root closed; final Blueprint assembly and online deployment pending |
+| R | `HermiteStatePreparation.hermiteStatePreparation_complete`, normalized literal grid samples, zero ancillary wires; full rendered case and source downloads | Lean root closed; 99-page Blueprint and 226-page unified-site checks passed locally |
 
 All declaration names in this table have prefix `QuantumBlockEncoding.`.
 Independent review is recorded in
@@ -59,7 +59,12 @@ The actual frontend renders the complete mathematical explanation, six formula
 containers, two figures and twelve downloads. Desktop/mobile checks exposed a
 grid overflow, which was fixed and covered by a browser regression test.
 
-The remaining publication blocker is a reproduced Windows mixed-separator
-defect in pinned Verso search-asset output. A failed renderer is not promoted
-to a successful website build. Remote publication status must be established
-separately from these local proof and rendering results.
+The reproduced Windows mixed-separator search-resource defect was repaired
+with an exact-pin compatibility patch. The subsequent completed render exposed
+a separate inline-JSON privacy issue, which was repaired without dropping any
+cross-reference data. The native website assembly then passed all publication
+checks. These successful component reruns do not relabel earlier failed runs.
+See [the publication audit](../docs/hermite-publication-audit.md) for the sequence.
+Remote availability remains a separate evidence class, recorded by
+[the Pages workflow](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/workflows/pages.yml)
+and inspection of its deployed revision.
