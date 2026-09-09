@@ -121,6 +121,9 @@ jobs:
           python3 executable-exports/SP-HERMITE-001/qiskit/export.py --self-test
           python3 executable-exports/SP-HERMITE-001/qiskit/replay.py
 
+      - name: Test the independently downloaded Hermite packet
+        run: python3 -m unittest website.scripts.test_hermite_download_packet
+
       - name: Build the library and tests
         if: steps.proof_changes.outputs.changed == 'true'
         run: python3 website/scripts/run_lean_gate.py

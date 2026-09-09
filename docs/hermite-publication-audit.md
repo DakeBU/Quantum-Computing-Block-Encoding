@@ -33,6 +33,7 @@ The public case supplies full source, not only selected declaration previews.
 | The website's selected downloads were not a self-contained replay packet | Four accepted files existed in the repository but were omitted from the download registry: `circuit.qasm2`, `circuit.qasm3`, `mass-tree.json`, `endpoint-jets.json`. | Publish those exact existing bytes with the original directory structure. A download-only test runs the copied replay script in isolated Python, and deleting any restored file fails the assembled-site gate. |
 | Blueprint quick-jump search did not find compiled declarations | Cross-reference JSON contained the informal declaration domains, but the emitted search registry registered only standard Manual domains. Actual short-name and fully qualified queries returned no declaration result. | A deterministic adapter uses Verso's existing `DomainMapper` interface, verifies each local page/anchor, and registers 3,129 unique declarations. It does not change proofs, HTML or the upstream dependency. |
 | A Windows-specific regression fixture failed on Linux | The first main Pages run passed Lean, harness and executable checks, then failed a test that used the host's native path spelling to reproduce doubled Windows JSON separators. POSIX paths do not reproduce that particular leak. | Use explicit synthetic Windows and POSIX fixtures independent of the test host. Preserve the original production privacy checker and the Windows negative assertion. |
+| Download-only replay hid dependencies installed in the CI user site | The next main run passed ordinary executable replay and the complete Blueprint, but its copied-packet subprocess used `-I`, which implies `-s`. Its earlier pip step explicitly selected user installation. | Retain environment/path isolation with `-E -P -B`, without disabling installed user dependencies. Keep the copied packet and temporary working directory, test forbidden import fallback explicitly, expose bounded sanitized child diagnostics, and run this test before the expensive Lean/Blueprint stages. |
 
 The first integrated Lean attempt failed at test-module discovery and did not
 produce a success report. The repaired configuration is evaluated by a fresh
@@ -42,6 +43,13 @@ failed at the cross-platform regression fixture, not at Lean compilation.
 The separate [Hermite CI gate](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/runs/34335939496)
 completed successfully. Neither result is represented as a successful Pages
 deployment; the corrected revision must pass that workflow independently.
+The [next main Pages run](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/runs/34338157744)
+completed the entire Blueprint, then failed the copied-download replay test.
+The historical log did not expose the captured child stderr, so its exact
+exception text cannot be recovered from that log. The observed user-site
+installation and Python's documented `-I` behavior identify an environment
+mismatch; direct import-isolation regressions exercise that boundary. This
+second failed deployment is not relabeled as successful publication either.
 
 ## Negative and positive checks
 
@@ -83,6 +91,14 @@ deployment; the corrected revision must pass that workflow independently.
   error approximately `1.94e-16`. A later real-browser check confirmed all 16
   download links, two figures and six mathematical containers at both 1440px
   and 390px, with no page overflow, browser exceptions or failed requests.
+  Subsequent isolation regressions distinguish installed dependencies from
+  forbidden repository fallback. The copied replay now uses `-E -P -B`:
+  ignore Python environment settings, omit automatic script/current-directory
+  import paths, and suppress bytecode writes, while retaining ordinary installed
+  dependencies. These tests require Python 3.11 or newer for `-P`; the tested
+  Windows and Linux environments use Python 3.12. The Pages workflow runs the
+  download test unconditionally after installing dependencies and before Lean
+  and Blueprint compilation, in addition to the full website suite later.
 - `website.scripts.test_blueprint_search`: eleven tests cover exact names and
   anchors, duplicate elimination, missing inputs, stale adapters, unknown
   upstream contracts and escaping output paths. Both native build entry points

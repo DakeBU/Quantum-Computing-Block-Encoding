@@ -10,6 +10,32 @@ from tools.check_hermite_artifacts import REQUIRED_FILES, missing_inputs
 
 
 class HermiteInputGateTests(unittest.TestCase):
+    def test_pages_download_replay_is_unconditional_and_precedes_expensive_builds(self):
+        workflow = (Path(__file__).resolve().parents[1] / ".github/workflows/pages.yml").read_text(
+            encoding="utf-8")
+
+        def check_order(text):
+            name = "      - name: Test the independently downloaded Hermite packet\n"
+            self.assertEqual(text.count(name), 1)
+            position = text.index(name)
+            step = text[position:].split("\n      - name:", 1)[0]
+            self.assertIn("run: python3 -m unittest website.scripts.test_hermite_download_packet", step)
+            self.assertNotIn("if:", step)
+            self.assertNotIn("continue-on-error:", step)
+            self.assertLess(text.index("      - name: Install executable-verification dependencies"), position)
+            self.assertLess(position, text.index("      - name: Build the library and tests"))
+            self.assertLess(position, text.index("      - name: Build the Verso Blueprint"))
+
+        check_order(workflow)
+        command = "        run: python3 -m unittest website.scripts.test_hermite_download_packet"
+        for altered in (
+            workflow.replace(command, "        run: echo skipped"),
+            workflow.replace(command, "        if: false\n" + command),
+            workflow.replace(command, "        continue-on-error: true\n" + command),
+        ):
+            with self.subTest(altered=altered != workflow), self.assertRaises(AssertionError):
+                check_order(altered)
+
     def test_workflow_keeps_real_gates_without_archive_transport(self):
         workflows = Path(__file__).resolve().parents[1] / ".github/workflows"
         gate = (workflows / "hermite-state-preparation.yml").read_text(encoding="utf-8")
