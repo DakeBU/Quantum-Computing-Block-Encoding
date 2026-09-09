@@ -1,0 +1,74 @@
+name: Hermite state-preparation gate
+
+on:
+  push:
+    branches: ["agent/hermite-smooth-state-preparation-20260909"]
+  pull_request:
+    paths:
+      - "QuantumBlockEncoding/Hermite*.lean"
+      - "executable-exports/SP-HERMITE-001/**"
+      - ".github/workflows/hermite-state-preparation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hermite-state-preparation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hermite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Record replay sources
+        shell: bash
+        run: |
+          mkdir -p _out/hermite
+          python3 - <<'PY'
+          import pathlib, subprocess, zipfile
+          root = pathlib.Path('.')
+          names = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          allowed = {'.lean', '.py', '.json', '.md', '.toml', '.yml', '.yaml', '.sh', '.txt', '.css', '.js', '.html', '.tex', '.bib'}
+          with zipfile.ZipFile('_out/hermite/replay-sources.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in names:
+                  path = root / name
+                  if name and path.is_file() and (path.suffix in allowed or name == 'lean-toolchain'):
+                      archive.write(path, name)
+          PY
+      - name: Upload replay sources
+        uses: actions/upload-artifact@v4
+        with:
+          name: hermite-replay-sources
+          path: _out/hermite/replay-sources.zip
+          retention-days: 7
+      - name: Set up Lean and Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Compile the state-preparation frontier
+        shell: bash
+        run: |
+          set -o pipefail
+          lake build QuantumBlockEncoding.StatePreparationPrimitiveRoutes 2>&1 | tee _out/hermite/lean.log
+          if test -f QuantumBlockEncoding/HermiteStatePreparation.lean; then
+            lake build QuantumBlockEncoding.HermiteStatePreparation 2>&1 | tee -a _out/hermite/lean.log
+          fi
+      - name: Replay the Hermite executable
+        shell: bash
+        run: |
+          if test -f executable-exports/SP-HERMITE-001/qiskit/export.py; then
+            python3 -m pip install --quiet 'qiskit>=2,<3' mpmath
+            python3 executable-exports/SP-HERMITE-001/qiskit/export.py --self-test
+          fi
+      - name: Upload proof diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hermite-proof-diagnostics
+          path: _out/hermite/lean.log
+          if-no-files-found: ignore
+          retention-days: 7
