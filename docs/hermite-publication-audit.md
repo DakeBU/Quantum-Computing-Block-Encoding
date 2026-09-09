@@ -32,10 +32,16 @@ The public case supplies full source, not only selected declaration previews.
 | The complete site rejected eleven correctly rendered replay explanations | The checker demanded the obsolete phrase `Qiskit Operator`; the renderer labels the actual backend `Qiskit replay`, and the Hermite replay uses Statevector. | Check the actual evidence section for its replay row, QASM round trip and both numerical-versus-Lean trust boundaries. Missing sections or rows still fail, including when their words are copied elsewhere on the page. |
 | The website's selected downloads were not a self-contained replay packet | Four accepted files existed in the repository but were omitted from the download registry: `circuit.qasm2`, `circuit.qasm3`, `mass-tree.json`, `endpoint-jets.json`. | Publish those exact existing bytes with the original directory structure. A download-only test runs the copied replay script in isolated Python, and deleting any restored file fails the assembled-site gate. |
 | Blueprint quick-jump search did not find compiled declarations | Cross-reference JSON contained the informal declaration domains, but the emitted search registry registered only standard Manual domains. Actual short-name and fully qualified queries returned no declaration result. | A deterministic adapter uses Verso's existing `DomainMapper` interface, verifies each local page/anchor, and registers 3,129 unique declarations. It does not change proofs, HTML or the upstream dependency. |
+| A Windows-specific regression fixture failed on Linux | The first main Pages run passed Lean, harness and executable checks, then failed a test that used the host's native path spelling to reproduce doubled Windows JSON separators. POSIX paths do not reproduce that particular leak. | Use explicit synthetic Windows and POSIX fixtures independent of the test host. Preserve the original production privacy checker and the Windows negative assertion. |
 
 The first integrated Lean attempt failed at test-module discovery and did not
 produce a success report. The repaired configuration is evaluated by a fresh
 full run; this document does not promote the failed attempt to success.
+Likewise, [the first main Pages run](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/runs/34335939467)
+failed at the cross-platform regression fixture, not at Lean compilation.
+The separate [Hermite CI gate](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/runs/34335939496)
+completed successfully. Neither result is represented as a successful Pages
+deployment; the corrected revision must pass that workflow independently.
 
 ## Negative and positive checks
 
