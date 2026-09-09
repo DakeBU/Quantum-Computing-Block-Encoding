@@ -3216,6 +3216,10 @@ body {
     transform: translateX(0);
   }
 
+  .site-sidebar.is-open .theme-switcher {
+    display: inline-flex;
+  }
+
   .sidebar-head {
     display: none;
   }

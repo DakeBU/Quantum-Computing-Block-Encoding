@@ -2,13 +2,13 @@
   "alpha": "56/3",
   "artifacts": {
     "figure4FixedN8": {
-      "artifactRoot": "executable-exports/QBE-ROBIN-BE-WARM-001/figure4-fixed-n8",
+      "artifactRoot": "executable-exports\\QBE-ROBIN-BE-WARM-001\\figure4-fixed-n8",
       "checkBackends": {
         "internalCanonicalEvaluator": {
           "backend": "internalCanonicalMatrix",
-          "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
-          "cleanBlockMaxEntryError": 5.049717357560489e-16,
-          "cleanBlockOperatorNormError": 7.628051070026943e-16,
+          "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
+          "cleanBlockMaxEntryError": 2.5405929613637076e-16,
+          "cleanBlockOperatorNormError": 4.24742493206058e-16,
           "evidenceClasses": [
             "numericUnitary",
             "numericCleanBlock"
@@ -22,14 +22,14 @@
             "oracleCalls": 0
           },
           "status": "passed",
-          "unitarityError": 8.74598821652762e-15
+          "unitarityError": 6.57989727146403e-15
         },
         "openqasm3RoundTrip": {
           "backend": "openqasm3RoundTrip",
           "canonicalRoundTrip": true,
-          "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
-          "cleanBlockMaxEntryError": 5.049717357560489e-16,
-          "cleanBlockOperatorNormError": 7.628051070026943e-16,
+          "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
+          "cleanBlockMaxEntryError": 2.5405929613637076e-16,
+          "cleanBlockOperatorNormError": 4.24742493206058e-16,
           "decimalPrecisionDigits": 17,
           "evidenceClasses": [
             "syntaxOnly",
@@ -44,19 +44,19 @@
           "roundingMode": "Python format round-to-nearest",
           "status": "passed",
           "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-          "unitarityError": 8.74598821652762e-15
+          "unitarityError": 6.57989727146403e-15
         },
         "qiskitOperator": {
           "backend": "qiskitOperator",
-          "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
-          "cleanBlockMaxEntryError": 5.835825797489702e-16,
-          "cleanBlockOperatorNormError": 7.721488787657455e-16,
+          "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
+          "cleanBlockMaxEntryError": 2.1219547406396647e-16,
+          "cleanBlockOperatorNormError": 4.1196305853311535e-16,
           "depth": 674,
           "evidenceClasses": [
             "numericUnitary",
             "numericCleanBlock"
           ],
-          "fullOperatorError": 4.438552011094872e-15,
+          "fullOperatorError": 4.5614125758509786e-15,
           "gateCount": 881,
           "gateCounts": {
             "cx": 454,
@@ -69,10 +69,10 @@
           "qubitCount": 9,
           "status": "passed",
           "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-          "unitarityError": 7.439534648195002e-15
+          "unitarityError": 6.247724479866848e-15
         }
       },
-      "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
+      "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
       "globalPhase": {
         "denominator": 8,
         "kind": "piRational",
@@ -101,13 +101,13 @@
       ]
     },
     "paperSeven": {
-      "artifactRoot": "executable-exports/QBE-ROBIN-BE-WARM-001/paper-seven",
+      "artifactRoot": "executable-exports\\QBE-ROBIN-BE-WARM-001\\paper-seven",
       "checkBackends": {
         "internalCanonicalEvaluator": {
           "backend": "internalCanonicalMatrix",
-          "circuitDigest": "ecd908b174b4e8cdf4c7f8b81a60e5938d7a340acdc0ec980d9e0694d9a016dc",
-          "cleanBlockMaxEntryError": 3.1697486653591155e-16,
-          "cleanBlockOperatorNormError": 3.775505073266725e-16,
+          "circuitDigest": "aff3c8b2bbd736f781fcbf407c239259a93c8600fce1f5e8f87595193a5976c7",
+          "cleanBlockMaxEntryError": 1.68214475880848e-16,
+          "cleanBlockOperatorNormError": 2.521286422237476e-16,
           "evidenceClasses": [
             "numericUnitary",
             "numericCleanBlock"
@@ -121,14 +121,14 @@
             "oracleCalls": 0
           },
           "status": "passed",
-          "unitarityError": 4.2995669149887496e-15
+          "unitarityError": 2.5103779092707063e-15
         },
         "openqasm3RoundTrip": {
           "backend": "openqasm3RoundTrip",
           "canonicalRoundTrip": true,
-          "circuitDigest": "ecd908b174b4e8cdf4c7f8b81a60e5938d7a340acdc0ec980d9e0694d9a016dc",
-          "cleanBlockMaxEntryError": 3.1697486653591155e-16,
-          "cleanBlockOperatorNormError": 3.775505073266725e-16,
+          "circuitDigest": "aff3c8b2bbd736f781fcbf407c239259a93c8600fce1f5e8f87595193a5976c7",
+          "cleanBlockMaxEntryError": 1.68214475880848e-16,
+          "cleanBlockOperatorNormError": 2.521286422237476e-16,
           "decimalPrecisionDigits": 17,
           "evidenceClasses": [
             "syntaxOnly",
@@ -143,19 +143,19 @@
           "roundingMode": "Python format round-to-nearest",
           "status": "passed",
           "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-          "unitarityError": 4.2995669149887496e-15
+          "unitarityError": 2.5103779092707063e-15
         },
         "qiskitOperator": {
           "backend": "qiskitOperator",
-          "circuitDigest": "ecd908b174b4e8cdf4c7f8b81a60e5938d7a340acdc0ec980d9e0694d9a016dc",
-          "cleanBlockMaxEntryError": 2.298380017448157e-16,
-          "cleanBlockOperatorNormError": 3.9223289976482477e-16,
+          "circuitDigest": "aff3c8b2bbd736f781fcbf407c239259a93c8600fce1f5e8f87595193a5976c7",
+          "cleanBlockMaxEntryError": 1.8260914906657602e-16,
+          "cleanBlockOperatorNormError": 2.6695944900085166e-16,
           "depth": 266,
           "evidenceClasses": [
             "numericUnitary",
             "numericCleanBlock"
           ],
-          "fullOperatorError": 2.0210396888605207e-15,
+          "fullOperatorError": 2.368304333814804e-15,
           "gateCount": 312,
           "gateCounts": {
             "cx": 175,
@@ -168,10 +168,10 @@
           "qubitCount": 8,
           "status": "passed",
           "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-          "unitarityError": 4.386363924348323e-15
+          "unitarityError": 3.0218079667624214e-15
         }
       },
-      "circuitDigest": "ecd908b174b4e8cdf4c7f8b81a60e5938d7a340acdc0ec980d9e0694d9a016dc",
+      "circuitDigest": "aff3c8b2bbd736f781fcbf407c239259a93c8600fce1f5e8f87595193a5976c7",
       "globalPhase": {
         "denominator": 8,
         "kind": "piRational",
@@ -200,13 +200,13 @@
       ]
     },
     "xorFourSlot": {
-      "artifactRoot": "executable-exports/QBE-ROBIN-BE-WARM-001",
+      "artifactRoot": "executable-exports\\QBE-ROBIN-BE-WARM-001",
       "checkBackends": {
         "internalCanonicalEvaluator": {
           "backend": "internalCanonicalMatrix",
-          "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-          "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-          "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+          "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+          "cleanBlockMaxEntryError": 2.220446049250313e-16,
+          "cleanBlockOperatorNormError": 3.9966670272935135e-16,
           "evidenceClasses": [
             "numericUnitary",
             "numericCleanBlock"
@@ -220,14 +220,14 @@
             "oracleCalls": 0
           },
           "status": "passed",
-          "unitarityError": 3.478116716525296e-15
+          "unitarityError": 4.464760698339612e-15
         },
         "openqasm3RoundTrip": {
           "backend": "openqasm3RoundTrip",
           "canonicalRoundTrip": true,
-          "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-          "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-          "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+          "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+          "cleanBlockMaxEntryError": 2.220446049250313e-16,
+          "cleanBlockOperatorNormError": 3.9966670272935135e-16,
           "decimalPrecisionDigits": 17,
           "evidenceClasses": [
             "syntaxOnly",
@@ -242,13 +242,13 @@
           "roundingMode": "Python format round-to-nearest",
           "status": "passed",
           "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-          "unitarityError": 3.478116716525296e-15
+          "unitarityError": 4.464760698339612e-15
         },
         "qiskitOperator": {
           "backend": "qiskitOperator",
-          "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-          "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-          "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+          "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+          "cleanBlockMaxEntryError": 2.220446049250313e-16,
+          "cleanBlockOperatorNormError": 3.9966670272935135e-16,
           "depth": 96,
           "evidenceClasses": [
             "numericUnitary",
@@ -265,10 +265,10 @@
           "qubitCount": 6,
           "status": "passed",
           "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-          "unitarityError": 3.478116716525296e-15
+          "unitarityError": 4.464760698339612e-15
         }
       },
-      "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
+      "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
       "globalPhase": {
         "denominator": 1,
         "kind": "rational",
@@ -301,7 +301,7 @@
     {
       "basisPermutationChecks": 40,
       "cleanBlockMaxEntryError": 1.1102230246251565e-16,
-      "cleanBlockOperatorNormError": 1.769911968528648e-16,
+      "cleanBlockOperatorNormError": 1.7699119685286478e-16,
       "executableSemanticTier": "legacyDenseDiagnostic",
       "identity": "five-shift-weighted-permutation",
       "leanLogicalUnitaryRoot": null,
@@ -315,7 +315,7 @@
       "qiskitVersion": "2.4.2",
       "selectorSlots": 5,
       "t3": false,
-      "unitaryError": 8.859694521532909e-16
+      "unitaryError": 9.283529127987778e-16
     },
     {
       "basisPermutationChecks": 64,
@@ -334,16 +334,16 @@
       "qiskitVersion": "2.4.2",
       "selectorSlots": 8,
       "t3": false,
-      "unitaryError": 1.7625701818922639e-15
+      "unitaryError": 1.8926611759220684e-15
     }
   ],
   "certifiedExecutable": true,
   "checkBackends": {
     "internalCanonicalEvaluator": {
       "backend": "internalCanonicalMatrix",
-      "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+      "cleanBlockMaxEntryError": 2.220446049250313e-16,
+      "cleanBlockOperatorNormError": 3.9966670272935135e-16,
       "evidenceClasses": [
         "numericUnitary",
         "numericCleanBlock"
@@ -357,14 +357,14 @@
         "oracleCalls": 0
       },
       "status": "passed",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 4.464760698339612e-15
     },
     "openqasm3RoundTrip": {
       "backend": "openqasm3RoundTrip",
       "canonicalRoundTrip": true,
-      "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+      "cleanBlockMaxEntryError": 2.220446049250313e-16,
+      "cleanBlockOperatorNormError": 3.9966670272935135e-16,
       "decimalPrecisionDigits": 17,
       "evidenceClasses": [
         "syntaxOnly",
@@ -379,13 +379,13 @@
       "roundingMode": "Python format round-to-nearest",
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 4.464760698339612e-15
     },
     "qiskitOperator": {
       "backend": "qiskitOperator",
-      "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+      "cleanBlockMaxEntryError": 2.220446049250313e-16,
+      "cleanBlockOperatorNormError": 3.9966670272935135e-16,
       "depth": 96,
       "evidenceClasses": [
         "numericUnitary",
@@ -402,10 +402,10 @@
       "qubitCount": 6,
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 4.464760698339612e-15
     }
   },
-  "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
+  "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
   "cleanQubits": {
     "coefficient": 0,
     "selector": 0
@@ -436,8 +436,8 @@
     "QuantumBlockEncoding.Robin.warmRobinFourSlotT3Cost_betterThan_figure4"
   ],
   "schemaVersion": 2,
-  "sourceCommit": "610762da49c392a5a2c4c728b9476e4461949094",
-  "sourceDigest": "f87ab0859fbf4bb12817aecc97f61191bc72ce40e4284b083fd5d5226a19cace",
+  "sourceCommit": "9c655688ae317b3bd009576e326d10612c4cb6b4",
+  "sourceDigest": "ff6c02fd04f44b2eee22ca2bf95368be88bcce5000ebf6f22f266b0647ac0282",
   "systemQubits": 3,
   "t3PrerequisiteRoots": [
     "QuantumBlockEncoding.Robin.warmRobinXorFourSlotAmplitudeProgram_eval",

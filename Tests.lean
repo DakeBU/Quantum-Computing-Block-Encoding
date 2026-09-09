@@ -1,1 +1,5 @@
 import ABEISTests.Basic
+import ABEISTests.HermitePolynomial
+import ABEISTests.RealAmplitudePreparation
+import ABEISTests.Hermite
+import ABEISTests.HermiteSmoothness

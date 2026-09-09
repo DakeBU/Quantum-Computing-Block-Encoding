@@ -1,0 +1,26 @@
+{
+  "arithmetic": "exact rational",
+  "degree_bound": 3,
+  "jets": [
+    {
+      "G_at_0": "1",
+      "G_at_1": "0",
+      "order": 0,
+      "reflected_at_0": "0",
+      "reflected_at_1": "1"
+    },
+    {
+      "G_at_0": "1",
+      "G_at_1": "0",
+      "order": 1,
+      "reflected_at_0": "0",
+      "reflected_at_1": "-1"
+    }
+  ],
+  "k": 1,
+  "passed": true,
+  "positive_coefficients": [
+    "1",
+    "3"
+  ]
+}

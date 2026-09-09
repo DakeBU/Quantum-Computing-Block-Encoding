@@ -57,10 +57,9 @@ def _try_os_lock(handle: object, *, blocking: bool) -> bool:
     if os.name == "nt":
         import msvcrt
 
-        handle.seek(0)
-        if handle.read(1) == "":
-            handle.write("0")
-            handle.flush()
+        # Windows byte-range locks may extend past EOF. Do not read or seed
+        # this byte before acquiring it: another process can already own the
+        # range, making even a read fail with PermissionError under contention.
         handle.seek(0)
         mode = msvcrt.LK_LOCK if blocking else msvcrt.LK_NBLCK
         try:
@@ -141,6 +140,27 @@ def file_lock(
         thread_lock.release()
 
 
+def _replace_file_unlocked(source: Path, destination: Path) -> None:
+    """Keep atomic replacement while allowing brief Windows sharing conflicts."""
+
+    deadline = time.monotonic() + 2.0
+    while True:
+        try:
+            os.replace(source, destination)
+            return
+        except PermissionError as error:
+            # A reader or virus scanner may briefly omit FILE_SHARE_DELETE.
+            # Permanent ACL/read-only failures still surface after the bound;
+            # other operating systems and other errors are never suppressed.
+            if (
+                os.name != "nt"
+                or getattr(error, "winerror", None) not in (5, 32, 33)
+                or time.monotonic() >= deadline
+            ):
+                raise
+            time.sleep(0.01)
+
+
 def _replace_text_unlocked(path: Path, text: str, *, encoding: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     mode = None
@@ -157,7 +177,7 @@ def _replace_text_unlocked(path: Path, text: str, *, encoding: str) -> None:
             os.fsync(handle.fileno())
         if mode is not None:
             os.chmod(temporary, mode)
-        os.replace(temporary, path)
+        _replace_file_unlocked(temporary, path)
     finally:
         try:
             temporary.unlink()

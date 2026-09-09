@@ -7,11 +7,40 @@ import argparse
 import json
 import re
 from html.parser import HTMLParser
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from urllib.parse import unquote, urljoin, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def check_hermite_publication(site: Path, repository: Path = ROOT) -> list[str]:
+    """Check final assembled output, not merely successful source rendering."""
+    errors: list[str] = []
+    site = site.resolve()
+    payload = json.loads((repository / "website/hermite-case.json").read_text(encoding="utf-8"))
+    slug = "hermite-smooth-state-preparation"
+    cases = [case for case in payload["cases"] if case["slug"] == slug]
+    if len(cases) != 1:
+        return ["Hermite publication must have exactly one mandatory case"]
+    page = site / "example-cases" / slug / "index.html"
+    if not page.is_file() or page.stat().st_size == 0:
+        errors.append("Hermite case page is absent or empty")
+    for asset in cases[0]["supplementaryAssets"]:
+        name = str(asset["path"])
+        relative = PurePosixPath(name)
+        if (relative.is_absolute() or PureWindowsPath(name).is_absolute()
+                or ".." in relative.parts or "\\" in name):
+            errors.append("Hermite download has a non-portable path")
+            continue
+        source = repository / relative
+        target = site / "downloads" / slug / relative
+        if (not target.is_file() or not target.resolve().is_relative_to(site)
+                or target.stat().st_size == 0):
+            errors.append(f"Hermite download absent or empty: {name}")
+        elif not source.is_file() or target.read_bytes() != source.read_bytes():
+            errors.append(f"Hermite download differs from the current source: {name}")
+    return errors
 
 
 class PageParser(HTMLParser):
@@ -179,6 +208,7 @@ def main() -> int:
     ]
     for item in required:
         require(site / item, errors)
+    errors.extend(check_hermite_publication(site))
     if args.require_blueprint:
         require(site / "blueprint" / "html-multi" / "index.html", errors)
 

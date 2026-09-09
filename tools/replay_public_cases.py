@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 import time
 from pathlib import Path
 from typing import Any
@@ -126,7 +127,9 @@ def run(command: list[str]) -> dict[str, Any]:
     )
     elapsed = time.monotonic() - started
     return {
-        "command": command,
+        # Invocation uses the active environment; public evidence keeps a
+        # portable command rather than leaking its workstation-specific path.
+        "command": ["python3", *command[1:]] if command and command[0] == sys.executable else command,
         "exit_code": result.returncode,
         "elapsed_seconds": round(elapsed, 6),
         "stdout": result.stdout.strip(),
@@ -273,7 +276,7 @@ def main() -> None:
 
     controller = run(
         [
-            "python3",
+            sys.executable,
             "tools/audit_population_evolution.py",
             "--output",
             "reports/ABEIS-CONTROL-V5/cold-start-population-audit.json",
@@ -286,7 +289,7 @@ def main() -> None:
         (
             "BE Case 1 champion",
             [
-                "python3",
+                sys.executable,
                 "executable-exports/QBE-OP-OPTCTRL-001/qiskit/export.py",
                 "--json",
             ],
@@ -294,7 +297,7 @@ def main() -> None:
         (
             "BE Case 1 isolated baseline",
             [
-                "python3",
+                sys.executable,
                 "executable-exports/QBE-MAIN-CASE-HIER-COLD-001/qiskit/export.py",
                 "--json",
             ],
@@ -302,7 +305,7 @@ def main() -> None:
         (
             "BE Case 2 cold",
             [
-                "python3",
+                sys.executable,
                 "tools/export_hard_cubic_householder.py",
                 "--task",
                 "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001",
@@ -313,7 +316,7 @@ def main() -> None:
         (
             "BE Case 2 hinted",
             [
-                "python3",
+                sys.executable,
                 "tools/export_hard_cubic_householder.py",
                 "--task",
                 "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001",
@@ -324,7 +327,7 @@ def main() -> None:
         (
             "Robin XOR four-slot T3",
             [
-                "python3", "tools/export_robin_evolution.py",
+                sys.executable, "tools/export_robin_evolution.py",
                 "--task", "QBE-ROBIN-BE-WARM-001", "--arm", "warm",
             ],
         ),

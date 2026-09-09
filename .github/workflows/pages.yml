@@ -77,16 +77,17 @@ jobs:
             git fetch --no-tags origin main
             base="origin/main"
           fi
+
           echo "comparison_base=${base}"
           # Reader-facing figures and their style checker are documentation
           # artifacts. They still pass the website teaching contract, but they
           # must not force a fresh Lean toolchain download when the proof tree
           # itself is byte-for-byte unchanged.
-          if git diff --quiet "${base}...HEAD" -- \
+          if [[ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]] && git diff --quiet "${base}...HEAD" -- \
               'QuantumBlockEncoding/**' QuantumBlockEncoding.lean \
               'ABEISTests/**' Tests.lean \
               'ABEISBlueprint/**' ABEISBlueprint.lean ABEISBlueprintMain.lean \
-              'tools/**' 'docs/**' \
+              'tools/**' 'docs/**' 'executable-exports/**' \
               ':!tools/check_public_figure_style.py' ':!docs/assets/**' \
               scripts/generate-blueprint-catalog.py scripts/generate-aspbe-catalog.py \
               scripts/build-blueprint.sh scripts/build-blueprint.ps1 \
@@ -99,6 +100,11 @@ jobs:
             echo "Proof/Blueprint layer changed; running the complete Lean and Blueprint gates."
           fi
 
+      - name: Require complete Hermite inputs
+        run: |
+          python3 -m unittest tools.test_hermite_artifacts website.scripts.test_proof_inputs website.scripts.test_hermite_case website.scripts.test_lean_publication_gate
+          python3 tools/check_hermite_artifacts.py
+
       - name: Set up Lean and fetch the Mathlib cache
         if: steps.proof_changes.outputs.changed == 'true'
         uses: leanprover/lean-action@v1
@@ -108,8 +114,12 @@ jobs:
           use-mathlib-cache: true
 
       - name: Install executable-verification dependencies
-        if: steps.proof_changes.outputs.changed == 'true'
         run: python3 -m pip install -r requirements-executable.txt
+
+      - name: Revalidate the committed Hermite executable packet
+        run: |
+          python3 executable-exports/SP-HERMITE-001/qiskit/export.py --self-test
+          python3 executable-exports/SP-HERMITE-001/qiskit/replay.py
 
       - name: Build the library and tests
         if: steps.proof_changes.outputs.changed == 'true'
@@ -122,7 +132,7 @@ jobs:
       - name: Check proof trust and executable exports
         if: steps.proof_changes.outputs.changed == 'true'
         run: |
-          python3 -m unittest website.scripts.test_site_contracts tools.test_case_memory tools.test_robin_export
+          python3 -m unittest website.scripts.test_site_contracts tools.test_case_memory tools.test_robin_export tools.test_replay_public_cases
           python3 tools/test_proof_trust.py
           python3 tools/check_proof_trust.py
           python3 tools/check_technical_lemma_registry.py
@@ -161,12 +171,23 @@ jobs:
           python3 - <<'PY'
           import json
           import os
+          import subprocess
           from pathlib import Path
+          from website.scripts.proof_inputs import proof_input_digest
           report = json.loads(Path('/tmp/aspbe-green-site/build-report.json').read_text(encoding='utf-8'))
           gate = dict(report['leanGate'])
           if not gate.get('passed'):
               raise SystemExit('refusing to inherit a non-green Lean gate')
+          if gate.get('proofInputsSha256') != proof_input_digest(Path.cwd()):
+              raise SystemExit('published proof inputs differ from checkout; a fresh Lean build is required')
           verified_commit = str(gate.get('commit') or report['commit'])
+          # The last successful publication need not be the previous main commit.
+          # Compare the actual inherited Blueprint inputs, not only HEAD^1.
+          subprocess.run(['git', 'diff', '--exit-code', '--quiet', verified_commit, 'HEAD', '--',
+                          'ABEISBlueprint', 'ABEISBlueprint.lean', 'ABEISBlueprintMain.lean',
+                          'scripts/build-blueprint.sh', 'scripts/generate-blueprint-catalog.py',
+                          'scripts/generate-aspbe-catalog.py', 'scripts/sanitize-blueprint-paths.py',
+                          'website/scripts/repair_blueprint_fragments.py', 'web/assets'], check=True)
           gate['inheritedFromPublishedCommit'] = verified_commit
           gate['inheritanceReason'] = 'proof/Blueprint paths are unchanged relative to main'
           gate['commit'] = os.environ['GITHUB_SHA']

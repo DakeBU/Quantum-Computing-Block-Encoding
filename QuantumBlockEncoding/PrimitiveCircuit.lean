@@ -21,10 +21,25 @@ inductive ExactAngle where
       (bounded : |(value : Real)| ≤ 1)
   | twiceArccosSqrtRational (value : Rat)
       (bounded : 0 ≤ (value : Real) ∧ (value : Real) ≤ 1)
+  /-- An exact real angle in the mathematical circuit. This constructor does
+  not promise a computable decimal export; exporters must supply and audit
+  their own numerical evaluation of the defining real expression. -/
+  | real (value : Real)
   | add (left right : ExactAngle)
   | neg (value : ExactAngle)
   | scale (factor : Rat) (value : ExactAngle)
-deriving Repr
+
+private def exactAngleRepr : ExactAngle → Nat → Std.Format
+  | .rational value, p => reprPrec value p
+  | .piRational value, p => "pi * " ++ reprPrec value p
+  | .twiceArccosRational value _, p => "2 * arccos " ++ reprPrec value p
+  | .twiceArccosSqrtRational value _, p => "2 * arccos sqrt " ++ reprPrec value p
+  | .real _, _ => "<exact real angle; numerical export required>"
+  | .add left right, p => "(" ++ exactAngleRepr left p ++ " + " ++ exactAngleRepr right p ++ ")"
+  | .neg value, p => "-(" ++ exactAngleRepr value p ++ ")"
+  | .scale factor value, p => reprPrec factor p ++ " * (" ++ exactAngleRepr value p ++ ")"
+
+instance : Repr ExactAngle := ⟨exactAngleRepr⟩
 
 namespace ExactAngle
 
@@ -34,6 +49,7 @@ noncomputable def eval : ExactAngle → Real
   | .twiceArccosRational value _ => 2 * Real.arccos (value : Real)
   | .twiceArccosSqrtRational value _ =>
       2 * Real.arccos (Real.sqrt (value : Real))
+  | .real value => value
   | .add left right => left.eval + right.eval
   | .neg value => -value.eval
   | .scale factor value => (factor : Real) * value.eval

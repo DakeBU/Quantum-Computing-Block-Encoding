@@ -8311,3 +8311,5 @@ block-encoding formalization lifecycle.
 | 2026-06-28 14:58:53 | qbe.py agent-note | `runs/20260628-145035-QBE-MAIN-CASE-HIER-COLD-001-cycle01/dialogue.md` | dialogue | Appended upper note |
 | 2026-06-28 14:58:54 | qbe.py trial-log | `runs/trials.jsonl` | trial | Logged 20260628-145853-QBE-MAIN-CASE-HIER-COLD-001-upper-handoff |
 | 2026-06-28 15:02:00 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
+| 2026-09-09 15:17:40 | qbe.py init | `QBE.md` | init | Initialized QBE workflow files |
+| 2026-09-09 15:17:40 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged 20260909-151740-SP-HERMITE-001-reviewer-build |

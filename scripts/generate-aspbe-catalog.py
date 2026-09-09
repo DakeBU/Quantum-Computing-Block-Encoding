@@ -18,6 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate-blueprint-catalog.py"
 
 STATE_PREP_MODULES = {
+    "HermitePolynomial.lean",
+    "HermiteSmoothness.lean",
+    "RealAmplitudePreparation.lean",
+    "HermiteStatePreparation.lean",
     "StatePreparationBenchmarksCoreFixed.lean",
     "StatePreparationPrimitiveRoutes.lean",
     "StatePreparationBellRoute.lean",

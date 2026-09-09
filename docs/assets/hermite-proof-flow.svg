@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 630" role="img" aria-labelledby="title desc">
+<title id="title">Hermite state preparation: construction and evidence</title>
+<desc id="desc">A source endpoint contract determines an explicit Hermite polynomial. Its positive samples determine a mass tree and controlled rotations. Lean checks the exact polynomial, unitary, and state action; independent replay checks finite exported Ry and CNOT gates.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 10 5 0 10" fill="none" stroke="#58718b" stroke-width="1.6"/></marker>
+<style>text{font-family:Georgia,'Times New Roman',serif;fill:#142d46}.title{font-size:30px;font-weight:bold}.subtitle{font-size:17px;fill:#536b83}.label{font-size:21px;font-weight:bold}.body{font-size:17px}.small{font-size:14px;fill:#486078}.number{font-size:15px;font-weight:bold;fill:#fff}.wire{fill:none;stroke:#58718b;stroke-width:2;marker-end:url(#arrow)}</style></defs>
+<rect width="1180" height="630" rx="20" fill="#f5f8fb"/>
+<text class="title" x="42" y="49">From a smooth function to a prepared quantum register</text>
+<text class="subtitle" x="42" y="80">One exact mathematical target; two complementary ways to inspect the result.</text>
+<g transform="translate(42 118)">
+<rect width="248" height="174" rx="14" fill="#fff" stroke="#c4d3e0"/>
+<circle cx="25" cy="28" r="13" fill="#285e8e"/><text class="number" x="21" y="33">1</text>
+<text class="label" x="47" y="35">Endpoint contract</text>
+<text class="body" x="20" y="75">Match derivatives 0,…,k</text>
+<text class="body" x="20" y="103">at p = −1 and p = 0.</text>
+<text class="small" x="20" y="143">Jin–Liu–Ma §4.3, Eq. (4.32)</text></g>
+<path class="wire" d="M300 205H323"/>
+<g transform="translate(332 118)">
+<rect width="248" height="174" rx="14" fill="#fff" stroke="#c4d3e0"/>
+<circle cx="25" cy="28" r="13" fill="#285e8e"/><text class="number" x="21" y="33">2</text>
+<text class="label" x="47" y="35">Explicit samples</text>
+<text class="body" x="20" y="75">Positive polynomial splice</text>
+<text class="body" x="20" y="103">between exponential tails.</text>
+<text class="small" x="20" y="143">HermitePolynomial.smoothInitial</text></g>
+<path class="wire" d="M590 205H613"/>
+<g transform="translate(622 118)">
+<rect width="248" height="174" rx="14" fill="#fff" stroke="#c4d3e0"/>
+<circle cx="25" cy="28" r="13" fill="#285e8e"/><text class="number" x="21" y="33">3</text>
+<text class="label" x="47" y="35">Mass tree</text>
+<text class="body" x="20" y="75">Parent = left + right.</text>
+<text class="body" x="20" y="103">Split one qubit per layer.</text>
+<text class="small" x="20" y="143">Low bit first: q₀, q₁, …</text></g>
+<path class="wire" d="M880 205H903"/>
+<g transform="translate(912 118)">
+<rect width="226" height="174" rx="14" fill="#eaf3fb" stroke="#94b5d3"/>
+<text class="label" x="20" y="36">Ry + CNOT</text>
+<text class="body" x="20" y="76">Explicit elementary</text>
+<text class="body" x="20" y="104">gate sequence.</text>
+<text class="small" x="20" y="143">No ancilla or postselection</text></g>
+<path class="wire" d="M746 304V328H310V357"/>
+<path class="wire" d="M1025 304V330H871V357"/>
+<g transform="translate(42 369)">
+<rect width="538" height="184" rx="16" fill="#eaf5ef" stroke="#8bbaa0"/>
+<text class="label" x="23" y="38">Exact Lean certificate</text>
+<text class="body" x="23" y="77">Smoothness · normalization · unitary · state action</text>
+<text class="body" x="23" y="107">The root theorem concerns all admitted parameters.</text>
+<text class="small" x="23" y="145">Real-angle semantics; linked declarations expose the full proof.</text></g>
+<g transform="translate(622 369)">
+<rect width="516" height="184" rx="16" fill="#fff3e4" stroke="#d9b68a"/>
+<text class="label" x="23" y="38">Independent executable replay</text>
+<text class="body" x="23" y="77">NumPy → Qiskit → OpenQASM round trip</text>
+<text class="body" x="23" y="107">The report records a finite parameter set and error.</text>
+<text class="small" x="23" y="145">Rounded angles; no promotion of a finite test to a family theorem.</text></g>
+<text class="subtitle" x="42" y="600">Read the source formula, follow the wires, inspect the theorem, then reproduce the exported example.</text>
+</svg>

@@ -1,0 +1,179 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry,hyperref}
+\geometry{margin=1in}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\DeclareMathOperator{\atanTwo}{atan2}
+\title{Preparing a Hermite-smoothed quantum initial state}
+\author{ASPBE / QuantumComputinglib}
+\date{}
+\begin{document}
+\maketitle
+
+\section{The state, before the circuit}
+Fix a nonnegative integer $k$, a register width $n\geq1$, and a truncation
+parameter $L>0$. Put $N=2^n$ and $p_j=-\pi L+2\pi Lj/N$ for $0\leq j<N$.
+The integer label uses little-endian weights:
+$j=\sum_{r=0}^{n-1}2^rq_r$. Thus $q_0$ is the least significant bit,
+while the printed ket is $\ket{q_{n-1}\cdots q_0}$.
+The required function and quantum state are
+\begin{align*}
+g_k(p)&=\begin{cases}
+ e^p,&p<-1,\\
+ P_k(p),&-1\leq p\leq0,\\
+ e^{-p},&p>0,
+\end{cases}\\
+Z_k&=\sum_{j=0}^{N-1}g_k(p_j)^2,
+&\ket{g_k}_p&=Z_k^{-1/2}\sum_{j=0}^{N-1}g_k(p_j)\ket j.
+\end{align*}
+Here $P_k$ has degree at most $2k+1$ and satisfies
+\[
+P_k^{(a)}(-1)=e^{-1},\qquad P_k^{(a)}(0)=(-1)^a
+\quad(0\leq a\leq k).
+\]
+These are the Hermite conditions in Jin--Liu--Ma,
+\emph{Schr\"odingerisation based computationally stable algorithms for
+ill-posed problems in partial differential equations},
+\href{https://arxiv.org/html/2403.19123v3#S4.SS3}{arXiv:2403.19123v3,
+Section 4.3, equations (4.31)--(4.32)}.
+The amplitudes are $g_k(p_j)$, not their square roots. The probability of
+observing label $j$ is $g_k(p_j)^2/Z_k$.
+
+\section{An explicit polynomial, with no interpolation oracle}
+For $0\leq r\leq k$, define
+\[
+a_{k,r}=\sum_{m=0}^{r}\frac{\binom{k+r-m}{k}}{m!},
+\qquad A_k(t)=\sum_{r=0}^{k}a_{k,r}t^r.
+\]
+With $t=p+1$, set
+\[
+P_k(p)=e^{-1}(1-t)^{k+1}A_k(t)+t^{k+1}A_k(1-t).
+\]
+This explicit coefficient formula is the construction used by ASPBE; the
+source paper specifies the endpoint conditions.
+
+\begin{lemma}[Endpoint jets and uniqueness]
+The displayed polynomial has degree at most $2k+1$ and satisfies all the
+Hermite conditions above. No other polynomial of that degree does so.
+\end{lemma}
+\begin{proof}
+The binomial series gives
+$(1-t)^{-(k+1)}=\sum_{s\geq0}\binom{k+s}{k}t^s$.
+The coefficient of $t^r$ in $e^t(1-t)^{-(k+1)}$ is therefore $a_{k,r}$.
+Consequently $(1-t)^{k+1}A_k(t)$ and $e^t$ have identical coefficients
+through degree $k$. The other summand contains the factor $t^{k+1}$,
+so its first $k$ derivatives vanish at $t=0$. Multiplication by $e^{-1}$
+gives the left endpoint values. At $t=1$, exchange $t$ and $1-t$;
+each derivative contributes the appropriate factor $(-1)^a$.
+Each product has degree at most $2k+1$.
+If two interpolants exist, their difference has a zero of multiplicity
+at least $k+1$ at both endpoints. It is divisible by
+$p^{k+1}(p+1)^{k+1}$, of degree $2k+2$, so the difference is zero.
+\end{proof}
+
+\begin{lemma}[Positivity]
+The function $g_k$ is positive on the real line; in particular $Z_k>0$.
+\end{lemma}
+\begin{proof}
+All $a_{k,r}$ are positive. For $0<t<1$, both summands in $P_k$ are
+positive. At the endpoints their values are $e^{-1}$ and $1$.
+The two exterior exponentials are positive as well.
+\end{proof}
+
+For $k=1$ the formula reduces to
+\[
+P_1(p)=(-3+3e^{-1})p^3+(-5+4e^{-1})p^2-p+1.
+\]
+Its second derivative at zero is $-10+8e^{-1}\ne1$.
+Thus the piecewise cubic is $C^1$, not $C^2$. The $C^2$ statement printed
+after source equation (6.1) is not adopted here. This case certifies state
+preparation; it does not certify the source paper's PDE error estimates.
+
+\section{Construct the rotations from subtree masses}
+Write $f_j=g_k(p_j)$. For a depth $d$ and low-bit label $s$, define
+\[
+m_{d,s}=\sum_{j\bmod 2^d=s}f_j^2,
+\quad 0\leq d\leq n,\quad 0\leq s<2^d.
+\]
+The root mass is $m_{0,0}=Z_k$ and the leaves have $m_{n,j}=f_j^2$.
+Partitioning each subtree by its next bit proves
+\[
+m_{d,s}=m_{d+1,s}+m_{d+1,s+2^d}.
+\]
+At layer $d$, controlled on $(q_0,\ldots,q_{d-1})$ representing $s$,
+apply to $q_d$ the gate
+\[
+R_y(\theta_{d,s}),\qquad
+\theta_{d,s}=2\atanTwo\bigl(\sqrt{m_{d+1,s+2^d}},
+                                  \sqrt{m_{d+1,s}}\bigr).
+\]
+The convention is $R_y(\theta)=
+\begin{pmatrix}\cos(\theta/2)&-\sin(\theta/2)\\
+\sin(\theta/2)&\cos(\theta/2)\end{pmatrix}$.
+For a zero-mass subtree the angle is zero. Its incoming amplitude is already
+zero, so this choice does not alter the target.
+
+\begin{theorem}[Deterministic preparation]
+The product of these uniformly controlled rotations is unitary and maps
+$\ket{0^n}$ to $\ket{g_k}_p$.
+\end{theorem}
+\begin{proof}
+Each fixed control word selects a two-dimensional real rotation. Such a
+rotation is orthogonal, hence unitary over the complex numbers. The selected
+blocks act on orthogonal control subspaces, and their product is unitary.
+After depth $d$ the state is
+\[
+\sum_{s=0}^{2^d-1}\sqrt{m_{d,s}/Z_k}\,
+   \ket{0^{n-d}}\ket{s}.
+\]
+This holds initially. A rotation splits the amplitude of a parent according
+to the square roots of its two child masses, proving the next depth.
+At depth $n$, positivity gives $\sqrt{f_j^2}=f_j$, which is the claimed
+normalized amplitude. There is no measurement or postselection.
+\end{proof}
+
+\section{Global smoothness and exact formal scope}
+The endpoint jets also certify that the piecewise function belongs to
+$C^k(\mathbb R)$. A generic gluing argument proceeds by induction on the
+derivative order: equality of endpoint values gives continuity; equality
+of the one-sided derivatives gives differentiability at the junction by
+the slope-limit characterization. Applying the induction to the derivative
+pieces gives the claim at both junctions.
+This is the Lean theorem
+\texttt{HermiteSmoothness.smoothInitial\_contDiff}.
+The state-preparation root
+\texttt{HermiteStatePreparation.hermiteStatePreparation\_complete}
+separately certifies normalization, primitive-circuit action, unitarity and
+gate counts. Neither root asserts a PDE discretization error, a Sobolev
+estimate, or an error bound for machine-rounded angles.
+
+\section{Elementary gates and resource accounting}
+A uniformly controlled rotation is compiled recursively using half-sums
+and half-differences of its angle table, separated by a CNOT and followed
+by a second CNOT. For a control bit $b$, the identity
+$X R_y(\beta)X=R_y(-\beta)$ makes the selected angle either
+the sum or the difference of the two half-angles.
+Induction on the number of controls proves equality of the full matrices.
+The reference compiler has $2^d$ rotations and $2(2^d-1)$ CNOTs for $d$
+controls. Summing over $d=0,\ldots,n-1$ gives
+\[
+\#R_y=N-1,\qquad \#\mathrm{CNOT}=2(N-1-n),
+\qquad G=3(N-1)-2n.
+\]
+No auxiliary qubits or state-preparation oracle calls are used. These
+counts concern this reference compiler, not an optimality theorem.
+Classical coefficient evaluation, sample evaluation, mass reduction and
+angle calculation are part of the construction cost. Floating-point
+evaluation and angle synthesis are separate from ideal real-angle gates.
+
+\section{Reproduce and inspect the evidence}
+The case page links complete Lean modules, the executable generator,
+OpenQASM output, a gate diagram, and the numerical acceptance report.
+The numerical report records independent NumPy, Qiskit and OpenQASM replay
+for finite parameter choices. Those tolerances are not substitutes for
+the symbolic Lean state-action theorem. Likewise, the general exact gate
+theorem does not assert that machine-rounded rotation angles have zero error.
+Every public compilation claim is checked against the repository's current
+Lean build before deployment.
+\end{document}

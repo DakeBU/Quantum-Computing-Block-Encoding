@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 3010,
-  "privateDeclarationExclusionCount": 274,
-  "sourceDocstringCount": 1827,
-  "generatedReaderCueCount": 3010,
+  "publicDeclarationCount": 3129,
+  "privateDeclarationExclusionCount": 279,
+  "sourceDocstringCount": 1882,
+  "generatedReaderCueCount": 3129,
   "byKind": {
     "abbrev": 32,
-    "def": 1231,
+    "def": 1259,
     "inductive": 31,
     "opaque": 7,
     "structure": 188,
-    "theorem": 1521
+    "theorem": 1612
   },
   "bySource": {
     "QuantumBlockEncoding/Automation.lean": 39,
@@ -30,6 +30,9 @@
     "QuantumBlockEncoding/Examples/RobinHeat.lean": 12,
     "QuantumBlockEncoding/GHL2025.lean": 403,
     "QuantumBlockEncoding/GHLHamiltonian.lean": 64,
+    "QuantumBlockEncoding/HermitePolynomial.lean": 47,
+    "QuantumBlockEncoding/HermiteSmoothness.lean": 12,
+    "QuantumBlockEncoding/HermiteStatePreparation.lean": 19,
     "QuantumBlockEncoding/Literature.lean": 6,
     "QuantumBlockEncoding/MainCase.lean": 127,
     "QuantumBlockEncoding/ModularAdder3.lean": 22,
@@ -42,6 +45,7 @@
     "QuantumBlockEncoding/PrimitiveRefinement.lean": 5,
     "QuantumBlockEncoding/PrimitiveSemantics.lean": 54,
     "QuantumBlockEncoding/PromiseGateOptimization.lean": 17,
+    "QuantumBlockEncoding/RealAmplitudePreparation.lean": 41,
     "QuantumBlockEncoding/Resources.lean": 25,
     "QuantumBlockEncoding/ReversibleClassical.lean": 7,
     "QuantumBlockEncoding/Robin/ComplexLCU.lean": 29,
@@ -528,6 +532,41 @@
       "name": "QuantumBlockEncoding.GHL2025.eq_zero_or_eq_base_of_mod_eq_zero_of_lt_two_mul",
       "source": "QuantumBlockEncoding/GHL2025.lean",
       "line": 1115,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "def",
+      "name": "QuantumBlockEncoding.exactAngleRepr",
+      "source": "QuantumBlockEncoding/PrimitiveCircuit.lean",
+      "line": 32,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.RealAmplitudePreparation.split_castSucc_eq",
+      "source": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "line": 66,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.RealAmplitudePreparation.xBasis_lift",
+      "source": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "line": 97,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.RealAmplitudePreparation.cxBasis_lift",
+      "source": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "line": 102,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.RealAmplitudePreparation.last_context_eq",
+      "source": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "line": 236,
       "reason": "private declaration"
     },
     {

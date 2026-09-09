@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1390" height="841" viewBox="0 0 1390 841" role="img" aria-labelledby="title desc">
+<title id="title">Explicit Hermite sample preparation with RY and CNOT gates</title>
+<desc id="desc">Low-bit-first preparation on n data qubits. Every primitive is drawn in chronological order. No ancillary, flag, carry, or oracle register is used. The formula and Lean references appear below.</desc>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#163042}.title{font-size:31px;font-weight:700}.body{font-size:18px}.small{font-size:15px}.mono{font-family:Consolas,monospace;font-size:15px}.label{font-size:17px;font-weight:600}.wire{stroke:#64748b;stroke-width:2}.cx{stroke:#1d4ed8;stroke-width:2.3;fill:none}.ry{fill:#e4f5ed;stroke:#12704d;stroke-width:1.8}</style>
+<rect width="1390" height="841" fill="#f7fafb" rx="18"/>
+<text x="38" y="54" class="title" >Hermite samples → explicit quantum circuit</text>
+<text x="38" y="88" class="body" >k = 1  ·  n = 3 qubits  ·  L = 1  ·  8 grid samples  ·  chronological order: left → right</text>
+<text x="38" y="119" class="small" >q₀ is the least-significant bit. Basis indices are read qₙ₋₁ … q₁q₀. RY and CNOT only; no ancillas or oracle calls.</text>
+<rect x="179" y="158" width="67" height="286" fill="#ecf5f1" rx="8"/>
+<text x="212.5" y="183" class="small" text-anchor="middle">d=0: RY</text>
+<rect x="251" y="158" width="283" height="286" fill="#edf3fd" rx="8"/>
+<text x="392.5" y="183" class="small" text-anchor="middle">d=1: 1-control UCRY</text>
+<rect x="539" y="158" width="715" height="286" fill="#f3effb" rx="8"/>
+<text x="896.5" y="183" class="small" text-anchor="middle">d=2: 2-control UCRY</text>
+<text x="34" y="239" class="label" >q0 : |0⟩</text>
+<line x1="145" y1="233" x2="1355" y2="233" class="wire"/>
+<text x="34" y="313" class="label" >q1 : |0⟩</text>
+<line x1="145" y1="307" x2="1355" y2="307" class="wire"/>
+<text x="34" y="387" class="label" >q2 : |0⟩</text>
+<line x1="145" y1="381" x2="1355" y2="381" class="wire"/>
+<rect x="187" y="211" width="50" height="44" rx="6" class="ry"/>
+<text x="212" y="238" class="label" text-anchor="middle">RY</text>
+<text x="212" y="272" class="small" text-anchor="middle">0.380π</text>
+<rect x="259" y="285" width="50" height="44" rx="6" class="ry"/>
+<text x="284" y="312" class="label" text-anchor="middle">RY</text>
+<text x="284" y="346" class="small" text-anchor="middle">0.363π</text>
+<line x1="356" y1="233" x2="356" y2="307" class="cx"/>
+<circle cx="356" cy="233" r="5" fill="#1d4ed8"/>
+<circle cx="356" cy="307" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M348,307h16 M356,299v16" class="cx"/>
+<rect x="403" y="285" width="50" height="44" rx="6" class="ry"/>
+<text x="428" y="312" class="label" text-anchor="middle">RY</text>
+<text x="428" y="346" class="small" text-anchor="middle">-0.181π</text>
+<line x1="500" y1="233" x2="500" y2="307" class="cx"/>
+<circle cx="500" cy="233" r="5" fill="#1d4ed8"/>
+<circle cx="500" cy="307" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M492,307h16 M500,299v16" class="cx"/>
+<rect x="547" y="359" width="50" height="44" rx="6" class="ry"/>
+<text x="572" y="386" class="label" text-anchor="middle">RY</text>
+<text x="572" y="420" class="small" text-anchor="middle">0.614π</text>
+<line x1="644" y1="307" x2="644" y2="381" class="cx"/>
+<circle cx="644" cy="307" r="5" fill="#1d4ed8"/>
+<circle cx="644" cy="381" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M636,381h16 M644,373v16" class="cx"/>
+<rect x="691" y="359" width="50" height="44" rx="6" class="ry"/>
+<text x="716" y="386" class="label" text-anchor="middle">RY</text>
+<text x="716" y="420" class="small" text-anchor="middle">0.307π</text>
+<line x1="788" y1="307" x2="788" y2="381" class="cx"/>
+<circle cx="788" cy="307" r="5" fill="#1d4ed8"/>
+<circle cx="788" cy="381" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M780,381h16 M788,373v16" class="cx"/>
+<line x1="860" y1="233" x2="860" y2="381" class="cx"/>
+<circle cx="860" cy="233" r="5" fill="#1d4ed8"/>
+<circle cx="860" cy="381" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M852,381h16 M860,373v16" class="cx"/>
+<rect x="907" y="359" width="50" height="44" rx="6" class="ry"/>
+<text x="932" y="386" class="label" text-anchor="middle">RY</text>
+<text x="932" y="420" class="small" text-anchor="middle">0.122π</text>
+<line x1="1004" y1="307" x2="1004" y2="381" class="cx"/>
+<circle cx="1004" cy="307" r="5" fill="#1d4ed8"/>
+<circle cx="1004" cy="381" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M996,381h16 M1004,373v16" class="cx"/>
+<rect x="1051" y="359" width="50" height="44" rx="6" class="ry"/>
+<text x="1076" y="386" class="label" text-anchor="middle">RY</text>
+<text x="1076" y="420" class="small" text-anchor="middle">-0.071π</text>
+<line x1="1148" y1="307" x2="1148" y2="381" class="cx"/>
+<circle cx="1148" cy="307" r="5" fill="#1d4ed8"/>
+<circle cx="1148" cy="381" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M1140,381h16 M1148,373v16" class="cx"/>
+<line x1="1220" y1="233" x2="1220" y2="381" class="cx"/>
+<circle cx="1220" cy="233" r="5" fill="#1d4ed8"/>
+<circle cx="1220" cy="381" r="13" fill="#f7fafb" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M1212,381h16 M1220,373v16" class="cx"/>
+<text x="38" y="471" class="label" >HOW THE CIRCUIT BUILDS THE STATE</text>
+<text x="38" y="503" class="body" >M_d(s) = sum of f_j² over j mod 2^d = s;  θ_d,s = 2 atan2(√M_{d+1}(s+2^d), √M_{d+1}(s)).</text>
+<text x="38" y="531" class="body" >After stage d, the lowest d+1 wires encode √(M_{d+1}(s)/M₀); all higher wires are still |0⟩.</text>
+<text x="38" y="559" class="body" >After the last stage: |0…0⟩ → Σ_j f_j / √(Σ_i f_i²) |j⟩. Each control is preserved by its controlled gate.</text>
+<text x="38" y="597" class="label" >READ THE GATES</text>
+<text x="38" y="625" class="body" >RY(θ)|0⟩ = cos(θ/2)|0⟩ + sin(θ/2)|1⟩. A filled dot controls the ⊕ target; it flips only for control bit 1.</text>
+<text x="38" y="653" class="body" >All wires are data outputs. There is no separate carry/flag path. Zero-mass branches use θ=0 and remain unreachable.</text>
+<text x="38" y="691" class="label" >NAMED FORMAL INTERFACE</text>
+<text x="38" y="719" class="mono" >QuantumBlockEncoding.compileUniformlyControlledRy_eval_controlledRyBlockMatrix</text>
+<text x="38" y="745" class="small" >This theorem certifies the exact recursive multiplexor. The full state-preparation theorem is linked from the case page.</text>
+<text x="38" y="777" class="small" >Numbers shown on this figure are rounded. OpenQASM retains 17 significant digits; finite NumPy/Qiskit replay checks the export.</text>
+<text x="38" y="802" class="small" >Reference counts: 7 RY + 8 CNOT. Exact symbolic claims require the separate repository Lean gate.</text>
+</svg>

@@ -17,6 +17,7 @@ lean_lib QuantumBlockEncoding
 lean_lib Tests where
   roots := #[`Tests, `ABEISTests.Basic, `ABEISTests.QBenchIntegration,
     `ABEISTests.GHLHamiltonian]
+  globs := #[.one `Tests, .submodules `ABEISTests]
 
 lean_lib ABEISBlueprint
 

@@ -1763,7 +1763,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:17](../../../../library/modu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:31](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:46](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.ExactAngle.eval_add" (lean := "QuantumBlockEncoding.ExactAngle.eval_add")
@@ -1777,7 +1777,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:31](../../../../library/modu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:41](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:57](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.ExactAngle.eval_neg" (lean := "QuantumBlockEncoding.ExactAngle.eval_neg")
@@ -1791,7 +1791,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:41](../../../../library/modu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:44](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:60](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-neg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.ExactAngle.eval_scale" (lean := "QuantumBlockEncoding.ExactAngle.eval_scale")
@@ -1805,7 +1805,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:44](../../../../library/modu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:47](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-scale). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:63](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-scale). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ExactAngle.sub" (lean := "QuantumBlockEncoding.ExactAngle.sub")
@@ -1819,7 +1819,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:47](../../../../library/modu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:50](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:66](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ExactAngle.halfAdd" (lean := "QuantumBlockEncoding.ExactAngle.halfAdd")
@@ -1833,7 +1833,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:50](../../../../library/modu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:53](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-halfadd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:69](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-halfadd). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.ExactAngle.halfSub" (lean := "QuantumBlockEncoding.ExactAngle.halfSub")
@@ -1847,7 +1847,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:53](../../../../library/modu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:56](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-halfsub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:72](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-halfsub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.ExactAngle.eval_sub" (lean := "QuantumBlockEncoding.ExactAngle.eval_sub")
@@ -1861,7 +1861,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:56](../../../../library/modu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:59](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:75](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.ExactAngle.eval_half_add" (lean := "QuantumBlockEncoding.ExactAngle.eval_half_add")
@@ -1875,7 +1875,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:59](../../../../library/modu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:63](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-half-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:79](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-half-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.ExactAngle.eval_half_sub" (lean := "QuantumBlockEncoding.ExactAngle.eval_half_sub")
@@ -1889,7 +1889,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:63](../../../../library/modu
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:70](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-half-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:86](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-exactangle-eval-half-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveGate" (lean := "QuantumBlockEncoding.PrimitiveGate")
@@ -1903,7 +1903,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:70](../../../../library/modu
 
 *Declaration kind.* inductive.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:79](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:95](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit" (lean := "QuantumBlockEncoding.PrimitiveCircuit")
@@ -1917,7 +1917,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:79](../../../../library/modu
 
 *Declaration kind.* abbrev.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:85](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:101](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveProgram" (lean := "QuantumBlockEncoding.PrimitiveProgram")
@@ -1931,7 +1931,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:85](../../../../library/modu
 
 *Declaration kind.* structure.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:88](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:104](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveGate.dagger" (lean := "QuantumBlockEncoding.PrimitiveGate.dagger")
@@ -1945,7 +1945,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:88](../../../../library/modu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:94](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:110](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveGate.touched" (lean := "QuantumBlockEncoding.PrimitiveGate.touched")
@@ -1959,7 +1959,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:94](../../../../library/modu
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:100](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-touched). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:116](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-touched). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveGate.oneQubitCount" (lean := "QuantumBlockEncoding.PrimitiveGate.oneQubitCount")
@@ -1973,7 +1973,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:100](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:104](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-onequbitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:120](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-onequbitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveGate.twoQubitCount" (lean := "QuantumBlockEncoding.PrimitiveGate.twoQubitCount")
@@ -1987,7 +1987,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:104](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:108](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-twoqubitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:124](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivegate-twoqubitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.gateCount" (lean := "QuantumBlockEncoding.PrimitiveCircuit.gateCount")
@@ -2001,7 +2001,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:108](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:116](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:132](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-gatecount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.oneQubitCount" (lean := "QuantumBlockEncoding.PrimitiveCircuit.oneQubitCount")
@@ -2015,7 +2015,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:116](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:119](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-onequbitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:135](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-onequbitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.twoQubitCount" (lean := "QuantumBlockEncoding.PrimitiveCircuit.twoQubitCount")
@@ -2029,7 +2029,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:119](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:122](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-twoqubitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:138](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-twoqubitcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.ryCount" (lean := "QuantumBlockEncoding.PrimitiveCircuit.ryCount")
@@ -2043,7 +2043,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:122](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:125](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:141](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.cxCount" (lean := "QuantumBlockEncoding.PrimitiveCircuit.cxCount")
@@ -2057,7 +2057,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:125](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:130](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:146](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.ryCount_append" (lean := "QuantumBlockEncoding.PrimitiveCircuit.ryCount_append")
@@ -2071,7 +2071,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:130](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:135](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:151](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.cxCount_append" (lean := "QuantumBlockEncoding.PrimitiveCircuit.cxCount_append")
@@ -2085,7 +2085,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:135](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:140](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:156](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.ryCount_singleton_ry" (lean := "QuantumBlockEncoding.PrimitiveCircuit.ryCount_singleton_ry")
@@ -2099,7 +2099,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:140](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:145](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount-singleton-ry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:161](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount-singleton-ry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.ryCount_singleton_cx" (lean := "QuantumBlockEncoding.PrimitiveCircuit.ryCount_singleton_cx")
@@ -2113,7 +2113,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:145](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:150](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount-singleton-cx). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:166](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-rycount-singleton-cx). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.cxCount_singleton_ry" (lean := "QuantumBlockEncoding.PrimitiveCircuit.cxCount_singleton_ry")
@@ -2127,7 +2127,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:150](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:155](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount-singleton-ry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:171](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount-singleton-ry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.cxCount_singleton_cx" (lean := "QuantumBlockEncoding.PrimitiveCircuit.cxCount_singleton_cx")
@@ -2141,7 +2141,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:155](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:160](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount-singleton-cx). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:176](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-cxcount-singleton-cx). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.nextWireDepth" (lean := "QuantumBlockEncoding.PrimitiveCircuit.nextWireDepth")
@@ -2155,7 +2155,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:160](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:165](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-nextwiredepth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:181](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-nextwiredepth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.wireDepths" (lean := "QuantumBlockEncoding.PrimitiveCircuit.wireDepths")
@@ -2169,7 +2169,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:165](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:170](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-wiredepths). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:186](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-wiredepths). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.depth" (lean := "QuantumBlockEncoding.PrimitiveCircuit.depth")
@@ -2183,7 +2183,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:170](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:174](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:190](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-depth). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveCircuit.resource" (lean := "QuantumBlockEncoding.PrimitiveCircuit.resource")
@@ -2197,7 +2197,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:174](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:177](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:193](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.gateCount_eq_length" (lean := "QuantumBlockEncoding.PrimitiveCircuit.gateCount_eq_length")
@@ -2211,7 +2211,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:177](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:181](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-gatecount-eq-length). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:197](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-gatecount-eq-length). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::theorem "QuantumBlockEncoding.PrimitiveCircuit.resource_oracleCalls_eq_zero" (lean := "QuantumBlockEncoding.PrimitiveCircuit.resource_oracleCalls_eq_zero")
@@ -2225,7 +2225,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:181](../../../../library/mod
 
 *Declaration kind.* theorem.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:185](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-resource-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:201](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitivecircuit-resource-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveProgram.identity" (lean := "QuantumBlockEncoding.PrimitiveProgram.identity")
@@ -2239,7 +2239,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:185](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:193](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:209](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-identity). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveProgram.seq" (lean := "QuantumBlockEncoding.PrimitiveProgram.seq")
@@ -2253,7 +2253,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:193](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:198](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-seq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:214](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-seq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveProgram.dagger" (lean := "QuantumBlockEncoding.PrimitiveProgram.dagger")
@@ -2267,7 +2267,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:198](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:203](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:219](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-dagger). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 :::definition "QuantumBlockEncoding.PrimitiveProgram.resource" (lean := "QuantumBlockEncoding.PrimitiveProgram.resource")
@@ -2281,7 +2281,7 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:203](../../../../library/mod
 
 *Declaration kind.* def.
 
-Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:208](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:224](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/PrimitiveMacros.lean

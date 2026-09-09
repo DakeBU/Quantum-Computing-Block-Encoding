@@ -1,12 +1,12 @@
 {
-  "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
+  "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
   "exactProofAuthority": false,
   "reports": {
     "internalCanonicalEvaluator": {
       "backend": "internalCanonicalMatrix",
-      "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+      "cleanBlockMaxEntryError": 2.220446049250313e-16,
+      "cleanBlockOperatorNormError": 3.9966670272935135e-16,
       "evidenceClasses": [
         "numericUnitary",
         "numericCleanBlock"
@@ -20,14 +20,14 @@
         "oracleCalls": 0
       },
       "status": "passed",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 4.464760698339612e-15
     },
     "openqasm3RoundTrip": {
       "backend": "openqasm3RoundTrip",
       "canonicalRoundTrip": true,
-      "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+      "cleanBlockMaxEntryError": 2.220446049250313e-16,
+      "cleanBlockOperatorNormError": 3.9966670272935135e-16,
       "decimalPrecisionDigits": 17,
       "evidenceClasses": [
         "syntaxOnly",
@@ -42,13 +42,13 @@
       "roundingMode": "Python format round-to-nearest",
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 4.464760698339612e-15
     },
     "qiskitOperator": {
       "backend": "qiskitOperator",
-      "circuitDigest": "e2629f749233550d8ce9e0fec6de18a2fcafb0b9db9fb8f159c0a4027f9785e7",
-      "cleanBlockMaxEntryError": 1.6653345369377348e-16,
-      "cleanBlockOperatorNormError": 2.5392461204043276e-16,
+      "circuitDigest": "484f2a7946cc0288c49b684f3adcaa851f0b8a7da2bd383c9cc863844ba40f69",
+      "cleanBlockMaxEntryError": 2.220446049250313e-16,
+      "cleanBlockOperatorNormError": 3.9966670272935135e-16,
       "depth": 96,
       "evidenceClasses": [
         "numericUnitary",
@@ -65,7 +65,7 @@
       "qubitCount": 6,
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 3.478116716525296e-15
+      "unitarityError": 4.464760698339612e-15
     }
   },
   "requestedBackend": "both",

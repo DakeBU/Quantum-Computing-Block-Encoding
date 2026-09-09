@@ -9,6 +9,11 @@ import json
 import subprocess
 from pathlib import Path
 
+try:
+    from proof_inputs import lean_module_targets, proof_input_digest
+except ModuleNotFoundError:
+    from website.scripts.proof_inputs import lean_module_targets, proof_input_digest
+
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -39,15 +44,27 @@ def main() -> int:
     if args.output.exists():
         args.output.unlink()
 
+    inputs_before = proof_input_digest(ROOT)
     run(["lake", "build"])
     run(["lake", "build", "Tests"])
+    modules = lean_module_targets(ROOT)
+    # A root build alone can omit unimported sources from the public catalog.
+    # Explicit targets also keep new unimported tests from receiving green status.
+    for start in range(0, len(modules), 40):
+        run(["lake", "build", *modules[start:start + 40]])
+    inputs_after = proof_input_digest(ROOT)
+    if inputs_after != inputs_before:
+        raise SystemExit("Lean sources changed during compilation; rerun the gate on stable inputs.")
 
     report = {
         "schemaVersion": 1,
         "passed": True,
+        "proofInputsSha256": inputs_after,
         "commit": capture(["git", "rev-parse", "HEAD"]),
         "leanVersion": capture(["lake", "env", "lean", "--version"]).splitlines()[0],
         "commands": ["lake build", "lake build Tests"],
+        "additionalCommand": "lake build <every compiledModules entry, batches of 40>",
+        "compiledModules": modules,
         "completedAtUtc": dt.datetime.now(dt.timezone.utc).isoformat(),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

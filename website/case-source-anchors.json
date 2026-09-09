@@ -1,6 +1,17 @@
 {
   "schemaVersion": 1,
   "cases": {
+    "hermite-smooth-state-preparation": {
+      "sourceKind": "general Hermite initial-state family with an ASPBE preparation circuit",
+      "paperTitle": "Schrödingerisation based computationally stable algorithms for ill-posed problems in partial differential equations",
+      "authors": "Shi Jin, Nana Liu, Chuwen Ma",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2403.19123v3#S4.SS3",
+      "anchorLabel": "Jin–Liu–Ma Sec. 4.3, Eqs. (4.31)–(4.32); cubic example Eq. (6.1)",
+      "anchors": ["Sec. 4.3", "Eq. (4.31)", "Eq. (4.32)", "Eq. (6.1)"],
+      "sourceMeaning": "The negative half-axis is extended by a degree-at-most 2k+1 Hermite polynomial on [-1,0], matching derivatives through order k at both endpoints; the positive half-axis remains exp(-p).",
+      "caseRelation": "ASPBE proves the explicit coefficients, global C^k smoothness and a deterministic primitive rotation circuit for the normalized sampled state. The paper's PDE recovery, Sobolev and convergence results are not claimed as Lean theorems by this case. The C2 sentence after Eq. (6.1) is not adopted: its displayed cubic is C1 at the splice points."
+    },
     "bell-state-preparation": {
       "sourceKind": "paper-grounded pedagogical specialization",
       "paperTitle": "Transformation of quantum states using uniformly controlled rotations",

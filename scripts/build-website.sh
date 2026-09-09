@@ -35,6 +35,9 @@ python3 -m py_compile \
   tools/replay_public_cases.py
 
 python3 -m unittest \
+  website.scripts.test_hermite_case \
+  website.scripts.test_proof_inputs \
+  website.scripts.test_lean_publication_gate \
   website.scripts.test_site_contracts \
   website.scripts.test_teaching_enrichment \
   website.scripts.test_casebook_enrichment \
@@ -75,6 +78,7 @@ test -f _site/search-index.json
 test -f _site/example-cases/index.html
 test -f _site/example-cases/state-preparation/index.html
 test -f _site/example-cases/block-encoding/index.html
+test -f _site/example-cases/hermite-smooth-state-preparation/index.html
 test -f _site/papers/index.html
 test -f _site/papers/state-preparation/index.html
 test -f _site/papers/block-encoding/index.html

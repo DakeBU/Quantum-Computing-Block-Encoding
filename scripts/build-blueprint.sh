@@ -2,9 +2,11 @@
 
 set -euo pipefail
 
+python3 tools/apply_verso_windows_compat.py
 python3 scripts/generate-aspbe-catalog.py
 python3 scripts/generate-aspbe-catalog.py --check
 lake build ABEISBlueprint.Assembly:olean
+lake env lean --run scripts/CheckBlueprintSearchAssets.lean
 
 rm -rf _out/blueprint
 lake lean ABEISBlueprintMain.lean -- \

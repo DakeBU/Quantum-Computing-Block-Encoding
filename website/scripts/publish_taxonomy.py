@@ -53,6 +53,7 @@ TOPICS = {
 }
 
 REQUIRED_ANCHORED_CASES = {
+    "hermite-smooth-state-preparation",
     "bell-state-preparation",
     "mottonen-dense-state-preparation",
     "grover-rudolph-product-state-preparation",

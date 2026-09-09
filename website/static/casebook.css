@@ -31,6 +31,7 @@
 
 .casebook-tutorial {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 30px;
 }
 
@@ -340,7 +341,15 @@
 .casebook-theorem-stack,
 #case-theorems {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
+}
+
+/* Long equations scroll in their own panels instead of widening a grid track. */
+.casebook-tutorial > *,
+.casebook-theorem-stack > *,
+#case-theorems > * {
+  min-width: 0;
 }
 
 .casebook-theorem {

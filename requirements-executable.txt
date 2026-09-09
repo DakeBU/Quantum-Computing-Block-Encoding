@@ -2,3 +2,4 @@ qiskit==2.4.2
 numpy==1.26.4
 matplotlib==3.10.8
 openqasm3[parser]==1.0.1
+qiskit-qasm3-import==0.6.0

@@ -68,3 +68,5 @@ import QuantumBlockEncoding.StatePreparationBenchmarks
 import QuantumBlockEncoding.TechnicalLemmas
 import QuantumBlockEncoding.TextbookStatePreparation
 import QuantumBlockEncoding.TeachingRouteClosures
+import QuantumBlockEncoding.HermiteStatePreparation
+import QuantumBlockEncoding.HermiteSmoothness

@@ -15,7 +15,7 @@ import json
 import re
 import shutil
 import sys
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -27,11 +27,59 @@ from website.scripts import enrich_casebook as casebook  # noqa: E402
 from website.scripts import polish_casebook  # noqa: E402
 
 EXTENSION_PATH = ROOT / "website" / "state-prep-cases.json"
+HERMITE_PATH = ROOT / "website" / "hermite-case.json"
 PAPERS_PATH = ROOT / "website" / "papers.json"
 
 
 def load_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_extension_payload() -> dict[str, object]:
+    """Both committed catalogs are mandatory, including their case assets."""
+    payload = load_json(EXTENSION_PATH)
+    hermite = load_json(HERMITE_PATH)
+    payload["cases"] = list(payload["cases"]) + list(hermite["cases"])
+    for key in ("teaching", "circuits"):
+        overlap = set(payload[key]) & set(hermite[key])
+        if overlap:
+            raise RuntimeError(f"duplicate {key} records: {sorted(overlap)}")
+        payload[key] = {**payload[key], **hermite[key]}
+    return payload
+
+
+def publish_case_assets(root: Path, case: dict[str, object]) -> str:
+    """Copy source packets and figures with repository-relative provenance."""
+    items = []
+    slug = str(case["slug"])
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):
+        raise RuntimeError("invalid case asset slug")
+    for asset in case.get("supplementaryAssets", []):
+        name = str(asset["path"])
+        relative = Path(name)
+        source = ROOT / relative
+        if (relative.is_absolute() or PureWindowsPath(name).is_absolute()
+                or "\\" in name or not source.resolve().is_relative_to(ROOT.resolve())):
+            raise RuntimeError(f"case asset is outside the repository: {slug}")
+        if not source.is_file() or source.stat().st_size == 0:
+            raise RuntimeError(f"required case asset missing: {slug}: {relative.as_posix()}")
+        destination = root / "downloads" / slug / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, destination)
+        url = "../../" + destination.relative_to(root).as_posix()
+        label = html.escape(str(asset["label"]))
+        if asset.get("kind") == "figure":
+            items.append(f'<figure><img src="{url}" alt="{label}" style="width:100%;height:auto"><figcaption>{label}</figcaption></figure>')
+        else:
+            items.append(f'<p><a href="{url}" download>{label}</a></p>')
+        if asset.get("copy"):
+            items.append(build_site.render_copyable_source(
+                str(asset["label"]), source.read_text(encoding="utf-8"),
+                str(asset.get("language", relative.suffix.lstrip("."))),
+            ))
+    if not items:
+        return ""
+    return '<section class="content-section" id="complete-source-packet"><h2>Diagrams and complete source packet</h2>' + "".join(items) + '</section>'
 
 
 def declarations_from_site(root: Path) -> tuple[list[dict[str, object]], dict[str, dict[str, object]]]:
@@ -136,6 +184,8 @@ def render_extra_cases(
             text,
             casebook.render_case_tutorial(slug, dict(teaching[slug]), declarations),
         )
+        assets = publish_case_assets(root, case)
+        text = text.replace('<section class="content-section case-problem"', assets + '<section class="content-section case-problem"', 1)
         path.write_text(text, encoding="utf-8")
     polish_casebook.polish_example_pages(root)
     (root / "data" / "example-cases.json").write_text(
@@ -342,7 +392,7 @@ def validate_published(root: Path, extra_cases: list[dict[str, object]]) -> None
 
 
 def publish(root: Path) -> None:
-    payload = load_json(EXTENSION_PATH)
+    payload = load_extension_payload()
     declarations_list, declarations = declarations_from_site(root)
     extra_cases = validate_extension(payload, declarations)
     register_circuits(payload)

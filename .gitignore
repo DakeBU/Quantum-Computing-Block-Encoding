@@ -2,6 +2,7 @@
 /_out/
 /_site/
 /.qbe/
+.qbe-locks/
 /.claude/
 /.env
 /.DS_Store
@@ -32,5 +33,6 @@
 !/reports/route-ablation/*/runs/README.md
 
 __pycache__/
+/.venv/
 *.pyc
 /Math Writing Tips.pdf

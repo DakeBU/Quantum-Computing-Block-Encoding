@@ -17,9 +17,15 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import quote
 
+try:
+    from proof_inputs import lean_module_targets, proof_input_digest
+except ModuleNotFoundError:
+    from website.scripts.proof_inputs import lean_module_targets, proof_input_digest
+
 
 ROOT = Path(__file__).resolve().parents[2]
 WEBSITE_ROOT = ROOT / "website"
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(WEBSITE_ROOT))
 
 from content import (  # noqa: E402
@@ -30,7 +36,7 @@ from content import (  # noqa: E402
     STATUS_ORDER,
     WORKFLOW_STAGES,
 )
-from case_assets import STAGE_CIRCUITS, stage_circuit_latex  # noqa: E402
+from website.case_assets import STAGE_CIRCUITS, stage_circuit_latex  # noqa: E402
 from lean_graph import build_lean_graph_payload, render_lean_graph_body  # noqa: E402
 
 
@@ -235,6 +241,10 @@ def load_gate_report(path: Path, context: dict[str, object]) -> dict[str, object
     report = load_json(path)
     if report.get("commit") != context["commit"] or report.get("passed") is not True:
         raise SystemExit("Lean gate report does not certify the current checkout.")
+    if report.get("proofInputsSha256") != proof_input_digest(ROOT):
+        raise SystemExit("Lean gate proof inputs differ from the current files; rebuild before publishing.")
+    if report.get("compiledModules") != lean_module_targets(ROOT):
+        raise SystemExit("Lean gate does not cover every current module; rerun the complete gate.")
     return report
 
 
@@ -2339,7 +2349,7 @@ def render_executable_evidence(case: dict[str, object], prefix: str) -> str:
     lean_status = "passed" if case.get("status") == "certified" else "open"
     rows = [
         ("Internal canonical evaluator", "Reference semantics for primitive canonical IR", check_status("internalCanonicalEvaluator", "open"), "metrics manifest"),
-        ("Qiskit Operator", "Gate-by-gate numerical screening", check_status("qiskitOperator", "artifact available"), artifact),
+        ("Qiskit replay", "Gate-by-gate numerical screening", check_status("qiskitOperator", "artifact available"), artifact),
         ("OpenQASM 3 round-trip", "Strict serialization, import, and semantic replay", check_status("openqasm3RoundTrip", "not recorded"), "QASM and report when generated"),
         ("Lean certificate", "Exact proof authority at the page's stated semantic tier", lean_status, f"{len(case.get('leanAnchors', []))} named root(s)"),
     ]

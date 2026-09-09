@@ -1,12 +1,12 @@
 {
-  "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
+  "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
   "exactProofAuthority": false,
   "reports": {
     "internalCanonicalEvaluator": {
       "backend": "internalCanonicalMatrix",
-      "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
-      "cleanBlockMaxEntryError": 5.049717357560489e-16,
-      "cleanBlockOperatorNormError": 7.628051070026943e-16,
+      "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
+      "cleanBlockMaxEntryError": 2.5405929613637076e-16,
+      "cleanBlockOperatorNormError": 4.24742493206058e-16,
       "evidenceClasses": [
         "numericUnitary",
         "numericCleanBlock"
@@ -20,14 +20,14 @@
         "oracleCalls": 0
       },
       "status": "passed",
-      "unitarityError": 8.74598821652762e-15
+      "unitarityError": 6.57989727146403e-15
     },
     "openqasm3RoundTrip": {
       "backend": "openqasm3RoundTrip",
       "canonicalRoundTrip": true,
-      "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
-      "cleanBlockMaxEntryError": 5.049717357560489e-16,
-      "cleanBlockOperatorNormError": 7.628051070026943e-16,
+      "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
+      "cleanBlockMaxEntryError": 2.5405929613637076e-16,
+      "cleanBlockOperatorNormError": 4.24742493206058e-16,
       "decimalPrecisionDigits": 17,
       "evidenceClasses": [
         "syntaxOnly",
@@ -42,19 +42,19 @@
       "roundingMode": "Python format round-to-nearest",
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 8.74598821652762e-15
+      "unitarityError": 6.57989727146403e-15
     },
     "qiskitOperator": {
       "backend": "qiskitOperator",
-      "circuitDigest": "be7e3d0863dd2ee6348eb90779077c13d7d945d74e8ea897553a39a029e61bc0",
-      "cleanBlockMaxEntryError": 5.835825797489702e-16,
-      "cleanBlockOperatorNormError": 7.721488787657455e-16,
+      "circuitDigest": "cdf79ade0d316ba4320b542755b2542d24522e47d65005a11e08afde4cfa06b1",
+      "cleanBlockMaxEntryError": 2.1219547406396647e-16,
+      "cleanBlockOperatorNormError": 4.1196305853311535e-16,
       "depth": 674,
       "evidenceClasses": [
         "numericUnitary",
         "numericCleanBlock"
       ],
-      "fullOperatorError": 4.438552011094872e-15,
+      "fullOperatorError": 4.5614125758509786e-15,
       "gateCount": 881,
       "gateCounts": {
         "cx": 454,
@@ -67,7 +67,7 @@
       "qubitCount": 9,
       "status": "passed",
       "targetDigest": "e2fc0044af30130442e2f44dd773b9ace02d7f06dcdc62c9e72681d02dd8134f",
-      "unitarityError": 7.439534648195002e-15
+      "unitarityError": 6.247724479866848e-15
     }
   },
   "requestedBackend": "both",

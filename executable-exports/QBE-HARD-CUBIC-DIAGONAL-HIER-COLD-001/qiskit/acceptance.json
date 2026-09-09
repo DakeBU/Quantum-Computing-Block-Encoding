@@ -19,12 +19,12 @@
       "power": 3,
       "qasm_depth": 465,
       "qasm_gate_count": 638,
-      "qasm_operator_error": 1.8572384374115355e-12,
+      "qasm_operator_error": 1.015714758152158e-12,
       "qasm_parse_ok": true,
-      "qasm_path": "executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001/qasm3/cubic_householder_n2.qasm3",
+      "qasm_path": "executable-exports\\QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001\\qasm3\\cubic_householder_n2.qasm3",
       "qiskit_operator_error": 0.0,
       "qiskit_qubits": 5,
-      "unitary_error": 2.2224038376351276e-16
+      "unitary_error": 2.2222320676565057e-16
     }
   ],
   "semantic_tier": "finite post-Lean executable validation; symbolic family proof remains Lean",

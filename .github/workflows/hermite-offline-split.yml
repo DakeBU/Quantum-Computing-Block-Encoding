@@ -1,53 +1,13 @@
-name: Hermite offline replay transport
+name: Retired archive transport (not Hermite acceptance)
 on:
-  push:
-    branches: ["agent/hermite-smooth-state-preparation-20260909"]
-    paths: [".github/workflows/hermite-offline-split.yml"]
   workflow_dispatch:
-permissions:
-  actions: read
-  contents: read
+permissions: {}
 jobs:
-  split:
+  retired:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ github.token }}
-          run-id: 34308553235
-          name: hermite-offline-compiler
-          path: _out/input
-      - uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ github.token }}
-          run-id: 34308553235
-          name: hermite-offline-dependencies
-          path: _out/input
-      - name: Split archives without changing their contents
-        shell: bash
+      - name: Explain the retired transport workflow
         run: |
-          python3 - <<'PY'
-          import pathlib
-          out = pathlib.Path('_out/parts'); out.mkdir(parents=True)
-          for name in ['compiler', 'dependencies']:
-              with open(f'_out/input/{name}.zip', 'rb') as source:
-                  i = 0
-                  while block := source.read(400_000_000):
-                      (out / f'{name}-{i}.part').write_bytes(block)
-                      i += 1
-              print(name, i, 'parts')
-          PY
-      - uses: actions/upload-artifact@v4
-        with: {name: hermite-compiler-0, path: _out/parts/compiler-0.part, compression-level: 0, retention-days: 1}
-      - uses: actions/upload-artifact@v4
-        with: {name: hermite-compiler-1, path: _out/parts/compiler-1.part, compression-level: 0, retention-days: 1}
-      - uses: actions/upload-artifact@v4
-        with: {name: hermite-dependencies-0, path: _out/parts/dependencies-0.part, compression-level: 0, retention-days: 1}
-      - uses: actions/upload-artifact@v4
-        with: {name: hermite-dependencies-1, path: _out/parts/dependencies-1.part, compression-level: 0, retention-days: 1}
-      - uses: actions/upload-artifact@v4
-        with: {name: hermite-dependencies-2, path: _out/parts/dependencies-2.part, compression-level: 0, retention-days: 1}
-      - uses: actions/upload-artifact@v4
-        with: {name: hermite-dependencies-3, path: _out/parts/dependencies-3.part, compression-level: 0, retention-days: 1}
-      - uses: actions/upload-artifact@v4
-        with: {name: hermite-dependencies-4, path: _out/parts/dependencies-4.part, compression-level: 0, retention-days: 1}
+          echo "Archive transport is retired; no sources, logs, compiler or dependency archives are uploaded."
+          echo "Run the Hermite state-preparation gate for actual compilation and independent executable replay."
+          exit 1

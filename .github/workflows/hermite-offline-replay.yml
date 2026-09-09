@@ -1,92 +1,13 @@
-name: Hermite offline proof replay
+name: Retired compiler snapshot (not Hermite acceptance)
 on:
-  push:
-    branches: ["agent/hermite-smooth-state-preparation-20260909"]
-    paths: [".github/workflows/hermite-offline-replay.yml"]
   workflow_dispatch:
-permissions:
-  contents: read
+permissions: {}
 jobs:
-  replay:
+  retired:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: leanprover/lean-action@v1
-        with:
-          auto-config: false
-          use-github-cache: true
-          use-mathlib-cache: true
-      - run: lake build QuantumBlockEncoding.StatePreparationPrimitiveRoutes
-      - name: Pack pinned compiler and transitive proof dependencies
-        shell: bash
+      - name: Explain the retired transport workflow
         run: |
-          mkdir -p _out/offline
-          lake env python3 - <<'PY'
-          import pathlib, re, subprocess, zipfile
-          root = pathlib.Path.cwd()
-          prefix = pathlib.Path(subprocess.check_output(['lean', '--print-prefix'], text=True).strip())
-          roots = [root] + sorted((root / '.lake/packages').iterdir())
-          roots = [p for p in roots if p.is_dir()]
-          source_roots = roots + [prefix / 'src/lean']
-          pending = ['QuantumBlockEncoding.StatePreparationPrimitiveRoutes', 'Mathlib.Data.Polynomial.Derivative', 'Mathlib.Analysis.SpecialFunctions.ExpDeriv', 'Mathlib.Analysis.Calculus.IteratedDeriv.Defs']
-          seen, selected = set(), set()
-          while pending:
-              module = pending.pop()
-              if module in seen:
-                  continue
-              seen.add(module)
-              rel = pathlib.Path(*module.split('.'))
-              for base in source_roots:
-                  source = base / rel.with_suffix('.lean')
-                  if not source.exists():
-                      continue
-                  selected.add(source)
-                  text = source.read_text(encoding='utf-8')
-                  pending.extend(re.findall(r'^\s*(?:(?:public|meta|private)\s+)*import\s+([A-Za-z0-9_.]+)', text, re.M))
-                  if base != prefix / 'src/lean':
-                      stem = base / '.lake/build/lib/lean' / rel
-                      for suffix in ['.olean', '.olean.private', '.olean.server', '.ilean', '.ir']:
-                          path = pathlib.Path(str(stem) + suffix)
-                          if path.exists():
-                              selected.add(path)
-                  break
-          def add(z, p, name):
-              if p.is_file():
-                  z.write(p, str(name))
-          with zipfile.ZipFile('_out/offline/compiler.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=3) as z:
-              for directory in ['bin', 'lib/lean', 'src/lean']:
-                  for p in (prefix / directory).rglob('*'):
-                      if p.is_file() and p.suffix not in {'.a', '.o', '.c'}:
-                          add(z, p, pathlib.Path('lean') / p.relative_to(prefix))
-              for p in (prefix / 'lib').glob('*.so*'):
-                  add(z, p, pathlib.Path('lean/lib') / p.name)
-          with zipfile.ZipFile('_out/offline/dependencies.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=3) as z:
-              for p in sorted(selected):
-                  if p.is_relative_to(root):
-                      add(z, p, p.relative_to(root))
-              for base in roots:
-                  for name in ['lakefile.lean', 'lakefile.toml', 'lake-manifest.json', 'lean-toolchain']:
-                      p = base / name
-                      add(z, p, p.relative_to(root))
-                  if base != root:
-                      for p in base.rglob('*.lean'):
-                          if '.git' not in p.parts and '.lake' not in p.relative_to(base).parts:
-                              name = str(p.relative_to(root))
-                              if name not in z.namelist():
-                                  add(z, p, name)
-          print('Selected modules:', len(seen), 'files:', len(selected))
-          for p in pathlib.Path('_out/offline').glob('*.zip'):
-              print(p, p.stat().st_size)
-          PY
-      - uses: actions/upload-artifact@v4
-        with:
-          name: hermite-offline-compiler
-          path: _out/offline/compiler.zip
-          compression-level: 0
-          retention-days: 1
-      - uses: actions/upload-artifact@v4
-        with:
-          name: hermite-offline-dependencies
-          path: _out/offline/dependencies.zip
-          compression-level: 0
-          retention-days: 1
+          echo "Archive transport is retired; no sources, logs, compiler or dependency archives are uploaded."
+          echo "Run the Hermite state-preparation gate for actual compilation and independent executable replay."
+          exit 1

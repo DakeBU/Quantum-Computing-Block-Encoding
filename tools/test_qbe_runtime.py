@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import json
 import os
+import signal
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 try:
     from qbe_runtime import (
@@ -33,6 +36,33 @@ except ModuleNotFoundError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
+RUNTIME = sys.modules[file_lock.__module__]
+
+
+def read_live_json(path: Path) -> object:
+    """Retry only Windows access races; any partial JSON remains a test failure."""
+    deadline = time.monotonic() + 2.0
+    while True:
+        try:
+            source = path.read_text(encoding="utf-8")
+            break
+        except PermissionError:
+            if os.name != "nt" or time.monotonic() >= deadline:
+                raise
+            time.sleep(0.001)
+    return json.loads(source)
+
+
+def stop_lock_holder(process: subprocess.Popen, holder_pid: int) -> None:
+    """Kill the real holder, not the Windows virtual-environment launcher."""
+    try:
+        os.kill(holder_pid, signal.SIGTERM if os.name == "nt" else signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    try:
+        process.wait(timeout=10)
+    finally:
+        process.stdout.close()
 
 
 class CrossProcessRuntimeTests(unittest.TestCase):
@@ -82,10 +112,19 @@ for index in range(30):
                 )
                 for worker in range(5)
             ]
-            while any(process.poll() is None for process in processes):
-                if path.exists():
-                    json.loads(path.read_text(encoding="utf-8"))
-            self.assertEqual([process.wait() for process in processes], [0] * 5)
+            observations = 0
+            try:
+                while any(process.poll() is None for process in processes):
+                    if path.exists():
+                        read_live_json(path)
+                        observations += 1
+                self.assertEqual([process.wait() for process in processes], [0] * 5)
+            finally:
+                for process in processes:
+                    if process.poll() is None:
+                        process.kill()
+                    process.wait()
+            self.assertGreater(observations, 0)
             payload = json.loads(path.read_text(encoding="utf-8"))
             self.assertIn(payload["worker"], range(5))
             self.assertEqual(payload["index"], 29)
@@ -122,11 +161,11 @@ for _ in range(50):
         with tempfile.TemporaryDirectory() as raw:
             path = Path(raw) / "task.lease"
             code = """
-import sys, time
+import os, sys, time
 from pathlib import Path
 from tools.qbe_runtime import file_lock
 with file_lock(Path(sys.argv[1])):
-    print("locked", flush=True)
+    print(f"locked {os.getpid()}", flush=True)
     time.sleep(30)
 """
             process = subprocess.Popen(
@@ -135,10 +174,9 @@ with file_lock(Path(sys.argv[1])):
                 text=True,
                 stdout=subprocess.PIPE,
             )
-            self.assertEqual(process.stdout.readline().strip(), "locked")
-            process.kill()
-            process.wait()
-            process.stdout.close()
+            ready = process.stdout.readline().strip().split()
+            self.assertEqual(ready[0], "locked")
+            stop_lock_holder(process, int(ready[1]))
             with file_lock(path, timeout=1.0):
                 pass
 
@@ -146,11 +184,11 @@ with file_lock(Path(sys.argv[1])):
         with tempfile.TemporaryDirectory() as raw:
             path = Path(raw) / "task.lease"
             code = """
-import sys, time
+import os, sys, time
 from pathlib import Path
 from tools.qbe_runtime import file_lock
 with file_lock(Path(sys.argv[1])):
-    print("locked", flush=True)
+    print(f"locked {os.getpid()}", flush=True)
     time.sleep(30)
 """
             process = subprocess.Popen(
@@ -159,13 +197,45 @@ with file_lock(Path(sys.argv[1])):
                 text=True,
                 stdout=subprocess.PIPE,
             )
-            self.assertEqual(process.stdout.readline().strip(), "locked")
-            with self.assertRaises(LockUnavailable):
-                with file_lock(path, timeout=0):
-                    pass
-            process.kill()
-            process.wait()
-            process.stdout.close()
+            ready = process.stdout.readline().strip().split()
+            self.assertEqual(ready[0], "locked")
+            try:
+                with self.assertRaises(LockUnavailable):
+                    with file_lock(path, timeout=0):
+                        pass
+            finally:
+                stop_lock_holder(process, int(ready[1]))
+
+
+class WindowsAtomicReplaceTests(unittest.TestCase):
+    def test_transient_windows_share_denial_retries_atomic_replace(self) -> None:
+        source, target = Path("pending.tmp"), Path("state.json")
+        error = PermissionError("temporarily shared")
+        error.winerror = 32
+        with patch.object(RUNTIME.os, "name", "nt"), \
+             patch.object(RUNTIME.os, "replace", side_effect=[error, None]) as replace, \
+             patch.object(RUNTIME.time, "sleep"):
+            RUNTIME._replace_file_unlocked(source, target)
+        self.assertEqual(replace.call_count, 2)
+        replace.assert_called_with(source, target)
+
+    def test_permanent_windows_share_denial_is_not_hidden(self) -> None:
+        source, target = Path("pending.tmp"), Path("state.json")
+        error = PermissionError("persistently shared")
+        error.winerror = 32
+        with patch.object(RUNTIME.os, "name", "nt"), \
+             patch.object(RUNTIME.os, "replace", side_effect=error) as replace, \
+             patch.object(RUNTIME.time, "monotonic", side_effect=[0.0, 3.0]):
+            with self.assertRaises(PermissionError):
+                RUNTIME._replace_file_unlocked(source, target)
+        self.assertEqual(replace.call_count, 1)
+
+    def test_unclassified_permission_error_is_not_retried(self) -> None:
+        source, target = Path("pending.tmp"), Path("state.json")
+        with patch.object(RUNTIME.os, "replace", side_effect=PermissionError("ACL")) as replace:
+            with self.assertRaises(PermissionError):
+                RUNTIME._replace_file_unlocked(source, target)
+        self.assertEqual(replace.call_count, 1)
 
 
 class RouteFingerprintTests(unittest.TestCase):

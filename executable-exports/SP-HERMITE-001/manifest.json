@@ -1,0 +1,68 @@
+{
+  "A_coefficient": "a_(k,r)=sum_(m=0)^r choose(k+r-m,k)/m!; 0<=r<=k",
+  "allowed_gates": [
+    "ry",
+    "cx"
+  ],
+  "amplitude": "exp(p) for p<=-1; exp(-1)*(1-t)^(k+1)*A_k(t)+t^(k+1)*A_k(1-t) for -1<p<0, t=p+1; exp(-p) for p>=0",
+  "ancillas": [],
+  "checkBackends": {
+    "internalCanonicalEvaluator": {
+      "method": "independent NumPy primitive statevector",
+      "status": "passed"
+    },
+    "openqasm3RoundTrip": {
+      "method": "Qiskit qasm3.loads followed by statevector replay",
+      "status": "passed"
+    },
+    "qiskitOperator": {
+      "method": "Qiskit Statevector.from_instruction, not full Operator",
+      "status": "passed"
+    }
+  },
+  "circuit": "circuit.qasm",
+  "control_order": "low to high",
+  "executable_evidence": "acceptance.json",
+  "exporter": "executable-exports/SP-HERMITE-001/qiskit/export.py",
+  "grid": "p_j=-pi*L+2*pi*L*j/2^n",
+  "lean_gate": "separate repository build; this manifest is not build evidence",
+  "normalization": "f_j/sqrt(sum_i f_i^2)",
+  "parameters": {
+    "L": 1.0,
+    "k": 1,
+    "n": 3
+  },
+  "registers": [
+    {
+      "input": "0",
+      "integer_bit_weight": 1,
+      "name": "q[0]",
+      "output": "data amplitude"
+    },
+    {
+      "input": "0",
+      "integer_bit_weight": 2,
+      "name": "q[1]",
+      "output": "data amplitude"
+    },
+    {
+      "input": "0",
+      "integer_bit_weight": 4,
+      "name": "q[2]",
+      "output": "data amplitude"
+    }
+  ],
+  "samples": "samples.csv",
+  "schema_version": 1,
+  "smoothness": "C^k splice; the k=1 cubic is not asserted to be C^2",
+  "source": "https://arxiv.org/abs/2403.19123",
+  "source_anchor": "Section 4.3, equations 4.31-4.32 (v3)",
+  "task": "SP-HERMITE-001",
+  "theorem_links": [
+    {
+      "declaration": "QuantumBlockEncoding.compileUniformlyControlledRy_eval_controlledRyBlockMatrix",
+      "scope": "exact primitive multiplexor compilation",
+      "source": "QuantumBlockEncoding/UniformlyControlledRy.lean"
+    }
+  ]
+}

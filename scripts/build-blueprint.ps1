@@ -8,19 +8,52 @@ $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $repoRoot
 
-& $PythonCommand scripts/generate-blueprint-catalog.py --check
+function Assert-BlueprintOutput {
+  $resolvedRepo = [IO.Path]::GetFullPath($repoRoot).TrimEnd([IO.Path]::DirectorySeparatorChar)
+  $resolvedOutput = [IO.Path]::GetFullPath((Join-Path $resolvedRepo "_out/blueprint"))
+  if (-not $resolvedOutput.StartsWith($resolvedRepo + [IO.Path]::DirectorySeparatorChar,
+      [StringComparison]::OrdinalIgnoreCase)) {
+    throw "Refusing a Blueprint output outside the repository"
+  }
+  foreach ($ancestor in @($resolvedRepo, (Join-Path $resolvedRepo "_out"), $resolvedOutput)) {
+    $item = $null
+    try { $item = Get-Item -LiteralPath $ancestor -Force -ErrorAction Stop }
+    catch [Management.Automation.ItemNotFoundException] { }
+    if ($null -ne $item) {
+      if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0 -or -not $item.PSIsContainer) {
+        throw "Blueprint output ancestry must contain ordinary directories only"
+      }
+    }
+  }
+  if (Test-Path -LiteralPath $resolvedOutput) {
+    $pending = [Collections.Generic.Stack[string]]::new()
+    $pending.Push($resolvedOutput)
+    while ($pending.Count -gt 0) {
+      foreach ($item in Get-ChildItem -LiteralPath ($pending.Pop()) -Force) {
+        if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+          throw "Refusing to traverse a reparse point in Blueprint outputs"
+        }
+        if ($item.PSIsContainer) { $pending.Push($item.FullName) }
+      }
+    }
+  }
+  return $resolvedOutput
+}
+
+& $PythonCommand tools/apply_verso_windows_compat.py
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand scripts/generate-aspbe-catalog.py
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand scripts/generate-aspbe-catalog.py --check
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 & $LakeCommand @LakeArguments build "ABEISBlueprint.Assembly:olean"
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $LakeCommand @LakeArguments env lean --run scripts/CheckBlueprintSearchAssets.lean
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-$outputRoot = Join-Path $repoRoot "_out"
-$blueprintOutput = Join-Path $outputRoot "blueprint"
-$resolvedRepo = [System.IO.Path]::GetFullPath($repoRoot)
-$resolvedOutput = [System.IO.Path]::GetFullPath($blueprintOutput)
-if (-not $resolvedOutput.StartsWith($resolvedRepo + [System.IO.Path]::DirectorySeparatorChar)) {
-  throw "Refusing to clean a Blueprint output outside the repository"
-}
+$resolvedOutput = Assert-BlueprintOutput
+$blueprintOutput = $resolvedOutput
 if (Test-Path -LiteralPath $resolvedOutput) {
   Remove-Item -LiteralPath $resolvedOutput -Recurse -Force
 }
@@ -59,7 +92,7 @@ $required = @(
   "_out/blueprint/html-multi/catalog-experimental-robin-matrix/index.html"
 )
 foreach ($path in $required) {
-  if (-not (Test-Path -LiteralPath $path)) {
+  if (-not (Test-Path -LiteralPath $path -PathType Leaf) -or (Get-Item -LiteralPath $path).Length -eq 0) {
     throw "Blueprint output is missing: $path"
   }
 }

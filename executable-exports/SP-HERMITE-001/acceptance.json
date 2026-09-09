@@ -1,0 +1,65 @@
+{
+  "accepted": true,
+  "artifact_sha256": {
+    "circuit.qasm": "f09e4fc28ec1db4c29c735fcaba0813d24bf309f23227861817c6245b9b95388",
+    "circuit.qasm2": "091c3fc3400dd2ccb865d3436492b5e2cc4733f20d3bac70fe0ca439bef8cd42",
+    "circuit.qasm3": "f09e4fc28ec1db4c29c735fcaba0813d24bf309f23227861817c6245b9b95388",
+    "circuit.svg": "e5b454ff86eae48634f1ab530f367c36a500c82de3ac6b2de058099e5205a86a",
+    "endpoint-jets.json": "24eb2daf210f2e28939979a863ef8c00a70508d0635667c2bf7acdc5589dc0fb",
+    "manifest.json": "b595fda0e5fc3d9a3034803bca0211a494a7ba2fe4aceca64c010a42f422b672",
+    "mass-tree.json": "84a3328a6c279d732bc644f1e5192485d4a3da68a718dc3a75718d686db682ee",
+    "samples.csv": "44904f9e00339338d731104f05c2c647f8ea119312236bc3d1c1b7657f4063bc"
+  },
+  "bit_order": "q[0] is the least-significant bit; preparation consumes low bits first",
+  "evidence_class": "finite-executable-acceptance",
+  "exact_endpoint_checks": true,
+  "exporter_sha256": "9721621ba09b657e8cdb3cb43064ba30faeb86d753d374adaa0689b080bba3ff",
+  "grid": "p_j = -pi*L + 2*pi*L*j/2^n; 0 <= j < 2^n",
+  "lean_certificate_claimed": false,
+  "limitations": [
+    "Floating-point samples and rotations; not an arbitrary-width symbolic certificate.",
+    "Reference gate counts are exponential; no resource optimality claim.",
+    "The executable implementation is a mirror, not extracted from Lean."
+  ],
+  "numpy": {
+    "max_amplitude_error": 1.942890293094024e-16,
+    "norm_error": 0.0
+  },
+  "parameters": {
+    "L": 1.0,
+    "k": 1,
+    "n": 3
+  },
+  "qiskit": {
+    "basis": [
+      "ry",
+      "cx"
+    ],
+    "depth": 13,
+    "max_amplitude_errors": {
+      "qasm2": 1.942890293094024e-16,
+      "qasm3": 1.942890293094024e-16,
+      "qiskit": 1.942890293094024e-16
+    },
+    "passed": true,
+    "round_trips": [
+      "OpenQASM 2",
+      "OpenQASM 3"
+    ],
+    "version": "2.4.2"
+  },
+  "resource": {
+    "ancillas": 0,
+    "cx": 8,
+    "optimized": false,
+    "oracle_calls": 0,
+    "qubits": 3,
+    "reference_counts": "RY=2^n-1; CX=2*(2^n-1-n)",
+    "ry": 7
+  },
+  "rotation_convention": "RY(theta)|0> = cos(theta/2)|0> + sin(theta/2)|1>",
+  "schema_version": 1,
+  "target": "normalized positive samples of exp(p), P_k(p), exp(-p) at cuts -1 and 0",
+  "task": "SP-HERMITE-001",
+  "zero_parent_convention": "theta=0; unreachable subtree remains zero"
+}

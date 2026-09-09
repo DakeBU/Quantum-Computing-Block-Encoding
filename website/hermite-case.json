@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "slug": "hermite-smooth-state-preparation",
+      "title": "Hermite-smoothed initial states",
+      "shortTitle": "State prep: Hermite",
+      "kind": "statePreparation",
+      "status": "certified",
+      "semanticTier": "General-order Hermite samples and an explicit real-rotation preparation",
+      "leanAnchors": [
+        "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_degree",
+        "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_left_iteratedDeriv",
+        "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_right_iteratedDeriv",
+        "QuantumBlockEncoding.HermitePolynomial.coefficientPolynomial_eval",
+        "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_eval",
+        "QuantumBlockEncoding.HermitePolynomial.smoothInitial_pos",
+        "QuantumBlockEncoding.HermiteSmoothness.smoothInitial_contDiff",
+        "QuantumBlockEncoding.compileUniformlyControlledRy_eval_controlledRyBlockMatrix",
+        "QuantumBlockEncoding.HermiteStatePreparation.hermiteStatePreparation_complete"
+      ],
+      "problem": "Prepare the sampled smooth auxiliary initial state used in Schrödingerisation, for any Hermite order k. Load function values as amplitudes and account for the preparation circuit itself.",
+      "formula": "\\lvert g_k\\rangle_p=\\frac{1}{\\sqrt{Z_k}}\\sum_{j=0}^{2^n-1}g_k(p_j)\\lvert j\\rangle,\\quad Z_k=\\sum_jg_k(p_j)^2,\\quad p_j=-\\pi L+\\frac{2\\pi Lj}{2^n}.",
+      "contract": "The exact target uses exp(p) to the left of −1, a degree-at-most 2k+1 Hermite polynomial on [−1,0], and exp(−p) to the right of 0. The real-valued samples are normalized before preparation. The circuit uses explicit uniformly controlled real rotations, compiled to Ry and CNOT. The exact symbolic theorem and finite floating-point export checks have separate scopes.",
+      "symbols": [
+        [
+          "k",
+          "Number of endpoint derivatives matched; k=1 is the cubic splice."
+        ],
+        [
+          "n, N=2^n",
+          "Qubit count and sample count. q0 has weight 1."
+        ],
+        [
+          "L",
+          "Positive truncation parameter; grid interval [−πL,πL)."
+        ],
+        [
+          "g_k(p_j)",
+          "Real amplitude before normalization, not a measurement probability."
+        ],
+        [
+          "Z_k",
+          "Sum of squared samples; normalization is proved from the actual input."
+        ]
+      ],
+      "circuit": {
+        "registers": "q0 is the least significant bit. Layers prepare q0, q1, …, q(n−1). No ancilla or output measurement. Kets print q(n−1)…q0.",
+        "stages": [
+          {
+            "label": "Classical sample construction",
+            "detail": "Compute the Hermite coefficients and evaluate the two tails and the polynomial splice.",
+            "gates": [
+              "k, n, L",
+              "g_k(p_j)"
+            ]
+          },
+          {
+            "label": "Mass reduction",
+            "detail": "Sum squared amplitudes over common low-bit prefixes. Each parent mass is the sum of its children.",
+            "gates": [
+              "m(d,s)",
+              "split angles"
+            ]
+          },
+          {
+            "label": "Quantum preparation",
+            "detail": "Apply one uniformly controlled Ry layer per qubit, then compile every layer to Ry and CNOT.",
+            "gates": [
+              "UCRY_0",
+              "UCRY_1",
+              "…",
+              "UCRY_(n−1)"
+            ]
+          },
+          {
+            "label": "Prepared register",
+            "detail": "The final amplitudes equal the normalized samples. Independent finite replay measures numerical rounding error.",
+            "gates": [
+              "|g_k>",
+              "NumPy / Qiskit / QASM"
+            ]
+          }
+        ]
+      },
+      "evolution": {
+        "caption": "A single reference construction connects the Hermite sample theorem to its Ry/CNOT preparation. The displayed n=3 costs describe the illustrative serial sequence. This is a construction and proof trace; no optimization history or comparative resource improvement is claimed.",
+        "stages": [
+          {
+            "iteration": "reference",
+            "name": "Hermite rotation tree",
+            "status": "Exact symbolic construction",
+            "score": [
+              15,
+              15,
+              0,
+              0
+            ],
+            "instructionTier": "Illustrative n=3 reference sequence: 7 Ry and 8 CX; depth 15 is the serial schedule, not an optimized depth claim.",
+            "gateBreakdown": {
+              "singleQubit": 7,
+              "cx": 8
+            },
+            "description": "First construct the polynomial and its endpoint jets. Build the low-bit mass tree and apply its exact controlled rotations. The invariant says that a prefix carries the square root of its total remaining probability mass. The final layer resolves each requested amplitude.",
+            "leanAnchor": "QuantumBlockEncoding.HermiteStatePreparation.hermiteStatePreparation_complete"
+          }
+        ]
+      },
+      "qiskit": {
+        "path": "executable-exports/SP-HERMITE-001/qiskit/export.py",
+        "command": "python3 executable-exports/SP-HERMITE-001/qiskit/export.py --self-test",
+        "role": "Replays the actual Ry/CNOT gate list using independent NumPy and Qiskit evaluators and an OpenQASM round trip. Reports finite floating-point evidence, not a general exact certificate."
+      },
+      "preset": {
+        "taskName": "SP-HERMITE-001",
+        "mode": "statePreparation",
+        "target": "normalized sampled Hermite extension g_k(p_j)",
+        "normalizer": "sqrt(sum_j g_k(p_j)^2)",
+        "projector": "|0^n>"
+      },
+      "summary": "Turn a smooth function into a concrete quantum state: explicit Hermite coefficients, a mass-tree proof, elementary rotation gates, and reproducible finite exports.",
+      "source": "Jin–Liu–Ma, arXiv:2403.19123v3, Section 4.3, Eqs. (4.31)–(4.32).",
+      "contributor": "ASPBE authors",
+      "limitations": "Ideal real-angle gates are the symbolic model. Floating-point sampling and exported angles are checked numerically on reported finite instances. PDE recovery, Sobolev regularity, Fourier convergence, hardware angle synthesis, and global circuit optimality are outside this state-preparation certificate.",
+      "supplementaryAssets": [
+        {
+          "path": "docs/hermite-state-preparation.tex",
+          "label": "Complete construction and mathematical proof (LaTeX)",
+          "copy": true,
+          "language": "latex"
+        },
+        {
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "label": "Hermite polynomial: complete Lean source",
+          "copy": true,
+          "language": "lean"
+        },
+        {
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "label": "Generic amplitude preparation: complete Lean source",
+          "copy": true,
+          "language": "lean"
+        },
+        {
+          "path": "QuantumBlockEncoding/HermiteSmoothness.lean",
+          "label": "Global Cᵏ smoothness: complete Lean source",
+          "copy": true,
+          "language": "lean"
+        },
+        {
+          "path": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+          "label": "Hermite target and root certificate: complete Lean source",
+          "copy": true,
+          "language": "lean"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/qiskit/export.py",
+          "label": "Runnable elementary-gate exporter (Python)",
+          "language": "python"
+        },
+        {
+          "path": "docs/assets/hermite-proof-flow.svg",
+          "label": "From the source function to the prepared register: proof and replay paths",
+          "kind": "figure"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/circuit.svg",
+          "label": "Example k=1, n=3, L=1: all 7 Ry gates and 8 CNOTs, shown in execution order",
+          "kind": "figure"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/circuit.qasm",
+          "label": "Example circuit (OpenQASM 3)",
+          "copy": true,
+          "language": "qasm"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/samples.csv",
+          "label": "Sample positions and target amplitudes (CSV)"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/acceptance.json",
+          "label": "Finite replay results, backend versions and artifact hashes (JSON)"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/manifest.json",
+          "label": "Register conventions and executable manifest (JSON)"
+        },
+        {
+          "path": "executable-exports/SP-HERMITE-001/qiskit/replay.py",
+          "label": "Independent interpolation and saved-QASM replay",
+          "copy": true,
+          "language": "python"
+        },
+        {
+          "path": "docs/hermite-independent-review.md",
+          "label": "Independent source-to-certificate review"
+        }
+      ]
+    }
+  ],
+  "teaching": {
+    "hermite-smooth-state-preparation": {
+      "readerGoal": "A smooth classical curve becomes the amplitudes of a quantum register.",
+      "whyThisCase": "Smoothing the auxiliary initial condition removes a derivative jump. A quantum algorithm still needs a circuit that loads the resulting samples. This case shows every step between the function and its state-preparation gates.",
+      "algorithmContext": "In Schrödingerisation, this register is prepared independently of the physical-system initial state. Their joint input is |g_k> tensor |u_0>. Subsequent Fourier transforms and evolution are separate algorithm stages.",
+      "source": {
+        "title": "Schrödingerisation based computationally stable algorithms for ill-posed problems in partial differential equations",
+        "authors": "Shi Jin, Nana Liu and Chuwen Ma",
+        "url": "https://arxiv.org/html/2403.19123v3#S4.SS3",
+        "queryFormula": "g_k(p)=\\begin{cases}e^p&p<-1,\\\\P_k(p)&-1\\le p\\le0,\\\\e^{-p}&p>0.\\end{cases}",
+        "queryExplanation": "Section 4.3, Eqs. (4.31)–(4.32), fixes the smooth initial-data family. ASPBE supplies the state-preparation construction; this page does not claim to formalize the PDE convergence estimate."
+      },
+      "circuitReading": [
+        [
+          "Read the integer label",
+          "q0 is the low bit. Label j is the sum of 2^r q_r; the rightmost bit in a ket is q0."
+        ],
+        [
+          "Prepare one more bit",
+          "At layer d, the already prepared low bits choose an angle on qubit qd. Higher bits are still zero."
+        ],
+        [
+          "Split an amplitude by mass",
+          "A rotation sends the square root of a parent mass into square roots of its two child masses."
+        ],
+        [
+          "Compile the controls",
+          "Half-sum and half-difference rotation tables plus CNOT pairs realize the same selected two-dimensional rotation."
+        ],
+        [
+          "Inspect the exported example",
+          "The concrete gate diagram and QASM show finite rounded angles. The symbolic theorem concerns exact real angles."
+        ]
+      ],
+      "theorems": [
+        {
+          "label": "1 · Source construction",
+          "title": "One polynomial satisfies all endpoint derivative conditions",
+          "statementFormula": "t=p+1,\\quad a_{k,r}=\\sum_{m=0}^{r}\\frac{\\binom{k+r-m}{k}}{m!},\\quad A_k(t)=\\sum_{r=0}^{k}a_{k,r}t^r,\\qquad P_k(p)=e^{-1}(1-t)^{k+1}A_k(t)+t^{k+1}A_k(1-t).",
+          "statementProse": "The coefficients are explicit. At the left endpoint all derivatives through order k equal exp(−1); at the right they alternate between 1 and −1. The polynomial degree is at most 2k+1. The literal piecewise function is globally Cᵏ; a separate gluing theorem closes this analytic claim.",
+          "proofSteps": [
+            [
+              "Truncate a formal series",
+              "A_k keeps the first k+1 coefficients of exp(t)/(1−t)^(k+1). Multiplication restores the exponential coefficients through order k."
+            ],
+            [
+              "Match each endpoint",
+              "A factor t^(k+1) kills the first k derivatives at t=0. Reflect t to 1−t to obtain the right endpoint."
+            ],
+            [
+              "Check uniqueness",
+              "A difference with both zero jets is divisible by t^(k+1)(1−t)^(k+1), whose degree is too large unless the difference is zero."
+            ],
+            [
+              "Glue the smooth pieces",
+              "Matching values and successive derivatives at −1 and 0 gives a globally Cᵏ real function; Lean proves the gluing for arbitrary k."
+            ]
+          ],
+          "leanRoots": [
+            "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_degree",
+            "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_left_iteratedDeriv",
+            "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_right_iteratedDeriv",
+            "QuantumBlockEncoding.HermitePolynomial.coefficientPolynomial_eval",
+            "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_eval",
+            "QuantumBlockEncoding.HermitePolynomial.smoothInitial_pos",
+            "QuantumBlockEncoding.HermiteSmoothness.smoothInitial_contDiff"
+          ]
+        },
+        {
+          "label": "2 · Preparation invariant",
+          "title": "The rotations distribute exactly the requested amplitude mass",
+          "statementFormula": "m_{d,s}=\\sum_{j\\bmod2^d=s}g_k(p_j)^2,\\quad \\theta_{d,s}=2\\operatorname{atan2}\\!\\left(\\sqrt{m_{d+1,s+2^d}},\\sqrt{m_{d+1,s}}\\right),\\quad |\\Psi_d\\rangle=\\sum_{s<2^d}\\sqrt{\\frac{m_{d,s}}{Z_k}}|0^{n-d}\\rangle|s\\rangle.",
+          "statementProse": "Every layer resolves one bit of the target state. The squared norm is preserved, and after n layers each leaf amplitude equals its sample divided by the total norm.",
+          "proofSteps": [
+            [
+              "Partition by the next bit",
+              "The two child index sets are disjoint and together exhaust the parent."
+            ],
+            [
+              "Apply a two-dimensional rotation",
+              "Cosine and sine give the ratios of child square-root masses to the parent square-root mass."
+            ],
+            [
+              "Close the root",
+              "At full depth each mass is a single squared sample; normalization and state action follow. Zero-mass subtrees carry zero incoming amplitude."
+            ]
+          ],
+          "leanRoots": [
+            "QuantumBlockEncoding.HermiteStatePreparation.hermiteStatePreparation_complete"
+          ]
+        },
+        {
+          "label": "3 · Read the evidence at the correct level",
+          "title": "Exact real-angle gates and finite exported circuits answer different questions",
+          "statementFormula": "U_k|0^n\\rangle=|g_k\\rangle_p,\\qquad \\|\\widehat U_k|0^n\\rangle-\\widehat g_k\\|_\\infty\\le\\varepsilon_{\\rm observed}.",
+          "statementProse": "The first identity is the symbolic acceptance target. The second is a measured error for a specified exported instance; the acceptance report supplies the parameters, backend versions and tolerances. The measured tolerance here is the maximum componentwise amplitude error, not a whole-vector Euclidean error.",
+          "proofSteps": [
+            [
+              "Keep the real-angle semantics",
+              "The generic controlled-rotation compiler preserves the mathematical gate matrix."
+            ],
+            [
+              "Replay the emitted instructions",
+              "NumPy, Qiskit and QASM import all consume the actual elementary-gate list rather than a dense preparation black box."
+            ],
+            [
+              "Respect the boundary",
+              "A small measured error supports that finite export. It neither proves a uniform floating-point bound nor a PDE convergence theorem."
+            ]
+          ],
+          "leanRoots": [
+            "QuantumBlockEncoding.HermiteStatePreparation.hermiteStatePreparation_complete"
+          ]
+        }
+      ],
+      "benchmarkBridge": {
+        "title": "Cubic smoothness: C1, not C2",
+        "body": "For k=1, P''(0)=−10+8/e whereas the right-hand exponential has second derivative 1. The C2 sentence after source Eq. (6.1) is therefore not adopted. This does not change the endpoint conditions or the preparation target."
+      }
+    }
+  },
+  "circuits": {
+    "hermite-smooth-state-preparation": {
+      "Hermite rotation tree": "\\begin{quantikz}[row sep=.45cm,column sep=.6cm]\n\\lstick{$q_0:\\ket0$} & \\gate{R_y} & \\ctrl{1} & \\ctrl{2} & \\qw \\\\\n\\lstick{$q_1:\\ket0$} & \\qw & \\gate{\\mathrm{UCRY}_1} & \\ctrl{1} & \\qw \\\\\n\\lstick{$q_2:\\ket0$} & \\qw & \\qw & \\gate{\\mathrm{UCRY}_2} & \\rstick{$|g_k\\rangle$} \\qw\n\\end{quantikz}"
+    }
+  }
+}

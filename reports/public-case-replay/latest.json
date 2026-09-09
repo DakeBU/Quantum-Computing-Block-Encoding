@@ -15,7 +15,7 @@
           "name": "hadamard",
           "passed": true,
           "state_error": 0.0,
-          "unitary_error": 2.4441574809578864e-16
+          "unitary_error": 2.220446049250313e-16
         }
       ],
       "passed": true,
@@ -36,7 +36,7 @@
         "unitary_error": 0.0
       },
       "case": "BE Case 1 champion",
-      "elapsed_seconds": 0.312681,
+      "elapsed_seconds": 0.36,
       "passed": true
     },
     {
@@ -69,7 +69,7 @@
         "task_id": "QBE-MAIN-CASE-HIER-COLD-001"
       },
       "case": "BE Case 1 isolated baseline",
-      "elapsed_seconds": 0.044249,
+      "elapsed_seconds": 0.375,
       "passed": true
     },
     {
@@ -94,19 +94,19 @@
             "power": 3,
             "qasm_depth": 465,
             "qasm_gate_count": 638,
-            "qasm_operator_error": 1.8572384374115355e-12,
+            "qasm_operator_error": 1.015714758152158e-12,
             "qasm_parse_ok": true,
-            "qasm_path": "executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001/qasm3/cubic_householder_n2.qasm3",
+            "qasm_path": "executable-exports\\QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001\\qasm3\\cubic_householder_n2.qasm3",
             "qiskit_operator_error": 0.0,
             "qiskit_qubits": 5,
-            "unitary_error": 2.2224038376351276e-16
+            "unitary_error": 2.2222320676565057e-16
           }
         ],
         "semantic_tier": "finite post-Lean executable validation; symbolic family proof remains Lean",
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-COLD-001"
       },
       "case": "BE Case 2 cold",
-      "elapsed_seconds": 0.738701,
+      "elapsed_seconds": 0.39,
       "passed": true
     },
     {
@@ -131,12 +131,12 @@
             "power": 1,
             "qasm_depth": 461,
             "qasm_gate_count": 634,
-            "qasm_operator_error": 3.7183907660243654e-13,
+            "qasm_operator_error": 2.245434050319006e-12,
             "qasm_parse_ok": true,
-            "qasm_path": "executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001/qasm3/linear_householder_n2.qasm3",
+            "qasm_path": "executable-exports\\QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001\\qasm3\\linear_householder_n2.qasm3",
             "qiskit_operator_error": 0.0,
             "qiskit_qubits": 5,
-            "unitary_error": 1.1445580005848334e-16
+            "unitary_error": 1.2670444247215719e-16
           },
           {
             "auxiliary_qubits": 3,
@@ -148,19 +148,19 @@
             "power": 3,
             "qasm_depth": 465,
             "qasm_gate_count": 638,
-            "qasm_operator_error": 1.8572384374115355e-12,
+            "qasm_operator_error": 1.015714758152158e-12,
             "qasm_parse_ok": true,
-            "qasm_path": "executable-exports/QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001/qasm3/cubic_householder_n2.qasm3",
+            "qasm_path": "executable-exports\\QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001\\qasm3\\cubic_householder_n2.qasm3",
             "qiskit_operator_error": 0.0,
             "qiskit_qubits": 5,
-            "unitary_error": 2.2224038376351276e-16
+            "unitary_error": 2.2222320676565057e-16
           }
         ],
         "semantic_tier": "finite post-Lean executable validation; symbolic family proof remains Lean",
         "task_id": "QBE-HARD-CUBIC-DIAGONAL-HIER-HINTED-001"
       },
       "case": "BE Case 2 hinted",
-      "elapsed_seconds": 0.955759,
+      "elapsed_seconds": 0.407,
       "passed": true
     },
     {
@@ -168,7 +168,7 @@
         "artifacts": {
           "figure4FixedN8": {
             "openqasmCanonicalRoundTrip": true,
-            "qiskitFullOperatorError": 4.438552011094872e-15,
+            "qiskitFullOperatorError": 4.5614125758509786e-15,
             "resource": {
               "depth": 674,
               "gateCount": 881,
@@ -177,7 +177,7 @@
           },
           "paperSeven": {
             "openqasmCanonicalRoundTrip": true,
-            "qiskitFullOperatorError": 2.0210396888605207e-15,
+            "qiskitFullOperatorError": 2.368304333814804e-15,
             "resource": {
               "depth": 266,
               "gateCount": 312,
@@ -200,14 +200,14 @@
         "passed": true
       },
       "case": "Robin XOR four-slot T3",
-      "elapsed_seconds": 19.907839,
+      "elapsed_seconds": 0.39,
       "passed": true
     }
   ],
   "certificate_replay_timings_seconds": {
-    "lean_modules": 2.577844,
-    "population_controller": 0.060588,
-    "total": 24.6166
+    "lean_modules": 6.953,
+    "population_controller": 0.453,
+    "total": 9.671
   },
   "cold_start_claim": false,
   "controller_population_replay_passed": true,
@@ -217,8 +217,8 @@
     "qiskit": "2.4.2"
   },
   "figure_policy": "Do not replace historical candidate or convergence figures from this replay. New figures require a fresh isolated search under a frozen model, budget, task contract, and memory policy.",
-  "git_branch": "main",
-  "git_commit": "469a96613217d80c6d1b242cc66d77e712051824",
+  "git_branch": "agent/hermite-smooth-state-preparation-20260909",
+  "git_commit": "9c655688ae317b3bd009576e326d10612c4cb6b4",
   "lean_modules": [
     "QuantumBlockEncoding.TextbookStatePreparation",
     "QuantumBlockEncoding.OptimalControl",
@@ -289,5 +289,5 @@
     "status": "Three exact primitive block encodings; frozen same-tier winner certified"
   },
   "schema_version": 1,
-  "source_digest": "e14dfb699b81986187dd85acf154ec8f46f18a876a1ff89746b9e5bf2c37bc2d"
+  "source_digest": "4640db4c554e50158b5d07f26b85fd80d8b52cb316c89bf7d90e7c9161c4719e"
 }

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -61,7 +62,7 @@ class MutationRollbackTests(unittest.TestCase):
             script = Path(__file__).with_name("enforce_mutation_scope.py")
             completed = subprocess.run(
                 [
-                    "python3",
+                    sys.executable,
                     str(script),
                     "check",
                     "--root",
@@ -110,7 +111,7 @@ class MutationRollbackTests(unittest.TestCase):
             script = Path(__file__).with_name("enforce_mutation_scope.py")
             completed = subprocess.run(
                 [
-                    "python3",
+                    sys.executable,
                     str(script),
                     "check",
                     "--root",
@@ -153,7 +154,7 @@ class MutationRollbackTests(unittest.TestCase):
             script = Path(__file__).with_name("enforce_mutation_scope.py")
             completed = subprocess.run(
                 [
-                    "python3",
+                    sys.executable,
                     str(script),
                     "check",
                     "--root",

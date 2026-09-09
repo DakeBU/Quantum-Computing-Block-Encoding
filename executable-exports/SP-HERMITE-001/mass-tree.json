@@ -1,0 +1,58 @@
+[
+  {
+    "angle": 1.1952476818322655,
+    "depth": 0,
+    "low_bit_prefix": 0,
+    "mass_0_scaled": 1.0882952792592524,
+    "mass_1_scaled": 0.5041964117072407,
+    "zero_parent": false
+  },
+  {
+    "angle": 0.5713560989172485,
+    "depth": 1,
+    "low_bit_prefix": 0,
+    "mass_0_scaled": 1.001867442731708,
+    "mass_1_scaled": 0.08642783652754452,
+    "zero_parent": false
+  },
+  {
+    "angle": 1.7110237440512774,
+    "depth": 1,
+    "low_bit_prefix": 1,
+    "mass_0_scaled": 0.21686286737189134,
+    "mass_1_scaled": 0.2873335443353494,
+    "zero_parent": false
+  },
+  {
+    "angle": 3.055218556540229,
+    "depth": 2,
+    "low_bit_prefix": 0,
+    "mass_0_scaled": 0.0018674427317079895,
+    "mass_1_scaled": 1.0,
+    "zero_parent": false
+  },
+  {
+    "angle": 2.731671717763701,
+    "depth": 2,
+    "low_bit_prefix": 1,
+    "mass_0_scaled": 0.008983291021129429,
+    "mass_1_scaled": 0.2078795763507619,
+    "zero_parent": false
+  },
+  {
+    "angle": 1.5707963267948966,
+    "depth": 2,
+    "low_bit_prefix": 2,
+    "mass_0_scaled": 0.04321391826377226,
+    "mass_1_scaled": 0.04321391826377226,
+    "zero_parent": false
+  },
+  {
+    "angle": 0.3555035577811298,
+    "depth": 2,
+    "low_bit_prefix": 3,
+    "mass_0_scaled": 0.27835025331422,
+    "mass_1_scaled": 0.008983291021129429,
+    "zero_parent": false
+  }
+]
