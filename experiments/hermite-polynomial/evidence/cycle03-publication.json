@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "evidenceClass": "observed-publication-verification",
+  "observedDateUtc": "2026-09-10",
+  "commit": "d638f725b7ed07fc471c25730cdf3bcfebe00510",
+  "proofInputsSha256": "23e8145e09aa2cad81d4cf3bf20fa96f63323e1f81fc6719007e320f2d0694be",
+  "githubActions": [
+    {
+      "runId": 34452226123,
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/runs/34452226123",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {"name": "verify", "conclusion": "success"},
+        {"name": "deploy", "conclusion": "success"}
+      ]
+    },
+    {
+      "runId": 34452226167,
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding/actions/runs/34452226167",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "publicChecks": {
+    "buildReportCommitMatches": true,
+    "leanGatePassed": true,
+    "caseHttpStatus": 200,
+    "namedProducerPresent": true,
+    "polynomialBoundPresent": true,
+    "hostPathPatternDetected": false
+  },
+  "caseUrl": "https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/hermite-smooth-state-preparation/index.html",
+  "scope": "The main publication is verified. This observation does not close whole classical cost, finite-bit error, or family-wide executable refinement, and does not attest later research-branch sources."
+}

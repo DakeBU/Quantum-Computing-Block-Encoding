@@ -31,16 +31,19 @@ STATE_PREP_MODULES = {
     "StatePreparationBenchmarks.lean",
     "ConstructiveHermitePreparation.lean",
     "HermiteBernstein.lean",
+    "HermiteBinaryCutoff.lean",
     "HermiteBoundaryInjection.lean",
     "HermiteCutRank.lean",
     "HermiteFiniteChain.lean",
     "HermiteFiniteNorm.lean",
+    "HermiteExplicitBond.lean",
     "HermiteIntervalMass.lean",
     "HermitePolynomialPreparation.lean",
     "HermitePolynomialResources.lean",
     "HermiteSampleStructure.lean",
     "HermiteTransferCores.lean",
     "StoredBernstein.lean",
+    "StoredHermiteCoefficients.lean",
 }
 
 STRUCTURED_SEMANTICS_MODULES = {
@@ -65,6 +68,8 @@ STRUCTURED_SEMANTICS_MODULES = {
     "StoredIsometryCompletion.lean",
     "StoredRectangularGivens.lean",
     "StoredTensorTrain.lean",
+    "StoredTensorTrainNorm.lean",
+    "StoredSelectedRyTrace.lean",
     "StoredThinLQ.lean",
     "TensorTrainCanonical.lean",
     "TensorTrainLocalCompiler.lean",

@@ -34,6 +34,11 @@ The original exponential reference remains unchanged.
 | C2b | Stored positive-coefficient interval restriction | `StoredBernstein.restrict_value`, `restrict_total_cost_le` | compiled actual producer, <=`20*d^3+42*d^2+32*d+13`; source coefficient/cutoff/exp generation not included |
 | C2c | Stored all-length TT canonicalization | `StoredTensorTrain.canonicalize_refines`, `canonicalize_total_cost_le` | compiled equality to actual deterministic result and polynomial stored-operation bound; not a complete source compiler |
 | C2d | Stored active-column completion | `StoredIsometryCompletion.complete_value`, `complete_total_cost_le` | compiled actual completion refinement and local polynomial cost; suppliers charged separately |
+| C2e | Exact-comparison source cutoff | `HermiteBinaryCutoff.compute_value`, `compute_cost` | scoped compile passed: exactly `n_p` comparisons and `2*n_p` real field operations; finite-bit classification remains C3 |
+| C2f | Explicit source-bond layout | `HermiteExplicitBond.bondEquiv`, `same_literal_source`, `rawSourceChain_norm` | scoped compile passed: executable layout and unchanged observable source, not old/new matrix-entry equality or complete core production |
+| C2g | Stored source Bernstein coefficients | `StoredHermiteCoefficients.compile_value`, `compile_pos`, `compile_total_cost_le`, `compile_exponentialCalls` | scoped compile passed: ordinary counters <=`864*(k+1)^2`, plus one separate exp call; raw-chain assembly still open |
+| C2h | Stored norm environments | `StoredTensorTrainNorm.gram_value`, `norm_value`, `norm_total_cost_le` | cached two-pass Gram supplier and signed/zero/internal-zero-bond tests passed; full cycle-04 Lean and website integration passed; whole compiler composition remains open |
+| C2i | Stored recursive local rotation emission | `StoredSelectedRyTrace.compile_value`, `selected_value`, `selected_total_cost_le` | scoped compile passed: full ordered trace equality and local stored-operation ledger; angle evaluation, physical whole-pipeline placement and serialization excluded |
 | C3 | Input representation, cutoff separation, rounding, bit complexity | no uniform epsilon/cost certificate | open; real scientific input and rational executable input remain distinct |
 | M1 | Interval masses and actual-grid `Z>=1` | `HermiteIntervalMass.hermite_polynomial_mass`, `exponentialMassClosed_eq`, `sampled_mass_ge_one` | compiled; independent target/norm validation reuse |
 | M2 | Coherent mass/angle arithmetic with uncompute | no supplied circuit | inactive alternative, not combined into the MPS quantum circuit |
@@ -44,15 +49,24 @@ The original exponential reference remains unchanged.
 
 ## Next admissible work
 
-1. Consume the checked local norm supplier rather than evaluate a dense sample
-   sum in any classical compiler.
-2. Give deterministic small-matrix LQ/completion and angle evaluation an explicit
-   operation model; handle zero pivots and rank deficiency before assigning a
-   polynomial cost. Do not replace this by a `Classical.choose` cost claim.
+1. Compose the source coefficients, cutoff and explicit layout into one stored
+   raw-chain producer, including tail exponentials and boundary contractions.
+2. Consume the stored norm, LQ, canonicalization, completion and local trace
+   interfaces through that same producer; local cost theorems do not yet bound
+   the whole classical compiler. Keep zero pivots and rank deficiency covered.
 3. Relate one executable primitive backend to the proved backend, then budget
    input approximation, core rounding, orthogonalization and angle error.
 4. Keep any approximate tolerance explicit; finite Qiskit checks never close a
    symbolic all-parameter certificate.
+
+[Cycle-04 evidence and remaining composition work](../experiments/hermite-polynomial/CYCLE04-RESULT.md)
+separates scoped checks from full publication acceptance. No C2/C3/X2/ROOT
+status is promoted merely because a supplier compiles.
+
+The five cycle-04 interfaces C2e--C2i also passed the complete local publication
+pipeline with proof-input digest
+`448914e875837c53a5b2a5d08260c9eab4009eb75fd6a9e60503b66aeaf1866a`.
+This integration acceptance does not change the open C2/C3/X2/ROOT boundary.
 
 ## Preserved falsifier
 

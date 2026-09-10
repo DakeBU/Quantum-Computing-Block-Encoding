@@ -247,3 +247,21 @@ integration evidence carries source digests. A costed local supplier must
 still be composed through the actual source-to-output algorithm before
 claiming total classical polynomial cost. The new exact-real producer by
 itself does not fill that gap or certify a numerical backend.
+
+## Cycle-04 supplier lookup
+
+Use the following complete import names; matching tests contain checked
+instantiations. See the [cycle-04 packet](../../experiments/hermite-polynomial/CYCLE04-RESULT.md)
+for the current scoped versus integrated gate status.
+
+| Import suffix after `QuantumBlockEncoding.` | Retrieve first | Important boundary |
+| --- | --- | --- |
+| `HermiteBinaryCutoff` | `compute_value n L hL`, `compute_cost n L op` | `n+1` data bits; exact-real comparison, not finite-bit classification |
+| `HermiteExplicitBond` | `bondEquiv k`, `same_literal_source k n L hL x` | computable explicit index layout; only observable contraction is equated to the old layout |
+| `StoredHermiteCoefficients` | `compile_value k r`, `compile_pos k r`, `compile_exponentialCalls k` | cached original positive coefficients; one exponential counted separately |
+| `StoredTensorTrainNorm` | `gram_value C`, `norm_value C`, `norm_total_cost_le C D bound` | already stored input; do not evaluate a dense all-word sum to supply the norm |
+| `StoredSelectedRyTrace` | `selected_value wires target distinct chosen`, `selected_total_cost_le` | exact ordered local trace; `2^q` is local control size, not data-grid size |
+
+These modules are supplier candidates for a composed stored Hermite compiler.
+They do not by themselves replace `ConstructiveHermitePreparation.prepare`
+or discharge finite-precision and full executable-family acceptance.

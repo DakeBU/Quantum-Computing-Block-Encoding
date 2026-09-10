@@ -36,3 +36,8 @@ import ABEISTests.StoredThinLQ
 import ABEISTests.StoredBernstein
 import ABEISTests.StoredIsometryCompletion
 import ABEISTests.StoredTensorTrain
+import ABEISTests.HermiteBinaryCutoff
+import ABEISTests.HermiteExplicitBond
+import ABEISTests.StoredHermiteCoefficients
+import ABEISTests.StoredSelectedRyTrace
+import ABEISTests.StoredTensorTrainNorm

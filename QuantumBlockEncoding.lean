@@ -110,3 +110,8 @@ import QuantumBlockEncoding.StoredThinLQ
 import QuantumBlockEncoding.StoredBernstein
 import QuantumBlockEncoding.StoredIsometryCompletion
 import QuantumBlockEncoding.StoredTensorTrain
+import QuantumBlockEncoding.HermiteBinaryCutoff
+import QuantumBlockEncoding.HermiteExplicitBond
+import QuantumBlockEncoding.StoredHermiteCoefficients
+import QuantumBlockEncoding.StoredSelectedRyTrace
+import QuantumBlockEncoding.StoredTensorTrainNorm

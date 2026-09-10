@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "evidenceClass": "observed-local-integration",
+  "observedDateUtc": "2026-09-10",
+  "baseCommit": "d638f725b7ed07fc471c25730cdf3bcfebe00510",
+  "uncommittedProofChangesIncluded": true,
+  "proofInputsSha256": "448914e875837c53a5b2a5d08260c9eab4009eb75fd6a9e60503b66aeaf1866a",
+  "command": "scripts/build-all.ps1 -PythonCommand .venv/Scripts/python.exe",
+  "exitCode": 0,
+  "leanGate": {
+    "passed": true,
+    "compiledModuleCount": 172,
+    "completedAt": "2026-09-10T16:43:15.091447+08:00"
+  },
+  "website": {
+    "passed": true,
+    "htmlPagesChecked": 318,
+    "declarationSearchEntries": 4201,
+    "modulePages": 123,
+    "commitPinnedSourceLinksChecked": 4059,
+    "commitPinnedSourceFilesChecked": 118,
+    "diagramCount": 9,
+    "publicationTextFilesPathScanned": 473,
+    "hostPathLeakageDetected": false,
+    "requiredFilesAndMarkersPassed": true
+  },
+  "observedRegressionTests": {
+    "websiteContracts": 67,
+    "blueprintSearch": 11,
+    "preview": 1,
+    "additionalMpsRegression": 26,
+    "additionalIndependentMassRegression": 7
+  },
+  "scope": "Five additive cycle-04 suppliers and their catalog/frontier integration. The exact quantum root remains unchanged. Whole classical compiler cost, uniform finite-bit computation and family-wide executable refinement remain open. This is not a remote CI or deployment attestation.",
+  "nonfatalWarnings": "Existing Verso documentation warnings and Python TeX-string escape SyntaxWarnings were observed. They did not fail the complete pipeline; no unrelated warning cleanup was included."
+}

@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 4059,
-  "privateDeclarationExclusionCount": 288,
-  "sourceDocstringCount": 2231,
-  "generatedReaderCueCount": 4059,
+  "publicDeclarationCount": 4201,
+  "privateDeclarationExclusionCount": 300,
+  "sourceDocstringCount": 2267,
+  "generatedReaderCueCount": 4201,
   "byKind": {
-    "abbrev": 47,
-    "def": 1566,
+    "abbrev": 48,
+    "def": 1616,
     "inductive": 36,
     "opaque": 7,
-    "structure": 202,
-    "theorem": 2201
+    "structure": 204,
+    "theorem": 2290
   },
   "bySource": {
     "QuantumBlockEncoding/AdjacentGivens.lean": 62,
@@ -40,8 +40,10 @@
     "QuantumBlockEncoding/GrayBasis.lean": 8,
     "QuantumBlockEncoding/GrayGivensCompiler.lean": 26,
     "QuantumBlockEncoding/HermiteBernstein.lean": 53,
+    "QuantumBlockEncoding/HermiteBinaryCutoff.lean": 9,
     "QuantumBlockEncoding/HermiteBoundaryInjection.lean": 121,
     "QuantumBlockEncoding/HermiteCutRank.lean": 20,
+    "QuantumBlockEncoding/HermiteExplicitBond.lean": 11,
     "QuantumBlockEncoding/HermiteFiniteChain.lean": 14,
     "QuantumBlockEncoding/HermiteFiniteNorm.lean": 11,
     "QuantumBlockEncoding/HermiteIntervalMass.lean": 19,
@@ -118,9 +120,12 @@
     "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean": 31,
     "QuantumBlockEncoding/StoredBernstein.lean": 20,
     "QuantumBlockEncoding/StoredGivens.lean": 60,
+    "QuantumBlockEncoding/StoredHermiteCoefficients.lean": 38,
     "QuantumBlockEncoding/StoredIsometryCompletion.lean": 59,
     "QuantumBlockEncoding/StoredRectangularGivens.lean": 30,
+    "QuantumBlockEncoding/StoredSelectedRyTrace.lean": 55,
     "QuantumBlockEncoding/StoredTensorTrain.lean": 30,
+    "QuantumBlockEncoding/StoredTensorTrainNorm.lean": 29,
     "QuantumBlockEncoding/StoredThinLQ.lean": 28,
     "QuantumBlockEncoding/TeachingRouteClosures.lean": 35,
     "QuantumBlockEncoding/TensorTrainCanonical.lean": 33,
@@ -573,6 +578,27 @@
       "name": "QuantumBlockEncoding.GHL2025.eq_zero_or_eq_base_of_mod_eq_zero_of_lt_two_mul",
       "source": "QuantumBlockEncoding/GHL2025.lean",
       "line": 1115,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.HermiteBinaryCutoff.half_span",
+      "source": "QuantumBlockEncoding/HermiteBinaryCutoff.lean",
+      "line": 46,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.HermiteBinaryCutoff.middle_point",
+      "source": "QuantumBlockEncoding/HermiteBinaryCutoff.lean",
+      "line": 51,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.HermiteBinaryCutoff.root_span",
+      "source": "QuantumBlockEncoding/HermiteBinaryCutoff.lean",
+      "line": 100,
       "reason": "private declaration"
     },
     {
@@ -2054,6 +2080,20 @@
     },
     {
       "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredHermiteCoefficients.tick_le_one",
+      "source": "QuantumBlockEncoding/StoredHermiteCoefficients.lean",
+      "line": 227,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredHermiteCoefficients.collect_cost_le",
+      "source": "QuantumBlockEncoding/StoredHermiteCoefficients.lean",
+      "line": 231,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
       "name": "QuantumBlockEncoding.StoredTensorTrain.total_add",
       "source": "QuantumBlockEncoding/StoredTensorTrain.lean",
       "line": 188,
@@ -2071,6 +2111,55 @@
       "name": "QuantumBlockEncoding.StoredTensorTrain.semanticStep",
       "source": "QuantumBlockEncoding/StoredTensorTrain.lean",
       "line": 316,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredTensorTrainNorm.bind_value",
+      "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "line": 23,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredTensorTrainNorm.cacheNode_value",
+      "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "line": 99,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredTensorTrainNorm.materialize_cost_le",
+      "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "line": 147,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredTensorTrainNorm.total_add",
+      "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "line": 223,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredTensorTrainNorm.total_mono",
+      "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "line": 229,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredTensorTrainNorm.identity_total_cost",
+      "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "line": 244,
+      "reason": "private declaration"
+    },
+    {
+      "kind": "theorem",
+      "name": "QuantumBlockEncoding.StoredTensorTrainNorm.node_total",
+      "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "line": 251,
       "reason": "private declaration"
     },
     {
