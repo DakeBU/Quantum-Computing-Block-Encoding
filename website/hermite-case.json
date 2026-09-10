@@ -7,7 +7,7 @@
       "shortTitle": "State prep: Hermite",
       "kind": "statePreparation",
       "status": "certified",
-      "semanticTier": "General-order Hermite samples and an explicit real-rotation preparation",
+      "semanticTier": "Exact Hermite target; polynomial-gate Bernstein–MPS construction; finite export evidence remains separate",
       "leanAnchors": [
         "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_degree",
         "QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_left_iteratedDeriv",
@@ -17,11 +17,15 @@
         "QuantumBlockEncoding.HermitePolynomial.smoothInitial_pos",
         "QuantumBlockEncoding.HermiteSmoothness.smoothInitial_contDiff",
         "QuantumBlockEncoding.compileUniformlyControlledRy_eval_controlledRyBlockMatrix",
-        "QuantumBlockEncoding.HermiteStatePreparation.hermiteStatePreparation_complete"
+        "QuantumBlockEncoding.HermiteStatePreparation.hermiteStatePreparation_complete",
+        "QuantumBlockEncoding.HermiteBoundaryInjection.hermiteKernel_eq_sample",
+        "QuantumBlockEncoding.HermiteFiniteNorm.localSampleNorm_eq_sampleNorm",
+        "QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec",
+        "QuantumBlockEncoding.StoredTensorTrain.canonicalize_total_cost_le"
       ],
       "problem": "Prepare the sampled smooth auxiliary initial state used in Schrödingerisation, for any Hermite order k. Load function values as amplitudes and account for the preparation circuit itself.",
       "formula": "\\lvert g_k\\rangle_p=\\frac{1}{\\sqrt{Z_k}}\\sum_{j=0}^{2^n-1}g_k(p_j)\\lvert j\\rangle,\\quad Z_k=\\sum_jg_k(p_j)^2,\\quad p_j=-\\pi L+\\frac{2\\pi Lj}{2^n}.",
-      "contract": "The exact target uses exp(p) to the left of −1, a degree-at-most 2k+1 Hermite polynomial on [−1,0], and exp(−p) to the right of 0. The real-valued samples are normalized before preparation. The circuit uses explicit uniformly controlled real rotations, compiled to Ry and CNOT. The exact symbolic theorem and finite floating-point export checks have separate scopes.",
+      "contract": "The exact target uses exp(p) to the left of −1, a degree-at-most 2k+1 Hermite polynomial on [−1,0], and exp(−p) to the right of 0. The real-valued samples, not their square roots, are normalized. The new Bernstein–MPS circuit has at most 48 n_p (2k+6)^3 Ry/CNOT instructions and the same upper bound on scheduled depth, with ceil(log2(2k+6)) clean bond qubits, zero oracle calls and no postselection. These are exact real-angle quantum bounds. Whole classical preprocessing and uniform finite-precision error remain open. The original exponential rotation tree and its finite downloadable packet are retained below as the reference.",
       "symbols": [
         [
           "k",
@@ -45,7 +49,7 @@
         ]
       ],
       "circuit": {
-        "registers": "q0 is the least significant bit. Layers prepare q0, q1, …, q(n−1). No ancilla or output measurement. Kets print q(n−1)…q0.",
+        "registers": "Reference rotation-tree diagram below: q0 is the least significant bit; layers prepare q0, q1, …, q(n−1), with no ancilla. The polynomial construction instead emits MSB-first through a small bond register, then uses public LSB wire order and returns every bond qubit to zero. Neither route uses output measurement.",
         "stages": [
           {
             "label": "Classical sample construction",
@@ -84,7 +88,7 @@
         ]
       },
       "evolution": {
-        "caption": "A single reference construction connects the Hermite sample theorem to its Ry/CNOT preparation. The displayed n=3 costs describe the illustrative serial sequence. This is a construction and proof trace; no optimization history or comparative resource improvement is claimed.",
+        "caption": "The displayed circuit and n=3 tuple are the preserved exponential reference, not the new polynomial construction. The tutorial's Bernstein–MPS theorem explains the new all-width quantum bound. Polynomial scaling does not promise fewer gates at every small instance; no global optimum is claimed.",
         "stages": [
           {
             "iteration": "reference",
@@ -118,10 +122,10 @@
         "normalizer": "sqrt(sum_j g_k(p_j)^2)",
         "projector": "|0^n>"
       },
-      "summary": "Turn a smooth function into a concrete quantum state: explicit Hermite coefficients, a mass-tree proof, elementary rotation gates, and reproducible finite exports.",
+      "summary": "Prepare Hermite samples with a small reusable bond register instead of listing 2^n_p amplitudes: a proved O(n_p (k+1)^3) ideal-gate construction, alongside the retained rotation-tree reference and separately scoped finite exports.",
       "source": "Jin–Liu–Ma, arXiv:2403.19123v3, Section 4.3, Eqs. (4.31)–(4.32).",
       "contributor": "ASPBE authors",
-      "limitations": "Ideal real-angle gates are the symbolic model. Floating-point sampling and exported angles are checked numerically on reported finite instances. PDE recovery, Sobolev regularity, Fourier convergence, hardware angle synthesis, and global circuit optimality are outside this state-preparation certificate.",
+      "limitations": "For fixed k the new quantum gate/depth bound is linear in n_p; k is not hidden as a constant when it varies. L is any positive real in Lean, but executable experiments accept positive rational L. Several stored preprocessing components have polynomial bounds in an explicit exact-real operation model; the composed full compiler and a uniform epsilon/bit-cost certificate remain open. Finite QASM replay is not a symbolic family certificate. PDE recovery, Fourier convergence, hardware synthesis and global optimality are outside this certificate. Arbitrary amplitude tables need not have a small bond dimension.",
       "supplementaryAssets": [
         {
           "path": "docs/hermite-state-preparation.tex",
@@ -220,7 +224,7 @@
   "teaching": {
     "hermite-smooth-state-preparation": {
       "readerGoal": "A smooth classical curve becomes the amplitudes of a quantum register.",
-      "whyThisCase": "Smoothing the auxiliary initial condition removes a derivative jump. A quantum algorithm still needs a circuit that loads the resulting samples. This case shows every step between the function and its state-preparation gates.",
+      "whyThisCase": "A generic loader visits exponentially many amplitudes. This particular smooth family has structure: its polynomial piece can be carried by a short vector of Bernstein coefficients, while each exponential tail needs only a scalar update. The new circuit reuses that small memory as it emits the data bits. The original loader remains a transparent reference, not the complexity result.",
       "algorithmContext": "In Schrödingerisation, this register is prepared independently of the physical-system initial state. Their joint input is |g_k> tensor |u_0>. Subsequent Fourier transforms and evolution are separate algorithm stages.",
       "source": {
         "title": "Schrödingerisation based computationally stable algorithms for ill-posed problems in partial differential equations",
@@ -309,7 +313,25 @@
           ]
         },
         {
-          "label": "3 · Read the evidence at the correct level",
+          "label": "3 · Polynomial quantum construction",
+          "title": "Reuse a small memory instead of listing every amplitude",
+          "statementFormula": "D=2k+6,\\quad q=\\lceil\\log_2D\\rceil,\\quad U|0^{n_p+q}\\rangle=|g_k\\rangle|0^q\\rangle,\\qquad G,\\mathrm{depth}\\le48n_pD^3.",
+          "statementProse": "For every natural k, n_p at least 1 and positive L, an actual Ry/CNOT circuit prepares exactly the same normalized samples. Its small bond memory has D states before binary padding. Fixed k therefore gives a linear quantum gate bound in n_p, rather than exponential scaling. No amplitude oracle, success probability or uncharged initial state is assumed. The bound does not yet include the entire classical compiler or finite-bit angle synthesis.",
+          "proofSteps": [
+            ["Carry local coefficients", "A degree-2k+1 Bernstein vector represents the polynomial piece exactly. A boundary state decides when a dyadic interval enters that piece, and two small tail components handle the exponentials. This gives one consistent chain of width 2k+6 for every bit string."],
+            ["Normalize without a sample table", "Small local Gram matrices give exactly the full sample norm. Deterministic thin LQ turns the chain into norm-preserving local maps, retaining deficient and zero-rank cases and absorbing the signed first boundary."],
+            ["Compile and clean the memory", "Complete only the reachable columns to a real unitary, turn each local unitary into selected rotations, and place their Ry/CNOT instructions on the physical wires. The proof covers all output amplitudes, including zero amplitude in every non-clean bond sector."],
+            ["Keep the remaining obligations visible", "Stored LQ, canonicalization, isometry completion and coefficient restriction have separate modeled cost bounds. Source generation, their complete cost composition and uniform rounding remain open; finite QASM checks do not fill those gaps."]
+          ],
+          "leanRoots": [
+            "QuantumBlockEncoding.HermiteBoundaryInjection.hermiteKernel_eq_sample",
+            "QuantumBlockEncoding.HermiteFiniteNorm.localSampleNorm_eq_sampleNorm",
+            "QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec",
+            "QuantumBlockEncoding.StoredTensorTrain.canonicalize_total_cost_le"
+          ]
+        },
+        {
+          "label": "4 · Read the evidence at the correct level",
           "title": "Exact real-angle gates and finite exported circuits answer different questions",
           "statementFormula": "U_k|0^n\\rangle=|g_k\\rangle_p,\\qquad \\|\\widehat U_k|0^n\\rangle-\\widehat g_k\\|_\\infty\\le\\varepsilon_{\\rm observed}.",
           "statementProse": "The first identity is the symbolic acceptance target. The second is a measured error for a specified exported instance; the acceptance report supplies the parameters, backend versions and tolerances. The measured tolerance here is the maximum componentwise amplitude error, not a whole-vector Euclidean error.",

@@ -8313,3 +8313,24 @@ block-encoding formalization lifecycle.
 | 2026-06-28 15:02:00 | qbe.py blueprint-refresh | `proof-blueprints/QBE-MAIN-CASE-HIER-COLD-001.md` | blueprint | Refreshed proof blueprint for QBE-MAIN-CASE-HIER-COLD-001 |
 | 2026-09-09 15:17:40 | qbe.py init | `QBE.md` | init | Initialized QBE workflow files |
 | 2026-09-09 15:17:40 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged 20260909-151740-SP-HERMITE-001-reviewer-build |
+| 2026-09-10 10:48:47 | qbe.py run-cycle | `runs\hermite-poly-20260910-cycle01` | run | Created run cycle for SP-HERMITE-POLY-002 |
+| 2026-09-10 10:48:48 | qbe.py write-context-pack | `runs\context-packs\SP-HERMITE-POLY-002-cycle001.md` | context | Wrote compact context pack for SP-HERMITE-POLY-002 cycle 1 |
+| 2026-09-10 10:52:25 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-20260910-cycle01-master |
+| 2026-09-10 10:52:25 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-20260910-cycle01-provider-interruption |
+| 2026-09-10 10:52:26 | qbe.py agent-note | `runs\hermite-poly-20260910-cycle01\dialogue.md` | dialogue | Appended upper note |
+| 2026-09-10 11:22:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle01-mps01-conditioning |
+| 2026-09-10 11:22:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle01-mass-rank-leaves |
+| 2026-09-10 11:22:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle01-mps02-screening |
+| 2026-09-10 11:22:06 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle01-context-retrieval |
+| 2026-09-10 11:46:36 | qbe.py write-context-pack | `runs\context-packs\SP-HERMITE-POLY-002-cycle002.md` | context | Wrote compact context pack for SP-HERMITE-POLY-002 cycle 2 |
+| 2026-09-10 11:46:39 | qbe.py run-cycle | `runs\hermite-poly-20260910-cycle02` | run | Created run cycle for SP-HERMITE-POLY-002 |
+| 2026-09-10 12:09:42 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle02-stable-integration |
+| 2026-09-10 12:09:43 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle02-harness-regression |
+| 2026-09-10 12:43:48 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle02-fixed-kernel |
+| 2026-09-10 12:43:49 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle02-so-primitives |
+| 2026-09-10 13:13:24 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle02-polynomial-quantum-root |
+| 2026-09-10 13:13:24 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle02-independent-final-review |
+| 2026-09-10 13:22:44 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle03-classical-refinement |
+| 2026-09-10 13:51:31 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle03-stored-bernstein |
+| 2026-09-10 14:32:12 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle03-publication-catalog-failure |
+| 2026-09-10 15:40:34 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle03-integrated-publication |

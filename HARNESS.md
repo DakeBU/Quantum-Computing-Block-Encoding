@@ -322,3 +322,102 @@ it is not the arbitrary-width Figure 4 closure.
 The operational agent instructions live in `AGENTS.md`. The Master and Worker
 prompt contracts live in `.agents/skills/qbe-frontier-master/SKILL.md` and
 `.agents/skills/qbe-substantive-worker/SKILL.md`.
+
+## 13. Structure-search cycles and compact evolutionary memory
+
+For a new resource-improvement task, retain the old certified construction as
+the correctness baseline and open a separate frozen resource contract. A
+correct exponential construction does not satisfy a polynomial resource goal.
+The Hermite search `SP-HERMITE-POLY-002` uses this separation explicitly.
+
+Workers may explore in natural language, write Lean first, or alternate the
+two. Choose the next method from the blocking interface and observed failures,
+not a permanent role assignment. Record the actual method and accepted delta;
+a single mixed-method run does not establish which method is generally faster.
+
+### Proposal lineage and complementary coverage
+
+Borrow the idea of a small complementary portfolio from
+[EoH-S](https://arxiv.org/abs/2508.03082), whose experiments concern heuristic
+design for combinatorial optimization, not quantum proofs. In ASPBE:
+
+- Every proposal records parent IDs, changed mechanism, target/resource tier,
+  affected frontier nodes, and a concrete discriminator.
+- A local mutation changes one named mechanism. A crossover combines a stated
+  interface or reusable result, such as one route's exact interval masses with
+  another route's low-rank normalization; concatenating two descriptions is
+  not a crossover result.
+- Preserve complementary strengths over parameter regimes and obstruction
+  classes. Do not select only the smallest mean finite error or the newest
+  proposal. Failed regimes remain in subsequent regression sets.
+- Unverified insight lineage is separate from certified population lineage.
+  An insight can motivate a proposal but cannot pass on a Lean certificate or
+  become a claimed solution. An algebraic certificate is not a circuit or a
+  resource certificate.
+- Test source action as well as internal invariants. Hermite's first low-rank
+  prototype had nearly orthonormal cores but a large state error in a harder
+  regime; orthogonality and normalization alone cannot accept that export.
+
+These rules govern manual/app-coordinated cycles as well as generated prompts.
+They do not change controller scoring, signatures, replay protection, root
+acceptance, executable acceptance, or the meaning of a certified parent.
+
+### Compact worker bootstrap and reuse records
+
+At a new independent objective or completed handoff boundary, prefer a fresh
+worker context containing the frozen contract, current frontier, exact file
+scope, and a short evidence packet. Do not fork the whole publication or
+research transcript by default. Keep an active worker's context when it is
+still needed for a live proof; context resets are not a progress metric.
+
+A reusable memory record pairs:
+
+1. a plain-language purpose and the assumptions under which it applies;
+2. the fully qualified Lean name, complete checked type and required import;
+3. one checked instantiation, source location and relevant source digest;
+4. the exact evidence layer it closes and what remains unproved;
+5. known failed substitutions or parameter regimes.
+
+Task-explicit theorem/module anchors take retrieval priority over generic
+keyword cards. A source preview is not a complete theorem signature, and a
+declaration's existence in a catalog does not prove it compiled in this run.
+Preserve restricted/held-out retrieval boundaries when resolving imports.
+
+The master records invocation counts, wall times and available token telemetry
+with provenance. Unknown per-worker token counts stay unknown; aggregate
+account or goal usage must not be assigned to individual methods. Compare
+method variants on matched objectives before claiming an efficiency gain.
+
+Use small local Lean and executable gates during search. At integration, run
+the full required repository gates. Generate public documentation only when
+there is a stable, accurately classified frontier to publish; repeated site
+renders are not part of each inner mutation.
+
+### Algorithm and cost refinement packets
+
+When a resource-search frontier reaches classical extraction, distinguish
+three interfaces: the mathematical contract, an actual deterministic data
+producer, and a stored/costed implementation refining that producer. A
+`noncomputable` marker alone neither disproves efficiency nor proves it;
+neither an existence witness nor an output-length bound certifies runtime.
+
+- State the operation model and its omissions. Exact-real field operations,
+  comparisons and transcendental calls are not a finite-bit implementation.
+- Identify stored inputs and cached intermediates. An arbitrary matrix entry
+  callback is not a constant-time lookup; input evaluation and list/vector
+  copying must have a cost contract or remain an explicit frontier node.
+- Parallelize on shared checked interfaces. In Hermite cycle 03, one
+  rectangular elimination supplier served both thin LQ and isometry
+  completion; those consumers then supplied one explicit TT compiler.
+  Record those actual dependencies instead of duplicating whole routes.
+- Keep zero pivots, deficient ranks, empty dimensions, signed residuals,
+  non-prefix column positions and physical bit order in the regression pack.
+- Freeze completed producer interfaces before an integration gate. A new
+  source digest invalidates the old gate scope; a successful local mutation
+  does not silently refresh the full root or the published site.
+
+For cross-language export, separate a mathematical trace theorem, exact
+finite trace comparisons, saved-circuit target replay, and uniform numerical
+error analysis. An improvement in one layer cannot accept the others. Keep
+alternative emitters if one has better finite resources and the other a
+closer proved interface; there need not be one globally dominant champion.

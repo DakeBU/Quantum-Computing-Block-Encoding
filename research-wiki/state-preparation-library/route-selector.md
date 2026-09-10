@@ -35,6 +35,7 @@ swaps the two computational-basis states.
 | explicit normalized vector in small dimension | dense unitary completion | prove the first column and unitarity of the completed matrix | vector length grows exponentially and no structure is used |
 | recursively splittable amplitude vector | amplitude-split tree | norm split plus controlled sub-preparation induction | amplitudes are not normalized or lack computable partial norms |
 | formula-defined amplitudes, e.g. grid polynomials | reversible arithmetic amplitude loading | compute value, rotate/load amplitude, uncompute workspace, prove error | arithmetic precision/error budget is not stated |
+| fixed-degree piecewise polynomial/exponential samples | explicit low-bond cores and sequential small-register isometries | exact core readout, canonicalization, primitive realization, active-space cleanup | rank is discovered from a dense table, or floating cancellation/bit cost is hidden |
 | LCU weights or sparse/Gram construction | PREPARE primitive for block encoding | prove state preparation first, then consume it in a clean-block theorem | no downstream block-encoding route uses the prepared state |
 | unnormalized vector | normalize or rank-one fallback | prove norm/nonzero facts, or switch to `|v><0^n|` | task text silently treats an unnormalized vector as a state |
 
@@ -59,3 +60,9 @@ candidate U
 If a state-preparation candidate later becomes a block-encoding component,
 record that dependency explicitly rather than hiding it inside a larger
 clean-block proof.
+
+For the structured route, start with
+[`SP.Hermite.Structured.md`](SP.Hermite.Structured.md). It distinguishes
+compiled algebraic interfaces and the closed exact-real polynomial quantum circuit root from the still-open whole classical-cost and uniform executable gates,
+and preserves numerical counterexamples. Its exact signatures and checked
+applications are more useful than a declaration-count summary.

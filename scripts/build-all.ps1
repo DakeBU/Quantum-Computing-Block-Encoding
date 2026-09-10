@@ -39,6 +39,8 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand -m unittest tools.test_blueprint_catalog
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/generate-aspbe-catalog.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/generate-aspbe-catalog.py --check

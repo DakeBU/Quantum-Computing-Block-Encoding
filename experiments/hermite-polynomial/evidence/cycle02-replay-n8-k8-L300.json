@@ -1,0 +1,19 @@
+{
+  "status": "finite_diagnostic_pass",
+  "n": 8,
+  "k": 8,
+  "L": "300",
+  "ancillas": 1,
+  "source_norm_squared": "1.000000804481407908000442466874361332808074304846139042103283365515209802786223767872742550652021772148",
+  "state_error": 4.33721690601771e-15,
+  "ancilla_garbage_norm": 0.0,
+  "global_phase": 0.0,
+  "gate_counts": {
+    "ry": 90,
+    "cx": 90
+  },
+  "depth": 180,
+  "qasm_sha256": "1a9c616eb7021629ca6fcc2afb8589f6e17671f3fcf3d0e90b290644ac622909",
+  "dense_statevector_used_only_for_finite_replay": true,
+  "formal_or_uniform_error_certificate": false
+}

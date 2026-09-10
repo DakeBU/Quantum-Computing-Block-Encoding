@@ -145,6 +145,7 @@ jobs:
       - name: Generate and check declaration inventory
         if: steps.proof_changes.outputs.changed == 'true'
         run: |
+          python3 -m unittest tools.test_blueprint_catalog
           python3 scripts/generate-aspbe-catalog.py
           python3 scripts/generate-aspbe-catalog.py --check
           python3 scripts/test-sanitize-blueprint-paths.py

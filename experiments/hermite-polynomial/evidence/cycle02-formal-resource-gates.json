@@ -1,0 +1,67 @@
+{
+  "evidence_kind": "observed_build_and_test_record_not_acceptance",
+  "task": "SP-HERMITE-POLY-002",
+  "date": "2026-09-10",
+  "scientific_target_changed": false,
+  "exact_real_quantum_tier_closed": true,
+  "full_frozen_task_accepted": false,
+  "uniform_executable_certificate": false,
+  "classical_compiler_cost_closed": false,
+  "lean_toolchain": "leanprover/lean4:v4.29.1",
+  "gates": [
+    {
+      "command": "lake build",
+      "exit_code": 0,
+      "jobs": 3450,
+      "scope": "full production library including polynomial gate/depth and local norm suppliers"
+    },
+    {
+      "command": "lake build Tests",
+      "exit_code": 0,
+      "jobs": 3480,
+      "scope": "full Lean test target including new modules"
+    },
+    {
+      "command": "python -B tools/qbe.py harness-check",
+      "exit_code": 0,
+      "tests_run": 98,
+      "tests_passed": 97,
+      "tests_skipped": 1
+    },
+    {
+      "command": "python -B -m unittest discover -s experiments/hermite-polynomial/mps -p test_mps*.py -v",
+      "exit_code": 0,
+      "tests_run": 18,
+      "tests_skipped": 0
+    },
+    {
+      "command": "python -B -m unittest discover -s experiments/hermite-polynomial/mass -p test_*.py -v",
+      "exit_code": 0,
+      "tests_run": 7,
+      "tests_skipped": 0
+    }
+  ],
+  "audited_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "source_sha256": {
+    "QuantumBlockEncoding/HermitePolynomialPreparation.lean": "96D73E4A22F26E51E4D9D2B124547A45D2A63145DD75288ED3711B5384F13D7D",
+    "QuantumBlockEncoding/HermitePolynomialResources.lean": "E3498942130F957315C3328CC0E55D1054B042A14D670BBB80C743B531832D2D",
+    "QuantumBlockEncoding/HermiteFiniteNorm.lean": "C63848C15A010911CDF622A892002F6C9B3463A19EA6A19F94220FB8A11B5D9F",
+    "QuantumBlockEncoding/TensorTrainNormEnvironment.lean": "E684550C248817AC77E03A23E0AF86D3B2C7F3D8B09BCDB2385702624F5EBE6C",
+    "QuantumBlockEncoding/PrimitiveDepthBound.lean": "FD31CFD12A5ED193608B0F666EE1E990981F36B45182FC34DD0FC2DB1CF62B16"
+  },
+  "executable_evidence": [
+    "cycle02-replay-n8-k8-L10.json",
+    "cycle02-replay-n8-k8-L300.json",
+    "cycle02-scan-n128-k2-L1.json"
+  ],
+  "fail_closed_checks": {
+    "missing_qasm_replay_exit": 1,
+    "missing_qasm_scan_exit": 1
+  },
+  "workflow_comparison": "No paired held-out NL-first/Lean-first comparison; unknown per-worker telemetry is not imputed.",
+  "publication": "Not deployed; original baseline and historical acceptance preserved."
+}

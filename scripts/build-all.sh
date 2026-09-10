@@ -20,6 +20,7 @@ python3 executable-exports/SP-HERMITE-001/qiskit/export.py --self-test
 python3 executable-exports/SP-HERMITE-001/qiskit/replay.py
 python3 tools/replay_public_cases.py
 python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
+python3 -m unittest tools.test_blueprint_catalog
 python3 scripts/generate-aspbe-catalog.py
 python3 scripts/generate-aspbe-catalog.py --check
 python3 scripts/test-sanitize-blueprint-paths.py

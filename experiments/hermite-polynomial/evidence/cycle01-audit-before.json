@@ -1,0 +1,104 @@
+{
+  "scope": "read-only controller probes, not mathematical synthesis or observed historical misuse",
+  "source": "tools/qbe_control.py summarize_candidate_population and decide_cycle; tools/qbe.py lean_index_files_for_task",
+  "lineage_cases": {
+    "unknown_parent": {
+      "active_ids": [
+        "child"
+      ],
+      "invalid": [],
+      "accepted_as_active": true
+    },
+    "self_parent": {
+      "active_ids": [
+        "child"
+      ],
+      "invalid": [],
+      "accepted_as_active": true
+    },
+    "duplicate_crossover_parent": {
+      "active_ids": [
+        "child"
+      ],
+      "invalid": [],
+      "accepted_as_active": true
+    }
+  },
+  "rewording_only": {
+    "initial_mode": "execute",
+    "same_text_mode": "population",
+    "reworded_mode": "execute",
+    "same_text_unchanged_cycles": 1,
+    "reworded_unchanged_cycles": 0,
+    "lean_evidence_equal": true,
+    "population_digest_changed": true,
+    "leaf_signature_changed": true
+  },
+  "hermite_task_retrieval": {
+    "selected_files": [
+      "QuantumBlockEncoding/Automation.lean",
+      "QuantumBlockEncoding/AutomationTrace.lean",
+      "QuantumBlockEncoding/BandedSparseAccess.lean",
+      "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+      "QuantumBlockEncoding/BlockEncoding.lean",
+      "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "QuantumBlockEncoding/Circuit.lean",
+      "QuantumBlockEncoding/CircuitSemantics.lean",
+      "QuantumBlockEncoding/ColdStartTransferE1.lean",
+      "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "QuantumBlockEncoding/Core.lean",
+      "QuantumBlockEncoding/CubicAmplitudePrimitive.lean",
+      "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "QuantumBlockEncoding/GHL2025.lean",
+      "QuantumBlockEncoding/GHLHamiltonian.lean",
+      "QuantumBlockEncoding/HermiteCutRank.lean",
+      "QuantumBlockEncoding/HermitePolynomial.lean",
+      "QuantumBlockEncoding/HermiteSmoothness.lean",
+      "QuantumBlockEncoding/HermiteStatePreparation.lean",
+      "QuantumBlockEncoding/Literature.lean",
+      "QuantumBlockEncoding/MainCase.lean",
+      "QuantumBlockEncoding/ModularAdder3.lean",
+      "QuantumBlockEncoding/OpenProblems.lean",
+      "QuantumBlockEncoding/OpenProblemsAudit.lean",
+      "QuantumBlockEncoding/OptimalControl.lean",
+      "QuantumBlockEncoding/PrimitiveBasisLE.lean",
+      "QuantumBlockEncoding/PrimitiveCircuit.lean",
+      "QuantumBlockEncoding/PrimitiveMacros.lean",
+      "QuantumBlockEncoding/PrimitiveRefinement.lean",
+      "QuantumBlockEncoding/PrimitiveSemantics.lean",
+      "QuantumBlockEncoding/PromiseGateOptimization.lean",
+      "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "QuantumBlockEncoding/Resources.lean",
+      "QuantumBlockEncoding/ReversibleClassical.lean",
+      "QuantumBlockEncoding/RobinEvolution.lean",
+      "QuantumBlockEncoding/SemanticFidelityEvidence.lean",
+      "QuantumBlockEncoding/StatePreparation.lean",
+      "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "QuantumBlockEncoding/StatePreparationBenchmarks.lean",
+      "QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean",
+      "QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean",
+      "QuantumBlockEncoding/StatePreparationPaperRoutes.lean",
+      "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+      "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+      "QuantumBlockEncoding/TeachingRouteClosures.lean",
+      "QuantumBlockEncoding/TechnicalLemmas.lean",
+      "QuantumBlockEncoding/TextbookStatePreparation.lean",
+      "QuantumBlockEncoding/UniformlyControlledRy.lean"
+    ],
+    "returned_rows": 80,
+    "has_hermite_module": true,
+    "has_generic_real_preparation": true,
+    "returned_hermite_names": [],
+    "returned_generic_real_preparation_names": [],
+    "first_returned_name": "groverRudolphTreeCircuit",
+    "last_returned_name": "compileUniformlyControlledRy_five_control_counts",
+    "row_fields": [
+      "file",
+      "kind",
+      "line",
+      "name"
+    ]
+  },
+  "elapsed_seconds": 0.08904589992016554,
+  "token_usage": null
+}

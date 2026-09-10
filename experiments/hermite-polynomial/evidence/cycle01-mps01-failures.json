@@ -1,0 +1,328 @@
+{
+  "task": "SP-HERMITE-POLY-002",
+  "candidate": "MPS-01",
+  "status": "diagnostic_only_not_formal_acceptance",
+  "construction": "explicit monomial translations, rank-two masks, exponential factors",
+  "claims_excluded": [
+    "uniform finite-precision bound",
+    "Lean TT certificate",
+    "primitive gate acceptance",
+    "uniform polynomial bit complexity"
+  ],
+  "records": [
+    {
+      "n": 1,
+      "k": 0,
+      "L": "1/10",
+      "left_cutoff": "0",
+      "pi_series_terms": 8,
+      "bond_bound": 12,
+      "max_bond": 1,
+      "core_scalars": 2,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "finite_discriminator",
+      "seconds": 0.000839899992570281,
+      "max_amplitude_error": 0.0,
+      "state_error": 0.0,
+      "norm_relative_error": 0.0,
+      "row_isometry_error": 2.220446049250313e-16,
+      "last_bond": 1,
+      "normalized_tt_norm": 0.9999999999999998,
+      "positive_source_min": 0.8014134696201128
+    },
+    {
+      "n": 4,
+      "k": 0,
+      "L": "1",
+      "left_cutoff": "6",
+      "pi_series_terms": 8,
+      "bond_bound": 12,
+      "max_bond": 12,
+      "core_scalars": 624,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "finite_discriminator",
+      "seconds": 0.00116610003169626,
+      "max_amplitude_error": 1.1102230246251565e-16,
+      "state_error": 2.368389951639684e-16,
+      "norm_relative_error": 1.1102230246251565e-16,
+      "row_isometry_error": 2.5407950438796406e-16,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0,
+      "positive_source_min": 0.04321391826377226
+    },
+    {
+      "n": 6,
+      "k": 1,
+      "L": "1",
+      "left_cutoff": "22",
+      "pi_series_terms": 8,
+      "bond_bound": 20,
+      "max_bond": 20,
+      "core_scalars": 3280,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "finite_discriminator",
+      "seconds": 0.0017713999841362238,
+      "max_amplitude_error": 1.734723475976807e-15,
+      "state_error": 9.208103884322383e-15,
+      "norm_relative_error": 5.10702591327572e-15,
+      "row_isometry_error": 1.0357248297471302e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0,
+      "positive_source_min": 0.04321391826377226
+    },
+    {
+      "n": 7,
+      "k": 2,
+      "L": "1/2",
+      "left_cutoff": "24",
+      "pi_series_terms": 8,
+      "bond_bound": 28,
+      "max_bond": 28,
+      "core_scalars": 7952,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "finite_discriminator",
+      "seconds": 0.00444769999012351,
+      "max_amplitude_error": 1.7763568394002505e-15,
+      "state_error": 2.2486513230137454e-15,
+      "norm_relative_error": 1.6653345369377348e-15,
+      "row_isometry_error": 1.350673921906542e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0000000000000004,
+      "positive_source_min": 0.20787957635076193
+    },
+    {
+      "n": 8,
+      "k": 3,
+      "L": "1",
+      "left_cutoff": "88",
+      "pi_series_terms": 8,
+      "bond_bound": 36,
+      "max_bond": 36,
+      "core_scalars": 15696,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "finite_discriminator",
+      "seconds": 0.006935999961569905,
+      "max_amplitude_error": 8.420375507967037e-12,
+      "state_error": 2.1779370626203308e-11,
+      "norm_relative_error": 2.2423396472959212e-11,
+      "row_isometry_error": 1.3594265260122881e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0000000000000002,
+      "positive_source_min": 0.04321391826377226
+    },
+    {
+      "n": 8,
+      "k": 4,
+      "L": "2",
+      "left_cutoff": "108",
+      "pi_series_terms": 8,
+      "bond_bound": 44,
+      "max_bond": 44,
+      "core_scalars": 23408,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "finite_discriminator",
+      "seconds": 0.006760500022210181,
+      "max_amplitude_error": 4.329728430230162e-06,
+      "state_error": 5.83337766529818e-06,
+      "norm_relative_error": 5.365793477096759e-06,
+      "row_isometry_error": 1.613921347356403e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 0.9999999999999999,
+      "positive_source_min": 0.0018674427317079893
+    },
+    {
+      "n": 8,
+      "k": 8,
+      "L": "10",
+      "left_cutoff": "124",
+      "pi_series_terms": 8,
+      "bond_bound": 76,
+      "max_bond": 76,
+      "core_scalars": 69616,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "finite_discriminator",
+      "seconds": 0.008330800104886293,
+      "max_amplitude_error": 1.129976886242115e+17,
+      "state_error": 1.5293492656251195,
+      "norm_relative_error": 2.798328030988215e+18,
+      "row_isometry_error": 1.7432616295478296e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 0.9999999999999999,
+      "positive_source_min": 2.2711010683240965e-14
+    },
+    {
+      "kind": "retained_numerical_failure",
+      "n": 8,
+      "k": 2,
+      "L": "300",
+      "error_type": "OverflowError",
+      "message": "math range error"
+    },
+    {
+      "n": 16,
+      "k": 2,
+      "L": "1",
+      "left_cutoff": "22338",
+      "pi_series_terms": 8,
+      "bond_bound": 28,
+      "max_bond": 28,
+      "core_scalars": 22064,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "large_no_dense_probe",
+      "seconds": 0.0035064000403508544,
+      "canonical_core_scalars": 16972,
+      "norm": 118.04558577123683,
+      "row_isometry_error": 1.0785735540371815e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0000000000000013,
+      "queries": [
+        {
+          "index": "0",
+          "amplitude": 0.0432139182638025
+        },
+        {
+          "index": "32767",
+          "amplitude": 1.0000958783844638
+        },
+        {
+          "index": "32768",
+          "amplitude": 1.0
+        },
+        {
+          "index": "65535",
+          "amplitude": 0.04321806154490926
+        }
+      ]
+    },
+    {
+      "n": 32,
+      "k": 2,
+      "L": "1",
+      "left_cutoff": "1463918373",
+      "pi_series_terms": 8,
+      "bond_bound": 28,
+      "max_bond": 28,
+      "core_scalars": 47152,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "large_no_dense_probe",
+      "seconds": 0.0047839999897405505,
+      "canonical_core_scalars": 42060,
+      "norm": 30219.669957503862,
+      "row_isometry_error": 1.3480520634235555e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0000000000000013,
+      "queries": [
+        {
+          "index": "0",
+          "amplitude": 0.0432139182638025
+        },
+        {
+          "index": "2147483647",
+          "amplitude": 1.0000000014629657
+        },
+        {
+          "index": "2147483648",
+          "amplitude": 1.0
+        },
+        {
+          "index": "4294967295",
+          "amplitude": 0.043213918326990695
+        }
+      ]
+    },
+    {
+      "n": 64,
+      "k": 2,
+      "L": "1",
+      "left_cutoff": "6287481533572774582",
+      "pi_series_terms": 16,
+      "bond_bound": 28,
+      "max_bond": 28,
+      "core_scalars": 97328,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "large_no_dense_probe",
+      "seconds": 0.009301199926994741,
+      "canonical_core_scalars": 92236,
+      "norm": 1980476290.3349824,
+      "row_isometry_error": 1.7204668627317552e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0000000000000036,
+      "queries": [
+        {
+          "index": "0",
+          "amplitude": 0.0432139182638025
+        },
+        {
+          "index": "9223372036854775807",
+          "amplitude": 1.000000000000047
+        },
+        {
+          "index": "9223372036854775808",
+          "amplitude": 1.0
+        },
+        {
+          "index": "18446744073709551615",
+          "amplitude": 0.04321391826377227
+        }
+      ]
+    },
+    {
+      "n": 128,
+      "k": 2,
+      "L": "1",
+      "left_cutoff": "115983562717991822708236189980603631760",
+      "pi_series_terms": 32,
+      "bond_bound": 28,
+      "max_bond": 28,
+      "core_scalars": 197680,
+      "dense_constructor_input": false,
+      "dense_svd_used": false,
+      "arithmetic": "float64 cores; rational interval cutoff",
+      "kind": "large_no_dense_probe",
+      "seconds": 0.025214400026015937,
+      "canonical_core_scalars": 192588,
+      "norm": 8.506080897488813e+18,
+      "row_isometry_error": 1.813633180998346e-15,
+      "last_bond": 1,
+      "normalized_tt_norm": 1.0000000000000007,
+      "queries": [
+        {
+          "index": "0",
+          "amplitude": 0.0432139182638025
+        },
+        {
+          "index": "170141183460469231731687303715884105727",
+          "amplitude": 1.000000000000047
+        },
+        {
+          "index": "170141183460469231731687303715884105728",
+          "amplitude": 1.0
+        },
+        {
+          "index": "340282366920938463463374607431768211455",
+          "amplitude": 0.04321391826377227
+        }
+      ]
+    }
+  ]
+}

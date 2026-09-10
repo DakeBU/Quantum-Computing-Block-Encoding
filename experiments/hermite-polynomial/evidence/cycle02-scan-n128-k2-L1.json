@@ -1,0 +1,11 @@
+{
+  "status": "structural_scan_pass_not_state_acceptance",
+  "qubits": 132,
+  "gate_counts": {
+    "ry": 741936,
+    "cx": 741936
+  },
+  "sha256": "fdb68b55ccdbe24e3e2c3f2dd97825ca568245b437c496a834a5ca0084c95eb4",
+  "dense_statevector_constructed": false,
+  "bytes": 37333643
+}

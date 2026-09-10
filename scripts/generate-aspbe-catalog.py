@@ -29,6 +29,50 @@ STATE_PREP_MODULES = {
     "StatePreparationPaperRoutesCompact.lean",
     "StatePreparationPaperRoutes.lean",
     "StatePreparationBenchmarks.lean",
+    "ConstructiveHermitePreparation.lean",
+    "HermiteBernstein.lean",
+    "HermiteBoundaryInjection.lean",
+    "HermiteCutRank.lean",
+    "HermiteFiniteChain.lean",
+    "HermiteFiniteNorm.lean",
+    "HermiteIntervalMass.lean",
+    "HermitePolynomialPreparation.lean",
+    "HermitePolynomialResources.lean",
+    "HermiteSampleStructure.lean",
+    "HermiteTransferCores.lean",
+    "StoredBernstein.lean",
+}
+
+STRUCTURED_SEMANTICS_MODULES = {
+    "AdjacentGivens.lean",
+    "ConstructiveIsometryCompletion.lean",
+    "ConstructiveIsometryLocal.lean",
+    "ConstructiveTensorTrain.lean",
+    "ConstructiveTensorTrainCompiler.lean",
+    "ConstructiveThinLQ.lean",
+    "GrayBasis.lean",
+    "GrayGivensCompiler.lean",
+    "MatrixProductChain.lean",
+    "PrimitiveDepthBound.lean",
+    "PrimitiveWireRename.lean",
+    "RealIsometryCompletion.lean",
+    "RectangularGivens.lean",
+    "SelectedRyPlane.lean",
+    "SelectedRyTrace.lean",
+    "SequentialBondPreparation.lean",
+    "SequentialPrimitiveAssembly.lean",
+    "StoredGivens.lean",
+    "StoredIsometryCompletion.lean",
+    "StoredRectangularGivens.lean",
+    "StoredTensorTrain.lean",
+    "StoredThinLQ.lean",
+    "TensorTrainCanonical.lean",
+    "TensorTrainLocalCompiler.lean",
+    "TensorTrainNormEnvironment.lean",
+    "TensorTrainPrimitivePreparation.lean",
+    "TensorTrainSchedule.lean",
+    "TensorTrainWord.lean",
+    "ThinLQ.lean",
 }
 
 SEMANTIC_FIDELITY_MODULES = {
@@ -54,6 +98,7 @@ def register_public_modules(module) -> None:
         name: sources for name, _slug, sources in module.CATALOGS
     }
     try:
+        sources_by_catalog["Semantics"].update(STRUCTURED_SEMANTICS_MODULES)
         sources_by_catalog["PaperAndExamples"].update(STATE_PREP_MODULES)
         sources_by_catalog["AutomationAndMemory"].update(
             SEMANTIC_FIDELITY_MODULES
@@ -62,13 +107,46 @@ def register_public_modules(module) -> None:
         raise SystemExit(f"required catalog not found: {error.args[0]}") from error
 
     module.CATALOG_PURPOSES["PaperAndExamples"] = (
-        "Paper-facing backend models and concrete State Preparation / Robin "
-        "example artifacts."
+        "Paper-facing backend models, source-specific Hermite constructions, "
+        "and concrete State Preparation / Robin example artifacts."
+    )
+    module.CATALOG_PURPOSES["Semantics"] = (
+        "Circuit and register semantics, reusable tensor-train and matrix "
+        "constructions, and explicit exact-real storage-cost refinements. "
+        "Each declaration's hypotheses and conclusion fix its certified scope."
     )
     module.CATALOG_PURPOSES["AutomationAndMemory"] = (
         "Typed controller state, agent contracts, literature memory, open-problem "
         "records, and source-to-Lean semantic-fidelity audits."
     )
+    validate_public_modules(module)
+
+
+def validate_public_modules(module) -> None:
+    """Require an explicit, unique chapter for every current source module.
+
+    Validate before rendering or writing any generated files. Checking the
+    source tree also catches an unassigned module with no public declarations;
+    there is deliberately no catch-all chapter that could hide a missed review.
+    """
+    actual = {
+        path.relative_to(module.SOURCE_ROOT).as_posix()
+        for path in module.SOURCE_ROOT.rglob("*.lean")
+    }
+    owners: dict[str, list[str]] = {}
+    for name, _slug, sources in module.CATALOGS:
+        for source in sources:
+            owners.setdefault(source, []).append(name)
+    problems = []
+    for source in sorted(actual - owners.keys()):
+        problems.append(f"unassigned module: {source}")
+    for source in sorted(owners.keys() - actual):
+        problems.append(f"catalog module does not exist: {source}")
+    for source, names in sorted(owners.items()):
+        if len(names) != 1:
+            problems.append(f"module assigned more than once: {source} ({', '.join(names)})")
+    if problems:
+        raise ValueError("invalid catalog module partition:\n" + "\n".join(problems))
 
 
 def main() -> int:

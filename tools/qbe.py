@@ -1070,6 +1070,7 @@ def cmd_harness_check(_: argparse.Namespace) -> int:
             "tools.test_qbe_runtime",
             "tools.test_qbe_lifecycle",
             "tools.test_qbe_control",
+            "tools.test_qbe_context_pack",
             "tools.test_enforce_mutation_scope",
             "tools.test_atlas_memory",
         ]
@@ -1930,7 +1931,7 @@ def current_obligation_table_rows(text: str, limit: int = 20) -> list[str]:
     return latest_obligation_rows(text, limit=limit)
 
 
-def lean_index_files_for_task(task_text: str) -> list[Path]:
+def _fallback_lean_index_files_for_task(task_text: str) -> list[Path]:
     """Return the Lean files that are relevant enough for prompt-time indexing.
 
     The default must be narrow.  A previous broad `QuantumBlockEncoding/*.lean`
@@ -1981,9 +1982,110 @@ def lean_index_files_for_task(task_text: str) -> list[Path]:
     ]
 
 
+def _restricted_lean_memory(task_text: str) -> bool:
+    return (
+        infer_evaluation_mode(task_text) in {"task-only", "isolated-abeis"}
+        and "forbidden" in task_text.lower()
+    )
+
+
+def _safe_local_lean_module(parts: list[str]) -> Path | None:
+    """Resolve a module inside the local proof tree without following links."""
+    if (
+        len(parts) < 2
+        or parts[0] != "QuantumBlockEncoding"
+        or any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", part) for part in parts)
+    ):
+        return None
+    source_root = ROOT / "QuantumBlockEncoding"
+    path = ROOT.joinpath(*parts).with_suffix(".lean")
+    try:
+        if not path.is_file():
+            return None
+        path.resolve().relative_to(source_root.resolve())
+        current = path
+        while current != ROOT:
+            if current.is_symlink() or getattr(current, "is_junction", lambda: False)():
+                return None
+            current = current.parent
+    except (OSError, ValueError):
+        return None
+    return path
+
+
+def _explicit_lean_task_anchors(task_text: str) -> list[tuple[Path, str]]:
+    """Read task-named paths/declarations, not a domain-keyword whitelist.
+
+    The optional declaration is a retrieval hint, not a resolved Lean type.
+    Exact name and type validation remains the job of Lean ``#check``.
+    """
+    if _restricted_lean_memory(task_text):
+        return []
+    anchors: list[tuple[Path, str]] = []
+    tokens = re.findall(
+        r"(?<![\w./\\:])QuantumBlockEncoding(?:[./\\][\w'.-]+)+", task_text
+    )
+    for token in tokens:
+        token = token.rstrip(".")
+        is_path = "/" in token or "\\" in token
+        if is_path and not token.endswith(".lean"):
+            continue
+        normalized = token.replace("/", ".").replace("\\", ".")
+        is_file = normalized.endswith(".lean")
+        if is_file:
+            normalized = normalized[:-5]
+        parts = normalized.split(".")
+        if any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_']*", part) for part in parts):
+            continue
+        lengths = [len(parts)] if is_file else range(len(parts), 1, -1)
+        for length in lengths:
+            path = _safe_local_lean_module(parts[:length])
+            if path is not None:
+                hint = "" if length == len(parts) else parts[-1]
+                anchor = (path, hint)
+                if anchor not in anchors:
+                    anchors.append(anchor)
+                break
+    return anchors
+
+
+def _task_anchor_files(anchors: list[tuple[Path, str]]) -> list[Path]:
+    """Named modules followed by at most 16 distinct direct local imports."""
+    named = list(dict.fromkeys(path for path, _ in anchors))
+    direct: list[Path] = []
+    for path in named:
+        for line in read_text(path).splitlines():
+            match = re.match(r"^\s*import\s+(.+)", line.split("--", 1)[0])
+            if not match:
+                continue
+            for module in match.group(1).split():
+                imported = _safe_local_lean_module(module.split("."))
+                if imported is not None and imported not in named and imported not in direct:
+                    direct.append(imported)
+                    if len(direct) >= 16:
+                        return named + direct
+    return named + direct
+
+
+def lean_index_files_for_task(task_text: str) -> list[Path]:
+    fallback = _fallback_lean_index_files_for_task(task_text)
+    anchors = _explicit_lean_task_anchors(task_text)
+    if not anchors:
+        return fallback
+    # The historical no-anchor fallback is unchanged. New explicit-anchor
+    # retrieval never adds a fallback link or a file outside the local tree.
+    safe_fallback = [
+        path for path in fallback
+        if _safe_local_lean_module(list(path.relative_to(ROOT).with_suffix("").parts)) == path
+    ]
+    return list(dict.fromkeys([*_task_anchor_files(anchors), *safe_fallback]))
+
+
 def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, str]]:
     keywords = ("theorem", "lemma", "def", "structure", "inductive", "abbrev")
     files = lean_index_files_for_task(task_text)
+    anchors = _explicit_lean_task_anchors(task_text)
+    priority_files = set(_task_anchor_files(anchors)) if anchors else set()
     rows: list[dict[str, str]] = []
     decl_re = re.compile(r"^\s*(?:noncomputable\s+)?(" + "|".join(keywords) + r")\s+([A-Za-z0-9_'.]+)")
     for path in files:
@@ -1994,15 +2096,15 @@ def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, st
             if not match:
                 continue
             name = match.group(2)
-            if task_text and any(token in task_text for token in ["GHL2025", "Robin", "QBE-AUTO-002"]):
+            if path not in priority_files and task_text and any(token in task_text for token in ["GHL2025", "Robin", "QBE-AUTO-002"]):
                 if not any(marker in name for marker in ["GHL", "Robin", "robin", "Circuit", "Block", "banded", "functionOracle", "boundary", "swap", "indicator", "oneTerm"]):
                     continue
-            if task_text and ("QBE-OP-CUBIC-STATEPREP-001" in task_text or "cubic" in task_text.lower()):
+            if path not in priority_files and task_text and ("QBE-OP-CUBIC-STATEPREP-001" in task_text or "cubic" in task_text.lower()):
                 if path.name == "CubicStatePreparation.lean":
                     pass
                 elif not any(marker in name for marker in ["BlockEncoding", "QueryOperatorTarget", "Matrix", "gridSize", "Resource", "Circuit", "RegisterLayout", "Adaptive"]):
                     continue
-            if task_text and ("QBE-OP-OPTCTRL-001" in task_text or "optimal-control" in task_text.lower()):
+            if path not in priority_files and task_text and ("QBE-OP-OPTCTRL-001" in task_text or "optimal-control" in task_text.lower()):
                 if path.name == "OptimalControl.lean":
                     pass
                 elif not any(marker in name for marker in ["BlockEncoding", "QueryOperatorTarget", "Matrix", "Circuit", "RegisterLayout", "Adaptive", "Resource"]):
@@ -2015,7 +2117,20 @@ def lean_declaration_index(task_text: str, limit: int = 80) -> list[dict[str, st
                     "name": name,
                 }
             )
-    return rows[-limit:]
+    if not anchors:
+        return rows[-limit:]
+    requested = {(rel(path), name) for path, name in anchors if name}
+    named_files = {rel(path) for path, _ in anchors}
+    dependency_files = {rel(path) for path in priority_files}
+    def priority(row: dict[str, str]) -> int:
+        if (row["file"], row["name"].rsplit(".", 1)[-1]) in requested:
+            return 0
+        if row["file"] in named_files:
+            return 1
+        if row["file"] in dependency_files:
+            return 2
+        return 3
+    return sorted(rows, key=priority)[:max(0, limit)]
 
 
 def reusable_memory_card_rows(task_text: str, limit: int = 8) -> list[dict[str, object]]:
@@ -2564,8 +2679,13 @@ def build_context_pack(task_id: str, cycle: int) -> str:
             "- Use this compact context before reading long historical files.",
             "- In paper-benchmark mode, reproduce the paper construction and do not add assumptions.",
             "- Translate the selected source/user proof fragment into Lean-facing declarations before lower proof search.",
-            "- Maintain a proof-DAG frontier: root theorem, dependencies, active leaves, stale leaves, and owner lower profile.",
-            "- Lower 1 writes the natural-language DAG proof packet; lower 2 compiles one ready Lean leaf; lower 3, if present, runs finite/path/support diagnostics before a large Lean proof.",
+            "- Follow HARNESS.md: the Frontier Master owns the frozen contract, global proof frontier, evidence reconciliation, and final synthesis.",
+            "- Universal Workers own independent substantive objectives end to end and may cross source reading, mathematics, Lean, finite diagnostics, resource analysis, and exposition. Legacy upper/middle/lower/reviewer names are execution slots, not fixed cognitive roles.",
+            "- Maintain a proof-DAG frontier: root theorem, dependencies, active leaves, stale leaves, and the Worker objective that closes each blocking interface.",
+            "- Parallelize independent uncertainties with the smallest sufficient context; share a common prerequisite once rather than duplicating the same unclassified leaf.",
+            "- Compare candidate variants by named evidence under the same frozen target and resource tier. Record parent ids, the changed mechanism, and a discriminating check; claim complementary routes or crossover only through an explicit shared interface.",
+            "- Source, semantic, Lean, integration, and exposition checks are evidence gates, not permanent Worker specializations. Preserve controller-ready scheduling, route locks, population selection, and acceptance gates.",
+            "- Return a compact substantive handoff: mathematical delta, effect on the root frontier, named evidence, assumptions, changed files, typed obstruction, and next independent objective. Branches, prose volume, and unchanged retries are not progress.",
             "- Export newly accepted Lean proof blocks to problem-specific LaTeX only at 6h/convergence closeout, not after every tiny edit.",
             "- Keep `python3 tools/qbe.py check` as the deterministic gate.",
         ]
@@ -7628,11 +7748,10 @@ Local paper-source archive for agent work:
   repeatedly attack a high theorem while its active leaves are unproved.
   During theorem-closure cycles, upper and middle must expose a current
   frontier with node id, interface statement, dependencies, owner, Lean
-  declaration, human proof-map location, local gate, and status.  Lower 1 may
-  first solve the dependency plan in natural language; lower 2 must then
-  implement exactly one active Lean leaf from that plan; lower 3, when present,
-  should run necessary-condition diagnostics that can reject a wrong target
-  before a large Lean proof attempt.
+  declaration, human proof-map location, local gate, and status. Assign each
+  Universal Worker an independent substantive objective. Let the blocking
+  interface determine whether to begin with mathematics, Lean, or a cheap
+  discriminator; execution-slot numbers do not determine cognitive roles.
 - Human-readable leaf rationale invariant: every active leaf assigned by upper
   or middle must say, in the selected report language when practical, what
   high-level theorem it serves, why the leaf is necessary, which part is a
@@ -7897,10 +8016,10 @@ Produce:
    profile, spend enough budget in upper/middle/reviewer planning before lower
    workers run: upper fixes target and search direction, middle translates and
    maintains the insight population, reviewer blocks stale or unfounded lower
-   work.  The Hierarchical Harness then uses an upper specialist panel, a middle
-   specialist panel, and three complementary lower roles: lower 1 natural-language proof/construction
-   architect, lower 2 Lean implementation worker, and lower 3
-   necessary-condition verifier.  Increase upper, middle, or lower parallelism
+   work. Optional specialist panels support the Frontier Master. Universal
+   Workers pursue complementary substantive objectives end to end, choosing
+   natural-language exploration, Lean-first work, or diagnostics as needed.
+   Increase upper, middle, or lower parallelism
    only when the logs justify it: stale target or weak strategy increases
    upper capacity; retrieval/translation drift increases middle capacity;
    several ready independent leaves or candidate families increase lower
@@ -7915,7 +8034,7 @@ Produce:
    either keep the current rung or request only the adjacent next rung.  Never
    combine a target change with an epsilon relaxation.
 7. Lower-agent work packets with narrow file scopes and acceptance checks.
-   Use lower 4 only as a refiner/reducer after a concrete Lean failure.
+   Assign an additional repair worker only when a concrete failure justifies it.
    Every packet should say whether it is trying to certify a candidate, translate
    a natural-language proof sketch into Lean, extract an insight-pool idea, or
    simplify an already-correct proof.
@@ -7968,9 +8087,10 @@ free-form search around the theorem.
 
 For long theorem-closure runs, plan through the proof DAG explicitly.  Upper
 should name the current root theorem, the shortest dependency path to the root,
-the active leaf for lower 2, the natural-language proof plan requested from
-lower 1, and any lower-3 necessary-condition diagnostic that can reject a
-wrong target cheaply.  If a previous lower target is already compiled, retire
+each worker's substantive objective, its ready dependencies, and any cheap
+discriminator that can reject a wrong target. Share checked interfaces across
+workers without imposing a serial natural-language-to-Lean handoff. If a
+previous lower target is already compiled, retire
 it instead of asking another worker to rediscover it.
 
 Require the middle agent to maintain two-way translation every cycle:
@@ -8036,8 +8156,8 @@ not rewrite prose broadly.  Produce:
 1. The current root theorem and the shortest dependency path to it.
 2. Active leaves that are ready for lower work, with one recommended leaf.
 3. Stale leaves or already-compiled targets that should be retired.
-4. The exact lower-1 natural-language proof task, lower-2 Lean task, and
-   lower-3 necessary-condition verifier task.
+4. Each Universal Worker's independent objective, file scope, method choice,
+   discriminating check, and shared interface for any proposed crossover.
 5. Any diagnostic that can reject a wrong target before Lean spends time on a
    large proof.
 
@@ -8321,15 +8441,14 @@ The update is concise and evidence-preserving: record what changed in
 Lean/proof memory and list which stronger claims remain forbidden until Lean
 supports them.  Do not spend lower-agent proof time on article polish.
 
-When lower agents are available, middle must split the packet deliberately:
-lower 1 receives a natural-language DAG/proof packet with source anchors,
-definitions, dependencies, and the next Lean lemma; lower 2 receives a Lean
-implementation packet for exactly one active leaf; lower 3, if present,
-receives a necessary-condition verifier packet for finite matrix/path/support
-checks and typed feedback.  The Lean packet should reference the lower-1 proof
-map and lower-3 diagnostics if they exist, not restart broad search.  Lower 4
-should be scheduled only as a refiner/reducer after a concrete Lean failure,
-for example to isolate a maxRecDepth route or factor out a reusable lemma.
+When lower agents are available, middle prepares compact objective packets:
+frozen target, one independent uncertainty, exact checked interfaces, current
+counterexample, narrow file scope, and local gate. Each Universal Worker may
+reason, retrieve, implement, compile, and revise within that scope. Do not
+force natural-language exploration and Lean implementation into separate
+execution slots. A dedicated diagnostic or repair assignment is useful only
+when it addresses a concrete unresolved predicate. Share source-linked
+results and failed substitutions instead of duplicating whole transcripts.
 
 When editing Markdown or closeout LaTeX, follow `.agents/skills/qbe-math-writing/SKILL.md`:
 definitions before theorem statements, short claim statements, precise
@@ -8654,99 +8773,31 @@ QASM checks.  A fixed-instance result is executable evidence, not a symbolic
 proof.  Run the exact declared command before handoff and record every reported
 error rather than replacing it with a prose claim.
 """
-        elif lower_index == 1:
-            body += """
-Lower profile for this prompt: natural-language proof architect.
+        elif 1 <= lower_index <= 4:
+            body += f"""
+Lower profile for this prompt: Universal Worker, execution slot `{lower_index}`.
 
-Your primary job is to reason mathematically before Lean coding.  Read the
-local TeX source, conversion window, proof obligations, and current Lean DAG.
-Then produce a compact proof design that a Lean-focused lower agent can use.
-
-Expected output:
-
-1. The exact source-paper proof fragment or equation being translated.
-2. The natural-language proof of the active local theorem, with definitions
-   stated before claims.
-3. A proof-DAG table with node ids, dependencies, status, owner, and the next
-   active leaf for the Lean worker.
-4. A list of intermediate Lean lemmas, ordered by dependency, including which
-   existing declarations should be reused.
-5. A failure analysis if the current target is mathematically wrong or should
-   be routed through a different equivalent theorem.
-6. A short handoff in `proof-attempts/<task-id>/` or the dialogue board.
-
-You may edit Markdown proof-attempt, conversion-window, or proof-obligation
-files.  Avoid Lean edits unless the proof design exposes a very small
-definition-free theorem that is safe to add.  Do not add assumptions, mutate
-the paper circuit, or promote semantic flags.
-"""
-        elif lower_index == 2:
-            body += """
-Lower profile for this prompt: Lean implementation worker.
-
-Your primary job is to turn the current proof design into compiling Lean.
-Prefer existing declarations and the dependency map from the natural-language
-proof architect.  If no such handoff is available yet, work from the current
-upper/middle packet and keep the theorem scope narrow.
+Own one assigned substantive objective end to end. Choose natural-language
+exploration, Lean-first work, a cheap discriminator, or an alternating method
+from the current uncertainty; the slot does not prescribe a cognitive role.
+Reuse exact signatures and successful applications before guessing names.
 
 Expected output:
 
-1. One small Lean theorem, lemma, or repair that compiles.
-2. No new `sorry`, `admit`, hidden axiom, or theorem-flag promotion.
-3. Run the mandatory controller check shown above after Lean edits.
-4. A handoff naming the exact theorem closed or the exact remaining Lean goal.
-5. If the proof blocks, store the useful failed route under
-   `proof-attempts/<task-id>/`.
+1. Frozen root, assigned interface, and the exact mathematical or executable delta.
+2. A local Lean/diagnostic gate with actual result; a source preview is not a certificate.
+3. Parent ids, changed mechanism, and discriminating test for a new candidate.
+4. A named shared interface when borrowing another worker's result; preserve
+   unproved obligations and separate insight lineage from certified parents.
+5. A compact handoff with remaining goal/error, reusable theorem, failed route,
+   method actually used, measured calls/time when available, and next dependency.
 
-Do not spend the cycle on broad prose polish.  The natural-language proof
-agent owns proof design; you own compiled declarations and gate checks.
-If the active leaf is underspecified or stale, do not improvise a new theorem;
-record the missing DAG packet and ask middle to refresh the frontier.
-"""
-        elif lower_index == 3:
-            body += """
-Lower profile for this prompt: necessary-condition verifier.
-
-Your primary job is to protect the Lean worker from proving the wrong target.
-Use exact finite matrix, path-sum, support/vanish, register-shape, or symbolic
-2-by-2 convention checks that are necessary for the active Lean statement.
-
-Expected output:
-
-1. The active leaf being checked and why the diagnostic is a necessary
-   condition for that leaf.
-2. A small executable or Lean-local diagnostic, if one already exists or can be
-   added safely without changing theorem statements.
-3. Typed verifier feedback with at least `leaf`, `source_correspondence_ok`,
-   `finite_matrix_ok`, `block_entry_ok`, `error_class`, and `next_route`.
-4. A clear rejection if the finite/path/support check contradicts the current
-   target, so middle can repair the source contract or proof-DAG leaf.
-
-You should usually avoid editing theorem-facing Lean declarations.  If you edit
-Lean, add only diagnostic lemmas/tests or small helpers that do not promote
-semantic flags, oracle contracts, normalizers, or theorem completion.  Do not
-use passing diagnostics as proof closure.
-"""
-        elif lower_index == 4:
-            body += """
-Lower profile for this prompt: Lean refiner/reducer.
-
-Your primary job is to repair a concrete failed Lean route after lower 2 or the
-reviewer has produced a specific error.  Good targets are reducing
-`maxRecDepth`, extracting one reusable associativity/evalWith lemma, replacing
-a raw constructor equality with a semantic bridge, or shrinking a tactic proof.
-
-Expected output:
-
-1. The exact failed theorem, error message, and rejected route.
-2. One smaller lemma, simplification normal form, or proof-reduction patch.
-3. No theorem statement drift and no new assumptions.
-4. Run the mandatory controller check shown above after Lean edits.
-5. A proof-attempt record explaining whether the refiner repair should be kept,
-   retried, or rejected.
-
-Do not duplicate lower 2's broad proof attempt and do not invent a new route
-unless it directly repairs the reported failure.
+Stay inside the declared file scope. Do not change the scientific target,
+verifier, scoring, acceptance anchors, or benchmark split. No new assumptions,
+`sorry`, `admit`, or promotion based only on diagnostics. Run the assigned local
+gate during repair; the Frontier Master runs full integration gates before merge.
+An underspecified or stale leaf requires a typed handoff, not an invented target.
+Do not claim one method is faster without a matched comparison.
 """
         elif 100 < lower_index < 200:
             body += f"""

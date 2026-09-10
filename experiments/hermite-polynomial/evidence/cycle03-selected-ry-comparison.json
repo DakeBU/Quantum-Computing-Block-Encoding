@@ -1,0 +1,8 @@
+{
+  "status": "bounded_exact_trace_comparison_pass",
+  "cases": 129,
+  "instructions_compared": 4521,
+  "artifact_sha256": "d075e3eb9791ebab9de81b6bd56ff3059570cbc496df81f495be52b68a7a2167",
+  "whole_state_certificate": false,
+  "uniform_rounding_certificate": false
+}

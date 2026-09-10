@@ -142,6 +142,19 @@ class HermitePublicationTests(unittest.TestCase):
         self.assertIn("docs/hermite-state-preparation.tex", paths)
         self.assertIn("executable-exports/SP-HERMITE-001/acceptance.json", paths)
 
+    def test_polynomial_quantum_result_preserves_the_reference_and_open_cost_boundary(self):
+        data = json.loads(publisher.HERMITE_PATH.read_text(encoding="utf-8"))
+        case = data["cases"][0]
+        self.assertIn("QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec", case["leanAnchors"])
+        self.assertIn("48 n_p (2k+6)^3", case["contract"])
+        self.assertIn("Whole classical preprocessing and uniform finite-precision error remain open", case["contract"])
+        self.assertEqual(case["preset"]["taskName"], "SP-HERMITE-001")
+        self.assertEqual(case["evolution"]["stages"][0]["name"], "Hermite rotation tree")
+        self.assertIn("preserved exponential reference", case["evolution"]["caption"])
+        explanation = data["teaching"][case["slug"]]["theorems"][2]
+        self.assertIn("arbitrary", case["limitations"].lower())
+        self.assertIn("48n_pD^3", explanation["statementFormula"])
+
 
 if __name__ == "__main__":
     unittest.main()
