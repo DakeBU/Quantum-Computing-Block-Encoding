@@ -44,6 +44,16 @@ STATE_PREP_MODULES = {
     "HermiteTransferCores.lean",
     "StoredBernstein.lean",
     "StoredHermiteCoefficients.lean",
+    "StoredHermiteBoundaries.lean",
+    "StoredHermiteChildGeometry.lean",
+    "StoredHermiteGeometry.lean",
+    "StoredHermiteKernelTable.lean",
+    "StoredHermiteRawCost.lean",
+    "StoredHermiteRawSource.lean",
+    "StoredHermiteSharedTables.lean",
+    "StoredHermiteSourceCache.lean",
+    "StoredHermiteStageFields.lean",
+    "StoredHermiteStageInput.lean",
 }
 
 STRUCTURED_SEMANTICS_MODULES = {
@@ -69,6 +79,11 @@ STRUCTURED_SEMANTICS_MODULES = {
     "StoredRectangularGivens.lean",
     "StoredTensorTrain.lean",
     "StoredTensorTrainNorm.lean",
+    "PrimitiveCircuitPerturbation.lean",
+    "PrimitiveRyPerturbation.lean",
+    "StoredBinaryCoordinates.lean",
+    "StoredDyadicSpans.lean",
+    "StoredMatrixProductChain.lean",
     "StoredSelectedRyTrace.lean",
     "StoredThinLQ.lean",
     "TensorTrainCanonical.lean",

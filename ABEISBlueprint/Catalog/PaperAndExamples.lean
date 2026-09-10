@@ -25190,6 +25190,518 @@ Source: [QuantumBlockEncoding/StoredBernstein.lean:170](../../../../library/modu
 Source: [QuantumBlockEncoding/StoredBernstein.lean:178](../../../../library/modules/storedbernstein/#decl-quantumblockencoding-storedbernstein-restrict-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/StoredHermiteBoundaries.lean
+
+12 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteBoundaries.initialLiteral" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.initialLiteral")
+*Plain-English reading.* This definition gives the library's named construction or computation for “initial literal”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:18](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-initialliteral). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteBoundaries.terminalLiteral" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.terminalLiteral")
+*Plain-English reading.* This definition gives the library's named construction or computation for “terminal literal”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:25](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-terminalliteral). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteBoundaries.initial" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.initial")
+*Plain-English reading.* This definition gives the library's named construction or computation for “initial”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:32](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-initial). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteBoundaries.terminal" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.terminal")
+*Plain-English reading.* This definition gives the library's named construction or computation for “terminal”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:39](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-terminal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.initial_get" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.initial_get")
+*Plain-English reading.* Lean checks the proposition indexed as “initial get”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:43](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-initial-get). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_get" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_get")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal get”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:49](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-terminal-get). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.initial_value" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.initial_value")
+*Plain-English reading.* Lean checks the proposition indexed as “initial value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:53](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-initial-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_value" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_value")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:66](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-terminal-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.initial_cost" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.initial_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “initial cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:76](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-initial-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_cost" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:82](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-terminal-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.initial_total_cost" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.initial_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “initial total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:88](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-initial-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_total_cost" (lean := "QuantumBlockEncoding.StoredHermiteBoundaries.terminal_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteBoundaries.lean:93](../../../../library/modules/storedhermiteboundaries/#decl-quantumblockencoding-storedhermiteboundaries-terminal-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteChildGeometry.lean
+
+24 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteChildGeometry.Flags" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.Flags")
+*Plain-English reading.* This record groups the data and proof fields needed for “flags”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:19](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-flags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteChildGeometry.flags" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.flags")
+*Plain-English reading.* This definition gives the library's named construction or computation for “flags”. Four actual integer comparisons; 'last' is the excluded integer endpoint.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Four actual integer comparisons; 'last' is the excluded integer endpoint.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:24](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-flags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.flags_full" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.flags_full")
+*Plain-English reading.* Lean checks the proposition indexed as “flags full”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:32](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-flags-full). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.flags_partial" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.flags_partial")
+*Plain-English reading.* Lean checks the proposition indexed as “flags partial”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:36](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-flags-partial). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.flags_cost" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.flags_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “flags cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:42](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-flags-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteChildGeometry.Child" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.Child")
+*Plain-English reading.* This record groups the data and proof fields needed for “child”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:47](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteChildGeometry.ChildRun" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.ChildRun")
+*Plain-English reading.* This record groups the data and proof fields needed for “child run”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:56](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-childrun). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteChildGeometry.child" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child")
+*Plain-English reading.* This definition gives the library's named construction or computation for “child”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:60](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_first" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_first")
+*Plain-English reading.* Lean checks the proposition indexed as “child first”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:81](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-first). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_lower" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_lower")
+*Plain-English reading.* Lean checks the proposition indexed as “child lower”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:87](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-lower). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_upper" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_upper")
+*Plain-English reading.* Lean checks the proposition indexed as “child upper”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:93](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-upper). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_flags" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_flags")
+*Plain-English reading.* Lean checks the proposition indexed as “child flags”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:98](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-flags). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_cost" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “child cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:109](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_integerAdditions" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_integerAdditions")
+*Plain-English reading.* Lean checks the proposition indexed as “child integer additions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:117](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-integeradditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_refines" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_refines")
+*Plain-English reading.* Lean checks the proposition indexed as “child refines”; the hypotheses and conclusion in the code panel fix its exact scope. Value-only specification: all cached-data hypotheses are explicit.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Value-only specification: all cached-data hypotheses are explicit.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:122](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-refines). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteChildGeometry.children" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.children")
+*Plain-English reading.* This definition gives the library's named construction or computation for “children”. False/true children are computed once each, then stored in this order.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* False/true children are computed once each, then stored in this order.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:157](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-children). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.children_value" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.children_value")
+*Plain-English reading.* Lean checks the proposition indexed as “children value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:167](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-children-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.children_cost" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.children_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “children cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:173](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-children-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.children_integerAdditions" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.children_integerAdditions")
+*Plain-English reading.* Lean checks the proposition indexed as “children integer additions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:181](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-children-integeradditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.children_total_cost" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.children_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “children total cost”; the hypotheses and conclusion in the code panel fix its exact scope. Fixed charged work for both children; integer additions remain separate.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Fixed charged work for both children; integer additions remain separate.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:186](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-children-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteChildGeometry.Refines" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.Refines")
+*Plain-English reading.* This definition gives the library's named construction or computation for “refines”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:194](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-refines). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.children_refines" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.children_refines")
+*Plain-English reading.* Lean checks the proposition indexed as “children refines”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:203](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-children-refines). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.children_certified" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.children_certified")
+*Plain-English reading.* Lean checks the proposition indexed as “children certified”; the hypotheses and conclusion in the code panel fix its exact scope. Refinement and charged work belong to the same pair-producing run.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Refinement and charged work belong to the same pair-producing run.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:215](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-children-certified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteChildGeometry.child_index_word_bound" (lean := "QuantumBlockEncoding.StoredHermiteChildGeometry.child_index_word_bound")
+*Plain-English reading.* Lean checks the proposition indexed as “child index word bound”; the hypotheses and conclusion in the code panel fix its exact scope. With legal source indices, every generated endpoint fits in n+2 bits.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* With legal source indices, every generated endpoint fits in n+2 bits. This states a word-size requirement, not the cost of implementing word arithmetic.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteChildGeometry.lean:230](../../../../library/modules/storedhermitechildgeometry/#decl-quantumblockencoding-storedhermitechildgeometry-child-index-word-bound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/StoredHermiteCoefficients.lean
 
 38 explicit public declarations, in source order.
@@ -25724,4 +26236,2724 @@ Source: [QuantumBlockEncoding/StoredHermiteCoefficients.lean:361](../../../../li
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/StoredHermiteCoefficients.lean:367](../../../../library/modules/storedhermitecoefficients/#decl-quantumblockencoding-storedhermitecoefficients-compile-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteGeometry.lean
+
+34 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.TailLevel" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.TailLevel")
+*Plain-English reading.* This record groups the data and proof fields needed for “tail level”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:24](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-taillevel). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.appendLevel" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.appendLevel")
+*Plain-English reading.* This definition gives the library's named construction or computation for “append level”. Full-copy persistent extension; each copied record is a stored word.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Full-copy persistent extension; each copied record is a stored word.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:29](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-appendlevel). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.appendLevel_value" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.appendLevel_value")
+*Plain-English reading.* Lean checks the proposition indexed as “append level value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:35](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-appendlevel-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.halve" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.halve")
+*Plain-English reading.* This definition gives the library's named construction or computation for “halve”. Repeated charged division, never an uncharged cast of 2^n.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Repeated charged division, never an uncharged cast of 2^n.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:43](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-halve). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.halve_value" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.halve_value")
+*Plain-English reading.* Lean checks the proposition indexed as “halve value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:49](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-halve-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.halve_cost" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.halve_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “halve cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:56](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-halve-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.step" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.step")
+*Plain-English reading.* This definition gives the library's named construction or computation for “step”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:64](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-step). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.step_value" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.step_value")
+*Plain-English reading.* Lean checks the proposition indexed as “step value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:68](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-step-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.step_cost" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.step_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “step cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:75](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-step-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.root_width" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.root_width")
+*Plain-English reading.* Lean checks the proposition indexed as “root width”; the hypotheses and conclusion in the code panel fix its exact scope. Public root-width identity for geometry integration.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Public root-width identity for geometry integration.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:81](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-root-width). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.tails" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tails")
+*Plain-English reading.* This definition gives the library's named construction or computation for “tails”. One exponential is evaluated and stored per level.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* One exponential is evaluated and stored per level. The same factor is shared by the left zero-bit and right one-bit transitions.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:89](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tails). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.tails_value" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tails_value")
+*Plain-English reading.* Lean checks the proposition indexed as “tails value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:107](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tails-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.tails_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tails_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “tails exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:126](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tails-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.appendLevel_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.appendLevel_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “append level cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:136](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-appendlevel-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.tails_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tails_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “tails cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:155](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tails-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.TailCache" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.TailCache")
+*Plain-English reading.* This record groups the data and proof fields needed for “tail cache”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:175](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tailcache). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.tailCache" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tailCache")
+*Plain-English reading.* This definition gives the library's named construction or computation for “tail cache”. The actual binary-search cutoff and actual width cache are supplied in the same run.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The actual binary-search cutoff and actual width cache are supplied in the same run. No precomputed cutoff or coordinate callback is an input.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:182](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tailcache). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_value" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_value")
+*Plain-English reading.* Lean checks the proposition indexed as “tail cache value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:189](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tailcache-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “tail cache exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:200](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tailcache-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “tail cache cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:203](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tailcache-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.tailCache_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “tail cache total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:211](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-tailcache-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.atStage" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.atStage")
+*Plain-English reading.* This definition gives the library's named construction or computation for “at stage”. The cache is physically indexed by r, but consumers use chronological source stage t=0,...,n and access r=n-t with a charged stored-word read.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The cache is physically indexed by r, but consumers use chronological source stage t=0,...,n and access r=n-t with a charged stored-word read.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:222](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-atstage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.atStage_value" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.atStage_value")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:225](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-atstage-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.atStage_cost" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.atStage_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:232](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-atstage-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.atStage_leftFree" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.atStage_leftFree")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage left free”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:235](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-atstage-leftfree). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.atStage_rightFree" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.atStage_rightFree")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage right free”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:242](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-atstage-rightfree). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.atStage_rightCore" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.atStage_rightCore")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage right core”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:249](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-atstage-rightcore). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.atStage_bounds" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.atStage_bounds")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage bounds”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:257](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-atstage-bounds). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection")
+*Plain-English reading.* This definition gives the library's named construction or computation for “left injection”. A disabled injection performs no scalar arithmetic and no exponential.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* A disabled injection performs no scalar arithmetic and no exponential. An enabled injection uses the cached child's excluded endpoint minus one grid step. The enabling Full guard is supplied by the geometry cache.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:266](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-leftinjection). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_value" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_value")
+*Plain-English reading.* Lean checks the proposition indexed as “left injection value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:275](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-leftinjection-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_lastPoint" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_lastPoint")
+*Plain-English reading.* Lean checks the proposition indexed as “left injection last point”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:287](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-leftinjection-lastpoint). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “left injection exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:295](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-leftinjection-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_cost" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “left injection cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:299](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-leftinjection-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_bounds" (lean := "QuantumBlockEncoding.StoredHermiteGeometry.leftInjection_bounds")
+*Plain-English reading.* Lean checks the proposition indexed as “left injection bounds”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteGeometry.lean:307](../../../../library/modules/storedhermitegeometry/#decl-quantumblockencoding-storedhermitegeometry-leftinjection-bounds). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteKernelTable.lean
+
+16 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteKernelTable.Fields" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.Fields")
+*Plain-English reading.* This record groups the data and proof fields needed for “fields”. A proposition-valued field is a requirement until a constructor supplies it. P=2k+2, written in the definitional form used by InjectionBond.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* P=2k+2, written in the definitional form used by InjectionBond.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:28](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-fields). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteKernelTable.blockView" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.blockView")
+*Plain-English reading.* This definition gives the library's named construction or computation for “block view”. Mathematical block interpretation; not used to evaluate stored entries.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Mathematical block interpretation; not used to evaluate stored entries.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:38](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-blockview). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteKernelTable.storedBlock" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.storedBlock")
+*Plain-English reading.* This definition gives the library's named construction or computation for “stored block”. Actual stored-word readers and literal-zero blocks.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Actual stored-word readers and literal-zero blocks.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:50](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-storedblock). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.storedBlock_value" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.storedBlock_value")
+*Plain-English reading.* Lean checks the proposition indexed as “stored block value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:71](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-storedblock-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteKernelTable.decode" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.decode")
+*Plain-English reading.* This definition gives the library's named construction or computation for “decode”. The production explicit equivalence is executable, not a cardinality choice.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The production explicit equivalence is executable, not a cardinality choice. A fixed overcharge covers its sum and option comparisons.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:80](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-decode). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteKernelTable.entry" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.entry")
+*Plain-English reading.* This definition gives the library's named construction or computation for “entry”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:83](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-entry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.entry_value" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.entry_value")
+*Plain-English reading.* Lean checks the proposition indexed as “entry value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:90](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-entry-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteKernelTable.assemble" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.assemble")
+*Plain-English reading.* This definition gives the library's named construction or computation for “assemble”. Output columns are exactly finProdFinEquiv (bit, outgoing bond), as in StoredTensorTrain.denoteCore.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Output columns are exactly finProdFinEquiv (bit, outgoing bond), as in StoredTensorTrain.denoteCore. Thus each row stores both bit slices.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:98](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-assemble). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_value" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_value")
+*Plain-English reading.* Lean checks the proposition indexed as “assemble value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:102](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-assemble-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.storedBlock_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.storedBlock_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “stored block cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:113](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-storedblock-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.entry_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.entry_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “entry cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:122](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-entry-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “assemble cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:133](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-assemble-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “assemble total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:151](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-assemble-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteKernelTable.SourceCorrect" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.SourceCorrect")
+*Plain-English reading.* This record groups the data and proof fields needed for “source correct”. A proposition-valued field is a requirement until a constructor supplies it. Explicit supplier obligations.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Explicit supplier obligations. Injections must ALREADY contain their Full guard, including zero on disabled children. No source callback is run.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:161](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-sourcecorrect). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.blockView_source" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.blockView_source")
+*Plain-English reading.* Lean checks the proposition indexed as “block view source”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:185](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-blockview-source). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_source" (lean := "QuantumBlockEncoding.StoredHermiteKernelTable.assemble_source")
+*Plain-English reading.* Lean checks the proposition indexed as “assemble source”; the hypotheses and conclusion in the code panel fix its exact scope. Strong entry refinement to the exact explicit layout kernel.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Strong entry refinement to the exact explicit layout kernel. Its seven field hypotheses are supplier obligations, not asserted source generation.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteKernelTable.lean:196](../../../../library/modules/storedhermitekerneltable/#decl-quantumblockencoding-storedhermitekerneltable-assemble-source). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteRawCost.lean
+
+31 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawCost.ordinary" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.ordinary")
+*Plain-English reading.* This definition gives the library's named construction or computation for “ordinary”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:21](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-ordinary). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_eq_total" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_eq_total")
+*Plain-English reading.* Lean checks the proposition indexed as “ordinary eq total”; the hypotheses and conclusion in the code panel fix its exact scope. Eight-operation enumeration adapter; no producer or counter is altered.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Eight-operation enumeration adapter; no producer or counter is altered.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:24](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-ordinary-eq-total). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_add" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_add")
+*Plain-English reading.* Lean checks the proposition indexed as “ordinary add”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:31](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-ordinary-add). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_zero" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_zero")
+*Plain-English reading.* Lean checks the proposition indexed as “ordinary zero”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:34](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-ordinary-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_tick" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.ordinary_tick")
+*Plain-English reading.* Lean checks the proposition indexed as “ordinary tick”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:36](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-ordinary-tick). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawCost.stageBudget" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.stageBudget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “stage budget”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:38](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-stagebudget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.stage_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.stage_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “stage total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:41](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-stage-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “stage exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:61](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-stage-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls_le")
+*Plain-English reading.* Lean checks the proposition indexed as “stage exponential calls le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:70](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-stage-exponentialcalls-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.stage_integerAdditions" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.stage_integerAdditions")
+*Plain-English reading.* Lean checks the proposition indexed as “stage integer additions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:74](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-stage-integeradditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_cost" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “collect stages cost”; the hypotheses and conclusion in the code panel fix its exact scope. The ledger table is materialized once.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The ledger table is materialized once. Its projection adds exactly three reads and three writes per stage, including its initial stored record.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:80](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-collectstages-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_total_cost" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “collect stages total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:86](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-collectstages-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “collect stages exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:95](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-collectstages-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_integerAdditions" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.collectStages_integerAdditions")
+*Plain-English reading.* Lean checks the proposition indexed as “collect stages integer additions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:99](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-collectstages-integeradditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.tables_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.tables_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “tables total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:103](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-tables-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.tables_exponentialCalls_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.tables_exponentialCalls_le")
+*Plain-English reading.* Lean checks the proposition indexed as “tables exponential calls le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:115](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-tables-exponentialcalls-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.tables_integerAdditions" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.tables_integerAdditions")
+*Plain-English reading.* Lean checks the proposition indexed as “tables integer additions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:122](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-tables-integeradditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.boundaryInputs_cost" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.boundaryInputs_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “boundary inputs cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:126](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-boundaryinputs-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.boundaries_total_cost" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.boundaries_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “boundaries total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:131](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-boundaries-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawCost.rawBudget" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.rawBudget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “raw budget”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:139](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-rawbudget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “raw total cost le”; the hypotheses and conclusion in the code panel fix its exact scope. Every summand is a proved cost of a subrun actually used by raw.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Every summand is a proved cost of a subrun actually used by raw. No dimension-only or hypothetical source-entry budget is substituted.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:146](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_stored_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_stored_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “raw stored total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:167](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-stored-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “raw cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:172](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “raw exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope. Exact exponential ledger: one coefficient call, n+1 cached tail calls, and the actual stage injection calls (zero on disabled Full guards).
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Exact exponential ledger: one coefficient call, n+1 cached tail calls, and the actual stage injection calls (zero on disabled Full guards).
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:181](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls_le" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls_le")
+*Plain-English reading.* Lean checks the proposition indexed as “raw exponential calls le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:187](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-exponentialcalls-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_quotientCalls" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_quotientCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “raw quotient calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:193](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-quotientcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_remainderCalls" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_remainderCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “raw remainder calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:197](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-remaindercalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_integerDoublings" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_integerDoublings")
+*Plain-English reading.* Lean checks the proposition indexed as “raw integer doublings”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:201](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-integerdoublings). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_integerAdditions" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_integerAdditions")
+*Plain-English reading.* Lean checks the proposition indexed as “raw integer additions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:205](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-integeradditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_selected_integer_total" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_selected_integer_total")
+*Plain-English reading.* Lean checks the proposition indexed as “raw selected integer total”; the hypotheses and conclusion in the code panel fix its exact scope. Sum of precisely the four named integer counters, not all integer work.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Sum of precisely the four named integer counters, not all integer work.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:210](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-selected-integer-total). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawCost.raw_certified" (lean := "QuantumBlockEncoding.StoredHermiteRawCost.raw_certified")
+*Plain-English reading.* Lean checks the proposition indexed as “raw certified”; the hypotheses and conclusion in the code panel fix its exact scope. Same-run source equality, polynomial ordinary work, exponential cap, and the four accurately scoped integer counters.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Same-run source equality, polynomial ordinary work, exponential cap, and the four accurately scoped integer counters. This is an unnormalized source.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawCost.lean:218](../../../../library/modules/storedhermiterawcost/#decl-quantumblockencoding-storedhermiterawcost-raw-certified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteRawSource.lean
+
+15 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.StageRun" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.StageRun")
+*Plain-English reading.* This record groups the data and proof fields needed for “stage run”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:19](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-stagerun). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.stage" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.stage")
+*Plain-English reading.* This definition gives the library's named construction or computation for “stage”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:22](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-stage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawSource.stage_source" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.stage_source")
+*Plain-English reading.* Lean checks the proposition indexed as “stage source”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:31](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-stage-source). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.collectStages" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.collectStages")
+*Plain-English reading.* This definition gives the library's named construction or computation for “collect stages”. Materialize the stage records once, then project cores and their ledgers.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Materialize the stage records once, then project cores and their ledgers. The full records are not recomputed when integer/exp counters are summed.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:42](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-collectstages). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawSource.collectStages_value" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.collectStages_value")
+*Plain-English reading.* Lean checks the proposition indexed as “collect stages value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:53](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-collectstages-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.tables" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.tables")
+*Plain-English reading.* This definition gives the library's named construction or computation for “tables”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:57](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-tables). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawSource.tables_window" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.tables_window")
+*Plain-English reading.* Lean checks the proposition indexed as “tables window”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:60](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-tables-window). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.boundaryInputs" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.boundaryInputs")
+*Plain-English reading.* This definition gives the library's named construction or computation for “boundary inputs”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:69](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-boundaryinputs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.boundaries" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.boundaries")
+*Plain-English reading.* This definition gives the library's named construction or computation for “boundaries”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:76](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-boundaries). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawSource.boundaries_initial" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.boundaries_initial")
+*Plain-English reading.* Lean checks the proposition indexed as “boundaries initial”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:83](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-boundaries-initial). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawSource.boundaries_terminal" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.boundaries_terminal")
+*Plain-English reading.* Lean checks the proposition indexed as “boundaries terminal”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:97](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-boundaries-terminal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.RawRun" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.RawRun")
+*Plain-English reading.* This record groups the data and proof fields needed for “raw run”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:102](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-rawrun). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteRawSource.raw" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.raw")
+*Plain-English reading.* This definition gives the library's named construction or computation for “raw”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:105](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-raw). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawSource.raw_value" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.raw_value")
+*Plain-English reading.* Lean checks the proposition indexed as “raw value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:117](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-raw-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteRawSource.raw_contract" (lean := "QuantumBlockEncoding.StoredHermiteRawSource.raw_contract")
+*Plain-English reading.* Lean checks the proposition indexed as “raw contract”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteRawSource.lean:131](../../../../library/modules/storedhermiterawsource/#decl-quantumblockencoding-storedhermiterawsource-raw-contract). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteSharedTables.lean
+
+26 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.inversePowers" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.inversePowers")
+*Plain-English reading.* This definition gives the library's named construction or computation for “inverse powers”. Cache '1 / 2^j' by one real division per extension, with full-copy writes.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Cache '1 / 2^j' by one real division per extension, with full-copy writes.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:23](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-inversepowers). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.inversePowers_value" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.inversePowers_value")
+*Plain-English reading.* Lean checks the proposition indexed as “inverse powers value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:31](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-inversepowers-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.Tables" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.Tables")
+*Plain-English reading.* This record groups the data and proof fields needed for “tables”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:47](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-tables). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.falseEntry" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.falseEntry")
+*Plain-English reading.* This definition gives the library's named construction or computation for “false entry”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:51](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-falseentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.trueEntry" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.trueEntry")
+*Plain-English reading.* This definition gives the library's named construction or computation for “true entry”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:60](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-trueentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.falseEntry_value" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.falseEntry_value")
+*Plain-English reading.* Lean checks the proposition indexed as “false entry value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:70](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-falseentry-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.trueEntry_value" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.trueEntry_value")
+*Plain-English reading.* Lean checks the proposition indexed as “true entry value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:81](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-trueentry-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.compile" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.compile")
+*Plain-English reading.* This definition gives the library's named construction or computation for “compile”. Both tables share a single factorial table and a single inverse-power table.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Both tables share a single factorial table and a single inverse-power table.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:94](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-compile). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.compile_false" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.compile_false")
+*Plain-English reading.* Lean checks the proposition indexed as “compile false”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:101](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-compile-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.compile_true" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.compile_true")
+*Plain-English reading.* Lean checks the proposition indexed as “compile true”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:108](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-compile-true). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.withCost" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.withCost")
+*Plain-English reading.* This definition gives the library's named construction or computation for “with cost”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:115](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-withcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.withCost_value" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.withCost_value")
+*Plain-English reading.* Lean checks the proposition indexed as “with cost value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:118](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-withcost-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.withCost_cost" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.withCost_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “with cost cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:121](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-withcost-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.shiftedRestriction" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.shiftedRestriction")
+*Plain-English reading.* This definition gives the library's named construction or computation for “shifted restriction”. Parameter arithmetic is an explicit, separately reusable supplier.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Parameter arithmetic is an explicit, separately reusable supplier.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:125](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-shiftedrestriction). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.shiftedRestriction_value" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.shiftedRestriction_value")
+*Plain-English reading.* Lean checks the proposition indexed as “shifted restriction value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:131](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-shiftedrestriction-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.shiftedRestriction_cost" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.shiftedRestriction_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “shifted restriction cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:140](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-shiftedrestriction-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow")
+*Plain-English reading.* This definition gives the library's named construction or computation for “injection row”. Cached coordinates are real inputs.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Cached coordinates are real inputs. Their source construction is separate. The guard is supplied by geometry; it is charged as a control comparison here. Disabled rows still have all zero entries explicitly materialized.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:149](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-injectionrow). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_value" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_value")
+*Plain-English reading.* Lean checks the proposition indexed as “injection row value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:154](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-injectionrow-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_eq_injectionCore" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_eq_injectionCore")
+*Plain-English reading.* Lean checks the proposition indexed as “injection row eq injection core”; the hypotheses and conclusion in the code panel fix its exact scope. Strong row refinement, with a previously stored source coefficient vector.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Strong row refinement, with a previously stored source coefficient vector. No source coefficients, dyadic addresses, or real coordinates are regenerated. Geometry separately certifies the valid restriction domain when interpreting this row as a polynomial; algebraic equality of the returned entries is total.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:171](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-injectionrow-eq-injectioncore). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.inversePowers_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.inversePowers_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “inverse powers cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:200](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-inversepowers-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.falseEntry_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.falseEntry_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “false entry cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:217](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-falseentry-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.trueEntry_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.trueEntry_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “true entry cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:227](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-trueentry-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.compile_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.compile_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “compile cost le”; the hypotheses and conclusion in the code panel fix its exact scope. Quadratic per-counter bound of the actual two-table producer.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Quadratic per-counter bound of the actual two-table producer.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:246](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-compile-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.compile_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.compile_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “compile total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:259](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-compile-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “injection row cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:272](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-injectionrow-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSharedTables.injectionRow_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “injection row total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSharedTables.lean:290](../../../../library/modules/storedhermitesharedtables/#decl-quantumblockencoding-storedhermitesharedtables-injectionrow-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteSourceCache.lean
+
+22 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteSourceCache.Cache" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.Cache")
+*Plain-English reading.* This record groups the data and proof fields needed for “cache”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:29](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-cache). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSourceCache.CacheRun" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.CacheRun")
+*Plain-English reading.* This record groups the data and proof fields needed for “cache run”. A proposition-valued field is a requirement until a constructor supplies it. SourceRun's ordinary and exponential fields are inherited unchanged.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* SourceRun's ordinary and exponential fields are inherited unchanged. The additional counters describe only selected integer supplier operations.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:39](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-cacherun). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSourceCache.Inputs" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.Inputs")
+*Plain-English reading.* This record groups the data and proof fields needed for “inputs”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:44](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-inputs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSourceCache.inputs" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.inputs")
+*Plain-English reading.* This definition gives the library's named construction or computation for “inputs”. Reuse the actual root-level tail width, never recompute pi\*L or cast an integer address.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Reuse the actual root-level tail width, never recompute pi\*L or cast an integer address. Root/table and numeric payload reads are separately charged.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:51](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-inputs). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.inputs_value" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.inputs_value")
+*Plain-English reading.* Lean checks the proposition indexed as “inputs value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:59](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-inputs-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.inputs_cost" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.inputs_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “inputs cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:72](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-inputs-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSourceCache.storeCache" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.storeCache")
+*Plain-English reading.* This definition gives the library's named construction or computation for “store cache”. Explicit fixed-size record materialization; arrays and tables are already stored and are preserved by reference rather than regenerated.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Explicit fixed-size record materialization; arrays and tables are already stored and are preserved by reference rather than regenerated.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:80](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-storecache). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteSourceCache.compile" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile")
+*Plain-English reading.* This definition gives the library's named construction or computation for “compile”. Actual deterministic source cache, with no hypothetical supplier input.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Actual deterministic source cache, with no hypothetical supplier input.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:88](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_source" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_source")
+*Plain-English reading.* Lean checks the proposition indexed as “compile source”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:104](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-source). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_shared_false" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_shared_false")
+*Plain-English reading.* Lean checks the proposition indexed as “compile shared false”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:109](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-shared-false). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_shared_true" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_shared_true")
+*Plain-English reading.* Lean checks the proposition indexed as “compile shared true”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:113](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-shared-true). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_tails" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_tails")
+*Plain-English reading.* Lean checks the proposition indexed as “compile tails”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:117](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-tails). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_origin" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_origin")
+*Plain-English reading.* Lean checks the proposition indexed as “compile origin”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:126](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-origin). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_parents_first" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_parents_first")
+*Plain-English reading.* Lean checks the proposition indexed as “compile parents first”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:130](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-parents-first). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_parents_lower" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_parents_lower")
+*Plain-English reading.* Lean checks the proposition indexed as “compile parents lower”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:136](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-parents-lower). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_spans" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_spans")
+*Plain-English reading.* Lean checks the proposition indexed as “compile spans”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:146](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-spans). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “compile exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:150](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_quotientCalls" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_quotientCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “compile quotient calls”; the hypotheses and conclusion in the code panel fix its exact scope. These are the selected calls in the exact parent run stored in compile.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* These are the selected calls in the exact parent run stored in compile.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:157](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-quotientcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_remainderCalls" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_remainderCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “compile remainder calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:161](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-remaindercalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_integerDoublings" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_integerDoublings")
+*Plain-English reading.* Lean checks the proposition indexed as “compile integer doublings”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:165](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-integerdoublings). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “compile cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:200](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteSourceCache.compile_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteSourceCache.compile_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “compile total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteSourceCache.lean:216](../../../../library/modules/storedhermitesourcecache/#decl-quantumblockencoding-storedhermitesourcecache-compile-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteStageFields.lean
+
+34 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.Cache" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.Cache")
+*Plain-English reading.* This record groups the data and proof fields needed for “cache”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:24](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-cache). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.Loaded" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.Loaded")
+*Plain-English reading.* This record groups the data and proof fields needed for “loaded”. A proposition-valued field is a requirement until a constructor supplies it. Register-local results of the charged input reads.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Register-local results of the charged input reads.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:32](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-loaded). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.view" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.view")
+*Plain-English reading.* This definition gives the library's named construction or computation for “view”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:46](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-view). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.load" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.load")
+*Plain-English reading.* This definition gives the library's named construction or computation for “load”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:53](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-load). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.load_value" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.load_value")
+*Plain-English reading.* Lean checks the proposition indexed as “load value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:73](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-load-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.load_cost" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.load_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “load cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:76](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-load-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.selectTails" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.selectTails")
+*Plain-English reading.* This definition gives the library's named construction or computation for “select tails”. Four Boolean selections, including the n=0 first-stage right selector.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Four Boolean selections, including the n=0 first-stage right selector.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:82](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-selecttails). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.selectTails_value" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.selectTails_value")
+*Plain-English reading.* Lean checks the proposition indexed as “select tails value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:89](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-selecttails-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.selectTails_cost" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.selectTails_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “select tails cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:94](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-selecttails-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.fromLoaded" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.fromLoaded")
+*Plain-English reading.* This definition gives the library's named construction or computation for “from loaded”. Actual scalar suppliers followed by seven output payload writes.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Actual scalar suppliers followed by seven output payload writes.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:100](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-fromloaded). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.fieldsView" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.fieldsView")
+*Plain-English reading.* This definition gives the library's named construction or computation for “fields view”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:110](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-fieldsview). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.fromLoaded_value" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.fromLoaded_value")
+*Plain-English reading.* Lean checks the proposition indexed as “from loaded value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:119](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-fromloaded-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.addCost" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.addCost")
+*Plain-English reading.* This definition gives the library's named construction or computation for “add cost”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:123](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-addcost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.addCost_value" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.addCost_value")
+*Plain-English reading.* Lean checks the proposition indexed as “add cost value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:126](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-addcost-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.addCost_cost" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.addCost_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “add cost cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:129](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-addcost-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.one" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.one")
+*Plain-English reading.* This definition gives the library's named construction or computation for “one”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:132](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.one_value" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.one_value")
+*Plain-English reading.* Lean checks the proposition indexed as “one value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:137](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-one-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.CacheCorrect" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.CacheCorrect")
+*Plain-English reading.* This record groups the data and proof fields needed for “cache correct”. A proposition-valued field is a requirement until a constructor supplies it. Cache conditions, not a SourceCorrect assumption.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Cache conditions, not a SourceCorrect assumption. Child geometry is independently supplied by children\_refines; no child computation is repeated.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:143](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-cachecorrect). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.one_source" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.one_source")
+*Plain-English reading.* Lean checks the proposition indexed as “one source”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:155](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-one-source). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.collectSource" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.collectSource")
+*Plain-English reading.* This definition gives the library's named construction or computation for “collect source”. Source runs are first physically cached, then their outputs projected.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Source runs are first physically cached, then their outputs projected. Only counter summation is metadata. No second source producer evaluation is used to obtain exponential counts or ordinary costs.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:193](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-collectsource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.collectSource_value" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.collectSource_value")
+*Plain-English reading.* Lean checks the proposition indexed as “collect source value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:202](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-collectsource-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.collectSource_cost" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.collectSource_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “collect source cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:206](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-collectsource-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.collectSource_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.collectSource_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “collect source exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:212](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-collectsource-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageFields.two" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.two")
+*Plain-English reading.* This definition gives the library's named construction or computation for “two”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:216](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-two). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.two_value" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.two_value")
+*Plain-English reading.* Lean checks the proposition indexed as “two value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:219](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-two-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.two_source" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.two_source")
+*Plain-English reading.* Lean checks the proposition indexed as “two source”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:223](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-two-source). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.one_exponentialCalls" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.one_exponentialCalls")
+*Plain-English reading.* Lean checks the proposition indexed as “one exponential calls”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:229](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-one-exponentialcalls). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.one_exponentialCalls_le" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.one_exponentialCalls_le")
+*Plain-English reading.* Lean checks the proposition indexed as “one exponential calls le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:234](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-one-exponentialcalls-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.two_exponentialCalls_le" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.two_exponentialCalls_le")
+*Plain-English reading.* Lean checks the proposition indexed as “two exponential calls le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:239](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-two-exponentialcalls-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.fromLoaded_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.fromLoaded_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “from loaded cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:246](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-fromloaded-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.one_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.one_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “one cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:255](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-one-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.one_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.one_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “one total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:263](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-one-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.two_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.two_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “two cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:278](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-two-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageFields.two_total_cost_le" (lean := "QuantumBlockEncoding.StoredHermiteStageFields.two_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “two total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageFields.lean:287](../../../../library/modules/storedhermitestagefields/#decl-quantumblockencoding-storedhermitestagefields-two-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredHermiteStageInput.lean
+
+14 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageInput.Loaded" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.Loaded")
+*Plain-English reading.* This record groups the data and proof fields needed for “loaded”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:21](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-loaded). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageInput.view" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.view")
+*Plain-English reading.* This definition gives the library's named construction or computation for “view”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:31](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-view). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageInput.load" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.load")
+*Plain-English reading.* This definition gives the library's named construction or computation for “load”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:37](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-load). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.load_value" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.load_value")
+*Plain-English reading.* Lean checks the proposition indexed as “load value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:52](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-load-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.load_cost" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.load_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “load cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:55](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-load-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageInput.store" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.store")
+*Plain-English reading.* This definition gives the library's named construction or computation for “store”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:61](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-store). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageInput.input" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.input")
+*Plain-English reading.* This definition gives the library's named construction or computation for “input”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:65](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-input). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredHermiteStageInput.stageView" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.stageView")
+*Plain-English reading.* This definition gives the library's named construction or computation for “stage view”. Mathematical view of the same returned data, not an executable callback.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Mathematical view of the same returned data, not an executable callback.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:74](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-stageview). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.input_value" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.input_value")
+*Plain-English reading.* Lean checks the proposition indexed as “input value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:81](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-input-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.input_cost" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.input_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “input cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:85](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-input-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.input_integerAdditions" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.input_integerAdditions")
+*Plain-English reading.* Lean checks the proposition indexed as “input integer additions”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:92](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-input-integeradditions). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.input_total_cost" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.input_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “input total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:96](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-input-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.inputCorrect" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.inputCorrect")
+*Plain-English reading.* Lean checks the proposition indexed as “input correct”; the hypotheses and conclusion in the code panel fix its exact scope. The final bridge is unconditional apart from L>0: source, shared tables, tails, parent first/lower, and integer spans all come from global compile.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* The final bridge is unconditional apart from L>0: source, shared tables, tails, parent first/lower, and integer spans all come from global compile.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:105](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-inputcorrect). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredHermiteStageInput.input_certified" (lean := "QuantumBlockEncoding.StoredHermiteStageInput.input_certified")
+*Plain-English reading.* Lean checks the proposition indexed as “input certified”; the hypotheses and conclusion in the code panel fix its exact scope. Correctness and both operation counters refer to this very input run.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Paper-facing backend models, source-specific Hermite constructions, and concrete State Preparation / Robin example artifacts.
+
+*Technical source note.* Correctness and both operation counters refer to this very input run.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredHermiteStageInput.lean:148](../../../../library/modules/storedhermitestageinput/#decl-quantumblockencoding-storedhermitestageinput-input-certified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::

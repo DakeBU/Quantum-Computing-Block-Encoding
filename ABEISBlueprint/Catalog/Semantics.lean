@@ -4924,6 +4924,178 @@ Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:219](../../../../library/mod
 Source: [QuantumBlockEncoding/PrimitiveCircuit.lean:224](../../../../library/modules/primitivecircuit/#decl-quantumblockencoding-primitiveprogram-resource). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean
+
+12 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.PrimitiveCircuitPerturbation.GateAligned" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.GateAligned")
+*Plain-English reading.* This type lists the allowed alternatives for “gate aligned”; its constructors are the cases that downstream code must handle.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* inductive.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:16](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-gatealigned). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PrimitiveCircuitPerturbation.Aligned" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.Aligned")
+*Plain-English reading.* This definition gives the library's named construction or computation for “aligned”. A Forall₂ witness preserves every position, physical label and list length.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* A Forall₂ witness preserves every position, physical label and list length.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:22](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-aligned). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.GateAligned.touched_eq" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.GateAligned.touched_eq")
+*Plain-English reading.* Lean checks the proposition indexed as “touched eq”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:25](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-gatealigned-touched-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.Aligned.length_eq" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.Aligned.length_eq")
+*Plain-English reading.* Lean checks the proposition indexed as “length eq”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:29](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-aligned-length-eq). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.Aligned.refl" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.Aligned.refl")
+*Plain-English reading.* Lean checks the proposition indexed as “refl”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:33](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-aligned-refl). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.GateAligned.distance_le" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.GateAligned.distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “distance le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:39](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-gatealigned-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.aligned_eval_distance_le" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.aligned_eval_distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “aligned eval distance le”; the hypotheses and conclusion in the code panel fix its exact scope. No gate order is commuted: each induction step matches the actual evaluator.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* No gate order is commuted: each induction step matches the actual evaluator.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:49](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-aligned-eval-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.aligned_eval_clm_distance_le" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.aligned_eval_clm_distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “aligned eval clm distance le”; the hypotheses and conclusion in the code panel fix its exact scope. Explicit Euclidean CLM formulation prevents accidental entrywise-norm use.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Explicit Euclidean CLM formulation prevents accidental entrywise-norm use.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:79](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-aligned-eval-clm-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.PrimitiveCircuitPerturbation.hermiteAngleBudget" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.hermiteAngleBudget")
+*Plain-English reading.* This definition gives the library's named construction or computation for “hermite angle budget”. Sufficient uniform RY-angle budget for the existing actual prepare list.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Sufficient uniform RY-angle budget for the existing actual prepare list.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:88](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-hermiteanglebudget). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.hermiteAngleBudget_nonneg" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.hermiteAngleBudget_nonneg")
+*Plain-English reading.* Lean checks the proposition indexed as “hermite angle budget nonneg”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:91](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-hermiteanglebudget-nonneg). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_distance_le" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “prepare conditional distance le”; the hypotheses and conclusion in the code panel fix its exact scope. A conditional consumer of the actual constructed Hermite circuit and its existing gate-count theorem.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* A conditional consumer of the actual constructed Hermite circuit and its existing gate-count theorem. The alignment witness remains an input.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:98](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-prepare-conditional-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_clm_distance_le" (lean := "QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_clm_distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “prepare conditional clm distance le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean:121](../../../../library/modules/primitivecircuitperturbation/#decl-quantumblockencoding-primitivecircuitperturbation-prepare-conditional-clm-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/PrimitiveDepthBound.lean
 
 5 explicit public declarations, in source order.
@@ -5676,6 +5848,150 @@ Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:29](../../../../library/m
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/PrimitiveRefinement.lean:33](../../../../library/modules/primitiverefinement/#decl-quantumblockencoding-primitiverefinement-oraclecalls-eq-zero). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/PrimitiveRyPerturbation.lean
+
+10 explicit public declarations, in source order.
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_centered_difference" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_centered_difference")
+*Plain-English reading.* Lean checks the proposition indexed as “standard ry centered difference”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:17](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-standardry-centered-difference). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor")
+*Plain-English reading.* Lean checks the proposition indexed as “standard ry difference factor”; the hypotheses and conclusion in the code panel fix its exact scope. The scalar sign is retained; this is equality, not equality up to phase.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The scalar sign is retained; this is equality, not equality up to phase.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:29](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-standardry-difference-factor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.lift_sub" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.lift_sub")
+*Plain-English reading.* Lean checks the proposition indexed as “lift sub”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:39](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-lift-sub). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.lift_smul" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.lift_smul")
+*Plain-English reading.* Lean checks the proposition indexed as “lift smul”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:47](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-lift-smul). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_difference_factor" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_difference_factor")
+*Plain-English reading.* Lean checks the proposition indexed as “lifted ry difference factor”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:54](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-liftedry-difference-factor). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance")
+*Plain-English reading.* Lean checks the proposition indexed as “lifted ry distance”; the hypotheses and conclusion in the code panel fix its exact scope. Exact L2 norm for every physical target and every number of spectators.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Exact L2 norm for every physical target and every number of spectators.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:62](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-liftedry-distance). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance_le" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “lifted ry distance le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:72](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-liftedry-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_distance" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_distance")
+*Plain-English reading.* Lean checks the proposition indexed as “eval ry distance”; the hypotheses and conclusion in the code panel fix its exact scope. This names the existing actual RY gate, not an abstract error assumption.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* This names the existing actual RY gate, not an abstract error assumption.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:82](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-eval-ry-distance). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_distance_le" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “eval ry distance le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:87](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-eval-ry-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_clm_distance_le" (lean := "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_clm_distance_le")
+*Plain-English reading.* Lean checks the proposition indexed as “eval ry clm distance le”; the hypotheses and conclusion in the code panel fix its exact scope. Explicit Euclidean continuous-linear-map form removes all norm-scope ambiguity.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Explicit Euclidean continuous-linear-map form removes all norm-scope ambiguity.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/PrimitiveRyPerturbation.lean:92](../../../../library/modules/primitiveryperturbation/#decl-quantumblockencoding-primitiveryperturbation-eval-ry-clm-distance-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/PrimitiveSemantics.lean
@@ -8840,6 +9156,630 @@ Source: [QuantumBlockEncoding/SequentialPrimitiveAssembly.lean:313](../../../../
 Source: [QuantumBlockEncoding/SequentialPrimitiveAssembly.lean:323](../../../../library/modules/sequentialprimitiveassembly/#decl-quantumblockencoding-sequentialprimitiveassembly-publiccircuit-primitive-bound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/StoredBinaryCoordinates.lean
+
+27 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredBinaryCoordinates.IndexedRun" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.IndexedRun")
+*Plain-English reading.* This record groups the data and proof fields needed for “indexed run”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:17](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-indexedrun). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal")
+*Plain-English reading.* This definition gives the library's named construction or computation for “binary real”. Read exactly 'width' low binary digits using quotient/remainder, then Horner arithmetic.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Read exactly 'width' low binary digits using quotient/remainder, then Horner arithmetic. The legal-input theorem requires the integer to fit.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:24](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-binaryreal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_value" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_value")
+*Plain-English reading.* Lean checks the proposition indexed as “binary real value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:37](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-binaryreal-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_cost" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “binary real cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:61](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-binaryreal-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_quotients" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_quotients")
+*Plain-English reading.* Lean checks the proposition indexed as “binary real quotients”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:71](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-binaryreal-quotients). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_remainders" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.binaryReal_remainders")
+*Plain-English reading.* Lean checks the proposition indexed as “binary real remainders”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:77](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-binaryreal-remainders). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate")
+*Plain-English reading.* This definition gives the library's named construction or computation for “coordinate”. Coordinate supplier from explicit real origin/step and a binary index.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Coordinate supplier from explicit real origin/step and a binary index. Origin and step are supplied values; their production is not charged here.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:85](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-coordinate). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_value" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_value")
+*Plain-English reading.* Lean checks the proposition indexed as “coordinate value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:93](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-coordinate-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_cost" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “coordinate cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:98](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-coordinate-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_quotients" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_quotients")
+*Plain-English reading.* Lean checks the proposition indexed as “coordinate quotients”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:105](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-coordinate-quotients). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_remainders" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.coordinate_remainders")
+*Plain-English reading.* Lean checks the proposition indexed as “coordinate remainders”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:109](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-coordinate-remainders). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredBinaryCoordinates.collectIndexed" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.collectIndexed")
+*Plain-English reading.* This definition gives the library's named construction or computation for “collect indexed”. One materialized indexed pass, followed by value projection.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* One materialized indexed pass, followed by value projection. Scalar and index-call counters read stored results; callbacks are not rerun.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:115](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-collectindexed). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.collectIndexed_value" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.collectIndexed_value")
+*Plain-English reading.* Lean checks the proposition indexed as “collect indexed value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:123](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-collectindexed-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.collectIndexed_cost" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.collectIndexed_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “collect indexed cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:126](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-collectindexed-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredBinaryCoordinates.Point" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.Point")
+*Plain-English reading.* This record groups the data and proof fields needed for “point”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:130](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-point). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredBinaryCoordinates.parent" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parent")
+*Plain-English reading.* This definition gives the library's named construction or computation for “parent”. The schedule uses one separately counted integer quotient.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The schedule uses one separately counted integer quotient. Powers and integer address multiplication remain outside the two selected index counters. The real coordinate itself is built by charged binary arithmetic.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:137](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parent). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parent_first" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parent_first")
+*Plain-English reading.* Lean checks the proposition indexed as “parent first”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:145](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parent-first). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parent_lower" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parent_lower")
+*Plain-English reading.* Lean checks the proposition indexed as “parent lower”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:153](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parent-lower). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parent_cost" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parent_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “parent cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:163](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parent-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parent_quotients" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parent_quotients")
+*Plain-English reading.* Lean checks the proposition indexed as “parent quotients”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:169](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parent-quotients). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parent_remainders" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parent_remainders")
+*Plain-English reading.* Lean checks the proposition indexed as “parent remainders”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:173](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parent-remainders). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredBinaryCoordinates.parents" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parents")
+*Plain-English reading.* This definition gives the library's named construction or computation for “parents”. Chronological parent rows: index 't' corresponds to residual width 'n-t'.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Chronological parent rows: index 't' corresponds to residual width 'n-t'. Only 'n+1' coordinates are stored, not a grid-sized coordinate table.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:179](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parents). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parents_first" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parents_first")
+*Plain-English reading.* Lean checks the proposition indexed as “parents first”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:183](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parents-first). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parents_lower" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parents_lower")
+*Plain-English reading.* Lean checks the proposition indexed as “parents lower”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:188](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parents-lower). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parents_cost" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parents_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “parents cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:194](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parents-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parents_quotients" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parents_quotients")
+*Plain-English reading.* Lean checks the proposition indexed as “parents quotients”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:201](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parents-quotients). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredBinaryCoordinates.parents_remainders" (lean := "QuantumBlockEncoding.StoredBinaryCoordinates.parents_remainders")
+*Plain-English reading.* Lean checks the proposition indexed as “parents remainders”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredBinaryCoordinates.lean:205](../../../../library/modules/storedbinarycoordinates/#decl-quantumblockencoding-storedbinarycoordinates-parents-remainders). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredDyadicSpans.lean
+
+17 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredDyadicSpans.SpanRun" (lean := "QuantumBlockEncoding.StoredDyadicSpans.SpanRun")
+*Plain-English reading.* This record groups the data and proof fields needed for “span run”. A proposition-valued field is a requirement until a constructor supplies it.
+
+*Formal status.* Data contract in the default import surface; proposition-valued fields are obligations, not automatically established facts.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* structure.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:18](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spanrun). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredDyadicSpans.append" (lean := "QuantumBlockEncoding.StoredDyadicSpans.append")
+*Plain-English reading.* This definition gives the library's named construction or computation for “append”. Complete persistent copy, including the appended last value.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Complete persistent copy, including the appended last value.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:23](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-append). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.append_value" (lean := "QuantumBlockEncoding.StoredDyadicSpans.append_value")
+*Plain-English reading.* Lean checks the proposition indexed as “append value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:28](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-append-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.append_cost" (lean := "QuantumBlockEncoding.StoredDyadicSpans.append_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “append cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:33](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-append-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredDyadicSpans.spans" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans")
+*Plain-English reading.* This definition gives the library's named construction or computation for “spans”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:56](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_value" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_value")
+*Plain-English reading.* Lean checks the proposition indexed as “spans value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:66](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_vector_value" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_vector_value")
+*Plain-English reading.* Lean checks the proposition indexed as “spans vector value”; the hypotheses and conclusion in the code panel fix its exact scope. Exact table equality is a specification, not the data producer.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Exact table equality is a specification, not the data producer.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:83](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-vector-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_integerDoublings" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_integerDoublings")
+*Plain-English reading.* Lean checks the proposition indexed as “spans integer doublings”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:88](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-integerdoublings). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.append_total_cost" (lean := "QuantumBlockEncoding.StoredDyadicSpans.append_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “append total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:99](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-append-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_total_cost" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “spans total cost”; the hypotheses and conclusion in the code panel fix its exact scope. Ordinary work is exactly quadratic; the n integer doublings are separate.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Ordinary work is exactly quadratic; the n integer doublings are separate.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:105](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_cost_le" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “spans cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:118](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_field_cost" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_field_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “spans field cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:123](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-field-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_word_bound" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_word_bound")
+*Plain-English reading.* Lean checks the proposition indexed as “spans word bound”; the hypotheses and conclusion in the code panel fix its exact scope. All stored spans fit an unsigned word of n+1 bits.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* All stored spans fit an unsigned word of n+1 bits.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:130](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-word-bound). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredDyadicSpans.atStage" (lean := "QuantumBlockEncoding.StoredDyadicSpans.atStage")
+*Plain-English reading.* This definition gives the library's named construction or computation for “at stage”. This reads the existing ascending cache in chronological source order.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* This reads the existing ascending cache in chronological source order.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:142](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-atstage). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.atStage_value" (lean := "QuantumBlockEncoding.StoredDyadicSpans.atStage_value")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:145](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-atstage-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.atStage_cost" (lean := "QuantumBlockEncoding.StoredDyadicSpans.atStage_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “at stage cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:149](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-atstage-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredDyadicSpans.spans_certified" (lean := "QuantumBlockEncoding.StoredDyadicSpans.spans_certified")
+*Plain-English reading.* Lean checks the proposition indexed as “spans certified”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredDyadicSpans.lean:152](../../../../library/modules/storeddyadicspans/#decl-quantumblockencoding-storeddyadicspans-spans-certified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/StoredGivens.lean
 
 60 explicit public declarations, in source order.
@@ -10512,6 +11452,416 @@ Source: [QuantumBlockEncoding/StoredIsometryCompletion.lean:454](../../../../lib
 *Declaration kind.* theorem.
 
 Source: [QuantumBlockEncoding/StoredIsometryCompletion.lean:460](../../../../library/modules/storedisometrycompletion/#decl-quantumblockencoding-storedisometrycompletion-completefrom-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/StoredMatrixProductChain.lean
+
+29 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry")
+*Plain-English reading.* This definition gives the library's named construction or computation for “terminal entry”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:11](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-terminalentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.terminal" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.terminal")
+*Plain-English reading.* This definition gives the library's named construction or computation for “terminal”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:18](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-terminal). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry")
+*Plain-English reading.* This definition gives the library's named construction or computation for “initial entry”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:22](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-initialentry). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.initial" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.initial")
+*Plain-English reading.* This definition gives the library's named construction or computation for “initial”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:29](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-initial). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.tailTable" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.tailTable")
+*Plain-English reading.* This definition gives the library's named construction or computation for “tail table”. Copy only references to already materialized local cores.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Copy only references to already materialized local cores.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:34](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-tailtable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.tailChain" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.tailChain")
+*Plain-English reading.* This definition gives the library's named construction or computation for “tail chain”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:37](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-tailchain). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft")
+*Plain-English reading.* This definition gives the library's named construction or computation for “close left”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:49](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-closeleft). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.ofTable" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.ofTable")
+*Plain-English reading.* This definition gives the library's named construction or computation for “of table”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:55](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-oftable). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.terminal_value" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.terminal_value")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:60](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-terminal-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.initial_value" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.initial_value")
+*Plain-English reading.* Lean checks the proposition indexed as “initial value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:68](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-initial-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_value" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_value")
+*Plain-English reading.* Lean checks the proposition indexed as “tail table value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:75](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-tailtable-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::definition "QuantumBlockEncoding.StoredMatrixProductChain.Window" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.Window")
+*Plain-English reading.* This definition gives the library's named construction or computation for “window”. Kernel appears only in this finite-window specification, never production.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Kernel appears only in this finite-window specification, never production.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:80](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-window). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_value" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_value")
+*Plain-English reading.* Lean checks the proposition indexed as “tail chain value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:84](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-tailchain-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_value" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_value")
+*Plain-English reading.* Lean checks the proposition indexed as “close left value”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:109](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-closeleft-value). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines")
+*Plain-English reading.* Lean checks the proposition indexed as “of table refines”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:117](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-oftable-refines). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal entry cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:135](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-terminalentry-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “initial entry cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:145](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-initialentry-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.terminal_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.terminal_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:155](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-terminal-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.initial_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.initial_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “initial cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:162](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-initial-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “tail table cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:169](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-tailtable-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.terminal_total_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.terminal_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “terminal total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:180](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-terminal-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.initial_total_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.initial_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “initial total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:185](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-initial-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_total_cost" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_total_cost")
+*Plain-English reading.* Lean checks the proposition indexed as “tail table total cost”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:190](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-tailtable-total-cost). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “tail chain total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:202](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-tailchain-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_tail_total_cost_le" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_tail_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “close left tail total cost le”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:216](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-closeleft-tail-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_total_cost_le" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_total_cost_le")
+*Plain-English reading.* Lean checks the proposition indexed as “of table total cost le”; the hypotheses and conclusion in the code panel fix its exact scope. Bound for the very same run whose value refines 'ofKernel'; includes terminal/initial arithmetic, materialization, copied references, and nodes.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Bound for the very same run whose value refines 'ofKernel'; includes terminal/initial arithmetic, materialization, copied references, and nodes.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:230](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-oftable-total-cost-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.window_of_entries" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.window_of_entries")
+*Plain-English reading.* Lean checks the proposition indexed as “window of entries”; the hypotheses and conclusion in the code panel fix its exact scope. Entrywise supplier adapter; only the stored finite window is constrained.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Entrywise supplier adapter; only the stored finite window is constrained.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:240](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-window-of-entries). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond")
+*Plain-English reading.* Lean checks the proposition indexed as “of table max bond”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:249](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-oftable-maxbond). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified" (lean := "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified")
+*Plain-English reading.* Lean checks the proposition indexed as “of table certified”; the hypotheses and conclusion in the code panel fix its exact scope. One producer, with both exact returned data and polynomial charged work.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* One producer, with both exact returned data and polynomial charged work.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/StoredMatrixProductChain.lean:257](../../../../library/modules/storedmatrixproductchain/#decl-quantumblockencoding-storedmatrixproductchain-oftable-certified). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
 # QuantumBlockEncoding/StoredRectangularGivens.lean

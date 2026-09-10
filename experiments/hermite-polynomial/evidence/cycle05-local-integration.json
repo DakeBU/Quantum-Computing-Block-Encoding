@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "evidenceClass": "observed-local-lean-integration",
+  "observedDate": "2026-09-10",
+  "baseCommit": "5d7e27a7faaf9465eb405db41f6cd1f323d05db2",
+  "uncommittedProofChangesIncluded": true,
+  "proofInputsSha256": "1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e",
+  "leanGate": {
+    "passed": true,
+    "compiledModuleCount": 202,
+    "completedAt": "2026-09-10T18:20:02.9637+08:00",
+    "commands": [
+      "lake build",
+      "lake build Tests",
+      "lake build <every production and test module, batches of 40>"
+    ]
+  },
+  "publicationPipeline": {
+    "status": "completed",
+    "command": "scripts/build-all.ps1 -PythonCommand .venv/Scripts/python.exe",
+    "passed": true,
+    "exitCode": 0,
+    "completionObservedAt": "2026-09-10T19:17:54+08:00",
+    "htmlPageCount": 348,
+    "declarationSearchEntries": 4524,
+    "modulePageCount": 138,
+    "chapterCount": 9,
+    "diagramCount": 9,
+    "commitPinnedSourceLinks": 4201,
+    "sourceFilesWithPinnedLinks": 123,
+    "publicationTextFilesScannedForLocalPaths": 509,
+    "sourceLinkScope": "Clean files at the base commit only; new uncommitted declarations retain local source views and receive new-commit links in the remote build."
+  },
+  "scope": "Cycle-05 actual stored raw source and conditional circuit accuracy. Whole normalized stored primitive compilation and uniform finite-bit/export refinement remain open. No remote deployment claim.",
+  "preservedIntegrationFailure": "Initial canonical library/test build failed in an extracted boundary test due to an unnecessary open of a non-imported namespace. Removing that open repaired the test without modifying the producer; subsequent full Lean gate passed."
+}

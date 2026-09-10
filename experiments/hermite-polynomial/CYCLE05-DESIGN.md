@@ -1,5 +1,8 @@
 # Next bounded experiment: stored source composition and angle-error analysis
 
+Historical design snapshot. The later [cycle-05 result](CYCLE05-RESULT.md)
+records the actual implementation and separately states its acceptance scope.
+
 Status: **design only**, prepared during cycle-04 integration on 2026-09-10.
 No result below is promoted to a compiled theorem unless an existing source
 anchor is explicitly named. The scientific target and acceptance boundaries

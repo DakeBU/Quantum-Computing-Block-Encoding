@@ -265,3 +265,25 @@ for the current scoped versus integrated gate status.
 These modules are supplier candidates for a composed stored Hermite compiler.
 They do not by themselves replace `ConstructiveHermitePreparation.prepare`
 or discharge finite-precision and full executable-family acceptance.
+
+## Cycle-05 source and accuracy lookup
+
+All following suffixes use the import prefix `QuantumBlockEncoding.`.
+`StoredHermiteRawSource.raw_value k n L hL` gives literal stored-chain
+equality, and `raw_contract k n L hL x` supplies every raw sample.
+`StoredHermiteRawCost.raw_certified k n L hL` binds that same returned
+chain to its polynomial ordinary budget and separate exponential/selected
+integer ledgers. Use the checked `ABEISTests/StoredHermiteRawSource.lean`
+norm-consumer calls; do not insert a dense sample-norm evaluator.
+
+`PrimitiveRyPerturbation.eval_ry_clm_distance_le target a b` uses the actual
+physical target and Euclidean operator norm. The circuit consumer
+`PrimitiveCircuitPerturbation.prepare_conditional_clm_distance_le k n L hε approximate aligned`
+requires positional gate alignment and angle budget
+`ε/(24*(n+1)*(2*k+6)^3)`. It does not compute rounded angles.
+Wrong-wire substitutions and gate reordering are rejected in the matching
+tests; equal raw angles on different wires do not imply equal operators.
+
+See the [cycle-05 acceptance boundary](../../experiments/hermite-polynomial/CYCLE05-RESULT.md).
+Old cardinality-based and new explicit source layouts have equal observable
+action, not a proved entrywise-identical internal representation.

@@ -21,7 +21,11 @@
         "QuantumBlockEncoding.HermiteBoundaryInjection.hermiteKernel_eq_sample",
         "QuantumBlockEncoding.HermiteFiniteNorm.localSampleNorm_eq_sampleNorm",
         "QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec",
-        "QuantumBlockEncoding.StoredTensorTrain.canonicalize_total_cost_le"
+        "QuantumBlockEncoding.StoredTensorTrain.canonicalize_total_cost_le",
+        "QuantumBlockEncoding.StoredHermiteRawSource.raw_contract",
+        "QuantumBlockEncoding.StoredHermiteRawCost.raw_certified",
+        "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_distance",
+        "QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_clm_distance_le"
       ],
       "problem": "Prepare the sampled smooth auxiliary initial state used in Schrödingerisation, for any Hermite order k. Load function values as amplitudes and account for the preparation circuit itself.",
       "formula": "\\lvert g_k\\rangle_p=\\frac{1}{\\sqrt{Z_k}}\\sum_{j=0}^{2^n-1}g_k(p_j)\\lvert j\\rangle,\\quad Z_k=\\sum_jg_k(p_j)^2,\\quad p_j=-\\pi L+\\frac{2\\pi Lj}{2^n}.",
@@ -318,10 +322,22 @@
           "statementFormula": "D=2k+6,\\quad q=\\lceil\\log_2D\\rceil,\\quad U|0^{n_p+q}\\rangle=|g_k\\rangle|0^q\\rangle,\\qquad G,\\mathrm{depth}\\le48n_pD^3.",
           "statementProse": "For every natural k, n_p at least 1 and positive L, an actual Ry/CNOT circuit prepares exactly the same normalized samples. Its small bond memory has D states before binary padding. Fixed k therefore gives a linear quantum gate bound in n_p, rather than exponential scaling. No amplitude oracle, success probability or uncharged initial state is assumed. The bound does not yet include the entire classical compiler or finite-bit angle synthesis.",
           "proofSteps": [
-            ["Carry local coefficients", "A degree-2k+1 Bernstein vector represents the polynomial piece exactly. A boundary state decides when a dyadic interval enters that piece, and two small tail components handle the exponentials. This gives one consistent chain of width 2k+6 for every bit string."],
-            ["Normalize without a sample table", "Small local Gram matrices give exactly the full sample norm. Deterministic thin LQ turns the chain into norm-preserving local maps, retaining deficient and zero-rank cases and absorbing the signed first boundary."],
-            ["Compile and clean the memory", "Complete only the reachable columns to a real unitary, turn each local unitary into selected rotations, and place their Ry/CNOT instructions on the physical wires. The proof covers all output amplitudes, including zero amplitude in every non-clean bond sector."],
-            ["Keep the remaining obligations visible", "Stored LQ, canonicalization, isometry completion and coefficient restriction have separate modeled cost bounds. Source generation, their complete cost composition and uniform rounding remain open; finite QASM checks do not fill those gaps."]
+            [
+              "Carry local coefficients",
+              "A degree-2k+1 Bernstein vector represents the polynomial piece exactly. A boundary state decides when a dyadic interval enters that piece, and two small tail components handle the exponentials. This gives one consistent chain of width 2k+6 for every bit string."
+            ],
+            [
+              "Normalize without a sample table",
+              "Small local Gram matrices give exactly the full sample norm. Deterministic thin LQ turns the chain into norm-preserving local maps, retaining deficient and zero-rank cases and absorbing the signed first boundary."
+            ],
+            [
+              "Compile and clean the memory",
+              "Complete only the reachable columns to a real unitary, turn each local unitary into selected rotations, and place their Ry/CNOT instructions on the physical wires. The proof covers all output amplitudes, including zero amplitude in every non-clean bond sector."
+            ],
+            [
+              "Keep the remaining obligations visible",
+              "The raw source now has an actual cached producer with a proved polynomial operation ledger. Stored normalization, LQ, completion and emission still need whole-compiler cost composition. Finite-bit input handling and uniform rounding remain open; finite QASM checks do not fill those gaps."
+            ]
           ],
           "leanRoots": [
             "QuantumBlockEncoding.HermiteBoundaryInjection.hermiteKernel_eq_sample",
@@ -331,7 +347,55 @@
           ]
         },
         {
-          "label": "4 · Read the evidence at the correct level",
+          "label": "4 · Classical source construction",
+          "title": "Build a short chain, not an exponentially long sample list",
+          "statementFormula": "D=2k+6,\\qquad W_{\\rm raw}=O(n_p(k+1)^3+n_p^2+(k+1)^2),\\quad \\#\\exp\\le3n_p+1.",
+          "statementProse": "The new raw-source producer computes and stores the coefficients, interval boundaries, tail factors and small core matrices. Lean proves that contracting its returned chain gives every original unnormalized sample. The cost bound belongs to this actual producer, not just to the size of a possible representation.",
+          "proofSteps": [
+            [
+              "Cache shared work",
+              "Generate each reusable coefficient table and tail cache once; carry binary coordinates through the dyadic intervals."
+            ],
+            [
+              "Keep the original branch tests",
+              "Only intervals wholly inside a source piece receive its injection. Both end contractions are retained, including the one-qubit case."
+            ],
+            [
+              "Read the cost model carefully",
+              "The bound counts declared exact-real operations plus separate exponential and selected integer calls. It does not prove finite-bit runtime or the total cost of compiling the final quantum circuit."
+            ]
+          ],
+          "leanRoots": [
+            "QuantumBlockEncoding.StoredHermiteRawSource.raw_contract",
+            "QuantumBlockEncoding.StoredHermiteRawCost.raw_certified"
+          ]
+        },
+        {
+          "label": "5 · Conditional angle accuracy",
+          "title": "A small error per rotation gives a controlled circuit error",
+          "statementFormula": "\\delta=\\frac{\\varepsilon}{24n_p(2k+6)^3},\\qquad \\|\\widehat U-U\\|_{2\\to2}\\le\\varepsilon.",
+          "statementProse": "Keep every gate in the same position and on the same physical wires. If each changed Ry angle differs by at most delta, the entire constructed circuit differs by at most epsilon in Euclidean operator norm. The bound has no factor proportional to the number of amplitudes.",
+          "proofSteps": [
+            [
+              "Control one actual gate",
+              "The Ry operator difference is exactly twice the absolute sine of one quarter of the angle difference, hence at most half the angle error."
+            ],
+            [
+              "Add errors in circuit order",
+              "Unitary gates preserve the norm, so the ordered composition accumulates at most half the sum of the per-position angle errors."
+            ],
+            [
+              "Do not confuse a budget with an implementation",
+              "A supplied approximate circuit must satisfy that angle accuracy. This theorem does not calculate finite-precision angles, prove a floating-point exporter, or promise exact ancilla cleanup after rounding."
+            ]
+          ],
+          "leanRoots": [
+            "QuantumBlockEncoding.PrimitiveRyPerturbation.eval_ry_distance",
+            "QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_clm_distance_le"
+          ]
+        },
+        {
+          "label": "6 · Read the evidence at the correct level",
           "title": "Exact real-angle gates and finite exported circuits answer different questions",
           "statementFormula": "U_k|0^n\\rangle=|g_k\\rangle_p,\\qquad \\|\\widehat U_k|0^n\\rangle-\\widehat g_k\\|_\\infty\\le\\varepsilon_{\\rm observed}.",
           "statementProse": "The first identity is the symbolic acceptance target. The second is a measured error for a specified exported instance; the acceptance report supplies the parameters, backend versions and tolerances. The measured tolerance here is the maximum componentwise amplitude error, not a whole-vector Euclidean error.",

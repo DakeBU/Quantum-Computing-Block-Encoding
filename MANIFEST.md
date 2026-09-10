@@ -8339,3 +8339,7 @@ block-encoding formalization lifecycle.
 | 2026-09-10 16:45:59 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle04-StoredHermiteCoefficients |
 | 2026-09-10 16:45:59 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle04-StoredSelectedRyTrace |
 | 2026-09-10 16:46:00 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle04-StoredTensorTrainNorm |
+| 2026-09-10 18:19:30 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle05-raw-source-cost |
+| 2026-09-10 18:19:30 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle05-conditional-angle |
+| 2026-09-10 18:19:31 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle05-test-extraction-import |
+| 2026-09-10 19:19:00 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-poly-cycle05-full-local-publication |

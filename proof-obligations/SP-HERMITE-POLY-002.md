@@ -40,6 +40,8 @@ The original exponential reference remains unchanged.
 | C2h | Stored norm environments | `StoredTensorTrainNorm.gram_value`, `norm_value`, `norm_total_cost_le` | cached two-pass Gram supplier and signed/zero/internal-zero-bond tests passed; full cycle-04 Lean and website integration passed; whole compiler composition remains open |
 | C2i | Stored recursive local rotation emission | `StoredSelectedRyTrace.compile_value`, `selected_value`, `selected_total_cost_le` | scoped compile passed: full ordered trace equality and local stored-operation ledger; angle evaluation, physical whole-pipeline placement and serialization excluded |
 | C3 | Input representation, cutoff separation, rounding, bit complexity | no uniform epsilon/cost certificate | open; real scientific input and rational executable input remain distinct |
+| C2j | Actual stored source from k,n,L | `StoredHermiteRawSource.raw_value`, `raw_contract`; `StoredHermiteRawCost.raw_certified` | full canonical Lean and local website integration passed; same actual raw chain, polynomial ordinary work and separately counted exp/integer operations |
+| C3a | Actual RY and whole-circuit conditional error | `PrimitiveRyPerturbation.eval_ry_distance`; `PrimitiveCircuitPerturbation.prepare_conditional_clm_distance_le` | full canonical Lean and local website integration passed; supplied aligned circuit and angle accuracy, not a numerical backend |
 | M1 | Interval masses and actual-grid `Z>=1` | `HermiteIntervalMass.hermite_polynomial_mass`, `exponentialMassClosed_eq`, `sampled_mass_ge_one` | compiled; independent target/norm validation reuse |
 | M2 | Coherent mass/angle arithmetic with uncompute | no supplied circuit | inactive alternative, not combined into the MPS quantum circuit |
 | K1 | Exact-signature retrieval and narrow instantiation | 32 checked signatures, 6 applications; context-pack regression | diagnostic; no claim of general workflow speedup |
@@ -49,8 +51,8 @@ The original exponential reference remains unchanged.
 
 ## Next admissible work
 
-1. Compose the source coefficients, cutoff and explicit layout into one stored
-   raw-chain producer, including tail exponentials and boundary contractions.
+1. Integrate the cycle-05 actual raw-chain producer and its same-returned-object
+   cost theorem; keep the full gate separate from its scoped checks.
 2. Consume the stored norm, LQ, canonicalization, completion and local trace
    interfaces through that same producer; local cost theorems do not yet bound
    the whole classical compiler. Keep zero pivots and rank deficiency covered.
@@ -67,6 +69,11 @@ The five cycle-04 interfaces C2e--C2i also passed the complete local publication
 pipeline with proof-input digest
 `448914e875837c53a5b2a5d08260c9eab4009eb75fd6a9e60503b66aeaf1866a`.
 This integration acceptance does not change the open C2/C3/X2/ROOT boundary.
+
+The [cycle-05 source and accuracy packet](../experiments/hermite-polynomial/CYCLE05-RESULT.md)
+records the new source composition, conditional angle bound, preserved
+regressions and explicit operation-model omissions. Its proof inputs differ
+from cycle 04 and require their own integration gate.
 
 ## Preserved falsifier
 

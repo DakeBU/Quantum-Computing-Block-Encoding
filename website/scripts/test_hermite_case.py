@@ -155,6 +155,25 @@ class HermitePublicationTests(unittest.TestCase):
         self.assertIn("arbitrary", case["limitations"].lower())
         self.assertIn("48n_pD^3", explanation["statementFormula"])
 
+    def test_stored_source_and_angle_results_keep_distinct_acceptance_scopes(self):
+        data = json.loads(publisher.HERMITE_PATH.read_text(encoding="utf-8"))
+        case = data["cases"][0]
+        claims = data["teaching"][case["slug"]]["theorems"]
+        source = next(item for item in claims if item["label"].startswith("4 ·"))
+        accuracy = next(item for item in claims if item["label"].startswith("5 ·"))
+        self.assertIn("QuantumBlockEncoding.StoredHermiteRawCost.raw_certified",
+                      source["leanRoots"])
+        self.assertIn("unnormalized", source["statementProse"])
+        self.assertIn("finite-bit runtime", str(source["proofSteps"]))
+        self.assertIn("QuantumBlockEncoding.PrimitiveCircuitPerturbation."
+                      "prepare_conditional_clm_distance_le", accuracy["leanRoots"])
+        self.assertIn("same physical wires", accuracy["statementProse"])
+        self.assertIn("does not calculate", str(accuracy["proofSteps"]))
+        self.assertIn("exact ancilla cleanup after rounding", str(accuracy["proofSteps"]))
+        for item in (source, accuracy):
+            for root in item["leanRoots"]:
+                self.assertIn(root, case["leanAnchors"])
+
 
 if __name__ == "__main__":
     unittest.main()
