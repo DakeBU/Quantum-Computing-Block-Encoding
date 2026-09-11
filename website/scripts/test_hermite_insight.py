@@ -60,6 +60,19 @@ class HermiteInsightTests(unittest.TestCase):
         self.assertIn("different scopes", page)
         self.assertIn("not continuous agent compute time", page)
 
+    def test_reference_circuit_uses_page_math_and_keeps_archival_artifact_link(self):
+        rendered = insight.render_reference_rotation_tree(
+            "../../downloads/hermite-smooth-state-preparation/executable-exports/SP-HERMITE-001/circuit.svg"
+        )
+        self.assertIn('id="hermite-reference-circuit"', rendered)
+        self.assertIn(r"\(R_y(\theta_{0,0})\)", rendered)
+        self.assertIn(r"m_{d,s}=\sum", rendered)
+        self.assertIn(r"\theta_{d,s}=2\operatorname{atan2}", rendered)
+        self.assertIn(r"|\Psi_d\rangle", rendered)
+        self.assertIn("baked vector text rather than MathJax", rendered)
+        self.assertIn("SP-HERMITE-001/circuit.svg", rendered)
+        self.assertNotIn("<img", rendered)
+
     def test_case_enrichment_fixes_proof_and_circuit_math_and_replaces_old_evolution(self):
         data = insight.load_data()
         source = """<!doctype html><html><head></head><body>
@@ -73,6 +86,7 @@ class HermiteInsightTests(unittest.TestCase):
 <section><p class="contract-reading">The new Bernstein–MPS circuit has at most 48 n_p (2k+6)^3 Ry/CNOT instructions and ceil(log2(2k+6)) clean bond qubits.</p></section>
 <section class="content-section" id="circuit"><span class="gate-chip">k, n, L</span><span class="gate-chip">g_k(p_j)</span><span class="gate-chip">m(d,s)</span><span class="gate-chip">UCRY_0</span><span class="gate-chip">|g_k&gt;</span></section>
 <section class="content-section" id="evolution"><p>old only</p></section>
+<figure><img src="../../downloads/hermite-smooth-state-preparation/executable-exports/SP-HERMITE-001/circuit.svg" alt="Example k=1, n=3, L=1: all 7 Ry gates and 8 CNOTs, shown in execution order" style="width:100%;height:auto"><figcaption>Example k=1, n=3, L=1: all 7 Ry gates and 8 CNOTs, shown in execution order</figcaption></figure>
 <pre><code>literal A_k and 48 n_p (2k+6)^3 Ry/CNOT reference</code></pre>
 </body></html>"""
         with tempfile.TemporaryDirectory() as directory:
@@ -97,11 +111,18 @@ class HermiteInsightTests(unittest.TestCase):
             self.assertIn("\\lvert g_k\\rangle_p\\otimes\\lvert u_0\\rangle", text)
             self.assertNotIn("The new Bernstein–MPS circuit has at most 48 n_p", text)
             self.assertIn("literal A_k and 48 n_p (2k+6)^3 Ry/CNOT reference", text)
+            self.assertIn('id="hermite-reference-circuit"', text)
+            self.assertIn(r"m_{d,s}=\sum", text)
+            self.assertIn(r"\theta_{d,s}=2\operatorname{atan2}", text)
+            self.assertIn("baked vector text rather than MathJax", text)
+            self.assertIn("SP-HERMITE-001/circuit.svg", text)
+            self.assertNotIn('<img src="../../downloads/hermite-smooth-state-preparation/executable-exports/SP-HERMITE-001/circuit.svg"', text)
             insight.enrich_case(path, data)
             again = path.read_text(encoding="utf-8")
             self.assertEqual(again.count('id="hermite-insight"'), 1)
             self.assertEqual(again.count("hermite-insight.css"), 1)
             self.assertEqual(again.count('class="content-section hermite-certified-evolution"'), 1)
+            self.assertEqual(again.count('id="hermite-reference-circuit"'), 1)
 
     def test_graph_enrichment_explains_topology_without_upgrading_evidence(self):
         data = insight.load_data()
