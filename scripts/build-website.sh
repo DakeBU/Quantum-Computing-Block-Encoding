@@ -16,6 +16,7 @@ python3 -m py_compile \
   website/scripts/lean_graph.py \
   website/scripts/enrich_teaching_site.py \
   website/scripts/enrich_casebook.py \
+  website/scripts/enrich_hermite_insight.py \
   website/scripts/enforce_robin_reader_contract.py \
   website/scripts/polish_casebook.py \
   website/scripts/enrich_harness_page.py \
@@ -31,12 +32,14 @@ python3 -m py_compile \
   website/scripts/test_teaching_enrichment.py \
   website/scripts/test_casebook_enrichment.py \
   website/scripts/test_casebook_polish.py \
+  website/scripts/test_hermite_insight.py \
   tools/export_robin_evolution.py \
   tools/replay_public_cases.py
 
 python3 -m unittest \
   website.scripts.test_hermite_case \
   website.scripts.test_hermite_download_packet \
+  website.scripts.test_hermite_insight \
   website.scripts.test_proof_inputs \
   website.scripts.test_lean_publication_gate \
   website.scripts.test_site_contracts \
@@ -60,6 +63,9 @@ python3 website/scripts/publish_paper_pages.py --root _out/site
 python3 website/scripts/publish_taxonomy.py --root _out/site
 python3 website/scripts/finalize_taxonomy_navigation.py --root _out/site
 python3 website/scripts/repair_taxonomy_links.py --root _out/site
+# Run after extension/taxonomy publication so the Hermite teaching layer and its
+# graph lens cannot be overwritten by a later generic renderer.
+python3 website/scripts/enrich_hermite_insight.py --root _out/site
 
 rm -rf _site
 mkdir -p _site/blueprint
@@ -93,6 +99,7 @@ test -f _site/data/papers.json
 test -f _site/data/case-source-anchors.json
 test -f _site/static/learning.css
 test -f _site/static/casebook.css
+test -f _site/static/hermite-insight.css
 test -f _site/static/ASPBE.png
 test -f _site/static/aspbe_current_harness.webp
 
@@ -150,6 +157,13 @@ grep -q 'data-collapsed-section="lean-certificate"' _site/example-cases/robin-gh
 grep -q 'data-collapsed-section="correspondence"' _site/case-studies/robin/index.html
 ! grep -q '<h2>Source interpretation decisions</h2>' _site/example-cases/robin-ghl-one-term/index.html
 
+# Hermite presentation is a fail-closed publication surface: the reader must see
+# the structural compression argument in math environments, not raw ASCII math.
+grep -q 'id="hermite-insight"' _site/example-cases/hermite-smooth-state-preparation/index.html
+grep -Fq '48\,n_p(2k+6)^3' _site/example-cases/hermite-smooth-state-preparation/index.html
+grep -q 'Mathematical cross-pollination' _site/example-cases/hermite-smooth-state-preparation/index.html
+! grep -Fq 'The new Bernstein–MPS circuit has at most 48 n_p (2k+6)^3 Ry/CNOT' _site/example-cases/hermite-smooth-state-preparation/index.html
+
 test -f _site/lean-graph/index.html
 test -f _site/data/lean-graph.json
 test -f _site/static/lean-graph.js
@@ -160,6 +174,13 @@ grep -q 'Underlying Lean Graph of Libraries' _site/case-studies/robin/index.html
 grep -Fq '\(N=8\)' _site/case-studies/robin/index.html
 grep -Fq '\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)' _site/case-studies/robin/index.html
 ! grep -Fq 'A_k/(N_D N_f kappa)' _site/case-studies/robin/index.html
+grep -q 'id="hermite-topology"' _site/lean-graph/index.html
+grep -q '>BRIDGE<' _site/lean-graph/index.html
+grep -q '>SHORTCUT<' _site/lean-graph/index.html
+grep -q '>HUB<' _site/lean-graph/index.html
+grep -q '>REORGANIZATION<' _site/lean-graph/index.html
+grep -q 'compression corridor' _site/lean-graph/index.html
+grep -q 'theorem-level proof-term dependency' _site/lean-graph/index.html
 
 python3 - <<'PY'
 import json

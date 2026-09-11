@@ -43,6 +43,7 @@ jobs:
             website/scripts/build_site.py \
             website/scripts/lean_graph.py \
             website/scripts/enrich_casebook.py \
+            website/scripts/enrich_hermite_insight.py \
             website/scripts/enforce_robin_reader_contract.py \
             website/scripts/polish_casebook.py \
             website/scripts/publish_extensions.py \
@@ -51,9 +52,11 @@ jobs:
             website/scripts/finalize_taxonomy_navigation.py \
             website/scripts/test_lean_graph_metrics.py \
             website/scripts/test_casebook_enrichment.py \
-            website/scripts/test_casebook_polish.py
+            website/scripts/test_casebook_polish.py \
+            website/scripts/test_hermite_insight.py
           python3 -m unittest \
             website.scripts.test_lean_graph_metrics \
             website.scripts.test_casebook_enrichment \
-            website.scripts.test_casebook_polish
+            website.scripts.test_casebook_polish \
+            website.scripts.test_hermite_insight
           python3 website/scripts/publish_taxonomy.py --check-data
