@@ -197,21 +197,25 @@ def enrich_case(path: Path, data: dict[str, object]) -> None:
         text = contract.sub(render_contract(data), text, count=1)
     if '<div class="case-status-line">' in text:
         status_pattern = re.compile(r'(<div class="case-status-line">.*?<span>).*?(</span></div>)', re.DOTALL)
-        replacement = (
-            r'\1Prepare the same state by exploiting bond dimension '
+        summary = (
+            "Prepare the same state by exploiting bond dimension "
             + inline_math("D=2k+6")
-            + ': for fixed '
+            + ": for fixed "
             + inline_math("k")
-            + ', the exact-real gate bound is linear in '
+            + ", the exact-real gate bound is linear in "
             + inline_math("n_p")
-            + ', not in the '
+            + ", not in the "
             + inline_math("2^{n_p}")
-            + r' amplitudes.\2'
+            + " amplitudes."
         )
-        text = status_pattern.sub(replacement, text, count=1)
+        text = status_pattern.sub(
+            lambda match: match.group(1) + summary + match.group(2), text, count=1
+        )
     text = text.replace(
         "Their joint input is |g_k&gt; tensor |u_0&gt;.",
-        "Their joint input is " + inline_math(r"\lvert g_k\rangle_p\otimes\lvert u_0\rangle") + ".",
+        "Their joint input is "
+        + inline_math(r"\lvert g_k\rangle_p\otimes\lvert u_0\rangle")
+        + ".",
     )
     text = mathify_reader_prose(text)
     path.write_text(text, encoding="utf-8")
