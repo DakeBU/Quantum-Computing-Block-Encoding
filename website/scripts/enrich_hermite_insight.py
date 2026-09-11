@@ -16,7 +16,6 @@ import json
 import re
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = ROOT / "website" / "hermite-insight.json"
 CASE_SLUG = "hermite-smooth-state-preparation"
@@ -29,14 +28,13 @@ def load_data() -> dict[str, object]:
         raise RuntimeError("unsupported Hermite insight data")
     for key in (
         "headline", "thesis", "targetFormula", "profileFormula",
-        "compressionFormula", "resourceFormula", "baselineObjects",
-        "question", "compressionSteps", "crossPollination", "evolution",
-        "topology", "trustBoundary",
+        "compressionFormula", "resourceFormula", "baselineObjects", "question",
+        "compressionSteps", "crossPollination", "evolution", "topology",
+        "trustBoundary",
     ):
         if not data.get(key):
             raise RuntimeError(f"Hermite insight data lacks {key}")
-    evolution = dict(data["evolution"])
-    if len(list(evolution.get("stages", []))) < 2:
+    if len(list(dict(data["evolution"]).get("stages", []))) < 2:
         raise RuntimeError("Hermite insight must publish baseline and structural stages")
     return data
 
@@ -52,12 +50,11 @@ def inline_math(tex: str) -> str:
 def ensure_css(text: str, href: str) -> str:
     if "hermite-insight.css" in text:
         return text
-    marker = "</head>"
-    if marker not in text:
+    if "</head>" not in text:
         raise RuntimeError("page has no </head> marker")
     return text.replace(
-        marker,
-        f'  <link rel="stylesheet" href="{html.escape(href, quote=True)}">\n{marker}',
+        "</head>",
+        f'  <link rel="stylesheet" href="{html.escape(href, quote=True)}">\n</head>',
         1,
     )
 
@@ -175,14 +172,10 @@ def render_circuit_reading() -> str:
         f'<article><span>{index}</span><div><strong>{title}</strong><p>{body}</p></div></article>'
         for index, (title, body) in enumerate(steps, start=1)
     )
-    formula = math_block(
-        r"|0^{n_p}\rangle|0^q\rangle\xrightarrow{\;V_1V_2\cdots V_{n_p}\;}|g_k\rangle|0^q\rangle",
-        "casebook-formula",
-    )
     return f"""<section class="casebook-subsection hermite-circuit-reading">
   <p class="eyebrow">Read the new circuit first</p>
   <h2>Follow the data register and the reusable bond register</h2>
-  {formula}
+  {math_block(r'|0^{n_p}\rangle|0^q\rangle\xrightarrow{\;V_1V_2\cdots V_{n_p}\;}|g_k\rangle|0^q\rangle', 'casebook-formula')}
   <div class="casebook-circuit-guide">{rendered}</div>
   <p class="casebook-pointer">The historical mass-tree/UCRY circuit is retained below as the reference construction. The certified evolution panel shows both routes side by side.</p>
 </section>"""
@@ -261,7 +254,7 @@ def render_topology_lens(data: dict[str, object]) -> str:
     corridor = " → ".join(html.escape(str(item)) for item in topo["moduleCorridor"])
     return f"""<section class="content-section hermite-topology-lens" id="hermite-topology">
   <div class="section-heading">
-    <p class="eyebrow">Case lens · proof digestion</p>
+    <p class="eyebrow">Case lens · proof digestion · compression corridor</p>
     <h2>{html.escape(str(topo['title']))}</h2>
     <p class="hermite-topology-summary">{html.escape(str(topo['summary']))}</p>
   </div>
@@ -364,7 +357,7 @@ def enrich_case(path: Path, data: dict[str, object]) -> None:
         if index < 0:
             raise RuntimeError("Hermite tutorial marker missing")
         text = text[:index] + render_case_insight(data) + "\n" + text[index:]
-    if 'class="hermite-circuit-reading"' not in text:
+    if "hermite-circuit-reading" not in text:
         text = replace_circuit_reading(text)
     if 'class="content-section hermite-certified-evolution"' not in text:
         text = replace_evolution(text, data)
@@ -374,15 +367,11 @@ def enrich_case(path: Path, data: dict[str, object]) -> None:
     if '<div class="case-status-line">' in text:
         status_pattern = re.compile(r'(<div class="case-status-line">.*?<span>).*?(</span></div>)', re.DOTALL)
         summary = (
-            "Prepare the same state with internal width "
-            + inline_math("D=2k+6")
-            + ": for fixed "
-            + inline_math("k")
+            "Prepare the same state with internal width " + inline_math("D=2k+6")
+            + ": for fixed " + inline_math("k")
             + ", the certified exact-real quantum bound grows linearly with "
-            + inline_math("n_p")
-            + " rather than with the "
-            + inline_math("2^{n_p}")
-            + " amplitudes."
+            + inline_math("n_p") + " rather than with the "
+            + inline_math("2^{n_p}") + " amplitudes."
         )
         text = status_pattern.sub(
             lambda match: match.group(1) + summary + match.group(2), text, count=1
@@ -390,8 +379,7 @@ def enrich_case(path: Path, data: dict[str, object]) -> None:
     text = text.replace(
         "Their joint input is |g_k&gt; tensor |u_0&gt;.",
         "Their joint input is "
-        + inline_math(r"\lvert g_k\rangle_p\otimes\lvert u_0\rangle")
-        + ".",
+        + inline_math(r"\lvert g_k\rangle_p\otimes\lvert u_0\rangle") + ".",
     )
     text = mathify_reader_prose(text)
     path.write_text(text, encoding="utf-8")
