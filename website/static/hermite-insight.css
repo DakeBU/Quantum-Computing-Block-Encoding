@@ -1,0 +1,346 @@
+.hermite-insight {
+  width: min(1040px, calc(100% - 32px));
+  margin: 28px auto 48px;
+  color: var(--ink);
+}
+
+.hermite-insight-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(26px, 4.5vw, 52px);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--state-dark);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 92% 12%, var(--block-soft), transparent 34%),
+    linear-gradient(180deg, var(--surface), var(--surface-subtle));
+  box-shadow: var(--shadow);
+}
+
+.hermite-insight-hero h2 {
+  max-width: 22ch;
+  margin: 7px 0 16px;
+  font-size: clamp(30px, 4.7vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.hermite-insight-thesis {
+  max-width: 76ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.7;
+}
+
+.hermite-insight-formula {
+  overflow-x: auto;
+  margin: 24px 0 0;
+  padding: 17px 20px;
+  border-left: 4px solid var(--state-dark);
+  border-radius: 9px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.hermite-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.hermite-comparison article {
+  min-width: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.hermite-comparison article:first-child {
+  border-top: 4px solid var(--quiet);
+}
+
+.hermite-comparison article:last-child {
+  border-top: 4px solid var(--state-dark);
+}
+
+.hermite-comparison h3,
+.hermite-mechanism h3,
+.hermite-field-step h3,
+.hermite-topology-card h3 {
+  margin: 4px 0 8px;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.hermite-comparison p,
+.hermite-mechanism p,
+.hermite-field-step p,
+.hermite-topology-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.hermite-comparison .math-line,
+.hermite-mechanism .math-line {
+  overflow-x: auto;
+  margin-top: 12px;
+  font-size: 0.98rem;
+}
+
+.hermite-insight-section {
+  margin-top: 28px;
+  padding: clamp(22px, 3.6vw, 38px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.hermite-insight-section > .section-heading {
+  margin-bottom: 20px;
+}
+
+.hermite-insight-section > .section-heading h2,
+.hermite-topology-lens .section-heading h2 {
+  max-width: 30ch;
+}
+
+.hermite-mechanism-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hermite-mechanism {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-subtle);
+}
+
+.hermite-mechanism .eyebrow {
+  margin-bottom: 4px;
+}
+
+.hermite-field-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.hermite-field-step {
+  position: relative;
+  padding: 19px 20px;
+  border: 1px solid var(--line);
+  background: var(--surface-subtle);
+}
+
+.hermite-field-step:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.hermite-field-step:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.hermite-field-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: -14px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--state-dark);
+  font-weight: 700;
+}
+
+.hermite-trust {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--warm);
+  border-radius: 10px;
+  background: var(--warm-soft);
+  line-height: 1.6;
+}
+
+.hermite-topology-link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.hermite-contract-reading {
+  margin: 22px 0;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-subtle);
+}
+
+.hermite-contract-reading p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.hermite-contract-reading .math-line {
+  overflow-x: auto;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.hermite-topology-lens {
+  border-top: 5px solid var(--state-dark);
+}
+
+.hermite-topology-summary {
+  max-width: 82ch;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.hermite-topology-lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+
+.hermite-topology-lane {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-subtle);
+}
+
+.hermite-topology-lane.old {
+  border-top: 4px solid var(--quiet);
+}
+
+.hermite-topology-lane.new {
+  border-top: 4px solid var(--state-dark);
+}
+
+.hermite-route {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.hermite-route-node {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  font-family: var(--ui-font);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.hermite-route-arrow {
+  color: var(--quiet);
+  font-weight: 700;
+}
+
+.hermite-topology-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.hermite-topology-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.hermite-topology-kind {
+  display: inline-flex;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--block-soft);
+  color: var(--state-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.hermite-module-corridor {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--block);
+  background: var(--block-soft);
+}
+
+.hermite-module-corridor code {
+  white-space: normal;
+}
+
+.hermite-evidence-boundary {
+  margin-top: 18px;
+  color: var(--quiet);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .hermite-field-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .hermite-field-step,
+  .hermite-field-step:first-child,
+  .hermite-field-step:last-child {
+    border-radius: 12px;
+  }
+
+  .hermite-field-step::after {
+    display: none !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .hermite-comparison,
+  .hermite-mechanism-grid,
+  .hermite-topology-lanes,
+  .hermite-topology-grid,
+  .hermite-field-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .hermite-insight,
+  .hermite-topology-lens {
+    width: min(100%, calc(100% - 20px));
+  }
+
+  .hermite-insight-hero,
+  .hermite-insight-section,
+  .hermite-topology-lens {
+    padding: 20px;
+  }
+}
