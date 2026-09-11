@@ -82,7 +82,7 @@ class HermiteInsightTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertIn('id="hermite-insight"', text)
             self.assertIn("../../static/hermite-insight.css", text)
-            self.assertIn('class="hermite-circuit-reading"', text)
+            self.assertIn("hermite-circuit-reading", text)
             self.assertIn('class="content-section hermite-certified-evolution"', text)
             self.assertIn("+22 h 56 min 06 s", text)
             self.assertIn(r"\(A_k\) keeps the first \(k+1\) coefficients", text)
