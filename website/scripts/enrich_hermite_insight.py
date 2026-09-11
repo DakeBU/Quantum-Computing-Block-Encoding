@@ -181,6 +181,26 @@ def render_circuit_reading() -> str:
 </section>"""
 
 
+def render_reference_rotation_tree(src: str) -> str:
+    """Replace the archival SVG's baked ASCII equations by real page mathematics."""
+    source = html.escape(src, quote=True)
+    return f"""<figure class="hermite-reference-circuit" id="hermite-reference-circuit">
+  <figcaption><strong>Reference rotation-tree circuit · formula-correct logical view</strong><span>This is the preserved {inline_math('n_p=3')} reference route. The boxes below are logical UCRY layers; the archived SVG contains the chronological 7 {inline_math('R_y')} + 8 CNOT primitive sequence.</span></figcaption>
+  <div class="hermite-reference-wire-grid" role="img" aria-label="Three-wire logical Hermite reference circuit">
+    <div class="hermite-ref-register">{inline_math('q_0:|0\\rangle')}</div><div class="hermite-ref-wire"></div><div class="hermite-ref-gate">{inline_math('R_y(\\theta_{0,0})')}</div><div class="hermite-ref-wire"></div><div class="hermite-ref-control">●</div><div class="hermite-ref-wire"></div><div class="hermite-ref-control">●</div><div class="hermite-ref-wire"></div>
+    <div class="hermite-ref-register">{inline_math('q_1:|0\\rangle')}</div><div class="hermite-ref-wire"></div><div class="hermite-ref-spacer"></div><div class="hermite-ref-wire"></div><div class="hermite-ref-gate">{inline_math('\\mathrm{UCRY}_1(q_0\\to q_1)')}</div><div class="hermite-ref-wire"></div><div class="hermite-ref-control">●</div><div class="hermite-ref-wire"></div>
+    <div class="hermite-ref-register">{inline_math('q_2:|0\\rangle')}</div><div class="hermite-ref-wire"></div><div class="hermite-ref-spacer"></div><div class="hermite-ref-wire"></div><div class="hermite-ref-spacer"></div><div class="hermite-ref-wire"></div><div class="hermite-ref-gate">{inline_math('\\mathrm{UCRY}_2(q_0,q_1\\to q_2)')}</div><div class="hermite-ref-output">{inline_math('|g_k\\rangle')}</div>
+  </div>
+  <div class="hermite-reference-formulas">
+    <div><strong>Prefix mass</strong>{math_block(r'm_{d,s}=\sum_{j\bmod 2^d=s}g_k(p_j)^2', 'math-line')}</div>
+    <div><strong>Split angle</strong>{math_block(r'\theta_{d,s}=2\operatorname{atan2}\!\left(\sqrt{m_{d+1,s+2^d}},\sqrt{m_{d+1,s}}\right)', 'math-line')}</div>
+    <div><strong>Layer invariant</strong>{math_block(r'|\Psi_d\rangle=\sum_{s<2^d}\sqrt{m_{d,s}/Z_k}\,|0^{n_p-d}\rangle|s\rangle', 'math-line')}</div>
+    <div><strong>Primitive rotation</strong>{math_block(r'R_y(\theta)|0\rangle=\cos(\theta/2)|0\rangle+\sin(\theta/2)|1\rangle', 'math-line')}</div>
+  </div>
+  <details class="hermite-archival-circuit"><summary>Open the chronological finite gate artifact</summary><p>The original SVG is kept unchanged as replay evidence; its equations are baked vector text rather than MathJax. Use this page for the typeset mathematical reading.</p><p><a href="{source}">Open the archived circuit SVG ↗</a></p></details>
+</figure>"""
+
+
 def render_evolution_flow(flow: list[object]) -> str:
     items: list[str] = []
     for index, raw in enumerate(flow):
@@ -346,6 +366,22 @@ def replace_evolution(text: str, data: dict[str, object]) -> str:
     return pattern.sub(lambda _match: render_evolution(data), text, count=1)
 
 
+def replace_archival_circuit_figure(text: str) -> str:
+    if 'id="hermite-reference-circuit"' in text:
+        return text
+    pattern = re.compile(
+        r'<figure>\s*<img\s+src="(?P<src>[^"]*SP-HERMITE-001/circuit\.svg)"[^>]*>'
+        r'.*?</figure>',
+        re.DOTALL,
+    )
+    match = pattern.search(text)
+    if not match:
+        raise RuntimeError("Hermite chronological circuit SVG figure missing")
+    return pattern.sub(
+        lambda item: render_reference_rotation_tree(item.group("src")), text, count=1
+    )
+
+
 def enrich_case(path: Path, data: dict[str, object]) -> None:
     if not path.is_file():
         raise RuntimeError(f"Hermite case page missing: {path}")
@@ -361,6 +397,7 @@ def enrich_case(path: Path, data: dict[str, object]) -> None:
         text = replace_circuit_reading(text)
     if 'class="content-section hermite-certified-evolution"' not in text:
         text = replace_evolution(text, data)
+    text = replace_archival_circuit_figure(text)
     contract = re.compile(r'<p class="contract-reading">.*?</p>', re.DOTALL)
     if contract.search(text):
         text = contract.sub(lambda _match: render_contract(data), text, count=1)
