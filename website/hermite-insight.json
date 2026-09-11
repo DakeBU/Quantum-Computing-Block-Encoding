@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "caseSlug": "hermite-smooth-state-preparation",
+  "headline": "The amplitude vector is exponentially long; its internal memory is not.",
+  "thesis": "The key step is to stop treating the samples as an arbitrary table. Reading the binary address of a grid point updates a finite internal state: the exponential tails need only scalar updates, while the Hermite bridge carries a bounded vector of Bernstein coefficients. The resulting tensor train has width controlled by the Hermite order rather than by the number of grid points.",
+  "profileFormula": "g_k(p)=\\begin{cases}e^p,&p<-1,\\\\ P_{2k+1}(p),&-1\\le p\\le0,\\\\ e^{-p},&p>0,\\end{cases}\\qquad |g_k\\rangle_p=Z_k^{-1/2}\\sum_j g_k(p_j)|j\\rangle.",
+  "compressionFormula": "g_k(p_j)=\\ell^{\\mathsf T}A_1(b_1)A_2(b_2)\\cdots A_{n_p}(b_{n_p})r,\\qquad D=2k+6.",
+  "resourceFormula": "G,\\operatorname{depth}\\le 48\\,n_pD^3=48\\,n_p(2k+6)^3,\\qquad q_{\\mathrm{bond}}=\\lceil\\log_2D\\rceil.",
+  "oldFormula": "N_p=2^{n_p}\\quad\\Longrightarrow\\quad \\text{generic table loading uses }\\Theta(N_p)\\text{ rotations}.",
+  "newFormula": "D=2k+6\\quad\\Longrightarrow\\quad \\text{structure-aware preparation uses }O(n_pD^3)\\text{ primitive gates}.",
+  "mechanisms": [
+    {
+      "tag": "1 · exponential tails",
+      "title": "A bit changes only one scalar factor",
+      "formula": "e^{\\pm p_j}=e^{\\pm p_0}\\prod_{r=0}^{n_p-1}e^{\\pm\\Delta p\\,2^r b_r}.",
+      "body": "The two tails are multiplicatively separable in the address bits. They do not require a table with one entry per grid point."
+    },
+    {
+      "tag": "2 · polynomial bridge",
+      "title": "A degree-d polynomial needs only d+1 coefficients",
+      "formula": "P(t)=\\sum_{r=0}^{d}c_rB_{d,r}(t),\\qquad d=2k+1.",
+      "body": "The Hermite splice is stored exactly in the Bernstein basis. Its working memory has dimension 2k+2, independent of the grid size."
+    },
+    {
+      "tag": "3 · binary address",
+      "title": "de Casteljau turns each bit into a small matrix update",
+      "formula": "c\\longmapsto M_{b_s}c,\\qquad b_s\\in\\{0,1\\}.",
+      "body": "A bit chooses the left or right dyadic subinterval. Bernstein subdivision updates the same short coefficient vector, so evaluating all binary addresses is a finite-state process."
+    },
+    {
+      "tag": "4 · quantum compiler",
+      "title": "Finite-state memory becomes a clean bond register",
+      "formula": "D=2k+6,\\qquad q_{\\mathrm{bond}}=\\lceil\\log_2D\\rceil.",
+      "body": "Canonicalization turns the tensor-train cores into local isometries; unitary completion and Givens compilation produce R_y/CNOT gates while returning the bond register to zero."
+    }
+  ],
+  "crossPollination": [
+    {
+      "field": "Hermite interpolation",
+      "idea": "Smooth the Schrödingerisation profile without changing the recovery side."
+    },
+    {
+      "field": "Approximation theory / CAGD",
+      "idea": "Use Bernstein coefficients and exact de Casteljau subdivision as a binary-address update rule."
+    },
+    {
+      "field": "Tensor networks",
+      "idea": "Recognize the sampled vector as a bounded-bond matrix-product state rather than an arbitrary amplitude table."
+    },
+    {
+      "field": "Quantum compilation",
+      "idea": "Convert local isometries into clean unitary stages and then into elementary rotations and CNOTs."
+    }
+  ],
+  "topology": {
+    "title": "What changed in the proof graph",
+    "summary": "This contribution is best read as a compression corridor, not as one more leaf theorem. The old route forgets analytic structure and expands the function into an amplitude table. The new route preserves structure long enough to cross from approximation theory into tensor networks and then into a reusable circuit compiler.",
+    "oldRoute": [
+      "Hermite profile",
+      "2^{n_p} explicit samples",
+      "generic mass tree",
+      "exponential gate route"
+    ],
+    "newRoute": [
+      "Hermite polynomial",
+      "Bernstein / de Casteljau",
+      "one-boundary finite-state chain",
+      "bounded-bond TT / MPS",
+      "local norm + canonicalization",
+      "isometry → SO / Givens",
+      "clean R_y / CNOT circuit"
+    ],
+    "contributions": [
+      {
+        "kind": "BRIDGE",
+        "title": "Approximation theory ↔ tensor networks",
+        "body": "Bernstein subdivision turns a continuous polynomial representation into the local transition matrices of a tensor train."
+      },
+      {
+        "kind": "SHORTCUT",
+        "title": "Analytic profile → circuit without an amplitude table",
+        "body": "The proof no longer factors through an object with one independent slot for every grid sample."
+      },
+      {
+        "kind": "HUB",
+        "title": "Tensor-train compilation becomes reusable",
+        "body": "Canonicalization, norm contraction, local isometry completion and primitive compilation are generic support for future structured state-preparation families."
+      },
+      {
+        "kind": "REORGANIZATION",
+        "title": "Complexity is indexed by bond dimension",
+        "body": "The controlling structural parameter becomes the small internal width D, not the ambient amplitude-vector length 2^{n_p}."
+      }
+    ],
+    "moduleCorridor": [
+      "QuantumBlockEncoding.HermitePolynomial",
+      "QuantumBlockEncoding.HermiteBernstein",
+      "QuantumBlockEncoding.HermiteBoundaryInjection",
+      "QuantumBlockEncoding.HermiteFiniteChain",
+      "QuantumBlockEncoding.HermiteFiniteNorm",
+      "QuantumBlockEncoding.ConstructiveHermitePreparation"
+    ],
+    "evidenceBoundary": "This is a curated explanatory lens over the checked module/import graph. The interactive Lean Graph still claims only generated module-import edges and declaration containment; theorem-level proof-term dependency and automatic graph compression remain future evidence layers."
+  },
+  "trustBoundary": "The displayed gate and depth bounds are exact-real symbolic quantum-circuit results. The repository separately tracks stored classical suppliers and conditional angle-perturbation bounds; a uniform finite-bit end-to-end compiler cost is not being claimed here."
+}
