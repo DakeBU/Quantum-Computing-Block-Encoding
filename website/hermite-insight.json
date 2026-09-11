@@ -71,7 +71,7 @@
     }
   ],
   "evolution": {
-    "title": "How the certified construction changed",
+    "title": "Candidate and proof progression — how the certified construction changed",
     "provenance": "No generation counter or model-active runtime was persisted for this historical search. To avoid inventing one, the page reports auditable Git certification milestones. The 22 h 56 min 06 s below is repository wall-clock between the first baseline certificate and the first polynomial-gate certificate, not continuous agent compute time.",
     "comparisonBoundary": "These two resource displays have different scopes: the reference tuple is the saved k=1, n_p=3 example, while the new entry is an all-width symbolic family bound. Therefore ASPBE does not label this pair a strict same-instance lexicographic winner. The certified advance is structural and asymptotic: for fixed k, the new quantum bound is linear in n_p rather than expanding an arbitrary 2^{n_p}-entry table.",
     "stages": [
