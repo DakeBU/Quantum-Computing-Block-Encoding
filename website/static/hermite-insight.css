@@ -4,13 +4,20 @@
   color: var(--ink);
 }
 
+.hermite-insight-hero,
+.hermite-insight-section,
+.hermite-certified-evolution,
+.hermite-topology-lens {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
 .hermite-insight-hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(26px, 4.5vw, 52px);
-  border: 1px solid var(--line);
+  padding: clamp(28px, 4.5vw, 54px);
   border-top: 6px solid var(--state-dark);
-  border-radius: 18px;
   background:
     radial-gradient(circle at 92% 12%, var(--block-soft), transparent 34%),
     linear-gradient(180deg, var(--surface), var(--surface-subtle));
@@ -18,103 +25,68 @@
 }
 
 .hermite-insight-hero h2 {
-  max-width: 22ch;
+  max-width: 25ch;
   margin: 7px 0 16px;
-  font-size: clamp(30px, 4.7vw, 52px);
-  line-height: 1.04;
+  font-size: clamp(30px, 4.5vw, 50px);
+  line-height: 1.06;
   letter-spacing: -0.035em;
 }
 
-.hermite-insight-thesis {
-  max-width: 76ch;
+.hermite-insight-thesis,
+.hermite-topology-summary {
+  max-width: 78ch;
   margin: 0;
   color: var(--muted);
   font-size: clamp(17px, 2vw, 20px);
   line-height: 1.7;
 }
 
-.hermite-insight-formula {
+.hermite-insight-formula,
+.hermite-evolution-score,
+.hermite-circuit-formula,
+.hermite-contract-reading .math-line,
+.hermite-result-box .math-line,
+.hermite-compression-conclusion .math-line {
   overflow-x: auto;
-  margin: 24px 0 0;
-  padding: 17px 20px;
+  margin: 20px 0 0;
+  padding: 15px 18px;
   border-left: 4px solid var(--state-dark);
   border-radius: 9px;
   background: var(--surface);
   text-align: center;
 }
 
-.hermite-comparison {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 16px;
-}
-
-.hermite-comparison article {
-  min-width: 0;
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-}
-
-.hermite-comparison article:first-child {
-  border-top: 4px solid var(--quiet);
-}
-
-.hermite-comparison article:last-child {
-  border-top: 4px solid var(--state-dark);
-}
-
-.hermite-comparison h3,
-.hermite-mechanism h3,
-.hermite-field-step h3,
-.hermite-topology-card h3 {
-  margin: 4px 0 8px;
-  font-size: 18px;
-  line-height: 1.25;
-}
-
-.hermite-comparison p,
-.hermite-mechanism p,
-.hermite-field-step p,
-.hermite-topology-card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-.hermite-comparison .math-line,
-.hermite-mechanism .math-line {
-  overflow-x: auto;
-  margin-top: 12px;
-  font-size: 0.98rem;
-}
-
 .hermite-insight-section {
   margin-top: 28px;
-  padding: clamp(22px, 3.6vw, 38px);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--surface);
+  padding: clamp(24px, 3.6vw, 40px);
 }
 
-.hermite-insight-section > .section-heading {
-  margin-bottom: 20px;
+.hermite-insight-section > .section-heading,
+.hermite-certified-evolution > .section-heading {
+  margin-bottom: 22px;
 }
 
 .hermite-insight-section > .section-heading h2,
+.hermite-certified-evolution .section-heading h2,
 .hermite-topology-lens .section-heading h2 {
   max-width: 30ch;
 }
 
-.hermite-mechanism-grid {
+.hermite-object-grid,
+.hermite-mechanism-grid,
+.hermite-evolution-grid,
+.hermite-topology-lanes,
+.hermite-topology-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
-.hermite-mechanism {
+.hermite-object-card,
+.hermite-mechanism,
+.hermite-evolution-stage,
+.hermite-topology-card,
+.hermite-topology-lane {
   min-width: 0;
   padding: 20px;
   border: 1px solid var(--line);
@@ -122,8 +94,79 @@
   background: var(--surface-subtle);
 }
 
-.hermite-mechanism .eyebrow {
-  margin-bottom: 4px;
+.hermite-object-card {
+  border-top: 4px solid var(--quiet);
+}
+
+.hermite-object-card h3,
+.hermite-mechanism h3,
+.hermite-field-step h3,
+.hermite-evolution-stage h3,
+.hermite-topology-card h3,
+.hermite-topology-lane h3 {
+  margin: 4px 0 8px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.hermite-object-card p,
+.hermite-mechanism p,
+.hermite-field-step p,
+.hermite-evolution-stage p,
+.hermite-topology-card p,
+.hermite-topology-lane p {
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.hermite-object-card .math-line,
+.hermite-mechanism .math-line {
+  overflow-x: auto;
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hermite-question {
+  margin-top: 18px;
+  padding: 18px 20px;
+  border: 1px solid var(--warm);
+  border-radius: 11px;
+  background: var(--warm-soft);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.hermite-compression-arrow {
+  margin: 15px auto 20px;
+  color: var(--state-dark);
+  font-family: var(--ui-font);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.hermite-mechanism-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hermite-mechanism:nth-child(5) {
+  grid-column: 1 / -1;
+}
+
+.hermite-compression-conclusion,
+.hermite-result-box {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border: 1px solid var(--state);
+  border-radius: 12px;
+  background: var(--state-soft);
+}
+
+.hermite-compression-conclusion p {
+  margin-bottom: 0;
 }
 
 .hermite-field-flow {
@@ -141,13 +184,8 @@
   background: var(--surface-subtle);
 }
 
-.hermite-field-step:first-child {
-  border-radius: 12px 0 0 12px;
-}
-
-.hermite-field-step:last-child {
-  border-radius: 0 12px 12px 0;
-}
+.hermite-field-step:first-child { border-radius: 12px 0 0 12px; }
+.hermite-field-step:last-child { border-radius: 0 12px 12px 0; }
 
 .hermite-field-step:not(:last-child)::after {
   content: "→";
@@ -167,13 +205,20 @@
   font-weight: 700;
 }
 
-.hermite-trust {
+.hermite-trust,
+.hermite-evolution-provenance,
+.hermite-evolution-scope,
+.hermite-evidence-boundary {
   margin-top: 18px;
   padding: 16px 18px;
-  border: 1px solid var(--warm);
   border-radius: 10px;
-  background: var(--warm-soft);
   line-height: 1.6;
+}
+
+.hermite-trust,
+.hermite-evolution-provenance {
+  border: 1px solid var(--warm);
+  background: var(--warm-soft);
 }
 
 .hermite-topology-link {
@@ -198,45 +243,232 @@
   line-height: 1.6;
 }
 
-.hermite-contract-reading .math-line {
+.hermite-circuit-reading .casebook-formula {
+  margin-bottom: 22px;
+}
+
+.hermite-reference-circuit {
+  margin: 26px 0;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--block);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.hermite-reference-circuit figcaption {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 18px;
+}
+
+.hermite-reference-circuit figcaption strong {
+  font-family: var(--ui-font);
+  font-size: 19px;
+}
+
+.hermite-reference-circuit figcaption span {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.hermite-reference-wire-grid {
+  display: grid;
+  grid-template-columns: minmax(118px, 160px) minmax(20px, 1fr) minmax(116px, auto) minmax(20px, 1fr) minmax(116px, auto) minmax(20px, 1fr) minmax(150px, auto) minmax(78px, auto);
+  grid-auto-rows: minmax(58px, auto);
+  align-items: center;
+  min-width: 880px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-subtle);
+  overflow: hidden;
+}
+
+.hermite-reference-circuit:has(.hermite-reference-wire-grid) {
   overflow-x: auto;
-  margin: 10px 0;
+}
+
+.hermite-ref-register,
+.hermite-ref-output {
+  white-space: nowrap;
+  font-weight: 650;
+}
+
+.hermite-ref-output {
+  padding-left: 10px;
+  color: var(--state-dark);
+}
+
+.hermite-ref-wire {
+  height: 2px;
+  background: var(--line-strong);
+}
+
+.hermite-ref-gate {
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 7px 10px;
+  border: 2px solid var(--block-dark);
+  border-radius: 8px;
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.hermite-ref-control {
+  display: grid;
+  place-items: center;
+  min-height: 42px;
+  color: var(--block-dark);
+  font-size: 22px;
+}
+
+.hermite-ref-spacer {
+  min-height: 42px;
+}
+
+.hermite-reference-formulas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.hermite-reference-formulas > div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--block-soft);
+}
+
+.hermite-reference-formulas .math-line {
+  overflow-x: auto;
+  margin-top: 8px;
+  padding: 8px 4px;
   text-align: center;
+}
+
+.hermite-archival-circuit {
+  margin-top: 16px;
+  padding: 12px 15px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface-subtle);
+}
+
+.hermite-archival-circuit summary {
+  cursor: pointer;
+  font-family: var(--ui-font);
+  font-weight: 700;
+}
+
+.hermite-certified-evolution {
+  border-top: 5px solid var(--warm);
+}
+
+.hermite-evolution-grid {
+  margin-top: 22px;
+}
+
+.hermite-evolution-stage {
+  background: var(--surface);
+}
+
+.hermite-evolution-stage:first-child { border-top: 4px solid var(--quiet); }
+.hermite-evolution-stage:last-child { border-top: 4px solid var(--state-dark); }
+
+.hermite-evolution-meta dl {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0;
+}
+
+.hermite-evolution-meta dl div {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hermite-evolution-meta dt {
+  color: var(--quiet);
+  font-family: var(--ui-font);
+  font-size: 12px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.hermite-evolution-meta dd { margin: 0; }
+
+.hermite-evolution-scope {
+  border-left: 4px solid var(--block);
+  background: var(--block-soft);
+}
+
+.hermite-evolution-score {
+  border-left-color: var(--warm);
+  background: var(--warm-soft);
+}
+
+.hermite-logical-circuit {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface-subtle);
+}
+
+.hermite-evolution-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.hermite-evolution-node {
+  display: inline-grid;
+  gap: 4px;
+  min-width: 110px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.hermite-evolution-node small {
+  color: var(--quiet);
+  font-family: var(--ui-font);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.hermite-evolution-node strong { font-weight: 500; }
+.hermite-evolution-arrow { color: var(--quiet); font-weight: 800; }
+
+.hermite-circuit-formula {
+  margin-top: 12px;
+  border-left-color: var(--block);
+  background: var(--block-soft);
 }
 
 .hermite-topology-lens {
   border-top: 5px solid var(--state-dark);
 }
 
-.hermite-topology-summary {
-  max-width: 82ch;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.65;
-}
-
 .hermite-topology-lanes {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
   margin: 24px 0;
 }
 
-.hermite-topology-lane {
-  min-width: 0;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--surface-subtle);
-}
-
-.hermite-topology-lane.old {
-  border-top: 4px solid var(--quiet);
-}
-
-.hermite-topology-lane.new {
-  border-top: 4px solid var(--state-dark);
-}
+.hermite-topology-lane.old { border-top: 4px solid var(--quiet); }
+.hermite-topology-lane.new { border-top: 4px solid var(--state-dark); }
 
 .hermite-route {
   display: flex;
@@ -259,23 +491,7 @@
   line-height: 1.3;
 }
 
-.hermite-route-arrow {
-  color: var(--quiet);
-  font-weight: 700;
-}
-
-.hermite-topology-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.hermite-topology-card {
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-}
+.hermite-route-arrow { color: var(--quiet); font-weight: 700; }
 
 .hermite-topology-kind {
   display: inline-flex;
@@ -286,7 +502,7 @@
   color: var(--state-dark);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.09em;
+  letter-spacing: .09em;
 }
 
 .hermite-module-corridor {
@@ -296,15 +512,12 @@
   background: var(--block-soft);
 }
 
-.hermite-module-corridor code {
-  white-space: normal;
-}
+.hermite-module-corridor code { white-space: normal; }
 
 .hermite-evidence-boundary {
-  margin-top: 18px;
   color: var(--quiet);
   font-size: 14px;
-  line-height: 1.55;
+  background: var(--surface-subtle);
 }
 
 @media (max-width: 900px) {
@@ -315,32 +528,28 @@
 
   .hermite-field-step,
   .hermite-field-step:first-child,
-  .hermite-field-step:last-child {
-    border-radius: 12px;
-  }
-
-  .hermite-field-step::after {
-    display: none !important;
-  }
+  .hermite-field-step:last-child { border-radius: 12px; }
+  .hermite-field-step::after { display: none !important; }
 }
 
 @media (max-width: 680px) {
-  .hermite-comparison,
+  .hermite-object-grid,
   .hermite-mechanism-grid,
+  .hermite-evolution-grid,
   .hermite-topology-lanes,
   .hermite-topology-grid,
-  .hermite-field-flow {
-    grid-template-columns: 1fr;
-  }
+  .hermite-field-flow,
+  .hermite-reference-formulas { grid-template-columns: 1fr; }
+
+  .hermite-mechanism:nth-child(5) { grid-column: auto; }
 
   .hermite-insight,
-  .hermite-topology-lens {
-    width: min(100%, calc(100% - 20px));
-  }
+  .hermite-topology-lens { width: min(100%, calc(100% - 20px)); }
 
   .hermite-insight-hero,
   .hermite-insight-section,
-  .hermite-topology-lens {
-    padding: 20px;
-  }
+  .hermite-topology-lens,
+  .hermite-certified-evolution { padding: 20px; }
+
+  .hermite-evolution-meta dl div { grid-template-columns: 1fr; gap: 2px; }
 }
