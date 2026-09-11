@@ -194,7 +194,7 @@ def enrich_case(path: Path, data: dict[str, object]) -> None:
         text = text[:index] + render_case_insight(data) + "\n" + text[index:]
     contract = re.compile(r'<p class="contract-reading">.*?</p>', re.DOTALL)
     if contract.search(text):
-        text = contract.sub(render_contract(data), text, count=1)
+        text = contract.sub(lambda _match: render_contract(data), text, count=1)
     if '<div class="case-status-line">' in text:
         status_pattern = re.compile(r'(<div class="case-status-line">.*?<span>).*?(</span></div>)', re.DOTALL)
         summary = (
