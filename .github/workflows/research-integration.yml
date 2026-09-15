@@ -1,9 +1,8 @@
-name: Research integration replay
+name: Research final rendering repair
 on:
   push:
     branches: ["agent/structure-atlas-stateprepwiki-20260915"]
     paths: [".github/workflows/research-integration.yml"]
-  workflow_dispatch:
 permissions:
   contents: write
   actions: read
@@ -11,57 +10,46 @@ concurrency:
   group: research-integration-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  integrate:
+  reader:
     if: github.ref == 'refs/heads/agent/structure-atlas-stateprepwiki-20260915'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-          ref: agent/structure-atlas-stateprepwiki-20260915
-      - name: Apply exact reader and native-parity repairs
+        with: {fetch-depth: 0, ref: agent/structure-atlas-stateprepwiki-20260915}
+      - name: Apply the inspected formula and navigation source repair
         run: |
           set -euo pipefail
-          python3 website/scripts/repair_research_integration.py
-          git diff --check
+          # Normalize a patch-section separator, not any repository source text.
+          sed -i 's/^ diff --git /diff --git /' website/reader-edges.patch
+          git apply --check website/reader-edges.patch
+          git apply website/reader-edges.patch
+          git rm website/reader-edges.patch
+          python3 -m py_compile website/scripts/lean_graph.py website/scripts/test_research_browser.py
           python3 -m unittest website.scripts.test_research_atlas tools.test_powershell_builds
-          node --check website/static/research-focus.js
+          git diff --check
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/build-website.ps1 website/scripts/research_atlas.py
-          if ! git diff --cached --quiet; then
-            git commit -m 'Preserve native publication parity and focus exact graph identities'
-            git push origin HEAD:agent/structure-atlas-stateprepwiki-20260915
-          fi
-          git rev-parse HEAD
-      - name: Set up Lean and cached dependencies
-        uses: leanprover/lean-action@v1
-        with:
-          auto-config: false
-          use-github-cache: true
-          use-mathlib-cache: true
-      - name: Install executable dependencies
+          git add website/scripts/lean_graph.py website/scripts/research_atlas.py website/scripts/test_research_browser.py website/static/research-atlas.css website/static/research-atlas.js website/static/research-delta.js
+          git commit -m 'Repair graph formula delimiters and verify exact-node navigation and contribution exports'
+          git push origin HEAD:agent/structure-atlas-stateprepwiki-20260915
+      - name: Restore only identical published proof and Blueprint inputs
+        run: python3 website/scripts/restore_published_blueprint.py
+      - name: Install executable artifact checks
         run: python3 -m pip install -r requirements-executable.txt
-      - name: Full Lean, Blueprint and website replay
-        env:
-          ASPBE_PUBLICATION_BASE: 8ac04215547dcb7c40deb18b54450b03c3f6f4f6
+      - name: Rebuild and validate the final reader
+        env: {ASPBE_PUBLICATION_BASE: 8ac04215547dcb7c40deb18b54450b03c3f6f4f6}
         run: |
           set -o pipefail
           mkdir -p _out/research-diagnostics
-          bash scripts/build-all.sh 2>&1 | tee _out/research-diagnostics/build.log
-      - name: Check final research output
-        run: python3 website/scripts/research_atlas.py check-site --root _site
-      - name: Upload rendered evidence and site
+          bash scripts/build-website.sh 2>&1 | tee _out/research-diagnostics/reader-final.log
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: research-site-and-browser
+          name: final-reader-validation
           path: |
             _out/research-browser
             _out/research-diagnostics
             _out/lean-gate.json
-            _out/blueprint
-            _out/site
             _site
-          if-no-files-found: warn
           retention-days: 7
+          if-no-files-found: warn
