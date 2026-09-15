@@ -1,0 +1,32 @@
+name: Research pinned workspace
+on:
+  push:
+    branches: ["agent/structure-atlas-stateprepwiki-20260915"]
+    paths: [".github/workflows/research-workspace.yml"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Export only the tracked repository and pinned Git history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p _out/workspace
+          git bundle create _out/workspace/repository.bundle --all
+          git rev-parse HEAD > _out/workspace/commit.txt
+          gh api 'repos/'"$GITHUB_REPOSITORY"'/actions/runs?branch=agent%2Fstructure-atlas-stateprepwiki-20260915&per_page=30' > _out/workspace/runs.json
+          for run in 34944000096 34942896110; do
+            gh api repos/$GITHUB_REPOSITORY/actions/runs/$run/jobs > _out/workspace/jobs-$run.json
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: research-pinned-workspace
+          path: _out/workspace
+          retention-days: 2
