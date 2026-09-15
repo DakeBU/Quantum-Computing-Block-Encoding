@@ -5,35 +5,33 @@ on:
     paths: [".github/workflows/research-release.yml"]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
   actions: read
+concurrency:
+  group: research-release-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   reader:
     if: github.ref == 'refs/heads/agent/structure-atlas-stateprepwiki-20260915'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with: {fetch-depth: 0, ref: agent/structure-atlas-stateprepwiki-20260915}
-      - name: Apply the locally inspected final reader fix and retire one-shot scripts
+        with: {fetch-depth: 0}
+      - name: Test the exact candidate source contracts
         run: |
           set -euo pipefail
-          if test -f website/research-release.patch; then
-            git apply --check website/research-release.patch
-            git apply website/research-release.patch
-            git rm website/research-release.patch
-          fi
-          git rm --ignore-unmatch website/scripts/install_research_integration.py website/scripts/repair_research_integration.py website/scripts/finalize_research_reader.py .github/workflows/research-reader-final.yml .github/workflows/research-workspace.yml
           python3 -m unittest website.scripts.test_research_atlas tools.test_powershell_builds
           git diff --check
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add website/scripts/research_atlas.py
-          if ! git diff --cached --quiet; then
-            git commit -m 'Complete common navigation and source-paper progress; retire one-shot development scripts'
-            git push origin HEAD:agent/structure-atlas-stateprepwiki-20260915
-          fi
-      - name: Restore the actual published unchanged proof and Blueprint
+      - name: Restore the unchanged actually published Blueprint
         run: python3 website/scripts/restore_published_blueprint.py
+      - name: Install the pinned Lean compiler and dependency cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Execute the complete current Lean and test gate
+        run: python3 website/scripts/run_lean_gate.py
       - name: Install finite executable checks
         run: python3 -m pip install -r requirements-executable.txt
       - name: Check current harness, proof trust and executable artifacts
