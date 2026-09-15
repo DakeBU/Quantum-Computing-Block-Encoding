@@ -75,6 +75,16 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/generate-aspbe-catalog.py --check
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+# Research views and publication packets use the same source-of-truth inventory.
+& $PythonCommand website/scripts/research_atlas.py check
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand -m unittest website.scripts.test_research_atlas
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+$publicationBase = if ($env:ASPBE_PUBLICATION_BASE) { $env:ASPBE_PUBLICATION_BASE } else { "origin/main" }
+if ($env:CI -eq "true" -and $env:GITHUB_REF -eq "refs/heads/main") { $publicationBase = "HEAD^1" }
+& $PythonCommand website/scripts/check_research_publications.py --base $publicationBase
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 & $PythonCommand -m py_compile `
   website/scripts/build_site.py `
   website/scripts/lean_graph.py `
@@ -137,6 +147,10 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/repair_taxonomy_links.py --root _out/site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/enrich_hermite_insight.py --root _out/site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/research_atlas.py publish --root _out/site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $site = Assert-RepositoryOutput "_site"
 [void](Assert-RepositoryOutput "_out/site")
@@ -155,6 +169,17 @@ New-Item -ItemType File -Path (Join-Path $site ".nojekyll") -Force | Out-Null
 
 & $PythonCommand website/scripts/check_site.py --root _site --require-blueprint
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/research_atlas.py check-site --root _site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+if ($env:CI -eq "true") {
+  & $PythonCommand -m pip install --quiet playwright
+  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  & $PythonCommand -m playwright install chromium
+  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  & $PythonCommand website/scripts/test_research_browser.py --root _site
+  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  Copy-Item _out/research-browser/browser-report.json _site/data/research/browser-report.json
+}
 & $PythonCommand website/scripts/check_source_links.py --root _site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/test_preview.py
