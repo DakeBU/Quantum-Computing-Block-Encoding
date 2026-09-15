@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "migration_policy": "The initial records are empty because this change adds no production Lean declaration. Changed production modules require current content-bound independent review. Unchanged historical modules retain legacy publication debt; no source assimilation is inferred.",
+  "records": []
+}
