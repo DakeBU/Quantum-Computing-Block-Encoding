@@ -250,7 +250,7 @@ def progress_payload(catalog: dict[str, Any], declarations: dict[str, Any], comm
         chapters.append({"id": chapter["slug"], "title": chapter["title"], "track": chapter["track"], "summary": chapter["summary"], "results": results})
     return {"schema_version": 1, "commit": commit,
             "policy": "Projected from existing chapter/result and implementation metadata, not a newly scored source-coverage percentage. A compiled prerequisite does not close a route.",
-            "chapters": chapters, "implementation_frontier": IMPLEMENTATION_MAP,
+            "chapters": chapters, "paper_frontier": read_json(ROOT / "website/papers.json"), "implementation_frontier": IMPLEMENTATION_MAP,
             "historical_roadmap": [{"title": title, "status": status} for title, status in ROADMAP],
             "research_routes": catalog["wiki"]["routes"]}
 
@@ -290,6 +290,9 @@ def contribution_delta(item: dict[str, Any]) -> dict[str, Any]:
 
 
 def patch_navigation(root: Path) -> None:
+    from website.scripts.finalize_taxonomy_navigation import render_papers_navigation, render_examples_navigation
+    cases = read_json(root / "data/example-cases.json")["cases"]
+    papers = read_json(root / "data/papers.json")
     for path in root.rglob("*.html"):
         if "blueprint" in path.relative_to(root).parts:
             continue
@@ -297,6 +300,17 @@ def patch_navigation(root: Path) -> None:
         text = re.sub(r"<!-- research-nav:start -->.*?<!-- research-nav:end -->", "", text, flags=re.S)
         prefix = "../" * len(path.parent.relative_to(root).parts) or "./"
         current = path.relative_to(root).as_posix()
+        # Share the existing hierarchy renderers without touching Blueprint pages.
+        text = re.sub(r'<a href="[^"]*case-studies/robin/index\.html"[^>]*>Robin paper map</a>', "", text)
+        marker_examples = '<strong class="nav-group-label">Example Cases</strong>'
+        papers_pattern = r'<strong class="nav-group-label">Papers</strong>.*?(?=<strong class="nav-group-label">Example Cases</strong>)'
+        rendered_papers = render_papers_navigation(prefix, current, papers)
+        if re.search(papers_pattern, text, re.S):
+            text = re.sub(papers_pattern, lambda _: rendered_papers, text, count=1, flags=re.S)
+        else:
+            text = text.replace(marker_examples, rendered_papers + marker_examples, 1)
+        examples_pattern = r'<strong class="nav-group-label">Example Cases</strong>.*?(?=<strong class="nav-group-label">Reference</strong>)'
+        text = re.sub(examples_pattern, lambda _: render_examples_navigation(prefix, current, cases), text, count=1, flags=re.S)
         links = []
         for title, route in VIEWS:
             attr = ' aria-current="page"' if current.startswith(route) else ""
@@ -428,6 +442,15 @@ def publish(root: Path) -> dict[str, Any]:
     body += '<p class="ra-warning">Compiled local results, source-complete theorems, reusable interfaces, rejected routes and research targets are different evidence classes. The counts below count records, not mathematical importance.</p>'
     body += '<div class="ra-metrics"><article><strong>' + str(len(progress["chapters"])) + '</strong><span>existing chapter records</span></article><article><strong>' + str(len(wiki["routes"])) + '</strong><span>research-target contracts</span></article></div>'
     body += section("Textbook routes and their exact residual boundaries", "".join(render_chapter_progress(c, declarations) for c in progress["chapters"]), "textbook")
+    paper_cards = []
+    for paper in progress["paper_frontier"].get("featured", []) + progress["paper_frontier"].get("queue", []):
+        title = esc(paper["title"])
+        route = paper.get("route")
+        heading = f'<a href="../{esc(route)}index.html">{title}</a>' if route else title
+        roots = paper.get("leanRoots", [])
+        residual = paper.get("remaining", paper.get("summary", "Exact source scope must be inspected."))
+        paper_cards.append('<article class="ra-card"><h3>' + heading + '</h3><p class="ra-tag">' + esc(paper["status"]) + '</p><p><strong>Source anchors:</strong> ' + esc(", ".join(paper.get("sourceAnchors", []))) + '</p><p><strong>Current scope:</strong> ' + esc(paper.get("formalized", paper.get("summary", "Queued; no paper-wide closure claimed."))) + '</p><p><strong>Residual / next acceptance boundary:</strong> ' + esc(residual) + '</p>' + lean_links(roots, declarations, "../") + '</article>')
+    body += section("Existing source-paper routes", '<div class="ra-grid">' + "".join(paper_cards) + '</div>', "paper-frontier")
     frontier = []
     for i, record in enumerate(progress["implementation_frontier"]):
         name = record["declaration"]
@@ -439,7 +462,7 @@ def publish(root: Path) -> dict[str, Any]:
     body += section("Previously pending work", '<p>These are the existing roadmap entries, not newly invented completions. Each resumes by fixing the source target and checking which compiled interfaces genuinely discharge it.</p>' + "".join('<article class="ra-card"><h3>' + esc(r["title"]) + '</h3><p class="ra-tag">' + esc(r["status"]) + '</p><p>Next: freeze an arbitrary-width/source contract; connect current semantic leaves to the actual primitive compiler; prove the resource theorem; then pass independent source fidelity and publication gates.</p></article>' for r in remaining), "pending")
     body += section("StatePreparationWiki execution queue", '<div class="ra-grid">' + "".join(f'<article class="ra-card"><p class="eyebrow">Priority {r["priority"]} · research target</p><h3><a href="../state-preparation-wiki/{r["id"]}/index.html">{esc(r["title"])}</a></h3><p>{esc(r["next"])}</p><p><strong>First acceptance test:</strong> {esc(r["steps"][0]["acceptance"])}</p></article>' for r in sorted(wiki["routes"], key=lambda x: (x["priority"], x["id"]))) + '</div>', "wiki")
     body += section("Contribution admission", '<p>Source statement → exact Lean statement → source-blind reconstruction → independent comparison → separately reviewed repairs. Authors do not self-certify a review. A graph delta records add-node, shortcut, reorganisation or bridge, while global novelty remains a separate literature judgement.</p><p><a href="../research-protocol/index.html">Read the adapted ASPBE publication protocol</a> · <a download href="../data/research/progress.json">Download this generated progress snapshot</a></p>', "admission")
-    write("progress/", "Current Progress", body, [("textbook", "Textbook"), ("implementation", "Implementation"), ("pending", "Pending work"), ("wiki", "Research queue"), ("admission", "Admission")])
+    write("progress/", "Current Progress", body, [("textbook", "Textbook"), ("paper-frontier", "Paper routes"), ("implementation", "Implementation"), ("pending", "Pending work"), ("wiki", "Research queue"), ("admission", "Admission")])
     protocol = ROOT / "docs/theorem-publication-protocol.md"
     if not protocol.is_file():
         raise ValueError("ASPBE publication protocol is required")
@@ -501,7 +524,7 @@ def check_published(root: Path) -> None:
     validate_catalog(load_catalog())
     for _, route in VIEWS:
         path = root / route / "index.html"
-        if not path.is_file() or 'class="site-sidebar"' not in path.read_text(encoding="utf-8"):
+        if not path.is_file() or not all(marker in path.read_text(encoding="utf-8") for marker in ('class="site-sidebar"', 'data-taxonomy-nav="papers"', 'data-taxonomy-nav="example-cases"')):
             raise ValueError(f"missing reader route: {route}")
     metadata = read_json(root / "build-report.json")["researchAtlas"]
     if metadata["sourceDigest"] != source_digest():
