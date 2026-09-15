@@ -18,6 +18,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "website/research"
@@ -179,6 +180,8 @@ def lean_links(refs: list[str], declarations: dict[str, Any], prefix: str, full_
     for name in refs:
         item = declarations[name]
         content += f'<p><a href="{site.module_url(prefix, item)}"><code>{esc(name)}</code></a></p>'
+        focus = quote("declaration:" + name, safe="")
+        content += f'<p class="ra-boundary"><a href="{prefix}lean-graph/index.html?focus={focus}">Locate the same declaration in the Lean graph</a></p>'
         source = str(item["source"])
         if full_source and source not in modules:
             modules.add(source)
@@ -329,7 +332,7 @@ def publish(root: Path) -> dict[str, Any]:
     data_dir.mkdir(parents=True, exist_ok=True)
     for name, filename in FILES.items():
         (data_dir / filename).write_text(json.dumps(catalog[name], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    for filename in ("research-atlas.css", "research-atlas.js"):
+    for filename in ("research-atlas.css", "research-atlas.js", "research-focus.js"):
         shutil.copyfile(ROOT / "website/static" / filename, root / "static" / filename)
     additions: list[dict[str, Any]] = []
     def write(route: str, title: str, body: str, toc: list[tuple[str, str]] | None = None) -> None:
@@ -445,6 +448,8 @@ def publish(root: Path) -> dict[str, Any]:
     text = text.replace('<main id="main-content">', '<main id="main-content">' + lens, 1)
     if "research-atlas.css" not in text:
         text = text.replace('</head>', '<link rel="stylesheet" href="../static/research-atlas.css"></head>', 1)
+    if "research-focus.js" not in text:
+        text = text.replace("</body>", '<script src="../static/research-focus.js" defer></script></body>', 1)
     graph_page.write_text(text, encoding="utf-8")
     patch_navigation(root)
     for name, value in (("progress.json", progress), ("contributions.json", {"schema_version": 1, "contributions": deltas})):

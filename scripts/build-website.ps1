@@ -80,16 +80,18 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand -m unittest website.scripts.test_research_atlas
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-$publicationBase = if ($env:ASPBE_PUBLICATION_BASE) { $env:ASPBE_PUBLICATION_BASE } else { "origin/main" }
-if ($env:CI -eq "true" -and $env:GITHUB_REF -eq "refs/heads/main") { $publicationBase = "HEAD^1" }
-& $PythonCommand website/scripts/check_research_publications.py --base $publicationBase
+$publication_base = if ($env:ASPBE_PUBLICATION_BASE) { $env:ASPBE_PUBLICATION_BASE } else { "origin/main" }
+if ($env:CI -eq "true" -and $env:GITHUB_REF -eq "refs/heads/main") { $publication_base = "HEAD^1" }
+& $PythonCommand website/scripts/check_research_publications.py --base $publication_base
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-& $PythonCommand -m py_compile `
+& $PythonCommand -m `
+  py_compile `
   website/scripts/build_site.py `
   website/scripts/lean_graph.py `
   website/scripts/enrich_teaching_site.py `
   website/scripts/enrich_casebook.py `
+  website/scripts/enrich_hermite_insight.py `
   website/scripts/enforce_robin_reader_contract.py `
   website/scripts/polish_casebook.py `
   website/scripts/enrich_harness_page.py `
@@ -105,13 +107,16 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   website/scripts/test_teaching_enrichment.py `
   website/scripts/test_casebook_enrichment.py `
   website/scripts/test_casebook_polish.py `
+  website/scripts/test_hermite_insight.py `
   tools/export_robin_evolution.py `
   tools/replay_public_cases.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-& $PythonCommand -m unittest `
+& $PythonCommand -m `
+  unittest `
   website.scripts.test_hermite_case `
   website.scripts.test_hermite_download_packet `
+  website.scripts.test_hermite_insight `
   website.scripts.test_proof_inputs `
   website.scripts.test_lean_publication_gate `
   website.scripts.test_site_contracts `
@@ -253,6 +258,20 @@ Assert-PageMarker "_site/case-studies/robin/index.html" 'Underlying Lean Graph o
 Assert-PageMarker "_site/case-studies/robin/index.html" '\(N=8\)'
 Assert-PageMarker "_site/case-studies/robin/index.html" '\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)'
 Assert-PageMarker "_site/case-studies/robin/index.html" 'A_k/(N_D N_f kappa)' $true
+
+# Preserve every canonical final-output assertion.
+Assert-NonemptyFile "_site/static/hermite-insight.css"
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" 'id="hermite-insight"'
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" '48\,n_p(2k+6)^3'
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" 'Mathematical cross-pollination'
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" 'The new Bernstein–MPS circuit has at most 48 n_p (2k+6)^3 Ry/CNOT' $true
+Assert-PageMarker "_site/lean-graph/index.html" 'id="hermite-topology"'
+Assert-PageMarker "_site/lean-graph/index.html" '>BRIDGE<'
+Assert-PageMarker "_site/lean-graph/index.html" '>SHORTCUT<'
+Assert-PageMarker "_site/lean-graph/index.html" '>HUB<'
+Assert-PageMarker "_site/lean-graph/index.html" '>REORGANIZATION<'
+Assert-PageMarker "_site/lean-graph/index.html" 'compression corridor'
+Assert-PageMarker "_site/lean-graph/index.html" 'theorem-level proof-term dependency'
 
 $graph = Get-Content -LiteralPath "_site/data/lean-graph.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $nodes = @{}
