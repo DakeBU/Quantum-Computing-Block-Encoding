@@ -75,11 +75,23 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand scripts/generate-aspbe-catalog.py --check
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-& $PythonCommand -m py_compile `
+# Research views and publication packets use the same source-of-truth inventory.
+& $PythonCommand website/scripts/research_atlas.py check
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand -m unittest website.scripts.test_research_atlas
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+$publication_base = if ($env:ASPBE_PUBLICATION_BASE) { $env:ASPBE_PUBLICATION_BASE } else { "origin/main" }
+if ($env:CI -eq "true" -and $env:GITHUB_REF -eq "refs/heads/main") { $publication_base = "HEAD^1" }
+& $PythonCommand website/scripts/check_research_publications.py --base $publication_base
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+& $PythonCommand -m `
+  py_compile `
   website/scripts/build_site.py `
   website/scripts/lean_graph.py `
   website/scripts/enrich_teaching_site.py `
   website/scripts/enrich_casebook.py `
+  website/scripts/enrich_hermite_insight.py `
   website/scripts/enforce_robin_reader_contract.py `
   website/scripts/polish_casebook.py `
   website/scripts/enrich_harness_page.py `
@@ -95,13 +107,16 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   website/scripts/test_teaching_enrichment.py `
   website/scripts/test_casebook_enrichment.py `
   website/scripts/test_casebook_polish.py `
+  website/scripts/test_hermite_insight.py `
   tools/export_robin_evolution.py `
   tools/replay_public_cases.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-& $PythonCommand -m unittest `
+& $PythonCommand -m `
+  unittest `
   website.scripts.test_hermite_case `
   website.scripts.test_hermite_download_packet `
+  website.scripts.test_hermite_insight `
   website.scripts.test_proof_inputs `
   website.scripts.test_lean_publication_gate `
   website.scripts.test_site_contracts `
@@ -137,6 +152,10 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/repair_taxonomy_links.py --root _out/site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/enrich_hermite_insight.py --root _out/site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/research_atlas.py publish --root _out/site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $site = Assert-RepositoryOutput "_site"
 [void](Assert-RepositoryOutput "_out/site")
@@ -155,6 +174,17 @@ New-Item -ItemType File -Path (Join-Path $site ".nojekyll") -Force | Out-Null
 
 & $PythonCommand website/scripts/check_site.py --root _site --require-blueprint
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/research_atlas.py check-site --root _site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+if ($env:CI -eq "true") {
+  & $PythonCommand -m pip install --quiet playwright
+  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  & $PythonCommand -m playwright install chromium
+  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  & $PythonCommand website/scripts/test_research_browser.py --root _site
+  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  Copy-Item _out/research-browser/browser-report.json _site/data/research/browser-report.json
+}
 & $PythonCommand website/scripts/check_source_links.py --root _site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/test_preview.py
@@ -228,6 +258,20 @@ Assert-PageMarker "_site/case-studies/robin/index.html" 'Underlying Lean Graph o
 Assert-PageMarker "_site/case-studies/robin/index.html" '\(N=8\)'
 Assert-PageMarker "_site/case-studies/robin/index.html" '\(A_k/(\mathcal N_D\mathcal N_f\kappa)\)'
 Assert-PageMarker "_site/case-studies/robin/index.html" 'A_k/(N_D N_f kappa)' $true
+
+# Preserve every canonical final-output assertion.
+Assert-NonemptyFile "_site/static/hermite-insight.css"
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" 'id="hermite-insight"'
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" '48\,n_p(2k+6)^3'
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" 'Mathematical cross-pollination'
+Assert-PageMarker "_site/example-cases/hermite-smooth-state-preparation/index.html" 'The new Bernstein–MPS circuit has at most 48 n_p (2k+6)^3 Ry/CNOT' $true
+Assert-PageMarker "_site/lean-graph/index.html" 'id="hermite-topology"'
+Assert-PageMarker "_site/lean-graph/index.html" '>BRIDGE<'
+Assert-PageMarker "_site/lean-graph/index.html" '>SHORTCUT<'
+Assert-PageMarker "_site/lean-graph/index.html" '>HUB<'
+Assert-PageMarker "_site/lean-graph/index.html" '>REORGANIZATION<'
+Assert-PageMarker "_site/lean-graph/index.html" 'compression corridor'
+Assert-PageMarker "_site/lean-graph/index.html" 'theorem-level proof-term dependency'
 
 $graph = Get-Content -LiteralPath "_site/data/lean-graph.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $nodes = @{}

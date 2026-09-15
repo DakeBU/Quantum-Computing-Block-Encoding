@@ -106,3 +106,11 @@ in Lean.
   lemma or proof-DAG block?
 - Do Markdown math delimiters follow QBE style?
 - Is the prose readable as mathematics rather than a changelog?
+
+## Required publication refinement
+
+Read `docs/theorem-publication-protocol.md`. Author mathematics once; show
+separate folded exact Lean statement/proof; bind the full changed module and
+ambient/toolchain context to independent source-blind reconstruction and review.
+Reuse exact graph identities and retain assumption/failure maps. A passing Lean
+substrate does not promote a conceptual family or downstream research target.

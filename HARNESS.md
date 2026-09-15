@@ -421,3 +421,14 @@ finite trace comparisons, saved-circuit target replay, and uniform numerical
 error analysis. An improvement in one layer cannot accept the others. Keep
 alternative emitters if one has better finite resources and the other a
 closer proved interface; there need not be one globally dominant champion.
+
+## Publication and mathematical mechanism extension
+
+The operational protocol now also includes
+[the theorem-publication and graph contract](docs/theorem-publication-protocol.md).
+It refines, rather than replaces, the Master–Worker source/semantic/Lean/
+integration/exposition gates. Reuse the bounded packet from
+`website/scripts/research_atlas.py context`; keep whole-module independent
+encoder–denoiser evidence in the admission registry and a typed graph delta in
+the same contribution packet. A conceptual hyperedge is not a Lean implication.
+No existing module is newly source-reviewed merely by this protocol's adoption.

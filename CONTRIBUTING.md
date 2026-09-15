@@ -96,3 +96,15 @@ Maintainers review mathematical fidelity, hidden assumptions, module
 ownership, proof trust, source attribution, compatibility, and documentation.
 Large changes may be split into a foundation PR and one or more result PRs so
 each proof boundary remains auditable.
+
+## Source-faithful lessons and graph contributions
+
+Read [the ASPBE publication protocol](docs/theorem-publication-protocol.md) and
+[the contributor packet](.agents/prompts/mathematical-contribution.md).
+New or changed production modules need exact source/lesson bindings, assumption
+comparisons, source-blind reconstruction, independent anti-anchored review, and
+add-node/shortcut/reorganisation/bridge metadata. Local proof, full source-route
+closure and experimental evidence must be kept separate. StatePreparationWiki
+routes and Current Progress are generated from the canonical records, not from
+manual percentages. Mobile/desktop, MathJax, theme, graph-label, source-link and
+AND-tail checks are part of publication, not optional visual polish.

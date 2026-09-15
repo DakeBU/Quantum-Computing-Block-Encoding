@@ -1,0 +1,29 @@
+name: Verify deployed research reader
+on:
+  workflow_run:
+    workflows: ["Build and deploy QuantumComputinglib and the ASPBE Lean Blueprint"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  live:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Verify the live commit, navigation, canonical data and all research routes
+        env:
+          EXPECTED_COMMIT: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: python3 website/scripts/check_deployed_research.py --commit "$EXPECTED_COMMIT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-research-reader-verification
+          path: _out/live-reader.json
+          if-no-files-found: warn
+          retention-days: 14

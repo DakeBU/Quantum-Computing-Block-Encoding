@@ -67,3 +67,11 @@ Reviewer must compare the proof export against:
 - `research-wiki/cited-results/*.md`
 
 If the export describes a stronger theorem than Lean proves, mark it blocking.
+
+## Required publication refinement
+
+Read `docs/theorem-publication-protocol.md`. Author mathematics once; show
+separate folded exact Lean statement/proof; bind the full changed module and
+ambient/toolchain context to independent source-blind reconstruction and review.
+Reuse exact graph identities and retain assumption/failure maps. A passing Lean
+substrate does not promote a conceptual family or downstream research target.

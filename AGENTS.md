@@ -20,6 +20,11 @@ without overstating the certified frontier.
 
 ## Canonical Harness Protocol
 
+The mandatory quantum-specific publication, source-blind review, graph and
+reader gate is [docs/theorem-publication-protocol.md](docs/theorem-publication-protocol.md).
+Read it before changing a production Lean module or publishing a new source claim.
+Use the bounded mechanism/route packet rather than dumping the complete graph.
+
 Read these before nontrivial automated work:
 
 - [`HARNESS.md`](HARNESS.md): ASPBE Harness v2, its progress metric, evidence
@@ -201,3 +206,30 @@ Use Lean-QuantumInfo as a style reference for finite-dimensional quantum
 formalization. Do not treat it as the project direction. This project is about
 gate-level oracle realization, state-preparation certificates, and
 block-encoding certificates that remain legible to quantum-computing readers.
+
+## Mathematical structure and research routes
+
+The canonical authored records are `website/research/atlas.json`,
+`website/research/state-preparation-wiki.json` and `website/research/sources.json`.
+Current Progress is generated from these and the existing textbook/implementation
+records. Do not create a competing completion ledger.
+
+Before choosing a construction, run:
+
+```bash
+python3 website/scripts/research_atlas.py context --route spw-envelope
+python3 website/scripts/research_atlas.py context --query "polynomial rank norm"
+```
+
+Every changed production module requires a current publication record binding
+its entire source, toolchain/manifest, source statement, lesson, assumptions,
+source-blind decoder and distinct independent reviewer, and graph delta.
+Unchanged historical audit debt is not retroactively cleared. The mechanical
+admission checker is `website/scripts/check_research_publications.py --base BASE`.
+
+Keep actual Lean imports/ownership distinct from conceptual transports. Retain
+complete AND tails and explicit failure maps. A contribution may be add-node,
+shortcut, reorganisation or bridge; this is not an automatic novelty judgement.
+Preserve SP/BE directionality and charge SELECT, input preparation, postselection
+and amplification as appropriate. Read the full protocol for aesthetic,
+finite-bit, source-fidelity and independent-review requirements.

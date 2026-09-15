@@ -43,6 +43,7 @@ on:
       - "lean-toolchain"
       - "README.md"
       - "HARNESS.md"
+      - "AGENTS.md"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -59,7 +60,6 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -77,27 +77,26 @@ jobs:
             git fetch --no-tags origin main
             base="origin/main"
           fi
-
           echo "comparison_base=${base}"
-          # Reader-facing figures and their style checker are documentation
-          # artifacts. They still pass the website teaching contract, but they
-          # must not force a fresh Lean toolchain download when the proof tree
-          # itself is byte-for-byte unchanged.
+          # The publication-protocol document is reader/agent guidance, not a
+          # Lean or Blueprint input. Its changed-module admission gate still runs.
+          # Every inherited proof below must also match the exhaustive source hash.
           if [[ "${GITHUB_EVENT_NAME}" != "workflow_dispatch" ]] && git diff --quiet "${base}...HEAD" -- \
               'QuantumBlockEncoding/**' QuantumBlockEncoding.lean \
               'ABEISTests/**' Tests.lean \
               'ABEISBlueprint/**' ABEISBlueprint.lean ABEISBlueprintMain.lean \
               'tools/**' 'docs/**' 'executable-exports/**' \
               ':!tools/check_public_figure_style.py' ':!docs/assets/**' \
+              ':!docs/theorem-publication-protocol.md' \
               scripts/generate-blueprint-catalog.py scripts/generate-aspbe-catalog.py \
               scripts/build-blueprint.sh scripts/build-blueprint.ps1 \
               scripts/sanitize-blueprint-paths.py scripts/test-sanitize-blueprint-paths.py \
               requirements-executable.txt lakefile.lean lake-manifest.json lean-toolchain; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "Proof/Blueprint layer unchanged; reusing the latest green main proof artifacts."
+            echo "Proof/Blueprint inputs unchanged; require version-checked published proof artifacts."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "Proof/Blueprint layer changed; running the complete Lean and Blueprint gates."
+            echo "Running the complete Lean and Blueprint gates."
           fi
 
       - name: Require complete Hermite inputs
@@ -129,7 +128,6 @@ jobs:
         run: python3 website/scripts/run_lean_gate.py
 
       - name: Test the ASPBE harness
-        if: steps.proof_changes.outputs.changed == 'true'
         run: python3 tools/qbe.py harness-check
 
       - name: Check proof trust and executable exports
@@ -154,7 +152,7 @@ jobs:
         if: steps.proof_changes.outputs.changed == 'true'
         run: bash scripts/build-blueprint.sh
 
-      - name: Reuse latest green main proof artifacts
+      - name: Restore unchanged published proof artifacts
         if: steps.proof_changes.outputs.changed == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -163,47 +161,49 @@ jobs:
           set -euo pipefail
           run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow pages.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
           test -n "$run_id"
-          echo "Reusing proof-layer artifact from successful main run ${run_id}."
-          rm -rf /tmp/aspbe-green-pages /tmp/aspbe-green-site
-          mkdir -p /tmp/aspbe-green-pages /tmp/aspbe-green-site _out/blueprint
-          gh run download "$run_id" --repo "$GITHUB_REPOSITORY" --name github-pages --dir /tmp/aspbe-green-pages
+          mkdir -p /tmp/aspbe-green-pages /tmp/aspbe-green-site
+          if ! gh run download "$run_id" --repo "$GITHUB_REPOSITORY" --name github-pages --dir /tmp/aspbe-green-pages; then
+            echo "Pages ZIP unavailable; restore the actual published Blueprint with strict input/version/link checks."
+            python3 website/scripts/restore_published_blueprint.py
+            exit 0
+          fi
           test -f /tmp/aspbe-green-pages/artifact.tar
           tar -xf /tmp/aspbe-green-pages/artifact.tar -C /tmp/aspbe-green-site
           test -f /tmp/aspbe-green-site/build-report.json
           test -f /tmp/aspbe-green-site/blueprint/html-multi/index.html
-          cp -a /tmp/aspbe-green-site/blueprint/. _out/blueprint/
           python3 - <<'PY'
           import json
           import os
+          import shutil
           import subprocess
           from pathlib import Path
-          from website.scripts.proof_inputs import proof_input_digest
+          from website.scripts.proof_inputs import proof_input_digest, lean_module_targets
+          from website.scripts.restore_published_blueprint import INPUTS
           report = json.loads(Path('/tmp/aspbe-green-site/build-report.json').read_text(encoding='utf-8'))
           gate = dict(report['leanGate'])
-          if not gate.get('passed'):
-              raise SystemExit('refusing to inherit a non-green Lean gate')
-          if gate.get('proofInputsSha256') != proof_input_digest(Path.cwd()):
-              raise SystemExit('published proof inputs differ from checkout; a fresh Lean build is required')
+          if gate.get('passed') is not True or gate.get('proofInputsSha256') != proof_input_digest(Path.cwd()) or gate.get('compiledModules') != lean_module_targets(Path.cwd()):
+              raise SystemExit('published exhaustive proof inputs differ; a fresh Lean build is required')
           verified_commit = str(gate.get('commit') or report['commit'])
-          # The last successful publication need not be the previous main commit.
-          # Compare the actual inherited Blueprint inputs, not only HEAD^1.
-          subprocess.run(['git', 'diff', '--exit-code', '--quiet', verified_commit, 'HEAD', '--',
-                          'ABEISBlueprint', 'ABEISBlueprint.lean', 'ABEISBlueprintMain.lean',
-                          'scripts/build-blueprint.sh', 'scripts/generate-blueprint-catalog.py',
-                          'scripts/generate-aspbe-catalog.py', 'scripts/sanitize-blueprint-paths.py',
-                          'website/scripts/repair_blueprint_fragments.py', 'web/assets'], check=True)
+          subprocess.run(['git', 'diff', '--exit-code', '--quiet', verified_commit, 'HEAD', '--', *INPUTS], check=True)
           gate['inheritedFromPublishedCommit'] = verified_commit
-          gate['inheritanceReason'] = 'proof/Blueprint paths are unchanged relative to main'
+          gate['inheritanceReason'] = 'Identical exhaustive proof source/configuration and unchanged Blueprint inputs. No new Lean execution claimed.'
           gate['commit'] = os.environ['GITHUB_SHA']
-          gate['proofTreeVerifiedAtCommit'] = verified_commit
+          gate['proofTreeVerifiedAtCommit'] = gate.get('proofTreeVerifiedAtCommit', verified_commit)
           out = Path('_out/lean-gate.json')
           out.parent.mkdir(parents=True, exist_ok=True)
+          shutil.copytree('/tmp/aspbe-green-site/blueprint', '_out/blueprint')
           out.write_text(json.dumps(gate, indent=2) + '\n', encoding='utf-8')
-          print(f"Inherited green Lean gate from {verified_commit}; rebound to docs-only checkout {os.environ['GITHUB_SHA']}")
+          print('Inherited identical proof tree from', verified_commit)
           PY
 
       - name: Build and verify the unified site
         run: bash scripts/build-website.sh
+
+      - name: Preserve versioned restoration provenance
+        run: |
+          if test -f _out/published-proof-restore.json; then
+            cp _out/published-proof-restore.json _site/data/research/published-proof-restore.json
+          fi
 
       - name: Report Pages artifact structure
         run: |
@@ -217,7 +217,23 @@ jobs:
           test -f _site/blueprint/html-multi/index.html
           test -f _site/search-index.json
           test -f _site/build-report.json
+          test -f _site/state-preparation-wiki/index.html
+          test -f _site/functor-hypergraph/index.html
+          test -f _site/progress/index.html
           find _site -maxdepth 2 -type f | sort
+
+      - name: Preserve browser and publication diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reader-publication-diagnostics
+          path: |
+            _out/research-browser
+            _out/lean-gate.json
+            _out/published-proof-restore.json
+            _site/build-report.json
+          retention-days: 14
+          if-no-files-found: warn
 
       - name: Configure Pages
         if: github.ref == 'refs/heads/main'
@@ -231,6 +247,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+          retention-days: 14
 
   deploy:
     if: github.ref == 'refs/heads/main'

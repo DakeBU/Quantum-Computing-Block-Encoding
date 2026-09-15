@@ -1,0 +1,70 @@
+name: Research atlas and publication contracts
+
+on:
+  push:
+    branches: [main, "agent/**"]
+    paths:
+      - "website/research/**"
+      - "website/scripts/research_atlas.py"
+      - "website/scripts/check_research_publications.py"
+      - "website/scripts/test_research_atlas.py"
+      - "website/static/research-atlas.*"
+      - "QuantumBlockEncoding/**"
+      - "docs/theorem-publication-protocol.md"
+      - ".github/workflows/research-atlas.yml"
+  pull_request:
+    paths:
+      - "website/research/**"
+      - "website/scripts/**"
+      - "website/static/research-atlas.*"
+      - "QuantumBlockEncoding/**"
+      - "docs/theorem-publication-protocol.md"
+      - ".github/workflows/research-atlas.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: research-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Validate authored contracts and failure boundaries
+        run: |
+          python3 -m py_compile website/scripts/research_atlas.py website/scripts/check_research_publications.py
+          python3 website/scripts/research_atlas.py check
+          python3 -m unittest -v website.scripts.test_research_atlas
+          node --check website/static/research-atlas.js
+      - name: Check changed-module publication evidence
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          BEFORE: ${{ github.event.before }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -n "$PR_BASE"; then
+            base="$PR_BASE"
+          elif test "$GITHUB_REF" = refs/heads/main && git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            base="$BEFORE"
+          else
+            base=origin/main
+          fi
+          python3 scripts/generate-aspbe-catalog.py
+          python3 website/scripts/check_research_publications.py --base "$base"
+      - name: Exercise bounded agent retrieval
+        run: |
+          mkdir -p _out/research
+          python3 website/scripts/research_atlas.py context --route spw-envelope > _out/research/envelope-packet.json
+          python3 website/scripts/research_atlas.py context --query 'polynomial rank normalization' > _out/research/structure-packet.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: research-context-packets
+          path: _out/research
+          retention-days: 7

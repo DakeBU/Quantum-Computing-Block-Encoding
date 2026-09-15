@@ -11,6 +11,15 @@ test -f _out/blueprint/html-multi/index.html
 python3 scripts/generate-aspbe-catalog.py
 python3 scripts/generate-aspbe-catalog.py --check
 
+# Research views and publication packets use the same source-of-truth inventory.
+python3 website/scripts/research_atlas.py check
+python3 -m unittest website.scripts.test_research_atlas
+publication_base="${ASPBE_PUBLICATION_BASE:-origin/main}"
+if [[ "${CI:-}" == "true" && "${GITHUB_REF:-}" == "refs/heads/main" ]]; then
+  publication_base="HEAD^1"
+fi
+python3 website/scripts/check_research_publications.py --base "$publication_base"
+
 python3 -m py_compile \
   website/scripts/build_site.py \
   website/scripts/lean_graph.py \
@@ -66,6 +75,7 @@ python3 website/scripts/repair_taxonomy_links.py --root _out/site
 # Run after extension/taxonomy publication so the Hermite teaching layer and its
 # graph lens cannot be overwritten by a later generic renderer.
 python3 website/scripts/enrich_hermite_insight.py --root _out/site
+python3 website/scripts/research_atlas.py publish --root _out/site
 
 rm -rf _site
 mkdir -p _site/blueprint
@@ -74,6 +84,13 @@ cp -a _out/blueprint/. _site/blueprint/
 touch _site/.nojekyll
 
 python3 website/scripts/check_site.py --root _site --require-blueprint
+python3 website/scripts/research_atlas.py check-site --root _site
+if [[ "${CI:-}" == "true" ]]; then
+  python3 -m pip install --quiet playwright
+  python3 -m playwright install --with-deps chromium
+  python3 website/scripts/test_research_browser.py --root _site
+  cp _out/research-browser/browser-report.json _site/data/research/browser-report.json
+fi
 python3 website/scripts/check_source_links.py --root _site
 python3 website/scripts/test_preview.py
 python3 scripts/sanitize-blueprint-paths.py --scan-only _site

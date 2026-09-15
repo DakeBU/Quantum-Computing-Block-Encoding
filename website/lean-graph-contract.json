@@ -84,5 +84,24 @@
     "equivalence quotient of proof routes",
     "compressed proof graph",
     "ZDD/MIP proof-state representation"
-  ]
+  ],
+  "curatedResearchViews": {
+    "source": "website/research/atlas.json",
+    "publisher": "website/scripts/research_atlas.py",
+    "views": [
+      "mathematical-methods/",
+      "functor-hypergraph/",
+      "state-preparation-wiki/",
+      "progress/"
+    ],
+    "identityPolicy": "exact generated module/declaration ids reused by curated concept/family/transport ids",
+    "hyperedgeSemantics": "all tails required together; conceptual incidence, not separate Lean implication",
+    "contributionClasses": [
+      "add-node",
+      "shortcut",
+      "reorganisation",
+      "bridge"
+    ],
+    "claimBoundary": "curated proposals with explicit hypothesis/conclusion/failure maps; no certified categorical functor, elaborated theorem dependency, automatic quotient or novelty judgement"
+  }
 }
