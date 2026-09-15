@@ -1,0 +1,60 @@
+name: Research integration replay
+on:
+  push:
+    branches: ["agent/structure-atlas-stateprepwiki-20260915"]
+    paths: [".github/workflows/research-integration.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: research-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/agent/structure-atlas-stateprepwiki-20260915'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: agent/structure-atlas-stateprepwiki-20260915
+      - name: Apply the bounded source integration
+        run: |
+          set -euo pipefail
+          python3 website/scripts/install_research_integration.py
+          git diff --check
+          python3 -m unittest website.scripts.test_research_atlas
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AGENTS.md HARNESS.md CONTRIBUTING.md .github/PULL_REQUEST_TEMPLATE.md .agents/skills/qbe-math-writing/SKILL.md .agents/skills/qbe-proof-export/SKILL.md scripts/build-website.sh scripts/build-website.ps1 website/lean-graph-contract.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate mathematical atlas, research wiki and source-faithful publication gates'
+            git push origin HEAD:agent/structure-atlas-stateprepwiki-20260915
+          fi
+          git rev-parse HEAD
+      - name: Set up Lean and cached dependencies
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: true
+          use-mathlib-cache: true
+      - name: Install executable dependencies
+        run: python3 -m pip install -r requirements-executable.txt
+      - name: Full Lean, Blueprint and website replay
+        env:
+          ASPBE_PUBLICATION_BASE: 8ac04215547dcb7c40deb18b54450b03c3f6f4f6
+        run: bash scripts/build-all.sh
+      - name: Check final research output
+        run: python3 website/scripts/research_atlas.py check-site --root _site
+      - name: Upload rendered evidence and site
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-site-and-browser
+          path: |
+            _out/research-browser
+            _out/lean-gate.json
+            _site
+          if-no-files-found: warn
+          retention-days: 7
