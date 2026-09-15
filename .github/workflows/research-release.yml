@@ -1,0 +1,65 @@
+name: Research release candidate
+on:
+  push:
+    branches: ["agent/structure-atlas-stateprepwiki-20260915"]
+    paths: [".github/workflows/research-release.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  reader:
+    if: github.ref == 'refs/heads/agent/structure-atlas-stateprepwiki-20260915'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with: {fetch-depth: 0, ref: agent/structure-atlas-stateprepwiki-20260915}
+      - name: Apply the locally inspected final reader fix and retire one-shot scripts
+        run: |
+          set -euo pipefail
+          if test -f website/research-release.patch; then
+            git apply --check website/research-release.patch
+            git apply website/research-release.patch
+            git rm website/research-release.patch
+          fi
+          git rm --ignore-unmatch website/scripts/install_research_integration.py website/scripts/repair_research_integration.py website/scripts/finalize_research_reader.py .github/workflows/research-reader-final.yml .github/workflows/research-workspace.yml
+          python3 -m unittest website.scripts.test_research_atlas tools.test_powershell_builds
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/scripts/research_atlas.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Complete common navigation and source-paper progress; retire one-shot development scripts'
+            git push origin HEAD:agent/structure-atlas-stateprepwiki-20260915
+          fi
+      - name: Restore the actual published unchanged proof and Blueprint
+        run: python3 website/scripts/restore_published_blueprint.py
+      - name: Install finite executable checks
+        run: python3 -m pip install -r requirements-executable.txt
+      - name: Check current harness, proof trust and executable artifacts
+        run: |
+          python3 tools/qbe.py harness-check
+          python3 tools/check_proof_trust.py
+          python3 tools/check_technical_lemma_registry.py
+          python3 executable-exports/SP-HERMITE-001/qiskit/export.py --self-test
+          python3 executable-exports/SP-HERMITE-001/qiskit/replay.py
+          python3 tools/replay_public_cases.py
+          python3 tools/export_robin_evolution.py --task QBE-ROBIN-BE-WARM-001 --arm warm
+      - name: Rebuild all current reader pages and run website/browser gates
+        env: {ASPBE_PUBLICATION_BASE: 8ac04215547dcb7c40deb18b54450b03c3f6f4f6}
+        run: |
+          set -o pipefail
+          mkdir -p _out/research-diagnostics
+          bash scripts/build-website.sh 2>&1 | tee _out/research-diagnostics/release.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: research-release-evidence
+          path: |
+            _site
+            _out/research-browser
+            _out/research-diagnostics
+            _out/lean-gate.json
+            _out/published-proof-restore.json
+          retention-days: 7
+          if-no-files-found: warn
