@@ -19,17 +19,18 @@ jobs:
         with:
           fetch-depth: 0
           ref: agent/structure-atlas-stateprepwiki-20260915
-      - name: Apply the bounded source integration
+      - name: Apply exact reader and native-parity repairs
         run: |
           set -euo pipefail
-          python3 website/scripts/install_research_integration.py
+          python3 website/scripts/repair_research_integration.py
           git diff --check
-          python3 -m unittest website.scripts.test_research_atlas
+          python3 -m unittest website.scripts.test_research_atlas tools.test_powershell_builds
+          node --check website/static/research-focus.js
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add AGENTS.md HARNESS.md CONTRIBUTING.md .github/PULL_REQUEST_TEMPLATE.md .agents/skills/qbe-math-writing/SKILL.md .agents/skills/qbe-proof-export/SKILL.md scripts/build-website.sh scripts/build-website.ps1 website/lean-graph-contract.json
+          git add scripts/build-website.ps1 website/scripts/research_atlas.py
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate mathematical atlas, research wiki and source-faithful publication gates'
+            git commit -m 'Preserve native publication parity and focus exact graph identities'
             git push origin HEAD:agent/structure-atlas-stateprepwiki-20260915
           fi
           git rev-parse HEAD
@@ -44,7 +45,10 @@ jobs:
       - name: Full Lean, Blueprint and website replay
         env:
           ASPBE_PUBLICATION_BASE: 8ac04215547dcb7c40deb18b54450b03c3f6f4f6
-        run: bash scripts/build-all.sh
+        run: |
+          set -o pipefail
+          mkdir -p _out/research-diagnostics
+          bash scripts/build-all.sh 2>&1 | tee _out/research-diagnostics/build.log
       - name: Check final research output
         run: python3 website/scripts/research_atlas.py check-site --root _site
       - name: Upload rendered evidence and site
@@ -54,7 +58,10 @@ jobs:
           name: research-site-and-browser
           path: |
             _out/research-browser
+            _out/research-diagnostics
             _out/lean-gate.json
+            _out/blueprint
+            _out/site
             _site
           if-no-files-found: warn
           retention-days: 7
