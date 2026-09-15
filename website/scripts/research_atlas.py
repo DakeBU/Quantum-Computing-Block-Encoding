@@ -195,12 +195,18 @@ def lean_links(refs: list[str], declarations: dict[str, Any], prefix: str, full_
 
 
 def family_latex(item: dict[str, Any]) -> str:
-    lines = ["% Authored mechanism lesson; not a new theorem certificate.", "% " + item["label"],
-             "\\[", tex(item["formula"]), "\\]", "", "% Assumptions"]
-    lines += ["% " + value for value in item["assumptions"]]
-    lines += ["", "% Proof mechanism (individual claims require the linked signatures)"]
-    lines += ["% " + str(i + 1) + ". " + value for i, value in enumerate(item["proof_steps"])]
-    lines += ["", "% Boundary: " + item["boundary"]]
+    def prose(value: str) -> str:
+        mapping = {"\\": r"\textbackslash{}", "&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#", "_": r"\_", "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}", "^": r"\textasciicircum{}"}
+        return "".join(mapping.get(char, char) for char in value)
+    lines = ["% Authored mechanism lesson; not a new theorem certificate.",
+             r"\section*{" + prose(item["label"]) + "}", prose(item["question"]),
+             r"\[", tex(item["formula"]), r"\]", prose(item["mechanism"]),
+             r"\paragraph{Hypotheses and contracts.}", r"\begin{enumerate}"]
+    lines += [r"\item " + prose(value) for value in item["assumptions"]]
+    lines += [r"\end{enumerate}", r"\paragraph{Mathematical proof mechanism.}",
+              "This is a reusable derivation guide; exact certified scope is given by the linked Lean signatures.", r"\begin{enumerate}"]
+    lines += [r"\item " + prose(value) for value in item["proof_steps"]]
+    lines += [r"\end{enumerate}", r"\paragraph{Boundary.} " + prose(item["boundary"])]
     return "\n".join(lines) + "\n"
 
 
@@ -332,7 +338,7 @@ def publish(root: Path) -> dict[str, Any]:
     data_dir.mkdir(parents=True, exist_ok=True)
     for name, filename in FILES.items():
         (data_dir / filename).write_text(json.dumps(catalog[name], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    for filename in ("research-atlas.css", "research-atlas.js", "research-focus.js"):
+    for filename in ("research-atlas.css", "research-atlas.js", "research-focus.js", "research-delta.js"):
         shutil.copyfile(ROOT / "website/static" / filename, root / "static" / filename)
     additions: list[dict[str, Any]] = []
     def write(route: str, title: str, body: str, toc: list[tuple[str, str]] | None = None) -> None:
@@ -340,7 +346,7 @@ def publish(root: Path) -> dict[str, Any]:
         breadcrumbs = '<nav class="ra-breadcrumb" aria-label="Research views">' + "".join(f'<a href="{prefix}{path}index.html">{esc(label)}</a>' for label, path in VIEWS) + '</nav>'
         page = site.page_template(title=title, route=route, current=route,
             body='<div class="ra-book">' + breadcrumbs + body + '</div>', coverage=coverage, gate=gate, context=context, toc=toc,
-            extra_styles=("static/research-atlas.css",), extra_scripts=("static/research-atlas.js",))
+            extra_styles=("static/research-atlas.css",), extra_scripts=("static/research-atlas.js", "static/research-delta.js"))
         site.write_page(root, route, page)
         additions.append({"type": "page", "kind": "research", "title": title, "summary": re.sub("<[^>]+>", " ", body)[:500], "url": route + "index.html"})
     hero = lambda title, body: '<header class="ra-hero"><p class="eyebrow">Structure before circuit tricks</p><h1>' + esc(title) + '</h1><p class="lede">' + esc(body) + '</p></header>'
@@ -390,6 +396,7 @@ def publish(root: Path) -> dict[str, Any]:
         body += '<div class="ra-comparison"><article><h3>Before</h3><p>' + esc(c["before"]) + '</p></article><article><h3>After</h3><p>' + esc(c["after"]) + '</p></article></div>' + math(c["formula"])
         body += '<p><strong>Preserved contract:</strong> ' + esc(c["invariant"]) + '</p><p class="ra-warning">' + esc(c["novelty_boundary"]) + '</p>'
         body += '<p><strong>Actual Git module/import delta:</strong> ' + esc(delta["status"]) + '. This is not an elaborated proof-term delta.</p>'
+        body += f'<div class="ra-graph-app" data-ra-delta="{esc(c["id"])}"><label>Inspect changed import edges around a module <select data-ra-delta-select aria-label="Module in contribution delta"></select></label><div class="ra-graph-stage" style="max-height:620px"><svg data-ra-delta-svg role="img" aria-label="Pinned module import contribution delta"></svg></div><p data-ra-delta-status aria-live="polite">Loading the computed Git delta; complete source data is linked below.</p><p class="ra-legend">Solid lines: added imports. Dashed lines: removed imports. This is the changed module-import neighborhood, not a theorem proof graph or an automatically inferred novelty classification.</p></div>'
         body += '<details><summary>Added modules at the pinned contribution</summary>' + paragraphs(delta["added_modules"]) + '</details>'
         body += '<p><a download href="../data/research/contributions.json">Download baseline/head and exact module-import delta</a></p>'
         hyper += section(c["label"], body, slug(c["id"]))

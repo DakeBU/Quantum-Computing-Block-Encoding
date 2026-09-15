@@ -37,7 +37,7 @@ def run(root: Path, output: Path) -> None:
                     for route in routes:
                         page.goto(f"{base}/{route}/index.html", wait_until="networkidle", timeout=90000)
                         page.evaluate("theme => document.documentElement.dataset.theme = theme", theme)
-                        page.wait_for_function("window.MathJax && window.MathJax.startup && window.MathJax.startup.promise", timeout=60000)
+                        page.wait_for_function("Boolean(window.MathJax && window.MathJax.startup && window.MathJax.startup.promise)", timeout=60000)
                         page.evaluate("async () => { await MathJax.startup.promise; await MathJax.typesetPromise(); }")
                         size = page.evaluate("({width: innerWidth, scroll: document.documentElement.scrollWidth})")
                         if size["scroll"] > width + 2:
@@ -70,7 +70,7 @@ def run(root: Path, output: Path) -> None:
                 relative = path.relative_to(root).as_posix()
                 page.set_viewport_size({"width": 390, "height": 900})
                 page.goto(f"{base}/{relative}", wait_until="networkidle", timeout=90000)
-                page.wait_for_function("window.MathJax && window.MathJax.startup && window.MathJax.startup.promise", timeout=60000)
+                page.wait_for_function("Boolean(window.MathJax && window.MathJax.startup && window.MathJax.startup.promise)", timeout=60000)
                 page.evaluate("async () => { await MathJax.startup.promise; await MathJax.typesetPromise(); }")
                 if page.locator("mjx-merror").count():
                     failures.append("MathJax error in " + relative)

@@ -51,6 +51,12 @@ def binding_digest(root: Path, record: dict[str, Any]) -> str:
     for name in (record["module"], record["lesson_path"], "lean-toolchain", "lake-manifest.json"):
         digest.update(name.encode())
         digest.update(local_file(root, name).read_bytes())
+    # Bind local ambient definitions too: imports/private helpers in another
+    # production module must not leave an old semantic review apparently fresh.
+    for directory in ("QuantumBlockEncoding", "ABEISTests"):
+        for path in sorted((root / directory).rglob("*.lean")):
+            digest.update(path.relative_to(root).as_posix().encode())
+            digest.update(path.read_bytes())
     sources = load(root, "website/research/sources.json")["sources"]
     source = next((s for s in sources if s["id"] == record["source_id"]), None)
     if source is None:
@@ -114,9 +120,14 @@ def validate_record(root: Path, record: dict[str, Any], inventory: dict[str, dic
             raise ValueError("independent evidence packet has changed")
         if not evidence.get("artifact_path"):
             raise ValueError("review result artifact missing")
-        local_file(root, evidence["artifact_path"])
+        artifact = local_file(root, evidence["artifact_path"])
+        if hashlib.sha256(artifact.read_bytes()).hexdigest() != evidence.get("artifact_sha256"):
+            raise ValueError("independent result artifact has changed")
     if len({record["formalizer"], decoder["identity"], reviewer["identity"]}) != 3:
         raise ValueError("formalizer, decoder and reviewer must be distinct")
+    decoder_hash = hashlib.sha256(local_file(root, record["decoder_evidence"]).read_bytes()).hexdigest()
+    if reviewer.get("decoder_evidence_sha256") != decoder_hash:
+        raise ValueError("reviewer is not bound to the exact decoder result")
     if decoder.get("source_blind") is not True or not decoder.get("reconstruction"):
         raise ValueError("decoder must retain a source-blind reconstruction")
     if reviewer.get("anti_anchored") is not True or reviewer.get("verdict") != "accepted":

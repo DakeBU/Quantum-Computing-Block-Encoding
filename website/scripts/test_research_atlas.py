@@ -105,7 +105,10 @@ class PublicationBindingTests(unittest.TestCase):
         self.write(name, json.dumps(value))
 
     def flush(self):
+        for evidence in (self.decoder, self.reviewer):
+            evidence["artifact_sha256"] = hashlib.sha256((self.root / evidence["artifact_path"]).read_bytes()).hexdigest()
         self.write_json("decoder.json", self.decoder)
+        self.reviewer["decoder_evidence_sha256"] = hashlib.sha256((self.root / "decoder.json").read_bytes()).hexdigest()
         self.write_json("reviewer.json", self.reviewer)
 
     def test_synthetic_integrity_fixture(self):
@@ -147,6 +150,22 @@ class PublicationBindingTests(unittest.TestCase):
         del self.reviewer["semantic_slots"]["ancillas_phases"]
         self.flush()
         with self.assertRaisesRegex(ValueError, "all quantum semantic slots"):
+            publication.validate_record(self.root, self.record, self.inventory)
+
+    def test_decoder_result_cannot_change_after_review(self):
+        self.decoder["reconstruction"] = "A different statement"
+        self.write_json("decoder.json", self.decoder)
+        with self.assertRaisesRegex(ValueError, "exact decoder result"):
+            publication.validate_record(self.root, self.record, self.inventory)
+
+    def test_review_result_bytes_are_bound(self):
+        self.write("review-artifact.txt", "Changed verdict or reasoning")
+        with self.assertRaisesRegex(ValueError, "artifact has changed"):
+            publication.validate_record(self.root, self.record, self.inventory)
+
+    def test_changed_local_dependency_invalidates_context(self):
+        self.write("QuantumBlockEncoding/Other.lean", "def ambient := False")
+        with self.assertRaisesRegex(ValueError, "stale"):
             publication.validate_record(self.root, self.record, self.inventory)
 
     def test_evidence_path_traversal_rejected(self):
