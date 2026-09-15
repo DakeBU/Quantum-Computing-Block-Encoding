@@ -13,20 +13,62 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - name: Export only the tracked repository and pinned Git history
+      - name: Retrieve only the currently published project surface
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           mkdir -p _out/workspace
-          git bundle create _out/workspace/repository.bundle --all
-          git rev-parse HEAD > _out/workspace/commit.txt
           gh api 'repos/'"$GITHUB_REPOSITORY"'/actions/runs?branch=agent%2Fstructure-atlas-stateprepwiki-20260915&per_page=30' > _out/workspace/runs.json
-          for run in 34944000096 34942896110; do
-            gh api repos/$GITHUB_REPOSITORY/actions/runs/$run/jobs > _out/workspace/jobs-$run.json
-          done
+          python3 - <<'PY'
+          import concurrent.futures, html.parser, json, pathlib, urllib.parse, urllib.request
+          root = pathlib.Path('_out/workspace/published')
+          origin = 'https://dakebu.github.io/Quantum-Computing-Block-Encoding/'
+          pending = {'index.html','build-report.json','site-metadata.json','search-index.json','data/lean-graph.json','library/declarations.json','blueprint/html-multi/index.html'}
+          seen = set()
+          class Links(html.parser.HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.links=[]
+              def handle_starttag(self, tag, attrs):
+                  for key, value in attrs:
+                      if key in ('href','src') and value: self.links.append(value)
+          def fetch(name):
+              try:
+                  with urllib.request.urlopen(origin+urllib.parse.quote(name, safe='/'), timeout=30) as response:
+                      content=response.read(12_000_001)
+                      if len(content)>12_000_000: raise ValueError('oversized public resource')
+                  path=root/name; path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(content)
+                  found=[]
+                  if name.endswith('.html'):
+                      parser=Links(); parser.feed(content.decode('utf-8'))
+                      for link in parser.links:
+                          target=urllib.parse.urlsplit(urllib.parse.urljoin(origin+name,link))
+                          full=urllib.parse.urlunsplit((target.scheme,target.netloc,target.path,'',''))
+                          if full.startswith(origin):
+                              item=urllib.parse.unquote(full[len(origin):])
+                              if item.endswith('/'): item+='index.html'
+                              if '..' not in pathlib.PurePosixPath(item).parts and item.endswith(('.html','.json','.js','.css','.svg','.png','.webp','.mmd','.tex','.md','.lean')): found.append(item)
+                  return found
+              except Exception as error:
+                  print('Not mirrored:',name,type(error).__name__); return []
+          while pending:
+              batch=sorted(pending-seen)
+              if not batch: break
+              if len(seen)+len(batch)>1800: raise SystemExit('public mirror scope exceeded')
+              seen.update(batch); pending=set()
+              with concurrent.futures.ThreadPoolExecutor(max_workers=16) as pool:
+                  for found in pool.map(fetch,batch): pending.update(found)
+          report=root/'build-report.json'
+          if not report.is_file(): raise SystemExit('No published build report; no proof inheritance permitted')
+          from website.scripts.proof_inputs import proof_input_digest, lean_module_targets
+          payload=json.loads(report.read_text()); gate=payload['leanGate']
+          equal=gate.get('passed') is True and gate.get('proofInputsSha256')==proof_input_digest(pathlib.Path('.')) and gate.get('compiledModules')==lean_module_targets(pathlib.Path('.'))
+          pathlib.Path('_out/workspace/published-proof-comparison.json').write_text(json.dumps({'publishedCommit':gate.get('commit'),'exactProofInputsEqual':equal,'publicationOrigin':origin,'mirroredResources':len(seen),'freshLeanExecution':False},indent=2))
+          print('Published proof inputs match current source:',equal,'resources:',len(seen))
+          PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: research-pinned-workspace
+          name: research-published-reader
           path: _out/workspace
           retention-days: 2
