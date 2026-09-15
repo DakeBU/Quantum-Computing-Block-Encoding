@@ -315,7 +315,7 @@ def patch_navigation(root: Path) -> None:
         for title, route in VIEWS:
             attr = ' aria-current="page"' if current.startswith(route) else ""
             links.append(f'<a href="{prefix}{route}index.html"{attr}>{esc(title)}</a>')
-        marker = '<strong class="nav-group-label">Reference</strong>'
+        marker = '<strong class="nav-group-label">Chapters</strong>'
         nav = '<!-- research-nav:start --><strong class="nav-group-label">Structure and research</strong>' + "".join(links) + '<!-- research-nav:end -->'
         if marker not in text:
             raise ValueError(f"common sidebar insertion marker missing: {current}")

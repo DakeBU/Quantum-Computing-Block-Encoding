@@ -595,13 +595,13 @@ def render_lean_graph_body(payload: dict[str, object]) -> str:
     <article><h3>Unique support and expanded support</h3>
       <p>Define \(U=|\bigcup_{{t\in T}}S_t|\) and
       \(I=\sum_{{t\in T}}|S_t|\). Equivalently, if
-      \(r(v)=|\{{t\in T:v\in S_t}}|\), then \(I=\sum_v r(v)\).
+      \(r(v)=|\{{t\in T:v\in S_t\}}|\), then \(I=\sum_v r(v)\).
       Here \(U\) counts maintained support nodes once; \(I\) is the support mass
       obtained by expanding every target separately.</p></article>
     <article><h3>Structural sharing</h3>
       <p>We report \(F_{{\rm share}}=I/U\) and
       \(G_{{\rm reuse}}=1-U/I\), together with the coverage
-      \(C_{{\rm shared}}=|\{{v:r(v)\ge2}}|/U\). These describe sharing; they do
+      \(C_{{\rm shared}}=|\{{v:r(v)\ge2\}}|/U\). These describe sharing; they do
       not certify that two proofs are semantically interchangeable.</p></article>
     <article><h3>Reuse concentration</h3>
       <p>The pairwise sharing mass is

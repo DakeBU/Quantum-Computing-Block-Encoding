@@ -56,8 +56,8 @@
           const group = make(link ? "a" : "g", link ? { href: link, tabindex: 0, "aria-label": id } : { role: "group", "aria-label": id });
           group.append(make("title", {}, id));
           group.append(make("rect", { x, y, width, height: 84, rx: 6, fill: central ? "var(--block-soft)" : "var(--surface)", stroke: central ? "var(--block)" : "var(--line-strong)", "stroke-width": central ? 2.5 : 1.2 }));
-          const label = make("text", { x: x + 12, y: y + 22, fill: "var(--ink)", "font-size": 14, "font-family": "sans-serif" });
-          lines(id).forEach((line, index) => label.append(make("tspan", { x: x + 12, dy: index ? 17 : 0 }, line)));
+          const label = make("text", { x: x + 12, y: y + (mobile.matches ? 27 : 22), fill: "var(--ink)", "font-size": mobile.matches ? 19 : 14, "font-family": "sans-serif" });
+          lines(id).forEach((line, index) => label.append(make("tspan", { x: x + 12, dy: index ? (mobile.matches ? 23 : 17) : 0 }, line)));
           group.append(label); svg.append(group);
         }
         if (mobile.matches) {

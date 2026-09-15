@@ -71,9 +71,9 @@
     const anchor = node("a", { href, tabindex: 0, "aria-label": record.label });
     anchor.append(node("title", {}, `${record.label}: ${record.id}`));
     anchor.append(node("rect", { x, y, width, height: 64, class: `ra-graph-node${target ? " ra-graph-target" : ""}` }));
-    const lines = words(record.label, mobile.matches ? 40 : 32);
+    const lines = words(record.label, mobile.matches ? 29 : 32);
     const label = node("text", { x: x + 16, y: y + (lines.length > 1 ? 26 : 37), class: "ra-graph-text" });
-    lines.forEach((line, index) => label.append(node("tspan", { x: x + 16, dy: index ? 19 : 0 }, line)));
+    lines.forEach((line, index) => label.append(node("tspan", { x: x + 16, dy: index ? (mobile.matches ? 25 : 19) : 0 }, line)));
     anchor.append(label);
     svg.append(anchor);
   }

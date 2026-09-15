@@ -95,6 +95,8 @@
   .ra-and { justify-self: center; }
   .ra-graph-app { padding: .7rem; }
   .ra-graph-stage svg { min-height: 300px; }
+  .ra-graph-text { font-size: 20px; }
+  .ra-graph-label { font-size: 15px; }
   .ra-section { margin: 2rem 0; }
   .ra-card { padding: 1rem; }
   .ra-contract { gap: .4rem; }

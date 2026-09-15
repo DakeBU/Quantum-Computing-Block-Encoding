@@ -44,7 +44,7 @@ def run(root: Path, output: Path) -> None:
                             failures.append(f"global horizontal overflow {route} {width} {theme}: {size}")
                         math_errors = page.locator("mjx-merror").count()
                         if math_errors:
-                            failures.append(f"MathJax errors {route}: {math_errors}")
+                            failures.append(f"MathJax errors {route}: {math_errors}; " + str(page.locator("mjx-merror").all_text_contents()))
                         if route == "functor-hypergraph":
                             page.wait_for_selector('svg[data-edge-id]', timeout=30000)
                             select = page.locator("[data-ra-edge]")
@@ -81,6 +81,23 @@ def run(root: Path, output: Path) -> None:
             details.locator("summary").click()
             if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
                 failures.append("expanded Lean source causes page overflow")
+            # Exercise the exact declaration link and real imported-edge delta, not only cards.
+            name = "QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec"
+            from urllib.parse import quote
+            page.goto(f"{base}/lean-graph/index.html?focus=" + quote("declaration:" + name, safe=""), wait_until="networkidle", timeout=90000)
+            page.wait_for_function("document.body.textContent.includes('Focused exact shared identity: declaration:QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec')", timeout=30000)
+            page.screenshot(path=str(output / "exact-lean-focus.png"), full_page=False)
+            page.goto(f"{base}/functor-hypergraph/index.html", wait_until="networkidle", timeout=90000)
+            page.wait_for_function("Number(document.querySelector('[data-ra-delta-svg]').dataset.edgeCount) > 0", timeout=30000)
+            for width in (390, 1280):
+                page.set_viewport_size({"width": width, "height": 900})
+                page.locator('[data-ra-hypergraph]').scroll_into_view_if_needed()
+                page.screenshot(path=str(output / f"and-graph-{width}.png"), full_page=False)
+                page.locator('[data-ra-delta]').scroll_into_view_if_needed()
+                page.screenshot(path=str(output / f"contribution-graph-{width}.png"), full_page=False)
+            with page.expect_download() as download_event:
+                page.locator('[data-ra-download-svg]').click()
+            download_event.value.save_as(output / "transport-export.svg")
             context.close()
             browser.close()
     finally:
