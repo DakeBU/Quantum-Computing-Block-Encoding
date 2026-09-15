@@ -19,10 +19,9 @@ jobs:
       - name: Apply the inspected formula and navigation source repair
         run: |
           set -euo pipefail
-          # Normalize a patch-section separator, not any repository source text.
-          sed -i 's/^ diff --git /diff --git /' website/reader-edges.patch
-          git apply --check website/reader-edges.patch
-          git apply website/reader-edges.patch
+          sed 's/^ diff --git /diff --git /' website/reader-edges.patch > /tmp/aspbe-reader-edges.patch
+          git apply --check /tmp/aspbe-reader-edges.patch
+          git apply /tmp/aspbe-reader-edges.patch
           git rm website/reader-edges.patch
           python3 -m py_compile website/scripts/lean_graph.py website/scripts/test_research_browser.py
           python3 -m unittest website.scripts.test_research_atlas tools.test_powershell_builds
