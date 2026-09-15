@@ -23,11 +23,14 @@
 
 ## News 🔥
 
+- **14 August 2026.** For the selected $n=3$ Robin boundary instance in [Guseynov–Huang–Liu, *Block encoding by signal processing*](https://arxiv.org/abs/2406.18072), ASPBE formally reduced the audited $T^{\dagger 3}$ branch from **49 to 30** $T^{\dagger 3}$ gates and from **52 to 32** CNOTs, while keeping five qubits and zero ancillas under the same primitive model.
+- **10 September 2026.** For the smooth auxiliary $p$-register initial state required by [Jin–Liu–Ma’s Schrödingerisation PDE construction](https://arxiv.org/abs/2403.19123v3), connected to the smooth-function state-preparation program of [Holmes–Matsuura](https://arxiv.org/abs/2005.04351), ASPBE exploited the exact Hermite–Bernstein/tensor-train structure to replace generic $\Theta(2^{n_p})$ amplitude loading by $G\le 48n_p(2k+6)^3$: **linear $O(n_p)$ gate complexity for fixed smoothness order $k$**, with $O(\log k)$ workspace. [Read the Lean-verified worked case →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/hermite-smooth-state-preparation/index.html)
+
 - **April 2026.** The ASPBE/QBE project was already in its conception and early-prototyping stage. This date is retained as project history; it predates the repository's first public/auditable Git timestamp and is therefore not presented as an April public-commit claim.
 - **17 May 2026.** The repository's public, auditable record begins with the [initial automation commit `af59b03`](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and the timestamped [`MANIFEST.md`](MANIFEST.md). The manifest records the first QBE initialization, agent brief, Lean/LaTeX conversion window, multi-agent run cycles, reviewer handoffs, and trial-memory entries from 17–18 May 2026.
 - **May 2026.** The early repository already framed the goal as turning quantum-oracle assumptions into concrete gate-level matrices and Lean-checked block-encoding certificates, with faithful-paper versus exploratory-construction modes. The May history remains available in the Git record even though the public name and website were redesigned later.
 
-These News items intentionally preserve the **early project chronology**. Routine recent engineering and website updates are not added here; current mathematical status is generated from the checkout and shown in QuantumComputinglib and the Implementation Map.
+These News items preserve the **early project chronology** and add only major, mathematically audited construction milestones. Routine engineering and website updates are not added here; current mathematical status is generated from the checkout and shown in QuantumComputinglib and the Implementation Map.
 
 ---
 
