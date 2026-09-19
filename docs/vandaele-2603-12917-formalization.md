@@ -19,17 +19,16 @@ proof-frontier plan, not evidence that the planned declarations exist.
 The formalization should pin one paper version and transcribe, at minimum, the
 following source objects before proof search:
 
-- the (C^kX) convention and the source gate/resource model
-  ({CCX,CX,X});
-- the structural operators used by the paper ((F_k^{(n)}),
-  (L_k^{(n)}), (V_k^{(n)})) and the exact wire ordering;
+- the `C^k X` convention and the source gate/resource model
+  `{CCX, CX, X}`;
+- the structural operators used by the paper `F_k^(n)`, `L_k^(n)`, and `V_k^(n)` and the exact wire ordering;
 - the promise-gate definitions and the controlled-conjugation identities;
-- Figure 4 and its slices (U_1,ldots,U_8);
+- Figure 4 and its slices `U₁,…,U₈`;
 - Eq. (16), which rewrites the controlled adder in terms of controlled
-  (U_i) blocks;
+  `Uᵢ` blocks;
 - Figure 5 and Eq. (17), the advertised quantum–quantum comparator map;
 - the recursive comparator construction and the recurrence/resource argument
-  used for the (Theta(n)) gate and (Theta(log n)) depth result;
+  used for the `Θ(n)` gate and `Θ(log n)` depth result;
 - the classical–quantum comparator, incrementer, classical–quantum adder and
   downstream modular-multiplication/Shor claims if/when those later sections
   enter scope.
@@ -147,24 +146,16 @@ Required outputs:
 
 The paper advertises
 
-[
-|aangle|bangle|zangle
-mapsto
-|aangle|bangle|zoplus[a<b]angle.
-]
+`|a⟩|b⟩|z⟩ → |a⟩|b⟩|z ⊕ [a<b]⟩`
 
 ASPBE must derive this from the **literal** Figure 5 circuit.
 
 The critical audit is to separate
 
-[
-	ext{data subtraction modulo }2^n
-qquad	ext{from}qquad
-	ext{raw high carry/borrow predicate}.
-]
+**data subtraction modulo `2ⁿ`** from the **raw high carry/borrow predicate**.
 
 For every finite discriminator, report both candidate predicates
-([a<b]) and ([b<a]); then prove which one follows from the exact Figure 4
+`[a<b]` and `[b<a]`; then prove which one follows from the exact Figure 4
 operand convention and the X–ADD–X wrapper. A one-bit or five-bit truth table
 may falsify an interpretation, but only the arbitrary-width theorem closes
 Eq. (17).
@@ -181,7 +172,7 @@ as four separate objects. The repair needs its own independent review.
 
 ### V4 — Recursive comparator and Theorem 2 resources
 
-Once Figure 5 semantics is closed, formalize the recursive (V_2^{(n)})
+Once Figure 5 semantics is closed, formalize the recursive `V₂^(n)`
 construction and its promise-register use.
 
 Keep correctness and complexity separate:
@@ -212,9 +203,7 @@ at the logical-circuit tier unless the source model treats it that way.
 
 Formalize
 
-[
-|xanglemapsto |(x+1)mod 2^nangle
-]
+`|x⟩ → |(x+1) mod 2ⁿ⟩`
 
 from the paper's literal recursive circuit. Required evidence mirrors the
 comparator path:
@@ -291,8 +280,7 @@ After V0 freezes conventions, useful parallel objectives are:
 
 - **literal-circuit worker:** exact 5-bit Figure 4/5 transcript and exhaustive
   basis discriminator;
-- **arbitrary-width arithmetic worker:** carry invariants and (U_i)
-  composition;
+- **arbitrary-width arithmetic worker:** carry invariants and `Uᵢ` composition;
 - **source-adversarial worker:** Eq. (17) orientation and minimal
   counterexamples, without assuming the advertised predicate;
 - **resource worker:** recurrence/depth/gate proofs and lower-bound source
