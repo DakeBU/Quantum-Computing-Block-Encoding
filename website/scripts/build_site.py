@@ -1585,6 +1585,31 @@ def render_roadmap(
     </table>
   </div>
 </section>
+<section class="content-section" id="vandaele-frontier">
+  <div class="section-heading">
+    <p class="eyebrow">Source-faithful formalization frontier</p>
+    <h2>Vandaele comparator / incrementer route</h2>
+    <p>The current route is deliberately <strong>partial</strong>. ASPBE already
+    certifies reusable controlled-conjugation and dirty-flag/involution identities;
+    it does not yet certify the paper's complete comparator, incrementer, or
+    optimality claims.</p>
+  </div>
+  <div class="callout"><strong>Next root chain.</strong>
+    literal Figure 4 gates → named (U_1,ldots,U_8) slice semantics →
+    arbitrary-width adder including carry → literal X–ADD–X Figure 5 semantics →
+    Eq. (17) comparison predicate and operand orientation → recursive
+    (V_2^{(n)}) resource theorem → lower-bound bridge before the word
+    <em>optimal</em> is promoted.</div>
+  <p>The finite Figure 4/5 witnesses are convention discriminators, not
+  arbitrary-width closure. If the literal circuit and advertised comparison
+  orientation disagree under the pinned register convention, the source
+  equation, literal-circuit theorem, counterexample, and any repair proposal
+  remain separate reviewed objects.</p>
+  <p><a href="https://arxiv.org/abs/2603.12917">Primary source: Vandaele 2026</a>.
+  The repository plan also separates controlled/classical–quantum comparators,
+  incrementers, the classical–quantum adder, and the downstream Shor consequence
+  into later integration stages rather than inferring them from local lemmas.</p>
+</section>
 <section class="content-section" id="memory-transfer-protocol">
   <div class="section-heading">
     <p class="eyebrow">Planned longitudinal experiment</p>
