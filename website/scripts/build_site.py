@@ -585,7 +585,7 @@ def render_home(
   </div>
   <div class="application-paths">
     <article class="application-path state-path">
-      <p class="path-label">Application 1</p>
+      <p class="path-label">Part I</p>
       <h3>State preparation</h3>
       <div class="contract-equation">\[U|0^n\rangle=|\psi\rangle\]</div>
       <p>Fix a normalized target state, construct a unitary, and prove that its
@@ -593,7 +593,7 @@ def render_home(
       <a href="state-preparation/index.html">Read the state-preparation route &#8594;</a>
     </article>
     <article class="application-path block-path">
-      <p class="path-label">Application 2</p>
+      <p class="path-label">Part II</p>
       <h3>Block encoding</h3>
       <div class="contract-equation">\[\Pi U\Pi^\dagger=A/\alpha\]</div>
       <p>Fix an operator, normalization, ancilla convention, and register order;
@@ -701,7 +701,7 @@ def render_home(
   </div>
 </section>"""
     toc = [
-        ("applications", "Two applications"),
+        ("applications", "Two parts"),
         ("state-process", "State preparation"),
         ("block-process", "Block encoding"),
         ("evidence", "Build evidence"),
