@@ -730,7 +730,7 @@ def render_state_preparation(
 ) -> str:
     body = rf"""
 <section class="hero application-hero state-hero">
-  <p class="eyebrow">Application 1</p>
+  <p class="eyebrow">Part I · nested preparation layer</p>
   <h1>State preparation</h1>
   <p class="lede">Given a normalized target \(|\psi\rangle\), construct a unitary
   \(U\) that sends the all-zero state to it. ASPBE treats this as its own synthesis
@@ -748,7 +748,7 @@ def render_state_preparation(
 </section>
 <section class="content-section" id="preparation-flow">
   <div class="section-heading">
-    <p class="eyebrow">Independent proof route</p>
+    <p class="eyebrow">Standalone certificate inside the broader toolchain</p>
     <h2>What ASPBE has to establish</h2>
     <p>The target must be normalized. The proposed matrix must be unitary. Finally,
     its action on the zero ket, equivalently its first column, must match every
@@ -801,7 +801,7 @@ def render_block_encoding(
 ) -> str:
     body = rf"""
 <section class="hero application-hero block-hero">
-  <p class="eyebrow">Application 2</p>
+  <p class="eyebrow">Part II · encompassing block-encoding layer</p>
   <h1>Block encoding</h1>
   <p class="lede">Given an operator \(A\), place the scaled operator inside a
   larger unitary. The contract says exactly which ancilla block is selected and
@@ -822,7 +822,7 @@ def render_block_encoding(
 </section>
 <section class="content-section" id="encoding-flow">
   <div class="section-heading">
-    <p class="eyebrow">Independent proof route</p>
+    <p class="eyebrow">Encompassing construction certificate</p>
     <h2>What ASPBE has to establish</h2>
     <p>A candidate is not accepted because one small matrix looks right. The layout,
     unitarity, projected block, scale, and declared resource record are checked as
@@ -832,8 +832,8 @@ def render_block_encoding(
 </section>
 <section class="content-section" id="connection">
   <div class="section-heading">
-    <p class="eyebrow">A useful connection, not an identification</p>
-    <h2>Where prepared states can help</h2>
+    <p class="eyebrow">The main inclusion-like connection</p>
+    <h2>State Preparation supplies a nested PREPARE subproblem</h2>
   </div>
   <p>A certified state-preparation circuit can supply a PREPARE oracle for an LCU,
   Gram, or purification-based construction. Its first-column theorem becomes a
