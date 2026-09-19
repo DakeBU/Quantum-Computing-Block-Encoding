@@ -294,6 +294,17 @@ def main() -> int:
         if marker not in learning:
             errors.append(f"learning page lacks curriculum marker {marker!r}")
 
+    roadmap = (site / "roadmap" / "index.html").read_text(encoding="utf-8")
+    for marker in (
+        'id="long-term-quantum-curriculum"',
+        "Representation-theoretic methods in quantum information theory",
+        "Quantum Algorithms for Scientific Computation",
+        'id="vandaele-frontier"',
+        "literal Figure 4 gates",
+    ):
+        if marker not in roadmap:
+            errors.append(f"roadmap page lacks formalization-plan marker {marker!r}")
+
     if args.require_blueprint:
         require(site / "blueprint" / "html-multi" / "index.html", errors)
 
