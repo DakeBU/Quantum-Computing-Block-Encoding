@@ -11,12 +11,19 @@ ABEIS.
 
 ## Mission
 
-Start with a concrete state-preparation, block-encoding, or query-oracle
-contract. Replace abstract oracle assumptions with explicit mathematical and
-circuit semantics, then prove in Lean that the construction satisfies the
-requested state action, projected block, or oracle condition. Export readable
-mathematics, theorem-linked circuit figures, and optional executable artifacts
-without overstating the certified frontier.
+The current ASPBE construction engine starts with a concrete state-preparation,
+block-encoding, or query-oracle contract. Replace abstract oracle assumptions
+with explicit mathematical and circuit semantics, then prove in Lean that the
+construction satisfies the requested state action, projected block, or oracle
+condition. Export readable mathematics, theorem-linked circuit figures, and
+optional executable artifacts without overstating the certified frontier.
+
+QuantumComputinglib has a broader long-term textbook mission. State Preparation
+and Block Encoding are the current two primary parts; future Quantum
+Information and Quantum Scientific Computing material is admitted through the
+same source/publication protocol and must reuse the shared lower Lean graph
+whenever semantics agree. See `docs/quantum-domain-roadmap.md`. Planned
+curriculum is not evidence of local theorem closure.
 
 ## Canonical Harness Protocol
 
@@ -200,12 +207,25 @@ is `runs/trials.jsonl` plus `runs/trials_summary.csv`. Durable proof-frontier
 state belongs in proof blueprints, conversion windows, named Lean declarations,
 and task ledgers rather than only in chat history.
 
-## Lean-QuantumInfo Relationship
+## External quantum Lean references and scope growth
 
-Use Lean-QuantumInfo as a style reference for finite-dimensional quantum
-formalization. Do not treat it as the project direction. This project is about
-gate-level oracle realization, state-preparation certificates, and
-block-encoding certificates that remain legible to quantum-computing readers.
+Use Lean-QuantumInfo, lean-quantum, quantum-computing-lean, Lean-QuantumAlg-Bench
+and Lean-QIT-Bench according to their recorded attribution and toolchain
+boundaries. They are references or adapter candidates, not automatically local
+dependencies or proof memory. Benchmark statement files remain unresolved
+targets unless a separately checked proof/adaptor is admitted.
+
+Before introducing a foundational quantum-information declaration (state,
+density operator, partial trace, channel, distance, measurement, tensor-system
+semantics, and similar objects), search local ASPBE, Mathlib, and these
+attributed libraries. Prefer one reviewed adapter or one shared local node over
+parallel domain-specific definitions. Toolchain or API mismatch is an explicit
+frontier, not permission to copy a theorem and relabel it local.
+
+The current automated synthesis emphasis remains gate-level oracle realization,
+state-preparation certificates, and block-encoding certificates. Broader QIT and
+scientific-computing chapters extend the shared graph without changing what
+ASPBE currently claims to synthesize.
 
 ## Mathematical structure and research routes
 
