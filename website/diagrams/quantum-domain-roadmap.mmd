@@ -15,8 +15,8 @@ flowchart TB
   CORE --> BE
   CORE --> QIT
   CORE --> SCI
-  SP -. "PREPARE + SELECT + unprepare" .-> BE
-  BE -. "input + accepted branch + normalization/amplification" .-> SP
+  SP -. "nested preparation layer + SELECT + unprepare" .-> BE
+  BE -. "downstream consumer (not inclusion): input + branch + normalization/amplification" .-> SP
   BE --> SCI
   QIT --> SCI
   EXT -. "reviewed reuse / narrow adapters only" .-> CORE
