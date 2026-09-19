@@ -40,7 +40,7 @@ ASPBE is designed for a quantum-computing researcher who knows **what state or o
 The current textbook is organized into two primary parts: **State Preparation** and **Block Encoding**. They have distinct acceptance contracts, but they are not isolated silos. State preparation is a recurring supplier inside block-encoding constructions (for example PREPARE–SELECT–unprepare), while a block encoding can be used toward state preparation only after extra obligations such as an input state, a nonzero accepted branch, postselection, and possibly amplification are proved. The relationship is therefore represented by typed directional bridges in the shared Lean graph, not by identifying the two notions or duplicating their common foundations. See the [long-term QuantumComputinglib curriculum and shared-graph roadmap](docs/quantum-domain-roadmap.md).
 
 <p align="center">
-  <img src="docs/assets/abeis_application_overview.svg" alt="Two independent ASPBE certification routes" width="1080">
+  <img src="docs/assets/abeis_application_overview.svg" alt="Two ASPBE certification contracts in one shared graph" width="1080">
 </p>
 
 > **For block-encoding / state-preparation researchers.** Give ASPBE the target state/operator, available query oracles/gates, register convention, exact/approximate tolerance, and resource priorities. ASPBE evolves **certifiable** candidates and keeps the best candidate it finds under your **lexicographic objective**: optimize priority #1 first; only on ties compare #2, then #3, and so on. It never calls an unproved candidate globally optimal. Outputs can include copyable circuit LaTeX/quantikz, a natural-language derivation, Lean source/proof, and Qiskit/OpenQASM.
