@@ -267,6 +267,8 @@ pretend those keys already exist.
 
 ## 11. Worked scheduling example: Vandaele Figures 4 and 5
 
+The staged source-faithful formalization frontier is maintained in [`docs/vandaele-2603-12917-formalization.md`](docs/vandaele-2603-12917-formalization.md). The summary below remains the scheduling example; the roadmap records the complete Figure 4/5 → arbitrary-width semantics → resource/lower-bound closure plan.
+
 The root target is not “prove some complement arithmetic.” It is:
 
 ```text
