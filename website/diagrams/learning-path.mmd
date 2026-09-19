@@ -9,8 +9,8 @@ flowchart TB
   B1 --> B2["Ancillas, register order,<br/>normalization and projection"]
   B2 --> B3["Composition, dilation,<br/>LCU and QSVT interfaces"]
 
-  S3 -. "PREPARE + SELECT + unprepare" .-> B3
-  B3 -. "input + accepted branch + normalization/amplification" .-> S3
+  S3 -. "nested PREPARE layer + SELECT + unprepare" .-> B3
+  B3 -. "downstream consumer only: input + branch + normalization/amplification" .-> S3
   S3 --> H["ASPBE search,<br/>verification and exports"]
   B3 --> H
 
