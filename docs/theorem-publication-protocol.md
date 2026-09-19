@@ -151,10 +151,13 @@ Cross-domain sharing follows these rules:
   coincide;
 - a source textbook may keep its notation in exposition, but a notation adapter
   should point to the shared formal object rather than duplicate it;
-- State Preparation → Block Encoding edges retain PREPARE, SELECT,
-  unprepare/inverse, coefficient/phase and clean-register hypotheses;
-- Block Encoding → State Preparation edges retain the input-state, nonzero
-  accepted-branch, normalization, postselection and amplification hypotheses;
+- State Preparation → Block Encoding is the curriculum/mechanism
+  inclusion direction: SP supplies the nested PREPARE layer, while the edge still
+  retains SELECT, unprepare/inverse, coefficient/phase and clean-register
+  hypotheses needed by the encompassing BE construction;
+- Block Encoding → State Preparation is a downstream consumer transport, not the
+  inclusion relation; it retains the input-state, nonzero accepted-branch,
+  normalization, postselection and amplification hypotheses;
 - scientific-computing chapters reuse the existing Block Encoding substrate
   instead of formalizing a second block-encoding API;
 - representation-theoretic QIT nodes sit above the shared finite-dimensional
