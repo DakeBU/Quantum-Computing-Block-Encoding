@@ -1625,10 +1625,10 @@ def render_roadmap(
     optimality claims.</p>
   </div>
   <div class="callout"><strong>Next root chain.</strong>
-    literal Figure 4 gates → named (U_1,ldots,U_8) slice semantics →
+    literal Figure 4 gates → named U₁,…,U₈ slice semantics →
     arbitrary-width adder including carry → literal X–ADD–X Figure 5 semantics →
     Eq. (17) comparison predicate and operand orientation → recursive
-    (V_2^{(n)}) resource theorem → lower-bound bridge before the word
+    V₂^(n) resource theorem → lower-bound bridge before the word
     <em>optimal</em> is promoted.</div>
   <p>The finite Figure 4/5 witnesses are convention discriminators, not
   arbitrary-width closure. If the literal circuit and advertised comparison
