@@ -1,20 +1,184 @@
 {
   "schema_version": 1,
-  "checked_on": "2026-09-15",
+  "checked_on": "2026-09-19",
   "policy": "Metadata/abstract verification is not a theorem audit, proof import, novelty verdict or exhaustive latest-literature search. Exact lower-bound comparisons require a separate setting contract and source theorem anchor.",
   "sources": [
-    {"id":"holmes-matsuura-2020","title":"Efficient Quantum Circuits for Accurate State Preparation of Smooth, Differentiable Functions","authors":"Adam Holmes; A. Y. Matsuura","url":"https://arxiv.org/abs/2005.04351","requested_version":"https://arxiv.org/html/2005.04351v1","year":2020,"status":"primary-metadata-checked","anchor":"Abstract: explicit function to MPS to circuit; requested v1 HTML was unavailable in this audit","scope":"Prior art for function-to-MPS preparation. The ASPBE Hermite specialization must not be credited with inventing polynomial-to-MPS or sequential MPS preparation.","formal_status":"external-reference"},
-    {"id":"yuan-zhang-2023","title":"Optimal (controlled) quantum state preparation and improved unitary synthesis by quantum circuits with any number of ancillary qubits","authors":"Pei Yuan; Shengyu Zhang","url":"https://quantum-journal.org/papers/q-2023-03-20-956/","year":2023,"status":"primary-metadata-checked","anchor":"Abstract and publication version notice: published arXiv v2; later v3 exists","scope":"Baseline for arbitrary and controlled state preparation and ancilla/depth trade-offs. Pin a version and gate model before comparing bounds.","formal_status":"external-reference"},
-    {"id":"zhang-yuan-2024","title":"Circuit complexity of quantum access models for encoding classical data","authors":"Xiao-Ming Zhang; Xiao Yuan","url":"https://www.nature.com/articles/s41534-024-00835-8","year":2024,"status":"primary-text-checked","anchor":"Results: circuit complexity lower bound; construction of LCU-based block-encoding; Methods: state preparation","scope":"Explicit access construction is not a free oracle. PREPARE together with SELECT and uncomputation can supply a block encoding; a single prepared state alone does not determine an arbitrary operator.","formal_status":"external-reference"},
-    {"id":"mcardle-gilyen-berta-2026","title":"Quantum State Preparation without Coherent Arithmetic","authors":"Sam McArdle; András Gilyén; Mario Berta","url":"https://journals.aps.org/prl/abstract/10.1103/ntvs-c48s","year":2026,"status":"primary-metadata-checked","anchor":"Abstract; Physical Review Letters 136, 240603, published 18 June 2026","scope":"QET-based function preparation with few ancillas. Approximation, normalization and success probability remain separate costs.","formal_status":"external-reference"},
-    {"id":"obrien-suenderhauf-2025","title":"Quantum state preparation via piecewise QSVT","authors":"See primary source","url":"https://quantum-journal.org/papers/q-2025-07-03-1786/","year":2025,"status":"primary-metadata-checked","anchor":"Abstract and article record","scope":"Piecewise function preparation baseline; partition access, degree, success amplification and primitive compilation must be specified before a resource comparison.","formal_status":"external-reference"},
-    {"id":"multivariate-2025","title":"Quantum state preparation for multivariate functions","authors":"See primary source","url":"https://quantum-journal.org/papers/q-2025-04-09-1703/","year":2025,"status":"primary-metadata-checked","anchor":"Abstract and article record","scope":"Multivariate preparation baseline; a tensor-product coefficient count is not automatically polynomial in dimension.","formal_status":"external-reference"},
-    {"id":"qkan-2026","title":"QKAN: quantum Kolmogorov-Arnold networks with applications in machine learning and multivariate state preparation","authors":"Petr Ivashkov; Po-Wei Huang; Kelvin Koor; Lirandë Pira; Patrick Rebentrost","url":"https://www.nature.com/articles/s41534-026-01202-5","year":2026,"status":"primary-text-checked","anchor":"Abstract, Introduction and Discussion: shallow compositional state preparation","scope":"Composition-dependent bounds, not an efficient preparation theorem for every continuous multivariate function.","formal_status":"external-reference"},
-    {"id":"quantum-rejection-2013","title":"Quantum Rejection Sampling","authors":"Maris Ozols; Martin Roetteler; Jérémie Roland","url":"https://www.microsoft.com/en-us/research/publication/quantum-rejection-sampling/","year":2013,"status":"primary-metadata-checked","anchor":"Authors' publication page: quantum state generation, query characterization and matching lower bound","scope":"Prior art for coherent amplitude reweighting. Novelty must be in an explicit structured envelope, guarantees, implementation or model-matched bound, not in rejection sampling itself.","formal_status":"external-reference"},
-    {"id":"lin-tong-2020","title":"Near-optimal ground state preparation","authors":"Lin Lin; Yu Tong","url":"https://quantum-journal.org/papers/q-2020-12-14-372/","year":2020,"status":"primary-metadata-checked","anchor":"Abstract: initial overlap, spectral-gap promise, energy information and lower bounds","scope":"Use the promised overlap/gap model; do not erase these costs in a generic strong-correlation claim.","formal_status":"external-reference"},
-    {"id":"chemistry-initial-2024","title":"Initial State Preparation for Quantum Chemistry on Quantum Computers","authors":"See primary source","url":"https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.040339","year":2024,"status":"primary-metadata-checked","anchor":"Article record and abstract","scope":"Application motivation for trial-state construction, assessment and refinement; not a proved overlap guarantee for arbitrary molecules.","formal_status":"external-reference"},
-    {"id":"ding-li-lin-2025","title":"Efficient Quantum Gibbs Samplers with Kubo–Martin–Schwinger Detailed Balance Condition","authors":"Zhiyan Ding; Bowen Li; Lin Lin","url":"https://link.springer.com/article/10.1007/s00220-025-05235-3","year":2025,"status":"primary-text-checked","anchor":"Article abstract and Gibbs-sampler construction; Communications in Mathematical Physics 406, 67","scope":"Invariant Gibbs state and efficient mixing are different obligations. A low-temperature polynomial mixing claim needs additional model-specific evidence.","formal_status":"external-reference"},
-    {"id":"butterworth-2026-candidate","title":"Efficient quantum state preparation on Quantinuum hardware (candidate reference)","authors":"Unverified in a primary source during this audit","url":"https://arxiv.org/abs/2609.08414","year":2026,"status":"primary-source-unavailable","anchor":"User-supplied arXiv identifier; primary fetch failed; do not use reported hardware numbers as evidence","scope":"Retained in the candidate queue rather than silently promoted from secondary indexing.","formal_status":"external-reference"},
-    {"id":"samplinglib-protocol","title":"Samplinglib theorem-publication and conceptual-mirror protocols","authors":"DakeBU / Samplinglib contributors","url":"https://github.com/DakeBU/Automization-Sampling-Optimisation-Geometry-Lib/blob/6ff87f915bdba4471785b254c408e722c0b5dd51/docs/theorem-publication-protocol.md","year":2026,"status":"primary-text-checked","anchor":"Author once; graph contribution; independent encoder–denoiser; unchanged historical audit debt","scope":"Design attribution. QuantumComputinglib has its own register, oracle, clean-ancilla and resource contracts; Samplinglib is not an imported Lean dependency.","formal_status":"design-reference"}
+    {
+      "id": "holmes-matsuura-2020",
+      "title": "Efficient Quantum Circuits for Accurate State Preparation of Smooth, Differentiable Functions",
+      "authors": "Adam Holmes; A. Y. Matsuura",
+      "url": "https://arxiv.org/abs/2005.04351",
+      "requested_version": "https://arxiv.org/html/2005.04351v1",
+      "year": 2020,
+      "status": "primary-metadata-checked",
+      "anchor": "Abstract: explicit function to MPS to circuit; requested v1 HTML was unavailable in this audit",
+      "scope": "Prior art for function-to-MPS preparation. The ASPBE Hermite specialization must not be credited with inventing polynomial-to-MPS or sequential MPS preparation.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "yuan-zhang-2023",
+      "title": "Optimal (controlled) quantum state preparation and improved unitary synthesis by quantum circuits with any number of ancillary qubits",
+      "authors": "Pei Yuan; Shengyu Zhang",
+      "url": "https://quantum-journal.org/papers/q-2023-03-20-956/",
+      "year": 2023,
+      "status": "primary-metadata-checked",
+      "anchor": "Abstract and publication version notice: published arXiv v2; later v3 exists",
+      "scope": "Baseline for arbitrary and controlled state preparation and ancilla/depth trade-offs. Pin a version and gate model before comparing bounds.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "zhang-yuan-2024",
+      "title": "Circuit complexity of quantum access models for encoding classical data",
+      "authors": "Xiao-Ming Zhang; Xiao Yuan",
+      "url": "https://www.nature.com/articles/s41534-024-00835-8",
+      "year": 2024,
+      "status": "primary-text-checked",
+      "anchor": "Results: circuit complexity lower bound; construction of LCU-based block-encoding; Methods: state preparation",
+      "scope": "Explicit access construction is not a free oracle. PREPARE together with SELECT and uncomputation can supply a block encoding; a single prepared state alone does not determine an arbitrary operator.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "mcardle-gilyen-berta-2026",
+      "title": "Quantum State Preparation without Coherent Arithmetic",
+      "authors": "Sam McArdle; András Gilyén; Mario Berta",
+      "url": "https://journals.aps.org/prl/abstract/10.1103/ntvs-c48s",
+      "year": 2026,
+      "status": "primary-metadata-checked",
+      "anchor": "Abstract; Physical Review Letters 136, 240603, published 18 June 2026",
+      "scope": "QET-based function preparation with few ancillas. Approximation, normalization and success probability remain separate costs.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "obrien-suenderhauf-2025",
+      "title": "Quantum state preparation via piecewise QSVT",
+      "authors": "See primary source",
+      "url": "https://quantum-journal.org/papers/q-2025-07-03-1786/",
+      "year": 2025,
+      "status": "primary-metadata-checked",
+      "anchor": "Abstract and article record",
+      "scope": "Piecewise function preparation baseline; partition access, degree, success amplification and primitive compilation must be specified before a resource comparison.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "multivariate-2025",
+      "title": "Quantum state preparation for multivariate functions",
+      "authors": "See primary source",
+      "url": "https://quantum-journal.org/papers/q-2025-04-09-1703/",
+      "year": 2025,
+      "status": "primary-metadata-checked",
+      "anchor": "Abstract and article record",
+      "scope": "Multivariate preparation baseline; a tensor-product coefficient count is not automatically polynomial in dimension.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "qkan-2026",
+      "title": "QKAN: quantum Kolmogorov-Arnold networks with applications in machine learning and multivariate state preparation",
+      "authors": "Petr Ivashkov; Po-Wei Huang; Kelvin Koor; Lirandë Pira; Patrick Rebentrost",
+      "url": "https://www.nature.com/articles/s41534-026-01202-5",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Abstract, Introduction and Discussion: shallow compositional state preparation",
+      "scope": "Composition-dependent bounds, not an efficient preparation theorem for every continuous multivariate function.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "quantum-rejection-2013",
+      "title": "Quantum Rejection Sampling",
+      "authors": "Maris Ozols; Martin Roetteler; Jérémie Roland",
+      "url": "https://www.microsoft.com/en-us/research/publication/quantum-rejection-sampling/",
+      "year": 2013,
+      "status": "primary-metadata-checked",
+      "anchor": "Authors' publication page: quantum state generation, query characterization and matching lower bound",
+      "scope": "Prior art for coherent amplitude reweighting. Novelty must be in an explicit structured envelope, guarantees, implementation or model-matched bound, not in rejection sampling itself.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "lin-tong-2020",
+      "title": "Near-optimal ground state preparation",
+      "authors": "Lin Lin; Yu Tong",
+      "url": "https://quantum-journal.org/papers/q-2020-12-14-372/",
+      "year": 2020,
+      "status": "primary-metadata-checked",
+      "anchor": "Abstract: initial overlap, spectral-gap promise, energy information and lower bounds",
+      "scope": "Use the promised overlap/gap model; do not erase these costs in a generic strong-correlation claim.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "chemistry-initial-2024",
+      "title": "Initial State Preparation for Quantum Chemistry on Quantum Computers",
+      "authors": "See primary source",
+      "url": "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.040339",
+      "year": 2024,
+      "status": "primary-metadata-checked",
+      "anchor": "Article record and abstract",
+      "scope": "Application motivation for trial-state construction, assessment and refinement; not a proved overlap guarantee for arbitrary molecules.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "ding-li-lin-2025",
+      "title": "Efficient Quantum Gibbs Samplers with Kubo–Martin–Schwinger Detailed Balance Condition",
+      "authors": "Zhiyan Ding; Bowen Li; Lin Lin",
+      "url": "https://link.springer.com/article/10.1007/s00220-025-05235-3",
+      "year": 2025,
+      "status": "primary-text-checked",
+      "anchor": "Article abstract and Gibbs-sampler construction; Communications in Mathematical Physics 406, 67",
+      "scope": "Invariant Gibbs state and efficient mixing are different obligations. A low-temperature polynomial mixing claim needs additional model-specific evidence.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "butterworth-2026-candidate",
+      "title": "Efficient quantum state preparation on Quantinuum hardware (candidate reference)",
+      "authors": "Unverified in a primary source during this audit",
+      "url": "https://arxiv.org/abs/2609.08414",
+      "year": 2026,
+      "status": "primary-source-unavailable",
+      "anchor": "User-supplied arXiv identifier; primary fetch failed; do not use reported hardware numbers as evidence",
+      "scope": "Retained in the candidate queue rather than silently promoted from secondary indexing.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "samplinglib-protocol",
+      "title": "Samplinglib theorem-publication and conceptual-mirror protocols",
+      "authors": "DakeBU / Samplinglib contributors",
+      "url": "https://github.com/DakeBU/Automization-Sampling-Optimisation-Geometry-Lib/blob/6ff87f915bdba4471785b254c408e722c0b5dd51/docs/theorem-publication-protocol.md",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Author once; graph contribution; independent encoder–denoiser; unchanged historical audit debt",
+      "scope": "Design attribution. QuantumComputinglib has its own register, oracle, clean-ancilla and resource contracts; Samplinglib is not an imported Lean dependency.",
+      "formal_status": "design-reference"
+    },
+    {
+      "id": "vandaele-2026-comparators",
+      "title": "Asymptotically Optimal Quantum Circuits for Comparators and Incrementers",
+      "authors": "Vivien Vandaele",
+      "url": "https://arxiv.org/abs/2603.12917",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Sections 2–6; Figures 3–5; Eq. (16) controlled-adder rewrite; Eq. (17) quantum–quantum comparator contract",
+      "scope": "Primary source for the partial PromiseGateOptimization route and the planned source-faithful adder/comparator/incrementer formalization. Existing generic controlled-conjugation and dirty-flag lemmas do not certify the complete paper circuits or optimality claims.",
+      "formal_status": "partial-route"
+    },
+    {
+      "id": "leditzky-2025-repth-qit",
+      "title": "Representation-theoretic methods in quantum information theory",
+      "authors": "Felix Leditzky",
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "year": 2025,
+      "status": "primary-text-checked",
+      "anchor": "Course notes: finite-dimensional QIT foundations, representation theory, Schur–Weyl duality and symmetry-based QIT applications",
+      "scope": "Planned curriculum anchor for a future Quantum Information part. Source registration is not a claim that its theorems have been formalized locally.",
+      "formal_status": "external-reference"
+    },
+    {
+      "id": "lin-wiebe-2026-qasc",
+      "title": "Quantum Algorithms for Scientific Computation",
+      "authors": "Lin Lin; Nathan Wiebe",
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "29 April 2026 public 447-page edition; Parts I–IV from background/foundations through block encoding, QSP/QSVT, simulation, linear systems/differential equations and open systems",
+      "scope": "Planned curriculum anchor for quantum scientific computing. Reuse existing ASPBE state-preparation/block-encoding nodes; do not duplicate Chapter 9 under a second API. The user-supplied PDF is not vendored because this edition is publicly hosted.",
+      "formal_status": "external-reference"
+    }
   ]
 }
