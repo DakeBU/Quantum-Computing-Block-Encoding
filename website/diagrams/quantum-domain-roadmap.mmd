@@ -1,0 +1,38 @@
+flowchart TB
+  CORE["Shared Lean graph<br/>finite linear algebra · tensors · registers · unitaries<br/>states/density operators · channels · norms/distances · resources"]
+
+  subgraph CURRENT["Current textbook"]
+    SP["Part I · State Preparation<br/>U|0^n⟩ = |ψ⟩"]
+    BE["Part II · Block Encoding<br/>‖A - αΠUΠ†‖ ≤ ε"]
+  end
+
+  QIT["Planned Part III · Quantum Information<br/>Leditzky: symmetry · Schur–Weyl · de Finetti<br/>cloning · spectrum estimation"]
+  SCI["Planned Part IV · Quantum Scientific Computing<br/>Lin–Wiebe: QSP/QSVT · simulation · QPE<br/>walks · linear systems/ODEs · open systems"]
+
+  EXT["Attributed external Lean references<br/>Mathlib · quantum-computing-lean · Lean-QuantumInfo<br/>lean-quantum · Lean-QuantumAlg-Bench · Lean-QIT-Bench"]
+
+  CORE --> SP
+  CORE --> BE
+  CORE --> QIT
+  CORE --> SCI
+  SP -. "PREPARE + SELECT + unprepare" .-> BE
+  BE -. "input + accepted branch + normalization/amplification" .-> SP
+  BE --> SCI
+  QIT --> SCI
+  EXT -. "reviewed reuse / narrow adapters only" .-> CORE
+
+  NOTE["Conceptual curriculum graph only.<br/>Dashed arrows are conditional transports, not Lean implications."]
+  NOTE -.-> CURRENT
+  NOTE -.-> QIT
+  NOTE -.-> SCI
+
+  classDef core fill:#f8f5ee,stroke:#826a32,color:#222222,stroke-width:1.5px;
+  classDef state fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
+  classDef block fill:#eef3f7,stroke:#49677d,color:#1f2e39,stroke-width:1.5px;
+  classDef future fill:#f7f4fb,stroke:#735a8f,color:#2f2440,stroke-width:1.5px;
+  classDef external fill:#ffffff,stroke:#64747a,color:#222222,stroke-width:1.25px;
+  class CORE core;
+  class SP state;
+  class BE block;
+  class QIT,SCI future;
+  class EXT,NOTE external;
