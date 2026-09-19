@@ -84,7 +84,7 @@ No arithmetic theorem disconnected from the printed circuit closes this root.
 Deliverables:
 
 - commit-pinned source/version metadata;
-- typed register schema: (a)-register, (b)-register, flag/carry qubit,
+- typed register schema: `a`-register, `b`-register, flag/carry qubit,
   little-/big-endian choice, overwritten/preserved registers;
 - exact chronological gate order for every Figure 4 slice;
 - exact interpretation of the Figure 5 X layers and the adder orientation;
@@ -129,7 +129,7 @@ basis permutation and prove their composition. The finite witness is a
 source/convention discriminator, not the final theorem.
 
 Then generalize to arbitrary width. The proof should expose local carry
-invariants sufficient to compose (U_1,ldots,U_8), rather than prove only a
+invariants sufficient to compose `U₁,…,U₈`, rather than prove only a
 closed-form modular arithmetic identity.
 
 Required outputs:
@@ -181,7 +181,7 @@ Keep correctness and complexity separate:
 - recurrence for gate count;
 - recurrence for depth;
 - proof that no extra clean/dirty ancilla is used by the advertised comparator;
-- asymptotic closure (Theta(n)) gates and (Theta(log n)) depth under the
+- asymptotic closure `Θ(n)` gates and `Θ(log n)` depth under the
   source gate model;
 - lower-bound bridge before the word **optimal** is exposed publicly.
 
