@@ -16,9 +16,7 @@ The current nine guided chapters should be read as two primary parts.
 Chapters 1–4 establish the shared finite-matrix/circuit conventions and then
 specialize them to the state-preparation contract
 
-[
-U|0^nangle=|psiangle.
-]
+`U |0ⁿ⟩ = |ψ⟩`
 
 The shared chapters physically appear once. Block Encoding reuses the same
 matrix, register, unitary and circuit-semantics nodes rather than receiving
@@ -28,29 +26,32 @@ parallel copies.
 
 Chapters 5–9 build on those same foundations and study
 
-[
-|A-alphaPi UPi^dagger|learepsilon,
-]
+`‖A − α Π U Π†‖ ≤ ε`
 
 together with LCU/product/sparse/dilation routes, certified cases, resource
 accounting and proof-gated search.
 
-The relation between the two parts is **directional and typed**.
+The relation between the two parts is **directional and typed**. The
+curriculum/mechanism inclusion direction is **State Preparation → Block
+Encoding**: State Preparation is a reusable preparation layer inside many
+broader block-encoding constructions.
 
-- **State Preparation → Block Encoding.** A verified preparation can supply a
-  PREPARE component, but a complete block encoding also needs the matching
-  SELECT/action, inverse or unprepare semantics, coefficient/phase convention,
-  register layout and clean-block proof.
-- **Block Encoding → State Preparation.** Applying a clean block to an input can
-  create an unnormalized desired branch, but state preparation additionally
-  needs a specified input, a nonzero accepted branch, normalization, success
+- **State Preparation → Block Encoding (the inclusion-like direction).** A
+  verified preparation can supply a PREPARE component, but a complete block
+  encoding also needs the matching SELECT/action, inverse or unprepare
+  semantics, coefficient/phase convention, register layout and clean-block
+  proof.
+- **Block Encoding → State Preparation (a downstream consumer path, not the
+  inclusion relation).** Applying a clean block to an input can create an
+  unnormalized desired branch, but state preparation additionally needs a
+  specified input, a nonzero accepted branch, normalization, success
   probability and, where efficiency is claimed, postselection/amplification
   cost.
 
-This is the quantum analogue of organizing two strongly related subjects in
-one library without declaring them equivalent. Conceptual graph edges may show
-these transports; only named Lean theorems may be shown as formal implication
-edges.
+This is the quantum analogue of a smaller theory/tool layer living inside a
+broader construction theory while retaining its own certificate type.
+Conceptual graph edges may show both transports; only named Lean theorems may
+be shown as formal implication edges.
 
 ## 2. Planned Part III — Quantum Information and symmetry
 
