@@ -142,6 +142,35 @@ specialized to gate-level quantum oracle and block-encoding proofs, where
 register maps, ancilla cleanup, normalizers, resource counts, and
 Lean/Markdown/LaTeX correspondence must be tracked explicitly.
 
+## Future Textbook Anchors
+
+- Felix Leditzky,
+  [Representation-theoretic methods in quantum information theory](https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf).
+  Planned curriculum anchor for a future Quantum Information part, especially
+  the shared finite-dimensional state/measurement layer, representation theory,
+  Schur–Weyl duality, invariant states, de Finetti methods, cloning, and
+  spectrum-estimation applications. Registration here is not a claim that the
+  notes have been formalized in ASPBE.
+- Lin Lin and Nathan Wiebe,
+  [Quantum Algorithms for Scientific Computation, 29 April 2026 edition](https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf).
+  Planned curriculum anchor for future quantum scientific-computing chapters.
+  Its foundations and algorithm/application organization will reuse ASPBE's
+  existing state-preparation/block-encoding nodes rather than create a second
+  block-encoding API. The 29 April edition supplied to the project is publicly
+  hosted by the authors, so ASPBE records the public source rather than
+  vendoring a large binary copy.
+- Vivien Vandaele,
+  [Asymptotically Optimal Quantum Circuits for Comparators and Incrementers](https://arxiv.org/abs/2603.12917).
+  The current local formalization is intentionally partial: generic
+  controlled-conjugation and dirty-flag identities compile, while source-faithful
+  Figure 4/Figure 5 semantics, arbitrary-width comparator/incrementer circuits,
+  resource recurrences, and optimality/lower-bound bridges remain planned.
+
+See `docs/quantum-domain-roadmap.md` and
+`docs/vandaele-2603-12917-formalization.md` for the curriculum/proof-frontier
+plans. Those documents do not replace the canonical source/publication/status
+registries.
+
 ## Lean And Problem-Registry References
 
 - [duckki/quantum-computing-lean](https://github.com/duckki/quantum-computing-lean).
