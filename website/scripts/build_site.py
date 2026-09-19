@@ -1591,6 +1591,30 @@ def render_roadmap(
     </table>
   </div>
 </section>
+<section class="content-section" id="long-term-quantum-curriculum">
+  <div class="section-heading">
+    <p class="eyebrow">Planned textbook expansion · source anchors only</p>
+    <h2>One shared graph beyond State Preparation and Block Encoding</h2>
+    <p>The next domains are not separate libraries with duplicated foundations.
+    Quantum Information and Quantum Scientific Computing will reuse the same
+    density-operator, tensor-system, channel, distance, circuit, query and
+    resource nodes whenever their semantics agree.</p>
+  </div>
+  {diagram("../", "quantum-domain-roadmap", "Long-term QuantumComputinglib curriculum and shared-node plan")}
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Status</th><th>Future part / source anchor</th><th>Reuse policy</th></tr></thead>
+      <tbody>
+        <tr><td>{badge("Planned")}</td><td><strong>Part III · Quantum Information and symmetry</strong><br><a href="https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf">Felix Leditzky, Representation-theoretic methods in quantum information theory</a></td><td>Build on shared states/density operators, subsystem operations, channels and distances; representation-theoretic nodes live above that layer.</td></tr>
+        <tr><td>{badge("Planned")}</td><td><strong>Part IV · Quantum Algorithms for Scientific Computation</strong><br><a href="https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf">Lin Lin and Nathan Wiebe, 29 April 2026 live notes</a></td><td>Reuse the existing Block Encoding part for source Chapter 9, then add qubitization, QSP/QSVT, simulation, QPE and application layers without a second BE API.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>External quantum Lean projects on the ecosystem page are reference/adapter
+  candidates only. A future chapter enters positive proof memory only after the
+  source, semantic, Lean, integration, exposition and independent-review gates
+  are satisfied.</p>
+</section>
 <section class="content-section" id="vandaele-frontier">
   <div class="section-heading">
     <p class="eyebrow">Source-faithful formalization frontier</p>
