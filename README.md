@@ -65,7 +65,7 @@ ASPBE freezes the mathematical contract, reuses certified formal memory, searche
 
 ---
 
-## Part I — State Preparation
+## Route I — State Preparation
 
 **Input.** A normalized target state `|ψ⟩`, the allowed gate/oracle model, and the resources that matter for the application.
 
@@ -97,7 +97,7 @@ X|0\rangle = |1\rangle, \qquad H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2
 
 ---
 
-## Part II — Block Encoding
+## Route II — Block Encoding
 
 **Input.** An operator `A`, normalization `α`, error tolerance `ε`, the clean ancilla/register convention, the available query oracles, and resource priorities.
 
