@@ -23,23 +23,24 @@
 
 ## News 🔥
 
-- **14 August 2026.** For the selected $n=3$ Robin boundary instance in [Guseynov–Huang–Liu, *Block encoding by signal processing*](https://arxiv.org/abs/2406.18072), ASPBE formally reduced the audited $T^{\dagger 3}$ branch from **49 to 30** $T^{\dagger 3}$ gates and from **52 to 32** CNOTs, while keeping five qubits and zero ancillas under the same primitive model.
+Reverse chronological order; only mathematically audited milestones and the minimum project-history anchors are listed here.
+
 - **10 September 2026.** For the smooth auxiliary $p$-register initial state required by [Jin–Liu–Ma’s Schrödingerisation PDE construction](https://arxiv.org/abs/2403.19123v3), connected to the smooth-function state-preparation program of [Holmes–Matsuura](https://arxiv.org/abs/2005.04351), ASPBE exploited the exact Hermite–Bernstein/tensor-train structure to replace generic $\Theta(2^{n_p})$ amplitude loading by $G\le 48n_p(2k+6)^3$: **linear $O(n_p)$ gate complexity for fixed smoothness order $k$**, with $O(\log k)$ workspace. [Read the Lean-verified worked case →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/hermite-smooth-state-preparation/index.html)
-
-- **April 2026.** The ASPBE/QBE project was already in its conception and early-prototyping stage. This date is retained as project history; it predates the repository's first public/auditable Git timestamp and is therefore not presented as an April public-commit claim.
+- **14 August 2026.** For the selected $n=3$ Robin boundary instance in [Guseynov–Huang–Liu, *Block encoding by signal processing*](https://arxiv.org/abs/2406.18072), ASPBE formally reduced the audited $T^{\dagger 3}$ branch from **49 to 30** $T^{\dagger 3}$ gates and from **52 to 32** CNOTs, while keeping five qubits and zero ancillas under the same primitive model.
 - **17 May 2026.** The repository's public, auditable record begins with the [initial automation commit `af59b03`](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and the timestamped [`MANIFEST.md`](MANIFEST.md). The manifest records the first QBE initialization, agent brief, Lean/LaTeX conversion window, multi-agent run cycles, reviewer handoffs, and trial-memory entries from 17–18 May 2026.
-- **May 2026.** The early repository already framed the goal as turning quantum-oracle assumptions into concrete gate-level matrices and Lean-checked block-encoding certificates, with faithful-paper versus exploratory-construction modes. The May history remains available in the Git record even though the public name and website were redesigned later.
+- **May 2026.** The early repository already framed the goal as turning quantum-oracle assumptions into concrete gate-level matrices and Lean-checked block-encoding certificates, with faithful-paper versus exploratory-construction modes. This month-level history is placed after the dated 17 May anchor and before April.
+- **April 2026.** The ASPBE/QBE project was already in its conception and early-prototyping stage. This date is retained as project history; it predates the repository's first public/auditable Git timestamp and is therefore not presented as an April public-commit claim.
 
-These News items preserve the **early project chronology** and add only major, mathematically audited construction milestones. Routine engineering and website updates are not added here; current mathematical status is generated from the checkout and shown in QuantumComputinglib and the Implementation Map.
+Routine engineering and website updates are not added here; current mathematical status is generated from the checkout and shown in QuantumComputinglib and the Implementation Map.
 
 ---
 
 ASPBE is designed for a quantum-computing researcher who knows **what state or operator is needed** and **what query oracles are available**, but does not want to hand-design every circuit and proof from scratch.
 
-The project serves two **independent** mathematical routes. State Preparation asks for a unitary that prepares a target state. Block Encoding asks for a larger unitary whose clean projected block equals a scaled target operator.
+The current textbook is organized into two primary parts: **State Preparation** and **Block Encoding**. At the curriculum/mechanism level, **State Preparation is a nested preparation layer inside the broader Block Encoding toolchain**: many block-encoding routes first certify a PREPARE circuit and then add SELECT, unprepare/inverse semantics, clean-block projection, normalization, and resources. State Preparation also remains a useful standalone certificate problem. The reverse use of a block encoding to produce a state is a different downstream consumer theorem—not the inclusion relation—and additionally needs an input state, a nonzero accepted branch, normalization, postselection, and possibly amplification. The shared Lean graph therefore represents the main inclusion direction as State Preparation → Block Encoding with typed hypotheses, rather than duplicating foundations or identifying the two contracts. See the [long-term QuantumComputinglib curriculum and shared-graph roadmap](docs/quantum-domain-roadmap.md).
 
 <p align="center">
-  <img src="docs/assets/abeis_application_overview.svg" alt="Two independent ASPBE certification routes" width="1080">
+  <img src="docs/assets/abeis_application_overview.svg" alt="Two ASPBE certification contracts in one shared graph" width="1080">
 </p>
 
 > **For block-encoding / state-preparation researchers.** Give ASPBE the target state/operator, available query oracles/gates, register convention, exact/approximate tolerance, and resource priorities. ASPBE evolves **certifiable** candidates and keeps the best candidate it finds under your **lexicographic objective**: optimize priority #1 first; only on ties compare #2, then #3, and so on. It never calls an unproved candidate globally optimal. Outputs can include copyable circuit LaTeX/quantikz, a natural-language derivation, Lean source/proof, and Qiskit/OpenQASM.

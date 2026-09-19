@@ -270,7 +270,7 @@ def site_header(prefix: str, current: str) -> str:
             f'<a href="{page_url(prefix, route)}"{current_attr}>{html.escape(label)}</a>'
         )
     chapter_links = []
-    for chapter in CHAPTERS:
+    for chapter in sorted(CHAPTERS, key=lambda item: int(item["number"])):
         route = f"chapters/{chapter['slug']}/"
         current_attr = ' aria-current="page"' if current == route else ""
         chapter_links.append(
@@ -473,15 +473,22 @@ TRACK_ORDER = (
     "System and evidence",
 )
 
+BOOK_PARTS = (
+    (
+        "Part I · State Preparation",
+        (1, 2, 3, 4),
+        "Chapters 1–2 are shared foundations authored once and reused by Block Encoding; Chapters 3–4 specialize them to preparation certificates.",
+    ),
+    (
+        "Part II · Block Encoding",
+        (5, 6, 7, 8, 9),
+        "Block Encoding reuses the same finite-matrix and circuit nodes, then adds projected-block, composition, resource and proof-gated construction obligations.",
+    ),
+)
 
-def render_chapter_groups(
-    link_prefix: str, tracks: tuple[str, ...] = TRACK_ORDER
-) -> str:
-    groups: list[str] = []
-    for track in tracks:
-        chapters = [chapter for chapter in CHAPTERS if chapter["track"] == track]
-        links = "".join(
-            f"""
+
+def _chapter_link(link_prefix: str, chapter: dict[str, object]) -> str:
+    return f"""
 <a class="chapter-link" href="{link_prefix}chapters/{chapter['slug']}/index.html">
   <span class="chapter-number">{int(chapter['number']):02d}</span>
   <span class="chapter-copy">
@@ -490,14 +497,37 @@ def render_chapter_groups(
   </span>
   <span class="chapter-arrow" aria-hidden="true">&#8594;</span>
 </a>"""
-            for chapter in chapters
-        )
-        groups.append(
-            f'<section class="reading-track"><h3>{html.escape(track)}</h3>'
-            f'<div class="chapter-list">{links}</div></section>'
-        )
-    return '<div class="reading-tracks">' + "".join(groups) + "</div>"
 
+
+def render_chapter_groups(
+    link_prefix: str, tracks: tuple[str, ...] | None = None
+) -> str:
+    groups: list[str] = []
+    if tracks is None:
+        by_number = {
+            int(chapter["number"]): chapter
+            for chapter in CHAPTERS
+        }
+        for label, numbers, note in BOOK_PARTS:
+            chapters = [by_number[number] for number in numbers]
+            links = "".join(_chapter_link(link_prefix, chapter) for chapter in chapters)
+            groups.append(
+                f'<section class="reading-track book-part"><h3>{html.escape(label)}</h3>'
+                f'<p>{html.escape(note)}</p>'
+                f'<div class="chapter-list">{links}</div></section>'
+            )
+    else:
+        for track in tracks:
+            chapters = sorted(
+                (chapter for chapter in CHAPTERS if chapter["track"] == track),
+                key=lambda item: int(item["number"]),
+            )
+            links = "".join(_chapter_link(link_prefix, chapter) for chapter in chapters)
+            groups.append(
+                f'<section class="reading-track"><h3>{html.escape(track)}</h3>'
+                f'<div class="chapter-list">{links}</div></section>'
+            )
+    return '<div class="reading-tracks">' + "".join(groups) + "</div>"
 
 def render_gate_examples() -> str:
     return r"""
@@ -532,10 +562,11 @@ def render_home(
   <p class="eyebrow">Formal quantum computing, read alongside Lean</p>
   <h1>QuantumComputinglib</h1>
   <p class="lede">QuantumComputinglib is the textbook and declaration browser for ASPBE.
-  ASPBE studies two different construction problems. State preparation
-  asks a unitary to produce one target state. Block encoding asks a larger unitary
-  to expose a target operator through a clean ancilla block. This site keeps their
-  contracts, proof routes, and completion status separate.</p>
+  The current book has two primary parts: State Preparation and Block Encoding.
+  State Preparation is the nested preparation layer used by many broader
+  block-encoding constructions; its certificate remains meaningful on its own.
+  A reverse block-to-state use is a separate downstream theorem with additional
+  input, success, normalization and amplification obligations.</p>
   <div class="hero-actions">
     <a class="button state-button" href="state-preparation/index.html">Start with state preparation</a>
     <a class="button block-button" href="block-encoding/index.html">Study block encoding</a>
@@ -545,13 +576,16 @@ def render_home(
 <section class="content-section" id="applications">
   <div class="section-heading">
     <p class="eyebrow">Choose the problem first</p>
-    <h2>Two applications, two acceptance contracts</h2>
-    <p>The problems share finite matrix foundations and the same proof discipline,
-    but neither is presented as a special case of the other.</p>
+    <h2>Two parts, one inclusion direction, one shared graph</h2>
+    <p>The main curriculum relation is State Preparation → Block Encoding:
+    PREPARE is a reusable subproblem inside many block-encoding routes. A
+    block-to-state consumer path also exists, but it is not the inclusion relation
+    and it needs extra branch, normalization and amplification hypotheses. Shared
+    foundations are authored once rather than duplicated.</p>
   </div>
   <div class="application-paths">
     <article class="application-path state-path">
-      <p class="path-label">Application 1</p>
+      <p class="path-label">Part I</p>
       <h3>State preparation</h3>
       <div class="contract-equation">\[U|0^n\rangle=|\psi\rangle\]</div>
       <p>Fix a normalized target state, construct a unitary, and prove that its
@@ -559,7 +593,7 @@ def render_home(
       <a href="state-preparation/index.html">Read the state-preparation route &#8594;</a>
     </article>
     <article class="application-path block-path">
-      <p class="path-label">Application 2</p>
+      <p class="path-label">Part II</p>
       <h3>Block encoding</h3>
       <div class="contract-equation">\[\Pi U\Pi^\dagger=A/\alpha\]</div>
       <p>Fix an operator, normalization, ancilla convention, and register order;
@@ -667,7 +701,7 @@ def render_home(
   </div>
 </section>"""
     toc = [
-        ("applications", "Two applications"),
+        ("applications", "Two parts"),
         ("state-process", "State preparation"),
         ("block-process", "Block encoding"),
         ("evidence", "Build evidence"),
@@ -696,7 +730,7 @@ def render_state_preparation(
 ) -> str:
     body = rf"""
 <section class="hero application-hero state-hero">
-  <p class="eyebrow">Application 1</p>
+  <p class="eyebrow">Part I · nested preparation layer</p>
   <h1>State preparation</h1>
   <p class="lede">Given a normalized target \(|\psi\rangle\), construct a unitary
   \(U\) that sends the all-zero state to it. ASPBE treats this as its own synthesis
@@ -714,7 +748,7 @@ def render_state_preparation(
 </section>
 <section class="content-section" id="preparation-flow">
   <div class="section-heading">
-    <p class="eyebrow">Independent proof route</p>
+    <p class="eyebrow">Standalone certificate inside the broader toolchain</p>
     <h2>What ASPBE has to establish</h2>
     <p>The target must be normalized. The proposed matrix must be unitary. Finally,
     its action on the zero ket, equivalently its first column, must match every
@@ -767,7 +801,7 @@ def render_block_encoding(
 ) -> str:
     body = rf"""
 <section class="hero application-hero block-hero">
-  <p class="eyebrow">Application 2</p>
+  <p class="eyebrow">Part II · encompassing block-encoding layer</p>
   <h1>Block encoding</h1>
   <p class="lede">Given an operator \(A\), place the scaled operator inside a
   larger unitary. The contract says exactly which ancilla block is selected and
@@ -788,7 +822,7 @@ def render_block_encoding(
 </section>
 <section class="content-section" id="encoding-flow">
   <div class="section-heading">
-    <p class="eyebrow">Independent proof route</p>
+    <p class="eyebrow">Encompassing construction certificate</p>
     <h2>What ASPBE has to establish</h2>
     <p>A candidate is not accepted because one small matrix looks right. The layout,
     unitarity, projected block, scale, and declared resource record are checked as
@@ -798,8 +832,8 @@ def render_block_encoding(
 </section>
 <section class="content-section" id="connection">
   <div class="section-heading">
-    <p class="eyebrow">A useful connection, not an identification</p>
-    <h2>Where prepared states can help</h2>
+    <p class="eyebrow">The main inclusion-like connection</p>
+    <h2>State Preparation supplies a nested PREPARE subproblem</h2>
   </div>
   <p>A certified state-preparation circuit can supply a PREPARE oracle for an LCU,
   Gram, or purification-based construction. Its first-column theorem becomes a
@@ -1215,26 +1249,69 @@ def render_learning(
     body = f"""
 <section class="hero">
   <p class="eyebrow">Guided reading</p>
-  <h1>One foundation, two application tracks</h1>
-  <p class="lede">Learn the finite matrix and circuit conventions once. Then follow
-  State Preparation or Block Encoding as a separate construction problem. The final
-  chapters explain how ASPBE searches, verifies, exports, and reports both.</p>
+  <h1>Current book: two parts, one shared Lean graph</h1>
+  <p class="lede">Part I develops State Preparation after the shared finite-matrix
+  and circuit foundations. Part II develops Block Encoding on exactly those same
+  lower nodes. The intended inclusion-like curriculum direction is Part I → Part II:
+  a verified PREPARE is a reusable subproblem inside many block-encoding
+  constructions. A block can also be consumed for state preparation, but that is
+  a different downstream theorem requiring input, accepted-branch, normalization
+  and success-cost obligations.</p>
   <div class="hero-actions">
-    <a class="button state-button" href="../state-preparation/index.html">State-preparation guide</a>
-    <a class="button block-button" href="../block-encoding/index.html">Block-encoding guide</a>
+    <a class="button state-button" href="../state-preparation/index.html">Part I · State Preparation</a>
+    <a class="button block-button" href="../block-encoding/index.html">Part II · Block Encoding</a>
   </div>
 </section>
 <section class="content-section" id="reading-map">
   <div class="section-heading">
     <p class="eyebrow">Reading map</p>
-    <h2>The tracks meet only where the mathematics really meets</h2>
-    <p>A prepared state can supply a component to some block-encoding routes. The
-    acceptance contracts remain distinct.</p>
+    <h2>Nested preparation layer, explicit transport hypotheses</h2>
+    <p>The graph makes State Preparation a reusable subproblem of the broader
+    Block Encoding toolchain without identifying their certificate types. Reverse
+    block-to-state consumption remains a separately typed path.</p>
   </div>
-  {diagram("../", "learning-path", "Shared foundations and separate application tracks")}
+  {diagram("../", "learning-path", "Shared foundations and typed SP/BE bridges")}
 </section>
 <section class="content-section" id="chapter-list">
+  <div class="section-heading">
+    <p class="eyebrow">Current chapters</p>
+    <h2>Part I · State Preparation / Part II · Block Encoding</h2>
+  </div>
   {render_chapter_groups('../')}
+</section>
+<section class="content-section" id="future-curriculum">
+  <div class="section-heading">
+    <p class="eyebrow">Planned curriculum · not current theorem status</p>
+    <h2>Future Quantum Information and Quantum Scientific Computing</h2>
+    <p>New chapters must reuse compatible lower graph nodes and pass the same
+    source, semantic, Lean, integration, exposition and independent-review gates.
+    A source listed here is a curriculum anchor, not a claim of formalization.</p>
+  </div>
+  {diagram("../", "quantum-domain-roadmap", "Conceptual curriculum roadmap; dashed transports are not Lean implications")}
+  <div class="application-paths">
+    <article class="application-path">
+      <p class="path-label">Planned Part III</p>
+      <h3>Quantum Information and symmetry</h3>
+      <p><a href="https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf">Leditzky's representation-theoretic QIT notes</a>
+      anchor density operators/measurements, composite systems and entanglement,
+      representation theory, Schur–Weyl duality, invariant states, de Finetti,
+      cloning and spectrum-estimation routes.</p>
+    </article>
+    <article class="application-path">
+      <p class="path-label">Planned Part IV</p>
+      <h3>Quantum algorithms for scientific computation</h3>
+      <p><a href="https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf">Lin–Wiebe, 29 April 2026</a>
+      anchors channels/distances, query models, perturbation/statistics,
+      qubitization/QSP/QSVT, simulation, phase estimation, walks, linear systems,
+      differential equations and open systems. Its Block Encoding chapter reuses
+      Part II rather than creating a second API.</p>
+    </article>
+  </div>
+  <div class="callout"><strong>Source policy.</strong> The 29 April Lin–Wiebe
+  edition supplied to the project is publicly hosted by the authors, so the
+  repository records the public source rather than vendoring a large PDF. A
+  genuinely non-public appendix may be stored later only with provenance and
+  reuse/license review.</div>
 </section>"""
     return page_template(
         title="Guided learning",
@@ -1244,9 +1321,12 @@ def render_learning(
         coverage=coverage,
         gate=gate,
         context=context,
-        toc=[("reading-map", "Reading map"), ("chapter-list", "All chapters")],
+        toc=[
+            ("reading-map", "Reading map"),
+            ("chapter-list", "Current two parts"),
+            ("future-curriculum", "Future curriculum"),
+        ],
     )
-
 
 def render_implementation_map(
     declarations: dict[str, dict[str, object]],
@@ -1511,6 +1591,55 @@ def render_roadmap(
     </table>
   </div>
 </section>
+<section class="content-section" id="long-term-quantum-curriculum">
+  <div class="section-heading">
+    <p class="eyebrow">Planned textbook expansion · source anchors only</p>
+    <h2>One shared graph beyond State Preparation and Block Encoding</h2>
+    <p>The next domains are not separate libraries with duplicated foundations.
+    Quantum Information and Quantum Scientific Computing will reuse the same
+    density-operator, tensor-system, channel, distance, circuit, query and
+    resource nodes whenever their semantics agree.</p>
+  </div>
+  {diagram("../", "quantum-domain-roadmap", "Long-term QuantumComputinglib curriculum and shared-node plan")}
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Status</th><th>Future part / source anchor</th><th>Reuse policy</th></tr></thead>
+      <tbody>
+        <tr><td>{badge("Planned")}</td><td><strong>Part III · Quantum Information and symmetry</strong><br><a href="https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf">Felix Leditzky, Representation-theoretic methods in quantum information theory</a></td><td>Build on shared states/density operators, subsystem operations, channels and distances; representation-theoretic nodes live above that layer.</td></tr>
+        <tr><td>{badge("Planned")}</td><td><strong>Part IV · Quantum Algorithms for Scientific Computation</strong><br><a href="https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf">Lin Lin and Nathan Wiebe, 29 April 2026 live notes</a></td><td>Reuse the existing Block Encoding part for source Chapter 9, then add qubitization, QSP/QSVT, simulation, QPE and application layers without a second BE API.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>External quantum Lean projects on the ecosystem page are reference/adapter
+  candidates only. A future chapter enters positive proof memory only after the
+  source, semantic, Lean, integration, exposition and independent-review gates
+  are satisfied.</p>
+</section>
+<section class="content-section" id="vandaele-frontier">
+  <div class="section-heading">
+    <p class="eyebrow">Source-faithful formalization frontier</p>
+    <h2>Vandaele comparator / incrementer route</h2>
+    <p>The current route is deliberately <strong>partial</strong>. ASPBE already
+    certifies reusable controlled-conjugation and dirty-flag/involution identities;
+    it does not yet certify the paper's complete comparator, incrementer, or
+    optimality claims.</p>
+  </div>
+  <div class="callout"><strong>Next root chain.</strong>
+    literal Figure 4 gates → named U₁,…,U₈ slice semantics →
+    arbitrary-width adder including carry → literal X–ADD–X Figure 5 semantics →
+    Eq. (17) comparison predicate and operand orientation → recursive
+    V₂^(n) resource theorem → lower-bound bridge before the word
+    <em>optimal</em> is promoted.</div>
+  <p>The finite Figure 4/5 witnesses are convention discriminators, not
+  arbitrary-width closure. If the literal circuit and advertised comparison
+  orientation disagree under the pinned register convention, the source
+  equation, literal-circuit theorem, counterexample, and any repair proposal
+  remain separate reviewed objects.</p>
+  <p><a href="https://arxiv.org/abs/2603.12917">Primary source: Vandaele 2026</a>.
+  The repository plan also separates controlled/classical–quantum comparators,
+  incrementers, the classical–quantum adder, and the downstream Shor consequence
+  into later integration stages rather than inferring them from local lemmas.</p>
+</section>
 <section class="content-section" id="memory-transfer-protocol">
   <div class="section-heading">
     <p class="eyebrow">Planned longitudinal experiment</p>
@@ -1631,6 +1760,8 @@ def render_ecosystem(
     <article><div><h3><a href="https://github.com/duckki/quantum-computing-lean">quantum-computing-lean</a></h3><p>Named states, gates, projectors, gate actions, decompositions, and compact finite-dimensional module organization.</p></div><span class="status status-partial-route">Reference atlas</span></article>
     <article><div><h3><a href="https://github.com/Timeroot/Lean-QuantumInfo">Lean-QuantumInfo</a></h3><p>Finite-dimensional quantum and classical information, channels, distributions, entropy, and capacity.</p></div><span class="status status-partial-route">Reference atlas</span></article>
     <article><div><h3><a href="https://github.com/Hayata-Yamasaki-Group/lean-quantum">lean-quantum</a></h3><p>Quantum states, channels, qudits, operator conventions, and higher-level quantum-information semantics.</p></div><span class="status status-partial-route">Reference atlas</span></article>
+    <article><div><h3><a href="https://github.com/QudeLeap/Lean-QuantumAlg-Bench">Lean-QuantumAlg-Bench</a></h3><p>Pinned quantum-algorithm benchmark statements. They are useful formalization targets but unresolved statements are excluded from proof memory.</p></div><span class="status status-planned">Benchmark reference</span></article>
+    <article><div><h3><a href="https://github.com/QuAIR/Lean-QIT-Bench">Lean-QIT-Bench</a></h3><p>Pinned quantum-information benchmark statements for future QIT coverage; statement presence is not a local theorem certificate.</p></div><span class="status status-planned">Benchmark reference</span></article>
     <article><div><h3><a href="https://rammalahmad.github.io/atlas/">ATLAS v1</a></h3><p>A pinned external memory over broad textbook mathematics. ASPBE preserves upstream compilation and quality distinctions, then admits only narrow locally compiled adapters.</p></div><span class="status status-partial-route">External memory</span></article>
   </div>
 </section>
@@ -1642,8 +1773,10 @@ def render_ecosystem(
     <li><strong>Compile.</strong> Import or prove the adapter under the pinned toolchain.</li>
     <li><strong>Teach.</strong> Add the formula, plain-language reading, assumptions, and source link.</li>
   </ol>
-  <p>This prevents a survey entry or theorem card from appearing as a locally
-  compiled result.</p>
+  <p>This prevents a survey entry, benchmark statement, or upstream theorem card
+  from appearing as a locally compiled result. Before adding foundational QIT
+  objects, search these sources and prefer one reviewed adapter/shared node to
+  a parallel local definition.</p>
 </section>"""
     return page_template(
         title="Quantum Lean ecosystem",

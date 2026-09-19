@@ -133,6 +133,16 @@ def require(path: Path, errors: list[str]) -> None:
         errors.append(f"missing required artifact: {path}")
 
 
+def check_ordered_markers(text: str, markers: tuple[str, ...], label: str) -> list[str]:
+    positions = [text.find(marker) for marker in markers]
+    if any(position < 0 for position in positions):
+        missing = [marker for marker, position in zip(markers, positions) if position < 0]
+        return [f"{label}: missing ordered marker(s): {missing}"]
+    if positions != sorted(positions):
+        return [f"{label}: markers are not in required newest-to-oldest order"]
+    return []
+
+
 MOJIBAKE_MARKERS = ("\ufffd", "ï¿½", "Ã", "Â", "â€", "ðŸ")
 
 
@@ -243,6 +253,58 @@ def main() -> int:
     for item in required:
         require(site / item, errors)
     errors.extend(check_hermite_publication(site))
+
+    home = (site / "index.html").read_text(encoding="utf-8")
+    errors.extend(
+        check_ordered_markers(
+            home,
+            (
+                'datetime="2026-09-10"',
+                'datetime="2026-08-14"',
+                'datetime="2026-08-10"',
+                'datetime="2026-07"',
+                'datetime="2026-06"',
+                'datetime="2026-05-17"',
+            ),
+            "homepage News",
+        )
+    )
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    errors.extend(
+        check_ordered_markers(
+            readme,
+            (
+                "- **10 September 2026.**",
+                "- **14 August 2026.**",
+                "- **17 May 2026.**",
+                "- **May 2026.**",
+                "- **April 2026.**",
+            ),
+            "README News",
+        )
+    )
+    learning = (site / "learning" / "index.html").read_text(encoding="utf-8")
+    for marker in (
+        "Part I · State Preparation",
+        "Part II · Block Encoding",
+        "Planned Part III",
+        "Planned Part IV",
+        "quantum-domain-roadmap",
+    ):
+        if marker not in learning:
+            errors.append(f"learning page lacks curriculum marker {marker!r}")
+
+    roadmap = (site / "roadmap" / "index.html").read_text(encoding="utf-8")
+    for marker in (
+        'id="long-term-quantum-curriculum"',
+        "Representation-theoretic methods in quantum information theory",
+        "Quantum Algorithms for Scientific Computation",
+        'id="vandaele-frontier"',
+        "literal Figure 4 gates",
+    ):
+        if marker not in roadmap:
+            errors.append(f"roadmap page lacks formalization-plan marker {marker!r}")
+
     if args.require_blueprint:
         require(site / "blueprint" / "html-multi" / "index.html", errors)
 

@@ -127,7 +127,57 @@ Use stable `concept:`, `family:`, `transport:` and exact generated
 `module:` / `declaration:` identities. Reuse one shared node across sources and
 views. Compression is a presentation over those identities, not a new theorem.
 
-## 5. Contribution topology is not an automatic novelty detector
+## 5. Domain expansion and shared-node reuse
+
+QuantumComputinglib may expand beyond the current State Preparation and Block
+Encoding parts into Quantum Information and Quantum Scientific Computing, but
+scope growth does not create a second proof system or a second foundational
+API. The curriculum plan in `docs/quantum-domain-roadmap.md` is descriptive;
+canonical source, graph, publication and completion records remain the files
+named in Section 1.
+
+Before adding a foundational quantum node, the author must perform a reuse
+audit in this order: local ASPBE declarations, Mathlib, then attributed external
+quantum Lean libraries. Record whether the result is reused directly, reached
+through a narrow adapter, or reimplemented locally with a reason. Toolchain,
+license or API incompatibility is a typed boundary. Copying a theorem statement
+into a new namespace does not satisfy the reuse audit.
+
+Cross-domain sharing follows these rules:
+
+- density operators, tensor-system conventions, partial trace, channels,
+  measurements, norms/distances, circuits, query models and resource records
+  should each have one canonical compatible node whenever their semantics
+  coincide;
+- a source textbook may keep its notation in exposition, but a notation adapter
+  should point to the shared formal object rather than duplicate it;
+- State Preparation → Block Encoding is the curriculum/mechanism
+  inclusion direction: SP supplies the nested PREPARE layer, while the edge still
+  retains SELECT, unprepare/inverse, coefficient/phase and clean-register
+  hypotheses needed by the encompassing BE construction;
+- Block Encoding → State Preparation is a downstream consumer transport, not the
+  inclusion relation; it retains the input-state, nonzero accepted-branch,
+  normalization, postselection and amplification hypotheses;
+- scientific-computing chapters reuse the existing Block Encoding substrate
+  instead of formalizing a second block-encoding API;
+- representation-theoretic QIT nodes sit above the shared finite-dimensional
+  quantum-state/channel layer unless the source genuinely requires a different
+  setting.
+
+For Quantum Information publications, semantic review additionally checks
+positivity/complete positivity, subsystem order, purification/partial-trace
+conventions, support conditions and metric normalizations. For scientific
+algorithms it additionally checks input-state preparation, oracle/query
+construction, precision, success probability, amplification, output/readout
+cost and whether a complexity statement is query-level, logical-gate-level or
+finite-bit compiled.
+
+A cross-domain conceptual edge is still not a Lean dependency. Promotion of a
+shared node or adapter requires the same whole-module binding,
+encoder–denoiser, independent review and CI gates as any other production
+theorem.
+
+## 6. Contribution topology is not an automatic novelty detector
 
 Attach graph contribution to the same publication packet, with a baseline/head,
 changed identities/edges, unchanged mathematical contract and remaining boundary:
@@ -148,7 +198,7 @@ The Hermite view must credit the prior function-to-MPS/sequential-preparation
 literature, including Holmes–Matsuura 2005.04351, while identifying the exact
 source-specific ASPBE construction/certification delta separately.
 
-## 6. Wiki and lower-bound discipline
+## 7. Wiki and lower-bound discipline
 
 Every StatePreparationWiki item has a target, structural assumptions, input and
 oracle model, error convention, resource tuple, prerequisites, bounded steps,
@@ -165,7 +215,7 @@ Progress is generated from existing textbook/implementation records plus the
 Wiki contracts. Local theorem closure, source-route closure and still-pending
 compiler/resource obligations must remain separately visible.
 
-## 7. Aesthetic and reproducibility gates are part of publication
+## 8. Aesthetic and reproducibility gates are part of publication
 
 Use the site's existing Book/Sans/High-contrast themes and common sidebar. Math
 belongs in MathJax display/inline environments with readable line breaks and a
@@ -197,7 +247,7 @@ and again only after relevant changes. Existing unchanged proof artifacts may
 be inherited only under the repository's current proof-input equality check.
 Do not weaken a failed gate, insert a dummy report or mark skipped files green.
 
-## 8. Bounded scheduling and handoff
+## 9. Bounded scheduling and handoff
 
 After the first failure and two unchanged repeats of the same mathematical
 route, stop and diagnose: false statement, missing hypothesis, convention

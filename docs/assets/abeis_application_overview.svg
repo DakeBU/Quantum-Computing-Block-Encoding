@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="460" viewBox="0 0 1400 460" role="img" aria-labelledby="title desc">
-  <title id="title">Two independent ASPBE certification routes</title>
-  <desc id="desc">State Preparation and Block Encoding are shown as separate mathematical contracts with separate proof obligations and outputs.</desc>
+  <title id="title">Two ASPBE certification contracts in one shared graph</title>
+  <desc id="desc">State Preparation and Block Encoding have distinct mathematical contracts while sharing foundations and typed directional construction bridges.</desc>
   <style>
     text { font-family: "Times New Roman", Times, "Liberation Serif", serif; fill: #171717; }
     .title { font-size: 34px; font-weight: 700; }
@@ -16,8 +16,8 @@
     .rule { stroke: #d0d0d0; stroke-width: 1.2; }
   </style>
   <rect width="1400" height="460" fill="#ffffff"/>
-  <text x="700" y="52" text-anchor="middle" class="title">Two independent certification routes</text>
-  <text x="700" y="83" text-anchor="middle" class="subtitle">Choose the route from the mathematical task; each has its own acceptance contract.</text>
+  <text x="700" y="52" text-anchor="middle" class="title">Two certification contracts in one shared graph</text>
+  <text x="700" y="83" text-anchor="middle" class="subtitle">Distinct acceptance contracts; shared foundations and typed transports are proved separately.</text>
 
   <rect x="70" y="120" width="600" height="315" class="panel state"/>
   <text x="105" y="164" class="head">State Preparation</text>
