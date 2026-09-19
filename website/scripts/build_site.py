@@ -563,9 +563,10 @@ def render_home(
   <h1>QuantumComputinglib</h1>
   <p class="lede">QuantumComputinglib is the textbook and declaration browser for ASPBE.
   The current book has two primary parts: State Preparation and Block Encoding.
-  Their acceptance contracts remain distinct, while typed graph bridges record
-  when a preparation becomes a PREPARE ingredient of a block encoding, or when a
-  clean block plus an input and success mechanism yields a prepared state.</p>
+  State Preparation is the nested preparation layer used by many broader
+  block-encoding constructions; its certificate remains meaningful on its own.
+  A reverse block-to-state use is a separate downstream theorem with additional
+  input, success, normalization and amplification obligations.</p>
   <div class="hero-actions">
     <a class="button state-button" href="state-preparation/index.html">Start with state preparation</a>
     <a class="button block-button" href="block-encoding/index.html">Study block encoding</a>
@@ -575,10 +576,12 @@ def render_home(
 <section class="content-section" id="applications">
   <div class="section-heading">
     <p class="eyebrow">Choose the problem first</p>
-    <h2>Two parts, distinct contracts, one shared graph</h2>
-    <p>State preparation supplies reusable construction nodes inside many block-encoding
-    routes. The reverse direction needs extra branch, normalization and amplification
-    hypotheses. Shared foundations are authored once rather than duplicated.</p>
+    <h2>Two parts, one inclusion direction, one shared graph</h2>
+    <p>The main curriculum relation is State Preparation → Block Encoding:
+    PREPARE is a reusable subproblem inside many block-encoding routes. A
+    block-to-state consumer path also exists, but it is not the inclusion relation
+    and it needs extra branch, normalization and amplification hypotheses. Shared
+    foundations are authored once rather than duplicated.</p>
   </div>
   <div class="application-paths">
     <article class="application-path state-path">
@@ -1249,9 +1252,11 @@ def render_learning(
   <h1>Current book: two parts, one shared Lean graph</h1>
   <p class="lede">Part I develops State Preparation after the shared finite-matrix
   and circuit foundations. Part II develops Block Encoding on exactly those same
-  lower nodes. The relation is directional: PREPARE can feed SELECT/unprepare
-  constructions, while a block yields a state only after input, accepted-branch,
-  normalization and success-cost obligations are supplied.</p>
+  lower nodes. The intended inclusion-like curriculum direction is Part I → Part II:
+  a verified PREPARE is a reusable subproblem inside many block-encoding
+  constructions. A block can also be consumed for state preparation, but that is
+  a different downstream theorem requiring input, accepted-branch, normalization
+  and success-cost obligations.</p>
   <div class="hero-actions">
     <a class="button state-button" href="../state-preparation/index.html">Part I · State Preparation</a>
     <a class="button block-button" href="../block-encoding/index.html">Part II · Block Encoding</a>
@@ -1260,9 +1265,10 @@ def render_learning(
 <section class="content-section" id="reading-map">
   <div class="section-heading">
     <p class="eyebrow">Reading map</p>
-    <h2>Share foundations; make transport hypotheses visible</h2>
-    <p>The graph does not identify state preparation with block encoding. It records
-    the exact extra interfaces required to move between them.</p>
+    <h2>Nested preparation layer, explicit transport hypotheses</h2>
+    <p>The graph makes State Preparation a reusable subproblem of the broader
+    Block Encoding toolchain without identifying their certificate types. Reverse
+    block-to-state consumption remains a separately typed path.</p>
   </div>
   {diagram("../", "learning-path", "Shared foundations and typed SP/BE bridges")}
 </section>
