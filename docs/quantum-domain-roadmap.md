@@ -89,21 +89,22 @@ binary snapshot. If a future required appendix/edition is not publicly
 available, it may be stored under a source-evidence path with provenance and
 license/reuse review; it must not silently become proof memory.
 
-The planned scientific-computing spine is:
+The supplied 447-page copy exposes four source parts and 21 chapters. The
+formalization map should preserve that source organization while deduplicating
+objects that QuantumComputinglib already owns:
 
-- **background/foundations:** quantum states and circuits; density operators;
-  probability, channels and state/channel distances; reversible classical
-  processing; query/access models; perturbation theory; statistical estimates;
-- **algorithmic transforms:** the existing Block Encoding part, followed by
-  qubitization, amplitude amplification, QSP, QSVT, Hamiltonian simulation,
-  operator splitting, phase estimation/Fourier transforms and amplitude
-  estimation;
-- **applications:** quantum walks, eigenvalue/ground-state problems, linear
-  systems, linear differential equations and open quantum systems.
+| Source part | Source chapters | QuantumComputinglib treatment |
+| --- | --- | --- |
+| **Part I · Background** | Ch. 1 quantum advantage; Ch. 2 elements of quantum computation, including density operators and circuits | reuse/extend the shared quantum-object and circuit foundations; no second ket/unitary/register API |
+| **Part II · Foundation** | Ch. 3 probability, quantum channels and distances; Ch. 4 universality; Ch. 5 reversible classical processing; Ch. 6 query complexity; Ch. 7 perturbation theory; Ch. 8 statistical estimates | build the shared QIT/scientific-computing substrate, preferably through existing Mathlib/external quantum-Lean adapters |
+| **Part III · Algorithm** | Ch. 9 block encoding; Ch. 10 qubitization; Ch. 11 amplitude amplification; Ch. 12 QSP; Ch. 13 QSVT; Ch. 14–15 Hamiltonian simulation; Ch. 16 QPE/Fourier/amplitude estimation | map Ch. 9 onto the existing Block Encoding part; add only the genuinely new transforms above it |
+| **Part IV · Application** | Ch. 17 quantum walks; Ch. 18 eigenvalue/ground-state problems; Ch. 19 linear systems; Ch. 20 linear differential equations; Ch. 21 open quantum systems | consume the common graph and expose full input/query/success/output-cost contracts rather than application-local copies |
 
 Block Encoding is therefore not duplicated as a later textbook chapter. The
 scientific-computing part points back to the existing certified Block Encoding
-nodes and adds only genuinely new transforms and application theorems.
+nodes and adds only genuinely new transforms and application theorems. The same
+deduplication applies to Ch. 2–3 objects that will also be consumed by the
+Leditzky QIT route.
 
 ## 4. One graph, minimal duplicated nodes
 
