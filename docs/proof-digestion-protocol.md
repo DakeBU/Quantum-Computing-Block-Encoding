@@ -142,6 +142,21 @@ This prevents a route from appearing complete because all named theorems were
 covered while register bookkeeping, phase reconciliation, garbage cleanup or
 resource-accounting paragraphs were omitted.
 
+
+### Independent topology review
+
+The source-topology extractor may not self-approve. A distinct reviewer re-reads
+the raw source plus the proposed node/edge records without implementation Lean
+or the extractor's private rationale, and tries to find omitted circuit steps,
+register/basis/phase changes, hidden oracle or ancilla assumptions, resource
+model switches, wrong edge direction, and false AND/OR structure.
+
+For a large construction/paper, a fresh global root-closure reviewer traces each
+sealed quantum Anchor backward through the complete source graph and checks that
+every substantive formula, circuit transformation and proof/construction
+paragraph has a disposition. Structural graph lint does not certify mathematical
+coverage.
+
 ## 5. Alternative constructions are OR-routes
 
 When two sufficient constructions exist, represent them as alternative route
