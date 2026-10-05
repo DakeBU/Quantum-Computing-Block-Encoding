@@ -137,16 +137,17 @@ review. Maintainers inspect the bounded evidence at admission. No script claims
 to establish natural-language equivalence, reviewer independence in the world,
 or scientific novelty automatically.
 
-## 4. Three graph truth layers; no false implication arrows
+## 4. Four mathematical graph views, plus Overview navigation; no false implication arrows
 
-**Overview / mathematical methods** organizes sources, domains, mechanisms and
-frontiers. Its links are curated and searchable. They are not proof implication.
+**Source Proof / Construction Graph** answers how the cited source derives or constructs the result. It is reconstructed source-first rather than inferred from implementation Lean, requires exhaustive disposition of substantive source regions, preserves `SOURCE_GAP` nodes, and represents alternative sufficient constructions as OR-routes/hyperedges.
 
-**Underlying Lean Graph** retains the existing generated module imports and
+**Underlying Lean Dependency Graph** retains the existing generated module imports and
 module-to-declaration ownership. A module import is module-level structure, not
 a proof that every declaration depends on every imported theorem. Lexical
 reference scans, if used, must be dashed and called incomplete reference signals.
 Only a future elaborated proof-term exporter may claim theorem dependencies.
+
+**Compressed Quantum Spine** answers which reusable quantum primitives remain after implementation bookkeeping is purified. It may fold register/phase/resource-accounting leaves behind reviewed conceptual moves, but it must preserve a lossless drill-down to source and Lean evidence and must not erase adapters or hypotheses.
 
 **Functor Hypergraph** records conditional mathematical correspondences. Every
 edge retains its complete AND-tail set, head set, formula, mechanism, hypothesis
@@ -155,6 +156,8 @@ independent-review status. Never split a hyperedge into independently sufficient
 arrows from each input. SP + SELECT + unprepare can implement an LCU block; a
 single prepared state does not supply an arbitrary matrix. BE + input state + a
 nonzero accepted branch can supply SP, but overlap/amplification costs remain.
+
+**Overview / mathematical methods** organizes sources, domains, mechanisms and frontiers around these four mathematical views. Its links are curated and searchable. They are navigation, not proof implication.
 
 The term "Functor Hypergraph" is a navigation name, not a certified categorical
 claim. A certified functor additionally requires typed source/target categories,
