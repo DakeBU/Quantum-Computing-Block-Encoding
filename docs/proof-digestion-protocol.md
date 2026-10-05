@@ -9,6 +9,25 @@ proof forest. The library must preserve full Lean/source evidence while
 presenting a purified graph of the quantum primitives and construction
 mechanisms that actually matter.
 
+## 0. Three declaration levels
+
+Apply review effort according to mathematical role.
+
+- **A. Source Anchor** — a source-facing theorem/definition or explicit original
+  quantum contract. It requires Statement Seal, binder/definition audit,
+  source-proof/construction coverage, semantic round trip, Proof Seal,
+  publication and purification.
+- **B. Canonical Quantum Library Node** — a reusable state/channel/oracle,
+  linear-algebra, circuit, block-encoding or resource lemma. Require Lean
+  proof/axiom cleanliness, local/upstream search, canonicality, genuine
+  consumers, and duplicate/wrapper purification.
+- **C. Internal Provider** — proof/circuit implementation glue used to build an
+  Anchor or canonical node. Require compilation, no fake closure, and
+  reachability/dead-code cleanup, but do not give it independent source credit.
+
+This keeps exact quantum contracts maximally strict without forcing every
+register-level helper through an unnecessarily expensive source-facing audit.
+
 This protocol complements AGENTS.md, HARNESS.md, and
 docs/theorem-publication-protocol.md.
 
