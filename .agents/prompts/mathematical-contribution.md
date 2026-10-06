@@ -1,6 +1,6 @@
 # ASPBE contributor packet
 
-Read AGENTS.md, HARNESS.md, docs/theorem-publication-protocol.md and docs/proof-digestion-protocol.md first.
+Read AGENTS.md, HARNESS.md, docs/theorem-publication-protocol.md, docs/proof-digestion-protocol.md and docs/evidence-routed-memory-protocol.md first.
 Use `python3 website/scripts/research_atlas.py context --route ROUTE_ID` or a
 bounded structure query. Keep the exact source statement, input/oracle model,
 register and phase conventions, norm, ancilla cleanup, success and cost tier.
@@ -10,7 +10,7 @@ ASPBE and Mathlib before creating parallel definitions. Cite external results
 without pretending a source reference is a compiled Lean import. Preserve prior
 art, including the existing function-to-MPS and sequential preparation routes.
 
-Before proof search on a source-facing Anchor, seal the exact final quantum contract and recursively audit its binders; a proof ingredient is a dependency edge, not a convenience hypothesis. Independently reconstruct exhaustive source proof/construction topology before letting implementation Lean shape the story. Author the mathematical statement and full proof once. Display all relevant
+Before proof search on a source-facing Anchor, seal the exact final quantum contract, consult only relevant curated process-memory entries, and recursively audit its binders; a proof ingredient is a dependency edge, not a convenience hypothesis. Independently reconstruct exhaustive source proof/construction topology before letting implementation Lean shape the story. Author the mathematical statement and full proof once. Display all relevant
 hypotheses and exact source-to-Lean differences. Provide separate initially
 folded exact Lean statement and proof. Connect each source obligation to its
 actual local declarations and distinguish prerequisite from proof-edge.
@@ -31,6 +31,8 @@ Run focused checks during editing and integrated gates on the merge candidate:
 research schema/unit tests, publication diff gate, Lean/library/tests, full site,
 links/fragments, source provenance, MathJax and responsive browser checks. Do not
 weakly skip missing files or create green placeholder evidence.
+
+On failure, classify REFUTED / SOURCE_INVALID / API_BLOCKED / ENV_BLOCKED / IMPLEMENTATION_FAILED before retry, salvage independently valid fragments before cleanup, and do not let environment/API failures retire mathematics. Parallel Workers require distinct direction fingerprints and bounded route-specific history; multiple serious surviving routes require a common-blind-spot audit. Routine coordination should be deterministic or low-token unless local matched ablation evidence justifies more.
 
 After integration, run the purification audit before calling the result done for researchers: dead/duplicate/wrapper-only declarations, canonicalization, route compression, elaboration, and reader compression must be reviewed while preserving drill-down evidence.
 
