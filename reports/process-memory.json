@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "control_plane_math_authority": false,
+    "salvage_before_discard": true,
+    "default_control_plane": "deterministic-or-low-token",
+    "expensive_coordination_requires_local_ablation_evidence": true,
+    "parallelism": "independent-uncertainty-only",
+    "parallel_requires_distinct_direction_fingerprints": true,
+    "cross_route_audit_if_parallel": true,
+    "failure_classes": [
+      "REFUTED",
+      "SOURCE_INVALID",
+      "API_BLOCKED",
+      "ENV_BLOCKED",
+      "IMPLEMENTATION_FAILED",
+      "NONE"
+    ],
+    "reader_backpressure_tracks": [
+      "merged_not_purified",
+      "purification_age",
+      "fine_to_conceptual_ratio"
+    ]
+  },
+  "entries": [
+    {
+      "id": "QBE-PM-LOW-TOKEN-CONTROL-PLANE",
+      "kind": "standing_instruction",
+      "status": "active",
+      "scope": [
+        "scheduler",
+        "master",
+        "coordination",
+        "route-ablation"
+      ],
+      "instruction": "Use deterministic or low-token control-plane passes by default. Reserve expensive model calls for substantive mathematical Workers unless a matched local ablation shows that extra coordination improves reviewer-accepted progress at comparable semantic strength.",
+      "process_only": true,
+      "evidence": [
+        {
+          "file": "reports/route-ablation/QBE-OP-OPTCTRL-001/comparison_status.md",
+          "needle": "direct Lean",
+          "evidence_kind": "route_total_ablation"
+        },
+        {
+          "file": "reports/route-ablation/QBE-OP-OPTCTRL-001/comparison_status.md",
+          "needle": "ABEIS multi-agent",
+          "evidence_kind": "route_total_ablation"
+        },
+        {
+          "file": "reports/route-ablation/QBE-OP-OPTCTRL-001/comparison_status.md",
+          "needle": "does not show that the current Codex",
+          "evidence_kind": "route_total_ablation"
+        }
+      ],
+      "expires_when": "Replace only after a controlled matched route-total ablation at equal semantic target shows a better coordination policy."
+    },
+    {
+      "id": "QBE-NK-QISKIT-ENV-PREFLIGHT",
+      "kind": "negative_knowledge",
+      "status": "active",
+      "scope": [
+        "Qiskit",
+        "environment",
+        "finite-verifier"
+      ],
+      "classification": "ENV_BLOCKED",
+      "statement": "A Qiskit verifier route may fail solely because Qiskit is unavailable in the active environment; this must trigger deterministic dependency preflight/repair rather than mathematical route rejection.",
+      "route_effect": "diagnostic-only",
+      "invalidation_keys": [
+        "python environment",
+        "Qiskit installation",
+        "runner image"
+      ],
+      "evidence": [
+        {
+          "file": "reports/route-ablation/QBE-OP-OPTCTRL-001/latest_results.json",
+          "needle": "ModuleNotFoundError: No module named 'qiskit'",
+          "evidence_kind": "route_ablation_failure"
+        }
+      ]
+    },
+    {
+      "id": "QBE-PM-DENSE-CHECK-SMALL-INSTANCE",
+      "kind": "standing_instruction",
+      "status": "active",
+      "scope": [
+        "finite-verifier",
+        "scaling",
+        "Qiskit",
+        "NumPy"
+      ],
+      "instruction": "Use dense NumPy/Qiskit matrix verification for small fixed instances, counterexamples, and executable checks; do not treat it as the scalable replacement for parametric Lean theorems over large register families.",
+      "process_only": true,
+      "evidence": [
+        {
+          "file": "reports/verifier-comparison/QBE-OP-OPTCTRL-001/hard_scaling_forecast.md",
+          "needle": "1.00 PiB",
+          "evidence_kind": "memory_forecast"
+        },
+        {
+          "file": "reports/verifier-comparison/QBE-OP-OPTCTRL-001/scaling.md",
+          "needle": "intended large-register route is a symbolic Lean",
+          "evidence_kind": "measured_scaling"
+        }
+      ],
+      "expires_when": "Retire only if a different verifier with demonstrated scalable semantics supersedes the dense-check role."
+    },
+    {
+      "id": "QBE-PM-VERIFIER-SEMANTIC-LEVEL",
+      "kind": "standing_instruction",
+      "status": "active",
+      "scope": [
+        "verifier",
+        "QASM",
+        "block-encoding",
+        "acceptance"
+      ],
+      "instruction": "Keep syntax/distribution/timeline feedback, finite matrix equality, and reusable Lean theorem closure as distinct verifier semantic levels; a lower layer cannot certify a stronger block-encoding claim.",
+      "process_only": true,
+      "evidence": [
+        {
+          "file": "reports/external-quantum-verifier-comparison/latest.md",
+          "needle": "not directly a BE theorem verifier",
+          "evidence_kind": "external_verifier_audit"
+        },
+        {
+          "file": "reports/verifier-comparison/QBE-OP-OPTCTRL-001/latest.md",
+          "needle": "Lean remains the final repository acceptance gate",
+          "evidence_kind": "local_verifier_comparison"
+        }
+      ],
+      "expires_when": "Retire only after verifier semantics and acceptance tiers are replaced by a stronger reviewed contract."
+    }
+  ]
+}
