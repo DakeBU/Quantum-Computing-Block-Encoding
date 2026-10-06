@@ -116,7 +116,13 @@ same Source Anchor, a separate side-by-side reviewer searches for shared errors:
 
 Parallel multi-route source claims require this review before Proof Seal.
 
-## 7. Verifier-layer discipline
+## 7. Verified-construction comparator
+
+After common-blind-spot review, if several constructions remain verified for the same sealed quantum contract, a comparator selects the **default reader construction**, not the only admissible one. It compares source fidelity, oracle/ancilla assumptions, resource tier, canonical primitive reuse, proof compression, and pedagogical clarity. Alternative verified constructions remain OR-routes in the Source Proof / Construction Graph.
+
+The comparator may not promote a lower-semantic executable check over a stronger Lean theorem merely because it is faster, and it may not erase a verified alternative whose resource/assumption trade-off differs.
+
+## 8. Verifier-layer discipline
 
 Executable feedback is typed by semantic strength:
 
@@ -134,7 +140,7 @@ Dense simulation remains useful for small fixed instances and counterexamples;
 tracked scaling evidence shows why it is not the large-register verification
 strategy.
 
-## 8. Reader backpressure and Exposition Seal
+## 9. Reader backpressure and Exposition Seal
 
 Track:
 
@@ -157,7 +163,9 @@ compressed explanation must reconstruct:
 
 The reviewer should not need the agent transcript to understand the proof.
 
-## 9. Handoff fields
+An accepted Exposition Seal names the source/construction nodes and Lean nodes to which the compressed explanation expands and records independent confirmation that register/order/basis/phase, ancilla cleanup, success/error semantics, resource tier, assumptions, and remaining boundary were preserved.
+
+## 10. Handoff fields
 
 Every substantive Worker handoff records:
 
@@ -167,7 +175,8 @@ Every substantive Worker handoff records:
 - direction fingerprint and expected information gain;
 - whether parallel work was admitted and why;
 - common-blind-spot review status when multiple routes survive;
-- purification / Exposition-Seal state for reader-facing integration.
+- selected default verified route plus comparator rationale, while preserving alternatives;
+- purification / Exposition-Seal state, evidence, source/Lean expansion nodes, and preserved-boundary checks for reader-facing integration.
 
 These fields are scheduling evidence, not new theorem premises.
 
