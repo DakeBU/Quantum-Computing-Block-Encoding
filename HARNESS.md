@@ -155,7 +155,9 @@ The Master is a global synthesizer, not a serial author of every artifact.
 
 The Master must not hide uncertainty by averaging incompatible Worker answers.
 A disagreement becomes a source audit, finite discriminator, or Lean proof
-obligation.
+obligation. The Master/control plane has no authority to invent a mathematical
+conclusion: it may route typed evidence to a process, not declare an unverified
+construction correct.
 
 ## 6. Universal Worker responsibilities
 
@@ -215,6 +217,11 @@ same unclassified leaf.
 
 To prevent the Master from becoming the next bottleneck:
 
+- use deterministic code or a low-token profile for routine scheduling,
+  summarization, memory lookup, and process routing; the tracked
+  QBE-OP-OPTCTRL-001 route ablation is evidence that the then-current
+  multi-agent coordination path was substantially more expensive than direct
+  Lean on that target, so expensive coordination is not the default;
 - use a durable frontier ledger rather than reconstructing global state from
   chat logs;
 - require compact structured handoffs with evidence digests;
@@ -247,6 +254,28 @@ The current harness records quantities tied to scientific output:
 
 Branch count, commit count, generated prose length, and number of active agents
 are observability data, not success metrics.
+
+## Evidence-routed memory, salvage, and reader backpressure
+
+Read `docs/evidence-routed-memory-protocol.md`. The tracked
+`reports/process-memory.json` is the curated cross-run process/negative memory;
+raw local run logs do not automatically become prompt memory.
+
+Before a failed route is discarded, classify it as `REFUTED`,
+`SOURCE_INVALID`, `API_BLOCKED`, `ENV_BLOCKED`, or
+`IMPLEMENTATION_FAILED`, then run a salvage audit. Only the first two classes
+can retire mathematics. Verified gate/circuit/resource fragments are isolated,
+assumption-minimized, compiled, and canonically audited before reuse.
+
+Parallel Workers need distinct direction fingerprints, explicit expected
+information gain, and a shared frozen-contract/verified-memory digest. If two
+or more serious routes to one Source Anchor survive, a separate side-by-side
+review checks common register/order/phase/ancilla/oracle/resource blind spots.
+
+The harness also tracks reader debt: a merged source claim is not finished for
+humans until PURIFIED. A PURIFIED quantum page receives an Exposition Seal that
+preserves register, phase, ancilla, success/error, resource-tier, source/Lean
+expansion, and remaining-boundary semantics.
 
 ## 10. Backward-compatible execution slots
 

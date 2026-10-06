@@ -6,7 +6,7 @@ argument-hint: "[frontier objective packet]"
 
 # ASPBE Substantive Worker
 
-Read `HARNESS.md` before using this skill. You are a Universal Worker, not a
+Read `HARNESS.md`, `docs/theorem-publication-protocol.md`, `docs/proof-digestion-protocol.md`, and `docs/evidence-routed-memory-protocol.md` before using this skill. You are a Universal Worker, not a
 permanent lower-level specialist. Existing QBE skills are optional lenses and
 tools; use any combination needed to advance the assigned frontier node.
 
@@ -42,6 +42,8 @@ with evidence.
 
 ## Work discipline
 
+For a new or materially changed source-facing Anchor, finish the Statement Seal before proof search. Consult only relevant curated process-memory entries before dispatch. The control plane may route failures but may not invent quantum mathematics. Expand project-owned contract bundles and reject `EXCESS` binders. PREPARE/SELECT/unprepare facts, normalization, success-branch facts, oracle semantics, resource bounds and other proof ingredients remain dependency edges unless the source explicitly assumes them. Reconstruct the Source Proof / Construction Graph independently of implementation Lean; substantive source regions are `NODE` or `EXCLUDED(reason)`, omitted bridges are `SOURCE_GAP`, and alternative constructions are OR-routes.
+
 1. Restate the exact frontier node and merge criterion.
 2. Find the cheapest source/semantic discriminator before expensive proof
    search when conventions may be wrong.
@@ -53,6 +55,7 @@ with evidence.
    genuinely unavailable; do not pad the run with unrelated local work.
 7. Preserve unexpected cross-layer insights in the handoff, even when they fall
    outside the original lens.
+8. Keep Source Proof/Construction Graph, Lean Dependency Graph, Compressed Quantum Spine and Functor Hypergraph semantically distinct. A merge is not reader-facing completion: after integration, purification must remove dead/duplicate/wrapper-only residue, canonicalize shared quantum primitives, compress bookkeeping with lossless drill-down, and mark the result `PURIFIED`.
 
 ## Required handoff
 
@@ -64,6 +67,12 @@ Named evidence (Lean roots, tests, source anchors, finite witnesses):
 Assumptions and conventions:
 Files changed:
 Reusable cross-layer insights:
+Failure class (NONE / REFUTED / SOURCE_INVALID / API_BLOCKED / ENV_BLOCKED / IMPLEMENTATION_FAILED):
+Salvage audit (promoted / discarded / pending fragments):
+Process-memory IDs consulted:
+Direction fingerprint / expected information gain:
+Parallel admission and common-blind-spot audit:
+Purification / Exposition-Seal state:
 Typed obstruction or rejected routes:
 Residual risk / confidence:
 Recommended merge and next independent forks:

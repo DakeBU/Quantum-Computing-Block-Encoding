@@ -5,6 +5,45 @@ and conceptual-mirror protocols, reviewed at Samplinglib commit
 `6ff87f915bdba4471785b254c408e722c0b5dd51`. It does not import Samplinglib's
 current mathematical priorities or turn conceptual similarities into Lean uses.
 
+## 0. Pre-proof Statement Seal, definition audit, and source topology
+
+Every new or materially changed source-facing theorem/definition also follows
+[`proof-digestion-protocol.md`](proof-digestion-protocol.md) **before proof
+search**. Seal the exact final quantum contract first: scalar/dimensions,
+subsystem and register order, basis and phase convention, ancilla/workspace
+semantics, oracle access, norm/error/success convention, resource tier, and the
+exact Lean signature. Recursively expand project-owned contract bundles and
+classify each logical input as `SOURCE`, `STANDING`, `TYPING`, `RULED`, or
+`EXCESS`; any `EXCESS` binder rejects the source Anchor.
+
+The core invariant is `proof ingredient = dependency edge` and `source
+hypothesis = theorem binder`. The existence of a producer lemma for PREPARE,
+SELECT, unprepare/inverse, normalization, accepted branches, oracle semantics or
+resource bounds does not license moving that result into the public theorem
+premises unless the source itself assumes it.
+
+Definitions are audited as literal, characterized, or quotient/representative.
+For characterized objects, prove the true source well-definedness theorem before
+classical choice; no default/zero fallback may invent off-source behavior. For
+non-canonical quantum representatives—global phase classes, purifications,
+unitary dilations, spectral/Kraus decompositions, basis/tensor reorderings—record
+the equivalence/choice semantics and representative-independence obligations;
+do not manufacture false uniqueness.
+
+Independently reconstruct the **Source Proof / Construction Graph** from the
+source. Every in-scope theorem, definition, displayed formula/circuit, citation,
+and substantive proof/construction paragraph is `NODE` or `EXCLUDED(reason)`;
+missing bridges remain `SOURCE_GAP` nodes and alternative sufficient
+constructions are explicit OR-routes. This view answers “how did the source
+construct/prove it?”; the Lean graph answers “what does the checked
+implementation actually depend on?”. They must remain distinct.
+
+After proof sealing/publication and merge, run purification: remove dead,
+duplicate and wrapper-only residue, canonicalize shared quantum primitives,
+compress register/phase/resource bookkeeping into reviewed conceptual moves,
+preserve lossless drill-down evidence, and update the Compressed Quantum Spine.
+`MERGED` does not imply `PURIFIED`.
+
 ## 1. One mathematical objective, one authored lesson, one source of status
 
 Before nontrivial proof work, read `AGENTS.md`, `HARNESS.md`, this protocol and
@@ -98,16 +137,17 @@ review. Maintainers inspect the bounded evidence at admission. No script claims
 to establish natural-language equivalence, reviewer independence in the world,
 or scientific novelty automatically.
 
-## 4. Three graph truth layers; no false implication arrows
+## 4. Four mathematical graph views, plus Overview navigation; no false implication arrows
 
-**Overview / mathematical methods** organizes sources, domains, mechanisms and
-frontiers. Its links are curated and searchable. They are not proof implication.
+**Source Proof / Construction Graph** answers how the cited source derives or constructs the result. It is reconstructed source-first rather than inferred from implementation Lean, requires exhaustive disposition of substantive source regions, preserves `SOURCE_GAP` nodes, and represents alternative sufficient constructions as OR-routes/hyperedges.
 
-**Underlying Lean Graph** retains the existing generated module imports and
+**Underlying Lean Dependency Graph** retains the existing generated module imports and
 module-to-declaration ownership. A module import is module-level structure, not
 a proof that every declaration depends on every imported theorem. Lexical
 reference scans, if used, must be dashed and called incomplete reference signals.
 Only a future elaborated proof-term exporter may claim theorem dependencies.
+
+**Compressed Quantum Spine** answers which reusable quantum primitives remain after implementation bookkeeping is purified. It may fold register/phase/resource-accounting leaves behind reviewed conceptual moves, but it must preserve a lossless drill-down to source and Lean evidence and must not erase adapters or hypotheses.
 
 **Functor Hypergraph** records conditional mathematical correspondences. Every
 edge retains its complete AND-tail set, head set, formula, mechanism, hypothesis
@@ -116,6 +156,8 @@ independent-review status. Never split a hyperedge into independently sufficient
 arrows from each input. SP + SELECT + unprepare can implement an LCU block; a
 single prepared state does not supply an arbitrary matrix. BE + input state + a
 nonzero accepted branch can supply SP, but overlap/amplification costs remain.
+
+**Overview / mathematical methods** organizes sources, domains, mechanisms and frontiers around these four mathematical views. Its links are curated and searchable. They are navigation, not proof implication.
 
 The term "Functor Hypergraph" is a navigation name, not a certified categorical
 claim. A certified functor additionally requires typed source/target categories,

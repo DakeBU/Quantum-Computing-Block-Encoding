@@ -29,7 +29,14 @@ curriculum is not evidence of local theorem closure.
 
 The mandatory quantum-specific publication, source-blind review, graph and
 reader gate is [docs/theorem-publication-protocol.md](docs/theorem-publication-protocol.md).
-Read it before changing a production Lean module or publishing a new source claim.
+New or materially changed source-facing theorems/definitions also follow
+[docs/proof-digestion-protocol.md](docs/proof-digestion-protocol.md) and [docs/evidence-routed-memory-protocol.md](docs/evidence-routed-memory-protocol.md): seal the
+exact quantum contract before proof search, expand/classify binders, audit
+literal/characterized/quotient definitions, reconstruct the source proof or
+construction topology independently of implementation Lean, require exhaustive
+source coverage, and run post-merge purification before calling the result
+human-facing complete. Failed routes are typed and salvaged before cleanup; the control plane has no mathematical authority; routine coordination is deterministic/low-token by default; parallel Workers require distinct uncertainty; and multiple serious routes receive a common-blind-spot audit. Read both protocols before changing a production Lean
+module or publishing a new source claim.
 Use the bounded mechanism/route packet rather than dumping the complete graph.
 
 Read these before nontrivial automated work:
@@ -121,7 +128,7 @@ subcircuits to the figure-level theorem.
 
 ## Operating Loop
 
-1. Freeze or revalidate the task contract and evidence class.
+1. Freeze or revalidate the task contract and evidence class. For a source-facing Anchor, complete the Statement Seal before proof search; proof ingredients are dependency edges, never extra public hypotheses.
 2. Refresh the global proof frontier, root theorem, blocking interfaces, and
    independent uncertainties.
 3. Give each Universal Worker one objective large enough to produce a
@@ -133,8 +140,12 @@ subcircuits to the figure-level theorem.
    search when the target may be wrong.
 7. Run the Lean gate and, for public changes, the full documentation gate.
 8. Synthesize one global delta, update the proof DAG/conversion window, and
-   retire stale or duplicate work.
-9. Log the attempt with `tools/qbe.py trial-log`; update task status only after
+   retire stale or duplicate work. Keep Source Proof/Construction Graph topology
+   separate from Lean implementation topology.
+9. After integration, run the purification pass: remove dead/duplicate/wrapper-only
+   residue, canonicalize shared quantum primitives, compress bookkeeping, and
+   preserve lossless drill-down evidence before marking the result PURIFIED.
+10. Log the attempt with `tools/qbe.py trial-log`; update task status only after
    the required gate succeeds.
 
 When working in an automated cycle, read `runs/<run-id>/dialogue.md`, use the

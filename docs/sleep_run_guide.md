@@ -25,8 +25,10 @@ and middle panels at checkpoints, and uses Lean as the acceptance gate.
    artifacts and records their export checks.
 
 Before step 2 can execute agents, the deterministic controller reduces the
-latest proof-DAG table, latest obligation table, latest feedback per leaf, and
-task-relevant Lean source digest.  It then chooses one mode:
+latest proof-DAG table, latest obligation table, latest feedback per leaf,
+task-relevant Lean source digest, and the relevant curated entries from
+`reports/process-memory.json`. Process memory can change routing but cannot
+supply mathematical proof premises.  It then chooses one mode:
 
 - `execute`: a named leaf has a concrete Lean declaration and explicit ready
   status; lower 1 runs before lower 2, and lower 3 runs first only when a named
@@ -179,6 +181,15 @@ epsilon change must use the adjacent task-declared rung.  Keep exactly one
 and `active next Lean leaf` status.  Add
 `--fixed-capacity --lower-count 3` only for an intentional ablation or stress
 test.
+
+Every failed lower attempt is typed before retry: mathematical refutation,
+source invalidity, API block, environment block, or implementation failure.
+Before a failed branch is cleaned up, salvage independently compilable theorem
+fragments and checked counterexamples; do not promote prose fragments. Two
+parallel lower workers must own distinct direction fingerprints/uncertainties,
+not merely duplicate the same prompt. Routine scheduler/summarizer passes
+should use deterministic or low-token control by default; expensive parallel
+coordination requires local route-total evidence.
 
 Provider rejection is not a repair cycle.  `qbe_codex_agent.sh` returns 78 on
 an explicit usage limit, authentication failure, permission failure, or model
