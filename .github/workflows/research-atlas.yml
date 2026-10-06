@@ -11,6 +11,13 @@ on:
       - "website/static/research-atlas.*"
       - "QuantumBlockEncoding/**"
       - "docs/theorem-publication-protocol.md"
+      - "docs/proof-digestion-protocol.md"
+      - "docs/evidence-routed-memory-protocol.md"
+      - "HARNESS.md"
+      - "reports/process-memory.json"
+      - "tools/check_process_memory.py"
+      - ".agents/skills/qbe-substantive-worker/**"
+      - ".agents/prompts/mathematical-contribution.md"
       - ".github/workflows/research-atlas.yml"
   pull_request:
     paths:
@@ -19,6 +26,13 @@ on:
       - "website/static/research-atlas.*"
       - "QuantumBlockEncoding/**"
       - "docs/theorem-publication-protocol.md"
+      - "docs/proof-digestion-protocol.md"
+      - "docs/evidence-routed-memory-protocol.md"
+      - "HARNESS.md"
+      - "reports/process-memory.json"
+      - "tools/check_process_memory.py"
+      - ".agents/skills/qbe-substantive-worker/**"
+      - ".agents/prompts/mathematical-contribution.md"
       - ".github/workflows/research-atlas.yml"
   workflow_dispatch:
 
@@ -36,6 +50,9 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+      - name: Validate evidence-routed process memory
+        run: python3 tools/check_process_memory.py check
+
       - name: Validate authored contracts and failure boundaries
         run: |
           python3 -m py_compile website/scripts/research_atlas.py website/scripts/check_research_publications.py
