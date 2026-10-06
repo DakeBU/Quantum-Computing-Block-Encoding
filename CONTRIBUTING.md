@@ -12,7 +12,7 @@ request. Open a lemma proposal first when the work adds a new mathematical
 contract, module, upstream dependency, construction family, or public API.
 
 Before implementing a formal result, read
-[the Proof Digestion Protocol](docs/proof-digestion-protocol.md) and record:
+[the Proof Digestion Protocol](docs/proof-digestion-protocol.md), [the Evidence-Routed Memory Protocol](docs/evidence-routed-memory-protocol.md), and record:
 
 - the plain-language and LaTeX statements and the exact Statement Seal for any source-facing Anchor;
 - an exact source locator, upstream declaration, or `original result`;
@@ -105,7 +105,8 @@ each proof boundary remains auditable.
 ## Source-faithful lessons and graph contributions
 
 Read [the ASPBE publication protocol](docs/theorem-publication-protocol.md),
-[the Proof Digestion Protocol](docs/proof-digestion-protocol.md), and
+[the Proof Digestion Protocol](docs/proof-digestion-protocol.md),
+[the Evidence-Routed Memory Protocol](docs/evidence-routed-memory-protocol.md), and
 [the contributor packet](.agents/prompts/mathematical-contribution.md).
 New or changed production modules need exact source/lesson bindings, assumption
 comparisons, source-blind reconstruction, independent anti-anchored review, and
