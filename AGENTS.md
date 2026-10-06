@@ -30,12 +30,12 @@ curriculum is not evidence of local theorem closure.
 The mandatory quantum-specific publication, source-blind review, graph and
 reader gate is [docs/theorem-publication-protocol.md](docs/theorem-publication-protocol.md).
 New or materially changed source-facing theorems/definitions also follow
-[docs/proof-digestion-protocol.md](docs/proof-digestion-protocol.md): seal the
+[docs/proof-digestion-protocol.md](docs/proof-digestion-protocol.md) and [docs/evidence-routed-memory-protocol.md](docs/evidence-routed-memory-protocol.md): seal the
 exact quantum contract before proof search, expand/classify binders, audit
 literal/characterized/quotient definitions, reconstruct the source proof or
 construction topology independently of implementation Lean, require exhaustive
 source coverage, and run post-merge purification before calling the result
-human-facing complete. Read both protocols before changing a production Lean
+human-facing complete. Failed routes are typed and salvaged before cleanup; the control plane has no mathematical authority; routine coordination is deterministic/low-token by default; parallel Workers require distinct uncertainty; and multiple serious routes receive a common-blind-spot audit. Read both protocols before changing a production Lean
 module or publishing a new source claim.
 Use the bounded mechanism/route packet rather than dumping the complete graph.
 
