@@ -271,11 +271,15 @@ Parallel Workers need distinct direction fingerprints, explicit expected
 information gain, and a shared frozen-contract/verified-memory digest. If two
 or more serious routes to one Source Anchor survive, a separate side-by-side
 review checks common register/order/phase/ancilla/oracle/resource blind spots.
+After that review, a comparator may choose one verified route as the default
+reader construction based on matched contract, assumptions, resources, reuse,
+compression, and readability; alternative verified routes remain visible.
 
 The harness also tracks reader debt: a merged source claim is not finished for
 humans until PURIFIED. A PURIFIED quantum page receives an Exposition Seal that
-preserves register, phase, ancilla, success/error, resource-tier, source/Lean
-expansion, and remaining-boundary semantics.
+names its source/construction and Lean expansion nodes and independently
+confirms preservation of register, basis/order, phase, ancilla, success/error,
+resource-tier, assumptions, and remaining-boundary semantics.
 
 ## 10. Backward-compatible execution slots
 

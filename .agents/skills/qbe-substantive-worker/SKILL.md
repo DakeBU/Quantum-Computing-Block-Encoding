@@ -72,7 +72,9 @@ Salvage audit (promoted / discarded / pending fragments):
 Process-memory IDs consulted:
 Direction fingerprint / expected information gain:
 Parallel admission and common-blind-spot audit:
-Purification / Exposition-Seal state:
+Default verified route / comparator rationale:
+Purification / Exposition-Seal state and evidence:
+Source/Lean expansion nodes; assumptions/boundary preserved:
 Typed obstruction or rejected routes:
 Residual risk / confidence:
 Recommended merge and next independent forks:

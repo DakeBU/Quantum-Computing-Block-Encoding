@@ -32,7 +32,9 @@ research schema/unit tests, publication diff gate, Lean/library/tests, full site
 links/fragments, source provenance, MathJax and responsive browser checks. Do not
 weakly skip missing files or create green placeholder evidence.
 
-On failure, classify REFUTED / SOURCE_INVALID / API_BLOCKED / ENV_BLOCKED / IMPLEMENTATION_FAILED before retry, salvage independently valid fragments before cleanup, and do not let environment/API failures retire mathematics. Parallel Workers require distinct direction fingerprints and bounded route-specific history; multiple serious surviving routes require a common-blind-spot audit. Routine coordination should be deterministic or low-token unless local matched ablation evidence justifies more.
+On failure, classify REFUTED / SOURCE_INVALID / API_BLOCKED / ENV_BLOCKED / IMPLEMENTATION_FAILED before retry, salvage independently valid fragments before cleanup, and do not let environment/API failures retire mathematics. Parallel Workers require distinct direction fingerprints and bounded route-specific history; multiple serious surviving routes require a common-blind-spot audit and then a verified-route comparator that selects only the default reader route while preserving alternative verified OR-routes. Routine coordination should be deterministic or low-token unless local matched ablation evidence justifies more.
+
+The Exposition Seal must name the source/construction and Lean expansion nodes of the compressed explanation and confirm that assumptions, quantum conventions, resource tier, and the remaining boundary survive compression.
 
 After integration, run the purification audit before calling the result done for researchers: dead/duplicate/wrapper-only declarations, canonicalization, route compression, elaboration, and reader compression must be reviewed while preserving drill-down evidence.
 
