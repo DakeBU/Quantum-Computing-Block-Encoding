@@ -16,6 +16,7 @@ on:
       - "HARNESS.md"
       - "reports/process-memory.json"
       - "tools/check_process_memory.py"
+      - "tools/test_process_memory.py"
       - ".agents/skills/qbe-substantive-worker/**"
       - ".agents/prompts/mathematical-contribution.md"
       - ".github/workflows/research-atlas.yml"
@@ -31,6 +32,7 @@ on:
       - "HARNESS.md"
       - "reports/process-memory.json"
       - "tools/check_process_memory.py"
+      - "tools/test_process_memory.py"
       - ".agents/skills/qbe-substantive-worker/**"
       - ".agents/prompts/mathematical-contribution.md"
       - ".github/workflows/research-atlas.yml"
@@ -51,7 +53,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Validate evidence-routed process memory
-        run: python3 tools/check_process_memory.py check
+        run: |
+          python3 tools/check_process_memory.py check
+          python3 -m unittest tools.test_process_memory
 
       - name: Validate authored contracts and failure boundaries
         run: |
