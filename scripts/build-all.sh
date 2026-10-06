@@ -10,6 +10,7 @@ fi
 python3 -m unittest tools.test_hermite_artifacts tools.test_verso_windows_compat tools.test_powershell_builds website.scripts.test_proof_inputs website.scripts.test_hermite_case website.scripts.test_lean_publication_gate
 python3 tools/check_hermite_artifacts.py
 python3 tools/qbe.py harness-check
+python3 tools/check_process_memory.py check
 python3 tools/check_public_figure_style.py
 python3 tools/test_proof_trust.py
 python3 tools/check_proof_trust.py
