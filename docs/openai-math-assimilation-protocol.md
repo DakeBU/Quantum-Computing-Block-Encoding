@@ -299,3 +299,16 @@ Advance the OpenAI commit pin only through a reviewed diff. For each already
 admitted closure, classify upstream changes as semantic, proof-only,
 organizational, or deleted. Semantic changes re-open the local statement and
 adapter audit before publication status can remain green.
+
+## Upstream verification-status gate
+
+OpenAI Math contains manuscripts at different verification stages. A directory
+under `lean/OAI` is not by itself a formalization-status claim. Before
+promotion, inspect `lean/formalization.yaml`, the Comparator config/challenge
+when present, and the exact solution declaration.
+
+At the pinned snapshot, the shallow-circuit parity endpoint is comparator-backed
+as `OAI.QAC.parity_lower_bound_polynomial_size` through
+`ComparatorChallenges/RegularParity.json`; the generalized-amplitude-damping
+endpoint is comparator-backed as `OAI.GAD.main`. Other QIT subtrees still need
+declaration-level status recording before we present them as source-complete.
