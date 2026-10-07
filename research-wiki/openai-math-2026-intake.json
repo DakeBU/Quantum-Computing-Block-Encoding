@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "kind": "external-lean-intake",
+  "upstream": {
+    "repository": "openai/math",
+    "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+    "release_date": "2026-10-06",
+    "license": "Apache-2.0",
+    "floating_main_allowed": false
+  },
+  "clusters": [
+    {
+      "id": "oai-quantum-circuit",
+      "path": "lean/OAI/InformationTheory/QuantumCircuit",
+      "upstream_sha": "44b141f8943100e08320bea56569203443e40d5d",
+      "priority": "A",
+      "class": "adapter-backed",
+      "local_targets": [
+        "QuantumBlockEncoding/Circuit.lean",
+        "QuantumBlockEncoding/CircuitSemantics.lean",
+        "QuantumBlockEncoding/ConcreteSemantics.lean",
+        "QuantumBlockEncoding/PrimitiveCircuit.lean",
+        "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "QuantumBlockEncoding/ReversibleClassical.lean"
+      ],
+      "routes": ["physical-circuit-semantics", "circuit-complexity-parity-lower-bound"]
+    },
+    {
+      "id": "oai-amplitude-damping",
+      "path": "lean/OAI/InformationTheory/AmplitudeDamping",
+      "upstream_sha": "bc0bdc6cc56981a86a465da8c75d1fb003bd29cf",
+      "priority": "B",
+      "class": "source-route",
+      "local_role": "quantum channel, entropy, Holevo information, and operational capacity"
+    },
+    {
+      "id": "oai-entanglement",
+      "path": "lean/OAI/InformationTheory/Entanglement",
+      "upstream_sha": "6f9299728d0056a72fe68755c3bac32237776203",
+      "priority": "B",
+      "class": "adapter-backed",
+      "local_role": "candidate foundational QIT spine; declaration-by-declaration admission only"
+    },
+    {
+      "id": "oai-photon-number",
+      "path": "lean/OAI/InformationTheory/PhotonNumber",
+      "upstream_sha": "563feea512b18ed1fa7b0214654aa4f6ebb1ef9a",
+      "priority": "C",
+      "class": "source-route",
+      "local_role": "quantum optics and entropy photon-number route"
+    },
+    {
+      "id": "oai-secret-key",
+      "path": "lean/OAI/InformationTheory/SecretKey",
+      "upstream_sha": "8c5dee25a15f569311261890e18643c15a392d89",
+      "priority": "C",
+      "class": "source-route",
+      "local_role": "advanced QIT / private-key route after foundation adapters"
+    },
+    {
+      "id": "oai-soft-channel",
+      "path": "lean/OAI/InformationTheory/SoftChannel",
+      "upstream_sha": "c7f7510180d65e41f89381b748205e60cb423039",
+      "priority": "C",
+      "class": "canonical-leaf",
+      "local_role": "classical information-theory candidate substrate, not quantum-labelled by default"
+    }
+  ],
+  "hard_guards": [
+    "No bulk copy of OAI.InformationTheory.Entanglement.",
+    "No parity lower-bound node may be counted as a block-encoding or state-preparation success.",
+    "No new foundational state/channel/POVM type before local, Mathlib, and audited external-QIT reuse search.",
+    "No solid graph edge without a local compiled theorem or adapter."
+  ]
+}
