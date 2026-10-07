@@ -6,7 +6,8 @@
     "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
     "release_date": "2026-10-06",
     "license": "Apache-2.0",
-    "floating_main_allowed": false
+    "floating_main_allowed": false,
+    "verification_status_required": true
   },
   "clusters": [
     {
@@ -23,7 +24,15 @@
         "QuantumBlockEncoding/PrimitiveSemantics.lean",
         "QuantumBlockEncoding/ReversibleClassical.lean"
       ],
-      "routes": ["physical-circuit-semantics", "circuit-complexity-parity-lower-bound"]
+      "routes": [
+        "physical-circuit-semantics",
+        "circuit-complexity-parity-lower-bound"
+      ],
+      "upstream_verification": {
+        "status": "comparator-backed",
+        "config": "ComparatorChallenges/RegularParity.json",
+        "declaration": "OAI.QAC.parity_lower_bound_polynomial_size"
+      }
     },
     {
       "id": "oai-amplitude-damping",
@@ -31,7 +40,12 @@
       "upstream_sha": "bc0bdc6cc56981a86a465da8c75d1fb003bd29cf",
       "priority": "B",
       "class": "source-route",
-      "local_role": "quantum channel, entropy, Holevo information, and operational capacity"
+      "local_role": "quantum channel, entropy, Holevo information, and operational capacity",
+      "upstream_verification": {
+        "status": "comparator-backed",
+        "config": "ComparatorChallenges/AmplitudeDamping.json",
+        "declaration": "OAI.GAD.main"
+      }
     },
     {
       "id": "oai-entanglement",
