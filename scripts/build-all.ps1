@@ -13,11 +13,13 @@ if ($env:QBE_AGENT_INNER_CYCLE -eq "1") {
   exit 64
 }
 
-& $PythonCommand -m unittest tools.test_hermite_artifacts tools.test_verso_windows_compat tools.test_powershell_builds website.scripts.test_proof_inputs website.scripts.test_hermite_case website.scripts.test_lean_publication_gate
+& $PythonCommand -m unittest tools.test_hermite_artifacts tools.test_technical_lemma_registry tools.test_verso_windows_compat tools.test_powershell_builds website.scripts.test_proof_inputs website.scripts.test_hermite_case website.scripts.test_lean_publication_gate
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand tools/check_hermite_artifacts.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand tools/qbe.py harness-check
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand tools/check_process_memory.py check
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand tools/check_public_figure_style.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

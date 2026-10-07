@@ -20,7 +20,7 @@ class ResearchCatalogTests(unittest.TestCase):
 
     def test_every_requested_research_direction_has_acceptance_steps(self):
         routes = {item["id"]: item for item in self.catalog["wiki"]["routes"]}
-        self.assertEqual(set(routes), {"spw-structured", "spw-envelope", "spw-no-qram", "spw-controlled", "spw-ground", "spw-gibbs", "spw-fault-tolerant", "spw-verification", "spw-cvdv"})
+        self.assertEqual(set(routes), {"spw-structured", "spw-envelope", "spw-no-qram", "spw-controlled", "spw-ground", "spw-gibbs", "spw-fault-tolerant", "spw-verification", "spw-cvdv", "spw-walsh", "spw-diagonal"})
         self.assertTrue(all(len(r["steps"]) >= 3 for r in routes.values()))
 
     def test_cannot_promote_conceptual_functor(self):
@@ -65,11 +65,163 @@ class ResearchCatalogTests(unittest.TestCase):
         packet = atlas.context_packet(self.catalog, query="Bernstein")
         self.assertIn("family:hermite-bernstein", [f["id"] for f in packet["families"]])
 
+    def technical_card(self, catalog=None):
+        catalog = self.catalog if catalog is None else catalog
+        return next(f["technical_card"] for f in catalog["atlas"]["families"] if f["id"] == "family:walsh-diagonal-phase")
+
+    def test_planned_technical_cards_and_routes_are_retrievable(self):
+        for family_id, route_id, query in (("family:walsh-diagonal-phase", "spw-walsh", "Walsh"),
+                                            ("family:diagonal-postselection", "spw-diagonal", "diagonal postselection")):
+            with self.subTest(family=family_id):
+                packet = atlas.context_packet(self.catalog, route_id=route_id)
+                family = next(f for f in packet["families"] if f["id"] == family_id)
+                card = family["technical_card"]
+                self.assertEqual(card["lean_status"], "obligation")
+                self.assertEqual(card["lean_decl"], [])
+                self.assertIn(route_id, card["used_by"])
+                self.assertIn(family_id, [f["id"] for f in atlas.context_packet(self.catalog, query=query)["families"]])
+                originals = {s["id"]: s for s in self.catalog["sources"]["sources"]}
+                packet_sources = {s["id"]: s for s in packet["sources"]}
+                records = packet["families"] + packet["routes"] + packet["hyperedges"] + [card]
+                for record in records:
+                    for source_id in record.get("source_ids", []):
+                        self.assertEqual(packet_sources[source_id], originals[source_id])
+                originals = {e["id"]: e for e in self.catalog["atlas"]["hyperedges"]}
+                self.assertTrue(packet["hyperedges"])
+                self.assertLessEqual(len(packet["hyperedges"]), 4)
+                for edge in packet["hyperedges"]:
+                    self.assertEqual(edge, originals[edge["id"]])
+
+    def test_card_fields_and_reference_types_are_checked(self):
+        for field in tuple(self.technical_card()):
+            with self.subTest(missing=field):
+                catalog = copy.deepcopy(self.catalog)
+                del self.technical_card(catalog)[field]
+                with self.assertRaisesRegex(ValueError, "missing"):
+                    atlas.validate_catalog(catalog)
+        for field, bad in (("source_ids", ["missing-source"]), ("used_by", ["spw-missing"]),
+                           ("dependencies", ["family:missing"]), ("lean_status", "certified"),
+                           ("source_ids", "not-a-list"), ("failure_modes", []), ("statement", [])):
+            with self.subTest(field=field, bad=bad):
+                catalog = copy.deepcopy(self.catalog)
+                self.technical_card(catalog)[field] = bad
+                with self.assertRaisesRegex(ValueError, "technical card"):
+                    atlas.validate_catalog(catalog)
+
+    def test_technical_card_status_cannot_promote_or_downgrade_certificate(self):
+        card = self.technical_card()
+        card["lean_status"] = "formalized"
+        with self.assertRaisesRegex(ValueError, "requires a local declaration"):
+            atlas.validate_catalog(self.catalog)
+        card["lean_decl"] = ["Invented.localCertificate"]
+        with self.assertRaisesRegex(ValueError, "unknown generated Lean declaration in technical card"):
+            atlas.validate_catalog(self.catalog, {})
+        for status in atlas.TECHNICAL_STATES - {"formalized"}:
+            card["lean_status"] = status
+            with self.subTest(status=status), self.assertRaisesRegex(ValueError, "cannot claim a local certificate"):
+                atlas.validate_catalog(self.catalog)
+
+    def test_source_audit_status_never_promotes_technical_card(self):
+        card = self.technical_card()
+        source = next(s for s in self.catalog["sources"]["sources"] if s["id"] == card["source_ids"][0])
+        for status in atlas.SOURCE_STATES:
+            with self.subTest(source_status=status):
+                source["status"] = status
+                packet = atlas.context_packet(self.catalog, route_id="spw-walsh")
+                exported = next(f["technical_card"] for f in packet["families"] if f["id"] == "family:walsh-diagonal-phase")
+                self.assertEqual(exported["lean_status"], "obligation")
+                self.assertEqual(exported["lean_decl"], [])
+                self.assertEqual(next(s for s in packet["sources"] if s["id"] == source["id"])["status"], status)
+
+    def test_open_or_experimental_declaration_cannot_certify_card(self):
+        card = self.technical_card()
+        card.update(lean_status="formalized", lean_decl=["Test.card"])
+        for flag in ("openProof", "experimental"):
+            with self.subTest(flag=flag), self.assertRaisesRegex(ValueError, "non-certified technical card declaration"):
+                atlas.validate_catalog(self.catalog, {"Test.card": {flag: True}})
+
+    def test_duplicate_technical_card_identity_is_rejected(self):
+        families = self.catalog["atlas"]["families"]
+        other = next(f for f in families if f["id"] == "family:diagonal-postselection")
+        other["technical_card"]["id"] = self.technical_card()["id"]
+        with self.assertRaisesRegex(ValueError, "duplicate technical card id"):
+            atlas.validate_catalog(self.catalog)
+
+    def test_technical_card_render_has_visible_uncertified_boundary(self):
+        card = self.technical_card()
+        rendered = atlas.render_technical_card(card,
+            {f["id"]: f for f in self.catalog["atlas"]["families"]},
+            {r["id"]: r for r in self.catalog["wiki"]["routes"]},
+            {s["id"]: s for s in self.catalog["sources"]["sources"]}, {}, "../../")
+        self.assertIn("Planned / uncertified", rendered)
+        self.assertIn("not a local Lean certificate", rendered)
+        self.assertIn(atlas.esc(card["statement"]), rendered)
+        self.assertIn(atlas.esc(card["next_action"]), rendered)
+        for failure in card["failure_modes"]:
+            self.assertIn(atlas.esc(failure), rendered)
+
+    def test_route_order_and_relevant_complete_hyperedges_have_priority(self):
+        route = next(r for r in self.catalog["wiki"]["routes"] if r["id"] == "spw-walsh")
+        families = route["families"]
+        self.assertGreaterEqual(len(families), 2)
+        template = copy.deepcopy(self.catalog["atlas"]["hyperedges"][0])
+        unrelated = []
+        for index in range(4):
+            edge = copy.deepcopy(template)
+            edge.update(id=f"transport:test-generic-{index}", tails=[families[0]], heads=[families[0]])
+            unrelated.append(edge)
+        relevant = copy.deepcopy(template)
+        relevant.update(id="transport:test-direct-route", tails=list(families), heads=[families[-1]])
+        self.catalog["atlas"]["hyperedges"] = unrelated + [relevant]
+        packet = atlas.context_packet(self.catalog, route_id=route["id"], limit=1)
+        self.assertEqual(packet["families"][0]["id"], families[0])
+        self.assertEqual(packet["hyperedges"][0], relevant)
+        self.assertEqual(packet["hyperedges"][0]["tails"], families)
+
     def test_latex_is_a_lesson_not_proof_promotion(self):
-        text = atlas.family_latex(self.catalog["atlas"]["families"][0])
+        family = copy.deepcopy(self.catalog["atlas"]["families"][0])
+        family["formula"] = "U^† U = I"
+        text = atlas.family_latex(family)
         self.assertIn("not a new theorem certificate", text)
         self.assertIn(r"\dagger", text)
         self.assertNotIn("†", text)
+
+    def test_new_papers_are_queued_not_locally_formalized(self):
+        papers = atlas.read_json(atlas.ROOT / "website/papers.json")
+        queue = {p["key"]: p for p in papers["queue"]}
+        sources = {s["id"]: s for s in self.catalog["sources"]["sources"]}
+        for key in ("zylberman-debbasch-2024-walsh", "zylberman-et-al-2025-diagonal"):
+            self.assertEqual(queue[key]["status"], "queued")
+            self.assertFalse(queue[key].get("leanRoots"))
+            self.assertEqual(sources[key]["formal_status"], "planned-formalization")
+            self.assertEqual(queue[key]["url"], sources[key]["url"])
+            self.assertRegex(sources[key]["url"], r"v\d+$")
+            self.assertTrue(queue[key]["sourceAnchors"])
+            route_id = queue[key]["planningRoute"].split("/")[1]
+            route = next(r for r in self.catalog["wiki"]["routes"] if r["id"] == route_id)
+            self.assertIn(key, route["source_ids"])
+
+    def test_walsh_route_retains_source_sign_and_success_boundary(self):
+        packet = atlas.context_packet(self.catalog, route_id="spw-walsh")
+        edge = next(e for e in packet["hyperedges"] if e["id"] == "transport:walsh-loader")
+        self.assertIn(r"-i(I-e^{-i\tau F_S})", edge["formula"])
+        self.assertIn("family:diagonal-postselection", edge["tails"])
+        self.assertIn("family:charged-access", edge["tails"])
+        self.assertEqual(edge["status"], "proposal")
+        self.assertEqual(edge["lean_refs"], [])
+        route = packet["routes"][0]
+        self.assertIn("infidelity", " ".join(route["assumptions"]))
+        self.assertIn("Nonzero constant", " ".join(route["benchmarks"]))
+
+    def test_paper_queue_links_to_uncertified_plan(self):
+        from unittest.mock import patch
+        from website.scripts import publish_taxonomy
+        papers = atlas.read_json(atlas.ROOT / "website/papers.json")
+        with patch.object(publish_taxonomy.build_site, "page_template", side_effect=lambda **kw: kw["body"]):
+            page = publish_taxonomy.render_paper_topic_page("statePreparation", papers, {}, {}, {})
+        self.assertIn("Read formalization plan (not a certificate)", page)
+        for route in ("spw-walsh", "spw-diagonal"):
+            self.assertIn(f'../../state-preparation-wiki/{route}/index.html', page)
 
 
 class PublicationBindingTests(unittest.TestCase):

@@ -6,7 +6,9 @@ from __future__ import annotations
 import importlib.util
 import json
 import re
+import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -18,10 +20,52 @@ SPEC.loader.exec_module(build_site)
 
 from website.content import CHAPTERS, IMPLEMENTATION_MAP, ROADMAP
 from website.case_assets import STAGE_CIRCUITS
-from website.scripts.check_site import check_case_teaching
+from website.scripts.check_site import check_case_teaching, require
 
 
 TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
+
+
+class RequiredPublicationArtifactTests(unittest.TestCase):
+    def test_required_artifact_rejects_missing_directory_and_empty_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            directory = root / "directory"
+            directory.mkdir()
+            empty = root / "empty.html"
+            empty.touch()
+            for target in (root / "missing.html", directory, empty):
+                with self.subTest(target=target.name):
+                    errors: list[str] = []
+                    require(target, errors)
+                    self.assertEqual(len(errors), 1)
+            valid = root / "index.html"
+            valid.write_text("<h1>Planned textbook</h1>", encoding="utf-8")
+            errors = []
+            require(valid, errors)
+            self.assertEqual(errors, [])
+
+
+class SourceLinkSnapshotTests(unittest.TestCase):
+    def test_one_check_per_module_preserves_lines_and_rechecks_next_build(self) -> None:
+        inventory = {"declarations": [
+            {"source": "Clean.lean", "line": 4},
+            {"source": "Clean.lean", "line": 19},
+            {"source": "Dirty.lean", "line": 7},
+        ]}
+        context = {"commit": "snapshot"}
+        with patch.object(build_site, "external_source_url", side_effect=[
+            "https://github.com/example/repo/blob/snapshot/Clean.lean#L1", None,
+        ]) as lookup:
+            first = build_site.enrich_inventory(inventory, context)
+        self.assertEqual(lookup.call_count, 2)
+        self.assertTrue(first[0]["sourceUrl"].endswith("#L4"))
+        self.assertTrue(first[1]["sourceUrl"].endswith("#L19"))
+        self.assertIsNone(first[2]["sourceUrl"])
+        with patch.object(build_site, "external_source_url", return_value=None) as lookup:
+            second = build_site.enrich_inventory(inventory, context)
+        self.assertEqual(lookup.call_count, 2)
+        self.assertTrue(all(item["sourceUrl"] is None for item in second))
 
 
 class CaseTeachingGateTests(unittest.TestCase):
@@ -72,6 +116,84 @@ class CaseTeachingGateTests(unittest.TestCase):
 
 
 class SiteContractTests(unittest.TestCase):
+    def test_home_exposes_all_four_peer_parts_with_planned_boundaries(self) -> None:
+        page = build_site.render_home(
+            {"declarations": []},
+            {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
+            {"passed": True}, {"shortCommit": "test"},
+        )
+        self.assertIn("Four textbook parts, one shared Lean graph", page)
+        self.assertIn("Part III · Planned", page)
+        self.assertIn("Part IV · Planned", page)
+        self.assertIn('href="quantum-information/index.html"', page)
+        self.assertIn('href="quantum-scientific-computing/index.html"', page)
+        self.assertNotIn("The current book has two primary parts", page)
+
+    def test_four_part_curriculum_is_source_and_oai_closed(self) -> None:
+        curriculum = json.loads(
+            (ROOT / "website/curriculum-parts.json").read_text(encoding="utf-8")
+        )
+        sources = json.loads(
+            (ROOT / "website/research/sources.json").read_text(encoding="utf-8")
+        )
+        intake = json.loads(
+            (ROOT / "research-wiki/openai-math-2026-intake.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        parts = build_site.validate_curriculum_catalog(curriculum, sources, intake)
+        self.assertEqual(len(parts), 4)
+        by_id = {part["id"]: part for part in parts}
+        self.assertIn("zylberman-debbasch-2024-walsh", by_id["part-i-state-preparation"]["sourceIds"])
+        self.assertIn("zylberman-et-al-2025-diagonal", by_id["part-ii-block-encoding"]["sourceIds"])
+        self.assertEqual(by_id["part-iii-quantum-information"]["sourceIds"], ["leditzky-2025-repth-qit"])
+        self.assertEqual(by_id["part-iv-quantum-scientific-computing"]["sourceIds"], ["lin-wiebe-2026-qasc"])
+
+    def test_oai_full_tree_reconciliation_has_placements_and_rejection(self) -> None:
+        intake = json.loads(
+            (ROOT / "research-wiki/openai-math-2026-intake.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        clusters = {item["id"]: item for item in intake["clusters"]}
+        for cluster_id in (
+            "oai-exact-fourier", "oai-ppt-square",
+            "oai-dimension-ten-secret-key-bridge",
+            "oai-young-unitary-infrastructure", "oai-saxl",
+            "oai-foulkes-howe", "oai-laughlin",
+        ):
+            self.assertIn(cluster_id, clusters)
+            self.assertTrue(clusters[cluster_id]["curriculum"], cluster_id)
+        rejections = {item["id"]: item for item in intake["explicit_non_matches"]}
+        self.assertIn("oai-naimark-zfc-not-measurement-dilation", rejections)
+        self.assertIn("not Naimark dilation", rejections["oai-naimark-zfc-not-measurement-dilation"]["reason"])
+
+    def test_oai_toolchain_boundary_preserves_local_lean_433(self) -> None:
+        intake = json.loads(
+            (ROOT / "research-wiki/openai-math-2026-intake.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(intake["upstream"]["lean_toolchain"], "leanprover/lean4:v4.34.1")
+        self.assertEqual(intake["local_boundary"]["lean_toolchain"], "leanprover/lean4:v4.33.0")
+        self.assertFalse(intake["local_boundary"]["direct_package_dependency_allowed"])
+        self.assertEqual((ROOT / "lean-toolchain").read_text(encoding="utf-8").strip(), "leanprover/lean4:v4.33.0")
+
+    def test_planned_peer_parts_render_without_claiming_local_formalization(self) -> None:
+        catalog = json.loads(
+            (ROOT / "website/curriculum-parts.json").read_text(encoding="utf-8")
+        )
+        for part in catalog["parts"][2:]:
+            page = build_site.render_curriculum_part(
+                part, {"publicDeclarationCount": 0}, {"passed": True},
+                {"shortCommit": "test"},
+            )
+            self.assertIn("Placement is not proof", page)
+            self.assertIn("not local Lean 4.33.0 declarations", page)
+            self.assertIn("status-planned", page)
+            self.assertIn('class="hero curriculum-hero"', page)
+            self.assertNotIn('class="hero application-hero"', page)
+
     def test_core_tracks_have_compiled_declarations_and_honest_routes(self) -> None:
         for chapter in CHAPTERS:
             if chapter["track"] not in TEACHING_TRACKS:

@@ -222,6 +222,9 @@ def render_paper_topic_page(
             action = f'<a class="button" href="../../{html.escape(route)}index.html">Read reproduction</a>'
         else:
             action = f'<a class="button secondary" href="{html.escape(str(item["url"]))}">Open source paper ↗</a>'
+        planning_route = str(item.get("planningRoute", ""))
+        if planning_route:
+            action += f' <a class="button secondary" href="../../{html.escape(planning_route)}index.html">Read formalization plan (not a certificate)</a>'
         cards.append(
             f'''<article class="result">
   <div class="result-header"><div><p class="eyebrow">{html.escape(publish_extensions.status_label(str(item['status'])))}</p><h2>{html.escape(str(item['title']))}</h2><p>{html.escape(str(item['authors']))} · {int(item['year'])}</p></div></div>

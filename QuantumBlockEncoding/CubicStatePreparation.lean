@@ -890,7 +890,7 @@ theorem linearDiagonalExactCleanBlockFromPointwise_clean_eq_target
       (BlockEncodingClassics.ExactCleanBlock.clean
         (linearDiagonalExactCleanBlockFromPointwise U embed h))
       (linearDiagonalTarget n).operator := by
-  simpa [linearDiagonalTarget] using
+  simpa [linearDiagonalTarget, linearDiagonalExactCleanBlockFromPointwise] using
     (BlockEncodingClassics.ExactCleanBlock.clean_eq_target
       (linearDiagonalExactCleanBlockFromPointwise U embed h))
 
@@ -3031,11 +3031,11 @@ theorem linearDiagonalCubicProductCertificate_target_eq (n : Nat) :
     Matrix.PointwiseEq
       (linearDiagonalCubicProductCertificate n).target
       (cubicDiagonalTarget n).operator := by
-  simpa [linearDiagonalCubicProductCertificate,
-    BlockEncodingClassics.productCleanBlockCertificate,
-    BlockEncodingClassics.ExactCleanBlock.toLCUCertificate,
-    linearDiagonalTarget, cubicDiagonalTarget] using
-    linearDiagonal_cube_eq_cubicDiagonalOperator n
+  change Matrix.PointwiseEq
+    (((linearDiagonalOperator n).mul (linearDiagonalOperator n)).mul
+      (linearDiagonalOperator n))
+    (cubicDiagonalOperator n)
+  exact linearDiagonal_cube_eq_cubicDiagonalOperator n
 
 theorem linearDiagonalCubicProductCertificate_clean_eq_target (n : Nat) :
     Matrix.PointwiseEq

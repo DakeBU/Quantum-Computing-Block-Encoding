@@ -4,6 +4,41 @@
   "policy": "Metadata/abstract verification is not a theorem audit, proof import, novelty verdict or exhaustive latest-literature search. Exact lower-bound comparisons require a separate setting contract and source theorem anchor.",
   "sources": [
     {
+      "id": "zylberman-debbasch-2024-walsh",
+      "title": "Efficient Quantum State Preparation with Walsh Series",
+      "authors": "Julien Zylberman; Fabrice Debbasch",
+      "url": "https://arxiv.org/abs/2307.08384v3",
+      "requested_version": "https://arxiv.org/pdf/2307.08384v3",
+      "year": 2024,
+      "status": "primary-text-checked",
+      "anchor": "arXiv v3, 9 November 2023; checked 29 September 2026: Theorem 1, Corollary 1, Table I and Appendix B (B14–B19, B28).",
+      "scope": "Walsh Series Loader: epsilon is state infidelity. Smooth fixed-function single-attempt depth O(epsilon^-1/2), size O(n+epsilon^-1/2), success Theta(epsilon); expected depth O(epsilon^-3/2), expected size O((n+epsilon^-1/2)/epsilon). Constants retain function/derivative/nonzero-mass assumptions. Sparse variants require supplied coefficients and Hamming-weight bounds. Amplification also charges reflections and inverses.",
+      "formal_status": "planned-formalization"
+    },
+    {
+      "id": "zylberman-et-al-2025-diagonal",
+      "title": "Efficient Quantum Circuits for Non-Unitary and Unitary Diagonal Operators with Space-Time-Accuracy trade-offs",
+      "authors": "Julien Zylberman; Ugo Nzongani; Andrea Simonetto; Fabrice Debbasch",
+      "url": "https://arxiv.org/abs/2404.02819v4",
+      "requested_version": "https://arxiv.org/pdf/2404.02819v4",
+      "year": 2025,
+      "status": "primary-text-checked",
+      "anchor": "arXiv v4, 21 January 2025; checked 29 September 2026: II.1, III.1–III.2, IV.1 Eqs. (15)–(16), V.1 Eqs. (19)–(21), VI A, VIII.1 and Tables I–II. Figure 4 signal-sector and III.2/VIII.1 accounting ambiguities remain explicit source obligations.",
+      "scope": "Parallel scheduling trades ancillas for depth, not automatically total size. Table I uses spectral-norm error; Eq. (18) bounds normalized-block error delta, corresponding to total-scale times delta in the unscaled-operator convention. Exact-block success in source notation is ||D psi||^2/(alpha^2 dmax^2); alpha>1 controls the transformed-angle derivative in smooth approximation. No local source theorem or resolution of source ambiguities is claimed.",
+      "formal_status": "planned-formalization"
+    },
+    {
+      "id": "pellini-ferrari-dacrema-2025-comment",
+      "title": "Comment on arXiv:2307.08384: Efficient Quantum State Preparation with Walsh Series",
+      "authors": "Riccardo Pellini; Maurizio Ferrari Dacrema",
+      "url": "https://arxiv.org/abs/2502.05193v1",
+      "year": 2025,
+      "status": "primary-text-checked",
+      "anchor": "arXiv v1 full HTML, Sections II.2–II.3, Eq. (11), Fig. 2: controlled zero-order term; checked 29 September 2026.",
+      "scope": "Companion adversarial implementation review, not a refutation of the WSL theory. Retain the constant Walsh coefficient in a controlled phase circuit; use constant and constant-plus-parity regression cases.",
+      "formal_status": "external-reference"
+    },
+    {
       "id": "holmes-matsuura-2020",
       "title": "Efficient Quantum Circuits for Accurate State Preparation of Smooth, Differentiable Functions",
       "authors": "Adam Holmes; A. Y. Matsuura",
@@ -163,9 +198,9 @@
       "title": "Representation-theoretic methods in quantum information theory",
       "authors": "Felix Leditzky",
       "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
-      "year": 2025,
+      "year": 2026,
       "status": "primary-text-checked",
-      "anchor": "Course notes: finite-dimensional QIT foundations, representation theory, Schur–Weyl duality and symmetry-based QIT applications",
+      "anchor": "10 April 2026 edition (79 pages), checked 29 September 2026; Sections 2–9. Stable registry ID retains the course-directory year FT25, not the PDF edition year.",
       "scope": "Planned curriculum anchor for a future Quantum Information part. Source registration is not a claim that its theorems have been formalized locally.",
       "formal_status": "external-reference"
     },

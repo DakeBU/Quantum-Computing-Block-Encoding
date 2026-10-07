@@ -181,7 +181,7 @@ if ($env:CI -eq "true") {
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   & $PythonCommand -m playwright install chromium
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-  & $PythonCommand website/scripts/test_research_browser.py --root _site
+  & $PythonCommand website/scripts/test_research_browser.py --root _site --require-blueprint
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   Copy-Item _out/research-browser/browser-report.json _site/data/research/browser-report.json
 }

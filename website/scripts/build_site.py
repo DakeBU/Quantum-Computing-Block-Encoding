@@ -209,6 +209,65 @@ def load_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def validate_curriculum_catalog(
+    curriculum: dict[str, object],
+    sources: dict[str, object],
+    oai_intake: dict[str, object],
+) -> list[dict[str, object]]:
+    """Validate planned textbook placement without promoting it to Lean truth."""
+    parts = curriculum.get("parts")
+    if not isinstance(parts, list) or len(parts) != 4:
+        raise SystemExit("Curriculum catalog must contain exactly four peer parts.")
+    source_ids = {str(item["id"]) for item in sources.get("sources", [])}
+    cluster_ids = {str(item["id"]) for item in oai_intake.get("clusters", [])}
+    seen_parts: set[str] = set()
+    seen_routes: set[str] = set()
+    seen_chapters: set[str] = set()
+    for part in parts:
+        part_id = str(part.get("id", ""))
+        route = str(part.get("route", ""))
+        status = str(part.get("status", ""))
+        if not part_id or part_id in seen_parts:
+            raise SystemExit(f"Duplicate or empty curriculum part id: {part_id!r}")
+        if not route or route in seen_routes or route.startswith(('/', '\\')) or ':' in route:
+            raise SystemExit(f"Unsafe or duplicate curriculum route: {route!r}")
+        if status not in STATUS_ORDER:
+            raise SystemExit(f"Unknown curriculum status: {status!r}")
+        seen_parts.add(part_id)
+        seen_routes.add(route)
+        unknown_sources = set(map(str, part.get("sourceIds", []))) - source_ids
+        if unknown_sources:
+            raise SystemExit(f"{part_id}: unknown source ids: {sorted(unknown_sources)}")
+        for chapter in part.get("chapters", []):
+            chapter_id = str(chapter.get("id", ""))
+            chapter_status = str(chapter.get("status", ""))
+            if not chapter_id or chapter_id in seen_chapters:
+                raise SystemExit(f"Duplicate or empty curriculum chapter id: {chapter_id!r}")
+            if chapter_status not in STATUS_ORDER:
+                raise SystemExit(f"{chapter_id}: unknown status {chapter_status!r}")
+            seen_chapters.add(chapter_id)
+            unknown_clusters = set(map(str, chapter.get("oaiClusters", []))) - cluster_ids
+            if unknown_clusters:
+                raise SystemExit(f"{chapter_id}: unknown OpenAI Math clusters: {sorted(unknown_clusters)}")
+            href = str(chapter.get("href", ""))
+            if href and (href.startswith(('/', '\\')) or ':' in href or '\\' in href):
+                raise SystemExit(f"{chapter_id}: unsafe local href {href!r}")
+    if seen_parts != {
+        "part-i-state-preparation", "part-ii-block-encoding",
+        "part-iii-quantum-information", "part-iv-quantum-scientific-computing",
+    }:
+        raise SystemExit("Curriculum catalog must name the four canonical peer parts.")
+    upstream = oai_intake.get("upstream", {})
+    local = oai_intake.get("local_boundary", {})
+    if upstream.get("lean_toolchain") != "leanprover/lean4:v4.34.1":
+        raise SystemExit("OpenAI Math pinned toolchain boundary is missing or changed.")
+    if local.get("lean_toolchain") != "leanprover/lean4:v4.33.0":
+        raise SystemExit("Local curriculum toolchain must remain Lean 4.33.0.")
+    if local.get("direct_package_dependency_allowed") is not False:
+        raise SystemExit("Toolchain-mismatched OpenAI Math must not be a direct dependency.")
+    return parts
+
+
 def parse_literature_registry() -> list[dict[str, str]]:
     source = (ROOT / "QuantumBlockEncoding" / "Literature.lean").read_text(
         encoding="utf-8"
@@ -562,7 +621,10 @@ def render_home(
   <p class="eyebrow">Formal quantum computing, read alongside Lean</p>
   <h1>QuantumComputinglib</h1>
   <p class="lede">QuantumComputinglib is the textbook and declaration browser for ASPBE.
-  The current book has two primary parts: State Preparation and Block Encoding.
+  The book has four peer parts: State Preparation, Block Encoding, Quantum
+  Information and Representation Theory, and Quantum Algorithms for Scientific
+  Computation. Parts I and II contain compiled routes; Parts III and IV are
+  source-audited curricula awaiting local theorem admission.
   State Preparation is the nested preparation layer used by many broader
   block-encoding constructions; its certificate remains meaningful on its own.
   A reverse block-to-state use is a separate downstream theorem with additional
@@ -576,8 +638,8 @@ def render_home(
 <section class="content-section" id="applications">
   <div class="section-heading">
     <p class="eyebrow">Choose the problem first</p>
-    <h2>Two parts, one inclusion direction, one shared graph</h2>
-    <p>The main curriculum relation is State Preparation → Block Encoding:
+    <h2>Four textbook parts, one shared Lean graph</h2>
+    <p>Within Parts I and II, the main construction relation is State Preparation → Block Encoding:
     PREPARE is a reusable subproblem inside many block-encoding routes. A
     block-to-state consumer path also exists, but it is not the inclusion relation
     and it needs extra branch, normalization and amplification hypotheses. Shared
@@ -599,6 +661,21 @@ def render_home(
       <p>Fix an operator, normalization, ancilla convention, and register order;
       then prove that the projected block of a larger unitary has the requested value.</p>
       <a href="block-encoding/index.html">Read the block-encoding route &#8594;</a>
+    </article>
+    <article class="application-path">
+      <p class="path-label">Part III · Planned</p>
+      <h3>Quantum Information and Representation Theory</h3>
+      <p>States, channels and measurements lead to symmetry, Schur–Weyl duality
+      and information-theoretic applications. Leditzky's notes anchor the
+      curriculum; named local Lean roots are still required.</p>
+      <a href="quantum-information/index.html">Explore the representation-theoretic QIT curriculum &#8594;</a>
+    </article>
+    <article class="application-path">
+      <p class="path-label">Part IV · Planned</p>
+      <h3>Quantum Algorithms for Scientific Computation</h3>
+      <p>Lin–Wiebe's scientific algorithms reuse the shared Block Encoding part,
+      then add transforms, simulation, estimation and application contracts.</p>
+      <a href="quantum-scientific-computing/index.html">Explore scientific quantum algorithms &#8594;</a>
     </article>
   </div>
 </section>
@@ -702,7 +779,7 @@ def render_home(
   </div>
 </section>"""
     toc = [
-        ("applications", "Two parts"),
+        ("applications", "Four textbook parts"),
         ("state-process", "State preparation"),
         ("block-process", "Block encoding"),
         ("evidence", "Build evidence"),
@@ -721,6 +798,75 @@ def render_home(
         gate=gate,
         context=context,
         toc=toc,
+    )
+
+
+def curriculum_part(part_id: str) -> dict[str, object]:
+    catalog = load_json(WEBSITE_ROOT / "curriculum-parts.json")
+    return next(part for part in catalog["parts"] if part["id"] == part_id)
+
+
+def render_curriculum_chapters(part: dict[str, object], prefix: str) -> str:
+    cards: list[str] = []
+    for chapter in part["chapters"]:
+        href = str(chapter.get("href", ""))
+        title = html.escape(str(chapter["title"]))
+        if href:
+            title_html = f'<a href="{page_url(prefix, href)}">{title}</a>'
+        else:
+            title_html = title
+        clusters = "".join(
+            f"<code>{html.escape(str(cluster))}</code>"
+            for cluster in chapter.get("oaiClusters", [])
+        )
+        cluster_html = (
+            f'<p class="hint"><strong>Audited upstream routes:</strong> {clusters}</p>'
+            if clusters else ""
+        )
+        cards.append(
+            f'''<article class="application-path">
+  <p class="path-label">{html.escape(str(chapter["id"]))}</p>
+  <h3>{title_html}</h3>
+  <p>{html.escape(str(chapter["summary"]))}</p>
+  {badge(str(chapter["status"]))}
+  {cluster_html}
+</article>'''
+        )
+    return '<div class="application-paths">' + "".join(cards) + "</div>"
+
+
+def render_curriculum_part(
+    part: dict[str, object],
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    source_url = str(part.get("sourceUrl", ""))
+    source_link = (
+        f'<a class="text-link" href="{html.escape(source_url)}">Read the curriculum anchor &#8594;</a>'
+        if source_url else ""
+    )
+    body = f'''
+<section class="hero curriculum-hero">
+  <p class="eyebrow">{html.escape(str(part["label"]))} · {badge(str(part["status"]))}</p>
+  <h1>{html.escape(str(part["title"]))}</h1>
+  <p class="lede">{html.escape(str(part["summary"]))}</p>
+  {source_link}
+</section>
+<section class="content-section" id="truth-boundary">
+  <div class="section-heading"><p class="eyebrow">Truth boundary</p><h2>Placement is not proof</h2></div>
+  <p>{html.escape(str(load_json(WEBSITE_ROOT / "curriculum-parts.json")["truthBoundary"]))}</p>
+  <div class="callout"><strong>OpenAI Math boundary.</strong> Audited clusters are pinned source or adapter inputs. Their upstream Lean 4.34.1 results are not local Lean 4.33.0 declarations until separately ported and compiled.</div>
+</section>
+<section class="content-section" id="chapter-map">
+  <div class="section-heading"><p class="eyebrow">Graph-driven chapter map</p><h2>Shared foundations first, source-specific consumers later</h2></div>
+  {render_curriculum_chapters(part, '../')}
+</section>'''
+    return page_template(
+        title=str(part["title"]), route=str(part["route"]), current=str(part["route"]),
+        body=body, coverage=coverage, gate=gate, context=context,
+        toc=[("truth-boundary", "Truth boundary"), ("chapter-map", "Chapter map")],
+        description=str(part["summary"]),
     )
 
 
@@ -777,6 +923,13 @@ def render_state_preparation(
     <h2>State-preparation chapters</h2>
   </div>
   {render_chapter_groups('../', ('State preparation',))}
+</section>
+<section class="content-section" id="state-frontiers">
+  <div class="section-heading">
+    <p class="eyebrow">Source-audited additions · not yet compiled roots</p>
+    <h2>Walsh series and diagonal-filter suppliers</h2>
+  </div>
+  {render_curriculum_chapters(curriculum_part('part-i-state-preparation'), '../')}
 </section>"""
     return page_template(
         title="State preparation",
@@ -791,6 +944,7 @@ def render_state_preparation(
             ("preparation-flow", "Proof route"),
             ("certificate-anatomy", "Certificate anatomy"),
             ("state-reading", "Chapters"),
+            ("state-frontiers", "Planned frontiers"),
         ],
     )
 
@@ -831,6 +985,13 @@ def render_block_encoding(
   </div>
   {diagram('../', 'block-encoding-flow', 'Block-encoding proof and export flow')}
 </section>
+<section class="content-section" id="block-frontiers">
+  <div class="section-heading">
+    <p class="eyebrow">Source-audited additions · not yet compiled roots</p>
+    <h2>Diagonal operators and structured Fourier suppliers</h2>
+  </div>
+  {render_curriculum_chapters(curriculum_part('part-ii-block-encoding'), '../')}
+</section>
 <section class="content-section" id="connection">
   <div class="section-heading">
     <p class="eyebrow">The main inclusion-like connection</p>
@@ -856,6 +1017,7 @@ def render_block_encoding(
         toc=[
             ("block-contract", "Contract terms"),
             ("encoding-flow", "Proof route"),
+            ("block-frontiers", "Planned frontiers"),
             ("connection", "Prepared-state inputs"),
         ],
     )
@@ -971,6 +1133,9 @@ def render_robin_paper_map(
     route = "case-studies/robin/"
     prefix = prefix_for(route)
     paper = data["paper"]
+    robin_matrix_tex = render_math_tex(
+        r"A=\frac1{12}\begin{pmatrix}-30&32&-2&0&0&0&0&0\\16&-31&16&-1&0&0&0&0\\-1&16&-30&16&-1&0&0&0\\0&-1&16&-30&16&-1&0&0\\0&0&-1&16&-30&16&-1&0\\0&0&0&-1&16&-30&16&-1\\0&0&0&0&-1&16&-31&16\\0&0&0&0&0&-2&32&-30\end{pmatrix},\qquad \Pi U\Pi^\dagger=\frac{A}{56/3}=\frac{M}{224}."
+    )
     robin_tiers = (
         ("Candidate exact primitive certificate", "QuantumBlockEncoding.Robin.warmRobinXorFourSlotPrimitiveVerifiedBlockEncoding"),
         ("True source sparse-slot decomposition", "QuantumBlockEncoding.Robin.warmRobinSourceSevenSparseDecomposition"),
@@ -1046,7 +1211,7 @@ def render_robin_paper_map(
   {''.join(statement_panels)}
 </article>"""
         )
-    body = f"""
+    body = rf"""
 <section class="hero" id="paper-contract">
   <p class="eyebrow">Paper reproduction · source-to-Lean reading map</p>
   <h1>Robin boundary block encoding</h1>
@@ -1065,7 +1230,7 @@ def render_robin_paper_map(
   <h2>What matrix is being encoded?</h2>
   <p>The benchmark fixes the homogeneous-Robin fourth-derivative matrix. Keeping
   \(M=12A\) integral makes every decomposition identity exact in Lean.</p></div>
-  {render_math_tex(r"A=\frac1{12}\begin{pmatrix}-30&32&-2&0&0&0&0&0\\16&-31&16&-1&0&0&0&0\\-1&16&-30&16&-1&0&0&0\\0&-1&16&-30&16&-1&0&0\\0&0&-1&16&-30&16&-1&0\\0&0&0&-1&16&-30&16&-1\\0&0&0&0&-1&16&-31&16\\0&0&0&0&0&-2&32&-30\end{pmatrix},\qquad \Pi U\Pi^\dagger=\frac{A}{56/3}=\frac{M}{224}.")}
+  {robin_matrix_tex}
   <p>The clean projector fixes selector and coefficient registers to zero. The
   remaining three-qubit register indexes the rows and columns of \(A\).</p>
 </section>
@@ -1247,20 +1412,30 @@ def render_learning(
     gate: dict[str, object],
     context: dict[str, object],
 ) -> str:
+    catalog = load_json(WEBSITE_ROOT / "curriculum-parts.json")
+    parts = catalog["parts"]
+    part_cards = "".join(
+        f'''<article class="application-path">
+  <p class="path-label">{html.escape(str(part["label"]))} · {badge(str(part["status"]))}</p>
+  <h3><a href="../{html.escape(str(part["route"]))}index.html">{html.escape(str(part["title"]))}</a></h3>
+  <p>{html.escape(str(part["summary"]))}</p>
+</article>'''
+        for part in parts
+    )
     body = f"""
 <section class="hero">
   <p class="eyebrow">Guided reading</p>
-  <h1>Current book: two parts, one shared Lean graph</h1>
-  <p class="lede">Part I develops State Preparation after the shared finite-matrix
-  and circuit foundations. Part II develops Block Encoding on exactly those same
-  lower nodes. The intended inclusion-like curriculum direction is Part I → Part II:
-  a verified PREPARE is a reusable subproblem inside many block-encoding
-  constructions. A block can also be consumed for state preparation, but that is
-  a different downstream theorem requiring input, accepted-branch, normalization
-  and success-cost obligations.</p>
+  <h1>Four peer textbook parts, one shared Lean graph</h1>
+  <p class="lede">State Preparation and Block Encoding are the two currently
+  compiled cores. Quantum Information and Representation Theory, and Quantum
+  Algorithms for Scientific Computation, are source-audited peer parts with
+  honest planned status. They reuse shared foundations instead of defining a
+  second state, channel, circuit or block-encoding API.</p>
   <div class="hero-actions">
     <a class="button state-button" href="../state-preparation/index.html">Part I · State Preparation</a>
     <a class="button block-button" href="../block-encoding/index.html">Part II · Block Encoding</a>
+    <a class="button secondary" href="../quantum-information/index.html">Part III · QIT &amp; Representation</a>
+    <a class="button secondary" href="../quantum-scientific-computing/index.html">Part IV · Scientific Computing</a>
   </div>
 </section>
 <section class="content-section" id="reading-map">
@@ -1282,32 +1457,12 @@ def render_learning(
 </section>
 <section class="content-section" id="future-curriculum">
   <div class="section-heading">
-    <p class="eyebrow">Planned curriculum · not current theorem status</p>
-    <h2>Future Quantum Information and Quantum Scientific Computing</h2>
-    <p>New chapters must reuse compatible lower graph nodes and pass the same
-    source, semantic, Lean, integration, exposition and independent-review gates.
-    A source listed here is a curriculum anchor, not a claim of formalization.</p>
+    <p class="eyebrow">One navigation level · distinct proof status</p>
+    <h2>The four-part curriculum</h2>
+    <p>{html.escape(str(catalog["truthBoundary"]))}</p>
   </div>
   {diagram("../", "quantum-domain-roadmap", "Conceptual curriculum roadmap; dashed transports are not Lean implications")}
-  <div class="application-paths">
-    <article class="application-path">
-      <p class="path-label">Planned Part III</p>
-      <h3>Quantum Information and symmetry</h3>
-      <p><a href="https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf">Leditzky's representation-theoretic QIT notes</a>
-      anchor density operators/measurements, composite systems and entanglement,
-      representation theory, Schur–Weyl duality, invariant states, de Finetti,
-      cloning and spectrum-estimation routes.</p>
-    </article>
-    <article class="application-path">
-      <p class="path-label">Planned Part IV</p>
-      <h3>Quantum algorithms for scientific computation</h3>
-      <p><a href="https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf">Lin–Wiebe, 29 April 2026</a>
-      anchors channels/distances, query models, perturbation/statistics,
-      qubitization/QSP/QSVT, simulation, phase estimation, walks, linear systems,
-      differential equations and open systems. Its Block Encoding chapter reuses
-      Part II rather than creating a second API.</p>
-    </article>
-  </div>
+  <div class="application-paths">{part_cards}</div>
   <div class="callout"><strong>Source policy.</strong> The 29 April Lin–Wiebe
   edition supplied to the project is publicly hosted by the authors, so the
   repository records the public source rather than vendoring a large PDF. A
@@ -1324,8 +1479,8 @@ def render_learning(
         context=context,
         toc=[
             ("reading-map", "Reading map"),
-            ("chapter-list", "Current two parts"),
-            ("future-curriculum", "Future curriculum"),
+            ("chapter-list", "Compiled chapters"),
+            ("future-curriculum", "Four-part curriculum"),
         ],
     )
 
@@ -2767,6 +2922,18 @@ def build_search_index(
         )
         for chapter in CHAPTERS
     )
+    page_entries.extend(
+        (
+            str(part["title"]),
+            str(part["summary"]),
+            f"{part['route']}index.html",
+        )
+        for part in load_json(WEBSITE_ROOT / "curriculum-parts.json")["parts"]
+        if part["id"] in {
+            "part-iii-quantum-information",
+            "part-iv-quantum-scientific-computing",
+        }
+    )
     entries.extend(
         {"type": "page", "kind": "page", "title": title, "summary": summary, "url": url}
         for title, summary, url in page_entries
@@ -2815,10 +2982,17 @@ def enrich_inventory(
     context: dict[str, object],
 ) -> list[dict[str, object]]:
     enriched: list[dict[str, object]] = []
+    # Eligibility is module-wide in this inventory snapshot. Do not retain
+    # this cache across builds: a later dirty checkout must be checked anew.
+    source_links: dict[str, str | None] = {}
     for raw in inventory["declarations"]:
         declaration = dict(raw)
-        declaration["sourceUrl"] = external_source_url(
-            str(declaration["source"]), int(declaration["line"]), context
+        source = str(declaration["source"])
+        if source not in source_links:
+            source_links[source] = external_source_url(source, 1, context)
+        link = source_links[source]
+        declaration["sourceUrl"] = (
+            f"{link.partition('#')[0]}#L{int(declaration['line'])}" if link else None
         )
         enriched.append(declaration)
     inventory["declarations"] = enriched
@@ -2835,6 +3009,12 @@ def build(args: argparse.Namespace) -> None:
     declarations = enrich_inventory(inventory, context)
     declaration_map = {str(item["fullName"]): item for item in declarations}
     validate_curated_declarations(declaration_map)
+    curriculum_catalog = load_json(WEBSITE_ROOT / "curriculum-parts.json")
+    curriculum_parts = validate_curriculum_catalog(
+        curriculum_catalog,
+        load_json(WEBSITE_ROOT / "research" / "sources.json"),
+        load_json(ROOT / "research-wiki" / "openai-math-2026-intake.json"),
+    )
     robin_paper_map = load_robin_paper_map(declaration_map)
     replay_report = load_json(
         ROOT / "reports" / "public-case-replay" / "latest.json"
@@ -2873,6 +3053,10 @@ def build(args: argparse.Namespace) -> None:
         json.dumps(replay_report, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    (data / "curriculum-parts.json").write_text(
+        json.dumps(curriculum_catalog, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     if (WEBSITE_ROOT / "community").exists():
         shutil.copytree(WEBSITE_ROOT / "community", output / "community")
 
@@ -2909,6 +3093,16 @@ def build(args: argparse.Namespace) -> None:
         ),
     )
     write_page(output, "learning", render_learning(coverage, gate, context))
+    for part in curriculum_parts:
+        if part["id"] in {
+            "part-iii-quantum-information",
+            "part-iv-quantum-scientific-computing",
+        }:
+            write_page(
+                output,
+                str(part["route"]).rstrip("/"),
+                render_curriculum_part(part, coverage, gate, context),
+            )
     for chapter in CHAPTERS:
         write_page(
             output,
@@ -2992,6 +3186,7 @@ def build(args: argparse.Namespace) -> None:
         "publishedRef": context["publishedRef"],
         "declarationCount": len(declarations),
         "chapterCount": len(CHAPTERS),
+        "curriculumPartCount": len(curriculum_parts),
         "exampleCaseCount": len(example_cases),
         "diagramCount": len(list((WEBSITE_ROOT / "diagrams").glob("*.mmd"))),
         "leanGraphModuleCount": lean_graph_payload["stats"]["moduleCount"],
