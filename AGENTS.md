@@ -264,3 +264,20 @@ shortcut, reorganisation or bridge; this is not an automatic novelty judgement.
 Preserve SP/BE directionality and charge SELECT, input preparation, postselection
 and amplification as appropriate. Read the full protocol for aesthetic,
 finite-bit, source-fidelity and independent-review requirements.
+
+
+## OpenAI Math upstream assimilation
+
+Before using `openai/math`, read `docs/openai-math-assimilation-protocol.md`
+and `research-wiki/openai-math-2026-intake.json`. The reviewed intake is commit
+pinned; never use a floating upstream `main` to justify a theorem or completion
+claim.
+
+In particular, `OAI.InformationTheory.QuantumCircuit` and the larger QIT
+clusters are adapter candidates, not automatic foundations. Search ASPBE,
+Mathlib, and the already-audited quantum Lean libraries first. Any state,
+channel, POVM, circuit, gate-order, tensor-order, Born-probability, or resource
+semantics difference must be made explicit and bridged by a local compiled
+adapter before downstream OpenAI theorems receive solid Lean-Graph edges.
+Circuit-complexity lower bounds and QIT capacity results extend the library, but
+must not be counted as block-encoding or state-preparation synthesis successes.
