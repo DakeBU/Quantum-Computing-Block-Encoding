@@ -312,3 +312,34 @@ as `OAI.QAC.parity_lower_bound_polynomial_size` through
 `ComparatorChallenges/RegularParity.json`; the generalized-amplitude-damping
 endpoint is comparator-backed as `OAI.GAD.main`. Other QIT subtrees still need
 declaration-level status recording before we present them as source-complete.
+
+## Additional audited quantum-computing routes
+
+The catalog sweep promotes the following from generic “other quantum results” to
+named routes:
+
+- `OAI/Computability/QuantumFactoring`: comparator-backed exact quantum
+  factoring. This is a very large end-to-end route covering arithmetic,
+  reversible/quantum circuit construction, compiler/emission semantics, oracle
+  use, algorithmic control flow, and resource bounds. It is Priority A because
+  its compiler and circuit-resource spine can share directly with ASPBE. Mine
+  shared primitives first; do not copy the 500+ file closure wholesale.
+- `OAI/Probability/EntangledGames`: comparator-backed threshold parallel
+  repetition for finite-dimensional entangled games. It is a valuable consumer
+  of state, measurement, purification, entropy, resampling and correlated
+  sampling APIs, but requires canonical QIT adapters before reuse.
+- `OAI/Analysis/Quantum/DimensionTen`: comparator-backed quantum-channel
+  existence/geometry route.
+- `OAI/InformationTheory/PhotonNumber`: its entropy photon-number endpoint is
+  comparator-backed and should anchor the quantum-optics/entropy route.
+
+Two October 5 results—randomized-versus-quantum query separation and
+Boolean-oracle unitary synthesis—are recorded as benchmark/manuscript routes in
+the current audit. They are mathematically central to a future quantum-query and
+synthesis textbook branch, but must not be labelled locally formalized until an
+exact OpenAI formalization/comparator mapping is established.
+
+This changes the recommended first-wave order to:
+`QuantumCircuit -> QuantumFactoring -> AmplitudeDamping -> foundational QIT
+adapters -> EntangledGames/PhotonNumber`.
+
