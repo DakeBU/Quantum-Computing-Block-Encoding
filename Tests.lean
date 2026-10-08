@@ -59,3 +59,4 @@ import ABEISTests.StoredMatrixProductChain
 import ABEISTests.QuantumBanditBornCanary
 import ABEISTests.QuantumQueryWordCanary
 import ABEISTests.BasisHellingerCanary
+import ABEISTests.ResetBlockProcessCanary

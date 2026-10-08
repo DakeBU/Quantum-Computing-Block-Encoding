@@ -13,9 +13,13 @@ it is actually compiled, with executable primitive-gate and axiom canaries.
 
 This repository adds finite-matrix Born stability/range, aligned circuit reward bias,
 chronological forward/inverse query telescoping, actual primitive gate realization,
-and computational-basis Hellinger bounds. The mean-estimation producer, arbitrary POVM
-extension, reset-history process, adaptive confidence and stopping/lower-bound assembly
-remain open. No Quantum MAB/BAI complexity theorem or quantum advantage is certified.
+computational-basis Hellinger bounds, and a normalized classical-history reset process
+with actual prefix-query budget accounting. The latter is explicitly named
+FC-WO-reset-basis-v1 and uses a fixed finite number of blocks. Its X canary distinguishes
+resetting from carrying quantum state and charges both oracle directions. The
+mean-estimation producer, arbitrary POVM extension, physical loading/discard, adaptive
+confidence and stopping/lower-bound assembly remain open. No Quantum MAB/BAI complexity
+theorem or quantum advantage is certified.
 
 Publication status is **draft**. Independent source-blind and source reviews do not
 erase the disclosed pre-proof exact-signature coverage gap for the new concrete

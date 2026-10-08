@@ -135,3 +135,4 @@ import QuantumBlockEncoding.CircuitRewardBias
 import QuantumBlockEncoding.QuantumQueryWord
 import QuantumBlockEncoding.QueryCircuitCost
 import QuantumBlockEncoding.BasisHellinger
+import QuantumBlockEncoding.ResetBlockProcess

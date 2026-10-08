@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import errno
 import json
 import os
 import signal
@@ -66,6 +67,21 @@ def stop_lock_holder(process: subprocess.Popen, holder_pid: int) -> None:
 
 
 class CrossProcessRuntimeTests(unittest.TestCase):
+    @unittest.skipUnless(os.name == "nt", "Windows byte-range lock errors")
+    def test_permanent_windows_lock_error_is_not_retried(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "state.json"
+            for code in (errno.EBADF, errno.EINVAL):
+                with self.subTest(errno=code):
+                    with patch("msvcrt.locking", side_effect=OSError(code, "permanent failure")):
+                        with self.assertRaises(OSError) as raised:
+                            with file_lock(path):
+                                self.fail("invalid lock was acquired")
+                        self.assertEqual(raised.exception.errno, code)
+                    # Failed acquisition must release the local mutex/handle.
+                    with file_lock(path, timeout=0):
+                        pass
+
     def test_concurrent_jsonl_appends_remain_complete_and_parseable(self) -> None:
         with tempfile.TemporaryDirectory() as raw:
             path = Path(raw) / "events.jsonl"

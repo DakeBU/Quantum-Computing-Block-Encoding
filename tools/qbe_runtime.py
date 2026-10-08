@@ -9,6 +9,7 @@ safe when separate screens or agent processes operate concurrently.
 from __future__ import annotations
 
 import contextlib
+import errno
 import hashlib
 import json
 import os
@@ -65,7 +66,9 @@ def _try_os_lock(handle: object, *, blocking: bool) -> bool:
         try:
             msvcrt.locking(handle.fileno(), mode, 1)
             return True
-        except OSError:
+        except OSError as error:
+            if error.errno not in (errno.EACCES, errno.EDEADLK):
+                raise
             return False
 
     import fcntl
@@ -121,7 +124,12 @@ def file_lock(
     try:
         handle = lock_path.open("a+", encoding="ascii")
         if timeout is None:
-            if not _try_os_lock(handle, blocking=True):
+            if os.name == "nt":
+                # LK_LOCK gives up after ten retries; timeout=None promises an
+                # unbounded wait, so poll the non-blocking primitive instead.
+                while not _try_os_lock(handle, blocking=False):
+                    time.sleep(max(0.001, poll_interval))
+            elif not _try_os_lock(handle, blocking=True):
                 raise LockUnavailable(f"could not acquire lock: {canonical}")
         else:
             deadline = time.monotonic() + max(0.0, timeout)
