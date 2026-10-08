@@ -8410,3 +8410,4 @@ block-encoding formalization lifecycle.
 | 2026-10-09 01:01:09 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-cycle14-bridge-review |
 | 2026-10-09 01:05:20 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-cycle14-parent-integration |
 | 2026-10-09 01:21:48 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-parent-stored-gram-preflight-20261009 |
+| 2026-10-09 01:26:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-exp-degree-20261009 |
