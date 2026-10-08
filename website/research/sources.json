@@ -259,6 +259,17 @@
       "anchor": "Local authored source docs/lessons/deterministic-real-thin-lq.md, Matrices and output equations through Reuse and the four graph views; reviews/publication/constructive-thin-lq/source-contract.json",
       "scope": "Existing literal all-shape exact-real factor producer via rectangular adjacent Givens elimination, with reconstruction and orthonormal rows. Fixed min(m,n) inner dimension, deficient and empty shapes included. Not external-paper assimilation, novelty, finite-bit algorithm/runtime, numerical stability or quantum action.",
       "formal_status": "existing local module; independent whole-module local review pending"
+    },
+    {
+      "id": "aspbe-local-stored-tensor-train-norm",
+      "title": "Cached tensor train norms with stored inputs",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/cached-stored-tensor-train-norm.md, all mathematical sections; exact binding and distinct review in reviews/publication/stored-tensor-train-norm/",
+      "scope": "Complete stored real Gram and scalar-norm supplier with full materialized exact-real eight-counter costs. No finite-bit/runtime, core generation, peak memory, physical circuit, Hermite root or whole textbook completion.",
+      "formal_status": "existing local module; independent whole-module admission pending"
     }
   ]
 }
