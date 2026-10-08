@@ -130,3 +130,8 @@ import QuantumBlockEncoding.StoredHermiteSourceCache
 import QuantumBlockEncoding.StoredHermiteStageFields
 import QuantumBlockEncoding.StoredHermiteStageInput
 import QuantumBlockEncoding.StoredMatrixProductChain
+import QuantumBlockEncoding.BornStability
+import QuantumBlockEncoding.CircuitRewardBias
+import QuantumBlockEncoding.QuantumQueryWord
+import QuantumBlockEncoding.QueryCircuitCost
+import QuantumBlockEncoding.BasisHellinger
