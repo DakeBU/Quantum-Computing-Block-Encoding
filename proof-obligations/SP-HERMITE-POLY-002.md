@@ -524,3 +524,53 @@ counts are not literal Python allocations, and a largest local matrix is not
 total peak live memory. Full numerical-backend and bit-cost accounting remain
 required. Frozen author records are retained unchanged, with these limitations
 in the new independent audits.
+
+### Cycle 14 dimension aware precision and finite exponential tails
+
+The actual positive rational radius is now selected from the **global** state
+budget. With physical width `n_p=n+1`, `N=2^n_p` and the already proved source
+constant `C(k)`, the literal tolerance is `epsilon/(8*N*Cq(k))`, where `Cq`
+casts exactly to `C`. Its original normalized signed-source error is proved
+at most `epsilon/4`, rather than merely a radius error. This is a conservative
+allocation using `sqrt(N)<=N`; its exponential-looking denominator charges
+precision, not an exponential number of output samples. The actual Machin
+term count has a checked threshold-size bound. Canonical input-size, all
+intermediate integer/rational sizes and runtime are still open.
+[Global radius allocation](../experiments/hermite-polynomial/precision/global-radius-budget/result.json).
+
+A separate finite rational supplier now encloses literal `exp(q)` for `q<=0`
+using a Taylor remainder with `(degree+1)!`. At `q<=-T`, it returns `[0,2^-T]`
+without expanding powers of huge `|q|`; positive scalar-width epsilon supplies
+a checked logarithmic cutoff. The clipped mass is **bounded**, not silently
+discarded. Actual original Hermite left/right tails at rational coordinates,
+and the middle polynomial's `exp(-1)` scalar, consume this enclosure. Active
+Taylor degrees may fail the width check, and no uniform degree/runtime bound
+or original irrational-grid-to-stored-TT refinement is claimed.
+[Finite exponential supplier](../experiments/hermite-polynomial/precision/finite-exp/result.json).
+
+These two immutable internal-provider packages are compiled research WIP,
+with distinct review initially pending. Parent full focused replays and
+`lake build` / `lake build Tests` pass under Lean 4.33.0. Scalar interval width
+is not global state epsilon; the other source, QR, saved-circuit and physical
+synthesis contributions remain charged and open. Scientific C2/C3/X2/ROOT,
+complete-module source admission, reader/CI and main migration are unchanged.
+Checkpoint `6d56dda` was pushed and its exact remote head verified. Existing
+failures, user-owned files and unique branch histories remain preserved.
+
+The concrete RY bridge now derives the signed half-angle Taylor matrix error
+against `standardRyMatrix`: each entry is within delta, and its Euclidean
+operator error, including an arbitrary named physical wire with unchanged
+spectators, is at most `2*delta`. The proof decomposes the literal error into
+cosine error times identity and sine error times `RY(pi)`. It does not assume
+the surrogate is unitary. Kernel fixtures discriminate signs, half angles,
+q0/q1/q2, spectator preservation and reused exact CX basis action; the actual
+first saved decimal token also has a theorem instance.
+[RY bridge](../experiments/hermite-polynomial/precision/saved-ry-interval/result-v2.json).
+
+This supplier's exact Taylor midpoint is **not** identified with the existing
+saved-action producer's outward-rounded completed stage midpoint. Stage
+chronology, rounding, text decoding, full terminal readout and nonunitary
+amplification still need a complete bridge. Initial unpublished path-bearing
+metadata was quarantined unchanged; the safe successor has relative commands
+and sanitized logs. No private output, Source Anchor approval or ROOT success
+is promoted by that recovery.

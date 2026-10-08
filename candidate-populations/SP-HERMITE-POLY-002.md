@@ -428,3 +428,36 @@ error. Some additional Qiskit binary64 errors exceed tiny exact-decimal
 candidate bounds: parser/simulator rounding, physical synthesis and ideal
 source error remain separate charged edges. Local matrix-cell counts do not
 establish total Python peak RAM or GCD/runtime costs.
+
+### Cycle 14 actual global radius reserve and clipped scalar supplier
+
+The radius crossover now selects its actual positive rational Machin radius
+from global epsilon, physical dimension and the frozen all-k source constant.
+The unchanged normalized signed target has a proved radius contribution at
+most `epsilon/4`. Other stage errors are not zeroed. This is precision-budget
+progress, not a new circuit resource tuple or certified population winner.
+[Allocation](../experiments/hermite-polynomial/precision/global-radius-budget/result.json).
+
+The independent scalar direction supplies finite rational enclosures for
+negative-argument exponentials. A sound `[0,2^-T]` tail branch avoids huge
+Taylor powers, while the active branch retains a checked width and may fail.
+Original rational-coordinate source tails and `exp(-1)` have actual consumers;
+source grid/storage refinement and uniform degree/bit/runtime bounds remain
+open. Scalar-width epsilon does not replace global normalized-state error.
+[Supplier](../experiments/hermite-polynomial/precision/finite-exp/result.json).
+
+Both packages were checkpointed to the contribution branch as locally proved,
+pending distinct review. They advance independent metric-allocation and
+finite-scalar uncertainties; no source Anchor, public graph, main merge,
+deployment or complete family acceptance follows from the checkpoint.
+
+The RY direction closes a different uncertainty: the literal signed rational
+half-angle Taylor midpoint has a derived Euclidean operator error at most
+twice its scalar radius, even after lifting to an arbitrary named physical
+wire. Existing exact CX semantics are reused, not counted as new mathematics.
+This enables later nonunitary transport but does not identify the saved
+outward-rounded stage with a product of these primitive centers. Full stage,
+readout/garbage and parser refinement remain open. A privacy-safe versioned
+packet replaces unpublished metadata; the original remains quarantined, not
+retroactively accepted.
+[RY packet](../experiments/hermite-polynomial/precision/saved-ry-interval/result-v2.json).
