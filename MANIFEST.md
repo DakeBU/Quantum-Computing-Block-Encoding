@@ -8407,3 +8407,5 @@ block-encoding formalization lifecycle.
 | 2026-10-09 00:38:03 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-cycle14-finite-exp |
 | 2026-10-09 00:38:04 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-cycle14-global-radius |
 | 2026-10-09 00:49:40 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-cycle14-saved-ry |
+| 2026-10-09 01:01:09 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-cycle14-bridge-review |
+| 2026-10-09 01:05:20 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-cycle14-parent-integration |

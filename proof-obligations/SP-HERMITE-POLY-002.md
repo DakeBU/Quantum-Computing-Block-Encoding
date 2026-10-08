@@ -574,3 +574,21 @@ amplification still need a complete bridge. Initial unpublished path-bearing
 metadata was quarantined unchanged; the safe successor has relative commands
 and sanitized logs. No private output, Source Anchor approval or ROOT success
 is promoted by that recovery.
+
+The distinct fresh-context reviewer subsequently accepted all three scoped
+internal packages, rebuilding the analytic suppliers and dependencies from
+complete source and checking the RY source/consumer in a separate cache.
+Parent repeated both reviewer kernel probe files and all five independent
+exact blind-spot tests. A reviewer-only elaboration failure is explicitly
+retained as a failed composite, followed by successful corrected probes; it
+is not relabelled as a green run. These reviews do not approve the complete
+scientific construction, source-blind publication or main admission.
+[Cycle 14 evidence](../experiments/hermite-polynomial/precision/cycle14-staging-result.json).
+
+The next scalar proposal uses a factorial-block estimate to obtain a
+polynomial sufficient active Taylor degree. It remains **design only**;
+neither completeness nor a finite-bit runtime bound is credited before Lean
+proof and actual consumers. Radius has spent `epsilon/4`; a provisional
+`3*epsilon/16` reserve for each other stage is accounting design, not four
+closed bounds. Actual stage midpoint, source/storage and physical synthesis
+are still separate obligations.
