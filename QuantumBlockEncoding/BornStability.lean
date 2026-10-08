@@ -107,5 +107,3 @@ theorem probability_mem_Icc (U P : Matrix ι ι ℂ)
       simpa using this.trans (by simpa using hc)
 
 end QuantumBlockEncoding.BornStability
-
-

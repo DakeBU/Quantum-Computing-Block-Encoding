@@ -22,4 +22,3 @@ theorem aligned_reward_bias_le {n : ℕ} {δ : ℝ} (hδ : 0 ≤ δ)
   convert h using 1; ring
 
 end QuantumBlockEncoding.CircuitRewardBias
-

@@ -35,4 +35,3 @@ example (f : PrimitiveBasis 2 → ℝ) :
 #print axioms CircuitRewardBias.aligned_reward_bias_le
 
 end QuantumBlockEncoding.QuantumBanditBornCanary
-
