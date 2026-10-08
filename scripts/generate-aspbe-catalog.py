@@ -58,6 +58,9 @@ STATE_PREP_MODULES = {
 
 STRUCTURED_SEMANTICS_MODULES = {
     "AdjacentGivens.lean",
+    "BasisHellinger.lean",
+    "BornStability.lean",
+    "CircuitRewardBias.lean",
     "ConstructiveIsometryCompletion.lean",
     "ConstructiveIsometryLocal.lean",
     "ConstructiveTensorTrain.lean",
@@ -81,6 +84,9 @@ STRUCTURED_SEMANTICS_MODULES = {
     "StoredTensorTrainNorm.lean",
     "PrimitiveCircuitPerturbation.lean",
     "PrimitiveRyPerturbation.lean",
+    "QuantumQueryWord.lean",
+    "QueryCircuitCost.lean",
+    "ResetBlockProcess.lean",
     "StoredBinaryCoordinates.lean",
     "StoredDyadicSpans.lean",
     "StoredMatrixProductChain.lean",
@@ -132,7 +138,8 @@ def register_public_modules(module) -> None:
     )
     module.CATALOG_PURPOSES["Semantics"] = (
         "Circuit and register semantics, reusable tensor-train and matrix "
-        "constructions, and explicit exact-real storage-cost refinements. "
+        "constructions, Born measurement/reset-query semantics, and explicit "
+        "exact-real storage-cost refinements. "
         "Each declaration's hypotheses and conclusion fix its certified scope."
     )
     module.CATALOG_PURPOSES["AutomationAndMemory"] = (
