@@ -200,9 +200,43 @@
       "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
       "year": 2026,
       "status": "primary-text-checked",
-      "anchor": "10 April 2026 edition (79 pages), checked 29 September 2026; Sections 2–9. Stable registry ID retains the course-directory year FT25, not the PDF edition year.",
-      "scope": "Planned curriculum anchor for a future Quantum Information part. Source registration is not a claim that its theorems have been formalized locally.",
+      "anchor": "10 April 2026 edition (79 pages), SHA256 90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3; bounded first slice checked 8 October 2026 on printed pages3–4, Definition2.1, Eq.(2.4) and pure-state forward assertion. Stable registry ID retains the course-directory year FT25, not the PDF edition year.",
+      "scope": "First PROVED_LOCAL slice in experiments/qit-first-slice: normalized finite complex state yields a positive-semidefinite trace-one outer-product matrix and an idempotent projector, using shared state semantics and Mathlib matrix APIs. Independent admission pending. No converse, rank/extremality, representation-theory chapter, physical measurement or resource claim; the entire textbook remains an external reference.",
       "formal_status": "external-reference"
+    },
+    {
+      "id": "aspbe-local-gray-basis",
+      "title": "Local Gray order and adjacency contract",
+      "authors": "ASPBE contributors; retrospective local contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/gray-little-endian-order.md, complete mathematical sections and parity induction; exact coverage reviews/publication/gray-basis/source-contract.json",
+      "scope": "Existing recursive arbitrary-width Gray coordinate equivalence and one-wire adjacency, natural-number head parity transitions. Not paper assimilation or a physical circuit/resource/export certificate. Independent bounded local review pending.",
+      "formal_status": "existing local module; independent whole-module admission pending"
+    },
+    {
+      "id": "aspbe-local-little-endian-basis",
+      "title": "Local little endian basis and context contract",
+      "authors": "ASPBE contributors; retrospective local contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/little-endian-basis-indexing.md, complete mathematical sections; exact coverage reviews/publication/primitive-basis-le/source-contract.json",
+      "scope": "Retrospective whole-module finite bit convention: recursive LE bijection, six-wire expansion, fixed two/three-wire inverse coordinates and restricted-context equality. Not paper assimilation or novelty. No circuit/exporter/runtime claim; native finite evaluator trust must remain explicit.",
+      "formal_status": "existing local module; independent whole-module admission pending"
+    },
+    {
+      "id": "aspbe-local-finite-real-thin-lq",
+      "local_contract_sha256": "bb9c420a14ed441da1ea4c0a0a6a55ba3ac4bc4c75c426e9280229278df9b40c",
+      "title": "Finite real thin LQ factorization local mathematical contract",
+      "authors": "ASPBE contributors; retrospective contract and exposition authored in the 8 October 2026 audit",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source: docs/lessons/finite-real-thin-lq.md, Statement through All shapes; exact scope and coverage: reviews/publication/thin-lq/source-contract.json",
+      "scope": "Retrospective local contract for an existing finite real matrix existence interface. Not external-paper assimilation or novelty evidence. A=RQ and QQ^T=I with min(m,n) rows; all dimensions/ranks; no triangularity, algorithm or resource theorem.",
+      "formal_status": "local mathematical contract; whole-module admission is tracked in publications.json"
     },
     {
       "id": "lin-wiebe-2026-qasc",
@@ -211,9 +245,20 @@
       "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
       "year": 2026,
       "status": "primary-text-checked",
-      "anchor": "29 April 2026 public 447-page edition; Parts I–IV from background/foundations through block encoding, QSP/QSVT, simulation, linear systems/differential equations and open systems",
-      "scope": "Planned curriculum anchor for quantum scientific computing. Reuse existing ASPBE state-preparation/block-encoding nodes; do not duplicate Chapter 9 under a second API. The user-supplied PDF is not vendored because this edition is publicly hosted.",
+      "anchor": "29 April 2026 public 447-page edition; PDF SHA256 56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599. First bounded source slice: Chapter 9 Section 9.1, printed pages 141–143, equations (9.2), (9.9), (9.10), (9.12); standing partial-application convention Definition 2.25, page 37. Parts I–IV remain curriculum anchors, not completed formalisation.",
+      "scope": "Quantum scientific computing curriculum, reusing existing ASPBE state-preparation/block-encoding APIs. experiments/qasc-ch9/ contains a Lean4.33 PROVED_LOCAL staging consumer for exact clean action, accepted weight, nonzero-success criterion and conditional normalization; worker and master focused compilation passed. Independent source/decoder review, production admission, measurement probability upper bound, operator-norm approximation, construction and all resource costs remain pending. No duplicate foundational API or whole-section/book completion. Public PDF/render caches are not vendored.",
       "formal_status": "external-reference"
+    },
+    {
+      "id": "aspbe-local-constructive-thin-lq",
+      "title": "Deterministic real thin LQ factors local mathematical contract",
+      "authors": "ASPBE contributors; retrospective local explanation",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/deterministic-real-thin-lq.md, Matrices and output equations through Reuse and the four graph views; reviews/publication/constructive-thin-lq/source-contract.json",
+      "scope": "Existing literal all-shape exact-real factor producer via rectangular adjacent Givens elimination, with reconstruction and orthonormal rows. Fixed min(m,n) inner dimension, deficient and empty shapes included. Not external-paper assimilation, novelty, finite-bit algorithm/runtime, numerical stability or quantum action.",
+      "formal_status": "existing local module; independent whole-module local review pending"
     }
   ]
 }

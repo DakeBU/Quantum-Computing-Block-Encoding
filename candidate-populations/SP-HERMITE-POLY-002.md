@@ -180,3 +180,208 @@ remain explicit obligations. Fixed float64 is not a universal epsilon model.
 - The strict audit found no target weakening or unearned full acceptance.
   The classical and uniform-precision nodes remain open. See
   `experiments/hermite-polynomial/CYCLE03-RESULT.md` for scope, review and reuse.
+
+### Cycle 6: bounded staging, 2026-10-08
+
+- **MPS-02 normalized compiler crossover.** The actual raw supplier is composed
+  with the existing stored norm/canonicalization and `closeLeft` boundary
+  mechanism. `StagedNormalizedCanonical.compile_certified` proves one returned
+  normalized right-canonical chain and its ordinary polynomial cost. This is a
+  compiler-interface advance, not a new complete scientific candidate or
+  inherited executable certificate. Independent source/publication admission
+  remains pending.
+- **MPS-02-SCALE-01 numerical mutation.** Parent: MPS-02. Changed mechanism:
+  positive scaling before QR residual absorption and afterward, with an explicit
+  binary mantissa/exponent normalizer. The old backend still fails its recorded
+  `(1025,0,1/100)` discriminator; the isolated candidate passes that bracket and
+  additional cache-only checks. Small literal source-action tests, signed and
+  deficient cases are retained. No gate-resource improvement, uniform precision
+  bound, large-state action certificate or certified-population promotion is
+  claimed.
+- **Stored emitter adapter.** Explicit non-target wire enumeration and cached
+  bit reads now feed the proved selected-RY trace with a checked cost bound.
+  This is not yet the complete stored Gray/SO emitter or a globally optimal
+  resource champion.
+
+The [cycle-06 packet](../experiments/hermite-polynomial/stored/cycle06-staging-result.json)
+binds source hashes, checks and remaining interfaces. Unknown token/model-call
+telemetry remains unknown; this cycle provides no workflow-efficiency claim.
+
+### Cycle 7 complementary interface refinements
+
+- The explicit Gray target/word supplier refines the same physical target and
+  bit assignment used by the prior exact-real compiler. This is a stored
+  emitter prerequisite with local polynomial index/storage work, not a new
+  quantum route or a certified resource winner.
+- Actual stored active columns, counted prefix labels and completion now
+  consume the returned normalized chain. This extends the compiler crossover
+  through the exact local SO matrix, without inheriting a full primitive-list
+  or finite-bit certificate. Global integration must cache the source once.
+- `MPS-02-SCALE-01` now has a local exact mathematical mechanism certificate:
+  positive per-core and residual scaling preserve the literal signed normalized
+  Hermite action. The numerical implementation still has no uniform backward
+  error, underflow, Python refinement or serialized-circuit certificate.
+  Supplied-factor correctness is not transferred to computed floating factors.
+- The companion diagonal textbook slice supplies an actual source circuit's
+  accepted branch and normalization, not a Hermite construction candidate.
+  Its finite success proof and source-phase discriminator are reusable ideas,
+  not an improvement of this population's gates or root acceptance.
+
+The canonical [frontier](../proof-obligations/SP-HERMITE-POLY-002.md) retains
+C2/C3/X2/ROOT as open. The exponential baseline and all previous failures remain
+visible. These refinements do not count as independently admitted candidates
+or establish a workflow-speed comparison.
+
+### Cycle 8 same-run primitive compiler crossover
+
+The normalized-chain/active-column supplier now connects through a materialized
+Gray-table mutation to the actual stored SO emitter. The composed return is
+proved equal to the same named local stage matrix and its exact padded-core
+column action, with charged indexing, copying, sweep/log reversal and angle
+instantiation. This is an actual interface crossover, not concatenated route
+descriptions or inherited executable evidence. The local final gate count and
+intermediate emission counters are separately proved.
+
+Evidence: [stage primitive packet](../experiments/hermite-polynomial/stored/stage-primitive-result.json),
+[Gray-table packet](../experiments/hermite-polynomial/stored/gray-table-result.json),
+[SO emission packet](../experiments/hermite-polynomial/stored/local-so-emission-result.json).
+The cached all-stage compiler/global placement and finite-bit/error/export
+contracts remain open, as do independent scientific/source/reader admission.
+No new full certified candidate, resource winner or harness-efficiency result
+is claimed. Exponential baseline, MPS-01 failures and float64 falsifier stay intact.
+
+### Cycle 9 source-once global composition and numerical counterexample
+
+The same-run compiler crossover now includes the entire actual returned
+primitive list: source generation once, all stages, global wire placement,
+padding, copying and the public LE adapter. Its full operator refinement and
+literal clean Hermite column are proved separately. Final gate bound remains
+`48*n_p*(2*k+6)^3`; this is stronger implementation/cost coverage, **not a new
+resource winner**. A subtraction-free polynomial envelope accounts for the
+declared exact-real/index-word source and consumer work.
+
+The precision mutation supplies an exact norm floor and error propagation
+bridge, not computed floating-point error bounds. Its dyadic underflow
+discriminator rejects unconditional reliability of the generic max-core
+strategy on all nonzero finite TT inputs. It has not been proved reachable
+from this Hermite source, so neither the exact Hermite invariant nor the
+entire polynomial route is rejected. Preserve the failed strategy witness
+and investigate source-reachable dynamic range or a different representation.
+
+Evidence: [cycle09 packet](../experiments/hermite-polynomial/stored/cycle09-staging-result.json).
+No new root/executable-certified population selection, optimization gain,
+novelty or worker-efficiency claim. Exponential baseline and all failures
+remain retained; source review and finite-bit/export boundaries remain open.
+
+### Cycle 10 precision mutation and exact-error crossover
+
+The cached full-return compiler now crosses with shared primitive RY/circuit
+perturbation assets through an **actual** positional dyadic-rounding producer.
+Constructor closure excludes arbitrary unrounded RZ/X instructions from this
+Hermite return. The same rounded list has a full signed/all-garbage error
+certificate and logarithmic fractional-precision allocation; its quantum
+gate bound is unchanged. This is a locally compiled mathematical mutation,
+not a new finite-bit/resource winner: determining its exact-floor numerators,
+preprocessing and implementing finite gate synthesis are unpriced/unrefined.
+
+The source-numeric direction found a source-reachable implementation failure,
+not merely the earlier generic-TT max-scaling counterexample. Tiny positive
+`L=1/10^100` invalidates the frozen supplier's unrestricted totality. A separate
+large-`L` tail-underflow instance is benign at a rigorously derived finite
+tolerance. Neither result discards the exact mathematical route. Keep both
+scoped observations, the exponential baseline and previous failures.
+
+The transport direction adds an independent exact representation diagnostic,
+and separate replay of two actual saved small circuits. It does not transfer
+finite floating-producer evidence to the Lean exact compiler or whole family.
+Independent review found a schema-type acceptance bug; v1 was retained as
+requiring repair and a sealed v2 adds fail-closed type checks and regressions.
+This is an audited bounded diagnostic improvement, not a Harness rewrite.
+
+Evidence: [dyadic supplier](../experiments/hermite-polynomial/precision/dyadic-supplier/result.json),
+[source-reachable audit](../experiments/hermite-polynomial/precision/source-reachable/independent-audit.json),
+[transport v2 contract](../experiments/hermite-polynomial/precision/transport/contract-v2.json).
+No scientific population promotion or workflow-efficiency measurement is
+claimed. Genuine Gray-module local review is a separate migration asset,
+not a new quantum candidate. Next crossover requires certified computable
+source/angle enclosures and an actual saved-parser semantic bridge.
+
+### Cycle 11 safe-interval crossover and source-coordinate mutation
+
+The finite rational nearest-dyadic consumer crosses the frozen cached compiler,
+primitive perturbation and full signed target interfaces. Its actual returned
+list preserves constructor order, ordered wire arguments and non-RY instructions;
+valid finite data produce a return without deciding an exact-real floor bin.
+Conditional soundness is still an internal upstream obligation. Same-list resource
+equality and input-dependent output bit bounds do not certify that upstream
+generator, preprocessing runtime or physical synthesis.
+
+The independent source-numeric mutation changes the failed affine-near-one
+coordinate mechanism to rational reflected offsets. The actual old tiny-L
+failure remains reproducible, while the successor reaches normalized TT and
+full RY/CX simulation against an independent source reference. Local coefficient
+budgets are lossless rationals, with bounded near-cutoff refinement and honest
+retry/tolerance failure. The numerical source still uses uncertified exponential,
+subdivision, QR and normalizer operations; its local budgets do not imply global
+epsilon. Generic signed-library tests are labelled separately from the unchanged
+Hermite target.
+
+These two mutations are not yet one source-to-angle certified executable.
+Neither enters the root-certified/resource-winner selection lane. Gate bounds
+are inherited, not a newly measured optimization improvement. Keep all previous
+failures and the exponential baseline. Current lineage and scoped checks:
+[finite-data angle supplier](../experiments/hermite-polynomial/precision/safe-enclosure/result.json),
+[offset source successor](../experiments/hermite-polynomial/precision/offset-source/result.json).
+
+### Cycle 12 rational input crossover and a posteriori QR certificates
+
+The precision mutation now computes its actual dyadic width from rational
+`epsilon` and feeds that value to the existing finite-data angle consumer.
+The coefficient direction separately closes coarse all-`k` literal value and
+input-dependent rational output envelopes. Neither mutation supplies the
+missing analytic enclosure generator, arbitrary-precision numerical backend
+or total preprocessing bit cost.
+
+The QR mutation certifies the **actual returned** train against the normalized
+stored raw train by exact cross-Gram contractions and literal scale drift.
+It is independent of an exact-QR assumption and avoids dense construction.
+Its `27*n*B^3` field-operation envelope is certificate-only; QR, integer/GCD,
+source conversion and circuit work remain separate. The numerical checker may
+return a large honest bound and does not promise success for every `epsilon`.
+This is a reusable internal error interface, not a root-certified candidate
+or a newly selected resource winner.
+
+An optional uniform entry validator fixes the preserved zero-injection local
+budget bypass without changing valid numerical returns. A legal rational
+near-cutoff witness defeats the existing fixed 512-term cap and remains a
+recorded implementation failure. It motivates a source-linked approximate
+radius route, not target substitution or a Hermite impossibility claim.
+The exponential baseline, earlier failures, immutable sources and distinct
+scoped review disclosures remain intact. Scientific C2/C3/X2/ROOT stay open.
+
+Evidence: [coefficient audit](../experiments/hermite-polynomial/precision/coefficient-range/independent-audit.json),
+[budget audit](../experiments/hermite-polynomial/precision/rational-budget/independent-audit.json),
+[QR audit](../experiments/hermite-polynomial/precision/qr-residual/independent-audit.json),
+[entry and failure audit](../experiments/hermite-polynomial/precision/offset-entry-v2/independent-audit.json).
+
+The additional radius crossover consumes the actual coefficient range,
+Bernstein expansion, exponential tails, endpoint jets and normalization
+floor. It proves all-`k` original-source stability under rational radius
+approximation, with full Euclidean dimension dependence and the original
+`pi*L` target retained. Root freshly compiled the 16 providers and six kernel
+instances. This supports a different precision strategy, not an implemented
+radius generator or unconditional finite-bit candidate.
+Evidence: [radius packet](../experiments/hermite-polynomial/precision/radius-stability/result.json).
+
+Distinct scoped review reproduced all 16 roots, six consumers and seven
+additional formal discriminators without finding source, metric or target
+drift. It does not promote the radius route into certified selection.
+[Audit](../experiments/hermite-polynomial/precision/radius-stability/independent-audit.json),
+[cycle12 aggregate](../experiments/hermite-polynomial/precision/cycle12-staging-result.json).
+
+The next saved-action proposal explicitly includes repeated compiler QR,
+local completion, angle interpretation and every terminal bond sector.
+It compares a rational stage surrogate with the literal returned TT, keeping
+nonunitary-surrogate amplification and source errors separate. It is
+`DESIGN_ONLY`, not a performed experiment, successful crossover or resource
+selection. [Design](../experiments/hermite-polynomial/precision/next-circuit-frontier-design.json).
