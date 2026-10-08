@@ -8398,3 +8398,7 @@ block-encoding formalization lifecycle.
 | 2026-10-08 21:38:38 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-cycle12-next-circuit-design |
 | 2026-10-08 21:42:23 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-cycle12-radius-review |
 | 2026-10-08 21:48:19 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-cycle12-root-cohort-handoff |
+| 2026-10-09 00:02:59 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-C13-RADIUS-SUPPLIER |
+| 2026-10-09 00:02:59 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-C13-FINITE-TRIG |
+| 2026-10-09 00:03:00 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-C13-SAVED-ACTION-DIAGNOSTIC |
+| 2026-10-09 00:03:00 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged SP-HERMITE-POLY-002-C13-NONUNITARY-TRANSPORT |
