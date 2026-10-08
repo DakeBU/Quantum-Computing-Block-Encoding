@@ -428,6 +428,29 @@ the full required repository gates. Generate public documentation only when
 there is a stable, accurately classified frontier to publish; repeated site
 renders are not part of each inner mutation.
 
+### Safe synchronization and contribution checkpoints
+
+Before starting work, claiming a new substantive objective, or integrating a
+completed packet, fetch and reconcile remote updates without overwriting
+uncommitted changes. Keep user-owned changes and live worker outputs out of
+unrelated checkpoints. The parent coordinates shared-checkout Git writes;
+workers do not race to stage, commit, switch branches or push the same tree.
+
+After a substantive package passes focused compilation, or a recoverable
+stage checkpoint is ready, commit and push it promptly to the contribution
+branch rather than waiting for the entire goal. Mark unreviewed results
+`proved_locally` or `WIP`, retain exact evidence bindings, and verify the remote
+commit before calling the checkpoint delivered. If synchronization or push
+fails, report the cause immediately; local completion is not remote delivery.
+Do not force-push, reset user changes, silently amend frozen evidence, or
+substitute a checkpoint for the full integration gates.
+
+Only complete required source, Lean, semantic, executable, publication and
+reader gates permit main admission. A pushed checkpoint is not a certified
+population winner, root closure, deployment or mathematical progress by itself.
+Branch cleanup remains salvage-first and must preserve unique work, protected
+PR/worktree branches and recoverable history.
+
 ### Algorithm and cost refinement packets
 
 When a resource-search frontier reaches classical extraction, distinguish

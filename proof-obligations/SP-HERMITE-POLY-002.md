@@ -451,3 +451,76 @@ amplification bound. Compare its full signed action to the literal returned
 TT padded with zero ancillas, not to a freshly normalized replacement. This
 is a design, with no new experiment, producer or theorem yet accepted.
 Evidence: [next circuit design](../experiments/hermite-polynomial/precision/next-circuit-frontier-design.json).
+
+### Cycle 13 finite suppliers and actual saved action
+
+The radius approximation is now a computable Lean rational producer, not an
+assumed interval around `pi`. `logRadius` uses finite Machin sums and a checked
+logarithmic term allocation. It returns a positive rational with proved
+membership around the original `pi*L` and error at most its requested **radius**
+tolerance. The normalized consumer preserves the charge
+`2*sqrt(2^n_p)*C(k)*radiusTolerance`. This tolerance is not automatically the
+global state budget. Canonical input-size translation, every stored
+intermediate, GCD/allocation/runtime and an external implementation refinement
+remain open. [Radius supplier](../experiments/hermite-polynomial/precision/radius-supplier/result.json).
+
+For every rational angle and natural degree, literal finite sin/cos Taylor
+polynomials now enclose the exact trigonometric values with radius
+`abs(q)^(degree+1)/(degree+1)!`. The bounded degree search either returns a
+checked width or honestly fails at its cap. There is no magnitude hypothesis
+or free transcendental evaluator. Parent replay compiled scalar, producer and
+consumer sources and passed seven exact Python tests; those tests do not
+prove Python, decimal parsing or outward-rounding refinement.
+[Trigonometric supplier](../experiments/hermite-polynomial/precision/finite-trig/result.json).
+
+The previously proposed saved-action experiment has been performed for the
+actual OffsetSource `n_p=3,k=1,L=1` return. One compiler plan produced 456 saved
+gates; the compact action chain retains all four terminal bond labels. Its
+exact-rational candidate bound to the **literal**, unrenormalized stored
+return is approximately `1.18153e-13`; the separate saved-Qiskit binary64
+diagnostic observed approximately `2.00613e-15`. Fifteen regressions passed,
+including missing artifacts and signed/order/readout discriminators. This is
+one finite diagnostic, not a symbolic family certificate or ideal-source
+error bound. Parser, interval/stage/readout and Python-to-Lean refinement remain
+open. [Saved action](../experiments/hermite-polynomial/precision/saved-action/result-v1.json).
+
+A separate kernel provider proves the required nonunitary-surrogate transport:
+chronological product error is at most `product(1+eta_i)-1`. Its operator-action
+consumer retains the input norm factor. Two scalar surrogates `11/10` already
+give error `21/100`, greater than the naive summed `20/100`. The actual saved
+stage interval-to-operator-norm bridge must still supply this provider's
+internal local-error interface; no such condition is added to the scientific
+Anchor. [Transport](../experiments/hermite-polynomial/precision/nonunitary-transport/result.json).
+
+All four packages are contribution-branch research checkpoints, with distinct
+scoped reviews pending at checkpoint time. Complete provider and consumer
+compilations use ordinary foundational axioms. C2/C3/X2/ROOT, whole-module
+publication, clean reader/CI and main admission remain open. Earlier frozen
+packets and failures remain immutable. Checkpoints `667cc30`, `0fe774c` and
+`fa5866a` were pushed and their exact remote heads verified; pushing is not
+acceptance. Main remains at `305952f` with Lean 4.29.1, while these local proofs
+use Lean 4.33.0. User-owned images and Robin artifacts were excluded.
+
+The next root interfaces are a charged global rational precision allocation,
+ideal source/scalar-to-stored-TT error, the actual full saved-action refinement,
+and total finite-bit preprocessing/synthesis cost. New textbook slices and the
+four bounded publication records retain their previous status; this cycle
+does not claim whole-textbook or changed-module admission.
+
+Distinct fresh-context reviewers subsequently accepted the three internal
+proof providers and the narrow saved-action diagnostic, with independent
+complete-source recompilation, exact word-Gram/readout and rebound-QASM
+checks. Parent reproduced the six reviewer kernel discriminators, all five
+exact-rational tests and the saved-action independent checker. Exciting a
+terminal ancilla gives full error about `sqrt(2)`, rather than disappearing
+under an accepted-sector projection. This is scoped internal review, not
+source-blind approval of the complete Hermite construction.
+
+Two additional small cases also show why the layers remain separate: binary64
+Qiskit diagnostic errors can exceed their tiny exact-textual-decimal candidate
+bounds. The latter do not bound simulator rounding; neither observation
+certifies arbitrary-epsilon binary64 success. Logical matrix-cell copying
+counts are not literal Python allocations, and a largest local matrix is not
+total peak live memory. Full numerical-backend and bit-cost accounting remain
+required. Frozen author records are retained unchanged, with these limitations
+in the new independent audits.

@@ -385,3 +385,46 @@ It compares a rational stage surrogate with the literal returned TT, keeping
 nonunitary-surrogate amplification and source errors separate. It is
 `DESIGN_ONLY`, not a performed experiment, successful crossover or resource
 selection. [Design](../experiments/hermite-polynomial/precision/next-circuit-frontier-design.json).
+
+### Cycle 13 finite supplier crossover and saved diagnostic
+
+The radius candidate now has an actual kernel-checked finite rational Machin
+producer with logarithmic term allocation. It consumes the previous original
+source stability interface without changing the target. The exact normalized
+error still carries `2*sqrt(2^n_p)*C(k)`; a radius tolerance is not silently
+treated as global state epsilon. Total stored bit/GCD/runtime and downstream
+precision composition remain open.
+
+An independent direction supplies all-rational finite Taylor sin/cos
+enclosures and a bounded executable degree search. The actual saved-action
+diagnostic crosschecks its 26 half-angles against these formulas, with outward
+rounding kept in the interval budget. Neither formula reuse nor finite tests
+certify the Python/Lean decoder and stage-action bridge.
+
+The same OffsetSource/QR return and single compiler plan now have a compact
+full-garbage saved-action candidate for `n_p=3,k=1,L=1`: 456 saved gates,
+four terminal bond labels and no renormalized target replacement. Its bound
+to literal stored D is approximately `1.18153e-13`. The separate Qiskit
+diagnostic and 15 regressions are finite supporting evidence, not a new
+certified family or selected resource winner.
+
+Kernel product transport separately retains possible surrogate amplification
+as `product(1+eta_i)-1`; nominal stage contraction and actual local operator
+error must still be proved by the concrete stage producer. These new nodes
+advance internal analytic and executable frontiers, not C2/C3/X2/ROOT. The
+exponential baseline, prior failed implementations, candidate lineage and
+immutable seals remain retained. Distinct review was pending when the local
+packages were checkpointed and pushed to the contribution branch.
+
+Evidence: [radius](../experiments/hermite-polynomial/precision/radius-supplier/result.json),
+[finite trig](../experiments/hermite-polynomial/precision/finite-trig/result.json),
+[saved action](../experiments/hermite-polynomial/precision/saved-action/result-v1.json),
+[nonunitary transport](../experiments/hermite-polynomial/precision/nonunitary-transport/result.json).
+
+The later distinct scoped reviews accept the internal provider mathematics
+and narrow exact-decimal saved residual, not a resource winner. Independent
+terminal-excitation and order/sign/angle mutants discriminate full-garbage
+error. Some additional Qiskit binary64 errors exceed tiny exact-decimal
+candidate bounds: parser/simulator rounding, physical synthesis and ideal
+source error remain separate charged edges. Local matrix-cell counts do not
+establish total Python peak RAM or GCD/runtime costs.
