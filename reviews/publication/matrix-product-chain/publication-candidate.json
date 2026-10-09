@@ -94,6 +94,6 @@
   "residual_boundary": "Only13-declaration current whole module; not whole imported providers or scientific/physical state ROOT.",
   "decoder_evidence": "reviews/publication/matrix-product-chain/decoder-evidence.json",
   "reviewer_evidence": "reviews/publication/matrix-product-chain/reviewer-evidence.json",
-  "status": "WIP_RETROSPECTIVE_CONTRACT_PENDING_DISTINCT_REVIEW",
+  "status": "SOURCE_REVIEWED_LOCAL; reader/purification/main pending",
   "binding_sha256": "5645420d2fcf3ee029fe958418202693b5c607aeb8c80bd9246293abbe3b774f"
 }

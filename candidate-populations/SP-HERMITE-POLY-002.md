@@ -490,3 +490,22 @@ Variable-target RY/CX full stages and operator-error transport are a separate
 construction uncertainty. Fixed-pair interval closure and finite 4x4 tests do
 not supply it. No new resource tuple or winner replaces the retained baseline.
 [Reviewed evidence](../experiments/hermite-polynomial/precision/cycle15-staging-result.json).
+
+### Reviewed rational middle and full-stage semantic mutations
+
+The finite-middle mutation now supplies literal rational coefficients,
+the actual complete exponential midpoint, exact central value 1 and the
+all-k scalar error amplification. The full-stage mutation supplies arbitrary
+physical changing-target RY/CX enclosure and a real Euclidean eta from the
+completed outward-rounded matrix. Both have distinct accepted internal
+reviews; retained implementation failures are not relabelled green.
+
+These are dependency-ready proof assets, not new scientific population
+winners. No improved complete resource tuple or executable family acceptance
+is asserted. The source-to-stored-TT/global-normalization fork and the
+nominal-contraction/actual-product-transport fork are separate uncertainties.
+No source norm, contraction, free oracle or projected garbage is assumed.
+Dense materialization remains exponential when width grows with n_p; the
+symbolic full-matrix bound is not a scalable implementation certificate.
+The original baseline and failure records remain available.
+[Cycle 16 aggregate](../experiments/hermite-polynomial/precision/cycle16-staging-result.json).

@@ -618,3 +618,33 @@ stdin encoding failed; the unchanged replay passed under UTF-8 PowerShell 7.
 Scientific C2/C3/X2/ROOT, full executable family acceptance, finite-bit
 resources, main migration and reader purification remain open.
 [Aggregate](../experiments/hermite-polynomial/precision/cycle15-staging-result.json).
+
+### Literal middle source and complete real-stage enclosure
+
+The all-k rational middle evaluator now has a proved error against the
+unchanged original source: `delta/2 * (k+1)^2 * 2^(2*k)` on `[-1,0]`,
+with exact central value 1. Its distinct whole-source review passes.
+This is a scalar bound, not an allocated normalized-state epsilon or a
+finite-bit preprocessing theorem. The original tails, rational-radius grid,
+stored cores and dimension-aware normalization still need composition.
+
+Changing-target RY/CX words now have a literal full-matrix interval interpreter
+and a produced real Euclidean operator error bound
+`eta = 2^width * maximum entry halfwidth`. RY is rounded outward at every step;
+CX permutes physical rows; midpoint extraction occurs only after the stage.
+Distinct review and parent corrected kernel/finite discriminators pass.
+The nominal exact-stage contraction and actual nonunitary product transport,
+complex primitive adapter, parser and complete garbage/readout are still open.
+The midpoint surrogate is not assumed unitary or contractive.
+
+Full matrix expansion has `4^width` entries; these symbolic semantic theorems
+do not make that expansion efficient. Local-support lifting or explicitly
+charged dense work is required before a polynomial-resource claim. All
+intermediate bit/GCD/storage/runtime and physical synthesis costs remain open.
+
+The unchanged MatrixProductChain module has completed its 13-declaration
+source-blind and separate source-first review. Six local publication records
+validate, but 45 of the 51 changed modules still lack records, so the whole
+admission gate rejects. Main migration, clean reader/CI, C2/C3/X2/ROOT and
+full executable family acceptance are not promoted.
+[Cycle 16 evidence](../experiments/hermite-polynomial/precision/cycle16-staging-result.json).
