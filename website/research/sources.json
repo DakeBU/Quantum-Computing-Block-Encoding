@@ -281,6 +281,17 @@
       "anchor": "Local authored source docs/lessons/matrix-products-with-boundaries.md; exact binding and distinct reviews in reviews/publication/matrix-product-chain/",
       "scope": "Exact finite real boundary absorption, ordered coefficient preservation, bond bound and scalar-address count. No normalization, circuit/endian action, actual stored producer, runtime or finite-bit cost claim.",
       "formal_status": "existing local module; sourceblind whole-module review pending"
+    },
+    {
+      "id": "aspbe-local-stored-matrix-product-chain",
+      "title": "Boundary absorption from stored matrix tables",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/stored-boundary-absorption.md; exact binding and distinct reviews in reviews/publication/stored-matrix-product-chain/",
+      "scope": "Same returned stored boundary chain, exact finite-window refinement, actual bonds and eight-counter exact-real arithmetic/materialization/reference traffic. Input generation, bit/index arithmetic, runtime, numerical and physical circuit costs excluded.",
+      "formal_status": "existing local module; sourceblind whole-module review pending"
     }
   ]
 }

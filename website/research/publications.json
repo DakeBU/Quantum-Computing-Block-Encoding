@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "migration_policy": "Four bounded whole-module local mathematical-contract packets have genuine distinct decoder/source-first-reviewer evidence and stable raw-byte bindings. Context reuse is disclosed. PrimitiveBasisLE retains existing native evaluator trust; GrayBasis and ConstructiveThinLQ reviewed roots use ordinary axioms only. All other changed modules still require independent review; unchanged historical modules retain legacy debt. Local registry integrity acceptance is not integrated reader/source/purification admission, main migration or a quantum algorithm/resource certificate.",
+  "migration_policy": "Registered bounded whole-module local mathematical-contract packets have genuine distinct decoder/source-first-reviewer evidence and stable raw-byte bindings. Context reuse is disclosed. PrimitiveBasisLE retains existing native evaluator trust; other reviewed packets disclose their own axiom census. All other changed modules still require independent review; unchanged historical modules retain legacy debt. Local registry integrity acceptance is not integrated reader/source/purification admission, main migration or a quantum algorithm/resource certificate.",
   "records": [
     {
       "module": "QuantumBlockEncoding/ThinLQ.lean",
