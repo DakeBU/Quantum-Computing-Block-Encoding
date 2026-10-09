@@ -143,6 +143,6 @@
   "residual_boundary": "Only the complete current29-declaration module and displayed exact-real model; no whole dependencies/new scientific root/main promotion.",
   "decoder_evidence": "reviews/publication/stored-tensor-train-norm/decoder-evidence.json",
   "reviewer_evidence": "reviews/publication/stored-tensor-train-norm/reviewer-evidence.json",
-  "status": "WIP_RETROSPECTIVE_CONTRACT_PENDING_DISTINCT_REVIEW",
+  "status": "SOURCE_REVIEWED_LOCAL; reader/purification/main pending",
   "binding_sha256": "7aa774a6dfeea6acc7976f88dc274a200375e4cc09526ddfa7fefbe759cdcd66"
 }

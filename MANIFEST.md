@@ -8412,3 +8412,4 @@ block-encoding formalization lifecycle.
 | 2026-10-09 01:21:48 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-parent-stored-gram-preflight-20261009 |
 | 2026-10-09 01:26:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-exp-degree-20261009 |
 | 2026-10-09 01:35:35 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-saved-rounding-20261009 |
+| 2026-10-09 10:49:33 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-stored-gram-independent-source-review |
