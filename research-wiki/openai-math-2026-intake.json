@@ -1,13 +1,19 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "external-lean-intake",
   "upstream": {
     "repository": "openai/math",
     "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
     "release_date": "2026-10-06",
     "license": "Apache-2.0",
+    "lean_toolchain": "leanprover/lean4:v4.34.1",
     "floating_main_allowed": false,
     "verification_status_required": true
+  },
+  "local_boundary": {
+    "lean_toolchain": "leanprover/lean4:v4.33.0",
+    "direct_package_dependency_allowed": false,
+    "reason": "Lean 4.33.0 is the local migration target, not an assertion that the current main proof tree has already migrated. The published build report records its actual toolchain. Upstream material remains pinned source or adapter input until separately ported, compiled and admitted; no direct package dependency is allowed."
   },
   "clusters": [
     {
@@ -16,23 +22,31 @@
       "upstream_sha": "44b141f8943100e08320bea56569203443e40d5d",
       "priority": "A",
       "class": "adapter-backed",
-      "local_targets": [
-        "QuantumBlockEncoding/Circuit.lean",
-        "QuantumBlockEncoding/CircuitSemantics.lean",
-        "QuantumBlockEncoding/ConcreteSemantics.lean",
-        "QuantumBlockEncoding/PrimitiveCircuit.lean",
-        "QuantumBlockEncoding/PrimitiveSemantics.lean",
-        "QuantumBlockEncoding/ReversibleClassical.lean"
-      ],
-      "routes": [
-        "physical-circuit-semantics",
-        "circuit-complexity-parity-lower-bound"
-      ],
-      "upstream_verification": {
-        "status": "comparator-backed",
-        "config": "ComparatorChallenges/RegularParity.json",
-        "declaration": "OAI.QAC.parity_lower_bound_polynomial_size"
-      }
+      "local_targets": ["QuantumBlockEncoding/Circuit.lean", "QuantumBlockEncoding/CircuitSemantics.lean", "QuantumBlockEncoding/ConcreteSemantics.lean", "QuantumBlockEncoding/PrimitiveCircuit.lean", "QuantumBlockEncoding/PrimitiveSemantics.lean", "QuantumBlockEncoding/ReversibleClassical.lean"],
+      "routes": ["physical-circuit-semantics", "circuit-complexity-parity-lower-bound"],
+      "curriculum": ["part-i-state-preparation:sp-walsh", "part-iv-quantum-scientific-computing:qsc-compiler-complexity"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/RegularParity.json", "declaration": "OAI.QAC.parity_lower_bound_polynomial_size"}
+    },
+    {
+      "id": "oai-exact-fourier",
+      "path": "lean/OAI/Computability/FourierCircuit",
+      "upstream_sha": "1060a9046be0de7c038c5df506dd7f9893485b8c",
+      "priority": "A",
+      "class": "source-route",
+      "local_role": "exact Fourier-circuit construction and resource theorem; supplier to Fourier/QPE chapters after circuit-model adaptation",
+      "curriculum": ["part-ii-block-encoding:be-fourier-suppliers", "part-iv-quantum-scientific-computing:qsc-fourier-estimation"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/ExactFourier.json", "declaration": "OAI.ExactFourier.main_theorem"},
+      "next_action": "compare circuit ordering, gate set and cost tuple with the local circuit/resource API; do not present the Fourier result as a block encoding or QPE certificate"
+    },
+    {
+      "id": "oai-exact-quantum-factoring",
+      "path": "lean/OAI/Computability/QuantumFactoring",
+      "priority": "A",
+      "class": "source-route",
+      "local_role": "full quantum algorithm/circuit/compiler route with arithmetic, oracle and resource semantics",
+      "curriculum": ["part-iv-quantum-scientific-computing:qsc-compiler-complexity"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/ExactQuantumFactoring.json", "declaration": "OAI.ExactQuantumFactoring.exact_quantum_factoring"},
+      "next_action": "mine circuit/compiler/resource primitives that can share with ASPBE before exposing the factoring endpoint"
     },
     {
       "id": "oai-amplitude-damping",
@@ -41,11 +55,8 @@
       "priority": "B",
       "class": "source-route",
       "local_role": "quantum channel, entropy, Holevo information, and operational capacity",
-      "upstream_verification": {
-        "status": "comparator-backed",
-        "config": "ComparatorChallenges/AmplitudeDamping.json",
-        "declaration": "OAI.GAD.main"
-      }
+      "curriculum": ["part-iii-quantum-information:qit-channels-distances", "part-iii-quantum-information:qit-capacity-entanglement", "part-iv-quantum-scientific-computing:qsc-linear-open"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/AmplitudeDamping.json", "declaration": "OAI.GAD.main"}
     },
     {
       "id": "oai-entanglement",
@@ -54,9 +65,29 @@
       "priority": "B",
       "class": "adapter-backed",
       "local_role": "candidate foundational QIT spine; declaration-by-declaration admission only",
-      "upstream_verification": {
-        "status": "lean-present-not-single-comparator-audited"
-      }
+      "curriculum": ["part-iii-quantum-information:qit-states-measurements", "part-iii-quantum-information:qit-composites", "part-iii-quantum-information:qit-channels-distances", "part-iv-quantum-scientific-computing:qsc-foundations"],
+      "upstream_verification": {"status": "lean-present-not-single-comparator-audited"}
+    },
+    {
+      "id": "oai-ppt-square",
+      "path": "lean/OAI/Analysis/Quantum/PPTSquare",
+      "upstream_sha": "9daacee5675b6422b8c21de5e5089a9e6b80516d",
+      "priority": "B",
+      "class": "adapter-backed",
+      "local_role": "CP/PPT/trace-preserving/entanglement-breaking channel geometry and an explicit PPT-square counterexample route",
+      "curriculum": ["part-iii-quantum-information:qit-channels-distances", "part-iii-quantum-information:qit-optics-counterexamples"],
+      "upstream_verification": {"status": "lean-present-not-comparator-audited"},
+      "next_action": "admit only after canonical CP, PPT, trace-preserving, Choi and entanglement-breaking adapters are fixed"
+    },
+    {
+      "id": "oai-entangled-games",
+      "path": "lean/OAI/Probability/EntangledGames",
+      "priority": "B",
+      "class": "adapter-backed",
+      "local_role": "finite-dimensional entangled-game, measurement, purification and repeated-game information route",
+      "curriculum": ["part-iii-quantum-information:qit-capacity-entanglement"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/EntangledGames.json", "declaration": "OAI.ThresholdParallelRepetition.threshold_parallel_repetition"},
+      "next_action": "reuse only after state/measurement/trace-distance adapters are canonical"
     },
     {
       "id": "oai-photon-number",
@@ -65,11 +96,8 @@
       "priority": "C",
       "class": "source-route",
       "local_role": "quantum optics and entropy photon-number route",
-      "upstream_verification": {
-        "status": "comparator-backed",
-        "config": "ComparatorChallenges/EntropyPhotonNumber.json",
-        "declaration": "OAI.EntropyPhotonNumber.entropy_photon_number_inequality"
-      }
+      "curriculum": ["part-iii-quantum-information:qit-optics-counterexamples"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/EntropyPhotonNumber.json", "declaration": "OAI.EntropyPhotonNumber.entropy_photon_number_inequality"}
     },
     {
       "id": "oai-secret-key",
@@ -78,9 +106,72 @@
       "priority": "C",
       "class": "source-route",
       "local_role": "advanced QIT / private-key route after foundation adapters",
-      "upstream_verification": {
-        "status": "lean-present-not-comparator-audited"
-      }
+      "curriculum": ["part-iii-quantum-information:qit-capacity-entanglement"],
+      "upstream_verification": {"status": "lean-present-not-comparator-audited"}
+    },
+    {
+      "id": "oai-dimension-ten-channel",
+      "path": "lean/OAI/Analysis/Quantum/DimensionTen",
+      "priority": "C",
+      "class": "source-route",
+      "local_role": "quantum-channel existence and geometry route",
+      "curriculum": ["part-iii-quantum-information:qit-optics-counterexamples"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/DimensionTenChannel.json", "declaration": "OAI.DimensionTen.exists_channel_fin21"}
+    },
+    {
+      "id": "oai-dimension-ten-secret-key-bridge",
+      "path": "lean/OAI/InformationTheory/DimensionTen",
+      "upstream_sha": "5bfdd209a7743b3297ea4a43939e93ddac495f5e",
+      "priority": "C",
+      "class": "source-route",
+      "local_role": "companion density-state, entanglement, Choi-transfer and finite readout/key construction above the DimensionTen and SecretKey layers",
+      "curriculum": ["part-iii-quantum-information:qit-capacity-entanglement"],
+      "upstream_verification": {"status": "lean-present-not-comparator-audited"},
+      "next_action": "keep this as a downstream consumer; do not promote its local density or separability wrappers as the shared QIT foundation"
+    },
+    {
+      "id": "oai-young-unitary-infrastructure",
+      "paths": [
+        {"path": "lean/OAI/RepresentationTheory/Young", "upstream_sha": "ab717869bb3051edc9f1472451adf109e4108874"},
+        {"path": "lean/OAI/RepresentationTheory/YoungSymmetry", "upstream_sha": "e7f80dc745f95c325563f76cc6539057c0136553"},
+        {"path": "lean/OAI/RepresentationTheory/FiniteUnitary", "upstream_sha": "acf22275958cc8947b5752724a5973c8a299865c"}
+      ],
+      "priority": "B",
+      "class": "adapter-backed",
+      "local_role": "Young/Specht and finite-unitary representation ingredients relevant to Schur-Weyl prerequisites",
+      "curriculum": ["part-iii-quantum-information:qit-representation-foundations", "part-iii-quantum-information:qit-schur-weyl"],
+      "upstream_verification": {"status": "lean-present-not-comparator-audited"},
+      "next_action": "purify manuscript-specific namespaces and assumptions, then admit only source-independent declarations with a real textbook consumer"
+    },
+    {
+      "id": "oai-saxl",
+      "path": "lean/OAI/RepresentationTheory/Saxl",
+      "upstream_sha": "e3debffec758d8039f9b0492d72dabfcc6215e79",
+      "priority": "C",
+      "class": "source-route",
+      "local_role": "advanced symmetric-group and Specht-module route, not a prerequisite for Schur-Weyl",
+      "curriculum": ["part-iii-quantum-information:qit-schur-weyl"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/Saxl.json", "declaration": "OAI.Saxl.saxl_conjecture"}
+    },
+    {
+      "id": "oai-foulkes-howe",
+      "path": "lean/OAI/RepresentationTheory/FoulkesHowe",
+      "upstream_sha": "d2faedce7dd45be80dc531db206771f0d5641219",
+      "priority": "C",
+      "class": "source-route",
+      "local_role": "advanced plethysm/Foulkes-Howe route, not a prerequisite for quantum representation theory",
+      "curriculum": ["part-iii-quantum-information:qit-schur-weyl"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/FoulkesHowe.json", "declaration": "OAI.Problem346.canonical_foulkes_howe_surjective"}
+    },
+    {
+      "id": "oai-laughlin",
+      "path": "lean/OAI/Analysis/Laughlin",
+      "upstream_sha": "4587da123e9b5395af44045595583fb0152b9666",
+      "priority": "C",
+      "class": "source-route",
+      "local_role": "many-body model-side mathematical target; not a quantum-algorithm or simulator certificate",
+      "curriculum": ["part-iv-quantum-scientific-computing:qsc-many-body-models"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/Laughlin.json", "declaration": "OAI.Laughlin.mainTarget_proved"}
     },
     {
       "id": "oai-soft-channel",
@@ -89,49 +180,8 @@
       "priority": "C",
       "class": "canonical-leaf",
       "local_role": "classical information-theory candidate substrate, not quantum-labelled by default",
-      "upstream_verification": {
-        "status": "comparator-backed",
-        "config": "ComparatorChallenges/SoftChannel204.json",
-        "declaration": "OAI.SoftChannel204.fullMain"
-      }
-    },
-    {
-      "id": "oai-exact-quantum-factoring",
-      "path": "lean/OAI/Computability/QuantumFactoring",
-      "priority": "A",
-      "class": "source-route",
-      "local_role": "full quantum algorithm/circuit/compiler route with arithmetic, oracle and resource semantics",
-      "upstream_verification": {
-        "status": "comparator-backed",
-        "config": "ComparatorChallenges/ExactQuantumFactoring.json",
-        "declaration": "OAI.ExactQuantumFactoring.exact_quantum_factoring"
-      },
-      "next_action": "mine circuit/compiler/resource primitives that can share with ASPBE before exposing the factoring endpoint"
-    },
-    {
-      "id": "oai-entangled-games",
-      "path": "lean/OAI/Probability/EntangledGames",
-      "priority": "B",
-      "class": "adapter-backed",
-      "local_role": "finite-dimensional entangled-game, measurement, purification and repeated-game information route",
-      "upstream_verification": {
-        "status": "comparator-backed",
-        "config": "ComparatorChallenges/EntangledGames.json",
-        "declaration": "OAI.ThresholdParallelRepetition.threshold_parallel_repetition"
-      },
-      "next_action": "reuse only after state/measurement/trace-distance adapters are canonical"
-    },
-    {
-      "id": "oai-dimension-ten-channel",
-      "path": "lean/OAI/Analysis/Quantum/DimensionTen",
-      "priority": "C",
-      "class": "source-route",
-      "local_role": "quantum-channel existence/geometry route",
-      "upstream_verification": {
-        "status": "comparator-backed",
-        "config": "ComparatorChallenges/DimensionTenChannel.json",
-        "declaration": "OAI.DimensionTen.exists_channel_fin21"
-      }
+      "curriculum": ["part-iii-quantum-information:qit-capacity-entanglement"],
+      "upstream_verification": {"status": "comparator-backed", "config": "ComparatorChallenges/SoftChannel204.json", "declaration": "OAI.SoftChannel204.fullMain"}
     },
     {
       "id": "oai-randomized-quantum-query-separation",
@@ -139,9 +189,8 @@
       "priority": "B",
       "class": "benchmark-only",
       "local_role": "quantum query-complexity frontier",
-      "upstream_verification": {
-        "status": "manuscript-only-in-current-audit"
-      },
+      "curriculum": ["part-iv-quantum-scientific-computing:qsc-foundations"],
+      "upstream_verification": {"status": "manuscript-only-in-current-audit"},
       "next_action": "locate exact formalization/comparator mapping before any Lean-status claim; then connect to query/oracle complexity graph"
     },
     {
@@ -150,29 +199,34 @@
       "priority": "B",
       "class": "benchmark-only",
       "local_role": "oracle-assisted unitary synthesis frontier directly relevant to ASPBE synthesis semantics",
-      "upstream_verification": {
-        "status": "manuscript-only-in-current-audit"
-      },
-      "next_action": "compare target/operator/oracle/resource contract with ASPBE synthesis API before formal route creation"
+      "curriculum": ["part-ii-block-encoding:be-diagonal", "part-iv-quantum-scientific-computing:qsc-compiler-complexity"],
+      "upstream_verification": {"status": "manuscript-only-in-current-audit"},
+      "next_action": "compare target/operator/oracle/resource contract with the ASPBE synthesis API before formal route creation"
+    }
+  ],
+  "explicit_non_matches": [
+    {
+      "id": "oai-naimark-zfc-not-measurement-dilation",
+      "path": "lean/OAI/Analysis/Naimark",
+      "class": "out-of-scope",
+      "reason": "This cluster concerns the C*-algebra Naimark problem (simplicity and irreducible representations), not Naimark dilation for POVMs. Lexical similarity must not create a QIT measurement edge."
+    },
+    {
+      "id": "oai-quantum-word-preprints-without-algorithm-contract",
+      "path": "preprints/",
+      "class": "out-of-scope",
+      "reason": "A title containing quantum, many-body or field-theory terminology is not automatically a quantum-computing theorem. Admit only an exact theorem with a curriculum consumer and semantic adapter."
     }
   ],
   "hard_guards": [
     "No bulk copy of OAI.InformationTheory.Entanglement.",
+    "No direct OpenAI Math package dependency while its pinned snapshot is Lean 4.34.1 and the local project is Lean 4.33.0.",
     "No parity lower-bound node may be counted as a block-encoding or state-preparation success.",
+    "No Fourier-circuit theorem may be counted as a block encoding, QPE theorem, or state-preparation certificate without the corresponding local adapter and root.",
     "No new foundational state/channel/POVM type before local, Mathlib, and audited external-QIT reuse search.",
     "No solid graph edge without a local compiled theorem or adapter."
   ],
   "execution_order": [
-    "oai-quantum-circuit",
-    "oai-exact-quantum-factoring",
-    "oai-amplitude-damping",
-    "oai-entanglement",
-    "oai-entangled-games",
-    "oai-photon-number",
-    "oai-dimension-ten-channel",
-    "oai-secret-key",
-    "oai-soft-channel",
-    "oai-unitary-synthesis-boolean-oracle",
-    "oai-randomized-quantum-query-separation"
+    "oai-quantum-circuit", "oai-exact-fourier", "oai-exact-quantum-factoring", "oai-entanglement", "oai-young-unitary-infrastructure", "oai-amplitude-damping", "oai-ppt-square", "oai-entangled-games", "oai-photon-number", "oai-dimension-ten-channel", "oai-dimension-ten-secret-key-bridge", "oai-secret-key", "oai-saxl", "oai-foulkes-howe", "oai-laughlin", "oai-soft-channel", "oai-unitary-synthesis-boolean-oracle", "oai-randomized-quantum-query-separation"
   ]
 }

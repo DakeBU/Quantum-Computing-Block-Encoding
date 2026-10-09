@@ -15,7 +15,37 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
-def run(root: Path, output: Path) -> None:
+def check_blueprint_search(page, base: str) -> None:
+    """Exercise emitted modules and the real declaration jump, not just files."""
+    name = "QuantumBlockEncoding.HermiteStatePreparation.hermiteStatePreparation_complete"
+    page.set_viewport_size({"width": 1280, "height": 900})
+    page.goto(f"{base}/blueprint/html-multi/index.html", wait_until="networkidle", timeout=90000)
+    page.wait_for_selector('[role="searchbox"]', timeout=30000)
+    names = page.evaluate("""async () => {
+      const module = await import('./-verso-search/domain-mappers.js');
+      const domain = '«Informal.LeanCodePreview»';
+      const xref = await (await fetch('xref.json')).json();
+      const mapped = module.domainMappers[domain].dataToSearchables(xref[domain]);
+      return mapped.map(entry => entry.searchKey);
+    }""")
+    if name not in names or len(names) != len(set(names)):
+        raise AssertionError("Blueprint search lost the exact root or duplicated declarations")
+    # Verso's combobox listens to keyboard events, not a synthetic input fill.
+    page.locator('[role="searchbox"]').press_sequentially(name, delay=1)
+    result = page.locator('#cb1-listbox a[href*="--statement"]').filter(has_text=name).first
+    result.wait_for(state="visible", timeout=30000)
+    destination = result.get_attribute("href")
+    result.click()
+    page.wait_for_load_state("networkidle", timeout=90000)
+    if not destination or not page.evaluate("""() => {
+      const anchor = decodeURIComponent(location.hash.slice(1));
+      return Boolean(anchor && document.getElementById(anchor));
+    }"""):
+        raise AssertionError("Blueprint exact declaration jump reached an absent anchor")
+
+
+def run(root: Path, output: Path, browser_channel: str | None = None,
+        require_blueprint: bool = False) -> None:
     from playwright.sync_api import sync_playwright
     output.mkdir(parents=True, exist_ok=True)
     server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(QuietHandler, directory=str(root.resolve())))
@@ -24,10 +54,13 @@ def run(root: Path, output: Path) -> None:
     base = f"http://127.0.0.1:{server.server_port}"
     records = []
     failures = []
-    routes = ["mathematical-methods", "functor-hypergraph", "state-preparation-wiki", "progress", "lean-graph"]
+    blueprint_passed = False
+    routes = ["mathematical-methods", "functor-hypergraph", "state-preparation-wiki",
+              "progress", "lean-graph", "quantum-information",
+              "quantum-scientific-computing"]
     try:
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch()
+            browser = playwright.chromium.launch(channel=browser_channel)
             context = browser.new_context(permissions=["clipboard-read", "clipboard-write"])
             page = context.new_page()
             page.on("pageerror", lambda error: failures.append(str(error)))
@@ -48,6 +81,12 @@ def run(root: Path, output: Path) -> None:
                         if route == "functor-hypergraph":
                             page.wait_for_selector('svg[data-edge-id]', timeout=30000)
                             select = page.locator("[data-ra-edge]")
+                            for edge_id, tail_count in (("transport:walsh-loader", 4),
+                                                         ("transport:diagonal-filter-state", 3)):
+                                select.select_option(edge_id)
+                                page.wait_for_function("count => Number(document.querySelector('[data-ra-svg]').dataset.tailCount) === count", arg=tail_count)
+                                if page.locator("[data-ra-svg] a").count() != tail_count + 1:
+                                    failures.append("AND input set was dropped from " + edge_id)
                             select.select_option("transport:tt-to-sp")
                             page.wait_for_function("document.querySelector('[data-ra-svg]').dataset.tailCount === '3'")
                             if page.locator("[data-ra-svg] a").count() != 4:
@@ -98,12 +137,19 @@ def run(root: Path, output: Path) -> None:
             with page.expect_download() as download_event:
                 page.locator('[data-ra-download-svg]').click()
             download_event.value.save_as(output / "transport-export.svg")
+            if require_blueprint:
+                try:
+                    check_blueprint_search(page, base)
+                    blueprint_passed = True
+                    page.screenshot(path=str(output / "blueprint-exact-root.png"), full_page=False)
+                except Exception as error:
+                    failures.append("Blueprint browser check failed: " + type(error).__name__)
             context.close()
             browser.close()
     finally:
         server.shutdown()
         server.server_close()
-    report = {"automated_browser_checks": records, "failures": failures, "manual_visual_review": "not asserted by this script"}
+    report = {"automated_browser_checks": records, "failures": failures, "browser_channel": browser_channel or "playwright-chromium", "blueprint_search_required": require_blueprint, "blueprint_search_passed": blueprint_passed, "manual_visual_review": "not asserted by this script"}
     (output / "browser-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     if failures:
         raise SystemExit("Research browser checks failed:\n" + "\n".join(failures))
@@ -114,5 +160,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=Path("_out/research-browser"))
+    parser.add_argument("--require-blueprint", action="store_true",
+                        help="Also check the real Blueprint search and exact-root jump; absence fails.")
+    parser.add_argument("--browser-channel", choices=("chrome", "msedge"),
+                        help="Use an installed Chromium-family browser; CI defaults to Playwright Chromium.")
     args = parser.parse_args()
-    run(args.root.resolve(), args.output)
+    run(args.root.resolve(), args.output, args.browser_channel, args.require_blueprint)

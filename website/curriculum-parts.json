@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "truthBoundary": "This catalog is a textbook placement map. A listed source, upstream Lean cluster, or extended chapter is not a local ASPBE theorem unless an exact compiled declaration is linked separately.",
+  "parts": [
+    {
+      "id": "part-i-state-preparation",
+      "label": "Part I",
+      "title": "State Preparation",
+      "route": "state-preparation/",
+      "status": "Partial route",
+      "summary": "The compiled preparation contract and finite examples are joined by source-audited routes for structured, scalable state loading.",
+      "sourceIds": [
+        "zylberman-debbasch-2024-walsh",
+        "zylberman-et-al-2025-diagonal"
+      ],
+      "chapters": [
+        {
+          "id": "sp-core",
+          "title": "Compiled preparation contracts and certificates",
+          "status": "Compiled",
+          "summary": "Normalized targets, unitary candidates, first-column semantics and exact finite witnesses.",
+          "href": "state-preparation/",
+          "oaiClusters": []
+        },
+        {
+          "id": "sp-walsh",
+          "title": "Walsh-series state preparation",
+          "status": "Planned",
+          "summary": "Walsh phase synthesis, controlled constant mode, interference, postselection, infidelity and successful-preparation cost.",
+          "href": "state-preparation-wiki/spw-walsh/",
+          "oaiClusters": ["oai-quantum-circuit"]
+        },
+        {
+          "id": "sp-diagonal-filter",
+          "title": "Diagonal filters as state-preparation suppliers",
+          "status": "Planned",
+          "summary": "Apply a unitary or dilated non-unitary diagonal to a charged input, then account for normalization, success and finite precision.",
+          "href": "state-preparation-wiki/spw-diagonal/",
+          "oaiClusters": []
+        }
+      ]
+    },
+    {
+      "id": "part-ii-block-encoding",
+      "label": "Part II",
+      "title": "Block Encoding",
+      "route": "block-encoding/",
+      "status": "Partial route",
+      "summary": "The compiled clean-block API and construction rules are extended by source-faithful diagonal, compiler and resource routes.",
+      "sourceIds": ["zylberman-et-al-2025-diagonal", "lin-wiebe-2026-qasc"],
+      "chapters": [
+        {
+          "id": "be-core",
+          "title": "Compiled block contracts and composition rules",
+          "status": "Compiled",
+          "summary": "Clean-block extraction, LCU/product routes, sparse access, resource records and finite certified cases.",
+          "href": "block-encoding/",
+          "oaiClusters": []
+        },
+        {
+          "id": "be-diagonal",
+          "title": "Unitary and non-unitary diagonal operators",
+          "status": "Planned",
+          "summary": "Separate phase operators from dilated filters and prove matched space–time–accuracy contracts, including cleanup and error-scale adapters.",
+          "href": "state-preparation-wiki/spw-diagonal/",
+          "oaiClusters": ["oai-unitary-synthesis-boolean-oracle"]
+        },
+        {
+          "id": "be-fourier-suppliers",
+          "title": "Fourier and structured linear-operator suppliers",
+          "status": "Planned",
+          "summary": "Connect exact Fourier circuit resources and structured operator descriptions to the shared circuit and block interfaces without treating either as an automatic block encoding.",
+          "oaiClusters": ["oai-exact-fourier"]
+        }
+      ]
+    },
+    {
+      "id": "part-iii-quantum-information",
+      "label": "Part III",
+      "title": "Quantum Information and Representation Theory",
+      "route": "quantum-information/",
+      "status": "Planned",
+      "summary": "Leditzky's representation-theoretic QIT notes organize one shared state/channel foundation followed by symmetry, Schur–Weyl and information-theoretic applications.",
+      "sourceIds": ["leditzky-2025-repth-qit"],
+      "sourceUrl": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "chapters": [
+        {
+          "id": "qit-states-measurements",
+          "title": "States, density operators and measurements",
+          "status": "Planned",
+          "summary": "Choose one canonical finite-dimensional state, positive-operator, Born-rule and POVM layer before importing downstream results.",
+          "oaiClusters": ["oai-entanglement"]
+        },
+        {
+          "id": "qit-composites",
+          "title": "Composite systems, partial trace and purification",
+          "status": "Planned",
+          "summary": "Freeze subsystem order and tensor conventions; purification and dilation remain non-unique representative constructions.",
+          "oaiClusters": ["oai-entanglement"]
+        },
+        {
+          "id": "qit-channels-distances",
+          "title": "Channels, Choi maps, distances and operational tests",
+          "status": "Planned",
+          "summary": "Completely positive maps, Kraus/Choi representations, trace/fidelity conventions and contractivity become shared nodes.",
+          "oaiClusters": ["oai-amplitude-damping", "oai-entanglement", "oai-ppt-square"]
+        },
+        {
+          "id": "qit-representation-foundations",
+          "title": "Finite-group and unitary representation foundations",
+          "status": "Planned",
+          "summary": "Group actions, representations, characters, averaging and fixed spaces are admitted only after manuscript-specific namespaces are purified.",
+          "oaiClusters": ["oai-young-unitary-infrastructure"]
+        },
+        {
+          "id": "qit-schur-weyl",
+          "title": "Young diagrams, Specht modules and Schur–Weyl duality",
+          "status": "Planned",
+          "summary": "Build the symmetric-group/unitary-group bridge needed by the quantum method of types; advanced Saxl and Foulkes–Howe results remain extensions, not prerequisites.",
+          "oaiClusters": ["oai-young-unitary-infrastructure", "oai-saxl", "oai-foulkes-howe"]
+        },
+        {
+          "id": "qit-symmetry-applications",
+          "title": "Invariant states, de Finetti, cloning and spectrum estimation",
+          "status": "Planned",
+          "summary": "Consume the shared QIT and representation layers without turning conceptual symmetry correspondences into Lean dependencies.",
+          "oaiClusters": []
+        },
+        {
+          "id": "qit-capacity-entanglement",
+          "title": "Capacity, entanglement, secret key and games",
+          "status": "Planned",
+          "summary": "Amplitude-damping capacity, entangled games and dimension-ten zero-key constructions are source routes above canonical state/channel adapters.",
+          "oaiClusters": ["oai-amplitude-damping", "oai-entangled-games", "oai-secret-key", "oai-dimension-ten-secret-key-bridge"]
+        },
+        {
+          "id": "qit-optics-counterexamples",
+          "title": "Extended chapter: quantum optics and channel counterexamples",
+          "status": "Planned",
+          "summary": "Photon-number entropy, PPT-square phenomena and explicit channel geometry are advanced consumers, not foundational definitions.",
+          "oaiClusters": ["oai-photon-number", "oai-ppt-square", "oai-dimension-ten-channel"]
+        }
+      ]
+    },
+    {
+      "id": "part-iv-quantum-scientific-computing",
+      "label": "Part IV",
+      "title": "Quantum Algorithms for Scientific Computation",
+      "route": "quantum-scientific-computing/",
+      "status": "Planned",
+      "summary": "Lin–Wiebe's scientific-computing progression reuses Part II Block Encoding and adds transforms, simulation, estimation and application contracts.",
+      "sourceIds": ["lin-wiebe-2026-qasc"],
+      "sourceUrl": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "chapters": [
+        {
+          "id": "qsc-foundations",
+          "title": "Probability, channels, query models, perturbation and statistics",
+          "status": "Planned",
+          "summary": "Share QIT states/channels/distances and make query construction, precision and readout costs explicit.",
+          "oaiClusters": ["oai-entanglement", "oai-randomized-quantum-query-separation"]
+        },
+        {
+          "id": "qsc-block-encoding",
+          "title": "Block encoding as the shared scientific-computing interface",
+          "status": "Partial route",
+          "summary": "Point back to Part II and add adapters only where the source notation or error convention differs.",
+          "href": "block-encoding/",
+          "oaiClusters": []
+        },
+        {
+          "id": "qsc-transforms",
+          "title": "Amplification, qubitization, QSP and QSVT",
+          "status": "Planned",
+          "summary": "Separate polynomial/signal-transform correctness from phase synthesis and finite-gate compilation.",
+          "oaiClusters": []
+        },
+        {
+          "id": "qsc-simulation",
+          "title": "Hamiltonian simulation and dynamics",
+          "status": "Planned",
+          "summary": "Compose access, block/qubitization suppliers, approximation and successful execution under one resource tier.",
+          "oaiClusters": []
+        },
+        {
+          "id": "qsc-fourier-estimation",
+          "title": "Fourier transforms, phase estimation and amplitude estimation",
+          "status": "Planned",
+          "summary": "Use the Comparator-backed exact Fourier route as an external resource theorem after circuit-model adaptation; it does not itself certify QPE.",
+          "oaiClusters": ["oai-exact-fourier"]
+        },
+        {
+          "id": "qsc-eigen-ground",
+          "title": "Eigenvalue and ground-state algorithms",
+          "status": "Planned",
+          "summary": "Charge trial-state preparation, overlap, gap, precision, amplification and final classical output.",
+          "oaiClusters": []
+        },
+        {
+          "id": "qsc-linear-open",
+          "title": "Linear systems, differential equations and open systems",
+          "status": "Planned",
+          "summary": "Reuse block/channel nodes and expose input, condition-number, success and readout assumptions rather than hiding them in an oracle.",
+          "oaiClusters": ["oai-amplitude-damping"]
+        },
+        {
+          "id": "qsc-compiler-complexity",
+          "title": "Extended chapter: compilers, synthesis and circuit lower bounds",
+          "status": "Planned",
+          "summary": "Exact factoring, shallow-circuit parity and oracle-assisted unitary synthesis extend the computing curriculum without counting as SP/BE successes.",
+          "oaiClusters": ["oai-quantum-circuit", "oai-exact-quantum-factoring", "oai-unitary-synthesis-boolean-oracle"]
+        },
+        {
+          "id": "qsc-many-body-models",
+          "title": "Extended chapter: many-body model targets",
+          "status": "Planned",
+          "summary": "The Comparator-backed Laughlin route is a model-side spectral target and reusable mathematical substrate, not evidence of a quantum algorithm or simulator.",
+          "oaiClusters": ["oai-laughlin"]
+        }
+      ]
+    }
+  ]
+}

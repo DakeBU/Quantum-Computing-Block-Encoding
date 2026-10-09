@@ -129,8 +129,8 @@ def check_links(site: Path) -> list[str]:
 
 
 def require(path: Path, errors: list[str]) -> None:
-    if not path.exists():
-        errors.append(f"missing required artifact: {path}")
+    if not path.is_file() or path.stat().st_size == 0:
+        errors.append(f"missing or empty required artifact: {path}")
 
 
 def check_ordered_markers(text: str, markers: tuple[str, ...], label: str) -> list[str]:
@@ -217,6 +217,11 @@ def main() -> int:
 
     required = [
         "index.html",
+        "state-preparation/index.html",
+        "block-encoding/index.html",
+        "quantum-information/index.html",
+        "quantum-scientific-computing/index.html",
+        "data/curriculum-parts.json",
         "implementation-map/index.html",
         "learning/index.html",
         "library/index.html",
