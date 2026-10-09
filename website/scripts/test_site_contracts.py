@@ -27,6 +27,37 @@ TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
 
 
 class RequiredPublicationArtifactTests(unittest.TestCase):
+    def test_restore_follows_static_and_dynamic_module_imports(self) -> None:
+        from website.scripts.restore_published_blueprint import resource_links, local_name, BLUEPRINT
+        name = "-verso-search/search-init.js"
+        code = 'import {x} from "./domain-mappers.js"; import("./search-box.js"); import "./setup.js";'
+        links = resource_links(name, code, BLUEPRINT + name)
+        self.assertEqual({local_name(link, base) for link, base in links},
+                         {"-verso-search/domain-mappers.js", "-verso-search/search-box.js",
+                          "-verso-search/setup.js"})
+        self.assertEqual(resource_links(name, 'import "bare-package";', BLUEPRINT + name), [])
+
+    def test_restore_rejects_missing_search_asset_and_transitive_import(self) -> None:
+        from website.scripts.restore_published_blueprint import check_search_assets
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            with self.assertRaisesRegex(ValueError, "search asset"):
+                check_search_assets(root)
+            (root / "-verso-search").mkdir()
+            for name in ("xref.json", "-verso-search/search-init.js",
+                         "-verso-search/search-box.js", "-verso-search/domain-mappers.js",
+                         "-verso-search/blueprint-declarations.js"):
+                (root / name).write_text("fixture", encoding="utf-8")
+            registry = root / "-verso-search/domain-mappers.js"
+            registry.write_text('import {blueprintDeclarationMapper} from "./missing.js";', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "module dependency"):
+                check_search_assets(root)
+            (root / "-verso-search/missing.js").write_text("fixture", encoding="utf-8")
+            check_search_assets(root)
+            (root / "-verso-search/search-box.js").write_text("", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "search asset"):
+                check_search_assets(root)
+
     def test_required_artifact_rejects_missing_directory_and_empty_file(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

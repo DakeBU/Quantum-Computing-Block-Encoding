@@ -88,7 +88,7 @@ python3 website/scripts/research_atlas.py check-site --root _site
 if [[ "${CI:-}" == "true" ]]; then
   python3 -m pip install --quiet playwright
   python3 -m playwright install --with-deps chromium
-  python3 website/scripts/test_research_browser.py --root _site
+  python3 website/scripts/test_research_browser.py --root _site --require-blueprint
   cp _out/research-browser/browser-report.json _site/data/research/browser-report.json
 fi
 python3 website/scripts/check_source_links.py --root _site

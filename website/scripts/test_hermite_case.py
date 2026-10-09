@@ -146,7 +146,9 @@ class HermitePublicationTests(unittest.TestCase):
         data = json.loads(publisher.HERMITE_PATH.read_text(encoding="utf-8"))
         case = data["cases"][0]
         self.assertIn("QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec", case["leanAnchors"])
-        self.assertIn("48 n_p (2k+6)^3", case["contract"])
+        self.assertIn(r"\(48\,n_p(2k+6)^3\)", case["contract"])
+        self.assertIn(r"\(R_y/\mathrm{CNOT}\)", case["contract"])
+        self.assertNotIn("The new Bernstein–MPS circuit has at most 48 n_p", case["contract"])
         self.assertIn("Whole classical preprocessing and uniform finite-precision error remain open", case["contract"])
         self.assertEqual(case["preset"]["taskName"], "SP-HERMITE-001")
         self.assertEqual(case["evolution"]["stages"][0]["name"], "Hermite rotation tree")
