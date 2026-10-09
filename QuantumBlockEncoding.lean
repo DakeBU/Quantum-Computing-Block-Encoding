@@ -130,3 +130,5 @@ import QuantumBlockEncoding.StoredHermiteSourceCache
 import QuantumBlockEncoding.StoredHermiteStageFields
 import QuantumBlockEncoding.StoredHermiteStageInput
 import QuantumBlockEncoding.StoredMatrixProductChain
+import QuantumBlockEncoding.BornStability
+import QuantumBlockEncoding.CircuitEffectStability

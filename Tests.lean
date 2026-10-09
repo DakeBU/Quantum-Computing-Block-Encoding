@@ -56,3 +56,4 @@ import ABEISTests.StoredHermiteSourceCache
 import ABEISTests.StoredHermiteStageFields
 import ABEISTests.StoredHermiteStageInput
 import ABEISTests.StoredMatrixProductChain
+import ABEISTests.EffectStabilityCanary
