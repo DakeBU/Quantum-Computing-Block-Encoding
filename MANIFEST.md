@@ -8414,3 +8414,4 @@ block-encoding formalization lifecycle.
 | 2026-10-09 01:35:35 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-saved-rounding-20261009 |
 | 2026-10-09 10:49:33 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-stored-gram-independent-source-review |
 | 2026-10-09 10:58:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c15-reviewed-degree-rounded-rows-complete |
+| 2026-10-09 11:09:58 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c16-matrix-boundary-review-bootstrap |

@@ -270,6 +270,17 @@
       "anchor": "Local authored source docs/lessons/cached-stored-tensor-train-norm.md, all mathematical sections; exact binding and distinct review in reviews/publication/stored-tensor-train-norm/",
       "scope": "Complete stored real Gram and scalar-norm supplier with full materialized exact-real eight-counter costs. No finite-bit/runtime, core generation, peak memory, physical circuit, Hermite root or whole textbook completion.",
       "formal_status": "existing local module; independent whole-module admission pending"
+    },
+    {
+      "id": "aspbe-local-matrix-product-chain",
+      "title": "Matrix products with explicit boundary vectors",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/matrix-products-with-boundaries.md; exact binding and distinct reviews in reviews/publication/matrix-product-chain/",
+      "scope": "Exact finite real boundary absorption, ordered coefficient preservation, bond bound and scalar-address count. No normalization, circuit/endian action, actual stored producer, runtime or finite-bit cost claim.",
+      "formal_status": "existing local module; sourceblind whole-module review pending"
     }
   ]
 }
