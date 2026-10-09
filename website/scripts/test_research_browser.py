@@ -21,23 +21,27 @@ def check_blueprint_search(page, base: str) -> None:
     page.set_viewport_size({"width": 1280, "height": 900})
     page.goto(f"{base}/blueprint/html-multi/index.html", wait_until="networkidle", timeout=90000)
     page.wait_for_selector('[role="searchbox"]', timeout=30000)
-    names = page.evaluate("""async () => {
+    mapped = page.evaluate("""async (name) => {
       const module = await import('./-verso-search/domain-mappers.js');
       const domain = '«Informal.LeanCodePreview»';
       const xref = await (await fetch('xref.json')).json();
       const mapped = module.domainMappers[domain].dataToSearchables(xref[domain]);
-      return mapped.map(entry => entry.searchKey);
-    }""")
-    if name not in names or len(names) != len(set(names)):
+      return {names: mapped.map(entry => entry.searchKey),
+              destination: mapped.find(entry => entry.searchKey === name)?.address};
+    }""", name)
+    names = mapped["names"]
+    destination = mapped["destination"]
+    if name not in names or len(names) != len(set(names)) or not destination:
         raise AssertionError("Blueprint search lost the exact root or duplicated declarations")
     # Verso's combobox listens to keyboard events, not a synthetic input fill.
     page.locator('[role="searchbox"]').press_sequentially(name, delay=1)
-    result = page.locator('#cb1-listbox a[href*="--statement"]').filter(has_text=name).first
+    # The pinned Verso runtime uses clickable ARIA options, not anchor elements.
+    result = page.locator('#cb1-listbox [role="option"].doc-domain').filter(has_text=name).first
     result.wait_for(state="visible", timeout=30000)
-    destination = result.get_attribute("href")
+    expected_url = page.evaluate("(address) => new URL(address.replace(/^\\//, ''), document.baseURI).href", destination)
     result.click()
     page.wait_for_load_state("networkidle", timeout=90000)
-    if not destination or not page.evaluate("""() => {
+    if page.url != expected_url or not page.evaluate("""() => {
       const anchor = decodeURIComponent(location.hash.slice(1));
       return Boolean(anchor && document.getElementById(anchor));
     }"""):

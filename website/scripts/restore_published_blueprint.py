@@ -127,6 +127,10 @@ def restore(output: Path) -> dict:
         for name in ('index.html', 'xref.json', 'assets/abeis-evidence-pipeline.svg', 'assets/abeis-library-map.svg'):
             if not (target / name).is_file(): raise ValueError('incomplete published Blueprint: ' + name)
         check_search_assets(target)
+        # Check actual declaration DOM anchors, not only page-level links.
+        # This also detects a stale/mixed CDN module body under a current report.
+        from website.scripts.augment_blueprint_search import declaration_entries
+        declaration_entries(target, json.loads((target / 'xref.json').read_text(encoding='utf-8')))
         from website.scripts.check_site import parse_page, target_file
         # Parse each potentially large emitted module page only once.
         page_cache = {}
