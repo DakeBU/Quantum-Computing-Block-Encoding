@@ -1,5 +1,115 @@
 {
   "schema_version": 1,
   "migration_policy": "The initial records are empty because this change adds no production Lean declaration. Changed production modules require current content-bound independent review. Unchanged historical modules retain legacy publication debt; no source assimilation is inferred.",
-  "records": []
+  "records": [
+    {
+      "module": "QuantumBlockEncoding/BornStability.lean",
+      "source_id": "finite-effect-stability-contract-v1",
+      "source_statement": "Author-derived generic mathematical contract in docs/effect-stability/lesson.md; scope limited to effect probabilities and aligned circuit perturbation.",
+      "source_anchor": "Version 1, normalized effect probability and aligned circuit specialization",
+      "lesson_path": "docs/effect-stability/lesson.md",
+      "declarations": [
+        "QuantumBlockEncoding.BornStability.probability",
+        "QuantumBlockEncoding.BornStability.effect_norm_le_one",
+        "QuantumBlockEncoding.BornStability.unitary_norm_map",
+        "QuantumBlockEncoding.BornStability.quadratic_difference_le",
+        "QuantumBlockEncoding.BornStability.probability_difference_le",
+        "QuantumBlockEncoding.BornStability.probability_mem_Icc"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "The named literal definition or its displayed generic analytic/circuit statement in the lesson; internal producers are dependencies.",
+          "declarations": [
+            "QuantumBlockEncoding.BornStability.probability",
+            "QuantumBlockEncoding.BornStability.effect_norm_le_one",
+            "QuantumBlockEncoding.BornStability.unitary_norm_map",
+            "QuantumBlockEncoding.BornStability.quadratic_difference_le",
+            "QuantumBlockEncoding.BornStability.probability_difference_le",
+            "QuantumBlockEncoding.BornStability.probability_mem_Icc"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "Finite complex Euclidean matrices, normalized state, actual unitary matrices and 0≤P≤I; auxiliary contraction leaf separately has its literal contraction premise. Aligned circuit specialization assumes the real alignment certificate and δ≥0.",
+          "formal": "The exact scoped Matrix order/L2 operator context and displayed binders in the whole module. Effect norm, output norm and circuit perturbation are derived inside consumers.",
+          "explanation": "No substituted oracle, algorithm, noise or resource premise; no proposed source repair. Exact-real ideal semantics only."
+        },
+        {
+          "classification": "generalization",
+          "source": "The motivating effect result is in a finite-dimensional complex Euclidean matrix setting. The auxiliary source proof uses only a normalized pair and a contraction.",
+          "formal": "quadratic_difference_le is stated for any complex inner-product space E, with its own explicit contraction and two unit-norm premises; no positivity, self-adjointness, finite dimension or completeness is required.",
+          "explanation": "This reusable auxiliary strengthens the domain while retaining the literal argument. The public matrix-effect consumers remain in the finite Euclidean source setting and derive the auxiliary premises internally. No ingredient is promoted to an extra source-facing premise."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "add-node"
+        ],
+        "node_ids": [
+          "declaration:QuantumBlockEncoding.BornStability.probability",
+          "declaration:QuantumBlockEncoding.BornStability.effect_norm_le_one",
+          "declaration:QuantumBlockEncoding.BornStability.unitary_norm_map",
+          "declaration:QuantumBlockEncoding.BornStability.quadratic_difference_le",
+          "declaration:QuantumBlockEncoding.BornStability.probability_difference_le",
+          "declaration:QuantumBlockEncoding.BornStability.probability_mem_Icc"
+        ],
+        "views": "Lean: actual new canonical definitions/proofs; Source: authored formula proof; Spine: contraction/unitarity/quadratic split; Overview/Semantics catalog updated. Atlas/frontier/functor unchanged with reason: no new research route, rate or categorical claim.",
+        "preserved_contract": "Finite-dimensional exact-real normalized effect semantics; existing literal primitive circuit semantics and alignment preserved.",
+        "remaining_boundary": "No physical loading, noise process, estimator, synthesis or complexity theorem."
+      },
+      "formalizer": "/root",
+      "residual_boundary": "Generic ideal analytic/circuit certificates only. No research route completion, resource optimality or runtime theorem.",
+      "binding_sha256": "d92b92d5cc2a3f06e2a85c715435099401a3f0035900703160735a494fbde21d",
+      "decoder_evidence": "docs/effect-stability/BornStability-decoder.json",
+      "reviewer_evidence": "docs/effect-stability/BornStability-reviewer.json"
+    },
+    {
+      "module": "QuantumBlockEncoding/CircuitEffectStability.lean",
+      "source_id": "finite-effect-stability-contract-v1",
+      "source_statement": "Author-derived generic mathematical contract in docs/effect-stability/lesson.md; scope limited to effect probabilities and aligned circuit perturbation.",
+      "source_anchor": "Version 1, normalized effect probability and aligned circuit specialization",
+      "lesson_path": "docs/effect-stability/lesson.md",
+      "declarations": [
+        "QuantumBlockEncoding.CircuitEffectStability.aligned_probability_difference_le"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "The named literal definition or its displayed generic analytic/circuit statement in the lesson; internal producers are dependencies.",
+          "declarations": [
+            "QuantumBlockEncoding.CircuitEffectStability.aligned_probability_difference_le"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "Finite complex Euclidean matrices, normalized state, actual unitary matrices and 0≤P≤I; auxiliary contraction leaf separately has its literal contraction premise. Aligned circuit specialization assumes the real alignment certificate and δ≥0.",
+          "formal": "The exact scoped Matrix order/L2 operator context and displayed binders in the whole module. Effect norm, output norm and circuit perturbation are derived inside consumers.",
+          "explanation": "No substituted oracle, algorithm, noise or resource premise; no proposed source repair. Exact-real ideal semantics only."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "add-node"
+        ],
+        "node_ids": [
+          "declaration:QuantumBlockEncoding.CircuitEffectStability.aligned_probability_difference_le"
+        ],
+        "views": "Lean: actual new canonical definitions/proofs; Source: authored formula proof; Spine: contraction/unitarity/quadratic split; Overview/Semantics catalog updated. Atlas/frontier/functor unchanged with reason: no new research route, rate or categorical claim.",
+        "preserved_contract": "Finite-dimensional exact-real normalized effect semantics; existing literal primitive circuit semantics and alignment preserved.",
+        "remaining_boundary": "No physical loading, noise process, estimator, synthesis or complexity theorem."
+      },
+      "formalizer": "/root",
+      "residual_boundary": "Generic ideal analytic/circuit certificates only. No research route completion, resource optimality or runtime theorem.",
+      "binding_sha256": "6dcb326bd2221f364ca18aa727f63edb78090ec003b0598b60ea8692c9930b1b",
+      "decoder_evidence": "docs/effect-stability/CircuitEffectStability-decoder.json",
+      "reviewer_evidence": "docs/effect-stability/CircuitEffectStability-reviewer.json"
+    }
+  ]
 }

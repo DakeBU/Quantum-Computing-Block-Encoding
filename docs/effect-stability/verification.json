@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-09",
+  "integration_status": "unmerged-candidate",
+  "source_role": "canonical reusable library nodes; no novel research result attributed",
+  "lean_toolchain": "leanprover/lean4:v4.29.1",
+  "base_commit": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+  "compiled": true,
+  "canary": "passed; printed axioms limited to propext/Classical.choice/Quot.sound",
+  "new_source_axioms_or_holes": false,
+  "dependency_graph": {
+    "path": "docs/effect-stability/proof-term-graph.json",
+    "sha256": "44b1bb0c242021afec91340a1c1451d46d40e088482f9f10d0b81c819ddf690e",
+    "semantics": "direct compiled type/value constant occurrences, with separate import edges; generated declarations retained"
+  },
+  "semantic_review": "Accepted canonical reusable mathematical semantics by /root/generic_source_review; exact independently bound packets and residual seal/integration boundaries preserved.",
+  "source_topology_review": "accepted by distinct source-only reviewer; exact hashes in source-topology-review.json",
+  "seal_history": "v1 retained as superseded-invalid; v2 exact signature audit explicitly after port, not a retrospective fresh pre-proof Source-Anchor seal",
+  "release_boundary": "Review candidate only. No main merge or public site deployment.",
+  "mathematical_fingerprint": "11bc4c23f6a55dc5c42887695bf0f7f9ec3e8db4ae3e72d5913742940035ea44",
+  "checks": [
+    {
+      "command": "lake build QuantumBlockEncoding.BornStability QuantumBlockEncoding.CircuitEffectStability ABEISTests.EffectStabilityCanary",
+      "exit_code": 0
+    },
+    {
+      "command": "python website/scripts/run_lean_gate.py",
+      "exit_code": 0,
+      "detail": "root, Tests, all explicit modules; exact proof-input fingerprint retained"
+    },
+    {
+      "command": "python scripts/generate-aspbe-catalog.py --check",
+      "exit_code": 0
+    },
+    {
+      "command": "python -m unittest tools.test_blueprint_catalog",
+      "exit_code": 0,
+      "detail": "8 tests"
+    },
+    {
+      "command": "python tools/check_proof_trust.py",
+      "exit_code": 0,
+      "detail": "0 holes and 0 source-level axioms"
+    },
+    {
+      "command": "python website/scripts/check_research_publications.py --base 305952f4291d7be530c76f51f7e98d77faf1cf45",
+      "exit_code": 0,
+      "status": "passed; exactly the two whole-module packets, current independent decoder/reviewer bindings"
+    },
+    {
+      "command": "scripts/build-all.ps1 -PythonCommand <pinned repository Python>",
+      "exit_code": 1,
+      "detail": "Unchanged baseline Windows entrypoint fails existing PowerShellParityTests: missing tools/check_process_memory.py check invocation. Initial 47 tests: 46 passed, 1 failed. Later site/Blueprint stages were not executed; no claim of full integration pass."
+    }
+  ],
+  "integration_obstruction": "Existing native entrypoint parity; mathematical and semantic results do not override the repository-wide documentation gate.",
+  "publication_status": "generic mathematical review candidate; source semantics accepted, whole documentation integration blocked",
+  "source_role_boundary": "Canonical reusable nodes, not fresh original source Anchors. The initial proof-development chronology is not certified retroactively."
+}

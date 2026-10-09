@@ -1,0 +1,56 @@
+{
+  "status": "SUPERSEDED_INVALID_SIGNATURE_EXPORT",
+  "defects": "One quantum theorem header truncated at an inner named argument; interval predicate wording called strict while the actual kept comparison is weak. No valid source-Anchor seal inferred.",
+  "original": {
+    "phase": "sealed before clean-port; existing proof artifacts reused, not a retrospective assertion about first proof development",
+    "sources": "author-derived generic mathematical contracts; no research objective or algorithm source attribution",
+    "typing": "finite carriers, decidable equality and real/complex spaces",
+    "source_inputs": "only the explicitly displayed error certificates, interval coverage, maximizer, normalized state, unitaries and effect bounds",
+    "derived_not_inputs": [
+      "effect contraction from Loewner bounds",
+      "output normalization from unitarity",
+      "circuit unitary and aligned circuit perturbation from existing library producers"
+    ],
+    "definition_audit": "literal probabilities and literal strict interval filter; no new characterized choice object",
+    "scope_boundary": "no estimator, stochastic independence, complexity or physical runtime theorem",
+    "signatures": [
+      {
+        "module": "BornStability",
+        "signature": "noncomputable def probability (U P : Matrix \u03b9 \u03b9 \u2102)\n    (\u03c8 : EuclideanSpace \u2102 \u03b9) : \u211d",
+        "sha256": "8229e3b8d4b7458eb8260794f645de30362c2539630a677fb590a4124eed1820"
+      },
+      {
+        "module": "BornStability",
+        "signature": "theorem effect_norm_le_one (P : Matrix \u03b9 \u03b9 \u2102) (hP : 0 \u2264 P) (hPI : P \u2264 1) :\n    \u2016P\u2016 \u2264 1",
+        "sha256": "02483292a222e8df9af1e19994d9df1c65269c644705e972aa7334a8c0111854"
+      },
+      {
+        "module": "BornStability",
+        "signature": "theorem unitary_norm_map (U : Matrix \u03b9 \u03b9 \u2102)\n    (hU : U \u2208 Matrix.unitaryGroup \u03b9 \u2102) (\u03c8 : EuclideanSpace \u2102 \u03b9) :\n    \u2016Matrix.toEuclideanCLM (\ud835\udd5c",
+        "sha256": "a83043d79cdb081c6fe42de2c30accf7711f37c698c2e0e28be328ce71c919ff"
+      },
+      {
+        "module": "BornStability",
+        "signature": "theorem quadratic_difference_le {E : Type*} [NormedAddCommGroup E]\n    [InnerProductSpace \u2102 E] (P : E \u2192L[\u2102] E) (hP : \u2016P\u2016 \u2264 1)\n    (x y : E) (hx : \u2016x\u2016 = 1) (hy : \u2016y\u2016 = 1) :\n    |(inner \u2102 x (P x)).re - (inner \u2102 y (P y)).re| \u2264 2 * \u2016x - y\u2016",
+        "sha256": "7eb9ce43d5b5c2a6431818ab6fa227bf373a156bd68b3f41b3ec48706a6f4ea4"
+      },
+      {
+        "module": "BornStability",
+        "signature": "theorem probability_difference_le (U V P : Matrix \u03b9 \u03b9 \u2102)\n    (\u03c8 : EuclideanSpace \u2102 \u03b9) (h\u03c8 : \u2016\u03c8\u2016 = 1)\n    (hU : U \u2208 Matrix.unitaryGroup \u03b9 \u2102) (hV : V \u2208 Matrix.unitaryGroup \u03b9 \u2102)\n    (hP : 0 \u2264 P) (hPI : P \u2264 1) {\u03b7 : \u211d} (hUV : \u2016U - V\u2016 \u2264 \u03b7) :\n    |probability U P \u03c8 - probability V P \u03c8| \u2264 2 * \u03b7",
+        "sha256": "87fdeef9d7b3f20e0aa4d60ee1a16b3dc428fc2a4ea42120c0b535504c6abdf7"
+      },
+      {
+        "module": "BornStability",
+        "signature": "theorem probability_mem_Icc (U P : Matrix \u03b9 \u03b9 \u2102)\n    (\u03c8 : EuclideanSpace \u2102 \u03b9) (h\u03c8 : \u2016\u03c8\u2016 = 1)\n    (hU : U \u2208 Matrix.unitaryGroup \u03b9 \u2102) (hP : 0 \u2264 P) (hPI : P \u2264 1) :\n    probability U P \u03c8 \u2208 Set.Icc (0 : \u211d) 1",
+        "sha256": "cc5952467a85dc3f6afa0c4feeba940b6480460281a027e980ac3693ab8d1f49"
+      },
+      {
+        "module": "CircuitEffectStability",
+        "signature": "theorem aligned_probability_difference_le {n : \u2115} {\u03b4 : \u211d} (h\u03b4 : 0 \u2264 \u03b4)\n    (exact approximate : PrimitiveCircuit n) (ha : Aligned \u03b4 exact approximate)\n    (P : _root_.Matrix (PrimitiveBasis n) (PrimitiveBasis n) \u2102)\n    (\u03c8 : EuclideanSpace \u2102 (PrimitiveBasis n)) (h\u03c8 : \u2016\u03c8\u2016 = 1)\n    (hP : 0 \u2264 P) (hPI : P \u2264 1) :\n    |BornStability.probability (evalPrimitiveCircuit approximate) P \u03c8 -\n      BornStability.probability (evalPrimitiveCircuit exact) P \u03c8| \u2264\n        (exact.length : \u211d) * \u03b4",
+        "sha256": "bb0976126a4024b3249d088e10d1b6caa69c791b2bb8ddba501e69e678dff4f5"
+      }
+    ],
+    "declaration_level": "Canonical reusable library nodes and their internal providers; no external-paper or new-research-result source anchor.",
+    "chronology_boundary": "Statement signatures recorded before this clean-port. Existing proof artifacts were reused; no retrospective claim about initial proof-development chronology."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "role": "reviewer",
+  "binding_sha256": "6dcb326bd2221f364ca18aa727f63edb78090ec003b0598b60ea8692c9930b1b",
+  "identity": "/root/generic_source_review",
+  "run_id": "generic-source-review-20261009-01",
+  "packet_path": "docs/effect-stability/source-review-packet.md",
+  "packet_sha256": "d93c7e8740e1a51dc31837bd8c7ec8ff46ef96d8acba3a80c54ac3356e43352b",
+  "artifact_path": "docs/effect-stability/source-review.md",
+  "artifact_sha256": "546c1cb2ba22e94b39d8b2af36de9da920456a69f888176d7caeba1a8b124ec0",
+  "decoder_evidence_sha256": "1f73be6ad8a434f9d6bf0d8824f31fcace2349833fef6d28f18904560809785f",
+  "anti_anchored": true,
+  "verdict": "accepted",
+  "semantic_slots": {
+    "target": "Source, actual module, exact lesson fold and final expanded blind reconstruction agree: the same effect probability at approximate/exact primitive evaluations differs by at most real exact.length*delta. BornStability is a real consumer dependency.",
+    "normalization": "Public inputs retain norm-one psi, 0<=P<=I, delta>=0 and the supplied Aligned certificate. Actual proof derives both evaluated circuit unitaries and the operator error through existing library theorems; those are not public hypotheses.",
+    "registers": "Actual PrimitiveBasis n is Fin n -> Fin 2; P and psi use that same fixed basis. Evaluation is eval(rest)*eval(head). Positionwise Forall2 alignment preserves constructors, targets and length. Expanded decoder reconstructs these exact ambient definitions.",
+    "oracles": "A supplied alignment witness is required. No automatic synthesis/alignment producer, controlled/inverse oracle access model or black-box algorithm is present in source, Lean or reconstruction.",
+    "ancillas_phases": "The existing basis and one-wire lifting are preserved; no new ancilla or garbage subsystem is introduced. The theorem accepts circuits, not PrimitiveProgram with independent global phases, and supplies no quotient/phase representative choice.",
+    "error_success": "Only unchanged gates or same-target Ry pairs with absolute evaluated-real angle error<=delta align. The actual existing telescoping theorem gives exact.length*delta/2; derived unitarity and BornStability give exact.length*delta. Decoder accurately limits its formal-only helper reconstruction; reviewer independently checked that imported helper. No stochastic success claim follows.",
+    "resources": "Exact length counts every list entry and is only the analytic coefficient, including unchanged gates. ExactAngle supports arbitrary reals; no finite-bit rounding procedure, runtime, loading/shot cost, physical depth or hardware noise theorem is claimed."
+  },
+  "chronology_boundary": "Canonical reusable-node semantic acceptance only. Current v2 signature audit is explicitly after the clean-port with existing proofs, not fresh pre-proof lifecycle evidence. Whole-site/integration acceptance is separate and not certified.",
+  "semantic_blockers": []
+}

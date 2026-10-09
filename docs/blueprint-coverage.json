@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
   "scope": "Explicit public def/abbrev/opaque/inductive/structure/class/theorem/lemma declarations",
-  "publicDeclarationCount": 4524,
+  "publicDeclarationCount": 4531,
   "privateDeclarationExclusionCount": 315,
-  "sourceDocstringCount": 2337,
-  "generatedReaderCueCount": 4524,
+  "sourceDocstringCount": 2342,
+  "generatedReaderCueCount": 4531,
   "byKind": {
     "abbrev": 48,
-    "def": 1688,
+    "def": 1689,
     "inductive": 37,
     "opaque": 7,
     "structure": 224,
-    "theorem": 2520
+    "theorem": 2526
   },
   "bySource": {
     "QuantumBlockEncoding/AdjacentGivens.lean": 62,
@@ -21,7 +21,9 @@
     "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean": 13,
     "QuantumBlockEncoding/BlockEncoding.lean": 22,
     "QuantumBlockEncoding/BlockEncodingClassics.lean": 84,
+    "QuantumBlockEncoding/BornStability.lean": 6,
     "QuantumBlockEncoding/Circuit.lean": 12,
+    "QuantumBlockEncoding/CircuitEffectStability.lean": 1,
     "QuantumBlockEncoding/CircuitSemantics.lean": 41,
     "QuantumBlockEncoding/ColdStartTransferE1.lean": 28,
     "QuantumBlockEncoding/ConcreteSemantics.lean": 25,

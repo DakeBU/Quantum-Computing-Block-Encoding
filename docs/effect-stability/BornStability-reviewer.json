@@ -1,0 +1,24 @@
+{
+  "role": "reviewer",
+  "binding_sha256": "d92b92d5cc2a3f06e2a85c715435099401a3f0035900703160735a494fbde21d",
+  "identity": "/root/generic_source_review",
+  "run_id": "generic-source-review-20261009-01",
+  "packet_path": "docs/effect-stability/source-review-packet.md",
+  "packet_sha256": "d93c7e8740e1a51dc31837bd8c7ec8ff46ef96d8acba3a80c54ac3356e43352b",
+  "artifact_path": "docs/effect-stability/source-review.md",
+  "artifact_sha256": "546c1cb2ba22e94b39d8b2af36de9da920456a69f888176d7caeba1a8b124ec0",
+  "decoder_evidence_sha256": "8fd88cb674522765febfa2ee6c5885cab451c020b0a0e2bc9bc8162f556c17a4",
+  "anti_anchored": true,
+  "verdict": "accepted",
+  "semantic_slots": {
+    "target": "Source, actual module, lesson and final blind reconstruction agree on the literal total real expectation, derived effect/unitary providers, auxiliary quadratic bound, 2*eta probability stability and closed [0,1] consumer. Auxiliary abstraction to a general complex inner-product space is a valid reusable generalization.",
+    "normalization": "The definition is unconditional. Interval/stability statements require norm-one input, actual unitaries and Loewner effect bounds. Contraction and output normalization are proved internally, not public substitutes. Eta nonnegativity is derived from its certificate.",
+    "registers": "All matrix/vector objects share a finite decidable index type and complex Euclidean space. Actual scopes and Mathlib definitions confirm Loewner order and induced L2 operator norm. Decoder agrees; no register identification is assumed.",
+    "oracles": "All compared presentations describe supplied matrices/vectors and analytic certificates; none supplies or assumes an oracle/control/inverse black-box or sampling algorithm.",
+    "ancillas_phases": "Same literal matrix space throughout, no ancilla/garbage enlargement, phase quotient selection or uniqueness. The source and reconstruction preserve this representation boundary.",
+    "error_success": "The same effect and state appear on both sides; norm(U-V)<=eta gives weak absolute probability error <=2*eta. Positive quadratic form and derived contraction prove inclusive [0,1]. No stochastic success probability or estimator is introduced.",
+    "resources": "Exact-real, noncomputable mathematical semantics only. Source/module/reconstruction make no state-loading, shot, finite-bit synthesis, physical depth, noise law, runtime or complexity guarantee."
+  },
+  "chronology_boundary": "Current v2 is an exact metadata audit after the clean-port with existing proof artifacts, not a fresh pre-proof Source Anchor. Superseded v1 had an invalid truncated signature export. Initial proof-development chronology and whole-repository integration are not certified.",
+  "semantic_blockers": []
+}

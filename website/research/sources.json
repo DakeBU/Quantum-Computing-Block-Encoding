@@ -179,6 +179,17 @@
       "anchor": "29 April 2026 public 447-page edition; Parts I–IV from background/foundations through block encoding, QSP/QSVT, simulation, linear systems/differential equations and open systems",
       "scope": "Planned curriculum anchor for quantum scientific computing. Reuse existing ASPBE state-preparation/block-encoding nodes; do not duplicate Chapter 9 under a second API. The user-supplied PDF is not vendored because this edition is publicly hosted.",
       "formal_status": "external-reference"
+    },
+    {
+      "id": "finite-effect-stability-contract-v1",
+      "title": "Finite-dimensional effect stability: canonical library contract",
+      "authors": "DakeBU; library contribution prepared by Codex",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/7efae14666af2ee348bf634ba7fc253e243ce517/docs/effect-stability/source-contract.md",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Author-derived mathematical lesson, version 1; normalized effects and aligned primitive circuit perturbation",
+      "scope": "Elementary generic library formalization; no claimed novel research result or complexity theorem.",
+      "formal_status": "local-canonical-node"
     }
   ]
 }

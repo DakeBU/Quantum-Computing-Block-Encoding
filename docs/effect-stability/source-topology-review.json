@@ -1,0 +1,24 @@
+{
+  "schema_version": "independent-source-topology-review/v1",
+  "reviewer_identity": "/root/generic_source_review",
+  "run_id": "generic-source-review-20261009-01",
+  "anti_anchored": true,
+  "review_order": "Raw source-contract and independently extracted source-topology only; completed and saved before inspecting Lean, formal packet, lesson, reconstruction or publication records.",
+  "source_sha256": "9712de87c5a31f0ad44d217bf1add62280b2a518b8a0a9aae8117f501343050d",
+  "topology_sha256": "ab56da52163b01a6f25a576604902fdd838911128373c7477db04b9e3f175dee",
+  "verdict": "accepted",
+  "bounded_exhaustive": true,
+  "mathematically_valid": true,
+  "coverage_review": [
+    "Lines 1,3-5: title, canonical author provenance and no-novelty/complexity scope are excluded.",
+    "Lines 7-14: finite complex Euclidean setting, normalization, effect order, unitarity, total literal formula, order/norm laws, derived contraction and output normalization, positivity, upper bound and interval statement are represented. The formula domain guard is preserved.",
+    "Lines 16-22: normalized auxiliary pair and literal contraction premise, algebraic split, both term bounds and real-part stability are represented. The public effect theorem derives contraction and output normalization, then obtains state error from the operator certificate. Nonnegative eta is a consequence, not an extra premise.",
+    "Lines 24-31: fixed-size primitive lists, supplied positionwise Aligned delta with explicit delta >= 0, existing perturbation and unitarity contracts, both derived ingredients and the final length-times-delta consumer are represented. No automatic alignment producer is claimed.",
+    "Lines 33-38: fixed register convention and all literal phase, ancilla, oracle, hardware/statistical and finite-bit/resource exclusions are accounted for.",
+    "Lines 40-47: named implementation ingredients and actual consumers are reported metadata; canonical publication boundary and unchanged atlas/progress scope are excluded."
+  ],
+  "mathematical_review": "The quadratic split follows by additivity of each inner-product slot and linear operator action. Each term has absolute value at most ||x-y|| by Cauchy-Schwarz, unit norms and contraction. Effect order 0 <= P <= I entails contraction; normalized unitary outputs then give the 2 eta bound from ||(U-V)psi|| <= eta. Positive quadratic forms give the lower probability bound and contraction gives the upper bound. Existing aligned circuit perturbation at eta=length(exact)*delta/2 and derived circuit unitarity give length(exact)*delta by real arithmetic.",
+  "dependency_review": "All dependency identifiers resolve. Public effect premises are distinct from derived contraction/output normalization. Public circuit premises are distinct from derived circuit unitarity/operator perturbation. Each AND group is coherent; all nonblank source paragraphs, constants, representations and exclusions are covered.",
+  "blockers": [],
+  "limits": "Acceptance applies only to source-faithful mathematical topology at these hashes; no Lean correctness, existing-library implementation or chronology verdict is included."
+}

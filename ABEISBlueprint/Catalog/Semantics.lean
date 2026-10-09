@@ -896,6 +896,112 @@ Source: [QuantumBlockEncoding/AdjacentGivens.lean:637](../../../../library/modul
 Source: [QuantumBlockEncoding/AdjacentGivens.lean:644](../../../../library/modules/adjacentgivens/#decl-quantumblockencoding-adjacentgivens-decomposeso-matrix). A commit-pinned external link is added by the publication build when the source exists at the published ref.
 :::
 
+# QuantumBlockEncoding/BornStability.lean
+
+6 explicit public declarations, in source order.
+
+:::definition "QuantumBlockEncoding.BornStability.probability" (lean := "QuantumBlockEncoding.BornStability.probability")
+*Plain-English reading.* This definition gives the library's named construction or computation for “probability”.
+
+*Formal status.* Compiled declaration in the default ASPBE import surface; its kind and displayed Lean type determine how it may be used.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* def.
+
+Source: [QuantumBlockEncoding/BornStability.lean:16](../../../../library/modules/bornstability/#decl-quantumblockencoding-bornstability-probability). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BornStability.effect_norm_le_one" (lean := "QuantumBlockEncoding.BornStability.effect_norm_le_one")
+*Plain-English reading.* Lean checks the proposition indexed as “effect norm le one”; the hypotheses and conclusion in the code panel fix its exact scope. The contraction bound is proved from the actual effect assumptions.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The contraction bound is proved from the actual effect assumptions.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BornStability.lean:24](../../../../library/modules/bornstability/#decl-quantumblockencoding-bornstability-effect-norm-le-one). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BornStability.unitary_norm_map" (lean := "QuantumBlockEncoding.BornStability.unitary_norm_map")
+*Plain-English reading.* Lean checks the proposition indexed as “unitary norm map”; the hypotheses and conclusion in the code panel fix its exact scope.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* The source declaration has no docstring. The reader cue above is generated from its kind and name and does not replace the Lean signature.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BornStability.lean:30](../../../../library/modules/bornstability/#decl-quantumblockencoding-bornstability-unitary-norm-map). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BornStability.quadratic_difference_le" (lean := "QuantumBlockEncoding.BornStability.quadratic_difference_le")
+*Plain-English reading.* Lean checks the proposition indexed as “quadratic difference le”; the hypotheses and conclusion in the code panel fix its exact scope. Auxiliary analytic leaf.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Auxiliary analytic leaf. The public effect theorem derives its norm premise.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BornStability.lean:37](../../../../library/modules/bornstability/#decl-quantumblockencoding-bornstability-quadratic-difference-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BornStability.probability_difference_le" (lean := "QuantumBlockEncoding.BornStability.probability_difference_le")
+*Plain-English reading.* Lean checks the proposition indexed as “probability difference le”; the hypotheses and conclusion in the code panel fix its exact scope. Normalized pure-state effect probability is Lipschitz in a pair of unitaries.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* Normalized pure-state effect probability is Lipschitz in a pair of unitaries.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BornStability.lean:63](../../../../library/modules/bornstability/#decl-quantumblockencoding-bornstability-probability-difference-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+:::theorem "QuantumBlockEncoding.BornStability.probability_mem_Icc" (lean := "QuantumBlockEncoding.BornStability.probability_mem_Icc")
+*Plain-English reading.* Lean checks the proposition indexed as “probability mem icc”; the hypotheses and conclusion in the code panel fix its exact scope. A true effect measurement on a normalized unitary output lies in \[0,1\].
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* A true effect measurement on a normalized unitary output lies in \[0,1\].
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/BornStability.lean:85](../../../../library/modules/bornstability/#decl-quantumblockencoding-bornstability-probability-mem-icc). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
+# QuantumBlockEncoding/CircuitEffectStability.lean
+
+1 explicit public declarations, in source order.
+
+:::theorem "QuantumBlockEncoding.CircuitEffectStability.aligned_probability_difference_le" (lean := "QuantumBlockEncoding.CircuitEffectStability.aligned_probability_difference_le")
+*Plain-English reading.* Lean checks the proposition indexed as “aligned probability difference le”; the hypotheses and conclusion in the code panel fix its exact scope. An alignment certificate is required; this does not synthesize rounding.
+
+*Formal status.* Compiled theorem in the default ASPBE import surface; the displayed Lean signature is the authoritative claim.
+
+*Why it is in this chapter.* Circuit and register semantics, reusable tensor-train and matrix constructions, and explicit exact-real storage-cost refinements. Each declaration's hypotheses and conclusion fix its certified scope.
+
+*Technical source note.* An alignment certificate is required; this does not synthesize rounding.
+
+*Declaration kind.* theorem.
+
+Source: [QuantumBlockEncoding/CircuitEffectStability.lean:10](../../../../library/modules/circuiteffectstability/#decl-quantumblockencoding-circuiteffectstability-aligned-probability-difference-le). A commit-pinned external link is added by the publication build when the source exists at the published ref.
+:::
+
 # QuantumBlockEncoding/CircuitSemantics.lean
 
 41 explicit public declarations, in source order.

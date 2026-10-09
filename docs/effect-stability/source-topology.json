@@ -1,0 +1,758 @@
+{
+  "schema_version": "source-proof-topology/v1",
+  "reconstruction": {
+    "method": "Independent reconstruction from the specified source-contract.md only; no Lean, formal packets, folded lessons, publication registry, other workspace, or previous research inspected.",
+    "authority": "Author-derived reusable library contract; not an asserted external paper theorem.",
+    "bounded_exhaustive": true,
+    "approval_status": "PENDING_DISTINCT_REVIEW",
+    "self_approved": false
+  },
+  "dependency_semantics": {
+    "rule": "Each dependencies array is an AND group: all listed ingredients are used together. Dependencies are proof ingredients, not module-import implications.",
+    "node_kinds": [
+      "definition",
+      "source_assumption",
+      "derived_ingredient",
+      "statement",
+      "ambient_prerequisite"
+    ],
+    "excluded_rule": "EXCLUDED entries are provenance, scope constraints, or implementation/publication metadata, not theorem conclusions."
+  },
+  "source": {
+    "path": "C:/qb261009/pq/docs/effect-stability/source-contract.md",
+    "sha256": "9712de87c5a31f0ad44d217bf1add62280b2a518b8a0a9aae8117f501343050d",
+    "version": "1 (2026-10-09)",
+    "line_count": 47
+  },
+  "nodes": [
+    {
+      "id": "pq.finite_complex_setting",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        7,
+        9
+      ],
+      "statement": "ι is a finite decidable index type; vectors inhabit its complex Euclidean space. Matrices act on that space with Loewner order and induced Euclidean operator norm.",
+      "dependencies": []
+    },
+    {
+      "id": "pq.normalized_state",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        7,
+        7
+      ],
+      "statement": "||ψ||=1.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ]
+    },
+    {
+      "id": "pq.effect",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        9,
+        9
+      ],
+      "statement": "0≤P≤I in Loewner order.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ]
+    },
+    {
+      "id": "pq.unitary_U",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        9,
+        11
+      ],
+      "statement": "U is unitary.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ]
+    },
+    {
+      "id": "pq.probability_formula",
+      "classification": "NODE",
+      "kind": "definition",
+      "source_lines": [
+        9,
+        14
+      ],
+      "statement": "p_{P,ψ}(M)=Re⟨Mψ,P(Mψ)⟩ for every matrix M.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ],
+      "domain_note": "The formula does not require normalization, an effect, or unitarity to be defined."
+    },
+    {
+      "id": "pq.order_norm_laws",
+      "classification": "NODE",
+      "kind": "ambient_prerequisite",
+      "source_lines": [
+        8,
+        12
+      ],
+      "statement": "Finite-dimensional positive-semidefinite order, its norm consequences, and positivity of the associated quadratic form.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ],
+      "status": "Standard mathematical ingredients stated in prose; no new external theorem alleged."
+    },
+    {
+      "id": "pq.inner_product_operator_laws",
+      "classification": "NODE",
+      "kind": "ambient_prerequisite",
+      "source_lines": [
+        12,
+        20
+      ],
+      "statement": "Sesquilinearity, Re/absolute-value inequalities, Cauchy–Schwarz, the triangle inequality, operator action ||Az||≤||A||||z||, and unitary preservation of Euclidean norm.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ],
+      "status": "Standard mathematical ingredients needed by the displayed proof."
+    },
+    {
+      "id": "pq.effect_contraction",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        10,
+        11
+      ],
+      "statement": "||P||≤1.",
+      "dependencies": [
+        "pq.effect",
+        "pq.order_norm_laws"
+      ],
+      "separate_public_premise": false
+    },
+    {
+      "id": "pq.unitary_state_normalization",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        11,
+        12
+      ],
+      "statement": "||Uψ||=1.",
+      "dependencies": [
+        "pq.normalized_state",
+        "pq.unitary_U",
+        "pq.inner_product_operator_laws"
+      ],
+      "separate_public_premise": false
+    },
+    {
+      "id": "pq.probability_nonnegative",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        12,
+        12
+      ],
+      "statement": "p(U)≥0.",
+      "dependencies": [
+        "pq.probability_formula",
+        "pq.effect",
+        "pq.order_norm_laws"
+      ],
+      "proof": "Use positivity of the P quadratic form at Uψ; normalization is not needed for this lower bound."
+    },
+    {
+      "id": "pq.probability_upper_bound",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        12,
+        12
+      ],
+      "statement": "p(U)≤1.",
+      "dependencies": [
+        "pq.probability_formula",
+        "pq.unitary_state_normalization",
+        "pq.effect_contraction",
+        "pq.inner_product_operator_laws"
+      ],
+      "proof": "Re⟨Uψ,P(Uψ)⟩≤|⟨Uψ,P(Uψ)⟩|≤||Uψ||||P(Uψ)||≤1."
+    },
+    {
+      "id": "pq.probability_mem_Icc",
+      "classification": "NODE",
+      "kind": "statement",
+      "source_lines": [
+        12,
+        14
+      ],
+      "statement": "Under the effect, normalization, and unitary hypotheses, p(U)∈[0,1].",
+      "dependencies": [
+        "pq.probability_nonnegative",
+        "pq.probability_upper_bound"
+      ],
+      "name_status": "Consumer name explicitly reported by the source; no implementation inspected."
+    },
+    {
+      "id": "pq.aux_normalized_pair",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        16,
+        16
+      ],
+      "statement": "x,y are vectors with ||x||=||y||=1.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ],
+      "applies_to": [
+        "pq.contraction_quadratic_stability"
+      ]
+    },
+    {
+      "id": "pq.aux_contraction",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        16,
+        22
+      ],
+      "statement": "P is a contraction: ||P||≤1.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ],
+      "applies_to": [
+        "pq.contraction_quadratic_stability"
+      ],
+      "effect_required": false
+    },
+    {
+      "id": "pq.quadratic_split",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        16,
+        17
+      ],
+      "statement": "⟨x,Px⟩−⟨y,Py⟩=⟨x−y,Px⟩+⟨y,P(x−y)⟩.",
+      "dependencies": [
+        "pq.inner_product_operator_laws"
+      ],
+      "proof": "Expand with sesquilinearity and linearity of matrix action. Normalization and contraction are not needed for this identity."
+    },
+    {
+      "id": "pq.first_split_term_bound",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        18,
+        18
+      ],
+      "statement": "|⟨x−y,Px⟩|≤||x−y||.",
+      "dependencies": [
+        "pq.aux_normalized_pair",
+        "pq.aux_contraction",
+        "pq.inner_product_operator_laws"
+      ],
+      "proof": "Cauchy–Schwarz and ||Px||≤||P||||x||≤1."
+    },
+    {
+      "id": "pq.second_split_term_bound",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        18,
+        18
+      ],
+      "statement": "|⟨y,P(x−y)⟩|≤||x−y||.",
+      "dependencies": [
+        "pq.aux_normalized_pair",
+        "pq.aux_contraction",
+        "pq.inner_product_operator_laws"
+      ],
+      "proof": "Cauchy–Schwarz and ||P(x−y)||≤||x−y||."
+    },
+    {
+      "id": "pq.contraction_quadratic_stability",
+      "classification": "NODE",
+      "kind": "statement",
+      "source_lines": [
+        16,
+        18
+      ],
+      "statement": "|Re⟨x,Px⟩−Re⟨y,Py⟩|≤2||x−y||.",
+      "dependencies": [
+        "pq.quadratic_split",
+        "pq.first_split_term_bound",
+        "pq.second_split_term_bound",
+        "pq.inner_product_operator_laws"
+      ],
+      "scope": "Auxiliary contraction lemma; its contraction premise is literal. No positivity premise is needed."
+    },
+    {
+      "id": "pq.unitary_V",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        18,
+        19
+      ],
+      "statement": "V is unitary.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ]
+    },
+    {
+      "id": "pq.operator_error_certificate",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        19,
+        20
+      ],
+      "statement": "η is real and ||U−V||≤η.",
+      "dependencies": [
+        "pq.finite_complex_setting"
+      ]
+    },
+    {
+      "id": "pq.eta_nonnegative",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        20,
+        21
+      ],
+      "statement": "0≤η follows from the operator error certificate.",
+      "dependencies": [
+        "pq.operator_error_certificate",
+        "pq.inner_product_operator_laws"
+      ],
+      "separate_public_premise": false
+    },
+    {
+      "id": "pq.unitary_pair_state_normalization",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        18,
+        19
+      ],
+      "statement": "Both Uψ and Vψ are normalized.",
+      "dependencies": [
+        "pq.normalized_state",
+        "pq.unitary_U",
+        "pq.unitary_V",
+        "pq.inner_product_operator_laws"
+      ]
+    },
+    {
+      "id": "pq.state_error_from_operator_error",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        19,
+        19
+      ],
+      "statement": "||Uψ−Vψ||≤η.",
+      "dependencies": [
+        "pq.normalized_state",
+        "pq.operator_error_certificate",
+        "pq.inner_product_operator_laws"
+      ],
+      "proof": "Uψ−Vψ=(U−V)ψ and ||(U−V)ψ||≤||U−V||||ψ||≤η.",
+      "unitarity_needed_for_this_step": false
+    },
+    {
+      "id": "pq.effect_probability_stability",
+      "classification": "NODE",
+      "kind": "statement",
+      "source_lines": [
+        19,
+        22
+      ],
+      "statement": "|p(U)−p(V)|≤2η.",
+      "dependencies": [
+        "pq.probability_formula",
+        "pq.effect_contraction",
+        "pq.unitary_pair_state_normalization",
+        "pq.contraction_quadratic_stability",
+        "pq.state_error_from_operator_error"
+      ],
+      "proof": "Instantiate the contraction lemma at x=Uψ,y=Vψ using the effect-derived contraction bound, then substitute the state-error bound.",
+      "public_assumptions": [
+        "pq.normalized_state",
+        "pq.effect",
+        "pq.unitary_U",
+        "pq.unitary_V",
+        "pq.operator_error_certificate"
+      ],
+      "extra_nonnegative_eta_premise": false
+    },
+    {
+      "id": "pq.primitive_circuit_setting",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        24,
+        25
+      ],
+      "statement": "exact and approximate are lists of primitive circuits on n qubits, on the existing fixed register basis.",
+      "dependencies": [],
+      "inherits": "Finite complex Euclidean semantics; ψ and P must be on that same register."
+    },
+    {
+      "id": "pq.aligned_certificate",
+      "classification": "NODE",
+      "kind": "source_assumption",
+      "source_lines": [
+        24,
+        27
+      ],
+      "statement": "The existing positionwise Aligned δ certificate relates exact and approximate; δ≥0.",
+      "dependencies": [
+        "pq.primitive_circuit_setting"
+      ],
+      "certificate_content": "Preserves gate constructors and wires and bounds corresponding Ry-angle errors.",
+      "source_status": "A supplied library certificate, not an automatic synthesis result. The explicit δ≥0 premise is retained."
+    },
+    {
+      "id": "pq.existing_perturbation_contract",
+      "classification": "NODE",
+      "kind": "ambient_prerequisite",
+      "source_lines": [
+        27,
+        28
+      ],
+      "statement": "Existing PrimitiveCircuitPerturbation / aligned_eval_distance_le yields ||eval approximate−eval exact||≤length(exact)·δ/2 from Aligned δ and δ≥0.",
+      "dependencies": [
+        "pq.primitive_circuit_setting"
+      ],
+      "source_status": "Previously existing library theorem as reported by the source. Not independently re-proved or implementation-verified here."
+    },
+    {
+      "id": "pq.existing_unitarity_contract",
+      "classification": "NODE",
+      "kind": "ambient_prerequisite",
+      "source_lines": [
+        28,
+        29
+      ],
+      "statement": "Existing PrimitiveSemantics / evalPrimitiveCircuit_unitary yields unitary evaluation of each primitive circuit list.",
+      "dependencies": [
+        "pq.primitive_circuit_setting"
+      ],
+      "source_status": "Previously existing library theorem as reported by the source. Not a public assumption about evaluated matrices."
+    },
+    {
+      "id": "pq.circuit_operator_error",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        28,
+        28
+      ],
+      "statement": "||eval approximate−eval exact||≤length(exact)·δ/2.",
+      "dependencies": [
+        "pq.aligned_certificate",
+        "pq.existing_perturbation_contract"
+      ]
+    },
+    {
+      "id": "pq.circuit_unitary_pair",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        28,
+        29
+      ],
+      "statement": "eval approximate and eval exact are both unitary.",
+      "dependencies": [
+        "pq.primitive_circuit_setting",
+        "pq.existing_unitarity_contract"
+      ]
+    },
+    {
+      "id": "pq.circuit_stability_instantiation",
+      "classification": "NODE",
+      "kind": "derived_ingredient",
+      "source_lines": [
+        29,
+        30
+      ],
+      "statement": "|p(eval approximate)−p(eval exact)|≤2(length(exact)·δ/2).",
+      "dependencies": [
+        "pq.normalized_state",
+        "pq.effect",
+        "pq.circuit_operator_error",
+        "pq.circuit_unitary_pair",
+        "pq.effect_probability_stability"
+      ],
+      "proof": "Instantiate the reusable theorem with U=eval approximate, V=eval exact, η=length(exact)·δ/2."
+    },
+    {
+      "id": "pq.aligned_probability_difference_le",
+      "classification": "NODE",
+      "kind": "statement",
+      "source_lines": [
+        29,
+        31
+      ],
+      "statement": "|p(eval approximate)−p(eval exact)|≤length(exact)·δ.",
+      "dependencies": [
+        "pq.circuit_stability_instantiation"
+      ],
+      "proof": "Simplify 2(length(exact)·δ/2)=length(exact)·δ in real arithmetic.",
+      "public_assumptions": [
+        "pq.normalized_state",
+        "pq.effect",
+        "pq.primitive_circuit_setting",
+        "pq.aligned_certificate"
+      ],
+      "name_status": "Consumer CircuitEffectStability.aligned_probability_difference_le explicitly reported by the source.",
+      "internal_proof_dependencies": [
+        "pq.circuit_operator_error",
+        "pq.circuit_unitary_pair"
+      ],
+      "resource_claim": false
+    },
+    {
+      "id": "pq.fixed_register_definition",
+      "classification": "NODE",
+      "kind": "definition",
+      "source_lines": [
+        33,
+        35
+      ],
+      "statement": "The existing PrimitiveBasis fixes the circuit register order; the same literal matrix register is used throughout.",
+      "dependencies": [
+        "pq.primitive_circuit_setting"
+      ],
+      "scope": "Existing ambient definition reported by the prose; no new register/tensor identification is constructed."
+    }
+  ],
+  "exclusions": [
+    {
+      "id": "pq.title",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        1,
+        1
+      ],
+      "text": "Stability of normalized pure-state effect probabilities",
+      "reason": "Title; mathematical content expanded in nodes."
+    },
+    {
+      "id": "pq.provenance",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        3,
+        5
+      ],
+      "text": "Author-derived canonical finite-dimensional mathematical contracts, version/date; reusable library formalization with no novelty or algorithm-complexity claim.",
+      "reason": "Provenance and claim scope; no external-paper theorem attribution."
+    },
+    {
+      "id": "pq.probability_domain_guard",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        13,
+        14
+      ],
+      "text": "Formula defined for all matrices but probability claim needs effect and normalization hypotheses.",
+      "reason": "Scope guard, represented precisely by the formula definition and interval theorem; no unconditional probability assertion."
+    },
+    {
+      "id": "pq.synthesis_guard",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        26,
+        27
+      ],
+      "text": "Aligned is not an automatic synthesis theorem.",
+      "reason": "Scope guard; certificate contents are represented in pq.aligned_certificate."
+    },
+    {
+      "id": "pq.internal_dependency_guard",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        30,
+        31
+      ],
+      "text": "Circuit unitarity and operator perturbation are real dependencies, not public hypotheses.",
+      "reason": "Dependency-boundary metadata reflected in circuit derivation nodes."
+    },
+    {
+      "id": "pq.register_and_phase_scope",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        33,
+        35
+      ],
+      "text": "No additional register, garbage, ancilla, or tensor identification; phase is carried literally in matrices without quotient selection or uniqueness.",
+      "reason": "Representation/scope guard. The existing fixed register definition is separately represented."
+    },
+    {
+      "id": "pq.oracle_scope",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        36,
+        36
+      ],
+      "text": "No oracle access, controls or inverse black box required.",
+      "reason": "Scope guard; no access-model or black-box algorithm theorem follows."
+    },
+    {
+      "id": "pq.resource_scope",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        37,
+        38
+      ],
+      "text": "No hardware noise law, state-loading cost, shot cost, gate count, physical depth, finite-bit angle synthesis, runtime or estimator theorem follows.",
+      "reason": "Explicit exclusions of resource/statistical claims; length(exact) is only the coefficient in the stated analytic perturbation bound."
+    },
+    {
+      "id": "pq.implementation_dependency_metadata",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        40,
+        42
+      ],
+      "text": "Mathlib finite Matrix order/CStar norms, complex inner products/operator action; aligned_eval_distance_le and evalPrimitiveCircuit_unitary.",
+      "reason": "Source-reported implementation names. Abstract laws and existing theorem contracts are separately represented, without inspecting their implementation."
+    },
+    {
+      "id": "pq.consumer_metadata",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        42,
+        44
+      ],
+      "text": "Reusable probability node consumers probability_mem_Icc and CircuitEffectStability.aligned_probability_difference_le.",
+      "reason": "Source-reported consumer metadata. Both mathematical consumer statements are represented; no verified implementation linkage is asserted."
+    },
+    {
+      "id": "pq.publication_scope",
+      "classification": "EXCLUDED",
+      "source_lines": [
+        44,
+        47
+      ],
+      "text": "Canonical Semantics nodes; no new research route/frontier/categorical transport/accepted compiler/resource theorem; atlas/progress surfaces unchanged.",
+      "reason": "Publication and scope metadata, not mathematical theorem implications."
+    }
+  ],
+  "coverage": [
+    {
+      "paragraph_lines": [
+        1,
+        1
+      ],
+      "items": [
+        "pq.title"
+      ]
+    },
+    {
+      "paragraph_lines": [
+        3,
+        5
+      ],
+      "items": [
+        "pq.provenance"
+      ]
+    },
+    {
+      "paragraph_lines": [
+        7,
+        14
+      ],
+      "items": [
+        "pq.finite_complex_setting",
+        "pq.normalized_state",
+        "pq.effect",
+        "pq.unitary_U",
+        "pq.probability_formula",
+        "pq.order_norm_laws",
+        "pq.inner_product_operator_laws",
+        "pq.effect_contraction",
+        "pq.unitary_state_normalization",
+        "pq.probability_nonnegative",
+        "pq.probability_upper_bound",
+        "pq.probability_mem_Icc",
+        "pq.probability_domain_guard"
+      ]
+    },
+    {
+      "paragraph_lines": [
+        16,
+        22
+      ],
+      "items": [
+        "pq.aux_normalized_pair",
+        "pq.aux_contraction",
+        "pq.quadratic_split",
+        "pq.first_split_term_bound",
+        "pq.second_split_term_bound",
+        "pq.contraction_quadratic_stability",
+        "pq.unitary_V",
+        "pq.operator_error_certificate",
+        "pq.eta_nonnegative",
+        "pq.unitary_pair_state_normalization",
+        "pq.state_error_from_operator_error",
+        "pq.effect_probability_stability"
+      ]
+    },
+    {
+      "paragraph_lines": [
+        24,
+        31
+      ],
+      "items": [
+        "pq.primitive_circuit_setting",
+        "pq.aligned_certificate",
+        "pq.existing_perturbation_contract",
+        "pq.existing_unitarity_contract",
+        "pq.circuit_operator_error",
+        "pq.circuit_unitary_pair",
+        "pq.circuit_stability_instantiation",
+        "pq.aligned_probability_difference_le",
+        "pq.synthesis_guard",
+        "pq.internal_dependency_guard"
+      ]
+    },
+    {
+      "paragraph_lines": [
+        33,
+        38
+      ],
+      "items": [
+        "pq.fixed_register_definition",
+        "pq.register_and_phase_scope",
+        "pq.oracle_scope",
+        "pq.resource_scope"
+      ]
+    },
+    {
+      "paragraph_lines": [
+        40,
+        47
+      ],
+      "items": [
+        "pq.implementation_dependency_metadata",
+        "pq.consumer_metadata",
+        "pq.publication_scope"
+      ]
+    }
+  ],
+  "boundary_notes": [
+    "Auxiliary contraction stability accepts a literal contraction hypothesis. The effect stability consumer must derive that hypothesis from 0≤P≤I.",
+    "Existing circuit unitarity and perturbation are proof ingredients and are obtained from their existing contracts, not exposed as arbitrary public hypotheses.",
+    "The prose requires δ≥0 explicitly; unlike η, its omission is not licensed by the source.",
+    "No phase quotient, register enlargement, probabilistic sampling model, resource theorem, new research novelty, or categorical transport is reconstructed.",
+    "The source does not specify an external theorem numbering or exact public Lean declaration signatures. Nodes encode mathematical content only, and reported consumer names retain unverified implementation status."
+  ]
+}

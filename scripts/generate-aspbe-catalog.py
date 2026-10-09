@@ -57,6 +57,8 @@ STATE_PREP_MODULES = {
 }
 
 STRUCTURED_SEMANTICS_MODULES = {
+    "BornStability.lean",
+    "CircuitEffectStability.lean",
     "AdjacentGivens.lean",
     "ConstructiveIsometryCompletion.lean",
     "ConstructiveIsometryLocal.lean",
