@@ -592,3 +592,29 @@ proof and actual consumers. Radius has spent `epsilon/4`; a provisional
 `3*epsilon/16` reserve for each other stage is accounting design, not four
 closed bounds. Actual stage midpoint, source/storage and physical synthesis
 are still separate obligations.
+
+### Uniform degree and literal rounded rows
+
+The degree-allocation design above is now proved for the existing finite
+negative-exponential checker: `checked_complete` and `complete_enclosure`
+provide sound bounds for every legal rational input and positive tolerance.
+The sufficient active degree is `4*T^2+2*T+1`; the all-k original tail and
+endpoint consumers compile. Scalar width does not discharge vector or
+normalized-state error, coefficient amplification or intermediate bit cost.
+[Degree provider](../experiments/hermite-polynomial/precision/finite-exp-degree/independent-audit.json).
+
+`HermiteSavedRounding` proves signed integer floor/ceil formulas, outward
+enclosure, four-corner products, literal signed-half-angle RY row updates,
+same-pair chronological enclosure and end-only midpoint error. The distinct
+review and independent sign/order/center discriminators pass. A failed
+reviewer fixture is retained as an implementation failure, not erased.
+[Rounding provider](../experiments/hermite-polynomial/precision/saved-rounding/independent-audit.json).
+
+The stored Gram whole-module review closes one publication obligation without
+changing production source. All five registered packets validate against the
+current complete source context; 46 of the 51 changed modules still lack
+packets, so the aggregate admission gate fails closed. Parent legacy-shell
+stdin encoding failed; the unchanged replay passed under UTF-8 PowerShell 7.
+Scientific C2/C3/X2/ROOT, full executable family acceptance, finite-bit
+resources, main migration and reader purification remain open.
+[Aggregate](../experiments/hermite-polynomial/precision/cycle15-staging-result.json).

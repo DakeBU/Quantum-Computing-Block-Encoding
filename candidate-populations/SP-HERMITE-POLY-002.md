@@ -469,3 +469,24 @@ uncertainty, not scientific population selection: four non-radius stages,
 complete saved-word/rounding/garbage refinement and total finite-bit resources
 remain open. The separate sufficient-degree proposal is unproved design only.
 [Cycle 14 aggregate](../experiments/hermite-polynomial/precision/cycle14-staging-result.json).
+
+### Sufficient degree and actual outward-rounded row semantics
+
+The scalar mutation now proves a sufficient precision-dependent Taylor
+degree, rather than searching under a fixed cap. It consumes the existing
+sound checker and preserves enclosed clipped-tail mass. The rounded-row
+mutation proves the actual signed floor/ceil and interval update rules,
+including end-only midpoint extraction, on a fixed row pair. Both are
+independently reviewed internal providers, not scientific population parents.
+
+The proposed crossover combines these suppliers with the proved radius
+allocation to build a finite rational source, then a stored tensor train.
+It remains design only until coefficient refinement, global error, actual
+stored cores and all charged costs are proved. The original exact-real bond
+and gate bound cannot be silently reused for a precision-dependent polynomial.
+[Next source-stage design](../experiments/hermite-polynomial/precision/next-source-stage-design-c15.json).
+
+Variable-target RY/CX full stages and operator-error transport are a separate
+construction uncertainty. Fixed-pair interval closure and finite 4x4 tests do
+not supply it. No new resource tuple or winner replaces the retained baseline.
+[Reviewed evidence](../experiments/hermite-polynomial/precision/cycle15-staging-result.json).

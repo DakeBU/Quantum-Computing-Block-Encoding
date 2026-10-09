@@ -114,3 +114,25 @@ must change a concrete mechanism or test a new discriminator. Repeated
 controller-only cycles cannot count as mathematical advances. The master
 reallocates work to a distinct unresolved interface instead of enlarging the
 same prompt or introducing another orchestration layer.
+
+## Uniform scalar completeness and saved rounding
+
+The finite negative-exponential supplier now has a sufficient active degree
+`4*T^2+2*T+1`, where `T` is its precision-dependent tail cutoff. Its checked
+enclosure succeeds for every rational `q <= 0` and positive scalar tolerance.
+This removes the previous unproved degree-allocation edge; it is neither an
+optimal allocation nor a finite-bit runtime theorem.
+
+The literal signed outward-rounding supplier also encloses chronological RY
+updates on one fixed row pair and bounds the midpoint taken only at the end.
+Both internal providers have distinct scoped review. Changing physical row
+pairs, CX-interleaved full stages, dimension-aware operator transport, source
+normalization and total finite-bit costs remain open.
+
+The complete stored Gram module has an accepted source-blind decoder and a
+distinct source-first reviewer. Its charged exact-real stored-data model does
+not certify input production, machine caching, peak RAM or physical gates.
+[Evidence and remaining obligations](../experiments/hermite-polynomial/precision/cycle15-staging-result.json).
+No new certified population winner, full scientific root or main admission is
+claimed. The efficient branch uses Lean 4.33.0; main migration still requires
+the remaining changed-module, integration and reader gates.
