@@ -1,5 +1,11 @@
 # Quantum Bandit cross-library checkpoint
 
+Public research release authorized on 2026-10-09. The matching Bandit branch
+`research/qb261009` now includes the latest adaptive information milestone,
+unchanged historical audit evidence and collaborator setup instructions.
+This quantum branch remains a draft prototype with the admission and Windows
+pipeline boundaries below; public availability is not publication admission.
+
 Date: 2026-10-09. Branch: `research/qb261009`; frozen quantum source
 `305952f4291d7be530c76f51f7e98d77faf1cf45`, Lean 4.29.1, Mathlib
 `5e932f97dd25535344f80f9dd8da3aab83df0fe6`.
