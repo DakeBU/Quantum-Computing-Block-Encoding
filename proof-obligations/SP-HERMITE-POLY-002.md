@@ -648,3 +648,40 @@ validate, but 45 of the 51 changed modules still lack records, so the whole
 admission gate rejects. Main migration, clean reader/CI, C2/C3/X2/ROOT and
 full executable family acceptance are not promoted.
 [Cycle 16 evidence](../experiments/hermite-polynomial/precision/cycle16-staging-result.json).
+
+### Cycle 17 local source budget and actual nominal transport
+
+The frozen finite rational piecewise evaluator now has a locally compiled
+normalized Euclidean error at most `epsilon/2` against the unchanged original
+signed `pi*L` target, for every k,n and positive rational L,epsilon with
+physical width `n_p=n+1`. Its source `epsilon/4`, produced-radius
+`epsilon/4`, dimension aggregation and central-value norm floors are proved
+internally. The amplitude consumer gives squared error at most `epsilon^2/4`.
+This is a source-only approximation certificate: exact mathematical
+normalization is not a finite-bit circuit producer. Distinct review is pending.
+
+The actual real-stage construction now locally proves whole-carrier nominal
+RY/CX norm preservation, internally supplies every `Valid` conjunct and
+identifies chronological nominal products with the literal flattened word.
+The actual surrogate action is bounded by `(product(1+eta)-1)*norm(x)`.
+Neither surrogate unitarity nor contraction is assumed. This does not yet
+identify the custom real word with the existing complex primitive evaluator;
+that canonical little-endian adapter is a separate sealed worker objective.
+[Frozen checkpoint](../experiments/hermite-polynomial/precision/cycle17-author-checkpoint.json).
+
+The next stored-source obligation must use this precision-dependent source,
+not the old exact-exponential rank. Active tails have degree
+`d=4*T^2+2*T+1`, clipped tails retain the nonzero midpoint `2^(-T-1)`, and
+the +/-T masks interact with the -1/0 splice even when T is0 or1. A five-term
+masked-polynomial construction is proposed, but its comparator contraction,
+actual rational core producer, rank/storage and same-run generation costs are
+not yet proved. The proposed bond envelope is not a certificate.
+[Design only](../experiments/hermite-polynomial/precision/piecewise-tt-next-design-c17.json).
+
+The generic interval matrix needs `4^width` entries if materialized. The
+existing saved-action producer instead uses local stage width `a+1`; its
+physical local-to-global lifting and a certified bound on a must be proved
+before either efficient execution or exponential execution is inferred.
+All bit/GCD/QR/storage/normalizer/synthesis costs, full terminal readout,
+independent scientific-family acceptance and C2/C3/X2/ROOT remain open.
+No main merge or deployment follows from these local checkpoints.

@@ -509,3 +509,33 @@ Dense materialization remains exponential when width grows with n_p; the
 symbolic full-matrix bound is not a scalable implementation certificate.
 The original baseline and failure records remain available.
 [Cycle 16 aggregate](../experiments/hermite-polynomial/precision/cycle16-staging-result.json).
+
+### Cycle 17 source/stage crossover, locally proved and under review
+
+The source crossover now composes actual clipped tails, the rational middle,
+the produced rational-radius grid and dimension-aware normalization. Its
+locally compiled original-target error is at most `epsilon/2` for positive
+rational L,epsilon, all k and `n_p>=1`; the source and radius contributions
+are each at most `epsilon/4`. No norm-floor or approximation oracle is an
+input premise. The whole original grid and clipped mass remain in the target.
+
+Independently, the stage mutation removes the contraction/`Valid` assumptions:
+literal signed real RY/CX words preserve the full Euclidean norm, actual
+outward-stage centers and eta supply `Valid`, and chronological products match
+the literal flattened word. Parent actual consumer checks and nine diagnostic
+tests pass. Distinct full-source review is still running; these assets are not
+scientific population winners or public purified results.
+[Checkpoint](../experiments/hermite-polynomial/precision/cycle17-author-checkpoint.json).
+
+The next source mutation must build actual nondense cores for precision-degree
+tails and all +/-T/-1/0 masks. A masked-polynomial comparator route and a
+multi-boundary injection alternative remain explicit OR-routes; neither may
+inherit the old `2k+6` exponential-source bond or treat comparator generation
+as a free oracle. Proposed dimensions are design only. The separate real-to-
+complex primitive adapter preserves canonical q0-LSB, signs, chronology and
+all spectators rather than replacing the circuit semantics.
+[Next source design](../experiments/hermite-polynomial/precision/piecewise-tt-next-design-c17.json).
+
+No new complete resource tuple, certified winner, family export acceptance or
+main deployment is asserted. The exponential baseline, exact-real route and
+failed attempts remain preserved, with full finite-bit costs independently open.
