@@ -152,7 +152,7 @@ inductive ExactAngle where
       (bounded : |(value : Real)| ≤ 1)
   | twiceArccosSqrtRational (value : Rat)
       (bounded : 0 ≤ (value : Real) ∧ (value : Real) ≤ 1)
-  
+
   | real (value : Real)
   | add (left right : ExactAngle)
   | neg (value : ExactAngle)

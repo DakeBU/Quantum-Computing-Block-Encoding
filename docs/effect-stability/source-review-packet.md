@@ -1,6 +1,6 @@
 # Independent source/formal/reconstruction comparison packet
 
-Created by /root/generic_source_review; run generic-source-review-20261009-01. This is a reviewer packet, not a source-blind decoder input.
+Created by /root/generic_source_review; run generic-source-review-20261009-01. This is a reviewer packet, not a source-blind decoder input. Text snapshots normalize line endings and trailing whitespace; SHA256 headers identify the original input files.
 
 ## Input source-contract.md; SHA256 9712de87c5a31f0ad44d217bf1add62280b2a518b8a0a9aae8117f501343050d
 
@@ -843,7 +843,7 @@ progress surfaces remain unchanged with that reason.
 }
 
 
-## Input formal-packet.md; SHA256 71c092ad63f594dfdc1ae97095ba1ca3e0509b5d1b06127fc91ec1b46543cb98
+## Input formal-packet.md; SHA256 c6c79553a91e29828c247e8989caf07a64eb4bbff2554d0f40e15f3cf6b02705
 
 ```lean
 import Mathlib.Analysis.CStarAlgebra.Matrix
@@ -999,7 +999,7 @@ inductive ExactAngle where
       (bounded : |(value : Real)| ≤ 1)
   | twiceArccosSqrtRational (value : Rat)
       (bounded : 0 ≤ (value : Real) ∧ (value : Real) ≤ 1)
-  
+
   | real (value : Real)
   | add (left right : ExactAngle)
   | neg (value : ExactAngle)
@@ -1914,14 +1914,14 @@ end QuantumBlockEncoding.CircuitEffectStability
 </details>
 
 
-## Input blind-reconstruction.md; SHA256 e2f67fd25b1795960c792ae1d11ff49c2f08886478193adb953027cc7a7ff2e0
+## Input blind-reconstruction.md; SHA256 d002b4c5eb9120fe42a80f3e53f871a34557fe20d0e9bacf8520be88f5b573a8
 
 # Independent formal reconstruction: effect stability
 
 Decoder identity: `/root/generic_blind_decode`.
 Run ID: `generic-blind-decode-20261009-efd2870d-d7f6-4aa9-89a8-e2a410527bab`.
 Only input read: `docs/effect-stability/formal-packet.md`.
-Packet SHA256: `71c092ad63f594dfdc1ae97095ba1ca3e0509b5d1b06127fc91ec1b46543cb98`.
+Packet SHA256: `c6c79553a91e29828c247e8989caf07a64eb4bbff2554d0f40e15f3cf6b02705`.
 Revision: independently reread the expanded formal packet containing ambient circuit, evaluation, and alignment definitions.
 Source blind: true. This is a reconstruction, not a source review or acceptance verdict.
 
@@ -2432,4 +2432,3 @@ theorem aligned_eval_clm_distance_le {qubits : ℕ} {δ : ℝ} (hδ : 0 ≤ δ)
         (exact.length : ℝ) * δ / 2 := by
   rw [_root_.Matrix.l2_opNorm_toEuclideanCLM]
   exact aligned_eval_distance_le hδ aligned
-

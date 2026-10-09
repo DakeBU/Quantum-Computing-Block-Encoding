@@ -4,10 +4,10 @@
   "identity": "/root/generic_source_review",
   "run_id": "generic-source-review-20261009-01",
   "packet_path": "docs/effect-stability/source-review-packet.md",
-  "packet_sha256": "d93c7e8740e1a51dc31837bd8c7ec8ff46ef96d8acba3a80c54ac3356e43352b",
+  "packet_sha256": "7bef90338cf93cd5d401eb4a3d4bfb45bfe2630a36c774229a1f4512a893dcf2",
   "artifact_path": "docs/effect-stability/source-review.md",
-  "artifact_sha256": "546c1cb2ba22e94b39d8b2af36de9da920456a69f888176d7caeba1a8b124ec0",
-  "decoder_evidence_sha256": "1f73be6ad8a434f9d6bf0d8824f31fcace2349833fef6d28f18904560809785f",
+  "artifact_sha256": "d6da5b835ec1028a38deecec8091eddf9ea42a6d156e7c62a097f6229974e5d1",
+  "decoder_evidence_sha256": "bf012393d1d4a65389ce5af5fd3a04d451cff4201926d615885e2cbb5ee07e72",
   "anti_anchored": true,
   "verdict": "accepted",
   "semantic_slots": {

@@ -3,7 +3,7 @@
 Decoder identity: `/root/generic_blind_decode`.
 Run ID: `generic-blind-decode-20261009-efd2870d-d7f6-4aa9-89a8-e2a410527bab`.
 Only input read: `docs/effect-stability/formal-packet.md`.
-Packet SHA256: `71c092ad63f594dfdc1ae97095ba1ca3e0509b5d1b06127fc91ec1b46543cb98`.
+Packet SHA256: `c6c79553a91e29828c247e8989caf07a64eb4bbff2554d0f40e15f3cf6b02705`.
 Revision: independently reread the expanded formal packet containing ambient circuit, evaluation, and alignment definitions.
 Source blind: true. This is a reconstruction, not a source review or acceptance verdict.
 
