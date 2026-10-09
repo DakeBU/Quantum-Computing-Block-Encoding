@@ -32,6 +32,7 @@ VIEWS = (("Mathematical methods", "mathematical-methods/"),
          ("Current Progress", "progress/"))
 ID = re.compile(r"[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$|[a-z][a-z0-9-]*$")
 SOURCE_STATES = {"primary-metadata-checked", "primary-text-checked", "primary-source-unavailable"}
+TECHNICAL_STATES = {"paper-cited", "classic-unformalized", "contract-only", "obligation", "formalized"}
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -74,6 +75,7 @@ def validate_catalog(catalog: dict[str, Any], declarations: dict[str, Any] | Non
     edges = unique(atlas["hyperedges"], "hyperedge")
     contributions = unique(atlas["contributions"], "contribution")
     routes = unique(wiki["routes"], "route")
+    cards = []
     for item in sources.values():
         require_fields(item, ("title", "url", "status", "anchor", "scope", "formal_status"), "source")
         if item["status"] not in SOURCE_STATES or not item["url"].startswith("https://"):
@@ -84,6 +86,39 @@ def validate_catalog(catalog: dict[str, Any], declarations: dict[str, Any] | Non
             raise ValueError(f"empty mathematical lesson: {item['id']}")
         if any(domain not in domains for domain in item["domains"]):
             raise ValueError(f"unknown family domain: {item['id']}")
+        if "technical_card" in item:
+            card = item["technical_card"]
+            if not isinstance(card, dict):
+                raise ValueError(f"technical card must be an object: {item['id']}")
+            require_fields(card, ("id", "source_ids", "statement", "lean_decl", "lean_status", "used_by", "dependencies", "next_action", "tags", "failure_modes"), "technical card")
+            for field in ("statement", "lean_status", "next_action"):
+                if not isinstance(card[field], str) or not card[field].strip():
+                    raise ValueError(f"invalid technical card {field}: {card['id']}")
+            for field in ("source_ids", "lean_decl", "used_by", "dependencies", "tags", "failure_modes"):
+                values = card[field]
+                if not isinstance(values, list) or any(not isinstance(value, str) or not value.strip() for value in values):
+                    raise ValueError(f"invalid technical card {field}: {card['id']}")
+                if len(values) != len(set(values)):
+                    raise ValueError(f"duplicate technical card {field}: {card['id']}")
+                if field in {"source_ids", "used_by", "tags", "failure_modes"} and not values:
+                    raise ValueError(f"empty technical card {field}: {card['id']}")
+            if card["lean_status"] not in TECHNICAL_STATES:
+                raise ValueError(f"invalid technical card lean_status: {card['id']}")
+            if card["lean_status"] != "formalized" and card["lean_decl"]:
+                raise ValueError(f"uncertified technical card cannot claim a local certificate: {card['id']}")
+            if card["lean_status"] == "formalized" and not card["lean_decl"]:
+                raise ValueError(f"formalized technical card requires a local declaration: {card['id']}")
+            for field, targets in (("source_ids", sources), ("used_by", routes), ("dependencies", families)):
+                if any(value not in targets for value in card[field]):
+                    raise ValueError(f"unknown technical card {field} reference: {card['id']}")
+            for ref in card["lean_decl"]:
+                if declarations is not None:
+                    if ref not in declarations:
+                        raise ValueError(f"unknown generated Lean declaration in technical card: {ref}")
+                    if declarations[ref].get("openProof") or declarations[ref].get("experimental"):
+                        raise ValueError(f"non-certified technical card declaration: {ref}")
+            cards.append(card)
+    unique(cards, "technical card")
     for item in edges.values():
         require_fields(item, ("label", "tails", "heads", "formula", "mechanism", "hypothesis_map", "conclusion_map", "failure_boundary", "status", "review"), "hyperedge")
         if not item["tails"] or not item["heads"]:
@@ -172,9 +207,9 @@ def family_links(ids: list[str], families: dict[str, Any], prefix: str) -> str:
 
 
 def lean_links(refs: list[str], declarations: dict[str, Any], prefix: str, full_source: bool = False) -> str:
-    from website.scripts import build_site as site
     if not refs:
         return '<p class="ra-boundary">No local transport theorem is bound to this record. Do not infer formal truth from its position in the atlas.</p>'
+    from website.scripts import build_site as site
     content = '<p class="ra-boundary">Named Lean substrates below have their own exact signatures. They do not certify every sentence or proposed generalization on this page.</p>'
     modules: set[str] = set()
     for name in refs:
@@ -210,6 +245,23 @@ def family_latex(item: dict[str, Any]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def render_technical_card(card: dict[str, Any], families: dict[str, Any], routes: dict[str, Any], sources: dict[str, Any], declarations: dict[str, Any], prefix: str) -> str:
+    boundary = ("Local declaration references certify only their exact checked statements, not the surrounding research route."
+                if card["lean_status"] == "formalized" else
+                "Planned / uncertified technical lemma. This card is a retrieval obligation, not a local Lean certificate or a completed source route.")
+    body = '<p><code>' + esc(card["id"]) + '</code> <span class="ra-tag">' + esc(card["lean_status"]) + '</span></p>'
+    body += '<p class="ra-warning">' + boundary + '</p><p>' + esc(card["statement"]) + '</p>'
+    body += '<h3>Exact card declarations</h3>' + lean_links(card["lean_decl"], declarations, prefix)
+    body += '<h3>Planned consumers (not verified reuse)</h3><ul>' + "".join(
+        f'<li><a href="{prefix}state-preparation-wiki/{identifier}/index.html">{esc(routes[identifier]["title"])}</a></li>' for identifier in card["used_by"]) + '</ul>'
+    body += '<h3>Required mechanisms</h3>' + (family_links(card["dependencies"], families, prefix) if card["dependencies"] else '<p>No additional family dependencies recorded.</p>')
+    body += '<h3>Failure modes</h3>' + paragraphs(card["failure_modes"])
+    body += '<p><strong>Next bounded action:</strong> ' + esc(card["next_action"]) + '</p>'
+    body += '<div class="ra-tags">' + "".join('<span class="ra-tag">' + esc(tag) + '</span>' for tag in card["tags"]) + '</div>'
+    body += '<h3>Card source ledger</h3>' + source_list(card["source_ids"], sources)
+    return section("Reusable technical lemma card", body, "technical-card")
+
+
 def context_packet(catalog: dict[str, Any], query: str = "", route_id: str | None = None, limit: int = 5) -> dict[str, Any]:
     validate_catalog(catalog)
     limit = max(1, min(limit, 6))
@@ -223,17 +275,24 @@ def context_packet(catalog: dict[str, Any], query: str = "", route_id: str | Non
         haystack = json.dumps(item, ensure_ascii=False).lower()
         return sum(haystack.count(term) for term in terms)
     if requested:
-        chosen = [f for f in families if f["id"] in requested["families"]][:limit]
+        by_id = {f["id"]: f for f in families}
+        chosen = [by_id[identifier] for identifier in requested["families"]][:limit]
         selected_routes = [requested]
     else:
         chosen = sorted(families, key=lambda x: (-score(x), x["id"]))
         chosen = [f for f in chosen if not terms or score(f)][:limit]
         selected_routes = [r for r in sorted(routes, key=lambda x: (-score(x), x["priority"])) if not terms or score(r)][:2]
     ids = {f["id"] for f in chosen}
-    edges = [e for e in catalog["atlas"]["hyperedges"] if ids.intersection(e["tails"] + e["heads"])][:4]
+    direct_ids = set(requested["families"]) if requested else ids
+    edges = [e for e in catalog["atlas"]["hyperedges"] if ids.intersection(e["tails"] + e["heads"])]
+    edges.sort(key=lambda e: (-len(direct_ids.intersection(e["tails"] + e["heads"])), -score(e), e["id"]))
+    edges = edges[:4]  # Bound the number of complete hyperedges, never their AND inputs.
+    records = chosen + selected_routes + edges + [f["technical_card"] for f in chosen if "technical_card" in f]
+    source_ids = {source for record in records for source in record.get("source_ids", [])}
+    sources = [source for source in catalog["sources"]["sources"] if source["id"] in source_ids]
     return {"schema_version": 1, "query": query, "route_id": route_id,
             "truth_boundary": "Curated retrieval packet, not an execution result or Lean implication. Hyperedge tails are conjunctive. Check exact source, input/oracle/phase/norm/resource contracts before reuse.",
-            "families": chosen, "routes": selected_routes, "hyperedges": edges,
+            "families": chosen, "routes": selected_routes, "hyperedges": edges, "sources": sources,
             "required_handoff": ["frozen target and access model", "exact reused declarations", "bounded mathematical delta", "assumption differences", "independent round-trip evidence", "graph contribution and residual boundary"]}
 
 
@@ -341,6 +400,7 @@ def publish(root: Path) -> dict[str, Any]:
     graph_ids = {node["id"] for node in graph["nodes"]}
     all_refs = {ref for name in ("families", "hyperedges", "contributions") for item in catalog["atlas"][name] for ref in item.get("lean_refs", [])}
     all_refs |= {ref for item in catalog["wiki"]["routes"] for ref in item.get("lean_refs", [])}
+    all_refs |= {ref for item in catalog["atlas"]["families"] for ref in item.get("technical_card", {}).get("lean_decl", [])}
     for name in all_refs:
         if "declaration:" + name not in graph_ids:
             raise ValueError(f"shared declaration missing from Lean graph: {name}")
@@ -385,6 +445,12 @@ def publish(root: Path) -> dict[str, Any]:
         body += section("Mathematical proof mechanism", '<p>This is an authored reusable derivation guide, not a claim that the full family has been source-assimilated.</p>' + paragraphs(f["proof_steps"], True), "proof")
         body += section("Exact Lean substrates", lean_links(f["lean_refs"], declarations, prefix, True), "lean")
         body += section("Do not cross this boundary", '<p class="ra-warning">' + esc(f["boundary"]) + '</p>', "boundary")
+        if "technical_card" in f:
+            card = f["technical_card"]
+            body += render_technical_card(card, families, {r["id"]: r for r in wiki["routes"]}, sources, declarations, prefix)
+            filename = slug(f["id"]) + "-technical-card.json"
+            (data_dir / filename).write_text(json.dumps(card, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            body += f'<p><a download href="{prefix}data/research/{filename}">Download technical card JSON</a></p>'
         connected = [e for e in atlas["hyperedges"] if f["id"] in e["tails"] + e["heads"]]
         body += section("Related transports", "".join(f'<p><a href="../../functor-hypergraph/index.html#{slug(e["id"])}">{esc(e["label"])}</a> — {esc(e["status"])}</p>' for e in connected))
         body += section("Source and prior-art ledger", source_list(f["source_ids"], sources), "sources")

@@ -16,6 +16,34 @@
   ],
   "queue": [
     {
+      "key": "zylberman-debbasch-2024-walsh",
+      "planningRoute": "state-preparation-wiki/spw-walsh/",
+      "title": "Efficient Quantum State Preparation with Walsh Series",
+      "authors": "Julien Zylberman, Fabrice Debbasch",
+      "year": 2024,
+      "url": "https://arxiv.org/abs/2307.08384v3",
+      "category": "statePreparation",
+      "sourceAnchors": ["Theorem 1", "Corollary 1", "Table I", "Appendix B: B14–B19, B28"],
+      "sourceStatement": "The Walsh loader combines diagonal phase synthesis with ancilla interference and postselection. Infidelity, truncation and successful-preparation cost are distinct obligations.",
+      "status": "queued",
+      "formalized": "Not yet reproduced in Lean. The shared finite-matrix substrate is not a Walsh Series Loader certificate.",
+      "remaining": "Walsh ordering and parity semantics, controlled zero-order phase, literal branch identity, normalized error, RUS/amplification and full cost. See StatePreparationWiki spw-walsh and technical card tl-walsh-diagonal-phase. Audit the companion comment 2502.05193v1."
+    },
+    {
+      "key": "zylberman-et-al-2025-diagonal",
+      "planningRoute": "state-preparation-wiki/spw-diagonal/",
+      "title": "Efficient Quantum Circuits for Non-Unitary and Unitary Diagonal Operators with Space-Time-Accuracy trade-offs",
+      "authors": "Julien Zylberman, Ugo Nzongani, Andrea Simonetto, Fabrice Debbasch",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2404.02819v4",
+      "category": "statePreparation",
+      "sourceAnchors": ["Theorems II.1, III.1–III.2, IV.1, V.1, VIII.1", "Eqs. (15)–(16), (19)–(21)", "Tables I–II", "Fig. 4 signal-sector convention unresolved"],
+      "sourceStatement": "Unitary diagonal phase circuits and non-unitary diagonal embeddings have different semantic contracts; space, depth and approximation savings must be matched to input and success assumptions.",
+      "status": "queued",
+      "formalized": "Not yet reproduced in Lean. The local fixed cubic diagonal example is only a candidate semantic substrate.",
+      "remaining": "Literal source theorem/circuit mapping, parallel scheduling and cleanup, operator approximation, success/normalized-state error and finite-bit cost. See spw-diagonal and technical card tl-diagonal-postselection; reuse the existing Block Encoding API."
+    },
+    {
       "key": "mottonen-2005-state-preparation",
       "title": "Transformation of quantum states using uniformly controlled rotations",
       "authors": "Mikko Möttönen, Juha J. Vartiainen, Ville Bergholm, Martti M. Salomaa",
