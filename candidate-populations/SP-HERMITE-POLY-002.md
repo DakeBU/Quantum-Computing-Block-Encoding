@@ -593,3 +593,23 @@ tests. StoredTensorTrain source-blind elaboration passes but its extracted
 admission remains blocked pending a separately versioned artifact correction.
 The unchanged exponential baseline, failed attempts and open C2/C3/X2/ROOT
 are retained. No new resource winner or main proof deployment is claimed.
+
+### Cycle 20 integrated internal dependency advances
+
+The actual generated comparison chain has an arbitrary-width source-mask
+contract, no supplied mask/Window premise, maximum bond3 and stored-scalar
+bound `18*width`. It charges local table/boundary generation and assembly for
+the SAME returned object, with division/remainder calls separately visible.
+The generic rational polynomial contraction is proved; complete actual source
+coefficients, five-term products/directsum and full-chain generation remain open.
+[Uniform result](../experiments/hermite-polynomial/precision/piecewise-kernel-uniform-c20/result.json).
+
+The actual complex stage supplies its own contraction/error/Valid and later-left
+flattened evaluator bound for arbitrary complex vectors. This is author-only
+local evidence pending distinct review, not a scientific population parent.
+[Complex result](../experiments/hermite-polynomial/precision/complex-stage-transport-c20/result-v1.json).
+Parent focused replays pass37 reports plus7 finite diagnostics; the local Lean
+and Tests integration gate passes. Full finite-bit cost, QR, local/global
+support, allocated error budget, independent family acceptance and ROOT remain
+open, and no new resource winner is selected. Retained failed attempts and
+versioned decoder corrections do not alter the scientific target.

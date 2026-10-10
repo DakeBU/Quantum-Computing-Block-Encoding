@@ -769,3 +769,43 @@ reader-facing curriculum/navigation are live. Published main remains on
 Lean4.29.1; these proof checkpoints use Lean4.33.0. Neither reader deployment
 nor these focused tests closes the scientific ROOT, finite-bit resource tuple,
 independent family executable acceptance, publication purification or migration.
+
+### Cycle 20 actual uniform masks and complex precision transport
+
+The generated comparison supplier now proves the arbitrary-width q0-LSB scan,
+actual one-hot matrix contraction, strict/inclusive rational-grid thresholds,
+and the finite Window of its generated tables. The SAME returned stored chain
+contracts to its intended mask; it has maximum bond at most3 and at most
+`18*width` stored scalars. Its charged extended exact-real operation count is
+at most `5*n^2+149*n+479` for width `n+1`, with `18*width` quotient calls and
+`18*width` remainder calls counted separately. This is not a finite-bit runtime
+or the cost/rank of the complete Hermite piecewise producer. All cut0/N and
+T0/T1 ownership is handled symbolically, not by testing selected grids.
+The rational binomial translation supplier gives arbitrary-width polynomial
+contraction; actual Hermite coefficient generation and five-way mask/product
+assembly are still required.
+[Uniform supplier and precise omissions](../experiments/hermite-polynomial/precision/piecewise-kernel-uniform-c20/result.json).
+[Parent replay:21 reports](../experiments/hermite-polynomial/precision/cycle20-uniform-parent-checkpoint.json).
+
+The actual saved interval center and `stageEta` now supply an induced-operator
+bound on the complete existing complex Euclidean carrier. Nominal contraction
+and `Valid` are proved internally; chronological products equal the actual
+flattened primitive evaluator. The apply bound holds for arbitrary complex
+vectors, not only real inputs, first columns or clean sectors. No phase quotient
+or terminal garbage projection is introduced. A distinct review is pending.
+[Actual complex transport](../experiments/hermite-polynomial/precision/complex-stage-transport-c20/result-v1.json).
+[Parent replay:16 reports and7 diagnostics](../experiments/hermite-polynomial/precision/cycle20-complex-parent-checkpoint.json).
+
+The versioned StoredTensorTrain decoder v4 corrects the exact-name extraction
+collision and preserves v3 byte-identically. Parent checking matches all30
+signatures/axiom reports to the actual successful execution messages. It also
+explicitly records that the prior provider scanner missed combined
+`public meta import`: those pinned providers were a partial inherited closure,
+not an exhaustive rebuild. Distinct source review and admission remain open.
+[Correction provenance](../reviews/publication/stored-tensor-train/decoder-provenance-c19-v4.json).
+
+The current local repository build and Tests pass under Lean4.33.0, using
+inherited caches and disclosed local Verso edits. Sealed author inputs remain
+unchanged. This internal WIP checkpoint is not clean CI, reader/publication
+admission, a new scientific winner or main migration.
+[Actual integration gate](../experiments/hermite-polynomial/precision/cycle20-integration-gate.json).
