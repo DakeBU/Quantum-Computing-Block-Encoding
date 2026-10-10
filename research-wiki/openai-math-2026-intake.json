@@ -13,7 +13,7 @@
   "local_boundary": {
     "lean_toolchain": "leanprover/lean4:v4.33.0",
     "direct_package_dependency_allowed": false,
-    "reason": "The audited upstream snapshot and QuantumComputinglib use different Lean toolchains. Upstream material remains pinned source or adapter input until a declaration is ported and compiled locally under Lean 4.33.0."
+    "reason": "Lean 4.33.0 is the local migration target, not an assertion that the current main proof tree has already migrated. The published build report records its actual toolchain. Upstream material remains pinned source or adapter input until separately ported, compiled and admitted; no direct package dependency is allowed."
   },
   "clusters": [
     {

@@ -119,6 +119,7 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   website.scripts.test_hermite_insight `
   website.scripts.test_proof_inputs `
   website.scripts.test_lean_publication_gate `
+  website.scripts.test_deployed_research `
   website.scripts.test_site_contracts `
   website.scripts.test_teaching_enrichment `
   website.scripts.test_casebook_enrichment `

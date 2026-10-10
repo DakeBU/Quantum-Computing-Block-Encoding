@@ -9,6 +9,11 @@ import json
 import threading
 from pathlib import Path
 
+if not __package__:
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from website.scripts.research_browser_contract import ROUTES, WIDTHS, THEMES
+
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, format, *args):
@@ -21,23 +26,27 @@ def check_blueprint_search(page, base: str) -> None:
     page.set_viewport_size({"width": 1280, "height": 900})
     page.goto(f"{base}/blueprint/html-multi/index.html", wait_until="networkidle", timeout=90000)
     page.wait_for_selector('[role="searchbox"]', timeout=30000)
-    names = page.evaluate("""async () => {
+    mapped = page.evaluate("""async (name) => {
       const module = await import('./-verso-search/domain-mappers.js');
       const domain = '«Informal.LeanCodePreview»';
       const xref = await (await fetch('xref.json')).json();
       const mapped = module.domainMappers[domain].dataToSearchables(xref[domain]);
-      return mapped.map(entry => entry.searchKey);
-    }""")
-    if name not in names or len(names) != len(set(names)):
+      return {names: mapped.map(entry => entry.searchKey),
+              destination: mapped.find(entry => entry.searchKey === name)?.address};
+    }""", name)
+    names = mapped["names"]
+    destination = mapped["destination"]
+    if name not in names or len(names) != len(set(names)) or not destination:
         raise AssertionError("Blueprint search lost the exact root or duplicated declarations")
     # Verso's combobox listens to keyboard events, not a synthetic input fill.
     page.locator('[role="searchbox"]').press_sequentially(name, delay=1)
-    result = page.locator('#cb1-listbox a[href*="--statement"]').filter(has_text=name).first
+    # The pinned Verso runtime uses clickable ARIA options, not anchor elements.
+    result = page.locator('#cb1-listbox [role="option"].doc-domain').filter(has_text=name).first
     result.wait_for(state="visible", timeout=30000)
-    destination = result.get_attribute("href")
+    expected_url = page.evaluate("(address) => new URL(address.replace(/^\\//, ''), document.baseURI).href", destination)
     result.click()
     page.wait_for_load_state("networkidle", timeout=90000)
-    if not destination or not page.evaluate("""() => {
+    if page.url != expected_url or not page.evaluate("""() => {
       const anchor = decodeURIComponent(location.hash.slice(1));
       return Boolean(anchor && document.getElementById(anchor));
     }"""):
@@ -55,19 +64,16 @@ def run(root: Path, output: Path, browser_channel: str | None = None,
     records = []
     failures = []
     blueprint_passed = False
-    routes = ["mathematical-methods", "functor-hypergraph", "state-preparation-wiki",
-              "progress", "lean-graph", "quantum-information",
-              "quantum-scientific-computing"]
     try:
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(channel=browser_channel)
             context = browser.new_context(permissions=["clipboard-read", "clipboard-write"])
             page = context.new_page()
             page.on("pageerror", lambda error: failures.append(str(error)))
-            for width in (390, 1280):
+            for width in WIDTHS:
                 page.set_viewport_size({"width": width, "height": 900})
-                for theme in ("blueprint", "modern", "bold"):
-                    for route in routes:
+                for theme in THEMES:
+                    for route in ROUTES:
                         page.goto(f"{base}/{route}/index.html", wait_until="networkidle", timeout=90000)
                         page.evaluate("theme => document.documentElement.dataset.theme = theme", theme)
                         page.wait_for_function("Boolean(window.MathJax && window.MathJax.startup && window.MathJax.startup.promise)", timeout=60000)

@@ -27,6 +27,48 @@ TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
 
 
 class RequiredPublicationArtifactTests(unittest.TestCase):
+    def test_restore_follows_static_and_dynamic_module_imports(self) -> None:
+        from website.scripts.restore_published_blueprint import resource_links, local_name, BLUEPRINT
+        name = "-verso-search/search-init.js"
+        code = 'import {x} from "./domain-mappers.js"; import("./search-box.js"); import "./setup.js";'
+        links = resource_links(name, code, BLUEPRINT + name)
+        self.assertEqual({local_name(link, base) for link, base in links},
+                         {"-verso-search/domain-mappers.js", "-verso-search/search-box.js",
+                          "-verso-search/setup.js"})
+        self.assertEqual(resource_links(name, 'import "bare-package";', BLUEPRINT + name), [])
+
+    def test_restore_rejects_missing_search_asset_and_transitive_import(self) -> None:
+        from website.scripts.restore_published_blueprint import check_search_assets
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            with self.assertRaisesRegex(ValueError, "search asset"):
+                check_search_assets(root)
+            (root / "-verso-search").mkdir()
+            for name in ("xref.json", "-verso-docs.json", "-verso-search/search-init.js",
+                         "-verso-search/search-box.js", "-verso-search/domain-mappers.js",
+                         "-verso-search/blueprint-declarations.js"):
+                (root / name).write_text("fixture", encoding="utf-8")
+            (root / '-verso-docs.json').write_text('{}', encoding='utf-8')
+            registry = root / "-verso-search/domain-mappers.js"
+            registry.write_text('import {blueprintDeclarationMapper} from "./missing.js";', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "module dependency"):
+                check_search_assets(root)
+            (root / "-verso-search/missing.js").write_text("fixture", encoding="utf-8")
+            check_search_assets(root)
+            hover = root / '-verso-docs.json'
+            hover.unlink()
+            with self.assertRaisesRegex(ValueError, 'search asset'):
+                check_search_assets(root)
+            for invalid in ('<!DOCTYPE html><h1>404</h1>', '[]', 'null'):
+                hover.write_text(invalid, encoding='utf-8')
+                with self.subTest(invalid=invalid):
+                    with self.assertRaisesRegex(ValueError, 'hover data must be a JSON object'):
+                        check_search_assets(root)
+            hover.write_text('{}', encoding='utf-8')
+            (root / "-verso-search/search-box.js").write_text("", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "search asset"):
+                check_search_assets(root)
+
     def test_required_artifact_rejects_missing_directory_and_empty_file(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -116,6 +158,47 @@ class CaseTeachingGateTests(unittest.TestCase):
 
 
 class SiteContractTests(unittest.TestCase):
+    def test_sidebar_uses_four_peer_textbooks_and_keeps_every_guided_chapter(self) -> None:
+        nav = build_site.render_book_navigation('../', '')
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        self.assertEqual(nav.count('class="book-part-nav"'), 4)
+        for part in catalog['parts']:
+            self.assertEqual(nav.count(f'data-book-part="{part["id"]}"'), 1)
+            self.assertIn(f'href="../{part["route"]}index.html"', nav)
+        for chapter in CHAPTERS:
+            self.assertEqual(nav.count(f'href="../chapters/{chapter["slug"]}/index.html"'), 1)
+
+    def test_sidebar_planned_chapters_keep_status_and_exact_targets(self) -> None:
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        for prefix in ('./', '../', '../../'):
+            nav = build_site.render_book_navigation(prefix, '')
+            for index, part in enumerate(catalog['parts']):
+                for chapter in part['chapters']:
+                    if index < 2 and chapter['status'] == 'Compiled':
+                        continue
+                    target = (
+                        f'{prefix}{chapter["href"]}index.html'
+                        if index < 2 and chapter.get('href')
+                        else f'{prefix}{part["route"]}index.html#{chapter["id"]}'
+                    )
+                    self.assertIn(f'href="{target}"', nav)
+                    self.assertIn(f'class="book-chapter-status">{chapter["status"]}</small>', nav)
+
+    def test_sidebar_opens_only_the_current_textbook(self) -> None:
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        for index, part in enumerate(catalog['parts']):
+            nav = build_site.render_book_navigation('../', str(part['route']))
+            self.assertEqual(nav.count(' open>'), 1)
+            self.assertIn(f'data-book-part="{part["id"]}" open>', nav)
+        nav = build_site.render_book_navigation('../../', f'chapters/{CHAPTERS[4]["slug"]}/')
+        self.assertIn('data-book-part="part-ii-block-encoding" open>', nav)
+        self.assertEqual(nav.count('aria-current="page"'), 1)
+
+    def test_full_header_does_not_restore_the_old_flat_chapter_list(self) -> None:
+        nav = build_site.site_header('./', '')
+        self.assertIn('aria-label="Chapters by textbook"', nav)
+        self.assertNotIn('<div class="chapter-nav">', nav)
+
     def test_home_exposes_all_four_peer_parts_with_planned_boundaries(self) -> None:
         page = build_site.render_home(
             {"declarations": []},
@@ -128,6 +211,41 @@ class SiteContractTests(unittest.TestCase):
         self.assertIn('href="quantum-information/index.html"', page)
         self.assertIn('href="quantum-scientific-computing/index.html"', page)
         self.assertNotIn("The current book has two primary parts", page)
+
+    def test_home_hero_gives_every_peer_part_a_direct_action(self) -> None:
+        page = build_site.render_home(
+            {"declarations": []},
+            {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
+            {"passed": True}, {"shortCommit": "test"},
+        )
+        hero = page.split('<section class="hero home-hero">', 1)[1].split('</section>', 1)[0]
+        for part in build_site.load_json(ROOT / "website/curriculum-parts.json")["parts"]:
+            self.assertEqual(hero.count(f'href="{part["route"]}index.html"'), 1)
+        self.assertIn('id="diagram-quantum-domain-roadmap"', page)
+
+    def test_planned_chapter_map_links_resolve_to_exact_peer_part_anchors(self) -> None:
+        catalog = build_site.load_json(ROOT / "website/curriculum-parts.json")
+        for prefix in ('', '../'):
+            groups = build_site.render_chapter_groups(prefix)
+            self.assertEqual(groups.count('class="reading-track book-part"'), 4)
+            for part in catalog["parts"][2:]:
+                target = build_site.render_curriculum_part(
+                    part, {"publicDeclarationCount": 0}, {"passed": True},
+                    {"shortCommit": "test"},
+                )
+                for chapter in part["chapters"]:
+                    self.assertIn(f'href="{prefix}{part["route"]}index.html#{chapter["id"]}"', groups)
+                    self.assertEqual(target.count(f'id="{chapter["id"]}"'), 1)
+                self.assertIn('not local certificates', groups)
+
+    def test_home_logical_bound_does_not_claim_complete_finite_bit_algorithm(self) -> None:
+        page = build_site.render_home(
+            {"declarations": []},
+            {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
+            {"passed": True}, {"shortCommit": "test"},
+        )
+        self.assertIn('not a complete finite-bit algorithm certificate', page)
+        self.assertIn('SP-HERMITE-POLY-002', page)
 
     def test_four_part_curriculum_is_source_and_oai_closed(self) -> None:
         curriculum = json.loads(
@@ -177,7 +295,9 @@ class SiteContractTests(unittest.TestCase):
         self.assertEqual(intake["upstream"]["lean_toolchain"], "leanprover/lean4:v4.34.1")
         self.assertEqual(intake["local_boundary"]["lean_toolchain"], "leanprover/lean4:v4.33.0")
         self.assertFalse(intake["local_boundary"]["direct_package_dependency_allowed"])
-        self.assertEqual((ROOT / "lean-toolchain").read_text(encoding="utf-8").strip(), "leanprover/lean4:v4.33.0")
+        # Reader-only releases must not silently migrate the proof tree.
+        self.assertIn((ROOT / "lean-toolchain").read_text(encoding="utf-8").strip(),
+                      {"leanprover/lean4:v4.29.1", "leanprover/lean4:v4.33.0"})
 
     def test_planned_peer_parts_render_without_claiming_local_formalization(self) -> None:
         catalog = json.loads(

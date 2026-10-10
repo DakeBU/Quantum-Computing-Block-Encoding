@@ -54,6 +54,50 @@ def local_name(url: str, base: str) -> str | None:
         raise ValueError('unsafe publication resource path')
     return name
 
+def resource_links(name: str, text: str, url: str) -> list[tuple[str, str]]:
+    """Discover runtime dependencies, including ES modules hidden from HTML."""
+    if name.endswith('.html'):
+        page = Links(); page.feed(text)
+        base = urllib.parse.urljoin(url, page.base) if page.base else url
+        return [(link, base) for link in page.links]
+    if name.endswith('.css'):
+        return [(x.strip(' \"\''), url) for x in re.findall(r'url\(([^)]+)\)', text)]
+    if name.endswith('.js'):
+        imports = re.findall(
+            r"""(?:\bfrom\s*|\bimport\s*(?:\(\s*)?)['"]([^'"]+)['"]""", text)
+        return [(link, url) for link in imports
+                if link.startswith(('./', '../', '/'))]
+    return []
+
+def check_search_assets(target: Path) -> None:
+    """A restored shell without its search runtime is not a complete Blueprint."""
+    # Verso loads this hover index through an inline variable-based fetch, not
+    # an HTML link or ES-module import. The crawler cannot discover it there.
+    for name in ('xref.json', '-verso-docs.json', '-verso-search/search-init.js',
+                 '-verso-search/search-box.js', '-verso-search/domain-mappers.js',
+                 '-verso-search/blueprint-declarations.js'):
+        path = target / name
+        if not path.is_file() or not path.stat().st_size:
+            raise ValueError('missing nonempty Blueprint search asset: ' + name)
+    try:
+        docs = json.loads((target / '-verso-docs.json').read_text(encoding='utf-8'))
+    except (ValueError, UnicodeError) as error:
+        raise ValueError('Blueprint hover data must be a JSON object') from error
+    if not isinstance(docs, dict):
+        raise ValueError('Blueprint hover data must be a JSON object')
+    registry = (target / '-verso-search/domain-mappers.js').read_text(encoding='utf-8')
+    if 'blueprintDeclarationMapper' not in registry:
+        raise ValueError('Blueprint search declaration mapper is not registered')
+    for path in target.rglob('*.js'):
+        relative = path.relative_to(target).as_posix()
+        url = BLUEPRINT + relative
+        for link, base in resource_links(relative, path.read_text(encoding='utf-8'), url):
+            dependency = local_name(link, base)
+            if dependency is not None:
+                asset = target / dependency
+                if not asset.is_file() or not asset.stat().st_size:
+                    raise ValueError('missing Blueprint module dependency: ' + dependency)
+
 def restore(output: Path) -> dict:
     from website.scripts.proof_inputs import proof_input_digest, lean_module_targets
     report_bytes = resource(ORIGIN + 'build-report.json')
@@ -64,7 +108,7 @@ def restore(output: Path) -> dict:
     if not re.fullmatch(r'[0-9a-f]{40}', commit): raise ValueError('unversioned proof report')
     subprocess.run(['git', 'cat-file', '-e', commit + '^{commit}'], cwd=ROOT, check=True)
     subprocess.run(['git', 'diff', '--exit-code', '--quiet', commit, 'HEAD', '--', *INPUTS], cwd=ROOT, check=True)
-    pending = {'index.html', 'xref.json', 'assets/abeis-evidence-pipeline.svg', 'assets/abeis-library-map.svg'}
+    pending = {'index.html', 'xref.json', '-verso-docs.json', 'assets/abeis-evidence-pipeline.svg', 'assets/abeis-library-map.svg'}
     seen = set(); digests = {}; total = 0
     staging = output.parent / (output.name + '-restore')
     staging.mkdir(parents=True, exist_ok=False)
@@ -73,13 +117,7 @@ def restore(output: Path) -> dict:
         url = BLUEPRINT + urllib.parse.quote(name, safe='/')
         data = resource(url)
         dest = target / name; dest.parent.mkdir(parents=True, exist_ok=True); dest.write_bytes(data)
-        urls = []
-        if name.endswith('.html'):
-            page = Links(); page.feed(data.decode('utf-8'))
-            base = urllib.parse.urljoin(url, page.base) if page.base else url
-            urls = [(link, base) for link in page.links]
-        elif name.endswith('.css'):
-            urls = [(x.strip(' \"\''), url) for x in re.findall(r'url\(([^)]+)\)', data.decode('utf-8'))]
+        urls = resource_links(name, data.decode('utf-8'), url) if name.endswith(('.html', '.css', '.js')) else []
         found = {result for link, base in urls if (result := local_name(link, base)) is not None}
         return name, found, len(data), hashlib.sha256(data).hexdigest()
     try:
@@ -94,8 +132,13 @@ def restore(output: Path) -> dict:
             print('Restored resources:', len(digests), 'bytes:', total, flush=True)
         if resource(ORIGIN + 'build-report.json') != report_bytes:
             raise ValueError('published version changed during restoration')
-        for name in ('index.html', 'xref.json', 'assets/abeis-evidence-pipeline.svg', 'assets/abeis-library-map.svg'):
+        for name in ('index.html', 'xref.json', '-verso-docs.json', 'assets/abeis-evidence-pipeline.svg', 'assets/abeis-library-map.svg'):
             if not (target / name).is_file(): raise ValueError('incomplete published Blueprint: ' + name)
+        check_search_assets(target)
+        # Check actual declaration DOM anchors, not only page-level links.
+        # This also detects a stale/mixed CDN module body under a current report.
+        from website.scripts.augment_blueprint_search import declaration_entries
+        declaration_entries(target, json.loads((target / 'xref.json').read_text(encoding='utf-8')))
         from website.scripts.check_site import parse_page, target_file
         # Parse each potentially large emitted module page only once.
         page_cache = {}

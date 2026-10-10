@@ -43,6 +43,10 @@ from lean_graph import build_lean_graph_payload, render_lean_graph_body  # noqa:
 NAVIGATION = [
     ("Home", ""),
     ("Book map", "learning/"),
+    ("Part I · State Preparation", "state-preparation/"),
+    ("Part II · Block Encoding", "block-encoding/"),
+    ("Part III · QIT & Representation", "quantum-information/"),
+    ("Part IV · Scientific Computing", "quantum-scientific-computing/"),
     ("Lean library", "library/"),
     ("Underlying Lean Graph of Libraries", "lean-graph/"),
     ("Implementation map", "implementation-map/"),
@@ -321,21 +325,54 @@ def source_statement(preview: str) -> str:
     return "\n".join(kept)
 
 
+def render_book_navigation(prefix: str, current: str) -> str:
+    """Use the same four-part catalog in every sidebar, without proof promotion."""
+    parts = load_json(WEBSITE_ROOT / "curriculum-parts.json")["parts"]
+    by_number = {int(chapter["number"]): chapter for chapter in CHAPTERS}
+    groups = []
+    for index, part in enumerate(parts):
+        route = str(part["route"])
+        guided = [by_number[number] for number in BOOK_PARTS[index][1]] if index < 2 else []
+        selected = current == route or any(
+            current == f"chapters/{chapter['slug']}/" for chapter in guided
+        )
+        opened = " open" if selected else ""
+        links = [f'<a class="book-part-overview" href="{page_url(prefix, route)}">Part overview →</a>']
+        for chapter in guided:
+            chapter_route = f"chapters/{chapter['slug']}/"
+            active = ' aria-current="page"' if current == chapter_route else ""
+            links.append(
+                f'<a href="{page_url(prefix, chapter_route)}"{active}>'
+                f'<span class="book-chapter-number">{int(chapter["number"]):02d}</span>'
+                f'<span>{html.escape(str(chapter["title"]))}</span></a>'
+            )
+        for chapter in part["chapters"]:
+            if index < 2 and chapter["status"] == "Compiled":
+                continue  # Already reached through the overview and guided chapters.
+            target = (
+                page_url(prefix, str(chapter["href"])) if index < 2 and chapter.get("href")
+                else f'{page_url(prefix, route)}#{chapter["id"]}'
+            )
+            links.append(
+                f'<a class="book-curriculum-link" href="{html.escape(target)}">'
+                f'<span>{html.escape(str(chapter["title"]))}</span>'
+                f'<small class="book-chapter-status">{html.escape(str(chapter["status"]))}</small></a>'
+            )
+        groups.append(
+            f'<details class="book-part-nav" data-book-part="{part["id"]}"{opened}>'
+            f'<summary><span class="book-part-label">{part["label"]}</span>'
+            f'<span>{html.escape(str(part["title"]))}</span></summary>'
+            f'<div class="book-part-links">{"".join(links)}</div></details>'
+        )
+    return '<div class="book-part-navigation" aria-label="Chapters by textbook">' + "".join(groups) + '</div>'
+
+
 def site_header(prefix: str, current: str) -> str:
     links: list[str] = []
     for label, route in NAVIGATION:
         current_attr = ' aria-current="page"' if current == route else ""
         links.append(
             f'<a href="{page_url(prefix, route)}"{current_attr}>{html.escape(label)}</a>'
-        )
-    chapter_links = []
-    for chapter in sorted(CHAPTERS, key=lambda item: int(item["number"])):
-        route = f"chapters/{chapter['slug']}/"
-        current_attr = ' aria-current="page"' if current == route else ""
-        chapter_links.append(
-            f'<a href="{page_url(prefix, route)}"{current_attr}>'
-            f'<span>{int(chapter["number"]):02d}</span>'
-            f'{html.escape(str(chapter["title"]))}</a>'
         )
     example_links = []
     for index, (label, case_slug) in enumerate(EXAMPLE_CASE_NAV, start=1):
@@ -374,7 +411,7 @@ def site_header(prefix: str, current: str) -> str:
     <strong class="nav-group-label">Explore</strong>
     {''.join(links)}
     <strong class="nav-group-label">Chapters</strong>
-    <div class="chapter-nav">{''.join(chapter_links)}</div>
+    {render_book_navigation(prefix, current)}
     <strong class="nav-group-label">Example Cases</strong>
     <a href="{page_url(prefix, 'example-cases/')}">All examples</a>
     <div class="example-nav">{''.join(example_links)}</div>
@@ -575,6 +612,25 @@ def render_chapter_groups(
                 f'<p>{html.escape(note)}</p>'
                 f'<div class="chapter-list">{links}</div></section>'
             )
+        # Planned peer textbooks belong in the same book map, not a second tier.
+        # Their chapter links lead to source-anchored plans, never invented roots.
+        for part in load_json(WEBSITE_ROOT / "curriculum-parts.json")["parts"][2:]:
+            target = page_url(link_prefix, str(part["route"]))
+            links = "".join(
+                f'<a class="chapter-link" href="{target}#{html.escape(str(chapter["id"]))}">'
+                '<span class="chapter-number">Plan</span>'
+                f'<span class="chapter-copy"><strong>{html.escape(str(chapter["title"]))}</strong>'
+                f'<span>{html.escape(str(chapter["summary"]))}</span></span>'
+                '<span class="chapter-arrow" aria-hidden="true">&#8594;</span></a>'
+                for chapter in part["chapters"]
+            )
+            groups.append(
+                f'<section class="reading-track book-part" data-curriculum-part="{part["id"]}">'
+                f'<h3>{html.escape(str(part["label"]))} · {html.escape(str(part["title"]))}</h3>'
+                f'{badge(str(part["status"]))}<p>{html.escape(str(part["summary"]))}</p>'
+                f'<details><summary>Explore planned chapters (not local certificates)</summary>'
+                f'<div class="chapter-list">{links}</div></details></section>'
+            )
     else:
         for track in tracks:
             chapters = sorted(
@@ -620,18 +676,16 @@ def render_home(
 <section class="hero home-hero">
   <p class="eyebrow">Formal quantum computing, read alongside Lean</p>
   <h1>QuantumComputinglib</h1>
-  <p class="lede">QuantumComputinglib is the textbook and declaration browser for ASPBE.
-  The book has four peer parts: State Preparation, Block Encoding, Quantum
+  <p class="lede">QuantumComputinglib has four peer parts: State Preparation, Block Encoding, Quantum
   Information and Representation Theory, and Quantum Algorithms for Scientific
-  Computation. Parts I and II contain compiled routes; Parts III and IV are
-  source-audited curricula awaiting local theorem admission.
-  State Preparation is the nested preparation layer used by many broader
-  block-encoding constructions; its certificate remains meaningful on its own.
-  A reverse block-to-state use is a separate downstream theorem with additional
-  input, success, normalization and amplification obligations.</p>
+  Computation. One shared ASPBE Lean library supports the book. Parts I and II
+  link compiled core results and open routes; Parts III and IV are source-anchored
+  curricula whose local Lean certificates are still pending.</p>
   <div class="hero-actions">
-    <a class="button state-button" href="state-preparation/index.html">Start with state preparation</a>
-    <a class="button block-button" href="block-encoding/index.html">Study block encoding</a>
+    <a class="button state-button" href="state-preparation/index.html">Part I · State Preparation</a>
+    <a class="button block-button" href="block-encoding/index.html">Part II · Block Encoding</a>
+    <a class="button secondary" href="quantum-information/index.html">Part III · QIT &amp; Representation</a>
+    <a class="button secondary" href="quantum-scientific-computing/index.html">Part IV · Scientific Computing</a>
     <a class="text-link" href="learning/index.html">See the full reading guide &#8594;</a>
   </div>
 </section>
@@ -678,6 +732,7 @@ def render_home(
       <a href="quantum-scientific-computing/index.html">Explore scientific quantum algorithms &#8594;</a>
     </article>
   </div>
+  {diagram(prefix, "quantum-domain-roadmap", "Four peer textbooks and their shared foundations — a curriculum map, not new Lean implications")}
 </section>
 <section class="content-section process-section state-section" id="state-process">
   <div class="section-heading">
@@ -747,8 +802,10 @@ def render_home(
     generated proof-status pages.</p>
   </div>
   <ol class="milestone-list">
+    <li><time datetime="2026-10-10">10 October 2026</time><div><strong>One visible four-part book map.</strong><p>All four peer textbooks now have homepage actions, a shared curriculum diagram and chapter-map entries. Parts III and IV remain source-anchored plans, not newly certified Lean books. The four-part release was merged in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/87">PR #87</a>; rendering and deployed-reader checks were repaired in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/88">#88</a> and <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/89">#89</a>.</p></div></li>
+    <li><time datetime="2026-10-09">9 October 2026</time><div><strong>Four peer textbook parts and explicit formalization plans.</strong><p>State Preparation and Block Encoding are joined by Quantum Information and Representation Theory, and Quantum Algorithms for Scientific Computation. Walsh-series and diagonal-operator papers have source-linked plans and reusable technical cards. New parts and upstream OpenAI Math placements are planned curriculum, not new local theorem certificates.</p></div></li>
     <li><time datetime="2026-10-06">6 October 2026</time><div><strong>Statement Seal, evidence memory, and proof digestion.</strong><p>QuantumComputinglib now freezes source-facing quantum contracts before proof search, types and salvages failed routes before cleanup, keeps environment/API failures separate from mathematical refutation, defaults routine coordination to deterministic/low-token control in light of local route-ablation evidence, requires distinct uncertainty for parallel Workers, and seals PURIFIED reader explanations against the source and Lean graphs.</p></div></li>
-    <li><time datetime="2026-09-10">10 September 2026</time><div><strong>Schrödingerisation smooth auxiliary-state preparation: exponential-to-linear in the grid-register width.</strong><p>The smooth auxiliary \(p\)-register state required by <a href="https://arxiv.org/abs/2403.19123v3">Jin–Liu–Ma’s PDE Schrödingerisation construction</a>, viewed alongside the smooth-function state-preparation route of <a href="https://arxiv.org/abs/2005.04351">Holmes–Matsuura</a>, has exact Hermite–Bernstein/tensor-train structure. ASPBE turns generic \(\Theta(2^{{n_p}})\) amplitude loading into \(G\le48n_p(2k+6)^3\), hence \(O(n_p)\) gates for fixed \(k\), with \(O(\log k)\) workspace. <a href="example-cases/hermite-smooth-state-preparation/index.html">Open the Lean-verified worked case →</a></p></div></li>
+    <li><time datetime="2026-09-10">10 September 2026</time><div><strong>Schrödingerisation smooth auxiliary-state preparation: a structured logical resource bound.</strong><p>The smooth auxiliary \(p\)-register state required by <a href="https://arxiv.org/abs/2403.19123v3">Jin–Liu–Ma’s PDE Schrödingerisation construction</a>, viewed alongside the smooth-function state-preparation route of <a href="https://arxiv.org/abs/2005.04351">Holmes–Matsuura</a>, has exact Hermite–Bernstein/tensor-train structure. The logical bound is \(G\le48n_p(2k+6)^3\), hence \(O(n_p)\) for fixed \(k\), with \(O(\log k)\) workspace under the stated exact-real contracts. This is not a complete finite-bit algorithm certificate: classical core generation, arithmetic and gate synthesis for <code>SP-HERMITE-POLY-002</code> still need separate certification. <a href="example-cases/hermite-smooth-state-preparation/index.html">Read the worked case and its scope →</a></p></div></li>
     <li><time datetime="2026-08-14">14 August 2026</time><div><strong>Robin boundary block encoding: a smaller certified primitive.</strong><p>For the selected \(n=3\) Robin boundary instance in <a href="https://arxiv.org/abs/2406.18072">Guseynov–Huang–Liu, <em>Block encoding by signal processing</em></a>, ASPBE reduced the audited \(T^{{\dagger 3}}\) branch from 49 to 30 \(T^{{\dagger 3}}\) gates and from 52 to 32 CNOTs, with the same five qubits and zero ancillas under the fixed primitive model.</p></div></li>
     <li><time datetime="2026-08-10">10 August 2026</time><div><strong>ASPBE and QuantumComputinglib.</strong><p>The two application tracks, local workspace, task builder, and contributor review path are presented in one site.</p></div></li>
     <li><time datetime="2026-07">July 2026</time><div><strong>Blueprint and Library Explorer.</strong><p>One generated inventory now drives the checked Blueprint catalog and searchable declaration browser.</p></div></li>
@@ -759,7 +816,7 @@ def render_home(
 <section class="content-section" id="chapters">
   <div class="section-heading">
     <p class="eyebrow">Reading guide</p>
-    <h2>Follow one application without losing the shared foundations</h2>
+    <h2>Browse all four textbook chapter maps</h2>
   </div>
   {render_chapter_groups('')}
 </section>
@@ -824,7 +881,7 @@ def render_curriculum_chapters(part: dict[str, object], prefix: str) -> str:
             if clusters else ""
         )
         cards.append(
-            f'''<article class="application-path">
+            f'''<article class="application-path" id="{html.escape(str(chapter["id"]))}">
   <p class="path-label">{html.escape(str(chapter["id"]))}</p>
   <h3>{title_html}</h3>
   <p>{html.escape(str(chapter["summary"]))}</p>
@@ -856,7 +913,7 @@ def render_curriculum_part(
 <section class="content-section" id="truth-boundary">
   <div class="section-heading"><p class="eyebrow">Truth boundary</p><h2>Placement is not proof</h2></div>
   <p>{html.escape(str(load_json(WEBSITE_ROOT / "curriculum-parts.json")["truthBoundary"]))}</p>
-  <div class="callout"><strong>OpenAI Math boundary.</strong> Audited clusters are pinned source or adapter inputs. Their upstream Lean 4.34.1 results are not local Lean 4.33.0 declarations until separately ported and compiled.</div>
+  <div class="callout"><strong>OpenAI Math boundary.</strong> Audited clusters are pinned source or adapter inputs. Their upstream Lean 4.34.1 results are not local Lean 4.33.0 declarations until separately ported and compiled. Lean 4.33.0 is the migration target; this reader release preserves the published proof tree and records its actual version in the build evidence.</div>
 </section>
 <section class="content-section" id="chapter-map">
   <div class="section-heading"><p class="eyebrow">Graph-driven chapter map</p><h2>Shared foundations first, source-specific consumers later</h2></div>
@@ -1450,8 +1507,8 @@ def render_learning(
 </section>
 <section class="content-section" id="chapter-list">
   <div class="section-heading">
-    <p class="eyebrow">Current chapters</p>
-    <h2>Part I · State Preparation / Part II · Block Encoding</h2>
+    <p class="eyebrow">One book map · explicit proof status</p>
+    <h2>Four peer parts: compiled chapters and source-anchored plans</h2>
   </div>
   {render_chapter_groups('../')}
 </section>
@@ -1479,7 +1536,7 @@ def render_learning(
         context=context,
         toc=[
             ("reading-map", "Reading map"),
-            ("chapter-list", "Compiled chapters"),
+            ("chapter-list", "All four chapter maps"),
             ("future-curriculum", "Four-part curriculum"),
         ],
     )
