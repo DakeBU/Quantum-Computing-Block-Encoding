@@ -730,3 +730,42 @@ not clean CI, an independent all-transitive rebuild, main migration or the
 full reader/publication gate. Existing local Verso compatibility changes are
 disclosed rather than treated as a clean environment.
 [Cycle 18 synthesis](../experiments/hermite-polynomial/precision/cycle18-staging-result.json).
+
+### Cycle 19 frozen internal checkpoint; publication is still fail-closed
+
+The distinct review of the literal real-to-complex adapter accepts the exact
+full-carrier bridge, including signed half-angles, all spectators, arbitrary
+real matrix inputs and consumption on arbitrary complex vectors. Its accepted
+scope is an internal provider, not a public source-blind publication record.
+[Independent review](../experiments/hermite-polynomial/precision/literal-complex-review-c18/review-verdict-v1.json).
+
+The precision-aware rational source has an unconditional five-component
+identity on every rational point and the actual rational grid. A concrete
+formula-derived Python producer retains all splice/cut ownership, nonzero
+clipped tails and the same returned stored chain. Its finite exact diagnostics
+pass, but arbitrary-width generated-core contraction, same-object Lean
+refinement and uniform generation/finite-bit cost are not yet certified.
+[Frozen producer scope](../experiments/hermite-polynomial/precision/piecewise-kernel-producer/result.json).
+
+The parent independently reruns 44 declaration/axiom reports and thirteen
+finite tests, requires the saved chain to exist and rejects skipped tests.
+All bound inputs/private caches remain unchanged. The first parent validator
+misclassified printed universe suffixes and missed an axiom-free declaration;
+its failed record is preserved, and a separately versioned replay passes.
+[Parent replay](../experiments/hermite-polynomial/precision/cycle19-parent-checkpoint-v2.json).
+These are focused checks with pinned inherited caches, not clean transitive CI.
+
+StoredTensorTrain's whole actual source and source-blind independent consumers
+elaborate successfully, but the distinct source-first reviewer found an
+exact-signature extraction collision: the decoder artifact's `absorption`
+signature records `absorptionEntry`. The successful execution does not repair
+that artifact discrepancy. Preserve both records and require a versioned
+correction plus distinct review before admission. The module remains pending;
+seven existing records and the 44-of-51 production admission debt are unchanged.
+
+The website priority is separately delivered by PR90, merged at
+`e71ed7555d03efc808978f9f52f34ac9a9b54589`: four peer textbook parts and
+reader-facing curriculum/navigation are live. Published main remains on
+Lean4.29.1; these proof checkpoints use Lean4.33.0. Neither reader deployment
+nor these focused tests closes the scientific ROOT, finite-bit resource tuple,
+independent family executable acceptance, publication purification or migration.

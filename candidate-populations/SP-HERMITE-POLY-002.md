@@ -574,3 +574,22 @@ Full main admission remains fail-closed. Source graph gaps G01/G02/G03 remain
 visible. Precision-aware stored cores, comparator/mask contraction, finite-bit
 QR/GCD/copy/storage/synthesis, complex operator error, full terminal readout,
 C2/C3/X2/ROOT and the independent family executable gate remain open.
+
+### Cycle 19 internal successor (not a certified construction winner)
+
+The canonical complex evaluator adapter has a completed distinct internal
+review. The actual precision-aware source's five-component identity is proved;
+its concrete generated rational tables and same returned boundary-closed chain
+pass finite exact diagnostics, including cut0/N and T0/T1 coincidences. No
+uniform Python-to-Lean producer, finite-bit complexity or scientific-family
+acceptance follows. The proposed precision-dependent envelope
+`18*(d+1)+9*(m+1)+18`, where `d=4*T^2+2*T+1` and `m=2k+1`, remains a concrete
+producer dimension rather than an admitted uniform rank/resource certificate.
+
+[Parent focused replay](../experiments/hermite-polynomial/precision/cycle19-parent-checkpoint-v2.json)
+passes with 44 ordinary/axiom-free reports and thirteen non-skipped finite
+tests. StoredTensorTrain source-blind elaboration passes but its extracted
+`absorption` signature collides with `absorptionEntry`; distinct publication
+admission remains blocked pending a separately versioned artifact correction.
+The unchanged exponential baseline, failed attempts and open C2/C3/X2/ROOT
+are retained. No new resource winner or main proof deployment is claimed.
