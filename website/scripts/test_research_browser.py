@@ -60,7 +60,7 @@ def check_curriculum_explorer(page, base: str) -> None:
     total = cards.count()
     if total < 4 or not page.locator('[data-curriculum-controls]').is_visible():
         raise AssertionError('Missing textbook explorer or progressive controls')
-    page.locator('[data-curriculum-part]').select_option('part-iii-quantum-information')
+    page.locator('select[data-curriculum-part]').select_option('part-iii-quantum-information')
     if page.locator('[data-curriculum-card]:visible').count() != page.locator('[data-curriculum-card][data-part="part-iii-quantum-information"]').count():
         raise AssertionError('Textbook filter changed or lost planned chapter cards')
     page.locator('[data-curriculum-reset]').click()

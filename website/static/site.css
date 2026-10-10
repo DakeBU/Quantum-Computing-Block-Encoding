@@ -2746,7 +2746,7 @@ body {
 .curriculum-controls label { display: grid; gap: 6px; min-width: 0; font-family: var(--ui-font); }
 .curriculum-controls input, .curriculum-controls select {
   width: 100%; min-width: 0; padding: 10px; border: 1px solid var(--line);
-  color: var(--text); background: var(--surface); border-radius: 6px; font: inherit;
+  color: var(--ink); background: var(--surface); border-radius: 6px; font: inherit;
 }
 .curriculum-controls button { justify-self: start; }
 .curriculum-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }

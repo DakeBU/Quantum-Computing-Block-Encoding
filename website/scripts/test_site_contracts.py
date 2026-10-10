@@ -201,6 +201,16 @@ class SiteContractTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     build_site.render_curriculum_intake(chapter)
 
+    def test_missing_reverse_intake_placement_fails_closed(self) -> None:
+        from copy import deepcopy
+        catalog = deepcopy(build_site.load_json(ROOT / 'website/curriculum-parts.json'))
+        sources = build_site.load_json(ROOT / 'website/research/sources.json')
+        intake = build_site.load_json(ROOT / 'research-wiki/openai-math-2026-intake.json')
+        chapter = next(c for p in catalog['parts'] for c in p['chapters'] if c['id'] == 'qit-capacity-entanglement')
+        chapter['oaiClusters'].remove('oai-soft-channel')
+        with self.assertRaisesRegex(SystemExit, 'Missing audited upstream placement: oai-soft-channel'):
+            build_site.validate_curriculum_catalog(catalog, sources, intake)
+
     def test_sidebar_uses_four_peer_textbooks_and_keeps_every_guided_chapter(self) -> None:
         nav = build_site.render_book_navigation('../', '')
         catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')

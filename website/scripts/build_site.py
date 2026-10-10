@@ -261,6 +261,14 @@ def validate_curriculum_catalog(
         "part-iii-quantum-information", "part-iv-quantum-scientific-computing",
     }:
         raise SystemExit("Curriculum catalog must name the four canonical peer parts.")
+    placements = {
+        f'{part["id"]}:{chapter["id"]}': set(chapter.get("oaiClusters", []))
+        for part in parts for chapter in part["chapters"]
+    }
+    for cluster in oai_intake.get("clusters", []):
+        for target in cluster.get("curriculum", []):
+            if cluster["id"] not in placements.get(target, set()):
+                raise SystemExit(f"Missing audited upstream placement: {cluster['id']} -> {target}")
     upstream = oai_intake.get("upstream", {})
     local = oai_intake.get("local_boundary", {})
     if upstream.get("lean_toolchain") != "leanprover/lean4:v4.34.1":
