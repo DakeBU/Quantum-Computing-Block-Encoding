@@ -685,3 +685,40 @@ before either efficient execution or exponential execution is inferred.
 All bit/GCD/QR/storage/normalizer/synthesis costs, full terminal readout,
 independent scientific-family acceptance and C2/C3/X2/ROOT remain open.
 No main merge or deployment follows from these local checkpoints.
+
+### Cycle 18 scoped review successor and canonical complex-evaluator bridge
+
+The cycle17 distinct internal review is now complete. It accepts only the
+original signed-grid normalized source `epsilon/2` bound and the actual real
+nominal isometry/produced-`Valid`/chronological product transport. Its fresh
+17+9 selected-source builds, 162 ordinary-axiom roots, retained failures and
+finite local-carrier discriminator are bound by
+[the final review](../experiments/hermite-polynomial/precision/source-stage-review-c17/independent-audit.json).
+The earlier mathematical audit remains explicitly pending as historical
+evidence; the final success is a separate frozen successor. This is internal
+provider review, not public SourceAnchor admission or a source-blind decoder.
+
+The locally proved complex adapter now identifies the literal real full word
+with `QuantumBlockEncoding.evalPrimitiveCircuit` under the already existing
+canonical little-endian basis equivalence. It proves the arbitrary real
+matrix-input version and consumes the equality on arbitrary complex vectors,
+entry enclosures and chronology. It does not assume basis agreement, drop
+spectators, identify states modulo phase, discard garbage or redefine the
+primitive semantics. Its distinct source/semantic review is still pending.
+[Local exact bridge](../experiments/hermite-polynomial/precision/literal-complex-adapter/result-v1.json).
+
+[The parent focused checkpoint](../experiments/hermite-polynomial/precision/cycle18-parent-checkpoint.json)
+rehashes actual inputs/private caches and checks the actual consumers. It is
+not an all-transitive rebuild or scientific-family executable acceptance.
+The operator-norm eta transport to the complex carrier and physical local
+stage-to-global tensor support are still separate obligations. This matrix
+equality alone does not finish end-to-end epsilon allocation or state readout.
+
+StoredMatrixProductChain's whole 29-declaration correspondence is admitted as
+the seventh local publication packet, with source-first gaps preserved.
+The complete production gate still rejects 44 unreviewed changed modules out
+of 51. Main remains on Lean4.29.1; this contribution uses Lean4.33.0. No ROOT,
+finite-bit efficiency, resource winner or deployed new proof claim follows.
+The immediate construction supplier is actual precision-aware nondense
+piecewise cores with the same returned stored chain and charged generation,
+including T=0/1 threshold coincidences and the nonzero clipped tails.

@@ -539,3 +539,38 @@ all spectators rather than replacing the circuit semantics.
 No new complete resource tuple, certified winner, family export acceptance or
 main deployment is asserted. The exponential baseline, exact-real route and
 failed attempts remain preserved, with full finite-bit costs independently open.
+
+### Cycle 18 admission checkpoint: reviewed source/stage, literal complex bridge staged
+
+The distinct internal source/stage review now accepts the original normalized
+target `epsilon/2` source budget and the literal real nominal/product transport.
+Its own fresh selected-source replays cover seventeen source modules and nine
+stage modules, with 162 printed roots using only the ordinary three axioms.
+The reviewer retains dependency-review lineage and saw author scope statements:
+this is not a source-blind public decoder or whole scientific-family approval.
+Earlier failed and pending records remain frozen, not relabelled green.
+[Independent scoped review](../experiments/hermite-polynomial/precision/source-stage-review-c17/independent-audit.json).
+
+The next semantic crossover is locally proved: the whole real RY/CX word,
+including nonidentity matrix inputs, agrees exactly with the existing complex
+primitive evaluator under the canonical `primitiveBasisLEEquiv`. Signed
+half-angles, q0-LSB, chronological multiplication, spectators and width zero
+are retained; no phase quotient or garbage projection is used. The adapter's
+fresh nine-module author gate and five diagnostics pass. Distinct review is
+still active, so it remains `proved_locally`, not a certified population parent.
+[Staged adapter](../experiments/hermite-polynomial/precision/literal-complex-adapter/result-v1.json).
+
+Parent consumer replays and immutable source/cache bindings are recorded in
+[the focused checkpoint](../experiments/hermite-polynomial/precision/cycle18-parent-checkpoint.json).
+These checks reuse explicitly pinned private caches and do not claim a fresh
+transitive build. Actual saved-action diagnostics use twelve local 8-by-8
+matrices at `n_p=12,a=2`, not a global dense matrix; this finite routine check
+does not certify scalable runtime or physical local-to-global support.
+
+The separate stored-matrix chain has completed exact whole-module source-blind
+decoding and distinct source-first comparison. Seven publication records now
+validate; 44 of 51 changed production modules still lack admission records.
+Full main admission remains fail-closed. Source graph gaps G01/G02/G03 remain
+visible. Precision-aware stored cores, comparator/mask contraction, finite-bit
+QR/GCD/copy/storage/synthesis, complex operator error, full terminal readout,
+C2/C3/X2/ROOT and the independent family executable gate remain open.
