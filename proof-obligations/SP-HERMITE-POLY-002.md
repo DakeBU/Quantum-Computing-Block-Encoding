@@ -722,3 +722,11 @@ finite-bit efficiency, resource winner or deployed new proof claim follows.
 The immediate construction supplier is actual precision-aware nondense
 piecewise cores with the same returned stored chain and charged generation,
 including T=0/1 threshold coincidences and the nonzero clipped tails.
+
+The current contribution also passes `lake build` and `lake build Tests` under
+Lean4.33.0. All 245 parent-checkpoint source/private-cache bindings still match
+after these incremental builds; the 67 atlas/site regressions pass. This is
+not clean CI, an independent all-transitive rebuild, main migration or the
+full reader/publication gate. Existing local Verso compatibility changes are
+disclosed rather than treated as a clean environment.
+[Cycle 18 synthesis](../experiments/hermite-polynomial/precision/cycle18-staging-result.json).
