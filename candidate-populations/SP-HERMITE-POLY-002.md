@@ -648,3 +648,25 @@ StoredTensorTrain whole-module source/decoder review is admitted only in the
 local retrospective exact-real registry lane (8 reviewed,43 missing of51).
 It does not close input generation, finite-bit resources, executable acceptance,
 physical cleanup, main migration or ROOT.
+
+### Cycle 22 stored-source implementation refinement
+
+The C21 full-source algebraic chain now has an actual rational local-table and
+boundary producer. `produceStored` casts those generated vectors and calls the
+canonical stored assembler; its SAME returned chain denotes C21 `actualChain`
+and contracts to the full signed q0-LSB finite piecewise source. This is an
+implementation refinement of the existing source route, not a new scientific
+population winner or a change of target. Source-derived radius/precision and
+strict/inclusive/T0/T1 boundary conventions are preserved.
+[Producer and remaining costs](../experiments/hermite-polynomial/precision/piecewise-kernel-stored-c22/result.json)
+and [parent replay](../experiments/hermite-polynomial/precision/piecewise-kernel-stored-c22/parent-verification-v1.json).
+
+Four parent source re-elaborations pass14 ordinary-axiom reports with215 input
+pins unchanged. Only materialization, stored-data casts/copies and assembly are
+charged; scalar setup and entry/boundary arithmetic remain unaccounted, not
+constant-time oracles. Coefficient caches, cuts, binomial/factorial/power work,
+index operations, rational bitlength/GCD, numerical extraction and physical
+synthesis remain required. Independent internal semantic review is separate;
+public whole-module admission, original-state error composition, family
+executable acceptance and ROOT are not inferred. The exponential baseline and
+all failed attempts remain retained. No champion/resource scoring changes.
