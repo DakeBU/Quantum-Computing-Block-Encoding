@@ -809,3 +809,26 @@ inherited caches and disclosed local Verso edits. Sealed author inputs remain
 unchanged. This internal WIP checkpoint is not clean CI, reader/publication
 admission, a new scientific winner or main migration.
 [Actual integration gate](../experiments/hermite-polynomial/precision/cycle20-integration-gate.json).
+
+### Cycle 21 distinct actual-complex-stage review
+
+A reviewer distinct from the C20 author reconstructed the full complex carrier,
+actual saved midpoint/radius, signed half-angle and later-left product convention
+before inspecting the new proofs. Its independent symbolic checks preserve
+arbitrary complex inputs and show that the actual error entries have zero
+imaginary part. The scoped verdict is internal acceptance, with no supplied
+`Valid`, contraction or error-bound premise at the actual-stage roots.
+[Frozen independent review](../experiments/hermite-polynomial/precision/complex-stage-review-c21/review-result-v1.json).
+
+Parent replay passes all18 ordinary-axiom reports and35 independently authored
+finite discriminators, without writing the frozen review receipts or caches.
+All bound inputs and selected private outputs remain unchanged.
+[Parent replay](../experiments/hermite-polynomial/precision/cycle21-review-parent-checkpoint.json).
+The16 selected modules were freshly checked in the reviewer packet;3404
+inherited caches still have explicitly unknown source correspondence. This is
+not a clean full transitive rebuild or a public source-blind publication.
+Uniform whole-family error allocation, physical local/global support, the
+complete stored piecewise producer, actual QR/finite-bit runtime, finite-gate
+synthesis, independent family executable acceptance and ROOT remain open.
+The existing website release is main PR90; main Lean4.33 migration and the
+51-module publication debt are separate, still-unfinished gates.

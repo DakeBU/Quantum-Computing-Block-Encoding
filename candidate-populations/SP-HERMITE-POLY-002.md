@@ -613,3 +613,17 @@ and Tests integration gate passes. Full finite-bit cost, QR, local/global
 support, allocated error budget, independent family acceptance and ROOT remain
 open, and no new resource winner is selected. Retained failed attempts and
 versioned decoder corrections do not alter the scientific target.
+
+### Cycle 21 independent internal transport review
+
+The actual C20 complex-stage interface is now accepted by a distinct internal
+reviewer: literal primitive nominal, actual saved interval center/error,
+internally derived contraction and `Valid`, full complex terminal carrier and
+later-left flattening are preserved. Parent replay passes18 ordinary-axiom
+reports and35 independent finite discriminators with unchanged bound inputs.
+[Review](../experiments/hermite-polynomial/precision/complex-stage-review-c21/review-result-v1.json)
+and [parent replay](../experiments/hermite-polynomial/precision/cycle21-review-parent-checkpoint.json).
+Inherited cache/source correspondence remains explicitly partial. This evidence
+removes self-review debt at the internal operator interface, not scientific
+population acceptance, finite-bit closure, main admission or PURIFIED status.
+No resource winner is selected; the exponential baseline and all failures remain.
