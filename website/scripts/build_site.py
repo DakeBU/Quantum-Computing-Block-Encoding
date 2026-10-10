@@ -585,6 +585,7 @@ def render_chapter_groups(
             target = page_url(link_prefix, str(part["route"]))
             links = "".join(
                 f'<a class="chapter-link" href="{target}#{html.escape(str(chapter["id"]))}">'
+                '<span class="chapter-number">Plan</span>'
                 f'<span class="chapter-copy"><strong>{html.escape(str(chapter["title"]))}</strong>'
                 f'<span>{html.escape(str(chapter["summary"]))}</span></span>'
                 '<span class="chapter-arrow" aria-hidden="true">&#8594;</span></a>'
@@ -642,15 +643,11 @@ def render_home(
 <section class="hero home-hero">
   <p class="eyebrow">Formal quantum computing, read alongside Lean</p>
   <h1>QuantumComputinglib</h1>
-  <p class="lede">QuantumComputinglib is the textbook and declaration browser for ASPBE.
-  The book has four peer parts: State Preparation, Block Encoding, Quantum
+  <p class="lede">QuantumComputinglib has four peer parts: State Preparation, Block Encoding, Quantum
   Information and Representation Theory, and Quantum Algorithms for Scientific
-  Computation. Parts I and II contain compiled routes; Parts III and IV are
-  source-audited curricula awaiting local theorem admission.
-  State Preparation is the nested preparation layer used by many broader
-  block-encoding constructions; its certificate remains meaningful on its own.
-  A reverse block-to-state use is a separate downstream theorem with additional
-  input, success, normalization and amplification obligations.</p>
+  Computation. One shared ASPBE Lean library supports the book. Parts I and II
+  link compiled core results and open routes; Parts III and IV are source-anchored
+  curricula whose local Lean certificates are still pending.</p>
   <div class="hero-actions">
     <a class="button state-button" href="state-preparation/index.html">Part I · State Preparation</a>
     <a class="button block-button" href="block-encoding/index.html">Part II · Block Encoding</a>
