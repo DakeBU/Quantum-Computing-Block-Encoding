@@ -915,3 +915,18 @@ regressions pass, and incremental local Lean4.33 build/Tests pass with inherited
 caches and existing Verso compatibility edits disclosed. The full production
 publication gate still fails closed on 43 of 51 changed modules. Main remains
 Lean4.29.1; reader delivery and contribution pushes do not close migration.
+
+The distinct C22 internal reviewer has now accepted literal rational/real
+casting, complete signed q0-LSB source, splice ownership and same-returned
+object linkage. Its independent consumer also proves generation charges zero
+field/comparison operations: this supports the explicit partial-cost boundary,
+not a complete runtime claim. T0/T1, 0/N cuts and signed-coefficient native
+examples are finite screenings only. Its initial stuck `decide` test and wrong
+finite coefficient expectation remain retained with the exact failed source.
+[Independent review](../reviews/internal/c22-stored-supplier-review/review.md).
+The parent's fresh independent-consumer elaboration passes seven named ordinary
+axiom reports; all70 bound inputs/review artifacts remain unchanged.
+[Parent review replay](../reviews/internal/c22-stored-supplier-review/parent-replay-v1.json).
+This closes internal self-review debt for this provider only; it is not a
+source-blind public admission, full transitive build, normalized-state or ROOT
+certificate. No production-module publication record is added.

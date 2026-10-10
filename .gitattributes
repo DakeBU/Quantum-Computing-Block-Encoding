@@ -15,6 +15,7 @@ docs/lessons/** text eol=lf
 # Independently signed packets are immutable byte artifacts. In particular,
 # retain pre-policy CRLF packets as historical evidence; do not rehash them.
 reviews/publication/** -text
+reviews/internal/** -text
 
 # Experimental source/seals/results have frozen raw-byte evidence too. Keep
 # historical CRLF and newer LF packets intact; never silently refresh hashes.

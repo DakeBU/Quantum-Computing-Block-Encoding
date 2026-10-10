@@ -670,3 +670,12 @@ synthesis remain required. Independent internal semantic review is separate;
 public whole-module admission, original-state error composition, family
 executable acceptance and ROOT are not inferred. The exponential baseline and
 all failed attempts remain retained. No champion/resource scoring changes.
+
+C22's distinct internal semantic review subsequently passes, as does the
+parent's fresh consumer replay (seven ordinary reports,70 unchanged pins).
+[Review](../reviews/internal/c22-stored-supplier-review/review.md) and
+[parent evidence](../reviews/internal/c22-stored-supplier-review/parent-replay-v1.json).
+The review explicitly distinguishes finite rational source equality from the
+original normalized-state target and proves the partial generation ledger
+omits field/comparison charges. This is not a full runtime or population
+acceptance upgrade; scientific winner selection remains unchanged.
