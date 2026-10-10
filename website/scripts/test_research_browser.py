@@ -9,6 +9,11 @@ import json
 import threading
 from pathlib import Path
 
+if not __package__:
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from website.scripts.research_browser_contract import ROUTES, WIDTHS, THEMES
+
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, format, *args):
@@ -59,19 +64,16 @@ def run(root: Path, output: Path, browser_channel: str | None = None,
     records = []
     failures = []
     blueprint_passed = False
-    routes = ["mathematical-methods", "functor-hypergraph", "state-preparation-wiki",
-              "progress", "lean-graph", "quantum-information",
-              "quantum-scientific-computing"]
     try:
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(channel=browser_channel)
             context = browser.new_context(permissions=["clipboard-read", "clipboard-write"])
             page = context.new_page()
             page.on("pageerror", lambda error: failures.append(str(error)))
-            for width in (390, 1280):
+            for width in WIDTHS:
                 page.set_viewport_size({"width": width, "height": 900})
-                for theme in ("blueprint", "modern", "bold"):
-                    for route in routes:
+                for theme in THEMES:
+                    for route in ROUTES:
                         page.goto(f"{base}/{route}/index.html", wait_until="networkidle", timeout=90000)
                         page.evaluate("theme => document.documentElement.dataset.theme = theme", theme)
                         page.wait_for_function("Boolean(window.MathJax && window.MathJax.startup && window.MathJax.startup.promise)", timeout=60000)

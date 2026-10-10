@@ -19,7 +19,9 @@ jobs:
       - name: Verify the live commit, navigation, canonical data and all research routes
         env:
           EXPECTED_COMMIT: ${{ github.event.workflow_run.head_sha || github.sha }}
-        run: python3 website/scripts/check_deployed_research.py --commit "$EXPECTED_COMMIT"
+        run: |
+          python3 -m unittest website.scripts.test_deployed_research
+          python3 website/scripts/check_deployed_research.py --commit "$EXPECTED_COMMIT"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

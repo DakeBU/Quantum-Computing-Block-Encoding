@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "scope": "Reader verification only; no new theorem, toolchain migration or scientific-family acceptance",
+  "observedMainCommit": "b68cc56cecda2740b34422d61e775cf0a3b4f00e",
+  "previousMergedPullRequests": [87, 88],
+  "previousPagesRun": {"id": 37911080842, "conclusion": "success"},
+  "previousHermiteRun": {"id": 37911080795, "conclusion": "success"},
+  "previousLiveReaderRun": {
+    "id": 37911439692,
+    "conclusion": "failure",
+    "cause": "The deployed browser report contains 42 distinct passing combinations; the live checker still required exactly 30."
+  },
+  "behaviorChange": [
+    "Share the seven-route, two-viewport, three-theme browser coverage contract between the producer and the deployed-reader checker.",
+    "Reject incomplete or duplicate coverage, math/layout failures and skipped/failed Blueprint search.",
+    "Check the canonical four-part curriculum, homepage, book map and every part entry on the live site.",
+    "Run focused regression tests during publication and live verification.",
+    "Align the Windows build with the existing process-memory check and required Blueprint browser gate."
+  ],
+  "tests": {
+    "focusedRegressionCount": 98,
+    "focusedRegressionResult": "passed",
+    "initialRegressionFailure": "The pre-existing Windows build-all script omitted the canonical process-memory check; this omission was repaired without changing the check.",
+    "publicationAdmissionChangedModules": [],
+    "proofInputsSha256": "1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e",
+    "productionProofDiff": "unchanged",
+    "liveRecheckOfObservedMain": {
+      "passed": true,
+      "checkedReaderRoutes": 38,
+      "browserCombinations": 42,
+      "canonicalSourcesMatch": true,
+      "curriculumPartsMatch": true,
+      "proofInputsMatch": true
+    }
+  },
+  "remainingBoundary": [
+    "The inherited published proof tree uses Lean 4.29.1; Lean 4.33.0 migration remains separate.",
+    "Planned QIT/representation/scientific-computing chapters and Walsh/diagonal plans are not new local theorem certificates.",
+    "This local live recheck does not claim a new commit has deployed; require its own successful remote publication and live-verification runs."
+  ],
+  "rollback": "Revert this reader-only commit; no production Lean, target, historical acceptance or scoring data is changed."
+}
