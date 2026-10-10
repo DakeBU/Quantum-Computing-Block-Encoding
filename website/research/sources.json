@@ -4,6 +4,17 @@
   "policy": "Metadata/abstract verification is not a theorem audit, proof import, novelty verdict or exhaustive latest-literature search. Exact lower-bound comparisons require a separate setting contract and source theorem anchor.",
   "sources": [
     {
+      "id": "aspbe-local-stored-tensor-train-canonicalization",
+      "title": "Right-canonicalization of an already stored real tensor train",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/stored-tensor-train-canonicalization.md, all mathematical sections; exact binding and distinct review in reviews/publication/stored-tensor-train/",
+      "scope": "Whole stored real canonicalization, exact returned-data semantic refinement, full terminal mass and extended exact-real eight-counter costs. Input-core generation, integer/bit/runtime/peak memory, numerical stability and quantum circuit/synthesis/cleanup excluded.",
+      "formal_status": "existing local module; retrospective lesson and sourceblind whole-module review pending"
+    },
+    {
       "id": "zylberman-debbasch-2024-walsh",
       "title": "Efficient Quantum State Preparation with Walsh Series",
       "authors": "Julien Zylberman; Fabrice Debbasch",
