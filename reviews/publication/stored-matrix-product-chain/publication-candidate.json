@@ -142,6 +142,6 @@
   "residual_boundary": "Complete29-declaration target correspondence only; no imported-provider-wide/main/ROOT/runtime certificate.",
   "decoder_evidence": "reviews/publication/stored-matrix-product-chain/decoder-evidence.json",
   "reviewer_evidence": "reviews/publication/stored-matrix-product-chain/reviewer-evidence.json",
-  "status": "WIP_RETROSPECTIVE_CONTRACT_PENDING_DISTINCT_REVIEW",
+  "status": "SOURCE_REVIEWED_LOCAL_READER_PURIFICATION_MAIN_PENDING",
   "binding_sha256": "c4bf0fd66e6c562cc27148de40167b8d0164f1a0882be170b41ad85c7cde9a1e"
 }
