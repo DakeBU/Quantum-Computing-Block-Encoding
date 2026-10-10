@@ -2733,6 +2733,37 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* The four-book catalog is a reader surface, not a second proof-status ledger. */
+.curriculum-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 10px;
+}
+.curriculum-controls label { display: grid; gap: 6px; min-width: 0; font-family: var(--ui-font); }
+.curriculum-controls input, .curriculum-controls select {
+  width: 100%; min-width: 0; padding: 10px; border: 1px solid var(--line);
+  color: var(--ink); background: var(--surface); border-radius: 6px; font: inherit;
+}
+.curriculum-controls button { justify-self: start; }
+.curriculum-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.curriculum-card { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.curriculum-card h3 { margin-top: 8px; }
+.curriculum-card .path-label { font-size: .8rem; }
+.curriculum-intake, .curriculum-sources { margin-top: 14px; overflow-wrap: anywhere; }
+.curriculum-intake summary, .curriculum-sources summary { cursor: pointer; font-family: var(--ui-font); font-size: .9rem; }
+.curriculum-intake ul { padding-left: 20px; }
+.curriculum-intake li + li { margin-top: 20px; }
+.curriculum-intake code { white-space: normal; overflow-wrap: anywhere; }
+.curriculum-controls[hidden], .curriculum-card[hidden] { display: none; }
+@media (max-width: 700px) {
+  .curriculum-controls, .curriculum-grid { grid-template-columns: minmax(0, 1fr); }
+  .curriculum-card { padding: 18px; }
+}
+
 .book-part-nav {
   min-width: 0;
   border-bottom: 1px solid var(--line);

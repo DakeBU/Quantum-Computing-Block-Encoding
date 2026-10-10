@@ -261,6 +261,14 @@ def validate_curriculum_catalog(
         "part-iii-quantum-information", "part-iv-quantum-scientific-computing",
     }:
         raise SystemExit("Curriculum catalog must name the four canonical peer parts.")
+    placements = {
+        f'{part["id"]}:{chapter["id"]}': set(chapter.get("oaiClusters", []))
+        for part in parts for chapter in part["chapters"]
+    }
+    for cluster in oai_intake.get("clusters", []):
+        for target in cluster.get("curriculum", []):
+            if cluster["id"] not in placements.get(target, set()):
+                raise SystemExit(f"Missing audited upstream placement: {cluster['id']} -> {target}")
     upstream = oai_intake.get("upstream", {})
     local = oai_intake.get("local_boundary", {})
     if upstream.get("lean_toolchain") != "leanprover/lean4:v4.34.1":
@@ -802,7 +810,7 @@ def render_home(
     generated proof-status pages.</p>
   </div>
   <ol class="milestone-list">
-    <li><time datetime="2026-10-10">10 October 2026</time><div><strong>One visible four-part book map.</strong><p>All four peer textbooks now have homepage actions, a shared curriculum diagram and chapter-map entries. Parts III and IV remain source-anchored plans, not newly certified Lean books. The four-part release was merged in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/87">PR #87</a>; rendering and deployed-reader checks were repaired in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/88">#88</a> and <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/89">#89</a>.</p></div></li>
+    <li><time datetime="2026-10-10">10 October 2026</time><div><strong>Four textbooks you can browse, not just a roadmap.</strong><p>All four peer textbooks have homepage actions, a shared curriculum diagram and chapter-map entries. The <a href="learning/index.html#textbook-explorer">textbook explorer</a> filters chapters by book, technique and evidence status, with reading sources and expandable commit-pinned OpenAI Math memory. Parts III and IV remain source-anchored plans, not newly certified Lean books. The first curriculum release was merged in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/87">PR #87</a>; rendering and deployed-reader checks were repaired in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/88">#88</a> and <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/89">#89</a>.</p></div></li>
     <li><time datetime="2026-10-09">9 October 2026</time><div><strong>Four peer textbook parts and explicit formalization plans.</strong><p>State Preparation and Block Encoding are joined by Quantum Information and Representation Theory, and Quantum Algorithms for Scientific Computation. Walsh-series and diagonal-operator papers have source-linked plans and reusable technical cards. New parts and upstream OpenAI Math placements are planned curriculum, not new local theorem certificates.</p></div></li>
     <li><time datetime="2026-10-06">6 October 2026</time><div><strong>Statement Seal, evidence memory, and proof digestion.</strong><p>QuantumComputinglib now freezes source-facing quantum contracts before proof search, types and salvages failed routes before cleanup, keeps environment/API failures separate from mathematical refutation, defaults routine coordination to deterministic/low-token control in light of local route-ablation evidence, requires distinct uncertainty for parallel Workers, and seals PURIFIED reader explanations against the source and Lean graphs.</p></div></li>
     <li><time datetime="2026-09-10">10 September 2026</time><div><strong>Schrödingerisation smooth auxiliary-state preparation: a structured logical resource bound.</strong><p>The smooth auxiliary \(p\)-register state required by <a href="https://arxiv.org/abs/2403.19123v3">Jin–Liu–Ma’s PDE Schrödingerisation construction</a>, viewed alongside the smooth-function state-preparation route of <a href="https://arxiv.org/abs/2005.04351">Holmes–Matsuura</a>, has exact Hermite–Bernstein/tensor-train structure. The logical bound is \(G\le48n_p(2k+6)^3\), hence \(O(n_p)\) for fixed \(k\), with \(O(\log k)\) workspace under the stated exact-real contracts. This is not a complete finite-bit algorithm certificate: classical core generation, arithmetic and gate synthesis for <code>SP-HERMITE-POLY-002</code> still need separate certification. <a href="example-cases/hermite-smooth-state-preparation/index.html">Read the worked case and its scope →</a></p></div></li>
@@ -817,6 +825,7 @@ def render_home(
   <div class="section-heading">
     <p class="eyebrow">Reading guide</p>
     <h2>Browse all four textbook chapter maps</h2>
+    <p><a class="button secondary" href="learning/index.html#textbook-explorer">Search by textbook, technique or proof status &#8594;</a></p>
   </div>
   {render_chapter_groups('')}
 </section>
@@ -872,14 +881,7 @@ def render_curriculum_chapters(part: dict[str, object], prefix: str) -> str:
             title_html = f'<a href="{page_url(prefix, href)}">{title}</a>'
         else:
             title_html = title
-        clusters = "".join(
-            f"<code>{html.escape(str(cluster))}</code>"
-            for cluster in chapter.get("oaiClusters", [])
-        )
-        cluster_html = (
-            f'<p class="hint"><strong>Audited upstream routes:</strong> {clusters}</p>'
-            if clusters else ""
-        )
+        cluster_html = render_curriculum_intake(chapter)
         cards.append(
             f'''<article class="application-path" id="{html.escape(str(chapter["id"]))}">
   <p class="path-label">{html.escape(str(chapter["id"]))}</p>
@@ -890,6 +892,90 @@ def render_curriculum_chapters(part: dict[str, object], prefix: str) -> str:
 </article>'''
         )
     return '<div class="application-paths">' + "".join(cards) + "</div>"
+
+
+def render_curriculum_intake(chapter: dict[str, object]) -> str:
+    """Expose the pinned intake, never infer local theorem admission from it."""
+    ids = chapter.get("oaiClusters", [])
+    if not ids:
+        return ""
+    intake = load_json(ROOT / "research-wiki/openai-math-2026-intake.json")
+    commit = str(intake["upstream"]["commit"])
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        raise ValueError("Curriculum upstream links require an exact commit")
+    clusters = {item["id"]: item for item in intake["clusters"]}
+    rows = []
+    for cluster_id in ids:
+        cluster = clusters[cluster_id]
+        paths = ([cluster["path"]] if "path" in cluster
+                 else [item["path"] for item in cluster["paths"]])
+        links = []
+        for path in paths:
+            if (not str(path).startswith(("lean/OAI/", "preprints/"))
+                    or ".." in str(path).split("/") or "\\" in str(path)):
+                raise ValueError("Unsafe upstream curriculum path")
+            url = f"https://github.com/openai/math/tree/{commit}/{quote(str(path), safe='/')}"
+            links.append(f'<a href="{url}">{html.escape(str(path).removeprefix("lean/OAI/"))}</a>')
+        verification = cluster["upstream_verification"]
+        action = cluster.get("next_action", "A local semantic adapter and independent publication review are still required.")
+        rows.append(f'''<li><strong>{html.escape(str(cluster_id))}</strong>
+  <p>{' · '.join(links)}</p>
+  <p>{html.escape(str(cluster.get('local_role', 'Candidate circuit-model and resource adapter.')))}</p>
+  <p class="hint">Upstream evidence: {html.escape(str(verification['status']))}. {html.escape(str(cluster['class']))}. Not local admission.</p>
+  <p><strong>Next boundary:</strong> {html.escape(str(action))}</p></li>''')
+    return f'''<details class="curriculum-intake"><summary>Inspect pinned upstream memory ({len(rows)} routes)</summary>
+  <p>OpenAI Math snapshot <code>{commit[:12]}</code> · upstream Lean 4.34.1 · local migration target 4.33.0.
+  Source placement does not certify an adapter, the whole chapter, or an SP/BE construction.</p>
+  <ul>{''.join(rows)}</ul></details>'''
+
+
+def render_curriculum_explorer(prefix: str) -> str:
+    """One searchable view of the canonical catalog; all cards work without JS."""
+    catalog = load_json(WEBSITE_ROOT / "curriculum-parts.json")
+    sources = {item["id"]: item for item in load_json(WEBSITE_ROOT / "research/sources.json")["sources"]}
+    cards = []
+    options = []
+    for part in catalog["parts"]:
+        options.append(f'<option value="{part["id"]}">{html.escape(str(part["label"]))} · {html.escape(str(part["title"]))}</option>')
+        source_links = ' · '.join(
+            f'<a href="{html.escape(str(sources[source_id]["url"]))}">{html.escape(str(sources[source_id]["title"]))}</a>'
+            for source_id in part["sourceIds"]
+        )
+        for chapter in part["chapters"]:
+            # Keep the landing anchor: a planned chapter is not a fabricated lesson.
+            href = f'{prefix}{part["route"]}index.html#{chapter["id"]}'
+            if chapter.get("href"):
+                href = page_url(prefix, str(chapter["href"]))
+            search = ' '.join(str(value) for value in (
+                part["title"], chapter["title"], chapter["summary"],
+                *chapter.get("oaiClusters", []),
+                *(sources[source_id]["title"] for source_id in part["sourceIds"]),
+            ))
+            cards.append(f'''<article class="curriculum-card" data-curriculum-card
+  data-part="{part['id']}" data-status="{chapter['status']}" data-search="{html.escape(search, quote=True)}">
+  <p class="path-label">{html.escape(str(part['label']))} · {html.escape(str(part['title']))}</p>
+  <h3><a href="{html.escape(href)}">{html.escape(str(chapter['title']))}</a></h3>
+  {badge(str(chapter['status']))}
+  <p>{html.escape(str(chapter['summary']))}</p>
+  <details class="curriculum-sources"><summary>Textbook / paper sources</summary><p>{source_links}</p>
+    <p class="hint">These are reading anchors, not a claim that every source theorem is formalized.</p></details>
+  {render_curriculum_intake(chapter)}
+</article>''')
+    return f'''<section class="content-section" id="textbook-explorer" data-curriculum-explorer>
+  <div class="section-heading"><p class="eyebrow">Choose what to learn</p>
+    <h2>Search all four textbooks</h2><p>Find a chapter, its reading source and the exact upstream memory assigned to it.
+    Compiled means the listed local core, not a completed source book; Partial route and Planned keep their open boundaries.</p></div>
+  <div class="curriculum-controls" data-curriculum-controls hidden>
+    <label>Chapter or technique<input type="search" data-curriculum-query placeholder="Walsh, Schur, channels, Fourier…"></label>
+    <label>Textbook<select data-curriculum-part><option value="">All four parts</option>{''.join(options)}</select></label>
+    <label>Evidence status<select data-curriculum-status><option value="">All statuses</option>
+      <option>Compiled</option><option>Partial route</option><option>Planned</option></select></label>
+    <button class="button secondary" type="button" data-curriculum-reset>Reset filters</button>
+  </div>
+  <p class="hint" data-curriculum-count role="status" aria-live="polite">{len(cards)} chapter entries. All visible without JavaScript.</p>
+  <p data-curriculum-empty hidden>No matching chapter. Try a broader term or reset the filters.</p>
+  <div class="curriculum-grid">{''.join(cards)}</div>
+</section>'''
 
 
 def render_curriculum_part(
@@ -918,6 +1004,7 @@ def render_curriculum_part(
 <section class="content-section" id="chapter-map">
   <div class="section-heading"><p class="eyebrow">Graph-driven chapter map</p><h2>Shared foundations first, source-specific consumers later</h2></div>
   {render_curriculum_chapters(part, '../')}
+  <p><a class="button secondary" href="../learning/index.html#textbook-explorer">Search across all four textbooks &#8594;</a></p>
 </section>'''
     return page_template(
         title=str(part["title"]), route=str(part["route"]), current=str(part["route"]),
@@ -1512,6 +1599,7 @@ def render_learning(
   </div>
   {render_chapter_groups('../')}
 </section>
+{render_curriculum_explorer('../')}
 <section class="content-section" id="future-curriculum">
   <div class="section-heading">
     <p class="eyebrow">One navigation level · distinct proof status</p>
@@ -1537,8 +1625,10 @@ def render_learning(
         toc=[
             ("reading-map", "Reading map"),
             ("chapter-list", "All four chapter maps"),
+            ("textbook-explorer", "Search textbooks"),
             ("future-curriculum", "Four-part curriculum"),
         ],
+        extra_scripts=("static/curriculum.js",),
     )
 
 def render_implementation_map(
