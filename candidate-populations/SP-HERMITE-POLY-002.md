@@ -679,3 +679,23 @@ The review explicitly distinguishes finite rational source equality from the
 original normalized-state target and proves the partial generation ledger
 omits field/comparison charges. This is not a full runtime or population
 acceptance upgrade; scientific winner selection remains unchanged.
+
+### Cycle 23 source-coefficient production refinement
+
+The same source route gains an actual computable rational coefficient cache,
+refining the existing factorial/choose/source mechanism rather than inventing a
+second quantum representation. The returned cache supplies every actual C21
+source coefficient; its same run has ordinary count at most `416*(k+1)^2`.
+Its rational-to-real consumer also agrees with the actual existing real source
+producer. The parent replays both frozen sources with ten ordinary symbolic
+axiom reports and 866 stable pre/post pins.
+[Local result](../experiments/hermite-polynomial/precision/charged-coefficient-cache-c23/result.json)
+and [parent replay](../experiments/hermite-polynomial/precision/charged-coefficient-cache-c23/parent-verification-v1.json).
+
+This is a local supplier refinement, not a new population winner or complete
+poly-qubit state-preparation certificate. C22 cache consumption, middle/setup
+production, all remaining arithmetic/traffic, bitlength/GCD, numerical and
+physical costs, normalization/error composition, independent family acceptance
+and ROOT remain unresolved. Internal review is running separately; public
+source admission and main migration remain pending. No scoring, target,
+champion, exponential baseline or historical failure record is changed.

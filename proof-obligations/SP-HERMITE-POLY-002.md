@@ -930,3 +930,37 @@ axiom reports; all70 bound inputs/review artifacts remain unchanged.
 This closes internal self-review debt for this provider only; it is not a
 source-blind public admission, full transitive build, normalized-state or ROOT
 certificate. No production-module publication record is added.
+
+### Cycle 23 actual charged rational source-coefficient cache
+
+The existing factorial/choose/source mechanism now has a computable rational
+refinement returning one `Run (Vector Rat (k+1))`. Every returned entry equals
+C21's `sourceCoefficientQ`, hence its actual `coefficientQ` on the full index
+range. An additional bridge identifies the rational-to-real cast with the
+actual existing real `sources` return supplied by its actual factorial table.
+The same returned run has cost at most `52*(k+1)^2` per ordinary operation
+category and `416*(k+1)^2` in total. No desired-value, desired-cost or arbitrary
+coefficient-oracle premise is added to the final roots.
+[Frozen bounded result](../experiments/hermite-polynomial/precision/charged-coefficient-cache-c23/result.json).
+
+The parent re-elaborates the two actual C23 sources without changing any frozen
+cache: ten symbolic axiom reports use only ordinary logical axioms; 866 bound
+source, artifact and cache inputs stay unchanged before and after. The selected
+fresh-v3 project providers are checked explicitly. Mathlib and the remaining
+C19/C20/C21 imports are inherited and pinned, not a clean transitive rebuild.
+Earlier launcher, elaboration and namespace-root selection failures remain
+retained as implementation/environment evidence, never mathematical refutation.
+[Parent replay](../experiments/hermite-polynomial/precision/charged-coefficient-cache-c23/parent-verification-v1.json).
+Local Lean4.33 library and Tests builds also pass using inherited build artifacts
+and the existing local Verso compatibility edits; no clean CI claim is made.
+
+This closes only the charged source-coefficient producer prerequisite. C22 does
+not yet consume this cache. Middle coefficients, exponential/cut/index setup,
+remaining local table/boundary arithmetic and consumption traffic, rational
+bitlength/GCD, finite-bit stability, normalization/error composition, circuit
+synthesis, family executable acceptance and the scientific ROOT remain open.
+The exact rational scalar/word counter model excludes natural-index arithmetic,
+loop/counter metadata and allocator implementation. Independent internal review
+is in progress; public source admission, main4.33 migration and PURIFIED reader
+gates remain pending. The frozen scientific contract and exponential baseline
+are unchanged.
