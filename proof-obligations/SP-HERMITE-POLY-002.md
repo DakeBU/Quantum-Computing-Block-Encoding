@@ -870,3 +870,48 @@ Its scoped registry admission raises the reviewed total to8, leaving43 of51
 changed production modules. This retrospective stored exact-real contract does
 not admit its whole providers, establish source/cache equivalence or supply
 finite-bit runtime/scientific ROOT. Main4.33 and PURIFIED reader gates remain open.
+
+### Cycle 22 actual stored full-source producer, partial cost boundary
+
+`produceQData` now creates the actual rational five-component block once and
+materializes only `(n+1)` local `D`-by-`2D` tables and two `D` boundary vectors.
+It does not enumerate the amplitude vector. Literal casts identify their entries
+with C21's real full source. Their generated Window is proved internally, and
+`produceStored` feeds these same stored tables and boundaries to canonical
+`StoredMatrixProductChain.ofTable`. The returned chain equals `actualChain`,
+including the signed q0-LSB source action, strict/inclusive splice ownership,
+cut0/N and T0/T1 cases. No desired Window/refinement/coefficient/rank premise
+is introduced. The allocated consumer derives positive radius internally.
+[Frozen producer](../experiments/hermite-polynomial/precision/piecewise-kernel-stored-c22/result.json).
+
+The SAME returned value has bond at most
+`D=18*(sourceDegree(delta)+1)+9*(2*k+2)+18` and address envelope
+`2*(n+1)*D^2`. With `A=(n+1)*(2*D^2+D+1)+2*D`, rational materialization and
+explicit real casting/copies charge `9*A` traffic operations; canonical assembly
+gives the partial upper ledger `9*A+20*D^2+30*D+5*n^2+7*n+31`.
+**This is not total producer runtime.** Literal scalar formula evaluation
+currently occurs inside `pure`, an unaccounted boundary, not a free operation.
+Cut/degree/preprocessing, coefficient cache generation, powers, binomial and
+factorial operations, index quotient/remainder, rational bitlength/GCD and
+representation costs must still be produced and charged. Inspection of
+Mathlib compiler replacements is not their cost certificate.
+
+The parent re-elaborates all four actual C22 sources without emitting or
+overwriting caches: fourteen ordinary-axiom reports pass, and 215 bound inputs
+are checked unchanged before and after. Explicit C22/C21/C19/C20 import order
+retains inherited caches; this is not a clean transitive rebuild.
+[Parent focused replay](../experiments/hermite-polynomial/precision/piecewise-kernel-stored-c22/parent-verification-v1.json).
+The checkpoint is pushed as `91da307279b96fc4124bf80aafda1679ac8a769b`.
+Independent internal semantic review is running separately; public source-blind
+admission, full classical/finite-bit cost, normalization/error composition,
+physical circuit/synthesis/export, independent family acceptance and ROOT remain
+open. The next shared scalar prerequisite is an actual charged coefficient cache,
+not an assumed cost for an arbitrary entry callback.
+
+Latest reader main `740c3a4080e2866c78024c9ed42e908d50089f1b` is reconciled into
+the proof contribution at `d78c167db67b4f36d913a0de91b38322592e23c7` with no
+production Lean changes. All eight review bindings remain valid, 95 reader
+regressions pass, and incremental local Lean4.33 build/Tests pass with inherited
+caches and existing Verso compatibility edits disclosed. The full production
+publication gate still fails closed on 43 of 51 changed modules. Main remains
+Lean4.29.1; reader delivery and contribution pushes do not close migration.
