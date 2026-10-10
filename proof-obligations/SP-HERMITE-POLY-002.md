@@ -832,3 +832,41 @@ complete stored piecewise producer, actual QR/finite-bit runtime, finite-gate
 synthesis, independent family executable acceptance and ROOT remain open.
 The existing website release is main PR90; main Lean4.33 migration and the
 51-module publication debt are separate, still-unfinished gates.
+
+### Cycle 21 actual five-component source chain and eighth module review
+
+The actual rational middle coefficients are now produced by explicit finite
+binomial/factorial sums and proved equal to the original `coefficientQ` and
+`middleValueQ`. Two actual three-state masks per component, actual polynomial
+translation and five diagonal blocks form ONE explicit chain. Its contraction
+equals the actual `piecewiseValue` on the actual q0-LSB `rationalGrid` for every
+word. The allocated consumer obtains radius positivity from the real supplier;
+no desired mask, coefficient, Window, rank or approximation is a root premise.
+The SAME chain has bond at most `18*(d+1)+9*(m+1)+18`, with actual
+`d=sourceDegree(delta)=4*T^2+2*T+1` and `m=2*k+1`, and scalar-address envelope
+`2*(n+1)*D^2`. This envelope is NOT a stored-data producer or runtime bound.
+[Full actual algebraic supplier](../experiments/hermite-polynomial/precision/piecewise-kernel-assembly-c21/result.json).
+[Parent replay:13 reports](../experiments/hermite-polynomial/precision/cycle21-assembly-parent-checkpoint.json).
+
+All19 fresh supplier calls and the parent's four actual-source replay calls
+pass. The separate outer launcher exit1 remains ENV_BLOCKED in its original
+receipt; it is not reported as process success. Historical source-name shadowing
+and stale initial attempt bindings remain visible, with final accepted source
+and ordered cache selection explicitly pinned. Distinct source review is pending.
+The next blocking interface is actual rational table/boundary production,
+unconditional Window for these tables, SAME returned stored-chain refinement,
+and charged coefficient/cut/product/directsum/materialization/copy/assembly
+costs. Finite-bit/GCD/QR/normalization/error composition/physical export/ROOT
+remain separate obligations.
+
+StoredTensorTrain now has a distinct whole-module source-blind decoder and
+source-first reviewer, all30 exact types/ordinary axioms and complete-terminal
+consumers, a parent fresh whole-source replay, and passing local Lean4.33
+build/Tests. The corrected v4 decoder extraction preserves the failed original;
+metadata-only wrappers are independently compared and do not invent new runs.
+[Independent review](../reviews/publication/stored-tensor-train/source-review-c20/reviewer-admission-evidence-v1.json).
+[Parent gate](../reviews/publication/stored-tensor-train/parent-admission-check-v1.json).
+Its scoped registry admission raises the reviewed total to8, leaving43 of51
+changed production modules. This retrospective stored exact-real contract does
+not admit its whole providers, establish source/cache equivalence or supply
+finite-bit runtime/scientific ROOT. Main4.33 and PURIFIED reader gates remain open.

@@ -627,3 +627,24 @@ Inherited cache/source correspondence remains explicitly partial. This evidence
 removes self-review debt at the internal operator interface, not scientific
 population acceptance, finite-bit closure, main admission or PURIFIED status.
 No resource winner is selected; the exponential baseline and all failures remain.
+
+### Cycle 21 full actual-source algebraic crossover
+
+The c19 five-term source decomposition and c20 arbitrary-width masks/polynomial
+translation now supply one actual chain with source-derived middle coefficients.
+Every q0-LSB word contracts to the actual finite `piecewiseValue` on the actual
+rational grid. The same object has bond envelope
+`18*(sourceDegree(delta)+1)+9*(2*k+1+1)+18` and corresponding scalar-address
+bound. Parent replay passes13 ordinary-axiom reports; no full stored-data/runtime
+producer, finite-bit closure or distinct source review is inferred.
+[Source chain](../experiments/hermite-polynomial/precision/piecewise-kernel-assembly-c21/result.json)
+and [parent replay](../experiments/hermite-polynomial/precision/cycle21-assembly-parent-checkpoint.json).
+The next mutation must materialize this SAME chain's actual tables and charge
+all generation/copy/assembly costs, not replace it with an easier existence
+witness. Original launcher and search failures remain retained. No new scientific
+winner is selected, and the exponential baseline is unchanged.
+
+StoredTensorTrain whole-module source/decoder review is admitted only in the
+local retrospective exact-real registry lane (8 reviewed,43 missing of51).
+It does not close input generation, finite-bit resources, executable acceptance,
+physical cleanup, main migration or ROOT.
