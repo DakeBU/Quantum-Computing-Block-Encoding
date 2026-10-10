@@ -160,6 +160,41 @@ class SiteContractTests(unittest.TestCase):
         self.assertIn('href="quantum-scientific-computing/index.html"', page)
         self.assertNotIn("The current book has two primary parts", page)
 
+    def test_home_hero_gives_every_peer_part_a_direct_action(self) -> None:
+        page = build_site.render_home(
+            {"declarations": []},
+            {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
+            {"passed": True}, {"shortCommit": "test"},
+        )
+        hero = page.split('<section class="hero home-hero">', 1)[1].split('</section>', 1)[0]
+        for part in build_site.load_json(ROOT / "website/curriculum-parts.json")["parts"]:
+            self.assertEqual(hero.count(f'href="{part["route"]}index.html"'), 1)
+        self.assertIn('id="diagram-quantum-domain-roadmap"', page)
+
+    def test_planned_chapter_map_links_resolve_to_exact_peer_part_anchors(self) -> None:
+        catalog = build_site.load_json(ROOT / "website/curriculum-parts.json")
+        for prefix in ('', '../'):
+            groups = build_site.render_chapter_groups(prefix)
+            self.assertEqual(groups.count('class="reading-track book-part"'), 4)
+            for part in catalog["parts"][2:]:
+                target = build_site.render_curriculum_part(
+                    part, {"publicDeclarationCount": 0}, {"passed": True},
+                    {"shortCommit": "test"},
+                )
+                for chapter in part["chapters"]:
+                    self.assertIn(f'href="{prefix}{part["route"]}index.html#{chapter["id"]}"', groups)
+                    self.assertEqual(target.count(f'id="{chapter["id"]}"'), 1)
+                self.assertIn('not local certificates', groups)
+
+    def test_home_logical_bound_does_not_claim_complete_finite_bit_algorithm(self) -> None:
+        page = build_site.render_home(
+            {"declarations": []},
+            {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
+            {"passed": True}, {"shortCommit": "test"},
+        )
+        self.assertIn('not a complete finite-bit algorithm certificate', page)
+        self.assertIn('SP-HERMITE-POLY-002', page)
+
     def test_four_part_curriculum_is_source_and_oai_closed(self) -> None:
         curriculum = json.loads(
             (ROOT / "website/curriculum-parts.json").read_text(encoding="utf-8")
