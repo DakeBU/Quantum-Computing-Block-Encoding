@@ -44,16 +44,27 @@ class RequiredPublicationArtifactTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "search asset"):
                 check_search_assets(root)
             (root / "-verso-search").mkdir()
-            for name in ("xref.json", "-verso-search/search-init.js",
+            for name in ("xref.json", "-verso-docs.json", "-verso-search/search-init.js",
                          "-verso-search/search-box.js", "-verso-search/domain-mappers.js",
                          "-verso-search/blueprint-declarations.js"):
                 (root / name).write_text("fixture", encoding="utf-8")
+            (root / '-verso-docs.json').write_text('{}', encoding='utf-8')
             registry = root / "-verso-search/domain-mappers.js"
             registry.write_text('import {blueprintDeclarationMapper} from "./missing.js";', encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "module dependency"):
                 check_search_assets(root)
             (root / "-verso-search/missing.js").write_text("fixture", encoding="utf-8")
             check_search_assets(root)
+            hover = root / '-verso-docs.json'
+            hover.unlink()
+            with self.assertRaisesRegex(ValueError, 'search asset'):
+                check_search_assets(root)
+            for invalid in ('<!DOCTYPE html><h1>404</h1>', '[]', 'null'):
+                hover.write_text(invalid, encoding='utf-8')
+                with self.subTest(invalid=invalid):
+                    with self.assertRaisesRegex(ValueError, 'hover data must be a JSON object'):
+                        check_search_assets(root)
+            hover.write_text('{}', encoding='utf-8')
             (root / "-verso-search/search-box.js").write_text("", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "search asset"):
                 check_search_assets(root)
@@ -147,6 +158,47 @@ class CaseTeachingGateTests(unittest.TestCase):
 
 
 class SiteContractTests(unittest.TestCase):
+    def test_sidebar_uses_four_peer_textbooks_and_keeps_every_guided_chapter(self) -> None:
+        nav = build_site.render_book_navigation('../', '')
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        self.assertEqual(nav.count('class="book-part-nav"'), 4)
+        for part in catalog['parts']:
+            self.assertEqual(nav.count(f'data-book-part="{part["id"]}"'), 1)
+            self.assertIn(f'href="../{part["route"]}index.html"', nav)
+        for chapter in CHAPTERS:
+            self.assertEqual(nav.count(f'href="../chapters/{chapter["slug"]}/index.html"'), 1)
+
+    def test_sidebar_planned_chapters_keep_status_and_exact_targets(self) -> None:
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        for prefix in ('./', '../', '../../'):
+            nav = build_site.render_book_navigation(prefix, '')
+            for index, part in enumerate(catalog['parts']):
+                for chapter in part['chapters']:
+                    if index < 2 and chapter['status'] == 'Compiled':
+                        continue
+                    target = (
+                        f'{prefix}{chapter["href"]}index.html'
+                        if index < 2 and chapter.get('href')
+                        else f'{prefix}{part["route"]}index.html#{chapter["id"]}'
+                    )
+                    self.assertIn(f'href="{target}"', nav)
+                    self.assertIn(f'class="book-chapter-status">{chapter["status"]}</small>', nav)
+
+    def test_sidebar_opens_only_the_current_textbook(self) -> None:
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        for index, part in enumerate(catalog['parts']):
+            nav = build_site.render_book_navigation('../', str(part['route']))
+            self.assertEqual(nav.count(' open>'), 1)
+            self.assertIn(f'data-book-part="{part["id"]}" open>', nav)
+        nav = build_site.render_book_navigation('../../', f'chapters/{CHAPTERS[4]["slug"]}/')
+        self.assertIn('data-book-part="part-ii-block-encoding" open>', nav)
+        self.assertEqual(nav.count('aria-current="page"'), 1)
+
+    def test_full_header_does_not_restore_the_old_flat_chapter_list(self) -> None:
+        nav = build_site.site_header('./', '')
+        self.assertIn('aria-label="Chapters by textbook"', nav)
+        self.assertNotIn('<div class="chapter-nav">', nav)
+
     def test_home_exposes_all_four_peer_parts_with_planned_boundaries(self) -> None:
         page = build_site.render_home(
             {"declarations": []},

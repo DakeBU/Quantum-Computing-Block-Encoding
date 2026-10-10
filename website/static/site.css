@@ -2733,6 +2733,62 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+.book-part-nav {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.book-part-nav summary {
+  padding: 10px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.45;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.book-part-label {
+  display: inline-block;
+  margin-right: 6px;
+  color: var(--warm);
+  font-weight: 750;
+}
+
+.book-part-links {
+  display: grid;
+  padding: 0 0 8px 10px;
+}
+
+.book-part-links a {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 7px 10px;
+  border-left: 2px solid transparent;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.book-part-links .book-curriculum-link {
+  display: grid;
+  gap: 3px;
+}
+
+.book-chapter-number {
+  flex-shrink: 0;
+  color: var(--quiet);
+  font-variant-numeric: tabular-nums;
+}
+
+.book-chapter-status {
+  color: var(--warm);
+  font-size: 10px;
+  font-weight: 650;
+}
+
 .sidebar-footer {
   margin-top: auto;
   padding: 14px 18px 20px;

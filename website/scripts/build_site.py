@@ -325,21 +325,54 @@ def source_statement(preview: str) -> str:
     return "\n".join(kept)
 
 
+def render_book_navigation(prefix: str, current: str) -> str:
+    """Use the same four-part catalog in every sidebar, without proof promotion."""
+    parts = load_json(WEBSITE_ROOT / "curriculum-parts.json")["parts"]
+    by_number = {int(chapter["number"]): chapter for chapter in CHAPTERS}
+    groups = []
+    for index, part in enumerate(parts):
+        route = str(part["route"])
+        guided = [by_number[number] for number in BOOK_PARTS[index][1]] if index < 2 else []
+        selected = current == route or any(
+            current == f"chapters/{chapter['slug']}/" for chapter in guided
+        )
+        opened = " open" if selected else ""
+        links = [f'<a class="book-part-overview" href="{page_url(prefix, route)}">Part overview →</a>']
+        for chapter in guided:
+            chapter_route = f"chapters/{chapter['slug']}/"
+            active = ' aria-current="page"' if current == chapter_route else ""
+            links.append(
+                f'<a href="{page_url(prefix, chapter_route)}"{active}>'
+                f'<span class="book-chapter-number">{int(chapter["number"]):02d}</span>'
+                f'<span>{html.escape(str(chapter["title"]))}</span></a>'
+            )
+        for chapter in part["chapters"]:
+            if index < 2 and chapter["status"] == "Compiled":
+                continue  # Already reached through the overview and guided chapters.
+            target = (
+                page_url(prefix, str(chapter["href"])) if index < 2 and chapter.get("href")
+                else f'{page_url(prefix, route)}#{chapter["id"]}'
+            )
+            links.append(
+                f'<a class="book-curriculum-link" href="{html.escape(target)}">'
+                f'<span>{html.escape(str(chapter["title"]))}</span>'
+                f'<small class="book-chapter-status">{html.escape(str(chapter["status"]))}</small></a>'
+            )
+        groups.append(
+            f'<details class="book-part-nav" data-book-part="{part["id"]}"{opened}>'
+            f'<summary><span class="book-part-label">{part["label"]}</span>'
+            f'<span>{html.escape(str(part["title"]))}</span></summary>'
+            f'<div class="book-part-links">{"".join(links)}</div></details>'
+        )
+    return '<div class="book-part-navigation" aria-label="Chapters by textbook">' + "".join(groups) + '</div>'
+
+
 def site_header(prefix: str, current: str) -> str:
     links: list[str] = []
     for label, route in NAVIGATION:
         current_attr = ' aria-current="page"' if current == route else ""
         links.append(
             f'<a href="{page_url(prefix, route)}"{current_attr}>{html.escape(label)}</a>'
-        )
-    chapter_links = []
-    for chapter in sorted(CHAPTERS, key=lambda item: int(item["number"])):
-        route = f"chapters/{chapter['slug']}/"
-        current_attr = ' aria-current="page"' if current == route else ""
-        chapter_links.append(
-            f'<a href="{page_url(prefix, route)}"{current_attr}>'
-            f'<span>{int(chapter["number"]):02d}</span>'
-            f'{html.escape(str(chapter["title"]))}</a>'
         )
     example_links = []
     for index, (label, case_slug) in enumerate(EXAMPLE_CASE_NAV, start=1):
@@ -378,7 +411,7 @@ def site_header(prefix: str, current: str) -> str:
     <strong class="nav-group-label">Explore</strong>
     {''.join(links)}
     <strong class="nav-group-label">Chapters</strong>
-    <div class="chapter-nav">{''.join(chapter_links)}</div>
+    {render_book_navigation(prefix, current)}
     <strong class="nav-group-label">Example Cases</strong>
     <a href="{page_url(prefix, 'example-cases/')}">All examples</a>
     <div class="example-nav">{''.join(example_links)}</div>
