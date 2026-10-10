@@ -44,16 +44,27 @@ class RequiredPublicationArtifactTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "search asset"):
                 check_search_assets(root)
             (root / "-verso-search").mkdir()
-            for name in ("xref.json", "-verso-search/search-init.js",
+            for name in ("xref.json", "-verso-docs.json", "-verso-search/search-init.js",
                          "-verso-search/search-box.js", "-verso-search/domain-mappers.js",
                          "-verso-search/blueprint-declarations.js"):
                 (root / name).write_text("fixture", encoding="utf-8")
+            (root / '-verso-docs.json').write_text('{}', encoding='utf-8')
             registry = root / "-verso-search/domain-mappers.js"
             registry.write_text('import {blueprintDeclarationMapper} from "./missing.js";', encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "module dependency"):
                 check_search_assets(root)
             (root / "-verso-search/missing.js").write_text("fixture", encoding="utf-8")
             check_search_assets(root)
+            hover = root / '-verso-docs.json'
+            hover.unlink()
+            with self.assertRaisesRegex(ValueError, 'search asset'):
+                check_search_assets(root)
+            for invalid in ('<!DOCTYPE html><h1>404</h1>', '[]', 'null'):
+                hover.write_text(invalid, encoding='utf-8')
+                with self.subTest(invalid=invalid):
+                    with self.assertRaisesRegex(ValueError, 'hover data must be a JSON object'):
+                        check_search_assets(root)
+            hover.write_text('{}', encoding='utf-8')
             (root / "-verso-search/search-box.js").write_text("", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "search asset"):
                 check_search_assets(root)
