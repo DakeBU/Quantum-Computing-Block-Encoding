@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 from pathlib import Path
 import re
@@ -43,19 +44,27 @@ def check(commit: str) -> dict:
         if actual != expected:
             raise ValueError('live canonical source mismatch: ' + filename)
         catalogue[filename] = actual
+    curriculum = json.loads(fetch('data/curriculum-parts.json', commit))
+    expected_curriculum = json.loads((ROOT / 'website/curriculum-parts.json').read_text(encoding='utf-8'))
+    if curriculum != expected_curriculum or len(curriculum.get('parts', [])) != 4:
+        raise ValueError('live four-part curriculum differs from the canonical catalog')
     routes = {'lean-graph/index.html': 'Underlying Lean Graph of Libraries',
               'mathematical-methods/index.html': 'Mathematical methods',
               'functor-hypergraph/index.html': 'Functor Hypergraph',
               'state-preparation-wiki/index.html': 'StatePreparationWiki',
               'progress/index.html': 'Current Progress',
-              'research-protocol/index.html': 'ASPBE publication and graph protocol'}
+              'research-protocol/index.html': 'ASPBE publication and graph protocol',
+              'index.html': 'four peer parts',
+              'learning/index.html': 'Four peer textbook parts'}
+    for part in curriculum['parts']:
+        routes[part['route'] + 'index.html'] = part['title']
     for family in catalogue['atlas.json']['families']:
         routes['mathematical-methods/' + family['id'].split(':', 1)[1] + '/index.html'] = family['label']
     for route in catalogue['state-preparation-wiki.json']['routes']:
         routes['state-preparation-wiki/' + route['id'] + '/index.html'] = route['title']
     for path, label in routes.items():
         text = fetch(path, commit).decode('utf-8')
-        if label not in text or commit[:12] not in text:
+        if label.casefold() not in html.unescape(text).casefold() or commit[:12] not in text:
             raise ValueError('missing page title/version: ' + path)
         if not all(marker in text for marker in ('data-taxonomy-nav="papers"', 'data-taxonomy-nav="example-cases"', 'research-nav:start')):
             raise ValueError('incomplete common navigation: ' + path)
@@ -63,13 +72,14 @@ def check(commit: str) -> dict:
     browser = json.loads(fetch('data/research/browser-report.json', commit))
     if progress.get('commit') != commit or not progress.get('paper_frontier'):
         raise ValueError('live progress version/source-paper frontier mismatch')
-    if browser.get('failures') != [] or len(browser.get('automated_browser_checks', [])) != 30:
-        raise ValueError('live browser acceptance evidence is missing or failed')
+    from website.scripts.research_browser_contract import validate_browser_report
+    combinations = validate_browser_report(browser)
     if json.loads(fetch('build-report.json', commit)).get('commit') != commit:
         raise ValueError('live deployment changed during verification')
     return {'passed': True, 'origin': ORIGIN, 'commit': commit,
             'checked_reader_routes': len(routes), 'canonical_sources_match': True,
-            'proof_inputs_match': True, 'browser_combinations': 30,
+            'proof_inputs_match': True, 'browser_combinations': combinations,
+            'curriculum_parts_match': True,
             'live_reader_check_only': True}
 
 

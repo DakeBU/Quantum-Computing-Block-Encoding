@@ -19,6 +19,8 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand tools/qbe.py harness-check
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand tools/check_process_memory.py check
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand tools/check_public_figure_style.py
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand tools/test_proof_trust.py
