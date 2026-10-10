@@ -158,6 +158,49 @@ class CaseTeachingGateTests(unittest.TestCase):
 
 
 class SiteContractTests(unittest.TestCase):
+    def test_textbook_explorer_is_complete_and_preserves_evidence_status(self) -> None:
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        page = build_site.render_curriculum_explorer('../')
+        chapters = [chapter for part in catalog['parts'] for chapter in part['chapters']]
+        self.assertEqual(page.count('data-curriculum-card\n'), len(chapters))
+        for part in catalog['parts']:
+            for chapter in part['chapters']:
+                self.assertIn(f'data-part="{part["id"]}" data-status="{chapter["status"]}"', page)
+                self.assertIn(chapter['title'], page)
+        self.assertIn('All visible without JavaScript', page)
+        self.assertIn('data-curriculum-controls hidden', page)
+        self.assertIn('data-curriculum-count role="status" aria-live="polite"', page)
+        self.assertIn('not a claim that every source theorem is formalized', page)
+        self.assertNotIn('href="../chapters/qit-', page)
+
+    def test_upstream_memory_has_exact_snapshot_links_and_no_local_promotion(self) -> None:
+        catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')
+        intake = build_site.load_json(ROOT / 'research-wiki/openai-math-2026-intake.json')
+        page = build_site.render_curriculum_explorer('../')
+        for part in catalog['parts']:
+            for chapter in part['chapters']:
+                for cluster_id in chapter['oaiClusters']:
+                    cluster = next(item for item in intake['clusters'] if item['id'] == cluster_id)
+                    paths = [cluster['path']] if 'path' in cluster else [p['path'] for p in cluster['paths']]
+                    for path in paths:
+                        self.assertIn(f'https://github.com/openai/math/tree/{intake["upstream"]["commit"]}/{path}', page)
+        self.assertIn('Not local admission', page)
+        self.assertNotIn('openai/math/tree/main/', page)
+        self.assertNotIn('file://', page)
+
+    def test_upstream_memory_rejects_unpinned_or_unsafe_paths(self) -> None:
+        from copy import deepcopy
+        intake = build_site.load_json(ROOT / 'research-wiki/openai-math-2026-intake.json')
+        chapter = {'oaiClusters': [intake['clusters'][0]['id']]}
+        for commit, path in [('main', intake['clusters'][0]['path']),
+                             (intake['upstream']['commit'], 'lean/OAI/../private')]:
+            data = deepcopy(intake)
+            data['upstream']['commit'] = commit
+            data['clusters'][0]['path'] = path
+            with patch.object(build_site, 'load_json', return_value=data):
+                with self.assertRaises(ValueError):
+                    build_site.render_curriculum_intake(chapter)
+
     def test_sidebar_uses_four_peer_textbooks_and_keeps_every_guided_chapter(self) -> None:
         nav = build_site.render_book_navigation('../', '')
         catalog = build_site.load_json(ROOT / 'website/curriculum-parts.json')

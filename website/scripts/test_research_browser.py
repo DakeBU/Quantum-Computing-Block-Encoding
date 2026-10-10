@@ -53,6 +53,38 @@ def check_blueprint_search(page, base: str) -> None:
         raise AssertionError("Blueprint exact declaration jump reached an absent anchor")
 
 
+def check_curriculum_explorer(page, base: str) -> None:
+    """Exercise filters and disclosures on real rendered chapter cards."""
+    page.goto(f"{base}/learning/index.html", wait_until="networkidle", timeout=90000)
+    cards = page.locator('[data-curriculum-card]')
+    total = cards.count()
+    if total < 4 or not page.locator('[data-curriculum-controls]').is_visible():
+        raise AssertionError('Missing textbook explorer or progressive controls')
+    page.locator('[data-curriculum-part]').select_option('part-iii-quantum-information')
+    if page.locator('[data-curriculum-card]:visible').count() != page.locator('[data-curriculum-card][data-part="part-iii-quantum-information"]').count():
+        raise AssertionError('Textbook filter changed or lost planned chapter cards')
+    page.locator('[data-curriculum-reset]').click()
+    page.locator('[data-curriculum-query]').fill('Walsh')
+    if not page.locator('[data-curriculum-card]:visible').count():
+        raise AssertionError('Walsh source/technique search returned no chapter')
+    page.locator('[data-curriculum-query]').fill('not-a-real-chapter-190284')
+    if page.locator('[data-curriculum-card]:visible').count() or not page.locator('[data-curriculum-empty]').is_visible():
+        raise AssertionError('Empty search is not fail-visible')
+    page.locator('[data-curriculum-reset]').click()
+    page.locator('[data-curriculum-status]').select_option('Compiled')
+    if page.locator('[data-curriculum-card]:visible').count() != page.locator('[data-curriculum-card][data-status="Compiled"]').count():
+        raise AssertionError('Compiled filter promoted a planned chapter')
+    page.locator('[data-curriculum-reset]').click()
+    details = page.locator('.curriculum-intake').first
+    details.locator('summary').click()
+    if not details.get_by_text('Not local admission', exact=False).first.is_visible():
+        raise AssertionError('Expanded upstream memory lost its trust boundary')
+    if page.evaluate('document.documentElement.scrollWidth > innerWidth + 2'):
+        raise AssertionError('Expanded textbook memory overflows mobile viewport')
+    if page.locator('[data-curriculum-card]:visible').count() != total:
+        raise AssertionError('Reset did not restore all four books')
+
+
 def run(root: Path, output: Path, browser_channel: str | None = None,
         require_blueprint: bool = False) -> None:
     from playwright.sync_api import sync_playwright
@@ -70,6 +102,8 @@ def run(root: Path, output: Path, browser_channel: str | None = None,
             context = browser.new_context(permissions=["clipboard-read", "clipboard-write"])
             page = context.new_page()
             page.on("pageerror", lambda error: failures.append(str(error)))
+            page.set_viewport_size({"width": 390, "height": 900})
+            check_curriculum_explorer(page, base)
             for width in WIDTHS:
                 page.set_viewport_size({"width": width, "height": 900})
                 for theme in THEMES:

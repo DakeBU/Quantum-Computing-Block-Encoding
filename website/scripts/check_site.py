@@ -250,6 +250,7 @@ def main() -> int:
         "data/public-case-replay.json",
         "static/site.css",
         "static/site.js",
+        "static/curriculum.js",
         "static/task-builder.js",
         "static/case-memory.js",
         "static/workspace.js",
@@ -295,6 +296,10 @@ def main() -> int:
         "Planned Part III",
         "Planned Part IV",
         "quantum-domain-roadmap",
+        'id="textbook-explorer"',
+        "data-curriculum-query",
+        "data-curriculum-card",
+        "Not local admission",
     ):
         if marker not in learning:
             errors.append(f"learning page lacks curriculum marker {marker!r}")
