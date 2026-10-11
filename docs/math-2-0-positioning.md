@@ -69,6 +69,7 @@ status labels. Keep all nine directions on the dedicated contribution page.
 
 Public posts should name one concrete contribution, link to its reader route,
 and avoid unsupported adjectives such as complete, optimal or fully safe.
-When presenting the family, link Samplinglib, BanditRLlib and
-QuantumComputinglib as complementary domains with a shared understanding
-mission; do not suggest they already share a compiled cross-library import.
+
+## Library identity and contributor scope
+
+Present this library's own mission, contributors, achievements and research agenda in its README, home page and Math 2.0 page. Do not add prominent cross-library promotion, a joint-library section, or a common-collaborator claim. Contributor and achievement attribution must follow the actual scope of the work. Necessary external technical references belong in the relevant source or attribution notes, with precise scope; they do not establish shared maintenance or responsibility.

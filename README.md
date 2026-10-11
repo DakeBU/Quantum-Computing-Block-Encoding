@@ -31,7 +31,7 @@ The research agenda builds on those foundations: cross-pollination through the L
 
 **Start here:** [a worked construction](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/) → [its explanation and Lean graph](https://dakebu.github.io/Quantum-Computing-Block-Encoding/lean-graph/) → [the remaining obligations](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/). An ideal-circuit theorem is not a finite-bit implementation or hardware-reliability certificate; planned curricula remain planned.
 
-Sister libraries: [Samplinglib](https://dakebu.github.io/Automization-Sampling-Optimisation-Geometry-Lib/math-2-0/) connects sampling, optimization and geometry; [BanditRLlib](https://dakebu.github.io/Auto-Bandit-RL-Proof-In-Sleep/math-2-0/) connects bandit and reinforcement-learning theory. Together we turn results into knowledge that people can inspect, reuse and improve. See the [public-claims protocol](docs/math-2-0-positioning.md).
+See the [public-claims protocol](docs/math-2-0-positioning.md).
 
 ---
 

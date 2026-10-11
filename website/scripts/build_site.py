@@ -764,21 +764,12 @@ def render_math_2_0(
       <a href="../example-cases/hermite-smooth-state-preparation/index.html">Read an explicit finite-bit boundary →</a></article>
   </div>
 </section>
-<section class="content-section" id="sister-libraries">
-  <h2>Three libraries, one mission</h2>
-  <p><a href="https://dakebu.github.io/Automization-Sampling-Optimisation-Geometry-Lib/math-2-0/">Samplinglib</a>
-  connects sampling, optimization and geometry.
-  <a href="https://dakebu.github.io/Auto-Bandit-RL-Proof-In-Sleep/math-2-0/">BanditRLlib</a> connects bandit and
-  reinforcement-learning theory. QuantumComputinglib connects quantum constructions
-  and their models. Together we build inspectable knowledge that helps people understand,
-  reuse and improve mathematics.</p>
-</section>"""
+"""
     return page_template(
         title="Our place in Math 2.0", route="math-2-0/", current="math-2-0/",
         body=body, coverage=coverage, gate=gate, context=context,
         toc=[("framing", "The report"), ("foundations", "Foundations · 2, 3"),
-             ("understanding", "Core value · 1, 8"), ("research-agenda", "Research agenda"),
-             ("sister-libraries", "Three libraries")],
+             ("understanding", "Core value · 1, 8"), ("research-agenda", "Research agenda")],
         description="QuantumComputinglib's Math 2.0 mission: connected Lean knowledge, clearer quantum proofs, interactive teaching and explicit model boundaries.",
     )
 
