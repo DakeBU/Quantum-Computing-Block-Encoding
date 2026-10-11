@@ -670,12 +670,13 @@ def render_math_2_0(
   <a class="button secondary" href="../lean-graph/index.html">Explore the graph</a></div>
 </section>
 <section class="content-section" id="framing">
-  <h2>The report and our contribution</h2>
+  <h2>Our original aims and the report</h2>
   <p>In <a href="https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf">Terence Tao's
   <em>Math 2.0</em> talk (Caltech, 2026)</a>, slides 18–21 put human understanding
   at the center of sustainable AI-assisted mathematics. Slides 22, 25 and 26 give
   nine examples of useful work. The map below is our interpretation of those
   examples, not an official nine-goal framework or an endorsement.</p>
+  <p>Our original goals of connected knowledge, reusable Lean proofs and clearer quantum teaching predate and resonate with this report. We invite collaborators in quantum algorithms, formalization, education and mathematical AI to improve the teaching and test what proof maps can reveal.</p>
   <p><strong>Foundations (2, 3) → understanding (1, 8) → research agenda (4, 5, 6, 7, 9).</strong>
   Existing infrastructure gives us a starting point; each next step still needs its own evidence.</p>
 </section>
@@ -839,8 +840,9 @@ def render_home(
   <p class="eyebrow">From checked results to shared understanding</p>
   <h2>Our place in Math 2.0</h2>
   <p>Terence Tao's <a href="https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf"><em>Math 2.0</em> talk</a>
-  asks how AI can strengthen human understanding. Our answer is a living quantum
-  textbook with inspectable proofs, reusable mechanisms and explicit model boundaries.</p>
+  echoes our original aim: a living quantum textbook with inspectable proofs,
+  reusable mechanisms and explicit model boundaries. We invite collaborators to
+  improve the teaching and explore the potential of proof maps.</p>
   <p><strong>Foundations:</strong> a living knowledge network and a quality Lean library.
   <strong>Core value:</strong> clearer explanations and better interactive teaching.
   <strong>Research agenda:</strong> shared principles, ablations, theorem neighborhoods,

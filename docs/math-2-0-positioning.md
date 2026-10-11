@@ -4,11 +4,10 @@ QuantumComputinglib builds human-understanding infrastructure for quantum
 computing. ASPBE is the state-preparation and block-encoding construction
 system; QuantumComputinglib is the library and teaching surface.
 
-The framing reference is [Terence Tao, *Math 2.0*, Caltech (2026)](https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf).
+Our original aims predate and resonate with [Terence Tao, *Math 2.0*, Caltech (2026)](https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf).
 Slides 18–21 explain why sustainable AI-assisted mathematics should strengthen
 human understanding. Slides 22, 25 and 26 give the nine examples mapped here.
-They are examples, not an official fixed nine-goal standard. Cite the talk as
-inspiration without implying endorsement or collaboration.
+They are examples, not an official fixed nine-goal standard. Describe the talk as resonating with our original aims, without implying endorsement or collaboration. Invite quantum-algorithm, formalization, education and mathematical-AI collaborators to improve the teaching and test which proof mechanisms generalize.
 
 ## Positioning hierarchy
 
