@@ -1,3 +1,23 @@
 # Executable evidence hashes must survive Windows/Linux checkouts unchanged.
 executable-exports/SP-HERMITE-001/** text eol=lf
 *.sh text eol=lf
+
+# Publication bindings hash actual proof/configuration/lesson bytes, not a
+# newline-normalized approximation. Keep these identical in all checkouts.
+QuantumBlockEncoding/**/*.lean text eol=lf
+QuantumBlockEncoding/*.lean text eol=lf
+ABEISTests/**/*.lean text eol=lf
+ABEISTests/*.lean text eol=lf
+lean-toolchain text eol=lf
+lake-manifest.json text eol=lf
+docs/lessons/** text eol=lf
+
+# Independently signed packets are immutable byte artifacts. In particular,
+# retain pre-policy CRLF packets as historical evidence; do not rehash them.
+reviews/publication/** -text
+reviews/internal/** -text
+
+# Experimental source/seals/results have frozen raw-byte evidence too. Keep
+# historical CRLF and newer LF packets intact; never silently refresh hashes.
+experiments/** -text
+failure-memory/** -text

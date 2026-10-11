@@ -127,7 +127,9 @@ theorem cubicN2PrimitiveProgram_cleanEntry (row column : Fin 4) :
     rw [standardRyMatrix_two_arccos_eq_amplitudeRotation _
       bounded.1 bounded.2]
     rw [amplitudeRotation_cleanEntry _ bounded.1 bounded.2]
-    simp [cubicDiagonalOperator]
+    change ((CubicStatePreparation.cubicAmplitude 2 row : Rat) : ℂ) =
+      (((if row = row then CubicStatePreparation.cubicAmplitude 2 row else 0) : Rat) : ℂ)
+    rw [if_pos rfl]
   · have contextsDifferent :
         (splitPrimitiveWire 2 (cubicN2EncodeBits 0 row)).2 ≠
           (splitPrimitiveWire 2 (cubicN2EncodeBits 0 column)).2 := by

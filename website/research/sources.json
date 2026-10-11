@@ -4,6 +4,17 @@
   "policy": "Metadata/abstract verification is not a theorem audit, proof import, novelty verdict or exhaustive latest-literature search. Exact lower-bound comparisons require a separate setting contract and source theorem anchor.",
   "sources": [
     {
+      "id": "aspbe-local-stored-tensor-train-canonicalization",
+      "title": "Right-canonicalization of an already stored real tensor train",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/stored-tensor-train-canonicalization.md, all mathematical sections; exact binding and distinct review in reviews/publication/stored-tensor-train/",
+      "scope": "Whole stored real canonicalization, exact returned-data semantic refinement, full terminal mass and extended exact-real eight-counter costs. Input-core generation, integer/bit/runtime/peak memory, numerical stability and quantum circuit/synthesis/cleanup excluded.",
+      "formal_status": "existing local module; retrospective lesson and sourceblind whole-module review pending"
+    },
+    {
       "id": "zylberman-debbasch-2024-walsh",
       "title": "Efficient Quantum State Preparation with Walsh Series",
       "authors": "Julien Zylberman; Fabrice Debbasch",
@@ -201,8 +212,42 @@
       "year": 2026,
       "status": "primary-text-checked",
       "anchor": "10 April 2026 edition (79 pages), SHA256 90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3; bounded first slice checked 8 October 2026 on printed pages3–4, Definition2.1, Eq.(2.4) and pure-state forward assertion. Stable registry ID retains the course-directory year FT25, not the PDF edition year.",
-      "scope": "Peer Part III curriculum anchor: states, measurements, tensor systems, representation theory, Schur–Weyl duality and information applications. No new local theorem or whole-textbook completion is claimed by this reader release.",
+      "scope": "First PROVED_LOCAL slice in experiments/qit-first-slice: normalized finite complex state yields a positive-semidefinite trace-one outer-product matrix and an idempotent projector, using shared state semantics and Mathlib matrix APIs. Independent admission pending. No converse, rank/extremality, representation-theory chapter, physical measurement or resource claim; the entire textbook remains an external reference.",
       "formal_status": "external-reference"
+    },
+    {
+      "id": "aspbe-local-gray-basis",
+      "title": "Local Gray order and adjacency contract",
+      "authors": "ASPBE contributors; retrospective local contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/gray-little-endian-order.md, complete mathematical sections and parity induction; exact coverage reviews/publication/gray-basis/source-contract.json",
+      "scope": "Existing recursive arbitrary-width Gray coordinate equivalence and one-wire adjacency, natural-number head parity transitions. Not paper assimilation or a physical circuit/resource/export certificate. Independent bounded local review pending.",
+      "formal_status": "existing local module; independent whole-module admission pending"
+    },
+    {
+      "id": "aspbe-local-little-endian-basis",
+      "title": "Local little endian basis and context contract",
+      "authors": "ASPBE contributors; retrospective local contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/little-endian-basis-indexing.md, complete mathematical sections; exact coverage reviews/publication/primitive-basis-le/source-contract.json",
+      "scope": "Retrospective whole-module finite bit convention: recursive LE bijection, six-wire expansion, fixed two/three-wire inverse coordinates and restricted-context equality. Not paper assimilation or novelty. No circuit/exporter/runtime claim; native finite evaluator trust must remain explicit.",
+      "formal_status": "existing local module; independent whole-module admission pending"
+    },
+    {
+      "id": "aspbe-local-finite-real-thin-lq",
+      "local_contract_sha256": "bb9c420a14ed441da1ea4c0a0a6a55ba3ac4bc4c75c426e9280229278df9b40c",
+      "title": "Finite real thin LQ factorization local mathematical contract",
+      "authors": "ASPBE contributors; retrospective contract and exposition authored in the 8 October 2026 audit",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source: docs/lessons/finite-real-thin-lq.md, Statement through All shapes; exact scope and coverage: reviews/publication/thin-lq/source-contract.json",
+      "scope": "Retrospective local contract for an existing finite real matrix existence interface. Not external-paper assimilation or novelty evidence. A=RQ and QQ^T=I with min(m,n) rows; all dimensions/ranks; no triangularity, algorithm or resource theorem.",
+      "formal_status": "local mathematical contract; whole-module admission is tracked in publications.json"
     },
     {
       "id": "lin-wiebe-2026-qasc",
@@ -212,8 +257,52 @@
       "year": 2026,
       "status": "primary-text-checked",
       "anchor": "29 April 2026 public 447-page edition; PDF SHA256 56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599. First bounded source slice: Chapter 9 Section 9.1, printed pages 141–143, equations (9.2), (9.9), (9.10), (9.12); standing partial-application convention Definition 2.25, page 37. Parts I–IV remain curriculum anchors, not completed formalisation.",
-      "scope": "Peer Part IV curriculum anchor, reusing existing ASPBE state-preparation/block-encoding APIs. New Chapter 9 adapters, operator-norm approximation, scientific constructions and resource certificates still require separate production admission. No whole-section/book completion is claimed.",
+      "scope": "Quantum scientific computing curriculum, reusing existing ASPBE state-preparation/block-encoding APIs. experiments/qasc-ch9/ contains a Lean4.33 PROVED_LOCAL staging consumer for exact clean action, accepted weight, nonzero-success criterion and conditional normalization; worker and master focused compilation passed. Independent source/decoder review, production admission, measurement probability upper bound, operator-norm approximation, construction and all resource costs remain pending. No duplicate foundational API or whole-section/book completion. Public PDF/render caches are not vendored.",
       "formal_status": "external-reference"
+    },
+    {
+      "id": "aspbe-local-constructive-thin-lq",
+      "title": "Deterministic real thin LQ factors local mathematical contract",
+      "authors": "ASPBE contributors; retrospective local explanation",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/deterministic-real-thin-lq.md, Matrices and output equations through Reuse and the four graph views; reviews/publication/constructive-thin-lq/source-contract.json",
+      "scope": "Existing literal all-shape exact-real factor producer via rectangular adjacent Givens elimination, with reconstruction and orthonormal rows. Fixed min(m,n) inner dimension, deficient and empty shapes included. Not external-paper assimilation, novelty, finite-bit algorithm/runtime, numerical stability or quantum action.",
+      "formal_status": "existing local module; independent whole-module local review pending"
+    },
+    {
+      "id": "aspbe-local-stored-tensor-train-norm",
+      "title": "Cached tensor train norms with stored inputs",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/cached-stored-tensor-train-norm.md, all mathematical sections; exact binding and distinct review in reviews/publication/stored-tensor-train-norm/",
+      "scope": "Complete stored real Gram and scalar-norm supplier with full materialized exact-real eight-counter costs. No finite-bit/runtime, core generation, peak memory, physical circuit, Hermite root or whole textbook completion.",
+      "formal_status": "existing local module; independent whole-module admission pending"
+    },
+    {
+      "id": "aspbe-local-matrix-product-chain",
+      "title": "Matrix products with explicit boundary vectors",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/matrix-products-with-boundaries.md; exact binding and distinct reviews in reviews/publication/matrix-product-chain/",
+      "scope": "Exact finite real boundary absorption, ordered coefficient preservation, bond bound and scalar-address count. No normalization, circuit/endian action, actual stored producer, runtime or finite-bit cost claim.",
+      "formal_status": "existing local module; sourceblind whole-module review pending"
+    },
+    {
+      "id": "aspbe-local-stored-matrix-product-chain",
+      "title": "Boundary absorption from stored matrix tables",
+      "authors": "ASPBE contributors; retrospective local mathematical contract",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "Local authored source docs/lessons/stored-boundary-absorption.md; exact binding and distinct reviews in reviews/publication/stored-matrix-product-chain/",
+      "scope": "Same returned stored boundary chain, exact finite-window refinement, actual bonds and eight-counter exact-real arithmetic/materialization/reference traffic. Input generation, bit/index arithmetic, runtime, numerical and physical circuit costs excluded.",
+      "formal_status": "existing local module; sourceblind whole-module review pending"
     }
   ]
 }

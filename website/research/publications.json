@@ -1,5 +1,1044 @@
 {
   "schema_version": 1,
-  "migration_policy": "The initial records are empty because this change adds no production Lean declaration. Changed production modules require current content-bound independent review. Unchanged historical modules retain legacy publication debt; no source assimilation is inferred.",
-  "records": []
+  "migration_policy": "Registered bounded whole-module local mathematical-contract packets have genuine distinct decoder/source-first-reviewer evidence and stable raw-byte bindings. Context reuse is disclosed. PrimitiveBasisLE retains existing native evaluator trust; other reviewed packets disclose their own axiom census. All other changed modules still require independent review; unchanged historical modules retain legacy debt. Local registry integrity acceptance is not integrated reader/source/purification admission, main migration or a quantum algorithm/resource certificate.",
+  "records": [
+    {
+      "module": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+      "source_id": "aspbe-local-stored-matrix-product-chain",
+      "source_statement": "Given positive-length already stored finite real D-to-D core tables and stored left/right vectors, literal terminal then initial boundary materialization returns the exact scalar-boundary chain for any matching finite kernel window. Actual bonds are at most max(D,1); the same run has total eight-counter exact-real cost at most20*D^2+30*D+5*n^2+7*n+31 for lengthN=n+1. Arbitrary signed/zero data including D=0,N=1; stored input creation, indexing/bit arithmetic and machine/physical runtime excluded.",
+      "source_anchor": "docs/lessons/stored-boundary-absorption.md: all mathematical sections",
+      "lesson_path": "docs/lessons/stored-boundary-absorption.md",
+      "declarations": [
+        "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry",
+        "QuantumBlockEncoding.StoredMatrixProductChain.terminal",
+        "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry",
+        "QuantumBlockEncoding.StoredMatrixProductChain.initial",
+        "QuantumBlockEncoding.StoredMatrixProductChain.tailTable",
+        "QuantumBlockEncoding.StoredMatrixProductChain.tailChain",
+        "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft",
+        "QuantumBlockEncoding.StoredMatrixProductChain.ofTable",
+        "QuantumBlockEncoding.StoredMatrixProductChain.terminal_value",
+        "QuantumBlockEncoding.StoredMatrixProductChain.initial_value",
+        "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_value",
+        "QuantumBlockEncoding.StoredMatrixProductChain.Window",
+        "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_value",
+        "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_value",
+        "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines",
+        "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.terminal_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.initial_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.terminal_total_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.initial_total_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_total_cost",
+        "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le",
+        "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_tail_total_cost_le",
+        "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_total_cost_le",
+        "QuantumBlockEncoding.StoredMatrixProductChain.window_of_entries",
+        "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond",
+        "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "stored-boundary-assembly:literal arrays, exact finite-window refinement, same returned run, materialization/reference/arithmetic costs and actual bonds",
+          "declarations": [
+            "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry",
+            "QuantumBlockEncoding.StoredMatrixProductChain.terminal",
+            "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry",
+            "QuantumBlockEncoding.StoredMatrixProductChain.initial",
+            "QuantumBlockEncoding.StoredMatrixProductChain.tailTable",
+            "QuantumBlockEncoding.StoredMatrixProductChain.tailChain",
+            "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft",
+            "QuantumBlockEncoding.StoredMatrixProductChain.ofTable",
+            "QuantumBlockEncoding.StoredMatrixProductChain.terminal_value",
+            "QuantumBlockEncoding.StoredMatrixProductChain.initial_value",
+            "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_value",
+            "QuantumBlockEncoding.StoredMatrixProductChain.Window",
+            "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_value",
+            "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_value",
+            "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines",
+            "QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.initialEntry_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.terminal_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.initial_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.terminal_total_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.initial_total_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.tailTable_total_cost",
+            "QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le",
+            "QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_tail_total_cost_le",
+            "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_total_cost_le",
+            "QuantumBlockEncoding.StoredMatrixProductChain.window_of_entries",
+            "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond",
+            "QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "Positive lengthN=n+1 and arbitrary stored real D-to-D cores/boundaries, D=0 allowed",
+          "formal": "Vector(StoredCore D D)(n+1), left/right:Vector Real D",
+          "explanation": "Carrier/source inputs only; no rank, positivity, normalization or expected output property."
+        },
+        {
+          "classification": "same",
+          "source": "Stored finite-window entries equal specification K(s+i,b); no outside-window or executable oracle use",
+          "formal": "Window tables K start and entrywise window_of_entries adapter",
+          "explanation": "Exact input representation contract only for refinement/bond/joint certificate; standalone cost bound needs no Window. Production never evaluates K."
+        },
+        {
+          "classification": "same",
+          "source": "Eight charged exact-real operations and stored-word materialization/reference traffic",
+          "formal": "StoredGivens.Run/Cost and StoredRectangularGivens.total",
+          "explanation": "Model explicitly excludes input generation, index/counter arithmetic, finite-bit numerical costs/runtime/peakmemory and quantum action; not a complete resource theorem."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "bridge"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.StoredMatrixProductChain",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminal",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.initialEntry",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.initial",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailTable",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailChain",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.closeLeft",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminal_value",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.initial_value",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailTable_value",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.Window",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailChain_value",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_value",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.initialEntry_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminal_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.initial_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailTable_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminal_total_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.initial_total_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailTable_total_cost",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_tail_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.window_of_entries",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine",
+          "functor-hypergraph"
+        ],
+        "preserved_contract": "Whole production module unchanged; mathematical boundary absorption becomes a same-returned stored producer with explicit limited cost. Retrospective explanation not pre-proof/new external invention.",
+        "remaining_boundary": "Input table generation, integer/index/bit costs, numerical stability, canonicalization and complete physical state/circuit/garbage/export/ROOT remain separate."
+      },
+      "formalizer": "root-retrospective-stored-boundary-lesson-author-20261009; historical proof authors retained by Git",
+      "residual_boundary": "Complete29-declaration target correspondence only; no imported-provider-wide/main/ROOT/runtime certificate.",
+      "decoder_evidence": "reviews/publication/stored-matrix-product-chain/decoder-evidence.json",
+      "reviewer_evidence": "reviews/publication/stored-matrix-product-chain/reviewer-evidence.json",
+      "status": "SOURCE_REVIEWED_LOCAL_READER_PURIFICATION_MAIN_PENDING",
+      "binding_sha256": "c4bf0fd66e6c562cc27148de40167b8d0164f1a0882be170b41ad85c7cde9a1e"
+    },
+    {
+      "module": "QuantumBlockEncoding/ThinLQ.lean",
+      "source_id": "aspbe-local-finite-real-thin-lq",
+      "source_statement": "Every finite real m by n matrix A admits R:m by min(m,n) and Q:min(m,n) by n with A=RQ and QQ^T=I, including dependent/zero rows and empty dimensions. Wide subcase m<=n; additive commutative monoid prefix-sum prerequisite stated separately. No triangularity, unique factors, executable procedure, resource, quantum success or approximation theorem.",
+      "source_anchor": "docs/lessons/finite-real-thin-lq.md: Statement through All shapes; reviews/publication/thin-lq/source-contract.json",
+      "lesson_path": "docs/lessons/finite-real-thin-lq.md",
+      "declarations": [
+        "QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero",
+        "QuantumBlockEncoding.ThinLQ.exists_factor_of_le",
+        "QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+      ],
+      "obligation_map": [
+        {
+          "kind": "prerequisite",
+          "source_obligation": "local-thin-lq:prefix, additive commutative monoid generalization stated as an independent local prerequisite",
+          "declarations": [
+            "QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-thin-lq:zero-extension + ordered-basis + reconstruction + orthogonality; wide-matrix subcase",
+          "declarations": [
+            "QuantumBlockEncoding.ThinLQ.exists_factor_of_le"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-thin-lq:statement; wide OR tall-and-empty identity construction",
+          "declarations": [
+            "QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "m,n nonnegative finite dimensions; arbitrary real matrix, no rank or nonzero assumptions",
+          "formal": "m n : Nat; A : Matrix (Fin m) (Fin n) Real; no rank or nonzero binder",
+          "explanation": "Finite carriers name exactly the source dimensions; transpose and real scalar semantics agree."
+        },
+        {
+          "classification": "same",
+          "source": "m<=n only for the separately stated wide subcase",
+          "formal": "exists_factor_of_le has hmn:m<=n; exists_thin_lq does not",
+          "explanation": "The root obtains the subcase premise internally or uses the tall identity alternative."
+        },
+        {
+          "classification": "same",
+          "source": "prefix identity in an additive commutative monoid with zero tail",
+          "formal": "AddCommMonoid M; m<=n; f:Fin n->M; zero tail",
+          "explanation": "The generalized helper is explicitly part of the local contract, not an extra root assumption."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "reorganisation"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.ThinLQ",
+          "declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero",
+          "declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le",
+          "declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine"
+        ],
+        "preserved_contract": "Existing mathematical statements unchanged; migration tactic compatibility and retrospective exposition/admission only. Imported Mathlib providers are formal dependencies. A conceptual source graph is not an elaborated proof-term graph.",
+        "remaining_boundary": "Existence only; constructive stored factors and Hermite total/finite-bit cost remain separate. No new mathematical novelty, certified categorical functor or complete TT compiler claimed. Purification and whole-PR admission pending."
+      },
+      "formalizer": "root-retrospective-contract-author-20261008; historical proof authors retained by Git",
+      "residual_boundary": "Only this whole module is the pilot. The other changed modules and experimental RobinMatrix are not admitted by this record. Independent decoder/reviewer artifacts must be genuine and current before registry insertion.",
+      "binding_sha256": "4c90c8bd8de9a7fa7f063704c20959c7f27004d7511008ced0784184e628e78f",
+      "decoder_evidence": "reviews/publication/thin-lq-lf/decoder-evidence.json",
+      "reviewer_evidence": "reviews/publication/thin-lq-lf/reviewer-evidence.json",
+      "status": "SOURCE_REVIEWED_LOCAL; integration/main/purification pending"
+    },
+    {
+      "module": "QuantumBlockEncoding/PrimitiveBasisLE.lean",
+      "source_id": "aspbe-local-little-endian-basis",
+      "source_statement": "For every nonnegative q, named q-bit functions and Fin(2^q) are bijective by E0=0 and E(q+1)=bit0+2*E(tail). Six-wire expansion, complete two/three-wire inverse formulas including each concrete index, and non-target context equality iff literal code equality are certified on both fixed and grid-sized carriers. No physical circuit/exporter action, resource, phase or probability conclusion.",
+      "source_anchor": "docs/lessons/little-endian-basis-indexing.md: Bits and integer coordinates through Scope and formal evidence; reviews/publication/primitive-basis-le/source-contract.json",
+      "lesson_path": "docs/lessons/little-endian-basis-indexing.md",
+      "declarations": [
+        "QuantumBlockEncoding.primitiveBasisLEEquiv",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_zero_apply",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_succ_value",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_six_value",
+        "QuantumBlockEncoding.primitiveBits2LE",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_wire_zero",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_wire_one",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_0",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_1",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_2",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_3",
+        "QuantumBlockEncoding.primitiveBits2LEWithout",
+        "QuantumBlockEncoding.primitiveBits2LEGridWithout",
+        "QuantumBlockEncoding.splitPrimitiveWire_primitiveBits2LE_context_eq",
+        "QuantumBlockEncoding.splitPrimitiveWire_primitiveBasisLEEquiv_two_symm_context_eq",
+        "QuantumBlockEncoding.primitiveBits3LE",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_zero",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_one",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_two",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_0",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_1",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_2",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_3",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_4",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_5",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_6",
+        "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_7",
+        "QuantumBlockEncoding.primitiveBits3LEWithout",
+        "QuantumBlockEncoding.primitiveBits3LEGridWithout",
+        "QuantumBlockEncoding.splitPrimitiveWire_primitiveBits3LE_context_eq",
+        "QuantumBlockEncoding.splitPrimitiveWire_primitiveBasisLEEquiv_three_symm_context_eq"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-basis:recursive; empty and successor bijection",
+          "declarations": [
+            "QuantumBlockEncoding.primitiveBasisLEEquiv",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_zero_apply",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_succ_value"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-basis:six; six-wire expansion",
+          "declarations": [
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_six_value"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-basis:two; inverse definitions, grid coordinates and every concrete inverse",
+          "declarations": [
+            "QuantumBlockEncoding.primitiveBits2LE",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_wire_zero",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_wire_one",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_0",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_1",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_2",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_3"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-basis:context-two AND shared restriction semantics",
+          "declarations": [
+            "QuantumBlockEncoding.primitiveBits2LEWithout",
+            "QuantumBlockEncoding.primitiveBits2LEGridWithout",
+            "QuantumBlockEncoding.splitPrimitiveWire_primitiveBits2LE_context_eq",
+            "QuantumBlockEncoding.splitPrimitiveWire_primitiveBasisLEEquiv_two_symm_context_eq"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-basis:three; inverse definitions, grid coordinates and every concrete inverse",
+          "declarations": [
+            "QuantumBlockEncoding.primitiveBits3LE",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_zero",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_one",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_two",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_0",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_1",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_2",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_3",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_4",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_5",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_6",
+            "QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_7"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-basis:context-three AND shared restriction semantics",
+          "declarations": [
+            "QuantumBlockEncoding.primitiveBits3LEWithout",
+            "QuantumBlockEncoding.primitiveBits3LEGridWithout",
+            "QuantumBlockEncoding.splitPrimitiveWire_primitiveBits3LE_context_eq",
+            "QuantumBlockEncoding.splitPrimitiveWire_primitiveBasisLEEquiv_three_symm_context_eq"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "q>=0 and arbitrary legal q-bit function; empty register included",
+          "formal": "q:Nat; PrimitiveBasis q=Fin q -> Fin2; Fin(gridSize q)",
+          "explanation": "Shared gridSize is2^q and empty finite functions are unique."
+        },
+        {
+          "classification": "same",
+          "source": "bounded indices j<4 or j<8 and legal target wire",
+          "formal": "Fin4/Fin8 and grid-sized equivalent domains; target:Fin2/Fin3",
+          "explanation": "Pattern wildcard branches cover remaining legal finite cases, not off-source inputs."
+        },
+        {
+          "classification": "same",
+          "source": "contexts agree on every non-target wire, without equal target bits",
+          "formal": "equality of splitPrimitiveWire second components iff literal code equality",
+          "explanation": "Coordinate equality of retained wires only; no circuit/ancilla assumption."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "reorganisation",
+          "bridge"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.PrimitiveBasisLE",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_zero_apply",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_succ_value",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_six_value",
+          "declaration:QuantumBlockEncoding.primitiveBits2LE",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_wire_zero",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_wire_one",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_0",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_1",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_2",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_two_symm_3",
+          "declaration:QuantumBlockEncoding.primitiveBits2LEWithout",
+          "declaration:QuantumBlockEncoding.primitiveBits2LEGridWithout",
+          "declaration:QuantumBlockEncoding.splitPrimitiveWire_primitiveBits2LE_context_eq",
+          "declaration:QuantumBlockEncoding.splitPrimitiveWire_primitiveBasisLEEquiv_two_symm_context_eq",
+          "declaration:QuantumBlockEncoding.primitiveBits3LE",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_zero",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_one",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_wire_two",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_0",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_1",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_2",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_3",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_4",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_5",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_6",
+          "declaration:QuantumBlockEncoding.primitiveBasisLEEquiv_three_symm_7",
+          "declaration:QuantumBlockEncoding.primitiveBits3LEWithout",
+          "declaration:QuantumBlockEncoding.primitiveBits3LEGridWithout",
+          "declaration:QuantumBlockEncoding.splitPrimitiveWire_primitiveBits3LE_context_eq",
+          "declaration:QuantumBlockEncoding.splitPrimitiveWire_primitiveBasisLEEquiv_three_symm_context_eq"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine",
+          "functor-hypergraph"
+        ],
+        "preserved_contract": "Existing statements unchanged. Retrospective local coordinate convention with fixed-width finite evaluation and structural recursive equivalence; formal dependencies/trust retained, no exported execution claim. Four views distinct; no elaborated theorem dependency or certified categorical functor claim.",
+        "remaining_boundary": "No physical reindex/circuit/exporter semantics, arbitrary-width context theorem, gate/runtime/finite-bit cost or phase/success claim. Independent admission/reader/purification and other changed modules remain separate."
+      },
+      "formalizer": "root-retrospective-basis-contract-author-20261008; historical proof authors retained by Git",
+      "residual_boundary": "Whole current module only. Native finite evaluator axioms must be explicitly compared by independent review. No quantum construction/ROOT/main promotion; remaining module debt retained.",
+      "binding_sha256": "2b99914b6c377c847baebcc4e132e7fdeaa65630e29e8df71f067c7433d17e83",
+      "decoder_evidence": "reviews/publication/primitive-basis-le/decoder-evidence.json",
+      "reviewer_evidence": "reviews/publication/primitive-basis-le/reviewer-evidence.json",
+      "status": "SOURCE_REVIEWED_LOCAL; existing native evaluator trust retained; integration/main/purification pending"
+    },
+    {
+      "module": "QuantumBlockEncoding/GrayBasis.lean",
+      "source_id": "aspbe-local-gray-basis",
+      "source_statement": "For every natural width n, Gray labels below2^n and named little-endian n-bit functions are recursively bijective by G(n+1,2q+b)=(b xor(q mod2),G(n,q)), including n=0. The parity twist is an involution; arithmetic head function is defined on all natural indices and has even-flip/odd-fixed transitions. Every pair of consecutive bounded labels differs by exactly one named wire flip. No wraparound adjacency, selected closed-form target, physical operator/circuit/export or cost statement.",
+      "source_anchor": "docs/lessons/gray-little-endian-order.md: Bits and labels through Four views and their limits; reviews/publication/gray-basis/source-contract.json",
+      "lesson_path": "docs/lessons/gray-little-endian-order.md",
+      "declarations": [
+        "QuantumBlockEncoding.GrayBasis.twist",
+        "QuantumBlockEncoding.GrayBasis.equiv",
+        "QuantumBlockEncoding.GrayBasis.headBit",
+        "QuantumBlockEncoding.GrayBasis.equiv_head",
+        "QuantumBlockEncoding.GrayBasis.equiv_tail",
+        "QuantumBlockEncoding.GrayBasis.headBit_even",
+        "QuantumBlockEncoding.GrayBasis.headBit_odd",
+        "QuantumBlockEncoding.GrayBasis.adjacent"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-gray:twist; parity involution and recursive bijection",
+          "declarations": [
+            "QuantumBlockEncoding.GrayBasis.twist",
+            "QuantumBlockEncoding.GrayBasis.equiv"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-gray:head-tail; complete bounded recursion and natural head arithmetic extension",
+          "declarations": [
+            "QuantumBlockEncoding.GrayBasis.headBit",
+            "QuantumBlockEncoding.GrayBasis.equiv_head",
+            "QuantumBlockEncoding.GrayBasis.equiv_tail"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-gray:parity-transitions; even and odd cases",
+          "declarations": [
+            "QuantumBlockEncoding.GrayBasis.headBit_even",
+            "QuantumBlockEncoding.GrayBasis.headBit_odd"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-gray:adjacency; parity induction and finite legal bounds",
+          "declarations": [
+            "QuantumBlockEncoding.GrayBasis.adjacent"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "n natural; all legal labels i<2^n including n=0 single label",
+          "formal": "n:Nat,Fin(2^n),PrimitiveBasis n=Fin n→Fin2",
+          "explanation": "Exact carriers and LE head/tail order, no nonempty/rank/positivity premise."
+        },
+        {
+          "classification": "same",
+          "source": "Head transitions for any natural integer under even/odd remainder",
+          "formal": "index:Nat,index%2=0 or1; headBit explicit quotient/remainder",
+          "explanation": "Arithmetic extension does not invent finite register values."
+        },
+        {
+          "classification": "same",
+          "source": "Adjacent bounded labels first+1=second",
+          "formal": "first second:Fin(2^n),next:first.val+1=second.val",
+          "explanation": "No last-to-first cyclic claim. Flip target must be a legal named wire; target algorithm not supplied."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "reorganisation",
+          "bridge"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.GrayBasis",
+          "declaration:QuantumBlockEncoding.GrayBasis.twist",
+          "declaration:QuantumBlockEncoding.GrayBasis.equiv",
+          "declaration:QuantumBlockEncoding.GrayBasis.headBit",
+          "declaration:QuantumBlockEncoding.GrayBasis.equiv_head",
+          "declaration:QuantumBlockEncoding.GrayBasis.equiv_tail",
+          "declaration:QuantumBlockEncoding.GrayBasis.headBit_even",
+          "declaration:QuantumBlockEncoding.GrayBasis.headBit_odd",
+          "declaration:QuantumBlockEncoding.GrayBasis.adjacent"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine",
+          "functor-hypergraph"
+        ],
+        "preserved_contract": "Existing complete module statements and proof bytes unchanged. Local retrospective parity proof and all8 public declarations covered. Source topology distinct from implementation provider edges; no elaborated dependency or categorical functor claim.",
+        "remaining_boundary": "No physical selected-control/X operator/circuit refinement, arbitrary closed-form target cost, gate/depth/oracle/precision or exporter acceptance. Other changed-module and reader/purification debt remains."
+      },
+      "formalizer": "root-retrospective-gray-contract-author-20261008; historical proof authors retained by Git",
+      "residual_boundary": "Whole current8-declaration coordinate module only. Actual transitive proof trust must be checked independently. No numerical/Hermite ROOT/main promotion.",
+      "decoder_evidence": "reviews/publication/gray-basis/decoder-evidence.json",
+      "reviewer_evidence": "reviews/publication/gray-basis/reviewer-evidence.json",
+      "binding_sha256": "f5cb8ba0cd715bcd9cee90de68237ffce6931087b9b955897fa3743f60c1e9e0",
+      "status": "SOURCE_REVIEWED_LOCAL"
+    },
+    {
+      "module": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+      "source_id": "aspbe-local-constructive-thin-lq",
+      "source_statement": "Every finite real m by n matrix is assigned specified factors R:m by min(m,n),Q:min(m,n) by n with A=RQ and QQ^T=I. Wide factors literally extract the residual/transform of the fixed adjacent-Givens elimination of the transpose; tall factors are A and identity. Zero, deficient and empty shapes included. Exact-real deterministic mathematical definitions, not a computable finite-bit procedure, triangularity, stability, runtime, quantum action or cost certificate.",
+      "source_anchor": "docs/lessons/deterministic-real-thin-lq.md: Matrices and output equations through Reuse and the four graph views; reviews/publication/constructive-thin-lq/source-contract.json",
+      "lesson_path": "docs/lessons/deterministic-real-thin-lq.md",
+      "declarations": [
+        "QuantumBlockEncoding.ConstructiveThinLQ.Factorization",
+        "QuantumBlockEncoding.ConstructiveThinLQ.wideR",
+        "QuantumBlockEncoding.ConstructiveThinLQ.wideQ",
+        "QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization",
+        "QuantumBlockEncoding.ConstructiveThinLQ.wide_orthogonal",
+        "QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE",
+        "QuantumBlockEncoding.ConstructiveThinLQ.factor",
+        "QuantumBlockEncoding.ConstructiveThinLQ.factor_correct"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-constructive-lq:output-record; literal factors and two mathematical proof fields",
+          "declarations": [
+            "QuantumBlockEncoding.ConstructiveThinLQ.Factorization"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-constructive-lq:wide-extraction; transpose elimination, zero-tail truncation and row orthogonality",
+          "declarations": [
+            "QuantumBlockEncoding.ConstructiveThinLQ.wideR",
+            "QuantumBlockEncoding.ConstructiveThinLQ.wideQ",
+            "QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization",
+            "QuantumBlockEncoding.ConstructiveThinLQ.wide_orthogonal",
+            "QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-constructive-lq:all-shapes; wide OR tall identity, including empty dimensions; actual returned factors",
+          "declarations": [
+            "QuantumBlockEncoding.ConstructiveThinLQ.factor",
+            "QuantumBlockEncoding.ConstructiveThinLQ.factor_correct"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "Finite nonnegative m,n; arbitrary real matrix, no rank, nonzero or positivity premise",
+          "formal": "m n:Nat; A:Matrix (Fin m) (Fin n) Real; output inner dimension min m n",
+          "explanation": "Real transpose and fixed inner dimension match, including deficient and empty shapes."
+        },
+        {
+          "classification": "same",
+          "source": "Wide subcase m<=n; all-shape constructor dispatches this comparison internally",
+          "formal": "wideR,wideQ,wide_factorization,wide_orthogonal,factorOfLE have hmn:m<=n; factor,factor_correct have no such assumption",
+          "explanation": "Wide guard is SOURCE, finite types are TYPING; tall and empty cases are not excluded."
+        },
+        {
+          "classification": "same",
+          "source": "Factor record carries reconstruction and orthogonality as required outputs",
+          "formal": "Factorization fields factorization and orthogonal; factorOfLE and factor construct their proofs",
+          "explanation": "Proof fields are obligations of a returned record, not caller-supplied assumptions replacing constructor correctness."
+        },
+        {
+          "classification": "same",
+          "source": "Fixed exact-real adjacent rotation procedure and shared prefix identity are proved prerequisites",
+          "formal": "Actual RectangularGivens definitions, exact_recovery,reduced_zero_below,transform_orthogonal and ThinLQ.sum_prefix_of_zero",
+          "explanation": "Dependencies are internal proofs, not free oracle or unproved numerical supplier."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "reorganisation",
+          "bridge"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.ConstructiveThinLQ",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.Factorization",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wideR",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wideQ",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_orthogonal",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor",
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor_correct"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine",
+          "functor-hypergraph"
+        ],
+        "preserved_contract": "Existing complete module proof bytes unchanged; retrospective mathematical algorithm explanation. Source procedure, actual named formal providers, compressed elimination move and conceptual transport are distinct, not elaborated proof-term graph or certified functor.",
+        "remaining_boundary": "Noncomputable exact-real definitions; numerical stability, finite-bit implementation, runtime, physical action and Hermite root remain separate. No triangularity/uniqueness/novelty claim; whole migration and reader/purification pending."
+      },
+      "formalizer": "root-retrospective-constructive-thin-lq-author-20261008; historical proof authors retained by Git",
+      "residual_boundary": "Only this whole8-declaration local module; transitive axioms and exact algorithm definitions must be independently checked. No production source mutation or scientific/main promotion.",
+      "decoder_evidence": "reviews/publication/constructive-thin-lq/decoder-evidence.json",
+      "reviewer_evidence": "reviews/publication/constructive-thin-lq/reviewer-evidence-v2.json",
+      "status": "SOURCE_REVIEWED_LOCAL; reader/purification/main pending",
+      "binding_sha256": "b7638fc77dbdcf0193933736bec043819990080fa1984f44fcd7ef4bd8784460"
+    },
+    {
+      "module": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+      "source_id": "aspbe-local-stored-tensor-train-norm",
+      "source_statement": "For already stored finite real tensor-train cores, the specified cached right-Gram recursion returns the complete all-terminal-label Gram matrix. With scalar boundaries it returns the full Euclidean norm, including zero/empty trains, and the same stored producer has eight-counter exact-real word cost at most n*(24*D^3+25*D^2+20*D+6)+5*D^2+4*D+9 when all input bonds are bounded by D. Input generation, finite-bit/runtime/peak memory, physical wire action and circuit resources are excluded.",
+      "source_anchor": "docs/lessons/cached-stored-tensor-train-norm.md: Matrices and complete norm through Reuse and the four graph views",
+      "lesson_path": "docs/lessons/cached-stored-tensor-train-norm.md",
+      "declarations": [
+        "QuantumBlockEncoding.StoredTensorTrainNorm.firstEntry",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.firstPass",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.firstPass_value",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.secondEntry",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.secondPass",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.secondPass_value",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices_value",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.update",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.update_value",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.cacheNode",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.gram",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.gram_value",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.norm",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.norm_value",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.norm_eq_sum",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.productBudget",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.additionBudget",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.updateBudget",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.firstEntry_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.secondEntry_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.firstPass_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.secondPass_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.update_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.update_total_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.gram_total_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.norm_cost",
+        "QuantumBlockEncoding.StoredTensorTrainNorm.norm_total_cost_le"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-stored-gram:literal two-pass, sum, cached recursion and scalar producer; charged semantics and exact value",
+          "declarations": [
+            "QuantumBlockEncoding.StoredTensorTrainNorm.firstEntry",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.firstPass",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.firstPass_value",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.secondEntry",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.secondPass",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.secondPass_value",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices_value",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.update",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.update_value",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.cacheNode",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.gram",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.gram_value",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.norm",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.norm_value",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.norm_eq_sum",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.productBudget",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.additionBudget",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.updateBudget",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.firstEntry_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.secondEntry_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.firstPass_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.secondPass_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.update_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.update_total_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.gram_total_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.norm_cost",
+            "QuantumBlockEncoding.StoredTensorTrainNorm.norm_total_cost_le"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "Arbitrary finite real stored cores; all dimensions including empty/zero and no nonzero premise",
+          "formal": "StoredChain n l r, scalar norm StoredChain n 1 1",
+          "explanation": "The output Gram includes all terminal labels, scalar norm requires the displayed scalar boundaries."
+        },
+        {
+          "classification": "same",
+          "source": "All input bonds bounded by D for the complexity assertion only",
+          "formal": "maxBond (denoteChain C)<=D in gram_total_cost_le and norm_total_cost_le",
+          "explanation": "SOURCE quantitative size premise, not a caller-supplied correctness/normalization/precision fact."
+        },
+        {
+          "classification": "same",
+          "source": "Eight-counter extended exact-real word semantics with full materialization and six-word node cache allowance",
+          "formal": "Run,Cost,StoredThinLQ.entry,collect,materialize,nodeBudget",
+          "explanation": "Shared literal model with input generation and counter metadata outside; no finite-bit runtime or free entry callback claim."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "bridge",
+          "reorganisation"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.StoredTensorTrainNorm",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.firstEntry",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.firstPass",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.firstPass_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.secondEntry",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.secondPass",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.secondPass_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.cacheNode",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.gram",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.gram_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_eq_sum",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.productBudget",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.additionBudget",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.updateBudget",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.firstEntry_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.secondEntry_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.firstPass_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.secondPass_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.addMatrices_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.gram_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_cost",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_total_cost_le"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine",
+          "functor-hypergraph"
+        ],
+        "preserved_contract": "Existing entire production module unchanged. Retrospective local source with actual stored producer, exact value and cost scope; whole-module review not new pre-proof sealing. Source construction and formal dependency views remain distinct.",
+        "remaining_boundary": "Input producer, numerical/finite-bit/runtime/peak-memory guarantees, complex/cross-Gram transports, physical quantum action, full Hermite ROOT, reader/purification and remaining changed-module admission are separate."
+      },
+      "formalizer": "root-retrospective-stored-gram-lesson-author-20261009; historical proof authors retained by Git",
+      "residual_boundary": "Only the complete current29-declaration module and displayed exact-real model; no whole dependencies/new scientific root/main promotion.",
+      "decoder_evidence": "reviews/publication/stored-tensor-train-norm/decoder-evidence.json",
+      "reviewer_evidence": "reviews/publication/stored-tensor-train-norm/reviewer-evidence.json",
+      "status": "SOURCE_REVIEWED_LOCAL; reader/purification/main pending",
+      "binding_sha256": "7aa774a6dfeea6acc7976f88dc274a200375e4cc09526ddfa7fefbe759cdcd66"
+    },
+    {
+      "module": "QuantumBlockEncoding/MatrixProductChain.lean",
+      "source_id": "aspbe-local-matrix-product-chain",
+      "source_statement": "For arbitrary real fixed-D matrix kernels and explicit left/right boundary vectors, each positive-length ordered word has the exact coefficient of the scalar-boundary dependent chain obtained by right-terminal and first-core left absorption. Its actual bonds are bounded by max(D,1); its local scalar-address count is at most2*N*max(D,1)^2. All shapes including D=0 and N=1 are included; no normalization, circuit or runtime conclusion.",
+      "source_anchor": "docs/lessons/matrix-products-with-boundaries.md: all mathematical sections",
+      "lesson_path": "docs/lessons/matrix-products-with-boundaries.md",
+      "declarations": [
+        "QuantumBlockEncoding.MatrixProductChain.Kernel",
+        "QuantumBlockEncoding.MatrixProductChain.readout",
+        "QuantumBlockEncoding.MatrixProductChain.tailChain",
+        "QuantumBlockEncoding.MatrixProductChain.tailChain_contract",
+        "QuantumBlockEncoding.MatrixProductChain.closeLeft",
+        "QuantumBlockEncoding.MatrixProductChain.closeLeft_contract",
+        "QuantumBlockEncoding.MatrixProductChain.ofKernel",
+        "QuantumBlockEncoding.MatrixProductChain.ofKernel_contract",
+        "QuantumBlockEncoding.MatrixProductChain.tailChain_maxBond",
+        "QuantumBlockEncoding.MatrixProductChain.ofKernel_maxBond",
+        "QuantumBlockEncoding.MatrixProductChain.storedScalars",
+        "QuantumBlockEncoding.MatrixProductChain.storedScalars_le",
+        "QuantumBlockEncoding.MatrixProductChain.ofKernel_storedScalars"
+      ],
+      "obligation_map": [
+        {
+          "kind": "proof-edge",
+          "source_obligation": "local-matrix-product-boundaries:ordered readout, literal boundary absorption, exact coefficients, actual bonds and local scalar addresses",
+          "declarations": [
+            "QuantumBlockEncoding.MatrixProductChain.Kernel",
+            "QuantumBlockEncoding.MatrixProductChain.readout",
+            "QuantumBlockEncoding.MatrixProductChain.tailChain",
+            "QuantumBlockEncoding.MatrixProductChain.tailChain_contract",
+            "QuantumBlockEncoding.MatrixProductChain.closeLeft",
+            "QuantumBlockEncoding.MatrixProductChain.closeLeft_contract",
+            "QuantumBlockEncoding.MatrixProductChain.ofKernel",
+            "QuantumBlockEncoding.MatrixProductChain.ofKernel_contract",
+            "QuantumBlockEncoding.MatrixProductChain.tailChain_maxBond",
+            "QuantumBlockEncoding.MatrixProductChain.ofKernel_maxBond",
+            "QuantumBlockEncoding.MatrixProductChain.storedScalars",
+            "QuantumBlockEncoding.MatrixProductChain.storedScalars_le",
+            "QuantumBlockEncoding.MatrixProductChain.ofKernel_storedScalars"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "Arbitrary finite real D-dimensional matrices, boundaries, start and positive word lengthN=n+1; zero bond allowed",
+          "formal": "Kernel D, left/right:Fin D→ℝ, start n:Nat, Word(n+1)",
+          "explanation": "Pure carrier/dimension data and arbitrary input values, not assumed desired contraction or normalization."
+        },
+        {
+          "classification": "same",
+          "source": "All actual bonds bounded by B only for the general address-count theorem",
+          "formal": "storedScalars_le C B (maxBond C<=B)",
+          "explanation": "Quantitative size premise; ofKernel obtains its own maxBond bound internally."
+        },
+        {
+          "classification": "same",
+          "source": "Core scalar-address count only; excludes input evaluation, arithmetic/copying/bit cost and circuit action",
+          "formal": "storedScalars recursive2*l*m count with noncomputable real construction",
+          "explanation": "No executable/word-cost refinement is asserted."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "bridge"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.MatrixProductChain",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.Kernel",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.readout",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.tailChain",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.tailChain_contract",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.closeLeft",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.closeLeft_contract",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.ofKernel",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.ofKernel_contract",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.tailChain_maxBond",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.ofKernel_maxBond",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.storedScalars",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.storedScalars_le",
+          "declaration:QuantumBlockEncoding.MatrixProductChain.ofKernel_storedScalars"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine",
+          "functor-hypergraph"
+        ],
+        "preserved_contract": "Whole existing module unchanged; retrospective literal boundary absorption source; no pre-proof/history or external novelty credit. Ordered matrix contraction distinct from physical bit mapping.",
+        "remaining_boundary": "Normalization/canonicalization/circuit register embedding and cleanup, input production/materialization, arithmetic/finite-bit/runtime, physical synthesis, reader/purification/main remain separate."
+      },
+      "formalizer": "root-retrospective-matrix-product-boundary-lesson-author-20261009; historical proof authors retained by Git",
+      "residual_boundary": "Only13-declaration current whole module; not whole imported providers or scientific/physical state ROOT.",
+      "decoder_evidence": "reviews/publication/matrix-product-chain/decoder-evidence.json",
+      "reviewer_evidence": "reviews/publication/matrix-product-chain/reviewer-evidence.json",
+      "status": "SOURCE_REVIEWED_LOCAL; reader/purification/main pending",
+      "binding_sha256": "5645420d2fcf3ee029fe958418202693b5c607aeb8c80bd9246293abbe3b774f"
+    },
+    {
+      "module": "QuantumBlockEncoding/StoredTensorTrain.lean",
+      "source_id": "aspbe-local-stored-tensor-train-canonicalization",
+      "source_statement": "For any already stored finite real tensor train C with arbitrary natural bonds, the specified deterministic backward stored thin-LQ canonicalization returns the same concrete data as ConstructiveTensorTrain.canonicalize after storage erasure, preserves every word and terminal label, produces right-canonical cores with no larger maximum bond, and moves full chain mass to its actual residual boundary. The same producer's eight-counter extended exact-real total is at most n*(176*D^3+116*D^2+29*D+8)+5*D^2+4*D+6 under maxBond(C)<=D. No input-core generation, finite-bit/runtime/peak-memory, physical primitive or Hermite ROOT theorem is included.",
+      "source_anchor": "docs/lessons/stored-tensor-train-canonicalization.md: Objects and complete word action through Reuse and remaining boundary",
+      "lesson_path": "docs/lessons/stored-tensor-train-canonicalization.md",
+      "declarations": [
+        "QuantumBlockEncoding.StoredTensorTrain.StoredCore",
+        "QuantumBlockEncoding.StoredTensorTrain.denoteCore",
+        "QuantumBlockEncoding.StoredTensorTrain.StoredChain",
+        "QuantumBlockEncoding.StoredTensorTrain.denoteChain",
+        "QuantumBlockEncoding.StoredTensorTrain.sumEntries",
+        "QuantumBlockEncoding.StoredTensorTrain.sumEntries_value",
+        "QuantumBlockEncoding.StoredTensorTrain.sumEntries_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrain.absorptionEntry",
+        "QuantumBlockEncoding.StoredTensorTrain.absorptionEntry_value",
+        "QuantumBlockEncoding.StoredTensorTrain.absorptionEntry_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrain.absorption",
+        "QuantumBlockEncoding.StoredTensorTrain.absorption_value",
+        "QuantumBlockEncoding.StoredTensorTrain.absorptionBudget",
+        "QuantumBlockEncoding.StoredTensorTrain.absorption_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrain.CoreResult",
+        "QuantumBlockEncoding.StoredTensorTrain.factorCore",
+        "QuantumBlockEncoding.StoredTensorTrain.Result",
+        "QuantumBlockEncoding.StoredTensorTrain.nodeBudget",
+        "QuantumBlockEncoding.StoredTensorTrain.canonicalize",
+        "QuantumBlockEncoding.StoredTensorTrain.canonicalize_maxBond_le",
+        "QuantumBlockEncoding.StoredTensorTrain.absorption_total_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrain.factorCore_total_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrain.canonicalize_total_cost_le",
+        "QuantumBlockEncoding.StoredTensorTrain.boundary",
+        "QuantumBlockEncoding.StoredTensorTrain.boundary_mass",
+        "QuantumBlockEncoding.StoredTensorTrain.boundary_normalized",
+        "QuantumBlockEncoding.StoredTensorTrain.Result.toSemantic",
+        "QuantumBlockEncoding.StoredTensorTrain.factorCore_R",
+        "QuantumBlockEncoding.StoredTensorTrain.factorCore_Q",
+        "QuantumBlockEncoding.StoredTensorTrain.canonicalize_refines"
+      ],
+      "obligation_map": [
+        {
+          "kind": "prerequisite",
+          "source_obligation": "stored-tt:stored carriers and already-given literal semantic denotation",
+          "declarations": [
+            "QuantumBlockEncoding.StoredTensorTrain.StoredCore",
+            "QuantumBlockEncoding.StoredTensorTrain.denoteCore",
+            "QuantumBlockEncoding.StoredTensorTrain.StoredChain",
+            "QuantumBlockEncoding.StoredTensorTrain.denoteChain"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "stored-tt:actual sum/absorption/factorization/backward returned object and per-counter/total cost, exact semantic refinement",
+          "declarations": [
+            "QuantumBlockEncoding.StoredTensorTrain.sumEntries",
+            "QuantumBlockEncoding.StoredTensorTrain.sumEntries_value",
+            "QuantumBlockEncoding.StoredTensorTrain.sumEntries_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrain.absorptionEntry",
+            "QuantumBlockEncoding.StoredTensorTrain.absorptionEntry_value",
+            "QuantumBlockEncoding.StoredTensorTrain.absorptionEntry_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrain.absorption",
+            "QuantumBlockEncoding.StoredTensorTrain.absorption_value",
+            "QuantumBlockEncoding.StoredTensorTrain.absorptionBudget",
+            "QuantumBlockEncoding.StoredTensorTrain.absorption_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrain.CoreResult",
+            "QuantumBlockEncoding.StoredTensorTrain.factorCore",
+            "QuantumBlockEncoding.StoredTensorTrain.Result",
+            "QuantumBlockEncoding.StoredTensorTrain.nodeBudget",
+            "QuantumBlockEncoding.StoredTensorTrain.canonicalize",
+            "QuantumBlockEncoding.StoredTensorTrain.canonicalize_maxBond_le",
+            "QuantumBlockEncoding.StoredTensorTrain.absorption_total_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrain.factorCore_total_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrain.canonicalize_total_cost_le",
+            "QuantumBlockEncoding.StoredTensorTrain.Result.toSemantic",
+            "QuantumBlockEncoding.StoredTensorTrain.factorCore_R",
+            "QuantumBlockEncoding.StoredTensorTrain.factorCore_Q",
+            "QuantumBlockEncoding.StoredTensorTrain.canonicalize_refines"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "stored-tt:all-terminal boundary mass and explicitly conditional normalization",
+          "declarations": [
+            "QuantumBlockEncoding.StoredTensorTrain.boundary",
+            "QuantumBlockEncoding.StoredTensorTrain.boundary_mass",
+            "QuantumBlockEncoding.StoredTensorTrain.boundary_normalized"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "Natural finite dimensions, arbitrary real stored cores and all-terminal recursive bit words; zero and rank-deficient inputs allowed",
+          "formal": "StoredChain, StoredCore and TensorTrainCanonical.Word with deterministic tail-to-head factorization",
+          "explanation": "No full-rank, positivity, source agreement, oracle or gate-action input premise. Bit flattening is b*r+j; recursive word order alone is not a physical little-endian theorem."
+        },
+        {
+          "classification": "same",
+          "source": "Maximum input bond <=D is needed only for the bounded cost theorem",
+          "formal": "canonicalize_total_cost_le bound : maxBond(denoteChain C)<=D",
+          "explanation": "D bounds actual dimensions, not numerical rank or uncharged input generation. Returned rank/rightCanonical/action fields are outputs supplied by proofs."
+        },
+        {
+          "classification": "same",
+          "source": "Input full chain mass one only for the normalization consumer",
+          "formal": "boundary_normalized normalized : chainMass(denoteChain C) v=1",
+          "explanation": "boundary_mass is unconditional; canonicalization does not create or assume a normalized scientific source."
+        },
+        {
+          "classification": "same",
+          "source": "Eight charged exact-real operations, stored-word materialization and node/reference traffic",
+          "formal": "StoredGivens.Run/Cost and StoredRectangularGivens.total",
+          "explanation": "Excludes integer/index/counter arithmetic, bit/GCD costs, numerical stability, execution time, peak memory and physical circuit resources. No scalar callback cost is silently hidden in absorption."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "305952f4291d7be530c76f51f7e98d77faf1cf45",
+        "classes": [
+          "bridge"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.StoredTensorTrain",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.StoredCore",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.denoteCore",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.StoredChain",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.denoteChain",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.sumEntries",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.sumEntries_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.sumEntries_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorptionEntry",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorptionEntry_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorptionEntry_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorption",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorption_value",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorptionBudget",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorption_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.CoreResult",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.factorCore",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.Result",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.nodeBudget",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.canonicalize",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.canonicalize_maxBond_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.absorption_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.factorCore_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.canonicalize_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.boundary",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.boundary_mass",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.boundary_normalized",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.Result.toSemantic",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.factorCore_R",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.factorCore_Q",
+          "declaration:QuantumBlockEncoding.StoredTensorTrain.canonicalize_refines"
+        ],
+        "views": [
+          "source-construction-graph",
+          "lean-graph",
+          "compressed-quantum-spine",
+          "functor-hypergraph"
+        ],
+        "preserved_contract": "Whole production module unchanged. Retrospective exact local stored-algorithm/refinement contract, not a pre-proof seal or external invention.",
+        "remaining_boundary": "Input-core generation, thin-LQ provider-wide admission, integer/finite-bit/stability/runtime costs, physical embedding/completion/synthesis and full terminal cleanup/scientific ROOT remain separate."
+      },
+      "formalizer": "root-retrospective-stored-tensor-train-lesson-author-20261010; historical proof authors retained by Git",
+      "residual_boundary": "Reviewed whole30-declaration exact-real stored canonicalization/refinement only; not provider-wide source/cache correspondence, main admission, input-core generation, finite-bit/runtime/stability/peak-memory, physical synthesis/cleanup or scientific ROOT.",
+      "decoder_evidence": "reviews/publication/stored-tensor-train/decoder-admission-evidence-v1.json",
+      "reviewer_evidence": "reviews/publication/stored-tensor-train/source-review-c20/reviewer-admission-evidence-v1.json",
+      "status": "SOURCE_REVIEWED_LOCAL; reader/purification/main pending",
+      "binding_sha256": "20dbb523afbc95af7098d3fb50498946212dabbfab45a01e18544a9b27c99495"
+    }
+  ]
 }
