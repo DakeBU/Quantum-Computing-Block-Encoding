@@ -42,6 +42,7 @@ from lean_graph import build_lean_graph_payload, render_lean_graph_body  # noqa:
 
 NAVIGATION = [
     ("Home", ""),
+    ("Our place in Math 2.0", "math-2-0/"),
     ("Book map", "learning/"),
     ("Part I · State Preparation", "state-preparation/"),
     ("Part II · Block Encoding", "block-encoding/"),
@@ -652,6 +653,137 @@ def render_chapter_groups(
             )
     return '<div class="reading-tracks">' + "".join(groups) + "</div>"
 
+def render_math_2_0(
+    coverage: dict[str, object],
+    gate: dict[str, object],
+    context: dict[str, object],
+) -> str:
+    body = """
+<section class="hero math2-hero">
+  <p class="eyebrow">QuantumComputinglib × Math 2.0</p>
+  <h1>Proofs that grow human understanding</h1>
+  <p class="lede">A living knowledge network and a quality Lean library support
+  our core mission: explain quantum constructions clearly and teach their reusable ideas.</p>
+  <p>ASPBE is the construction system; QuantumComputinglib is the library and
+  teaching surface. State preparation and block encoding are the current focus.</p>
+  <div class="hero-actions"><a class="button" href="../example-cases/index.html">Read a worked case</a>
+  <a class="button secondary" href="../lean-graph/index.html">Explore the graph</a></div>
+</section>
+<section class="content-section" id="framing">
+  <h2>The report and our contribution</h2>
+  <p>In <a href="https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf">Terence Tao's
+  <em>Math 2.0</em> talk (Caltech, 2026)</a>, slides 18–21 put human understanding
+  at the center of sustainable AI-assisted mathematics. Slides 22, 25 and 26 give
+  nine examples of useful work. The map below is our interpretation of those
+  examples, not an official nine-goal framework or an endorsement.</p>
+  <p><strong>Foundations (2, 3) → understanding (1, 8) → research agenda (4, 5, 6, 7, 9).</strong>
+  Existing infrastructure gives us a starting point; each next step still needs its own evidence.</p>
+</section>
+<section class="content-section" id="foundations">
+  <p class="eyebrow">Foundations</p><h2>Keep the knowledge connected and checkable</h2>
+  <div class="math2-grid">
+    <article class="math2-card" id="direction-2"><p class="path-label">02 · Living knowledge networks</p>
+      <h3>Connect papers through reusable quantum mechanisms</h3>
+      <p><strong>Existing:</strong> source-anchored paper maps, implementation records,
+      a mechanism atlas and the shared Lean graph connect constructions and their obligations.</p>
+      <p><strong>Next:</strong> update source and dependency records together so a changed
+      assumption exposes every affected route.</p>
+      <a href="../implementation-map/index.html">Inspect the implementation map →</a></article>
+    <article class="math2-card" id="direction-3"><p class="path-label">03 · Quality formal libraries</p>
+      <h3>Reuse one set of quantum foundations</h3>
+      <p><strong>Existing:</strong> shared finite-matrix, circuit, state-preparation
+      and block-encoding interfaces have a generated declaration inventory and publication gates.</p>
+      <p><strong>Next:</strong> close missing semantic adapters and proof obligations;
+      extend the library through reviewed reusable declarations.</p>
+      <a href="../library/index.html">Browse the Lean library →</a></article>
+  </div>
+</section>
+<section class="content-section" id="understanding">
+  <p class="eyebrow">Core value</p><h2>Turn certificates into explanations people can use</h2>
+  <div class="math2-grid">
+    <article class="math2-card" id="direction-1"><p class="path-label">01 · Open exposition problems</p>
+      <h3>Explain why a construction works</h3>
+      <p><strong>Existing:</strong> proof-digestion records and theorem-linked
+      figures expose the registers, normalization, projection and resource model behind a circuit.</p>
+      <p><strong>Next:</strong> compress repetitive bookkeeping into reusable conceptual
+      moves, with lossless links back to assumptions and Lean. The Functor Hypergraph
+      is a navigation lens; categorical correctness requires separate certificates.</p>
+      <a href="../case-studies/robin/index.html">Read the Robin construction map →</a></article>
+    <article class="math2-card" id="direction-8"><p class="path-label">08 · Interactive texts and presentations</p>
+      <h3>Read the idea, statement and proof together</h3>
+      <p><strong>Existing:</strong> the book map, worked cases, natural-language/Lean
+      views and graph navigation offer several routes into the same mathematics.</p>
+      <p><strong>Next:</strong> improve motivated reading paths and reader evaluation.
+      Parts III–IV are source-anchored curricula with local certificates still pending.</p>
+      <a href="../learning/index.html">Start with the reading guide →</a></article>
+  </div>
+</section>
+<section class="content-section" id="research-agenda">
+  <p class="eyebrow">Research agenda</p><h2>Use the graph to ask better questions</h2>
+  <div class="math2-grid">
+    <article class="math2-card" id="direction-4"><p class="path-label">04 · Principles, methods and insights</p>
+      <h3>Make mathematical cross-pollination visible</h3>
+      <p><strong>Existing:</strong> the Hermite–Bernstein/tensor-train case and shared
+      preparation/block-encoding graph expose structural connections.</p>
+      <p><strong>Next:</strong> test whether a shared mechanism transfers to a new
+      construction. A graph shortcut suggests a question; a checked bridge supplies evidence.</p>
+      <a href="../example-cases/hermite-smooth-state-preparation/index.html">Explore the structured-state case →</a></article>
+    <article class="math2-card" id="direction-5"><p class="path-label">05 · Theorem-level ablation studies</p>
+      <h3>Ask which proof tools are actually needed</h3>
+      <p><strong>Existing:</strong> source-blind encoder–denoiser review reconstructs
+      meaning from Lean and audits hidden hypotheses. This is infrastructure for ablations.</p>
+      <p><strong>Next:</strong> fix the same conclusion, remove a named theory or proof
+      input, then supply another proof or a precise obstruction. Harness-route ablations
+      measure a different question and do not establish this result.</p>
+      <a href="../workflow/index.html">Inspect the review workflow →</a></article>
+    <article class="math2-card" id="direction-6"><p class="path-label">06 · Theorem neighborhoods</p>
+      <h3>Vary a condition and track what survives</h3>
+      <p><strong>Existing:</strong> exact/approximate contracts and explicit oracle,
+      register, ancilla and normalization boundaries identify what may be varied.</p>
+      <p><strong>Next:</strong> weaken a condition, trace affected graph edges, and
+      check a generalization or a counterexample under a new sealed statement.</p>
+      <a href="../block-encoding/index.html">Explore the block-encoding contracts →</a></article>
+    <article class="math2-card" id="direction-7"><p class="path-label">07 · Interpretable open math models</p>
+      <h3>Provide auditable mathematical task material</h3>
+      <p><strong>Existing:</strong> concise Lean interfaces, natural-language counterparts,
+      source links and typed failed routes can support explainable mathematical tools.</p>
+      <p><strong>Next:</strong> curate training/evaluation packets from our own or
+      appropriately licensed exposition/proof pairs and test semantic fidelity.
+      External references are not automatically eligible model data.
+      We do not claim a trained model or certified safety;
+      visible explanations do not expose a model's private internal reasoning.</p>
+      <a href="../community/index.html">See the contribution packet →</a></article>
+    <article class="math2-card" id="direction-9"><p class="path-label">09 · Model failure and misalignment</p>
+      <h3>Show where a certificate stops applying</h3>
+      <p><strong>Existing:</strong> the library separates ideal circuits, exact-real
+      resource models, finite diagnostics, finite-bit synthesis and external application assumptions.</p>
+      <p><strong>Next:</strong> expose boundary violations, misleading oracle costs
+      and model hallucinations through explicit failure cases. A model-level counterexample
+      or Lean proof alone does not certify real hardware reliability.</p>
+      <a href="../example-cases/hermite-smooth-state-preparation/index.html">Read an explicit finite-bit boundary →</a></article>
+  </div>
+</section>
+<section class="content-section" id="sister-libraries">
+  <h2>Three libraries, one mission</h2>
+  <p><a href="https://dakebu.github.io/Automization-Sampling-Optimisation-Geometry-Lib/math-2-0/">Samplinglib</a>
+  connects sampling, optimization and geometry.
+  <a href="https://dakebu.github.io/Auto-Bandit-RL-Proof-In-Sleep/math-2-0/">BanditRLlib</a> connects bandit and
+  reinforcement-learning theory. QuantumComputinglib connects quantum constructions
+  and their models. Together we build inspectable knowledge that helps people understand,
+  reuse and improve mathematics.</p>
+  <p lang="zh">以知识网络和高质量 Lean 库为根基，把证明讲清楚、把教材做好；
+  再沿图寻找新联系、检验假设边界，让 AI 的进步真正增长人的理解。</p>
+</section>"""
+    return page_template(
+        title="Our place in Math 2.0", route="math-2-0/", current="math-2-0/",
+        body=body, coverage=coverage, gate=gate, context=context,
+        toc=[("framing", "The report"), ("foundations", "Foundations · 2, 3"),
+             ("understanding", "Core value · 1, 8"), ("research-agenda", "Research agenda"),
+             ("sister-libraries", "Three libraries")],
+        description="QuantumComputinglib's Math 2.0 mission: connected Lean knowledge, clearer quantum proofs, interactive teaching and explicit model boundaries.",
+    )
+
+
 def render_gate_examples() -> str:
     return r"""
 <div class="gate-example-grid" aria-label="One-qubit state-preparation examples">
@@ -682,20 +814,38 @@ def render_home(
     open_proofs = sum(bool(item.get("openProof")) for item in declarations)
     body = rf"""
 <section class="hero home-hero">
-  <p class="eyebrow">Formal quantum computing, read alongside Lean</p>
+  <p class="eyebrow">Human-understanding infrastructure for Math 2.0</p>
   <h1>QuantumComputinglib</h1>
-  <p class="lede">QuantumComputinglib has four peer parts: State Preparation, Block Encoding, Quantum
-  Information and Representation Theory, and Quantum Algorithms for Scientific
-  Computation. One shared ASPBE Lean library supports the book. Parts I and II
-  link compiled core results and open routes; Parts III and IV are source-anchored
-  curricula whose local Lean certificates are still pending.</p>
+  <p class="lede">Understand a quantum construction. Read its proof beside Lean.
+  Follow the shared ideas and see exactly which assumptions it needs.</p>
+  <p class="hero-scope"><strong>ASPBE</strong> constructs and certifies state preparation
+  and block encoding. The library connects those certificates to readable
+  mathematics, circuit figures and reusable proof graphs.</p>
   <div class="hero-actions">
-    <a class="button state-button" href="state-preparation/index.html">Part I · State Preparation</a>
-    <a class="button block-button" href="block-encoding/index.html">Part II · Block Encoding</a>
-    <a class="button secondary" href="quantum-information/index.html">Part III · QIT &amp; Representation</a>
-    <a class="button secondary" href="quantum-scientific-computing/index.html">Part IV · Scientific Computing</a>
-    <a class="text-link" href="learning/index.html">See the full reading guide &#8594;</a>
+    <a class="button state-button" href="learning/index.html">Start reading</a>
+    <a class="button secondary" href="example-cases/index.html">Explore a worked case</a>
+    <a class="text-link" href="lean-graph/index.html">Inspect the Lean graph &#8594;</a>
   </div>
+  <div class="home-book-links" aria-label="Four textbook parts">
+    <a href="state-preparation/index.html">Part I · State Preparation</a>
+    <a href="block-encoding/index.html">Part II · Block Encoding</a>
+    <a href="quantum-information/index.html">Part III · QIT &amp; Representation</a>
+    <a href="quantum-scientific-computing/index.html">Part IV · Scientific Computing</a>
+  </div>
+  <p class="evidence-note">Parts I–II: core certificates and open routes. Parts III–IV:
+  source-anchored curricula; local Lean certificates pending.</p>
+</section>
+<section class="content-section math2-intro" id="math-2-0">
+  <p class="eyebrow">From checked results to shared understanding</p>
+  <h2>Our place in Math 2.0</h2>
+  <p>Terence Tao's <a href="https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf"><em>Math 2.0</em> talk</a>
+  asks how AI can strengthen human understanding. Our answer is a living quantum
+  textbook with inspectable proofs, reusable mechanisms and explicit model boundaries.</p>
+  <p><strong>Foundations:</strong> a living knowledge network and a quality Lean library.
+  <strong>Core value:</strong> clearer explanations and better interactive teaching.
+  <strong>Research agenda:</strong> shared principles, ablations, theorem neighborhoods,
+  auditable AI tools and model-failure analysis.</p>
+  <a class="text-link" href="math-2-0/index.html">Nine contribution directions: what exists and what comes next &#8594;</a>
 </section>
 <section class="content-section" id="applications">
   <div class="section-heading">
@@ -845,6 +995,7 @@ def render_home(
   </div>
 </section>"""
     toc = [
+        ("math-2-0", "Our place in Math 2.0"),
         ("applications", "Four textbook parts"),
         ("state-process", "State preparation"),
         ("block-process", "Block encoding"),
@@ -3047,6 +3198,7 @@ def build_search_index(
         )
     page_entries = [
         ("QuantumComputinglib", "Formal quantum computing chapters, declarations, and tools", "index.html"),
+        ("Our place in Math 2.0", "Nine contribution directions: foundations, understanding and research agenda", "math-2-0/index.html"),
         ("State preparation", "Prepare a normalized target state from the all-zero basis state", "state-preparation/index.html"),
         ("Block encoding", "Encode a scaled operator in the clean block of a larger unitary", "block-encoding/index.html"),
         ("Implementation Map", "Mathematical goals connected to exact Lean declarations", "implementation-map/index.html"),
@@ -3208,6 +3360,7 @@ def build(args: argparse.Namespace) -> None:
         shutil.copytree(WEBSITE_ROOT / "community", output / "community")
 
     write_page(output, "", render_home(inventory, coverage, gate, context))
+    write_page(output, "math-2-0", render_math_2_0(coverage, gate, context))
     write_page(
         output,
         "state-preparation",

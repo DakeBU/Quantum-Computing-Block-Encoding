@@ -21,6 +21,20 @@
 
 ---
 
+## Our place in Math 2.0
+
+**QuantumComputinglib builds human-understanding infrastructure for quantum computing:** a living knowledge network and a quality Lean library are the foundations; clearer proofs and better textbooks are the core value. **ASPBE** is its proof-gated state-preparation and block-encoding construction system. Natural-language explanations, compressed construction graphs and visible assumptions help a researcher understand why a construction works, which ideas it reuses, and where its model stops.
+
+Inspired by [Terence Tao's *Math 2.0* talk (Caltech, 2026)](https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf), we map nine examples on slides 22, 25 and 26 to concrete contributions: clearer exposition, living paper networks, quality Lean libraries, reusable insights, theorem-level ablations, theorem neighborhoods, interpretable open math tools, interactive textbooks, and model-failure analysis. Our [Math 2.0 contribution map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/math-2-0/) separates existing evidence from research directions. Tao's talk is a framing reference, not an endorsement.
+
+The research agenda builds on those foundations: cross-pollination through the Lean graph; proof-tool ablations grounded in source-blind encoder–denoiser review; generalizations and counterexamples around a theorem; auditable math-model training material; and analysis of model boundaries. Compression retains a path back to every assumption and proof obligation.
+
+**Start here:** [a worked construction](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/) → [its explanation and Lean graph](https://dakebu.github.io/Quantum-Computing-Block-Encoding/lean-graph/) → [the remaining obligations](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/). An ideal-circuit theorem is not a finite-bit implementation or hardware-reliability certificate; planned curricula remain planned.
+
+Sister libraries: [Samplinglib](https://dakebu.github.io/Automization-Sampling-Optimisation-Geometry-Lib/math-2-0/) connects sampling, optimization and geometry; [BanditRLlib](https://dakebu.github.io/Auto-Bandit-RL-Proof-In-Sleep/math-2-0/) connects bandit and reinforcement-learning theory. Together we turn results into knowledge that people can inspect, reuse and improve. See the [public-claims protocol](docs/math-2-0-positioning.md).
+
+---
+
 ## News 🔥
 
 Reverse chronological order; only mathematically audited milestones and the minimum project-history anchors are listed here.
