@@ -772,8 +772,6 @@ def render_math_2_0(
   reinforcement-learning theory. QuantumComputinglib connects quantum constructions
   and their models. Together we build inspectable knowledge that helps people understand,
   reuse and improve mathematics.</p>
-  <p lang="zh">以知识网络和高质量 Lean 库为根基，把证明讲清楚、把教材做好；
-  再沿图寻找新联系、检验假设边界，让 AI 的进步真正增长人的理解。</p>
 </section>"""
     return page_template(
         title="Our place in Math 2.0", route="math-2-0/", current="math-2-0/",
