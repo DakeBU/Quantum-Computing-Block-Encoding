@@ -699,3 +699,12 @@ physical costs, normalization/error composition, independent family acceptance
 and ROOT remain unresolved. Internal review is running separately; public
 source admission and main migration remain pending. No scoring, target,
 champion, exponential baseline or historical failure record is changed.
+
+Cycle 24 internal review checkpoint (15 October 2026): the frozen C23
+same-object supplier and charged lookup are independently accepted only at the
+bounded arithmetic/counter tier. Parent replay passes 22 ordinary-axiom reports
+with 1,616 unchanged pins; see
+`reviews/internal/c23-charged-cache-review/parent-replay-c24-v1.json`.
+This does not install the supplier into C22, close the scientific ROOT, change
+scoring/selection or promote a population winner. All external/source,
+finite-bit, physical compilation and family executable gates remain explicit.

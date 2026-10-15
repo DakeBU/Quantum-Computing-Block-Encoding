@@ -964,3 +964,26 @@ loop/counter metadata and allocator implementation. Independent internal review
 is in progress; public source admission, main4.33 migration and PURIFIED reader
 gates remain pending. The frozen scientific contract and exponential baseline
 are unchanged.
+
+### Cycle 24: frozen C23 internal review replay, 15 October 2026
+
+The distinct internal review accepts the bounded same-object coefficient-cache
+contract, including charged lookup, denominator positivity, exact per-term
+cost and two counterexamples excluding invalid helper/full-carrier readings.
+The parent freshly re-elaborated its independent consumer under Lean 4.33.0:
+all 22 axiom reports use only ordinary logical axioms and all 1,616 bound inputs
+remain unchanged. Providers are the frozen reviewed outputs, explicitly inherited;
+this is not a clean transitive build or source-blind publication admission.
+[Review](../reviews/internal/c23-charged-cache-review/review.md) and
+[parent replay](../reviews/internal/c23-charged-cache-review/parent-replay-c24-v1.json).
+
+Current main was safely reconciled without changing any production source or
+the 16 protected local files. The contribution's incremental Lean 4.33 library
+and Tests gates both pass; 89 reader/research regressions pass. All eight
+existing publication bindings still validate. The full publication gate remains
+closed on 43 changed modules (2,094 inventoried public declarations), and main
+still uses 4.29.1. Exact compatibility-delta minimization is a controlled
+experiment: changing even one ambient source invalidates existing global
+bindings and requires a new evidence scope. No verifier or publication rule is
+relaxed. C22 consumption, total preprocessing, finite-bit and scientific ROOT
+obligations above remain open.

@@ -8421,3 +8421,5 @@ block-encoding formalization lifecycle.
 | 2026-10-09 12:13:18 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-cycle16-parent-reviewed-middle-stage-module |
 | 2026-10-09 12:50:49 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged hermite-c17-parent-source-stage-checkpoint |
 | 2026-10-10 19:39:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c22-parent-stored-supplier-20261010 |
+| 2026-10-10 20:10:45 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c23-parent-charged-cache-20261010 |
+| 2026-10-15 23:32:56 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c24-frozen-c23-internal-review-20261015 |

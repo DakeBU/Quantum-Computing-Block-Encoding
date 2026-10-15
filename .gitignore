@@ -43,4 +43,6 @@ __pycache__/
 /experiments/hermite-polynomial/precision/charged-coefficient-cache-c23/*.raw.log
 /reviews/publication/constructive-tensor-train/decoder-c23-private/
 /reviews/publication/constructive-tensor-train/reviewer-c23-private/
+/reviews/publication/constructive-tensor-train/decoder-c23-cache/
+/reviews/publication/constructive-tensor-train/reviewer-c23-privatecache-*/
 /reviews/internal/c23-charged-cache-review/.cache/
