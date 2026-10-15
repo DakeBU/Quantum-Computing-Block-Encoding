@@ -180,3 +180,57 @@ success and write permission do not discharge the 51 missing content-bound
 independent publication records. Main-branch merge and deployment remain
 withheld until that admission succeeds. Unrelated images, Robin exports and
 historical replay output remain outside the migration commit.
+
+
+## 16 October: fixed-source migration priority checkpoint
+
+Remote main was safely fetched and remains `f2cba045611a0d11c5995c29607569726bf1d6c5`,
+using **Lean 4.29.1**, not 4.33.0. Contribution checkpoint
+`565516d28bcab79f39301c92f669ff43bbc68428` is pushed and independently confirmed
+on the remote branch. Nine exact whole-module publication records validate;
+the unchanged aggregate gate still rejects the other 42 of 51 changed modules.
+PR #86 is not an approved main migration.
+
+The current production sources retain the prior incremental 4.33 library/Tests
+pass; inherited caches and local Verso compatibility edits remain disclosed.
+Forty-five focused byte-transport/publication/atlas tests pass and the research
+source contracts pass. One transient Git subprocess resource error passed both
+isolated and complete focused reruns. Frozen historical failure logs retain
+their original trailing whitespace; non-log staged whitespace checks pass.
+
+The next fixed-source slice is the whole 20-root HermiteCutRank module. A distinct
+formal-only decoder freshly compiles its actual source and runs 20 signature and
+axiom checks against the explicitly fresh target. Only ordinary logical axioms
+occur (the index abbreviation has none). Imported providers remain inherited.
+The first `bad_alloc` and the successful bounded retry/warnings are retained.
+Independent source-first comparison finds all 20 roots and semantic slots match,
+but graph/coverage admission is still under review. Earlier refusals remain:
+actual input witnesses were missing from AND-tails, eight indented formulas
+were omitted, and stable open consumer-gap nodes were absent. Versioned repairs
+do not alter the lesson, theorem source or scientific target. Current artifacts
+are [staged review material](../reviews/publication/hermite-cut-rank/), not a
+tenth canonical publication approval, main admission or PURIFIED.
+
+A separate standard-Lake compatibility experiment restored the exact main
+GHL2025/HermiteCutRank bytes with scoped elaboration options. The three focused
+GHL/HermiteCutRank/RobinMatrix builds passed, but the full library attempt was
+stopped after import-read failures under resource pressure. All three named
+dependency files existed and were nonempty; the exact OS cause was not isolated.
+Tests/exhaustive phases never started. Potential native/shared library cycles
+were not resolved or tested. This experiment is retained as PARTIAL_ENV_RESOURCE,
+not adopted as the release route and not a mathematical obstruction.
+
+The delivery bottleneck is not installing Lean: it is the broad combined PR,
+whole-module source fidelity review, stable global input bindings, and reliable
+build resources. The response is fixed production inputs, bounded independent
+review slices, serialized heavy compiler windows and pushed recoverable
+checkpoints, not weaker verifier/publication rules or a new controller rewrite.
+
+Hermite's C23 charged coefficient cache has bounded independent internal review;
+C22 consumption, total preprocessing, finite-bit/normalization/physical costs,
+family executable acceptance and ROOT remain open. New textbook frontiers remain
+bounded experimental local results: Walsh interference, projected diagonal
+blocks, the shared QIT pure-state projector/density slice, and the QASC exact
+block consumer. They are not whole-book formalizations or main-admitted new
+resource certificates. The pinned OpenAI Math snapshot/adapter boundary is
+unchanged. No branch is deleted during this unresolved migration checkpoint.

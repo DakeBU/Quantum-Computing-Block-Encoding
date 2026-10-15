@@ -1007,3 +1007,23 @@ reports against an explicitly fresh target; imported providers were inherited.
 Maximum algebraic bond bounds and exact complete-terminal action/mass are not
 physical qubit, cleanup, precision or total gate-cost certificates. No scientific
 target, scoring, winner, Hermite ROOT or exponential baseline is changed.
+
+
+### Cycle 24: fixed-source HermiteCutRank staging, 16 October 2026
+
+The whole existing 20-root exact-real cut-factorization module now has a fresh
+actual-source Lean 4.33 compile and fresh-target signature/axiom probe from a
+distinct formal-only decoder. The separate source-first review matches the
+20 mathematical roots but correctly rejects earlier graph/coverage versions.
+Versioned repairs retain all 42 source blocks/formulas and explicit F/G witness
+premises, actual imports/ownership, and open scientific-grid/normalization,
+physical/cleanup and uniform-precision/total-resource SOURCE_GAP nodes.
+See [staging packet](../reviews/publication/hermite-cut-rank/).
+Independent successor topology/decoder comparison and canonical admission are
+pending; nine current publication records still validate and 42 modules remain
+unadmitted. This does not close a new scientific leaf or the Hermite ROOT.
+
+The compatibility experiment ended PARTIAL_ENV_RESOURCE after three import-read
+failures; those files exist and are nonempty, and exact OS cause is not isolated.
+It is neither compatibility nor mathematical refutation and is not the release
+route. Frozen target, source baseline and all scientific obligations are unchanged.
