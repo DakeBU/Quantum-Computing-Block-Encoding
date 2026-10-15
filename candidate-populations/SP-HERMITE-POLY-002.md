@@ -728,3 +728,23 @@ reports against an explicitly fresh target; imported providers were inherited.
 Maximum algebraic bond bounds and exact complete-terminal action/mass are not
 physical qubit, cleanup, precision or total gate-cost certificates. No scientific
 target, scoring, winner, Hermite ROOT or exponential baseline is changed.
+
+
+### Cycle 24: HermiteCutRank exact-source review registered, 16 October 2026
+
+The distinct source-first reviewer now accepts the frozen new decoder comparison
+for all20 public roots and seven semantic slots. The final graph retains the
+actual F/G separation premises, three literal imports and declaration ownership,
+all42 source blocks including eight previously omitted formulas, and three stable
+OPEN/SOURCE_GAP consumer nodes. Historical rejected metadata versions are retained.
+The exact original review, fresh-target20-signature/axiom evidence and the later
+independently attested schema transport are now linked in the canonical registry.
+Ten current records validate mechanically;41 of51 changed production modules
+still lack admission records. See
+[independent review](../reviews/publication/hermite-cut-rank/reviewer-c24/review.md).
+
+Status remains SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING, not main, reader,
+PURIFIED or scientific ROOT acceptance. This retrospective exact-real cut-rank
+explanation certifies no new physical/finite-bit/resource algorithm and supplies
+no complete poly(n_p) state-preparation route. No target, scoring, champion,
+production source, original frozen artifact or historical failure was modified.

@@ -73,6 +73,27 @@ class StagingIntegrityTests(unittest.TestCase):
         self.assertEqual(SHA(ROOT / packet['formal_context_path']), packet['formal_context_sha256'])
         self.assertEqual(bridge['opaque_binding'], packet['binding_sha256'])
 
+    def test_frozen_reviewer_and_attested_transports_are_present(self):
+        registry = LOAD(ROOT / 'website/research/publications.json')['records']
+        record = next(r for r in registry if r['module'] == 'QuantumBlockEncoding/HermiteCutRank.lean')
+        link = record['wrapper_transport_attestation']
+        attestation = ROOT / link['path']
+        self.assertEqual(SHA(attestation), link['sha256'])
+        self.assertEqual(link['sha256'], '5a892157463f96cf711d12b75b39e718e4003d327dc06a38564d4e00964e5df8')
+        att = LOAD(attestation)
+        self.assertEqual(att['verdict'], 'accepted')
+        for key in ('parent_wrapper_bindings', 'canonical_reviewer_originals',
+                    'canonical_decoder_originals_and_bridges', 'canonical_packet_history'):
+            for name, expected in att[key].items():
+                self.assertEqual(SHA(ROOT / name), expected, name)
+        frozen = HERE / 'reviewer-c24/freeze.json'
+        self.assertEqual(SHA(frozen), '5aa82c2c56dd2376d0d8b6e68609b9b468c55e74d40b29edd38df448c1f8aef3')
+        for row in LOAD(frozen)['artifacts']:
+            self.assertEqual(SHA(frozen.parent / row['path']), row['sha256'])
+        self.assertEqual(record['binding_sha256'], att['binding_sha256'])
+        self.assertFalse(record['main_admission'])
+        self.assertFalse(record['scientific_ROOT'])
+
     def test_prospective_binding_and_existing_canonical_records(self):
         sys.path.insert(0, str(ROOT))
         from website.scripts import check_research_publications as checker
