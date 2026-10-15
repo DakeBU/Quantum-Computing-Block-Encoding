@@ -131,7 +131,7 @@
           "title": "Capacity, entanglement, secret key and games",
           "status": "Planned",
           "summary": "Amplitude-damping capacity, entangled games and dimension-ten zero-key constructions are source routes above canonical state/channel adapters.",
-          "oaiClusters": ["oai-amplitude-damping", "oai-entangled-games", "oai-secret-key", "oai-dimension-ten-secret-key-bridge"]
+          "oaiClusters": ["oai-amplitude-damping", "oai-entangled-games", "oai-secret-key", "oai-dimension-ten-secret-key-bridge", "oai-soft-channel"]
         },
         {
           "id": "qit-optics-counterexamples",

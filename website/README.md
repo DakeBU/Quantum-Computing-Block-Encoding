@@ -13,6 +13,7 @@ preserved, including `library/`, `blueprint/html-multi/`, and `task-builder/`.
 | Route | Purpose |
 | --- | --- |
 | `/` | QuantumComputinglib overview and the two ASPBE contracts |
+| `/math-2-0/` | Nine Math 2.0 contribution directions, evidence and next steps |
 | `/learning/` | Book map and reading order |
 | `/chapters/<slug>/` | Formula, natural-language reading, proof idea, Lean statement, and source |
 | `/library/` | Exhaustive generated ASPBE declaration inventory |

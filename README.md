@@ -21,11 +21,25 @@
 
 ---
 
+## Our place in Math 2.0
+
+**QuantumComputinglib builds human-understanding infrastructure for quantum computing:** a living knowledge network and a quality Lean library are the foundations; clearer proofs and better textbooks are the core value. **ASPBE** is its proof-gated state-preparation and block-encoding construction system. Natural-language explanations, compressed construction graphs and visible assumptions help a researcher understand why a construction works, which ideas it reuses, and where its model stops.
+
+Our original goals of connected knowledge, reusable Lean proofs and clearer quantum teaching predate and resonate with [Terence Tao's *Math 2.0* talk (Caltech, 2026)](https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf). We map nine examples on slides 22, 25 and 26 to concrete contributions: clearer exposition, living paper networks, quality Lean libraries, reusable insights, theorem-level ablations, theorem neighborhoods, interpretable open math tools, interactive textbooks, and model-failure analysis. Our [Math 2.0 contribution map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/math-2-0/) separates existing evidence from research directions. Tao's talk is a framing reference, not an endorsement.
+
+The research agenda builds on those foundations: cross-pollination through the Lean graph; proof-tool ablations grounded in source-blind encoder–denoiser review; generalizations and counterexamples around a theorem; auditable math-model training material; and analysis of model boundaries. Compression retains a path back to every assumption and proof obligation.
+
+**Start here:** [a worked construction](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/) → [its explanation and Lean graph](https://dakebu.github.io/Quantum-Computing-Block-Encoding/lean-graph/) → [the remaining obligations](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/). An ideal-circuit theorem is not a finite-bit implementation or hardware-reliability certificate; planned curricula remain planned.
+
+See the [public-claims protocol](docs/math-2-0-positioning.md).
+
+---
+
 ## News 🔥
 
 Reverse chronological order; only mathematically audited milestones and the minimum project-history anchors are listed here.
 
-- **10 October 2026 — visible four-part book map.** All four peer textbooks have direct homepage actions, one shared curriculum diagram and chapter-map entries. The same four-part organization now drives the collapsible chapter sidebar on every reader page, including Walsh/diagonal plans and exact QIT/scientific-computing chapter jumps. Planned chapters retain their explicit status. The curriculum release is in [PR #87](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/87), followed by rendering/reader fixes [#88](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/88), [#89](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/89), and homepage/book-map release [#90](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/90). Reader publication does not certify the still-open finite-bit Hermite route or migrate the proof tree to Lean 4.33.0.
+- **10 October 2026 — visible four-part book map.** All four peer textbooks have direct homepage actions, one shared curriculum diagram and chapter-map entries. The same four-part organization drives the collapsible chapter sidebar on every reader page, including Walsh/diagonal plans and exact QIT/scientific-computing chapter jumps. The [textbook explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/learning/index.html#textbook-explorer) filters the canonical chapter catalog by textbook, technique and evidence status; its cards expose reading sources and expandable commit-pinned OpenAI Math placements, upstream verification and remaining adapter boundaries. All entries remain readable without JavaScript. Planned chapters retain their explicit status. The curriculum release is in [PR #87](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/87), followed by rendering/reader fixes [#88](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/88), [#89](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/89), and homepage/book-map release [#90](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/90). Reader publication does not certify the still-open finite-bit Hermite route or migrate the proof tree to Lean 4.33.0.
 
 - **9 October 2026 — reader release.** QuantumComputinglib now has four peer textbook parts: State Preparation, Block Encoding, Quantum Information and Representation Theory, and Quantum Algorithms for Scientific Computation. The Walsh-series and diagonal-operator papers have source-linked formalization plans and reusable technical cards; pinned OpenAI Math clusters are assigned to regular or extended chapters. Planned chapters and upstream proofs are not claimed as new local certificates. This reader-only release preserves the published proof tree; the Lean 4.33.0 migration is reviewed separately.
 

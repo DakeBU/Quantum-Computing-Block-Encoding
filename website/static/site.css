@@ -429,7 +429,7 @@ dd {
 }
 
 .home-hero {
-  min-height: 390px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -437,6 +437,54 @@ dd {
 
 .home-hero h1 {
   font-size: 50px;
+  overflow-wrap: anywhere;
+}
+
+.home-hero .lede {
+  max-width: 44ch;
+}
+
+.hero-scope {
+  max-width: 65ch;
+  margin-bottom: 0;
+}
+
+.home-book-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-top: 24px;
+  font-family: var(--ui-font);
+  font-size: 14px;
+}
+
+.math2-intro {
+  max-width: 75ch;
+}
+
+.math2-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 20px;
+}
+
+.math2-card {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--state);
+  border-radius: 8px;
+  padding: 22px;
+  min-width: 0;
+}
+
+.math2-card h3 {
+  margin-top: 8px;
+}
+
+.math2-card p {
+  line-height: 1.65;
+}
+
+.math2-card a {
   overflow-wrap: anywhere;
 }
 
@@ -1546,9 +1594,12 @@ code {
     padding: 34px 0 64px;
   }
 
-  h1,
-  .home-hero h1 {
+  h1 {
     font-size: 31px;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(22px, 7vw, 29px);
   }
 
   h2 {
@@ -2731,6 +2782,37 @@ body {
 .chapter-nav a span {
   color: var(--quiet);
   font-variant-numeric: tabular-nums;
+}
+
+/* The four-book catalog is a reader surface, not a second proof-status ledger. */
+.curriculum-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 10px;
+}
+.curriculum-controls label { display: grid; gap: 6px; min-width: 0; font-family: var(--ui-font); }
+.curriculum-controls input, .curriculum-controls select {
+  width: 100%; min-width: 0; padding: 10px; border: 1px solid var(--line);
+  color: var(--ink); background: var(--surface); border-radius: 6px; font: inherit;
+}
+.curriculum-controls button { justify-self: start; }
+.curriculum-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.curriculum-card { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.curriculum-card h3 { margin-top: 8px; }
+.curriculum-card .path-label { font-size: .8rem; }
+.curriculum-intake, .curriculum-sources { margin-top: 14px; overflow-wrap: anywhere; }
+.curriculum-intake summary, .curriculum-sources summary { cursor: pointer; font-family: var(--ui-font); font-size: .9rem; }
+.curriculum-intake ul { padding-left: 20px; }
+.curriculum-intake li + li { margin-top: 20px; }
+.curriculum-intake code { white-space: normal; overflow-wrap: anywhere; }
+.curriculum-controls[hidden], .curriculum-card[hidden] { display: none; }
+@media (max-width: 700px) {
+  .curriculum-controls, .curriculum-grid { grid-template-columns: minmax(0, 1fr); }
+  .curriculum-card { padding: 18px; }
 }
 
 .book-part-nav {
