@@ -37,6 +37,8 @@ class PublicationByteTransportTests(unittest.TestCase):
             "experiments/hermite-polynomial/precision/result.json":
                 b'{"historical": true}\r\n',
             "failure-memory/frozen.json": b'{"historicalFailure": true}\r\n',
+            "reports/lean-433-migration/fixture.json":
+                b'{"fixture": "not an acceptance record"}\r\n',
             "website/research/sources.json": json.dumps({"sources": [
                 {"id": "pilot", "status": "primary-text-checked"}]}).encode(),
         }
@@ -68,7 +70,8 @@ class PublicationByteTransportTests(unittest.TestCase):
                 for name, data in self.files.items():
                     if name.startswith(("QuantumBlockEncoding/", "ABEISTests/",
                                         "docs/lessons/", "reviews/publication/",
-                                        "experiments/", "failure-memory/")) or name in (
+                                        "experiments/", "failure-memory/",
+                                        "reports/lean-433-migration/")) or name in (
                                             "lean-toolchain", "lake-manifest.json"):
                         self.assertEqual(data, (dest / name).read_bytes(), name)
 

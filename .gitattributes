@@ -21,3 +21,6 @@ reviews/internal/** -text
 # historical CRLF and newer LF packets intact; never silently refresh hashes.
 experiments/** -text
 failure-memory/** -text
+
+# Frozen migration build receipts retain the runner's original raw bytes.
+reports/lean-433-migration/*.json -text
