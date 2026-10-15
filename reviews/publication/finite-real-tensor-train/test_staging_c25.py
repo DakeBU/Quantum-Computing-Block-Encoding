@@ -110,6 +110,75 @@ class FrozenStaging(unittest.TestCase):
                 self.assertFalse(record["scientific_ROOT"])
                 self.assertEqual(record["purification"]["status"], "PENDING")
 
+    def test_actual_final_delivery_inputs_and_native_decoder_evidence(self):
+        manifest = PACKET / "final-review-inputs-c25.json"
+        self.assertEqual(digest(manifest), "385c6fda9f188e2b6b283e1ed895b1b9f22e40d37416e1ce2132282cbb5992b5")
+        data = read(manifest)
+        self.assertTrue(data["created_after_source_static_and_metadata_phases"])
+        self.assertTrue(data["created_before_final_decoder_comparison"])
+        self.assertEqual(len(data["input_sha256"]), 41)
+        for name, sha in data["input_sha256"].items():
+            self.assertEqual(digest(ROOT / name), sha)
+        for name in ("canonical-evidence.json", "norm-environment-evidence.json"):
+            evidence = read(PACKET / "decoder-c25" / name)
+            self.assertEqual(evidence["role"], "decoder")
+            self.assertEqual(evidence["identity"], "ttc-norm-decoder-c25")
+            self.assertTrue(evidence["source_blind"])
+            self.assertEqual(evidence["new_lean_invocations"], 0)
+            self.assertIsNone(evidence["source_agreement_verdict"])
+            self.assertEqual(digest(ROOT / evidence["packet_path"]), evidence["packet_sha256"])
+            self.assertEqual(digest(ROOT / evidence["artifact_path"]), evidence["artifact_sha256"])
+            self.assertEqual(evidence["binding_sha256"], data["opaque_bindings"][evidence["target_module"]])
+
+    def test_missing_bound_file_is_not_green(self):
+        original = Path.is_file
+        missing = PACKET / "author-graph-views.json"
+
+        def simulated_missing(path):
+            return False if path == missing else original(path)
+
+        with patch.object(Path, "is_file", simulated_missing):
+            result = unittest.TestResult()
+            FrozenStaging("test_manifest_exact_bytes_at_actual_destinations").run(result)
+        self.assertEqual(len(result.failures), 1)
+        self.assertEqual(result.errors, [])
+
+    def test_corrupted_bound_bytes_are_not_green(self):
+        original = Path.read_bytes
+        corrupted = ROOT / "docs/lessons/finite-real-tensor-train-canonicalization-and-gram.md"
+
+        def simulated_corruption(path):
+            raw = original(path)
+            return raw + b" " if path == corrupted else raw
+
+        with patch.object(Path, "read_bytes", simulated_corruption):
+            with self.assertRaises(AssertionError):
+                self.test_all_source_paragraphs_reconstruct_raw_lesson()
+
+    def test_actual_canonical_pair_and_frozen_reviewer_originals(self):
+        seal = PACKET / "reviewer-c25/final-seal.json"
+        self.assertEqual(digest(seal), "d9c1d2f3ceaf5f3525fa34e17bc1884bf8cc6865bd869aea220fd7cf9a9f0b56")
+        for artifact in read(seal)["new_original_artifacts"]:
+            target = PACKET / "reviewer-c25" / artifact["file"]
+            self.assertEqual(digest(target), artifact["sha256"])
+            self.assertEqual(target.stat().st_size, artifact["bytes"])
+        spec = importlib.util.spec_from_file_location("c25_registered_checker", ROOT / "website/scripts/check_research_publications.py")
+        checker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(checker)
+        inventory = {x["fullName"]: x for x in read(ROOT / "web/library/declarations.json")["declarations"]}
+        records = read(ROOT / "website/research/publications.json")["records"]
+        targets = set(read(PACKET / "final-review-inputs-c25.json")["opaque_bindings"])
+        selected = [r for r in records if r["module"] in targets]
+        self.assertEqual(len(selected), 2)
+        for record in selected:
+            checker.validate_record(ROOT, record, inventory)
+            self.assertEqual(record["status"], "SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING")
+            self.assertFalse(record["main_admission"])
+            self.assertFalse(record["scientific_ROOT"])
+            evidence = read(ROOT / record["reviewer_evidence"])
+            self.assertEqual(evidence["identity"], "ttc_norm_source_first_review_c25")
+            self.assertEqual(evidence["verdict"], "accepted")
+
 
 if __name__ == "__main__":
     unittest.main()

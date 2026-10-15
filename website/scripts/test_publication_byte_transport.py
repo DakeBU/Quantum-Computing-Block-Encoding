@@ -28,6 +28,9 @@ class PublicationByteTransportTests(unittest.TestCase):
             "ABEISTests/Nested/Helper.lean": b"-- ambient test\n",
             "lean-toolchain": b"leanprover/lean4:v4.33.0\n",
             "lake-manifest.json": b"{}\n",
+            "lakefile.lean": b"-- mixed frozen configuration fixture\r\nimport Lake\n",
+            "website/scripts/check_research_publications.py":
+                b"# transport fixture, not the real verifier\r\n",
             "docs/lessons/pilot.md": b"Local fixture.\n",
             # A historical independently hashed packet must stay CRLF.
             "reviews/publication/historical/evidence.json": b'{"prior": true}\r\n',
@@ -39,6 +42,8 @@ class PublicationByteTransportTests(unittest.TestCase):
             "failure-memory/frozen.json": b'{"historicalFailure": true}\r\n',
             "reports/lean-433-migration/fixture.json":
                 b'{"fixture": "not an acceptance record"}\r\n',
+            "reports/lean-433-migration/fixture-context.md":
+                b"Frozen explanatory context fixture.\r\n",
             "website/research/sources.json": json.dumps({"sources": [
                 {"id": "pilot", "status": "primary-text-checked"}]}).encode(),
         }
@@ -72,7 +77,9 @@ class PublicationByteTransportTests(unittest.TestCase):
                                         "docs/lessons/", "reviews/publication/",
                                         "experiments/", "failure-memory/",
                                         "reports/lean-433-migration/")) or name in (
-                                            "lean-toolchain", "lake-manifest.json"):
+                                            "lean-toolchain", "lake-manifest.json",
+                                            "lakefile.lean",
+                                            "website/scripts/check_research_publications.py"):
                         self.assertEqual(data, (dest / name).read_bytes(), name)
 
     def test_raw_checker_still_rejects_ambient_byte_drift(self):
@@ -85,6 +92,40 @@ class PublicationByteTransportTests(unittest.TestCase):
         (self.root / "lean-toolchain").unlink()
         with self.assertRaises(ValueError):
             binding_digest(self.root, self.record)
+
+    def test_actual_c25_runtime_inputs_keep_original_raw_bytes(self):
+        """No normalization exception or rewritten frozen report is allowed."""
+        packet = ROOT / "reviews/publication/finite-real-tensor-train/final-review-inputs-c25.json"
+        self.assertTrue(packet.is_file())
+        frozen = json.loads(packet.read_text(encoding="utf-8"))["input_sha256"]
+        names = ("lakefile.lean", "website/scripts/check_research_publications.py",
+                 "reports/lean-433-migration/c25-cf77-context.md")
+        import hashlib
+        before = {name: (ROOT / name).read_bytes() for name in names}
+        for name, raw in before.items():
+            self.assertEqual(hashlib.sha256(raw).hexdigest(), frozen[name])
+        projection = Path(self.temp.name) / "actual-runtime-projection"
+        projection.mkdir()
+        files = {".gitattributes": (ROOT / ".gitattributes").read_bytes(), **before}
+        for name, raw in files.items():
+            target = projection / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(raw)
+        self.git(projection, "init", "-q")
+        self.git(projection, "config", "core.autocrlf", "true")
+        self.git(projection, "add", ".")
+        self.git(projection, "-c", "user.name=Transport fixture",
+                 "-c", "user.email=fixture@example.invalid", "commit", "-qm", "runtime projection")
+        for autocrlf in ("true", "false", "input"):
+            with self.subTest(runtime_autocrlf=autocrlf):
+                dest = Path(self.temp.name) / ("runtime-" + autocrlf)
+                self.git(Path(self.temp.name), "clone", "-q", "--no-checkout", str(projection), str(dest))
+                self.git(dest, "config", "core.autocrlf", autocrlf)
+                self.git(dest, "checkout", "-q", "HEAD")
+                for name, raw in before.items():
+                    self.assertEqual(raw, (dest / name).read_bytes(), name)
+        for name, raw in before.items():
+            self.assertEqual(raw, (ROOT / name).read_bytes())
 
     def test_current_thin_lq_frozen_context_round_trip(self):
         """Check the actual complete bound tree, not only the small fixture."""

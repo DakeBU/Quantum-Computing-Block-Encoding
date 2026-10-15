@@ -1,8 +1,9 @@
 # Paired tensor-train review staging
 
-Status: PROVED_LOCAL / independent formal-only reconstruction and source-only
-review frozen; static source/formal comparison is frozen and matches the
-limited scope. Whole metadata/decoder admission is still pending.
+Status: SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING. Independent source-only,
+actual whole-source static, late metadata and separate decoder comparisons
+are frozen and accepted for both limited module contracts. The actual two
+canonical records validate; main, reader and purification remain pending.
 
 The exact retrospective local exposition is
 `docs/lessons/finite-real-tensor-train-canonicalization-and-gram.md`, raw SHA256
@@ -30,8 +31,9 @@ decoder freeze; any later bridge must honestly preserve that order.
 
 Four expanded private command/setup JSON files are excluded from the public
 allowlist. A freeze's private hash inventory is not a claim those files are
-public inputs. Public evidence makes no source-agreement/publication verdict
-for this pair and creates no new canonical record or task winner.
+public inputs. The original staging made no source-agreement/publication
+verdict. The later final review and actual registration below are separate
+events; no original record is backdated or turned into a task winner.
 
 ## Recoverable late-author checkpoint
 
@@ -49,20 +51,37 @@ layout and current repository: PASS, including both prospective binding
 digests using the unchanged public checker. The public transport layout puts
 the lesson in `docs/lessons/`, not beside this script. Use
 `python reviews/publication/finite-real-tensor-train/test_staging_c25.py -v`
-for the actual repository layout. Its six tests pass. Neither tool calls
-`validate_record`, fabricates independent evidence, or admits these records.
+for the actual repository layout. The original six tests passed before final
+review. Later tests also verify the final real inputs, missing/corrupt-byte
+negative cases and actual canonical validation. The author test never calls
+`validate_record`; the later canonical test explicitly does.
 
-The fresh reviewer may now reconcile the late metadata in a new phase;
-only afterwards is the decoder delivered separately. The formal-only worker
-may make a later opaque-input bridge but cannot backdate it to the initial
-compile/reconstruction. Previous phase artifacts and all failures stay intact.
+The fresh reviewer reconciled metadata in phase3, froze it, and only then
+received `final-review-inputs-c25.json` with 41 actual public input hashes.
+It compared the original decoder's complete reconstruction and real probes,
+preserving all seven open consumer gaps and two precision notes. Final
+`reviewer-c25/final-seal.json` binds the accepted review and both native
+reviewer records. Decoder and reviewer each directly authored their native
+records; there is no parent-written verdict or added compiler invocation.
 
-Changed behavior: none in production. This checkpoint adds frozen evidence,
-the six fail-closed staging checks and this status explanation only. No Lean
-source, verifier, target, scoring or historical log changes. Rollback can
-remove only these newly staged artifacts/tests; original independent files
-remain preserved. Main, publication, reader and purification uncertainty is
-not removed by passing byte/topology/prospective-binding tests.
+Parent registration appended the exact unchanged owned source row and two
+records, then executed the unchanged `validate_record` for all twelve actual
+canonical records: PASS. The whole changed-module gate is still FAIL_CLOSED:
+39 of 51 modules remain unadmitted. The old source-row/candidate AUTHOR/WIP
+wording is deliberately retained as a historical frozen snapshot, qualified
+by the later canonical status. It is not evidence of present unreviewedness
+or a retroactively rewritten author-input packet.
+
+Changed behavior: no production Lean/verifier/target/scoring behavior changes.
+The source/publication registries gain this exact owned source row and two
+bounded local records; historical entries are unchanged. Ten packet tests,
+including missing-file and corrupt-byte rejection, pass. An initial negative
+test incorrectly expected a nested unittest subTest to propagate its assertion;
+it was corrected to inspect a separate TestResult. No bound evidence was
+changed by that test-code correction. Rollback is scoped to these two records,
+their owned source row and newly added audit/test artifacts; preserve original
+independent freezes. Aggregate publication, main/reader and PURIFIED gates
+remain open and cannot be inferred from local admission or test results.
 
 Local matrix isometry and syntactic real-arithmetic bounds are not physical
 circuit completion/cleanup, actual stored-program costs, finite-bit stability,

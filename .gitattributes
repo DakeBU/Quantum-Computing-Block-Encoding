@@ -24,3 +24,9 @@ failure-memory/** -text
 
 # Frozen migration build receipts retain the runner's original raw bytes.
 reports/lean-433-migration/*.json -text
+
+# Preserve the already frozen runtime/configuration bytes too, including
+# historical CRLF/mixed endings. This changes Git transport, not local code.
+lakefile.lean -text
+website/scripts/check_research_publications.py -text
+reports/lean-433-migration/*.md -text
