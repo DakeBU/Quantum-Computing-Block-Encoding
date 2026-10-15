@@ -987,3 +987,23 @@ experiment: changing even one ambient source invalidates existing global
 bindings and requires a new evidence scope. No verifier or publication rule is
 relaxed. C22 consumption, total preprocessing, finite-bit and scientific ROOT
 obligations above remain open.
+
+
+### Cycle 24: ConstructiveTensorTrain independent publication checkpoint
+
+The distinct c24 source-blind decoder and source-first reviewer agree on the
+whole 15-root module, the exact retrospective lesson and repaired v2 graph.
+The later wrapper attestation checks the exact three parent metadata transports;
+it does not manufacture a historical pre-proof seal or a new proof execution.
+See [independent review](../reviews/publication/constructive-tensor-train/reviewer-c24/review.md)
+and [portable integrity replay](../reviews/publication/constructive-tensor-train/verify-c24.py).
+The previous c23 changes-required record and graph failure remain retained.
+
+Nine current publication records now validate mechanically on this contribution.
+The full changed-module gate remains blocked on the other 42 modules. This is
+SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING, not main admission or PURIFIED.
+The decoder freshly compiled the actual target and checked 15 signatures/axiom
+reports against an explicitly fresh target; imported providers were inherited.
+Maximum algebraic bond bounds and exact complete-terminal action/mass are not
+physical qubit, cleanup, precision or total gate-cost certificates. No scientific
+target, scoring, winner, Hermite ROOT or exponential baseline is changed.
