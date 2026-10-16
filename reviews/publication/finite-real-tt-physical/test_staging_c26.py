@@ -3,6 +3,9 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
+import sys
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -105,6 +108,79 @@ class C26Staging(unittest.TestCase):
             C26Staging("test_actual_public_decoder_originals").run(result)
         self.assertEqual(len(result.failures), 1)
         self.assertEqual(result.errors, [])
+
+    def test_frozen_author_inputs_lossless_source_and_bounded_graph(self):
+        manifest = PACKET / "outputs-manifest.json"
+        self.assertEqual(digest(manifest), "d37d184b5990b95db1cddbc1b19bbed0f6da6da68ba67aa9de03264741f3557f")
+        for item in read(manifest)["artifacts"]:
+            target = ROOT / item["planned_canonical_path"]
+            self.assertEqual(digest(target), item["sha256"])
+            self.assertEqual(target.stat().st_size, item["bytes"])
+        coverage = read(PACKET / "author-source-coverage.json")
+        source = ROOT / coverage["source_path"]
+        self.assertEqual(len(coverage["source_paragraphs"]), 74)
+        self.assertEqual("".join(p["exact_text"] for p in coverage["source_paragraphs"]).encode(), source.read_bytes())
+        self.assertEqual(len(coverage["whole_module_inventory"]), 37)
+        self.assertEqual(coverage["additional_top_level_named_instances"], 0)
+        self.assertEqual(coverage["private_target_helpers"], 0)
+        graph = read(PACKET / "author-graph-views.json")
+        self.assertEqual(graph["coverage_sha256"], digest(PACKET / "author-source-coverage.json"))
+        sg = graph["views"]["source-construction-graph"]
+        nodes = {n["id"]: n for n in sg["nodes"]}
+        self.assertEqual(len(sg["hyperedges"]), 32)
+        for edge in sg["hyperedges"]:
+            self.assertEqual(edge["logic"], "AND")
+            self.assertTrue(set(edge["tails"] + edge["heads"]) <= nodes.keys())
+        gaps = {key for key, node in nodes.items() if node["kind"] == "SOURCE_GAP"}
+        self.assertEqual(gaps, set(coverage["open_source_gap_ids"]))
+        self.assertEqual(len(gaps), 6)
+        self.assertTrue(all(nodes[g]["status"] == "OPEN" and not nodes[g]["mathematical_proof_node"] for g in gaps))
+        self.assertEqual(len(graph["views"]["lean-graph"]["target_import_edges"]), 10)
+        self.assertEqual(len(graph["views"]["lean-graph"]["ownership_edges"]), 37)
+        self.assertFalse(graph["views"]["functor-hypergraph"]["certified_transport"])
+        context = read(PACKET / "author-formal-context.json")
+        for target in context["target_files"]:
+            self.assertEqual("".join(target["full_source_lines"]).encode(), (ROOT / target["path"]).read_bytes())
+            self.assertEqual(digest(ROOT / target["path"]), target["sha256"])
+        self.assertEqual(len(context["provider_index"]), 41)
+        for provider in context["provider_index"]:
+            self.assertEqual(digest(ROOT / provider["path"]), provider["sha256"])
+
+    def test_original_author_script_in_reconstructed_assembly_layout(self):
+        # Replay the declared original assembly layout without editing frozen
+        # script/source bytes or pretending it is the public directory layout.
+        with tempfile.TemporaryDirectory(prefix="c26-author-replay-") as folder:
+            assembly = Path(folder)
+            for item in read(PACKET / "outputs-manifest.json")["artifacts"]:
+                (assembly / item["path"]).write_bytes((ROOT / item["planned_canonical_path"]).read_bytes())
+            result = subprocess.run([sys.executable, "-B", str(assembly / "author-publication-selftest.py"),
+                                     "--root", str(ROOT), "--packet", str(assembly)],
+                                    capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            data = json.loads(result.stdout)
+            self.assertEqual(data["status"], "MECHANICAL_AUTHOR_INTEGRITY_PASS_NOT_ADMISSION")
+            self.assertEqual(data["inventory"], 37)
+            self.assertEqual(len(data["public_binding_digest_replayed"]), 3)
+            self.assertFalse(data["validate_record_called"])
+
+    def test_direct_original_native_decoder_evidence(self):
+        freeze = PACKET / "decoder-c26/native-evidence-freeze.json"
+        self.assertEqual(digest(freeze), "897e30b67c10c9ae195458dc2269c319d2d65b9050a313c4c2ce7db8f3ec438e")
+        data = read(freeze)
+        for item in data["native_artifacts"] + data["prior_frozen_artifact_bindings"]:
+            self.assertEqual(digest(PACKET / "decoder-c26" / item["path"]), item["sha256"])
+        for item in data["author_formal_metadata"]:
+            self.assertEqual(digest(PACKET / item["path"]), item["sha256"])
+        bindings = {r["module"]: r["binding_sha256"] for r in data["publication_bindings"]}
+        for item in data["native_artifacts"]:
+            evidence = read(PACKET / "decoder-c26" / item["path"])
+            self.assertEqual(evidence["role"], "decoder")
+            self.assertTrue(evidence["source_blind"])
+            self.assertEqual(evidence["binding_sha256"], bindings[evidence["target_module"]])
+            self.assertEqual(digest(ROOT / evidence["packet_path"]), evidence["packet_sha256"])
+            self.assertEqual(digest(ROOT / evidence["artifact_path"]), evidence["artifact_sha256"])
+            self.assertEqual(evidence["new_lean_invocations"], 0)
+            self.assertIsNone(evidence["source_agreement_verdict"])
 
 
 if __name__ == "__main__":

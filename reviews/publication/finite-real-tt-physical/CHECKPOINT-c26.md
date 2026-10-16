@@ -38,3 +38,43 @@ preserve failures/private exclusions, reject a missing bound artifact and
 revalidate existing canonical records. They do not produce reviewer verdicts.
 Source/static/graph/decoder reconciliation, canonical registration, aggregate
 publication, main, reader and purification gates remain pending.
+
+## Author and native-decoder transport checkpoint
+
+The thirteen original author outputs are now materialized at the exact
+destinations in `outputs-manifest.json` (SHA256
+`d37d184b5990b95db1cddbc1b19bbed0f6da6da68ba67aa9de03264741f3557f`).
+All 74 natural-source paragraphs reconstruct the original bytes. The complete
+37-name ledger, target ambient scope, shared graph and 41-provider import
+catalogue are AUTHOR/WIP, not another independent mathematical review.
+Three proposed publication bindings replay the unchanged public function.
+Its future reviewer paths are still placeholders, not evidence of acceptance.
+
+The original decoder's direct native records and late formal-context bridge
+are preserved without a compiler rerun. Its native freeze SHA256 is
+`897e30b67c10c9ae195458dc2269c319d2d65b9050a313c4c2ce7db8f3ec438e`.
+Context digest and the three opaque publication commitments remain distinct.
+No later association is backdated to the initial independent reconstruction.
+
+Nine actual-layout tests pass. These include exact manifest destinations,
+lossless source, all target/provider bytes and the native evidence chain.
+The frozen author script expects its original assembly basename rather than
+the public lesson location; the test reconstructs that declared assembly in
+a temporary directory from unchanged manifest bytes and genuinely runs it.
+It does not edit the script or pretend missing files are accepted.
+
+The earlier reviewer run is no longer available in the current agent tree.
+Its genuine source-only seal and static WIP remain preserved, but no final
+joint static seal or accepted verdict is fabricated for that identity. A new
+distinct source-first run, `tt-physical-source-review-c26r`, is being performed
+with the original natural source withheld from neither source reviewer, and
+with implementation/author/decoder contents withheld until the appropriate
+new seals. This is a new actual review, not a continuation claim for the old
+identity. Canonical records remain twelve, with thirty-nine changed modules
+unadmitted until real final evidence passes.
+
+Changed behavior: no production Lean, verifier, target, scoring or historical
+log changes. Only frozen WIP artifacts and actual-layout checks are added.
+Rollback is limited to these new checkpoint artifacts/tests; preserve the
+original immutable evidence. Full publication/main/reader/PURIFIED and the
+Hermite finite-bit/total-resource/family ROOT obligations remain open.
