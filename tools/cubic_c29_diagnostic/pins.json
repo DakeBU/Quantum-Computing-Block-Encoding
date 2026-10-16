@@ -19,11 +19,13 @@
   "versionedDriverFiles": {
     "Probe-v4.lean": "396452a5704adbe78941eba817257fc07d3f5294771d8fdb4ce0fd282f59411c",
     "Fixture.lean": "a8d61637c68f4a054275771b11d6faa34cb76f00ce2ffd523c624fd28381f717",
-    "FixtureProbe-v4.lean": "5cdb144bf235b45dca334984a306fa8e73c709afdf1cee60a7194de1e9fa6160"
+    "FixtureProbe-v4.lean": "5cdb144bf235b45dca334984a306fa8e73c709afdf1cee60a7194de1e9fa6160",
+    "FixtureProbe-v5.lean": "34508087429ab329a395a4c01ce7d9d62af055a80f168eb495cb7fc16690e433"
   },
   "activeProbe": "Probe-v4.lean",
-  "status": "WIP_REAL_CI_NOT_RUN_BY_DECODER",
+  "status": "WIP_CI1_TERMINAL_FAILURE_MINIMAL_FIXTURE_IMPORT_REPAIR",
   "inheritedWindowsProviderArtifactHashesUsedAsLinuxPins": false,
   "nativeAccepted": false,
-  "sourceAgreement": null
+  "sourceAgreement": null,
+  "activeFixtureProbe": "FixtureProbe-v5.lean"
 }

@@ -1,5 +1,17 @@
 WIP: independent cubic c29 formal-runtime diagnostic, not scientific acceptance
 
+CI2 direction: realCIlegacyFixtureimportbindingrepair, not new mathematics.
+The first actual independent CI run38968346344/job117200296308 at commit40d7904
+terminated: real fixture compile exit0/PID6427; fixture probe exit1/PID6433.
+The fixture driver incorrectly imported the Cubic module despite runtime target
+Fixture. FixtureProbe-v5.lean corrects ONLY its first import to Fixture; all
+remaining bytes equal retained v4. Original v3/v4 files and actual CI failure
+evidence remain preserved. Cubic Probe-v4.lean is unchanged. pins.json now
+explicitly selects activeFixtureProbe, and runner checks both direct import and
+runtime target against the requested fixture/Cubic modules before any Lean run.
+Unit tests reject the actual old wrong-import driver and any target/key drift.
+This fix does not establish that the remaining Lean APIs execute successfully.
+
 Planned package: tools/cubic_c29_diagnostic/
 Planned independent workflow: .github/workflows/cubic-c29-diagnostic.yml
 No existing workflow, required check, verifier, theorem, scoring or acceptance

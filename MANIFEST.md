@@ -8436,3 +8436,7 @@ block-encoding formalization lifecycle.
 | 2026-10-17 04:50:30 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-independent-static-refinements-20261017 |
 | 2026-10-17 04:50:30 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-parent-fresh-import-layout-20261017 |
 | 2026-10-17 05:15:43 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-c30-independent-diagnostic-checkpoint-20261017 |
+| 2026-10-17 05:37:02 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-actual-ci1-fixture-import-failure-20261017 |
+| 2026-10-17 05:37:02 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-fixture-v5-native-api-and-ci2-20261017 |
+| 2026-10-17 05:37:02 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c30-independent-static-and-formal-graph-v4-20261017 |
+| 2026-10-17 05:38:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c30-static-v4-independently-resolved-20261017 |

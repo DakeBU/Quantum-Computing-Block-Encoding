@@ -153,6 +153,49 @@ class FilesystemAndNativeTests(unittest.TestCase):
         self.assertEqual(marker.read_text(), 'keep')
 
 
+class DriverImportTargetTests(unittest.TestCase):
+    def setUp(self):
+        self.package = Path(__file__).parent
+        self.pins = json.loads((self.package / 'pins.json').read_text(encoding='utf-8'))
+
+    def test_actual_v4_wrong_fixture_import_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'import-target mismatch'):
+            runner.verify_driver_import_target(self.package / 'FixtureProbe-v4.lean', 'Fixture')
+
+    def test_v5_import_and_runtime_target_are_actual_fixture(self):
+        observed = runner.verify_driver_import_target(self.package / 'FixtureProbe-v5.lean', 'Fixture')
+        self.assertEqual(observed['firstImport'], 'Fixture')
+        self.assertEqual(observed['runtimeTarget'], 'Fixture')
+        old = (self.package / 'FixtureProbe-v4.lean').read_bytes()
+        new = (self.package / 'FixtureProbe-v5.lean').read_bytes()
+        self.assertEqual(old.split(b'\n', 1)[1], new.split(b'\n', 1)[1])
+
+    def test_cubic_v4_keeps_its_own_target_import(self):
+        observed = runner.verify_driver_import_target(self.package / 'Probe-v4.lean',
+                                                       'QuantumBlockEncoding.CubicStatePreparation')
+        self.assertEqual(observed['driverSHA256'],
+                         '396452a5704adbe78941eba817257fc07d3f5294771d8fdb4ce0fd282f59411c')
+
+    def test_runtime_target_drift_rejected_even_with_correct_import(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'Probe.lean'
+            source = (self.package / 'FixtureProbe-v5.lean').read_text(encoding='utf-8')
+            source = source.replace('let target := `Fixture', 'let target := `Other', 1)
+            path.write_text(source, encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'runtime target mismatch'):
+                runner.verify_driver_import_target(path, 'Fixture')
+
+    def test_active_fixture_driver_key_and_pin_required(self):
+        self.assertEqual(runner.verify_active_drivers(self.package, self.pins)['activeFixtureProbe']['runtimeTarget'],
+                         'Fixture')
+        for mutate in (lambda p: p.pop('activeFixtureProbe'),
+                       lambda p: p.update(activeFixtureProbe='unpinned.lean'),
+                       lambda p: p.update(activeFixtureProbe='FixtureProbe-v4.lean')):
+            pins = copy.deepcopy(self.pins); mutate(pins)
+            with self.assertRaises(ValueError):
+                runner.verify_active_drivers(self.package, pins)
+
+
 class OriginalStrictValidatorTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

@@ -266,6 +266,31 @@ def validate_fixture(stdout: str, exit_code: int):
     return dict(status='LEGACY_API_FIXTURE_OBSERVED_NOT_CUBIC_EVIDENCE', roots=5, **NO_ACCEPT)
 
 
+def verify_driver_import_target(path: Path, expected_module: str):
+    """Check the frozen legacy driver's direct import and runtime target before Lean."""
+    source = path.read_text(encoding='utf-8')
+    imports = re.findall(r'(?m)^import[ \t]+([A-Za-z_][A-Za-z0-9_.]*)[ \t]*$', source)
+    targets = re.findall(r'(?m)^[ \t]*let target := `([A-Za-z_][A-Za-z0-9_.]*)[ \t]*$', source)
+    if imports != [expected_module, 'Lean']:
+        raise ValueError('driver import-target mismatch: expected first import ' + expected_module)
+    if targets != [expected_module]:
+        raise ValueError('driver runtime target mismatch: ' + expected_module)
+    return dict(expectedModule=expected_module, firstImport=imports[0],
+                runtimeTarget=targets[0], driverSHA256=sha(path))
+
+
+def verify_active_drivers(package: Path, pins: dict):
+    bindings = {}
+    for key, expected in [('activeFixtureProbe', 'Fixture'),
+                          ('activeProbe', 'QuantumBlockEncoding.CubicStatePreparation')]:
+        name = pins.get(key)
+        if not isinstance(name, str) or name not in pins['versionedDriverFiles']:
+            raise ValueError('missing or unpinned active driver: ' + key)
+        verify_pins(package, {name: pins['versionedDriverFiles'][name]})
+        bindings[key] = verify_driver_import_target(safe_child(package, name), expected)
+    return bindings
+
+
 def run(project: Path, package: Path):
     project = project.resolve()
     package = package.resolve()
@@ -280,8 +305,10 @@ def run(project: Path, package: Path):
         input_rows = verify_pins(project, pins['projectInputs'])
         package_rows = verify_pins(package, pins['immutableCandidate3Files'])
         driver_rows = verify_pins(package, pins['versionedDriverFiles'])
+        driver_bindings = verify_active_drivers(package, pins)
         write_json(private / 'inputs.json', dict(projectInputs=input_rows, candidate3Files=package_rows,
-                                                versionedDriverFiles=driver_rows, activeProbe=pins['activeProbe']))
+                                                versionedDriverFiles=driver_rows, activeProbe=pins['activeProbe'],
+                                                activeFixtureProbe=pins['activeFixtureProbe'], driverBindings=driver_bindings))
         env = dict(os.environ)
         bootstrap = shutil.which('lean', path=env.get('PATH'))
         if not bootstrap:
@@ -316,7 +343,7 @@ def run(project: Path, package: Path):
         # This genuine legacy API fixture is separate from every Cubic result.
         fixture = safe_child(out, 'fixture'); fixture.mkdir()
         shutil.copyfile(package / 'Fixture.lean', fixture / 'Fixture.lean')
-        shutil.copyfile(package / 'FixtureProbe-v4.lean', fixture / 'Probe.lean')
+        shutil.copyfile(safe_child(package, pins['activeFixtureProbe']), fixture / 'Probe.lean')
         fixture_env = dict(env)
         fixture_env['LEAN_PATH'] = os.pathsep.join(map(str, [fixture] + roots))
         fixture_olean = fixture / 'Fixture.olean'
