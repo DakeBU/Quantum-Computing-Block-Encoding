@@ -358,6 +358,17 @@
       "anchor": "docs/lessons/hermite-regularity-cuts-and-stored-kernels.md S1-S14; original UTF-8 SHA256 b971e269ccf4f89dde39ba87eb385a9c6d200acb97d570738f2b5bbac85784fd",
       "scope": "Five complete fixed modules; 71 public lexical roots and four private helpers, all ambient byte scope. Exact finite-order regularity, formula transfer, exact-real comparison cut and explicitly conditional stored geometry/kernel tables.",
       "formal_status": "AUTHOR/WIP; retrospective local source, no independent source-to-formal acceptance, pre-proof chronology, historical independence, novelty, finite-bit computation, scientific ROOT, main admission or PURIFIED claim."
+    },
+    {
+      "id": "aspbe-local-concrete-primitive-reversible-semantics",
+      "title": "Finite state action, exact primitive circuits, and reversible address logic",
+      "authors": "Historical formalizer UNKNOWN; retrospective local AUTHOR-curator primitive-semantics-author-c28",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "docs/lessons/concrete-primitive-and-reversible-semantics.md sections 1-8; immutable source UTF-8 SHA256 696a9dce55a0ab9af6139b96ed8ba619fa0b946a0519bbe740cbdc58666e44b5",
+      "scope": "Three complete actual modules, 88 authored public lexical roots (25/55/8), all ambient bytes, no private named roots. Finite action/projection, exact phase-sensitive primitive semantics and reversible proof execution.",
+      "formal_status": "AUTHOR/WIP retrospective source only; no independent acceptance, historical identity assertion, pre-proof provenance, novelty, fresh build, main admission or PURIFIED claim."
     }
   ]
 }
