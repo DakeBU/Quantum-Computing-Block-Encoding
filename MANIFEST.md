@@ -8433,3 +8433,6 @@ block-encoding formalization lifecycle.
 | 2026-10-17 03:59:34 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c28-core-semantics-resume2-20261017 |
 | 2026-10-17 04:15:52 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c28-core-semantics-actual-review-20261017 |
 | 2026-10-17 04:34:50 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-cubic-source-checkpoint-20261017 |
+| 2026-10-17 04:50:30 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-independent-static-refinements-20261017 |
+| 2026-10-17 04:50:30 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-parent-fresh-import-layout-20261017 |
+| 2026-10-17 05:15:43 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-c30-independent-diagnostic-checkpoint-20261017 |

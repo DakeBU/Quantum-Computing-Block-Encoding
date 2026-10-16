@@ -98,6 +98,79 @@ class CubicCheckpointTests(unittest.TestCase):
         self.assertEqual(candidate['binding_sha256'], '5c23037871778ce883584e8aed865321c69ace57eff995915104a600253ff2bc')
         self.assertEqual(len(candidate['declarations']), 269)
 
+    def test_v2_transport_preserves_formal_input_and_original_manifest(self):
+        v2 = HERE/'metadata-v2'
+        self.assertEqual(digest(v2/'outputs-manifest.json'), '5e00c0cb2e0bb2faa74fdf9ae0d609db4fa67da1e1a479439fa2bd4f238de44d')
+        self.assertEqual((v2/'author-formal-context.json').read_bytes(), (HERE/'author-formal-context.json').read_bytes())
+        receipt = load(HERE/'parent-v2-transport-c29.json')
+        self.assertFalse(receipt['native_acceptance'])
+        self.assertEqual(len(receipt['files']), 20)
+        for row in receipt['files']:
+            self.assertEqual(digest(ROOT/row['path']), row['sha256'])
+        self.assertEqual(digest(HERE/'outputs-manifest.json'), '555194f534a537e7d68c450caa8605a3d4a2a37dc02d5ac39f97422b28d0fd0c')
+
+    def test_v2_prop_field_and_construction_case_boundaries(self):
+        v2 = HERE/'metadata-v2'
+        bundles = load(v2/'author-binder-definition-audit.json')['project_owned_bundle_expansions']
+        witness = next(b for b in bundles.values() if b['name'].endswith('.ExpandedControlledRyWorkspaceReadonlyWitness'))
+        angle = next(f for f in witness['field_audit'] if f['name']=='angleConvention')
+        self.assertEqual(angle['classification'], 'SOURCE')
+        self.assertEqual(len(angle['nested_logical_expansion']), 3)
+        for bundle in bundles.values():
+            for field in bundle['field_audit']:
+                self.assertIsNone(re.search(r'(?m)^(?:namespace|end|deriving)\b', field['exact_source_field_region']))
+        graph = load(v2/'author-graph-views.json')['views']['source-construction-graph']
+        self.assertNotIn('guarded_OR_cases', graph)
+        self.assertEqual(len(graph['typed_guarded_partitions']), 8)
+        self.assertEqual(len(graph['construction_alternatives']), 2)
+        routes = [e for e in graph['AND_hyperedges'] if e['id'].startswith('route:rank-one-')]
+        self.assertEqual(len(routes), 2)
+        for route in routes:
+            self.assertEqual(route['heads'], ['target:rank-one-physical'])
+            self.assertEqual(sum(t.startswith('OPEN:') for t in route['tails']), 6)
+            self.assertEqual(route['status'], 'OPEN_PROPOSED_SUFFICIENT_CONSTRUCTION_NOT_A_PROOF')
+
+    def test_independent_v2_static_resolution_is_not_native_acceptance(self):
+        reviewer = HERE/'reviewer-c29'
+        allow = load(reviewer/'phase2-v2-public-allowlist.json')
+        self.assertEqual(digest(reviewer/'phase2-v2-public-allowlist.json'), 'bb659badd04efa71d38c550c450b88a15c08d0e51a0d8f3bf08d07a2b6aa5dbc')
+        self.assertEqual(allow['new_static_result'], 'STATIC_METADATA_REFINEMENTS_RESOLVED')
+        self.assertFalse(allow['native_accepted'])
+        self.assertFalse(allow['Lean_pass_claim'])
+        self.assertFalse(allow['main_admission'])
+        for row in allow['allowed_artifacts']:
+            file = reviewer/row['path'].removeprefix('$REVIEWER/')
+            self.assertEqual(digest(file), row['sha256'])
+            self.assertEqual(file.stat().st_size, row['bytes'])
+
+    def test_later_transport_is_exact_and_not_acceptance(self):
+        receipt = load(HERE/'parent-later-transport-c29.json')
+        self.assertFalse(receipt['native_acceptance'])
+        self.assertFalse(receipt['Lean_success'])
+        self.assertEqual(len(receipt['reviewer_files']), 5)
+        self.assertEqual(len(receipt['resume1_files']), 6)
+        for row in receipt['reviewer_files'] + receipt['resume1_files']:
+            self.assertEqual(digest(ROOT/row['path']), row['sha256'])
+            self.assertEqual((ROOT/row['path']).stat().st_size, row['bytes'])
+        seal = load(HERE/'reviewer-c29/phase2-static-seal.json')
+        self.assertEqual(seal['phase'], 2)
+        self.assertEqual(seal['mode'], 'STATIC_ONLY')
+        self.assertIn('REFINEMENTS_REQUIRED', seal['state'])
+        report = (HERE/'reviewer-c29/phase2-static-report.md').read_text(encoding='utf-8')
+        for finding in ('F1', 'F2', 'F3', 'F4', 'F5'):
+            self.assertIn(finding, report)
+
+    def test_resume1_zero_lean_and_sanitized_phase1_not_raw_aliases(self):
+        summary = load(HERE/'decoder-c29/resume1/summary.json')
+        self.assertEqual(summary['leanInvocations'], 0)
+        self.assertEqual(summary['failureClass'], 'ENV_BLOCKED')
+        self.assertLess(summary['actualStartVirtualKiB'], summary['minimumVirtualKiB'])
+        allow = load(HERE/'reviewer-c29/public-sanitized-allowlist.json')
+        self.assertEqual(len(allow['original_phase1_bindings_retained']), 2)
+        for original in allow['original_phase1_bindings_retained']:
+            self.assertFalse(original['raw_public_export_allowed'])
+        self.assertEqual(digest(HERE/'reviewer-c29/sanitized-phase1-seal.json'), '54a5ed5be1ffed9adb8459fc4dd0d059c76ab290e240bc0cebc05c16ba935474')
+
     def test_exported_frozen_files_have_no_private_machine_path(self):
         pattern = re.compile(r'(?i)(?<![A-Za-z0-9])[a-z]:[\\/]|' + 'file:' + '///|/' + 'Users/|/' + 'home/')
         for receipt in ['parent-author-transport-c29.json', 'parent-decoder-initial-transport-c29.json']:
