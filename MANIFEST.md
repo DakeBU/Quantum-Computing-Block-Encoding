@@ -8432,3 +8432,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 03:43:19 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c27-hermite-substrate-actual-review-20261017 |
 | 2026-10-17 03:59:34 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c28-core-semantics-resume2-20261017 |
 | 2026-10-17 04:15:52 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c28-core-semantics-actual-review-20261017 |
+| 2026-10-17 04:34:50 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-cubic-source-checkpoint-20261017 |
