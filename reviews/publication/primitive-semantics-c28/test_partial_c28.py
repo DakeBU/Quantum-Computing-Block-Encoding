@@ -1,5 +1,6 @@
 """Assert genuine partial evidence, never turn OOM or missing files green."""
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import unittest
@@ -14,6 +15,60 @@ sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 
 
 class PartialC28(unittest.TestCase):
+    def test_author_wip_originals_and_lossless_coverage(self):
+        path = PACKET / "outputs-manifest.json"
+        self.assertEqual(sha(path), "1e238b21c3209fe3d4cf9e662c9bde1eaca6441529dce2e5e660e79dee236cd0")
+        manifest = read(path)
+        self.assertEqual(len(manifest["artifacts"]), 18)
+        self.assertFalse(manifest["independent_acceptance"])
+        for row in manifest["artifacts"]:
+            actual = ROOT / row["planned_canonical_path"]
+            self.assertEqual(sha(actual), row["sha256"])
+            self.assertEqual(actual.stat().st_size, row["bytes"])
+        coverage = read(PACKET / "author-source-coverage.json")
+        paragraphs = coverage["source_paragraphs"]
+        self.assertEqual(len(paragraphs), 39)
+        self.assertEqual("".join(p["exact_text"] for p in paragraphs).encode(), (PACKET / "source-only.md").read_bytes())
+        self.assertEqual(len(coverage["whole_module_inventory"]), 88)
+        source_graph = read(PACKET / "author-graph-views.json")["views"]["source-construction-graph"]
+        self.assertEqual(len(source_graph["AND_hyperedges"]), 23)
+        self.assertEqual(len(source_graph["open_source_gap_ids"]), 7)
+        nodes = {n["id"] for n in source_graph["nodes"]}
+        for edge in source_graph["AND_hyperedges"]:
+            self.assertEqual(edge["logic"], "AND")
+            self.assertTrue(set(edge["tails"] + edge["heads"]) <= nodes)
+
+    def test_actual_static_delivery_excludes_decoder_and_compiler(self):
+        path = PACKET / "static-review-inputs-c28.json"
+        self.assertEqual(sha(path), "f8a52c1757c243ec9ab4b9521ace7522ee902a08c0e55c97264cc4222c9ba12b")
+        packet = read(path)
+        self.assertEqual(len(packet["input_sha256"]), 31)
+        self.assertFalse(packet["main_reader_purification_scientific_ROOT"])
+        for name, expected in packet["input_sha256"].items():
+            self.assertNotIn("/decoder-c28", name)
+            self.assertNotIn("parent-partial-transport", name)
+            self.assertEqual(sha(ROOT / name), expected)
+
+    def test_prospective_bindings_replay_without_admission(self):
+        spec = importlib.util.spec_from_file_location("c28_prospective", ROOT / "website/scripts/check_research_publications.py")
+        checker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(checker)
+        source = read(PACKET / "author-source-row-candidate.json")["source"]
+        catalog = read(ROOT / "website/research/sources.json")
+        own = [row for row in catalog["sources"] if row["id"] == source["id"]]
+        if own:
+            self.assertEqual(own, [source])
+        else:
+            catalog["sources"].append(source)
+        original = checker.load
+        with patch.object(checker, "load", lambda root, name: catalog if name == "website/research/sources.json" else original(root, name)):
+            for path in read(PACKET / "static-review-inputs-c28.json")["candidate_paths"]:
+                record = read(ROOT / path)
+                self.assertEqual(checker.binding_digest(ROOT, record), record["binding_sha256"])
+                self.assertEqual(record["status"], "PARENT_PROPOSAL_WIP_NOT_ADMITTED")
+                self.assertIn("/decoder-c28/", record["decoder_evidence"])
+                self.assertIn("/reviewer-c28/", record["reviewer_evidence"])
+
     def test_all_actual_public_bytes(self):
         path = PACKET / "parent-partial-transport.json"
         self.assertEqual(sha(path), "3451bdd118862f32ba12bbf701bec1e429e995244b08f20e2881f944074771df")
