@@ -8446,3 +8446,5 @@ block-encoding formalization lifecycle.
 | 2026-10-17 06:40:20 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-actual-ci3-full-generated-and-omission-20261017 |
 | 2026-10-17 06:40:21 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-v3-v4-independent-static-correction-20261017 |
 | 2026-10-17 06:40:21 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-two-signatures-only-ci-supplement-20261017 |
+| 2026-10-17 07:01:01 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-actual-two-type-signatures-20261017 |
+| 2026-10-17 07:01:01 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-native-isolated-profile-ci-20261017 |
