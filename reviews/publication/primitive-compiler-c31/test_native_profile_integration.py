@@ -11,7 +11,12 @@ class NativeProfileIntegrationTests(unittest.TestCase):
     def test_exact_original_package_and_parent_transport(self):
         receipt=load(ROOT/'reports/lean-433-migration/c31-native-profile-integration.json')
         for row in receipt['files']:
-            self.assertEqual(sha(ROOT/row['path']),row['sha256'])
+            # The old receipt is immutable history. Its sole changed file has
+            # an exact retained predecessor plus a separately tested successor.
+            path=row['path']
+            if path=='.github/workflows/c31-native-diagnostic.yml':
+                path='tools/primitive_compiler_native_profile_ci2/workflow-before-ci2.yml.txt'
+            self.assertEqual(sha(ROOT/path),row['sha256'])
         package=ROOT/'tools/primitive_compiler_native_profile_v1'
         manifest=load(package/'proposal-bindings.json')
         for name,digest in manifest['files'].items():self.assertEqual(sha(package/name),digest)
@@ -19,12 +24,49 @@ class NativeProfileIntegrationTests(unittest.TestCase):
         self.assertEqual(len(profile['roots']),87)
         for name,digest in profile['projectInputs'].items():self.assertEqual(sha(ROOT/name),digest)
 
-    def test_optional_workflow_exact_three_scope_edits_only(self):
+    def test_optional_workflow_original_and_exact_ci2_successor_only(self):
         package=ROOT/'tools/primitive_compiler_native_profile_v1'
         original=(package/'c31-native-diagnostic.workflow.PROPOSAL.yml').read_text()
         expected=original.replace('# PROPOSAL ONLY: parent review/integration required. Not an installed workflow.','# Optional WIP diagnostic; not a required scientific acceptance gate.').replace('name: C31 three-module fresh native diagnostic proposal','name: C31 three-module fresh native diagnostic WIP').replace('    paths:\n',"    paths:\n      - '.github/workflows/c31-native-diagnostic.yml'\n")
-        self.assertEqual((ROOT/'.github/workflows/c31-native-diagnostic.yml').read_text(),expected)
+        predecessor=ROOT/'tools/primitive_compiler_native_profile_ci2/workflow-before-ci2.yml.txt'
+        self.assertEqual(predecessor.read_text(),expected)
+        replacements=[
+            ("      - 'tools/primitive_compiler_native_profile_v1/**'\n", "      - 'tools/primitive_compiler_native_profile_v1/**'\n      - 'tools/primitive_compiler_native_profile_ci2/**'\n"),
+            ("      - name: Set up pinned Lean and inherited dependency caches\n", "      - name: CI2 finite resource gate negative and Python-only tests\n        run: python3 -B -m unittest discover -s tools/primitive_compiler_native_profile_ci2 -p 'test*.py' -v\n      - name: Set up pinned Lean and inherited dependency caches\n"),
+            ('        run: lake env python3 tools/primitive_compiler_native_profile_v1/runner.py\n', '        run: lake env python3 -B tools/primitive_compiler_native_profile_ci2/runner_v2.py\n'),
+        ]
+        receipt=load(ROOT/'reports/lean-433-migration/c31-ci2-native-integration.json')
+        self.assertEqual(receipt['workflow_delta'],[dict(before=a,after=b) for a,b in replacements])
+        for before,after in replacements:
+            self.assertEqual(expected.count(before),1)
+            expected=expected.replace(before,after)
+        current=ROOT/'.github/workflows/c31-native-diagnostic.yml'
+        self.assertEqual(current.read_text(),expected)
+        self.assertEqual(sha(current),receipt['workflow_after_sha256'])
         self.assertIn('contents: read',expected);self.assertIn('cancel-in-progress: false',expected)
+
+    def test_ci2_exact_proposal_transport_and_finite_boundary(self):
+        attributes=(ROOT/'.gitattributes').read_text()
+        self.assertIn('tools/primitive_compiler_native_profile_v1/** -text',attributes)
+        self.assertIn('tools/primitive_compiler_native_profile_ci2/** -text',attributes)
+        receipt=load(ROOT/'reports/lean-433-migration/c31-ci2-native-integration.json')
+        for row in receipt['files']:
+            self.assertEqual(sha(ROOT/row['path']),row['sha256'])
+        package=ROOT/'tools/primitive_compiler_native_profile_ci2'
+        seal=load(package/'ci2-seal.json')
+        self.assertEqual(sha(package/'ci2-seal.json'),'373c06cc36e7f043cad97b323f8f6eea15e170f310cf8aa3a17dd9b57a6d430c')
+        self.assertEqual(sha(package/'ci2-bindings.json'),seal['ci2ManifestSHA256'])
+        for name,digest in load(package/'ci2-bindings.json')['files'].items():
+            self.assertEqual(sha(package/name),digest)
+        self.assertEqual((receipt['budget_mib'],receipt['reserve_mib'],receipt['minimum_measured_headroom_mib']),(5120,2048,7168))
+        self.assertEqual(receipt['parent_tests']['tests_run'],20)
+        self.assertEqual(receipt['parent_tests']['exit_code'],0)
+        self.assertFalse(receipt['old_local_gate_changed'])
+        self.assertFalse(receipt['required_workflows_changed'])
+        self.assertFalse(receipt['trusted_verifier_changed'])
+        self.assertFalse(receipt['nativeAccepted'])
+        self.assertFalse(receipt['scientific_ROOT'])
+        self.assertIsNone(receipt['sourceAgreement'])
 
     def test_actual_python_is_not_native_and_local_gate_failure_is_environment(self):
         receipt=load(ROOT/'reports/lean-433-migration/c31-native-profile-integration.json')

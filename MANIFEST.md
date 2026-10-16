@@ -8448,3 +8448,7 @@ block-encoding formalization lifecycle.
 | 2026-10-17 06:40:21 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-two-signatures-only-ci-supplement-20261017 |
 | 2026-10-17 07:01:01 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-actual-two-type-signatures-20261017 |
 | 2026-10-17 07:01:01 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-native-isolated-profile-ci-20261017 |
+| 2026-10-17 07:28:04 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-actual-ci1-internal-memory-failure-20261017 |
+| 2026-10-17 07:28:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-ci2-finite-measured-memory-successor-20261017 |
+| 2026-10-17 07:28:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c32-source-blind-static-whole-three-module-packet-20261017 |
+| 2026-10-17 07:36:17 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-final-actual-independent-source-review-native-blocker-20261017 |

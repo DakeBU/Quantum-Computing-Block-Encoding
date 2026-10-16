@@ -30,3 +30,7 @@ reports/lean-433-migration/*.json -text
 lakefile.lean -text
 website/scripts/check_research_publications.py -text
 reports/lean-433-migration/*.md -text
+
+# Frozen optional diagnostic packages must retain manifest-bound raw bytes.
+tools/primitive_compiler_native_profile_v1/** -text
+tools/primitive_compiler_native_profile_ci2/** -text
