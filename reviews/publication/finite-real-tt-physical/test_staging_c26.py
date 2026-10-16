@@ -220,5 +220,65 @@ class C26Staging(unittest.TestCase):
             self.assertIn("/reviewer-c26r/", proposed["reviewer_evidence"])
 
 
+    def test_joint_static_seal_precedes_actual_final_decoder_delivery(self):
+        seal_path = PACKET / "reviewer-c26r/phase2-static-seal.json"
+        self.assertEqual(digest(seal_path), "fc8c22e47585c41450bf978a3515b5c98dcab15c655d56971adb3c773160b107")
+        seal = read(seal_path)
+        self.assertTrue(seal["chronology"]["decoder_and_compile_delivery_not_yet_read"])
+        self.assertEqual(seal["comparison_report"]["sha256"], digest(PACKET / "reviewer-c26r/phase2-static-comparison.md"))
+        self.assertEqual(seal["static_input_packet"]["sha256"], digest(PACKET / "static-review-inputs-c26r.json"))
+        final = PACKET / "final-review-inputs-c26r.json"
+        self.assertEqual(digest(final), "2548f8727f1dbdad173bfe4550c28c8bf23f6d5b0f1ceb8af5cbc1c7c19e2107")
+        data = read(final)
+        self.assertEqual(data["role"], "PARENT_DELIVERY_NOT_A_REVIEW_OR_ACCEPTANCE")
+        self.assertEqual(len(data["input_sha256"]), 53)
+        for name, expected in data["input_sha256"].items():
+            self.assertEqual(digest(ROOT / name), expected)
+        self.assertEqual(len(data["native_decoder"]), 3)
+        self.assertFalse(seal["acceptance_boundary"]["accepted_publication_review"])
+
+
+    def test_actual_final_distinct_reviewer_and_three_canonical_records(self):
+        path = PACKET / "reviewer-c26r/final-review-seal.json"
+        self.assertEqual(digest(path), "137138132a8066ee688422acec86eac8add16432a5b29541217ee1f89cf82013")
+        seal = read(path)
+        self.assertEqual(seal["verdict"], "accepted")
+        self.assertTrue(seal["chronology"]["joint_static_frozen_before_decoder_compile_delivery"])
+        self.assertFalse(seal["chronology"]["historical_worker_impersonated_or_old_final_seal_fabricated"])
+        for item in seal["final_outputs"]:
+            self.assertEqual(digest(ROOT / item["path"]), item["sha256"])
+        records = {r["module"]: r for r in read(ROOT / "website/research/publications.json")["records"]}
+        for slug in ("local-compiler", "word", "primitive-preparation"):
+            reviewer = read(PACKET / ("reviewer-c26r/" + slug + "-evidence.json"))
+            proposal = read(PACKET / ("parent-proposal-" + slug + "-c26r.json"))
+            self.assertEqual(reviewer["identity"], "tt-physical-source-review-c26r")
+            self.assertEqual(reviewer["role"], "reviewer")
+            self.assertEqual(reviewer["binding_sha256"], proposal["binding_sha256"])
+            self.assertEqual(reviewer["decoder_evidence_sha256"], digest(ROOT / proposal["decoder_evidence"]))
+            self.assertEqual(reviewer["packet_sha256"], digest(ROOT / reviewer["packet_path"]))
+            self.assertEqual(reviewer["artifact_sha256"], digest(ROOT / reviewer["artifact_path"]))
+            self.assertTrue(reviewer["anti_anchored"])
+            self.assertEqual(set(reviewer["semantic_slots"]), {"target", "normalization", "registers", "oracles", "ancillas_phases", "error_success", "resources"})
+            self.assertTrue(all(reviewer["semantic_slots"].values()))
+            current = records[proposal["module"]]
+            self.assertEqual(current["reviewer_evidence"], proposal["reviewer_evidence"])
+            self.assertEqual(current["status"], "SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING")
+            self.assertFalse(current["main_admission"])
+            self.assertFalse(current["scientific_ROOT"])
+
+    def test_missing_actual_new_reviewer_evidence_is_rejected(self):
+        spec = importlib.util.spec_from_file_location("c26_missing_reviewer", ROOT / "website/scripts/check_research_publications.py")
+        checker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(checker)
+        inventory = {x["fullName"]: x for x in read(ROOT / "web/library/declarations.json")["declarations"]}
+        record = next(r for r in read(ROOT / "website/research/publications.json")["records"]
+                      if r["module"] == "QuantumBlockEncoding/TensorTrainWord.lean")
+        original = Path.is_file
+        absent = ROOT / record["reviewer_evidence"]
+        with patch.object(Path, "is_file", lambda path: False if path == absent else original(path)):
+            with self.assertRaises(ValueError):
+                checker.validate_record(ROOT, record, inventory)
+
+
 if __name__ == "__main__":
     unittest.main()

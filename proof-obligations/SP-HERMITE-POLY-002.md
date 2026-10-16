@@ -1083,3 +1083,48 @@ arithmetic-model supplier, not complete preprocessing or finite-bit synthesis.
 C22 consumption, full source-to-stored-chain production, precision/stability,
 physical synthesis and independent family executable acceptance remain open.
 There is no newly closed Hermite ROOT and no mathematical-impossibility claim.
+
+The next five-module substrate now has a frozen formal-only reconstruction,
+five fresh actual-source Lean 4.33 compilations and successful final type/axiom
+outputs for all 71 public plus four private named roots. Parent integrity checks
+match the current whole-module inventory and 57 inherited source/olean pairs;
+seven staging tests pass. See the [WIP transport](../reviews/publication/hermite-substrate-c27/parent-wip-transport.json).
+This is not clean-transitive evidence or source-equivalence acceptance. A distinct
+source-first reader has frozen its independent S1-S14 mathematical reconstruction;
+actual formal/author-metadata comparison remains pending.
+
+All 14 proof/probe calls include three failed diagnostic assemblies, with total
+wall time 318.701 seconds and failed-call time 59.432 seconds. These are not failed
+production theorems or mathematical obstructions. The first failed partial stdout
+was reused by the original decoder; its surviving error/tool evidence and this
+limitation are disclosed, not described as a complete retained raw failure log.
+The local child geometry still costs 70 selected counters plus four separately
+counted natural additions. Local kernel-table assembly consumes two already
+stored records satisfying seven source clauses each; it is not their producer.
+Source-data production, finite-bit error/synthesis, scientific ROOT, main and
+reader/purification gates remain open.
+
+### Cycle 26: physical tensor-train whole-module review registered
+
+The actual new source-first reviewer has accepted the final source/formal/
+original-decoder comparison for the entire LocalCompiler, Word and Primitive-
+Preparation cohort (10/12/15 public roots). The original decoder and the new
+reviewer each authored their own native evidence. The new review preserves its
+source-only -> joint static -> separately delivered decoder/compilation order;
+the unavailable old reviewer's missing final seal was not fabricated.
+See the [final independent review](../reviews/publication/finite-real-tt-physical/reviewer-c26r/final-review.md).
+
+All 15 actual canonical records now validate against the unchanged checker and
+current ambient sources. The aggregate gate still fails closed on 36 of 51
+changed production modules. Fourteen c26 packet tests, seven c27 staging tests
+and 46 publication/atlas/raw-Git-transport regressions pass, including missing
+actual decoder/reviewer/output rejection. The proof-input digest remains
+`5a8f47f8d0afd1d4f957e55babde52a9e9c01babf05c481b988e99ebca2f7758`.
+
+This is SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING. Exact-real finite instruction
+lists, full signed state action and scalar-terminal cleanup do not supply the
+missing deterministic preprocessing, finite-bit synthesis/error or scientific
+family certificate. Main remains 4.29.1; no main/reader/PURIFIED or Hermite ROOT
+closure is inferred. The frozen author recipe's eleven-versus-twelve selected-
+field wording discrepancy is explicitly retained as nonblocking prose debt;
+neither the checker nor any original frozen evidence was edited to conceal it.

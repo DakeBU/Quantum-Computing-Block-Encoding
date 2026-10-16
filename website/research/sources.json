@@ -336,6 +336,17 @@
       "anchor": "docs/lessons/finite-real-tensor-train-canonicalization-and-gram.md sections S1-S8; exact UTF-8 source SHA256 895ec97fe7e95146ec8d374bdcbecf4edbf40ff7e787135d032e376841d773b7",
       "scope": "Whole fixed TensorTrainCanonical and TensorTrainNormEnvironment modules: 33+15 public inventory roots, plus named finite-word instance and complete ambient source. Exact-real existence/local semantics/full-terminal Gram and syntactic 9*n*D^3 budget only.",
       "formal_status": "AUTHOR/WIP retrospective local source; independent review and canonical admission pending. Not pre-proof, historical independence, novelty, physical cost, or scientific ROOT evidence."
+    },
+    {
+      "id": "aspbe-local-finite-real-tt-physical-preparation",
+      "title": "Finite real tensor trains on explicitly ordered circuit wires",
+      "authors": "Historical formalizer UNKNOWN; retrospective local author-curator migration_minimal_delta_audit_c24/c26",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "docs/lessons/finite-real-tt-primitive-preparation-and-word-order.md S1-S10; original UTF-8 SHA256 d71f16da026938debcd024d6f2fa9fa9268ade2096b5854a030d2065828b315d",
+      "scope": "Whole fixed local compiler, word adapter and primitive preparation modules: 10/12/15 public inventory roots and complete target ambient scope. Exact real bounded lists, signed boundary absorption, public wire reversal and scalar terminal cleanup; stronger consumers remain explicit.",
+      "formal_status": "AUTHOR/WIP retrospective local source; no source-to-formal verdict, pre-proof, historical independence, novelty, finite-bit preprocessing or scientific ROOT claim."
     }
   ]
 }

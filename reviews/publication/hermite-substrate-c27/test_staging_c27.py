@@ -1,0 +1,184 @@
+"""Actual frozen c27 evidence checks; not source or publication acceptance."""
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import re
+import unittest
+from unittest.mock import patch
+
+PACKET = Path(__file__).resolve().parent
+ROOT = PACKET.parents[2]
+DECODER = PACKET / "decoder-c27r"
+MODULES = ("HermiteSmoothness", "HermiteTransferCores", "HermiteBinaryCutoff",
+           "StoredHermiteChildGeometry", "StoredHermiteKernelTable")
+read = lambda path: json.loads(path.read_text(encoding="utf-8"))
+digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+class C27Staging(unittest.TestCase):
+    def test_actual_byte_exact_wip_transport(self):
+        path = PACKET / "parent-wip-transport.json"
+        self.assertEqual(digest(path), "ff492209ba667c98e850b5cbd3729838ef1a4d87f8b2713e2f6939379e48e1fe")
+        items = read(path)["artifacts"]
+        self.assertEqual(len(items), 14)
+        for item in items:
+            target = ROOT / item["path"]
+            self.assertTrue(target.is_file(), item["path"])
+            self.assertEqual(digest(target), item["sha256"])
+            self.assertEqual(target.stat().st_size, item["bytes"])
+
+    def test_all_actual_source_and_inherited_project_bindings(self):
+        seal = read(DECODER / "initial-seal.json")
+        self.assertEqual(digest(DECODER / "initial-seal.json"), "581f718b18b559d60bc1bf7f3dae87e9bea35e893ca050a431868cf98edde783")
+        self.assertEqual(len(seal["inputs"]), 57)
+        for name, value in seal["inputs"].items():
+            source = ROOT / (name.replace(".", "/") + ".lean")
+            artifact = ROOT / ".lake/build/lib/lean" / (name.replace(".", "/") + ".olean")
+            self.assertEqual(digest(source), value["source_sha256"])
+            self.assertEqual(source.stat().st_size, value["source_bytes"])
+            self.assertEqual(digest(artifact), value["inherited_olean_sha256"])
+        for name, expected in seal["configuration"].items():
+            self.assertEqual(digest(ROOT / name), expected)
+
+    def test_current_inventory_equals_all_71_public_and_four_private_roots(self):
+        seal = read(DECODER / "initial-seal.json")
+        summary = read(DECODER / "verification-summary.json")
+        catalog = read(ROOT / "web/library/declarations.json")["declarations"]
+        counts = []
+        private = []
+        for name in MODULES:
+            prefix = "QuantumBlockEncoding." + name
+            declarations = seal["inputs"][prefix]["inventory"]["declarations"]
+            public = {prefix + "." + row["name"] for row in declarations if not row["private"]}
+            private.extend(row for row in declarations if row["private"])
+            actual = {row["fullName"] for row in catalog if row["source"] == prefix.replace(".", "/") + ".lean"}
+            self.assertEqual(public, actual)
+            self.assertEqual(public, set(summary["evidence"][name]["public_roots"]))
+            counts.append(len(public))
+        self.assertEqual(counts, [12, 10, 9, 24, 16])
+        self.assertEqual(len(private), 4)
+
+    def test_all_75_real_axiom_reports_are_successful_and_ordinary(self):
+        summary = read(DECODER / "verification-summary.json")
+        seen = {}
+        for name in MODULES:
+            info = summary["evidence"][name]
+            log = DECODER / ("Probe" + name + ".public.log")
+            self.assertEqual(digest(log), info["public_log_sha256"])
+            raw = log.read_text(encoding="utf-8")
+            reports = dict(re.findall(r"'([^']+)' depends on axioms: \[([^]]*)\]", raw, re.S))
+            # Lean explicitly prints this different successful result for the
+            # axiom-free Flags/ChildRun structure types. Missing output is not
+            # interpreted as an empty axiom set.
+            reports.update({name: "" for name in re.findall(r"'([^']+)' does not depend on any axioms", raw)})
+            self.assertEqual(set(reports), set(info["public_roots"]))
+            for root, axioms in reports.items():
+                self.assertRegex(raw, re.compile(r"^" + re.escape(root) + r"(?:\s|\()", re.M))
+                self.assertEqual(re.sub(r"\s+", "", axioms), re.sub(r"\s+", "", info["axioms"][root]))
+            seen.update(reports)
+        raw = (DECODER / "ProbePrivateRoots.public.log").read_text(encoding="utf-8")
+        reports = dict(re.findall(r"'([^']+)' depends on axioms: \[([^]]*)\]", raw, re.S))
+        self.assertEqual(set(reports), set(summary["private_root_axioms"]))
+        self.assertEqual(len(reports), 4)
+        seen.update(reports)
+        self.assertEqual(len(seen), 75)
+        for axioms in seen.values():
+            names = {re.sub(r"\.\{[^}]*\}", "", x.strip()) for x in axioms.split(",") if x.strip()}
+            self.assertTrue(names <= {"propext", "Classical.choice", "Quot.sound"}, names)
+
+    def test_failures_and_nonclean_trust_boundary_not_relabelled(self):
+        summary = read(DECODER / "verification-summary.json")
+        self.assertEqual(len(summary["lean_calls"]), 14)
+        self.assertEqual(summary["actual_source_compile_count"], 5)
+        self.assertEqual(summary["successful_public_probe_count"], 5)
+        self.assertEqual(summary["successful_private_probe_count"], 1)
+        self.assertEqual(summary["failed_probe_count"], 3)
+        self.assertEqual(sum(x["exit_code"] != 0 for x in summary["lean_calls"]), 3)
+        self.assertFalse(summary["all_calls_exit_zero"])
+        self.assertTrue(summary["latest_each_target_exit_zero"])
+        self.assertTrue(summary["latest_private_probe_exit_zero"])
+        self.assertFalse(summary["clean_transitive_rebuild"])
+        self.assertIsNone(summary["sourceAgreement"])
+        self.assertIsNone(summary["opaqueAuthorPacketBinding"])
+        self.assertTrue(all(x["exit_code"] == 0 for x in summary["lean_calls"] if x["name"] in MODULES))
+        self.assertGreater(summary["failed_probe_wall_seconds"], 59)
+        for pattern in summary["private_boundary"]:
+            self.assertEqual(list(DECODER.glob(pattern)), [])
+
+    def test_source_only_review_precedes_formal_exposure(self):
+        seal = read(PACKET / "reviewer-c27r/phase1-seal.json")
+        self.assertEqual(digest(PACKET / "reviewer-c27r/phase1-seal.json"), "e59d43f1a64077be1968b82fc8e69e5740b482525f36899e2ab622318391ac8b")
+        self.assertEqual(digest(PACKET / "reviewer-c27r/source-only-notes.md"), seal["notes"]["sha256"])
+        self.assertEqual(digest(PACKET / "source-only.md"), seal["source"]["sha256"])
+        for name in ("implementation_lean_read", "author_mapping_read", "decoder_read", "previous_review_read", "compile_or_cache_results_read"):
+            self.assertFalse(seal["exposure"][name])
+        self.assertFalse(seal["formal_review"]["implementation_accepted"])
+
+    def test_missing_bound_file_is_not_green(self):
+        original = Path.is_file
+        absent = DECODER / "ProbePrivateRoots.public.log"
+        with patch.object(Path, "is_file", lambda path: False if path == absent else original(path)):
+            result = unittest.TestResult()
+            C27Staging("test_actual_byte_exact_wip_transport").run(result)
+        self.assertEqual(len(result.failures), 1)
+        self.assertEqual(result.errors, [])
+
+
+    def test_frozen_author_metadata_and_complete_lossless_coverage(self):
+        path = PACKET / "outputs-manifest.json"
+        self.assertEqual(digest(path), "312e432c61f9e7cbdbe1b0dbc4b9ee1e7ffb5c906eaad742fc3e8804f32b3e55")
+        items = read(path)["artifacts"]
+        self.assertEqual(len(items), 21)
+        for row in items:
+            actual = ROOT / row["planned_canonical_path"]
+            self.assertEqual(digest(actual), row["sha256"])
+            self.assertEqual(actual.stat().st_size, row["bytes"])
+        coverage = read(PACKET / "author-source-coverage.json")
+        paragraphs = coverage["source_paragraphs"]
+        self.assertEqual(len(paragraphs), 102)
+        self.assertEqual("".join(p["exact_text"] for p in paragraphs).encode(), (PACKET / "source-only.md").read_bytes())
+        self.assertEqual(len(coverage["whole_module_inventory"]), 75)
+        graph = read(PACKET / "author-graph-views.json")["views"]["source-construction-graph"]
+        self.assertEqual(len(graph["AND_hyperedges"]), 22)
+        nodes = {n["id"]: n for n in graph["nodes"]}
+        for edge in graph["AND_hyperedges"]:
+            self.assertEqual(edge["logic"], "AND")
+            self.assertTrue(set(edge["tails"] + edge["heads"]) <= nodes.keys())
+        gaps = {name for name, row in nodes.items() if row["kind"] == "SOURCE_GAP"}
+        self.assertEqual(gaps, set(graph["open_source_gap_ids"]))
+        self.assertEqual(len(gaps), 6)
+
+    def test_actual_static_inputs_and_prospective_binding_replay_only(self):
+        path = PACKET / "static-review-inputs-c27r.json"
+        self.assertEqual(digest(path), "e7a03dfdcd050fdc2396c3d6cb216c80bae9711d8006f79a67728486e6bc1d4d")
+        packet = read(path)
+        self.assertEqual(len(packet["input_sha256"]), 38)
+        for name, expected in packet["input_sha256"].items():
+            self.assertNotIn("/decoder-c27r/", name)
+            self.assertEqual(digest(ROOT / name), expected)
+        self.assertFalse(packet["main_reader_purification_scientific_ROOT"])
+        spec = importlib.util.spec_from_file_location("c27_prospective_digest", ROOT / "website/scripts/check_research_publications.py")
+        checker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(checker)
+        original_load = checker.load
+        source = read(PACKET / "author-source-row-candidate.json")["source"]
+        catalog = read(ROOT / "website/research/sources.json")
+        owned = [row for row in catalog["sources"] if row["id"] == source["id"]]
+        if owned:
+            self.assertEqual(owned, [source])
+        else:
+            catalog["sources"].append(source)
+        # Prospective input-data overlay only; the checker function is unchanged
+        # and no canonical row, verifier or acceptance evidence is written here.
+        with patch.object(checker, "load", lambda root, name: catalog if name == "website/research/sources.json" else original_load(root, name)):
+            for name in packet["candidate_paths"]:
+                record = read(ROOT / name)
+                self.assertEqual(checker.binding_digest(ROOT, record), record["binding_sha256"])
+                self.assertEqual(record["status"], "PARENT_PROPOSAL_WIP_NOT_ADMITTED")
+                self.assertIn("/decoder-c27r/", record["decoder_evidence"])
+                self.assertIn("/reviewer-c27r/", record["reviewer_evidence"])
+
+
+if __name__ == "__main__":
+    unittest.main()
