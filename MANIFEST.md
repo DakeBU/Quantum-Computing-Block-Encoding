@@ -8429,3 +8429,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 02:41:24 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c26r-source-first-static-20261017 |
 | 2026-10-17 02:54:22 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c27-hermite-substrate-decoder-20261017 |
 | 2026-10-17 02:58:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c26-physical-tt-whole-module-20261017 |
+| 2026-10-17 03:43:19 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c27-hermite-substrate-actual-review-20261017 |

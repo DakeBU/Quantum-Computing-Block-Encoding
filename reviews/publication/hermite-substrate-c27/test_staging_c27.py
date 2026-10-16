@@ -17,6 +17,49 @@ digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class C27Staging(unittest.TestCase):
+    def test_actual_final_reviewer_and_native_outputs(self):
+        folder = PACKET / "reviewer-c27r"
+        self.assertEqual(digest(folder / "final-review-seal.json"), "0c342b16bf2f8c766f57d9215200dab44c88f57916fb5da2284d3f035c82d966")
+        seal = read(folder / "final-review-seal.json")
+        self.assertEqual(seal["verdict"], "accepted")
+        self.assertTrue(seal["anti_anchored"])
+        self.assertEqual(digest(folder / "final-review.md"), seal["final_artifact"]["sha256"])
+        self.assertEqual(len(seal["native_reviewer_records"]), 5)
+        for row in seal["native_reviewer_records"]:
+            path = ROOT / row["planned_repository_path"]
+            self.assertEqual(digest(path), row["sha256"])
+            evidence = read(path)
+            self.assertEqual(evidence["identity"], "hermite_substrate_source_review_c27r")
+            self.assertEqual(evidence["role"], "reviewer")
+            self.assertEqual(evidence["verdict"], "accepted")
+            self.assertEqual(evidence["binding_sha256"], row["binding_sha256"])
+            self.assertEqual(digest(ROOT / evidence["decoder_evidence_path"]), row["decoder_evidence_sha256"])
+            self.assertEqual(set(evidence["semantic_slots"]), {"target", "normalization", "registers", "oracles", "ancillas_phases", "error_success", "resources"})
+        self.assertTrue(all(value is False for value in seal["no_expansive_acceptance"].values()))
+
+    def test_canonical_records_validate_with_unchanged_checker(self):
+        spec = importlib.util.spec_from_file_location("c27_actual_checker", ROOT / "website/scripts/check_research_publications.py")
+        checker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(checker)
+        inventory = {row["fullName"]: row for row in read(ROOT / "web/library/declarations.json")["declarations"]}
+        records = read(ROOT / "website/research/publications.json")["records"]
+        wanted = {"QuantumBlockEncoding/" + name + ".lean" for name in MODULES}
+        self.assertEqual({row["module"] for row in records if row["module"] in wanted}, wanted)
+        for record in records:
+            checker.validate_record(ROOT, record, inventory)
+
+    def test_missing_actual_reviewer_is_rejected_by_original_checker(self):
+        spec = importlib.util.spec_from_file_location("c27_missing_checker", ROOT / "website/scripts/check_research_publications.py")
+        checker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(checker)
+        inventory = {row["fullName"]: row for row in read(ROOT / "web/library/declarations.json")["declarations"]}
+        record = next(row for row in read(ROOT / "website/research/publications.json")["records"] if row["module"] == "QuantumBlockEncoding/HermiteSmoothness.lean")
+        absent = ROOT / record["reviewer_evidence"]
+        original = Path.is_file
+        with patch.object(Path, "is_file", lambda path: False if path == absent else original(path)):
+            with self.assertRaises(ValueError):
+                checker.validate_record(ROOT, record, inventory)
+
     def test_actual_final_delivery_and_late_same_decoder_binding(self):
         path = PACKET / "final-review-inputs-c27r.json"
         self.assertEqual(digest(path), "c9cbbb4fd852053d4ef7090bc51d3fde377f0ed87355a1b72d33528ea0418c39")
