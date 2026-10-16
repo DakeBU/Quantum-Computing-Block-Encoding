@@ -1047,3 +1047,39 @@ PURIFIED or scientific ROOT acceptance. This retrospective exact-real cut-rank
 explanation certifies no new physical/finite-bit/resource algorithm and supplies
 no complete poly(n_p) state-preparation route. No target, scoring, champion,
 production source, original frozen artifact or historical failure was modified.
+
+### Cycle 25-27: migration and review frontier, 17 October 2026
+
+The Canonical/Norm pair has genuine distinct decoder and source-first reviewer
+acceptance for its bounded whole-module contracts. Twelve current publication
+records validate; the aggregate gate still correctly fails on 39 of 51 changed
+production modules. See the
+[paired independent review](../reviews/publication/finite-real-tensor-train/reviewer-c25/final-review.md).
+The contribution uses Lean 4.33.0, while fetched main remains Lean 4.29.1 at
+`f2cba045611a0d11c5995c29607569726bf1d6c5`. PR #86 is still a draft, not a
+completed migration. Its current contracts check fails at changed-module
+publication evidence, not at authored-contract or process-memory validation.
+
+The unchanged-content-bound standard
+[Lean gate](../reports/lean-433-migration/c25-cf77-lean-gate.json) records
+`lake build`, `lake build Tests`, and all 202 discovered module targets passing
+under Lean 4.33.0. These are incremental builds with inherited provider artifacts,
+not a clean transitive rebuild, independent semantic acceptance, or a new
+scientific resource certificate.
+
+The next three-module physical TT packet has three fresh target compiles and
+37 successful signature/ordinary-axiom probes from its original independent
+decoder. Its source, author metadata and native decoder evidence are preserved
+in the [WIP packet](../reviews/publication/finite-real-tt-physical/). The previous
+reviewer left source-only and static-comparison work, but no final joint seal was
+found after the worker became unavailable. That work is retained, not relabelled
+as accepted. A new distinct source-first reviewer is checking this packet before
+canonical admission; its result must not be attributed to the old run.
+
+The following five-module Hermite substrate batch is under separate source
+curation and formal-only decoding. Neither batch changes the frozen scientific
+target. C23's computable rational coefficient-cache result remains a bounded
+arithmetic-model supplier, not complete preprocessing or finite-bit synthesis.
+C22 consumption, full source-to-stored-chain production, precision/stability,
+physical synthesis and independent family executable acceptance remain open.
+There is no newly closed Hermite ROOT and no mathematical-impossibility claim.

@@ -183,5 +183,42 @@ class C26Staging(unittest.TestCase):
             self.assertIsNone(evidence["source_agreement_verdict"])
 
 
+    def test_new_source_first_companion_keeps_private_original_private(self):
+        companion = PACKET / "reviewer-c26r/phase1-public-transport-seal.json"
+        self.assertEqual(digest(companion), "42f8748552b6ea71816230f8974b0e2a4ce32563a7f5bab64dfea8f8e1c2bae9")
+        seal = read(companion)
+        self.assertEqual(seal["run_id"], "tt-physical-source-review-c26r")
+        self.assertFalse(seal["chronology"]["new_mathematical_review_performed"])
+        self.assertTrue(seal["chronology"]["companion_created_before_formal_delivery_to_this_reviewer"])
+        self.assertFalse(seal["chronology"]["formal_provider_or_decoder_read_before_companion"])
+        self.assertEqual(seal["original_private_seal"]["sha256"], "6db4b6dae8374c33e804a01bdb02195f75011bdf806c21c30c32ad44b5646a22")
+        self.assertTrue(seal["original_private_seal"]["original_unmodified"])
+        self.assertFalse((PACKET / "reviewer-c26r/phase1-seal.json").exists())
+        self.assertEqual(digest(PACKET / "reviewer-c26r/source-only-notes.md"), seal["source_only_notes"]["sha256"])
+        self.assertEqual(digest(ROOT / "docs/lessons/finite-real-tt-primitive-preparation-and-word-order.md"), seal["source"]["sha256"])
+
+    def test_actual_new_static_inputs_and_unmodified_prospective_bindings(self):
+        path = PACKET / "static-review-inputs-c26r.json"
+        self.assertEqual(digest(path), "bf51e531930af580a2fc1dbc685fadbca51087e3208df0e1ccfd461588e361b0")
+        packet = read(path)
+        self.assertEqual(len(packet["input_sha256"]), 26)
+        for name, expected in packet["input_sha256"].items():
+            self.assertNotIn("/decoder-c26/", name)
+            self.assertNotIn("/reviewer-c26/", name)
+            self.assertEqual(digest(ROOT / name), expected)
+        self.assertTrue(packet["old_run_not_resumed_or_impersonated"])
+        self.assertFalse(packet["canonical_main_reader_purified_or_scientific_ROOT"])
+        keys = ("module", "source_id", "source_statement", "source_anchor", "lesson_path",
+                "declarations", "obligation_map", "assumption_deltas", "graph_contribution",
+                "formalizer", "residual_boundary", "binding_sha256")
+        for name in packet["candidate_paths"]:
+            proposed = read(ROOT / name)
+            slug = Path(name).name.removeprefix("parent-proposal-").removesuffix("-c26r.json")
+            original = read(PACKET / ("publication-candidate-" + slug + ".json"))
+            self.assertEqual({k: proposed[k] for k in keys}, {k: original[k] for k in keys})
+            self.assertEqual(proposed["status"], "PARENT_PROPOSAL_WIP_NOT_ADMITTED")
+            self.assertIn("/reviewer-c26r/", proposed["reviewer_evidence"])
+
+
 if __name__ == "__main__":
     unittest.main()

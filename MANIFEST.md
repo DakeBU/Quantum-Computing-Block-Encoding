@@ -8426,3 +8426,4 @@ block-encoding formalization lifecycle.
 | 2026-10-16 00:44:59 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c24-hcr-whole-module-review-20261016 |
 | 2026-10-16 00:58:34 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c25-current-cf77-exhaustive-lean-gate-20261016 |
 | 2026-10-16 01:26:49 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c25-ttc-norm-whole-module-review-20261016 |
+| 2026-10-17 02:41:24 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c26r-source-first-static-20261017 |
