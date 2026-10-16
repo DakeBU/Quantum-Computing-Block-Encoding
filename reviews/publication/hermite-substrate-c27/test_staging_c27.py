@@ -17,6 +17,48 @@ digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class C27Staging(unittest.TestCase):
+    def test_actual_final_delivery_and_late_same_decoder_binding(self):
+        path = PACKET / "final-review-inputs-c27r.json"
+        self.assertEqual(digest(path), "c9cbbb4fd852053d4ef7090bc51d3fde377f0ed87355a1b72d33528ea0418c39")
+        packet = read(path)
+        self.assertEqual(len(packet["input_sha256"]), 64)
+        self.assertEqual(packet["role"], "PARENT_DELIVERY_NOT_A_REVIEW_OR_ACCEPTANCE")
+        for name, expected in packet["input_sha256"].items():
+            actual = ROOT / name
+            self.assertTrue(actual.is_file(), name)
+            self.assertEqual(digest(actual), expected)
+        phase2 = read(PACKET / "reviewer-c27r/phase2-static-seal.json")
+        self.assertFalse(phase2["withheld_and_not_performed"]["actual_decoder_c27r_files_read"])
+        self.assertFalse(phase2["acceptance"]["implementation_accepted"])
+        self.assertEqual(digest(PACKET / "reviewer-c27r/phase2-static-comparison.md"), phase2["comparison"]["sha256"])
+        bridge = read(DECODER / "late-context-bridge.json")
+        self.assertEqual(bridge["identity"], "hermite-substrate-decoder-c27r")
+        self.assertIsNone(bridge["sourceAgreement"])
+        self.assertFalse(bridge["binding_chronology"]["new_independent_worker"])
+        self.assertFalse(bridge["binding_chronology"]["original_artifacts_modified"])
+        self.assertEqual(bridge["runtime_history"]["new_lean_calls"], 0)
+        self.assertFalse(bridge["runtime_history"]["first_failed_partial_stdout_retained"])
+        self.assertEqual(bridge["provider_accounting"]["providers"], 52)
+        self.assertEqual(bridge["provider_accounting"]["new_providers"], [])
+        for proposal_path in packet["proposals"]:
+            proposal = read(ROOT / proposal_path)
+            decoder = read(ROOT / proposal["decoder_evidence"])
+            self.assertEqual(decoder["binding_sha256"], proposal["binding_sha256"])
+            self.assertEqual(decoder["role"], "decoder")
+            self.assertIsNone(decoder["publication_verdict"])
+            self.assertIsNone(decoder["sourceAgreement"])
+            self.assertEqual(digest(ROOT / decoder["artifact_path"]), decoder["artifact_sha256"])
+            self.assertEqual(digest(ROOT / decoder["late_context_bridge_path"]), decoder["late_context_bridge_sha256"])
+
+    def test_missing_final_delivery_input_is_not_green(self):
+        original = Path.is_file
+        absent = DECODER / "late-context-bridge.json"
+        with patch.object(Path, "is_file", lambda path: False if path == absent else original(path)):
+            result = unittest.TestResult()
+            C27Staging("test_actual_final_delivery_and_late_same_decoder_binding").run(result)
+        self.assertEqual(len(result.failures), 1)
+        self.assertEqual(result.errors, [])
+
     def test_actual_byte_exact_wip_transport(self):
         path = PACKET / "parent-wip-transport.json"
         self.assertEqual(digest(path), "ff492209ba667c98e850b5cbd3729838ef1a4d87f8b2713e2f6939379e48e1fe")
