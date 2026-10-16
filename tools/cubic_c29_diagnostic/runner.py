@@ -226,14 +226,31 @@ def export_public(private: Path, public: Path, logical_roots: dict):
     write_json(safe_child(public, 'raw-derivation-receipts.json'), dict(files=receipts, **NO_ACCEPT))
 
 
-def load_validator(package: Path):
-    spec = importlib.util.spec_from_file_location('c29_original_validator', package / 'validate-output.py')
+def load_validator(package: Path, versioned=False):
+    name = 'validate-output.py'
+    if versioned:
+        pins = json.loads((package / 'pins.json').read_text(encoding='utf-8'))
+        name = pins.get('activeValidator')
+        if not isinstance(name, str) or name not in pins.get('versionedAuditFiles', {}):
+            raise ValueError('active generated validator absent or unpinned')
+        verify_pins(package, pins['versionedAuditFiles'])
+    spec = importlib.util.spec_from_file_location('c29_selected_validator', safe_child(package, name))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module.validate
 
 
-def validate_fixture(stdout: str, exit_code: int):
+def load_generated_validator(package: Path):
+    load_validator(package, versioned=True)  # Verify all audit files before loading shared API.
+    pins = json.loads((package / 'pins.json').read_text(encoding='utf-8'))
+    spec = importlib.util.spec_from_file_location('c29_generated_validator',
+                                                safe_child(package, pins['activeValidator']))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def validate_fixture(stdout: str, exit_code: int, generated_expected=None, audit_module=None):
     """Real legacy API fixture only; never a Cubic axiom-policy/admission result."""
     if exit_code != 0:
         raise ValueError('fixture native failure, not API success')
@@ -263,7 +280,16 @@ def validate_fixture(stdout: str, exit_code: int):
         raise ValueError('fixture summary mismatch')
     if summary['nativeAccepted'] is not False or summary['sourceAgreement'] is not None:
         raise ValueError('fixture emitted forbidden acceptance')
-    return dict(status='LEGACY_API_FIXTURE_OBSERVED_NOT_CUBIC_EVIDENCE', roots=5, **NO_ACCEPT)
+    extra = {}
+    if generated_expected is not None:
+        if audit_module is None or len(generated_expected) != 15:
+            raise ValueError('fixture generated validator/set unavailable')
+        extra = audit_module.validate_generated(records['C29_GENERATED_JSON'], generated_expected,
+                                               [r['actualName'] for r in roots], summary)
+        if summary['generatedTargetOwnedConstants'] != 15 or summary['observedTargetOwnedConstants'] != 20:
+            raise ValueError('fixture generated partition mismatch')
+    return dict(status='LEGACY_API_FIXTURE_OBSERVED_NOT_CUBIC_EVIDENCE', roots=5,
+                generatedAudit=extra, **NO_ACCEPT)
 
 
 def verify_driver_import_target(path: Path, expected_module: str):
@@ -305,10 +331,16 @@ def run(project: Path, package: Path):
         input_rows = verify_pins(project, pins['projectInputs'])
         package_rows = verify_pins(package, pins['immutableCandidate3Files'])
         driver_rows = verify_pins(package, pins['versionedDriverFiles'])
+        audit_rows = verify_pins(package, pins['versionedAuditFiles'])
+        if pins.get('expectedGeneratedFile') != 'expected-generated-ci2.json':
+            raise ValueError('active generated expected-set binding absent')
+        audit_module = load_generated_validator(package)
+        generated_expected = json.loads(safe_child(package, pins['expectedGeneratedFile']).read_text(encoding='utf-8'))
         driver_bindings = verify_active_drivers(package, pins)
         write_json(private / 'inputs.json', dict(projectInputs=input_rows, candidate3Files=package_rows,
                                                 versionedDriverFiles=driver_rows, activeProbe=pins['activeProbe'],
-                                                activeFixtureProbe=pins['activeFixtureProbe'], driverBindings=driver_bindings))
+                                                activeFixtureProbe=pins['activeFixtureProbe'], driverBindings=driver_bindings,
+                                                activeValidator=pins['activeValidator'], versionedAuditFiles=audit_rows))
         env = dict(os.environ)
         bootstrap = shutil.which('lean', path=env.get('PATH'))
         if not bootstrap:
@@ -354,7 +386,7 @@ def run(project: Path, package: Path):
         fixture_result = native_call(private, '04-fixture-probe', [str(lean), '--threads=1', '--memory=3072',
                                      'Probe.lean'], fixture, fixture_env)
         checked_fixture = validate_fixture((private / '04-fixture-probe.stdout.raw').read_text(encoding='utf-8'),
-                                           fixture_result['exitCode'])
+                                           fixture_result['exitCode'], generated_expected['fixtureGenerated'], audit_module)
         if sha(fixture_olean) != fixture_hash:
             raise ValueError('fixture artifact changed during probe')
         write_json(private / 'fixture-result.json', dict(fixtureOleanSHA256=fixture_hash, diagnostic=checked_fixture))
@@ -363,7 +395,8 @@ def run(project: Path, package: Path):
         write_json(private / 'fresh-provider-copies.json', dict(files=copies))
         driver = safe_child(out, 'driver'); driver.mkdir()
         shutil.copyfile(safe_child(package, pins['activeProbe']), safe_child(driver, 'Probe.lean'))
-        for name in ('expected-roots.json', 'validate-output.py'):
+        for name in ('expected-roots.json', 'validate-output.py', pins['activeValidator'],
+                     pins['expectedGeneratedFile'], 'pins.json'):
             shutil.copyfile(safe_child(package, name), safe_child(driver, name))
         env['LEAN_PATH'] = os.pathsep.join(map(str, [fresh] + roots))
         target_rel = 'QuantumBlockEncoding/CubicStatePreparation.lean'
@@ -380,10 +413,10 @@ def run(project: Path, package: Path):
         fresh_rows = [dict(path=str(p), sha256=sha(p), bytes=p.stat().st_size) for p in fresh_outputs]
         write_json(private / 'target-output.json', dict(artifacts=fresh_rows, targetRawSHA256=sha(target)))
         env['QBE_EXPECT_FRESH_OLEAN'] = str(output)
-        result = native_call(private, '06-probe-v4', [str(lean), '--threads=1', '--memory=3072', 'Probe.lean'], driver, env)
-        checked = load_validator(driver)(
+        result = native_call(private, '06-probe-v5', [str(lean), '--threads=1', '--memory=3072', 'Probe.lean'], driver, env)
+        checked = load_validator(driver, versioned=True)(
             json.loads((driver / 'expected-roots.json').read_text(encoding='utf-8')),
-            (private / '06-probe-v4.stdout.raw').read_text(encoding='utf-8', errors='strict'), result['exitCode'])
+            (private / '06-probe-v5.stdout.raw').read_text(encoding='utf-8', errors='strict'), result['exitCode'])
         verify_pins(project, pins['projectInputs'])
         if any(path.exists() for path in absent_roots):
             raise ValueError('RESEAL previously absent search root appeared during diagnostic')
@@ -396,7 +429,8 @@ def run(project: Path, package: Path):
         write_json(private / 'output-completeness.json', checked)
         status.update(status='FORMAL_RUNTIME_DIAGNOSTIC_COMPLETE_NOT_ACCEPTANCE',
                       explicitRoots=319, explicitPrivateRoots=50,
-                      generatedTrust='METADATA_ONLY_FULL_GENERATED_TYPE_AXIOM_AUDIT_PENDING')
+                      generatedActualFields=checked['generatedActualFieldsCollected'],
+                      generatedTrust='ACTUAL_TYPE_VALUE_AXIOMS_COLLECTED_POLICY_UNASSESSED_NOT_TRUST_CLOSURE')
         return_code = 0
     except Exception as error:
         status.update(status='DIAGNOSTIC_FAILED_NOT_MATHEMATICAL_REFUTATION',
