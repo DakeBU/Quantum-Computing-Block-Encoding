@@ -91,7 +91,28 @@ class ActualCI2Tests(unittest.TestCase):
     def test_selected_successor_artifacts_and_tool_pins_are_exact(self):
         receipt = load(ROOT/'reports/lean-433-migration/c29-ci3-integration-receipt.json')
         for row in receipt['files']+receipt['exact_selected_audit_artifacts']:
-            raw = (ROOT/row['path']).read_bytes()
+            if row['path'] == 'tools/cubic_c29_diagnostic/runner.py':
+                # Historical CI3 receipt stays immutable; verify its preserved predecessor.
+                raw = (HERE/'two-signatures-v1/runner-ci3-before-supplement.py.txt').read_bytes()
+                current = (ROOT/row['path']).read_bytes()
+                successor = load(ROOT/'reports/lean-433-migration/c29-two-signatures-integration.json')
+                current_pin = next(r for r in successor['files'] if r['path'] == row['path'])
+                self.assertEqual(sha(current),current_pin['sha256'])
+                before = "        verify_pins(project, pins['projectInputs'])\n        if any(path.exists() for path in absent_roots):"
+                append = ("        # Changed fingerprint: fill only two observed CI3 pretty-signature omissions.\n"
+                          "        # The original 319+450 validator/driver and fresh target artifact remain unchanged.\n"
+                          "        from supplemental_types_v1 import run_supplemental\n"
+                          "        checked_two_types = run_supplemental(package, driver, private, env, lean, output,\n"
+                          "                                             native_call, sha, verify_pins, write_json)\n")
+                original = raw.decode()
+                self.assertEqual(original.count(before),1)
+                after = original.replace(before,append+before)
+                anchor = "                      generatedActualFields=checked['generatedActualFieldsCollected'],\n"
+                self.assertEqual(after.count(anchor),1)
+                after = after.replace(anchor,anchor+"                      supplementalTypeTexts=checked_two_types['status'],\n")
+                self.assertEqual(current,after.encode())
+            else:
+                raw = (ROOT/row['path']).read_bytes()
             self.assertEqual(sha(raw),row['sha256'])
             self.assertEqual(len(raw),row['bytes'])
         self.assertEqual(len(receipt['files']),8)

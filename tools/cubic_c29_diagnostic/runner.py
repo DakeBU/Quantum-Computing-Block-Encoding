@@ -417,6 +417,11 @@ def run(project: Path, package: Path):
         checked = load_validator(driver, versioned=True)(
             json.loads((driver / 'expected-roots.json').read_text(encoding='utf-8')),
             (private / '06-probe-v5.stdout.raw').read_text(encoding='utf-8', errors='strict'), result['exitCode'])
+        # Changed fingerprint: fill only two observed CI3 pretty-signature omissions.
+        # The original 319+450 validator/driver and fresh target artifact remain unchanged.
+        from supplemental_types_v1 import run_supplemental
+        checked_two_types = run_supplemental(package, driver, private, env, lean, output,
+                                             native_call, sha, verify_pins, write_json)
         verify_pins(project, pins['projectInputs'])
         if any(path.exists() for path in absent_roots):
             raise ValueError('RESEAL previously absent search root appeared during diagnostic')
@@ -430,6 +435,7 @@ def run(project: Path, package: Path):
         status.update(status='FORMAL_RUNTIME_DIAGNOSTIC_COMPLETE_NOT_ACCEPTANCE',
                       explicitRoots=319, explicitPrivateRoots=50,
                       generatedActualFields=checked['generatedActualFieldsCollected'],
+                      supplementalTypeTexts=checked_two_types['status'],
                       generatedTrust='ACTUAL_TYPE_VALUE_AXIOMS_COLLECTED_POLICY_UNASSESSED_NOT_TRUST_CLOSURE')
         return_code = 0
     except Exception as error:

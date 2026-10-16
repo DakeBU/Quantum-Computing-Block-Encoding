@@ -8443,3 +8443,6 @@ block-encoding formalization lifecycle.
 | 2026-10-17 05:46:56 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-actual-ci2-fresh-target319-runtime-20261017 |
 | 2026-10-17 06:01:34 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-whole-source-static-findings-20261017 |
 | 2026-10-17 06:01:34 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-ci3-generated-runtime-diagnostic-20261017 |
+| 2026-10-17 06:40:20 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-actual-ci3-full-generated-and-omission-20261017 |
+| 2026-10-17 06:40:21 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-v3-v4-independent-static-correction-20261017 |
+| 2026-10-17 06:40:21 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-two-signatures-only-ci-supplement-20261017 |

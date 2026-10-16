@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Python-only diagnostic implementation tests
-        run: python3 -m unittest discover -s tools/cubic_c29_diagnostic -p 'test_runner.py' -v
+        run: python3 -m unittest discover -s tools/cubic_c29_diagnostic -p 'test*.py' -v
       - name: Set up Lean and Mathlib cache
         uses: leanprover/lean-action@v1
         with:
