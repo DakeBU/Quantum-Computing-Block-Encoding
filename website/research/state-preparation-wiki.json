@@ -12,16 +12,18 @@
       "status": "research-target",
       "setting_id": "setting:pinned-kickmix-clean-phase-trajectory",
       "formula": "\\text{reachable invariant}\\;\\land\\;\\text{branch decoder}\\;\\land\\;\\text{circuit refinement}\\;\\Longrightarrow\\;\\text{clean reversible implementation}",
-      "goal": "Digest the whole pinned paper and its existing proofs into readable, audited mechanisms. Start with Appendix A branch recovery and the DQI theorem boundary, then connect real circuit semantics, error and resources; do not stop at a toy arithmetic identity.",
+      "goal": "First research priority: digest the whole pinned paper and its existing proofs into readable, audited mechanisms, then use them in controlled SP/BE construction-evolution experiments. Start with Appendix A branch recovery and the DQI theorem boundary, then connect real circuit semantics, error and resources; do not stop at a toy arithmetic identity or claim a resource improvement before a matched-contract comparison.",
       "motivation": "A circuit can output correct bits yet fail coherently through a wrong phase or dirty workspace. Explain the reusable construction before exposing the implementation proof forest.",
-      "input_model": "Pinned paper v1 and author code commit 64b5a13aa249f1360846657392e6c66817b26d0f. Explicit bit widths, registers, signed arithmetic, phase, measurement records, allowed input subspace, failure distribution and actual emitted operations.",
+      "input_model": "Pinned paper v1 and author code commit 64b5a13aa249f1360846657392e6c66817b26d0f. Explicit bit widths, registers, signed arithmetic, phase, measurement records, allowed input subspace, failure distribution and actual emitted operations. Each SP/BE experiment additionally freezes the target state/operator, oracle access, error norm, precision, success probability and comparison baseline before proposing circuits.",
       "assumptions": [
         "Keep Lean 4.33.0 locally; upstream 4.32.2 and 4.33.1 proofs need explicit compatibility checks.",
         "Reachable-state invariants must be proved from initialization, not added as convenient final circuit hypotheses.",
         "Do not replace phase and cleanup checks by output-bit tests, or random tests by universal certificates.",
-        "Retain separate native-certificate trust, primality, code-distance, collision, statistical and circuit-to-oracle obligations."
+        "Retain separate native-certificate trust, primality, code-distance, collision, statistical and circuit-to-oracle obligations.",
+        "Workers never modify the trusted verifier, acceptance anchors, scoring, benchmark split or historical logs. Workflow variants require controlled experiments.",
+        "A distribution-dependent failure allowance or small error on one initial state is not a uniform operator-norm block-encoding guarantee."
       ],
-      "target_bound": "First deliver a source-faithful, independently reviewed 4.33.0 adaptation and exact source-to-Lean crosswalk; subsequently certify the missing gate/record/cleanup and cost bridges. Author results remain author results.",
+      "target_bound": "First deliver a source-faithful, independently reviewed 4.33.0 adaptation and exact source-to-Lean crosswalk; subsequently certify the missing gate/record/cleanup and cost bridges. Then evaluate actual SP/BE candidates under matched contracts and preserve both improvements and negative results. Author results remain author results; no new best-known circuit is promised.",
       "known_boundary": "No new ASPBE Lean closure yet. Upstream recurrence/DQI proofs do not certify all eight circuit tasks. A 590-step worst-case result does not accept the 533-step failure-budget circuit. TQ is a paper objective, not a replacement for ASPBE correctness-first resource contracts.",
       "families": [
         "family:reachable-branch-recovery",
@@ -55,12 +57,22 @@
           "acceptance": "Every claimed result has source coverage, exact finite-bit/error/resource contract, checked Lean scope and independently reproduced executable evidence."
         },
         {
+          "id": "function-oracle-spbe",
+          "target": "Planned first construction loop: finite-bit function oracle -> controlled amplitude transduction -> uncompute -> state preparation or diagonal block encoding. Choose one source-backed HHL, Gaussian or Coulomb case after checking existing library interfaces.",
+          "acceptance": "Prove the actual output action, coherent relative phase, domain/scaling and workspace restoration. Charge finite-bit arithmetic and rotation synthesis; for SP also retain normalization, success probability and amplification cost. A function evaluator alone does not close SP or BE."
+        },
+        {
+          "id": "prepare-select-lab",
+          "target": "Planned second construction loop: proof-guided LCU PREPARE-SELECT optimization, using the paper's alias-SELECT case as a source-backed entry point rather than assuming an entire chemistry algorithm is certified.",
+          "acceptance": "Freeze coefficients, normalization, oracle contracts and error; compare real alias/QROM/selection/cleanup variants without changing that target. Supply PREPARE, SELECT and unprepare dependencies internally and retain the full resource tuple."
+        },
+        {
           "id": "reader",
           "target": "Publish a compressed construction spine with lossless source and proof drill-down.",
           "acceptance": "Independent reader can recover registers, phases, cleanup, error, cost tier and remaining obligations; no declaration-count or sample-pass proxy."
         }
       ],
-      "next": "Audit the fixed upstream proof modules and prepare an isolated4.33.0 compatibility build; no production proof-tree changes until the current bindings are stable.",
+      "next": "Complete independent source-topology and source/formal reconciliation for the fixed upstream modules, retaining separate compatibility-build evidence. Freeze one dependency-ready SP/BE experiment and its baseline before proposal search; no production proof-tree changes until the current bindings are stable.",
       "lower_bound": {
         "status": "model-definition-pending",
         "task": "Paper resource improvements are instance/model comparisons, not universal optimality or a poly(n) state-preparation theorem.",
@@ -74,16 +86,19 @@
       "reading_layers": [
         {
           "title": "01 · The question",
-          "summary": "Why is erasing a temporary quantum value harder than deleting a classical variable?",
+          "summary": "How can an automatically proposed circuit become a trustworthy SP/BE construction?",
           "items": [
-            "Follow data, phase and garbage separately. Start with the contract, not theorem names."
+            "Follow data, phase and garbage separately. Start with the contract, not theorem names.",
+            "The planned laboratory follows a visible loop: freeze the contract -> propose a circuit -> independently check and cost it -> prove its symbolic guarantees -> compare -> mutate or cross over a named mechanism."
           ]
         },
         {
           "title": "02 · The mechanisms",
           "summary": "Route data through a shared kernel; recover history from a proved invariant; account for permitted failure.",
           "items": [
-            "These are techniques to audit under their own promises, not automatic substitutions into a state-preparation route."
+            "These are techniques to audit under their own promises, not automatic substitutions into a state-preparation route.",
+            "Conditional routing shares an arithmetic kernel; branch recovery reconstructs a decision from a proved reachable-state invariant; measurement-based cleanup needs its own feedback and phase semantics.",
+            "A mutation changes one specified mechanism. A crossover combines compatible verified interfaces; concatenating two proposals does not transfer a certificate."
           ]
         },
         {
@@ -91,15 +106,18 @@
           "summary": "Read the source construction and its complete AND dependencies.",
           "items": [
             "Appendix A: initialization and step -> determinant/parity and window invariant -> decoder -> finite-dependence/depth-two consumers.",
-            "Termination is a separate certificate branch; it is not a prerequisite for the local decoder."
+            "Termination is a separate certificate branch; it is not a prerequisite for the local decoder.",
+            "SP/diagonal BE needs function evaluation AND amplitude transduction AND uncomputation AND the relevant error/success guarantees. LCU needs PREPARE AND SELECT AND unprepare, with coefficient/phase and normalization conventions. These are planned integration chains, not newly certified graph edges."
           ]
         },
         {
           "title": "04 · The evidence",
           "summary": "Open upstream Lean first, then the local compatibility and independent acceptance records as they become available.",
           "items": [
-            "Upstream4.32.2/4.33.1 is not local4.33.0 acceptance.",
-            "Circuit refinement, statistical confidence, instance constants and resource counts retain separate open gates."
+            "Upstream 4.32.2/4.33.1 is not local 4.33.0 acceptance. An isolated compatibility compile is not local publication admission or a circuit certificate.",
+            "Circuit refinement, statistical confidence, instance constants and resource counts retain separate open gates.",
+            "Correctness is a gate before resource comparison. Record oracle construction/calls, classical preprocessing/storage, Toffoli and other gates, depth, peak qubits, cleanup, precision and SP success/amplification. TQ alone is not the objective.",
+            "Compare only matched domains, error norms, precision, failure budgets and oracle assumptions. Preserve failed candidates, lineage and available wall-clock/model-call/token telemetry; unknown measurements stay unknown."
           ]
         }
       ]
