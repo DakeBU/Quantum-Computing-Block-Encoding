@@ -84,6 +84,29 @@ class ProspectiveContextTests(unittest.TestCase):
         self.assertTrue(proposal['active_E21_tail_unchanged'])
         self.assertEqual(proposal['proposed_graph_sha256'], hashlib.sha256((BASE / 'source-topology-v2-proposal.json').read_bytes()).hexdigest())
 
+    def test_post_reference_clarification_preserves_every_edge(self):
+        clarified = json.loads((BASE / 'source-topology-v3-proposal.json').read_bytes())
+        self.assertEqual(clarified['hyperedges'], self.graph['hyperedges'])
+        self.assertEqual(clarified['or_structure'], self.graph['or_structure'])
+        post = next(n for n in clarified['nodes'] if n['id'] == 'M12.post')
+        self.assertIn('No preservation of the pre-swap low row prefix', post['claim'])
+        self.assertIn('candidate C(j)', post['claim'])
+        for node in clarified['nodes']:
+            if node['id'] != 'M12.post':
+                self.assertEqual(node, next(n for n in self.graph['nodes'] if n['id'] == node['id']))
+
+    def test_pre_swap_low_is_not_post_low_finite_diagnostic_only(self):
+        # Exact n=3,kappa=7,j=0 witness; not a uniform Lean proof.
+        j, address_image = 0, 96
+        row, address = (address_image >> 1) & 7, (address_image >> 4) & 7
+        difference = row ^ address
+        post = address_image ^ (difference << 1) ^ (difference << 4)
+        candidate = (post % 16) + 4 * 16 + (post // 128) * 128
+        self.assertEqual(post, 12)
+        self.assertEqual(candidate, 76)
+        self.assertNotEqual(j % 16, post % 16)
+        self.assertEqual(candidate % 16, post % 16)
+
 
 if __name__ == '__main__':
     unittest.main()

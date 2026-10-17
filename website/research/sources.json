@@ -460,6 +460,23 @@
       "provenance": "RETROSPECTIVE_IMPLEMENTATION_INFORMED_NOT_PREPROOF",
       "historical_formalizer": "UNKNOWN",
       "formal_status": "AUTHOR/WIP prospective exact local context. Actual formal-only and source-first comparisons sealed separately; exact final publication wrapper,independent topology,trust,integration and reader gates PENDING. Not original-paper fidelity,Robin block closure,main migration or PURIFIED."
+    },
+    {
+      "id": "candidate:aspbe-local-finite-sp-extended-routes-v1",
+      "title": "Four exact finite primitive state-preparation routes and their literal resource comparison",
+      "authors": [
+        "Retrospective implementation-informed source author;historical formalizer UNKNOWN"
+      ],
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "lesson_path": "docs/lessons/finite-sp-extended-routes-v1.md",
+      "lesson_sha256": "982acf3e323d6d833fd1b61466457999d47e65a99ebdc9e5a5a543431dac123d",
+      "anchor": "docs/lessons/finite-sp-extended-routes-v1.md sections1-9",
+      "provenance": "RETROSPECTIVE_IMPLEMENTATION_INFORMED_NOT_PREPROOF",
+      "historical_formalizer": "UNKNOWN",
+      "scope": "Whole BellRoute,PaperEntryCertificates,PaperRoutesCompact:140explicit declarations(67catalogued public,73private);fixed Bell,dense and sparse state actions,four routes,generic CX LE and zero-UCRY identities. Not general named-paper algorithms,external source fidelity or finite-bit family complexity.",
+      "formal_status": "AUTHOR/WIP current binding;actual independent formal/source/topology stages sealed separately. Final exact role wrappers,trust,integration,reader and purification remain pending. No main or Hermite root admission."
     }
   ]
 }
