@@ -229,11 +229,7 @@ class SiteContractTests(unittest.TestCase):
                 for chapter in part['chapters']:
                     if index < 2 and chapter['status'] == 'Compiled':
                         continue
-                    target = (
-                        f'{prefix}{chapter["href"]}index.html'
-                        if index < 2 and chapter.get('href')
-                        else f'{prefix}{part["route"]}index.html#{chapter["id"]}'
-                    )
+                    target = f'{prefix}{part["route"]}index.html#{chapter["id"]}'
                     self.assertIn(f'href="{target}"', nav)
                     self.assertIn(f'class="book-chapter-status">{chapter["status"]}</small>', nav)
 

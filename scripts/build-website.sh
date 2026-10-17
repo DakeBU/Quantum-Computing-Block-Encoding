@@ -22,6 +22,7 @@ python3 website/scripts/check_research_publications.py --base "$publication_base
 
 python3 -m py_compile \
   website/scripts/build_site.py \
+  website/scripts/sidebar_navigation.py \
   website/scripts/lean_graph.py \
   website/scripts/enrich_teaching_site.py \
   website/scripts/enrich_casebook.py \
@@ -53,6 +54,7 @@ python3 -m unittest \
   website.scripts.test_lean_publication_gate \
   website.scripts.test_deployed_research \
   website.scripts.test_site_contracts \
+  website.scripts.test_sidebar_navigation \
   website.scripts.test_teaching_enrichment \
   website.scripts.test_casebook_enrichment \
   website.scripts.test_casebook_polish

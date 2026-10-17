@@ -85,6 +85,33 @@ def check_curriculum_explorer(page, base: str) -> None:
         raise AssertionError('Reset did not restore all four books')
 
 
+def check_compact_sidebar(page, base: str) -> None:
+    """Check real final publication, disclosure keyboard access and mobile menu."""
+    page.set_viewport_size({"width": 1280, "height": 900})
+    page.goto(f"{base}/index.html", wait_until="networkidle", timeout=90000)
+    nav = page.locator('nav[data-compact-navigation="1"]')
+    if nav.count() != 1 or nav.locator('[data-book-part]').count() != 4:
+        raise AssertionError("Missing single compact four-textbook sidebar")
+    hrefs = nav.locator('a').evaluate_all('(links) => links.map(a => a.href)')
+    if len(hrefs) != len(set(hrefs)) or nav.locator('details[open]').count():
+        raise AssertionError("Home sidebar duplicated a destination or expanded all content")
+    summary = nav.locator('[data-nav-section="examples"] > summary')
+    summary.focus()
+    summary.press('Enter')
+    if not nav.locator('[data-case="hermite-smooth-state-preparation"]').is_visible():
+        raise AssertionError("Keyboard expansion lost the Hermite example")
+    summary.press('Enter')
+    page.set_viewport_size({"width": 390, "height": 900})
+    page.locator('[data-menu-button]').click()
+    page.wait_for_function("document.querySelector('.site-sidebar').getBoundingClientRect().left >= -1")
+    if page.locator('[data-menu-button]').get_attribute('aria-expanded') != 'true':
+        raise AssertionError("Mobile sidebar did not announce its open state")
+    page.keyboard.press('Escape')
+    page.goto(f"{base}/library/index.html", wait_until="networkidle", timeout=90000)
+    if not page.locator('[data-nav-section="tools"][open]').count():
+        raise AssertionError("Current library page did not open its navigation group")
+
+
 def run(root: Path, output: Path, browser_channel: str | None = None,
         require_blueprint: bool = False) -> None:
     from playwright.sync_api import sync_playwright
@@ -102,6 +129,7 @@ def run(root: Path, output: Path, browser_channel: str | None = None,
             context = browser.new_context(permissions=["clipboard-read", "clipboard-write"])
             page = context.new_page()
             page.on("pageerror", lambda error: failures.append(str(error)))
+            check_compact_sidebar(page, base)
             page.set_viewport_size({"width": 390, "height": 900})
             check_curriculum_explorer(page, base)
             for width in WIDTHS:

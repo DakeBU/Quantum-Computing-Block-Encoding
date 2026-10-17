@@ -2744,6 +2744,7 @@ body {
 }
 
 .book-nav > a,
+.sidebar-section-links > a,
 .chapter-nav a {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -2870,6 +2871,27 @@ body {
   font-size: 10px;
   font-weight: 650;
 }
+
+/* One place per destination; secondary collections stay quiet until needed. */
+.sidebar-section {
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  margin-top: 9px;
+}
+
+.sidebar-section > summary {
+  padding: 11px 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.sidebar-section[open] > summary { color: var(--ink); }
+.sidebar-section-links { display: grid; gap: 2px; padding-bottom: 8px; }
+.sidebar-section summary:focus-visible,
+.book-part-nav summary:focus-visible { outline: 2px solid var(--state); outline-offset: -2px; }
 
 .sidebar-footer {
   margin-top: auto;
