@@ -1182,3 +1182,31 @@ selected proof/replay Git inputs equal contribution67b750f. This is a real
 current PR integration gate, not main merge, clean TCB, new finite-bit poly-SP
 executable acceptance or resolution of the experimental publication conflict.
 [Source association](../reports/lean-433-migration/c153-current-PRmerge-full-gate-association.json).
+
+
+### Independent scalar review and actual cached-supplier type probe
+
+The C147 arithmetic provider now has a separately frozen C151 independent
+source-first mathematical/binder/definition review and C154 subsequent actual
+runtime association review. Both support their bounded internal claims, with
+inherited/dirty/transitive provenance limitations retained; neither grants
+source-publication, clean-TCB or scientific ROOT credit.
+
+C150 actual cache -> signed middle -> five-branch right table -> existing
+stored-chain definitions typechecked in C155: three modules plus seventeen
+candidate propositions, all exit0. Type formation is not a proof. C156 seals
+their exact bodies/signatures before subsequent bounded proof search. The
+400/816 proposed bounds and final cached same-run refinement remain OPEN.
+Subsequently C159 actually compiled seven C157 primitive/right roots, including
+rightEntry partial counter<=11, and a fresh-own-output exact-type/axiom consumer
+(25.578s/24.531s), all seven ordinary-three axioms. This is proved_locally with
+independent static review pending, not full producer/runtime/root acceptance.
+[Exact compiled primitives](../experiments/hermite-polynomial/precision/cached-primitives-c157/README.md).
+Kernel/left and captured-block setup/native/bit/GCD costs remain unaccounted.
+[Exact original stages](../reviews/publication/migration-checkpoints-c158/README.md).
+
+The asynchronous policy retains human choice for material unapproved trade-offs,
+autonomous bounded same-contract work, typed immutable evidence, matched
+acceptance endpoints and all observed failed/cancelled/stale cost. No measured
+quantum proof-first/screen-first/dual-lane efficiency winner or production
+scheduler change is claimed. Original finite-bit Hermite ROOT remains OPEN.
