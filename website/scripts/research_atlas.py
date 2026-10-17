@@ -137,6 +137,15 @@ def validate_catalog(catalog: dict[str, Any], declarations: dict[str, Any] | Non
             raise ValueError("contribution endpoints must be pinned commits")
     for item in routes.values():
         require_fields(item, ("title", "setting_id", "formula", "goal", "input_model", "assumptions", "target_bound", "known_boundary", "steps", "next", "lower_bound"), "route")
+        if "reading_layers" in item:
+            if not isinstance(item["reading_layers"], list) or not item["reading_layers"]:
+                raise ValueError("reading layers must be a nonempty list")
+            for layer in item["reading_layers"]:
+                require_fields(layer, ("title", "summary", "items"), "reading layer")
+                if any(not isinstance(layer[key], str) or not layer[key].strip() for key in ("title", "summary")):
+                    raise ValueError("reading layer headings must be nonempty text")
+                if not isinstance(layer["items"], list) or not layer["items"] or any(not isinstance(text, str) or not text.strip() for text in layer["items"]):
+                    raise ValueError("reading layer items must be nonempty text")
         if item["status"] != "research-target":
             raise ValueError("research agenda status cannot imply a proved result")
         if item["lower_bound"]["comparison_key"] != item["setting_id"]:
@@ -471,6 +480,9 @@ def publish(root: Path) -> dict[str, Any]:
     write("state-preparation-wiki/", "StatePreparationWiki", agenda)
     for r in wiki["routes"]:
         body = hero(r["title"], r["motivation"]) + '<p><span class="ra-tag">research target</span> <code>' + esc(r["setting_id"]) + '</code></p>' + math(r["formula"])
+        if r.get("reading_layers"):
+            layers = ''.join('<details class="ra-code" data-reading-layer><summary>' + esc(layer["title"]) + '</summary><p>' + esc(layer["summary"]) + '</p>' + paragraphs(layer["items"]) + '</details>' for layer in r["reading_layers"])
+            body += section("Choose your reading depth", '<p>Question → mechanism → mathematical suppliers → evidence. Open only the level you need; the contract and unproved boundaries remain visible below.</p>' + layers, "reading-depth")
         body += section("Frozen target and input model", '<p>' + esc(r["goal"]) + '</p><p><strong>Access model:</strong> ' + esc(r["input_model"]) + '</p>' + paragraphs(r["assumptions"]), "contract")
         body += section("Desired result, not an achieved bound", '<p>' + esc(r["target_bound"]) + '</p><p class="ra-warning">' + esc(r["known_boundary"]) + '</p>', "boundary")
         body += section("Dependency-ready execution route", '<div class="ra-steps">' + "".join(f'<article><span class="ra-step-number">{i+1:02d}</span><h3>{esc(s["target"])}</h3><p><strong>Acceptance:</strong> {esc(s["acceptance"])}</p><p class="ra-tag">planned; no claimed closure</p></article>' for i, s in enumerate(r["steps"])) + '</div><p><strong>Next bounded advance:</strong> ' + esc(r["next"]) + '</p>', "route")

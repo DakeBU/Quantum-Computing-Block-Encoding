@@ -80,6 +80,8 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand -m unittest website.scripts.test_research_atlas
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand -m unittest website.scripts.test_uncompute_intake
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 $publication_base = if ($env:ASPBE_PUBLICATION_BASE) { $env:ASPBE_PUBLICATION_BASE } else { "origin/main" }
 if ($env:CI -eq "true" -and $env:GITHUB_REF -eq "refs/heads/main") { $publication_base = "HEAD^1" }
 & $PythonCommand website/scripts/check_research_publications.py --base $publication_base

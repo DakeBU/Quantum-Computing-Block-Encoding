@@ -16,6 +16,23 @@
   ],
   "queue": [
     {
+      "key": "gu-kemeny-yelin-lukin-2026-uncompute",
+      "planningRoute": "state-preparation-wiki/spw-uncompute/",
+      "title": "Discovering state-of-the-art quantum circuits with large language models",
+      "authors": "Andi Gu, Alek H. Kemeny, Susanne F. Yelin, Mikhail D. Lukin",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2610.22367v1",
+      "category": "statePreparation",
+      "sourceAnchors": [
+        "Methods Eqs. (10)-(22)",
+        "Appendix A.1-A.8",
+        "Pinned author Lean divsteps and DQI"
+      ],
+      "status": "queued",
+      "formalized": "Priority source intake; author Lean proofs exist, but no new local4.33.0 certificate is claimed.",
+      "remaining": "Upstream proof audit and4.33.0 adaptation, circuit-to-oracle/register/phase/cleanup bridges, statistical and instance arithmetic, actual resources and independent source/reader gates."
+    },
+    {
       "key": "zylberman-debbasch-2024-walsh",
       "planningRoute": "state-preparation-wiki/spw-walsh/",
       "title": "Efficient Quantum State Preparation with Walsh Series",
