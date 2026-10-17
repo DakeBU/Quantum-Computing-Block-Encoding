@@ -349,36 +349,16 @@ def contribution_delta(item: dict[str, Any]) -> dict[str, Any]:
 
 
 def patch_navigation(root: Path) -> None:
-    from website.scripts.finalize_taxonomy_navigation import render_papers_navigation, render_examples_navigation
+    from website.scripts.sidebar_navigation import replace_navigation
     cases = read_json(root / "data/example-cases.json")["cases"]
     papers = read_json(root / "data/papers.json")
     for path in root.rglob("*.html"):
         if "blueprint" in path.relative_to(root).parts:
             continue
         text = path.read_text(encoding="utf-8")
-        text = re.sub(r"<!-- research-nav:start -->.*?<!-- research-nav:end -->", "", text, flags=re.S)
         prefix = "../" * len(path.parent.relative_to(root).parts) or "./"
         current = path.relative_to(root).as_posix()
-        # Share the existing hierarchy renderers without touching Blueprint pages.
-        text = re.sub(r'<a href="[^"]*case-studies/robin/index\.html"[^>]*>Robin paper map</a>', "", text)
-        marker_examples = '<strong class="nav-group-label">Example Cases</strong>'
-        papers_pattern = r'<strong class="nav-group-label">Papers</strong>.*?(?=<strong class="nav-group-label">Example Cases</strong>)'
-        rendered_papers = render_papers_navigation(prefix, current, papers)
-        if re.search(papers_pattern, text, re.S):
-            text = re.sub(papers_pattern, lambda _: rendered_papers, text, count=1, flags=re.S)
-        else:
-            text = text.replace(marker_examples, rendered_papers + marker_examples, 1)
-        examples_pattern = r'<strong class="nav-group-label">Example Cases</strong>.*?(?=<strong class="nav-group-label">Reference</strong>)'
-        text = re.sub(examples_pattern, lambda _: render_examples_navigation(prefix, current, cases), text, count=1, flags=re.S)
-        links = []
-        for title, route in VIEWS:
-            attr = ' aria-current="page"' if current.startswith(route) else ""
-            links.append(f'<a href="{prefix}{route}index.html"{attr}>{esc(title)}</a>')
-        marker = '<strong class="nav-group-label">Chapters</strong>'
-        nav = '<!-- research-nav:start --><strong class="nav-group-label">Structure and research</strong>' + "".join(links) + '<!-- research-nav:end -->'
-        if marker not in text:
-            raise ValueError(f"common sidebar insertion marker missing: {current}")
-        text = text.replace(marker, nav + marker, 1)
+        text = replace_navigation(text, prefix, current, papers, cases)
         path.write_text(text, encoding="utf-8")
 
 
