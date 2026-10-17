@@ -37,7 +37,7 @@ theorem cubicN2Amplitude_abs_le_one (bits : PrimitiveBasis 2) :
   have rationalBound :
       |CubicStatePreparation.cubicAmplitude 2
         (cubicN2ControlIndex bits)| ≤ (1 : Rat) := by
-    native_decide +revert
+    decide +kernel +revert
   exact_mod_cast rationalBound
 
 /-- Exact standard-RY angle for the selected cubic amplitude. -/
@@ -90,14 +90,14 @@ def cubicN2EncodeBits (signal : Fin 2) (system : Fin 4) : PrimitiveBasis 3
           cubicN2ControlWires_ne_signal
           (splitPrimitiveWire 2 (cubicN2EncodeBits signal system)).2) =
       system := by
-  native_decide +revert
+  decide +kernel +revert
 
 @[simp] theorem cubicN2EncodeBits_context_eq_iff
     (leftSignal rightSignal : Fin 2) (left right : Fin 4) :
     (splitPrimitiveWire 2 (cubicN2EncodeBits leftSignal left)).2 =
         (splitPrimitiveWire 2 (cubicN2EncodeBits rightSignal right)).2 ↔
       left = right := by
-  native_decide +revert
+  decide +kernel +revert
 
 /-- The primitive program's clean signal block is exactly the cubic diagonal. -/
 theorem cubicN2PrimitiveProgram_cleanEntry (row column : Fin 4) :
