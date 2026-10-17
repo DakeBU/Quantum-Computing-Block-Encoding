@@ -413,6 +413,23 @@
       "anchor": "docs/lessons/stored-rectangular-elimination-v1.md sections S1-S7; exact source SHA256 1bcf9ba72fca92df7773cd1d8b8195d306b123f0f700307d9e4cb535f84a0143",
       "scope": "Whole StoredGivens source:60 explicit named declarations plus anonymous Monad instance; source inventory not generated kernel census.",
       "formal_status": "AUTHOR/WIP retrospective source; independent source-first and blind decode performed separately; exact final binding and local admission pending. No pre-proof/finite-bit/polyqubit/ROOT/PURIFIED claim."
+    },
+    {
+      "id": "candidate:retrospective-real-preparation-c32-v3",
+      "title": "Exact real amplitude trees and local isometry completion (literal Rz clarification v3)",
+      "authors": [
+        "Retrospective recovery author real-preparation-author-c32; source v3 author /root; historical formalizer UNKNOWN"
+      ],
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "source-effective-v3.md SHA256 dba646110300c6a8e9f8b275eeb0dba2140add2a9f0096934f03a51e886da6cd",
+      "scope": "Same three whole modules; only A2 literal Rz convention added; exact phase retained, no new tree instruction, theorem, hypothesis or bound.",
+      "formal_status": "AUTHOR/WIP; independent source minimality and formal comparison PENDING; no acceptance from metadata",
+      "source_sha256": "dba646110300c6a8e9f8b275eeb0dba2140add2a9f0096934f03a51e886da6cd",
+      "predecessor_source_sha256": "936020bf35582267a8149ed49addd9a9b106c23512205acaf49e9a3febaa6d80",
+      "historical_formalizer": "UNKNOWN",
+      "natural_clarification_author": "/root"
     }
   ]
 }
