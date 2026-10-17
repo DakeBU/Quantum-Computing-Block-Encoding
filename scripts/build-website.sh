@@ -14,6 +14,7 @@ python3 scripts/generate-aspbe-catalog.py --check
 # Research views and publication packets use the same source-of-truth inventory.
 python3 website/scripts/research_atlas.py check
 python3 -m unittest website.scripts.test_research_atlas
+python3 -m unittest website.scripts.test_uncompute_intake
 publication_base="${ASPBE_PUBLICATION_BASE:-origin/main}"
 if [[ "${CI:-}" == "true" && "${GITHUB_REF:-}" == "refs/heads/main" ]]; then
   publication_base="HEAD^1"

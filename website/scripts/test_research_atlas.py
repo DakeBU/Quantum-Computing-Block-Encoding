@@ -20,7 +20,7 @@ class ResearchCatalogTests(unittest.TestCase):
 
     def test_every_requested_research_direction_has_acceptance_steps(self):
         routes = {item["id"]: item for item in self.catalog["wiki"]["routes"]}
-        self.assertEqual(set(routes), {"spw-structured", "spw-envelope", "spw-no-qram", "spw-controlled", "spw-ground", "spw-gibbs", "spw-fault-tolerant", "spw-verification", "spw-cvdv", "spw-walsh", "spw-diagonal"})
+        self.assertEqual(set(routes), {"spw-structured", "spw-envelope", "spw-no-qram", "spw-controlled", "spw-ground", "spw-gibbs", "spw-fault-tolerant", "spw-verification", "spw-cvdv", "spw-walsh", "spw-diagonal", "spw-uncompute"})
         self.assertTrue(all(len(r["steps"]) >= 3 for r in routes.values()))
 
     def test_cannot_promote_conceptual_functor(self):

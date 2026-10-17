@@ -15,6 +15,68 @@
     {"id":"concept:verification","label":"Verification and metrology","question":"Separate formal circuit correctness from experimental state certification."}
   ],
   "families":[
+    {
+      "id": "family:reachable-branch-recovery",
+      "label": "Recoverable history on reachable states",
+      "domains": [
+        "concept:complexity",
+        "concept:verification"
+      ],
+      "tags": [
+        "uncompute",
+        "divsteps",
+        "history",
+        "reachable",
+        "proof digestion"
+      ],
+      "question": "When can a computation recover its branch decisions without a full history stack?",
+      "formula": "b=\\operatorname{bit}_{j-1}(g_v^\\prime q^{-1}\\bmod 2^j)",
+      "mechanism": "Recover a branch only after a global reachable-state invariant makes the post-step state distinguish the alternatives. Compile and clear the decoder separately.",
+      "assumptions": [
+        "Pinned initialization and exact signed recurrence",
+        "Full invariant and decoder dependencies; odd modulus and valuation conditions are not disposable",
+        "Physical register refinement, phase/cleanup and actual gate costs remain separate"
+      ],
+      "proof_steps": [
+        "Audit Appendix A and existing upstream proofs, preserving their actual hypotheses.",
+        "Check invariant preservation and low-bit decoding as distinct suppliers.",
+        "Connect the decoded bit to inverse control and ancilla cleanup in the actual circuit; then count costs."
+      ],
+      "lean_refs": [],
+      "source_ids": [
+        "gu-kemeny-yelin-lukin-2026-uncompute",
+        "uncompute-upstream-64b5a13"
+      ],
+      "boundary": "Proposed local intake; existing upstream proof names are not new ASPBE certificates, and recurrence correctness is not a whole quantum circuit theorem.",
+      "technical_card": {
+        "id": "tl-reachable-branch-recovery",
+        "source_ids": [
+          "gu-kemeny-yelin-lukin-2026-uncompute",
+          "uncompute-upstream-64b5a13"
+        ],
+        "statement": "Use a proved reachable-state invariant to recover a prior branch from the updated state; supply the gate-level inverse/cleanup bridge separately.",
+        "lean_decl": [],
+        "lean_status": "obligation",
+        "used_by": [
+          "spw-uncompute"
+        ],
+        "dependencies": [
+          "family:matrix-contract",
+          "family:charged-access"
+        ],
+        "next_action": "Audit full upstream Recovery.lean and its imports, then compile an isolated Lean4.33.0 adaptation with explicit provenance before local admission.",
+        "tags": [
+          "uncompute",
+          "reachable invariant",
+          "source-first"
+        ],
+        "failure_modes": [
+          "Applying the decoder to arbitrary unreachable states.",
+          "Reading a branch bit correctly but failing to clear its temporary register.",
+          "Counting external Lean proofs as local compilation or whole-circuit resource closure."
+        ]
+      }
+    },
     {"id":"family:walsh-diagonal-phase","label":"Walsh characters and diagonal phase synthesis","domains":["concept:harmonic-analysis","concept:approximation","concept:state-preparation"],"tags":["Walsh","WSL","parity","diagonal","zero-mode","phase","sparse"],"question":"Can a short parity expansion replace a full table of diagonal phases?","formula":"w_j(x)=(-1)^{\\langle j,x\\rangle_2},\\quad F_S=\\sum_{j\\in S}a_jW_j,\\quad e^{-i\\tau F_S}=\\prod_{j\\in S}e^{-i\\tau a_jW_j}","mechanism":"A Walsh character is a diagonal Pauli-Z string once the source's bit-reversal convention is fixed. All strings commute, so each term becomes parity computation, a Z rotation and uncomputation. This makes a short function description into a phase operator; it does not by itself prepare its amplitude state.","assumptions":["Real sampled function, an explicitly supplied Walsh coefficient list and a fixed dyadic grid/bit convention","Sparsity and maximum Hamming weight are supplied or proved; differentiability is not sparsity","Retain j=0: its global phase becomes a relative phase when the operator is controlled","Approximation, coefficient computation, angle precision, connectivity and work-register cleanup are separately charged"],"proof_steps":["Identify each diagonal entry of W_j with the source Walsh character; prove orthogonality and coefficient reconstruction under the selected ordering.","Compose parity compute–rotate–uncompute into exp(-i tau a_j W_j), including the empty parity j=0.","Use diagonal commutation to prove the product formula, then bound truncation in the specified norm.","Only after phase synthesis closes, compose a separately verified interference/postselection consumer and charge success probability."],"lean_refs":["QuantumBlockEncoding.ConcreteSemantics.applyVec_zeroKet"],"source_ids":["zylberman-debbasch-2024-walsh","zylberman-et-al-2025-diagonal","pellini-ferrari-dacrema-2025-comment"],"boundary":"Planned source formalization, not a local Walsh theorem. Existing UCRY or Python Walsh/Gray multiplexor code is not a proof of the Walsh Series Loader. Sparse Walsh support is not sparse computational-basis support.","technical_card":{"id":"tl-walsh-diagonal-phase","source_ids":["zylberman-debbasch-2024-walsh","pellini-ferrari-dacrema-2025-comment"],"statement":"An explicit real Walsh expansion supplies a commuting diagonal phase circuit; the controlled circuit must include its constant coefficient. The amplitude-loading consumer is a separate obligation.","lean_decl":[],"lean_status":"obligation","used_by":["spw-walsh","spw-diagonal","spw-controlled"],"dependencies":["family:matrix-contract","family:charged-access"],"next_action":"Prove a bit-order-aware single Walsh-string matrix action, with j=0 and its controlled version, before proving truncation or loader complexity.","tags":["Walsh","zero-order","controlled-phase","planned-formalization"],"failure_modes":["Deleting a global phase before controlling the circuit changes interference.","Identifying Walsh integer order with physical little-endian wire order without the source adapter.","Inferring polynomial loading of arbitrary data from a sparse phase expansion.","Treating shared Walsh terminology as a checked reuse of the UCRY backend."]}},
     {"id":"family:diagonal-postselection","label":"Diagonal filters, accepted branches and normalization","domains":["concept:operator-theory","concept:state-preparation","concept:block-encoding","concept:probability"],"tags":["diagonal","non-unitary","Walsh","postselection","amplification","space-time-accuracy"],"question":"What does a cheap diagonal circuit really cost when used to prepare a state?","formula":"D=\\operatorname{diag}(d_x),\\quad \\Pi U_D(|0\\rangle|\\psi\\rangle)=D|\\psi\\rangle/\\alpha,\\quad p=\\|D\\psi\\|_2^2/\\alpha^2","mechanism":"A unitary diagonal changes phases but not probabilities. A non-unitary diagonal must be realized as an accepted branch of a larger unitary. Normalize only a nonzero branch, and account for repeated attempts or amplitude amplification. Walsh loading is one interference-based consumer, not identical to a general diagonal block encoding.","assumptions":["Normalized input with a charged preparation/inverse supplier; total scale alpha>0 bounds max |d_x|; it equals source alpha_src times dmax","Source V.1 covers signed real D; complex D needs the separate modulus–phase extension, a zero-entry phase convention and charged phase synthesis","Chosen ancilla success sector, complex phases, register order and clean workspace are explicit","Nonzero D psi and a quantitative lower bound on its norm for efficient normalized output","Data-copy parallelism means coherent computational-basis fanout followed by uncomputation, not cloning an unknown quantum state","Exact arbitrary tables can have exponential size; approximation savings need a function-class promise"],"proof_steps":["Specify the exact projected-block identity before discussing normalized output.","Compute the squared norm of the accepted branch and derive p; distinguish operator error from normalized-state error.","For WSL, derive the actual interference branch -i(I-exp(-i tau F_S))|+^n>/2 before the small-angle approximation.","Compile a declared sequential/parallel schedule, count workspace and cleanup, then charge all repetitions, reflections and inverses."],"lean_refs":["QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram_cleanEntry"],"source_ids":["zylberman-et-al-2025-diagonal","zylberman-debbasch-2024-walsh","lin-wiebe-2026-qasc"],"boundary":"The linked cubic theorem is a fixed two-data-qubit diagonal witness, not an arbitrary-width Walsh/diagonal compiler or its complexity theorem. Small operator error alone does not control a nearly zero postselected state's error.","technical_card":{"id":"tl-diagonal-postselection","source_ids":["zylberman-et-al-2025-diagonal","zylberman-debbasch-2024-walsh"],"statement":"A diagonal block applied to a specified input yields a conditional normalized state with success ||D psi||^2/alpha^2. Space/depth/accuracy tradeoffs must be compared at matched input, error and success contracts.","lean_decl":[],"lean_status":"obligation","used_by":["spw-diagonal","spw-walsh","spw-envelope","spw-fault-tolerant"],"dependencies":["family:matrix-contract","family:state-action","family:charged-access","family:walsh-diagonal-phase"],"next_action":"Prove the generic projected-branch probability identity using existing finite-matrix objects; keep the paper's literal dilation and circuit schedule as subsequent source obligations.","tags":["diagonal","postselection","success-cost","planned-formalization"],"failure_modes":["Quoting per-attempt depth as time to a successful prepared state.","Confusing state infidelity with vector or operator norm error, or forgetting alpha_total when converting source Eq. (18) normalized-block error to the local unscaled-operator convention.","Ignoring input-state preparation, reflections or inverse access in amplification.","Claiming a deterministic system-only non-unitary gate.","Calling a uniform-input cost bound a bound for every localized input.","Promoting the source Fig. 4 / Eqs. (19)-(21) / Appendix B signal sector before reconciling its labels.","Assuming III.2 integer rounding and VIII.1 size versus depth accounting have already been reconciled."]}},
     {"id":"family:matrix-contract","label":"Finite matrices, norms and registers","domains":["concept:matrix-analysis"],"tags":["norm","adjoint","matrix","register","normalization"],"question":"Are dimensions, basis order, scalar field and selected subspace fixed?","formula":"U^\u2020 U=I,\\qquad \\Pi U\\Pi^\u2020=A/\\alpha","mechanism":"Use matrix-entry and state-action contracts before optimizing circuits. A first column and an entire projected block are different targets.","assumptions":["Finite dimensions and explicit little-/big-endian conversion","Positive normalizer; selected input and output ancilla states","Named vector/operator norm and exact versus approximate tolerance"],"proof_steps":["Name the basis equivalence and the clean projector.","Prove unitarity independently of the target action.","Evaluate all requested entries, not only a finite diagnostic subset."],"lean_refs":["QuantumBlockEncoding.VerifiedStatePreparation"],"source_ids":[],"boundary":"A structure accepting a proposition is an interface, not an unconditional construction theorem."},

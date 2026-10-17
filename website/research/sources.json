@@ -15,6 +15,28 @@
       "formal_status": "existing local module; retrospective lesson and sourceblind whole-module review pending"
     },
     {
+      "id": "gu-kemeny-yelin-lukin-2026-uncompute",
+      "title": "Discovering state-of-the-art quantum circuits with large language models",
+      "authors": "Andi Gu, Alek H. Kemeny, Susanne F. Yelin, Mikhail D. Lukin",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2610.22367v1",
+      "status": "primary-text-checked",
+      "anchor": "v1: design principles; Methods Eqs. (10)-(22); Appendix A, A.1-A.8 (PDF pp. 44-46). Other case studies remain a queued source audit.",
+      "scope": "Priority intake for reversible computation and proof digestion. First batch audits existing branch-recovery and DQI proof interfaces; full paper and circuit/resource closure remain open.",
+      "formal_status": "No new local certificate. Existing author proofs are separately pinned and must be adapted to Lean 4.33.0 before local admission."
+    },
+    {
+      "id": "uncompute-upstream-64b5a13",
+      "title": "uncompute: pinned author circuit, evaluator and Lean artifacts",
+      "authors": "Andi Gu and contributors; retain upstream attribution",
+      "year": 2026,
+      "url": "https://github.com/andigu/uncompute/tree/64b5a13aa249f1360846657392e6c66817b26d0f",
+      "status": "primary-text-checked",
+      "anchor": "Commit 64b5a13aa249f1360846657392e6c66817b26d0f; lean/divsteps/README.md, lean/dqi/README.md; selected Recovery.lean and Complete.lean theorem interfaces; not yet a whole-module audit or local build.",
+      "scope": "Observed pins: divsteps Lean/Mathlib4.32.2; DQI Lean/Mathlib4.33.1. Apache-2.0 repository; divsteps also retains MIT safegcd-bounds attribution. Upstream source and claimed builds are not ASPBE acceptance.",
+      "formal_status": "External proof assets, not local certificates: Hddivsteps.ladder/ladder_det/finite_dependence/j2_law and Dqi.dqi_end_to_end. Full compiler, binder, definition, source and trust audit pending."
+    },
+    {
       "id": "zylberman-debbasch-2024-walsh",
       "title": "Efficient Quantum State Preparation with Walsh Series",
       "authors": "Julien Zylberman; Fabrice Debbasch",
