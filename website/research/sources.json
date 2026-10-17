@@ -488,6 +488,29 @@
       "anchor": "docs/lessons/cubic-grid-rational-operators-and-contracts.md sections S01–S13; immutable UTF-8 SHA256 e3e594b40b44bd474a4c98cf61c052b5f2a42ec8082de8d6164bd4f1e1df3dc7",
       "scope": "One complete actual legacy module, 269 public plus50 private authored lexical roots and11 explicit structures. Distinct rank-one/diagonal targets, exact rational matrix existence, conditional supplied contracts, finite arithmetic/error and label accounting boundaries.",
       "formal_status": "AUTHOR/WIP retrospective source only; no independent acceptance, historical formalizer identity, pre-proof provenance, novelty, fresh compile, main admission or PURIFIED claim."
+    },
+    {
+      "id": "candidate:aspbe-local-robin-nine-natural-v2",
+      "title": "Fixed Robin register constructions, exact primitives and projected blocks — local natural source version2",
+      "authors": [
+        "Historical formalizer UNKNOWN",
+        "Retrospective implementation-informed natural source and prospective metadata: root/robin_fixed_routes_source_author_c45"
+      ],
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "text_check_scope": "Exact available LOCAL authored bytes only; not authentic externalpaper, priorpreproof, independent source/formal acceptance or publication approval.",
+      "lesson_path": "docs/lessons/robin-nine-local-natural-source-v2.md",
+      "lesson_sha256": "10681db8c6f62818bcdd8d6eef787027983b010540e86c547afbaacc34031790",
+      "source_version": 2,
+      "source_sha256": "10681db8c6f62818bcdd8d6eef787027983b010540e86c547afbaacc34031790",
+      "anchor": "docs/lessons/robin-nine-local-natural-source-v2.md sections A0–A11, exact414lines/41709UTF16codeunits/41921UTF8bytes",
+      "scope": "Exactly nine wholeexisting modules:214public lexical inventory declarations plus1private helper and53ambientregions. Fixed width3adder; full8labelPREPARE; eightwirestage refinements/context-onlySELECT; coherent ninewireFigure4 projectedM/224 and distinct sixwireXOR projectedM/224; signedsector/cyclicangle prerequisite and genericrectangular systemconjugation. Fullunitarity/refinement/cleanindices/layout/witness/resource conjunctions separate. WholeRobinMatrix and externalfinalpaper7consumer excluded.",
+      "provenance": "RETROSPECTIVE_IMPLEMENTATION_INFORMED_LOCAL_NOT_PREPROOF_NOT_ORIGINAL_PAPER",
+      "historical_formalizer": "UNKNOWN",
+      "formal_status": "PROSPECTIVE AUTHOR ONLY; nine records and privatecurrentrawbyte binding controls NOT_VALIDATED/NOT_ADMITTED. Historical identity/TCB/fullreader/freshformal/source-topology results unassessed here; SELECT8-CONTEXT stays AUTHOR until actualreviewresult. No accepted evidence wrappers.",
+      "source_topology": "C50AUTHOR sourcegraphv4, sourcebytesv2 unchanged; complete21AND edges and projected-only two-routeOR preserved.",
+      "scientific_boundary": "Exact phase and localguard/dirtywork boundaries retained. Resource.pureAncilla0 differs from physicalFigure4work2; loader32RY62CX notfullXOR38RY68CX. No arbitrarywidth/finitebit/classicalpreprocessing/hardware/amplification/optimality, originalpaper fidelity, main/ROOT/PURIFIED claim."
     }
   ]
 }
