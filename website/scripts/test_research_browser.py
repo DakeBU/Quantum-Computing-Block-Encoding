@@ -181,6 +181,14 @@ def run(root: Path, output: Path, browser_channel: str | None = None,
                 page.evaluate("async () => { await MathJax.startup.promise; await MathJax.typesetPromise(); }")
                 if page.locator("mjx-merror").count():
                     failures.append("MathJax error in " + relative)
+                if relative == "state-preparation-wiki/spw-uncompute/index.html":
+                    layers = page.locator("[data-reading-layer]")
+                    if layers.count() != 4 or page.locator("[data-reading-layer][open]").count():
+                        failures.append("Uncompute reading depths are missing or all expanded")
+                    layers.first.locator("summary").focus()
+                    page.keyboard.press("Enter")
+                    if not layers.first.get_attribute("open") == "":
+                        failures.append("Uncompute reading depth is not keyboard accessible")
                 if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
                     failures.append("mobile overflow in " + relative)
             page.goto(f"{base}/mathematical-methods/hermite-bernstein/index.html", wait_until="networkidle", timeout=90000)

@@ -5,6 +5,105 @@
   "resource_contract":["input representation and bit length","data qubits and workspace qubits","classical preprocessing and memory","oracle construction, inverse and controlled access","primitive gates, T/Toffoli count and depth","connectivity and parallelism","success probability and amplification","state/operator/trace error and confidence","readout and end-to-end application cost"],
   "baseline":{"id":"setting:arbitrary-local-gates","statement":"An arbitrary N=2^n dimensional vector is not a succinct structured input. Parameter-counting and access-model lower bounds must be compared in their own precision, gate and ancilla models.","source_ids":["yuan-zhang-2023","zhang-yuan-2024"],"status":"external-baseline; local lower-bound formalization pending","prohibition":"Do not promise universal poly(n) loading of an arbitrary explicitly supplied vector. Do not confuse exponential gate count with ancilla count."},
   "routes":[
+    {
+      "id": "spw-uncompute",
+      "title": "Uncompute: digesting discovered reversible circuits",
+      "priority": 0,
+      "status": "research-target",
+      "setting_id": "setting:pinned-kickmix-clean-phase-trajectory",
+      "formula": "\\text{reachable invariant}\\;\\land\\;\\text{branch decoder}\\;\\land\\;\\text{circuit refinement}\\;\\Longrightarrow\\;\\text{clean reversible implementation}",
+      "goal": "Digest the whole pinned paper and its existing proofs into readable, audited mechanisms. Start with Appendix A branch recovery and the DQI theorem boundary, then connect real circuit semantics, error and resources; do not stop at a toy arithmetic identity.",
+      "motivation": "A circuit can output correct bits yet fail coherently through a wrong phase or dirty workspace. Explain the reusable construction before exposing the implementation proof forest.",
+      "input_model": "Pinned paper v1 and author code commit 64b5a13aa249f1360846657392e6c66817b26d0f. Explicit bit widths, registers, signed arithmetic, phase, measurement records, allowed input subspace, failure distribution and actual emitted operations.",
+      "assumptions": [
+        "Keep Lean 4.33.0 locally; upstream 4.32.2 and 4.33.1 proofs need explicit compatibility checks.",
+        "Reachable-state invariants must be proved from initialization, not added as convenient final circuit hypotheses.",
+        "Do not replace phase and cleanup checks by output-bit tests, or random tests by universal certificates.",
+        "Retain separate native-certificate trust, primality, code-distance, collision, statistical and circuit-to-oracle obligations."
+      ],
+      "target_bound": "First deliver a source-faithful, independently reviewed 4.33.0 adaptation and exact source-to-Lean crosswalk; subsequently certify the missing gate/record/cleanup and cost bridges. Author results remain author results.",
+      "known_boundary": "No new ASPBE Lean closure yet. Upstream recurrence/DQI proofs do not certify all eight circuit tasks. A 590-step worst-case result does not accept the 533-step failure-budget circuit. TQ is a paper objective, not a replacement for ASPBE correctness-first resource contracts.",
+      "families": [
+        "family:reachable-branch-recovery",
+        "family:matrix-contract",
+        "family:charged-access"
+      ],
+      "source_ids": [
+        "gu-kemeny-yelin-lukin-2026-uncompute",
+        "uncompute-upstream-64b5a13"
+      ],
+      "lean_refs": [],
+      "steps": [
+        {
+          "id": "upstream-adaptation",
+          "target": "Pin and audit the actual upstream theorem interfaces before adapting them to Lean4.33.0.",
+          "acceptance": "Compile exact adapted modules; audit axioms, binders, definitions, licenses and source graph; preserve author credit and publish the compatibility delta."
+        },
+        {
+          "id": "reachable-decoder",
+          "target": "Close the Appendix A reachability-to-decoder chain, then its actual reversible register implementation.",
+          "acceptance": "Initialization/step, determinant/parity and window suppliers discharge the decoder premises. Include zero/frozen/signed cases and exact cleanup; no arbitrary-state strengthening."
+        },
+        {
+          "id": "dqi-bridge",
+          "target": "Audit DQI strict-distance and boundary regimes and connect the implementation to their oracle hypotheses.",
+          "acceptance": "Keep strict inequality, clean relocation, record leakage, collision and profile residual distinct. Prove the circuit-to-oracle refinement instead of assuming the desired output."
+        },
+        {
+          "id": "case-family",
+          "target": "Digest numerical evaluation, chemistry SELECT/QROM and lattice-group constructions in dependency-ready batches.",
+          "acceptance": "Every claimed result has source coverage, exact finite-bit/error/resource contract, checked Lean scope and independently reproduced executable evidence."
+        },
+        {
+          "id": "reader",
+          "target": "Publish a compressed construction spine with lossless source and proof drill-down.",
+          "acceptance": "Independent reader can recover registers, phases, cleanup, error, cost tier and remaining obligations; no declaration-count or sample-pass proxy."
+        }
+      ],
+      "next": "Audit the fixed upstream proof modules and prepare an isolated4.33.0 compatibility build; no production proof-tree changes until the current bindings are stable.",
+      "lower_bound": {
+        "status": "model-definition-pending",
+        "task": "Paper resource improvements are instance/model comparisons, not universal optimality or a poly(n) state-preparation theorem.",
+        "comparison_key": "setting:pinned-kickmix-clean-phase-trajectory"
+      },
+      "benchmarks": [
+        "Appendix A: reachable negative-counter nonswap, including frozen and signed cases",
+        "DQI: strict dual distance versus the Reed-Solomon boundary; no global-isometry shortcut",
+        "Methods: correct bits with incorrect phase or dirty record must fail"
+      ],
+      "reading_layers": [
+        {
+          "title": "01 · The question",
+          "summary": "Why is erasing a temporary quantum value harder than deleting a classical variable?",
+          "items": [
+            "Follow data, phase and garbage separately. Start with the contract, not theorem names."
+          ]
+        },
+        {
+          "title": "02 · The mechanisms",
+          "summary": "Route data through a shared kernel; recover history from a proved invariant; account for permitted failure.",
+          "items": [
+            "These are techniques to audit under their own promises, not automatic substitutions into a state-preparation route."
+          ]
+        },
+        {
+          "title": "03 · The mathematical suppliers",
+          "summary": "Read the source construction and its complete AND dependencies.",
+          "items": [
+            "Appendix A: initialization and step -> determinant/parity and window invariant -> decoder -> finite-dependence/depth-two consumers.",
+            "Termination is a separate certificate branch; it is not a prerequisite for the local decoder."
+          ]
+        },
+        {
+          "title": "04 · The evidence",
+          "summary": "Open upstream Lean first, then the local compatibility and independent acceptance records as they become available.",
+          "items": [
+            "Upstream4.32.2/4.33.1 is not local4.33.0 acceptance.",
+            "Circuit refinement, statistical confidence, instance constants and resource counts retain separate open gates."
+          ]
+        }
+      ]
+    },
     {"id":"spw-walsh","title":"Walsh-series state preparation: phase is not amplitude","priority":2,"status":"research-target","setting_id":"setting:real-walsh-infidelity-postselection","formula":"p=\\frac{1}{N}\\sum_x\\sin^2(\\tau f_S(x)/2),\\quad N=2^n","goal":"Formalize the source Walsh Series Loader, including its constant mode, normalized approximation and success-dependent complexity.","motivation":"Short Walsh expansions can avoid enumerating all amplitudes, but a shallow phase circuit is only the first part of the loader.","input_model":"A real sampled function on the source dyadic grid, explicitly supplied Walsh coefficients, n data qubits and a signal ancilla; charge classical coefficient generation and primitive rotations.","assumptions":["Pin Walsh ordering and its map to physical wires","Declare epsilon as target state infidelity, not operator-norm or vector error","Retain the zero-order phase under control; f_S and its accepted branch must be nonzero","Smoothness, Walsh sparsity, Hamming weight and norm/filling assumptions are distinct parameters"],"target_bound":"Reproduce the pinned source's per-attempt and repeat-until-success/amplified resource bounds with all function-dependent constants and gate-model assumptions visible; no new speedup claimed.","known_boundary":"The state after postselection is proportional to -i(I-exp(-i tau F_S))|+^n>, not exactly to f_S at finite tau. Increasing fidelity can reduce success probability. The zero-order-term implementation issue must be tested explicitly. Local staging now checks the actual H-controlled-diagonal-H-phase composition, constant relative phase and exact sine-squared accepted mass; independent source/semantic admission and approximation/resources remain open.","families":["family:walsh-diagonal-phase","family:diagonal-postselection","family:state-action","family:charged-access"],"source_ids":["zylberman-debbasch-2024-walsh","pellini-ferrari-dacrema-2025-comment"],"lean_refs":[],"steps":[{"id":"walsh-parity","target":"Close exact Walsh-character and controlled-phase semantics.","acceptance":"All basis entries, bit order and j=0 agree with the frozen source; constant functions and constant-plus-one-parity are regression cases."},{"id":"accepted-state","target":"Derive the actual ancilla branches and normalized approximation theorem.","acceptance":"Success probability, zero branches, phases and infidelity/truncation errors are explicit; finite plots are not proofs."},{"id":"total-cost","target":"Compose phase synthesis with RUS or amplitude amplification.","acceptance":"Report per-attempt and successful-preparation gates/depth separately, with coefficient preprocessing, inverses/reflections and finite-gate error charged."}],"next":"Review the staged literal interference chain and constant-mode discriminator, then supply the Walsh parity/wire map and nonzero normalized/error/resource bridges; do not re-prove the already checked branch identity.","lower_bound":{"status":"source-audit-pending","task":"Compare sparse/smooth promised inputs with matched accuracy and success costs, never with a free arbitrary-vector table.","comparison_key":"setting:real-walsh-infidelity-postselection"},"benchmarks":["Nonzero constant function (zero-mode regression)","Constant plus a single Walsh character","Localized smooth function with a small filling fraction","Bit-reversed two-qubit ordering discriminator"]},
     {"id":"spw-diagonal","title":"Diagonal operators: space, depth, accuracy and success","priority":2,"status":"research-target","setting_id":"setting:diagonal-supplier-space-time-accuracy","formula":"\\Pi U_D(|0\\rangle|\\psi\\rangle)=D|\\psi\\rangle/\\alpha,\\quad p=\\|D\\psi\\|^2/\\alpha^2","goal":"Formalize unitary phase synthesis and non-unitary diagonal dilation as separate suppliers, then derive a state-preparation consumer with full resource accounting.","motivation":"The same diagonal supplier can serve function loading, block encoding and non-unitary evolution, without duplicating the underlying finite-matrix library.","input_model":"Specified diagonal data or function, gate set, coefficient/angle preprocessing, explicit input state, and sequential/parallel circuit schedule with clean ancilla policy.","assumptions":["Unit-modulus phase operators are distinguished from general bounded diagonals; V.1 handles signed real entries, while the complex extension needs a separate modulus–phase supplier with a zero-entry convention","Workspace fanout/unfanout, connectivity and angle synthesis are counted","State infidelity, operator error and normalized-branch error are separate contracts; source Eq. (18) normalized-block error delta corresponds to unscaled-operator error alpha_total times delta","Quantitative output-norm or success lower bounds accompany efficiency claims"],"target_bound":"Source-faithful size/depth/ancilla/accuracy tradeoffs and a separately costed SP consumer; exact arbitrary diagonals are not claimed poly(n).","known_boundary":"Reduced depth may require much more workspace without reducing total size. A non-unitary diagonal is an accepted block, not a deterministic system-only gate; approximation may require stronger smoothness for transformed angle functions. Local staging checks the literal Figure3 accepted1<-0 action, success mass and normalized branch. Printed rejected-phase and clean0<-0 discrepancies are retained as source gaps; no scalable resource theorem or full-paper admission follows.","families":["family:diagonal-postselection","family:walsh-diagonal-phase","family:matrix-contract","family:charged-access"],"source_ids":["zylberman-et-al-2025-diagonal","zylberman-debbasch-2024-walsh","lin-wiebe-2026-qasc"],"lean_refs":["QuantumBlockEncoding.CubicDiagonalOracle.cubicN2PrimitiveProgram_cleanEntry"],"steps":[{"id":"literal-diagonal","target":"Freeze the source's unitary and non-unitary operator contracts.","acceptance":"Versioned equation anchors, scalar phase conventions, dilation scale and signal-register order are reconciled with the local matrix API."},{"id":"schedule","target":"Prove a sequential/parallel supplier and workspace cleanup.","acceptance":"Composed gate semantics, copy/uncompute action and emitted-list cost under a fixed connectivity model; no no-cloning shortcut."},{"id":"consumer","target":"Apply the diagonal block to a charged input and normalize.","acceptance":"Nonzero branch, exact probability, robust state error and all repeated/inverse/control calls in the successful-preparation resource tuple."}],"next":"Review the staged literal Figure3 chain and zero-angle mismatch; supply the actual dmax/alpha scale and a reviewed clean-sector adapter before approximate/parallel-resource translation.","lower_bound":{"status":"source-audit-pending","task":"Pin size/depth/ancilla/precision promises before comparing the paper's regimes or arbitrary-diagonal lower bounds.","comparison_key":"setting:diagonal-supplier-space-time-accuracy"},"benchmarks":["Pure global phase used under control","Bounded diagonal with zero entries and a nonzero accepted branch","Zero accepted branch rejection","Same operator and accuracy under two clean-workspace budgets"]},
     {"id":"spw-structured","title":"High-dimensional structured function states","priority":1,"status":"research-target","setting_id":"setting:structured-tt-supplied-cores","formula":"|f\\rangle=\\frac{1}{\\|f\\|_{2,N}}\\sum_{\\mathbf j\\in[N]^D}f(\\mathbf x_{\\mathbf j})|\\mathbf j\\rangle,\\quad N=2^n","goal":"Prove a constructive cost and state-error theorem for a precisely specified low-rank, sparse-frequency, mixed-smoothness or compositional class; do not equate these assumptions.","motivation":"Multivariate PDE data, localized scientific functions and conditional distributions need more than generic amplitude loading.","input_model":"An explicit formula-to-core supplier or a charged sparse coefficient oracle; grid, complex phase and a nonzero norm are part of the input.","assumptions":["D and n specified; rank r and degree q are certified, not numerical fit labels","Core/coefficients and normalizer are computably supplied","Approximation error includes model compression, grid, arithmetic and primitive synthesis"],"target_bound":"A candidate target is poly(D,r,q,n,log(1/epsilon)) cost under stated bit-length and stability promises; this bound is not claimed here.","known_boundary":"Generic tensor-product degree-q expansions have (q+1)^D coefficients; smoothness alone does not remove dimensionality. Hermite's one-dimensional exact-real compiler is a substrate, not this multivariate theorem.","families":["family:bounded-memory","family:gram-normalization","family:local-isometry","family:charged-access"],"source_ids":["holmes-matsuura-2020","multivariate-2025","qkan-2026"],"lean_refs":["QuantumBlockEncoding.ConstructiveHermitePreparation.prepare_spec"],"steps":[{"id":"class-contract","target":"Choose one function class and prove a uniform rank/degree certificate.","acceptance":"A source-faithful class predicate and formula-to-core action theorem, including phases and supports."},{"id":"error-supplier","target":"Bound normalized-state error from core approximation and arithmetic.","acceptance":"An explicit norm lower bound and a theorem for the exact requested vector norm; no uncharged condition number."},{"id":"compiler","target":"Compose the class supplier with the existing clean TT compiler.","acceptance":"Primitive-list semantics, workspace cleanup, and every cost coordinate under the same model."}],"next":"Start from the Hermite corridor; add a tensor-product or shallow coupled class with a proved rank bound before claiming general high dimension.","lower_bound":{"status":"model-definition-pending","task":"Separate arbitrary-vector counting barriers from lower bounds for the selected structured class. Specify which class parameters enter the hard family.","comparison_key":"setting:structured-tt-supplied-cores"},"benchmarks":["Product Gaussian with explicitly bounded widths","Weakly coupled Gaussian with a proved rank estimate","Hermite-smoothed PDE auxiliary profile"]},
