@@ -9,7 +9,7 @@ class UncomputeIntakeTests(unittest.TestCase):
     def route(self):return next(r for r in self.catalog['wiki']['routes'] if r['id']=='spw-uncompute')
     def test_priority_preserves_no_local_proof_boundary(self):
         route=self.route();self.assertEqual(route['priority'],0);self.assertEqual(route['status'],'research-target')
-        self.assertEqual(route['lean_refs'],[]);self.assertEqual(len(route['steps']),5)
+        self.assertEqual(route['lean_refs'],[]);self.assertEqual(len(route['steps']),7)
         self.assertIn('4.33.0',route['input_model']+' '.join(route['assumptions']))
         self.assertIn('533',route['known_boundary']);self.assertIn('590',route['known_boundary'])
     def test_exact_upstream_pin_and_author_credit(self):
@@ -34,4 +34,22 @@ class UncomputeIntakeTests(unittest.TestCase):
         for path in ('README.md','website/scripts/build_site.py'):
             text=(ROOT/path).read_text();self.assertIn('spw-uncompute/index.html',text);self.assertIn('2610.22367v1',text)
             self.assertIn('work in progress',text.lower())
+    def test_actual_home_preserves_the_existing_live_curriculum_label(self):
+        from website.scripts.build_site import render_home
+        page=render_home({'declarations':[]},{'publicDeclarationCount':0,'sourceDocstringCount':0},
+                         {'passed':True},{'shortCommit':'test'})
+        self.assertIn('four peer parts',page.casefold())
+        self.assertIn('spw-uncompute/index.html',page)
+    def test_spbe_evolution_is_planned_and_contract_matched_not_a_certificate(self):
+        route=self.route();steps={s['id']:s for s in route['steps']}
+        self.assertIn('First research priority',route['goal'])
+        self.assertIn('controlled',route['goal'])
+        for key in ('function-oracle-spbe','prepare-select-lab'):
+            self.assertTrue(steps[key]['target'].startswith('Planned'))
+        self.assertIn('success probability',steps['function-oracle-spbe']['acceptance'])
+        self.assertIn('unprepare',steps['prepare-select-lab']['acceptance'])
+        self.assertIn('operator-norm',' '.join(route['assumptions']))
+        self.assertIn('never modify the trusted verifier',' '.join(route['assumptions']))
+        self.assertIn('no new best-known circuit is promised',route['target_bound'])
+        self.assertIn('not newly certified graph edges',' '.join(route['reading_layers'][2]['items']))
 if __name__=='__main__':unittest.main()
