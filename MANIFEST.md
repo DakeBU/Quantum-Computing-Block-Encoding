@@ -8516,3 +8516,4 @@ block-encoding formalization lifecycle.
 | 2026-10-18 02:13:10 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c93-asynchronous-observation-timing-pilot-20261018 |
 | 2026-10-18 02:24:56 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c94-reviewed-small-walk-proof-evidence-20261018 |
 | 2026-10-18 02:24:57 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c95-main-hbi-433-compatibility-discriminator-20261018 |
+| 2026-10-18 02:41:09 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c101-hbi-matched-focused-and-fresh-blind-decoder-20261018 |
