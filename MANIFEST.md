@@ -8486,3 +8486,5 @@ block-encoding formalization lifecycle.
 | 2026-10-17 10:48:40 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c38-c34-preregistered5120-headroom-guarded-CI5-ready-20261017 |
 | 2026-10-17 10:56:57 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c38-joint-CSP-Cubic-samecohort-actual-success-20261017 |
 | 2026-10-17 11:19:35 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c39-C34-CI5-first-actual-success-20261017 |
+| 2026-10-17 11:35:57 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c39-stored-whole60-plus-instance-local-review-20261017 |
+| 2026-10-17 11:35:58 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c39-joint-original-independent-actual-addenda-20261017 |
