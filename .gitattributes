@@ -11,6 +11,7 @@ ABEISTests/*.lean text eol=lf
 lean-toolchain text eol=lf
 lake-manifest.json text eol=lf
 docs/lessons/** text eol=lf
+docs/publication-c32-v3/** text eol=lf
 
 # Independently signed packets are immutable byte artifacts. In particular,
 # retain pre-policy CRLF packets as historical evidence; do not rehash them.
