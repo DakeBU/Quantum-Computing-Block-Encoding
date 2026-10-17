@@ -346,7 +346,8 @@ def render_book_navigation(prefix: str, current: str) -> str:
             current == f"chapters/{chapter['slug']}/" for chapter in guided
         )
         opened = " open" if selected else ""
-        links = [f'<a class="book-part-overview" href="{page_url(prefix, route)}">Part overview →</a>']
+        active = ' aria-current="page"' if current == route else ""
+        links = [f'<a class="book-part-overview" href="{page_url(prefix, route)}"{active}>Part overview →</a>']
         for chapter in guided:
             chapter_route = f"chapters/{chapter['slug']}/"
             active = ' aria-current="page"' if current == chapter_route else ""
@@ -358,10 +359,9 @@ def render_book_navigation(prefix: str, current: str) -> str:
         for chapter in part["chapters"]:
             if index < 2 and chapter["status"] == "Compiled":
                 continue  # Already reached through the overview and guided chapters.
-            target = (
-                page_url(prefix, str(chapter["href"])) if index < 2 and chapter.get("href")
-                else f'{page_url(prefix, route)}#{chapter["id"]}'
-            )
+            # A shared technique can belong to multiple books. Link its owned
+            # chapter card here; the card retains the common source/route link.
+            target = f'{page_url(prefix, route)}#{chapter["id"]}'
             links.append(
                 f'<a class="book-curriculum-link" href="{html.escape(target)}">'
                 f'<span>{html.escape(str(chapter["title"]))}</span>'
