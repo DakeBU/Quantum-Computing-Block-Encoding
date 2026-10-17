@@ -8507,3 +8507,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 18:41:29 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c47-actual-installed-full-lean433-tests-success-20261017 |
 | 2026-10-17 18:55:38 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c50-select-context-positive-topology-proposal-20261017 |
 | 2026-10-17 19:03:45 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c51-actual-independent-source-successor-safe-decoder-20261017 |
+| 2026-10-17 23:51:50 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c61-actual-source-formal-signature-successor-checkpoint-20261017 |
