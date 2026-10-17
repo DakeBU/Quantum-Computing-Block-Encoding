@@ -35,7 +35,7 @@ class PortableTransportTests(unittest.TestCase):
     def test_optional_bounded_workflow_only_uploads_sanitized_paths(self):
         w=(ROOT/'.github/workflows/c34-real-preparation-native.yml').read_text()
         self.assertIn('pull_request:',w);self.assertIn('contents: read',w);self.assertIn('timeout-minutes: 35',w)
-        self.assertIn('cancel-in-progress: false',w);self.assertIn('launch.py --ci',w)
+        self.assertIn('cancel-in-progress: false',w);self.assertIn('launch_ci2.py --ci',w)
         self.assertNotIn('pull_request_target',w);self.assertNotIn('secrets.',w)
         self.assertIn('_out/real-preparation-native-c34-implement-v2/public/',w)
         self.assertNotIn('path: _out/',w)

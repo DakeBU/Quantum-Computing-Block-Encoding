@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Exact portable transport and 26 Python-only guards
-        run: python3 -B tools/real_preparation_native_c34_ci1/launch.py --python-tests
+run: python3 -B tools/real_preparation_native_c34_ci1/launch_ci2.py --python-tests
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -26,7 +26,7 @@ jobs:
       - name: Prepare inherited provider closure; original target dependencies may compile here
         run: lake build QuantumBlockEncoding.TensorTrainLocalCompiler QuantumBlockEncoding.ConstructiveIsometryCompletion
       - name: Actual compiler discovery and fresh target cohort; no target artifacts inherited
-        run: lake env python3 -B tools/real_preparation_native_c34_ci1/launch.py --ci
+run: lake env python3 -B tools/real_preparation_native_c34_ci1/launch_ci2.py --ci
       - name: Only sanitized actual diagnostics and hash-only launcher receipts
         if: always()
         uses: actions/upload-artifact@v4

@@ -8466,3 +8466,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 09:12:10 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c34-runnable-portable-compiler-discovery-ci1-20261017 |
 | 2026-10-17 09:12:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-current-two-types-original-review-resolved-20261017 |
 | 2026-10-17 09:12:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-actual-ci4-original-source-first-review-delivered-20261017 |
+| 2026-10-17 09:17:08 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c34-ci1-python-failure-ci2-observability-20261017 |
