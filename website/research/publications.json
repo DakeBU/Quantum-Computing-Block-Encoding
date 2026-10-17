@@ -27120,6 +27120,381 @@
         "pre_proof_seal_claim": false
       },
       "unresolved_source_support": []
+    },
+    {
+      "module": "QuantumBlockEncoding/SequentialPrimitiveAssembly.lean",
+      "source_id": "aspbe-local-retrospective-sequential-primitive-assembly-c48",
+      "source_statement": "LOCAL retrospective source S0-S9 equations (1)-(18): literal supplied-list placement and exact clean-data-input amplitude action, with charged initialization and selected-kind resources; whole module.",
+      "source_anchor": "docs/lessons/sequential-primitive-assembly.md S0-S9; no original-paper or preproof-seal claim",
+      "lesson_path": "docs/lessons/sequential-primitive-assembly.md",
+      "declarations": [
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.padMatrix",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_pad",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.padMatrix_append",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_ryCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_cxCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_gateCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_fresh",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_bond",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_basis",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.placedMatrix",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_placeStage",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.placedMatrix_apply",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_ryCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_cxCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_gateCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.assembledMatrix",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_assemble",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.assembledMatrix_clean_column",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_clean_column",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.run_boundary_decomposition",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_column",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_ryCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_cxCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_noOracle",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_ryCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_cxCount",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_primitive_bound",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.outputWires",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.outputWires_basis",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit_column",
+        "QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit_primitive_bound"
+      ],
+      "obligation_map": [
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S2:pad",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S2:padMatrix",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.padMatrix"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S2:eval_pad",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_pad"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S2:padMatrix_append",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.padMatrix_append"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S2:pad_ryCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_ryCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S2:pad_cxCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_cxCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S2:pad_gateCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_gateCount"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S3:stageWires",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:stageWires_fresh",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_fresh"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:stageWires_bond",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_bond"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:stageWires_basis",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_basis"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S3:placeStage",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S3:placedMatrix",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.placedMatrix"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:eval_placeStage",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_placeStage"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:placedMatrix_apply",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.placedMatrix_apply"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:placeStage_ryCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_ryCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:placeStage_cxCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_cxCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S3:placeStage_gateCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_gateCount"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S4:assemble",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S4:assembledMatrix",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.assembledMatrix"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S4:eval_assemble",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_assemble"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S5:assembledMatrix_clean_column",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.assembledMatrix_clean_column"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S5:assemble_clean_column",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_clean_column"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S5:run_boundary_decomposition",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.run_boundary_decomposition"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S6:withInitial",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S6:withInitial_column",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_column"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S7:assemble_ryCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_ryCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S7:assemble_cxCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_cxCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S7:assemble_noOracle",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_noOracle"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S7:withInitial_ryCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_ryCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S7:withInitial_cxCount",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_cxCount"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S7:withInitial_primitive_bound",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_primitive_bound"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S8:outputWires",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.outputWires"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S8:outputWires_basis",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.outputWires_basis"
+          ]
+        },
+        {
+          "kind": "prerequisite",
+          "source_obligation": "C48-S8:publicCircuit",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S8:publicCircuit_column",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit_column"
+          ]
+        },
+        {
+          "kind": "proof-edge",
+          "source_obligation": "C48-S8:publicCircuit_primitive_bound",
+          "declarations": [
+            "QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit_primitive_bound"
+          ]
+        }
+      ],
+      "assumption_deltas": [
+        {
+          "classification": "same",
+          "source": "SOURCE.md S0-S9",
+          "formal": "QuantumBlockEncoding/SequentialPrimitiveAssembly.lean",
+          "explanation": "The source was retrospectively written for the exact existing supplied-list interface, including conditional count premise and clean-input scope. This is not fidelity to an earlier external paper."
+        }
+      ],
+      "graph_contribution": {
+        "baseline": "389dd817cad3f9ce69bbccc3d0cfe69c1dbfba9d",
+        "classes": [
+          "bridge"
+        ],
+        "node_ids": [
+          "module:QuantumBlockEncoding.SequentialPrimitiveAssembly",
+          "concept:literal-wire-placement-and-clean-column-assembly",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.pad",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.padMatrix",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_pad",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.padMatrix_append",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_ryCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_cxCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.pad_gateCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_fresh",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_bond",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.stageWires_basis",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.placedMatrix",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_placeStage",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.placedMatrix_apply",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_ryCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_cxCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.placeStage_gateCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.assembledMatrix",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.eval_assemble",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.assembledMatrix_clean_column",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_clean_column",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.run_boundary_decomposition",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_column",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_ryCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_cxCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.assemble_noOracle",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_ryCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_cxCount",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.withInitial_primitive_bound",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.outputWires",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.outputWires_basis",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit_column",
+          "declaration:QuantumBlockEncoding.SequentialPrimitiveAssembly.publicCircuit_primitive_bound"
+        ],
+        "views": [
+          "source-proof-construction",
+          "underlying-Lean-import-ownership",
+          "compressed-quantum-spine",
+          "conditional-functor-hypergraph"
+        ],
+        "preserved_contract": "Unchanged Lean bytes and supplied-list contract; local retrospective semantic bridge only, not new theorem or novelty judgement",
+        "remaining_boundary": "Independent raw-source/topology, formal decoder and anti-anchored review; fresh Lean/tests; no terminal cleanup, family synthesis or finite-bit/hardware certificate"
+      },
+      "formalizer": "UNKNOWN",
+      "residual_boundary": "Independent raw-source/topology, formal decoder and anti-anchored review; fresh Lean/tests; no terminal cleanup, family synthesis or finite-bit/hardware certificate",
+      "binding_sha256": "b0ceb167ac6eb8f86d0c513a835b96e538219dfa52a3a620880627bd838b0ba9",
+      "decoder_evidence": "reviews/publication/sequential-primitive-assembly-c48/decoder-c53-schema-wrapper-c71.json",
+      "reviewer_evidence": "reviews/publication/sequential-primitive-assembly-c48/reviewer-c73-association.json"
     }
   ]
 }
