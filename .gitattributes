@@ -35,3 +35,4 @@ reports/lean-433-migration/*.md -text
 tools/primitive_compiler_native_profile_v1/** -text
 tools/primitive_compiler_native_profile_ci2/** -text
 tools/primitive_compiler_native_profile_ci3/** -text
+tools/cubic_c29_kernel_ci1/** -text

@@ -8455,3 +8455,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 08:04:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-actual-ci2-incomplete-resource-refusal-20261017 |
 | 2026-10-17 08:04:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-ci3-root-api-correction-parent-20261017 |
 | 2026-10-17 08:04:47 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-extractor-source-implementation-independent-addendum-20261017 |
+| 2026-10-17 08:10:37 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-nine-proof-token-kernel-only-isolated-ci1-20261017 |
