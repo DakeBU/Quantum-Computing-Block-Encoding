@@ -8476,3 +8476,5 @@ block-encoding formalization lifecycle.
 | 2026-10-17 09:42:07 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-v3-shadow-helper-pinned-copy-successor-20261017 |
 | 2026-10-17 09:56:39 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c35-c31-kernel-v3-actual-200-row-success-20261017 |
 | 2026-10-17 09:56:39 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c35-c34-ci3-actual-parser-success-memory-failure-20261017 |
+| 2026-10-17 10:07:52 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c35-full-lean433-and-old-hermite-finite-replay-20261017 |
+| 2026-10-17 10:07:52 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c35-c34-ci4-same-cap-target-serial-diagnostic-20261017 |

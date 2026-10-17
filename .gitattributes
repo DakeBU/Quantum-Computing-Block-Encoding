@@ -42,4 +42,5 @@ tools/real_preparation_native_c34_ci1/** -text
 tools/c31_kernel_proof_v1/** -text
 tools/c31_kernel_proof_v2_guard/** -text
 tools/real_preparation_native_c34_ci3/** -text
+tools/real_preparation_native_c34_ci4/** -text
 tools/c31_kernel_proof_v3/** -text

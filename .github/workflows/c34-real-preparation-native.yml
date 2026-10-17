@@ -6,6 +6,7 @@ on:
       - '.github/workflows/c34-real-preparation-native.yml'
       - 'tools/real_preparation_native_c34_ci1/**'
       - 'tools/real_preparation_native_c34_ci3/**'
+      - 'tools/real_preparation_native_c34_ci4/**'
 permissions:
   contents: read
 concurrency:
@@ -17,8 +18,8 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v5
-      - name: Exact portable transport and 26 Python-only guards
-        run: python3 -B tools/real_preparation_native_c34_ci3/launch.py --python-tests
+      - name: Exact portable transport and 29 Python-only guards
+        run: python3 -B tools/real_preparation_native_c34_ci4/launch.py --python-tests
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -27,7 +28,7 @@ jobs:
       - name: Prepare inherited provider closure; original target dependencies may compile here
         run: lake build QuantumBlockEncoding.TensorTrainLocalCompiler QuantumBlockEncoding.ConstructiveIsometryCompletion
       - name: Actual compiler discovery and fresh target cohort; no target artifacts inherited
-        run: lake env python3 -B tools/real_preparation_native_c34_ci3/launch.py --ci
+        run: lake env python3 -B tools/real_preparation_native_c34_ci4/launch.py --ci
       - name: Only sanitized actual diagnostics and hash-only launcher receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -35,6 +36,6 @@ jobs:
           name: c34-real-preparation-${{ github.sha }}
           path: |
             _out/real-preparation-native-c34-implement-v2/public/
-            _out/c34-native-ci3/public/
+            _out/c34-native-ci4/public/
           if-no-files-found: warn
           retention-days: 7
