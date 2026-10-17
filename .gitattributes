@@ -43,5 +43,6 @@ tools/c31_kernel_proof_v1/** -text
 tools/c31_kernel_proof_v2_guard/** -text
 tools/real_preparation_native_c34_ci3/** -text
 tools/real_preparation_native_c34_ci4/** -text
+tools/real_preparation_native_c34_ci5/** -text
 tools/c31_kernel_proof_v3/** -text
 tools/c29_c31_joint_kernel_v1/** -text

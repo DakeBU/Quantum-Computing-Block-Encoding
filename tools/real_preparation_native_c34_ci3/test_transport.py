@@ -38,7 +38,7 @@ class CanonicalCandidateTransportTests(unittest.TestCase):
             stderr=z.read('c34-native-ci1/public/ci2-python-failure.stderr.sanitized.txt')
             self.assertIn(b'candidate source byte binding changed',stderr);self.assertIn(b'FAILED (errors=1)',stderr)
         w=(ROOT/'.github/workflows/c34-real-preparation-native.yml').read_text()
-        self.assertIn('        run: lake env python3 -B tools/real_preparation_native_c34_ci4/launch.py --ci',w)
+        self.assertIn('        run: lake env python3 -B tools/real_preparation_native_c34_ci5/launch.py --ci',w)
         self.assertTrue(all(s.startswith('        run: ') for s in w.splitlines() if s.lstrip().startswith('run:')))
         self.assertNotIn('continue-on-error',w)
 if __name__=='__main__':unittest.main()

@@ -22,7 +22,7 @@ class SerialTransportTests(unittest.TestCase):
             (package/'runner.py').write_bytes(b'FIXTURE_TAMPER')
             with self.assertRaises(ValueError):launch.prepare(project)
     def test_current_optional_workflow_keeps_same_boundary(self):
-        w=(ROOT/'.github/workflows/c34-real-preparation-native.yml').read_text()
+        w=(ROOT/'tools/real_preparation_native_c34_ci5/workflow-before-ci5.yml.txt').read_text()
         self.assertIn('real_preparation_native_c34_ci4/launch.py --ci',w)
         self.assertIn('real_preparation_native_c34_ci4/launch.py --python-tests',w)
         self.assertIn('timeout-minutes: 35',w);self.assertIn('contents: read',w)

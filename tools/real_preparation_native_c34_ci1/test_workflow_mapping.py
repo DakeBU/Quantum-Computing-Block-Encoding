@@ -12,7 +12,7 @@ class WorkflowIndentationTests(unittest.TestCase):
     def test_current_three_steps_have_exact_mapping_indentation(self):
         w=(ROOT/'.github/workflows/c34-real-preparation-native.yml').read_text()
         self.assertEqual(len(check_runs(w)),3)
-        self.assertIn('        run: python3 -B tools/real_preparation_native_c34_ci4/launch.py --python-tests',w)
+        self.assertIn('        run: python3 -B tools/real_preparation_native_c34_ci5/launch.py --python-tests',w)
     def test_parent_previous_unindented_patch_is_rejected(self):
         w=(ROOT/'.github/workflows/c34-real-preparation-native.yml').read_text()
         for row in check_runs(w):
