@@ -391,6 +391,17 @@
       "anchor": "docs/lessons/rectangular-row-elimination.md sections S1-S7; exact source SHA256 fe6357c4a8714ba463b00a0d575a28b2387bff7a1cfd9478f063a0bd6ddd12bb",
       "scope": "Whole RectangularGivens source: 19 public declarations (6 definitions and13 theorems); lexical inventory, not generated kernel census.",
       "formal_status": "AUTHOR/WIP retrospective local recovery. Independent source-first and formal-only reviews underway; no pre-proof seal, final admission or PURIFIED claim."
+    },
+    {
+      "id": "aspbe-local-rectangular-row-elimination-v2",
+      "title": "Exact rectangular row elimination and reversible recovery (clarified supplier interface)",
+      "authors": "Retrospective implementation-informed local source and metadata /root; historical formalizer UNKNOWN",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "docs/lessons/rectangular-row-elimination-v2.md sections S1-S7; exact source SHA256 91c442f1f8002be9d082257fbba0a79d551df3cdda499c6d1a2f539a686e0fd3",
+      "scope": "Whole RectangularGivens source: 19 public declarations (6 definitions and13 theorems); lexical inventory, not generated kernel census.",
+      "formal_status": "AUTHOR/WIP v2 source clarification after independent source-only findings. Original v1 and its F1/F2 findings preserved; independent minimality/formal comparison pending, not pre-proof/ROOT/PURIFIED."
     }
   ]
 }
