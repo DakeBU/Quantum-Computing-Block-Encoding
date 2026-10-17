@@ -8495,3 +8495,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 15:12:06 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c43-foundations-three-whole-modules-exact-local-admission-20261017 |
 | 2026-10-17 15:47:09 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c44-safe-main-sidebar-sync-284-focused-tests-20261017 |
 | 2026-10-17 15:52:20 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c44-ghl-actual-independent-full-local-comparison-20261017 |
+| 2026-10-17 16:08:06 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c44-genuine-topology-repair-and-extended-sp-reading-checkpoint-20261017 |

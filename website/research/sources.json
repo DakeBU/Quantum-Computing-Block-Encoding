@@ -443,6 +443,23 @@
       "lesson_path": "docs/lessons/finite-sp-foundations-v2.md",
       "lesson_sha256": "286c030e78ad180e74335f8c8543da2aad5dcff81a2797c92215f13773466cc0",
       "historical_formalizer": "UNKNOWN"
+    },
+    {
+      "id": "candidate:aspbe-local-ghl-retrospective-m0-m14",
+      "title": "Restricted global sparse-address arithmetic and finite permutation substrate (retrospective LOCAL GHL recovery)",
+      "authors": [
+        "Original historical formalizer UNKNOWN; retrospective source recovery and prospective metadata /root"
+      ],
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "year": 2026,
+      "status": "primary-text-checked",
+      "anchor": "docs/lessons/ghl-global-slot-clean-domain-and-transpose-boundary.md sections M0-M14",
+      "lesson_path": "docs/lessons/ghl-global-slot-clean-domain-and-transpose-boundary.md",
+      "lesson_sha256": "fefd00e4a255744e26dd1ceebadc0767d321d1e93c3db85af711bab0fde08fd8",
+      "scope": "Complete retrospective LOCAL mathematical account of all8474lines of GHL2025 and its five narrow providers. This source is the available local lesson,not the unavailable authentic external paper. Literal data/interface facts,modular/splice arithmetic,finite permutations and guarded active-domain transpose-column theorem only.",
+      "provenance": "RETROSPECTIVE_IMPLEMENTATION_INFORMED_NOT_PREPROOF",
+      "historical_formalizer": "UNKNOWN",
+      "formal_status": "AUTHOR/WIP prospective exact local context. Actual formal-only and source-first comparisons sealed separately; exact final publication wrapper,independent topology,trust,integration and reader gates PENDING. Not original-paper fidelity,Robin block closure,main migration or PURIFIED."
     }
   ]
 }
