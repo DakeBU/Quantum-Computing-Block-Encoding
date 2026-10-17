@@ -47,3 +47,12 @@ tools/real_preparation_native_c34_ci4/** -text
 tools/real_preparation_native_c34_ci5/** -text
 tools/c31_kernel_proof_v3/** -text
 tools/c29_c31_joint_kernel_v1/** -text
+
+# Preserve this independently reviewed retrospective lesson byte-for-byte;
+# its frozen source includes CRLF, unlike the default new lesson policy.
+docs/lessons/hermite-boundary-injection.md -text whitespace=trailing-space,space-before-tab,cr-at-eol
+# Frozen evidence retains original CRLF and, for the two signed results,
+# original blank EOF lines. Keep other trailing-space/tab checks enabled.
+reviews/publication/hermite-boundary-injection/source-coverage.json whitespace=trailing-space,space-before-tab,cr-at-eol
+reviews/publication/hermite-boundary-injection/final-review.md whitespace=trailing-space,space-before-tab,cr-at-eol,-blank-at-eof
+reviews/publication/hermite-boundary-injection/reviewer.json whitespace=trailing-space,space-before-tab,cr-at-eol,-blank-at-eof
