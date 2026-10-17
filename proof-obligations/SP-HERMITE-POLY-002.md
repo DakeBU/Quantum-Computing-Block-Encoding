@@ -1240,3 +1240,41 @@ now preserved in13 exact original members. No source-publication, ProofSeal,
 clean-TCB/native-cost or scientific ROOT promotion. Cost400, cached whole-data/
 chain/source integration and816 are next obligations, not silently accepted.
 Kernel/left/captured setup, native/bit/GCD/synthesis and finite-bit ROOT remain OPEN.
+
+
+### Actual cached same-returned-data chain and partial middle-cost certificate
+
+C193 verifies five unchanged C156 VALUE roots: all actual right coordinates,
+whole returned RationalData, Window, same cast/ofTable dependent chain and
+literal original piecewise grid source. Source/own-output gates pass34.016s/
+26.672s; five typed consumers and all five ordinary-axiom reports pass. Parent
+read the five actual types and seven printed loaded bodies, not every proof
+term. Independent C188 source-first review is frozen; C196 static comparison is
+separate, not inferred from compilation.
+[Same-chain values](../experiments/hermite-polynomial/precision/cached-chain-values-c187/README.md).
+
+C189 verifies actual middleFromCache partial total<=400*(k+1)^2 with no new
+public assumption (24.922s/23.093s source/own-output exact type+ordinary axioms).
+All generated factorial/sign/guarded-sum/collect work in that eight-counter
+annotation is retained. Independent C194 source derivation is frozen separately;
+comparison to the actual proof is pending, not self-approved.
+[Partial cost](../experiments/hermite-polynomial/precision/cached-middle-cost-c183/README.md).
+
+C178/C184 middle static-then-runtime internal reviews retain six exact original
+members. Source first and later runtime exposure are separate freezes, with
+inherited/dirty-TCB and direct-dependency-not-loader limits unchanged.
+[Independent stages](../reviews/publication/migration-checkpoints-c190/README.md).
+
+Failures remain exact: rejected Sum/implicit-index proof attempts, precompiler
+memory deferral, low-cap interpreter exhaustion, and rejected cost normalization
+attempt. Four failed compiler processes consumed129.299 observed subprocess
+seconds; this is not total workflow/model/CPU time. Unknown calls/tokens/CPU/peak
+memory stay unknown. Fin-index repair changed only proof; final run used actual
+restored headroom and original3GiB cap plus2GiB reserve. No finite-screen/family
+endpoint substitution or universal efficiency winner is claimed.
+
+Previous ba2afcc1 full CI39075097319 succeeded (library/Tests and original15-test
+finite replay), not a new finite-bit family acceptance. New checkpoint CI is
+unverified. Cost816/same-run, kernel/left/captured setup, native/bit/GCD/finite-bit
+synthesis/export and scientific ROOT remain OPEN; four textbook final admissions
+and main4.33 migration are still OPEN. Robin publication policy is unchanged.
