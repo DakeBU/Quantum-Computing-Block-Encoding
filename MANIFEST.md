@@ -8463,3 +8463,6 @@ block-encoding formalization lifecycle.
 | 2026-10-17 08:51:01 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-kernel-original-successor-review-preserved-20261017 |
 | 2026-10-17 08:51:02 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-kernel-current-samefresh-two-types-actual-success-20261017 |
 | 2026-10-17 08:51:02 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-actual-ci4-success-three-native-blockers-20261017 |
+| 2026-10-17 09:12:10 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c34-runnable-portable-compiler-discovery-ci1-20261017 |
+| 2026-10-17 09:12:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-current-two-types-original-review-resolved-20261017 |
+| 2026-10-17 09:12:11 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-actual-ci4-original-source-first-review-delivered-20261017 |
