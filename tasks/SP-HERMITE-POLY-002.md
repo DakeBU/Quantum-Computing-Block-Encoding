@@ -198,3 +198,33 @@ autonomous bounded same-contract work, typed immutable evidence, matched
 acceptance endpoints and all observed failed/cancelled/stale cost. No measured
 quantum proof-first/screen-first/dual-lane efficiency winner or production
 scheduler change is claimed. Original finite-bit Hermite ROOT remains OPEN.
+
+
+### Actual cached setup and signed-middle VALUE certificates
+
+C168 closes the actual setup-value conjunction after an exact two-block proof-only
+repair of C165's rejected dependent-Decidable rewrite attempt. Four cuts, the
+full factorial-reciprocal tail, clipped value and midpoint match the unchanged
+source, including R/delta zero/negative and T0/T1. Source/own-output type+axiom
+gates pass (30.000s/22.406s); original exit1, recovery sorryAx rejection and all
+warnings are retained. No executable body or public type was changed.
+[Setup certificate](../experiments/hermite-polynomial/precision/cached-setup-c166/README.md).
+
+C174 closes generic signed middle entries and actual C23 cache substitution to
+C21 middleCoeffQ (24.688s/25.062s exact source/own-output gates). Both roots use
+only the ordinary3 axioms, no added correctness premise. Independent C178
+static review is a separate pending stage at this checkpoint preparation.
+[Middle certificates](../experiments/hermite-polynomial/precision/cached-middle-values-c167/README.md).
+
+Complementary C172 executable screening passed1456 exact rational entries in a
+25.906s parent subprocess while symbolic authoring continued. The result was
+withheld until author freeze. It is finite discriminator evidence, not theorem,
+SP state/export acceptance or matched-endpoint strategy comparison. Unknown
+CPU/model/tokens/peak-memory remain unknown.
+[Finite evidence](../experiments/hermite-polynomial/precision/cached-middle-finite-c172/README.md).
+
+C161/C164 primitive and C169/C173 setup static-then-runtime internal reviews are
+now preserved in13 exact original members. No source-publication, ProofSeal,
+clean-TCB/native-cost or scientific ROOT promotion. Cost400, cached whole-data/
+chain/source integration and816 are next obligations, not silently accepted.
+Kernel/left/captured setup, native/bit/GCD/synthesis and finite-bit ROOT remain OPEN.
