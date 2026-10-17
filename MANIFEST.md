@@ -8470,3 +8470,6 @@ block-encoding formalization lifecycle.
 | 2026-10-17 09:23:10 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-three-proof-kernel-guard-ci1-20261017 |
 | 2026-10-17 09:23:10 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-two-whole-module-phase4-actual-packets-20261017 |
 | 2026-10-17 09:23:10 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c34-parent-ci2-workflow-indentation-repair-20261017 |
+| 2026-10-17 09:37:58 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-two-complete-modules-local-registry25-20261017 |
+| 2026-10-17 09:37:58 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c34-ci3-strict-committed-byte-candidates-20261017 |
+| 2026-10-17 09:37:59 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-kernel-ci1-shadow-helper-actual-environment-failure-20261017 |
