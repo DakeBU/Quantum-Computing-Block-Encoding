@@ -430,6 +430,19 @@
       "predecessor_source_sha256": "936020bf35582267a8149ed49addd9a9b106c23512205acaf49e9a3febaa6d80",
       "historical_formalizer": "UNKNOWN",
       "natural_clarification_author": "/root"
+    },
+    {
+      "id": "aspbe-local-finite-sp-foundations-v2",
+      "title": "Finite state preparation: matrices, certificates, and primitive routes",
+      "url": "https://github.com/DakeBU/Quantum-Computing-Block-Encoding",
+      "status": "primary-text-checked",
+      "anchor": "docs/lessons/finite-sp-foundations-v2.md (anchors F, T, B1-B5, P1-P5, Q)",
+      "scope": "Retrospective implementation-informed original teaching contract for exactly TextbookStatePreparation, StatePreparationBenchmarksCoreFixed and StatePreparationPrimitiveRoutes. No general named-paper algorithm formalization, historical source-first claim, new production theorem or alternate quantum foundation. Version2 changes only the independently justified Bell census sentence; complete inventory/graph repairs are versioned evidence, not scientific target changes.",
+      "formal_status": "AUTHOR/WIP exact successor; prior author-evidence review WITHHELD_CHANGES_REQUIRED remains immutable. Same-reviewer exact successor comparison, prospective metadata review, actual trust observation and all final integration/publication gates PENDING. Historical formalizer UNKNOWN.",
+      "provenance": "RETROSPECTIVE_IMPLEMENTATION_INFORMED",
+      "lesson_path": "docs/lessons/finite-sp-foundations-v2.md",
+      "lesson_sha256": "286c030e78ad180e74335f8c8543da2aad5dcff81a2797c92215f13773466cc0",
+      "historical_formalizer": "UNKNOWN"
     }
   ]
 }
