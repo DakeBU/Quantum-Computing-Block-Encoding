@@ -34,4 +34,10 @@ class UncomputeIntakeTests(unittest.TestCase):
         for path in ('README.md','website/scripts/build_site.py'):
             text=(ROOT/path).read_text();self.assertIn('spw-uncompute/index.html',text);self.assertIn('2610.22367v1',text)
             self.assertIn('work in progress',text.lower())
+    def test_actual_home_preserves_the_existing_live_curriculum_label(self):
+        from website.scripts.build_site import render_home
+        page=render_home({'declarations':[]},{'publicDeclarationCount':0,'sourceDocstringCount':0},
+                         {'passed':True},{'shortCommit':'test'})
+        self.assertIn('four peer parts',page.casefold())
+        self.assertIn('spw-uncompute/index.html',page)
 if __name__=='__main__':unittest.main()

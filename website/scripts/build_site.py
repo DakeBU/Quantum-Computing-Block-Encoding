@@ -842,7 +842,7 @@ def render_home(
   <div class="section-heading">
     <p class="eyebrow">Choose the problem first</p>
     <h2>Four textbook parts, one shared Lean graph</h2>
-    <p>Within Parts I and II, the main construction relation is State Preparation → Block Encoding:
+    <p>Four peer parts share the same foundations. Within Parts I and II, the main construction relation is State Preparation → Block Encoding:
     PREPARE is a reusable subproblem inside many block-encoding routes. A
     block-to-state consumer path also exists, but it is not the inclusion relation
     and it needs extra branch, normalization and amplification hypotheses. Shared
