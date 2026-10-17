@@ -168,3 +168,70 @@ finite precision and readout. TQ or a fast finite sample cannot replace them.
 New best-known resources are an outcome to test against an explicit matched
 baseline, not a promised stopping condition. A scoped rigorous obstruction is
 valuable; an environment or review gap is not a mathematical obstruction.
+
+## 7. Choosing the lanes without making the user a scheduler
+
+The user's refinement is an asynchronous decision policy, not a permanent
+choice between rigor and experiments. An experiment-first route still owes the
+same mandatory symbolic certificate. A proof-first route still owes any
+required executable and resource gates. Choose the next action from the
+current uncertainty and a bounded discriminator, not the route's label.
+
+| Current uncertainty | Default within the authorized contract | Ask the user when |
+| --- | --- | --- |
+| A cheap exact example may disprove the literal target | Run that discriminator before expensive search | The proposed response would change the target rather than reject the candidate |
+| Symbolic refinement and finite implementation behavior can be investigated independently | Run bounded proof and experiment lanes concurrently if aggregate memory and compute headroom permit | Their combined cost would exceed the authorized envelope |
+| The experiment needs an unprovided coefficient, phase convention or error reference | Resolve the source/interface first; independent unaffected work may continue | More than one scientifically inequivalent interpretation remains |
+| Only tactic, retrieval or implementation technique differs | Select or compare autonomously with exact revisions and bounded costs | The alternatives introduce materially different oracle or physical assumptions |
+| Two routes have incomparable resource/error/success trade-offs | Retain a small non-dominated portfolio with explicit regimes | An application preference is needed to choose the final trade-off |
+
+A compact user decision card contains the unresolved choice, options with
+assumptions and evidence, incremental cost/unknowns, the recommended option and
+the downstream obligation it unlocks. Ask asynchronously while continuing only
+already-authorized unaffected work. No answer is not consent to a changed
+target or enlarged budget. There is no need to interrupt the user for every
+test or worker assignment.
+
+At each useful completion event, verify contract/revision/artifact bindings,
+classify the evidence, update the affected dependency cone, and dispatch the
+next ready action without waiting for unrelated lanes. A stop request retires
+only affected work at a safe checkpoint; already consumed work and pending
+partial results remain in the cost record. Do not interrupt a live, useful
+proof merely to manufacture a scheduling event. Source-blindness barriers are
+dependencies too: early results cannot be disclosed to a reviewer before its
+required independent freeze.
+
+The next matched comparison has three arms: proof-first; a bounded finite
+screen followed by proof when the candidate survives; and concurrent bounded
+proof plus screen. Freeze the task instances, endpoint evidence layer, resource
+caps, seed policy, environment and stopping rule before running. All arms must
+reach the same endpoint to count as successful. A faster finite screen is a
+discriminator result, not a faster theorem. Counterexample discovery time is
+reported separately from accepted-closure time. Budget-exhausted or interrupted
+arms are censored/failed as appropriate, never omitted from the denominator.
+
+Report paired per-instance outcomes before aggregates: matched-layer closure,
+time to useful information, time to independent acceptance, total model calls
+and known/proxy tokens, CPU/compiler/simulator work, peak memory, stale/cancelled
+work, and parent reconciliation cost. More concurrency can lower latency while
+increasing total cost; report that trade-off rather than declaring a universal
+winner. Choose by feasibility and non-domination under the frozen application
+contract, not a new unapproved scalar score. Changes to production scheduling
+or scoring require their own tested, reversible follow-up.
+
+### Current evidence and next boundary
+
+The isolated [C93 timing pilot](../../experiments/uncompute-2610-22367/async-timing-c93/RESULT.md)
+shows earlier observation of a fast later-launched child (656/671 ms versus
+16/16 ms), not a reduction in whole-pair time (844–859 ms), mathematical work
+or quantum-resource cost. It is not the three-arm quantum comparison above.
+No measured superiority of experiment-first, proof-first or dual-lane SP/BE
+search is established. Missing per-worker provider telemetry remains unknown.
+
+For the paper's Gaussian example, source topology and error-reference
+interpretation must be settled before freezing a code-refinement statement.
+Once that interface is sealed, symbolic integer/phase/cleanup refinement and a
+bounded independent fixed-witness diagnostic may run in parallel. Reproducing
+the supplied witness is distinct from rerunning the authors' large parameter
+search. Numerical additive error alone cannot certify state/operator distance,
+normalization, amplitude conversion, uncomputation or the final SP/BE root.
