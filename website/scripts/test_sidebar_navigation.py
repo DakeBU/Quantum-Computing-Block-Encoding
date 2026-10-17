@@ -72,6 +72,11 @@ class SidebarNavigationTests(unittest.TestCase):
         for target in ('library/', 'lean-graph/', 'implementation-map/', 'workflow/', 'ide/', 'blueprint/'):
             self.assertIn(f'href="./{target}index.html"', text)
 
+    def test_legacy_graph_link_label_is_retained_for_published_pages(self):
+        text = render_navigation('../../', 'case-studies/robin/index.html', self.papers, self.cases)
+        self.assertEqual(text.count('Underlying Lean Graph of Libraries'), 1)
+        self.assertIn('href="../../lean-graph/index.html"', text)
+
     def test_replacement_is_idempotent_and_does_not_touch_body(self):
         page = build_site.site_header('./', '') + '<main><a href="roadmap/">Keep body link</a></main>'
         once = replace_navigation(page, './', 'index.html', self.papers, self.cases)

@@ -7,7 +7,7 @@ import re
 
 TOOLS = (
     ("Lean library", "library/"),
-    ("Lean graph", "lean-graph/"),
+    ("Underlying Lean Graph of Libraries", "lean-graph/"),
     ("Implementation map", "implementation-map/"),
     ("Live workspace", "ide/"),
     ("Run with your API", "task-builder/"),
