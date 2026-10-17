@@ -8,6 +8,7 @@ on:
       - '.github/workflows/c31-native-diagnostic.yml'
       - 'tools/primitive_compiler_native_profile_v1/**'
       - 'tools/primitive_compiler_native_profile_ci2/**'
+      - 'tools/primitive_compiler_native_profile_ci3/**'
       - 'tools/cubic_c29_diagnostic/runner.py'
       - 'QuantumBlockEncoding/**'
       - 'lean-toolchain'
@@ -31,6 +32,8 @@ jobs:
         run: python3 -m unittest discover -s tools/primitive_compiler_native_profile_v1 -p 'test*.py' -v
       - name: CI2 finite resource gate negative and Python-only tests
         run: python3 -B -m unittest discover -s tools/primitive_compiler_native_profile_ci2 -p 'test*.py' -v
+      - name: CI3 root-interface negative and Python-only tests
+        run: python3 -B -m unittest discover -s tools/primitive_compiler_native_profile_ci3 -p 'test*.py' -v
       - name: Set up pinned Lean and inherited dependency caches
         uses: leanprover/lean-action@v1
         with:
@@ -40,7 +43,7 @@ jobs:
       - name: Prepare inherited project providers, not the three targets
         run: lake build QuantumBlockEncoding.ReversibleClassical QuantumBlockEncoding.PrimitiveBasisLE QuantumBlockEncoding.CubicStatePreparation
       - name: Fresh three-target cohort diagnostic, never admission
-        run: lake env python3 -B tools/primitive_compiler_native_profile_ci2/runner_v2.py
+        run: lake env python3 -B tools/primitive_compiler_native_profile_ci3/runner_v3.py
       - name: Upload only sanitized diagnostic derivatives even after failure
         if: always()
         uses: actions/upload-artifact@v4

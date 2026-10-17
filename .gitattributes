@@ -34,3 +34,4 @@ reports/lean-433-migration/*.md -text
 # Frozen optional diagnostic packages must retain manifest-bound raw bytes.
 tools/primitive_compiler_native_profile_v1/** -text
 tools/primitive_compiler_native_profile_ci2/** -text
+tools/primitive_compiler_native_profile_ci3/** -text

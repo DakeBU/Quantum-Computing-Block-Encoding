@@ -8452,3 +8452,6 @@ block-encoding formalization lifecycle.
 | 2026-10-17 07:28:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-ci2-finite-measured-memory-successor-20261017 |
 | 2026-10-17 07:28:05 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c32-source-blind-static-whole-three-module-packet-20261017 |
 | 2026-10-17 07:36:17 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-final-actual-independent-source-review-native-blocker-20261017 |
+| 2026-10-17 08:04:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-actual-ci2-incomplete-resource-refusal-20261017 |
+| 2026-10-17 08:04:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-ci3-root-api-correction-parent-20261017 |
+| 2026-10-17 08:04:47 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-extractor-source-implementation-independent-addendum-20261017 |

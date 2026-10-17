@@ -40,7 +40,7 @@ class NativeProfileIntegrationTests(unittest.TestCase):
         for before,after in replacements:
             self.assertEqual(expected.count(before),1)
             expected=expected.replace(before,after)
-        current=ROOT/'.github/workflows/c31-native-diagnostic.yml'
+        current=ROOT/'tools/primitive_compiler_native_profile_ci3/workflow-before-ci3.yml.txt'
         self.assertEqual(current.read_text(),expected)
         self.assertEqual(sha(current),receipt['workflow_after_sha256'])
         self.assertIn('contents: read',expected);self.assertIn('cancel-in-progress: false',expected)
@@ -77,5 +77,32 @@ class NativeProfileIntegrationTests(unittest.TestCase):
         self.assertFalse(receipt['trusted_verifier_changed']);self.assertFalse(receipt['nativeAccepted'])
         parent=load(ROOT/'reports/lean-433-migration/c31-native-profile-parent-check.json')
         self.assertEqual(parent['tests_run'],18);self.assertEqual(parent['exit_code'],0)
+
+    def test_ci3_successor_exact_transport_and_no_gate_relaxation(self):
+        receipt=load(ROOT/'reports/lean-433-migration/c31-ci3-native-integration.json')
+        for row in receipt['files']:
+            self.assertEqual(sha(ROOT/row['path']),row['sha256'])
+        package=ROOT/'tools/primitive_compiler_native_profile_ci3'
+        self.assertEqual(sha(package/'ci3-seal.json'),'674d09b0be9e9f776d36ec688984587e9e56707749e31772ab0741187c41b418')
+        seal=load(package/'ci3-seal.json')
+        self.assertEqual(sha(package/'ci3-bindings.json'),seal['manifestSHA256'])
+        for name,digest in load(package/'ci3-bindings.json')['files'].items():
+            self.assertEqual(sha(package/name),digest)
+        old=(package/'workflow-before-ci3.yml.txt').read_text()
+        self.assertEqual(sha(package/'workflow-before-ci3.yml.txt'),receipt['workflow_before_sha256'])
+        for replacement in receipt['workflow_delta']:
+            self.assertEqual(old.count(replacement['before']),1)
+            old=old.replace(replacement['before'],replacement['after'])
+        self.assertEqual((ROOT/'.github/workflows/c31-native-diagnostic.yml').read_text(),old)
+        self.assertEqual(sha(ROOT/'.github/workflows/c31-native-diagnostic.yml'),receipt['workflow_after_sha256'])
+        self.assertIn('contents: read',old);self.assertIn('cancel-in-progress: false',old)
+        self.assertIn('tools/primitive_compiler_native_profile_ci3/** -text',(ROOT/'.gitattributes').read_text())
+        self.assertEqual((receipt['budget_mib'],receipt['reserve_mib'],receipt['minimum_measured_headroom_mib']),(5120,2048,7168))
+        self.assertEqual(receipt['parent_tests']['tests_run'],14)
+        self.assertEqual(receipt['parent_tests']['exit_code'],0)
+        for field in ('trusted_verifier_changed','required_workflows_changed','old_local_gate_changed','nativeAccepted','scientific_ROOT'):
+            self.assertFalse(receipt[field])
+        self.assertIsNone(receipt['sourceAgreement'])
+        self.assertEqual(len(receipt['workflow_delta']),3)
 
 if __name__=='__main__':unittest.main()
