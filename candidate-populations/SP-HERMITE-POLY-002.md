@@ -922,3 +922,46 @@ Priorc913 fullHermiteCI39076442370/job117524465547 succeeded: actual fullTests
 finite-bit family acceptance. New checkpoint fullCI is unverified. Robin source
 publication conflict still blocks main4.33 admission; no policy approval/change,
 mainmerge, deployment, branchdelete, scientificROOT or textbookfinaladmission.
+
+
+### Closed setup annotation and first Gaussian integer invariant
+
+C223 closes the exact C202 partial setup target, with no public premise:
+total(rightSetup n R delta).cost<=81*(d+1)^2+8*(d+1)+n+T+22,
+d=sourceDegree(delta),T=tailCutoff(delta). Actual source27.422s, exact own-output
+type/ordinary-axiom consumer24.969s, loaded-definition audit24.687s all pass.
+Parent read actual type/axioms and loaded definitions, not every expanded root
+proof or private recursive body.26 original seal/author/failure/preparer members
+remain exact. C222->C224 is explicitly reviewed process-context succession with
+the linked async policy additionally pinned, not a scientific/policy exception.
+[Setup proof](../experiments/hermite-polynomial/precision/cached-setup-cost-c217/README.md).
+
+The fixed Gaussian witness now has actual typed integer definitions and
+independent source-first/static/successor-static review freezes. C225 original
+Decidable failure remains; C227 adds only an explicit local constructive domain
+decision, C228 types all31 names using its own table/core outputs. The final
+literal1024 words and81local/eightsigned input diagnostics are parent-replayed,
+not a uniform error/circuit proof. Apache-2.0/NOTICE and exact ancestry accompany it.
+[Fixed model](../experiments/uncompute-2610-22367/gaussian-integer-model-c206/README.md).
+
+C240 proves the exact C229 sealed all-D aligned128-block constancy theorem for
+the actual integer model (source12.265s/own-output consumer9.859s, ordinary
+axioms). It preserves six signed truncated middle rows, modular stored slope,
+nine biased final rows and the special top-row drop. This is a symbolic integer
+supplier, not finite screening or a replacement floor(full product), and not
+Gaussian real-exp/f64 error, coherent circuit/cleanup/resource or SP/BE closure.
+[Constancy proof](../experiments/uncompute-2610-22367/gaussian-constancy-c230/README.md).
+
+Main migration diagnostic C234 actually compiles unmodified main Robin against
+the4.33 context: exit1/86.344s, seven type/recursion errors, no accepted output.
+Thus simply keeping that old file does not solve migration in this context.
+No production source was changed. The separate experimental/source-publication
+conflict remains; human approval for maintenance-rule design/review is pending.
+
+Previous268522fc fullHermiteCI39078495808/job117530481115 terminalSUCCESS:
+actual Tests3460jobs and original15-test finite replay. This is not the new
+experimental proof set or a uniform finite-bit family acceptance. Current
+checkpoint CI remains unverified; main4.29.1/fullHermitefinitebitROOT and four
+bounded textbook final admissions are OPEN. Kernel/left/capturedsetup/native
+bit/GCD/evaluator/synthesis/cleanup/export remain missing; C237 now designs the
+literal fully costed kernel/left producer, not a return to the old2k+6 layout.
