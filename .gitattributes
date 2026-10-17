@@ -39,3 +39,5 @@ tools/primitive_compiler_native_profile_ci4/** -text
 tools/cubic_c29_kernel_ci1/** -text
 tools/cubic_c29_kernel_types_v2/** -text
 tools/real_preparation_native_c34_ci1/** -text
+tools/c31_kernel_proof_v1/** -text
+tools/c31_kernel_proof_v2_guard/** -text
