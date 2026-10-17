@@ -1278,3 +1278,43 @@ finite replay), not a new finite-bit family acceptance. New checkpoint CI is
 unverified. Cost816/same-run, kernel/left/captured setup, native/bit/GCD/finite-bit
 synthesis/export and scientific ROOT remain OPEN; four textbook final admissions
 and main4.33 migration are still OPEN. Robin publication policy is unchanged.
+
+
+### Same-returned-run conjunction and bounded asynchronous decisions
+
+C211 now proves the exact last C156 internal statement: the SAME returned
+producer value refines the original chain AND its SAME annotated cost obeys
+the unchanged816-plus-actual-setup/traffic/ofTable bound. Source32.953s and
+fresh own-output exact-type/ordinary-axiom consumer28.047s pass. No new public
+premise, weakened contract or increased proof budget was introduced. This is
+an internal partial-cost result, not physical one-evaluation/sharing or full
+finite-bit/poly(n_p) preparation.
+[Exact proof and preserved failure](../experiments/hermite-polynomial/precision/cached-same-run-c208/README.md).
+
+Ten original members preserve C199/C208 and rejected C207 exit1/47.563s;
+no failed olean or zero-row axiom report is promoted. Eighteen further original
+review members preserve six separately frozen source/static/runtime stages
+for prerequisite same-chain values and middle cost. Those prerequisite reviews
+are not an independent review of this new conjunction or a clean TCB rerun.
+[Independent stages](../reviews/publication/migration-checkpoints-c205/README.md).
+
+HARNESS section8a now routes to the existing asynchronous policy: autonomously
+select bounded same-contract methods; ask asynchronously for material target,
+error/success/oracle/budget/application trade-offs; continue unaffected work.
+Proof and finite screens may run concurrently with immutable bindings and
+source-blind release barriers. Compare all three methods only at matched
+acceptance endpoints, retaining failed/censored work and unknown telemetry.
+No new production event scheduler, scoring or measured strategy advantage.
+
+Actual setup cost remains OPEN: C210 source failed29.094s; C216 proof-only
+successor failed22.5s at no-progress simp, zero roots/no accepted output. C217
+is authored, not proved. C219's precompiler check rejected the changed HARNESS
+context; no compiler started. This is documented context drift caused by this
+policy entry, not mathematical refutation, and no pin was waived or rewritten.
+The new context must be explicitly bound before further proof validation.
+
+Priorc913 fullHermiteCI39076442370/job117524465547 succeeded: actual fullTests
+3460jobs and original15-test saved executable replay; this is not a new
+finite-bit family acceptance. New checkpoint fullCI is unverified. Robin source
+publication conflict still blocks main4.33 admission; no policy approval/change,
+mainmerge, deployment, branchdelete, scientificROOT or textbookfinaladmission.

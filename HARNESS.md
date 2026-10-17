@@ -238,6 +238,35 @@ To prevent the Master from becoming the next bottleneck:
 An anchor is temporary and objective-scoped. It is not a return to permanent
 Upper/Middle/Lower castes.
 
+## 8a. Asynchronous proof / experiment decisions
+
+Use the existing [bounded asynchronous evaluation policy](paper-notes/system-comparisons/uncompute-async-spbe-evaluation-design.md),
+especially its user-choice boundary and matched three-arm comparison. This is
+an app-coordinated policy, not a newly implemented production event scheduler.
+
+- Choose ordinary tactics, retrieval and bounded finite diagnostics autonomously
+  inside the frozen contract and authorized resource envelope. Prefer the
+  cheapest useful discriminator; do not ask the user to schedule every leaf.
+- Ask asynchronously before materially changing the target, error/success
+  convention, oracle access or budget, or selecting incomparable application
+  trade-offs. Continue only unaffected authorized work while awaiting an answer;
+  silence never authorizes the change.
+- Admit concurrent symbolic proof and finite screening only for distinct
+  uncertainty with exact contract/candidate/workflow bindings. Process useful
+  completion events without waiting for unrelated lanes. Preserve source-first
+  and source-blind release barriers; stale revisions cannot advance the frontier.
+- Record evidence strength separately from speed. Compare proof-first,
+  screen-then-proof and dual-lane methods at the SAME acceptance endpoint with
+  pre-frozen budgets, failed/censored arms and total-work accounting. Finite pass
+  is not family proof; quicker observation is not quicker total solution.
+- Keep heavy compiler/simulator launches within measured aggregate memory and
+  reserves. Parallel reasoning does not require simultaneous heavy builds.
+
+The isolated C93 timing pilot measures observation latency only. Current
+Hermite proof/screen runs are useful execution evidence, not a matched
+three-arm efficiency experiment or a demonstrated superior strategy. Do not
+rewrite historical timings or change verifier/scoring/acceptance for this policy.
+
 ## 9. Efficiency measurements
 
 The current harness records quantities tied to scientific output:
