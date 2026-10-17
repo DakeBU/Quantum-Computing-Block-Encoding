@@ -93,8 +93,9 @@ class NativeProfileIntegrationTests(unittest.TestCase):
         for replacement in receipt['workflow_delta']:
             self.assertEqual(old.count(replacement['before']),1)
             old=old.replace(replacement['before'],replacement['after'])
-        self.assertEqual((ROOT/'.github/workflows/c31-native-diagnostic.yml').read_text(),old)
-        self.assertEqual(sha(ROOT/'.github/workflows/c31-native-diagnostic.yml'),receipt['workflow_after_sha256'])
+        predecessor=ROOT/'tools/primitive_compiler_native_profile_ci4/workflow-before-ci4.yml.txt'
+        self.assertEqual(predecessor.read_text(),old)
+        self.assertEqual(sha(predecessor),receipt['workflow_after_sha256'])
         self.assertIn('contents: read',old);self.assertIn('cancel-in-progress: false',old)
         self.assertIn('tools/primitive_compiler_native_profile_ci3/** -text',(ROOT/'.gitattributes').read_text())
         self.assertEqual((receipt['budget_mib'],receipt['reserve_mib'],receipt['minimum_measured_headroom_mib']),(5120,2048,7168))
@@ -104,5 +105,40 @@ class NativeProfileIntegrationTests(unittest.TestCase):
             self.assertFalse(receipt[field])
         self.assertIsNone(receipt['sourceAgreement'])
         self.assertEqual(len(receipt['workflow_delta']),3)
+
+    def test_ci4_exact_transport_and_sufficient_self_only_contract(self):
+        r=load(ROOT/'reports/lean-433-migration/c31-ci4-native-integration.json')
+        for row in r['files']:self.assertEqual(sha(ROOT/row['path']),row['sha256'])
+        p=ROOT/'tools/primitive_compiler_native_profile_ci4'
+        s=load(p/'ci4-seal.json')
+        self.assertEqual(sha(p/'ci4-seal.json'),'76e4fa028689e2e713346725f5b554afdc61c817c51464fb379e64fd69d1abf8')
+        self.assertEqual(sha(p/'ci4-bindings.json'),s['manifestSHA256'])
+        for name,digest in load(p/'ci4-bindings.json')['files'].items():self.assertEqual(sha(p/name),digest)
+        old=(p/'workflow-before-ci4.yml.txt').read_text()
+        for change in r['workflow_delta']:
+            self.assertEqual(old.count(change['before']),1);old=old.replace(change['before'],change['after'])
+        self.assertEqual((ROOT/'.github/workflows/c31-native-diagnostic.yml').read_text(),old)
+        self.assertEqual(sha(ROOT/'.github/workflows/c31-native-diagnostic.yml'),r['workflow_after_sha256'])
+        self.assertEqual((r['budget_mib'],r['reserve_mib'],r['minimum_measured_headroom_mib']),(5120,2048,7168))
+        self.assertEqual(r['parent_tests']['tests_run'],17);self.assertEqual(r['parent_tests']['exit_code'],0)
+        self.assertFalse(r['PID1_read_requested']);self.assertIsNone(r['PID1_observed_value'])
+        for field in ('trusted_verifier_changed','required_workflows_changed','old_local_gate_changed','nativeAccepted','scientific_ROOT'):
+            self.assertFalse(r[field])
+        self.assertIn('tools/primitive_compiler_native_profile_ci4/** -text',(ROOT/'.gitattributes').read_text())
+
+    def test_actual_ci3_permission_refusal_is_preserved_not_rewritten_as_success(self):
+        import zipfile
+        r=load(ROOT/'reports/lean-433-migration/c31-actual-ci3-permission-refusal.json')
+        self.assertEqual(sha(ROOT/r['archive']),r['archive_sha256'])
+        with zipfile.ZipFile(ROOT/r['archive']) as z:
+            self.assertEqual(len(z.namelist()),4)
+            pre=__import__('json').loads(z.read('ci2-01-help.preflight.json'))
+        self.assertFalse(pre['observationComplete']);self.assertFalse(pre['gatePassed'])
+        self.assertEqual(pre['failedReadLogicalPath'],'$PROC/pid1/ns/cgroup')
+        self.assertEqual(pre['readAttempts'][-1]['errno'],13)
+        self.assertEqual(len(pre['namespaceReads']),1);self.assertEqual(pre['cgroups'],[])
+        self.assertEqual(r['analysis']['nativeChildrenStarted'],0)
+        self.assertNotEqual(r['job_API_head_sha'],r['analysis']['actualContext']['GITHUB_SHA'])
+        self.assertIsNone(r['analysis']['executedCheckoutSHA'])
 
 if __name__=='__main__':unittest.main()

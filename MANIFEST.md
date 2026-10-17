@@ -8456,3 +8456,6 @@ block-encoding formalization lifecycle.
 | 2026-10-17 08:04:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-ci3-root-api-correction-parent-20261017 |
 | 2026-10-17 08:04:47 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-extractor-source-implementation-independent-addendum-20261017 |
 | 2026-10-17 08:10:37 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-nine-proof-token-kernel-only-isolated-ci1-20261017 |
+| 2026-10-17 08:26:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c29-actual-kernel-ci1-nine-native-removed-20261017 |
+| 2026-10-17 08:26:46 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c31-actual-ci3-permission-and-ci4-self-only-20261017 |
+| 2026-10-17 08:26:47 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c32-natural-v2-metadata-parent-exact-checkpoint-20261017 |
