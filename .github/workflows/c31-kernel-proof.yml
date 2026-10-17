@@ -6,6 +6,7 @@ on:
       - '.github/workflows/c31-kernel-proof.yml'
       - 'tools/c31_kernel_proof_v1/**'
       - 'tools/c31_kernel_proof_v2_guard/**'
+      - 'tools/c31_kernel_proof_v3/**'
 permissions:
   contents: read
 concurrency:
@@ -23,6 +24,11 @@ jobs:
         env:
           C31_KERNEL_V1_TEST_PACKAGE: ${{ github.workspace }}/tools/c31_kernel_proof_v1
         run: python3 -B -m unittest discover -s tools/c31_kernel_proof_v2_guard -p test_guard.py -v
+      - name: Fourteen Python-only shadow helper and true entry guards
+        env:
+          C31_KERNEL_V1_TEST_PACKAGE: ${{ github.workspace }}/tools/c31_kernel_proof_v1
+          C31_KERNEL_TEST_PROJECT: ${{ github.workspace }}
+        run: python3 -B -m unittest discover -s tools/c31_kernel_proof_v3 -p test_guard.py -v
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -31,7 +37,7 @@ jobs:
       - name: Inherited provider preparation only; not a clean transitive rebuild
         run: lake build QuantumBlockEncoding.ReversibleClassical QuantumBlockEncoding.PrimitiveBasisLE QuantumBlockEncoding.CubicStatePreparation
       - name: Actual isolated three-proof candidate with executing-file guard
-        run: lake env python3 -B tools/c31_kernel_proof_v2_guard/entry.py
+        run: lake env python3 -B tools/c31_kernel_proof_v3/entry.py
       - name: Sanitized actual observations only, including failure receipts
         if: always()
         uses: actions/upload-artifact@v4
