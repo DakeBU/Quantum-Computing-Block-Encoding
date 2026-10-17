@@ -8513,3 +8513,4 @@ block-encoding formalization lifecycle.
 | 2026-10-18 00:49:35 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c80-actual-fullci-and-source-recoverable-checkpoints-20261018 |
 | 2026-10-18 01:21:00 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c83-uncompute-actual433-compatibility-sourcefreeze-20261018 |
 | 2026-10-18 01:53:45 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c90-active-walk-local-proof-and-async-design-20261018 |
+| 2026-10-18 02:13:10 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c93-asynchronous-observation-timing-pilot-20261018 |
