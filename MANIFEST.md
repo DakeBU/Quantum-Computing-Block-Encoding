@@ -8493,3 +8493,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 14:41:27 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c42-foundations-original-package-rejected-for-extraction-topology-20261017 |
 | 2026-10-17 15:01:40 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c43-foundations-exact-source-graph-version-successor-wip-20261017 |
 | 2026-10-17 15:12:06 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c43-foundations-three-whole-modules-exact-local-admission-20261017 |
+| 2026-10-17 15:47:09 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c44-safe-main-sidebar-sync-284-focused-tests-20261017 |
