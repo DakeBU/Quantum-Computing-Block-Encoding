@@ -1128,3 +1128,57 @@ family certificate. Main remains 4.29.1; no main/reader/PURIFIED or Hermite ROOT
 closure is inferred. The frozen author recipe's eleven-versus-twelve selected-
 field wording discrepancy is explicitly retained as nonblocking prose debt;
 neither the checker nor any original frozen evidence was edited to conceal it.
+
+
+### Current integration and next scientific interfaces, 18 October 2026
+
+Earlier cycle counts above are historical snapshots, not the current registry.
+At contribution `67b750fcf30ac988df0a66d7af8f27e51a0fb74d`, all50 existing
+whole-module source-correspondence records validate against the unchanged
+checker; the changed-module gate still fails on experimental RobinMatrix.
+Main remains `af585d9cbbb299c1c8c48647627a2cb820ef536a`/Lean4.29.1, versus
+Lean4.33.0 on the contribution. No maintenance-policy exception is approved or
+implemented. Historical full Lean/Tests evidence and its limited input
+association are not a fresh clean-transitive build. Current CI outcomes remain
+separate from the successful pinned historical Python35 replay.
+[Evidence](../reports/lean-433-migration/c135-local-operation-proof-and-real-replays.json).
+
+The Hermite C2/C3/X2/ROOT boundary is unchanged. The accepted internal C23
+same-object cache and charged lookup have not yet been wired into C22.
+C145 is inspecting precisely that consumption edge, preserving actual C21
+source coefficients, middle boundaries and the SAME returned stored chain.
+Setup, tails, kernels, arithmetic/traffic, bitlength/GCD and numerical/physical
+costs are not erased by a cached lookup.
+
+C147 has a pre-proof internal parameter contract for the actual precision
+source: with physical `n_p=n+1`, bound its Taylor degree by `4*M^2+2*M+1`,
+where `M=n_p+2*k+tailCutoff(epsilon/(4*(k+1)^2))`. This is a new proof
+obligation, not a proved theorem at this snapshot. It must use the existing
+literal cutoff and source allocation, cover all natural k,n and positive
+rational epsilon, and cannot inherit the exact-real `2*k+6` bond. Even if
+closed, it will not certify coefficient bitlengths, QR, finite-bit gates,
+normalization/export or the scientific ROOT.
+
+The independently reviewed ideal CCX cleanup bridge is separately staged in
+the Uncompute experiment; it is not a replacement Hermite construction or a
+claimed improvement to this task's resource tuple. Methods may run
+asynchronously under one frozen contract, with matched endpoint and total-work
+accounting. Seven recorded wrapper observations include all three failed
+whole-proof calls; their sum is not a controlled SP/BE efficiency result.
+[Read-only cost observation](../experiments/uncompute-2610-22367/operation-bridge-c134/retrospective-cost-observation.json).
+
+
+### Subsequent local parameter proof and current full gate
+
+The C147 allocated Taylor-index root subsequently compiled under Lean4.33.0
+(31.844s), with its exact own-output definition/type/axiom audit passing
+(23.328s). All4 new roots report only the ordinary3 axioms. This is
+proved_locally, not the complete finite-bit resource/root certificate.
+[Exact scope and evidence](../experiments/hermite-polynomial/precision/allocated-degree-budget-c147/README.md).
+
+The PR merge snapshot b95220ce6ebe9b6b7a965b4437f43b26fb673c03 also completed
+full library/Tests and original Hermite executable replay successfully; its
+selected proof/replay Git inputs equal contribution67b750f. This is a real
+current PR integration gate, not main merge, clean TCB, new finite-bit poly-SP
+executable acceptance or resolution of the experimental publication conflict.
+[Source association](../reports/lean-433-migration/c153-current-PRmerge-full-gate-association.json).

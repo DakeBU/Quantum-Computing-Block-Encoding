@@ -136,3 +136,37 @@ not certify input production, machine caching, peak RAM or physical gates.
 No new certified population winner, full scientific root or main admission is
 claimed. The efficient branch uses Lean 4.33.0; main migration still requires
 the remaining changed-module, integration and reader gates.
+
+
+## 18 October 2026 integration and finite-bit frontier
+
+The contribution checkpoint `67b750fcf30ac988df0a66d7af8f27e51a0fb74d`
+uses Lean 4.33.0. Fetched main remains
+`af585d9cbbb299c1c8c48647627a2cb820ef536a`, Lean 4.29.1. Fifty current
+whole-module source-correspondence records validate; RobinMatrix remains a
+separately identified experimental-policy/integration obligation. This is not
+main admission, deployment, or completion of the frozen scientific target.
+See the [actual current evidence](../reports/lean-433-migration/c142-independent-freezes-and-async-cost-frontier.json).
+
+The next Hermite work is actual consumption of the independently reviewed C23
+source-coefficient cache in C22, and an explicit data-width bound for the
+precision-dependent source degree. Both are unproved successor work at this
+snapshot. Keep the C23 scalar/word bound distinct from rational bitlength/GCD,
+full preprocessing, normalized error composition, circuit synthesis and the
+independent executable-family gate. No new resource winner is selected.
+
+
+### Subsequent local parameter proof and current full gate
+
+The C147 allocated Taylor-index root subsequently compiled under Lean4.33.0
+(31.844s), with its exact own-output definition/type/axiom audit passing
+(23.328s). All4 new roots report only the ordinary3 axioms. This is
+proved_locally, not the complete finite-bit resource/root certificate.
+[Exact scope and evidence](../experiments/hermite-polynomial/precision/allocated-degree-budget-c147/README.md).
+
+The PR merge snapshot b95220ce6ebe9b6b7a965b4437f43b26fb673c03 also completed
+full library/Tests and original Hermite executable replay successfully; its
+selected proof/replay Git inputs equal contribution67b750f. This is a real
+current PR integration gate, not main merge, clean TCB, new finite-bit poly-SP
+executable acceptance or resolution of the experimental publication conflict.
+[Source association](../reports/lean-433-migration/c153-current-PRmerge-full-gate-association.json).

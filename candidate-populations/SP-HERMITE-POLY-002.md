@@ -748,3 +748,41 @@ PURIFIED or scientific ROOT acceptance. This retrospective exact-real cut-rank
 explanation certifies no new physical/finite-bit/resource algorithm and supplies
 no complete poly(n_p) state-preparation route. No target, scoring, champion,
 production source, original frozen artifact or historical failure was modified.
+
+
+### 18 October 2026 active successor directions, not population promotion
+
+No new scientific candidate is certified or selected by the migration review
+checkpoints. The exponential baseline and previous rejected regimes remain.
+The contribution has50 mechanically valid whole-module source-correspondence
+records; this is review coverage, not construction quality or ROOT closure.
+
+- C145 investigates a substantive C21/C22+C23 crossover: actually use one
+  produced source cache in the existing stored-chain dataflow, charge its reads
+  and middle-coefficient work, and prove equality of the SAME returned chain.
+  It is a design-stage fork, not an inherited certificate or implemented gain.
+- C147 attempts a mathematical parameter mutation, not a changed state:
+  prove an explicit polynomial data-width bound for the actual finite-precision
+  Taylor degree at the existing allocated tolerance. Its exact internal
+  statement is sealed before proof work. No proof acceptance is claimed here.
+
+These forks resolve different uncertainties. Neither may be selected based
+only on a finite example, declaration count, controller replay or fastest
+return. Retain full setup/kernel/tail/bit-operation/QR/synthesis costs and
+original-target error, physical cleanup and executable-family obligations.
+
+
+### Subsequent local parameter proof and current full gate
+
+The C147 allocated Taylor-index root subsequently compiled under Lean4.33.0
+(31.844s), with its exact own-output definition/type/axiom audit passing
+(23.328s). All4 new roots report only the ordinary3 axioms. This is
+proved_locally, not the complete finite-bit resource/root certificate.
+[Exact scope and evidence](../experiments/hermite-polynomial/precision/allocated-degree-budget-c147/README.md).
+
+The PR merge snapshot b95220ce6ebe9b6b7a965b4437f43b26fb673c03 also completed
+full library/Tests and original Hermite executable replay successfully; its
+selected proof/replay Git inputs equal contribution67b750f. This is a real
+current PR integration gate, not main merge, clean TCB, new finite-bit poly-SP
+executable acceptance or resolution of the experimental publication conflict.
+[Source association](../reports/lean-433-migration/c153-current-PRmerge-full-gate-association.json).
