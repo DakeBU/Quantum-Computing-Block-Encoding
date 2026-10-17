@@ -7,7 +7,7 @@ import subprocess
 import tempfile
 import unittest
 
-from website.scripts.check_research_publications import binding_digest
+from website.scripts.check_research_publications import binding_digest, validate_record
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -131,10 +131,21 @@ class PublicationByteTransportTests(unittest.TestCase):
         """Check the actual complete bound tree, not only the small fixture."""
         candidate = ROOT / "reviews/publication/thin-lq-lf/publication-candidate.json"
         self.assertTrue(candidate.is_file(), "required ThinLQ LF pilot is missing")
-        record = json.loads(candidate.read_text(encoding="utf-8"))
+        frozen = json.loads(candidate.read_text(encoding="utf-8"))
+        records = json.loads((ROOT / "website/research/publications.json").read_bytes())["records"]
+        selected = [row for row in records if row["module"] == frozen["module"]]
+        self.assertEqual(len(selected), 1, "one current reviewed ThinLQ record is required")
+        record = selected[0]
+        for key in ("module", "source_id", "source_statement", "source_anchor", "lesson_path",
+                    "declarations", "obligation_map", "assumption_deltas", "graph_contribution",
+                    "formalizer", "residual_boundary"):
+            self.assertEqual(record[key], frozen[key], key)
+        inventory = {row["fullName"]: row for row in json.loads(
+            (ROOT / "web/library/declarations.json").read_bytes())["declarations"]}
+        # Select an actually reviewed current record, never rehash an old one.
+        validate_record(ROOT, record, inventory)
         expected = binding_digest(ROOT, record)
-        self.assertEqual(record["binding_sha256"], expected,
-                         "frozen candidate is stale; do not silently rehash reviews")
+        self.assertEqual(record["binding_sha256"], expected)
         names = {".gitattributes", record["module"], record["lesson_path"],
                  "lean-toolchain", "lake-manifest.json", "website/research/sources.json"}
         for directory in ("QuantumBlockEncoding", "ABEISTests"):
@@ -145,6 +156,10 @@ class PublicationByteTransportTests(unittest.TestCase):
                      (ROOT / "reviews/publication/thin-lq").glob("*.json"))
         names.update(p.relative_to(ROOT).as_posix() for p in
                      (ROOT / "reviews/publication/thin-lq-lf").glob("*.json"))
+        for key in ("decoder_evidence", "reviewer_evidence"):
+            names.add(record[key])
+            role = json.loads((ROOT / record[key]).read_bytes())
+            names.update((role["packet_path"], role["artifact_path"]))
         projection = Path(self.temp.name) / "current-projection"
         projection.mkdir()
         before = {name: (ROOT / name).read_bytes() for name in names}
@@ -165,12 +180,35 @@ class PublicationByteTransportTests(unittest.TestCase):
                 self.git(dest, "config", "core.autocrlf", autocrlf)
                 self.git(dest, "checkout", "-q", "HEAD")
                 self.assertEqual(expected, binding_digest(dest, record))
+                validate_record(dest, record, inventory)
                 for name in names:
                     if name.startswith("reviews/publication/"):
                         self.assertEqual(before[name], (dest / name).read_bytes(), name)
         for name, data in before.items():
             self.assertEqual(data, (ROOT / name).read_bytes(),
                              "live frozen context changed during test: " + name)
+
+    def test_original_thin_lq_frozen_epoch_remains_replayable_without_rehash(self):
+        """Replay immutable predecessor bytes, not a projection of the new tree."""
+        import hashlib
+        import zipfile
+        fixture = ROOT / "reviews/publication/paired-kernel-c46/thin-lq-original-bound-epoch-c47.zip"
+        self.assertEqual(hashlib.sha256(fixture.read_bytes()).hexdigest(),
+                         "ac8cccd9520498ebaa5efd2be6a31517d8fad49ec17ba0f99768494a194d1b03")
+        dest = Path(self.temp.name) / "original-thin-lq-epoch"
+        dest.mkdir()
+        with zipfile.ZipFile(fixture) as archive:
+            for name in archive.namelist():
+                target = dest / name
+                self.assertTrue(target.resolve().is_relative_to(dest.resolve()))
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(archive.read(name))
+        candidate = "reviews/publication/thin-lq-lf/publication-candidate.json"
+        self.assertEqual((ROOT / candidate).read_bytes(), (dest / candidate).read_bytes())
+        frozen = json.loads((dest / candidate).read_bytes())
+        self.assertEqual(frozen["binding_sha256"], binding_digest(dest, frozen))
+        # The kernel proof successor must not make the historical packet fresh.
+        self.assertNotEqual(frozen["binding_sha256"], binding_digest(ROOT, frozen))
 
 
 if __name__ == "__main__":
