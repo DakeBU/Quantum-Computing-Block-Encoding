@@ -8485,3 +8485,4 @@ block-encoding formalization lifecycle.
 | 2026-10-17 10:40:28 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c37-joint-CSP-Cubic-fresh-provider-runtime-ready-20261017 |
 | 2026-10-17 10:48:40 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c38-c34-preregistered5120-headroom-guarded-CI5-ready-20261017 |
 | 2026-10-17 10:56:57 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c38-joint-CSP-Cubic-samecohort-actual-success-20261017 |
+| 2026-10-17 11:19:35 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c39-C34-CI5-first-actual-success-20261017 |
