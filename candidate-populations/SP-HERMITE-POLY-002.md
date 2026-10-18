@@ -965,3 +965,40 @@ checkpoint CI remains unverified; main4.29.1/fullHermitefinitebitROOT and four
 bounded textbook final admissions are OPEN. Kernel/left/capturedsetup/native
 bit/GCD/evaluator/synthesis/cleanup/export remain missing; C237 now designs the
 literal fully costed kernel/left producer, not a return to the old2k+6 layout.
+
+
+### Explicit five-block producer: typed sealed frontier, not a cost proof
+
+C243 replaces the previously unaccounted kernel/left scalar callbacks with
+literal comparison, factorial-binomial, charged powers/products and complete
+materialization. Numerical loop dimensions use the actual second charged
+cutoff result. The five-sum index, reflected signs, actual right boundary and
+same returned data/cast/ofTable are retained; no canonical2k+6 layout replaces D.
+C246 fails one dependent cast (exit1/28.671s), preserved unchanged. C248 changes
+only that cast. C249 types source24.750s and own-output consumer24.063s; eight
+Prop formations are NOT eight proofs. C250 seals exact bodies/statements BEFORE
+new value/cost authoring. No new proved root or complete budget is claimed.
+[Exact typed checkpoint](../experiments/hermite-polynomial/precision/explicit-five-block-c243/README.md).
+
+C245 independent original-source baseline precedes C247 static comparison;
+parent whole-read,31/40 raw pins respectively verified. This supports literal
+semantics and branch-local ledgers, not full budget, proof/runtime association
+or universal source-publication admission. Six original review members remain
+frozen. C248 successor review and C252/C253 value/cost proofs are separate work.
+[Review scope](../reviews/publication/migration-checkpoints-c254/README.md).
+
+C244 isolates Gaussian's ACTUAL math.exp/half-away/centered429 reference. Negative
+fold partners require the inclusive magnitude endpoint2^35 via valid xs=-2^35.
+The compressed uniform route still needs119,275,520 quadratic blocks and an
+operational monotonicity/enclosure supplier; sparse/NumPy scans are not enough.
+The four-point/capped preflights are proposed, not executed. No refit/recenter,
+source-target swap or uniform/circuit/error/resource/SPBE acceptance occurred.
+[Operational reference audit](../experiments/uncompute-2610-22367/gaussian-error-reference-c244/README.md).
+
+Priorc661 fullHermiteCI39079883741/job117534493326 now terminalSUCCESS: parent
+actual logs read, Tests3460jobs23:57:45UTC, prooftrust0holes/axioms23:57:46,
+15original finite replay tests23:58:02. This is the production frontier/baseline,
+not the new experimental supplier or a uniform finite-bit family certificate.
+Current checkpoint fullCI remains unverified; main4.29.1/Robin publication
+conflict, fullHermitefinitebitROOT and four textbook final admissions stay OPEN.
+No verifier/scoring/target/publication-policy/history/user-file/branch mutation.
