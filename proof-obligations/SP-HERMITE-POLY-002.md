@@ -1498,3 +1498,49 @@ branch deletion. Full Hermite finitebit ROOT, four textbook final admissions
 and Gaussian operational/circuit/resource/SPBE ROOT stay OPEN. Async matched
 three-arm strategy superiority remains unmeasured; ordinary fixed-contract
 method choices autonomous, material assumption/budget choices ask the user.
+
+
+### Common-denominator foundation locally proved; independent first-height review completed
+
+C296 closes the second C280 rational foundation commonDenominator against the
+exact signed/zero canonical Rat and unreduced commonWitness definitions.
+Actual source0/13.172s -> own proof15c8671c... -> exact expanded own-output
+consumer0/12.188s, two ordinary3axiom rows (root plus assignment, ONE root).
+The local conditions Q>0, den(q) divides Q, abs(q)<=M are witness bridges,
+not new scientific-target premises. Primitive representation/width, actual
+suffix invariants, complete Sites coverage and producer-wide nativebit/GCD/
+allocator/CPU bounds remain OPEN. Independent common-denominator review is
+separate; this new root is proved_locally, not source-publication or fullSP.
+[Exact proof and immutable original receipts](../experiments/hermite-polynomial/precision/common-denominator-c293/README.md).
+
+C288 source-first -> C290 author/static comparison -> C291 recorded-runtime
+association are separate immutable freezes for the earlier heightBound root.
+Parent whole-read and rehashes match13/19/31direct input bindings respectively,
+plus10private C291 runtime members. No concrete focused mismatch was found;
+not an independent rerun, fresh universal decoder, complete loader/cleanTCB
+or main/publication admission. Old pending-review receipts remain historical.
+[Scoped height review](../reviews/publication/height-foundation-checkpoint-c300/README.md).
+
+C283 actually forms three unchanged allocated partial-ledger targets in
+27.968s+27.859s. C295 exact preproof seal then freezes them before any proof
+authorization. M=n+1+2k+tailCutoff(eps/(4(k+1)^2)); proposed 5e6*M^7 operation
+and5e5*M^5 selected-index bounds are NOT proved. Types/manual coefficients
+are not nativebit/quantum-resource/value/root certificates.
+[Typed and sealed, zero proofs](../experiments/hermite-polynomial/precision/allocated-polynomial-interface-c276/README.md).
+
+The bounded asynchronous organization remains fixed-contract autonomy plus
+user choice for material scientific/oracle/error/success/budget trade-offs.
+Proof and finite screening may run concurrently for distinct uncertainties;
+matching contract/revision/evidence endpoints and TOTAL consumed cost are
+required for comparisons. No three-arm quantum strategy winner is measured,
+and no production scheduler/scoring/verifier change is installed.
+
+Current c221 publicationCI39084745643/job117548849697 actual complete logs
+read: changed-module gate fails only missing RobinMatrix reviewed record.
+Stateprep smoke39084745652 and fastwebsite39084745615 pass. FullHermite
+run39084745630/job117548849683 was still compiling when this note was formed;
+completion is separately required before pushing the same ref. Main remains
+Lean4.29.1; contribution4.33.0. Compatibility-maintenance policy choice remains
+unanswered; no waiver or false source record. No mainmerge/deploy/branchdelete.
+Hermite finitebit ROOT, four textbook admissions and Gaussian operational
+error/circuit/phase/cleanup/resources/SPBE root remain OPEN.
