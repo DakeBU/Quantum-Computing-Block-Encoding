@@ -1593,3 +1593,50 @@ maintenance-policy approval, waiver, mainmerge/deploy/branchdelete or production
 behavior/target/scoring/verifier/history/user-file change. Hermite finitebit
 ROOT, four textbook admissions and Gaussian operational/circuit/resource/SPBE
 ROOT remain OPEN; async strategy superiority remains unmeasured.
+
+
+### Actual polynomial partial-ledger envelopes and all raw primitive widths locally proved
+
+C316 closes BOTH remaining C295 targets against the unchanged actual sourceDelta
+and SAME returned produceExplicitStored result. Source0/43.875s -> ownab75d04e...
+-> exactownconsumer0/36.391s ownc5a4d475..., ordinary3axioms on2root+3provider
+rows. For M=n+1+2k+tailCutoff(eps/(4(k+1)^2)), total partial ledger<=5e6*M^7
+and selected quotient/remainder calls each<=5e5*M^5, allk/n,positiveRat eps,
+allRat R. Intermediate facts are proved, not public assumptions. Combined
+with prior scaleDyadicBound, all3C295 local suppliers now pass focused gates.
+[Exact allocated ledger proof](../experiments/hermite-polynomial/precision/allocated-polynomial-ledger-c311/README.md).
+
+C325 closes primitiveWidth, the FOURTH C280 local foundation: source0/21.312s
+own05ceefc5... -> original expandedexactownconsumer0/17.375s own83bdc961...,
+root+assignmentordinary3. All listed raw intermediates retained, signed/zero
+division and add/sub carry1 unchanged. C318 membership endpointfailure and
+C322 localwidth unfoldingfailure are preserved; C324 changes only4finalsimp
+calls after C321's4membershiplists. C323 separately discloses C321 inherited
+ancestor outputs metadata; current authorfreezepayloads/stagesource, not that
+array, bind actual source. C324 fresh outputs correct and all old bytes stay.
+[Exact width proof and failure lineage](../experiments/hermite-polynomial/precision/primitive-width-c324/README.md).
+
+These are THREE new locally proved suppliers, NOT all native/quantum resource
+costs or full state preparation. Actual source-suffix denominator/magnitude
+invariants, complete primitive Sites coverage and producer-wide bit heights
+remain OPEN. Rational epsilon input height can grow with fixed cutoff (e.g.
+(2^B+1)/2^B>1), so native input/GCD/ceil/clog/index/allocator/CPU work cannot
+be inferred from M counters. Radius height, finite QR/angle synthesis/gates/
+depth/cleanup/export and global normalized-state/error acceptance remain OPEN.
+Independent reviews/source-publication/main/reader/PURIFIED not claimed.
+
+C315 exactC313 carrierforensics parentwhole-read31inputs+6private members+
+2payloadsMATCH: hidden assemblySize/fiveSize product widths and whole dependent
+QData cutoff/degree carriers need synchronized typing, not a new mathematical
+premise. Prior THREE scalar VALUE roots remain; no accepted chain. C319 new
+two-carrier author checkpoint is frozen but actual gate PENDING; not success.
+[Forensic evidence, not a repair certificate](../reviews/publication/chain-carrier-forensics-c326/README.md).
+
+Current fef8 publicationCI39087045546/job117555679611 actual complete logs read:
+fails only missing RobinMatrix record,50valid/51changedproductionmodules.
+Main4.29.1 vs contribution4.33.0; maintenancechoicepending, no policy waiver.
+FullHermite39087045543/job117555679666 live at preparation. No premature
+same-refpush/mainmerge/deploy/branchdelete; no verifier/scoring/scientifictarget/
+productionbehavior/history/userfile change. Hermite finitebitROOT, fourtextbook
+finaladmissions, Gaussianoperationalerror/circuit/resource/SPBEroot stayOPEN;
+matched async strategy superiority unmeasured. Full Goal stays ACTIVE.
