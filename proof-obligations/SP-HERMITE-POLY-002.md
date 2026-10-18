@@ -1640,3 +1640,65 @@ same-refpush/mainmerge/deploy/branchdelete; no verifier/scoring/scientifictarget
 productionbehavior/history/userfile change. Hermite finitebitROOT, fourtextbook
 finaladmissions, Gaussianoperationalerror/circuit/resource/SPBEroot stayOPEN;
 matched async strategy superiority unmeasured. Full Goal stays ACTIVE.
+
+
+### Actual producer VALUE chain and same-result partial-cost composition locally closed
+
+C329 now closes the EXACT seven C250 VALUE interfaces. C319 source0/62.265s
+-> own d515494b... -> unchanged full exact own-output consumer0/37.437s
+own bd6fd1d9.... Nine private helper and seven public rows have only ordinary
+axioms (comparison needs propext/Quot.sound, others ordinary3). Three scalar
+roots were already accepted; FOUR chain VALUE interfaces newly close, not
+seven new algorithms. Only two proof-body carrier conversions change from
+C304; all sealed statements, executable definitions and scalar/consumer bytes
+stay fixed. This closes actual QData equality, table window, chain refinement
+and the rational-grid source action with its original R>0 premise.
+[Exact VALUE refinement](../experiments/hermite-polynomial/precision/explicit-value-chain-c319/README.md).
+
+C337 then closes the EIGHTH original C250 same_run proposition: correctness
+and partial total/quotient/remainder bounds for the SAME literal returned
+result. Unchanged C332 source uses And.intro of the accepted VALUE and cost
+suppliers. Source0/37.563s own c41a071c... -> exact own-output consumer0/39.735s
+own e7607a8f..., one source/four root-consumer-provider rows ordinary3.
+C335's first attempt failed24.719s on missing transitive CachedMiddleCostProof
+BEFORE theorem checking, zero accepted output/consumer not run. C337 adds the
+pinned prior C263 cost path after the value path and verifies the cost context;
+no source, target, cost, scoring, verifier or resource-cap change. Original
+failed plan/result retained; raw feedback with an inherited local search path
+stays private, and a separately hash-bound sanitized public derivative is used.
+[Same actual result, not physical runtime](../experiments/hermite-polynomial/precision/explicit-same-run-c332/README.md).
+
+This adds FIVE closed local interfaces (four VALUE plus one composition) on
+the prior frontier, not a new algorithm or full poly(n_p) finite-bit result.
+All8C250 and all3C295 local suppliers now compile with exact own consumers.
+Partial M^7 operation/counter bounds still do NOT supply producer-wide operand
+bits/common-denominator/magnitude/Sites coverage, native GCD/floor/ceil/clog/
+index/CPU/allocator or physical once-only evaluation/sharing. Normalized-state
+error, finite QR/angles, synthesized gates/depth, phase/clean-workspace and
+independent family executable acceptance remain OPEN. New chain/same-run
+independent review, clean transitive TCB, source-publication and PURIFIED remain
+separate. Earlier failed receipts are immutable, not overwritten by success.
+
+Two existing foundations now have scoped independent internal reviews:
+C317 source-first -> C327 static -> C331 recorded association for dyadic scale;
+C320 source-first -> C330 static -> C334 recorded association for primitive
+representation. Parent whole-read and exact pins+10private runtime members
+per root MATCH. Separate source/proof/runtime releases preserve anti-anchoring
+barriers, with all previous authorship/partial-source exposures disclosed.
+These are NOT fresh universal decoders, independent reruns or full loader/TCB
+attestations. Old pending-review receipts remain historical.
+[Scale review](../reviews/publication/dyadic-scale-review-c340/README.md) /
+[Representation review](../reviews/publication/primitive-representation-review-c340/README.md).
+
+Current de7b full Hermite CI39087980863/job117558461294 terminalSUCCESS;
+actual complete logs obtained, relevant build/trust/finite sections read:
+3460jobs at2026-10-18T02:06:07.5940969UTC; zero unapproved holes/source axioms
+02:06:08.4306813;15ORIGINALfinite export tests02:06:20.4638003, independent
+finite replay(k1,n3,L1)passed, lean_certificate_claimed=false. NOT new C340
+or uniform finite-bit family acceptance. Current complete publication logs
+39087980753/job117558460730 still fail missing RobinMatrix reviewed record
+only:50valid/51changedproductionmodules. Main actual4.29.1, contribution4.33.0;
+maintenance choice unresolved, no waiver/merge/deploy/branch deletion.
+FullHermitefinitebitROOT,four textbook admissions,Gaussian operational error/
+circuit/phase/cleanup/resources/SPBE ROOT remain OPEN. Matched asynchronous
+strategy superiority remains unmeasured. Full Goal unchanged ACTIVE.
