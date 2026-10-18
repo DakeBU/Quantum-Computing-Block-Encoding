@@ -8532,3 +8532,4 @@ block-encoding formalization lifecycle.
 | 2026-10-18 07:39:36 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c242-setup-and-gaussian-integer-frontier-20261018 |
 | 2026-10-18 08:04:42 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c254-explicit-five-block-typed-frontier-20261018 |
 | 2026-10-18 08:31:04 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c267-same-return-explicit-cost-and-async-policy-20261018 |
+| 2026-10-18 08:58:22 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c287-reviewed-cost-canonical-height-and-value-failures-20261018 |

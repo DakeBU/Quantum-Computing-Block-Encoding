@@ -437,3 +437,52 @@ Append-only privacy clarification for C254's historical shorthand: its public
 inventory is30 EXACT original archive members PLUS1 explicitly path-redacted
 diagnostic member, not31 byte-identical originals. Original private receipts
 are preserved, and source-binding/report record the exact redaction and hashes.
+
+
+### Canonical height foundation proved locally; explicit cost independently reviewed
+
+C278 actually types the exact canonical Rat height/unreduced-witness definitions
+and four closed targets (12.094s+12.281s). C280 freezes exact bodies/statements
+BEFORE C282 first-root proof authoring. C285 source0/11.781s and separate exact
+expanded own-output consumer0/12.156s close ONE root, heightBound: h(q)<=B iff
+1<=B AND abs(q.num)<2^B AND q.den<2^B, for all q/B including zero and signs.
+Actual consumer selects the fresh own output and prints ordinary3axioms for
+root and expanded assignment. Source zero axiom rows are not an empty proof.
+Common-denominator/primitive-representation/primitive-width targets remain OPEN,
+as do actual suffix/Sites coverage, producer-wide bit height and native costs.
+Independent source-first height review C288 is separately frozen; not yet
+author/runtime-associated or public-admitted. This is proved_locally, not ROOT.
+[Exact height checkpoint](../experiments/hermite-polynomial/precision/rational-height-c269/README.md).
+
+C264 independent actual-operation derivation froze BEFORE reading C262 proof;
+parent whole-read,44raw/retainedlength/hashchecks match. C273 subsequently binds
+that exact source to C263 own output/exact consumer/type/ordinary root axioms
+and actual selected directdeps; parent whole-read,34direct+10private member
+pins match. No concrete omission/association mismatch found. This completes
+scoped internal static review+recorded-runtime association, NOT universal
+source publication, independent rerun, complete loader/cleanTCB or fullSPBE.
+Historical C263 receipt is not rewritten to upgrade its old review status.
+[Separate freezes and limits](../reviews/publication/migration-checkpoints-c287/README.md).
+
+The value lane remains REJECTED: C270 scalar exit1/28.015s; C272 explicit
+instantiation reaches first inr but rw cannot see the term under its match.
+C275 isolates a probe; C279 exit1/27.938s. C281 adds only rfl; C284 probe
+exit1/27.016s explicitly rejects definitional equality despite apparently
+matching ordinary print. The prior alpha-only explanation is NOT accepted.
+No probe-own-consumer/scalar/chain ran after probe failures; zero accepted own
+VALUE roots. All frozen authors and actual failures are retained in68members.
+Full explicit-type diagnostics are separate work; this is implementation
+failure, NOT a mathematical route obstruction or compiler-bug conclusion.
+[Recoverable value/failure checkpoint](../experiments/hermite-polynomial/precision/explicit-five-block-values-c252/README.md).
+
+Prior6c33fullHermiteCI39083056338/job117543833064 is terminalSUCCESS: actual
+complete logs read, Tests3460jobs00:46:00UTC, prooftrust0holes/axioms00:46:01,
+15ORIGINAL finite baseline tests00:46:13. This does NOT accept new experiments
+or a uniform finitebit family. PublicationCI39083056333/job117543833032 still
+fails only missing Robin record;50valid/51changedproductionmodules, main4.29.1,
+human compatibility-maintenance choice pending. Current new-head CI unverified.
+No verifier/scoring/target/policy/history/user-file change, merge/deploy or
+branch deletion. Full Hermite finitebit ROOT, four textbook final admissions
+and Gaussian operational/circuit/resource/SPBE ROOT stay OPEN. Async matched
+three-arm strategy superiority remains unmeasured; ordinary fixed-contract
+method choices autonomous, material assumption/budget choices ask the user.
