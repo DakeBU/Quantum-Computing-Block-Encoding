@@ -1306,3 +1306,55 @@ maintenance choice unresolved, no waiver/merge/deploy/branch deletion.
 FullHermitefinitebitROOT,four textbook admissions,Gaussian operational error/
 circuit/phase/cleanup/resources/SPBE ROOT remain OPEN. Matched asynchronous
 strategy superiority remains unmeasured. Full Goal unchanged ACTIVE.
+
+
+### Actual suffix targets typed/sealed; source input-height and normalized-error analysis
+
+Recoverable WIP checkpoint, ZERO newly accepted mathematical roots. C338
+inspects the literal producer's internal suffixes, k! common-denominator
+strategy, signed middle denominator and radius/epsilon input bit heights.
+Its proposed global bit-height envelope remains UNPROVED; hand-derived
+stress families are not executed or Lean-certified evidence.
+[Actual producer height strategy](../experiments/hermite-polynomial/precision/producer-height-analysis-c338/README.md).
+
+C342 fixes the actual C23 factorial table and original recursive sumEntries
+observations, including every dropped offset, next-tail connection and the
+empty k=i=0 boundaries. C344 actually forms all3closedProps in39.610s+39.578s,
+own f7e5fc3d... -> exact type consumer own62a9f346.... C345 then issues the
+exact preproof Statement Seal. No mathematical proof follows merely from
+Prop formation. Two distinct author proof branches are successor work,
+not accepted by this checkpoint. No producer or resource model changed.
+[Typed, sealed, unproved targets](../experiments/hermite-polynomial/precision/source-suffix-interface-c342/README.md).
+
+C341 source analysis identifies the existing positive-Rat L/epsilon
+normalized_original_error <=epsilon/2 and a necessary direct public-LE
+adapter: wordIndex is LSB-first while sampleEquiv adds reversal. Reuse the
+old error theorem rather than duplicate it or import the old exact chain's
+bond/cost bound. IMPORTANT EXPLICIT CORRECTION: C341 incorrectly describes
+the exponential argument as -p^2. Actual tails are exp(p) for p<-1 and
+exp(-p) for p>0; middle uses exp(-1). Parent directly re-read the literal
+definitions/proof. Inputs are still nonpositive, so enclosure domain and
+existing error allocation are unchanged. Original erroneous bytes/hashes
+are preserved together with a separate correction; hash integrity is not
+semantic accuracy. No Gaussian target substitution is authorized.
+[Source bridge analysis and explicit correction](../experiments/hermite-polynomial/precision/normalized-source-analysis-c341/README.md).
+
+Producer-wide middle/Sites/operand heights, native integer/GCD/floor/ceil/
+clog/index/CPU/allocation/sharing, original arbitrary-Real-L representation,
+actual rounding/QR/angles/synthesis/phase/cleanup and independent family
+acceptance remain OPEN. No scientific ROOT, new source publication, reader
+seal or PURIFIED status. Four textbook admissions and Gaussian operational
+error/circuit/resources/SPBE ROOT also remain OPEN.
+
+Prior836b actual full HermiteCI39089118282/job117561835681 now terminalSUCCESS:
+3460jobs2026-10-18T02:27:58.5312687UTC; proof trust0unapprovedholes/0sourceaxioms
+02:27:59.5935468;15ORIGINALfiniteexporttests02:28:18.4866912; independent
+finite replay(k1,n3,L1)passes with lean_certificate_claimed=false. Actual
+complete logs obtained, relevant sections read; NOT new checkpoint build or
+poly(n_p) finite-bit family acceptance. Current publication39089118289/
+job117561835817 still fails ONLY missing RobinMatrix whole-module reviewed
+record. Main actual4.29.1, contribution4.33.0,50valid/51changedmodules.
+Maintenance policy choice unresolved; no waiver, main merge, deploy or
+branch deletion. Async proof/screen policy retains fixed-contract autonomy,
+material-choice user approval, exact event bindings and matched acceptance
+endpoints/total-work comparison; no measured strategy superiority claimed.
