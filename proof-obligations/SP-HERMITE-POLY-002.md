@@ -1398,3 +1398,54 @@ not the new experimental supplier or a uniform finite-bit family certificate.
 Current checkpoint fullCI remains unverified; main4.29.1/Robin publication
 conflict, fullHermitefinitebitROOT and four textbook final admissions stay OPEN.
 No verifier/scoring/target/publication-policy/history/user-file/branch mutation.
+
+
+### Same-return explicit cost checkpoint and asynchronous choice boundary
+
+C263 actually closes the C250-sealed cost/counter projection for the SAME
+explicit five-block result: source44.391s, separate exact-statement own-output
+consumer26.968s, one public root, ordinary propext/Classical.choice/Quot.sound.
+Actual selected quotient/remainder counts each <=14(n+1)D^2+4D and the full
+named finite-operation frontierBudget are proved without added cache/F/value/
+cost promises. C256/C259 normalization failures and C253/C258/C262 exact
+source lineage remain immutable. Independent proof review is still PENDING;
+source-only transport review C251 is not retroactive review of this new proof.
+[Focused cost certificate](../experiments/hermite-polynomial/precision/explicit-five-block-cost-c262/README.md).
+
+C257 gives separate source-derived canonical Rat data/working/raw-witness
+height envelopes, with actual signed suffix/common-denominator invariants.
+Parent whole-read and21direct+40retained hash checks match. Exact primitive
+Sites coverage, Statement Seal and Lean height proofs are NOT supplied.
+Native GCD/bigint scratch/control/evaluator/allocation, radius encoding, QR,
+angles/gates/cleanup and full finite-bit SP remain OPEN.
+[Bit-growth design, not proof](../experiments/hermite-polynomial/precision/rational-bit-growth-c257/README.md).
+
+The value lane is separate: C260 scalar exit1/28.078s, C261 normalization then
+C266 scalar exit1/28.672s; current remaining error is nested inverse-equivalence
+normalization. Compiler recovery sorryAx is REJECTED, no accepted own value
+supplier/root. C265 parent-wrapper schema failure occurred BEFORE any compiler,
+was preserved, and C266 uses the original frozen root list with unchanged
+consumer/signatures/caps. These are implementation failures, not mathematical
+refutations. No old cached cost ledger is substituted for this new producer.
+
+The human's asynchronous method-choice policy is already in HARNESS8a and
+the bounded asynchronous design: autonomously choose bounded discriminators
+inside the fixed contract, ask asynchronously for changed target/error/success/
+oracle/budget or incomparable application trade-offs, and continue only
+unaffected authorized work while waiting. Compare proof-first, screen-then-proof
+and dual-lane at the SAME evidence endpoint with failures/censoring and TOTAL
+cost. The14 isolated timing tests pass again; they establish no quantum-search
+efficiency winner. No production event scheduler or score change was made.
+
+C254 actual fullHermiteCI39081435433/job117538996204 is terminalSUCCESS:
+Tests3460jobs00:22:37UTC, prooftrust0holes/axioms00:22:38,15original baseline
+finite export tests00:22:53. This is not acceptance of the new experimental
+cost proof or uniform finite-bit family. Research-publication CI still fails
+on Robin alone; main stays4.29.1 and maintenance-rule human choice is pending.
+Current new-head full CI remains unverified. No merge/deploy/branch deletion,
+verifier/scoring/target/publication-policy/history or user-file mutation.
+
+Append-only privacy clarification for C254's historical shorthand: its public
+inventory is30 EXACT original archive members PLUS1 explicitly path-redacted
+diagnostic member, not31 byte-identical originals. Original private receipts
+are preserved, and source-binding/report record the exact redaction and hashes.
