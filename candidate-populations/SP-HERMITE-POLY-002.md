@@ -180,3 +180,876 @@ remain explicit obligations. Fixed float64 is not a universal epsilon model.
 - The strict audit found no target weakening or unearned full acceptance.
   The classical and uniform-precision nodes remain open. See
   `experiments/hermite-polynomial/CYCLE03-RESULT.md` for scope, review and reuse.
+
+### Cycle 6: bounded staging, 2026-10-08
+
+- **MPS-02 normalized compiler crossover.** The actual raw supplier is composed
+  with the existing stored norm/canonicalization and `closeLeft` boundary
+  mechanism. `StagedNormalizedCanonical.compile_certified` proves one returned
+  normalized right-canonical chain and its ordinary polynomial cost. This is a
+  compiler-interface advance, not a new complete scientific candidate or
+  inherited executable certificate. Independent source/publication admission
+  remains pending.
+- **MPS-02-SCALE-01 numerical mutation.** Parent: MPS-02. Changed mechanism:
+  positive scaling before QR residual absorption and afterward, with an explicit
+  binary mantissa/exponent normalizer. The old backend still fails its recorded
+  `(1025,0,1/100)` discriminator; the isolated candidate passes that bracket and
+  additional cache-only checks. Small literal source-action tests, signed and
+  deficient cases are retained. No gate-resource improvement, uniform precision
+  bound, large-state action certificate or certified-population promotion is
+  claimed.
+- **Stored emitter adapter.** Explicit non-target wire enumeration and cached
+  bit reads now feed the proved selected-RY trace with a checked cost bound.
+  This is not yet the complete stored Gray/SO emitter or a globally optimal
+  resource champion.
+
+The [cycle-06 packet](../experiments/hermite-polynomial/stored/cycle06-staging-result.json)
+binds source hashes, checks and remaining interfaces. Unknown token/model-call
+telemetry remains unknown; this cycle provides no workflow-efficiency claim.
+
+### Cycle 7 complementary interface refinements
+
+- The explicit Gray target/word supplier refines the same physical target and
+  bit assignment used by the prior exact-real compiler. This is a stored
+  emitter prerequisite with local polynomial index/storage work, not a new
+  quantum route or a certified resource winner.
+- Actual stored active columns, counted prefix labels and completion now
+  consume the returned normalized chain. This extends the compiler crossover
+  through the exact local SO matrix, without inheriting a full primitive-list
+  or finite-bit certificate. Global integration must cache the source once.
+- `MPS-02-SCALE-01` now has a local exact mathematical mechanism certificate:
+  positive per-core and residual scaling preserve the literal signed normalized
+  Hermite action. The numerical implementation still has no uniform backward
+  error, underflow, Python refinement or serialized-circuit certificate.
+  Supplied-factor correctness is not transferred to computed floating factors.
+- The companion diagonal textbook slice supplies an actual source circuit's
+  accepted branch and normalization, not a Hermite construction candidate.
+  Its finite success proof and source-phase discriminator are reusable ideas,
+  not an improvement of this population's gates or root acceptance.
+
+The canonical [frontier](../proof-obligations/SP-HERMITE-POLY-002.md) retains
+C2/C3/X2/ROOT as open. The exponential baseline and all previous failures remain
+visible. These refinements do not count as independently admitted candidates
+or establish a workflow-speed comparison.
+
+### Cycle 8 same-run primitive compiler crossover
+
+The normalized-chain/active-column supplier now connects through a materialized
+Gray-table mutation to the actual stored SO emitter. The composed return is
+proved equal to the same named local stage matrix and its exact padded-core
+column action, with charged indexing, copying, sweep/log reversal and angle
+instantiation. This is an actual interface crossover, not concatenated route
+descriptions or inherited executable evidence. The local final gate count and
+intermediate emission counters are separately proved.
+
+Evidence: [stage primitive packet](../experiments/hermite-polynomial/stored/stage-primitive-result.json),
+[Gray-table packet](../experiments/hermite-polynomial/stored/gray-table-result.json),
+[SO emission packet](../experiments/hermite-polynomial/stored/local-so-emission-result.json).
+The cached all-stage compiler/global placement and finite-bit/error/export
+contracts remain open, as do independent scientific/source/reader admission.
+No new full certified candidate, resource winner or harness-efficiency result
+is claimed. Exponential baseline, MPS-01 failures and float64 falsifier stay intact.
+
+### Cycle 9 source-once global composition and numerical counterexample
+
+The same-run compiler crossover now includes the entire actual returned
+primitive list: source generation once, all stages, global wire placement,
+padding, copying and the public LE adapter. Its full operator refinement and
+literal clean Hermite column are proved separately. Final gate bound remains
+`48*n_p*(2*k+6)^3`; this is stronger implementation/cost coverage, **not a new
+resource winner**. A subtraction-free polynomial envelope accounts for the
+declared exact-real/index-word source and consumer work.
+
+The precision mutation supplies an exact norm floor and error propagation
+bridge, not computed floating-point error bounds. Its dyadic underflow
+discriminator rejects unconditional reliability of the generic max-core
+strategy on all nonzero finite TT inputs. It has not been proved reachable
+from this Hermite source, so neither the exact Hermite invariant nor the
+entire polynomial route is rejected. Preserve the failed strategy witness
+and investigate source-reachable dynamic range or a different representation.
+
+Evidence: [cycle09 packet](../experiments/hermite-polynomial/stored/cycle09-staging-result.json).
+No new root/executable-certified population selection, optimization gain,
+novelty or worker-efficiency claim. Exponential baseline and all failures
+remain retained; source review and finite-bit/export boundaries remain open.
+
+### Cycle 10 precision mutation and exact-error crossover
+
+The cached full-return compiler now crosses with shared primitive RY/circuit
+perturbation assets through an **actual** positional dyadic-rounding producer.
+Constructor closure excludes arbitrary unrounded RZ/X instructions from this
+Hermite return. The same rounded list has a full signed/all-garbage error
+certificate and logarithmic fractional-precision allocation; its quantum
+gate bound is unchanged. This is a locally compiled mathematical mutation,
+not a new finite-bit/resource winner: determining its exact-floor numerators,
+preprocessing and implementing finite gate synthesis are unpriced/unrefined.
+
+The source-numeric direction found a source-reachable implementation failure,
+not merely the earlier generic-TT max-scaling counterexample. Tiny positive
+`L=1/10^100` invalidates the frozen supplier's unrestricted totality. A separate
+large-`L` tail-underflow instance is benign at a rigorously derived finite
+tolerance. Neither result discards the exact mathematical route. Keep both
+scoped observations, the exponential baseline and previous failures.
+
+The transport direction adds an independent exact representation diagnostic,
+and separate replay of two actual saved small circuits. It does not transfer
+finite floating-producer evidence to the Lean exact compiler or whole family.
+Independent review found a schema-type acceptance bug; v1 was retained as
+requiring repair and a sealed v2 adds fail-closed type checks and regressions.
+This is an audited bounded diagnostic improvement, not a Harness rewrite.
+
+Evidence: [dyadic supplier](../experiments/hermite-polynomial/precision/dyadic-supplier/result.json),
+[source-reachable audit](../experiments/hermite-polynomial/precision/source-reachable/independent-audit.json),
+[transport v2 contract](../experiments/hermite-polynomial/precision/transport/contract-v2.json).
+No scientific population promotion or workflow-efficiency measurement is
+claimed. Genuine Gray-module local review is a separate migration asset,
+not a new quantum candidate. Next crossover requires certified computable
+source/angle enclosures and an actual saved-parser semantic bridge.
+
+### Cycle 11 safe-interval crossover and source-coordinate mutation
+
+The finite rational nearest-dyadic consumer crosses the frozen cached compiler,
+primitive perturbation and full signed target interfaces. Its actual returned
+list preserves constructor order, ordered wire arguments and non-RY instructions;
+valid finite data produce a return without deciding an exact-real floor bin.
+Conditional soundness is still an internal upstream obligation. Same-list resource
+equality and input-dependent output bit bounds do not certify that upstream
+generator, preprocessing runtime or physical synthesis.
+
+The independent source-numeric mutation changes the failed affine-near-one
+coordinate mechanism to rational reflected offsets. The actual old tiny-L
+failure remains reproducible, while the successor reaches normalized TT and
+full RY/CX simulation against an independent source reference. Local coefficient
+budgets are lossless rationals, with bounded near-cutoff refinement and honest
+retry/tolerance failure. The numerical source still uses uncertified exponential,
+subdivision, QR and normalizer operations; its local budgets do not imply global
+epsilon. Generic signed-library tests are labelled separately from the unchanged
+Hermite target.
+
+These two mutations are not yet one source-to-angle certified executable.
+Neither enters the root-certified/resource-winner selection lane. Gate bounds
+are inherited, not a newly measured optimization improvement. Keep all previous
+failures and the exponential baseline. Current lineage and scoped checks:
+[finite-data angle supplier](../experiments/hermite-polynomial/precision/safe-enclosure/result.json),
+[offset source successor](../experiments/hermite-polynomial/precision/offset-source/result.json).
+
+### Cycle 12 rational input crossover and a posteriori QR certificates
+
+The precision mutation now computes its actual dyadic width from rational
+`epsilon` and feeds that value to the existing finite-data angle consumer.
+The coefficient direction separately closes coarse all-`k` literal value and
+input-dependent rational output envelopes. Neither mutation supplies the
+missing analytic enclosure generator, arbitrary-precision numerical backend
+or total preprocessing bit cost.
+
+The QR mutation certifies the **actual returned** train against the normalized
+stored raw train by exact cross-Gram contractions and literal scale drift.
+It is independent of an exact-QR assumption and avoids dense construction.
+Its `27*n*B^3` field-operation envelope is certificate-only; QR, integer/GCD,
+source conversion and circuit work remain separate. The numerical checker may
+return a large honest bound and does not promise success for every `epsilon`.
+This is a reusable internal error interface, not a root-certified candidate
+or a newly selected resource winner.
+
+An optional uniform entry validator fixes the preserved zero-injection local
+budget bypass without changing valid numerical returns. A legal rational
+near-cutoff witness defeats the existing fixed 512-term cap and remains a
+recorded implementation failure. It motivates a source-linked approximate
+radius route, not target substitution or a Hermite impossibility claim.
+The exponential baseline, earlier failures, immutable sources and distinct
+scoped review disclosures remain intact. Scientific C2/C3/X2/ROOT stay open.
+
+Evidence: [coefficient audit](../experiments/hermite-polynomial/precision/coefficient-range/independent-audit.json),
+[budget audit](../experiments/hermite-polynomial/precision/rational-budget/independent-audit.json),
+[QR audit](../experiments/hermite-polynomial/precision/qr-residual/independent-audit.json),
+[entry and failure audit](../experiments/hermite-polynomial/precision/offset-entry-v2/independent-audit.json).
+
+The additional radius crossover consumes the actual coefficient range,
+Bernstein expansion, exponential tails, endpoint jets and normalization
+floor. It proves all-`k` original-source stability under rational radius
+approximation, with full Euclidean dimension dependence and the original
+`pi*L` target retained. Root freshly compiled the 16 providers and six kernel
+instances. This supports a different precision strategy, not an implemented
+radius generator or unconditional finite-bit candidate.
+Evidence: [radius packet](../experiments/hermite-polynomial/precision/radius-stability/result.json).
+
+Distinct scoped review reproduced all 16 roots, six consumers and seven
+additional formal discriminators without finding source, metric or target
+drift. It does not promote the radius route into certified selection.
+[Audit](../experiments/hermite-polynomial/precision/radius-stability/independent-audit.json),
+[cycle12 aggregate](../experiments/hermite-polynomial/precision/cycle12-staging-result.json).
+
+The next saved-action proposal explicitly includes repeated compiler QR,
+local completion, angle interpretation and every terminal bond sector.
+It compares a rational stage surrogate with the literal returned TT, keeping
+nonunitary-surrogate amplification and source errors separate. It is
+`DESIGN_ONLY`, not a performed experiment, successful crossover or resource
+selection. [Design](../experiments/hermite-polynomial/precision/next-circuit-frontier-design.json).
+
+### Cycle 13 finite supplier crossover and saved diagnostic
+
+The radius candidate now has an actual kernel-checked finite rational Machin
+producer with logarithmic term allocation. It consumes the previous original
+source stability interface without changing the target. The exact normalized
+error still carries `2*sqrt(2^n_p)*C(k)`; a radius tolerance is not silently
+treated as global state epsilon. Total stored bit/GCD/runtime and downstream
+precision composition remain open.
+
+An independent direction supplies all-rational finite Taylor sin/cos
+enclosures and a bounded executable degree search. The actual saved-action
+diagnostic crosschecks its 26 half-angles against these formulas, with outward
+rounding kept in the interval budget. Neither formula reuse nor finite tests
+certify the Python/Lean decoder and stage-action bridge.
+
+The same OffsetSource/QR return and single compiler plan now have a compact
+full-garbage saved-action candidate for `n_p=3,k=1,L=1`: 456 saved gates,
+four terminal bond labels and no renormalized target replacement. Its bound
+to literal stored D is approximately `1.18153e-13`. The separate Qiskit
+diagnostic and 15 regressions are finite supporting evidence, not a new
+certified family or selected resource winner.
+
+Kernel product transport separately retains possible surrogate amplification
+as `product(1+eta_i)-1`; nominal stage contraction and actual local operator
+error must still be proved by the concrete stage producer. These new nodes
+advance internal analytic and executable frontiers, not C2/C3/X2/ROOT. The
+exponential baseline, prior failed implementations, candidate lineage and
+immutable seals remain retained. Distinct review was pending when the local
+packages were checkpointed and pushed to the contribution branch.
+
+Evidence: [radius](../experiments/hermite-polynomial/precision/radius-supplier/result.json),
+[finite trig](../experiments/hermite-polynomial/precision/finite-trig/result.json),
+[saved action](../experiments/hermite-polynomial/precision/saved-action/result-v1.json),
+[nonunitary transport](../experiments/hermite-polynomial/precision/nonunitary-transport/result.json).
+
+The later distinct scoped reviews accept the internal provider mathematics
+and narrow exact-decimal saved residual, not a resource winner. Independent
+terminal-excitation and order/sign/angle mutants discriminate full-garbage
+error. Some additional Qiskit binary64 errors exceed tiny exact-decimal
+candidate bounds: parser/simulator rounding, physical synthesis and ideal
+source error remain separate charged edges. Local matrix-cell counts do not
+establish total Python peak RAM or GCD/runtime costs.
+
+### Cycle 14 actual global radius reserve and clipped scalar supplier
+
+The radius crossover now selects its actual positive rational Machin radius
+from global epsilon, physical dimension and the frozen all-k source constant.
+The unchanged normalized signed target has a proved radius contribution at
+most `epsilon/4`. Other stage errors are not zeroed. This is precision-budget
+progress, not a new circuit resource tuple or certified population winner.
+[Allocation](../experiments/hermite-polynomial/precision/global-radius-budget/result.json).
+
+The independent scalar direction supplies finite rational enclosures for
+negative-argument exponentials. A sound `[0,2^-T]` tail branch avoids huge
+Taylor powers, while the active branch retains a checked width and may fail.
+Original rational-coordinate source tails and `exp(-1)` have actual consumers;
+source grid/storage refinement and uniform degree/bit/runtime bounds remain
+open. Scalar-width epsilon does not replace global normalized-state error.
+[Supplier](../experiments/hermite-polynomial/precision/finite-exp/result.json).
+
+Both packages were checkpointed to the contribution branch as locally proved,
+pending distinct review. They advance independent metric-allocation and
+finite-scalar uncertainties; no source Anchor, public graph, main merge,
+deployment or complete family acceptance follows from the checkpoint.
+
+The RY direction closes a different uncertainty: the literal signed rational
+half-angle Taylor midpoint has a derived Euclidean operator error at most
+twice its scalar radius, even after lifting to an arbitrary named physical
+wire. Existing exact CX semantics are reused, not counted as new mathematics.
+This enables later nonunitary transport but does not identify the saved
+outward-rounded stage with a product of these primitive centers. Full stage,
+readout/garbage and parser refinement remain open. A privacy-safe versioned
+packet replaces unpublished metadata; the original remains quarantined, not
+retroactively accepted.
+[RY packet](../experiments/hermite-polynomial/precision/saved-ry-interval/result-v2.json).
+
+Distinct scoped review now accepts all three providers with complete fresh
+source/consumer compilation and independent discriminators. Parent repeated
+the reviewer probes and exact blind-spot tests. This resolves local review
+uncertainty, not scientific population selection: four non-radius stages,
+complete saved-word/rounding/garbage refinement and total finite-bit resources
+remain open. The separate sufficient-degree proposal is unproved design only.
+[Cycle 14 aggregate](../experiments/hermite-polynomial/precision/cycle14-staging-result.json).
+
+### Sufficient degree and actual outward-rounded row semantics
+
+The scalar mutation now proves a sufficient precision-dependent Taylor
+degree, rather than searching under a fixed cap. It consumes the existing
+sound checker and preserves enclosed clipped-tail mass. The rounded-row
+mutation proves the actual signed floor/ceil and interval update rules,
+including end-only midpoint extraction, on a fixed row pair. Both are
+independently reviewed internal providers, not scientific population parents.
+
+The proposed crossover combines these suppliers with the proved radius
+allocation to build a finite rational source, then a stored tensor train.
+It remains design only until coefficient refinement, global error, actual
+stored cores and all charged costs are proved. The original exact-real bond
+and gate bound cannot be silently reused for a precision-dependent polynomial.
+[Next source-stage design](../experiments/hermite-polynomial/precision/next-source-stage-design-c15.json).
+
+Variable-target RY/CX full stages and operator-error transport are a separate
+construction uncertainty. Fixed-pair interval closure and finite 4x4 tests do
+not supply it. No new resource tuple or winner replaces the retained baseline.
+[Reviewed evidence](../experiments/hermite-polynomial/precision/cycle15-staging-result.json).
+
+### Reviewed rational middle and full-stage semantic mutations
+
+The finite-middle mutation now supplies literal rational coefficients,
+the actual complete exponential midpoint, exact central value 1 and the
+all-k scalar error amplification. The full-stage mutation supplies arbitrary
+physical changing-target RY/CX enclosure and a real Euclidean eta from the
+completed outward-rounded matrix. Both have distinct accepted internal
+reviews; retained implementation failures are not relabelled green.
+
+These are dependency-ready proof assets, not new scientific population
+winners. No improved complete resource tuple or executable family acceptance
+is asserted. The source-to-stored-TT/global-normalization fork and the
+nominal-contraction/actual-product-transport fork are separate uncertainties.
+No source norm, contraction, free oracle or projected garbage is assumed.
+Dense materialization remains exponential when width grows with n_p; the
+symbolic full-matrix bound is not a scalable implementation certificate.
+The original baseline and failure records remain available.
+[Cycle 16 aggregate](../experiments/hermite-polynomial/precision/cycle16-staging-result.json).
+
+### Cycle 17 source/stage crossover, locally proved and under review
+
+The source crossover now composes actual clipped tails, the rational middle,
+the produced rational-radius grid and dimension-aware normalization. Its
+locally compiled original-target error is at most `epsilon/2` for positive
+rational L,epsilon, all k and `n_p>=1`; the source and radius contributions
+are each at most `epsilon/4`. No norm-floor or approximation oracle is an
+input premise. The whole original grid and clipped mass remain in the target.
+
+Independently, the stage mutation removes the contraction/`Valid` assumptions:
+literal signed real RY/CX words preserve the full Euclidean norm, actual
+outward-stage centers and eta supply `Valid`, and chronological products match
+the literal flattened word. Parent actual consumer checks and nine diagnostic
+tests pass. Distinct full-source review is still running; these assets are not
+scientific population winners or public purified results.
+[Checkpoint](../experiments/hermite-polynomial/precision/cycle17-author-checkpoint.json).
+
+The next source mutation must build actual nondense cores for precision-degree
+tails and all +/-T/-1/0 masks. A masked-polynomial comparator route and a
+multi-boundary injection alternative remain explicit OR-routes; neither may
+inherit the old `2k+6` exponential-source bond or treat comparator generation
+as a free oracle. Proposed dimensions are design only. The separate real-to-
+complex primitive adapter preserves canonical q0-LSB, signs, chronology and
+all spectators rather than replacing the circuit semantics.
+[Next source design](../experiments/hermite-polynomial/precision/piecewise-tt-next-design-c17.json).
+
+No new complete resource tuple, certified winner, family export acceptance or
+main deployment is asserted. The exponential baseline, exact-real route and
+failed attempts remain preserved, with full finite-bit costs independently open.
+
+### Cycle 18 admission checkpoint: reviewed source/stage, literal complex bridge staged
+
+The distinct internal source/stage review now accepts the original normalized
+target `epsilon/2` source budget and the literal real nominal/product transport.
+Its own fresh selected-source replays cover seventeen source modules and nine
+stage modules, with 162 printed roots using only the ordinary three axioms.
+The reviewer retains dependency-review lineage and saw author scope statements:
+this is not a source-blind public decoder or whole scientific-family approval.
+Earlier failed and pending records remain frozen, not relabelled green.
+[Independent scoped review](../experiments/hermite-polynomial/precision/source-stage-review-c17/independent-audit.json).
+
+The next semantic crossover is locally proved: the whole real RY/CX word,
+including nonidentity matrix inputs, agrees exactly with the existing complex
+primitive evaluator under the canonical `primitiveBasisLEEquiv`. Signed
+half-angles, q0-LSB, chronological multiplication, spectators and width zero
+are retained; no phase quotient or garbage projection is used. The adapter's
+fresh nine-module author gate and five diagnostics pass. Distinct review is
+still active, so it remains `proved_locally`, not a certified population parent.
+[Staged adapter](../experiments/hermite-polynomial/precision/literal-complex-adapter/result-v1.json).
+
+Parent consumer replays and immutable source/cache bindings are recorded in
+[the focused checkpoint](../experiments/hermite-polynomial/precision/cycle18-parent-checkpoint.json).
+These checks reuse explicitly pinned private caches and do not claim a fresh
+transitive build. Actual saved-action diagnostics use twelve local 8-by-8
+matrices at `n_p=12,a=2`, not a global dense matrix; this finite routine check
+does not certify scalable runtime or physical local-to-global support.
+
+The separate stored-matrix chain has completed exact whole-module source-blind
+decoding and distinct source-first comparison. Seven publication records now
+validate; 44 of 51 changed production modules still lack admission records.
+Full main admission remains fail-closed. Source graph gaps G01/G02/G03 remain
+visible. Precision-aware stored cores, comparator/mask contraction, finite-bit
+QR/GCD/copy/storage/synthesis, complex operator error, full terminal readout,
+C2/C3/X2/ROOT and the independent family executable gate remain open.
+
+### Cycle 19 internal successor (not a certified construction winner)
+
+The canonical complex evaluator adapter has a completed distinct internal
+review. The actual precision-aware source's five-component identity is proved;
+its concrete generated rational tables and same returned boundary-closed chain
+pass finite exact diagnostics, including cut0/N and T0/T1 coincidences. No
+uniform Python-to-Lean producer, finite-bit complexity or scientific-family
+acceptance follows. The proposed precision-dependent envelope
+`18*(d+1)+9*(m+1)+18`, where `d=4*T^2+2*T+1` and `m=2k+1`, remains a concrete
+producer dimension rather than an admitted uniform rank/resource certificate.
+
+[Parent focused replay](../experiments/hermite-polynomial/precision/cycle19-parent-checkpoint-v2.json)
+passes with 44 ordinary/axiom-free reports and thirteen non-skipped finite
+tests. StoredTensorTrain source-blind elaboration passes but its extracted
+`absorption` signature collides with `absorptionEntry`; distinct publication
+admission remains blocked pending a separately versioned artifact correction.
+The unchanged exponential baseline, failed attempts and open C2/C3/X2/ROOT
+are retained. No new resource winner or main proof deployment is claimed.
+
+### Cycle 20 integrated internal dependency advances
+
+The actual generated comparison chain has an arbitrary-width source-mask
+contract, no supplied mask/Window premise, maximum bond3 and stored-scalar
+bound `18*width`. It charges local table/boundary generation and assembly for
+the SAME returned object, with division/remainder calls separately visible.
+The generic rational polynomial contraction is proved; complete actual source
+coefficients, five-term products/directsum and full-chain generation remain open.
+[Uniform result](../experiments/hermite-polynomial/precision/piecewise-kernel-uniform-c20/result.json).
+
+The actual complex stage supplies its own contraction/error/Valid and later-left
+flattened evaluator bound for arbitrary complex vectors. This is author-only
+local evidence pending distinct review, not a scientific population parent.
+[Complex result](../experiments/hermite-polynomial/precision/complex-stage-transport-c20/result-v1.json).
+Parent focused replays pass37 reports plus7 finite diagnostics; the local Lean
+and Tests integration gate passes. Full finite-bit cost, QR, local/global
+support, allocated error budget, independent family acceptance and ROOT remain
+open, and no new resource winner is selected. Retained failed attempts and
+versioned decoder corrections do not alter the scientific target.
+
+### Cycle 21 independent internal transport review
+
+The actual C20 complex-stage interface is now accepted by a distinct internal
+reviewer: literal primitive nominal, actual saved interval center/error,
+internally derived contraction and `Valid`, full complex terminal carrier and
+later-left flattening are preserved. Parent replay passes18 ordinary-axiom
+reports and35 independent finite discriminators with unchanged bound inputs.
+[Review](../experiments/hermite-polynomial/precision/complex-stage-review-c21/review-result-v1.json)
+and [parent replay](../experiments/hermite-polynomial/precision/cycle21-review-parent-checkpoint.json).
+Inherited cache/source correspondence remains explicitly partial. This evidence
+removes self-review debt at the internal operator interface, not scientific
+population acceptance, finite-bit closure, main admission or PURIFIED status.
+No resource winner is selected; the exponential baseline and all failures remain.
+
+### Cycle 21 full actual-source algebraic crossover
+
+The c19 five-term source decomposition and c20 arbitrary-width masks/polynomial
+translation now supply one actual chain with source-derived middle coefficients.
+Every q0-LSB word contracts to the actual finite `piecewiseValue` on the actual
+rational grid. The same object has bond envelope
+`18*(sourceDegree(delta)+1)+9*(2*k+1+1)+18` and corresponding scalar-address
+bound. Parent replay passes13 ordinary-axiom reports; no full stored-data/runtime
+producer, finite-bit closure or distinct source review is inferred.
+[Source chain](../experiments/hermite-polynomial/precision/piecewise-kernel-assembly-c21/result.json)
+and [parent replay](../experiments/hermite-polynomial/precision/cycle21-assembly-parent-checkpoint.json).
+The next mutation must materialize this SAME chain's actual tables and charge
+all generation/copy/assembly costs, not replace it with an easier existence
+witness. Original launcher and search failures remain retained. No new scientific
+winner is selected, and the exponential baseline is unchanged.
+
+StoredTensorTrain whole-module source/decoder review is admitted only in the
+local retrospective exact-real registry lane (8 reviewed,43 missing of51).
+It does not close input generation, finite-bit resources, executable acceptance,
+physical cleanup, main migration or ROOT.
+
+### Cycle 22 stored-source implementation refinement
+
+The C21 full-source algebraic chain now has an actual rational local-table and
+boundary producer. `produceStored` casts those generated vectors and calls the
+canonical stored assembler; its SAME returned chain denotes C21 `actualChain`
+and contracts to the full signed q0-LSB finite piecewise source. This is an
+implementation refinement of the existing source route, not a new scientific
+population winner or a change of target. Source-derived radius/precision and
+strict/inclusive/T0/T1 boundary conventions are preserved.
+[Producer and remaining costs](../experiments/hermite-polynomial/precision/piecewise-kernel-stored-c22/result.json)
+and [parent replay](../experiments/hermite-polynomial/precision/piecewise-kernel-stored-c22/parent-verification-v1.json).
+
+Four parent source re-elaborations pass14 ordinary-axiom reports with215 input
+pins unchanged. Only materialization, stored-data casts/copies and assembly are
+charged; scalar setup and entry/boundary arithmetic remain unaccounted, not
+constant-time oracles. Coefficient caches, cuts, binomial/factorial/power work,
+index operations, rational bitlength/GCD, numerical extraction and physical
+synthesis remain required. Independent internal semantic review is separate;
+public whole-module admission, original-state error composition, family
+executable acceptance and ROOT are not inferred. The exponential baseline and
+all failed attempts remain retained. No champion/resource scoring changes.
+
+C22's distinct internal semantic review subsequently passes, as does the
+parent's fresh consumer replay (seven ordinary reports,70 unchanged pins).
+[Review](../reviews/internal/c22-stored-supplier-review/review.md) and
+[parent evidence](../reviews/internal/c22-stored-supplier-review/parent-replay-v1.json).
+The review explicitly distinguishes finite rational source equality from the
+original normalized-state target and proves the partial generation ledger
+omits field/comparison charges. This is not a full runtime or population
+acceptance upgrade; scientific winner selection remains unchanged.
+
+### Cycle 23 source-coefficient production refinement
+
+The same source route gains an actual computable rational coefficient cache,
+refining the existing factorial/choose/source mechanism rather than inventing a
+second quantum representation. The returned cache supplies every actual C21
+source coefficient; its same run has ordinary count at most `416*(k+1)^2`.
+Its rational-to-real consumer also agrees with the actual existing real source
+producer. The parent replays both frozen sources with ten ordinary symbolic
+axiom reports and 866 stable pre/post pins.
+[Local result](../experiments/hermite-polynomial/precision/charged-coefficient-cache-c23/result.json)
+and [parent replay](../experiments/hermite-polynomial/precision/charged-coefficient-cache-c23/parent-verification-v1.json).
+
+This is a local supplier refinement, not a new population winner or complete
+poly-qubit state-preparation certificate. C22 cache consumption, middle/setup
+production, all remaining arithmetic/traffic, bitlength/GCD, numerical and
+physical costs, normalization/error composition, independent family acceptance
+and ROOT remain unresolved. Internal review is running separately; public
+source admission and main migration remain pending. No scoring, target,
+champion, exponential baseline or historical failure record is changed.
+
+Cycle 24 internal review checkpoint (15 October 2026): the frozen C23
+same-object supplier and charged lookup are independently accepted only at the
+bounded arithmetic/counter tier. Parent replay passes 22 ordinary-axiom reports
+with 1,616 unchanged pins; see
+`reviews/internal/c23-charged-cache-review/parent-replay-c24-v1.json`.
+This does not install the supplier into C22, close the scientific ROOT, change
+scoring/selection or promote a population winner. All external/source,
+finite-bit, physical compilation and family executable gates remain explicit.
+
+
+### Cycle 24: ConstructiveTensorTrain independent publication checkpoint
+
+The distinct c24 source-blind decoder and source-first reviewer agree on the
+whole 15-root module, the exact retrospective lesson and repaired v2 graph.
+The later wrapper attestation checks the exact three parent metadata transports;
+it does not manufacture a historical pre-proof seal or a new proof execution.
+See [independent review](../reviews/publication/constructive-tensor-train/reviewer-c24/review.md)
+and [portable integrity replay](../reviews/publication/constructive-tensor-train/verify-c24.py).
+The previous c23 changes-required record and graph failure remain retained.
+
+Nine current publication records now validate mechanically on this contribution.
+The full changed-module gate remains blocked on the other 42 modules. This is
+SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING, not main admission or PURIFIED.
+The decoder freshly compiled the actual target and checked 15 signatures/axiom
+reports against an explicitly fresh target; imported providers were inherited.
+Maximum algebraic bond bounds and exact complete-terminal action/mass are not
+physical qubit, cleanup, precision or total gate-cost certificates. No scientific
+target, scoring, winner, Hermite ROOT or exponential baseline is changed.
+
+
+### Cycle 24: HermiteCutRank exact-source review registered, 16 October 2026
+
+The distinct source-first reviewer now accepts the frozen new decoder comparison
+for all20 public roots and seven semantic slots. The final graph retains the
+actual F/G separation premises, three literal imports and declaration ownership,
+all42 source blocks including eight previously omitted formulas, and three stable
+OPEN/SOURCE_GAP consumer nodes. Historical rejected metadata versions are retained.
+The exact original review, fresh-target20-signature/axiom evidence and the later
+independently attested schema transport are now linked in the canonical registry.
+Ten current records validate mechanically;41 of51 changed production modules
+still lack admission records. See
+[independent review](../reviews/publication/hermite-cut-rank/reviewer-c24/review.md).
+
+Status remains SOURCE_REVIEWED_LOCAL_INTEGRATION_PENDING, not main, reader,
+PURIFIED or scientific ROOT acceptance. This retrospective exact-real cut-rank
+explanation certifies no new physical/finite-bit/resource algorithm and supplies
+no complete poly(n_p) state-preparation route. No target, scoring, champion,
+production source, original frozen artifact or historical failure was modified.
+
+
+### 18 October 2026 active successor directions, not population promotion
+
+No new scientific candidate is certified or selected by the migration review
+checkpoints. The exponential baseline and previous rejected regimes remain.
+The contribution has50 mechanically valid whole-module source-correspondence
+records; this is review coverage, not construction quality or ROOT closure.
+
+- C145 investigates a substantive C21/C22+C23 crossover: actually use one
+  produced source cache in the existing stored-chain dataflow, charge its reads
+  and middle-coefficient work, and prove equality of the SAME returned chain.
+  It is a design-stage fork, not an inherited certificate or implemented gain.
+- C147 attempts a mathematical parameter mutation, not a changed state:
+  prove an explicit polynomial data-width bound for the actual finite-precision
+  Taylor degree at the existing allocated tolerance. Its exact internal
+  statement is sealed before proof work. No proof acceptance is claimed here.
+
+These forks resolve different uncertainties. Neither may be selected based
+only on a finite example, declaration count, controller replay or fastest
+return. Retain full setup/kernel/tail/bit-operation/QR/synthesis costs and
+original-target error, physical cleanup and executable-family obligations.
+
+
+### Subsequent local parameter proof and current full gate
+
+The C147 allocated Taylor-index root subsequently compiled under Lean4.33.0
+(31.844s), with its exact own-output definition/type/axiom audit passing
+(23.328s). All4 new roots report only the ordinary3 axioms. This is
+proved_locally, not the complete finite-bit resource/root certificate.
+[Exact scope and evidence](../experiments/hermite-polynomial/precision/allocated-degree-budget-c147/README.md).
+
+The PR merge snapshot b95220ce6ebe9b6b7a965b4437f43b26fb673c03 also completed
+full library/Tests and original Hermite executable replay successfully; its
+selected proof/replay Git inputs equal contribution67b750f. This is a real
+current PR integration gate, not main merge, clean TCB, new finite-bit poly-SP
+executable acceptance or resolution of the experimental publication conflict.
+[Source association](../reports/lean-433-migration/c153-current-PRmerge-full-gate-association.json).
+
+
+### Independent scalar review and actual cached-supplier type probe
+
+The C147 arithmetic provider now has a separately frozen C151 independent
+source-first mathematical/binder/definition review and C154 subsequent actual
+runtime association review. Both support their bounded internal claims, with
+inherited/dirty/transitive provenance limitations retained; neither grants
+source-publication, clean-TCB or scientific ROOT credit.
+
+C150 actual cache -> signed middle -> five-branch right table -> existing
+stored-chain definitions typechecked in C155: three modules plus seventeen
+candidate propositions, all exit0. Type formation is not a proof. C156 seals
+their exact bodies/signatures before subsequent bounded proof search. The
+400/816 proposed bounds and final cached same-run refinement remain OPEN.
+Subsequently C159 actually compiled seven C157 primitive/right roots, including
+rightEntry partial counter<=11, and a fresh-own-output exact-type/axiom consumer
+(25.578s/24.531s), all seven ordinary-three axioms. This is proved_locally with
+independent static review pending, not full producer/runtime/root acceptance.
+[Exact compiled primitives](../experiments/hermite-polynomial/precision/cached-primitives-c157/README.md).
+Kernel/left and captured-block setup/native/bit/GCD costs remain unaccounted.
+[Exact original stages](../reviews/publication/migration-checkpoints-c158/README.md).
+
+The asynchronous policy retains human choice for material unapproved trade-offs,
+autonomous bounded same-contract work, typed immutable evidence, matched
+acceptance endpoints and all observed failed/cancelled/stale cost. No measured
+quantum proof-first/screen-first/dual-lane efficiency winner or production
+scheduler change is claimed. Original finite-bit Hermite ROOT remains OPEN.
+
+
+### Actual cached setup and signed-middle VALUE certificates
+
+C168 closes the actual setup-value conjunction after an exact two-block proof-only
+repair of C165's rejected dependent-Decidable rewrite attempt. Four cuts, the
+full factorial-reciprocal tail, clipped value and midpoint match the unchanged
+source, including R/delta zero/negative and T0/T1. Source/own-output type+axiom
+gates pass (30.000s/22.406s); original exit1, recovery sorryAx rejection and all
+warnings are retained. No executable body or public type was changed.
+[Setup certificate](../experiments/hermite-polynomial/precision/cached-setup-c166/README.md).
+
+C174 closes generic signed middle entries and actual C23 cache substitution to
+C21 middleCoeffQ (24.688s/25.062s exact source/own-output gates). Both roots use
+only the ordinary3 axioms, no added correctness premise. Independent C178
+static review is a separate pending stage at this checkpoint preparation.
+[Middle certificates](../experiments/hermite-polynomial/precision/cached-middle-values-c167/README.md).
+
+Complementary C172 executable screening passed1456 exact rational entries in a
+25.906s parent subprocess while symbolic authoring continued. The result was
+withheld until author freeze. It is finite discriminator evidence, not theorem,
+SP state/export acceptance or matched-endpoint strategy comparison. Unknown
+CPU/model/tokens/peak-memory remain unknown.
+[Finite evidence](../experiments/hermite-polynomial/precision/cached-middle-finite-c172/README.md).
+
+C161/C164 primitive and C169/C173 setup static-then-runtime internal reviews are
+now preserved in13 exact original members. No source-publication, ProofSeal,
+clean-TCB/native-cost or scientific ROOT promotion. Cost400, cached whole-data/
+chain/source integration and816 are next obligations, not silently accepted.
+Kernel/left/captured setup, native/bit/GCD/synthesis and finite-bit ROOT remain OPEN.
+
+
+### Actual cached same-returned-data chain and partial middle-cost certificate
+
+C193 verifies five unchanged C156 VALUE roots: all actual right coordinates,
+whole returned RationalData, Window, same cast/ofTable dependent chain and
+literal original piecewise grid source. Source/own-output gates pass34.016s/
+26.672s; five typed consumers and all five ordinary-axiom reports pass. Parent
+read the five actual types and seven printed loaded bodies, not every proof
+term. Independent C188 source-first review is frozen; C196 static comparison is
+separate, not inferred from compilation.
+[Same-chain values](../experiments/hermite-polynomial/precision/cached-chain-values-c187/README.md).
+
+C189 verifies actual middleFromCache partial total<=400*(k+1)^2 with no new
+public assumption (24.922s/23.093s source/own-output exact type+ordinary axioms).
+All generated factorial/sign/guarded-sum/collect work in that eight-counter
+annotation is retained. Independent C194 source derivation is frozen separately;
+comparison to the actual proof is pending, not self-approved.
+[Partial cost](../experiments/hermite-polynomial/precision/cached-middle-cost-c183/README.md).
+
+C178/C184 middle static-then-runtime internal reviews retain six exact original
+members. Source first and later runtime exposure are separate freezes, with
+inherited/dirty-TCB and direct-dependency-not-loader limits unchanged.
+[Independent stages](../reviews/publication/migration-checkpoints-c190/README.md).
+
+Failures remain exact: rejected Sum/implicit-index proof attempts, precompiler
+memory deferral, low-cap interpreter exhaustion, and rejected cost normalization
+attempt. Four failed compiler processes consumed129.299 observed subprocess
+seconds; this is not total workflow/model/CPU time. Unknown calls/tokens/CPU/peak
+memory stay unknown. Fin-index repair changed only proof; final run used actual
+restored headroom and original3GiB cap plus2GiB reserve. No finite-screen/family
+endpoint substitution or universal efficiency winner is claimed.
+
+Previous ba2afcc1 full CI39075097319 succeeded (library/Tests and original15-test
+finite replay), not a new finite-bit family acceptance. New checkpoint CI is
+unverified. Cost816/same-run, kernel/left/captured setup, native/bit/GCD/finite-bit
+synthesis/export and scientific ROOT remain OPEN; four textbook final admissions
+and main4.33 migration are still OPEN. Robin publication policy is unchanged.
+
+
+### Same-returned-run conjunction and bounded asynchronous decisions
+
+C211 now proves the exact last C156 internal statement: the SAME returned
+producer value refines the original chain AND its SAME annotated cost obeys
+the unchanged816-plus-actual-setup/traffic/ofTable bound. Source32.953s and
+fresh own-output exact-type/ordinary-axiom consumer28.047s pass. No new public
+premise, weakened contract or increased proof budget was introduced. This is
+an internal partial-cost result, not physical one-evaluation/sharing or full
+finite-bit/poly(n_p) preparation.
+[Exact proof and preserved failure](../experiments/hermite-polynomial/precision/cached-same-run-c208/README.md).
+
+Ten original members preserve C199/C208 and rejected C207 exit1/47.563s;
+no failed olean or zero-row axiom report is promoted. Eighteen further original
+review members preserve six separately frozen source/static/runtime stages
+for prerequisite same-chain values and middle cost. Those prerequisite reviews
+are not an independent review of this new conjunction or a clean TCB rerun.
+[Independent stages](../reviews/publication/migration-checkpoints-c205/README.md).
+
+HARNESS section8a now routes to the existing asynchronous policy: autonomously
+select bounded same-contract methods; ask asynchronously for material target,
+error/success/oracle/budget/application trade-offs; continue unaffected work.
+Proof and finite screens may run concurrently with immutable bindings and
+source-blind release barriers. Compare all three methods only at matched
+acceptance endpoints, retaining failed/censored work and unknown telemetry.
+No new production event scheduler, scoring or measured strategy advantage.
+
+Actual setup cost remains OPEN: C210 source failed29.094s; C216 proof-only
+successor failed22.5s at no-progress simp, zero roots/no accepted output. C217
+is authored, not proved. C219's precompiler check rejected the changed HARNESS
+context; no compiler started. This is documented context drift caused by this
+policy entry, not mathematical refutation, and no pin was waived or rewritten.
+The new context must be explicitly bound before further proof validation.
+
+Priorc913 fullHermiteCI39076442370/job117524465547 succeeded: actual fullTests
+3460jobs and original15-test saved executable replay; this is not a new
+finite-bit family acceptance. New checkpoint fullCI is unverified. Robin source
+publication conflict still blocks main4.33 admission; no policy approval/change,
+mainmerge, deployment, branchdelete, scientificROOT or textbookfinaladmission.
+
+
+### Closed setup annotation and first Gaussian integer invariant
+
+C223 closes the exact C202 partial setup target, with no public premise:
+total(rightSetup n R delta).cost<=81*(d+1)^2+8*(d+1)+n+T+22,
+d=sourceDegree(delta),T=tailCutoff(delta). Actual source27.422s, exact own-output
+type/ordinary-axiom consumer24.969s, loaded-definition audit24.687s all pass.
+Parent read actual type/axioms and loaded definitions, not every expanded root
+proof or private recursive body.26 original seal/author/failure/preparer members
+remain exact. C222->C224 is explicitly reviewed process-context succession with
+the linked async policy additionally pinned, not a scientific/policy exception.
+[Setup proof](../experiments/hermite-polynomial/precision/cached-setup-cost-c217/README.md).
+
+The fixed Gaussian witness now has actual typed integer definitions and
+independent source-first/static/successor-static review freezes. C225 original
+Decidable failure remains; C227 adds only an explicit local constructive domain
+decision, C228 types all31 names using its own table/core outputs. The final
+literal1024 words and81local/eightsigned input diagnostics are parent-replayed,
+not a uniform error/circuit proof. Apache-2.0/NOTICE and exact ancestry accompany it.
+[Fixed model](../experiments/uncompute-2610-22367/gaussian-integer-model-c206/README.md).
+
+C240 proves the exact C229 sealed all-D aligned128-block constancy theorem for
+the actual integer model (source12.265s/own-output consumer9.859s, ordinary
+axioms). It preserves six signed truncated middle rows, modular stored slope,
+nine biased final rows and the special top-row drop. This is a symbolic integer
+supplier, not finite screening or a replacement floor(full product), and not
+Gaussian real-exp/f64 error, coherent circuit/cleanup/resource or SP/BE closure.
+[Constancy proof](../experiments/uncompute-2610-22367/gaussian-constancy-c230/README.md).
+
+Main migration diagnostic C234 actually compiles unmodified main Robin against
+the4.33 context: exit1/86.344s, seven type/recursion errors, no accepted output.
+Thus simply keeping that old file does not solve migration in this context.
+No production source was changed. The separate experimental/source-publication
+conflict remains; human approval for maintenance-rule design/review is pending.
+
+Previous268522fc fullHermiteCI39078495808/job117530481115 terminalSUCCESS:
+actual Tests3460jobs and original15-test finite replay. This is not the new
+experimental proof set or a uniform finite-bit family acceptance. Current
+checkpoint CI remains unverified; main4.29.1/fullHermitefinitebitROOT and four
+bounded textbook final admissions are OPEN. Kernel/left/capturedsetup/native
+bit/GCD/evaluator/synthesis/cleanup/export remain missing; C237 now designs the
+literal fully costed kernel/left producer, not a return to the old2k+6 layout.
+
+
+### Explicit five-block producer: typed sealed frontier, not a cost proof
+
+C243 replaces the previously unaccounted kernel/left scalar callbacks with
+literal comparison, factorial-binomial, charged powers/products and complete
+materialization. Numerical loop dimensions use the actual second charged
+cutoff result. The five-sum index, reflected signs, actual right boundary and
+same returned data/cast/ofTable are retained; no canonical2k+6 layout replaces D.
+C246 fails one dependent cast (exit1/28.671s), preserved unchanged. C248 changes
+only that cast. C249 types source24.750s and own-output consumer24.063s; eight
+Prop formations are NOT eight proofs. C250 seals exact bodies/statements BEFORE
+new value/cost authoring. No new proved root or complete budget is claimed.
+[Exact typed checkpoint](../experiments/hermite-polynomial/precision/explicit-five-block-c243/README.md).
+
+C245 independent original-source baseline precedes C247 static comparison;
+parent whole-read,31/40 raw pins respectively verified. This supports literal
+semantics and branch-local ledgers, not full budget, proof/runtime association
+or universal source-publication admission. Six original review members remain
+frozen. C248 successor review and C252/C253 value/cost proofs are separate work.
+[Review scope](../reviews/publication/migration-checkpoints-c254/README.md).
+
+C244 isolates Gaussian's ACTUAL math.exp/half-away/centered429 reference. Negative
+fold partners require the inclusive magnitude endpoint2^35 via valid xs=-2^35.
+The compressed uniform route still needs119,275,520 quadratic blocks and an
+operational monotonicity/enclosure supplier; sparse/NumPy scans are not enough.
+The four-point/capped preflights are proposed, not executed. No refit/recenter,
+source-target swap or uniform/circuit/error/resource/SPBE acceptance occurred.
+[Operational reference audit](../experiments/uncompute-2610-22367/gaussian-error-reference-c244/README.md).
+
+Priorc661 fullHermiteCI39079883741/job117534493326 now terminalSUCCESS: parent
+actual logs read, Tests3460jobs23:57:45UTC, prooftrust0holes/axioms23:57:46,
+15original finite replay tests23:58:02. This is the production frontier/baseline,
+not the new experimental supplier or a uniform finite-bit family certificate.
+Current checkpoint fullCI remains unverified; main4.29.1/Robin publication
+conflict, fullHermitefinitebitROOT and four textbook final admissions stay OPEN.
+No verifier/scoring/target/publication-policy/history/user-file/branch mutation.
+
+
+### Same-return explicit cost checkpoint and asynchronous choice boundary
+
+C263 actually closes the C250-sealed cost/counter projection for the SAME
+explicit five-block result: source44.391s, separate exact-statement own-output
+consumer26.968s, one public root, ordinary propext/Classical.choice/Quot.sound.
+Actual selected quotient/remainder counts each <=14(n+1)D^2+4D and the full
+named finite-operation frontierBudget are proved without added cache/F/value/
+cost promises. C256/C259 normalization failures and C253/C258/C262 exact
+source lineage remain immutable. Independent proof review is still PENDING;
+source-only transport review C251 is not retroactive review of this new proof.
+[Focused cost certificate](../experiments/hermite-polynomial/precision/explicit-five-block-cost-c262/README.md).
+
+C257 gives separate source-derived canonical Rat data/working/raw-witness
+height envelopes, with actual signed suffix/common-denominator invariants.
+Parent whole-read and21direct+40retained hash checks match. Exact primitive
+Sites coverage, Statement Seal and Lean height proofs are NOT supplied.
+Native GCD/bigint scratch/control/evaluator/allocation, radius encoding, QR,
+angles/gates/cleanup and full finite-bit SP remain OPEN.
+[Bit-growth design, not proof](../experiments/hermite-polynomial/precision/rational-bit-growth-c257/README.md).
+
+The value lane is separate: C260 scalar exit1/28.078s, C261 normalization then
+C266 scalar exit1/28.672s; current remaining error is nested inverse-equivalence
+normalization. Compiler recovery sorryAx is REJECTED, no accepted own value
+supplier/root. C265 parent-wrapper schema failure occurred BEFORE any compiler,
+was preserved, and C266 uses the original frozen root list with unchanged
+consumer/signatures/caps. These are implementation failures, not mathematical
+refutations. No old cached cost ledger is substituted for this new producer.
+
+The human's asynchronous method-choice policy is already in HARNESS8a and
+the bounded asynchronous design: autonomously choose bounded discriminators
+inside the fixed contract, ask asynchronously for changed target/error/success/
+oracle/budget or incomparable application trade-offs, and continue only
+unaffected authorized work while waiting. Compare proof-first, screen-then-proof
+and dual-lane at the SAME evidence endpoint with failures/censoring and TOTAL
+cost. The14 isolated timing tests pass again; they establish no quantum-search
+efficiency winner. No production event scheduler or score change was made.
+
+C254 actual fullHermiteCI39081435433/job117538996204 is terminalSUCCESS:
+Tests3460jobs00:22:37UTC, prooftrust0holes/axioms00:22:38,15original baseline
+finite export tests00:22:53. This is not acceptance of the new experimental
+cost proof or uniform finite-bit family. Research-publication CI still fails
+on Robin alone; main stays4.29.1 and maintenance-rule human choice is pending.
+Current new-head full CI remains unverified. No merge/deploy/branch deletion,
+verifier/scoring/target/publication-policy/history or user-file mutation.
+
+Append-only privacy clarification for C254's historical shorthand: its public
+inventory is30 EXACT original archive members PLUS1 explicitly path-redacted
+diagnostic member, not31 byte-identical originals. Original private receipts
+are preserved, and source-binding/report record the exact redaction and hashes.

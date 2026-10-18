@@ -114,3 +114,326 @@ must change a concrete mechanism or test a new discriminator. Repeated
 controller-only cycles cannot count as mathematical advances. The master
 reallocates work to a distinct unresolved interface instead of enlarging the
 same prompt or introducing another orchestration layer.
+
+## Uniform scalar completeness and saved rounding
+
+The finite negative-exponential supplier now has a sufficient active degree
+`4*T^2+2*T+1`, where `T` is its precision-dependent tail cutoff. Its checked
+enclosure succeeds for every rational `q <= 0` and positive scalar tolerance.
+This removes the previous unproved degree-allocation edge; it is neither an
+optimal allocation nor a finite-bit runtime theorem.
+
+The literal signed outward-rounding supplier also encloses chronological RY
+updates on one fixed row pair and bounds the midpoint taken only at the end.
+Both internal providers have distinct scoped review. Changing physical row
+pairs, CX-interleaved full stages, dimension-aware operator transport, source
+normalization and total finite-bit costs remain open.
+
+The complete stored Gram module has an accepted source-blind decoder and a
+distinct source-first reviewer. Its charged exact-real stored-data model does
+not certify input production, machine caching, peak RAM or physical gates.
+[Evidence and remaining obligations](../experiments/hermite-polynomial/precision/cycle15-staging-result.json).
+No new certified population winner, full scientific root or main admission is
+claimed. The efficient branch uses Lean 4.33.0; main migration still requires
+the remaining changed-module, integration and reader gates.
+
+
+## 18 October 2026 integration and finite-bit frontier
+
+The contribution checkpoint `67b750fcf30ac988df0a66d7af8f27e51a0fb74d`
+uses Lean 4.33.0. Fetched main remains
+`af585d9cbbb299c1c8c48647627a2cb820ef536a`, Lean 4.29.1. Fifty current
+whole-module source-correspondence records validate; RobinMatrix remains a
+separately identified experimental-policy/integration obligation. This is not
+main admission, deployment, or completion of the frozen scientific target.
+See the [actual current evidence](../reports/lean-433-migration/c142-independent-freezes-and-async-cost-frontier.json).
+
+The next Hermite work is actual consumption of the independently reviewed C23
+source-coefficient cache in C22, and an explicit data-width bound for the
+precision-dependent source degree. Both are unproved successor work at this
+snapshot. Keep the C23 scalar/word bound distinct from rational bitlength/GCD,
+full preprocessing, normalized error composition, circuit synthesis and the
+independent executable-family gate. No new resource winner is selected.
+
+
+### Subsequent local parameter proof and current full gate
+
+The C147 allocated Taylor-index root subsequently compiled under Lean4.33.0
+(31.844s), with its exact own-output definition/type/axiom audit passing
+(23.328s). All4 new roots report only the ordinary3 axioms. This is
+proved_locally, not the complete finite-bit resource/root certificate.
+[Exact scope and evidence](../experiments/hermite-polynomial/precision/allocated-degree-budget-c147/README.md).
+
+The PR merge snapshot b95220ce6ebe9b6b7a965b4437f43b26fb673c03 also completed
+full library/Tests and original Hermite executable replay successfully; its
+selected proof/replay Git inputs equal contribution67b750f. This is a real
+current PR integration gate, not main merge, clean TCB, new finite-bit poly-SP
+executable acceptance or resolution of the experimental publication conflict.
+[Source association](../reports/lean-433-migration/c153-current-PRmerge-full-gate-association.json).
+
+
+### Independent scalar review and actual cached-supplier type probe
+
+The C147 arithmetic provider now has a separately frozen C151 independent
+source-first mathematical/binder/definition review and C154 subsequent actual
+runtime association review. Both support their bounded internal claims, with
+inherited/dirty/transitive provenance limitations retained; neither grants
+source-publication, clean-TCB or scientific ROOT credit.
+
+C150 actual cache -> signed middle -> five-branch right table -> existing
+stored-chain definitions typechecked in C155: three modules plus seventeen
+candidate propositions, all exit0. Type formation is not a proof. C156 seals
+their exact bodies/signatures before subsequent bounded proof search. The
+400/816 proposed bounds and final cached same-run refinement remain OPEN.
+Subsequently C159 actually compiled seven C157 primitive/right roots, including
+rightEntry partial counter<=11, and a fresh-own-output exact-type/axiom consumer
+(25.578s/24.531s), all seven ordinary-three axioms. This is proved_locally with
+independent static review pending, not full producer/runtime/root acceptance.
+[Exact compiled primitives](../experiments/hermite-polynomial/precision/cached-primitives-c157/README.md).
+Kernel/left and captured-block setup/native/bit/GCD costs remain unaccounted.
+[Exact original stages](../reviews/publication/migration-checkpoints-c158/README.md).
+
+The asynchronous policy retains human choice for material unapproved trade-offs,
+autonomous bounded same-contract work, typed immutable evidence, matched
+acceptance endpoints and all observed failed/cancelled/stale cost. No measured
+quantum proof-first/screen-first/dual-lane efficiency winner or production
+scheduler change is claimed. Original finite-bit Hermite ROOT remains OPEN.
+
+
+### Actual cached setup and signed-middle VALUE certificates
+
+C168 closes the actual setup-value conjunction after an exact two-block proof-only
+repair of C165's rejected dependent-Decidable rewrite attempt. Four cuts, the
+full factorial-reciprocal tail, clipped value and midpoint match the unchanged
+source, including R/delta zero/negative and T0/T1. Source/own-output type+axiom
+gates pass (30.000s/22.406s); original exit1, recovery sorryAx rejection and all
+warnings are retained. No executable body or public type was changed.
+[Setup certificate](../experiments/hermite-polynomial/precision/cached-setup-c166/README.md).
+
+C174 closes generic signed middle entries and actual C23 cache substitution to
+C21 middleCoeffQ (24.688s/25.062s exact source/own-output gates). Both roots use
+only the ordinary3 axioms, no added correctness premise. Independent C178
+static review is a separate pending stage at this checkpoint preparation.
+[Middle certificates](../experiments/hermite-polynomial/precision/cached-middle-values-c167/README.md).
+
+Complementary C172 executable screening passed1456 exact rational entries in a
+25.906s parent subprocess while symbolic authoring continued. The result was
+withheld until author freeze. It is finite discriminator evidence, not theorem,
+SP state/export acceptance or matched-endpoint strategy comparison. Unknown
+CPU/model/tokens/peak-memory remain unknown.
+[Finite evidence](../experiments/hermite-polynomial/precision/cached-middle-finite-c172/README.md).
+
+C161/C164 primitive and C169/C173 setup static-then-runtime internal reviews are
+now preserved in13 exact original members. No source-publication, ProofSeal,
+clean-TCB/native-cost or scientific ROOT promotion. Cost400, cached whole-data/
+chain/source integration and816 are next obligations, not silently accepted.
+Kernel/left/captured setup, native/bit/GCD/synthesis and finite-bit ROOT remain OPEN.
+
+
+### Actual cached same-returned-data chain and partial middle-cost certificate
+
+C193 verifies five unchanged C156 VALUE roots: all actual right coordinates,
+whole returned RationalData, Window, same cast/ofTable dependent chain and
+literal original piecewise grid source. Source/own-output gates pass34.016s/
+26.672s; five typed consumers and all five ordinary-axiom reports pass. Parent
+read the five actual types and seven printed loaded bodies, not every proof
+term. Independent C188 source-first review is frozen; C196 static comparison is
+separate, not inferred from compilation.
+[Same-chain values](../experiments/hermite-polynomial/precision/cached-chain-values-c187/README.md).
+
+C189 verifies actual middleFromCache partial total<=400*(k+1)^2 with no new
+public assumption (24.922s/23.093s source/own-output exact type+ordinary axioms).
+All generated factorial/sign/guarded-sum/collect work in that eight-counter
+annotation is retained. Independent C194 source derivation is frozen separately;
+comparison to the actual proof is pending, not self-approved.
+[Partial cost](../experiments/hermite-polynomial/precision/cached-middle-cost-c183/README.md).
+
+C178/C184 middle static-then-runtime internal reviews retain six exact original
+members. Source first and later runtime exposure are separate freezes, with
+inherited/dirty-TCB and direct-dependency-not-loader limits unchanged.
+[Independent stages](../reviews/publication/migration-checkpoints-c190/README.md).
+
+Failures remain exact: rejected Sum/implicit-index proof attempts, precompiler
+memory deferral, low-cap interpreter exhaustion, and rejected cost normalization
+attempt. Four failed compiler processes consumed129.299 observed subprocess
+seconds; this is not total workflow/model/CPU time. Unknown calls/tokens/CPU/peak
+memory stay unknown. Fin-index repair changed only proof; final run used actual
+restored headroom and original3GiB cap plus2GiB reserve. No finite-screen/family
+endpoint substitution or universal efficiency winner is claimed.
+
+Previous ba2afcc1 full CI39075097319 succeeded (library/Tests and original15-test
+finite replay), not a new finite-bit family acceptance. New checkpoint CI is
+unverified. Cost816/same-run, kernel/left/captured setup, native/bit/GCD/finite-bit
+synthesis/export and scientific ROOT remain OPEN; four textbook final admissions
+and main4.33 migration are still OPEN. Robin publication policy is unchanged.
+
+
+### Same-returned-run conjunction and bounded asynchronous decisions
+
+C211 now proves the exact last C156 internal statement: the SAME returned
+producer value refines the original chain AND its SAME annotated cost obeys
+the unchanged816-plus-actual-setup/traffic/ofTable bound. Source32.953s and
+fresh own-output exact-type/ordinary-axiom consumer28.047s pass. No new public
+premise, weakened contract or increased proof budget was introduced. This is
+an internal partial-cost result, not physical one-evaluation/sharing or full
+finite-bit/poly(n_p) preparation.
+[Exact proof and preserved failure](../experiments/hermite-polynomial/precision/cached-same-run-c208/README.md).
+
+Ten original members preserve C199/C208 and rejected C207 exit1/47.563s;
+no failed olean or zero-row axiom report is promoted. Eighteen further original
+review members preserve six separately frozen source/static/runtime stages
+for prerequisite same-chain values and middle cost. Those prerequisite reviews
+are not an independent review of this new conjunction or a clean TCB rerun.
+[Independent stages](../reviews/publication/migration-checkpoints-c205/README.md).
+
+HARNESS section8a now routes to the existing asynchronous policy: autonomously
+select bounded same-contract methods; ask asynchronously for material target,
+error/success/oracle/budget/application trade-offs; continue unaffected work.
+Proof and finite screens may run concurrently with immutable bindings and
+source-blind release barriers. Compare all three methods only at matched
+acceptance endpoints, retaining failed/censored work and unknown telemetry.
+No new production event scheduler, scoring or measured strategy advantage.
+
+Actual setup cost remains OPEN: C210 source failed29.094s; C216 proof-only
+successor failed22.5s at no-progress simp, zero roots/no accepted output. C217
+is authored, not proved. C219's precompiler check rejected the changed HARNESS
+context; no compiler started. This is documented context drift caused by this
+policy entry, not mathematical refutation, and no pin was waived or rewritten.
+The new context must be explicitly bound before further proof validation.
+
+Priorc913 fullHermiteCI39076442370/job117524465547 succeeded: actual fullTests
+3460jobs and original15-test saved executable replay; this is not a new
+finite-bit family acceptance. New checkpoint fullCI is unverified. Robin source
+publication conflict still blocks main4.33 admission; no policy approval/change,
+mainmerge, deployment, branchdelete, scientificROOT or textbookfinaladmission.
+
+
+### Closed setup annotation and first Gaussian integer invariant
+
+C223 closes the exact C202 partial setup target, with no public premise:
+total(rightSetup n R delta).cost<=81*(d+1)^2+8*(d+1)+n+T+22,
+d=sourceDegree(delta),T=tailCutoff(delta). Actual source27.422s, exact own-output
+type/ordinary-axiom consumer24.969s, loaded-definition audit24.687s all pass.
+Parent read actual type/axioms and loaded definitions, not every expanded root
+proof or private recursive body.26 original seal/author/failure/preparer members
+remain exact. C222->C224 is explicitly reviewed process-context succession with
+the linked async policy additionally pinned, not a scientific/policy exception.
+[Setup proof](../experiments/hermite-polynomial/precision/cached-setup-cost-c217/README.md).
+
+The fixed Gaussian witness now has actual typed integer definitions and
+independent source-first/static/successor-static review freezes. C225 original
+Decidable failure remains; C227 adds only an explicit local constructive domain
+decision, C228 types all31 names using its own table/core outputs. The final
+literal1024 words and81local/eightsigned input diagnostics are parent-replayed,
+not a uniform error/circuit proof. Apache-2.0/NOTICE and exact ancestry accompany it.
+[Fixed model](../experiments/uncompute-2610-22367/gaussian-integer-model-c206/README.md).
+
+C240 proves the exact C229 sealed all-D aligned128-block constancy theorem for
+the actual integer model (source12.265s/own-output consumer9.859s, ordinary
+axioms). It preserves six signed truncated middle rows, modular stored slope,
+nine biased final rows and the special top-row drop. This is a symbolic integer
+supplier, not finite screening or a replacement floor(full product), and not
+Gaussian real-exp/f64 error, coherent circuit/cleanup/resource or SP/BE closure.
+[Constancy proof](../experiments/uncompute-2610-22367/gaussian-constancy-c230/README.md).
+
+Main migration diagnostic C234 actually compiles unmodified main Robin against
+the4.33 context: exit1/86.344s, seven type/recursion errors, no accepted output.
+Thus simply keeping that old file does not solve migration in this context.
+No production source was changed. The separate experimental/source-publication
+conflict remains; human approval for maintenance-rule design/review is pending.
+
+Previous268522fc fullHermiteCI39078495808/job117530481115 terminalSUCCESS:
+actual Tests3460jobs and original15-test finite replay. This is not the new
+experimental proof set or a uniform finite-bit family acceptance. Current
+checkpoint CI remains unverified; main4.29.1/fullHermitefinitebitROOT and four
+bounded textbook final admissions are OPEN. Kernel/left/capturedsetup/native
+bit/GCD/evaluator/synthesis/cleanup/export remain missing; C237 now designs the
+literal fully costed kernel/left producer, not a return to the old2k+6 layout.
+
+
+### Explicit five-block producer: typed sealed frontier, not a cost proof
+
+C243 replaces the previously unaccounted kernel/left scalar callbacks with
+literal comparison, factorial-binomial, charged powers/products and complete
+materialization. Numerical loop dimensions use the actual second charged
+cutoff result. The five-sum index, reflected signs, actual right boundary and
+same returned data/cast/ofTable are retained; no canonical2k+6 layout replaces D.
+C246 fails one dependent cast (exit1/28.671s), preserved unchanged. C248 changes
+only that cast. C249 types source24.750s and own-output consumer24.063s; eight
+Prop formations are NOT eight proofs. C250 seals exact bodies/statements BEFORE
+new value/cost authoring. No new proved root or complete budget is claimed.
+[Exact typed checkpoint](../experiments/hermite-polynomial/precision/explicit-five-block-c243/README.md).
+
+C245 independent original-source baseline precedes C247 static comparison;
+parent whole-read,31/40 raw pins respectively verified. This supports literal
+semantics and branch-local ledgers, not full budget, proof/runtime association
+or universal source-publication admission. Six original review members remain
+frozen. C248 successor review and C252/C253 value/cost proofs are separate work.
+[Review scope](../reviews/publication/migration-checkpoints-c254/README.md).
+
+C244 isolates Gaussian's ACTUAL math.exp/half-away/centered429 reference. Negative
+fold partners require the inclusive magnitude endpoint2^35 via valid xs=-2^35.
+The compressed uniform route still needs119,275,520 quadratic blocks and an
+operational monotonicity/enclosure supplier; sparse/NumPy scans are not enough.
+The four-point/capped preflights are proposed, not executed. No refit/recenter,
+source-target swap or uniform/circuit/error/resource/SPBE acceptance occurred.
+[Operational reference audit](../experiments/uncompute-2610-22367/gaussian-error-reference-c244/README.md).
+
+Priorc661 fullHermiteCI39079883741/job117534493326 now terminalSUCCESS: parent
+actual logs read, Tests3460jobs23:57:45UTC, prooftrust0holes/axioms23:57:46,
+15original finite replay tests23:58:02. This is the production frontier/baseline,
+not the new experimental supplier or a uniform finite-bit family certificate.
+Current checkpoint fullCI remains unverified; main4.29.1/Robin publication
+conflict, fullHermitefinitebitROOT and four textbook final admissions stay OPEN.
+No verifier/scoring/target/publication-policy/history/user-file/branch mutation.
+
+
+### Same-return explicit cost checkpoint and asynchronous choice boundary
+
+C263 actually closes the C250-sealed cost/counter projection for the SAME
+explicit five-block result: source44.391s, separate exact-statement own-output
+consumer26.968s, one public root, ordinary propext/Classical.choice/Quot.sound.
+Actual selected quotient/remainder counts each <=14(n+1)D^2+4D and the full
+named finite-operation frontierBudget are proved without added cache/F/value/
+cost promises. C256/C259 normalization failures and C253/C258/C262 exact
+source lineage remain immutable. Independent proof review is still PENDING;
+source-only transport review C251 is not retroactive review of this new proof.
+[Focused cost certificate](../experiments/hermite-polynomial/precision/explicit-five-block-cost-c262/README.md).
+
+C257 gives separate source-derived canonical Rat data/working/raw-witness
+height envelopes, with actual signed suffix/common-denominator invariants.
+Parent whole-read and21direct+40retained hash checks match. Exact primitive
+Sites coverage, Statement Seal and Lean height proofs are NOT supplied.
+Native GCD/bigint scratch/control/evaluator/allocation, radius encoding, QR,
+angles/gates/cleanup and full finite-bit SP remain OPEN.
+[Bit-growth design, not proof](../experiments/hermite-polynomial/precision/rational-bit-growth-c257/README.md).
+
+The value lane is separate: C260 scalar exit1/28.078s, C261 normalization then
+C266 scalar exit1/28.672s; current remaining error is nested inverse-equivalence
+normalization. Compiler recovery sorryAx is REJECTED, no accepted own value
+supplier/root. C265 parent-wrapper schema failure occurred BEFORE any compiler,
+was preserved, and C266 uses the original frozen root list with unchanged
+consumer/signatures/caps. These are implementation failures, not mathematical
+refutations. No old cached cost ledger is substituted for this new producer.
+
+The human's asynchronous method-choice policy is already in HARNESS8a and
+the bounded asynchronous design: autonomously choose bounded discriminators
+inside the fixed contract, ask asynchronously for changed target/error/success/
+oracle/budget or incomparable application trade-offs, and continue only
+unaffected authorized work while waiting. Compare proof-first, screen-then-proof
+and dual-lane at the SAME evidence endpoint with failures/censoring and TOTAL
+cost. The14 isolated timing tests pass again; they establish no quantum-search
+efficiency winner. No production event scheduler or score change was made.
+
+C254 actual fullHermiteCI39081435433/job117538996204 is terminalSUCCESS:
+Tests3460jobs00:22:37UTC, prooftrust0holes/axioms00:22:38,15original baseline
+finite export tests00:22:53. This is not acceptance of the new experimental
+cost proof or uniform finite-bit family. Research-publication CI still fails
+on Robin alone; main stays4.29.1 and maintenance-rule human choice is pending.
+Current new-head full CI remains unverified. No merge/deploy/branch deletion,
+verifier/scoring/target/publication-policy/history or user-file mutation.
+
+Append-only privacy clarification for C254's historical shorthand: its public
+inventory is30 EXACT original archive members PLUS1 explicitly path-redacted
+diagnostic member, not31 byte-identical originals. Original private receipts
+are preserved, and source-binding/report record the exact redaction and hashes.
