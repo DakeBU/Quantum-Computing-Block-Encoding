@@ -8534,3 +8534,4 @@ block-encoding formalization lifecycle.
 | 2026-10-18 08:31:04 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c267-same-return-explicit-cost-and-async-policy-20261018 |
 | 2026-10-18 08:58:22 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c287-reviewed-cost-canonical-height-and-value-failures-20261018 |
 | 2026-10-18 09:16:25 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c300-common-denominator-reviewed-height-typed-ledger-20261018 |
+| 2026-10-18 09:31:57 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c314-representation-scale-reviewed-denominator-partial-values-20261018 |

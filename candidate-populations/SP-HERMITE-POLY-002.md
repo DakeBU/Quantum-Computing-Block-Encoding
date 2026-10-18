@@ -1148,3 +1148,52 @@ Lean4.29.1; contribution4.33.0. Compatibility-maintenance policy choice remains
 unanswered; no waiver or false source record. No mainmerge/deploy/branchdelete.
 Hermite finitebit ROOT, four textbook admissions and Gaussian operational
 error/circuit/phase/cleanup/resources/SPBE root remain OPEN.
+
+
+### Actual primitive representation and allocated dyadic-scale roots; chain remains open
+
+C309 accepts the unchanged C280 primitiveRepresentation target, including all
+signed/zero/add/sub/mul/div actual raw witnesses. Source0/18.531s -> own
+ebf25188... -> exact expanded own-output consumer0/16.625s; root+assignment
+ordinary3axioms. C303 parser failure0acceptedroots is preserved; C305 changes
+only notation to explicit Rat.divInt, consumer byte-identical. This does NOT
+prove primitiveWidth, actual suffix/Sites coverage or producer-wide nativebits.
+[Actual representation proof and preserved failure](../experiments/hermite-polynomial/precision/primitive-representation-c305/README.md).
+
+C307 accepts C295's FIRST exact scale target: with n_p=n+1 and the original
+M=n+1+2k+tailCutoff(eps/(4(k+1)^2)), M<=n_p+4k+2+tailCutoff eps for all k,n
+and positive rational eps, including eps>1. Actual source0/43.234s -> own
+6e7f984f... -> operationScale-expanded exact ownconsumer0/40.562s ordinary3.
+Original unused/unreachable/sequencing/defProp warnings retained. Two other
+C295 polynomial budget/same-run roots are NOT proved by this packet. Native
+Rat/GCD/CPU/allocator, finite-angle/quantum gates/cleanup/export remain OPEN.
+[Exact scale proof](../experiments/hermite-polynomial/precision/allocated-dyadic-scale-c306/README.md).
+
+C299 independently reconstructs CommonDenominator before C293 proof release;
+C302 then compares author source; C308 later associates C296 raw runtime.
+Parent whole-read23/24/43direct inputs+10private raw members and payloads MATCH.
+No concrete scoped source/type/axiom mismatch. Recorded association is NOT
+independent rerun, clean loader/TCB or source-publication admission. Init path
+vs prefix provenance limitation and defProp warning remain. Old receipts
+are not rewritten. [Separate review freezes](../reviews/publication/common-denominator-checkpoint-c314/README.md).
+
+Value progress is precise: C301 closes probe/own-consumer and THREE scalar
+roots (decode/comparison/actual factorial translation), using the unchanged
+C275/C281 scalar that earlier failed probes had prevented from running.
+C301 chain fails3interfaces. C304 proof-only successor clears the right-index
+transport goal, but C313 source exit1/57.734s rejects two remaining interfaces:
+column rewrite fails under implicit transparency because assemblySize/fiveSize
+carrier types differ syntactically; final dependent cutoff/degree carrier
+normalization still fails. No accepted C313 own chain, no final consumer run,
+compiler-recovery sorryAx rejected. Keep prior THREE scalar roots, not seven.
+This is implementation failure, not scientific impossibility/compiler bug.
+[Exact success/failure boundary](../experiments/hermite-polynomial/precision/explicit-value-refinement-c313/README.md).
+
+Current ee6a publicationCI39085996428/job117552571755 actual complete logs read:
+fails only RobinMatrix missing reviewed record.50valid/51changedproduction
+modules, main4.29.1, contribution4.33.0. FullHermite39085996387/job117552571580
+is live at preparation; do not cancel it with premature same-ref push. No
+maintenance-policy approval, waiver, mainmerge/deploy/branchdelete or production
+behavior/target/scoring/verifier/history/user-file change. Hermite finitebit
+ROOT, four textbook admissions and Gaussian operational/circuit/resource/SPBE
+ROOT remain OPEN; async strategy superiority remains unmeasured.
