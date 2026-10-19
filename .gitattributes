@@ -56,3 +56,10 @@ docs/lessons/hermite-boundary-injection.md -text whitespace=trailing-space,space
 reviews/publication/hermite-boundary-injection/source-coverage.json whitespace=trailing-space,space-before-tab,cr-at-eol
 reviews/publication/hermite-boundary-injection/final-review.md whitespace=trailing-space,space-before-tab,cr-at-eol,-blank-at-eof
 reviews/publication/hermite-boundary-injection/reviewer.json whitespace=trailing-space,space-before-tab,cr-at-eol,-blank-at-eof
+
+# Exact reviewed maintenance code/protocol and observation tool bytes.
+website/scripts/check_toolchain_maintenance.py text eol=lf
+QuantumBlockEncoding.lean text eol=lf
+Tests.lean text eol=lf
+docs/theorem-publication-protocol.md text eol=lf
+tools/robin_maintenance_export_audit/** -text

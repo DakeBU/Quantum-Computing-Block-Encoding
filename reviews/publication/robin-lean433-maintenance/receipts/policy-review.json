@@ -1,0 +1,12 @@
+{
+  "role": "policy-review",
+  "identity": "/root/robin_compatibility_review_c364",
+  "run_id": "C380-independent-CLI-repair-with-C375-core-policy-reuse",
+  "purpose": "compatibility-only",
+  "artifact_path": "reviews/publication/robin-lean433-maintenance/cli-policy-c380/REPORT.md",
+  "artifact_sha256": "c1e711ca7c9d1ce503a7553d7384a48918ff2913f71e5c5eb5114f1411ae6bea",
+  "verdict": "accepted-for-compatibility-only",
+  "anti_anchored": true,
+  "scope": "Exact C380 fixed-ROOT CLI repair plus unchanged C375 core policy; neither review certifies actual historical provenance or final main/BE/TCB admission.",
+  "binding_sha256": "4396353513b51dfbc566f8e58dbefeb239bbc82c0780f846dea919fba71a8f34"
+}
