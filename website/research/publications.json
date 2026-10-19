@@ -29303,7 +29303,7 @@
             "identity_source_path": "reviews/publication/robin-lean433-maintenance/originals/c98-original-identity-seal.json",
             "scope": "Original whole-target formal reconstruction; original provider read qualifications remain; no paper/TCB admission."
           },
-          "sha256": "5e4c0fc20dad8f8c90aac6a32b0a110b84061682348493fa97c5f61002550467"
+          "sha256": "4a8a0e758523727c71158f30b656896fa3c5cda1a4b4b2a81fcca20bdfe8a096"
         },
         "whole-module-review": {
           "path": "reviews/publication/robin-lean433-maintenance/receipts/whole-module-review.json",
@@ -29326,7 +29326,7 @@
             "identity_source_path": "reviews/publication/robin-lean433-maintenance/originals/c104-identity-seal.json",
             "scope": "Original implementation-informed local-source concordance with qualifications, not original external paper or final physical BE closure."
           },
-          "sha256": "96ee6255d361455ec1120b9f69bfbd661b63d3f05a475c44c93b892528fb8c0c"
+          "sha256": "5b38384cbafb61b84bb0f1b66e7aa5656004d98d1655639ecfb3a05628c97b48"
         },
         "raw-association": {
           "path": "reviews/publication/robin-lean433-maintenance/receipts/raw-association.json",
@@ -29348,7 +29348,7 @@
             "original_scope_preserved": true,
             "scope": "Historical actor identity not recorded in seal; UNKNOWN explicitly preserved. Actual old raw/formal association artifact reused, not a new independent review."
           },
-          "sha256": "61ed95f9ee3fe495378edba7325257bb6611b050c75844adc9e40b2c32ea934e"
+          "sha256": "b019630375ce7fb560c82f2c27d406a2fe9915c989d74f175ef4b349694f65d3"
         },
         "compiled-runtime": {
           "path": "reviews/publication/robin-lean433-maintenance/receipts/compiled-runtime.json",
@@ -29576,7 +29576,7 @@
             "job_id": 117892996191,
             "native_trust_disclosure": "Inherited Lean/Mathlib caches; native_decide remains, including net2 added proof sites. No ordinary-three-axiom or clean transitive TCB claim; complete current per-constant export audit pending."
           },
-          "sha256": "c9d1320ec9c969916fce33f6c1f967564c72772e77f1dd46483da5dcb43a450b"
+          "sha256": "6a6f2b48c474b48d5abe05d350400d4cc0c9eb8750ed7df96d002f448663d950"
         },
         "compatibility-review": {
           "path": "reviews/publication/robin-lean433-maintenance/receipts/compatibility-review.json",
@@ -29593,27 +29593,27 @@
             "anti_anchored": true,
             "scope": "Source-level preservation ONLY; original C364 explicitly does not accept policy, TCB or main."
           },
-          "sha256": "e84307ac1579b13286f392e42386a94edcf7581bc2b27190d0fc3b6b629ab122"
+          "sha256": "198e994531a68b55c34231eb4288718ebf5aed15d9ad2fa8147fa248b1578f4a"
         },
         "policy-review": {
           "path": "reviews/publication/robin-lean433-maintenance/receipts/policy-review.json",
-          "artifact_path": "reviews/publication/robin-lean433-maintenance/cli-policy-c380/REPORT.md",
-          "artifact_sha256": "c1e711ca7c9d1ce503a7553d7384a48918ff2913f71e5c5eb5114f1411ae6bea",
+          "artifact_path": "reviews/publication/robin-lean433-maintenance/fixed-diff-policy-c386/REPORT.md",
+          "artifact_sha256": "e0d9cbe7ef96c9a5501d6ba796db6b68c4a1c2f86eaade067f7e71334dc95898",
           "expected_fields": {
             "role": "policy-review",
             "identity": "/root/robin_compatibility_review_c364",
-            "run_id": "C380-independent-CLI-repair-with-C375-core-policy-reuse",
+            "run_id": "C386-fixed-diff-format-with-C375-C380-policy-reuse",
             "purpose": "compatibility-only",
-            "artifact_path": "reviews/publication/robin-lean433-maintenance/cli-policy-c380/REPORT.md",
-            "artifact_sha256": "c1e711ca7c9d1ce503a7553d7384a48918ff2913f71e5c5eb5114f1411ae6bea",
+            "artifact_path": "reviews/publication/robin-lean433-maintenance/fixed-diff-policy-c386/REPORT.md",
+            "artifact_sha256": "e0d9cbe7ef96c9a5501d6ba796db6b68c4a1c2f86eaade067f7e71334dc95898",
             "verdict": "accepted-for-compatibility-only",
             "anti_anchored": true,
-            "scope": "Exact C380 fixed-ROOT CLI repair plus unchanged C375 core policy; neither review certifies actual historical provenance or final main/BE/TCB admission."
+            "scope": "Exact C386 fixed8 diff serialization plus retained C375 typed core and C380 fixed-ROOT CLI. No new historical-source, TCB, main or scientific BE certificate."
           },
-          "sha256": "52e0177c6d87d063720f7b22ea72de3f8de508ef88476597f4502cd98ae65777"
+          "sha256": "8d24ddf4bb362356b1fe9b4ed115163ffffd91f73c38f3db9c5fce411190d596"
         }
       },
-      "binding_sha256": "4396353513b51dfbc566f8e58dbefeb239bbc82c0780f846dea919fba71a8f34"
+      "binding_sha256": "4bdc9cf5078e350203a6cb91e771d60a27fe50e4d8b88efa188a0c149ad7e88c"
     }
   ]
 }

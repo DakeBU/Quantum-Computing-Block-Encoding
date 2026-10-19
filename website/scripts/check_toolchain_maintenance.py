@@ -102,7 +102,8 @@ def validate_record(root: Path, record: dict, inventory: dict) -> None:
         raise ValueError('maintenance old dependency context changed')
     if sha(local_file(root, 'lake-manifest.json').read_bytes()) != case['new_manifest_sha256']:
         raise ValueError('maintenance new dependency context changed')
-    diff = git_bytes(root, 'diff', '--no-ext-diff', '--no-renames', base, '--', module)
+    # Object-store-dependent default abbreviation is not a portable byte format.
+    diff = git_bytes(root, 'diff', '--no-ext-diff', '--no-renames', '--abbrev=8', base, '--', module)
     if sha(diff) != case['diff_sha256'] or local_file(root, record['diff_path']).read_bytes() != diff:
         raise ValueError('maintenance compatibility diff changed')
     actual = {n for n, row in inventory.items() if row.get('source') == module}

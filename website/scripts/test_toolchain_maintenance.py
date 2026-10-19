@@ -102,7 +102,7 @@ class MaintenanceTests(unittest.TestCase):
         if args == ('show', self.case['base_commit']+':'+self.case['module']): return self.old
         if args == ('show', self.case['base_commit']+':lean-toolchain'): return b'leanprover/lean4:v4.29.1\n'
         if args == ('show', self.case['base_commit']+':lake-manifest.json'): return self.old_manifest
-        if args == ('diff','--no-ext-diff','--no-renames',self.case['base_commit'],'--',self.case['module']): return self.diff
+        if args == ('diff','--no-ext-diff','--no-renames','--abbrev=8',self.case['base_commit'],'--',self.case['module']): return self.diff
         self.fail('unexpected Git request: '+repr(args))
 
     def refresh(self):
@@ -297,5 +297,32 @@ class MaintenanceTests(unittest.TestCase):
         e['workflow_run_id']=True
         ref=self.r['evidence']['compiled-runtime'];ref['sha256']=self.dump(ref['path'],e)
         self.rejects('receipt semantics differ')
+
+class RealGitDiffFormatTests(unittest.TestCase):
+    def test_fixed_abbreviation_ignores_repository_default(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            def git(*args):
+                return subprocess.check_output(['git','-C',str(root),*args],stderr=subprocess.PIPE)
+            git('init','--quiet')
+            git('config','core.autocrlf','false')
+            module='sample.lean'
+            (root/module).write_bytes(b'theorem sample : True := by trivial\n')
+            git('add','--',module)
+            git('-c','user.name=synthetic-test','-c','user.email=synthetic@example.invalid','commit','--quiet','-m','synthetic fixture')
+            base=git('rev-parse','HEAD').decode().strip()
+            (root/module).write_bytes(b'theorem sample : True := True.intro\n')
+            stable=[];defaults=[]
+            for width in ('7','8','12','40'):
+                git('config','core.abbrev',width)
+                fixed=m.git_bytes(root,'diff','--no-ext-diff','--no-renames','--abbrev=8',base,'--',module)
+                stable.append(fixed)
+                defaults.append(m.git_bytes(root,'diff','--no-ext-diff','--no-renames',base,'--',module))
+                index=next(x for x in fixed.splitlines() if x.startswith(b'index '))
+                before,after=index.split()[1].split(b'..')
+                self.assertEqual((len(before),len(after)),(8,8))
+            self.assertTrue(all(x==stable[0] for x in stable))
+            self.assertEqual(len(set(defaults)),4)
 
 if __name__ == '__main__': unittest.main()
