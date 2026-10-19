@@ -26,7 +26,9 @@ ORDINARY = frozenset(("propext", "Classical.choice", "Quot.sound"))
 LEGACY_NATIVE = frozenset(("Lean.ofReduceBool", "Lean.ofReduceNat", "Lean.trustCompiler"))
 IDENT = r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*"
 NAME = re.compile(IDENT)
-AXIOM_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z0-9_]+)*")
+# Lean's observed generated/inaccessible names can retain a terminal dagger.
+# Preserve it verbatim; it is not an axiom approval or a name normalization.
+AXIOM_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z0-9_]+)*(?:✝)?")
 
 
 class AuditError(Exception):
@@ -117,6 +119,43 @@ def native_marker(name):
     return name in LEGACY_NATIVE or bool(re.search(r"(?:^|\.)_native\..*\.ax(?:[._]|$)", name))
 
 
+def exact_signature(signature, name):
+    """Recognize #check's exact name and balanced binder prefix, not Lean types.
+
+    Actual Lean may print parameters before the result colon. Keep the original
+    full signature; reject malformed/unknown prefixes instead of guessing types.
+    """
+    head = re.match(r"\A" + re.escape(name) + r"(?:\.\{[^}]*\})?(?=\s|:)", signature)
+    if head is None:
+        return False
+    rest = signature[head.end():].lstrip()
+    pairs = {"(": ")", "{": "}", "[": "]", "⦃": "⦄"}
+    while rest and rest[0] in pairs:
+        stack, quoted, escaped = [], False, False
+        for i, char in enumerate(rest):
+            if quoted:
+                if escaped:
+                    escaped = False
+                elif char == "\\":
+                    escaped = True
+                elif char == '"':
+                    quoted = False
+                continue
+            if char == '"':
+                quoted = True
+            elif char in pairs:
+                stack.append(pairs[char])
+            elif char in pairs.values():
+                if not stack or char != stack.pop():
+                    return False
+                if not stack:
+                    rest = rest[i + 1:].lstrip()
+                    break
+        else:
+            return False
+    return rest.startswith(":") and bool(rest[1:].strip())
+
+
 def parse_observations(raw, rows, nonce):
     text = raw.decode("utf-8", errors="strict").replace("\r\n", "\n")
     cursor = 0
@@ -133,7 +172,7 @@ def parse_observations(raw, rows, nonce):
         # Strict command-order grammar; unexpected prelude/warnings fail closed.
         require(not sections[0], f"unexpected text before CHECK at row {i}")
         signature, axioms_text = sections[1:]
-        require(re.match(r"\A" + re.escape(name) + r"(?:\.\{[^}]*\})?\s*:\s*\S", signature),
+        require(exact_signature(signature, name),
                 f"missing exact case-sensitive #check signature at row {i}")
         none = "'" + name + "' does not depend on any axioms"
         if axioms_text == none:

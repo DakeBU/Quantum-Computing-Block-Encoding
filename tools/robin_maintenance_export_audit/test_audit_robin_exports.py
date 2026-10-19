@@ -235,6 +235,53 @@ class AuditTests(unittest.TestCase):
         with self.assertRaises(audit.AuditError):
             audit.parse_observations(raw, rows, "n")
 
+    def test_parameter_binders_before_result_colon(self):
+        for signature in (
+            'A.name (rowIdx colIdx : Nat) (entries : List Entry) : Coeff',
+            'A.name.{u_1} {rows cols : Nat}\n  (mat : Matrix rows cols Coeff) [Inhabited Coeff] : Rat',
+            'A.name ⦃n : Nat⦄ (h : (n = n)) : True',
+            'A.name (h : symbol "[(" = symbol "[(") : True',
+            'A.name : Nat',
+        ):
+            with self.subTest(signature=signature):
+                self.assertTrue(audit.exact_signature(signature, 'A.name'))
+
+    def test_signature_prefix_rejects_malformed_or_wrong_case(self):
+        for signature in ('A.Name (n : Nat) : Nat', 'A.name_extra : Nat',
+                          'A.name (n : Nat)', 'A.name (n : Nat] : Nat',
+                          'A.name (n : Nat : Nat', 'A.name (n : Nat) :',
+                          'A.name unknown : Nat', 'A.name (h : "unterminated) : Nat'):
+            with self.subTest(signature=signature):
+                self.assertFalse(audit.exact_signature(signature, 'A.name'))
+
+    def test_binder_signature_still_requires_all_ordered_axiom_markers(self):
+        prefix='C368|n|0000|CHECK\nA.name (x : Nat) : Nat\nC368|n|0000|AXIOMS\n'
+        suffix="'A.name' does not depend on any axioms\nC368|n|0000|END\n"
+        raw=(prefix+suffix).encode()
+        self.assertEqual(audit.parse_observations(raw,[dict(fullName='A.name')],'n')[0]['signature'],
+                         'A.name (x : Nat) : Nat')
+        for defective in (raw.replace(b'0000|END', b'0000|MISSING'),
+                          raw.replace(b"'A.name'", b"'A.Name'"),
+                          raw.replace(b' : Nat\nC368|n|0000|AXIOMS', b'\nC368|n|0000|AXIOMS')):
+            with self.subTest(defective=defective):
+                with self.assertRaises(audit.AuditError):
+                    audit.parse_observations(defective,[dict(fullName='A.name')],'n')
+
+    def test_actual_terminal_dagger_axioms_are_preserved_and_disclosed(self):
+        plain='Fixture.theorem._native.native_decide.ax_1_1'
+        dagger=plain+'✝'
+        raw=("C368|n|0000|CHECK\nA.name (n : Nat) : Nat\nC368|n|0000|AXIOMS\n"
+             + "'A.name' depends on axioms: [propext, " + plain + ', ' + dagger + "]\n"
+             + "C368|n|0000|END\n").encode()
+        result=audit.parse_observations(raw,[dict(fullName='A.name')],'n')[0]
+        self.assertEqual(result['axioms'],['propext',plain,dagger])
+        self.assertEqual(result['additional_axioms'],[plain,dagger])
+        self.assertEqual(result['native_name_markers'],[plain,dagger])
+        self.assertEqual(result['classification'],'additional-with-native-name-marker')
+        for bad in (plain+'✝✝', plain+'💥', 'Fixture.✝name'):
+            with self.subTest(bad=bad):
+                self.assertIsNone(audit.AXIOM_NAME.fullmatch(bad))
+
     def test_actual_observed_axiom_line_grammar_and_synthetic_no_axioms(self):
         # The first axiom line is copied from a past actual Lean4.33 C346 stdout.
         # Signatures/markers and the second no-axioms block below are SYNTHETIC.
