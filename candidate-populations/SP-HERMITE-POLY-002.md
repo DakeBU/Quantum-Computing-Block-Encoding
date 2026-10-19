@@ -1358,3 +1358,66 @@ Maintenance policy choice unresolved; no waiver, main merge, deploy or
 branch deletion. Async proof/screen policy retains fixed-contract autonomy,
 material-choice user approval, exact event bindings and matched acceptance
 endpoints/total-work comparison; no measured strategy superiority claimed.
+
+
+### Two exact internal suffix roots locally proved; returned-cache join uncompiled
+
+C352 fresh parent gate closes original C345 actualSuffix: literal actual
+factorial table, every dropped sum=Ico, actual recursive tail=next offset,
+zero offset=original sourceEntry, explicit empty branch. Source0/40.734s
+own5c7a7631... -> complete expanded own consumer0/30.875s ownc84e4d26...;
+source and two consumer rows ordinary3. C346 author first attempt failed
+41.125s on two Fin/reindex elaborations; no own output or failed import.
+Original source/plan/result and full private streams retained. Successful
+author attempt and fresh parent run are separate; proof-only repair never
+changes sealed targets/definitions. Public failure feedback is a separately
+hash-bound privacy derivative, not a rewritten original.
+[Actual recursive binding](../experiments/hermite-polynomial/precision/source-suffix-binding-c346/README.md).
+
+C351 closes original suffixEnvelope, all k/i/s including empty and k=i=0:
+canonical denominator divides SAME k!, nonnegative, precise remaining-count
+bound(i+1-s)*2^(2k). Source0/39.609s ownbed2da08... -> complete expanded own
+consumer0/36.547s ownbe0a7530..., ordinary3. Factorial/choose/finite-sum
+facts are internal proof dependencies, not new source assumptions.
+[Shared denominator and magnitude](../experiments/hermite-polynomial/precision/source-suffix-envelope-c347/README.md).
+These are TWO new local suppliers, not a whole-producer bit/CPU theorem.
+
+C353 third C345 returnedCache AND-join is authored but UNCOMPILED. C358
+available3927MiB<3072+2048 reserve deferred BEFORE any Lean invocation.
+C359 unchanged source/consumer/target lowered cap to1536 but kept2048
+reserve; available3532<3584 again deferred BEFORE compiler/consumer. Zero
+Lean attempts, not proof/API failure or mathematical obstruction. Both
+original plans/results retained; no repeated cap-lowering loop, no user
+application killed. The two accepted suppliers do not prove this WIP join.
+[Uncompiled same returned-cache join](../experiments/hermite-polynomial/precision/returned-source-cache-c353/README.md).
+
+C349 direct public-LE producer vector interfaces now actually typecheck in
+C35439.703s+30.797s, ownb2a7b205... -> exact type ownconsumerae6fa88c....
+C356 preproof seal follows: wordIndex direct-LE, actual returned chain's
+Euclidean vector=finiteVector, existing allocated error<=epsilon/2 for
+positive rationalL/epsilon. Eq.refl only checks Prop expansion: ZERO proofs
+of these3targets. No reversal, dense executable table, source oracle or new
+error allocation. Unused-k warning retained, no linter disabled. C357 new
+proof chain is successor work, not accepted by this checkpoint.
+[Typed and sealed direct-LE bridge](../experiments/hermite-polynomial/precision/public-le-producer-interface-c349/README.md).
+
+Complete primitive Sites, signed middle/producer-wide operand heights,
+native integer/GCD/floor/ceil/clog/index/CPU/memory/physical-sharing costs,
+original arbitrary-Real-L input, actual finite rounding/norm/QR/angles/
+synthesis/phase/cleanworkspace/export and independent family acceptance
+remain OPEN. Internal focused proofs are not independent source review,
+clean transitive TCB, source-publication/main/reader/PURIFIED or ROOT.
+Four textbook admissions and Gaussian operational-error/circuit/resources/
+SPBE ROOT remain OPEN. Fixed-contract async policy unchanged; strategy
+superiority unmeasured, no verifier/scoring/runtime policy change.
+
+Prior7f7297b fullHermiteCI39090933770/job117567343869 terminalSUCCESS;
+complete logs obtained,relevant build/trust/finite sections read:3460jobs
+2026-10-18T02:58:02.3702520UTC;prooftrust0unapprovedholes/0sourceaxioms
+02:58:03.4198684;15ORIGINALfiniteexporttests02:58:19.4768695;
+independentfinite replay(k1,n3,L1)passed,lean_certificate_claimed=false.
+This is NOT new C355/fullfinitebitfamily acceptance. Current publication
+39090933990/job117567344631 actualcomplete logs still fail missing
+RobinMatrix whole-module reviewed record only,50valid/51changedmodules.
+Main af585d9... actualLean4.29.1, contribution4.33.0. Maintenance policy
+choice unanswered; no waiver, main merge/deploy or branch deletion.
