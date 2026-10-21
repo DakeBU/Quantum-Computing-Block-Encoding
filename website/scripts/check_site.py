@@ -374,7 +374,7 @@ def main() -> int:
         "QuantumComputinglib",
         "ASPBE",
         "DakeBU/QuantumComputinglib-QuantumComputingBench",
-        "Dake Bu, Xiajie Huang, Nana Liu, Atsushi Nitanda, Hau-san Wong, Qingfu Zhang",
+        "Dake Bu, Xiajie Huang, Outongyi Lv, Nana Liu, Atsushi Nitanda, Hau-san Wong, Qingfu Zhang",
         "<span>01</span>",
     ):
         if marker not in combined:

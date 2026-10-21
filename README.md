@@ -456,7 +456,7 @@ See [`docs/attribution.md`](docs/attribution.md) and [`NOTICE.md`](NOTICE.md).
 
 ```bibtex
 @misc{aspbe2026,
-  author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
+  author = {Bu, Dake and Huang, Xiajie and Lv, Outongyi and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
   title = {{ASPBE: Automatic State Preparation and Block Encoding for Quantum Computing}},
   year = {2026},
   note = {QuantumComputinglib and project source: \url{https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench}}

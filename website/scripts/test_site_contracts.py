@@ -514,10 +514,20 @@ class SiteContractTests(unittest.TestCase):
         source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
         self.assertIn("DakeBU/QuantumComputinglib-QuantumComputingBench", source)
         for name in (
-            "Dake Bu", "Xiajie Huang", "Nana Liu", "Atsushi Nitanda",
+            "Dake Bu", "Xiajie Huang", "Outongyi Lv", "Nana Liu", "Atsushi Nitanda",
             "Hau-san Wong", "Qingfu Zhang",
         ):
             self.assertIn(name, source)
+
+    def test_project_author_order_and_affiliation(self) -> None:
+        names = [name for name, _ in build_site.ORGANIZERS]
+        index = names.index("Xiajie Huang")
+        self.assertEqual(names[index:index + 3], ["Xiajie Huang", "Outongyi Lv", "Nana Liu"])
+        affiliations = dict(build_site.ORGANIZERS)
+        self.assertEqual(affiliations["Outongyi Lv"], "Shanghai Jiao Tong University")
+        self.assertEqual(affiliations["Outongyi Lv"], affiliations["Xiajie Huang"])
+        citation = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("Huang, Xiajie and Lv, Outongyi and Liu, Nana", citation)
 
     def test_every_case_has_formula_lean_evolution_and_executable_output(self) -> None:
         data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))

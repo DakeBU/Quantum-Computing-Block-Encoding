@@ -66,6 +66,7 @@ PROJECT_REPOSITORY_URL = f"https://github.com/{PROJECT_REPOSITORY}"
 ORGANIZERS = (
     ("Dake Bu", "City University of Hong Kong · A*STAR"),
     ("Xiajie Huang", "Shanghai Jiao Tong University"),
+    ("Outongyi Lv", "Shanghai Jiao Tong University"),
     ("Nana Liu", "Shanghai Jiao Tong University"),
     ("Atsushi Nitanda", "A*STAR · Nanyang Technological University"),
     ("Hau-san Wong", "City University of Hong Kong"),
