@@ -4,12 +4,34 @@
   const skipped = "pre, textarea, script, style, noscript, svg, mjx-container, mjx-assistive-mml, [data-math-source]";
   const hasMath = (text) => /\\\(|\\\[|\$[^$\n]+\$/.test(text || "");
 
+  // Old metadata exports escaped the delimiters twice. Recover paired
+  // delimiters only; a TeX row break such as \\[2pt] must remain untouched.
+  const normalizeDelimiters = (text) => text
+    .replace(/(?<!\\)\\{2,}\(([\s\S]*?)\\{2,}\)/g, "\\($1\\)")
+    .replace(/(?<!\\)\\{2,}\[([\s\S]*?)\\{2,}\]/g, "\\[$1\\]");
+
+  function prepareMath(scope) {
+    const walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        return node.parentElement?.closest(`${skipped}, code`)
+          ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      },
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      const cleaned = normalizeDelimiters(node.nodeValue || "");
+      if (cleaned !== node.nodeValue) node.nodeValue = cleaned;
+    });
+    promoteMathCode(scope);
+  }
+
   // A complete, explicitly delimited formula is prose even when an old
   // Markdown exporter wrapped it in <code>. Real code and source copies stay code.
   function promoteMathCode(scope) {
     scope.querySelectorAll("code").forEach((code) => {
       if (code.closest(skipped) || code.children.length) return;
-      const text = code.textContent.trim();
+      const text = normalizeDelimiters(code.textContent.trim());
       if (!/^(?:\\\([\s\S]+\\\)|\\\[[\s\S]+\\\]|\$\$[\s\S]+\$\$|\$[^$\n]+\$)$/.test(text)) return;
       const span = document.createElement("span");
       span.className = "math-inline";
@@ -53,7 +75,7 @@
       const scopes = [...pending].filter((node) => node.isConnected);
       pending.clear();
       chain = chain.then(async () => {
-        scopes.forEach(promoteMathCode);
+        scopes.forEach(prepareMath);
         await window.MathJax.typesetPromise(scopes);
         revealMath();
       }).catch((error) => console.error("Reader math rendering failed", error));
@@ -63,7 +85,7 @@
   config.startup = {
     ...config.startup,
     pageReady() {
-      promoteMathCode(document.body);
+      prepareMath(document.body);
       return window.MathJax.startup.defaultPageReady().then(() => {
         revealMath();
         // Typeset only new mathematical text, never MathJax's own output.

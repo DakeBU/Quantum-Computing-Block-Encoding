@@ -41,6 +41,8 @@ class FormulaCollector(HTMLParser):
     def handle_data(self, text):
         if SKIP.intersection(self.stack):
             return
+        text = re.sub(r'(?<!\\)\\{2,}\(([\s\S]*?)\\{2,}\)', lambda m: r'\(' + m[1] + r'\)', text)
+        text = re.sub(r'(?<!\\)\\{2,}\[([\s\S]*?)\\{2,}\]', lambda m: r'\[' + m[1] + r'\]', text)
         for match in FORMULA.finditer(text):
             value = next(value for value in match.groups() if value is not None)
             self.formulas.append((value, match.group(2) is not None or match.group(3) is not None))
@@ -137,6 +139,15 @@ def main():
                         if args.report:
                             page.screenshot(path=str(args.report.with_name(f'pbps-math-{width}.png')), full_page=False)
 
+            if (root / 'live/index.html').exists() and (root / 'data/research-workspaces.json').exists():
+                page.goto(base + '/live/index.html', wait_until='domcontentloaded')
+                select = page.locator('[data-rw-workspace]')
+                select.select_option('ASTIS-SW-PBPS-2026')
+                page.wait_for_selector('[data-rw-assumptions] mjx-container', timeout=30000)
+                select.select_option('ASTIS-SW-GAUSSIAN-CLOUD-2026')
+                page.wait_for_selector('[data-rw-assumptions] mjx-container', timeout=30000)
+                assert page.locator('mjx-merror, [data-mjx-error]').count() == 0
+
             # Regression: a renderer that finishes after the old 3.2s timeout
             # must reveal the actual formula, with source code left untouched.
             fixture = ('<!doctype html><html><head><meta charset="utf-8">'
@@ -144,6 +155,8 @@ def main():
                 f'<script defer src="/{asset_base}/vendor/mathjax@3.2.2/tex-mml-chtml.js"></script>'
                 '</head><body><p id="inline">Before \\(R_2(P\\Vert Q)=\\log\\int(\\frac{dP}{dQ})^2\\,dQ\\) after.</p>'
                 '<p id="dollar">The estimate $x^2+\\alpha$ is inline.</p>'
+                r'<p id="double">Before \\(\alpha+\beta\\) after.</p>'
+                r'<div id="aligned">\[\begin{aligned}a&amp;=b\\[2pt]c&amp;=d\end{aligned}\]</div>'
                 '<p id="coded"><code>\\(a_1+b_2\\)</code></p>'
                 '<pre id="source"><code>\\(source_code\\)</code></pre>'
                 '<textarea id="edit">\\(editable_source\\)</textarea>'
@@ -159,9 +172,10 @@ def main():
             context.route('**/tex-mml-chtml.js', delay_engine)
             page.goto(base + '/__math_fixture__.html', wait_until='domcontentloaded')
             page.evaluate('async () => { await MathJax.startup.promise; }')
-            for selector in ('#inline', '#dollar', '#coded'):
+            for selector in ('#inline', '#dollar', '#coded', '#double'):
                 assert page.locator(selector + ' mjx-container:not([display="true"])').count() == 1, selector
             assert page.locator('#source mjx-container, #edit mjx-container').count() == 0
+            assert page.locator('mjx-merror, [data-mjx-error]').count() == 0
             assert page.locator('[data-math-statement].math-rendered').count() == 1
             page.evaluate('''(text) => {
                 const paragraph = document.createElement('p');

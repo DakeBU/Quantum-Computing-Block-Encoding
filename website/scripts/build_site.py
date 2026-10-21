@@ -506,7 +506,7 @@ def page_template(
       options: {{skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}}
     }};
   </script>
-  <script src="{prefix}static/math-reader.js?v=20261021"></script>
+  <script src="{prefix}static/math-reader.js?v=20261021-2"></script>
   <script defer src="{prefix}static/vendor/mathjax@3.2.2/tex-mml-chtml.js"></script>
 </head>
 <body data-site-root="{prefix}">
