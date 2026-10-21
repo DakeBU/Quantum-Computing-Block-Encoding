@@ -7,10 +7,10 @@
   "source_kind": "user-provided GitHub source archive, no .git",
   "canonical_remote": "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench.git",
   "milestones": {
-    "foundation": "in_progress",
-    "pilot": "in_progress",
-    "expansion": "in_progress",
-    "evaluation_release": "blocked"
+    "foundation": "tested",
+    "pilot": "nonformal_e2e_validated; Lean replay blocked",
+    "whole_graph_expansion": "expanded beyond pilot; all nodes dispositioned; substantial QA coverage remains",
+    "evaluation_release": "local version frozen; formal evaluation and full-graph acceptance incomplete"
   },
   "complete": false,
   "publishing": "No push per user instruction; no Git initialization in user archive.",
@@ -20,5 +20,16 @@
       "detail": "Lean/lake and container runtime absent; no actual formal replay or axiom gate."
     }
   ],
-  "next_batch": "Freeze full snapshot; admit separately reviewed pilot; expand in source-inspected batches; retain all uncovered nodes."
+  "next_batch": "Actual isolated Lean replay plus next-batches.json, prioritizing blocked Block Encoding/paper/adapter regions; retain 37 bounded authoring queues.",
+  "current_release": "release-v2",
+  "snapshot_id": "qcb-snapshot-fb5abbac40331cbc6b85e84d",
+  "validated_scope": {
+    "released_items": 30,
+    "candidate_items": 11,
+    "lean_certified_items": 0,
+    "universe_nodes": 5153,
+    "nodes_released_support": 107,
+    "inventory_processed": 5153,
+    "inventory_batches": 41
+  }
 }

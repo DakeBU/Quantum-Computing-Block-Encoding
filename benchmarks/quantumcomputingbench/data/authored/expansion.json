@@ -6,19 +6,55 @@
     "question": "In QuantumBlockEncoding.ThinLQ, the theorem exists_thin_lq asserts that every finite real matrix A : Matrix (Fin m) (Fin n) R admits R and Q with A = R * Q and Q * Q.transpose = 1. (a) What is the exact inner dimension of this factorization (the number of rows of Q and columns of R)? (b) Does the theorem require A to have full rank or to have nonzero rows? (c) What does the equation Q * Q.transpose = 1 say about Q geometrically?",
     "reference_answer": "(a) The inner dimension is exactly min m n: Q : Matrix (Fin (min m n)) (Fin n) R and R : Matrix (Fin m) (Fin (min m n)) R. (b) No rank or nonzero-row hypothesis is required; the statement holds for rank-deficient and even empty matrices (the docstring and exists_factor_of_le explicitly note no linear-independence or nonzero-row assumption). (c) Q * Q.transpose = 1 means the rows of Q are orthonormal, i.e. Q is a right-isometry (co-isometry): its min m n rows form an orthonormal set in R^n.",
     "rubric": [
-      {"id": "r1", "criterion": "States the inner dimension is exactly min m n (not n, not rank).", "weight": 1},
-      {"id": "r2", "criterion": "States that no full-rank / nonzero-row / linear-independence hypothesis is required and it holds for deficient/empty matrices.", "weight": 1},
-      {"id": "r3", "criterion": "Interprets Q * Q.transpose = 1 as orthonormal rows / right-isometry.", "weight": 1}
+      {
+        "id": "r1",
+        "criterion": "States the inner dimension is exactly min m n (not n, not rank).",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States that no full-rank / nonzero-row / linear-independence hypothesis is required and it holds for deficient/empty matrices.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Interprets Q * Q.transpose = 1 as orthonormal rows / right-isometry.",
+        "weight": 1
+      }
     ],
-    "target_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"],
-    "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"],
-    "assumptions": ["A is a finite real matrix over Fin m x Fin n."],
-    "conventions": ["Q * Q.transpose = 1 encodes orthonormal rows (right-isometry).", "Inner dimension is min m n in all shapes, including rank-deficient."],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"
+    ],
+    "assumptions": [
+      "A is a finite real matrix over Fin m x Fin n."
+    ],
+    "conventions": [
+      "Q * Q.transpose = 1 encodes orthonormal rows (right-isometry).",
+      "Inner dimension is min m n in all shapes, including rank-deficient."
+    ],
     "semantic_steps": [
-      {"claim": "exists_thin_lq produces Q with exactly min m n orthonormal rows for any A.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"]}
+      {
+        "claim": "exists_thin_lq produces Q with exactly min m n orthonormal rows for any A.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+        ]
+      }
     ],
-    "difficulty": {"level": "easy", "rationale": "Direct reading of a single theorem statement and docstring; no derivation beyond interpreting the orthonormality equation."},
-    "source_refs": [{"path": "QuantumBlockEncoding/ThinLQ.lean", "sha256": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a", "anchor": "theorem exists_thin_lq (lines 79-93); docstring lines 4-10; exists_factor_of_le lines 36-77", "license": "MIT (repository LICENSE)"}],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "Direct reading of a single theorem statement and docstring; no derivation beyond interpreting the orthonormality equation."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/ThinLQ.lean",
+        "sha256": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a",
+        "anchor": "theorem exists_thin_lq (lines 79-93); docstring lines 4-10; exists_factor_of_le lines 36-77",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
     "family": "thin-lq",
     "answer_format": "rubric",
     "evidence_status": "source_inspected",
@@ -32,21 +68,66 @@
     "question": "In QuantumBlockEncoding.ThinLQ, exactly what does the lemma sum_prefix_of_zero state, and explain precisely how it is used in exists_factor_of_le so that the factor Q ends up with exactly m rows (for m <= n) rather than n rows.",
     "reference_answer": "sum_prefix_of_zero states: for m <= n, f : Fin n -> M (an additive commutative monoid), if f j = 0 whenever m <= j.val, then the prefix sum over Fin m equals the full sum: (sum over i : Fin m of f (Fin.castLE hmn i)) = (sum over j : Fin n of f j). In exists_factor_of_le the matrix is reconstructed from an orthonormal basis b (a gramSchmidtOrthonormalBasis of n vectors). The expansion b.sum_repr (f i) is a sum over all n basis vectors. The triangularity lemma gramSchmidtOrthonormalBasis_inv_triangular' forces b.repr (f (castLE i)) k = 0 whenever i.val < k.val; since i : Fin m and we only need coefficients at indices k with m <= k.val, those coefficients vanish. Applying sum_prefix_of_zero collapses the n-term sum to an m-term prefix sum, so only the first m basis vectors contribute. Hence R has m columns and Q has exactly m orthonormal rows, giving inner dimension m = min m n.",
     "rubric": [
-      {"id": "r1", "criterion": "States sum_prefix_of_zero correctly including the vanishing hypothesis m <= j.val implies f j = 0.", "weight": 1},
-      {"id": "r2", "criterion": "Identifies the triangularity of gramSchmidt repr as the source of the vanishing tail coefficients.", "weight": 1},
-      {"id": "r3", "criterion": "Explains that collapsing the n-sum to an m-prefix sum is what yields exactly min m n rows.", "weight": 1}
+      {
+        "id": "r1",
+        "criterion": "States sum_prefix_of_zero correctly including the vanishing hypothesis m <= j.val implies f j = 0.",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the triangularity of gramSchmidt repr as the source of the vanishing tail coefficients.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains that collapsing the n-sum to an m-prefix sum is what yields exactly min m n rows.",
+        "weight": 1
+      }
     ],
-    "target_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"],
-    "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"],
-    "assumptions": ["m <= n for the wide case; Gram-Schmidt orthonormal basis of n vectors is used."],
-    "conventions": ["Fin.castLE embeds Fin m into Fin n as the first m indices."],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"
+    ],
+    "assumptions": [
+      "m <= n for the wide case; Gram-Schmidt orthonormal basis of n vectors is used."
+    ],
+    "conventions": [
+      "Fin.castLE embeds Fin m into Fin n as the first m indices."
+    ],
     "semantic_steps": [
-      {"claim": "Full basis expansion of a reconstructed row is a sum over all n basis vectors.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"]},
-      {"claim": "Triangularity of the Gram-Schmidt repr makes coefficients beyond index m vanish.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"]},
-      {"claim": "sum_prefix_of_zero collapses the n-term sum to an m-term prefix, giving min m n rows.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"]}
+      {
+        "claim": "Full basis expansion of a reconstructed row is a sum over all n basis vectors.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"
+        ]
+      },
+      {
+        "claim": "Triangularity of the Gram-Schmidt repr makes coefficients beyond index m vanish.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ThinLQ.exists_factor_of_le"
+        ]
+      },
+      {
+        "claim": "sum_prefix_of_zero collapses the n-term sum to an m-term prefix, giving min m n rows.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"
+        ]
+      }
     ],
-    "difficulty": {"level": "intermediate", "rationale": "Requires connecting a combinatorial sum-restriction lemma to the triangular structure of Gram-Schmidt to explain the min m n dimension; two-node reasoning."},
-    "source_refs": [{"path": "QuantumBlockEncoding/ThinLQ.lean", "sha256": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a", "anchor": "sum_prefix_of_zero lines 17-34; exists_factor_of_le lines 36-77 (hz triangularity + hs restriction)", "license": "MIT (repository LICENSE)"}],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires connecting a combinatorial sum-restriction lemma to the triangular structure of Gram-Schmidt to explain the min m n dimension; two-node reasoning."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/ThinLQ.lean",
+        "sha256": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a",
+        "anchor": "sum_prefix_of_zero lines 17-34; exists_factor_of_le lines 36-77 (hz triangularity + hs restriction)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
     "family": "thin-lq",
     "answer_format": "rubric",
     "evidence_status": "source_inspected",
@@ -60,20 +141,61 @@
     "question": "QuantumBlockEncoding.ConstructiveThinLQ.factor returns a Factorization A (min m n) rather than an existence statement. (a) What are the two dispatch cases and the concrete R, Q in each? (b) What computational ingredient makes the constructive version deterministic, in contrast to ThinLQ.exists_thin_lq?",
     "reference_answer": "(a) factor dispatches on whether m <= n. Wide case (m <= n, min = m): it returns factorOfLE, with R = wideR hmn A and Q = wideQ hmn A, both extracted from a Givens-rotation elimination (RectangularGivens reduced and transform) applied to A.transpose, then prefix-truncated via Fin.castLE to the first m indices. Tall case (n < m, min = n): it returns R = A, Q = 1 (the n x n identity), since A = A * 1 and 1 * 1.transpose = 1. (b) It is deterministic because the factors come from an explicit, computable Givens-elimination procedure (RectangularGivens.reduced / transform / exact_recovery) with no existential choice, whereas ThinLQ.exists_thin_lq is noncomputable, built from gramSchmidtOrthonormalBasis using classical choice. The result is packaged in the structure Factorization bundling R, Q, the factorization equation, and the orthogonal equation.",
     "rubric": [
-      {"id": "r1", "criterion": "Describes the m <= n (wide) case using Givens-based wideR/wideQ truncated to min = m.", "weight": 1},
-      {"id": "r2", "criterion": "Describes the n < m (tall) case as R = A, Q = identity.", "weight": 1},
-      {"id": "r3", "criterion": "Contrasts deterministic Givens elimination against the noncomputable classical-choice Gram-Schmidt of exists_thin_lq.", "weight": 1}
+      {
+        "id": "r1",
+        "criterion": "Describes the m <= n (wide) case using Givens-based wideR/wideQ truncated to min = m.",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Describes the n < m (tall) case as R = A, Q = identity.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Contrasts deterministic Givens elimination against the noncomputable classical-choice Gram-Schmidt of exists_thin_lq.",
+        "weight": 1
+      }
     ],
-    "target_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"],
-    "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE", "declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"],
-    "assumptions": ["Factors are over the reals; dimensions are arbitrary including deficient rank."],
-    "conventions": ["Wide case eliminates A.transpose with Givens rotations and truncates to the first m indices via Fin.castLE."],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE",
+      "declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+    ],
+    "assumptions": [
+      "Factors are over the reals; dimensions are arbitrary including deficient rank."
+    ],
+    "conventions": [
+      "Wide case eliminates A.transpose with Givens rotations and truncates to the first m indices via Fin.castLE."
+    ],
     "semantic_steps": [
-      {"claim": "Wide case uses deterministic Givens factors wideR/wideQ truncated to min = m.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE"]},
-      {"claim": "Tall case uses R = A, Q = identity with min = n.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"]}
+      {
+        "claim": "Wide case uses deterministic Givens factors wideR/wideQ truncated to min = m.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE"
+        ]
+      },
+      {
+        "claim": "Tall case uses R = A, Q = identity with min = n.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"
+        ]
+      }
     ],
-    "difficulty": {"level": "intermediate", "rationale": "Requires understanding the constructive/noncomputable distinction and the two shape cases, not just reading one statement."},
-    "source_refs": [{"path": "QuantumBlockEncoding/ConstructiveThinLQ.lean", "sha256": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af", "anchor": "factor lines 68-75; factorOfLE lines 60-66; Factorization structure lines 19-24; docstring lines 4-12", "license": "MIT (repository LICENSE)"}],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires understanding the constructive/noncomputable distinction and the two shape cases, not just reading one statement."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+        "sha256": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af",
+        "anchor": "factor lines 68-75; factorOfLE lines 60-66; Factorization structure lines 19-24; docstring lines 4-12",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
     "family": "thin-lq",
     "answer_format": "rubric",
     "evidence_status": "source_inspected",
@@ -87,21 +209,68 @@
     "question": "Give the honest step-by-step argument proving QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization, i.e. that for m <= n a wide matrix A satisfies A = wideR hmn A * wideQ hmn A. Name the key sublemmas used.",
     "reference_answer": "Step 1: From RectangularGivens.exact_recovery applied to A.transpose, (reduced A.transpose) * (transform A.transpose) = A.transpose. Step 2: Transpose this equation and simplify with Matrix.transpose_mul and Matrix.transpose_transpose to get the recovery form (reduced A.transpose).transpose * transform A.transpose = A. Step 3: Read it entrywise: A i j = sum over k : Fin n of (reduced A.transpose k i) * (transform A.transpose k j). Step 4: Observe reduced A.transpose k i = 0 for k.val >= m (reduced_zero_below, since A.transpose has m columns so the eliminated factor vanishes below row m); therefore each summand vanishes for m <= k.val. Step 5: Apply ThinLQ.sum_prefix_of_zero to collapse the n-term sum to a sum over Fin m under Fin.castLE, which is exactly (wideR hmn A * wideQ hmn A) i j since wideR and wideQ are defined as the castLE-truncated reduced/transform factors. Hence A = wideR * wideQ.",
     "rubric": [
-      {"id": "r1", "criterion": "Uses exact_recovery on A.transpose and transposes it to recover A.", "weight": 1},
-      {"id": "r2", "criterion": "Uses reduced_zero_below to argue the tail summands (k >= m) vanish.", "weight": 1},
-      {"id": "r3", "criterion": "Applies sum_prefix_of_zero to collapse the n-sum to the min-m-indexed product wideR * wideQ.", "weight": 1}
+      {
+        "id": "r1",
+        "criterion": "Uses exact_recovery on A.transpose and transposes it to recover A.",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses reduced_zero_below to argue the tail summands (k >= m) vanish.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Applies sum_prefix_of_zero to collapse the n-sum to the min-m-indexed product wideR * wideQ.",
+        "weight": 1
+      }
     ],
-    "target_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization"],
-    "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero", "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wideR", "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wideQ"],
-    "assumptions": ["m <= n; RectangularGivens.exact_recovery and reduced_zero_below hold for A.transpose."],
-    "conventions": ["wideR/wideQ are the Givens reduced/transform factors of A.transpose truncated to the first m indices via Fin.castLE."],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero",
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wideR",
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wideQ"
+    ],
+    "assumptions": [
+      "m <= n; RectangularGivens.exact_recovery and reduced_zero_below hold for A.transpose."
+    ],
+    "conventions": [
+      "wideR/wideQ are the Givens reduced/transform factors of A.transpose truncated to the first m indices via Fin.castLE."
+    ],
     "semantic_steps": [
-      {"claim": "exact_recovery of A.transpose, transposed, gives A as a product over Fin n.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization"]},
-      {"claim": "reduced A.transpose vanishes for row indices >= m.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization"]},
-      {"claim": "sum_prefix_of_zero collapses the Fin n product to the min-m product wideR * wideQ.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"]}
+      {
+        "claim": "exact_recovery of A.transpose, transposed, gives A as a product over Fin n.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization"
+        ]
+      },
+      {
+        "claim": "reduced A.transpose vanishes for row indices >= m.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization"
+        ]
+      },
+      {
+        "claim": "sum_prefix_of_zero collapses the Fin n product to the min-m product wideR * wideQ.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"
+        ]
+      }
     ],
-    "difficulty": {"level": "intermediate", "rationale": "A genuine multi-step entrywise argument composing transpose recovery, a vanishing lemma, and sum restriction."},
-    "source_refs": [{"path": "QuantumBlockEncoding/ConstructiveThinLQ.lean", "sha256": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af", "anchor": "wide_factorization lines 34-49; wideR/wideQ lines 26-32", "license": "MIT (repository LICENSE)"}],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A genuine multi-step entrywise argument composing transpose recovery, a vanishing lemma, and sum restriction."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+        "sha256": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af",
+        "anchor": "wide_factorization lines 34-49; wideR/wideQ lines 26-32",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
     "family": "thin-lq",
     "answer_format": "rubric",
     "evidence_status": "source_inspected",
@@ -115,20 +284,63 @@
     "question": "In QuantumBlockEncoding.TensorTrainCanonical, describe the types Core, Chain, Word and the function contract. In particular: what are the three dimensions of a Core, how are bond dimensions represented, in what order are physical bits emitted, and what does the matrix contract C x represent? For a scalar-boundary chain C : Chain n 1 1, what is contract C x 0 0?",
     "reference_answer": "Core l r = Matrix (Fin l) (Fin 2 x Fin r) R: one tensor-train core with left bond dimension l, a physical bit index Fin 2, and right bond dimension r; slice A bit : Matrix (Fin l) (Fin r) selects the fixed-bit matrix. Chain n l r is an inductive list of cores: nil r : Chain 0 r r, and cons head tail : Chain (n+1) l r chains a Core l m onto a Chain n m r so internal bonds must match. Bond dimensions are genuine dependent indices (l, m, r), not padded columns. Word n is the recursive bit-word type (0 -> Unit, n+1 -> Fin 2 x Word n), ordered so the first core emits the first bit. contract C x : Matrix (Fin l) (Fin r) is the product of per-bit slices (slice A x.1 * contract C x.2, with the nil case equal to the identity 1): it is the left-bond-to-right-bond amplitude matrix for the single fixed emitted bit word x. For C : Chain n 1 1, contract C x 0 0 is the scalar amplitude of basis word x of the represented state.",
     "rubric": [
-      {"id": "r1", "criterion": "States Core has left bond l, physical bit Fin 2, right bond r, and bonds are dependent indices not padding.", "weight": 1},
-      {"id": "r2", "criterion": "States Chain enforces matching internal bonds and that the first core emits the first bit.", "weight": 1},
-      {"id": "r3", "criterion": "Describes contract C x as the bond-to-bond amplitude matrix (product of slices) and contract C x 0 0 as the scalar amplitude for a 1-1 chain.", "weight": 1}
+      {
+        "id": "r1",
+        "criterion": "States Core has left bond l, physical bit Fin 2, right bond r, and bonds are dependent indices not padding.",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States Chain enforces matching internal bonds and that the first core emits the first bit.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Describes contract C x as the bond-to-bond amplitude matrix (product of slices) and contract C x 0 0 as the scalar amplitude for a 1-1 chain.",
+        "weight": 1
+      }
     ],
-    "target_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"],
-    "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.Chain", "declaration:QuantumBlockEncoding.TensorTrainCanonical.Word", "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"],
-    "assumptions": ["Real tensor-train cores; amplitudes are real entries of the slice product."],
-    "conventions": ["Physical bit index is Fin 2; first core emits first bit; bond dims are dependent, not padded.", "contract on nil is the identity matrix 1."],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.Chain",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.Word",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"
+    ],
+    "assumptions": [
+      "Real tensor-train cores; amplitudes are real entries of the slice product."
+    ],
+    "conventions": [
+      "Physical bit index is Fin 2; first core emits first bit; bond dims are dependent, not padded.",
+      "contract on nil is the identity matrix 1."
+    ],
     "semantic_steps": [
-      {"claim": "A Core is a left-bond x (bit, right-bond) real matrix with slices per bit.", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"]},
-      {"claim": "contract multiplies slices along the chain to a bond-to-bond amplitude matrix for a fixed word.", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"]}
+      {
+        "claim": "A Core is a left-bond x (bit, right-bond) real matrix with slices per bit.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"
+        ]
+      },
+      {
+        "claim": "contract multiplies slices along the chain to a bond-to-bond amplitude matrix for a fixed word.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"
+        ]
+      }
     ],
-    "difficulty": {"level": "intermediate", "rationale": "Requires reading an inductive dependently-typed data model and connecting it to MPS amplitude semantics."},
-    "source_refs": [{"path": "QuantumBlockEncoding/TensorTrainCanonical.lean", "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "anchor": "Core line 18; slice lines 20-21; Chain lines 24-26; Word lines 29-31; contract lines 39-42", "license": "MIT (repository LICENSE)"}],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires reading an inductive dependently-typed data model and connecting it to MPS amplitude semantics."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+        "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+        "anchor": "Core line 18; slice lines 20-21; Chain lines 24-26; Word lines 29-31; contract lines 39-42",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
     "family": "tensor-train",
     "answer_format": "rubric",
     "evidence_status": "source_inspected",
@@ -142,28 +354,91 @@
     "question": "QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq states that if a chain C is RightCanonical then chainMass C v = mass v for every left boundary v. Give the honest inductive derivation, naming each sublemma or structural fact used.",
     "reference_answer": "Here mass v = sum of v_i^2, RightCanonical means every core A satisfies A * A.transpose = 1 (orthonormal rows), and chainMass C v = sum over words x of mass (vecMul v (contract C x)). Step 1 (induction on C). Base nil: contract is the identity 1 and there is a single empty word, so chainMass = mass v. Step 2 (cons A C): split Word (n+1) = Fin 2 x Word n via Fintype.sum_prod_type; contract (cons A C) (bit, x') = slice A bit * contract C x', and vecMul v (slice A bit * contract C x') = vecMul (vecMul v (slice A bit)) (contract C x') by Matrix.vecMul_vecMul. Step 3: the inner sum over x' for fixed bit is chainMass C (vecMul v (slice A bit)), which by the induction hypothesis (C is RightCanonical) equals mass (vecMul v (slice A bit)). Step 4: summing over the two bits, sum over bit of mass (vecMul v (slice A bit)) = mass (vecMul v A), because the two slices exactly tile the Fin 2 x Fin r index set of A (the he lemma, by definition of mass and vecMul). Step 5: apply mass_vecMul A hA: since A * A.transpose = 1, right-multiplication by A preserves mass, so mass (vecMul v A) = mass v. Combining gives chainMass C v = mass v.",
     "rubric": [
-      {"id": "r1", "criterion": "Sets up induction on the chain with the correct base case (nil -> identity, single word).", "weight": 1},
-      {"id": "r2", "criterion": "Splits the cons sum over Fin 2 x Word n and uses vecMul_vecMul plus the induction hypothesis for the tail.", "weight": 1},
-      {"id": "r3", "criterion": "Combines the two bit-slices into mass (vecMul v A) and applies mass_vecMul with A * A.transpose = 1 to get mass v.", "weight": 1}
+      {
+        "id": "r1",
+        "criterion": "Sets up induction on the chain with the correct base case (nil -> identity, single word).",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Splits the cons sum over Fin 2 x Word n and uses vecMul_vecMul plus the induction hypothesis for the tail.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Combines the two bit-slices into mass (vecMul v A) and applies mass_vecMul with A * A.transpose = 1 to get mass v.",
+        "weight": 1
+      }
     ],
-    "target_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq"],
-    "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.mass_vecMul", "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass", "declaration:QuantumBlockEncoding.TensorTrainCanonical.RightCanonical", "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"],
-    "assumptions": ["C is RightCanonical: every core has orthonormal rows A * A.transpose = 1."],
-    "conventions": ["mass is the squared Euclidean norm; vecMul is row-vector times matrix; the two bit-slices tile A's (bit, bond) index."],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.mass_vecMul",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.RightCanonical",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"
+    ],
+    "assumptions": [
+      "C is RightCanonical: every core has orthonormal rows A * A.transpose = 1."
+    ],
+    "conventions": [
+      "mass is the squared Euclidean norm; vecMul is row-vector times matrix; the two bit-slices tile A's (bit, bond) index."
+    ],
     "semantic_steps": [
-      {"claim": "Base case: nil contract is the identity and gives chainMass = mass v.", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass"]},
-      {"claim": "Cons splits the word sum and factors vecMul via vecMul_vecMul.", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"]},
-      {"claim": "Induction hypothesis gives the tail sum = mass (vecMul v (slice A bit)).", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass"]},
-      {"claim": "Summing bits recombines the slices into mass (vecMul v A).", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"]},
-      {"claim": "mass_vecMul with A * A.transpose = 1 shows vecMul by A is mass-preserving, giving mass v.", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.mass_vecMul"]}
+      {
+        "claim": "Base case: nil contract is the identity and gives chainMass = mass v.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass"
+        ]
+      },
+      {
+        "claim": "Cons splits the word sum and factors vecMul via vecMul_vecMul.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"
+        ]
+      },
+      {
+        "claim": "Induction hypothesis gives the tail sum = mass (vecMul v (slice A bit)).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass"
+        ]
+      },
+      {
+        "claim": "Summing bits recombines the slices into mass (vecMul v A).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"
+        ]
+      },
+      {
+        "claim": "mass_vecMul with A * A.transpose = 1 shows vecMul by A is mass-preserving, giving mass v.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.mass_vecMul"
+        ]
+      }
     ],
-    "difficulty": {"level": "advanced", "rationale": "Five honest semantic steps composing an induction, a Fubini-style split, a tail hypothesis, slice recombination, and an isometry lemma."},
-    "source_refs": [{"path": "QuantumBlockEncoding/TensorTrainCanonical.lean", "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "anchor": "chainMass_eq lines 142-157; mass_vecMul lines 123-135; chainMass lines 138-139; RightCanonical lines 45-47", "license": "MIT (repository LICENSE)"}],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Five honest semantic steps composing an induction, a Fubini-style split, a tail hypothesis, slice recombination, and an isometry lemma."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+        "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+        "anchor": "chainMass_eq lines 142-157; mass_vecMul lines 123-135; chainMass lines 138-139; RightCanonical lines 45-47",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
     "family": "tensor-train",
     "answer_format": "rubric",
     "evidence_status": "source_inspected",
     "formal": null,
-    "unresolved_issues": []
+    "unresolved_issues": [],
+    "authoring_correction": {
+      "reviewer": "main-session-integration",
+      "change": "Added contract, already used by an explicit inference step, to supporting_nodes. Mathematical question, answer and steps unchanged."
+    }
   },
   {
     "key": "qcb-authored-0007",
@@ -172,20 +447,60 @@
     "question": "QuantumBlockEncoding.TensorTrainCanonical.complexCore embeds a real core A into a complex matrix. (a) What is the index order of complexCore A, and how does it differ from the mathematical Core orientation? (b) State what complexCore_isometry proves and explain the circuit meaning: how does a right-canonical real core (A * A.transpose = 1) become a valid circuit stage?",
     "reference_answer": "(a) complexCore A : Matrix (Fin 2 x Fin r) (Fin l) C is defined by complexCore A out a = (A a out : C). Its ROWS are indexed by the output (emitted bit, new right bond) in Fin 2 x Fin r, and its COLUMNS by the old left bond Fin l. This is the circuit convention: emitted bit and new bond are OUTPUT rows while the old bond is the INPUT column; it is the transpose orientation of the mathematical Core (which had Fin l rows and (bit, bond) columns). Real amplitudes embed as complex numbers with zero imaginary part. (b) complexCore_isometry proves that if A * A.transpose = 1 then (complexCore A).conjTranspose * complexCore A = 1, i.e. complexCore A is an isometry with orthonormal input columns. So the right-canonical condition on real rows (A * A.transpose = 1) is exactly the condition that the complex core has orthonormal input columns, which is the requirement for a (sub)unitary circuit stage preparing one bond level.",
     "rubric": [
-      {"id": "r1", "criterion": "States complexCore has rows = (bit, new bond) output and columns = old bond input, i.e. the transposed/circuit orientation.", "weight": 1},
-      {"id": "r2", "criterion": "States complexCore_isometry: (complexCore A).conjTranspose * complexCore A = 1 given A * A.transpose = 1.", "weight": 1},
-      {"id": "r3", "criterion": "Explains that right-canonical real rows become orthonormal input columns, the condition for a valid (sub)unitary stage.", "weight": 1}
+      {
+        "id": "r1",
+        "criterion": "States complexCore has rows = (bit, new bond) output and columns = old bond input, i.e. the transposed/circuit orientation.",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States complexCore_isometry: (complexCore A).conjTranspose * complexCore A = 1 given A * A.transpose = 1.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains that right-canonical real rows become orthonormal input columns, the condition for a valid (sub)unitary stage.",
+        "weight": 1
+      }
     ],
-    "target_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"],
-    "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore"],
-    "assumptions": ["A is a right-canonical real core: A * A.transpose = 1."],
-    "conventions": ["Circuit orientation: output rows = (emitted bit, new right bond); input columns = old left bond. Real amplitudes embed with zero imaginary part."],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore"
+    ],
+    "assumptions": [
+      "A is a right-canonical real core: A * A.transpose = 1."
+    ],
+    "conventions": [
+      "Circuit orientation: output rows = (emitted bit, new right bond); input columns = old left bond. Real amplitudes embed with zero imaginary part."
+    ],
     "semantic_steps": [
-      {"claim": "complexCore reindexes a real core into output-row/input-column complex form.", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore"]},
-      {"claim": "Orthonormal real rows become orthonormal complex input columns (conjTranspose * core = 1).", "supporting_nodes": ["declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"]}
+      {
+        "claim": "complexCore reindexes a real core into output-row/input-column complex form.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore"
+        ]
+      },
+      {
+        "claim": "Orthonormal real rows become orthonormal complex input columns (conjTranspose * core = 1).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"
+        ]
+      }
     ],
-    "difficulty": {"level": "intermediate", "rationale": "Requires correctly tracking the index-order flip between math and circuit conventions and the row-vs-column isometry distinction."},
-    "source_refs": [{"path": "QuantumBlockEncoding/TensorTrainCanonical.lean", "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "anchor": "complexCore lines 209-212; complexCore_isometry lines 214-226", "license": "MIT (repository LICENSE)"}],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires correctly tracking the index-order flip between math and circuit conventions and the row-vs-column isometry distinction."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+        "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+        "anchor": "complexCore lines 209-212; complexCore_isometry lines 214-226",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
     "family": "tensor-train",
     "answer_format": "rubric",
     "evidence_status": "source_inspected",

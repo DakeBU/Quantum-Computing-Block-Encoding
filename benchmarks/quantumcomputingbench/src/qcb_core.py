@@ -261,7 +261,7 @@ def assign_splits(items):
         components.setdefault(find(i), []).append(item)
     for component in components.values():
         group = "+".join(sorted({x["family"] for x in component}))
-        held = any(x["topic"] in {"quantum_information", "scientific_computing"} for x in component)
+        held = any(x["track"] == "planned" or x["topic"] in {"quantum_information", "scientific_computing"} for x in component)
         split = "test_public" if held else split_for(group, "shared")
         for item in component:
             item.update(split_group=group, split=split)

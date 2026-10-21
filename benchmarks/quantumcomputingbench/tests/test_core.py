@@ -88,6 +88,11 @@ class CoreTests(unittest.TestCase):
         raw["topic"] = "quantum_information"
         self.assertEqual(assign_splits(prepare([raw], SNAP))[0]["split"], "test_public")
 
+    def test_planned_track_holdout_with_descriptive_topic(self):
+        raw = copy.deepcopy(RAW)
+        raw.update(track="planned", topic="Part III Quantum Information: density operators")
+        self.assertEqual(assign_splits(prepare([raw], SNAP))[0]["split"], "test_public")
+
     def test_prompt_never_contains_answers_or_metadata(self):
         item = self.items[0]
         item.update(private_gold="PRIVATE_CANARY", arbitrary={"answer": "SECRET"})

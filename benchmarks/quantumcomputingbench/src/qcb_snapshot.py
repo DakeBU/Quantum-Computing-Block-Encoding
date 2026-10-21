@@ -41,11 +41,15 @@ def snapshot(root):
               "website/content.py", "docs/quantum-domain-roadmap.md",
               "website/research/atlas.json", "website/research/state-preparation-wiki.json",
               "website/research/sources.json", "website/research/publications.json",
-              "lean-toolchain", "lake-manifest.json", "LICENSE", "NOTICE.md"]
+              "lean-toolchain", "lake-manifest.json", "LICENSE", "NOTICE.md",
+              "research-wiki/openai-math-2026-intake.json"]
     inputs += [p.relative_to(root).as_posix() for p in (root / "QuantumBlockEncoding").rglob("*.lean")]
     inputs += [p.relative_to(root).as_posix() for p in (root / "website/research").glob("*.json")]
     inputs += [p.relative_to(root).as_posix() for p in (root / "docs").glob("*audit*.md")]
     inputs += [p.relative_to(root).as_posix() for p in (root / "paper-notes").rglob("*audit*.md")]
+    adapter_path = "benchmarks/quantumcomputingbench/src/qcb_snapshot.py"
+    if (root / adapter_path).is_file():
+        inputs.append(adapter_path)
     hashes = {p: _hash((root / p).read_bytes()) for p in sorted(set(inputs)) if (root / p).is_file()}
     missing = [p for p in inputs[:14] if not (root / p).is_file()]
     if missing:
@@ -62,12 +66,15 @@ def snapshot(root):
             nodes[identity].setdefault("additional_views", []).append(record)
         else:
             nodes[identity] = record
+    module_topics = {n["fullName"]: n.get("track", "shared-foundations")
+                     for n in graph["nodes"] if n["type"] == "module"}
     for n in graph["nodes"]:
         # Exporter historically overwrites track:<id> with raw track id;
         # preserve its exact emitted identity, fixing only edges to that identity.
         kind = n["type"]
         status = "legacy_source_semantic_debt" if kind in {"module", "declaration"} else "navigation"
-        add(n["id"], kind, n.get("track", n.get("id", "shared-foundations")), status,
+        topic = n.get("track") or module_topics.get(n.get("module"), "shared-foundations")
+        add(n["id"], kind, topic, status,
             n.get("source", "website/scripts/lean_graph.py"),
             label=n.get("label", n.get("fullName", n["id"])),
             declaration_kind=n.get("kind"), line=n.get("line"),
@@ -117,6 +124,18 @@ def snapshot(root):
     for i, r in enumerate(publication["records"]):
         identity = r.get("id", "publication-record:" + _digest(r)[:20])
         add(identity, "publication_record", "source_evidence", "publication_record_not_benchmark_review", "website/research/publications.json", record=r)
+    intake_path = "research-wiki/openai-math-2026-intake.json"
+    intake = _read(root, intake_path)
+    for record in intake["clusters"] + intake.get("explicit_non_matches", []):
+        add(record["id"], "external_adapter_candidate", "external_adapter_plans",
+            "external_candidate_not_local_compiled", intake_path, record=record,
+            exclusion_reason=record.get("reason"))
+        for placement in record.get("curriculum", []):
+            part, chapter = placement.split(":", 1)
+            for target in [part, chapter]:
+                if target in nodes:
+                    edges.append({"id": "adapter-curriculum:" + record["id"] + ":" + target,
+                                  "source": record["id"], "target": target, "type": "external-adapter-curriculum-plan"})
     # Expose conceptual references omitted from top-level registries, without
     # changing their source identity or fabricating declarations.
     referenced = {x for h in hyperedges for x in h.get("tails", []) + h.get("heads", [])}

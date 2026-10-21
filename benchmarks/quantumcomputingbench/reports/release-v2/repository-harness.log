@@ -1,0 +1,15 @@
+mutation scope violation; reverted agent transaction:
+- allowed.txt
+- before.json
+- forbidden.txt
+mutation scope violation; reverted files:
+- human.txt
+mutation scope violation; reverted files:
+- forbidden.txt
+- tracked.txt
+$ python -m unittest tools.test_qbe_runtime tools.test_qbe_lifecycle tools.test_qbe_control tools.test_qbe_context_pack tools.test_enforce_mutation_scope tools.test_atlas_memory
+..................................................................................................
+----------------------------------------------------------------------
+Ran 98 tests in 1.251s
+
+OK

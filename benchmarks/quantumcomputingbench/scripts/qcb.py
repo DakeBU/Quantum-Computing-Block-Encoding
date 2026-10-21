@@ -22,14 +22,20 @@ def schema_check(items):
 
 
 def paths(version):
-    if not version or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789.-" for c in version):
+    if not version or version in {".", ".."} or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789.-" for c in version):
         raise ValueError("version must be a simple lowercase label")
     return BASE / "manifests" / version, BASE / "data/public" / version, BASE / "reports" / version
 
 
 def load(version):
     manifest, public, reports = paths(version)
-    return read_json(manifest / "snapshot.json"), read_json(public / "items.json")
+    snap = read_json(manifest / "snapshot.json")
+    for relative, expected in snap["input_hashes"].items():
+        path = (ROOT / relative).resolve()
+        if (not path.is_relative_to(ROOT.resolve()) or not path.is_file()
+                or hashlib.sha256(path.read_bytes()).hexdigest() != expected):
+            raise ValueError("frozen source/adapter changed: " + relative + "; create an explicit migration/new version")
+    return snap, read_json(public / "items.json")
 
 
 def reject(errors):
@@ -62,6 +68,8 @@ def generate_command(args):
             raise ValueError("batch must be a JSON filename in authored data")
         batch = read_json(source)
         authored.extend(batch["items"] if isinstance(batch, dict) else batch)
+    superseded = {i["supersedes"] for i in authored if i.get("supersedes")}
+    authored = [i for i in authored if i["key"] not in superseded]
     if args.limit < 0:
         raise ValueError("limit must be nonnegative")
     if args.limit:
@@ -82,7 +90,7 @@ def generate_command(args):
             "seed": 0, "items": [i["id"] for i in items], "authoring_hash": digest(authored),
             "calls": 0, "tokens": None, "cost_usd": 0, "elapsed_seconds": None,
             "limits": {"calls": 0, "spend_usd": 0}, "limit": args.limit,
-            "batches": [p.name for p in sources],
+            "batches": [p.name for p in sources], "superseded_candidates": sorted(superseded),
             "note": "No endpoint calls; session author/reviewer telemetry unavailable."
         }, immutable=True)
     print(json.dumps({"candidates": len(items), "dry_run": args.dry_run}))
@@ -105,6 +113,8 @@ def review_command(args):
         item["reviews"] = [{**record, "content_hash": content_hash(item), "reviewer": reviews["reviewer"],
                             "method": "distinct-context-source-review", "artifact": relative,
                             "artifact_sha256": artifact_hash}]
+        item["lifecycle"] = "candidate"
+        item["validation"].update(nl_alignment="pending", answer_quality="pending")
         if record["verdict"] == "accept" and not item.get("formal") and not item["unresolved_issues"]:
             item["lifecycle"] = "released"
             item["validation"].update(nl_alignment="reviewed", answer_quality="reviewed")
@@ -112,8 +122,9 @@ def review_command(args):
     reject(schema_check(items) + validate(items, snap, ROOT))
     # Review is a one-way admission step; immutable release is a separate export.
     manifest, public, _ = paths(args.version)
+    admission = manifest / ("reviews-" + Path(args.reviews).stem + ".json")
+    write_json(admission, {"artifact": relative, "sha256": artifact_hash}, immutable=True)
     write_json(public / "items.json", items)
-    write_json(manifest / "reviews.json", {"artifact": relative, "sha256": artifact_hash}, immutable=True)
     print(json.dumps({"released": sum(i["lifecycle"] == "released" for i in items),
                       "candidates": sum(i["lifecycle"] != "released" for i in items)}))
 
