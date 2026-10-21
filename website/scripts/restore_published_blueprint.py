@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
-ORIGIN = 'https://dakebu.github.io/Quantum-Computing-Block-Encoding/'
+ORIGIN = 'https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/'
 BLUEPRINT = ORIGIN + 'blueprint/html-multi/'
 INPUTS = ['ABEISBlueprint', 'ABEISBlueprint.lean', 'ABEISBlueprintMain.lean',
           'scripts/build-blueprint.sh', 'scripts/generate-blueprint-catalog.py',

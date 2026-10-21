@@ -373,7 +373,7 @@ def main() -> int:
         'class="site-sidebar"',
         "QuantumComputinglib",
         "ASPBE",
-        "DakeBU/Quantum-Computing-Block-Encoding",
+        "DakeBU/QuantumComputinglib-QuantumComputingBench",
         "Dake Bu, Xiajie Huang, Nana Liu, Atsushi Nitanda, Hau-san Wong, Qingfu Zhang",
         "<span>01</span>",
     ):

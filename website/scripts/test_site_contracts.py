@@ -26,6 +26,47 @@ from website.scripts.check_site import check_case_teaching, require
 TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
 
 
+class BenchmarkLaunchTests(unittest.TestCase):
+    def test_canonical_repository_and_live_origins(self) -> None:
+        from website.scripts import check_deployed_research, restore_published_blueprint
+
+        repository = "DakeBU/QuantumComputinglib-QuantumComputingBench"
+        origin = "https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/"
+        self.assertEqual(build_site.PROJECT_REPOSITORY, repository)
+        self.assertEqual(check_deployed_research.ORIGIN, origin)
+        self.assertEqual(restore_published_blueprint.ORIGIN, origin)
+        schema = build_site.load_json(ROOT / "website/community/contribution.schema.json")
+        self.assertEqual(schema["$id"], origin + "community/contribution.schema.json")
+        workspace = (ROOT / "website/static/workspace.js").read_text(encoding="utf-8")
+        self.assertIn(f"https://github.com/{repository}/issues/new?", workspace)
+
+    def test_launch_news_is_first_and_links_to_the_handoff(self) -> None:
+        page = build_site.render_home(
+            {"declarations": []},
+            {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
+            {"passed": True}, {"shortCommit": "test"},
+        )
+        news = page.split('id="news"', 1)[1].split("</ol>", 1)[0]
+        self.assertLess(news.index("2026-10-21"), news.index("2026-10-18"))
+        self.assertIn("QuantumComputingBench starts.", news)
+        self.assertIn(
+            build_site.PROJECT_REPOSITORY_URL + "/tree/main/benchmarks/quantumcomputingbench",
+            news,
+        )
+        self.assertIn("planned topics clearly separated from verified library evidence", news)
+
+    def test_readme_and_agent_handoff_exist_without_claiming_a_release(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        benchmark = ROOT / "benchmarks/quantumcomputingbench"
+        self.assertTrue((benchmark / "README.md").is_file())
+        self.assertTrue((benchmark / "AGENT_GOAL.md").is_file())
+        self.assertIn("benchmarks/quantumcomputingbench/AGENT_GOAL.md", readme)
+        news = readme.split("## News", 1)[1]
+        self.assertLess(news.index("21 October 2026"), news.index("18 October 2026"))
+        self.assertIn("currently in development", readme)
+        self.assertIn("not a dataset release", (benchmark / "README.md").read_text(encoding="utf-8"))
+
+
 class RequiredPublicationArtifactTests(unittest.TestCase):
     def test_restore_follows_static_and_dynamic_module_imports(self) -> None:
         from website.scripts.restore_published_blueprint import resource_links, local_name, BLUEPRINT
@@ -471,7 +512,7 @@ class SiteContractTests(unittest.TestCase):
 
     def test_footer_names_repository_and_all_organizers(self) -> None:
         source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
-        self.assertIn("DakeBU/Quantum-Computing-Block-Encoding", source)
+        self.assertIn("DakeBU/QuantumComputinglib-QuantumComputingBench", source)
         for name in (
             "Dake Bu", "Xiajie Huang", "Nana Liu", "Atsushi Nitanda",
             "Hau-san Wong", "Qingfu Zhang",

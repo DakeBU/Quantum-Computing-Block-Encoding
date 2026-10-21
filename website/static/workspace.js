@@ -325,7 +325,7 @@
       title: `[QuantumComputinglib lemma] ${packet.id}`,
       body,
     });
-    window.open(`https://github.com/DakeBU/Quantum-Computing-Block-Encoding/issues/new?${params}`, "_blank", "noopener");
+    window.open(`https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/issues/new?${params}`, "_blank", "noopener");
   };
 
   const checkHealth = async () => {
