@@ -10,26 +10,31 @@ whole-graph benchmark**. Read the [dataset card](DATASET_CARD.md),
 [repair audit](docs/repair-review-2026-10-21.md), and
 [coverage report](reports/release-v3/coverage.md).
 
-## 当前交付与证据边界
+## Current deliverables and evidence boundaries
 
-| 材料 | 数量 / 状态 | 正确用途 |
+| Material | Count / status | Intended use |
 | --- | --- | --- |
-| 已有内容及复核记录原样继承的发布题 | 26 | 知识／推理训练与带 rubric 的公开诊断 |
-| 修正／新增、等待独立 NL 复核的候选 | 12 | 明确标记 provisional 的开发诊断，不能冒充已独立验证金标 |
-| 其他历史未发布候选 | 8 | 保留待解决问题，不计已发布覆盖 |
-| 本地 Lean 参考定理 | 16 | 实际编译、传递公理审计；不是任意模型输出的沙箱认证 |
-| 修复后的 Lean 参考答案 | 3 | 完整限定命名、冻结目标、真实生成 harness 重放 |
-| 完整图台账 | 5,153 节点 | 覆盖宇宙，不是 5,153 道题或全图完成 |
+| Released items with unchanged content and inherited review records | 26 | Knowledge/reasoning training and rubric-based public diagnostics |
+| Corrected/new candidates awaiting independent NL review | 12 | Development diagnostics explicitly marked provisional, not independently verified gold |
+| Other historical unreleased candidates | 8 | Retained with unresolved issues; excluded from released coverage |
+| Local Lean reference theorems | 16 | Actual compilation and transitive axiom audits, not sandbox certification of arbitrary model output |
+| Repaired Lean reference answers | 3 | Fully qualified names, frozen targets, and actual generated-harness replay |
+| Complete graph ledger | 5,153 nodes | Coverage universe, not 5,153 questions or completed whole-graph coverage |
 
-**四个旧金标已撤回**：并行 ancilla 的物理解释、严格正性的必要性、
-RY/Bloch 角度区分、未展开 oracle 的抽象计费。旧文件和历史报告保留，
-但评分与导出入口会阻止这些旧答案再次作为金标使用。
-修正题使用 `supersedes`，不覆盖同事的原记录。
+**Four prior gold answers have been withdrawn** for incorrect claims about
+parallel ancilla usage, the necessity of strict positivity, RY versus Bloch
+angles, and abstract accounting for unexpanded oracles. Historical files and
+reports are preserved, but scoring and export entry points prevent these answers
+from being reused as gold. Corrections use `supersedes` without overwriting the
+original contributor records.
 
-本次实际完成了完整生产库的 Lean 门禁，以及 16 个固定参考结论和
-3 个生成 harness 的重放；真实负例确认了错误类型证明和 `sorryAx` 会被拒绝。
-这不等于自然语言语义已独立复核，也不等于 Docker/Podman 隔离验证已验收。
-**隔离 Lean 评测仍为 ENV_BLOCKED；真实模型 baseline 未测量。**
+This work ran the complete production-library Lean gate, checked 16 fixed
+reference claims, and replayed three generated harnesses. Actual negative
+controls confirmed that wrong-type proofs and `sorryAx` are rejected. This does
+not constitute independent natural-language semantic review or acceptance of
+Docker/Podman isolation.
+**Isolated Lean evaluation remains ENV_BLOCKED; real-model baseline performance
+is unmeasured.**
 
 ## Start here
 
