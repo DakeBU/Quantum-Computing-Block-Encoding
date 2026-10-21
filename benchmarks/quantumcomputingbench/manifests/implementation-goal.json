@@ -1,0 +1,24 @@
+{
+  "schema_version": "qcb.goal.v1",
+  "objective": "Build a reproducible graph-grounded QA corpus and evaluation benchmark spanning the full implemented Lean graph and planned curriculum, with meaningful knowledge and reasoning breadth, NL proofs, Lean capability, honest evidence and scoring.",
+  "goal_file": "AGENT_GOAL.md",
+  "goal_sha256": "6449e6bb5cc961068bae28a446998b1dd02bcda0ea647c50888defb287971a7d",
+  "source_commit": null,
+  "source_kind": "user-provided GitHub source archive, no .git",
+  "canonical_remote": "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench.git",
+  "milestones": {
+    "foundation": "in_progress",
+    "pilot": "in_progress",
+    "expansion": "in_progress",
+    "evaluation_release": "blocked"
+  },
+  "complete": false,
+  "publishing": "No push per user instruction; no Git initialization in user archive.",
+  "blockers": [
+    {
+      "type": "ENV_BLOCKED",
+      "detail": "Lean/lake and container runtime absent; no actual formal replay or axiom gate."
+    }
+  ],
+  "next_batch": "Freeze full snapshot; admit separately reviewed pilot; expand in source-inspected batches; retain all uncovered nodes."
+}

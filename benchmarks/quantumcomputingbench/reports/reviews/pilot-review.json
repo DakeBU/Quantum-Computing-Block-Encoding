@@ -1,0 +1,173 @@
+{
+  "reviewer": "pilot-math-review-distinct-session",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "k-ry-half-angle-convention",
+      "authored_sha256": "d9f58480557689a4c53c8a513a76da1f33624769d5711c5a3c4fbcfc42fc1104",
+      "verdict": "accept",
+      "notes": "Confirmed standardRyMatrix theta = realRotation (theta/2) (PrimitiveSemantics.lean:18-20). realOrthogonalRotation (ComplexLCU.lean:23-29) gives entries [[cos,-sin],[sin,cos]] of its angle, so with angle theta/2 the four entries are [[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]] and first column (cos(theta/2),sin(theta/2)); RY(pi)->(0,1)=|1> correct. standardRyMatrix_zero (:22) and standardRyMatrix_two_arccos_eq_amplitudeRotation (:96) both exist; 2*arccos loader angle claim matches amplitudeRotation def. Signs and half-angle convention exact.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "k-clog2-gridsize-identity",
+      "authored_sha256": "2cf41db836b5e05b7db0e430b5267d082492d40b5dc95bf70b58259303a2b2c8",
+      "verdict": "accept",
+      "notes": "gridSize n = 2^n (Core.lean:44). clog2 m = if m<=1 then 0 else Nat.log2 (m-1)+1 (:52-53) with clog2_zero/clog2_one =0 (:57-61). clog2_gridSize : clog2 (gridSize n)=n (:94) proved by cases: zero via rfl (gridSize 0=1), succ via log2_pred_two_pow_succ : Nat.log2 (2^(n+1)-1)=n (:64). Boundary and succ-branch reasoning in reference answer exactly match the guarded definition and supporting lemma.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Core.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "k-becost-lexicographic-order",
+      "authored_sha256": "2da7cc22ca4aee7851349d74836becabf89df72e0da9d6fcff89aff09c1149c0",
+      "verdict": "accept",
+      "notes": "BlockEncodingCost has fields auxiliaryQubits, gateCount, depth, oracleCalls (BlockEncoding.lean:50-54). betterThan (:70-77) is strict lexicographic gateCount < then depth then auxiliaryQubits then oracleCalls -- primary key is gateCount, NOT the first struct field auxiliaryQubits, exactly as stated. noWorseThan = x=y OR betterThan (:80-81). Gate.resource oracleCall = ofCountsWithDepth 0 0 1 0 1 (Circuit.lean:38): zero one-qubit/cnot local gates, matching the docstring 'Oracle calls have zero local cost here' cited as the reason oracleCalls is last. No order/field defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/BlockEncoding.lean",
+        "QuantumBlockEncoding/Circuit.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "k-firstcolumn-prepares-target",
+      "authored_sha256": "17f2b6f63a6f2c8bd2dcc6c757de7590ff23f4e2b831e891efb7ba3c49b973f1",
+      "verdict": "accept",
+      "notes": "FirstColumnMatches unitary target := forall row, unitary row (zeroBasisIndex qubits) = target.amplitudes row (StatePreparation.lean:25-28) -- entrywise equality on the single zeroBasisIndex column, exactly as stated. zeroBasisIndex n = <0,_> in Fin (gridSize n) (:15-16). preparesTarget := FirstColumnMatches candidate.unitary candidate.target, a derived Prop (:43-44). VerifiedStatePreparation carries preparationProof : candidate.preparesTarget (:58-62), so no settable-flag escape. All claims faithful.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StatePreparation.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "r-decomposeSO-count-identity",
+      "authored_sha256": "67b5798b8b46043c2de4b77b5c53499ac46a89e5960e02befa2a2fcb5e63b34b",
+      "verdict": "accept",
+      "notes": "decomposeSO A = (fullSweepSteps A 0 N _).reverse.map Step.inverse (AdjacentGivens.lean:597-598); length via List.length_map/length_reverse then fullSweepSteps_length (:611-613). fullSweepSteps_length_twice proves length*2 = remaining*(remaining-1) by induction, per-column columnSweepSteps_length = count (:241-246); gives N*(N-1)/2. Zero pivots: eliminationAngle_zero (:101) and eliminateEntry_zero_pair (:168) yield a counted angle-zero identity step (docstring :610). Reconstruction: fullSweep_eq_one (:576) via columnSweep_preserves_orthogonal/_det, columnSweep_prefix_succ and matrix_eq_one_of_last_prefix (:490) where det=1 forces final +1; decomposeSO_action (:602) = applySteps_reverse_inverse (:208). Multi-node chain verified faithful; hypotheses (orthogonal AND det=1 for reconstruction, none for count) correct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/AdjacentGivens.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "r-preparecircuit-firstcolumn-normalization",
+      "authored_sha256": "0bbeb7e1cd7170edb74c0c8bbdd3ba2dc57183d5051cc7ceaa0aaa2043252ef0",
+      "verdict": "accept",
+      "notes": "prepareCircuit_firstColumn (RealAmplitudePreparation.lean:275) with hyps nonneg and 0<normSq f. Base n=0 (:280-289): normSq=f(b)^2, sqrt=f(b), ratio=1 via div_self, deriving 0<f b. Succ step (:290-308): prepareCircuit (n+1) f = (prepareCircuit n (marginal f)).map liftGate ++ compileUniformlyControlledRy (:224-229); evaluated with evalPrimitiveCircuit_append/eval_liftCircuit, controlledLast_mul_lift (:261) isolates top wire, splitAngle_firstColumn (:157) recovers child amplitude times pairNorm. normSq_marginal (:216) via pairNorm_sq (:147) keeps denominator invariant. normalized_sum_sq (:311) gives unit norm. Induction reconstruction exact.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "r-eval-circuit-order-dagger",
+      "authored_sha256": "a73ff6e4efb15a0c37181d4621f70e927bccf929f24f49dd318eb7712beeecc0",
+      "verdict": "accept",
+      "notes": "evalPrimitiveCircuit (gate::rest) = evalPrimitiveCircuit rest * evalPrimitiveGate gate (PrimitiveSemantics.lean:377) -- first gate rightmost. evalPrimitiveCircuit_append : eval(left++right)=eval right*eval left (:389-392). evalPrimitiveCircuit_dagger : eval(reverse.map dagger)=star(eval) (:400-403) proved via append+evalPrimitiveGate_dagger (:352) with standardRyMatrix_neg (:71)/standardRzMatrix_neg (:263). PrimitiveGate.dagger (PrimitiveCircuit.lean:110-114): x,cx self-inverse, ry/rz negate angle. Anti-homomorphism/reverse explanation correct; both inductions faithful.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "QuantumBlockEncoding/PrimitiveCircuit.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qs-global-phase-program-semantics",
+      "authored_sha256": "f2c6700e21abd7f8e119931fcbf16339269d0c990e56ccaeb59a6af049da5a90",
+      "verdict": "accept",
+      "notes": "evalPrimitiveProgram = evalGlobalPhase program.globalPhase . evalPrimitiveCircuit program.circuit (PrimitiveSemantics.lean:439-442); evalGlobalPhase angle = Complex.exp((angle.eval:C)*I) (:413-414), evalGlobalPhase_unitary (:416) unit modulus. PrimitiveRefinement.exact : evalPrimitiveCircuit circuit = target -- exact matrix equality, not up-to-phase (:481-485), matching docstring. PrimitiveProgram.seq globalPhase = .add left right (PrimitiveCircuit.lean:217); evalPrimitiveProgram_seq = eval right*eval left with phases adding via exp(i(a+b)) (:449-461). Observability/exactness/additive composition all correct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "QuantumBlockEncoding/PrimitiveCircuit.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qs-resource-depth-parallel-vs-serial",
+      "authored_sha256": "884749b69d50bc48428fb549bde292f7c00bda8daefc8d69e625ae36dadf37e8",
+      "verdict": "accept",
+      "notes": "Resource.add sums every field incl depth and pureAncilla (Resources.lean:34-39). Resource.parallel sums oneQubit/cnot/oracleCalls but takes Nat.max of pureAncilla and depth (:45-50). ofCounts sets depth := oneQubit+cnot (:62-66), so swap=ofCounts 0 3 0 (Circuit.lean:37) has depth 0+3=3. CircuitLayer.resource folds with parallel (Circuit.lean:54-55); Circuit.resource (:75-77) and LayeredCircuit.resource (:64-66) use + (add). clog2/pureAncilla guard correct: pureAncilla is an independent Nat field, clog2 lives in Core with no linking identity -- the anti-hallucination refusal is justified.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Resources.lean",
+        "QuantumBlockEncoding/Circuit.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qs-prepare-ry-cx-counts",
+      "authored_sha256": "31a17c00ffe66b1f4b29e58e1d26f55535dedcd3c6e98895e0405383256aa1bc",
+      "verdict": "accept",
+      "notes": "prepareCircuit_ryCount = 2^n-1 (RealAmplitudePreparation.lean:340-348) and prepareCircuit_cxCount = 2*(2^n-1-n) (:351-359), both by induction. prepareCircuit_oracleCalls = 0 (:361-363) via resource_oracleCalls_eq_zero. Numeric checks: n=1 RY=1,CX=2*(2-1-1)=0; n=2 RY=3,CX=2*(4-1-2)=2 -- both correct. Tree/multiplexor interpretation and the zero oracle count (fully primitive-compiled) are faithful.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "neg-ry-not-half-only-at-pi",
+      "authored_sha256": "d878ad77dcb2d4c7d7ab39d2461aebc5cac7c159b9f87e89100e34b2c9ff121f",
+      "verdict": "accept",
+      "notes": "Counterexample valid: standardRyMatrix theta first column = (cos(theta/2),sin(theta/2)) not (cos theta,sin theta). For target (cos0.7,sin0.7) need theta/2=0.7 so theta=1.4; standardRyMatrix(0.7) gives (cos0.35,sin0.35)~(0.9394,0.3429) vs intended (0.7648,0.6442) -- numerics correct. Extreme |1>: theta=pi correct, naive pi/2 gives (1/sqrt2,1/sqrt2) wrong. Convention + standardRyMatrix_two_arccos_eq_amplitudeRotation (:96) correctly named. Valid negative example.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "neg-givens-count-needs-SO-not-O",
+      "authored_sha256": "84e5cbe235ae15025d800a4a3006a39a9bfd9efa61c5693a9864a1a5e41d87f3",
+      "verdict": "accept",
+      "notes": "Missing hypothesis det A=1 correctly identified: decomposeSO_action requires both orthogonal and determinant (AdjacentGivens.lean:602-603). planeMatrix_det=1 (:381-383) via rotateRows_det, so every product has det 1 -- a det=-1 reflection is unreachable. Counterexample diag(1,-1): transpose*A=1, det=-1, valid. Failure localized at matrix_eq_one_of_last_prefix (:490-525) where det=1 forces last diagonal +1 (det_diagonal product); orthogonal_supported_column_sq (:441) gives square=1 but not sign. columnSweep_preserves_det (:385) supports det closure. Diagnosis precise and faithful.",
+      "checked_sources": [
+        "QuantumBlockEncoding/AdjacentGivens.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "neg-prepare-firstcolumn-positivity",
+      "authored_sha256": "dc60f98217ceb7f57c1bbdc685d50fe302823c936d04786b4754899fa87451d5",
+      "verdict": "accept",
+      "notes": "prepareMatrixLE_firstColumn requires pointwise 0<f j (RealAmplitudePreparation.lean:393-394); prepareCircuit_firstColumn requires nonneg + 0<normSq f (:275-276) and base case derives 0<f b for div_self (:287). All-zero table => normSq=0 => 0/0 undefined: correct motivation (normSq_pos_of_positive :319). splitAngle sign branch 'if b<0 then -arccos else arccos' (:152-155) and splitAngle_firstColumn (:157) handle signed children, exactly as the carefully-bounded sign guard states. No overclaim: honest that top-level lemma is proved only under nonneg/positive. Faithful.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "lean-standardRyMatrix-zero",
+      "authored_sha256": "c78b311efbf1a0a8491ea2af7bfd01820185ceb4fb9815c967c8bcae4a352e56",
+      "verdict": "accept",
+      "notes": "Target standardRyMatrix 0 = 1 is the actual library lemma (PrimitiveSemantics.lean:22). reference_proof 'by ext row column; fin_cases row <;> fin_cases column <;> simp [standardRyMatrix, realRotation, realOrthogonalRotation]' reproduces the library proof text byte-for-byte (:23-25); imports match module header (:1-3). Content/approach mathematically sound (entrywise reduction to cos0=1,sin0=0). ENV_BLOCKED: no Lean toolchain available to elaborate, replay or run a transitive axiom audit; accepting CONTENT only, Lean certification NOT granted. Item honestly self-labels ENV_BLOCKED in unresolved_issues.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean"
+      ],
+      "formal_status": "not_replayed"
+    },
+    {
+      "key": "lean-flipBit-involutive",
+      "authored_sha256": "b76567950e8fb3dfaf5d01896fbad076619cf9a4907d1408f516639930a553e3",
+      "verdict": "accept",
+      "notes": "flipBit b = if b=0 then 1 else 0 (PrimitiveSemantics.lean:118); flipBit_flipBit proved 'by fin_cases bit <;> rfl' (:120-121). Item's formal.target is the forall-quantified form with reference_proof 'by intro bit; fin_cases bit <;> rfl' -- consistent (two Fin 2 cases close by rfl). Mathematically correct. ENV_BLOCKED: no verifier available to elaborate or axiom-audit; CONTENT accepted, Lean certification NOT granted. Honest self-label present.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveSemantics.lean"
+      ],
+      "formal_status": "not_replayed"
+    },
+    {
+      "key": "lean-planeMatrix-det-applicability",
+      "authored_sha256": "735e8d6455395a062aeb879c8ae5aba8fb83702a8d2e8bd0587b711f338732db",
+      "verdict": "accept",
+      "notes": "planeMatrix i j theta = rotateRows 1 i j theta (AdjacentGivens.lean:27-28); planeMatrix_det (:381-383) proof 'by rw [planeMatrix, rotateRows_det _ i j distinct, Matrix.det_one]' matches reference_proof. Essential hypothesis i!=j correctly identified: rotateRows_det (:367) needs distinct, resting on det_two_row_mix (:341) whose (a*d-b*c) factor = cos^2+sin^2=1 only via the two-distinct-row determinant argument. Instantiation A:=1 correct. ENV_BLOCKED: cannot elaborate the rewrite chain or audit axioms here; CONTENT accepted, Lean certification NOT granted. Honest self-label present.",
+      "checked_sources": [
+        "QuantumBlockEncoding/AdjacentGivens.lean"
+      ],
+      "formal_status": "not_replayed"
+    }
+  ]
+}

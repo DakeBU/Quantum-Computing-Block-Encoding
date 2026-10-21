@@ -1,0 +1,36 @@
+{
+  "authoring_hash": "b508105a4bc7cefd872aaf657e51fef5615e08a447dd54d2467d8ee8f0d59d6e",
+  "calls": 0,
+  "cost_usd": 0,
+  "elapsed_seconds": null,
+  "items": [
+    "qcb-6b9956fd0553d2aef701",
+    "qcb-237e6cf7ab3572c80f68",
+    "qcb-8b83d762937c0cef99da",
+    "qcb-51fea576c303158d13b3",
+    "qcb-c0d7d794188fbaa95562",
+    "qcb-8aefbac5ae4f133477bd",
+    "qcb-f1c3e4816cb039d737c8",
+    "qcb-f0c025b527f928b7ad27",
+    "qcb-b631477c51b6952de162",
+    "qcb-19d9284696e8754ce6bc",
+    "qcb-82e2a635858913c206bb",
+    "qcb-463272c5d1f25ac38f53",
+    "qcb-b1a1f70a01eb59fff3b4",
+    "qcb-18465954c3e8777921b1",
+    "qcb-7468c11970d67eda67ba",
+    "qcb-3269ce47b6495336d73d"
+  ],
+  "limit": 0,
+  "limits": {
+    "calls": 0,
+    "spend_usd": 0
+  },
+  "method": "curated-original-source-inspected-fixture",
+  "model_validation": false,
+  "note": "No endpoint calls; session author/reviewer telemetry unavailable.",
+  "schema_version": "qcb.generation.v1",
+  "seed": 0,
+  "snapshot_id": "qcb-snapshot-55dc0c6089ec608a68176884",
+  "tokens": null
+}
