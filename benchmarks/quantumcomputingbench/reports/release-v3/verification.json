@@ -1,0 +1,38 @@
+{
+  "schema_version": "qcb.implementation_verification.v1",
+  "baseline_commit": "86b9e677566498da04faebcf4e5ed57f177c6bb1",
+  "date": "2026-10-21",
+  "benchmark_tests": {
+    "command": "python -m unittest discover -s benchmarks/quantumcomputingbench/tests -v",
+    "tests_run": 74,
+    "passed": 74,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "unchanged_library_harness_tests": {
+    "command": "python -m unittest discover -s tools -p test_qbe*.py -v",
+    "tests_run": 87,
+    "passed": 86,
+    "skipped": 1,
+    "skip_reason": "Windows symlink creation requires unavailable privileges",
+    "exit_code": 0
+  },
+  "production_lean_gate": {
+    "passed": true,
+    "proof_inputs_sha256": "1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e",
+    "module_targets": 202,
+    "evidence": "lean-reference-checks.json",
+    "inheritance": "actual complete local gate on exactly equal production/test/toolchain/dependency inputs"
+  },
+  "local_reference_roots": 16,
+  "real_generated_harness_replays": 3,
+  "negative_controls": ["sorryAx rejected", "wrong-type proof rejected"],
+  "idempotent_reproduction_checked": ["author_v3.py", "build_v3.py", "qcb.py generate", "qcb.py export", "report.py"],
+  "new_independent_nl_reviews": 0,
+  "isolated_lean_evaluation": "ENV_BLOCKED",
+  "real_model_baseline": "unmeasured",
+  "endpoint_calls": 0,
+  "production_library_changed": false,
+  "historical_release_files_changed": false,
+  "whole_graph_benchmark_complete": false
+}

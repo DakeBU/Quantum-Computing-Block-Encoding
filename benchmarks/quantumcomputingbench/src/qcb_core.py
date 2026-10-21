@@ -11,6 +11,7 @@ import json
 import math
 import re
 from pathlib import Path
+from qcb_integrity import matches, check_not_withdrawn
 
 SCHEMA_VERSION = "qcb.item.v1"
 TRACKS = {"knowledge", "reasoning", "quantum_semantics", "lean", "planned"}
@@ -36,7 +37,7 @@ def write_json(path, value, immutable=False):
         raise ValueError(f"frozen artifact differs: {path.name}; use a new version")
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(text, encoding="utf-8")
+    temporary.write_text(text, encoding="utf-8", newline="\n")
     temporary.replace(path)
 
 
@@ -196,7 +197,7 @@ def validate(items, snapshot, root=None):
                 path = (Path(root) / ref["path"]).resolve()
                 if not path.is_relative_to(Path(root).resolve()):
                     fail("source path escapes repository")
-                elif not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != ref["sha256"]:
+                elif not matches(path, ref["sha256"]):
                     fail("source digest mismatch")
         if not item["source_refs"]:
             fail("missing source evidence")
@@ -222,7 +223,7 @@ def validate(items, snapshot, root=None):
                 for review in accepted:
                     artifact = (Path(root) / review["artifact"]).resolve()
                     if (not artifact.is_relative_to(Path(root).resolve()) or not artifact.is_file()
-                            or hashlib.sha256(artifact.read_bytes()).hexdigest() != review.get("artifact_sha256")):
+                            or not matches(artifact, review.get("artifact_sha256"))):
                         fail("review artifact absent or changed")
                         continue
                     packet = read_json(artifact)
@@ -242,7 +243,7 @@ def validate(items, snapshot, root=None):
     return errors
 
 
-def assign_splits(items):
+def assign_splits(items, holdout_families=None):
     """Union families and target-solution overlap before assigning a split."""
     parent = list(range(len(items)))
     def find(i):
@@ -261,7 +262,8 @@ def assign_splits(items):
         components.setdefault(find(i), []).append(item)
     for component in components.values():
         group = "+".join(sorted({x["family"] for x in component}))
-        held = any(x["track"] == "planned" or x["topic"] in {"quantum_information", "scientific_computing"} for x in component)
+        held = any(x["track"] == "planned" or x["topic"] in {"quantum_information", "scientific_computing"}
+                   or x["family"] in (holdout_families or set()) for x in component)
         split = "test_public" if held else split_for(group, "shared")
         for item in component:
             item.update(split_group=group, split=split)
@@ -287,12 +289,13 @@ def model_input(item, exposure="closed_book", interface=None):
     return result
 
 
-def score(items, predictions, ratings=None):
+def score(items, predictions, ratings=None, formal_verifier=None):
     """Rubric marks are evaluator input, never inferred by keyword/word-count.
 
     Missing predictions score zero; uncertain/unreviewed NL judgments stay null.
     Exact grading does not imply semantic fidelity. Formal grading fails closed.
     """
+    check_not_withdrawn(items)
     by_id = {i["id"]: i for i in items}
     pred = {}
     for p in predictions:
@@ -317,6 +320,21 @@ def score(items, predictions, ratings=None):
             reason = "exact"
         elif item["answer_format"] == "lean":
             reason = "isolated_verifier_required"
+            # Only a live trusted verifier callback can award formal credit.
+            # Caller-supplied JSON receipts are never an acceptance mechanism.
+            if formal_verifier is not None:
+                receipt = formal_verifier(item, pred[key])
+                if receipt.get("status") == "certified":
+                    binding = {"item_id": key, "task_hash": item["task_hash"],
+                               "context_hash": item["context_hash"], "graph_version": item["graph_version"],
+                               "proof_sha256": hashlib.sha256(pred[key].encode()).hexdigest(), "isolated": True}
+                    if any(receipt.get(k) != v for k, v in binding.items()):
+                        raise ValueError("live verifier returned an unbound/nonisolated certificate")
+                    value, reason = 1.0, "isolated_formal_replay"
+                elif receipt.get("status") == "rejected":
+                    value, reason = 0.0, "candidate_rejected_not_mathematical_refutation"
+                else:
+                    reason = "verifier_blocked:" + receipt.get("reason", "unknown")
         elif key in marks:
             mark = marks[key]
             if (mark.get("prediction_hash") != digest(pred[key])

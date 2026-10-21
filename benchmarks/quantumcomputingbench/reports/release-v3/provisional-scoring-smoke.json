@@ -1,0 +1,8 @@
+{
+  "all_negative_controls_zero": true,
+  "all_positive_controls_one": true,
+  "fixture_only": true,
+  "model_performance_measured": false,
+  "provisional_exact_count": 5,
+  "warning": "Scorer plumbing checks, not independent NL validation or a model baseline"
+}

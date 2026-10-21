@@ -1,0 +1,168 @@
+{
+  "baseline_commit": "86b9e677566498da04faebcf4e5ed57f177c6bb1",
+  "new_independent_reviews": 0,
+  "transfers": [
+    {
+      "authored_sha256": "c5fa279a020a0ac93d98919e63aae00db256b8b5bbc81d41206fff869d1d0f43",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-93a09f278c059a57a12e",
+      "old_id": "qcb-a5eb27c37ee4d42a4495"
+    },
+    {
+      "authored_sha256": "fa959eccba66da945219c95c00fd45351d18bb9d2026a1183094082e7a65ea5d",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-50319d5f3f55c7b54564",
+      "old_id": "qcb-7dc0f2662452059027d9"
+    },
+    {
+      "authored_sha256": "62d34678247b4b2f5f3364f352cb5241be874974767b9f7009db3f2d3a7cb5a1",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-c48492565a0aca0bbf44",
+      "old_id": "qcb-4220360abcb7715d6d68"
+    },
+    {
+      "authored_sha256": "fdb3edb82e8a821eb54c171e09bbec59fcdbc10a1982d76ea8041a9f77af4e5e",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-e146e2a572a3f5879482",
+      "old_id": "qcb-2bc482874bfd082d4685"
+    },
+    {
+      "authored_sha256": "edad127cb7b24812471addfa80c6873791bdf12927c29d841a84771af7131b42",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-0114312eb64b6d738216",
+      "old_id": "qcb-1646baf547ca12996075"
+    },
+    {
+      "authored_sha256": "6783e626ca1429820513f559d218d52f33f03ab06737eeef33337c577105f1eb",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-5f21f62723a5d87ab091",
+      "old_id": "qcb-72aba766ed27879ef754"
+    },
+    {
+      "authored_sha256": "c4bed98889ee32f4b701046bb4e4201f39cc0ff852c4a9c49011772516d314b0",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-dd4d719e69bf777883b6",
+      "old_id": "qcb-2c2d3f98100884e506ba"
+    },
+    {
+      "authored_sha256": "fec53dc63f06cb05edb71256c5cfe2e99850ecb818d4389b6f2b68aa6dc10eee",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-8c3fa22bd6ad10255484",
+      "old_id": "qcb-c0af36ec57e5a7e131b9"
+    },
+    {
+      "authored_sha256": "7bfcc04132808f5100340d975e636145f03b6d461fd23eb861588d8f71f75f67",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-b9a7b2a73ff0963c1320",
+      "old_id": "qcb-dcaf3c7ed84ca29e03d6"
+    },
+    {
+      "authored_sha256": "c3d451ed42729ab10e1fd67e805463b8e11b28815da94815e8903c749691945b",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-40a4882e33e6dd73800f",
+      "old_id": "qcb-4b1cbb58b753dfbbb35a"
+    },
+    {
+      "authored_sha256": "d5405e05169837cc724a29838f8113308206124c828782cb148d56cf4a34b96d",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-f5b1f9df507f6ac9283d",
+      "old_id": "qcb-1b801cb763664a8409ef"
+    },
+    {
+      "authored_sha256": "2b857ef00f8eb1d491b8c09cebda5f6ace94ee5d2eae714a14fba902a12e81f4",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-2cdd78eeb72fde677022",
+      "old_id": "qcb-d6f4c2bffbc82a2e84cc"
+    },
+    {
+      "authored_sha256": "cdcd55b9667fa7aa6539e41caf95eb75bff95bc4c27978cdf2306a00b85c6826",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-486b9aec70c569866488",
+      "old_id": "qcb-1c82db36c7ad8f4ce139"
+    },
+    {
+      "authored_sha256": "d9f58480557689a4c53c8a513a76da1f33624769d5711c5a3c4fbcfc42fc1104",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-8f9946a41726f8015d5a",
+      "old_id": "qcb-c58d4afce67cf58f3719"
+    },
+    {
+      "authored_sha256": "2cf41db836b5e05b7db0e430b5267d082492d40b5dc95bf70b58259303a2b2c8",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-09248f41459defbf7817",
+      "old_id": "qcb-cfb087e0e92ca5fec80f"
+    },
+    {
+      "authored_sha256": "17f2b6f63a6f2c8bd2dcc6c757de7590ff23f4e2b831e891efb7ba3c49b973f1",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-06abc9602b94fbaa9b7f",
+      "old_id": "qcb-bbebdace0731bbab42a6"
+    },
+    {
+      "authored_sha256": "67b5798b8b46043c2de4b77b5c53499ac46a89e5960e02befa2a2fcb5e63b34b",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-bfb9e6dcbff5e726ec0e",
+      "old_id": "qcb-23c794a7e551bc6a39e9"
+    },
+    {
+      "authored_sha256": "0bbeb7e1cd7170edb74c0c8bbdd3ba2dc57183d5051cc7ceaa0aaa2043252ef0",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-f9c0c2fcf9cbae389111",
+      "old_id": "qcb-677cd60e7ddaedbf219d"
+    },
+    {
+      "authored_sha256": "a73ff6e4efb15a0c37181d4621f70e927bccf929f24f49dd318eb7712beeecc0",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-237d731d8a44aaf4afb4",
+      "old_id": "qcb-82511408ba7dfd170627"
+    },
+    {
+      "authored_sha256": "f2c6700e21abd7f8e119931fcbf16339269d0c990e56ccaeb59a6af049da5a90",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-c90c7afcd009e812ae4f",
+      "old_id": "qcb-e114c4c01df85cd92020"
+    },
+    {
+      "authored_sha256": "31a17c00ffe66b1f4b29e58e1d26f55535dedcd3c6e98895e0405383256aa1bc",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-c1e0219d1dc24b615295",
+      "old_id": "qcb-29743f43dafb3062f4b6"
+    },
+    {
+      "authored_sha256": "84e5cbe235ae15025d800a4a3006a39a9bfd9efa61c5693a9864a1a5e41d87f3",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-6d839eb906836883ccdb",
+      "old_id": "qcb-8ae60cfe4db36c855ba3"
+    },
+    {
+      "authored_sha256": "fc2df07ac2a9bb3b5199d318794f8360c98e122d4523f730356ee678fb228ab9",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-07aec2c5f00e7d131782",
+      "old_id": "qcb-0d1797ca333e7dd5fa0b"
+    },
+    {
+      "authored_sha256": "d35490e9d21b8fbedd11dbee4c22a5c85d5e8f074ee45ff44bb4b4297c46bdc3",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-6702a446193a42a15b47",
+      "old_id": "qcb-1c0ffd9d5ec143c97583"
+    },
+    {
+      "authored_sha256": "95a6d1ebe3672c11da17f3174568cd96092ccb0d40ed21ee8726bf904949b84d",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-4392f9ee285000ca498d",
+      "old_id": "qcb-11972a13faa611ae8bd2"
+    },
+    {
+      "authored_sha256": "5b6ea6eb82a3a3961b7a8744f4d52eb2f1b2cd579eb53617696a0f00ceca645e",
+      "method": "exact-content review inheritance, NOT a new independent review",
+      "new_id": "qcb-a950db1fdcd9d482cc2e",
+      "old_id": "qcb-58a7e4e3e10d34497d9f"
+    }
+  ],
+  "withdrawn": {
+    "k-becost-lexicographic-order": "abstract oracle unit count versus expanded elementary cost",
+    "neg-prepare-firstcolumn-positivity": "strict positivity is sufficient, not necessary",
+    "neg-ry-not-half-only-at-pi": "amplitude-plane angle and Bloch angle conflated",
+    "qs-resource-depth-parallel-vs-serial": "max ancilla bookkeeping is not disjoint physical peak"
+  }
+}

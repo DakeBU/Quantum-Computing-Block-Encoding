@@ -1,0 +1,6 @@
+# Local resumable authoring state is not released mathematical evidence.
+.local/
+data/private/
+data/raw/
+evaluation-logs/
+*.tmp

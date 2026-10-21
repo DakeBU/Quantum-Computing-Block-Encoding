@@ -56,6 +56,8 @@ import secrets
 import shutil
 import subprocess
 import tempfile
+import threading
+import time
 from pathlib import Path
 
 RECEIPT_VERSION = "qcb.lean_receipt.v1"
@@ -433,8 +435,10 @@ def container_command(runtime: str, image: str, root: Path, harness_dir: Path,
         "--pull", "never",
         "--env", "HOME=/work",
         "--workdir", "/work",
-        "--tmpfs", f"/work:rw,nodev,nosuid,size={LIMITS['work_size']}",
-        "--mount", f"type=bind,source={harness_dir},target=/harness,readonly",
+        "--tmpfs", f"/work:rw,nodev,nosuid,mode=1777,size={LIMITS['work_size']}",
+        # mkdtemp is host-user-only (0700). Bind the public file, not that
+        # directory, so the container's non-root UID can actually read it.
+        "--mount", f"type=bind,source={harness_dir / 'Harness.lean'},target=/harness/Harness.lean,readonly",
     ]
     for source, target in library_mounts(root):
         command += ["--mount", f"type=bind,source={source},target={target},readonly"]
@@ -449,6 +453,47 @@ def _force_remove(runtime: str, name: str) -> None:
                        capture_output=True, text=True, timeout=30, check=False)
     except (OSError, subprocess.SubprocessError):
         pass
+
+
+def _run_bounded(command):
+    """Drain both pipes with bounded memory; stop on output/wall caps.
+
+    Killing the runtime client is followed by container removal by verify's
+    finally block. A truncated/over-limit run is never accepted as a proof.
+    """
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    buffers = [bytearray(), bytearray()]
+    overflow = threading.Event()
+    def drain(pipe, index, cap):
+        try:
+            while chunk := pipe.read(4096):
+                room = cap - len(buffers[index])
+                buffers[index].extend(chunk[:max(0, room)])
+                if len(chunk) > room:
+                    overflow.set()
+                    break
+        finally:
+            pipe.close()
+    readers = [threading.Thread(target=drain, args=(process.stdout, 0, LIMITS["stdout_cap"]), daemon=True),
+               threading.Thread(target=drain, args=(process.stderr, 1, LIMITS["stderr_cap"]), daemon=True)]
+    for reader in readers:
+        reader.start()
+    deadline = time.monotonic() + LIMITS["wall_seconds"] + 60
+    failure = None
+    while process.poll() is None:
+        if overflow.is_set() or time.monotonic() >= deadline:
+            failure = "output_cap" if overflow.is_set() else "wall_timeout"
+            process.kill()
+            break
+        time.sleep(0.02)
+    process.wait(timeout=10)
+    for reader in readers:
+        reader.join(timeout=2)
+    if any(reader.is_alive() for reader in readers):
+        failure = failure or "output_pipe_stalled"
+    if overflow.is_set():
+        failure = "output_cap"
+    return process.returncode, buffers[0].decode("utf-8", errors="replace"), buffers[1].decode("utf-8", errors="replace"), failure
 
 
 def _receipt(status: str, reason: str, item: dict, image: str | None, **extra) -> dict:
@@ -509,6 +554,10 @@ def verify(root: Path, item: dict, proof: str, image: str | None = None) -> dict
         return _receipt("blocked", "env_blocked", item, image,
                         detail="Lean certification disabled (configs/offline.json "
                                "lean.status=ENV_BLOCKED); harness generated but not executed")
+    configured = json.loads((root / "benchmarks/quantumcomputingbench/configs/offline.json").read_text(encoding="utf-8"))["lean"]["container_image"]
+    if image != configured:
+        return _receipt("blocked", "image_not_vetted", item, image,
+                        detail="requested digest differs from the operator-vetted image")
 
     # 5. A container runtime must exist, with the image already present locally.
     runtime = detect_runtime()
@@ -531,16 +580,14 @@ def verify(root: Path, item: dict, proof: str, image: str | None = None) -> dict
     # 7. Replay inside the sandbox.
     tmp = Path(tempfile.mkdtemp(prefix="qcb-lean-"))
     try:
-        (tmp / "Harness.lean").write_text(source, encoding="utf-8")
+        (tmp / "Harness.lean").write_text(source, encoding="utf-8", newline="\n")
+        (tmp / "Harness.lean").chmod(0o444)
         try:
             command = container_command(runtime, image, root, tmp, container_name)
         except ValueError as error:
             return _receipt("blocked", "mount_error", item, image, detail=str(error))
         try:
-            result = subprocess.run(
-                command, capture_output=True, text=True,
-                timeout=LIMITS["wall_seconds"] + 60, check=False,
-            )
+            exit_code, stdout, stderr, failure = _run_bounded(command)
         except subprocess.TimeoutExpired:
             _force_remove(runtime, container_name)
             return _receipt("blocked", "wall_timeout", item, image, isolated=True,
@@ -551,11 +598,14 @@ def verify(root: Path, item: dict, proof: str, image: str | None = None) -> dict
             return _receipt("blocked", "runtime_error", item, image,
                             detail=f"runtime invocation failed: {error}")
 
-        stdout = (result.stdout or "")[: LIMITS["stdout_cap"]]
-        stderr = (result.stderr or "")[-LIMITS["stderr_cap"]:]
-        outcome = evaluate_report(result.returncode, stdout, stderr, nonce, policy)
+        if failure:
+            return _receipt("blocked", failure, item, image, isolated=True,
+                            theorem=theorem, harness_sha256=harness_sha)
+        outcome = evaluate_report(exit_code, stdout, stderr, nonce, policy)
         base = {"isolated": True, "theorem": theorem, "harness_sha256": harness_sha,
-                "exit_code": result.returncode, "runtime": runtime}
+                "exit_code": exit_code, "runtime": runtime,
+                "proof_sha256": hashlib.sha256(proof.encode()).hexdigest(),
+                "context_hash": item.get("context_hash"), "graph_version": item.get("graph_version")}
         if outcome["status"] == "rejected" and outcome["reason"] == "unproven":
             base["stderr"] = stderr.strip()
         status = outcome.pop("status")
@@ -563,4 +613,6 @@ def verify(root: Path, item: dict, proof: str, image: str | None = None) -> dict
         return _receipt(status, reason, item, image, **base, **outcome)
     finally:
         _force_remove(runtime, container_name)
+        if (tmp / "Harness.lean").exists():
+            (tmp / "Harness.lean").chmod(0o600)
         shutil.rmtree(tmp, ignore_errors=True)

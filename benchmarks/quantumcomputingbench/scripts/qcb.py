@@ -12,6 +12,7 @@ ROOT = BASE.parents[1]
 sys.path.insert(0, str(BASE / "src"))
 from qcb_core import (assign_splits, content_hash, digest, model_input, prepare,
                       read_json, score, validate, write_json)
+from qcb_integrity import check_not_withdrawn, snapshot_input_matches, text_sha
 
 
 def schema_check(items):
@@ -32,9 +33,14 @@ def load(version):
     snap = read_json(manifest / "snapshot.json")
     for relative, expected in snap["input_hashes"].items():
         path = (ROOT / relative).resolve()
-        if (not path.is_relative_to(ROOT.resolve()) or not path.is_file()
-                or hashlib.sha256(path.read_bytes()).hexdigest() != expected):
+        if not snapshot_input_matches(ROOT, relative, expected):
             raise ValueError("frozen source/adapter changed: " + relative + "; create an explicit migration/new version")
+    pipeline = manifest / "pipeline.json"
+    if pipeline.exists():
+        for relative, expected in read_json(pipeline)["input_hashes"].items():
+            path = (ROOT / relative).resolve()
+            if not path.is_relative_to(ROOT.resolve()) or not path.is_file() or text_sha(path) != expected:
+                raise ValueError("frozen benchmark pipeline changed: " + relative + "; use a new version")
     return snap, read_json(public / "items.json")
 
 
@@ -74,7 +80,9 @@ def generate_command(args):
         raise ValueError("limit must be nonnegative")
     if args.limit:
         authored = authored[:args.limit]
-    items = assign_splits(prepare(authored, snap))
+    split_manifest = manifest / "splits.json"
+    holdouts = set(read_json(split_manifest).get("holdout_families", [])) if split_manifest.exists() else set()
+    items = assign_splits(prepare(authored, snap), holdouts)
     reject(schema_check(items) + validate(items, snap, ROOT))
     if not args.dry_run:
         write_json(public / "candidates.json", items, immutable=True)
@@ -84,7 +92,7 @@ def generate_command(args):
             retained = read_json(public / "items.json")
             if [content_hash(i) for i in retained] != [content_hash(i) for i in items]:
                 raise ValueError("retained items differ from frozen authoring; use a new version")
-        write_json(manifest / "generation.json", {
+        generation = {
             "schema_version": "qcb.generation.v1", "snapshot_id": snap["snapshot_id"],
             "method": "curated-original-source-inspected-fixture", "model_validation": False,
             "seed": 0, "items": [i["id"] for i in items], "authoring_hash": digest(authored),
@@ -92,7 +100,14 @@ def generate_command(args):
             "limits": {"calls": 0, "spend_usd": 0}, "limit": args.limit,
             "batches": [p.name for p in sources], "superseded_candidates": sorted(superseded),
             "note": "No endpoint calls; session author/reviewer telemetry unavailable."
-        }, immutable=True)
+        }
+        generation_path = manifest / "generation.json"
+        if generation_path.exists():
+            previous = read_json(generation_path)
+            if any(previous.get(k) != generation[k] for k in ["authoring_hash", "batches"]):
+                raise ValueError("generation provenance differs; use a new version")
+        else:
+            write_json(generation_path, generation, immutable=True)
     print(json.dumps({"candidates": len(items), "dry_run": args.dry_run}))
 
 
@@ -104,7 +119,7 @@ def review_command(args):
     if len({r["key"] for r in records}) != len(records):
         raise ValueError("duplicate review key")
     relative = Path(args.reviews).resolve().relative_to(ROOT).as_posix()
-    artifact_hash = hashlib.sha256(Path(args.reviews).read_bytes()).hexdigest()
+    artifact_hash = text_sha(args.reviews)
     for record in records:
         item = by_key[record["key"]]
         if (record.get("content_hash") != content_hash(item)
@@ -183,22 +198,34 @@ def export_command(args):
     snap, items = load(args.version)
     reject(schema_check(items) + validate(items, snap, ROOT))
     released = [i for i in items if i["lifecycle"] == "released"]
+    check_not_withdrawn(released)
     manifest, public, _ = paths(args.version)
     write_json(public / "release.json", released, immutable=True)
     for setting in ["closed_book", "open_library"]:
         write_json(public / f"prompts-{setting}.json", [model_input(i, setting) for i in released], immutable=True)
-    write_json(manifest / "release.json", {"schema_version": "qcb.release.v1", "snapshot_id": snap["snapshot_id"],
+    release_manifest = {"schema_version": "qcb.release.v1", "snapshot_id": snap["snapshot_id"],
         "items_hash": digest(released), "ids": [i["id"] for i in released],
         "splits": {s: [i["id"] for i in released if i["split"] == s] for s in ["train", "dev", "test_public"]},
         "private_gold_published": False, "test_is_public": True, "baseline": "unmeasured",
-        "license": "See dataset card; external source text not redistributed."}, immutable=True)
+        "license": "See dataset card; external source text not redistributed."}
+    if (public / "provisional.json").exists():
+        provisional = read_json(public / "provisional.json")
+        if any(i not in items or i["lifecycle"] != "candidate" for i in provisional):
+            raise ValueError("provisional export differs from candidate ledger")
+        release_manifest.update(provisional_items_hash=digest(provisional), provisional_count=len(provisional))
+    write_json(manifest / "release.json", release_manifest, immutable=True)
     print(json.dumps({"released": len(released), "public_test": True}))
 
 
 def score_command(args):
-    _, public, reports = paths(args.version)
-    items = read_json(public / "release.json")
-    result = score(items, read_json(args.predictions), read_json(args.ratings) if args.ratings else None)
+    items = checked_provisional(args.version) if args.provisional else checked_release(args.version)
+    verifier = None
+    if args.verify_formal:
+        from qcb_lean import verify
+        verifier = lambda item, proof: verify(ROOT, item, proof, image=args.image)
+    result = score(items, read_json(args.predictions), read_json(args.ratings) if args.ratings else None,
+                   formal_verifier=verifier)
+    result["scope"] = "provisional_not_independently_reviewed" if args.provisional else "reviewed_release"
     if args.output:
         path = Path(args.output).resolve()
         if path.is_relative_to(ROOT):
@@ -210,7 +237,8 @@ def score_command(args):
 
 def verify_command(args):
     from qcb_lean import verify
-    _, items = load(args.version)
+    snap, items = load(args.version)
+    reject(schema_check(items) + validate(items, snap, ROOT))
     item = next(i for i in items if i["id"] == args.item)
     receipt = verify(ROOT, item, Path(args.proof).read_text(), image=args.image)
     print(json.dumps(receipt, indent=2))
@@ -220,11 +248,34 @@ def verify_command(args):
 
 def baseline_command(args):
     from qcb_runner import run
-    _, public, _ = paths(args.version)
-    items = read_json(public / "release.json")
+    items = checked_release(args.version)
     result = run(items, read_json(args.config), args.output, ROOT,
                  authorized=args.authorized, fixture=args.fixture)
     print(json.dumps({k: v for k, v in result.items() if k not in {"predictions", "calls"}}, indent=2))
+
+
+def checked_release(version):
+    snap, retained = load(version)
+    reject(schema_check(retained) + validate(retained, snap, ROOT))
+    manifest, public, _ = paths(version)
+    items = read_json(public / "release.json")
+    frozen = read_json(manifest / "release.json")
+    if digest(items) != frozen["items_hash"] or items != [i for i in retained if i["lifecycle"] == "released"]:
+        raise ValueError("release differs from its immutable manifest/admission ledger")
+    check_not_withdrawn(items)
+    return items
+
+
+def checked_provisional(version):
+    snap, retained = load(version)
+    reject(schema_check(retained) + validate(retained, snap, ROOT))
+    manifest, public, _ = paths(version)
+    items = read_json(public / "provisional.json")
+    frozen = read_json(manifest / "release.json")
+    if digest(items) != frozen.get("provisional_items_hash") or any(i not in retained for i in items):
+        raise ValueError("provisional artifact differs from frozen ledger")
+    check_not_withdrawn(items)
+    return items
 
 
 def main():
@@ -247,6 +298,9 @@ def main():
         if name == "batch":
             p.add_argument("--batch-size", type=int, default=128)
         if name == "score":
+            p.add_argument("--provisional", action="store_true", help="explicit opt-in to non-independent-review candidate diagnostics")
+            p.add_argument("--verify-formal", action="store_true", help="invoke the live isolated verifier, never accept supplied receipts")
+            p.add_argument("--image")
             p.add_argument("--predictions", required=True)
             p.add_argument("--ratings")
             p.add_argument("--output")

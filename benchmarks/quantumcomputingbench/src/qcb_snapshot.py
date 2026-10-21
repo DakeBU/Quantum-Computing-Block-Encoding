@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+from qcb_integrity import text_sha
 
 
 def _hash(data):
@@ -50,7 +51,7 @@ def snapshot(root):
     adapter_path = "benchmarks/quantumcomputingbench/src/qcb_snapshot.py"
     if (root / adapter_path).is_file():
         inputs.append(adapter_path)
-    hashes = {p: _hash((root / p).read_bytes()) for p in sorted(set(inputs)) if (root / p).is_file()}
+    hashes = {p: text_sha(root / p) for p in sorted(set(inputs)) if (root / p).is_file()}
     missing = [p for p in inputs[:14] if not (root / p).is_file()]
     if missing:
         raise ValueError(f"missing required snapshot inputs: {missing}")
@@ -150,7 +151,7 @@ def snapshot(root):
     except (OSError, subprocess.CalledProcessError):
         commit, timestamp = None, None
     return {"schema_version": "qcb.snapshot.v1", "snapshot_id": "qcb-snapshot-" + _digest(hashes)[:24],
-            "commit": commit, "source_timestamp": timestamp,
+            "commit": commit, "source_timestamp": timestamp, "hash_policy": "sha256-lf-text-v1",
             "timestamp_policy": "Git source time when available; archive time unknown, not invented",
             "canonical_remote": "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench.git",
             "input_hashes": hashes, "toolchain": (root / "lean-toolchain").read_text().strip(),
@@ -208,4 +209,6 @@ def coverage(snap, items):
             "benchmark_complete": False, "by_topic": by_topic, "released_axes": axes,
             "edge_types": dict(sorted(Counter(e["type"] for e in snap["edges"]).items())),
             "conditional_hyperedges": len(snap["hyperedges"]), "theorem_depth": "unknown; semantic steps and structural distance are distinct",
+            "distinct_released_target_nodes": len({n for i in released for n in i["target_nodes"]}),
+            "distinct_released_target_or_support_nodes": len(cover.keys() & {n["id"] for n in ledger if n["released_items"]}),
             "lean_certified_items": 0, "baseline": "unmeasured", "ledger": ledger}

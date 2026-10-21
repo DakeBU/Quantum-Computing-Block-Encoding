@@ -1,5 +1,27 @@
 # QuantumComputingBench dataset card (working release)
 
+## Current version: release-v3 (2026-10-21)
+
+26 unchanged authored items retain their original content-bound AI reviews.
+Four v2 answers are withdrawn from scoring/export, while original files remain
+audit-only. Twelve corrected/new candidates have actual local Lean reference
+evidence but await independent natural-language/source review; eight other
+historical candidates remain pending. Provisional material is NOT reviewed gold.
+
+There are 16 compiled fixed reference theorems, three real generated-harness
+replays, and negative controls rejecting wrong-type proofs and sorryAx. These
+are trusted-local-reference checks, not isolated model-output certification.
+The complete production Lean gate passed on identical source/configuration
+inputs. No production library theorem/source-review debt is newly promoted.
+
+The v3 public split uses explicit construction-family holdouts in addition to
+solution-family/target unions: 11 train, 4 dev, 11 test_public (7 core + 4 planned).
+This is retrospective public diagnostic evaluation: old questions/answers were
+already public. It is not an unseen, private or contamination-free assessment.
+Target-node coverage and target-or-support membership are reported separately.
+See the current README and repair audit; statements below about the original
+hash-based split describe the historical policy unless superseded here.
+
 ## Purpose and scope
 
 Original graph-grounded quantum-computing questions for diagnostic evaluation and
@@ -91,6 +113,7 @@ or automatic source-faithfulness checker. Finite counterexample checks do not
 establish arbitrary-width circuit theorems. Query, logical-gate, exact-real storage
 and finite-bit complexity remain distinct.
 
-No real model baseline has been measured. No new Lean theorem has been certified
-in this environment. See the current validation and coverage reports for the
-actual gates run, typed blockers and next resumable batch.
+No real model baseline has been measured. Local fixed reference theorems have
+been checked; isolated untrusted-output certification remains ENV_BLOCKED.
+See the current validation and coverage reports for the actual gates run,
+typed blockers and next resumable batch.

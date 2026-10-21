@@ -1,0 +1,22 @@
+{
+  "hash_policy": "sha256-lf-text-v1",
+  "input_hashes": {
+    "benchmarks/quantumcomputingbench/configs/baseline.example.json": "7e1b9d6d2887eec6f351514cd888d528216da1c3370a2f65dbaa8b562b5a4b64",
+    "benchmarks/quantumcomputingbench/configs/offline.json": "1f7b95120d3bc1c7d52eebb0276fca04766ef9efa3d9d353d47475902f7951a5",
+    "benchmarks/quantumcomputingbench/requirements.txt": "756cc9e506ae4ee1a6f6c0507088b5cfc0dc8ba350fb2d2d46f1ffa72033adb6",
+    "benchmarks/quantumcomputingbench/schemas/item-v1.schema.json": "5fe2426a481887d018f85b510bf4b713b6ebbf07d1745ecf2dc9375b69307ff2",
+    "benchmarks/quantumcomputingbench/scripts/author_breadth.py": "8f5db556390b678f7880ec94ec29a2a79ad73e61a2bbf399b36d81278b0a1254",
+    "benchmarks/quantumcomputingbench/scripts/author_v3.py": "72f60fcc7d61fedd1d54cfb5b5dd66d34302e7a1e286e43c8edf4aaea3a8e9f0",
+    "benchmarks/quantumcomputingbench/scripts/authoring_packets.py": "26f1fe4cf830c016f3773c9e5626f6f674700958770a18c9f67d4bcd4b94c279",
+    "benchmarks/quantumcomputingbench/scripts/build_v3.py": "ec219c3c84d5476ae8eb54c5ace7c82c103738245d955e8dad7fac2f44f6aa0f",
+    "benchmarks/quantumcomputingbench/scripts/check_references.py": "0f6cba2b6efed8c3d76e94cf8110fbcb68710ae8e1db3ad2064962a74fff3853",
+    "benchmarks/quantumcomputingbench/scripts/qcb.py": "9958d390a9921e84ee48352b4256cf86aea624fc8b89e5cdd67ba225806ac145",
+    "benchmarks/quantumcomputingbench/scripts/report.py": "958e9da9de8f0e7287111f33f5855ab0a0b97681b0a698e071e16e5f81ba6b7f",
+    "benchmarks/quantumcomputingbench/src/qcb_core.py": "c16da97e4e5ad2f29393e53a248ea1a65395070646b876bad957b507cbcd0ab0",
+    "benchmarks/quantumcomputingbench/src/qcb_integrity.py": "33afad5138917ba0dc066ef3ba1d24fc318189f43f60c9a101e499c73617de21",
+    "benchmarks/quantumcomputingbench/src/qcb_lean.py": "b308225d40e283ae324b85da5e1940da47185c70d9230f140acab3e63d9849ae",
+    "benchmarks/quantumcomputingbench/src/qcb_runner.py": "257d2204921e08026e0757869cb47ae36b79611aa2ed771b71e26af198b69956",
+    "benchmarks/quantumcomputingbench/src/qcb_snapshot.py": "fdcc2204c3f3c67509e69834fe40d97dfcd0a10f4972da879cbe832f1e88e895"
+  },
+  "purpose": "Bind validator/scorer/generator/schema/config separately from the mathematical-library snapshot"
+}
