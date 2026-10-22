@@ -1,0 +1,32 @@
+{
+  "schema_version": "qcb.curriculum.v1",
+  "version": "textbook-v1",
+  "publication_status": "editorial_preview_pending_stable_gates",
+  "parts": [
+    {
+      "id": "foundations", "title": "Shared mathematical foundations",
+      "summary": "Start with dimensions, inner products, isometries and explicit conventions. The same foundations support state preparation, block encoding and later quantum-information arguments.",
+      "topics": ["linear_algebra", "matrix_constructions", "wire_placement", "angle_approximation", "phase_semantics", "reversible_classical", "sparse_stencil_algebra", "stored_cost_refinement"]
+    },
+    {
+      "id": "state-preparation", "title": "State Preparation",
+      "summary": "Reason from a target amplitude family to normalization, structural representations and a preparation construction. Inspect sparse and zero boundaries before transferring an argument to a circuit interface.",
+      "topics": ["state_preparation", "structured_preparation"]
+    },
+    {
+      "id": "block-encoding", "title": "Block Encoding and oracle composition",
+      "summary": "Track the represented operator, its normalizer and the accepted subspace. Keep preparation, SELECT, unprepare, workspace cleanup and resource tiers visible when composing constructions.",
+      "topics": ["block_encoding", "oracle_composition"]
+    },
+    {
+      "id": "quantum-information", "title": "Quantum Information",
+      "summary": "Study state and channel representations, symmetry and tensor structure through primary-source-grounded problems. Planned curriculum anchors are not local Lean closure for the complete answers.",
+      "topics": ["planned_quantum_information", "planned_representation_qit", "planned_quantum_information_apps", "planned_tensor_symmetry"]
+    },
+    {
+      "id": "scientific-computing", "title": "Quantum Scientific Computing",
+      "summary": "Follow the roles of input states, operator access, polynomial transformations and output interpretation. Source-only algorithm questions keep their assumptions and query/gate/readout boundaries explicit.",
+      "topics": ["planned_scientific_computing", "planned_scientific_algorithms", "planned_polynomial_signals", "hamiltonian_composition"]
+    }
+  ]
+}

@@ -56,6 +56,7 @@ python3 -m unittest \
   website.scripts.test_deployed_research \
   website.scripts.test_site_contracts \
   website.scripts.test_sidebar_navigation \
+  website.scripts.test_quantumcomputingbench \
   website.scripts.test_teaching_enrichment \
   website.scripts.test_casebook_enrichment \
   website.scripts.test_casebook_polish
@@ -80,6 +81,7 @@ python3 website/scripts/repair_taxonomy_links.py --root _out/site
 # graph lens cannot be overwritten by a later generic renderer.
 python3 website/scripts/enrich_hermite_insight.py --root _out/site
 python3 website/scripts/research_atlas.py publish --root _out/site
+python3 website/scripts/quantumcomputingbench.py publish --root _out/site
 
 rm -rf _site
 mkdir -p _site/blueprint
@@ -89,11 +91,13 @@ touch _site/.nojekyll
 
 python3 website/scripts/check_site.py --root _site --require-blueprint
 python3 website/scripts/research_atlas.py check-site --root _site
+python3 website/scripts/quantumcomputingbench.py check-site --root _site
 if [[ "${CI:-}" == "true" ]]; then
   python3 -m pip install --quiet playwright
   python3 -m playwright install --with-deps chromium
   python3 website/scripts/test_research_browser.py --root _site --require-blueprint
   python3 website/scripts/test_math_browser.py --root _site --report _out/research-browser/math-browser-report.json
+  python3 website/scripts/test_quantumcomputingbench_browser.py --root _site
   cp _out/research-browser/browser-report.json _site/data/research/browser-report.json
 fi
 python3 website/scripts/check_source_links.py --root _site

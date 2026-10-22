@@ -8,6 +8,7 @@ on:
     paths:
       - "web/**"
       - "website/**"
+      - "benchmarks/quantumcomputingbench/**"
       - ".github/ISSUE_TEMPLATE/**"
       - ".github/PULL_REQUEST_TEMPLATE.md"
       - "CONTRIBUTING.md"
@@ -113,7 +114,7 @@ jobs:
           use-mathlib-cache: true
 
       - name: Install executable-verification dependencies
-        run: python3 -m pip install -r requirements-executable.txt
+        run: python3 -m pip install -r requirements-executable.txt -r benchmarks/quantumcomputingbench/requirements.txt
 
       - name: Revalidate the committed Hermite executable packet
         run: |
@@ -229,6 +230,7 @@ jobs:
           name: reader-publication-diagnostics
           path: |
             _out/research-browser
+            _out/qcb-browser
             _out/lean-gate.json
             _out/published-proof-restore.json
             _site/build-report.json

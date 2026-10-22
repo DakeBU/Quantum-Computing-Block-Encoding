@@ -7,6 +7,35 @@ Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
 
+## Hierarchical exercise book
+
+The website reader organizes the retained native cores into five parts:
+shared foundations, State Preparation, Block Encoding, Quantum Information,
+and Quantum Scientific Computing. Part pages lead to topics, then canonical
+exercise pages with assumptions first and hints, solutions, rubrics and evidence
+folded by default. It uses the existing QuantumComputinglib textbook shell.
+
+- [Mathematical reader (no Lean required)](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/non-lean/)
+- [Lean companion and diagnostic warmups](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/lean/)
+- [Shared core and split contract](shared/CONTRACT.md)
+- [Non-Lean collaborator goal](tracks/non-lean/AGENT_GOAL.md)
+- [Lean collaborator goal](tracks/lean/AGENT_GOAL.md)
+
+These are two views/contribution tracks, not duplicate datasets. Existing core
+contracts and splits are preserved; new UUID proposals remain uncounted until
+semantic admission. The reader is an editorial checkpoint, not a relabeling of
+the preview as stable. Inspect the remaining acceptance gates with:
+
+```sh
+python benchmarks/quantumcomputingbench/scripts/curriculum.py validate
+python benchmarks/quantumcomputingbench/scripts/curriculum.py export --output _out/qcb-cores.json
+python benchmarks/quantumcomputingbench/scripts/curriculum.py stable-check
+```
+
+`stable-check` intentionally exits 2 while reviews/reconciliation remain pending.
+No broad whole-graph completeness, new isolated evaluator or model baseline is
+implied by the website presentation.
+
 ## What is ready
 
 | Cohort | Current scope | Evidence and use |

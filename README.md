@@ -21,7 +21,20 @@ QuantumComputinglib connects readable quantum mathematics to Lean evidence. **AS
 
 [**QuantumComputingBench**](benchmarks/quantumcomputingbench/) · [**Agent build goal**](benchmarks/quantumcomputingbench/AGENT_GOAL.md)
 
+[**Exercise book**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/) ·
+[**Without Lean**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/non-lean/) ·
+[**Lean companion**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/lean/)
+
 </div>
+
+QuantumComputingBench's textbook checkpoint organizes the retained native QA
+into five parts with topic and exercise subpages. Both reader paths share core
+identities, source contracts and splits; Lean views do not create extra question
+counts. Solutions and evidence are folded by default. Editorial second-pass
+review and shared formal-view admission remain explicit stable-release gates.
+Contributors can use the [non-Lean goal](benchmarks/quantumcomputingbench/tracks/non-lean/AGENT_GOAL.md)
+or the [Lean goal](benchmarks/quantumcomputingbench/tracks/lean/AGENT_GOAL.md), under
+one [compatibility contract](benchmarks/quantumcomputingbench/shared/CONTRACT.md).
 
 ---
 

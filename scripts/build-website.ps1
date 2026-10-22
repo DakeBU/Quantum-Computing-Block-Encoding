@@ -125,6 +125,7 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   website.scripts.test_deployed_research `
   website.scripts.test_site_contracts `
   website.scripts.test_sidebar_navigation `
+  website.scripts.test_quantumcomputingbench `
   website.scripts.test_teaching_enrichment `
   website.scripts.test_casebook_enrichment `
   website.scripts.test_casebook_polish
@@ -161,6 +162,8 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/research_atlas.py publish --root _out/site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/quantumcomputingbench.py publish --root _out/site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 $site = Assert-RepositoryOutput "_site"
 [void](Assert-RepositoryOutput "_out/site")
@@ -181,12 +184,16 @@ New-Item -ItemType File -Path (Join-Path $site ".nojekyll") -Force | Out-Null
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $PythonCommand website/scripts/research_atlas.py check-site --root _site
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+& $PythonCommand website/scripts/quantumcomputingbench.py check-site --root _site
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($env:CI -eq "true") {
   & $PythonCommand -m pip install --quiet playwright
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   & $PythonCommand -m playwright install chromium
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   & $PythonCommand website/scripts/test_research_browser.py --root _site --require-blueprint
+  if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  & $PythonCommand website/scripts/test_quantumcomputingbench_browser.py --root _site
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   Copy-Item _out/research-browser/browser-report.json _site/data/research/browser-report.json
 }
