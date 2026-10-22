@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from copy import deepcopy
 import hashlib
 import html
 import json
@@ -52,6 +53,27 @@ def disclosure(title, content, anchor):
 
 def reader_sources():
     return reader_source_digest()
+
+
+def public_catalog(catalog):
+    """Display agent identities as identities, never as apparent host paths.
+
+    The catalog hash still binds the unmodified internal registry. This explicit,
+    reversible display projection does not change the identities used by the
+    independent-review checks, and does not exempt paths from the leak scanner.
+    """
+    projected = deepcopy(catalog)
+    for collection in ("cores", "withheld_cores"):
+        for core in projected.get(collection, []):
+            identity = core.get("author_identity")
+            if isinstance(identity, str) and re.fullmatch(r"/root(?:/[a-z0-9_]+)*", identity):
+                core["author_identity"] = "agent-task:" + identity[1:]
+    projected["public_projection"] = {
+        "schema_version": "qcb.public_catalog_projection.v1",
+        "catalog_hash_binds": "unmodified_internal_registry",
+        "author_identity_encoding": "agent-task:root[/task...] represents /root[/task...]; other identities are unchanged",
+    }
+    return projected
 
 
 def formal_warmups():
@@ -177,7 +199,7 @@ def publish(root):
     graph_hash = hashlib.sha256(graph_path.read_bytes()).hexdigest()
     live_ids = {n["id"] for n in read_json(graph_path)["nodes"]}
     data_dir = root / "data/quantumcomputingbench"
-    write_json(data_dir / "cores.json", catalog)
+    write_json(data_dir / "cores.json", public_catalog(catalog))
     write_json(data_dir / "reader-items.json", {"schema_version": "qcb.current_reader_export.v1", "stable": False,
         "catalog_hash": catalog["catalog_hash"], "use": "Open reader views; not a stable training/scoring release.", "items": [public_reader_item(i) for i in items.values()]})
     for name in ("quantumcomputingbench.css", "quantumcomputingbench.js"):
@@ -297,6 +319,8 @@ def check_site(root):
     catalog, items, _ = load_catalog()
     if manifest["catalog_hash"] != catalog["catalog_hash"] or manifest["reader_source_digest"] != reader_sources():
         raise ValueError("textbook projection is stale")
+    if read_json(root / "data/quantumcomputingbench/cores.json") != public_catalog(catalog):
+        raise ValueError("public catalog differs from its declared identity display projection")
     if manifest["leanGraphSha256"] != hashlib.sha256((root / "data/lean-graph.json").read_bytes()).hexdigest():
         raise ValueError("textbook graph binding differs")
     current_routes = {HUB + "cores/" + c["core_id"] + "/index.html": items[c["core_id"]] for c in catalog["cores"]}

@@ -102,6 +102,13 @@ public readback must pass independently.
 
 Both collaborator goals use the same registry, not competing datasets:
 
+The website's public catalog declares a lossless display projection for agent
+author identities: `agent-task:root/task` represents the internal identity
+`/root/task`. Its catalog hash continues to bind the unmodified internal
+registry. Review independence is checked against the original identities;
+the publication path-leak scanner is unchanged. This display distinction does
+not alter questions, mathematical core IDs, contracts, splits or evidence.
+
 1. Export the current registry before authoring and before submitting a PR.
    Inspect exact question version, contract hash, family, split, graph snapshot
    and open proposals. Advisory reservations are not distributed locks.

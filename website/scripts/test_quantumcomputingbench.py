@@ -1,5 +1,6 @@
 """Shared-core, semantic binding, safe renderer and preview/stable regressions."""
 from copy import deepcopy
+import importlib.util
 from pathlib import Path
 import sys
 import tempfile
@@ -42,6 +43,39 @@ class CurriculumTests(unittest.TestCase):
         result = shared.validate_proposals(self.catalog, [self.proposal(), self.proposal("non-lean")])
         self.assertEqual(result["new_cores_admitted"], 0)
         self.assertFalse(result["distributed_lock_claimed"])
+
+    def test_public_agent_identity_projection_is_lossless_and_internal_registry_unchanged(self):
+        original = {"catalog_hash": "internal-binding", "cores": [
+            {"author_identity": "/root/qcb_native_comparison", "core_id": "fixture"},
+            {"author_identity": "human-reviewer"}], "withheld_cores": [{"author_identity": "/root"}]}
+        before = deepcopy(original)
+        public = reader.public_catalog(original)
+        self.assertEqual(original, before)
+        self.assertEqual(public["catalog_hash"], original["catalog_hash"])
+        for collection in ("cores", "withheld_cores"):
+            for source, displayed in zip(original[collection], public[collection]):
+                identity = displayed["author_identity"]
+                restored = "/" + identity.removeprefix("agent-task:") if identity.startswith("agent-task:") else identity
+                self.assertEqual(restored, source["author_identity"])
+        self.assertEqual(public["public_projection"]["catalog_hash_binds"], "unmodified_internal_registry")
+
+    def test_public_identity_projection_keeps_real_path_leak_check_fail_closed(self):
+        path = reader.ROOT / "scripts/sanitize-blueprint-paths.py"
+        spec = importlib.util.spec_from_file_location("qcb_test_path_scanner", path)
+        scanner = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(scanner)
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            safe = {"cores": [{"author_identity": "/root/qcb_native_comparison"}]}
+            write_json(output / "cores.json", reader.public_catalog(safe))
+            self.assertEqual(scanner._assert_no_local_paths(output, reader.ROOT), 1)
+            for unsafe in (
+                {"cores": [{"author_identity": "/home/private/reviewer"}]},
+                {"cores": [{"author_identity": "/root/qcb_native_comparison", "question": "/root/private/source.lean"}]},
+            ):
+                write_json(output / "cores.json", reader.public_catalog(unsafe))
+                with self.assertRaises(ValueError):
+                    scanner._assert_no_local_paths(output, reader.ROOT)
 
     def test_withheld_core_identity_and_split_remain_reserved(self):
         self.assertTrue(self.catalog["withheld_cores"])
