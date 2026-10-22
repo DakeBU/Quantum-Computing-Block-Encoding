@@ -1,0 +1,74 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-la-220",
+  "supersedes_key": "qcb-core-la-220",
+  "supersedes_item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-la-220-textbook-v1-actual-closed-chain-bond-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer/rubric/exposition-only correction. The literal question already asks about the ACTUAL returned chain and includes n+1 cores, so the answer can supply the omitted n=0 dependence and refute D-only characterization without changing its question. Do not substitute evaluation of the upper bound for actual maxBond. Preserve all nine fields and3 exact ordered step-node lists. Unchanged contract hashd725a753f5c011ea653c8e37c9c5de99b25a49b605224057e1426c5cde0d6e5c.",
+  "reference_answer": "The theorem maxBond(result)<=max(D,1) is a structural upper bound for the returned dependent chain, not an equality by itself and not the minimal rank needed to represent its amplitudes. maxBond includes both outer bond dimensions. Closing the left and right boundaries makes those dimensions one, so maxBond is always at least one even when an internal typed bond has dimension zero.\n\nTo answer the question about the ACTUAL bond, inspect length as well as D. If n=0 there is exactly ONE stored core. tailChain first contracts the right length-D boundary into that core, giving shape D->1; closeLeft then contracts the left vector into the SAME core, giving shape1->1 followed by nil(1). Thus actual maxBond=1 for EVERY natural D. In particular n=0,D=2 gives actual maximum1 even though the displayed bound is2; D alone cannot characterize when the returned maximum equals one.\n\nIf n>=1 there are at least two cores. The last is contracted to terminal bond1, the first to initial bond1, but one or more internal bonds remain dimensionD in the returned type. The producer does not canonicalize/compress them in response to zero or rank-deficient entries. Its typed maximum is therefore exactly max(1,D). Hence for multi-core outputs actual maxBond=1 when D=0 orD=1, and equalsD when D>=1 (at D=1 those descriptions coincide). For D>=2 it is greater than one. At D=0 there ARE zero-dimensional internal bonds in a multi-core chain, not 'no interior bonds'; all corresponding scalar amplitudes are zero because contraction includes an empty bond sum. The positive maximum is maintained by the outer unit bonds. In the single-core D=0 case its boundary contractions are empty sums as well, giving zero amplitudes but still a typed1->1 core. No normalization was assumed anywhere.\n\nThus the exact structural cases are: n=0 gives1 for allD; n>=1 gives max(D,1). These follow by unfolding the actual terminal/initial/tailChain/closeLeft producer and the maxBond recursion, and agree with its denotation/refinement theorem. They do not say that the represented tensor has minimal TT rankD: a chain with all-zero entries may retain typedD bonds while representing zero.\n\nFinally bond size by itself says nothing about construction traffic or runtime. There is a SEPARATE same-run theorem giving the exact-real stored-word total upper budget20D^2+30D+5n^2+7n+31, including boundary arithmetic/materialization, copied table references and nodes; ofTable_certified combines its value refinement with that bound. It is not derived from maxBond alone, not an exact attained cost identity, and not full arbitrary-precision finite-bit runtime. A static source reading neither executes that producer nor rechecks its kernel proofs.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Separates the structural upper bound from actual typed maxBond/minimal tensor rank, explains outer unit boundaries and retained internal dimensions."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Derives actual maxBond=1 for n=0 and every D; for n>=1 derives max(D,1), hence1 at D0/1 andD for D>=1. Correctly retains zero-dimensional internal bonds at D0 and notes zero amplitudes/no normalization premise."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Keeps actual bond structure separate from the source's separately proved same-run exact-real cost upper bound and finite-bit runtime; does not infer cost or minimal rank from maxBond."
+    }
+  ],
+  "exposition": {
+    "core_summary": "One closed core has only unit scalar boundaries and actual maximum bond1 for everyD. With at least two cores the typed internalD bonds remain, giving actual max(D,1); this structural fact is separate from minimal tensor rank and construction cost.",
+    "semantic_steps": [
+      {
+        "claim": "Closing both boundaries on one core gives shape1->1; with multiple cores, only outer bonds collapse while typed internalD bonds remain.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines"
+        ]
+      },
+      {
+        "claim": "The actual maximum is1 for n0 regardless ofD, and max(D,1) for n>=1; evaluating the upper bound alone cannot distinguish these length cases.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond"
+        ]
+      },
+      {
+        "claim": "Actual bond dimensions, minimal representation rank and the separately bounded same-run exact-real construction work are distinct quantities.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+      "sha256_lf": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+      "anchor": "Complete module read: terminal/initial/tailChain/closeLeft/ofTable11-61, full value/refinement64-124, all charged work proofs and same-run budget, ofTable_maxBond249-254 and ofTable_certified257-265. Single-core branch closes the same core twice."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredTensorTrain.lean",
+      "sha256_lf": "086a876a80de90eee79ded827c2fc8f1e4eab7f5ca3e31f5025c2eec1649e0da",
+      "anchor": "Read complete operative StoredCore/denoteCore/dependent StoredChain/denoteChain definitions19-32 and sumEntries source; a denotation preserves the typed bonds, not a rank compression."
+    },
+    {
+      "path": "QuantumBlockEncoding/MatrixProductChain.lean",
+      "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+      "anchor": "Complete module read: exact tailChain20-24, closeLeft38-40, ofKernel53-54, full scalar-contraction and maxBond proofs64-77, including n0."
+    },
+    {
+      "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+      "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+      "anchor": "Read actual dependent Chain24-26 and complete maxBond197-199 recursion, plus the previous complete module exposure. Maximum includes nil/boundary dimensions and does not inspect numerical entries."
+    }
+  ],
+  "execution": "Private author /root/qcb_formal_view_audit, pending distinct exact-content review, not self-approval or blindness. Full actual frozen release.checked()[2] item, exact bound withdrawal and complete finding read at HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Prior rejected finding is by /root/qcb_native_comparison and was visible before this author reconstructed the actual typed producer; this is not a blind or independent approval of this candidate. Prior report reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json whole digestbe8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef; finding digest7496cd12e696b1f4e7cace614faf99aefa9b14628345b244e76462983278319b. Mandatory repository substantive-worker/publication/digestion/memory protocols used in this continuous task. Complete operative source/proof bodies inspected as scoped below; source LF bindings recomputed. Same frozen core/family/split/graph/source contract and exact original step count/ordered node lists retained, except the explicit first question correction when schema says question-v2. No fresh Lean/kernel/formal-view/native-formal execution, source-paper seal, new human/model approval, external acknowledgment, agent, build, canonical/source/policy/other-private/prior-evidence edit, admission, commit/push or PR107 mutation. Only this private candidate authored."
+}

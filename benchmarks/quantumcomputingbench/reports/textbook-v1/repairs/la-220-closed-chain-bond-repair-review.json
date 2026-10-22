@@ -1,0 +1,42 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "method": "independent-answer-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-la-220",
+  "repair_record_digest": "3f12d99d6c59e323aade2735a0015f43d0be7b4971c8f905cc4aaabdd28f24eb",
+  "original_item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+  "verdict": "accept",
+  "exposure": "Actual distinct reviewer /root/qcb_native_comparison; candidate author /root/qcb_formal_view_audit. I received root's objective, read the complete private _review_tmp/la-220-closed-chain-bond-repair.json and the actual historical prepared original via release.checked()[2] (complete mathematical/grading contracts, all steps and inherited metadata), then exact withdrawal and bound finding. Prior LA013/219/220 findings were authored by this same reviewer; prior LA112/119 findings were by the candidate author. Those exposures and prior source/cohort work are disclosed; no blindness or independent acceptance of my own authorship is claimed. This reviewer did not author these candidates. Withdrawal reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json, exact report be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef, finding 7496cd12e696b1f4e7cace614faf99aefa9b14628345b244e76462983278319b and full predecessor 89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c recomputed/matched. Proposed canonical candidate locator benchmarks/quantumcomputingbench/shared/repairs/la-220-closed-chain-bond-repair.json; only its private bytes were inspected. This task writes only NEW private _review_tmp/la-220-closed-chain-bond-repair-review.json; it installs no canonical bytes. Mechanical inspection used release/qcb_core/qcb_textbook_policy helpers at observed HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1; these incidental scripts/policy are not mathematical source dependencies and are not in source_checks. No external paper/PDF retrieval, visual-source claim, source-paper seal, fresh kernel/build/compiler/production execution, whole-NL formal certification, human/expert/model identity, selfapproval, admission, global-dedup, new agents, canonical/candidate/prior-artifact edits, commits/push or PR107 mutation. Acceptance is exact-content answer-successor mathematics/source correspondence only.",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "d725a753f5c011ea653c8e37c9c5de99b25a49b605224057e1426c5cde0d6e5c",
+    "literal_question_fit": "The unchanged question explicitly concerns the actual returned n+1-core object. An answer-only repair can state that D alone is insufficient and supply the admitted n=0 branch; it need not revise the question to make a false D-only characterization true. The new answer/rubric/exposition distinguish actual typed maximum from an upper bound and minimal tensor rank.",
+    "preserved_scope": "All nine CONTRACT_FIELDS remain unchanged; this is an answer/rubric/exposition correction, not an undeclared question version. Exact schema13 fields, original core/family/split/graph/source_refs and 3 ordered per-step node lists checked. Candidate source LF bindings matched current local files. Distinct review does not itself authorize publication or infer predecessor verdict inheritance."
+  },
+  "substantive_reconstruction": {
+    "single_core": "For n=0, tailChain reads the sole D→D core and terminal contracts its right D boundary to produce D→1 followed by nil1. closeLeft then contracts the left D vector into this SAME core, leaving one1→1 core and nil1. Unfolding maxBond therefore gives exactly1 for every D, not just D=0 or1. This follows from the actual producer's shape, independent of entries; D=2 is already a counterexample to interpreting the bound's value as the attained maximum.",
+    "multiple_core_and_zero": "For n>=1, closeLeft changes the first bond to1 and terminal changes the last bond to1, but at least one typed internal D bond remains. maxBond recursion therefore gives exactly max(D,1). For natural D this is1 at D=0 or1 and D for D>=1. At D=0 there are zero-dimensional INTERNAL bonds rather than no internal bonds; every scalar contraction contains an empty sum and is zero. The single-core D=0 boundary contractions also yield zero entries with typed1→1 boundaries. No normalization or rank-compression premise is hidden.",
+    "scope_and_cost": "The candidate's three ordered steps and rubric now capture both length cases. Numerical zero/rank deficiency does not alter the producer's stored dimensions, so none is a minimal-TT-rank claim. The separately proved same-run cost upper budget20D^2+30D+5n^2+7n+31 includes terminal/initial materialization, stored reference traffic and nodes, and is not derived from maxBond or asserted as an exact attained cost. Its exact-real/word model is explicitly not complete finite-bit runtime. No source producer was executed or kernel proof replayed."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+      "sha256_lf": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+      "anchor": "Read complete current producer and all value/refinement/work/maxBond/certified proof bodies. terminal closes the final D boundary; closeLeft closes the initial boundary on the actual returned first core. n=0 closes the same sole core twice, unlike multi-core typed internal D bonds."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredTensorTrain.lean",
+      "sha256_lf": "086a876a80de90eee79ded827c2fc8f1e4eab7f5ca3e31f5025c2eec1649e0da",
+      "anchor": "Read complete operative StoredCore/denoteCore, dependent StoredChain/denoteChain and sumEntries definitions/proofs (first approximately88 lines). Denotation preserves typed dimensions and empty bond sums are zero. The rest of the canonicalization/cost module is not newly claimed audited for this structural use."
+    },
+    {
+      "path": "QuantumBlockEncoding/MatrixProductChain.lean",
+      "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+      "anchor": "Read the complete module and all proof bodies: exact tailChain, closeLeft/ofKernel, scalar contraction, n=0 versus successor structure and maxBond/storage bounds. The asserted actual maxima are reconstructed from these definitions rather than by turning an inequality into equality."
+    },
+    {
+      "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+      "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+      "anchor": "Personally read complete module/proof bodies in the preceding SP117 review; unchanged whole LF hash revalidated here. Operative dependent Chain/Core and maxBond recursion include all boundaries and never inspect tensor entries, so typed maximum is distinct from minimal tensor rank."
+    }
+  ]
+}

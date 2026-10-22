@@ -1,0 +1,73 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-be-003",
+  "supersedes_key": "qcb-core-be-003",
+  "supersedes_item_digest": "a757beddff8a7a05762348e416f2e50a373efa53005468c33f43d4ea53b61de8",
+  "supersedes_contract_hash": "44e0c8e158d38e93a29891a143cf773aecbf6f7aada292309b5f9c96e67ba1a8",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-be-003-textbook-question-v2-range-completion-question-successor",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 clarification of the question/explicit-assumption range mismatch. Keep the inherited positive premise visible and ask to assess the old broader wording plus a labeled extension, rather than silently changing assumptions. Same nonunique-completion target; no false claim that the original witness mathematics was invalid. Exact predecessor contract hash 44e0c8e158d38e93a29891a143cf773aecbf6f7aada292309b5f9c96e67ba1a8. Preserve core/family/split/frozen graph/source scope, 3 semantic steps and each ordered per-step supporting-node list. Only question changes among the nine CONTRACT_FIELDS; all other8 fields inherited literally. Old/new requested reasoning is not claimed equivalent. No new core, selfapproval, formal transfer or admission.",
+  "question": "Keep total dimension2, the single system index embedded at total index0, and real orthogonal matrices. The inherited explicit assumption is 0<x<1. The historical question instead wrote 0<|x|<1: identify this range discrepancy rather than silently replacing the inherited assumption. Under the standing positive range, refute the claim that target clean entry U(0,0)=x plus orthogonality determines U uniquely: exhibit and verify two distinct orthogonal2x2 completions. As a separately identified extension, assess whether the SAME formulas also work for negative x satisfying0<|x|<1, without calling those x admissible under the inherited positive premise. Specify which entries a clean-block certificate fixes, how orthogonality couples the remaining entries, and why reading only CLEAN outputs of every clean-basis input is equivalent information. Distinguish this projected action from specifying the full output vector. State precisely what nonuniqueness does and does not imply about completion families or implementation costs.",
+  "reference_answer": "Under the actual standing assumption0<x<1 let s=sqrt(1-x²)>0. Take U_rot=[[x,-s],[s,x]] and U_ref=[[x,s],[s,-x]]. Their clean entry is x. Each pair of columns has squared norms x²+s²=1 and cross product0: for U_rot it is -xs+sx; for U_ref it is xs-sx. Hence U_rot^T U_rot=U_ref^T U_ref=I2; square finite matrices with orthonormal columns are orthogonal, and direct row calculations also give U_rot U_rot^T=U_ref U_ref^T=I2. They differ at(0,1), since s>0; their determinants are+1 and-1. This refutes uniqueness under the inherited positive range.\n\nThe historical positive assumption and broader absolute-value wording are not identical domains. The displayed construction in fact depends only on|x|<1, so it separately extends to every negative x with0<|x|<1, using the positive real square root of1-x². This extension is not an override of the frozen positive assumption. At x0 the same two matrices are still distinct; at|x|1 the s-based off-diagonal distinctness argument degenerates and must not be used, though other completions may remain. These boundary observations do not change the requested interior domain.\n\nThe exact embedded compression fixes only U00=x. It fixes neither all of row0 nor all of column0, and off-clean entries are NOT independent arbitrary numbers: row/column norms and mutual orthogonality constrain them. In these witnesses the full first column even happens to coincide, while the second column can still have either orthogonal sign. In real dimension2 the completion set for a fixed interior x is finite (indeed the sign choices give four completions), so two witnesses do not prove an infinite family in this fixed setting. Larger spaces can have continuous freedoms, but no universal infinite-family statement is needed.\n\nThe source cleanBasisActionAmplitude applies U to an embedded basis input and reads only an embedded CLEAN output. Each such amplitude is exactly one clean-block entry; quantifying over all clean inputs/outputs is therefore equivalent to the projected block equality, as the complete bridge proof shows. It is not a certificate specifying the entire clean-input output vector or its leakage, nor is it intrinsically stronger information. Full-output action data would be a different contract.\n\nA alone thus does not select a unique U, circuit, depth, ancilla layout or resource count. Different completions need not have proven different optimal costs, and even one fixed U can have artificially padded implementations. The abstract candidate records store resource/verification fields separately; their presence is not a new unitarity/circuit theorem. Real square-root witnesses above are mathematical real matrices, not claims that the rational scalar backend or a finite gate compiler implements them exactly for arbitrary x. No normalization, cleanup, success probability or resource synthesis follows from this nonuniqueness example.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Uses the inherited positive range explicitly and diagnoses the historical absolute-value mismatch; verifies two distinct orthogonal completions and separately identifies the negative-x extension without overriding assumptions."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Identifies U00 as the fixed compressed entry, with coupled rather than independently free off-block data; does not claim a continuous family for fixed real dimension2."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Explains the clean-output-only action/block equivalence versus full-output data, and separates nonuniqueness from unproved cost, ancilla or circuit claims."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The inherited domain is0<x<1; the historical0<|x|<1 phrase is explicitly assessed, and the clean compression fixes U00 only. Rotation/reflection witnesses share U00=x and satisfy both Gram identities; they are distinct for s>0, with any negative-x extension explicitly outside the retained positive premise. Projected clean-basis action carries the same information as the clean block, not the full output vector; off-block completions and implementation resources are not uniquely determined.",
+    "semantic_steps": [
+      {
+        "claim": "The inherited domain is0<x<1; the historical0<|x|<1 phrase is explicitly assessed, and the clean compression fixes U00 only.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy"
+        ]
+      },
+      {
+        "claim": "Rotation/reflection witnesses share U00=x and satisfy both Gram identities; they are distinct for s>0, with any negative-x extension explicitly outside the retained positive premise.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+          "declaration:QuantumBlockEncoding.VerifiedOperatorBlockEncoding"
+        ]
+      },
+      {
+        "claim": "Projected clean-basis action carries the same information as the clean block, not the full output vector; off-block completions and implementation resources are not uniquely determined.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "Actual operative definitions and complete proof bodies read: Complete cleanBlockBy definition and product embedding, lines 38-63; matrix-level Gram predicates, lines 23-36. Static source evidence only; no new kernel execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "sha256_lf": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+      "anchor": "Actual operative definitions and complete proof bodies read: Complete cleanBasisActionAmplitude, projected-entry bridge and pointwiseProjection_iff_cleanBasisAction definitions/proofs, lines 249-294; this action reads only clean outputs. Static source evidence only; no new kernel execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/BlockEncoding.lean",
+      "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+      "anchor": "Actual operative definitions and complete proof bodies read: Complete OperatorBlockEncodingCandidate and VerifiedOperatorBlockEncoding records, lines 103-134; resource data and proof obligations are separately recorded. Static source evidence only; no new kernel execution."
+    }
+  ],
+  "execution": "Private authorship by actual /root/qcb_boundary_repair_review, not an independent approval of this candidate. Full actual historical release.checked()[2] record, all question/assumption/convention/reference/rubric/step/source/metadata fields, exact bound withdrawal and full prior finding were read. Prior exposure includes related Hermite/QIT/source review tasks, parent's six-item repair focus; no blindness claimed. Reserved withdrawal row digest 3dd36a6626ed101efc67db0fd48056af9b5b47716bdfa37411b372ae8d7a58ce; prior review reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json whole digest 3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf; item-finding digest ce9239275d214f69c3f75465f848a35a5c123c4d0e836e54b2cc41a9c080ee07. Those prior findings identify defects, not approval of my candidate. Observed local HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Mandatory repository instructions/protocols were read fully in this continuous context and checked unchanged since prior gate; substantive-worker skill refreshed. Operative local source definitions and complete relevant proof bodies were personally read; broader unrelated modules and transitive Mathlib proof closure are not claimed fully audited. No external source-paper/PDF seal, human/expert/model approval, Lean/kernel/nativeformal execution, build, agent, canonical/source/policy/frozen/older-private edit, commit/push or currentPR107 change. Algebraic/phase/resource reconstruction is written mathematics, not newly executed formal evidence. Planned canonical destination benchmarks/quantumcomputingbench/shared/repairs/be-003-range-completion-question-successor.json; actual authored/read location _review_tmp/be-003-range-completion-question-successor.json only. Portable provenance names are repository/workspace-relative. Distinct exact-content review and root reconciliation required before any transport/admission."
+}

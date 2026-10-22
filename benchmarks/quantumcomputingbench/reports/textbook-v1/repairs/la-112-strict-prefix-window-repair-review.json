@@ -1,0 +1,32 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "method": "independent-answer-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-la-112",
+  "repair_record_digest": "fc6f47406babdf7ca0cf529d9cca366ccdef61d3ea18e9dbfabbdd02d6b346ad",
+  "original_item_digest": "5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e",
+  "verdict": "accept",
+  "exposure": "Actual distinct reviewer /root/qcb_native_comparison; candidate author /root/qcb_formal_view_audit. I received root's objective, read the complete private _review_tmp/la-112-strict-prefix-window-repair.json and the actual historical prepared original via release.checked()[2] (complete mathematical/grading contracts, all steps and inherited metadata), then exact withdrawal and bound finding. Prior LA013/219/220 findings were authored by this same reviewer; prior LA112/119 findings were by the candidate author. Those exposures and prior source/cohort work are disclosed; no blindness or independent acceptance of my own authorship is claimed. This reviewer did not author these candidates. Withdrawal reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json, exact report a020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22, finding c618ea778aa8275a3d95f0c0e2c59885b526ebfed9375799565a49d01a9085f6 and full predecessor 5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e recomputed/matched. Proposed canonical candidate locator benchmarks/quantumcomputingbench/shared/repairs/la-112-strict-prefix-window-repair.json; only its private bytes were inspected. This task writes only NEW private _review_tmp/la-112-strict-prefix-window-repair-review.json; it installs no canonical bytes. Mechanical inspection used release/qcb_core/qcb_textbook_policy helpers at observed HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1; these incidental scripts/policy are not mathematical source dependencies and are not in source_checks. No external paper/PDF retrieval, visual-source claim, source-paper seal, fresh kernel/build/compiler/production execution, whole-NL formal certification, human/expert/model identity, selfapproval, admission, global-dedup, new agents, canonical/candidate/prior-artifact edits, commits/push or PR107 mutation. Acceptance is exact-content answer-successor mathematics/source correspondence only.",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "77c102094d16f2fe997c42dfd3e75fcf661263f56d7065fd074fbd91556f1014",
+    "literal_question_fit": "The literal question and strict UpperPrefix convention are sound; only the old proof's false diagonal-zero premise needed correction. The candidate keeps that question and the entire original rubric verbatim, replacing the preservation argument with the actual later row-window inequality. This is genuinely answer-only.",
+    "preserved_scope": "All nine CONTRACT_FIELDS remain unchanged; this is an answer/rubric/exposition correction, not an undeclared question version. Exact schema13 fields, original core/family/split/graph/source_refs and 4 ordered per-step node lists checked. Candidate source LF bindings matched current local files. Distinct review does not itself authorize publication or infer predecessor verdict inheritance."
+  },
+  "substantive_reconstruction": {
+    "one_step": "For a real N×M matrix, UpperPrefix(A,k) quantifies old c<k and rows r>c only. At a real pivot k<N (with k<M for a processed column), every touched row is in [k,N-1], hence r>=k>c for every earlier c. The old-column entries of both rows of each Givens pair are therefore zero. Real row mixing keeps them zero, outside rows are unchanged, and source columnSweep_preserves_zero_column proves whole-column preservation under precisely that window premise. The old diagonal row c is below k and outside the window; I_2 at k=1 witnesses why A[c,c] need not vanish.",
+    "fresh_and_skipped": "Fresh column k is zeroed at rows r>k by the actual bottom-up sweep. Combining it with the preserved old columns yields index k+1. If k>=N, the procedure skips the sweep; the newly included c=k has no row r>k in Fin N, so its clause is vacuous and old clauses remain true. This is not an added pivot-existence/full-rank assumption.",
+    "whole_induction": "Starting at vacuous UpperPrefix(A,0), the actual remaining-column recursion advances one index at each swept or skipped column. At M, every actual c<M and r>c is covered, yielding the requested upper-trapezoidal residual. N=0, M=0 and zero pivots are harmless. The four exposition steps and unchanged rubric fit this proof; no cost/stability/finite-precision conclusion is inferred."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/RectangularGivens.lean",
+      "sha256_lf": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133",
+      "anchor": "Read the complete module and all proof bodies: actual sweep/skipped-pivot recursion, strict UpperPrefix definition, full one-column and remaining-columns preservation proofs, reduced_zero_below, reconstruction and resource-bound distinctions. The old diagonal is outside the later swept row window."
+    },
+    {
+      "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+      "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+      "anchor": "Read the complete module and every proof body in two consecutive regions: actual pair elimination and zero-pair behavior, row-window frame/zeroing/preservation, fullSweep/steps/action/length proofs, decomposeSO exact emitted length including identity rotations, inverse chronological reconstruction and matrix semantics. No fresh execution."
+    }
+  ]
+}

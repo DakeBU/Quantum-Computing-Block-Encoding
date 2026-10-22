@@ -1,0 +1,85 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-be-112",
+  "supersedes_key": "qcb-core-be-112",
+  "supersedes_item_digest": "c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19",
+  "supersedes_contract_hash": "f64837f9c986dd70c8674308b444a2520ddf8f79805e5f7866e5b114aefb2b7d",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-be-112-textbook-question-v2-unitarity-versus-adjoint-necessity",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-v2. The original literally requires explaining why unprepare MUST be the adjoint and phrases written matrix-factor order as 'then', while the old answer/rubric also claim deterministic selector cleanup. The valid product-unitarity theorem is retained, but the false necessity/cleanup demand becomes an explicit question to assess with counterexamples and chronological order is specified. This is not a silent answer-only weakening or a new source theorem. Only question changes among nine contract fields; retain the original three local certificate assumptions and convention that the CHOSEN unprepare stage is the conjugate transpose, same be-lcu-composite-unitary family/dev split, frozen graph/source_refs, five semantic steps and every original ordered per-step node list. Alternative finals below challenge a universal necessity inference; they do not override the chosen-architecture convention. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/be-112-unitarity-versus-adjoint-question-successor.json; authored/inspected only in private _review_tmp.",
+  "question": "On finite complex registers coefficient × (selector × system), write P_lift=I_coefficient tensor(PREPARE tensor I_system), A_lift for the selector/system-controlled coefficient-block family, and S_lift for the controlled system-permutation SELECT. The CHOSEN logical architecture is W=P_lift† S_lift A_lift P_lift. First state its chronological order on column states, distinguishing it from written matrix-factor order. Prove W unitary from the three local certificates already stipulated: PREPARE unitary on selector, every amplitude coefficient block unitary, and SELECT a basis permutation. Explain the role of tensor, block-diagonal, permutation, adjoint and product closure. Then assess rather than assume a necessity claim: does global unitarity force the final selector gate to equal PREPARE†? Compare using a known unitary replacement (including the identity) with requiring a complete inverse of PREPARE on the whole selector register. For designated clean coefficient/selector labels, distinguish both of these from preserving only the projected clean block and from deterministic auxiliary cleanup after the intervening stages. Give explicit small counterexamples wherever a stronger implication fails. Keep the source's chosen P_lift† S_lift A_lift P_lift architecture unchanged; alternatives test necessity and are not a redefinition of W.",
+  "reference_answer": "Use column-vector operator convention. The written product W=P_lift† S_lift A_lift P_lift acts chronologically as PREPARE, AMPLITUDE, SELECT, then PREPARE†. It does not apply the leftmost dagger first. All factors act on the same C×(S×H) register, so the products are typed; no clean input or postselection premise is needed for the GLOBAL unitarity proof.\n\n(1) P_lift=I_C tensor(P tensor I_H) is unitary because tensor products of unitary matrices are unitary, and the two identities and selector P are unitary. (2) P_lift† is unitary by adjoint closure of the unitary group. (3) A_lift is block diagonal over contexts (s,x), with coefficient block R_{s,x}; its adjoint product is block diagonal with blocks R_{s,x}†R_{s,x}=I_C, so it is unitary. S_lift is a basis-permutation matrix: each basis column is sent bijectively to |c,s,p_s(x)>, so its columns are orthonormal and it is unitary. (4) Closure under multiplication on the fixed total register now makes W a product of four unitaries. Explicitly,\nW†W=P_lift† A_lift† S_lift† P_lift P_lift† S_lift A_lift P_lift\n=P_lift† A_lift† A_lift P_lift=I;\nthe intervening cancellations use P_lift P_lift†=I, S_lift†S_lift=I and A_lift†A_lift=I. The reverse product is I as well. This argument is valid also for empty finite index sets; auxiliary clean labels are used only where they actually exist for a projected block or the examples below.\n\n(5) P† is the defined, sufficient adjoint/inverse choice, but global unitarity does NOT force that choice. Replacing the final selector factor by ANY unitary Q gives Q_lift S_lift A_lift P_lift, again unitary by the same product rule. In particular Q=I uses the known unitary identity and no additional unknown certificate; Q=P inherits unitarity from the existing PREPARE certificate. Thus the old claim that a different final gate cannot be guaranteed unitary from those facts is false. Its clean projected block generally changes: take singleton coefficient/system registers, P=H on a qubit selector, and A=S=I. The chosen W=H†H=I has clean scalar1; the unitary replacement Q=I gives W_Q=H with clean scalar1/sqrt(2). This is a precise distinction between global unitarity and intended LCU clean-entry correctness.\n\nA complete inverse requirement is stronger and does single out the adjoint: if QP=I on the ENTIRE selector space and P is unitary, multiply on the right by P† to get Q=P†. With nontrivial amplitude/SELECT in between, however, the final P† is not adjacent to the original P. Inverting P alone does not invert S_lift A_lift, and global product unitarity says nothing about deterministic auxiliary cleanup.\n\nPreserving only the clean projected block is weaker still. Let clean selector be0, D=diag(1,-1) on a qubit selector, and Q=D P†. Then Q is a distinct unitary with <0|Q=<0|P†. For clean injection J|x>=|c0,0,x>, the full replacement W_Q=D_lift W satisfies J†W_QJ=J†WJ, independently of the particular intervening A,S. This is a shared clean-row LCU subproof with the linked BE004 repair, not a separate new mathematical core. Requiring a particular projected entry/row does not uniquely specify all unitary columns or a full inverse. With singleton coefficient/system and P=I,A=S=I, W=I and W_Q=D already give an explicit distinct pair with the same clean scalar1.\n\nFor a direct failure of deterministic cleanup within the CHOSEN architecture itself, take singleton coefficient, selector/system qubits, P=H, amplitude I, and p_0=I,p_1=X for SELECT. On |0,0>, PREPARE then SELECT gives (|0,0>+|1,1>)/sqrt(2). The final P†=H gives (|0,0>+|1,0>+|0,1>-|1,1>)/2 in selector/system notation. Selector1 has probability1/2, despite all three local certificates. The clean projected block is (I+X)/2, not a deterministic normalized system action. In general coefficient leakage can occur too, since its amplitude gates need not fix the chosen clean coefficient label. A deterministic cleanup theorem would require the additional condition (I-JJ†)WJ=0; global unitarity alone does not imply it. This H/controlled-X witness is the same elementary boundary subproof used in the linked BE004 repair; the present core's main task remains assembling global unitarity rather than assigning stage roles.\n\nThe source therefore proves a sufficient product-unitarity theorem for its explicit adjoint architecture. It does not prove unique-final-gate necessity or a full-output cleanup property. No gate compilation, state-preparation success guarantee, query count or finite-bit resource theorem follows merely from this logical group-closure calculation.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Identifies the four written matrix factors and correct chronological action; derives lifted PREPARE, amplitude-family and SELECT unitarity from tensor, block-diagonal and permutation facts respectively."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Uses adjoint closure and multiplication closure (or equivalent explicit dagger-product cancellations) to prove the entire chosen product unitary without inserting a clean-input or cleanup hypothesis."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Distinguishes architectural P†/unique full inverse from a necessary condition for global unitarity: gives a certified alternative final gate such as I, shows its projected block can change, and also gives a distinct Q=D P† with the same clean row/block."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Refutes deterministic auxiliary cleanup after intervening operations using the fully evaluated H/controlled-X example; keeps projected unnormalized action, accepted labels and extra full-output cleanup condition separate. Does not turn group membership into a success/resource or uniqueness theorem."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The chosen PREPARE† SELECT AMPLITUDE PREPARE matrix is unitary by tensor/block/permutation, adjoint and product closure. Neither global unitarity nor a fixed clean projected block forces a unique final adjoint or deterministic auxiliary cleanup; full inverse uniqueness is a separate stronger requirement.",
+    "semantic_steps": [
+      {
+        "claim": "P_lift is unitary as the tensor lift of the stipulated selector PREPARE; its role is chronologically first despite being the rightmost written factor.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary"
+        ]
+      },
+      {
+        "claim": "P_lift† is unitary by adjoint closure of the unitary group, giving one certified final factor for the chosen architecture.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_unitary"
+        ]
+      },
+      {
+        "claim": "A_lift is unitary as a block-diagonal family of coefficient unitaries, and S_lift is unitary as the controlled basis permutation.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeLift_unitary",
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_unitary"
+        ]
+      },
+      {
+        "claim": "All four fixed-register factors are unitary, so their product is unitary by group closure (equivalently the explicit adjoint-product cancellations). No deterministic cleanup follows from that conclusion.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_unitary"
+        ]
+      },
+      {
+        "claim": "The architecture chooses P† and full inverse QP=I uniquely requires it, but global unitarity admits other certified final gates; a clean-row-fixing D also preserves the projected block, while the H/controlled-X example refutes automatic selector cleanup after intervening stages.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+      "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+      "anchor": "Personally read the complete module and all proof bodies: real rotations/clean-entry domain, reindex_unitary, blockDiagonal_unitary, permutation matrices and multiplication/reindex identities, exact product-register selector/amplitude/SELECT lifts and local unitary proofs, prepareAmplitudeSelectUnprepare definition and full unitary-group-closure proof. The source proves the chosen architecture and its unitarity, not uniqueness of its last gate or deterministic clean ancillas. Existing source text inspection only, not a fresh Lean run."
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+      "sha256_lf": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340",
+      "anchor": "Personally read the complete module and every proof body: basis-entry formulas, clean PREPARE column and adjoint row, amplitude/SELECT chronological propagation, projection through the clean bra, and the full projected clean-entry sum. These constrain clean matrix entries rather than all ancillary output sectors. Counterexamples/alternative clean-row completions in this candidate are author's written algebra, not newly certified Lean declarations."
+    }
+  ],
+  "execution": "Actual private author /root/qcb_native_comparison; pending distinct exact-content question-successor review, not selfapproval. I authored the earlier bound qcb-core-be-112 mathematical-reader finding; this is correction authorship, not a new independent acceptance of my own work. Root's linked-cohort objective and complete current historical prepared original via release.checked()[2] were read, including full question, answer, rubric, assumptions/conventions, source/graph metadata and every ordered semantic step. Whole predecessor digest c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19; original nine-field contract f64837f9c986dd70c8674308b444a2520ddf8f79805e5f7866e5b114aefb2b7d. Exact withdrawal report reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json, report digest 045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b and finding digest f19345e48c0c9646bc0181d7b8556e55c1901c2935d455fdc91715669016262e were recomputed and matched. Operative local source/proof bodies named in source_checks were personally inspected at observed HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Local text is the primary evidence inspected; no external source-paper/PDF retrieval, visual reading, new source-paper seal, whole-NL formal certification, kernel/build/compiler execution, human/expert/model or blind-review claim is made. Mathematical examples are explicit algebraic reconstructions, not a new Lean certificate. Only private _review_tmp/be-112-unitarity-versus-adjoint-question-successor.json is authored here; proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/be-112-unitarity-versus-adjoint-question-successor.json is a future destination, not installed/inspected canonical bytes. Portable workspace-relative provenance is intentional. All prior private artifacts and canonical/source/policy/currentPR107 files remain unedited by this task; no commits/push or extra agents. Cohort BE004/BE112 deliberately reuse the same clean-row/projection and H-controlled-X subproof; their register-role and global-unitarity targets remain separate. Shared mechanism is disclosed, not a global alias verdict, new-core/duplicate-count claim or publication admission. All original per-step node lists and their order/count are retained. Only question changes among the nine CONTRACT_FIELDS; the other eight, core/family/split/graph/source scope and conventions stay frozen. Successor nine-field contract hash f0d61f87e50ec90e5811ab7333684aaae090d01347814e037b5ed6c241ae9e61 is computed from the original contract with only this explicit replacement question; no unchanged-contract or predecessor-equivalence claim is made."
+}
