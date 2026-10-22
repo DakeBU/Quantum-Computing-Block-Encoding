@@ -7,6 +7,22 @@ This additive guard does not alter earlier pipeline hashes or claim new proofs.
 from qcb_nl import WITHDRAWN_NATIVE
 
 WITHDRAWN_KEYS = {
+    'qcb-core-be-102': 'Dirty-input loss of a clean-branch guarantee is not universal simultaneous arithmetic failure and scratch corruption.',
+    'qcb-core-be-104': 'Bare emitted gate products omit the compiler global phase and do not equal the claimed exact 0/1 permutation matrix.',
+    'qcb-core-be-108': 'Independent row/column permutations preserve unitarity; same-axis algebra closure is not a necessary condition.',
+    'qcb-core-be-112': 'Product unitarity neither forces the final adjoint nor guarantees deterministic selector cleanup.',
+    'qcb-core-be-119': 'Visible backend wire count is not established as the full physical count including internal oracle workspace.',
+    'qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso': 'Equivariance as a functional equation omits the linear-map premise used by Schur kernel/image reasoning.',
+    'qcb-core-plan-105-schur-lemma-scalar-over-alg-closed': 'The scalar-Schur question omits linearity; a nonlinear equivariant function need not be scalar.',
+    'qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional': 'The unrestricted abelian-group contract omits finite dimension and has an infinite-dimensional irreducible counterexample.',
+    'qcb-core-plan-107-pauli-twirl-maximally-mixed': 'The Pauli twirl expansion omits the right adjoint and contains a false noncommutative equality.',
+    'qcb-core-plan-108-character-is-class-function-degree': 'The scalar field convention is absent; trace of identity need not recover integer dimension in positive characteristic.',
+    'qcb-core-plan-203-povm-amplitude-amplification-query-count': 'The amplification proof assumes an input-state reflection and independent fresh trials absent from the access contract.',
+    'qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity': 'The complex-overlap proof drops a conjugation and equates 1-c^2 with 1-|c|^2.',
+    'qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary': 'Disjoint clean ancillas admit a common union projector; the proposed compensating PREP is also unnormalized.',
+    'qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute': 'The explanation conflates joint signal/index decoherence with an unchanged signal marginal and basis-input coherence.',
+    'qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary': 'The regime analysis mishandles zero entries and loses signed/complex amplitude phases through a magnitude-only rotation.',
+    'qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles': 'The resource ledger switches from original entry-bit queries to a derived angle oracle and omits conversion resources.',
     **WITHDRAWN_NATIVE,
     'qcb-core-sp-101': 'unasked degree-minimality overclaim; use exact degree upper-bound successor',
     'qcb-core-la-205': 'missing +2N write-budget term makes stated sum internally inconsistent',
@@ -52,7 +68,8 @@ def check_current_gold(items, *, frozen_preview_audit=False):
     if frozen_preview_audit:
         # Only reproduce the published historical preview for audit. Its CLI
         # separately refuses current native scoring/repackaging after a repair.
-        audit_only_keys = {'qcb-core-sp-002', 'qcb-core-sp-006', 'qcb-core-sp-011',
+        audit_only_keys = {'qcb-core-be-102', 'qcb-core-be-104', 'qcb-core-be-108', 'qcb-core-be-112', 'qcb-core-be-119', 'qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso', 'qcb-core-plan-105-schur-lemma-scalar-over-alg-closed', 'qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional', 'qcb-core-plan-107-pauli-twirl-maximally-mixed', 'qcb-core-plan-108-character-is-class-function-degree', 'qcb-core-plan-203-povm-amplitude-amplification-query-count', 'qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity', 'qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary', 'qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute', 'qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary', 'qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles',
+            'qcb-core-sp-002', 'qcb-core-sp-006', 'qcb-core-sp-011',
             'qcb-core-sp-105', 'qcb-core-sp-107', 'qcb-core-sp-108', 'qcb-core-sp-111',
             'qcb-core-sp-113', 'qcb-core-sp-115', 'qcb-core-sp-117', 'qcb-core-sp-119',
             'qcb-core-la-003', 'qcb-core-la-013', 'qcb-core-plan-003-density-set-convexity',

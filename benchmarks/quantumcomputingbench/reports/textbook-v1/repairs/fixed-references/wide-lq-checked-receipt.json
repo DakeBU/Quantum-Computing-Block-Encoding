@@ -1,0 +1,56 @@
+{
+  "schema_version": "qcb.inspected_wide_lq_contract_reference.v1",
+  "execution_class": "trusted_inspected_fixed_reference",
+  "isolated_prediction_evaluation": false,
+  "canonical_runner_sha256_lf": "4cab245793fa63acd9831098d1345cdf82cba5285ee17ed93d3d6949933db7e2",
+  "source_file": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/fixed-references/WideLQCostContract.lean",
+  "source_sha256_lf": "4b5c702e0a43f8d2acea7ffe0ca0d02d4c84f46a4723b8c8d2eb62da8819ac14",
+  "source_sha256_bytes": "4b5c702e0a43f8d2acea7ffe0ca0d02d4c84f46a4723b8c8d2eb62da8819ac14",
+  "repair_record_digest": "36db0e160d48b66509b15c1657d14312495b9be11d08eb942af40f5971e7314e",
+  "lean_version": "Lean (version 4.29.1, x86_64-w64-windows-gnu, commit f72c35b3f637c8c6571d353742168ab66cc22c00, Release)",
+  "reference_exit_code": 0,
+  "checked_roots": {
+    "QuantumBlockEncoding.QcbWideLQCostContract.actual_stage_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.QcbWideLQCostContract.one_by_one_emit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.QcbWideLQCostContract.one_by_one_budget_emit": [
+      "propext"
+    ]
+  },
+  "approved_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "reference_stdout": "'QuantumBlockEncoding.QcbWideLQCostContract.actual_stage_cost' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.QcbWideLQCostContract.one_by_one_emit' depends on axioms: [propext, Classical.choice, Quot.sound]\n'QuantumBlockEncoding.QcbWideLQCostContract.one_by_one_budget_emit' depends on axioms: [propext]\n",
+  "reference_stderr": "",
+  "proof_inputs_sha256": "1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e",
+  "existing_compiled_module_count": 202,
+  "cached_checkout_commit": "3b56da964f97511cc478d942d513b3e01b9328ee",
+  "full_library_gate_execution": "Existing exact-digest/module-matching gate inherited; not rerun by this support check.",
+  "sorry_control": {
+    "exit_code": 0,
+    "offending_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext",
+      "sorryAx"
+    ],
+    "rejected": true
+  },
+  "wrong_target_control": {
+    "exit_code": 1,
+    "rejected": true
+  },
+  "limitations": [
+    "Three exact named support roots: general actual stage cost and the one-by-one actual/budget emit mismatch.",
+    "Not a native formal-view admission, independent source-blind decoding, isolated prediction evaluation, all-prose kernel certification or finite-bit theorem."
+  ]
+}

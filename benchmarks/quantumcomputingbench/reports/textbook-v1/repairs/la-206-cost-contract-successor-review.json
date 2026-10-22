@@ -1,0 +1,123 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-la-206",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/la-206-cost-contract-successor.json",
+  "repair_record_digest": "36db0e160d48b66509b15c1657d14312495b9be11d08eb942af40f5971e7314e",
+  "original_item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+  "original_contract_hash": "b35892d85ffaca3d7e12c9966621cc1109c0d747aca52bdd96a54e846fdf89f1",
+  "successor_contract_hash": "71cdeee685c80bfaba5f6895b54c3e5fc3324c65eaeb05e57f48a1e1f05eace1",
+  "verdict": "accept",
+  "verdict_scope": "The entire exact question-version2 candidate, reference answer, rubric and exposition are mathematically correct within the stated stored exact-real model. Acceptance is not equivalence to the predecessor question, policy admission, historical gold restoration, a native Lean view or a new kernel certificate.",
+  "independence": {
+    "actual_identity": "The actual /root/qcb_boundary_repair_review task, distinct from root candidate author /root and original author stored-cost-author-b2.",
+    "repair_author": "/root",
+    "original_author": "stored-cost-author-b2",
+    "exposure": "Not blind. This reviewer previously identified the la-206 equality-versus-budget uncertainty in its independent la-201–210 batch; that prior exposure and the parent's requested emit discriminator are disclosed. The complete prepared original, exact full candidate and operative source bodies/proofs were reread for this review. Prior findings and parent reasoning are not substituted for the reconstruction below."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared la-206 loaded via scripts/release.checked()[2]), including historical metadata.",
+    "repair_record_digest": "qcb_core.digest(entire exact parsed question-successor JSON, including new question, answer, rubric, exposition and source/execution metadata).",
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of that original contract dictionary with question replaced by the exact candidate.question, and no other field replaced.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "actual_checks": "Candidate supersedes_key/item_digest/contract_hash match the actual original; question_version is2. Original and successor hashes are different. New exposition keeps three steps and every supporting node lies in the original target/support scope."
+  },
+  "contract_change_assessment": {
+    "classification": "Explicit question-contract successor, not an unchanged-question answer repair.",
+    "predecessor_literal_reading": "The original question asks to prove that actual total per-counter cost is the sum of four stage budgets. Its reference answer actually proves only a componentwise inequality after replacing actual rectangular compilation by its polynomial upper budget. The literal equality reading is false, as the fixed one-by-one emit trace below proves. The candidate exposes that mismatch rather than quietly interpreting 'is the sum' as '<='.",
+    "changed_requested_reasoning": "Version2 now asks the reader to assess/refute equality, derive the exact actual-cost stage sum with C(At), substitute the universal compiler inequality, and prove same-run factorization with deficient/empty boundaries. It is therefore not propositionally equivalent to the predecessor's requested equality proof and has a material new counterexample/inequality-distinction obligation. This difference is expressly versioned and must not inherit old answer acceptance as if the question were unchanged.",
+    "retained_mathematical_family_and_target": "The subject remains the same concrete wide stored thin-LQ routine and its same-run cost/correctness interface, not a replacement algorithm or a new unconnected core. Original family native-stored-cost-206, train split, frozen graph version, target_nodes (wide_cost_le/wide_correct), supporting_nodes and source_refs are retained by constructing the new contract from the original and replacing only question. Same-family/target retention justifies explicit lineage under the reserved core ID, not a false assertion that the old and new requested reasoning are identical or a new distinct-core count.",
+    "hypotheses_and_model": "Original wide shape m<=n, nested stored real matrices, two stored reads per materialized entry, additive per-counter semantics and exact-real/non-finite-bit conventions remain. The new C/P/E names make existing interfaces explicit; they do not impose full rank, nonzero pivots, positive dimensions, a new supplier oracle or finite-bit access. The extra facts about compiler output are derived obligations, not new public premises.",
+    "necessity_and_minimality": "The change preserves the existing true bound and deterministic factorization while adding the missing distinction between actual costs and upper budgets. A literal false requested equality cannot be repaired merely by editing its answer to prove <=. The counterexample assessment is a transparent question change, not an easier silently substituted proof. No source algorithm, split, graph scope or rank restriction needs changing.",
+    "admission_boundary": "This report reviews mathematics independently of the root's in-progress version-lineage policy. It does not approve that policy implementation or decide how a future reader selects version2. The predecessor remains inspectable history; mathematical review alone does not restore it or this candidate as current gold."
+  },
+  "substantive_reconstruction": {
+    "operative_counter_model": "Cost=Op->Nat with eight categories field,sqrt,angle,trig,compare,read,write,emit. Run.pure has zero cost; Run.bind adds actual executed ledgers. A stored entry lookup reads a row reference and then its scalar entry, exactly2 tick(read). collect retains supplier work and bills2 reads+2 writes per output index. Nesting collect for N rows and M columns adds the (NM+N) surcharge, including outer row-reference traffic even when M=0. Therefore E(N,M)=2NM tick(read)+(NM+N)(2tick(read)+2tick(write)) is an exact identity for these transpose/extraction suppliers, not a universal claim that arbitrary callbacks are free.",
+    "one_by_one_emit_witness": "Take m=n=1 and the stored zero matrix. The actual rectangular sweep starts at k=0 with one column and sees k<N. Its columnSweep count is N-1-k=0, so it returns the unchanged matrix and empty list at zero cost, emitting no step. The rest sweep is empty; appending an empty prefix emits nothing. identity1 uses comparisons/materialization only. replay[] charges one end-marker read and no emit. Transpose, extractR and extractQ have only read/write costs. Consequently wide.emit=0. By the exact declared polynomialBudget branch, P(1,1).emit=1*1=1, whereas all E terms have emit0. Thus the proposed equality fails as0!=1 for this actual routine, even though its upper bound is valid. No optimality lower bound or alternative elimination algorithm is used.",
+    "stronger_trace_crosscheck": "Independently unfolding the same definitions gives actual C(At) at one-by-one: compare2, read5, write4 and all other counters0. One comparison comes from the sole sweep column and one from identity1; replay supplies the extra read. E(1,1) is read6+write4. There are three such materializations, so actual wide cost is compare2+read23+write16 (scalar total41), with field/sqrt/angle/trig/emit all0. These symbolic counts follow from the producer definitions, not a new kernel or numerical execution. The candidate needs only the emit discriminator and does not falsely claim all-zero data are a free run.",
+    "exact_stage_identity": "Let At=(transpose A).value, and let result be the single actual StoredRectangularGivens.compile At output. Unfold wide's four binds: cost(wide A)=cost(transpose A)+cost(compile At)+cost(extractR result.reduced)+cost(extractQ result.transform). The value-independent exact materialization equalities turn this into E(n,m)+C(At)+E(m,m)+E(m,n). The final pure Factors constructor adds no counter. This is an identity for the actual intermediate At/result, not a sum of unrelated certificates or a rerun producing a different transform.",
+    "inequality_step": "The compiler theorem is universal in its actual stored input X and counter op, so it applies to this At at dimensions(n,m). Add the same nonnegative E terms to C(At)<=P(n,m), counterwise. This gives the claimed wideBudget inequality. Nothing permits changing <= into equality; source compileBudget_eq proves equality of two budget expressions, not equality of actual compiler cost with those expressions. The new question and answer keep these levels separate.",
+    "same_run_matrix_bridge": "Write B=denote(result.reduced) and T=denote(result.transform). Stored compile_reduced/compile_transform identify exactly these values with the deterministic rectangular residual/steps transform. The chronological replay of the same recorded log gives B=T*A^T. Each recorded ordered plane is orthogonal, so T^T*T=I_n, and recovery T^T*B=A^T follows. Thus, on transposing recovery, A=B^T*T. This order matters: Q contains prefix rows of T, not T^T. The source retains actual matrix/log consistency through the changing-matrix sweep; no external existential factor is substituted.",
+    "prefix_factorization_and_triangularity": "For i<m,j<n, expand (B^T*T)(i,j)=sum_{k<n} B(k,i)T(k,j). The residual is zero when column i<row k. Every k>=m has i<m<=k, so its term vanishes. Restrict the finite sum to k<m and define R(i,k)=B(k,i), Q(k,j)=T(k,j), exactly the stored extraction formulas. Then A=R*Q entrywise. In fact R(i,k)=0 for k>i by the same residual property, so the factor is lower triangular. There is no rank-pivot selection or discarded nonzero tail in this restriction.",
+    "orthonormal_rows": "T is square n-by-n, so over the reals T^T*T=I_n implies T*T^T=I_n as well, including n=0. Q consists of the first m rows, and (Q*Q^T)(i,j)=sum_{k<n} T(i,k)T(j,k)=(T*T^T)(i,j)=delta_ij for i,j<m. Hence Q*Q^T=I_m. Its row count is m, not rank(A); rank deficiency belongs to R and does not invalidate orthonormal rows of Q.",
+    "deficient_zero_and_empty_cases": "Zero or repeated rows require no new hypothesis. The source angle has an explicit zero-norm branch, and a zero pair produces an identity step without division by zero; structural sweeps may still emit zero-angle steps at larger dimensions. At m=0, A is0-by-n, R is0-by-0 and Q is0-by-n; all factorization/row-identity entry obligations are empty. The transpose still stores n empty rows: E(n,0)=2n(read+write). The rectangular compiler on n-by-0 performs no sweep, materializes I_n and reads the empty replay end marker. Its exact ledger is n^2 compare+(2n^2+2n+1)read+(2n^2+2n)write. Thus the full m=0 wide run costs n^2 compare+(2n^2+4n+1)read+(2n^2+4n)write; it is not generally free. At n=0, m<=n forces m=0, leaving one end-marker read and no other costs. None of these residual empty costs emits a record.",
+    "dispatcher_and_resource_boundary": "StoredThinLQ.compile is the all-shape dispatcher and always adds tick(compare). On a wide shape it executes this wide body plus that extra comparison; wide itself does not contain it. On a tall shape compileBody uses the original A and materialized I_n instead, outside the new wide question. Counts concern the declared stored exact-real producer, including rows/logs; they do not establish finite-precision runtime, numerical stability, Clifford+T cost, gate optimality or a local formal companion for every sentence."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: clear dimensions, C as actual cost, P as upper budget and E as exact materialization cost; explicitly asks to test the old equality, then prove corrected exact/upper statements and same-run equations. Empty/rank and dispatcher limits are visible.",
+    "reference_answer": "Accept in full. The emit witness uses the actual structural zero-step one-column pass. Every stage dimension is correct. The recovery transpose has correct multiplication order; the zero-below argument justifies prefix restriction; orthogonality is transferred to prefix rows. No hidden full-rank or positive-size premise, no equality-of-budgets-to-actual-cost conflation and no new kernel assertion is present.",
+    "rubric": {
+      "c1": "Correctly requires the concrete actual0 versus budget1 emit trace and exact four-stage sum with C(At), not P.",
+      "c2": "Correctly requires componentwise substitution, output dimensions, empty-row/end-marker accounting, dispatcher comparison and exact-real scope.",
+      "c3": "Correctly requires the same returned factors, transpose recovery, prefix restriction, row orthogonality and deficient/empty cases without added hypotheses."
+    },
+    "core_summary": "Accurately distinguishes exact actual stage costs from the upper sum after substituting P; deterministic same-run factors remain the original interface.",
+    "semantic_steps": "All three exact claims read. Step1 couples the explicit equality refutation with exact materialization dimensions; step2 separates the actual intermediate/compiler from its bound; step3 states the exact same-run matrix identities. All supporting nodes are in the predecessor's frozen target/support list, and no new graph scope or support-step count is smuggled into the contract.",
+    "necessity_minimality_verdict": "Accept the entire candidate as an explicitly changed question contract. This does not erase the predecessor's false equality reading or assert equivalence of their requested reasoning. The changed counterexample obligation is declared and mathematically justified."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+      "sha256_lf": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+      "anchor": "Complete module read. entry/entry_cost20-31; transpose/extractionBudget and full exact transpose/extractR/extractQ value/cost proofs32-72; entire wide producer74-80, wide_R/wide_Q/wide_correct82-98, wideBudget and full wide_cost_le100-109; compileBody/compile111-126 and all-shape budgets174-211. These evidence exact stage dimensions, same-run extraction and separate dispatcher charge."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+      "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+      "anchor": "Complete module read. sweep24-34 and its full value/log/cost proofs; append21-22; identity92-106; replay110-143 including exact nil end-marker and replay_cost; full compile150-170; compile cost/refinement/recovery/orthogonality/zero-below proofs178-210; polynomialBudget213-221, budget-expression equality223-228 and actual upper bound230-233. Emit=N*M belongs to the budget; one-by-one actual sweep has count0."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+      "sha256_lf": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af",
+      "anchor": "Complete module read. Factorization interface20-24, wideR/wideQ26-32; full wide_factorization34-49 (transpose recovery and sum_prefix_of_zero); full wide_orthogonal51-58 using the square orthogonal transform; factorOfLE/all-shape factor and correctness61-81. Deterministic factors include deficient rank and empty dimensions."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredGivens.lean",
+      "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+      "anchor": "Complete module read. Cost/Run pure/bind and tick21-43, stored read/collect/materialize56-85; full angle control flow88-100 (zero pair returns before division); fused columnSweep219-229 and semantic proofs; exact emit theorem343-353; full materialize_cost369-375. Evidence for actual ledger addition, storage surcharge and structural log emission."
+    },
+    {
+      "path": "QuantumBlockEncoding/RectangularGivens.lean",
+      "sha256_lf": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133",
+      "anchor": "Complete module read. sweep/sweepSteps16-46; full UpperPrefix preservation/zero-below proofs49-83; stepsMatrix_orthogonal100-108; actual decompose/reduced/transform118-125; transform_mul130-133, reduced_zero_below135-139, transform_orthogonal144-145 and full exact_recovery150-155. These justify B=T*A^T, recovery, orthogonality and vanishing tail."
+    },
+    {
+      "path": "QuantumBlockEncoding/ThinLQ.lean",
+      "sha256_lf": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a",
+      "anchor": "Complete module read. Full sum_prefix_of_zero18-34 proves restriction of a finite sum to the first m indices when the tail vanishes, including m=0. The later Gram-Schmidt existence result is distinct and not used as the stored algorithm's cost or same-run certificate."
+    },
+    {
+      "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+      "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+      "anchor": "Complete module read. rotateRows/planeMatrix and full orthogonality/inverse proofs; eliminationAngle_zero, eliminate_pair, pairNorm zero tests and eliminateEntry_zero_pair; actual Step distinctness, chronological applySteps, columnSweep/log refinements and zero-column preservation; final stepsMatrix/applySteps_eq_matrix_mul. In particular zero pivots are handled without a rank premise, and replay order agrees with left multiplication."
+    }
+  ],
+  "provenance": {
+    "observed_head": "5e83f45bea5b7368237a22c3513dc00566687fc3",
+    "retrieval": "Actual prepared predecessor was obtained through release.checked() historical native, not current reader selection. Complete full exact candidate JSON read, including all source/execution metadata.",
+    "instruction_status": "Mandatory AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory and benchmark shared contract/acceptance instructions had been read completely in the preceding objective at this same HEAD; the substantive-worker skill was reread for this task. They do not substitute protocol gates for mathematics.",
+    "source_inspection": "Complete operative StoredThinLQ, StoredRectangularGivens, ConstructiveThinLQ, StoredGivens, RectangularGivens, ThinLQ and AdjacentGivens modules read, including actual definitions and full relevant proofs rather than declaration names.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "formal_status": "Independent symbolic/source review only. Existing Lean proof text is inspected, not rerun. The exact one-by-one/empty ledgers and all prose are not claimed newly kernel-certified; no fixed-reference receipt or native formal admission is inferred.",
+    "source_hash_method": "qcb_integrity.text_sha of each whole actual local module (CRLF-to-LF normalization), independently checked; repair/original/contract bindings use qcb_core.digest.",
+    "mutation_scope": "Only parent-workspace _review_tmp/la-206-cost-contract-successor-review.json is written. No canonical candidate, source, policy, frozen data, prior review, branch/history, PR101, commit or push is changed.",
+    "remaining_limits": "Version-lineage/current-reader implementation is outside this mathematical review; no stable publication, global dedup, finite-bit complexity or theorem novelty claim."
+  }
+}

@@ -22,6 +22,10 @@ milestone; stable benchmark admission is a separate decision.
   withdrawal notices; current search/downloads exclude their unapproved content.
   Stable review obligations keep the original scope instead of shrinking with
   the displayed question count.
+- Explicitly reviewed question-contract successors bind both old/new hashes and
+  disclose changed requested reasoning. Their core/family/split remain reserved;
+  stale Lean companion proposals fail closed. An answer-only repair still cannot
+  alter a question, and predecessor reviews are never successor approval.
 
 ## Remaining acceptance work
 

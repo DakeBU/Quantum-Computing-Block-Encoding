@@ -1,6 +1,25 @@
 {
   "schema_version": "qcb.textbook_current_policy.v1",
-  "policy": "Frozen historical releases are unchanged. Withhold exact rejected predecessor answers; admit an additive answer/rubric successor, including affected explanatory summary/steps, only after a distinct content-bound review. Question contracts, graph scope, step counts, cores and splits do not change. Exact independently reviewed rejected or ambiguous records are withheld without deleting history; withdrawal alone does not satisfy stable acceptance.",
+  "policy": "Frozen historical releases are unchanged. Answer-only successors preserve every question-contract field. Explicit question successors require a rejected or ambiguous exact predecessor, new version/hash, distinct content-bound contract-change review and preserved core/family/split/graph scope; they do not claim proposition equivalence or create another core. All predecessor reviews remain history, never inherited approval. Withdrawals alone do not satisfy stable acceptance.",
+  "question_successors": [
+    {
+      "core_id": "qcb-core-la-206",
+      "predecessor_key": "qcb-core-la-206",
+      "predecessor_item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+      "reason": "Explicit question version2 refutes literal budget equality before deriving the actual-cost identity, upper bound and same-run correctness.",
+      "repair": "shared/repairs/la-206-cost-contract-successor.json",
+      "review": "reports/textbook-v1/repairs/la-206-cost-contract-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-206",
+        "predecessor_key": "qcb-core-la-206",
+        "predecessor_item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+        "reason": "The literal question may demand equality with a sum of upper budgets, while the source and reference prove only a componentwise upper bound.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-201-210-review.json",
+        "review_digest": "a51c24b07f402ff5373d5e8c0c07e52f0c8754b3fd66dca3df4b16f03373c45a",
+        "finding_digest": "de2149de4a2d2beee514747e3bd787e1bec72050579a0cb98accda109692cc3e"
+      }
+    }
+  ],
   "answer_successors": [
     {
       "core_id": "qcb-core-sp-002",
@@ -241,15 +260,6 @@
       "finding_digest": "cdee1557b5369d0e8d07d3b6de0c67340212fafc79615b8209d41683bc6109f4"
     },
     {
-      "core_id": "qcb-core-la-206",
-      "predecessor_key": "qcb-core-la-206",
-      "predecessor_item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
-      "reason": "The literal question may demand equality with a sum of upper budgets, while the source and reference prove only a componentwise upper bound.",
-      "review": "reports/textbook-v1/reader-reviews/linear-algebra-201-210-review.json",
-      "review_digest": "a51c24b07f402ff5373d5e8c0c07e52f0c8754b3fd66dca3df4b16f03373c45a",
-      "finding_digest": "de2149de4a2d2beee514747e3bd787e1bec72050579a0cb98accda109692cc3e"
-    },
-    {
       "core_id": "qcb-core-la-219",
       "predecessor_key": "qcb-core-la-219",
       "predecessor_item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
@@ -266,6 +276,150 @@
       "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
       "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
       "finding_digest": "7496cd12e696b1f4e7cace614faf99aefa9b14628345b244e76462983278319b"
+    },
+    {
+      "core_id": "qcb-core-be-102",
+      "predecessor_key": "qcb-core-be-102",
+      "predecessor_item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
+      "reason": "Dirty-input loss of a clean-branch guarantee is not universal simultaneous arithmetic failure and scratch corruption.",
+      "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+      "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+      "finding_digest": "8059b40a5108a2530185439e03bbfe25082f260311a4d1f9b3794fa760fb3acb"
+    },
+    {
+      "core_id": "qcb-core-be-104",
+      "predecessor_key": "qcb-core-be-104",
+      "predecessor_item_digest": "09426de0cfd6a624bf2b04f6011fbb177a23b57067ad18a29ca7ccb95d4765d8",
+      "reason": "Bare emitted gate products omit the compiler global phase and do not equal the claimed exact 0/1 permutation matrix.",
+      "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+      "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+      "finding_digest": "ee83aba1d642fb319bce4fae588fba9cd04798253f52ec3bff03abad91664fa3"
+    },
+    {
+      "core_id": "qcb-core-be-108",
+      "predecessor_key": "qcb-core-be-108",
+      "predecessor_item_digest": "a6acd83107961bd9360a0c2c55995f194064e1416340d73260285f5dbcb73c02",
+      "reason": "Independent row/column permutations preserve unitarity; same-axis algebra closure is not a necessary condition.",
+      "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+      "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+      "finding_digest": "9f0ddc315b8481d1b3bc3b501643535116bcff0325c0da58c174500a826c32b7"
+    },
+    {
+      "core_id": "qcb-core-be-112",
+      "predecessor_key": "qcb-core-be-112",
+      "predecessor_item_digest": "c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19",
+      "reason": "Product unitarity neither forces the final adjoint nor guarantees deterministic selector cleanup.",
+      "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+      "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+      "finding_digest": "f19345e48c0c9646bc0181d7b8556e55c1901c2935d455fdc91715669016262e"
+    },
+    {
+      "core_id": "qcb-core-be-119",
+      "predecessor_key": "qcb-core-be-119",
+      "predecessor_item_digest": "9861d3807794ab3a410205c3d90e220174973ab60491d738ba200ce0de215506",
+      "reason": "Visible backend wire count is not established as the full physical count including internal oracle workspace.",
+      "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+      "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+      "finding_digest": "bb4d92a5d0627f4314bd0c0ba5413139fdade1764e5066e5dccad0bcbb076a5b"
+    },
+    {
+      "core_id": "qcb-core-plan-104",
+      "predecessor_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+      "predecessor_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+      "reason": "Equivariance as a functional equation omits the linear-map premise used by Schur kernel/image reasoning.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "4558782c88d3c0ab2f8a40185e85c35b3947e65c35d916ac5b8ab21189263e5b"
+    },
+    {
+      "core_id": "qcb-core-plan-105",
+      "predecessor_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+      "predecessor_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+      "reason": "The scalar-Schur question omits linearity; a nonlinear equivariant function need not be scalar.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "c0c58b623d3ea5cabe7b2ebc6ab27b3547b16bdda387f45ac8779508fceb6c33"
+    },
+    {
+      "core_id": "qcb-core-plan-106",
+      "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+      "predecessor_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+      "reason": "The unrestricted abelian-group contract omits finite dimension and has an infinite-dimensional irreducible counterexample.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e"
+    },
+    {
+      "core_id": "qcb-core-plan-107",
+      "predecessor_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+      "predecessor_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+      "reason": "The Pauli twirl expansion omits the right adjoint and contains a false noncommutative equality.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "0103f696beb09b7a15f628254279f7d0879042f7fa538bd13439ab71ba3aa656"
+    },
+    {
+      "core_id": "qcb-core-plan-108",
+      "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
+      "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+      "reason": "The scalar field convention is absent; trace of identity need not recover integer dimension in positive characteristic.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "fef77d5dd0cf1cd367e8fab0d9141f07005ec9e52610916c8dac6c9928d55f48"
+    },
+    {
+      "core_id": "qcb-core-plan-203",
+      "predecessor_key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+      "predecessor_item_digest": "6eda46c37ea2b7d75cb89acca2686e8411e54825a5468776262522fff5b883bd",
+      "reason": "The amplification proof assumes an input-state reflection and independent fresh trials absent from the access contract.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "1e3e595067d2c96cc48105b4e40869640a5307faa897543b14a94a0d6f210dbd"
+    },
+    {
+      "core_id": "qcb-core-plan-204",
+      "predecessor_key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+      "predecessor_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+      "reason": "The complex-overlap proof drops a conjugation and equates 1-c^2 with 1-|c|^2.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "dcd0cb8e660cb2bc5c6770f428b752242e01ef43d844fe17f6dc8f4e2ccb3591"
+    },
+    {
+      "core_id": "qcb-core-plan-206",
+      "predecessor_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+      "predecessor_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+      "reason": "Disjoint clean ancillas admit a common union projector; the proposed compensating PREP is also unnormalized.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "29ed87e1b485d7a29947e777bf2027ffd4136259fb8568b9f46da65a3f0383ff"
+    },
+    {
+      "core_id": "qcb-core-plan-207",
+      "predecessor_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+      "predecessor_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+      "reason": "The explanation conflates joint signal/index decoherence with an unchanged signal marginal and basis-input coherence.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "db960820e5a4bb71362d614ca297e9e55d8fce29f335bd2936a8810b2e635716"
+    },
+    {
+      "core_id": "qcb-core-plan-208",
+      "predecessor_key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+      "predecessor_item_digest": "1433ecfb6610132671b67d490e1d21b1d9dae433bb26badca61bce12b62e0347",
+      "reason": "The regime analysis mishandles zero entries and loses signed/complex amplitude phases through a magnitude-only rotation.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "e8539d2919a9c4bc460c55039710e7b3c3029f74120bdc431f1e7e99765c6fc2"
+    },
+    {
+      "core_id": "qcb-core-plan-209",
+      "predecessor_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+      "predecessor_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+      "reason": "The resource ledger switches from original entry-bit queries to a derived angle oracle and omits conversion resources.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b"
     }
   ]
 }

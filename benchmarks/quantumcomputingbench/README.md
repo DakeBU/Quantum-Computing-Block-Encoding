@@ -25,6 +25,30 @@ an unapproved answer. Current reader/search exports exclude these records.
 Withdrawal does **not** remove a core from the stable-release review obligation.
 All historical content and the substantive findings remain inspectable.
 
+**Explicit question versions:** an answer-only repair cannot fix a false question
+by silently proving a weaker target. The [LA206 version-2 successor](shared/repairs/la-206-cost-contract-successor.json)
+asks the reader to refute literal budget equality, derive the actual-cost sum,
+then prove the upper bound and same-run LQ identities. Its
+[distinct contract-change review](reports/textbook-v1/repairs/la-206-cost-contract-successor-review.json)
+binds both question contracts. Core/family/split stay reserved; the registry and
+page disclose the change, and an old-hash Lean companion is rejected as stale.
+The predecessor remains audit history, not an equivalent second exercise.
+
+The [fixed Lean support](reports/textbook-v1/repairs/fixed-references/WideLQCostContract.lean)
+and its [actual receipt](reports/textbook-v1/repairs/fixed-references/wide-lq-checked-receipt.json)
+check the general actual-cost identity and actual/budget emit mismatch, including
+sorry and wrong-target negative controls. These three roots are not another
+native formal-view admission. Replay only the inspected reference using
+`scripts/wide_lq_contract_reference.py --build-root PATH --trusted-local-reference --output NEW_RECEIPT`.
+
+The [oracle/composition, representation and scientific-algorithm reviews](reports/textbook-v1/reader-reviews/)
+also separate phase-aware programs from bare gate products, unitary composition
+from deterministic cleanup, finite-dimensional representation hypotheses from
+unrestricted claims, and original bit-oracle costs from derived angle-oracle
+costs. Primary-source access limits are recorded honestly, including the
+scientific-computation PDF whose text was inspected but whose historical binary
+hash was not freshly verified.
+
 The [linear-algebra and stored-cost second pass](reports/textbook-v1/reader-reviews/)
 also distinguishes strict staircase zeros from diagonal entries, generated
 backend counts from optimal-synthesis lower bounds, upper budgets from actual

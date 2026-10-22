@@ -58,5 +58,36 @@ class CostRepairReferenceTests(unittest.TestCase):
         self.assertIn('never pass predictions', result.stderr)
 
 
+class WideLQContractReferenceTests(unittest.TestCase):
+    def test_actual_support_receipt_binds_three_roots_candidate_runner_and_substrate(self):
+        report = read_json(B / 'reports/textbook-v1/repairs/fixed-references/wide-lq-checked-receipt.json')
+        self.assertEqual(report['source_sha256_lf'], text_sha(R / report['source_file']))
+        self.assertEqual(report['canonical_runner_sha256_lf'], text_sha(B / 'scripts/wide_lq_contract_reference.py'))
+        self.assertEqual(report['repair_record_digest'], digest(read_json(B / 'shared/repairs/la-206-cost-contract-successor.json')))
+        expected = {'QuantumBlockEncoding.QcbWideLQCostContract.' + n for n in
+                    ('actual_stage_cost', 'one_by_one_emit', 'one_by_one_budget_emit')}
+        self.assertEqual(set(report['checked_roots']), expected)
+        parsed = {name: sorted(a.strip() for a in values.split(',') if a.strip())
+                  for name, values in re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", report['reference_stdout'])}
+        self.assertEqual(parsed, report['checked_roots'])
+        self.assertTrue(all(set(a) <= APPROVED_AXIOMS for a in parsed.values()))
+        self.assertEqual(report['reference_exit_code'], 0)
+        self.assertIn('sorryAx', report['sorry_control']['offending_axioms'])
+        self.assertTrue(report['sorry_control']['rejected'])
+        self.assertNotEqual(report['wrong_target_control']['exit_code'], 0)
+        self.assertTrue(report['wrong_target_control']['rejected'])
+        self.assertFalse(report['isolated_prediction_evaluation'])
+        from website.scripts.proof_inputs import proof_input_digest, lean_module_targets
+        self.assertEqual(report['proof_inputs_sha256'], proof_input_digest(R))
+        self.assertEqual(report['existing_compiled_module_count'], len(lean_module_targets(R)))
+
+    def test_prediction_execution_is_not_enabled_by_reference_script(self):
+        result = subprocess.run([sys.executable, str(B / 'scripts/wide_lq_contract_reference.py'),
+                                 '--build-root', str(R), '--output', str(R / '_out/not-executed-wide.json')],
+                                capture_output=True, text=True, timeout=30)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('never pass predictions', result.stderr)
+
+
 if __name__ == '__main__':
     unittest.main()
