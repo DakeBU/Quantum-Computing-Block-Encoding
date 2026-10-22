@@ -114,6 +114,10 @@ insufficient. Local fixed-reference checking does not provision a sandbox.
 The container evaluator stays disabled until its real pinned-image integration
 tests pass.
 
+The [integration reference replay](reports/integration-20261022/lean-reference-checks.json)
+records the fresh 16-root/three-harness check and both actual negative controls,
+bound to the identical 202-module production/test proof tree.
+
 ## Continue contributing
 
 Keep changes under this benchmark directory on separate working branches. Use

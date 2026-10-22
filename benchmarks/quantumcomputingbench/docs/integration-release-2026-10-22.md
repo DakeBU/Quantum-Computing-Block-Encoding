@@ -98,3 +98,17 @@ release asset. Isolated untrusted Lean evaluation remains **ENV_BLOCKED** and
 real-model baseline performance remains **UNMEASURED**. No training, paid API,
 GPU experiment, administrator action or production Lean change is part of this
 release.
+
+## Local verification completed for this integration
+
+The complete pinned Lean 4.29.1 gate was rerun on a cached checkout with identical
+production/test/toolchain/dependency inputs: `lake build`, `lake build Tests`, and
+all 202 module targets. Its proof-input digest is
+`1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e`.
+The integration checkout was matched against that digest before and after the
+trusted fixed-reference run. All 16 reference roots and three application
+harnesses passed; actual `sorryAx` and wrong-type controls were rejected.
+The complete public report is in `reports/integration-20261022/lean-reference-checks.json`.
+Its build commit identifies the matching cached proof tree, not a new claim that
+the entire native corpus was compiled. The report explicitly remains nonisolated
+trusted-reference evidence and is not independent NL semantic review.

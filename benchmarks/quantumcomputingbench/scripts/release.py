@@ -20,12 +20,16 @@ sys.path.insert(0, str(B / "scripts"))
 from qcb import checked_release
 from qcb_core import digest, model_input, read_json, score
 from qcb_integrity import text_sha
+from qcb_lean import APPROVED_AXIOMS
 from qcb_nl_release_policy import check_current_gold
 from nl_qa import load_checked
+from check_references import ROOTS, PREFIX
+from proof_inputs import proof_input_digest, lean_module_targets
 
 TAG = "quantumcomputingbench-v0.1.0-preview.1"
 NATIVE_VERSION = "nl-v12"
 LEGACY_VERSION = "release-v3"
+REFERENCE_REPORT = B / "reports/integration-20261022/lean-reference-checks.json"
 
 
 def checked():
@@ -50,6 +54,24 @@ def checked():
             raise ValueError("duplicate noncanonical upload remains: " + row["original_path"])
         if text_sha(R / row["canonical_path"]) != row["canonical_lf_sha256"]:
             raise ValueError("canonical upload content changed: " + row["canonical_path"])
+    reference = read_json(REFERENCE_REPORT)
+    if (reference["status"] != "reference_checked" or reference["isolated"] is not False
+            or set(reference["checked_roots"]) != {PREFIX + name for name in ROOTS}
+            or len(reference["generated_harnesses"]) != 3
+            or reference["negative_control"]["reason"] != "sorry_axiom"
+            or reference["wrong_type_control"]["status"] != "rejected"
+            or reference["reference_pack_sha256"] != text_sha(B / "lean/ReferenceChecks.lean")
+            or reference["proof_inputs_sha256"] != proof_input_digest(R)
+            or reference["repository_gate"]["compiledModules"] != lean_module_targets(R)
+            or reference["repository_gate"]["passed"] is not True):
+        raise ValueError("fixed-reference evidence/context changed")
+    for path, expected in reference["pipeline_hashes"].items():
+        if text_sha(R / path) != expected:
+            raise ValueError("fixed-reference checker changed: " + path)
+    if (any(set(axioms) - APPROVED_AXIOMS for axioms in reference["checked_roots"].values())
+            or any(set(h["axioms"]) - APPROVED_AXIOMS or h["isolated"] is not False
+                   or h["status"] != "reference_checked" for h in reference["generated_harnesses"])):
+        raise ValueError("fixed reference depends on unapproved axioms or changed execution scope")
     return snapshot, items, native, legacy
 
 
@@ -68,6 +90,8 @@ def release_manifest(snapshot, items, native, legacy, commit):
             "release_digest": digest(native),
             "splits": dict(Counter(i["split"] for i in native)),
             "evidence": dict(Counter(i["evidence_relation"] for i in native)),
+            "primary_target_nodes": len({n for i in native for n in i["target_nodes"]}),
+            "semantic_step_counts": dict(Counter(str(i["semantic_step_count"]) for i in native)),
             "review_provenance": "Imported exact-content-bound AI reviews; software checks are not a new independent mathematical review.",
             "new_local_formal_verification_of_native_answers": False,
         },
@@ -80,6 +104,11 @@ def release_manifest(snapshot, items, native, legacy, commit):
         "test_answers_public": True, "blind_or_contamination_free": False,
         "isolated_untrusted_lean_evaluation": "ENV_BLOCKED",
         "real_model_baseline": "UNMEASURED",
+        "local_fixed_reference_replay": {
+            "report_sha256": text_sha(REFERENCE_REPORT), "roots": 16, "application_harnesses": 3,
+            "sorry_and_wrong_type_controls_rejected": True, "isolated": False,
+            "scope": "Fixed reference pack only, not all native answers or model predictions.",
+        },
         "training_or_paid_model_calls_performed": False,
         "license": "MIT for original authored QA and code; external-source rights remain separate.",
     }
@@ -105,6 +134,7 @@ def payloads(snapshot, items, native, legacy, commit):
         "manifests/integration-20261022/admission.json",
         "docs/integration-release-2026-10-22.md", "docs/native-nl-dataset-card.md",
         "reports/nl-v12/summary.json",
+        "reports/integration-20261022/lean-reference-checks.json",
     ):
         files["provenance/" + relative] = (B / relative).read_bytes().replace(b"\r\n", b"\n")
     files["README.md"] = (
