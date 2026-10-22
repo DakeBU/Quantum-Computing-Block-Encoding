@@ -6,9 +6,11 @@ mathematical models, backed by QuantumComputinglib's sources and graph.
 Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
-The [latest quantum-contract checkpoint](docs/textbook-quantum-contract-checkpoint-2026-10-23.md)
-explains explicit question versions, source/answer repairs, remaining obligations
-and compatible continuation. The earlier
+The [latest Hermite/directed-qubitization checkpoint](docs/textbook-hermite-and-directed-qubitization-2026-10-23.md)
+explains actual endpoint/grid dependencies, directed maps, projected outputs and
+compatible continuation. The earlier
+[quantum-contract checkpoint](docs/textbook-quantum-contract-checkpoint-2026-10-23.md)
+records source/answer repairs and their remaining obligations. The
 [polynomial/converse checkpoint](docs/textbook-polynomial-and-converse-checkpoint-2026-10-23.md)
 remains available as historical evidence.
 

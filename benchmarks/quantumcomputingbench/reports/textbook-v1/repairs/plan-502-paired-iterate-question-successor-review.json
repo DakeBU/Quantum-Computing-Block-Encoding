@@ -1,0 +1,117 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "verdict": "accept",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate author /root/qcb_native_comparison and both historical original authors.",
+    "repair_author": "/root/qcb_native_comparison",
+    "exposure": "Not source-blind: previous scientific-algorithm/source review exposure, parent focus and the complete bound withdrawal findings are disclosed. I read the full actual historical prepared questions, answers, rubrics, assumptions, conventions, seven/six semantic steps, source metadata and entire exact candidates, including their execution claims. Parent/candidate-author recommendations are not evidence for acceptance; the independent reconstruction below checks the literal contracts."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "source": "Lin Lin and Nathan Wiebe, Quantum Algorithms for Scientific Computation, recorded 29 April 2026 edition",
+      "historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "personally_accessed": "Author-hosted PDF text was genuinely retrieved through the primary-source browser reader, showing447 pages and the edition cover. Complete operative equation/proof regions were inspected, not just theorem names or the registry.",
+      "anchors": "Section10.1, Eqs10.7–10.16: SVD relations, right/balanced matrix functions and parity. Section10.2.2, Eqs10.45–10.60 and Proposition10.6, printed170–172: full directed companion maps, reflection matrices and paired even/odd derivation. Section10.3, Eqs10.61–10.75, printed172–174: complete general-SVD companion and projected-operator derivation; Example10.8/Eq10.79: explicit nilpotent unitary. Earlier Eq10.30–10.40 endpoint/leakage discussion and scalar rotation Eqs10.25–10.28 were also read.",
+      "verification_limits": "Historical binary hash not independently verified by this reviewer; primary browser extraction is actual text access, not a matching-byte certificate or rendered-pixel inspection. Prior own in-memory direct retrieval attempts failed with WinError10013. Candidate author's successful5718900-byte hash/render/SymPy claims were read but are not inherited as my execution. No PDF or long primary-source passages are saved/redistributed. Proposition10.7's printed Hermitian label is narrower than its immediately preceding general-SVD derivation; the latter was actually inspected and independently reconstructed, rather than importing that extra premise."
+    }
+  ],
+  "provenance": {
+    "observed_head_at_initial_inspection": "0b229454bcac07658738e184e255d3ae44e65957",
+    "observed_head_at_binding_recheck": "4bb69bdbd9167b5d7aca686c1ae99526d8e15ded",
+    "instruction_refresh": "Mandatory repository AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared CONTRACT/ACCEPTANCE and substantive-worker skill were fully read in this continuous context; no changes to those instructions were observed between initial and binding-check heads. The worker skill required exact definition/proof expansion and truthful source/execution limits. PDF skill applied to primary reading/access limits.",
+    "historical_retrieval": "Entire actual originals loaded from release.checked()[2], not replaced by a current-reader successor or withdrawal label. Current candidate loaded from private parent _review_tmp; canonical repair_record is an intended repository-relative integration locator only.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "own_computation": "Read-only exact whole-JSON/contract/LF hash and shape/node-binding checks were executed. Displayed matrix identities/counterexamples were independently derived algebraically; no own SymPy/kernel run is claimed. Candidate-author diagnostics are not my verification.",
+    "formal_status": "These are source-only planned natural-language mathematics. No local Lean node, proof closure, exact native formal companion, fresh kernel run or automatic transfer of a previous review is asserted.",
+    "source_hash_method": "qcb_core.digest over whole exact JSON values; qcb_integrity.text_sha over actual complete tracked local evidence files. Registry hash is metadata provenance, frozen/authored QA hashes are content provenance, and neither is a primary proof or PDF binary hash.",
+    "admission_and_scope": "Private exact-content review only, not candidate transport, policy admission, current-reader/stable certification, publication-gate approval or a new core. No canonical source/policy/data/candidate, history or current PR tree edited; no commit/push. No global dedup, novelty, cross-split pooling or human/collaborator approval claimed.",
+    "private_reviewed_at": "_review_tmp/plan-502-paired-iterate-question-successor.json",
+    "mutation_scope": "Only parent _review_tmp/plan-502-paired-iterate-question-successor-review.json authored in this objective. Separately, parent explicitly authorized provenance-only locator correction in my SP107/SP113 reviews; their candidate bytes and mathematical findings remain unchanged."
+  },
+  "core_id": "qcb-core-plan-502",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-502-paired-iterate-question-successor.json",
+  "repair_record_digest": "e315e85057c5ec86dccbf36f86132679cd2921e9c09b0ebb7c40e46f896bf56c",
+  "original_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+  "withdrawal_binding": {
+    "withdrawal_row_digest": "e47986814f167b36f72d6d59fd5c5e0314e708241443bb53ced6d49b2dc4b259",
+    "review_path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+    "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+    "finding_digest": "e34e7ac69cf7f42a89f5d771db3532fdadbf90e17c75e6a088860be09ad8864c",
+    "prior_verdict": "reject",
+    "assessment": "Full exact withdrawal/finding read and checked against actual predecessor. These identify the historical defect; their verdict is not mathematical evidence for the successor. Mutable current-policy whole-file hash is deliberately not an evergreen source dependency."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Actual authored qcb-core-plan-502 full question/reference/rubric/assumptions/conventions/semantic steps inspected. This binds local content provenance, not mathematical truth or a Lean proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Frozen historical prepared inventory used by release.checked()[2]; exact whole plan-502 item digest separately bound above. Frozen-data provenance only; no refresh of its historical acceptance metadata is implied."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "lin-wiebe-2026-qasc entry personally inspected. Edition/URL/historical PDF hash registry metadata only. Actual source-text access and binary-verification limits are stated separately in primary_source_checks."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+      "sha256_lf": "2dc739852d11cb9cbb3cc0acaa873b0070c2a42d6af7b6133ef70a2742299f42",
+      "anchor": "Complete exact qcb-core-plan-502 withdrawal finding read; whole prior report, finding and current exact withdrawal row digest bound below. Historical finding provenance only, not proof of candidate correctness."
+    }
+  ],
+  "question_version": 2,
+  "original_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037",
+  "successor_contract_hash": "98b38dad470c122798e05fd2a04d0eb423be4db3152139647aba7ea1f6d7c040",
+  "verdict_scope": "Accept the entire exact explicit first question-version2 candidate mathematically, including reference/rubric/all seven exposition steps. This does not claim equivalence to the false predecessor demand, unchanged requested reasoning or formal/reader admission.",
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared original via release.checked()[2]).",
+    "repair_record_digest": "qcb_core.digest(entire exact private candidate, including execution/source metadata).",
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the original nine-field contract with ONLY question replaced by the candidate question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "actual_checks": "Exact qcb.textbook_question_successor.v1 allowed keys, nonempty complete answer/rubric, version2 key grammar, pending_distinct_review marker and predecessor key/item/contract hashes verified. Other8 contract fields cannot be overridden. Seven steps retained and EVERY supporting-node list equals its original list, in order. Candidate source LF checked. Distinct actual reviewer/author verified.",
+    "retained_values": "family=qsc-chebyshev-eigenvalue-transformation; split=test_public; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; assumption that A is Hermitian but U need not be; both Chebyshev/eigenphase conventions retained. Targets block-encoding,matrix-analysis,operator-theory and supporting approximation/source refs unchanged."
+  },
+  "contract_change_assessment": {
+    "predecessor_refutation": "Historical question's last demand says a single UR no longer gives a clean Chebyshev block, and its original steps assert distinct planes and necessity of pairing. Literal degree1 failure is false because RJ=J implies J†URJ=A. Global U≠U† implies neither geometric H≠H' nor universal failure of unpaired higher powers. The version2 openly replaces these demands; it is not an answer-only reinterpretation.",
+    "changed_reasoning": "New question asks for the same guaranteed paired even/odd identities plus explicit sufficiency-versus-necessity boundary and counterexamples. Clarifying exact compression/endpoints exposes the original block model rather than assuming a new normalized input or extra target promise; contraction is deduced from compression. Asking for counterexamples and rejecting universal necessity materially changes requested reasoning.",
+    "retained_family_target": "Same core, Hermitian block-encoding/Chebyshev family, test_public split, graph/source scope and seven steps. The interior directed-plane proof and endpoint projected identities remain the central mathematical target. No new core/graph node or standing Hermitian-U premise is introduced.",
+    "minimality_and_non_equivalence": "The two given witnesses are necessary in logical role: one shows no general unpaired higher-power guarantee despite coincident planes; the second shows non-Hermiticity does not force failure at any order. Keeping only the first would not refute universal necessity. Old/new contracts are different and not claimed equivalent; seven replacement explanations are mathematical corrections of the same bounded target, not automatic formal transfer."
+  },
+  "substantive_reconstruction": {
+    "normalization_and_directed_planes": "Set J†J=I,P=JJ†,R=2P-I. Exact J†UJ=A implies ||Ax||≤||x||, so a unit Hermitian eigenvector has t∈[-1,1]; J†U†J=A. For |t|<1 let p=Jv,s=sqrt(1-t²),q=(U†p-tp)/s,q'=(Up-tp)/s. Their entire clean projections vanish, not merely overlap with p, and each squared leakage norm is1-t². Thus (p,q),(p,q') are ordered orthonormal bases. Unitarity U†U=UU†=I gives Up=tp+sq',Uq=sp-tq',U†p=tp+sq,U†q'=sp-tq. U is forward, U† reverse; no bidirectional bare-U claim or distinct-plane inference is justified.",
+    "paired_rotation": "Let S=[[t,s],[s,-t]],Z=diag(1,-1),M=SZ=[[t,-s],[s,t]]. R has Z in both directed bases because q,q' are flag-orthogonal. Reading E=U†RUR right-to-left gives SZSZ=M², a rotation by2theta with theta=arccos(t),s=sin(theta)>0. This is an endomorphism of H even when U itself need not preserve H.",
+    "powers_projection_and_k_zero": "M^m has diagonal T_m(t), upper-right -s U_(m-1)(t), lower-left +s U_(m-1)(t). Hence for k≥1, E^k p=T_(2k)(t)p+sU_(2k-1)(t)q; UR E^k p=T_(2k+1)(t)p+sU_(2k)(t)q' for k≥0. E^0 is separatelyI; no undefined negative-index polynomial is required. Applying J† kills leakage and spectral basis assembly proves the two exact operator compressions. It is not necessary to assume every input is an eigenvector or normalized for those linear identities.",
+    "endpoints": "At t=±1, ||Up||=||U†p||=1 and the clean part already has norm1, so Up=tp,U†p=tp. Then E p=p,UR E^k p=tp, matching T_even(±1)=1,T_odd(±1)=±1. No division by s=0, forced two-dimensional sector or freely chosen normalized zero leakage is used. A=0 is an interior t0 case and is covered.",
+    "first_counterexample_exact": "For t=1/2,s=sqrt(3)/2 take A=tI2 and U=[[t,-s],[s,t]]⊗I2. It is unitary and non-Hermitian. With R=diag(I2,-I2), UR=[[t,s],[s,-t]]⊗I2 and (UR)²=I4; clean squareI2 differs from T2(A)=-I2/2. Here q=-|1>v and q'=|1>v, so H=H' as geometric subspaces but ordered bases differ by sign. Coincident planes do not suffice for repeated use of the same between-basis matrix.",
+    "second_counterexample_all_orders": "In ancilla-major basis take Ustar=[[t,0,s,0],[0,1,0,0],[s,0,-t,0],[0,0,0,i]],Astar=diag(t,1),t=1/2. Its real reflection block on indices0,2 squares toI, index1 has phase1 and index3 phasei: unitary but not Hermitian. UstarR is M on indices0,2,1 on index1 and -i on unused index3. Its clean block at EVERY integer j≥0 is diag(Tj(t),1)=Tj(Astar). This is an all-j invariant-block proof, not inference from finitely sampled powers. The global non-Hermitian completion phase is outside the reached clean dynamics. Thus pairing is sufficient for all admissible completions, not necessary for every individual completion.",
+    "state_and_resource_boundaries": "Full outputs retain flag-orthogonal components; projected blocks alone do not produce deterministic normalized transformed states. A zero projected vector has no conditional normalized state; nonzero projections require normalization. Exact unit-factor compression is the stated model, not a hidden normalization of arbitrary raw A. No gate/query/finite-bit/preparation/readout cost or arbitrary approximate/scaled-encoding guarantee is implied.",
+    "source_fitness_and_neighbor": "Complete source Eqs10.45–10.60 prove the directed sufficient construction, not distinct geometric planes or universal necessity. Both explicit boundary witnesses above were independently reconstructed. General-SVD plan504 is a broader parity formulation whose Hermitian specialization agrees with these projected identities;502 additionally targets same-eigenvector plane rotation and unpaired guarantee boundary. This bounded overlap does not establish a new global dedup/split policy."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full: exact directed companion proof, sign/order of SZSZ, even/odd projected assembly, k0/endpoints and two logically distinct counterexamples are correct. It explicitly refutes the original demand rather than silently satisfying repaired intentions.",
+    "rubric": "All r1–r4 are sound: directed normalized companions; twice-angle rotation; projected parity/leakage/endpoints; degree1 truth plus higher-power failure, equal-subspace example and all-power non-Hermitian success. It does not grade universal failure as correct.",
+    "exposition": "Summary/all7 steps correct with exact predecessor per-step supporting nodes. Step5 uses positive leakage coefficient on the first-column vector, consistent with negative upper-right matrix entry. Step7 now states counterexample-based guarantee limits, not the old necessity.",
+    "entire_candidate": "Accept exact question/reference/rubric/exposition and disclosed metadata as a pending explicit qv2 candidate. Candidate author's own byte/render/diagnostic claims are not my independently verified receipts and are not used as proof."
+  }
+}

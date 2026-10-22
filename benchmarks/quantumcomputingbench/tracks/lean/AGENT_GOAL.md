@@ -58,6 +58,14 @@ Question successors plan-011/plan-320/plan-401/plan-407 retain these distinction
 explicitly. Reuse their checked subtargets where appropriate without silently
 dropping the counterexample, boundary cases or remaining NL obligations.
 
+Read the Hermite/directed-qubitization checkpoint
+before adding companions: SP107, SP113 and plan502 have new question contracts.
+An endpoint or sampled-mass lemma supports a bounded part of their new requests;
+it does not automatically certify the counterexample/refutation obligations.
+For plan504, preserve directed U/U-adjoint maps and projected rather than whole
+state semantics, even though the question contract is unchanged. Distinct
+mathematical reader review and kernel evidence remain separate requirements.
+
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install
 system packages, contact administrators, launch long GPU jobs or paid training.

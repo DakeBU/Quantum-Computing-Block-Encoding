@@ -1,0 +1,105 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-sp-107",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-107-coefficient-reflection-state-successor.json",
+  "repair_record_digest": "067930875932fba4ea81c92628ca8db49352fd1a4bd6689877842e844954e138",
+  "original_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+  "original_contract_hash": "74f67ca96f4d2d3fddf5b38276976be1291002a448bf81f9447f09e0bbf392e6",
+  "successor_contract_hash": "9109484ddca89403a139199617fb30ffe7e0cb7862778d9cf38f0e09223dcbc3",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate question/reference/rubric/exposition accepted as mathematically correct explicit first question-version2 correction. Not predecessor-equivalence, policy admission, source-blind approval, fresh kernel evidence or automatic native formal transfer.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate/prior-finding author /root/qcb_formal_view_audit and original structured-preparation-author-b2.",
+    "repair_author": "/root/qcb_formal_view_audit",
+    "original_author": "structured-preparation-author-b2",
+    "exposure": "Not blind: prior Hermite/cohort/source exposure in this task, current parent focus and exact bound withdrawal findings are disclosed. Full actual prepared original, entire private candidate, full operative source/proof bodies and complete local notes were read. The prior author's finding/recommendation is not mathematical evidence for successor acceptance; reconstruction below independently checks the exact contract."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared original via release.checked()[2]), not a current-reader substitute.",
+    "repair_record_digest": "qcb_core.digest(entire exact candidate JSON, including answer/rubric/exposition/source/execution metadata).",
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the exact original nine-field contract with ONLY question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "actual_checks": "Exact allowed candidate keys/schema, predecessor key/whole-item/contract bindings, pending marker, version2 key grammar and changed question verified. The other8 contract fields are literally inherited, not overridden. Exposition count is3 and each supporting-node list equals its original per-step list exactly. Source LF bindings checked. Old/new contract hashes differ.",
+    "retained_values": "family=hermite-source-positivity; split=train; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; assumptions=[]; conventions=[]; targets=[\"declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant\",\"declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_eval\",\"declaration:QuantumBlockEncoding.HermitePolynomial.endpointFactor\"]; supporting_nodes=[]; source_refs retained exactly."
+  },
+  "withdrawal_binding": {
+    "withdrawal_row_digest": "a06786f9e9546d146b343a2f2f8a418a72b1bdc0201903e61e67a1e9beff8750",
+    "review_path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+    "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+    "finding_digest": "a09afc1e0293de4db4da7412ddffcad481527cdcc3ca65a356dcd27300291de4",
+    "prior_verdict": "uncertain",
+    "assessment": "Full finding and exact row loaded; predecessor item, whole prior review and whole item-finding digests verified. These bind what was previously withheld, not proof that this successor is correct. Current-policy whole-file hash is intentionally not made an evergreen source dependency because later integration must mutate policy."
+  },
+  "contract_change_assessment": {
+    "classification": "First explicit question-contract successor, not an unchanged-question answer repair.",
+    "predecessor_and_withdrawal": "The exact bound prior finding is UNCERTAIN, not a refutation of the canonical source polynomial. The standalone question names a source A_k but only describes degree<=k; its reference/r3 then use constant normalization1. It also says symmetry up to exp(-1), which can mean a valid weighted-shape exchange or a false scalar invariance. The candidate correctly preserves this distinction instead of alleging the production coefficient formula was false.",
+    "changed_requested_reasoning": "Version2 explicitly defines canonical finite coefficients, asks to diagnose the insufficiency of a degree bound, derives rather than assumes A_k(0)=1, and asks for the exact weighted reflection and an endpoint test of scalar covariance. This is a real question-contract change resolving ambiguity, not an unchanged-question answer patch or a claim that the previous unspecified A_k was uniquely determined.",
+    "retained_scope_and_minimality": "Same hermite-source-positivity family, train split, frozen graph/source scope and three nodes/steps remain. Assumptions/conventions stay empty. Putting the actual coefficient definition in the question is transparent changed requested data, not adding a normalization hypothesis to those fields. The source polynomial, exp(-1) weight orientation and opposite-endpoint structural task are retained; no full higher own-node jet proof, new core, circuit theorem or source-paper seal is substituted.",
+    "admission_boundary": "No canonical source/policy/data, graph, prior report/candidate, companion view or publication gate is changed. A local theorem can support mathematics but does not prove an exact revised NL formal equivalence; any future formal view requires its own exact alignment and kernel gate."
+  },
+  "substantive_reconstruction": {
+    "canonical_coefficients": "The operative Lean definition coefficientSeries is exp(X)*invOneSubPow(k+1), and coefficientPolynomial truncates at k+1, i.e. retains degrees0..k. coefficientSeries_coeff expands it as sum_(m=0..r) choose(k+r-m,k)/m!, exactly the candidate's coefficients. m<=r ensures the natural subtraction has its ordinary nonnegative meaning; every factorial is nonzero, including0!=1. At r0 the unique term is choose(k,k)/0!=1. Evaluation at0 therefore gives A_k(0)=1 for every natural k. For k=0, canonical A_0=1; the deliberately noncanonical constant2 meets degree<=0 but doubles both requested endpoint values, showing only the old standalone normalization gap.",
+    "coordinate_and_jets": "SourceInterpolant is taylor1 of q*F_k(X)+F_k(1-X), with q=exp(-1), so sourceInterpolant_eval is precisely H_k(p+1). Physical nodes -1,0 become0,1 and dt/dp=1 adds no scale to derivatives. F_k(t)=(1-t)^(k+1)A_k(t) has a zero of multiplicity at least k+1 at1: each Leibniz term in a derivative j<=k retains a positive power of1-t and vanishes there. F_k(1-t)=t^(k+1)A_k(1-t) has the analogous opposite-node zeros at0. Reflection may supply(-1)^j in derivatives, but zero remains zero; it does not manufacture the own-node values. The source separately derives those from the formal truncation identity, which the candidate correctly does not claim follows from the factors alone.",
+    "values_and_weights": "F_k(0)=1,F_k(1)=0, so H_k(0)=q,H_k(1)=1 and S_k(-1)=q,S_k(0)=1. The q weight stays on unreflected F_k, as the actual source definition requires. For k=0, F_0=1-t,H_0=q(1-t)+t; all endpoint/zero-jet claims still hold. The case j=0 is included, rather than only positive derivative orders.",
+    "exact_weighted_reflection": "For any real a,b define H_(a,b)(t)=a F_k(t)+b F_k(1-t). The polynomial identity H_(a,b)(1-t)=H_(b,a)(t) holds for ALL a,b,t, including zero coefficients, with no division. Reflection swaps the ordered shapes and correspondingly reverses the coefficient pair. For the actual pair(q,1), H_k(1-t)=qF_k(1-t)+F_k(t), not qH_k(t), H_k(t), or any fixed scalar multiple globally.",
+    "zero_and_nonzero_denominators": "For the actual weights, H_k(0)=q>0,H_k(1)=1, so evaluating a proposed global H_k(1-t)=cH_k(t) legitimately gives c=1/q at t=0 and c=q at t=1, a contradiction since0<q<1. No zero denominator is concealed in that endpoint test. More generally the necessary/sufficient coefficient equations are b=ca,a=cb: a=b=0 gives the zero polynomial and every c works; exactly one nonzero coefficient makes such c impossible; both nonzero allow only b=a,c=1 or b=-a,c=-1. This handles cases that would be lost by dividing by a or b without checking them.",
+    "pointwise_ratio_limit": "If one instead writes a pointwise ratio H_k(1-t)/H_k(t), it is defined only where H_k(t)!=0. On[0,1], the canonical nonnegative coefficients and constant1 give A_k>=1, and the two nonnegative endpoint shapes are not simultaneously0, so H_k>0 there. Outside that interval no global nonzero-denominator claim follows: for k0 the root t=-q/(1-q) gives H_0(t)=0 while H_0(1-t)=1+q>0. The candidate avoids this trap by using the division-free reflected polynomial identity and nonzero endpoint evaluations.",
+    "static_proof_and_formal_boundary": "Complete HermitePolynomial source/proof bodies and local notes were read, including coefficient expansion/truncation, factorial-to-ordinary-jet conversion, endpoint divisibility proofs and exact Taylor shift evaluation. This is strong source-mathematics evidence for the canonical formula, not a newly run kernel theorem or an automatic exact formal view of the revised NL question. The generic Bezout construction and uniqueness route are distinct source bodies; no missing normalization is imported from a theorem name alone."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: specifies the actual canonical coefficient input and explicitly diagnoses the degree-only ambiguity; asks for the correct weighted identity rather than demanding false fixed-weight invariance. It keeps the intended structural rather than full-own-jet scope.",
+    "reference_answer": "Accept in full. Finite coefficient normalization, shift, all opposite orders0..k, endpoint values, k0 case, shape/weight exchange and no-fixed-scalar endpoint contradiction are correct. It does not refute the canonical polynomial using its noncanonical constant2 counterexample.",
+    "rubric": "All c1-c4 align: coefficient-derived normalization and valid generic counterexample; exact coordinate/opposite-node jet reasoning; source-oriented endpoint weights; division-free reflection exchange with correct rejection of literal/scalar invariance.",
+    "exposition": "Summary and all3 steps are correct. Per-step supporting-node lists are exactly retained as sourceInterpolant_eval, endpointFactor, sourceInterpolant; no new graph scope/support step or full own-jet theorem is added.",
+    "necessity_minimality_verdict": "Accept the whole exact explicit first question-version2 candidate. This is not a declaration that the earlier canonical construction was false, that old/new requested reasoning is equivalent, or that new source/kernel/reader admission follows."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Complete module read. In particular coefficientSeries/coefficientPolynomial/endpointFactor/sourceInterpolant definitions169–182; full coefficient expansion/nonnegative/zero proofs184–204; formal-truncation and both endpoint-jet proofs206–252; positivity proof254–287; finite coefficient/evaluation/shift and degree proofs289–332. Exact bodies establish normalization, weight/order and algebraic endpoint structure, not a new kernel run."
+    },
+    {
+      "path": "docs/hermite-polynomial-proof.md",
+      "sha256_lf": "ba2d1f1583d222c34c5edcee142d7b5e64905198720969eb9bb58260fe81caf7",
+      "anchor": "Complete local notes read: exact finite coefficient formula, Taylor-truncation convention, t=p+1 formula, opposite versus own-node jets, reflection derivative signs, positivity and verification boundaries. External arXiv reference is attribution only; no fresh full external-paper audit is claimed."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+      "sha256_lf": "8f0360d1e1a09548fff5dcd869cd371e514678179b48169294a12c5ee5927c40",
+      "anchor": "Complete exact qcb-core-sp-107 withdrawal finding read and digest-bound above. Prior finding provenance only, not mathematical support or successor approval."
+    }
+  ],
+  "provenance": {
+    "private_reviewed_at": "_review_tmp/sp-107-coefficient-reflection-state-successor.json",
+    "locator_correction": "Only repair_record was retargeted to the intended repository-relative canonical locator, with this truthful private inspection location retained. No candidate transport or policy admission is claimed; mathematical findings and exact candidate binding are unchanged.",
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "retrieval": "Full actual historical original from release.checked()[2] and entire exact private candidate read. The current reader's withholding does not prevent inspecting the actual predecessor.",
+    "instructions_and_skills": "Mandatory AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared contract/acceptance and substantive-worker skill read completely in this continuous context; head unchanged from preceding gate. Exact-contract/definition-expansion/source-proof/typed-boundary rules applied.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "source_inspection_scope": "Full HermitePolynomial, HermiteIntervalMass, HermiteStatePreparation, PrimitiveBasisLE and local Hermite notes were read where relevant; Core grid vocabulary and RealAmplitudePreparation operative norm/reindex proofs were additionally inspected for113. Static full proof text, not theorem-name matching or compile receipt inheritance.",
+    "formal_status": "No Lean/kernel/native formal execution was necessary or performed. Existing noncomputable definitions and theorem bodies are inspected static evidence; neither their presence nor this NL review certifies an exact revised formal companion, arbitrary compilation cost or source-publication seal.",
+    "external_primary_limit": "This bounded local-Lean/source gate does not freshly retrieve/audit arXiv2403.19123v3. Local notes identify that source, but no external-paper-byte, full-paper fidelity or public source seal is claimed. Exact local definition/proof mathematics is independently reconstructed.",
+    "source_hash_method": "qcb_integrity.text_sha over whole actual tracked local files; qcb_core.digest for exact whole candidate/original/contracts and withdrawal records. LF bindings are actual source content, not kernel execution.",
+    "mutation_scope": "Only parent _review_tmp/sp-107-coefficient-reflection-state-successor-review.json written. Candidates, canonical files/policy/source, prior reports, history/current publication gate are untouched; no commit/push.",
+    "remaining_limits": "Acceptance is mathematical/source review of this exact question successor only. No global dedup, new core count, cross-split reconciliation, external collaborator/human approval, novelty or automatic formal transfer."
+  }
+}

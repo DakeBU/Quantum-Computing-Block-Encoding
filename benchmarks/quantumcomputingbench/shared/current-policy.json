@@ -120,6 +120,57 @@
         "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
         "finding_digest": "3edbf7781b4db74af20cc4116027f3749ed29fb005d2ca662d4316887f8e879d"
       }
+    },
+    {
+      "core_id": "qcb-core-sp-107",
+      "predecessor_key": "qcb-core-sp-107",
+      "predecessor_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+      "reason": "Explicit first question-contract correction of an underspecified standalone source coefficient/ambiguous reflection demand. Define the actual canonical coefficient polynomial and derive its normalization, rather than silently adding A_k(0)=1 as a standing premise. Preserve the coordinate, opposite-endpoint k-jet decoupling, endpoint-value and weighted-shape target. Only question changes among the nine fields; original assumptions/conventions remain empty, with the same core/family/train split/frozen graph/source scope/three semantic steps. The predecessor is ambiguous, not a counterexample to the canonical production formula. Requested reasoning changes explicitly; no new core, full endpoint-jet reproof or source/kernel closure is claimed.",
+      "repair": "shared/repairs/sp-107-coefficient-reflection-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-107-coefficient-reflection-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-107",
+        "predecessor_key": "qcb-core-sp-107",
+        "predecessor_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+        "reason": "The standalone question does not specify A_k(0)=1 used for the endpoint values; weighted reflection needs explicit shape/weight semantics.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+        "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+        "finding_digest": "a09afc1e0293de4db4da7412ddffcad481527cdcc3ca65a356dcd27300291de4"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-113",
+      "predecessor_key": "qcb-core-sp-113",
+      "predecessor_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+      "reason": "Explicit first question-contract correction of the demanded positivity-as-anchor explanation, not an altered mass inequality. The original question ALREADY supplies f_k(0)=1 and the central grid identity; no unit-grid premise is newly invented. Retain that exact unit-sample/squared-mass target and L>0 domain, but ask the reader to assess/refute the claimed role of strict positivity and prove the bound/nonzero consequence without it. Only question changes among the nine fields; assumptions/conventions stay empty, same core/family/dev split/frozen graph/source scope and three steps/nodes retained. This is not an equivalent explanation demand or a fresh production theorem.",
+      "repair": "shared/repairs/sp-113-unit-grid-anchor-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-113-unit-grid-anchor-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-113",
+        "predecessor_key": "qcb-core-sp-113",
+        "predecessor_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+        "reason": "The answer/rubric wrongly attribute the unit grid anchor to strict positivity rather than the central-index and endpoint identity.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "b81bd650d3b6b65a3997bdd8b1ed2f9eaa69ebb5ba2c3716c32dc76e5506548e"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-502",
+      "predecessor_key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+      "predecessor_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+      "reason": "Explicit question-version2 candidate, NOT an unchanged-question answer repair. The historical final demand that a single UR no longer gives a clean Chebyshev block is false as stated: UR always has degree-one clean block A, and lack of global Hermiticity neither forces distinct geometric planes nor universally prevents correct unpaired powers. Replace that false necessity with the guaranteed adjoint-paired construction and a precise counterexample-based boundary. Only question changes among the nine CONTRACT_FIELDS; preserve the other eight fields exactly, the same core/family/test_public split/frozen graph/source scope and seven semantic steps. Original contract hash ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037 is superseded, not falsely claimed unchanged. Exact normalized compression and endpoint handling are explicit in the new question. No equivalence-to-predecessor, additional core, source-edit, admission or selfapproval claim.",
+      "repair": "shared/repairs/plan-502-paired-iterate-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-502-paired-iterate-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-502",
+        "predecessor_key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+        "predecessor_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+        "reason": "Directed qubitization planes need not be distinct and non-Hermitian global completion does not universally force paired-iterate necessity.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "e34e7ac69cf7f42a89f5d771db3532fdadbf90e17c75e6a088860be09ad8864c"
+      }
     }
   ],
   "answer_successors": [
@@ -383,6 +434,23 @@
       "reason": "Unchanged-question answer/rubric/exposition clarification. The literal question is already about GL(V), not just U(V), and is mathematically correct. Replace the reference's unitary-only parenthesis and diagonal-unitary core summary with the actual common invertible-linear action; make degree an upper bound and the finite-group bicommutant conditions explicit. Preserve all nine contract fields, five semantic steps, source/graph scope, family and split. Original contract hash 0a1210e64058fbc9844b798192122398397094a6ce67c6c6af5192f14476ae61. No unitary/GL span equivalence is silently assumed or newly claimed proved; no question change or new core.",
       "repair": "shared/repairs/plan-304-gl-action-clarification-repair.json",
       "review": "reports/textbook-v1/repairs/plan-304-gl-action-clarification-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-plan-504",
+      "predecessor_key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+      "predecessor_item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+      "reason": "Unchanged-question answer/rubric/exposition successor. The actual question says U realizes A in its flag block and asks the correct assembled even/right and odd/balanced operators; it does NOT demand that each bare U application be a bidirectional swap or that the full unitary image be purely clean. Thus this is an explicit block-output clarification and proof repair, not a silent correction of a false question demand. Preserve all nine CONTRACT_FIELDS, the same core/family/test_public split/frozen graph/source scope and six semantic steps. Exact unchanged original contract hash:8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26. Replace the false answer/rubric/step swap rationale by U:H\u2192H', U\u2020:H'\u2192H, retain the flag-orthogonal terms, handle singular values0/1 and keep exact normalization/projection distinct from state preparation or gate cost. Pending distinct review, not selfapproval or admission.",
+      "repair": "shared/repairs/plan-504-projected-svt-direction-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-504-projected-svt-direction-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-504",
+        "predecessor_key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+        "predecessor_item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "reason": "Projected SVT blocks are not whole normalized output states; U maps the input plane forward while U-adjoint, not U, supplies the reverse.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "deaf47730e88830d63e81f5fd432a11dd62efb6e05eb7b47ce6e7c82a354e059"
+      }
     }
   ],
   "withdrawals": [
@@ -448,24 +516,6 @@
       "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
       "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
       "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0"
-    },
-    {
-      "core_id": "qcb-core-sp-107",
-      "predecessor_key": "qcb-core-sp-107",
-      "predecessor_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
-      "reason": "The standalone question does not specify A_k(0)=1 used for the endpoint values; weighted reflection needs explicit shape/weight semantics.",
-      "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
-      "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
-      "finding_digest": "a09afc1e0293de4db4da7412ddffcad481527cdcc3ca65a356dcd27300291de4"
-    },
-    {
-      "core_id": "qcb-core-sp-113",
-      "predecessor_key": "qcb-core-sp-113",
-      "predecessor_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
-      "reason": "The answer/rubric wrongly attribute the unit grid anchor to strict positivity rather than the central-index and endpoint identity.",
-      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
-      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
-      "finding_digest": "b81bd650d3b6b65a3997bdd8b1ed2f9eaa69ebb5ba2c3716c32dc76e5506548e"
     },
     {
       "core_id": "qcb-core-sp-115",
@@ -781,24 +831,6 @@
       "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
       "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
       "finding_digest": "2994fbf67f6441a17218102ef2a26bc8179f74b6249587445d75ed95495eb471"
-    },
-    {
-      "core_id": "qcb-core-plan-502",
-      "predecessor_key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
-      "predecessor_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
-      "reason": "Directed qubitization planes need not be distinct and non-Hermitian global completion does not universally force paired-iterate necessity.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
-      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
-      "finding_digest": "e34e7ac69cf7f42a89f5d771db3532fdadbf90e17c75e6a088860be09ad8864c"
-    },
-    {
-      "core_id": "qcb-core-plan-504",
-      "predecessor_key": "qcb-core-plan-504-svt-parity-left-right-vectors",
-      "predecessor_item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
-      "reason": "Projected SVT blocks are not whole normalized output states; U maps the input plane forward while U-adjoint, not U, supplies the reverse.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
-      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
-      "finding_digest": "deaf47730e88830d63e81f5fd432a11dd62efb6e05eb7b47ce6e7c82a354e059"
     },
     {
       "core_id": "qcb-core-plan-509",
