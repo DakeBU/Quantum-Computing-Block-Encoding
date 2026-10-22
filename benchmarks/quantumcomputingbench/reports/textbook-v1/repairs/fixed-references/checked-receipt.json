@@ -1,0 +1,82 @@
+{
+  "schema_version": "qcb.inspected_cost_repair_reference.v1",
+  "execution_class": "trusted_inspected_fixed_reference",
+  "isolated_prediction_evaluation": false,
+  "canonical_runner_sha256_lf": "1bc2661304bfa18d1627fdaa2fc98d88a3cc367e0a0837cab502c1240916ea3d",
+  "source_file": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/fixed-references/StoredCostRepair.lean",
+  "source_sha256_lf": "7e02dd31beb34ca18cc120216268d838b2fe6c960c3905aabda66251e2862077",
+  "source_sha256_bytes": "7e02dd31beb34ca18cc120216268d838b2fe6c960c3905aabda66251e2862077",
+  "repair_record_digests": {
+    "la-214-uniform-supplier-bound-repair.json": "ce7d672987cfbd1a176bae4bd3bfeb8ae9da448b0ed80c73d7a5303761d98bb0",
+    "la-215-branch-cost-repair.json": "414a8f8ffaaf04545b35a1af1e917621f9e85b4522fc218304f1ed4bc0da949d"
+  },
+  "lean_version": "Lean (version 4.29.1, x86_64-w64-windows-gnu, commit f72c35b3f637c8c6571d353742168ab66cc22c00, Release)",
+  "reference_exit_code": 0,
+  "checked_roots": {
+    "QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.zero_branch": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.nonnegative_nonzero_branch": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.negative_nonzero_branch": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.addZeros_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.addZeros_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.one_by_one_field_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.one_by_one_zero_matrix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "approved_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "reference_stdout": "'QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.zero_branch' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.nonnegative_nonzero_branch' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.negative_nonzero_branch' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.addZeros_value' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.addZeros_cost' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.one_by_one_field_cost' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.StoredGivens.QcbCostRepairReference.one_by_one_zero_matrix' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+  "reference_stderr": "",
+  "proof_inputs_sha256": "1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e",
+  "existing_compiled_module_count": 202,
+  "cached_checkout_commit": "3b56da964f97511cc478d942d513b3e01b9328ee",
+  "full_library_gate_execution": "Existing exact-digest/module-matching gate inherited; not freshly rerun by this reference check.",
+  "sorry_control": {
+    "exit_code": 0,
+    "offending_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext",
+      "sorryAx"
+    ],
+    "rejected": true
+  },
+  "wrong_target_control": {
+    "exit_code": 1,
+    "rejected": true
+  },
+  "limitations": [
+    "Seven exact named roots only: three concrete branch representatives plus the symbolic arbitrary-K one-by-one supplier construction and its helper lemmas.",
+    "Universal sign-branch explanations still require the independently reviewed control-flow reconstruction; concrete representatives do not certify all NL prose.",
+    "Not a native formal-view admission, blind semantic reconstruction, untrusted-output sandbox, finite-bit runtime result or model baseline."
+  ]
+}

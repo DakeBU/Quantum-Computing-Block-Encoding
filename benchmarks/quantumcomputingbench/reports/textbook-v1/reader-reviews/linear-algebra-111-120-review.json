@@ -1,0 +1,603 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "requested_core_ids": [
+      "qcb-core-la-111",
+      "qcb-core-la-112",
+      "qcb-core-la-113",
+      "qcb-core-la-114",
+      "qcb-core-la-115",
+      "qcb-core-la-116",
+      "qcb-core-la-117",
+      "qcb-core-la-118",
+      "qcb-core-la-119",
+      "qcb-core-la-120"
+    ],
+    "core_ids": [
+      "qcb-core-la-111",
+      "qcb-core-la-112",
+      "qcb-core-la-114",
+      "qcb-core-la-115",
+      "qcb-core-la-116",
+      "qcb-core-la-117",
+      "qcb-core-la-118",
+      "qcb-core-la-119",
+      "qcb-core-la-120"
+    ],
+    "absent_ids": [
+      "qcb-core-la-113"
+    ],
+    "record_selection": "Nine actual admitted native prepared items obtained by release.checked() (native cohort), with complete questions, reference answers, assumptions, conventions, rubrics and semantic steps inspected. qcb-core-la-113 is absent from that cohort and is not reviewed as a provisional surrogate.",
+    "observed_head_at_start": "e9bd65f737959662d7acd882b518a59692a77fea",
+    "output": "Only parent workspace _review_tmp/linear-algebra-111-120-review.json; no active catalog or frozen file changed.",
+    "primary_sources": "All nine prepared primary_sources arrays are empty. Review binds local Lean source_refs and complete relevant definitions/proof bodies, not fidelity to an uninspected external paper.",
+    "alias_scope": "Bounded current native/legacy prepared-question keyword search, then full compared native contracts la-005/006/009/013/103/104/107/108/109/110/220 and within-batch contracts. No exact alias proposed. Related prerequisites, algorithmic specializations and common source nodes are not automatically equated. No exhaustive cross-cohort equivalence resolution or distinct-core aggregate claim."
+  },
+  "provenance": {
+    "actual_task": "/root/qcb_formal_view_audit",
+    "independence": "This reviewer is distinct from matrix-constructions-author-b2 and authored none of these items or a proposed successor in this batch. Existing accept labels and imported review records were not used as evidence for the mathematical verdict.",
+    "exposure": "Prepared questions, complete reference answers/rubrics/semantic steps and source metadata were visible. This is an independent mathematical reader second pass, not strict blind decoding.",
+    "protocol_context": "Refreshed AGENTS.md, HARNESS.md, substantive-worker SKILL.md and required theorem-publication, proof-digestion, evidence-routed-memory, shared CONTRACT and ACCEPTANCE protocols.",
+    "lean_rerun": false,
+    "external_access": false,
+    "additional_agents": false,
+    "item_digest_method": "qcb_core.digest on each entire current release.checked() native prepared item, not just the question or source subset.",
+    "file_hash_method": "qcb_integrity.text_sha on actual source files, normalizing CRLF/CR to LF.",
+    "publication_boundary": "Source inspection and independent mathematical reader review only. No fresh Lean/kernel execution, human-expert review, source-blind run, catalog admission or new source-publication seal claimed."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-la-111",
+      "key": "qcb-core-la-111",
+      "item_digest": "913e7d71276fa5074d8dde978f1e7bb69b6655f8aaa0087808b89035aad8a38e",
+      "verdict": "accept",
+      "reasoning": {
+        "reconstruction": "For Chain.cons with head shape l by (2*m), dense local storage is 2*l*m plus storage of the tail. maxBond includes both outer boundaries: the head yields l<=D and the tail yields m<=D, including when that tail is nil m. Thus 2*l*m<=2*D^2, and structural induction gives 2*n*D^2. For nil, storage is zero even though maxBond(nil r)=r. No nonzero-rank, normalization or canonicality assumption is required.",
+        "answer_rubric": "The complete answer extracts both bonds, applies the induction hypothesis to the tail and sums correctly. Rubric c1-c3 and all four semantic steps match. The written n-1 is used only in the nonempty branch; the empty branch is handled separately. D=0 forces every actual bond zero under the premise and the storage sum is zero. The scalar-boundary ofKernel specialization instead needs max(D,1), as its source theorem correctly states; the question does not conflate those bounds.",
+        "evidence_boundary": "storedScalars is a Nat-valued structural address count. Noncomputable real entries and exact contraction are not an algorithm for manufacturing bits or an arithmetic runtime bound; zero scalar storage does not imply zero metadata overhead."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/MatrixProductChain.lean",
+          "declarations": [
+            "storedScalars",
+            "storedScalars_le",
+            "ofKernel_storedScalars"
+          ],
+          "lines": "75-98",
+          "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+          "checked": "Read complete recurrence and proof, including extraction of m from a nil or cons tail."
+        },
+        {
+          "file": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "declarations": [
+            "Core",
+            "Chain",
+            "maxBond"
+          ],
+          "lines": "18-26;198-200",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "checked": "Read dependent core shape, terminal nil and maximum including boundary bonds."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-109",
+          "other_key": "qcb-core-la-109",
+          "other_item_digest": "1fd3017d71601c3fa4b81db41b1b04a8d4a9fd00e609a2ba2b87f5082ddbb14b",
+          "relation": "shared_chain_different_invariant",
+          "same_core_alias_proposed": false,
+          "reason": "Left-boundary contraction equality is not the local-storage inequality."
+        },
+        {
+          "other_core_id": "qcb-core-la-110",
+          "other_key": "qcb-core-la-110",
+          "other_item_digest": "fad513662c7653c200c59df3ebf0190dd261233cbc497793dff6c0821c892001",
+          "relation": "shared_chain_different_invariant",
+          "same_core_alias_proposed": false,
+          "reason": "Right-boundary readout equality is not the stored-entry count."
+        },
+        {
+          "other_core_id": "qcb-core-la-220",
+          "other_key": "qcb-core-la-220",
+          "other_item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+          "relation": "related_bond_bound_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Maximum bond versus sum of dense local storage are different target invariants."
+        }
+      ],
+      "limitations": [
+        "Does not certify layout overhead, production arithmetic cost or finite-bit storage size."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-112",
+      "key": "qcb-core-la-112",
+      "item_digest": "5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e",
+      "verdict": "reject",
+      "reasoning": {
+        "reconstruction": "At column k<N, the new column is zeroed for rows r>k. For old c<k, every row in the rotated window r>=k satisfies r>c; hence both entries in each rotated pair of that old column are zero. Zero-column preservation and unchanged outside rows retain UpperPrefix. If k>=N, no r>k exists and skipping the sweep advances the invariant vacuously. Induction from k=0 to M proves upper-trapezoidal residual, including N=0 or M=0.",
+        "defect": "The reference answer asserts that entries of earlier column c 'strictly at or below row c were already all zero by the prefix hypothesis'. The 'at' case is false: UpperPrefix requires c<row, not c<=row. For A=I_2 at k=1, UpperPrefix A 1 holds but A[0,0]=1. The proof only needs rows in the later swept window, all strictly below c; diagonal zeros are neither assumed nor true.",
+        "answer_rubric": "Question, assumptions, conventions, rubric c1-c3 and semantic-step claims are sound. The full frozen answer nevertheless contains a false premise in the preservation argument. Reject this digest as-is; an additive answer-only successor should replace the phrase by 'rows in the swept window have r>=k>c and hence are zero', retaining the existing question/rubric. No source theorem defect was found.",
+        "evidence_boundary": "This is an exact invariant, not a runtime, conditioning or finite-precision guarantee."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/RectangularGivens.lean",
+          "declarations": [
+            "sweep",
+            "UpperPrefix",
+            "columnSweep_upperPrefix",
+            "sweep_upperPrefix",
+            "reduced_zero_below"
+          ],
+          "lines": "16-24;49-83;135-139",
+          "sha256_lf": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133",
+          "checked": "Read entire rectangular sweep module; strict inequality in UpperPrefix and k>=N branch confirmed."
+        },
+        {
+          "file": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "declarations": [
+            "columnSweep",
+            "columnSweep_zeroed",
+            "columnSweep_preserves_zero_column"
+          ],
+          "lines": "222-228;283-323",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "checked": "Read complete zeroing and zero-column preservation proofs; the zero hypothesis covers lo<=row<=lo+count, not earlier diagonal rows."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-104",
+          "other_key": "qcb-core-la-104",
+          "other_item_digest": "d116f4f01eb9ee69ff710e3d88155094fba848cfbe1475bc166d29434e5c98ea",
+          "relation": "prerequisite_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Single-column zeroing/frame invariance is used to prove multi-column staircase preservation, but its target and induction invariant differ."
+        },
+        {
+          "other_core_id": "qcb-core-la-108",
+          "other_key": "qcb-core-la-108",
+          "other_item_digest": "b49acfec30465319f4637b8b0bc8fb1655146b68a99b8b9d6688fff48ec32fa7",
+          "relation": "shared_pipeline_different_target",
+          "same_core_alias_proposed": false,
+          "reason": "Exact reconstruction by the transpose is distinct from staircase zeros."
+        }
+      ],
+      "limitations": [
+        "Rejection is a whole-answer correctness finding, not a rejection of the well-formed question or local Lean proof."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-114",
+      "key": "qcb-core-la-114",
+      "item_digest": "d786b4f7dd920203358d420044561a976ab5979789857cbfc7dc3a3c73a6aa96",
+      "verdict": "accept",
+      "reasoning": {
+        "reconstruction": "Let p_k agree with e on indices <k. The update is swap(p_k(k),e(k)) composed after p_k; Equiv.trans in this order matters. It maps the new k to e(k). For a<k, IH gives p_k(a)=e(a). This cannot equal p_k(k) by permutation injectivity, and cannot equal e(k) by injection e. Therefore the transposition fixes the earlier image. The invariant at r gives the desired castLE agreement.",
+        "answer_rubric": "The answer, three rubric criteria and four semantic steps implement that induction. Its parenthetic mention of injectivity of e while discussing p_k(k) is redundant and awkward; p_k injectivity already proves that endpoint inequality, so it does not invalidate the proof. An injection Fin r -> Fin N entails r<=N, making castLE valid. r=0, N=0 and r=N are allowed; if both swap endpoints coincide the new index is already correct and earlier-image argument still applies.",
+        "evidence_boundary": "This establishes an explicit finite permutation's placement invariant, not an asymptotic sorting algorithm or finite-bit runtime."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean",
+          "declarations": [
+            "extendPrefix",
+            "extendPrefix_agrees"
+          ],
+          "lines": "167-198",
+          "sha256_lf": "1b61cbc9ad587cc2ae2a7cdc7bacd3b7d39fb05274833a3fea5dbb4dff69678c",
+          "checked": "Read complete recursion and proof, checking transposition composition and both endpoint-avoidance arguments."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-005",
+          "other_key": "qcb-core-la-005",
+          "other_item_digest": "9de300e5af170f37dfbbb8e216ddc6a74157f274971779218e9477ade22a8db4",
+          "relation": "constructive_ingredient_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Existence of an orthogonal completion is not finite injection extension by this greedy permutation."
+        },
+        {
+          "other_core_id": "qcb-core-la-009",
+          "other_key": "qcb-core-la-009",
+          "other_item_digest": "b31607a7ea2a259a413bb5b7c11780ee9b302542f801bc1ce38ca72cfc3e1311",
+          "relation": "dimension_prerequisite_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "The cardinality/spare-position question does not prove the greedy stage invariant."
+        },
+        {
+          "other_core_id": "qcb-core-la-115",
+          "other_key": "qcb-core-la-115",
+          "other_item_digest": "c1f7bebe1314ec75cc91e72658ca0457c6bc62518acffb2a8b53db63dd6bb50d",
+          "relation": "placement_then_orientation_distinct",
+          "same_core_alias_proposed": false,
+          "reason": "Permutation placement and parity-controlled orientation repair are separate obligations."
+        }
+      ],
+      "limitations": [
+        "No enumeration complexity, efficient parity computation or fresh Lean execution established."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-115",
+      "key": "qcb-core-la-115",
+      "item_digest": "c1f7bebe1314ec75cc91e72658ca0457c6bc62518acffb2a8b53db63dd6bb50d",
+      "verdict": "accept",
+      "reasoning": {
+        "reconstruction": "Under the explicit assumption det(U)=1, C=U.submatrix id p.symm has C^T C=I and det(C)=sign(p). orientColumns returns C for sign(p)=1 and C*S_unused otherwise. S is diagonal with exactly one -1, so S^T S=I and det(S)=-1. In the second branch sign(p)=-1 and det(C*S)=1. Right multiplication, rather than left multiplication, flips precisely the unused physical column.",
+        "answer_rubric": "Both answer branches, c1-c3 and semantic steps are correct when all prepared assumptions are retained. In the question's opening wording 'U already has the wrong sign' must refer to the permuted candidate C, not the original determinant-one U: the complete answer makes that distinction. No determinant oracle or numerical threshold is used. A supplied unused:Fin N ensures N>0; at N=1 only the identity permutation occurs. Preservation of prescribed columns additionally uses p(a)!=unused and is proved in orientColumns_preserves, although not separately requested here.",
+        "evidence_boundary": "This is conditional algebra for an available U and permutation, not a general resource bound or an algorithm producing the initial SO completion."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean",
+          "declarations": [
+            "permuteColumns",
+            "permuteColumns_orthogonal",
+            "permuteColumns_det",
+            "orientColumns",
+            "orientColumns_orthogonal",
+            "orientColumns_det",
+            "orientColumns_preserves"
+          ],
+          "lines": "215-277",
+          "sha256_lf": "1b61cbc9ad587cc2ae2a7cdc7bacd3b7d39fb05274833a3fea5dbb4dff69678c",
+          "checked": "Read complete definitions and branch proofs; permutation uses p.symm and flip multiplies on the right."
+        },
+        {
+          "file": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "declarations": [
+            "signFlip",
+            "signFlip_orthogonal",
+            "signFlip_det",
+            "mul_signFlip_preserves"
+          ],
+          "lines": "62-79",
+          "sha256_lf": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d",
+          "checked": "Read complete diagonal sign-flip definition and proofs."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-006",
+          "other_key": "qcb-core-la-006",
+          "other_item_digest": "4eae07a7fa7dc01f54e03e5d15700d11bec10c23f9368e6d01b5f44fc0d675f6",
+          "relation": "related_specialized_orientation_mechanism",
+          "same_core_alias_proposed": false,
+          "reason": "Both use a spare-column reflection, but la-006 starts with arbitrary O(N) completion, branches on det and proves existence/preserved data; this task starts with SO U and fixes the known column-permutation parity. Not asserted as exact aliases."
+        },
+        {
+          "other_core_id": "qcb-core-la-114",
+          "other_key": "qcb-core-la-114",
+          "other_item_digest": "d786b4f7dd920203358d420044561a976ab5979789857cbfc7dc3a3c73a6aa96",
+          "relation": "separate_constructive_obligation",
+          "same_core_alias_proposed": false,
+          "reason": "Extension agrees with injection; this task repairs orientation after that permutation."
+        }
+      ],
+      "limitations": [
+        "Acceptance uses explicit det(U)=1 assumption; removing it makes the parity-only result false. Question opening would benefit from naming the permuted candidate."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-116",
+      "key": "qcb-core-la-116",
+      "item_digest": "e13c0d1bd06158bd627632029146044c6323a71aaaf22ded1d505d62b6f8e2e2",
+      "verdict": "accept",
+      "reasoning": {
+        "reconstruction": "With one bijection, reindex(A) is P*A*P^-1 (up to equivalent coordinate orientation). Summing over the common intermediate label proves multiplicativity, transpose commutes with reindex, and I is fixed. Thus reindex(A)^T reindex(A)=I. Determinants are invariant because det(P)*det(P^-1)=1. q=0 gives a two-dimensional real matrix; arbitrary symmetric reindexing has the same proof and no spectral/phase assumption is needed.",
+        "answer_rubric": "The answer and c1-c3 correctly give the algebra-isomorphism proof and relative-sign failure for different row/column permutations; all semantic steps agree. The exact scope of 'essential' matters: independent row/column permutations still preserve orthogonality, but generally fail multiplication/transpose compatibility and can reverse determinant. For A=I_2 and a row-only swap, the result remains orthogonal but has determinant -1. The answer does not explicitly claim orthogonality alone fails and its explanation supports the joint/sign-free claim.",
+        "evidence_boundary": "Gray coordinates are representation relabeling, not a physical free SWAP circuit; this theorem establishes no routing or execution cost."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+          "declarations": [
+            "grayCoordinates",
+            "grayCoordinates_orthogonal",
+            "grayCoordinates_det"
+          ],
+          "lines": "159-180",
+          "sha256_lf": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce",
+          "checked": "Read complete reindexing definition and both proofs, including use of shared algebra equivalence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-013",
+          "other_key": "qcb-core-la-013",
+          "other_item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+          "relation": "shared_conjugation_principle_different_conclusions",
+          "same_core_alias_proposed": false,
+          "reason": "la-013 proves chronological circuit wire renaming and output-only multiplication failure; this task proves Gram/determinant invariance for a basis-label Gray coordinate bijection. Related algebra, not an established same-core alias."
+        },
+        {
+          "other_core_id": "qcb-core-la-117",
+          "other_key": "qcb-core-la-117",
+          "other_item_digest": "c187f71e1150c9fa98992c1dc15dbe5e22c6e35ff1be3cc2a8acccb8244daf96",
+          "relation": "coordinate_transport_vs_block_identification",
+          "same_core_alias_proposed": false,
+          "reason": "Global conjugation invariants do not determine the target-bit orientation of an individual edge plane."
+        }
+      ],
+      "limitations": [
+        "Same bijection is sufficient and structurally required for this algebra-equivalence argument, not logically necessary for orthogonality alone or for every accidental equal-sign pair of permutations."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-117",
+      "key": "qcb-core-la-117",
+      "item_digest": "c187f71e1150c9fa98992c1dc15dbe5e22c6e35ff1be3cc2a8acccb8244daf96",
+      "verdict": "accept",
+      "reasoning": {
+        "reconstruction": "The bijection sends first and second to bit strings differing only at target. same_context_iff identifies the two states in that non-target context exactly with that pair. Outside it the transported plane has identity columns, including sign. Inside it, the plane is R(theta) in ordered pair (first,second), whereas selectedRyPlaneMatrix orders target 0 then 1. If first's target bit is 0 these orders agree. If it is 1, conjugating by X gives X*R(theta)*X=R(-theta), with cos even and sin odd at theta/2.",
+        "answer_rubric": "The complete answer, c1-c3 and all semantic steps keep the orientation sign and identity complement. The angle passed is theta or -theta; its trig entries use half-angle theta/2, not a second division of theta. first!=second follows from adjacency. q=0 has one target, no controls and an empty context, so the sole pair is still correct. The control tuple must enumerate each non-target wire; merely supplying arbitrary/repeated controls would not identify one two-level pair.",
+        "evidence_boundary": "The SO hypothesis is needed upstream for decomposition, but edge_plane_transport is stronger and only needs a bijection, distinct pair and X action. This proof is exact real matrix equality (then complex embedding), not merely global-phase equivalence and not a gate-count theorem."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+          "declarations": [
+            "same_context_iff",
+            "realTransport",
+            "edge_plane_transport",
+            "stepTarget",
+            "stepTarget_action"
+          ],
+          "lines": "21-37;44-95",
+          "sha256_lf": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce",
+          "checked": "Read full entrywise proof, target-bit case split and Gray-adjacency target selection."
+        },
+        {
+          "file": "QuantumBlockEncoding/SelectedRyPlane.lean",
+          "declarations": [
+            "realRyPlaneBlock",
+            "selectedRyPlaneMatrix",
+            "compileSelectedRy_eval_plane",
+            "selectedRyPlaneMatrix_fixed_column"
+          ],
+          "lines": "42-45;58-129",
+          "sha256_lf": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40",
+          "checked": "Read actual two-level matrix and full-control equivalence proof; nonchosen basis columns fixed exactly."
+        },
+        {
+          "file": "QuantumBlockEncoding/GrayBasis.lean",
+          "declarations": [
+            "equiv",
+            "adjacent"
+          ],
+          "lines": "15-22;54-94",
+          "sha256_lf": "658e01d906fc1ed4dd12983ae62c1a45f5639a9d0cbff35c825db9b78445d3db",
+          "checked": "Read complete little-endian Gray recursion and adjacent one-X proof."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-107",
+          "other_key": "qcb-core-la-107",
+          "other_item_digest": "87706ea5c66f54bf0bffd4b1d4fcaab38075224230201e30e5d530af8ae448e2",
+          "relation": "prerequisite_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Gray adjacency locates the target wire; it does not prove the ordered half-angle matrix transport."
+        },
+        {
+          "other_core_id": "qcb-core-la-118",
+          "other_key": "qcb-core-la-118",
+          "other_item_digest": "0d08607d4fa98a7c4e6c2f3cef267a9b7e35329c0894b2c6272a11c823fe4ffd",
+          "relation": "pair_characterization_not_full_plane_transport",
+          "same_core_alias_proposed": false,
+          "reason": "Same-context classification is a lemma used here; target-bit sign and matrix entries make this a different conclusion."
+        }
+      ],
+      "limitations": [
+        "No primitive-count, preprocessing-cost or finite-precision guarantee inferred from exact transport."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-118",
+      "key": "qcb-core-la-118",
+      "item_digest": "0d08607d4fa98a7c4e6c2f3cef267a9b7e35329c0894b2c6272a11c823fe4ffd",
+      "verdict": "accept",
+      "reasoning": {
+        "reconstruction": "splitPrimitiveWire is an equivalence from full strings to (target bit, non-target restriction). Equality of restrictions and equal target bits imply equal strings by this equivalence. If target bits differ, the fact Fin 2 has exactly two values gives a_target=flipBit(b_target), hence a=X_target b. Conversely equality or this X update preserves every nontarget coordinate. Fibers of the restriction therefore consist of exactly two full bit strings.",
+        "answer_rubric": "The full answer, c1-c3 and first three semantic steps prove both directions without conflating equal states with a nontrivial X-related state. The fourth correctly relates this pair characterization to selected-plane fixed-column behavior. With one wire, the context type is empty and both bit strings share it; with zero wires there is no target:Fin 0 to instantiate, rather than a one-dimensional selected pair. No register flattening or numerical-endianness choice is used by this pointwise named-wire theorem.",
+        "evidence_boundary": "The selected plane's identity complement is exact, not equality merely up to phase. Pair support alone is not a circuit synthesis/resource proof."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "declarations": [
+            "PrimitiveBasis",
+            "flipBit",
+            "xBasisAction",
+            "OtherPrimitiveWires",
+            "splitPrimitiveWire"
+          ],
+          "lines": "116-125;166-186",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+          "checked": "Read target update and restriction equivalence, including inverse construction and pointwise identities."
+        },
+        {
+          "file": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+          "declarations": [
+            "bit_eq_or_flip",
+            "x_context",
+            "same_context_iff"
+          ],
+          "lines": "12-37",
+          "sha256_lf": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce",
+          "checked": "Read entire two-direction proof and all four bit-value cases."
+        },
+        {
+          "file": "QuantumBlockEncoding/SelectedRyPlane.lean",
+          "declarations": [
+            "selectedRyPlaneMatrix",
+            "selectedRyPlaneMatrix_fixed_column"
+          ],
+          "lines": "58-66;122-129",
+          "sha256_lf": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40",
+          "checked": "Checked exact identity complement of selected matrix."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-117",
+          "other_key": "qcb-core-la-117",
+          "other_item_digest": "c187f71e1150c9fa98992c1dc15dbe5e22c6e35ff1be3cc2a8acccb8244daf96",
+          "relation": "proper_lemma_not_same_target",
+          "same_core_alias_proposed": false,
+          "reason": "The pair characterization is used to prove angle-sensitive transport, but does not itself contain its ordered RY equality."
+        }
+      ],
+      "limitations": [
+        "Scalar flipBit involutivity and target-X involutivity are related prerequisites, not this equivalence of full-string context fibers; no exhaustive global alias clearance."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-119",
+      "key": "qcb-core-la-119",
+      "item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+      "verdict": "reject",
+      "reasoning": {
+        "reconstruction": "For the unsimplified recursive backend, let N=2^(q+1), S=2^q=N/2. Its fixed generated list contains L=N*(N-1)/2 planes, including identity rotations. Each costs 3*S-2 primitive records, so actual emitted count G=L*(3*S-2)=Theta(N^3) along powers of two. At q=0, N=2 gives one RY and no CX; at q=1 the fixed backend emits six stages times (2 RY+2 CX)=24 gates. The compiler's <=6*S^3 bound and zero oracle count are correct; full-control coverage and a decomposition theorem are separate premises.",
+        "defect": "The answer's fixed-size witness says 24 gates at N=4 are 'far more than any count linear in N=4 would predict'. A single data point cannot refute asymptotic linear growth: 24=6*N. The q=1 datum only refutes treating the one-stage count four as the whole-circuit count. The phrase 'the SO matrix needs ...6 adjacent planes' also overstates backend list length as necessity: the identity SO(4) needs zero rotations although this unsimplified list includes six harmless identity planes.",
+        "answer_rubric": "The central per-stage-versus-total lesson and cubic family calculation are valid, but the whole reference answer contains these invalid necessity/asymptotic assertions. c3 mandates the q=1 witness without distinguishing its limited role. A successor should qualify all counts as this generated backend, give G/N=((N-1)/2)*(3*N/2-2) unbounded for the family to reject a uniform O(N) backend count, and label q=1 only as a per-stage/whole-list mismatch. The upper-bound theorem alone cannot establish a universal lower bound on optimal SO synthesis.",
+        "evidence_boundary": "These are emitted primitive list counts in an exact-angle symbolic backend, with no oracle calls or extra ancilla from this compilation; not arithmetic runtime, finite-bit compilation complexity or a lower bound for every possible synthesis algorithm."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+          "declarations": [
+            "compileUniformlyControlledRy",
+            "compileUniformlyControlledRy_ryCount",
+            "compileUniformlyControlledRy_cxCount",
+            "compileUniformlyControlledRy_oracleCalls_eq_zero"
+          ],
+          "lines": "192-215;370-409",
+          "sha256_lf": "241819a53088a3f4c63a6a57df393d02a3558ef5634b534791c2f7a88c14c21e",
+          "checked": "Read full recursive compiler and count inductions; unsimplified recursion retains zero-angle records."
+        },
+        {
+          "file": "QuantumBlockEncoding/SelectedRyPlane.lean",
+          "declarations": [
+            "compileSelectedRy",
+            "compileSelectedRy_ryCount",
+            "compileSelectedRy_cxCount",
+            "compileSelectedRySteps_noOracle"
+          ],
+          "lines": "23-29;143-156;225-227",
+          "sha256_lf": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40",
+          "checked": "Read count adapters, list sum proofs and oracle-free field."
+        },
+        {
+          "file": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "declarations": [
+            "decomposeSO",
+            "decomposeSO_action",
+            "decomposeSO_length"
+          ],
+          "lines": "597-613",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "checked": "Read exact generated-list construction and proofs; comment explicitly includes harmless identity rotations."
+        },
+        {
+          "file": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+          "declarations": [
+            "compileSteps_gateCount",
+            "compileSO_cubic_bound",
+            "compileSO_gateCount"
+          ],
+          "lines": "135-137;196-207",
+          "sha256_lf": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce",
+          "checked": "Read actual exact count identity as well as cubic upper-bound theorem; derived cubic family from equality, not upper bound alone."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-117",
+          "other_key": "qcb-core-la-117",
+          "other_item_digest": "c187f71e1150c9fa98992c1dc15dbe5e22c6e35ff1be3cc2a8acccb8244daf96",
+          "relation": "semantic_compilation_vs_resource_fallacy",
+          "same_core_alias_proposed": false,
+          "reason": "Plane transport and the error of aggregating resources are distinct questions; common compiler sources are not aliases."
+        }
+      ],
+      "limitations": [
+        "Rejects frozen reference reasoning, not the correct cubic count of this particular emitted list. No general optimal-circuit lower bound asserted."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    },
+    {
+      "core_id": "qcb-core-la-120",
+      "key": "qcb-core-la-120",
+      "item_digest": "378ddb50eda58d0fe217c02313ba7c13f7550d190ac84862faa25f8e3a1cb315",
+      "verdict": "accept",
+      "reasoning": {
+        "reconstruction": "Define F([],A)=A and F(s::rest,A)=F(rest,M_s*A); define P([])=I and P(s::rest)=P(rest)*M_s. Structural induction, generalized over A, gives F(s::rest,A)=P(rest)*(M_s*A)=(P(rest)*M_s)*A. This proves the identity for rectangular A as well as square matrices; only the plane matrices need be square.",
+        "answer_rubric": "The full answer, c1-c3 and semantic steps use the correct chronological convention and associativity. The empty list yields I*A=A, including zero rows or columns. N<2 has no adjacent Step values but still permits the empty list. The 'unique convention' language is understood as a uniform product-order rule for arbitrary possibly noncommuting lists; an individual commuting or identity list can of course yield the same matrix in other orders. No inverse, orthogonality or determinant hypothesis is needed for this identity.",
+        "evidence_boundary": "This is an action-versus-accumulated-matrix identity; it does not imply the two evaluations have equal operation count or storage cost."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "declarations": [
+            "Step",
+            "Step.matrix",
+            "applySteps",
+            "stepsMatrix",
+            "applySteps_eq_matrix_mul"
+          ],
+          "lines": "176-195;633-642",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "checked": "Read actual recursive definitions and full induction generalizing the input matrix."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-la-103",
+          "other_key": "qcb-core-la-103",
+          "other_item_digest": "169363b29832bc0b484a2c0a455b9b07a8fce233631ec20ffbd7868be52abb66",
+          "relation": "chronological_order_different_result",
+          "same_core_alias_proposed": false,
+          "reason": "Undoing a list by reversed inverses needs inverse laws; action/matrix accumulation here needs only associativity."
+        },
+        {
+          "other_core_id": "qcb-core-la-108",
+          "other_key": "qcb-core-la-108",
+          "other_item_digest": "b49acfec30465319f4637b8b0bc8fb1655146b68a99b8b9d6688fff48ec32fa7",
+          "relation": "pipeline_bridge_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Transpose-based recovery uses orthogonality and a known residual; this algebraic bridge does not."
+        }
+      ],
+      "limitations": [
+        "No equal-runtime inference from equal mathematical output; no fresh kernel run."
+      ],
+      "semantic_core_verdict": "distinct_or_explicit_alias"
+    }
+  ],
+  "summary": {
+    "reviewed_present": 9,
+    "accept": 7,
+    "reject": 2,
+    "uncertain": 0,
+    "absent": 1,
+    "rejected_core_ids": [
+      "qcb-core-la-112",
+      "qcb-core-la-119"
+    ],
+    "global_semantic_alias_clearance": false
+  }
+}

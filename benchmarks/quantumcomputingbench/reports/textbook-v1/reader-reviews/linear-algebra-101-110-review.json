@@ -1,0 +1,186 @@
+{
+  "schema_version": "qcb.mathematical_reader_review.v1",
+  "method": "independent-mathematical-reader-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "repository_commit": "e9bd65f737959662d7acd882b518a59692a77fea",
+  "absent_core_ids": [],
+  "provenance": {
+    "item_source": "Complete admitted native records returned by benchmarks/quantumcomputingbench/scripts/release.py checked() at the stated current local HEAD. Every item_digest is qcb_core.digest of the whole prepared record, including its admission metadata; no reader-overlay replacement was substituted.",
+    "instructions_read": "Refreshed AGENTS.md, HARNESS.md, docs/theorem-publication-protocol.md, docs/proof-digestion-protocol.md, docs/evidence-routed-memory-protocol.md and the qbe-substantive-worker skill before this batch.",
+    "review_scope": "Full question, reference answer, assumptions, conventions, rubric and semantic steps for all ten admitted la-101 through la-110 records, with complete relevant source definitions and proof bodies inspected. This is mathematical NL/source review, not a fresh kernel run, source-blind decode, numerical experiment or production circuit execution. la-102 was previously reviewed by this same identity; its complete record and source were reread at this checkpoint. This report is not a second distinct reviewer identity for that item.",
+    "alias_scope": "Compared the ten tasks with one another and inspected complete candidate questions selected by reverse/recovery/Gray/elimination/boundary semantics: la-116, la-117, la-119, la-120, la-203, la-204, la-208, la-210, la-212, la-215, la-216, la-218, la-220, la-010, la-012, sp-003, sp-004 and sp-007. Shared graph nodes only routed candidate inspection. These are bounded distinctions, not an exhaustive global semantic deduplication or novelty result.",
+    "mutation_scope": "Only this new private report outside the repository was written. Canonical files, frozen artifacts, earlier reports and merged PR100 were not modified."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-la-101",
+      "item_digest": "5d349b058b56a55a91b036f2d61d63d6c9cdc6be9ba99988d6e0d0ecea65486e",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Let c=cos(a/2), s=sin(a/2) and r=sqrt(x^2+y^2), with cr=x and sr=y as assumed. At elimination parameter -a, cosine remains c and sine becomes -s. The first output is cx+sy=(c^2+s^2)r=r; the second is -sx+cy=(-sc+cs)r=0. No cancellation of r or division is used, so these equalities remain valid when r=0. The actual splitAngle definition explicitly selects exact angle zero when the pair length vanishes, before entering its arccos/division branch; since a sum of real squares is zero only for x=y=0, the zero pair then undergoes the identity rotation. This verifies the complete answer and all three rubric criteria for signed real x,y, including a negative first entry and negative y, without silently taking an unsigned arccos branch. I inspected the whole splitAngle_firstColumn proof as well as its real-component bridge and eliminate_pair, so the argument is not inferred from the elimination API name. As a two-row matrix operation the selected rows must be distinct, whereas the pure pair identity has no matrix-index premise. A rectangular ambient matrix is allowed, with any chosen valid column. The result certifies exact-real pair elimination; it does not certify a floating-point pivot routine, numerical stability, inverse-trigonometric implementation or finite-bit cost. la-104 composes such eliminations into a sweep; la-215 asks the exact-real angle routine's per-input cost versus budget. Those reuse this mechanism but are different mathematical conclusions.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "Complete rotateRows definition, lines 20-25; full splitAngle_real_firstColumn, eliminationAngle, eliminationAngle_zero and eliminate_pair definitions/proofs, lines 84-119; pairNorm zero characterization and eliminateEntry zero-pair theorem, lines 121-174."
+        },
+        {
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa",
+          "anchor": "Complete pairNorm, nonnegativity/square lemmas, guarded signed splitAngle definition and full splitAngle_firstColumn proof, lines 143-202."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-102",
+      "item_digest": "470ce4707a5d7cebab5a056b624cf70eb6448b2fdee43c594b57cf19d273943f",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Expand the determinant in the two distinct replacement-row positions. The ac term repeats old row i in both positions and the bd term repeats old row j, so both vanish by alternation. The ad term retains the original order. The bc term swaps those two rows and contributes -bc det(A), giving the factor ad-bc. For the actual ordered half-angle rotation the four coefficients are cos(t/2), -sin(t/2), sin(t/2), cos(t/2), so the factor is cos(t/2)^2+sin(t/2)^2=1. This proves exact determinant preservation for every real square A, including singular matrices, without assuming orthogonality, invertibility or a positive determinant. The source updateRow expression uses old A in both updated rows; it does not accidentally use an already altered first row in the second mixture. Its complete proof explicitly supplies the two repeated-row zeros and the transposition determinant, matching every rubric step. At size zero or one no distinct selected row pair exists, so those instances are vacuous; all real angles are admitted. 'Adjacent' in the module name is not an extra premise of rotateRows_det. This source application is not a newly run kernel proof or a deep synthesis result. The same core was the intentional F2 formal view in earlier work and must not be counted as a new mathematical target. Within this batch, la-108 uses determinant preservation of accumulated rotations as an additional fact but asks rectangular recovery; la-106 uses det=1 to settle a last pivot. Neither is an alias of the two-row determinant identity.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "rotateRows definition, lines 20-25; complete det_two_row_mix, rotateRows_det and planeMatrix_det proofs, lines 341-383."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-103",
+      "item_digest": "169363b29832bc0b484a2c0a455b9b07a8fce233631ec20ffbd7868be52abb66",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For one ordered row pair, write G(t)=[[c,-s],[s,c]] with c=cos(t/2), s=sin(t/2). Then G(-t)G(t)=I by c^2+s^2=1 and cancellation of the off-diagonal terms; every other row is fixed. The inverse is also a right inverse, although the chronological undo uses the stated left-inverse order. If the chronological list is step::rest, its action is rest acting on G_step A. The reversed-negated list is undo(rest) followed by inverse(step). By induction the first part removes rest and the final inverse removes G_step, returning A. The empty-list case returns A immediately. This gives the whole list equality with correct multiplication direction and checks all three rubric criteria. I inspected Step, its distinctness proof, applySteps, inverse, append action and the complete reverse-inverse proof. The source Step carries adjacency, which guarantees distinct rows and is preserved under angle negation; adjacency itself is not needed for the matrix inverse argument, so the NL's stated distinct-pair regime is a valid generalization. Ambient A may be rectangular and rank deficient. In dimensions zero or one the source admits no nonempty adjacent-step list; the empty result remains valid. Exact cancellation does not imply a floating-point conditioning or evaluation-cost claim. la-120 identifies step-by-step action with an accumulated reverse-order product, whereas this item identifies the inverse action and exact recovery. la-204 adds stored replay/counter semantics, another distinct contract.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "Complete rotateRows_inverse and planeMatrix_inverse proofs, lines 41-60; Step/distinct/matrix/applySteps/inverse definitions and full append/reverse-inverse proofs, lines 177-220."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-104",
+      "item_digest": "d116f4f01eb9ee69ff710e3d88155094fba848cfbe1475bc166d29434e5c98ea",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The exact source window is inclusive [lo,lo+count], with lo+count<N. For count+1 the first chronological elimination acts on (lo+count,lo+count+1), clears the bottom selected entry and leaves every other row unchanged; the recursion then processes [lo,lo+count]. A row outside the original window is outside both this pair and the smaller window, so induction proves its entire row remains unchanged, not only the selected-column entry. To prove zeroing, split a requested row into one within the smaller window or the newly cleared bottom row. The first case follows from the induction hypothesis on the changed matrix. The bottom row lies outside the remaining upper window and its fresh zero is protected by outside-invariance. This is the precise two-case expansion of the reference answer's description of the step where a given row v is folded into v-1. It establishes all three rubric requirements without treating every arbitrary v as the very first elimination of the full sweep. count=0 leaves the matrix unchanged and there is no row strictly between lo and lo; zero pairs at any step are identity operations and cause no gap. Valid indices and the window bound are necessary typing data, not hidden rank or orthogonality premises. The use of top/bottom is diagrammatic: larger row indices are folded toward lo. I inspected the full source recursion, pair-pivot/unchanged proofs and both sweep inductions. la-101 supplies the local elimination identity, and la-203 counts emitted records/work for a sweep; these are not exact aliases of its window/frame semantics.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "Complete eliminateEntry, eliminateEntry_pivot and eliminateEntry_unchanged, lines 141-154; columnSweep recursion, lines 222-229; full columnSweep_outside and columnSweep_zeroed statements/proofs, lines 265-303."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-105",
+      "item_digest": "059fbedeca9a54a2029f3769ccac4ed3d567bda7d0899acd6cb3cc9cc3fb0c2d",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "At a valid column c, the diagonal Gram entry is (B^T B)(c,c)=sum_row B(row,c)^2=1. The support premise kills every row except c, so B(c,c)^2=1. Over the reals this leaves the two possibilities +1 and -1; the separately requested premise B(c,c)>=0 excludes -1 and gives exactly +1. This proves the three rubric steps with no normalization division or square-root reciprocal. The argument remains valid for a rectangular real matrix whenever the distinguished column c also names the indicated row and the column Gram is identity; the cited source specializes to square matrices. Complex entries would instead give |B(c,c)|^2=1 and an arbitrary phase, so the declared real scalar field is essential. A valid distinguished c rules out an empty row/column carrier; other zero off-support entries are permitted. I inspected orthogonal_supported_column_sq and the entire nonnegative-pivot and prefix-extension proofs. The source's sweep nonnegativity theorem requires positive count: an untouched count-zero pivot could remain -1. The question correctly asks for +1 only 'if in addition the sweep guarantees' nonnegativity, so this source condition must not be silently erased or interpreted as following from B^T B=I alone. The source obtains it from the final actual elimination's nonnegative pair length. la-106 settles a different final-column sign via determinant one, not this positive pivot premise. la-104 establishes zero support below a pivot, not its normalized sign. No numerical normalization/stability or compiler theorem follows.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "Complete columnSweep_pivot_nonneg with positive-count binder, lines 422-439; orthogonal_supported_column_sq proof, lines 441-455; full columnSweep_prefix_succ proof, lines 457-483."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-106",
+      "item_digest": "2e7a6b4d161e7e91748a4d476a0fc00e1f24695c727136037c0478ed59488ad3",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Let k+1=N and last=k. Each fixed early column j<k has entries delta(row,j). Orthogonality of the last column to that coordinate column gives A(j,last)=0. These exhaust the off-diagonal possibilities: an off-diagonal entry is either in a fixed early column or in the last column at an early row. The answer's additional 'symmetric' wording is unnecessary; no further rows or hidden off-diagonal region remains. Thus A=diag(1,...,1,d), d=A(last,last). Its determinant is d, so the independent hypothesis det(A)=1 forces d=1 and A=I. Without that determinant condition, diag(1,...,1,-1) is an orthogonal counterexample for every N>=1. Orthogonality is used to zero the last column; determinant one selects its orientation, and determinant one is not a substitute for the earlier orthogonality argument. This verifies all three rubric criteria and the complete source last-prefix proof, including its explicit k+1=N binder. For N=1 the prefix is empty and the scalar determinant alone gives A=[1]. N=0 has no last index satisfying k+1=N, so that source interface is inapplicable; the only 0x0 matrix is nonetheless the identity. The task's parenthetical definition of a last index supplies the nonempty regime. This exact-real matrix conclusion is independent of an efficient full sweep or a qubit compilation. la-105 uses nonnegative pivot data instead of determinant data; la-006/la-011 concern freedom to orient a partly prescribed frame rather than proving this already almost-identity matrix equals I.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "Complete PrefixIdentity and orthogonal_zero_of_fixed_column, lines 400-408; full matrix_eq_one_of_full_prefix and matrix_eq_one_of_last_prefix proofs, lines 485-525."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-107",
+      "item_digest": "87706ea5c66f54bf0bffd4b1d4fcaab38075224230201e30e5d530af8ae448e2",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Write the first index as 2q+b. In the even case b=0, its successor has the same q and b=1; the Gray tail is unchanged and the head b xor parity(q) flips. In the odd case b=1, the successor is 2(q+1), so the head changes from 1 xor parity(q) to 0 xor parity(q+1), the same bit because quotient parity toggles. The Gray tails are the consecutive q and q+1 labels; the induction hypothesis flips exactly one tail wire, which becomes its successor wire in the full string. The successor's validity below 2^(n+1) ensures q+1 lies within the smaller width, including the highest allowed consecutive pair; no modular wraparound is assumed. At width zero there is just one index and no pair satisfying second=first+1. A Fin 2 bit is always changed by flipBit, so the exhibited X action changes exactly one bit rather than merely at most one. I read the complete twist/equiv/headBit definitions, parity lemmas and adjacency induction, along with the actual X action and little-endian basis convention. They match the answer and all three rubric criteria for arbitrary width. This mathematical basis adjacency does not imply a free Gray-encoding circuit, a hardware wire permutation, or any gate/resource estimate. la-116 concerns simultaneous matrix row/column reindexing, la-117 uses adjacency to identify a selected RY plane, and la-119 counts a decomposition's compiled gates; none asks this numerical-neighbor Gray-word theorem.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/GrayBasis.lean",
+          "sha256_lf": "658e01d906fc1ed4dd12983ae62c1a45f5639a9d0cbff35c825db9b78445d3db",
+          "anchor": "Entire module: complete twist/equiv/headBit definitions and head/tail equations, lines 9-35; full headBit_even/headBit_odd and adjacent proofs, lines 37-94."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+          "anchor": "Complete PrimitiveBasis, flipBit and xBasisAction definitions and flip involution proofs, lines 115-134."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveBasisLE.lean",
+          "sha256_lf": "469c176f1f47732661d526b72de1f9906a3c335061f6a4c82766877ce5979fad",
+          "anchor": "Complete primitiveBasisLEEquiv recursion, lines 15-26, and successor value equation establishing wire-zero least significance, lines 33-38."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-108",
+      "item_digest": "b49acfec30465319f4637b8b0bc8fb1655146b68a99b8b9d6688fff48ec32fa7",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For A:N x M, the accumulated T is N x N, so T^T times its N x M residual is well typed. If T=G_t...G_1 with each G_j orthogonal, successive adjacent factors G_j^T G_j cancel in T^T T, yielding I_N. The construction's chronological action lemma gives TA=R. Therefore T^T R=T^T(TA)=(T^T T)A=A. This is exact recovery even when A is rank deficient or rectangular; it does not use a pseudoinverse, full column rank or a least-squares argument. The determinant multiplicativity calculation gives det(T)=product_j det(G_j)=1, independently confirming membership in SO(N). That fact is not needed for T^T to be an inverse: orthogonality already establishes the inverse, while determinant one distinguishes orientation. The reference answer states this causal distinction correctly despite rubric c3's compressed wording. I inspected the complete rectangular sweep/step list, action and upper-prefix proofs, transform construction, orthogonality/determinant inductions and exact_recovery proof, plus the actual stepsMatrix convention in AdjacentGivens. N=0 or M=0 yields a valid empty residual and identity/no-step transform, with empty determinant one; singular pivots require no matrix inverse. Upper-trapezoidal shape is construction evidence but not logically required for the displayed recovery equation. No arithmetic evaluation cost, finite-precision stability, primitive gate compilation or qubit register embedding is established. la-103 proves undoing a supplied rotation list; la-204 adds a stored replay implementation and budget. These overlap the recovery mechanism but have different conclusions and data contracts.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RectangularGivens.lean",
+          "sha256_lf": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133",
+          "anchor": "Entire module inspected, including complete sweep/sweepSteps and action/upper-prefix proofs; stepsMatrix_orthogonal/stepsMatrix_det; decompose/reduced/transform definitions and full transform_mul, transform_orthogonal, transform_det and exact_recovery proofs through line 153."
+        },
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "Complete planeMatrix inverse/transpose/orthogonality proofs, lines 57-72; planeMatrix_det, lines 381-383; complete stepsMatrix definition and applySteps_eq_matrix_mul proof, lines 633-642."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-109",
+      "item_digest": "1fd3017d71601c3fa4b81db41b1b04a8d4a9fd00e609a2ba2b87f5082ddbb14b",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Fix a nonempty emitted word (beta,tail), and write A_beta for the first core's beta slice and z_b for the tail contraction at incoming bond b and scalar terminal index zero. Closing left replaces the first slice by sum_a left(a) A_beta(a,b). Hence the closed scalar amplitude is sum_b (sum_a left(a) A_beta(a,b)) z_b. Distributivity, associativity and commuting the two finite sums give sum_a left(a) sum_b A_beta(a,b) z_b, which is precisely the left-weighted open amplitude. The physical bit beta is fixed by the word; the summed 'out' in the answer denotes the outgoing bond for that fixed slice, not an additional sum over both emitted-bit values. Under this standard slice reading the answer and all three rubric criteria supply the correct argument, and the complete closeLeft_contract proof makes that indexing explicit. The source actually permits arbitrary dependent tail bonds after the first core; the fixed-width NL setting is a sound specialization. closeLeft takes a Chain(n+1,D,1), so it requires a first core and is not an unspecified operation on an empty chain. A zero-width D gives an empty left sum and a zero closed first core, so the same equality still holds. No normalization, positivity, orthogonality, complex conjugation or unitary circuit is needed: left is a real amplitude boundary, not a bra inner product convention. This is scalar contraction equality, not a runtime result. la-110 absorbs the right boundary and proves a recursion identity; la-208 adds stored closure costs, while sp-003/sp-004 discuss canonicalization and mass. These are not exact aliases of the left-linear boundary contraction theorem.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/MatrixProductChain.lean",
+          "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+          "anchor": "Complete Kernel/readout definitions, lines 11-17; closeLeft definition and complete closeLeft_contract finite-sum proof, lines 38-49; ofKernel/ofKernel_contract, lines 52-62."
+        },
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "anchor": "Complete Core/slice, dependent Chain, Word and contract definitions, lines 18-41, fixing the physical-bit slice and input/output bond orientation."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-110",
+      "item_digest": "fad513662c7653c200c59df3ebf0190dd261233cbc497793dff6c0821c892001",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The actual readout recursion is r_start(beta,tail)=K(start,beta) r_(start+1)(tail), with the empty-word readout equal to the supplied right vector. Thus a word beta0...betat denotes K(start,beta0)...K(start+t,betat) right: as column-vector multiplication, the rightmost matrix acts first on the right boundary. The word order and source's chronological-contraction wording must be read with this explicit formula, not as the reversed product. In the one-core base, tailChain stores the vector K(start,beta) right as its terminal-rank-one core slice, and contraction with the terminal identity returns exactly that vector. For the inductive step the preceding core remains K(start,beta), so the contraction at a is sum_b K(start,beta)(a,b) times the tail contraction. The induction hypothesis replaces the latter by the later readout and produces the defining current readout. This proves the full answer/rubric conclusion for every word and incoming label, as in the complete source proof. The construction has n+1 cores, so a last core exists; this is not a claimed zero-core rank-changing operation. If D=0 there is no incoming label and the equation is vacuous; arbitrary zero/signed boundaries and rank-deficient cores are otherwise allowed. No normalization, canonicality or circuit stage is assumed or certified. la-109 proves left-boundary linearity after such a chain exists; la-208 proves stored closure refinement/cost, and la-220 interprets its maximum-bond bound. sp-007 concerns sequential quantum stages with fresh bits and an initial boundary, a different action convention and theorem. None is an exact duplicate of this terminal-vector absorption/readout identity.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/MatrixProductChain.lean",
+          "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+          "anchor": "Complete Kernel/readout and tailChain definitions and full tailChain_contract induction proof, lines 11-35."
+        },
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "anchor": "Complete Core/slice, dependent Chain, Word and contract definitions, lines 18-41, including terminal nil contraction as identity."
+        }
+      ]
+    }
+  ]
+}

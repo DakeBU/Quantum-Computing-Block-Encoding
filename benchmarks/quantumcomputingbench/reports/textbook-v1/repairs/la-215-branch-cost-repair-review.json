@@ -1,0 +1,69 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-la-215",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/la-215-branch-cost-repair.json",
+  "repair_record_digest": "414a8f8ffaaf04545b35a1af1e917621f9e85b4522fc218304f1ed4bc0da949d",
+  "original_item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+  "verdict": "accept",
+  "verdict_scope": "Correctness and unchanged-question fitness of the entire exact answer/rubric/exposition successor, not policy admission, a new kernel proof, stable release approval or a finite-bit runtime theorem.",
+  "independence": {
+    "actual_identity": "The actual separately dispatched /root/qcb_boundary_repair_review task, which authored neither this original record nor this root-authored candidate.",
+    "repair_author": "/root",
+    "original_author": "stored-cost-author-b2",
+    "distinct_from_repair_author": true,
+    "exposure": "Not blind. Parent requested this review and identified the broad supplier-quantifier/branch-count concerns; complete candidate, prepared original and historical review metadata were visible. The local definitions, explicit reconstruction and quantifier arguments below, not parent reasoning or prior verdicts, are the mathematical evidence. This task previously reviewed other stored-cost items, disclosed rather than presented as fresh blind exposure."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "7f3d8c353f2e2a2346554be969bca19d41dae7ce9bb3ba7a78e64ce9af1375dc",
+    "retrieval": "Read the entire actual historical prepared original selected from scripts/release.checked()[2], including complete question/reference answer/rubric/assumptions/conventions/semantic steps/source references and historical metadata. Did not substitute the current-reader view.",
+    "hash_definition": "original_item_digest=qcb_core.digest(entire actual prepared predecessor); repair_record_digest=qcb_core.digest(entire parsed exact candidate, including exposition); contract_hash=qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}). Fields are question, assumptions, conventions, family, split, graph_version, target_nodes, supporting_nodes, source_refs.",
+    "reasoning": "The question gives the full angle control flow and explicitly calls (7,1,1,2) an upper budget; it asks to refute universal one-arccos and explain budget versus actual cost. The zero-input counterexample and exact three-branch reconstruction directly answer this unchanged request. No premise restricting y or excluding zero is added, and the exact-real/non-finite-bit convention, train split/family, graph/source scope and three-step count remain intact. Correcting the predecessor's overbroad nonzero-branch tightness is an answer/rubric/exposition change, not a replacement question."
+  },
+  "substantive_reconstruction": {
+    "initial_and_zero_root_path": "In the exact source, mul(x,x), mul(y,y), add(xx,yy) contribute three field operations; sqrt adds one sqrt and zeroTest adds one comparison. If the root is zero, pure(0) adds nothing. Ordered as (field,sqrt,angle,compare), the exact tuple is (3,1,0,1), other counters zero. For x=y=0 the root is sqrt(0)=0, so there is no div, arccos or signTest. This directly refutes every-call-exactly-one arccos. Over reals the squared norm is nonnegative and its square root vanishes exactly for x=y=0; no exotic negative-squared-norm path is needed.",
+    "nonzero_nonnegative_y_path": "After the initial three fields, one sqrt and one comparison, the else branch executes div(x,r) (one field), arccos (one angle), and signTest(y) (one comparison). For y>=0 the signed value is pure(a), zero additional cost. mul(2,signed) and sub(0,doubled) add two fields. Total is (6,1,1,2); trig/read/write/emit remain zero. Input (1,0) has r=1 and y<0 false, so realizes this trace even though arccos(1)=0 and the resulting double/negation values vanish. Operations are charged by calls, not canceled by algebraic simplification.",
+    "negative_y_path": "For y<0, which already forces the real norm nonzero, the same nonzero path additionally executes sub(0,a), one field operation. Thus total is (7,1,1,2), with other counters zero. Input (0,-1) has r=1 and a=arccos(0), so realizes it. There is exactly one arccos on either nonzero path; only the negative-y path attains all components of the full budget jointly.",
+    "inequality_tightness_and_composition": "The declared angleBudget is 7field+sqrt+angle+2compare. Comparing the three reconstructed tuples proves all actual costs <=budget counterwise, and exhibits both strict and attained cases. The bound is jointly sharp as a uniform componentwise bound because a negative-y input realizes it; sharpness does not say every nonzero input reaches it. For any actual sequence of calls, nonnegative componentwise inequalities may be summed, including when later inputs depend on earlier values since angle_cost_le is universal. This proves only a summed upper bound, not exact arithmetic counts. A separate exact emit theorem for a different producer cannot upgrade angle-cost inequalities.",
+    "scope": "This is angle itself, not coefficients, which subsequently divides by two and calls cos/sin, and not a complete stored elimination/rotation with reads/writes/logging. Zero data do not trigger free arithmetic except at the explicit early branch. The model has exact comparisons, exact real primitives and pure literals; it does not address finite precision, approximate sign decisions, numerical stability, bit runtime or primitive quantum gate cost."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full: zero input, all exact tuples, witness inputs, absent counter categories, charged subtraction even for zero values, attainment qualification and summed-inequality discussion match actual source. It removes both the predecessor's broad tight-on-nonzero wording and the suggestion that arithmetic counters cannot ever have exact per-branch counts.",
+    "rubric": {
+      "c1": "Correctly requires x=y=0, early return, zero arccos and absent division/sign test.",
+      "c2": "Correctly distinguishes budget equality from arccos equality and explicitly discriminates six-field nonnegative-y from seven-field negative-y nonzero traces.",
+      "c3": "Correctly keeps summed upper bounds, exact execution counts and finite-bit/other-producer emit results separate."
+    },
+    "exposition": "Read the entire summary and all three steps. The zero-branch tuple is exact, both nonzero tuples are exact, and componentwise summation is sound. All three steps retain original allowed supporting nodes and original step count. The source angle_cost_le proof splits the same branch predicates, but the exact tuple statements are reconstructed consequences of its actual definitions, not fresh theorem-execution claims.",
+    "necessity_and_minimality": "The original counterexample was correct, but the answer/rubric's undifferentiated nonzero-branch tightness could be read as claiming full-budget equality on every nonzero input and obscured the optional subtraction. The successor repairs that ambiguity with exact counts without changing the question or introducing y<0 as a hypothesis. The extra branch detail is directly relevant to the requested precise logical relationship.",
+    "remaining_limits": "This accepts only the exact NL successor. No new branch-count Lean theorem, broad arithmetic optimality theorem, policy admission, publication gate or stable release approval is claimed."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/StoredGivens.lean",
+      "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+      "anchor": "Complete module read. Charged primitives45-54 and pure/bind33-41 establish per-call counts. Entire angle body88-100 and angle_value proof102-107 inspected; exact optional sub0a at98 is the sixth-versus-seventh-field discriminator. angleBudget254-255 and complete angle_cost_le257-261 split zero-root and negative-y predicates, yielding a componentwise inequality. coefficients110-115 and columnSweep_emit343-353 inspected solely to keep their trig/emit contracts separate from angle."
+    }
+  ],
+  "provenance": {
+    "source_inspection": "Complete exact candidate JSON and complete prepared original read; complete StoredGivens module, including definitions and proofs, read afresh. Exact source anchors below identify the operative semantics.",
+    "instructions_refreshed": [
+      "AGENTS.md",
+      "HARNESS.md",
+      "docs/theorem-publication-protocol.md",
+      ".agents/skills/qbe-substantive-worker/SKILL.md",
+      "docs/proof-digestion-protocol.md",
+      "docs/evidence-routed-memory-protocol.md",
+      "benchmarks/quantumcomputingbench/shared/CONTRACT.md",
+      "benchmarks/quantumcomputingbench/shared/ACCEPTANCE.md"
+    ],
+    "observed_head": "e9bd65f737959662d7acd882b518a59692a77fea",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "formal_status": "Independent mathematical/source review only; no fresh branch-count, arbitrary-loop or resource kernel theorem is claimed. Existing theorem text is inspected, not rerun.",
+    "verification": "Whole JSON/contract bindings use qcb_core.digest; source hashes use qcb_integrity.text_sha (CRLF-to-LF normalization). Predecessor acceptance is not transferred to changed content.",
+    "mutation_scope": "Only the two specifically requested parent-workspace temporary successor-review outputs are authored in this pass. No candidate, production source, policy, frozen record, prior report, history/main/PR100, commit or push is changed. No extra agent."
+  }
+}

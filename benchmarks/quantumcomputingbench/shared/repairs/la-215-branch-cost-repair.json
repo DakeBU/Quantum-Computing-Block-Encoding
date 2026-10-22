@@ -1,0 +1,28 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-la-215",
+  "supersedes_key": "qcb-core-la-215",
+  "supersedes_item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+  "author": "/root",
+  "key": "qcb-core-la-215-textbook-v1-branch-cost-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Repair the actual branch counts and budget-tightness explanation in the answer/rubric/exposition only. No question, premise, graph, family, split or target is changed; no new kernel evidence is asserted.",
+  "reference_answer": "Take x=y=0. The routine executes two field multiplications and one field addition, one square-root call and one zero comparison. The root is zero, so it returns the literal angle zero immediately. It executes no division, inverse cosine or sign comparison. Thus the inverse-cosine count is zero, disproving the claim that every input makes exactly one such call.\n\nTo distinguish an upper bound from an exact cost, order the relevant counters as (field,sqrt,angle,compare). The zero-root branch has exact tuple (3,1,0,1). On a nonzero-root branch, division, inverse cosine, the sign comparison, doubling and final negation are performed. If y is nonnegative the intermediate sign is passed through without a charged subtraction, so the tuple is (6,1,1,2). If y is negative the extra subtraction 0-a is performed and the tuple is (7,1,1,2). In angle itself all trig/read/write/emit counters are zero. Concrete inputs (1,0) and (0,-1) realize the two respective nonzero cases. A charged subtraction still counts when its numerical result happens to be zero; this is a counted execution trace, not an algebraically optimized expression.\n\nThe branch-independent budget is (7,1,1,2), componentwise, with the other counters zero. Every actual tuple is bounded by it. The full budget is attained on the negative-y nonzero branch, not on every nonzero input: the nonnegative-y nonzero branch uses only six field operations. One inverse cosine is exact for either nonzero branch, whereas the zero branch uses none. Summing componentwise inequalities gives a valid budget for many calls; it does not turn those inequalities into per-input equalities. Source counters that separately prove an exact emit count do not make this angle budget exact. These are exact-real operation counts, not a finite-bit or numerical-stability result.",
+  "rubric": [
+    {"id": "c1", "weight": 1, "criterion": "Exhibits x=y=0, traces the early return and obtains zero inverse-cosine calls, with no division or sign test."},
+    {"id": "c2", "weight": 1, "criterion": "Explains componentwise upper-bound semantics and distinguishes full-budget equality from inverse-cosine equality. Does not claim the full budget is attained on every nonzero input; the negative-y branch uses seven field operations and the nonnegative-y branch six."},
+    {"id": "c3", "weight": 1, "criterion": "Justifies summing the valid cost inequalities without inferring exact per-call counts. Keeps charged exact-real operation counts distinct from simplification, finite-bit runtime and unrelated exact emit theorems."}
+  ],
+  "exposition": {
+    "core_summary": "The angle budget is a componentwise upper bound. Zero inputs use no inverse cosine; nonzero inputs use one, but the full field budget is attained only when the negative-y sign branch executes its extra subtraction.",
+    "semantic_steps": [
+      {"claim": "At x=y=0 the early return has (field,sqrt,angle,compare)=(3,1,0,1), so the universal one-inverse-cosine assertion is false.", "supporting_nodes": ["declaration:QuantumBlockEncoding.StoredGivens.angle"]},
+      {"claim": "Nonzero-root inputs have (6,1,1,2) for nonnegative y and (7,1,1,2) for negative y; both are bounded by the declared (7,1,1,2) budget, which need not equal the actual tuple.", "supporting_nodes": ["declaration:QuantumBlockEncoding.StoredGivens.angle_cost_le", "declaration:QuantumBlockEncoding.StoredGivens.angleBudget"]},
+      {"claim": "Componentwise bounds can be summed across actual calls, without upgrading the budget to an exact per-call arithmetic count or a finite-bit theorem.", "supporting_nodes": ["declaration:QuantumBlockEncoding.StoredGivens.angle_cost_le"]}
+    ]
+  },
+  "source_checks": [
+    {"path": "QuantumBlockEncoding/StoredGivens.lean", "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4", "anchor": "Complete charged primitive and Run.bind/pure definitions, full angle control flow and angle_value proof, angleBudget and full angle_cost_le proof. Exact branch tuples reconstructed from the charged execution, including the optional negative-y subtraction."}
+  ],
+  "execution": "Complete source/control-flow reconstruction only. No fresh branch-count kernel theorem or untrusted execution claimed."
+}

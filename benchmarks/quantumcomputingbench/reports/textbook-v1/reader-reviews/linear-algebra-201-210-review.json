@@ -1,0 +1,441 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "requested_core_ids": [
+      "qcb-core-la-201",
+      "qcb-core-la-202",
+      "qcb-core-la-203",
+      "qcb-core-la-204",
+      "qcb-core-la-205",
+      "qcb-core-la-206",
+      "qcb-core-la-207",
+      "qcb-core-la-208",
+      "qcb-core-la-209",
+      "qcb-core-la-210"
+    ],
+    "present_admitted_core_ids": [
+      "qcb-core-la-201",
+      "qcb-core-la-202",
+      "qcb-core-la-203",
+      "qcb-core-la-204",
+      "qcb-core-la-205",
+      "qcb-core-la-206",
+      "qcb-core-la-207",
+      "qcb-core-la-208",
+      "qcb-core-la-209",
+      "qcb-core-la-210"
+    ],
+    "absent_ids": [],
+    "observed_head_at_start": "e9bd65f737959662d7acd882b518a59692a77fea",
+    "catalog_selection": "Loaded historical prepared native via scripts/release.checked(), then applied qcb_textbook_policy.apply_current_reader_policy to identify currently admitted items. All ten requested IDs are present in the 199-item current reader; no absent/provisional substitute was used. Their whole prepared item digests are recorded below.",
+    "historical_native_count": 213,
+    "current_reader_count": 199,
+    "digest_method": "qcb_core.digest of each entire actual prepared item, including historical metadata, rather than a question-only subset or authored-row hash.",
+    "content_checked": "Complete actual prepared items, including questions, reference answers, all rubric criteria, assumptions, conventions, source references, semantic steps, core summary and historical review metadata. Full StoredGivens, StoredRectangularGivens, StoredThinLQ, StoredMatrixProductChain, StoredTensorTrainNorm, StoredTensorTrain, ConstructiveThinLQ, RectangularGivens, MatrixProductChain and TensorTrainNormEnvironment modules were read; relevant full AdjacentGivens definitions/proofs and TensorTrainCanonical carrier definitions were read.",
+    "comparison_scope": "Bounded in-batch target/granularity and previously inspected normalization/cross-cohort interfaces only. No full new semantic dedup pass, latest other-batch approval or stable-release closure is implied."
+  },
+  "provenance": {
+    "actual_identity": "The real /root/qcb_boundary_repair_review task, distinct from all original authors in this batch. This task previously screened some of these questions in the historical cross-cohort review; those observations are disclosed and were not substituted for the fresh full source reconstruction.",
+    "exposure": "Not source-blind or verdict-blind. The complete NL items and historical acceptance notes were visible; source code, actual arithmetic and explicit boundary cases determine the findings. No human approval, second reviewer identity or fresh kernel execution is claimed.",
+    "instructions_refreshed": [
+      "AGENTS.md",
+      "HARNESS.md",
+      "docs/theorem-publication-protocol.md",
+      ".agents/skills/qbe-substantive-worker/SKILL.md",
+      "docs/proof-digestion-protocol.md",
+      "docs/evidence-routed-memory-protocol.md",
+      "benchmarks/quantumcomputingbench/shared/CONTRACT.md",
+      "benchmarks/quantumcomputingbench/shared/ACCEPTANCE.md"
+    ],
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "external_access_or_extra_agents": false,
+    "file_hash_method": "qcb_integrity.text_sha: SHA-256 with CRLF-to-LF normalization only.",
+    "mutation_scope": "Only the specifically requested parent-workspace temporary review report. No canonical repository source, frozen dataset, current policy, prior report, branch/history, current main/PR100, commit or push is changed."
+  },
+  "shared_resource_contract": {
+    "carrier": "Cost=Op->N for exactly field,sqrt,angle,trig,compare,read,write,emit; Run carries an actual value plus this ledger.",
+    "composition": "Run.pure costs zero and Run.bind adds componentwise ledgers. A charged primitive increments one category. Derived equalities and inequalities below refer to this exact producer/model, not all algorithms with the same mathematical output.",
+    "storage": "StoredMatrix N M is a vector of N stored rows of M real entries, not an arbitrary entry callback. collect materializes counted entries then projected outputs and bills2 reads+2 writes per collected index; nested materialize additionally pays row-level surcharge. replace bills a complete N-row-reference copy.",
+    "omissions": "Proof checking, ledger bookkeeping, loop-index arithmetic and finite-bit representation/rounding costs are outside this declared extended exact-real model. Input matrices/cores are already stored unless an explicit producer is in scope. Word reads may retrieve row/core references, not dense scalar copies of the referenced object.",
+    "mathematical_vs_physical": "Real matrix/TT correctness and stored preprocessing costs do not by themselves prove a primitive quantum gate circuit, wire placement, normalized state loader, precision analysis or Clifford+T bound."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-la-201",
+      "key": "qcb-core-la-201",
+      "item_digest": "4b2411a0ba33a8286691461446ef4686f5dd20ab90d92061bc04fe1fbd74eb65",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Use e_f,e_r,e_w for the field/read/write unit counters. One entryPair evaluates four products and one subtraction plus one addition, costing 6e_f. The pair-producing collect reads u_j,v_j, adds its two-read/two-write surcharge, so costs M(6e_f+4e_r+2e_w). Each of the two subsequent projection collects reads one stored pair and adds the same surcharge, costing M(3e_r+2e_w). Summing all three passes gives M(6e_f+10e_r+6e_w). The value formulas are c*u_j-s*v_j and s*u_j+c*v_j; c,s are already supplied and angle/trigonometric generation is not part of rowPair.",
+        "answer_rubric_audit": "All three criteria and all three semantic steps match the exact producer. The answer accounts separately for 2M input reads, 2M projection-pair reads, 6M surcharge reads and 6M surcharge writes. Projections and final tuple construction are pure in this contract. Neither reusing computed pair values nor counting one write per scalar instead of the stipulated collect surcharge would be the same model.",
+        "zero_empty_and_scope": "At M=0 all three collects are empty and total cost is exactly zero; no entryPair is called. Zero data or c=s=0 do not skip any entry arithmetic, so the same count holds. The source works for arbitrary real c,s without a normalization condition; unitarity is not claimed by this cost identity. Rows are stored words and inputs already exist. Proof checking, counter bookkeeping and loop-index arithmetic are excluded as declared; scalar exact-real calls are not assigned finite-bit runtimes.",
+        "semantic_core_assessment": "Distinct requested layer from la-202: this is the three-pass row production, before reading a matrix's two row references and replacing its row spine. No whole-target alias is proposed."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Complete module read. Run.pure/Run.bind and unit primitives; read, collect/collect_cost60-85; entryPair123-138; rowPair141-159 and full rowPair_cost272-277. All three materialized passes and exact field/read/write identities inspected."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-202",
+      "key": "qcb-core-la-202",
+      "item_digest": "cffaec368aa74c7a29a98568529ed0821b8c45328ba670593e9b00c3d43c19f3",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "For A of N stored rows of length M, rotate first reads rows i,j, contributing 2e_r. rowPair contributes 6M e_f+10M e_r+6M e_w. Two calls to replace each contribute N(e_r+e_w), independently of whether their underlying vector representation might share data. Thus total is 6M e_f+(10M+2N+2)e_r+(6M+2N)e_w. Other counters are zero. Actual values use both original cached rows before either replacement, then write row j and row i in that order.",
+        "answer_rubric_audit": "The reference and c1-c3 correctly derive the exact sum and explicitly call the full-spine billing a stipulated contract, not a lower bound on all persistent data structures. The sentence about robustness must be read within this fixed abstract charging semantics, not as a guarantee that an arbitrary external implementation cannot perform extra work. The semantic steps retain that model interpretation.",
+        "zero_empty_and_scope": "For M=0 with valid row indices, row production is free but the two row reads and 2N copy charges remain; empty columns do not make matrix traversal free. N=0 has no i,j in Fin N and hence no rotate call of this signature, rather than an uncharged concrete zero-row rotation. Cost equality itself does not need i!=j; geometric orthogonality of a true plane rotation does. The question asks cost, so no rank or isometry premise is missing.",
+        "semantic_core_assessment": "An additive extension of la-201 by matrix-row traffic and replacement cost, not an equivalent question. Same train split; no independent global-uniqueness conclusion."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Complete rotate producer161-167 and rotate_value proof; read/replace definitions55-68; full rowPair_cost272-277 and rotate_cost279-285. Replacement charge and original-row caching inspected."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-203",
+      "key": "qcb-core-la-203",
+      "item_digest": "d3c7ffab655e801f0c3275b31d71aff77610f9d16830e0dfc9b47683fbb647f7",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Let B=eliminationBudget(N,M), excluding the explicit log emission, and E=e_emit. Source stepBudget is B+E. The recursion has cost C_0=0 and C_(k+1)(A)=cost(eliminate A)+C_k(updated A)+E. The induction must quantify over the changing stored matrix, so the tail bound applies to updated A. With eliminate cost<=B, C_(k+1)<=B+k(B+E)+E=(k+1)(B+E) componentwise. At emit, eliminate cost is zero, so e_(k+1)=e_k+1 yields exactly k+1. The recorded Step is produced even if its angle is zero.",
+        "answer_rubric_audit": "The answer correctly says its B already includes angle computation, both trigonometric coefficients, stored accesses and rotation. This resolves a possible narrow reading of the question's parenthetical budget near the angle phrase; no rotation cost is omitted. It distinguishes an exact emission count from upper bounds on remaining counters. c1-c3 and the three semantic steps match the two separate proof strengths.",
+        "zero_empty_and_scope": "A zero pivot pair uses fewer angle operations: angle stops after three field operations, a square root and one zero test; coefficients still charge the half-angle and two trig calls, rotate still runs, and the step still emits. Thus exact emit does not imply all arithmetic budgets are attained. k=0 has zero sweep cost; the actual typed source still requires a valid column and lo+k<N, so a zero-row or zero-column matrix does not magically provide those indices. The result is about a fused residual/log producer, not just output list length.",
+        "semantic_core_assessment": "Distinct from list replay la-204: this item computes elimination angles from current data, whereas replay consumes an existing log. It is a prerequisite of la-205, not that full compiler cost theorem."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Full angle/coefficient routines and branch-independent bounds87-121,253-270; eliminate and its matrix/angle refinements; columnSweep219-249; eliminationBudget/stepBudget and full columnSweep_cost_succ, columnSweep_cost_le313-326, stepBudget_fields and columnSweep_emit343-353. Actual emit charging follows elimination/tail evaluation."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-204",
+      "key": "qcb-core-la-204",
+      "item_digest": "705a52ec7b52b60d5ea01c2f2bf97d622094dcf936d909b80d18cfd481591425",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "For an R-by-C working matrix, a complete stored rotate costs 6C field, 10C+2R+2 reads and 6C+2R writes. A replay cons adds one record read, one field division by 2, two trig calls and that rotate. Its exact per-step vector therefore has field=6C+1, trig=2, read=10C+2R+3, write=6C+2R, with other counters zero. Nil charges one end-marker read and returns the supplied matrix. Induction gives cost=L*B_replay+e_read and value=applySteps(log,start). The value induction uses rotate_value and planeMatrix_mul; chronological multiplication is last plane on the left.",
+        "answer_rubric_audit": "The full answer's clarification 'two reads inside the rotation plus the record read' is correct. c2 and semantic step3 abbreviate this as 'a rotation and three reads'; those three are the aggregate low-level constant read term, not three additional reads added to the already complete rotate cost. Adding full rotate plus three fresh reads would double-count two; the explicit reference explanation prevents that interpretation. c1/c3 correctly give list induction and the trailing read.",
+        "starting_identity_boundary": "The exact formula is the incremental replay cost given an already stored starting matrix. The question's materialized identity is the starting input of replay, not a free constructor. Source compile separately charges identity before calling replay; identity(R) costs R^2 comparisons and 2(R^2+R) reads plus the same writes, scalar total 5R^2+4R. If initialization were included, it must be added to L*B_replay+1. The answer consistently treats the start matrix as supplied in its base case, so this is an explicit interface boundary rather than an accepted claim that building identity costs one read.",
+        "zero_empty_and_scope": "L=0 always costs the end-marker read even when the starting matrix is empty. A nonempty Step R list requires two distinct adjacent Fin R rows, so R<2 admits only an empty list. C=0 can still incur record/angle/row-spine work for valid rows. The stored replay refines the dense-product specification without evaluating that product; this is not a runtime claim about arbitrary matrix multiplication.",
+        "semantic_core_assessment": "Different from la-203's angle-producing sweep and la-205's complete sweep/identity/replay compiler. No whole-target alias; initialization accounting is a shared dependency."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "Complete module read. identity/identityBudget/identity_cost92-106, complete replay110-118, replay_value120-128, replayStepBudget130-133 and replay_cost135-143, plus compile150-156 showing separately charged identity construction."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Full rotate_value and exact rotate_cost279-285; the two row reads inside rotate are included before the record-read increment."
+        },
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+          "anchor": "rotateRows/planeMatrix/planeMatrix_mul21-37; Step/Step.matrix and chronological applySteps178-195; complete stepsMatrix/applySteps_eq_matrix_mul633-642. Relevant actual definitions/proofs inspected, not just declaration names."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-205",
+      "key": "qcb-core-la-205-corrected-v2",
+      "item_digest": "3e52d9ef18efc62d9cff3b7087e30bb8b30494040dba6f8b2292182c2274badc",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "The corrected prepared key is qcb-core-la-205-corrected-v2. Sum the three large field/read/write coefficients: (6M+6N+9)+(10M+14N+10)+(6M+10N+1)=22M+30N+20. The remaining NM multiples are sqrt1+angle1+trig4+comparison2+emit1=9, giving NM(22M+30N+29). Outside that factor, comparisons contribute M+N^2, reads contribute 2N^2+2N+1, and writes contribute 2N^2+2N; total is 5N^2+4N+M+1. Budget summation is an equality; actual compiler total is <= this sum because the individual producer counters are bounded by those budgets.",
+        "answer_rubric_audit": "All eight numbers in the literal current question match polynomialBudget, including the +2N write-spine term. The answer and c1-c3 correctly distinguish the summed budget from actual componentwise upper bounds and identify exact-real counting. All semantic steps match the same corrected content. The historical predecessor missing +2N is not being approved or used as the current item.",
+        "zero_empty_and_scope": "N=0 gives M+1, consisting of one dimension comparison per processed column and the trailing replay read. M=0 gives identity materialization plus replay read, 5N^2+4N+1. At N=M=0 the compiler still costs one read. Deficient or all-zero matrices can use lower angle costs than the budget, without invalidating the inequalities. The budget counts residual, actual log and accumulated transform for one run on already stored input; it is not a quantum gate tally, input-generation theorem, arbitrary-precision runtime or rank-minimal factorization.",
+        "semantic_core_assessment": "Explicit historical lineage/alias: same qcb-core-la-205 with corrected-v2 view, as native_nl.existing_core_aliases and supersedes record. This is not an extra core. Different from the local sweep/replay subtargets."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "Complete compile producer150-156, residual/log/transform refinement, compileBudget/compile_cost_le and source recovery/orthogonality; polynomialBudget213-221, compileBudget_eq, compile_polynomial_cost_le and full total/compile_total_cost_le236-253. Exact corrected write budget and summation inspected."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Run cost additivity, actual column sweep per-counter bound and one-emission equality supplying compiler budgets."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_key": "qcb-core-la-205",
+          "relation": "explicit_corrected_historical_view_same_core_id",
+          "same_core_alias_proposed": false,
+          "reason": "Current key corrected-v2 already supersedes the invalid historical question; this review binds the corrected whole prepared record, not an additional core or the old acceptance."
+        }
+      ],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-206",
+      "key": "qcb-core-la-206",
+      "item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_upper_bound_reconstruction": "Let E(N,M)=2NM e_read+(NM+N)(2e_read+2e_write). transpose has exact cost E(n,m), extractR exact E(m,m), and extractQ exact E(m,n). The actual wide run cost is exactly E(n,m)+cost(StoredRectangularGivens.compile(transpose A).value)+E(m,m)+E(m,n). Substituting the compiler's polynomial upper budget P(n,m) gives wide.cost<=E(n,m)+P(n,m)+E(m,m)+E(m,n)=wideBudget(m,n), componentwise. The full source theorem is wide_cost_le, not an exact equality with wideBudget.",
+        "literal_question_problem": "The literal question asks to prove that 'the total per-counter cost ... is the sum of these four stage budgets'. That wording can demand equality to the sum of upper budgets, which is false. Its later phrase 'the cost bound' and the correct reference answer support an intended <= interpretation, but they do not explicitly resolve the equality wording. The answer proves the weaker upper-bound statement correctly. I cannot issue an unqualified acceptance by silently reading equality with budgets as inequality.",
+        "exact_discriminator": "Take m=n=1 and any stored real 1-by-1 input, including zero. Rectangular compilation processes its one column with sweep count N-1-k=0, so emits no step; its log and replay are empty. Neither the three extraction/transpose materializations nor identity materialization emit. Hence wide.cost.emit=0. But polynomialBudget(1,1).emit=1, and all extraction budgets have emit0, so wideBudget(1,1).emit=1. This refutes literal equality on an explicit valid wide shape. It is a mathematical reading of the exact producer definitions, not a new executed Lean test.",
+        "factorization_reconstruction": "Let C=T A^T be the upper-trapezoidal residual and T the n-by-n orthogonal transform. Orthogonal recovery transposes to A=C^T T. Set R(i,k)=C(k,i) for k<m and Q(k,j)=T(k,j) for k<m. Rows k>=m of C vanish since each column i<m satisfies i<k, so the full n-term product sum restricts to k<m and A=RQ. Q consists of m rows of orthogonal T, giving QQ^T=I_m. R is lower triangular, and no full-rank or nonzero-row assumption is needed. Stored wide_R/wide_Q identify these exact factors from the same run whose costs are bounded.",
+        "answer_rubric_and_semantic_steps": "The reference correctly says 'bounded ... by' the four budgets, and c1-c3/semantic steps describe the valid cost bound and exact factorization. The extra dispatcher comparison is correctly separate from wide. There is no false factorization or resource inequality in the reference; the uncertainty is the literal question-versus-answer strength. If 'sum ... budgets' is formally intended only as an upper bound, the content becomes acceptable on that explicit reading. A clearer question successor would say 'bounded componentwise by the sum'. No correction is made here.",
+        "zero_empty_and_scope": "At m=0,n>0, transpose still materializes n empty rows and the rectangular compiler materializes an n-by-n identity; no dense work may be assumed free. Q has zero rows and the factorization is vacuous. At m=n=0, compilation still has the replay end-marker read, while factor identities are empty. For deficient matrices the inner dimension is m, not rank(A), and Q can have m orthonormal rows even for A=0. These boundaries preserve the true inequality.",
+        "disposition": "Keep uncertain for literal contract clarification, with the false equality reading explicitly refuted. Do not mark the source algorithm incorrect or invent a Lean failure; the source proves the valid <= statement."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+          "sha256_lf": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+          "anchor": "Complete module read. entry/entry_cost and materialize-based transpose/extractR/extractQ20-72; wide74-80, complete wide_R/wide_Q/wide_correct82-98; wideBudget100-102 and full wide_cost_le104-109; dispatcher111-125. The inequality symbol in the actual theorem and the distinct inner compiler cost are material."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "Actual 1-by-1 sweep count, identity, replay and compile definitions; polynomialBudget.emit=N*M. This source evidence supplies the exact emit0-versus-budget1 discriminator without kernel execution."
+        },
+        {
+          "path": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+          "sha256_lf": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af",
+          "anchor": "Complete module read. wideR/wideQ, full wide_factorization and wide_orthogonal, factorOfLE and all-shape factor. Prefix restriction from the zero-below residual establishes correctness without rank assumptions."
+        },
+        {
+          "path": "QuantumBlockEncoding/RectangularGivens.lean",
+          "sha256_lf": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133",
+          "anchor": "Complete module read. sweep/sweepSteps, UpperPrefix induction, reduced_zero_below, transform_mul, transform_orthogonal and exact_recovery. Actual algebraic foundations of the extracted factors inspected."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-207",
+      "key": "qcb-core-la-207",
+      "item_digest": "172127f1825454b15f930b84064179096752d4fe8288d27eba49940a6a8d600e",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "The source sumEntries has nil pure0 and cons evaluation f0, recursive tail, then a charged field addition. If every term has the same cost vector B, induction gives C_0=0 and C_(k+1)=B+C_k+e_field, hence C_k=k(B+e_field). This counts k additions, including adding the final produced term to the pure-zero tail. For terminalEntry, each term reads core row and entry (2 reads), reads right-vector entry (1 read), multiplies (1 field), then the sum adds one field. Thus each bond index costs 3 reads+2 field and total D(3e_read+2e_field).",
+        "answer_rubric_audit": "The reference, c1-c3 and three steps correctly count the accumulation field and all reads. The prose calls it a fold/accumulator; the exact source uses a right-recursive sum rather than an iterative left accumulator, but over exact real addition with this pure cost monad they have the same value and componentwise count. No operation-timeline equivalence or floating-point-associativity claim is needed. The third step's entry_cost node supplies the core two-read prerequisite; terminalEntry_cost supplies the full contraction bound.",
+        "zero_empty_and_scope": "k=0 returns0 at zero cost. The vector-space sum algebra is valid without positive summands. At D=0 the abstract bounded-sum law yields0; terminalEntry additionally asks a:Fin D, so that single indexed output entry has no D=0 call. The full terminal materialization on zero left rows remains an empty producer. Input values zero do not eliminate multiply/add charges. Materializing an entire output core adds storage surcharges beyond this one-entry count.",
+        "semantic_core_assessment": "Distinct from la-201's row pair and la-208's full chain closure. It is an exact inner-product-entry primitive used by later suppliers; the same source proof is shared, not a new global alias judgment."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredTensorTrain.lean",
+          "sha256_lf": "086a876a80de90eee79ded827c2fc8f1e4eab7f5ca3e31f5025c2eec1649e0da",
+          "anchor": "Complete module read. StoredCore/denoteCore, dependent StoredChain/denoteChain and full sumEntries definition34-41, value and cost-induction proofs43-62; actual pure-zero/add charging."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+          "sha256_lf": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+          "anchor": "Complete module read. terminalEntry11-16 and initialEntry22-27; private full sumEntries_cost_eq125-133 and terminalEntry_cost135-143; terminal/initial materialization is separately charged."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+          "sha256_lf": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+          "anchor": "entry20-23 and exact entry_cost27-31: one stored row read and one scalar entry read."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-208",
+      "key": "qcb-core-la-208",
+      "item_digest": "2af4654334ec83645d32e3ac7541aa9ca67e8c78afa43aa5ed50f9d40b1ea312",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Source tailTable copies t existing core references at exact total5t (3t reads+2t writes). The terminal stored contraction has total10D^2+12D. At n=0, tailChain adds one table-head read and two six-word node records, so T_0=10D^2+12D+13. Each earlier level with t remaining tail cores adds5t+7 (tail reference copy, one head read and one node). Therefore the exact recurrence yields T_n=T_0+sum_{t=1}^n(5t+7), and for natural n this is <=10D^2+12D+5n^2+7n+13; the slack is (5/2)n(n-1). This directly explains quadratic reference-copy accumulation, not an exponential word-table scan.",
+        "left_closure_and_total": "A general initial contraction of StoredCore D r has exact total10rD+8r+4 plus the six-word closeLeft node. For n=0 the terminal contraction has already reduced r to1, so left closure costs10D+18. For n>=1 its first core still has r=D, so left closure costs10D^2+8D+10. Both are <=10D^2+18D+18 for all D>=0. Adding this uniform bound to the tail bound gives the actual explicit source bound20D^2+30D+5n^2+7n+31. The left stage has no length sum, although its shape has these two cases.",
+        "answer_rubric_audit": "The question asks a polynomial with quadratic n and D and an explanation of the decoupling, not the smallest exact polynomial. The answer's unspecified final constant can be instantiated as31 from source. It correctly treats5n^2+7n as a bound, not the exact copy series. Its phrase about one D-by-D first-core contraction describes the generic n>=1 case; the single-core boundary case instead has terminal r=1 and is cheaper, as reconstructed above. This does not falsify the requested uniform bound. c1-c3 and all three semantic steps remain valid with that explicit boundary qualification.",
+        "semantic_refinement": "Window tables K start constrains only the already stored finite core window. terminal_value/initial_value, induction on tailChain and closeLeft_value show that the same stored run denotes MatrixProductChain.ofKernel K left right start n, hence each scalar amplitude is the contraction against those boundaries. K occurs in the specification, not as an uncharged production callback. Scalar boundaries become dimension1; remaining bonds are bounded by max(D,1), not necessarily D when D=0. Nothing normalizes the represented amplitudes or proves unitary preparation.",
+        "zero_empty_and_scope": "The algorithm always starts with n+1>=1 cores. At n=0 there is one terminal contraction followed by one left contraction; no earlier reference-copy series. At D=0, no bond-indexed multiplications are executed, but materializing scalar-boundary zeros and node records still costs work: for n=0 total31, exactly the displayed bound. Zero amplitudes and deficient cores do not imply zero storage cost. Inputs are already materialized and index arithmetic/bit complexity are excluded.",
+        "semantic_core_assessment": "Distinct aggregate supplier target from la-207's one-entry contraction and la-209's Gram/norm pass; shared entries are dependencies. The native test_public split and the earlier legacy stored-projection dev item are related cost-model exposure, not an established alias."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+          "sha256_lf": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+          "anchor": "Full module read. terminal/initial and complete semantic refinements11-123; terminalEntry/initialEntry and terminal/initial costs135-170; tailTable_cost/total and node/read totals; full tailChain_total_cost_le202-214, two-case closeLeft_tail_total_cost_le216-226 and ofTable_total_cost_le230-237. Window/ofTable_refines/certified and maxBond statements inspected."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredTensorTrain.lean",
+          "sha256_lf": "086a876a80de90eee79ded827c2fc8f1e4eab7f5ca3e31f5025c2eec1649e0da",
+          "anchor": "StoredChain/denoteChain, nodeBudget=3 reads+3 writes and charged sumEntries definitions/proofs."
+        },
+        {
+          "path": "QuantumBlockEncoding/MatrixProductChain.lean",
+          "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+          "anchor": "Complete module read. tailChain, closeLeft, complete contraction proofs and ofKernel_contract; ofKernel_maxBond<=max D1 and storedScalars boundary statements."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-209",
+      "key": "qcb-core-la-209",
+      "item_digest": "6e688a66b2ad5ce4760787a4e1ca2cbadba1fb9f536048ff3512ea316b3b0157",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "For A of shape l-by-(2m), each bit update computes F=A_bit E then G=F A_bit^T. One product of shapes l-by-m and m-by-r uses lm r summands, each4 reads+2 field (multiply plus accumulation), together with a materialization surcharge4(lr+l) in the scalar total. Its total is6lmr+4lr+4l. Two first products with r=m and two second products with r=l sum12lm^2+12l^2m+8lm+8l^2+16l. Adding two l-by-l matrices costs9l^2+4l, giving total12lm^2+12l^2m+8lm+17l^2+20l. These are the source's conservative local upper budgets, including the stored first outputs and row references.",
+        "chain_induction": "The nil environment is a materialized r-by-r identity with total5r^2+4r, plus node cost6. With maxBond<=D, r<=D gives the base5D^2+4D+6. At cons, bound l,m by D and tail maxBond by D. The local polynomial is <=24D^3+25D^2+20D, then cacheNode adds6. Add this once to the tail induction to obtain n(24D^3+25D^2+20D+6)+5D^2+4D+6. E is computed once by gram C and bound as stored data; the two bit branches read that same E.",
+        "semantic_reconstruction": "The environment recursion is G_nil=I and G_cons=sum_bit A_bit G_tail A_bit^T. Induction expands it to sum_word contract(C,word)contract(C,word)^T, including all terminal bond labels. It requires neither canonical cores nor normalized amplitudes. The full exponentially sized word sum appears only in that correctness specification; the actual stored producer performs local matrix contractions.",
+        "answer_rubric_audit": "The reference's displayed local polynomial and induction match the full source definitions/proofs. c1-c3 and all three semantic steps are correct. The identity base includes its node record; the per-core six-word cache record is not counted twice. Transposing a slice is performed by exchanged indices with charged reads, not a silently materialized transpose or a free dense matrix callback. Stored costs must not be replaced by the smaller arithmetic-only budget from TensorTrainNormEnvironment.",
+        "zero_empty_and_scope": "All actual bonds, including both boundaries, must be <=D; a numerical matrix rank promise alone does not bound dense stored dimensions. Nil length n=0 still materializes the identity and charges one node. If D=0, all bond carriers are empty and the bound becomes6(n+1), the node records alone; empty matrix passes are free here. At m=0 but l>0, zero-length sums eliminate arithmetic terms but nonempty output/materialization/addition charges can remain. No positivity-of-norm or nonzero pivot premise is needed.",
+        "semantic_core_assessment": "Distinct from la-208's building/closing a chain and from la-210's final scalar lookup/square root. Their shared local matrix storage model does not make the targets equivalent."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+          "sha256_lf": "60fa71fc821f7598f5df739b231f5b25cf1927824d2b028ef723f9ee04074011",
+          "anchor": "Complete module read. first/secondEntry and materialized passes25-62; addMatrices65-77; update and full value proof80-94; cacheNode/gram103-115; product/addition/update budgets and full cost proofs; update_total_cost_le234-242 and full gram_total_cost_le256-284, including bound extraction for l,m and tail."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredTensorTrain.lean",
+          "sha256_lf": "086a876a80de90eee79ded827c2fc8f1e4eab7f5ca3e31f5025c2eec1649e0da",
+          "anchor": "Actual StoredCore/StoredChain dimensions, sumEntries and nodeBudget, all relevant definitions/proofs inspected in the full module."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "identity/identityBudget/identity_cost92-106 include equality comparisons and materialization, not an uncharged identity constant."
+        },
+        {
+          "path": "QuantumBlockEncoding/TensorTrainNormEnvironment.lean",
+          "sha256_lf": "e684550c248817ac77e03a23e0af86d3b2c7f3d8b09bcdb2385702624f5ebe6c",
+          "anchor": "Complete semantic module read. gram_eq_sum and scalar/nonnegativity proofs, plus the separate arithmeticBudget<=9nD^3 and environment storage bound. These are explicitly separate from stored traffic budgets."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-210",
+      "key": "qcb-core-la-210",
+      "item_digest": "f7b3e31bd2ea7ed164adf59e8ce49b69f7a86494a8f7b0de784805f53bf9efcb",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "norm runs gram once, reads E(0,0) through StoredThinLQ.entry (one row read plus one scalar read), then charges one exact square-root call. Therefore for each operation tag op, C_norm(op)=C_gram(op)+2e_read(op)+e_sqrt(op). All six other counters are unchanged. Summing the eight unit counters gives exactly total_norm=total_gram+3, even though the exported theorem named norm_total_cost_le also supplies only a polynomial upper bound after substituting the Gram bound.",
+        "semantic_reconstruction": "gram_value identifies the stored environment with the real local Gram recursion. gram_eq_sum expands it to sum_x C_x C_x^T; because both chain boundaries are dimension1, E00=sum_{x:Word n}(contract C x00)^2>=0. The returned scalar is its nonnegative real square root, the Euclidean norm of the full represented real amplitude vector. It is not a state normalization division, a projected success probability or a certificate that the input vector has norm1.",
+        "answer_rubric_audit": "The reference, c1-c3 and all three steps accurately identify exact marginal cost, total+3 and semantic quantity. The environment's existing allocation is charged by gram; final lookup does not reconstruct it or sum amplitudes over all words. The exact +3 follows from norm_cost and the finite tag sum, not from treating a loose upper bound as equality.",
+        "zero_empty_and_scope": "For a zero-valued nonempty train the mass is0 and norm is0; the read/sqrt operations still occur and cost+3. No nonzero-norm premise is needed. For nil scalar-boundary length0, contract is the1-by-1 identity, the single empty-word amplitude is1 and norm is1. Its Gram total is identity1 cost9 plus node6=15, and norm total18. A scalar-boundary chain has maxBond>=1, so D=0 is not an admissible instantiation of a bound requiring maxBond<=D, although norm_cost itself does not mention D.",
+        "semantic_core_assessment": "Distinct marginal-cost and exact norm target from la-209's full-chain Gram bound. Earlier native normalization-identity sp-006 proves division by positive norm, which is a separate operation requiring an additional positivity condition."
+      },
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+          "sha256_lf": "60fa71fc821f7598f5df739b231f5b25cf1927824d2b028ef723f9ee04074011",
+          "anchor": "Full norm definition118-121, complete norm_value/norm_eq_sum123-131, exact norm_cost286-290 and full norm_total_cost_le293-302 including the internal exact total+3 equation."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+          "sha256_lf": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+          "anchor": "entry and entry_cost20-31, with two stored reads; no materialization charged to the lookup."
+        },
+        {
+          "path": "QuantumBlockEncoding/TensorTrainNormEnvironment.lean",
+          "sha256_lf": "e684550c248817ac77e03a23e0af86d3b2c7f3d8b09bcdb2385702624f5ebe6c",
+          "anchor": "Complete module read, especially full gram_eq_sum, gram_scalar, gram_scalar_nonneg, norm_eq and norm_sq; zero trains and nil identities are covered without a positivity premise."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Natural-language/source review only; no new kernel execution, source-blind decoding or human approval is claimed.",
+        "Acceptance of an operation-count contract does not imply finite-bit complexity, physical quantum gates, normalized state preparation, or global deduplication."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-la-201",
+      "qcb-core-la-202",
+      "qcb-core-la-203",
+      "qcb-core-la-204",
+      "qcb-core-la-205",
+      "qcb-core-la-207",
+      "qcb-core-la-208",
+      "qcb-core-la-209",
+      "qcb-core-la-210"
+    ],
+    "rejected": [],
+    "uncertain": [
+      "qcb-core-la-206"
+    ],
+    "absent_ids": [],
+    "substantive_finding": "la-206 has a valid source/reference upper-bound proof but ambiguous literal equality-with-budgets wording. The 1-by-1 emit0 versus budget1 discriminator rules out the equality reading; this is reported uncertain pending an explicit contract reading/correction.",
+    "other_material_boundaries": "la-204 replay cost is incremental after its starting matrix is stored; building identity is separately charged. la-208's left closure has an r=1 single-core case and an r=D longer-chain case; both satisfy the claimed uniform bound. Nil/zero dimensions retain their declared node, row-reference and end-marker costs.",
+    "disposition": "Nine exact items accepted within their stated resource model; one exact item uncertain. The source inequalities and semantic producers are not rejected, and no mathematical repair or policy action is approved by this report.",
+    "stable_release_limit": "This batch advances only ten reserved review obligations and explicitly lists none absent. It does not manufacture all-catalog acceptance, global semantic dedup completion, new formal proof verification or stable publication approval."
+  }
+}
