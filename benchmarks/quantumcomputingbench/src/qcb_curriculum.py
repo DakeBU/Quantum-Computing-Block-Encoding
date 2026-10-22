@@ -177,6 +177,8 @@ def stable_readiness(catalog):
         browser.get("checks", {}).get(key) is True for key in (
             "mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure",
             "graph_links", "search_excludes_answers"))
+    if any("lean" in c["views"] for c in catalog["cores"]):
+        browser_ok = browser_ok and browser.get("checks", {}).get("native_formal_panels") is True
     gates = {"content_bound_second_pass": not missing and bool(catalog["cores"]),
              "rendered_browser_checks": browser_ok,
              "cross_cohort_semantic_reconciliation": catalog["global_semantic_dedup_complete"],
