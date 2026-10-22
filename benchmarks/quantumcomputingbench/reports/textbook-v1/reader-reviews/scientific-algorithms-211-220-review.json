@@ -1,0 +1,1104 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "observed_head_at_start": "006ed812e2d54d4ec1a778b3ad613fcdda211e1a",
+    "requested_core_ids": [
+      "qcb-core-plan-211",
+      "qcb-core-plan-212",
+      "qcb-core-plan-213",
+      "qcb-core-plan-214",
+      "qcb-core-plan-215",
+      "qcb-core-plan-216",
+      "qcb-core-plan-217",
+      "qcb-core-plan-218",
+      "qcb-core-plan-219",
+      "qcb-core-plan-220"
+    ],
+    "present_prepared_core_ids": [
+      "qcb-core-plan-211",
+      "qcb-core-plan-212",
+      "qcb-core-plan-213",
+      "qcb-core-plan-214",
+      "qcb-core-plan-215",
+      "qcb-core-plan-216",
+      "qcb-core-plan-217",
+      "qcb-core-plan-218",
+      "qcb-core-plan-219",
+      "qcb-core-plan-220"
+    ],
+    "present_current_reader_core_ids_at_inspection": [
+      "qcb-core-plan-211",
+      "qcb-core-plan-212",
+      "qcb-core-plan-213",
+      "qcb-core-plan-214",
+      "qcb-core-plan-215",
+      "qcb-core-plan-216",
+      "qcb-core-plan-217",
+      "qcb-core-plan-218",
+      "qcb-core-plan-219",
+      "qcb-core-plan-220"
+    ],
+    "absent_ids": [],
+    "historical_native_count": 213,
+    "current_reader_count_at_inspection": 179,
+    "selection": "Loaded complete actual prepared records using scripts/release.checked()[2], without substituting authored rows. All ten are present. A final read-only check found each whole digest also identical in the policy-selected current reader at this inspection; this is a point-in-time observation, not an admission decision.",
+    "content_inspected": "Entire prepared records: question, reference_answer, every rubric criterion, assumptions, conventions, all semantic steps, core summaries, primary/source metadata, family/split/alias fields and inherited review metadata. Existing acceptance labels were exposed but never used as mathematical proof. Relevant complete operative primary definitions/constructions/proofs were read, not theorem names alone.",
+    "review_target": "Private next-checkpoint substantive NL/source/access/resource review. PR102 is sealed; this report does not edit its tree, source, policy or admission.",
+    "comparison_scope": "Bounded semantic comparisons against actual prepared201-210 and selected plausible503/504/505/509/511 counterparts. No exhaustive whole-catalog semantic or split reconciliation."
+  },
+  "provenance": {
+    "actual_identity": "The actual /root/qcb_boundary_repair_review task, distinct from scientific-algorithms-author-b2 and the root author. No invented reviewer, human approval or collaborator acknowledgment.",
+    "exposure": "Not source-blind or verdict-blind. Historical acceptance metadata and prior plan201-210 review were exposed; full current prepared records and primary text were read. Parent requested skeptical review and identified the source, but supplied no decisive mathematical verdict for this batch. Explicit counterexamples and domain assessments are independently reconstructed here.",
+    "mandatory_instruction_refresh": "Worker SKILL.md reread completely. AGENTS.md, HARNESS.md, docs/theorem-publication-protocol.md, docs/proof-digestion-protocol.md and docs/evidence-routed-memory-protocol.md were read completely in the immediately preceding objective at5e83f45; a read-only comparison against this snapshot found no changes in them. Changed shared/CONTRACT.md and shared/ACCEPTANCE.md were each read completely for this objective. PDF skill instructions read in the preceding primary-source objective remain applicable.",
+    "skills_used": [
+      "qbe-substantive-worker: frozen exact-contract mathematical and source/access review",
+      "PDF: read-only primary PDF text inspection, with honest failed-render/binary-hash limits"
+    ],
+    "new_kernel_execution": false,
+    "local_Lean_closure_claimed": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_performed": false,
+    "novelty_claimed": false,
+    "digest_method": "qcb_core.digest(entire exact actual prepared item); local source_checks use qcb_integrity.text_sha for LF-normalized SHA-256. Neither substitutes for a binary PDF-byte hash.",
+    "execution": "Read-only release/policy presence and hash checks plus primary-source text access. No Lean/source compilation, numerical simulator or remote model evaluation. Mathematical witnesses are deductions, not promoted finite diagnostics.",
+    "mutation_scope": "Only parent-workspace _review_tmp/scientific-algorithms-211-220-review.json written. No canonical source, candidate, policy, QA, inherited review, frozen history, local main, PR102, commit or push changed."
+  },
+  "primary_source_checks": {
+    "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+    "requested_source": "Lin Lin and Nathan Wiebe, Quantum Algorithms for Scientific Computation, recorded29 April2026 edition.",
+    "actual_access": "Genuine author-hosted PDF text extraction returned447 pages. Cover title, both authors and April29,2026 date were inspected. Complete bounded operative text was read for Section9.7 including original sparsity/register convention, matching construction, Eq9.77-9.84 and full Proposition9.19 proof; alternative model Eq9.88-9.92, Fig9.8 and complete Proposition9.22 proof; Definition9.23, Eq9.93-9.98 and complete Proposition9.24 proof; Eq9.99-9.105 and Definition9.25; Definitions10.1-10.4 and full Proposition10.3 proof; dilation Eq10.17-10.23, controlled-oracle paragraph and matrix-power/inverse discussion; complete Hermitian qubitization Eq10.24-10.41 derivation.",
+    "edition_assessment": "Cover date and inspected equation/section contexts agree with recorded edition. Text extraction itself can contain errors; source formulas are assessed independently and not treated as automatically true.",
+    "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+    "historical_binary_hash_verified_in_this_review": false,
+    "retrieved_binary_sha256": null,
+    "binary_limit": "No PDF binary bytes were hashed in this review. In the preceding objective, an in-memory direct retrieval attempt failed with local socket denial WinError10013; it was not retried in this objective. Text access does NOT establish equality with the catalog's historical binary SHA.",
+    "visual_limit": "This objective attempted web screenshots of PDF indices159 and164; both returned cache-miss errors. No rendered-page visual verification is claimed. Equations were inspected through the primary text extraction in context.",
+    "redistribution": "No PDF saved, redistributed or relicensed. The report uses independent reconstructions and short equation identifiers, not long source quotations.",
+    "local_binding_limit": "Local catalog and QA LF hashes bind actual tracked metadata/content provenance, not primary mathematical proof or PDF-byte equality."
+  },
+  "bounded_semantic_comparisons": {
+    "coverage": "Full201-210 prepared contracts from the preceding adjacent objective were available and compared, with exact item bindings below; selected plausible counterparts503/504/505/509/511 were freshly read in full. A keyword inventory surfaced503/504/505/506/507/509/510/511/512/516; only selected full-context comparisons receive substantive findings here. Unselected inventory hits are NOT certified distinct.",
+    "prior_batch_inventory": [
+      {
+        "core_id": "qcb-core-plan-201",
+        "item_digest": "5432c2b2b9dea37c3425626c4e2f81de0bc5efe924d1f09178943b56ade40d74",
+        "key": "qcb-core-plan-201-povm-lcu-success-probability-completeness",
+        "family": "qsc-generalized-measurement",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-202",
+        "item_digest": "4d0389f52f14f202bd366a400d21ee868cd70f95d739c66384d54c616d48666f",
+        "key": "qcb-core-plan-202-povm-conditional-output-state-update-rule",
+        "family": "qsc-generalized-measurement",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-203",
+        "item_digest": "6eda46c37ea2b7d75cb89acca2686e8411e54825a5468776262522fff5b883bd",
+        "key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+        "family": "qsc-generalized-measurement",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-204",
+        "item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+        "key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+        "family": "qsc-state-discrimination",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-205",
+        "item_digest": "ac1b3b3d96f318f7409e0ff115c76d8ac4d471ea0f8b8acf2b79810e14205eb7",
+        "key": "qcb-core-plan-205-state-discrimination-povm-validity-unambiguity",
+        "family": "qsc-state-discrimination",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-206",
+        "item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+        "key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+        "family": "qsc-generalized-measurement",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-207",
+        "item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+        "key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+        "family": "qsc-matrix-access",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-208",
+        "item_digest": "1433ecfb6610132671b67d490e1d21b1d9dae433bb26badca61bce12b62e0347",
+        "key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+        "family": "qsc-matrix-access",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-209",
+        "item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+        "key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+        "family": "qsc-matrix-access",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-210",
+        "item_digest": "1f65e62ee73cdfa4f023076fc698fed90d81a1dbaf24524784aa24219df9cfe4",
+        "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity-corrected-v2",
+        "family": "qsc-sparse-block-encoding",
+        "split": "test_public"
+      }
+    ],
+    "prior_batch_other_target_assessment": "201-202 concern POVM success/completeness and conditional normalization, not the sparse matching/HBE/SVT proof targets; they are relevant physical-state checks for218.203 concerns amplitude amplification/query scaling rather than the block construction or parity identities.204-205 concern discrimination and POVM validity, with no identified whole target in this batch.206's shared-ancilla LCU contract is related to211's preparation/cleanup mechanism but does not prove matching or register dimensions.207 and209 analyze reversible finite-bit amplitude-oracle construction, uncompute and accounting;211-215 assume supplied mathematical oracles, so their algebra cannot inherit free gate/bit/clean-work costs from those interface questions.208 and corrected210 receive explicit pairs below. These are bounded distinctions by hypotheses and requested mathematics, not names or graph nodes.",
+    "selected_counterpart_inventory": [
+      {
+        "core_id": "qcb-core-plan-503",
+        "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+        "key": "qcb-core-plan-503-second-kind-offdiagonal",
+        "family": "qsc-chebyshev-eigenvalue-transformation",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-504",
+        "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+        "family": "qsc-chebyshev-singular-value-transformation",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-505",
+        "item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+        "key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+        "family": "qsc-chebyshev-singular-value-transformation",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-509",
+        "item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+        "key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+        "family": "qsc-lcu-chebyshev-synthesis",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-511",
+        "item_digest": "216c79773b04ab1d4a02081409afd1d5bcb8b699bbc13e5e52d49665f0603746",
+        "key": "qcb-core-plan-511-subspace-blockencoding-reflections-reduce",
+        "family": "qsc-qubitization-beyond-basis",
+        "split": "test_public"
+      }
+    ],
+    "pairs": [
+      {
+        "left": {
+          "core_id": "qcb-core-plan-211",
+          "item_digest": "956c29f294371de27e9ec45ec5196f99962ce8a623ede5e3b3285f52d19ab01c",
+          "key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-210",
+          "item_digest": "1f65e62ee73cdfa4f023076fc698fed90d81a1dbaf24524784aa24219df9cfe4",
+          "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity-corrected-v2",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "relation": "related; diagonal strict setting of sparse access, not whole-target equivalence",
+        "reason": "plan-210's corrected key proves a diagonal entry oracle already has unit-scale clean block. plan-211 requires matching decomposition for a general sparsity pattern and an equal-weight LCU normalization. The diagonal case refutes per-matrix necessity of scale s, but does not discharge the matching/register obligations.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-211",
+          "item_digest": "956c29f294371de27e9ec45ec5196f99962ce8a623ede5e3b3285f52d19ab01c",
+          "key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-208",
+          "item_digest": "1433ecfb6610132671b67d490e1d21b1d9dae433bb26badca61bce12b62e0347",
+          "key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+          "family": "qsc-matrix-access",
+          "split": "test_public"
+        },
+        "relation": "related interface and worst-case scale subtarget",
+        "reason": "Both invoke max-entry normalization and sparse scale s||A||max. plan-208 asks oracle-angle/normalization boundary; plan-211 asks graph decomposition, routing and LCU scaling. Their shared norm floor is a real repeated subtarget, not a full contract alias.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-212",
+          "item_digest": "970c5ba0f50e0dd502278b4dc174d90ea437909bbaf2877765b536179388b15d",
+          "key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-211",
+          "item_digest": "956c29f294371de27e9ec45ec5196f99962ce8a623ede5e3b3285f52d19ab01c",
+          "key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "relation": "consumer subtarget under extra matching promise",
+        "reason": "The entry contraction in212 consumes211's actual disjoint matching cover. Separate permutations do not by themselves give that cover; the omitted uniqueness promise is mathematically consequential, not supplied by a semantic-family edge.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-213",
+          "item_digest": "25309f761a99ded35bf244e4492c4586faf0237b0cf08117241262e92d77f079",
+          "key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-212",
+          "item_digest": "970c5ba0f50e0dd502278b4dc174d90ea437909bbaf2877765b536179388b15d",
+          "key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "relation": "related alternative access contract",
+        "reason": "Two independent row/column location lists yield two routing deltas in213;212 uses a shared matching label and a permutation per label. The actual inverse output tail and arbitrary-zero exemption matter in213. Neither entire target follows merely by renaming the other oracle.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-215",
+          "item_digest": "576ff269c4242c5a9080540a6009923b6f34ab1f07e5ad9fdd42381baca1176d",
+          "key": "qcb-core-plan-215-hermitian-sparse-block-encoding-prop924",
+          "family": "qsc-hermitian-block-encoding",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-213",
+          "item_digest": "25309f761a99ded35bf244e4492c4586faf0237b0cf08117241262e92d77f079",
+          "key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+          "family": "qsc-sparse-block-encoding",
+          "split": "test_public"
+        },
+        "relation": "related, stronger Hermitian-sandwich target with failed phase obligation",
+        "reason": "The two-delta entry mechanism recurs, but215's half-entry square roots and conjugate pairing are additional. In particular a negative diagonal entry yields a positive magnitude in215; the linear entry amplitude in213 does not share that failure.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-214",
+          "item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+          "key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+          "family": "qsc-hermitian-block-encoding",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-220",
+          "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+          "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+          "family": "qsc-qubitization",
+          "split": "test_public"
+        },
+        "relation": "shared prerequisite/subtarget, not whole-target equivalence",
+        "reason": "214 distinguishes Hermitian clean block from Hermitian global completion and motivates U_A squared equals identity.220 derives the invariant plane, reflection-order rotation, all k powers and whole compressed Chebyshev operator. Its proof reuses the conceptual distinction but asks substantially more.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-220",
+          "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+          "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+          "family": "qsc-qubitization",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-503",
+          "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+          "key": "qcb-core-plan-503-second-kind-offdiagonal",
+          "family": "qsc-chebyshev-eigenvalue-transformation",
+          "split": "test_public"
+        },
+        "relation": "substantial shared rotation-power subtarget; whole contracts not proven equivalent",
+        "reason": "503 explicitly grades second-kind off-diagonal entries, signs and endpoints for the qubitization rotation.220 additionally derives the plane from an exact HBE and lifts the spectral calculation to the global clean block. Their shared Chebyshev proof must be visible to any future merge-time granularity policy; different names/families do not establish independence.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-217",
+          "item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+          "key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+          "family": "qsc-singular-value-transformation",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-504",
+          "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+          "key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+          "family": "qsc-chebyshev-singular-value-transformation",
+          "split": "test_public"
+        },
+        "relation": "related Hermitian specialization versus concrete general-A Chebyshev parity outputs",
+        "reason": "217 identifies f_SV(A)=f(A) for Hermitian A and appropriate parity.504 gives even/right versus odd/balanced singular-vector Chebyshev outputs for general A. The Hermitian coincidence is a specialization of the algebraic interface, but neither entire requested proof is identified as an exact alias.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-218",
+          "item_digest": "568117cff67fd69c6ea6f73b73f70181dee69cf8f0059fd634d0074c0189fe8a",
+          "key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+          "family": "qsc-singular-value-transformation",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-504",
+          "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+          "key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+          "family": "qsc-chebyshev-singular-value-transformation",
+          "split": "test_public"
+        },
+        "relation": "related dilation mechanism versus concrete iterate target",
+        "reason": "218 uses signed singular eigenvectors of a Hermitian dilation for an arbitrary definite-parity function.504 studies concrete Chebyshev iterates and parity output spaces. Dilation identities and parity direction recur, but that does not validate218's unconditional loss-free physical-state claim.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-217",
+          "item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+          "key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+          "family": "qsc-singular-value-transformation",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-509",
+          "item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+          "key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+          "family": "qsc-lcu-chebyshev-synthesis",
+          "split": "test_public"
+        },
+        "relation": "related parity decomposition; different implementation target",
+        "reason": "509 assembles mixed even/odd polynomial pieces with a controlled LCU and scale2c.217's sufficient Hermitian parity identity does not establish impossibility for parity-mixed functions;509 confirms that a blanket computational impossibility would overreach. This comparison does not independently certify every claim in509.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-219",
+          "item_digest": "2387018c64ae8b443f7d0dc49ebb1c814f123a3d08e5575f01c1597ddc3b6d0e",
+          "key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+          "family": "qsc-singular-value-transformation",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-505",
+          "item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+          "key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+          "family": "qsc-chebyshev-singular-value-transformation",
+          "split": "test_public"
+        },
+        "relation": "related phenomenon; proposed comparator outside stated diagonalizable domain",
+        "reason": "505's nilpotent2-by-2 example has a nontrivial Jordan block and is NOT diagonalizable, so it cannot be substituted as a witness for219.219 requires a diagonalizable all-three-SVT obstruction and an invertibility-qualified inverse. The phenomena overlap but the hypotheses materially differ.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-216",
+          "item_digest": "25c3a802898fe52a55571fa3631a3925ffbb6c11f24473f29e40723e7f634ad2",
+          "key": "qcb-core-plan-216-block-encoding-beyond-computational-basis-def925",
+          "family": "qsc-generalized-block-encoding",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-511",
+          "item_digest": "216c79773b04ab1d4a02081409afd1d5bcb8b699bbc13e5e52d49665f0603746",
+          "key": "qcb-core-plan-511-subspace-blockencoding-reflections-reduce",
+          "family": "qsc-qubitization-beyond-basis",
+          "split": "test_public"
+        },
+        "relation": "definition/subspace-interface prerequisite versus additional dynamics",
+        "reason": "216 is arbitrary-subspace coordinate compression and ordinary-flag reduction.511 assumes such projected access and studies two-reflection dynamics, ranks and unmapped sectors. A shared interface is not a whole-question alias.",
+        "source_checks": [
+          {
+            "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+            "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+            "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+          },
+          {
+            "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+            "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+            "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+          }
+        ]
+      }
+    ],
+    "whole_item_alias_result": "No exact whole-question alias is established by this bounded review. Shared subtargets and conditional specializations are explicitly retained; this is not a certified global-distinct verdict for all unexamined pairs.",
+    "family_and_split_assessment": "All examined prepared targets and selected counterpart records have split=test_public. No cross-split conflict is exhibited in this bounded set. Some repeated subtargets sit in different qsc families, notably220/503 and217/504; family names do not justify pooling or independent counting. The enormous inherited split_group is not mathematical equivalence evidence. No IDs, families, splits, alias labels or pools are changed.",
+    "global_dedup_complete": false,
+    "cross_split_pooling_authorized": false,
+    "source_checks": [
+      {
+        "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+        "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+        "anchor": "Exact frozen prepared ten reviewed records and bounded prepared comparator records, loaded through release.checked()[2]. Whole item digests bind every field; this file is content provenance, not mathematical proof."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+        "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+        "anchor": "Complete bounded comparator QA records plan-503/504/505/509/511 near lines252/371/492/965/1203, including their answers and grading contexts; used for target/granularity comparison, not blanket acceptance of their correctness."
+      }
+    ]
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-211",
+      "key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+      "item_digest": "956c29f294371de27e9ec45ec5196f99962ce8a623ede5e3b3285f52d19ab01c",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "conditional_graph_proof": "If the promised s-regular bipartite graph on equal sides actually exists, the matching claim is correct. For any subset S of column vertices, s|S| edges enter its neighbor set, whose total degree is at most s|N(S)|, so Hall's condition follows for s>0. A perfect matching exists; removing it leaves an (s-1)-regular bipartite graph. Induction yields s disjoint perfect matchings. Equivalently a proper s-edge coloring assigns every incident edge a different color at each vertex, so each color covers every vertex. Each matching defines a bijection c_ell and hence a unitary permutation oracle in the mathematical sense. This is not an efficient gate/query synthesis from the matrix description.",
+        "register_count_error": "The exact record uses the SAME s for sparsity/number of matchings and for a qubit count, explicitly D=H^{tensor s}, |0^s> and BE_{s,s+1}. H on s qubits produces2^s labels at amplitudes2^(-s/2), not s labels at1/sqrt(s). For positive integer s these cardinalities are never equal. For instance sparsity2 needs one Hadamard label qubit, not H tensor H on two. The primary source first adopts a power-of-two sparsity and a logarithmic label-register count; flattening them to one symbol is not a harmless count equality. A general s would require q=ceil(log2(s)) plus an actual s-label PREP or zero-padding the number of terms to2^q with its corresponding normalization.",
+        "zero_padding_and_piece_error": "A perfect matching of a padded pattern gives at most one NONZERO per row and column, not exactly one: designated padded entries can be zero. Thus the answer's exact-nonzero assertion is false even if its graph premise is granted. Moreover regularization by adding zero positions in the same N-by-N simple support graph is not automatic. For N=3 and s=2, the support diag(1,J_2) has row and column degrees(1,2,2); the only deficient row and column intersect at an already-nonzero position, so no zero position can repair both. A power-of-two dimension example is N=8,s=2 with support diag(1,J_2,C_5), where C_5=I_5+P_5 and P_5 is a cyclic-shift permutation: the J_2 and C_5 blocks are already2-regular, while again only row0 and column0 are deficient and their intersection is nonzero. Parallel dummy zero edges could complete a multigraph, but then their zero weights must be distinguished by the matching label from the original nonzero A_00. The given formula A^(ell)_{c(j,ell),j}=A_{c(j,ell),j} supplies no such tag-specific mask. A larger-dimension or partial-matching construction is also a changed construction, not a consequence of the stated same-dimension simple-pattern assertion.",
+        "lcu_scale_valid_part": "Under an actual disjoint-cover decomposition and a normalized s-label prepare, the clean block is A/s because the prepare/unprepare amplitudes multiply to1/s. alpha=s is a scale of this particular equal-weight circuit. A worst-case sparse matrix can have ||A||=s (e.g. an s-by-s all-ones block), so a uniform promise-only smaller scale cannot always exist. For particular matrices with norm below s, alpha=s need not be optimal, as plan-210 already demonstrates. Additional-query amplification/other constructions are not excluded just because this fixed circuit has scale s; the reference's list of smaller-scale methods is not exhaustive.",
+        "answer_rubric_exposition_disposition": "Reject exact content. Conditional matching theory and LCU arithmetic survive, but the qubit/count convention in the question's standing conventions, reference, rubric r4 and steps4-5 is inconsistent, and the padded exact-nonzero assertion is false. The general support regularization step is an additional source-model gap, not established by a citation to Koenig. No question/policy/source repair is performed here.",
+        "bounded_semantic_relation": "Substantial shared sparse scaling/entry-oracle mechanism with plan-208/210, but graph decomposition/permutation preparation is an additional obligation. plan-212 is its entry-evaluation consumer under a genuine disjoint-cover promise, not an independent proof of the graph premise."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-211 row beginning near line1162 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-211-s-sparse-konig-matching-decomposition record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Section9.7, printed155-156/PDF154-155: sparsity versus binary-register convention, regular pattern/matching argument Eq9.77, Eq9.78-9.80.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-212",
+      "key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+      "item_digest": "970c5ba0f50e0dd502278b4dc174d90ea437909bbaf2877765b536179388b15d",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "exact_calculation": "With a genuinely unitary Hermitian D that prepares the stated uniform s-label vector, direct propagation gives clean entry (1/s)sum_ell A_{c(j,ell),j} delta_{i,c(j,ell)}. The signal bra kills the |1> branch; label orthogonality collapses the double sum; the system overlap introduces the routing delta. Let h_ij=# {ell:c(j,ell)=i}. This exact expression is h_ij*A_ij/s. To replace it by A_ij/s, every nonzero position must have h_ij=1; coverage and absence of duplicate nonzero routing are the missing mathematical condition.",
+        "counterexample_to_only_explicit_permutation_premise": "Take s=2, N=2, A=I_2 and c(j,0)=c(j,1)=j. Each c_ell is a permutation and A is at most2-sparse. Choose any Hermitian two-qubit D preparing(|00>+|01>)/sqrt(2), for example I tensor H. The given amplitude oracle on these selected diagonal entries has clean amplitude1. The circuit's clean block is I_2, not I_2/2: each nonzero is counted twice. Thus being a permutation separately in j does not prove the reference's unique-ell assertion.",
+        "standing_source_scope": "The complete primary Proposition9.19 is preceded by a disjoint matching cover of the designated pattern. Under that standing promise its matrix-element proof is correct. The authored question calls this an 's-sparse LCU circuit', which may be intended to carry that context, but its explicit assumptions list only per-ell permutations and the D/oracle actions. Unlike a given disjoint matching cover, a collection of permutations is not sufficient. Mark uncertain until the intended inherited matching promise is made explicit; this is not a counterexample to the primary theorem under its full standing hypotheses.",
+        "register_and_zero_boundary": "Unlike plan-211, this question states D by its action and Hermiticity, not explicitly H^{tensor s}, so an embedded s-label uniform prepare on an overlarge s-qubit register can exist. Its reported s+1 ancillas are then a valid loose physical count, not the source's logarithmic count. At A_ij=0, the clean coefficient is exactly zero regardless of multiplicity only because O_A is specified to load the actual entry; arbitrary zero-entry rotations are not allowed in this single-routing model. Zero rows, s=0 or a failure to prepare a normalized uniform vector are not covered by the displayed1/s formula.",
+        "answer_rubric_exposition": "Propagation, conjugation and the flag cancellation in r1-r3/steps1-3 are correct. r4 and steps4-5 import unique coverage without deriving it from the listed conditions. This is an access/pattern contract ambiguity, not an arithmetic error in the inner product.",
+        "bounded_semantic_relation": "The clean entry computation is the algebraic consumer/subtarget of plan-211's actual decomposition, while plan-213 uses genuinely separate row/column location interfaces. They share a mechanism but are not automatically whole-question aliases."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-212 row beginning near line1278 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919 record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Complete Proposition9.19 proof Eq9.81-9.84 and preceding matching/pattern assumptions, printed155-157/PDF154-156.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-213",
+      "key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+      "item_digest": "25309f761a99ded35bf244e4492c4586faf0237b0cf08117241262e92d77f079",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "reconstruction": "Let c(j,ell) and r(i,ell') enumerate distinct actual nonzero positions in each column/row as stipulated. Forward D,O_c,O_A and SWAP gives s^(-1/2)sum_ell(a_{c(j,ell),j}|0>+b_{c(j,ell),j}|1>)|j,c(j,ell)>. Propagating the target through D,O_r gives s^(-1/2)sum_ell'|0,r(i,ell'),i>. Their inner product is (1/s)sum_ell,ell' a_{c(j,ell),j} delta_{i,c(j,ell)} delta_{r(i,ell'),j}. On a genuine nonzero entry a=A_ij and the two enumerations each contain the position once, so exactly one pair contributes A_ij/s. On a zero position, no genuine nonzero enumeration selects it; at least one routing delta fails, independently of an arbitrary controlled rotation amplitude there. This argument uses actual routing exclusion, not the inconsistent shortcut of treating an arbitrary zero-position amplitude as0.",
+        "oracle_and_order_contract": "The two2n-qubit location actions are unitaries only when each active location list is injective and the unused labels are extended reversibly. The oracle is given, not efficiently synthesized. 'ell-th nonzero' is load-bearing: fewer-than-s lists with arbitrary zero fillers need a sentinel/flag or honest zero-entry rotations; arbitrary double-routed fillers are not covered. More importantly, the exact question describes the forward tail as D then O_r, whereas the cited Fig9.8 has O_r† followed by D. The target propagation D then O_r is correct ONLY as the adjoint of that output-side tail, not as its forward execution. D is Hermitian here; O_r generally is not. The question's prose and defining figure therefore do not specify the same circuit.",
+        "zero_precision_cleanup_and_ancillas": "Source Eq9.89 is normalized on queried nonzero entries, requiring their magnitudes<=1; giving it as a unitary oracle enforces that domain. Arbitrary actions at unqueried zeros must still be valid controlled unitaries, not arbitrary nonunit norm vectors. Only one n-qubit index workspace and one signal qubit are flagged on each input/output side; the two0^n bras/kets in a matrix-element equation do not mean two simultaneous n-qubit ancilla registers. The reference's BE_{s,n+1} count is consistent with the actual three-register layout. Reversible location-oracle work is returned/hidden in the supplied oracle; no extra finite-bit/gate/QRAM loading cost is certified.",
+        "answer_rubric_exposition": "The two-delta algebra, rubric and five steps are correct for the primary figure's inverse output path and distinct genuine nonzero lists. The question's stated forward sequence is not that path, so the full exact record cannot be accepted by silently choosing the source figure over its literal gate order. Mark uncertain pending an explicit circuit-definition clarification; no candidate or source is changed. The otherwise ambiguous 'both index-side ancilla' phrase counts two sides of a matrix element, not two simultaneous live workspaces.",
+        "bounded_semantic_relation": "Related to plan-212's single permutation-routing calculation, but this domain has two independent row/column lists and two independent deltas; a common matching label is unnecessary. Same test_public sparse family. No whole-target alias or global uniqueness is established.",
+        "literal_tail_counterexample": "Take N=4,s=1 and A_{j+1 mod4,j}=1, all other entries0. D=I prepares the sole active label0. Define reversible full oracles c(j,ell)=ell+j+1 mod4 and r(i,ell)=ell+i-1 mod4, so their active label0 gives exactly the genuine column/row nonzero; choose O_A with signal amplitude1 on all positions, allowed at zeros by the explicit exemption. For input j=1, the source after O_c and SWAP has workspace1 and system2. The literal forward tail O_r sends it to workspace(1+2-1)=2, system2, so its clean amplitude is0, while A_{2,1}/s=1. Inverse O_r† would instead return workspace0. Thus the literal forward-tail clause is false even without padding or finite precision. The intended figure and bra-ket derivation remain valid."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-213 row beginning near line1393 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-213-dual-oracle-row-column-sparse-prop922 record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Complete alternative input model Eq9.88-9.89, Fig9.8's inverse row-oracle ordering and complete Proposition9.22 proof Eq9.90-9.92, printed158-159/PDF157-158.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-214",
+      "key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+      "item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "exact_boundary": "For an exact(alpha,m) encoding, compression J†U_A J=A/alpha fixes only that block, subject to global unitarity; it does not impose self-adjointness on the whole unitary. For any a in(0,1), let b=sqrt(1-a^2). R=[[a,-b],[b,a]] satisfies R†R=I but R†!=R because b>0. Taking A=aI_N and U_A=R tensor I_N yields an explicit(1,1) encoding of Hermitian diagonal A that is not Hermitian. This is one legitimate completion of the oracle action, not the assertion that every completion is non-Hermitian.",
+        "additional_structure_and_use": "HBE explicitly requires U_A†=U_A. Since U_A is also unitary, U_A^2=I. In an exact unit-normalized encoding of a Hermitian contraction, the second application closes the eigenvector/leakage plane and gives reflection matrix[[lambda,sqrt(1-lambda^2)],[sqrt(1-lambda^2),-lambda]]. Multiplication by the flag reflection gives a rotation. For general alpha the relevant lambda is an eigenvalue of A/alpha; with approximation error the exact plane formula is not automatic. At lambda=+-1 the invariant block is1D, not genuinely2D. These are the normalization/endpoint meanings of the reference's qubitization motivation, not new requirements for its concrete counterexample.",
+        "answer_rubric_exposition": "Accept r1-r4 and five steps within the exact regime asked. 'Free apart from unitarity' means complementary blocks are not individually fixed, not that they may violate unitary coupling constraints. The reference's Eq9.30/9.34 references in its motivational paragraph are misnumbered; the inspected qubitization derivation is Eq10.30/10.34. This is a citation-location defect, not a false counterexample or need to add Hermiticity to ordinary BE.",
+        "resource_scope": "Extra Hermitian structure enables the simplest qubitization proof but is not necessary for every general qubitization algorithm; the source later handles non-Hermitian access. No construction of a cheap Hermitian completion or gate-level optimization follows merely from the definition.",
+        "bounded_semantic_relation": "Uses the same diagonal oracle action as plan-210 but asks a different global-extension property; a unit-scale diagonal clean-block proof does not imply self-adjointness. Its qubitization outline is a prerequisite/subtarget of the full plan-220 proof, not a whole-question duplicate."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-214 row beginning near line1508 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Definition9.23 and preceding Hermitian-block distinction, printed159/PDF158; Example9.17 and complete Section10.2.1 closure Eq10.30-10.41.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-215",
+      "key": "qcb-core-plan-215-hermitian-sparse-block-encoding-prop924",
+      "item_digest": "576ff269c4242c5a9080540a6009923b6f34ab1f07e5ad9fdd42381baca1176d",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_part_of_computation": "The source/target and SWAP contraction does yield the product (1/s)sqrt(A_ij)*conj(sqrt(A_ji)) on a uniquely selected nonzero. Each loading state is normalized because |sqrt(A_ij)|^2=|A_ij| and the other branch has squared magnitude1-|A_ij|. A symmetric unitary sandwich B†SWAP B is Hermitian and unitary. Neither of these facts proves that its clean block is A/s.",
+        "exact_branch_failure": "The convention 'sqrt(conj(z)) conjugated equals sqrt(z) on the principal branch used' is false at negative real z. For z=-r<0, any single-valued square root is either+i sqrt(r) or-i sqrt(r). Since z=conj(z), sqrt(z)*conj(sqrt(conj(z)))=|sqrt(z)|^2=r, never z=-r. Thus the reference's recombination, rubric r4 and semantic steps4-5 fail for an explicitly allowed Hermitian entry, independently of rounding.",
+        "concrete_diagonal_witness": "Take A=[-1] and s=1 (or A=-I_N for any qubit dimension with the diagonal location oracle). The sole selected entry has square-root amplitude i under the stated phase convention, with no failure branch. Source and target both load i, so their bra-ket product is i*conj(i)=+1. The advertised clean entry is-1. The circuit remains a Hermitian unitary but encodes the wrong sign. A=-rI_N with0<r<1 similarly gives+r instead of-r, so this is not only an endpoint problem.",
+        "source_fidelity_and_scope": "The genuine primary Eq9.95 uses the correctly normalized sqrt(1-|A_ij|) second branch and explicitly fixes theta in[0,2pi); the reviewed text does reproduce the square-root-oracle normalization. However that phase branch is not conjugation-covariant: for z=i r its conjugate has phase3pi/2, giving an additional minus sign. The written primary Proposition9.24 also makes the unsupported square-root recombination. This is a source-level phase gap, not a justification for repeating it or blaming extraction. No one scalar square-root branch can satisfy the advertised conjugacy at negative diagonal entries. A separate sign/phase-aware construction or restricted domain would require an explicit reviewed contract, not a silent repair.",
+        "answer_rubric_exposition_disposition": "Reject entire exact QA. Correct normalization and Hermitian SWAP symmetry are salvageable, but the question demands a false A/s identity for negative diagonal Hermitian A and explicitly requires the invalid half-entry step. Neither generic unitarity nor Hermiticity A_ji=conj(A_ij) repairs the branch obstruction. No new local theorem, repair or source alteration is performed.",
+        "bounded_semantic_relation": "The general sparse entry calculation resembles plan-213, but its square-root conjugate pairing and global Hermitian sandwich are additional, failed obligations. plan-214 already shows why Hermitian target and Hermitian extension are separate; this target cannot inherit correctness from that distinction."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-215 row beginning near line1622 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-215-hermitian-sparse-block-encoding-prop924 record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Full Section9.8 setup Eq9.93-9.95, Fig9.9 text register layout, complete Proposition9.24 proof Eq9.96-9.98, printed159-161/PDF158-160.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-216",
+      "key": "qcb-core-plan-216-block-encoding-beyond-computational-basis-def925",
+      "item_digest": "25c3a802898fe52a55571fa3631a3925ffbb6c11f24473f29e40723e7f634ad2",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Set V=Xi_N and W=(Xi')_{N'}. Their columns are orthonormal, so V†V=I_N, W†W=I_N', VV†=Pi and WW†=Pi'. Then tildeA=W†U_A V and its(i,j) entry is<psi_i|U_A|phi_j>. Compression is Pi' U_A Pi=W tildeA V†. Conversely, applying W† and V to W A V† recovers A, so Pi' U_A Pi=W A V† iff tildeA=A. This also proves the statement for rectangular blocks, not only equal-rank flags.",
+        "norm_and_basis_boundary": "The embedded difference W(A-alpha tildeA)V† has the same operator norm as A-alpha tildeA because W,V are isometries: <= follows by contraction, and the reverse follows by testing vectors in range(V). This is a coordinate compression identity, not a literal equality between differently sized matrices without the embedding. If N'=0 the output block is empty/zero and the entry statements are vacuous; other allowed ranks obey N,N'<=MN. Full unitary Xi/Xi' choices off these columns have no effect on tildeA. Changing the chosen range bases conjugates/transports the coordinate matrix A and is not a false basis-independent numerical-array claim.",
+        "reduction_and_resources": "When Pi=Pi'=|0^m><0^m| tensor I_N, N'=N and the specified first columns are the standard flagged computational basis, choose Xi=Xi'=I. Then tildeA=(<0^m| tensor I)U_A(|0^m> tensor I) and ||A-alpha tildeA||<=eps is ordinary BE. alpha>0 and eps>=0 keep their standard meanings. Physical realization via Xi'† U_A Xi would require access to those basis changes and their inverses; the mathematical definition does not make their gate or state-preparation costs free.",
+        "answer_rubric_exposition": "The complete answer, r1-r4 and five steps correctly state entries, compression, exact iff, approximate norm condition and computational reduction. The answer qualifies the Pi' U_A Pi shorthand as being in chosen bases, avoiding a matrix-shape mismatch. It is a linear-algebra definition bridge with no hidden algorithmic efficiency claim.",
+        "bounded_semantic_relation": "A genuine arbitrary-subspace generalization of ordinary flag-block identities such as plan-210, not an alias of that diagonal application. plan-511 assumes this interface and studies two-projector reflection dynamics/rank mismatch; definition/coordinate equivalence versus dynamics are distinct requested targets."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-216 row beginning near line1737 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-216-block-encoding-beyond-computational-basis-def925 record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Complete Section9.9 definitions/compression Eq9.99-9.105 and Definition9.25, printed161-162/PDF160-161.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-217",
+      "key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+      "item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "correct_parity_theorem": "For Hermitian A=V D V†, choose S diagonal with S_ii=+1 at lambda_i>=0 and-1 below0, and Sigma=|D|. Then W=VS is unitary and A=W Sigma V†. For odd f with f defined at all relevant +-singular values, f(0)=0, and S f(|D|)=f(D) entrywise, giving the balanced transform f(A). For even f, f(|D|)=f(D), so the right transform V f(|D|)V† is f(A). Repeated eigenvalues and zero eigenvalues do not invalidate these identities. A nonunitary conventional sign(0)=0 must not be used to call VS a full SVD; the reference's nonnegative sign=+1 clause can be read as the needed convention.",
+        "overstrong_necessity_claim": "The source's conclusion is a sufficient definite-parity theorem. The exact answer/rubric r4/step5 strengthen it to 'without definite parity the SVT cannot equal f(A)' or 'differs'. Definite parity is not necessary for coincidence on a fixed spectrum. For the indefinite A=diag(1,-1), take f(x)=x^3+x^2-x, neither even nor odd. f(1)=f(-1)=1, so the right generalized transform V f(|D|)V† equals I=f(A) on this A. Only a uniform identity over all possible real spectral values, with a fixed choice of balanced versus right form, demands the appropriate odd/even relation throughout that domain. If f_SV is by definition undefined outside definite parity, the extra impossibility claim is instead ill-posed, not a theorem about a defined output.",
+        "domain_and_model_boundary": "The function must be defined at zero whenever zero belongs to the spectrum. Balanced generalized functions with f(0)!=0 can depend on arbitrary left/right kernel pairing for a general matrix; odd f removes this via f(0)=0. The odd/even theorem here is mathematical functional calculus, not a guarantee that an arbitrary f has a bounded efficient QSVT polynomial/circuit. Precision, scaling, controlled access and synthesis are not supplied.",
+        "answer_rubric_exposition_disposition": "Mark uncertain: the requested positive theorem and both derivations are correct with the zero-sign convention just stated, but the complete grading/exposition's necessary-and-sufficient language is too strong or undefined for fixed A. Clarify sufficient/uniform-versus-fixed-spectrum scope before accepting the full exact record; do not silently add an invertibility premise to avoid null spaces.",
+        "bounded_semantic_relation": "plan-218's dilation realizes these two parity types for general A; plan-504 specializes to even/odd Chebyshev outputs with right versus balanced singular vectors. These share definitions but different input/target contracts. plan-509 explicitly combines even and odd pieces to encode a parity-mixed f(A), so a blanket impossibility of such an eigenvalue transformation would also contradict that permitted composition."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-217 row beginning near line1852 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Complete Definitions10.1-10.4, Eq10.7-10.16 and surrounding Hermitian parity discussion, printed164-165/PDF163-164.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-218",
+      "key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+      "item_digest": "568117cff67fd69c6ea6f73b73f70181dee69cf8f0059fd634d0074c0189fe8a",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "correct_linear_algebra": "The dilation H=[[0,A†],[A,0]] is Hermitian. For paired singular bases, z_i^+-=(|0,v_i>+-|1,w_i>)/sqrt(2) are a complete orthonormal basis even at sigma_i=0, and H z_i^+-=+-sigma_i z_i^+-. The block spectral expansion gives H-function blocks V f_even(Sigma)V†, V f_odd(Sigma)W†, W f_odd(Sigma)V† and W f_even(Sigma)W†. Hence the stated even and odd FIRST-COLUMN linear identities are correct. This is a function of a Hermitian matrix; for arbitrary f defined on the finite spectrum the formula is spectral calculus, with polynomial implementation a further issue.",
+        "zero_and_success_counterexample": "The reference and semantic step5 then infer a physical deterministic transformed system state 'with no postselection loss'. f(H) need not be unitary or norm-preserving. Take A=[1/2], f(x)=x (odd) and a unit input. The formula gives (1/2)|1>, whose squared norm is1/4, not a normalized quantum state. A unit-scale block encoding realizes this branch with success1/4, not certainty. For A=0 with odd f(x)=x the entire vector is zero; no conditional state or ancilla measurement on that zero vector exists. Even f=0 supplies the same obstruction. Thus no-postselection-loss is false without a separate isometry/unitarity/nonzero-success condition.",
+        "correct_conditional_interpretation": "If the nonzero transformed vector is successfully realized and normalized, its dilation ancilla is indeed entirely in0 for even f or1 for odd f: parity adds no EXTRA loss from measuring this parity ancilla conditional on the transformation's successful flag. This does not remove the external block-encoding normalization/flag probability ||f_SV(A)psi||^2/alpha^2 or the cost of amplitude amplification. A zero output is an impossible success branch, not a normalized vector with a deterministic bit.",
+        "controlled_oracle_and_precision_scope": "The primary dilation-access construction explicitly calls for controlled versions of U_A and U_A†; an arbitrary black-box U_A does not automatically supply controlled access, especially its global phase. The question's algebraic identity need not assume a circuit, but its implementation interpretation must pay for that interface, polynomial restrictions and finite-bit approximation. No resource bound follows from the SVD eigenbasis formula.",
+        "answer_rubric_exposition_disposition": "Reject full exact record: the spectral/eigenvector computations and r1-r3 are salvageable, but the final answer, question's unconditional measurement request and step5 confuse an unnormalized linear map with a lossless quantum process. The primary text itself uses certainty wording after the same linear identity; this is an inherited scope gap, not new evidence that nonunitary state transformation is deterministic.",
+        "bounded_semantic_relation": "Different from plan-217's Hermitian-A coincidence theorem and plan-504's concrete parity-dependent Chebyshev iterates. It generalizes the singular-vector mapping through a dilation, while plan-201/202 separately illustrate why success probability and conditional normalization cannot be discarded."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-218 row beginning near line1967 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Full Hermitian dilation and parity expansion Eq10.17-10.23, including controlled-oracle warning and the source's certainty wording, printed165-166/PDF164-165.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-219",
+      "key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+      "item_digest": "2387018c64ae8b443f7d0dc49ebb1c814f123a3d08e5575f01c1597ddc3b6d0e",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_generic_obstruction": "For an SVD A=W Sigma V†, A^2=W Sigma M Sigma V† with M=V†W. If Sigma M Sigma has off-diagonal entries, it cannot be g(Sigma), so this rules out the BALANCED form in that SVD. It does not by itself rule out the right or left forms, whose middle matrices after changing outer bases are different. The generic conclusion that nonnormal matrix powers need not be any of these transforms is true, but requires a complete example/argument for each requested form.",
+        "complete_example_for_the_true_general_claim": "Let V=I, Sigma=diag(2,1), W=2^(-1/2)[[1,-1],[1,1]]. Then A=W Sigma is invertible, nonnormal and diagonalizable over C (trace3/sqrt(2), determinant2, discriminant-7/2 !=0). Direct multiplication gives B=A^2=[[1,-3/2],[3,-1/2]]. W† B V=Sigma W Sigma has nonzero off-diagonal entries, excluding balanced g(Sigma). Right transforms are diagonal here because V=I, while B is not. Every left transform W g(Sigma)W† is normal even for complex g; B is not normal: BB† has diagonal(13/4,37/4), whereas B†B has diagonal(10,5/2). This supplies the needed all-three witness; merely displaying the interior M only closes the balanced part.",
+        "false_only_if_and_svd_gauge": "The answer/rubric r2's claim 'not an SVT unless M is diagonal' is false for the collection of all three forms. Take A=iX, with SVD W=iX,Sigma=I,V=I. Then M=iX is off-diagonal but A^2=-I is both a right and left generalized transform with g(1)=-1. A is diagonalizable, normal and non-Hermitian, satisfying the broad allowed matrix class. Thus the convention 'A normal exactly when W=V up to phases' is false for an arbitrary SVD when singular values are degenerate: a compatible simultaneous eigenbasis can be chosen, but normality does not force every SVD gauge to have diagonal M.",
+        "inverse_domain_and_notation": "The primary source explicitly says IF A IS INVERTIBLE before writing A^-1=V Sigma^-1 W†. The prepared question/assumptions omit that condition; a diagonalizable non-Hermitian matrix such as[[1,1],[0,0]] is singular, so its inverse and Sigma^-1 are undefined. On the invertible domain the formula is correct and is the odd balanced transform of A†, not generally the balanced transform of A itself. Applying1/x algorithmically also needs a gap from0 and scaling/approximation; none is free. The question reuses V for the arbitrary eigendecomposition and the right-singular unitary; they should be distinct names for a genuinely general nonnormal A.",
+        "answer_rubric_exposition_disposition": "Reject exact answer/rubric/contract. It has a correct SVD product identity and a valid inverse identity on a narrower domain, but the extrapolation to all three forms, iff-normal characterization and missing invertibility are material. The source only gives a generic non-simplification observation and explicitly restricts the inverse; copying its notation does not repair the authored stronger claims. This report supplies independent witnesses without modifying the question or claiming a new proof execution.",
+        "bounded_semantic_relation": "plan-505 also contrasts singular/eigenvalue behavior, but its nilpotent matrix is not diagonalizable, so is not a witness within this question's stated diagonalizable domain. plan-217 treats Hermitian A with definite parity, a strict special setting, and does not authorize all-matrix normality or invertibility assumptions here."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-219 row beginning near line2082 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-219-matrix-power-not-singular-value-transformation record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Full matrix-power and inverse discussion after Eq10.23, printed166/PDF165. The primary inverse sentence explicitly assumes invertibility.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-220",
+      "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+      "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "invariant_plane_derivation": "Put a_i=|0^m,v_i> and b_i=perp_i. Unitarity and the exact flag block imply ||b_i||=1 and Pi b_i=0 when |lambda_i|<1, so these are orthonormal. Hermitian unitarity gives U_A^2=I. Apply U_A to U_A a_i=lambda_i a_i+s_i b_i with s_i=sqrt(1-lambda_i^2)>0, substitute and solve: U_A b_i=s_i a_i-lambda_i b_i. This closes the plane and yields the stated reflection matrix. Hermiticity of A alone would not supply U_A^2=I; this is the exact use of HBE.",
+        "rotation_and_powers": "Pi restricts to diag(1,0), so Z_Pi=2Pi-I restricts to diag(1,-1). The ordered product U_A Z_Pi is[[lambda_i,-s_i],[s_i,lambda_i]], not the transposed rotation. With theta_i=arccos(lambda_i) in(0,pi), s_i=sin(theta_i), and k-th power has diagonal cos(k theta_i)=T_k(lambda_i) and off-diagonal+-sin(k theta_i). For k>=1 these are+-s_i U_{k-1}(lambda_i). For k=0 use the identity directly (or explicitly extend U_{-1}=0), avoiding an undefined negative-index polynomial convention.",
+        "block_and_domain_boundaries": "Every flagged eigenvector is sent to T_k(lambda_i)a_i plus a component orthogonal to ALL flag states, so compression is T_k(A), not merely equal diagonal expectations. At lambda_i=+-1 leakage vanishes and U_A a_i=lambda_i a_i; Z_Pi a_i=a_i gives the required T_k(+-1)=(+-1)^k in the1D sector without dividing by s_i. Repeated eigenvalues allow any orthonormal eigenbasis and the same derivation. m=0 forces a Hermitian unitary target with only endpoint eigenvalues, which the1D case covers. The complementary physical subspace need not be described to establish the clean block.",
+        "answer_rubric_exposition": "Complete reference, r1-r4 and five steps correctly derive the reflection, sign/order of rotation, Chebyshev top-left block and source of Hermiticity. The k=0/U_{-1} clarification is a boundary convention for an optional full off-diagonal display, not a counterexample to the requested T_0=I identity. The endpoint clause is explicit in the answer.",
+        "resources_and_success": "The iterate uses k applications of U_A and k known flag reflections in this product form; their implementation/gate/clean-work/finite-bit costs must be separately charged. This certifies a block encoding, not deterministic preparation of T_k(A)psi: success after measuring the flag is ||T_k(A)psi||^2 for normalized psi, which can be zero. No phase estimation or eigenbasis preparation is assumed.",
+        "bounded_semantic_relation": "The rotation-power/Chebyshev sublemma substantially overlaps plan-503, which explicitly grades second-kind off-diagonal and endpoint behavior; plan-220 additionally derives the plane from HBE and lifts it to the whole compressed operator. This is a shared subtarget/granularity relation, not proof that their entire question contracts are aliases or globally distinct. plan-214's closure motivation is another shared prerequisite."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc catalog entry inspected. This local LF hash authenticates URL/edition/historical-PDF-hash metadata only, not primary mathematics or retrieved PDF bytes."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Complete authored qcb-core-plan-220 row beginning near line2196 and exact prepared counterpart read, including question/answer/rubric/assumptions/conventions/steps. This binds QA content provenance, not mathematical proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact actual prepared qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding record read via release.checked()[2]; whole item digest above includes metadata. File hash binds frozen prepared content only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April2026",
+          "inspected_anchors": "Complete Section10.2.1 derivation Eq10.24-10.41, including endpoints, ordered reflections, powers and final clean block, printed167-168/PDF166-167.",
+          "access": "Genuine primary author-hosted PDF text extraction; complete bounded operative regions read. Relevant equations inspected in context, not only search snippets or the local catalog.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover date/title/authors and equation contexts match. No new binary bytes/hash or rendered-page verification; source text can itself contain errors. No PDF stored or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent NL/primary-source mathematical review only. No new local Lean closure, kernel execution, blind/expert/human/model evaluation or novelty claim.",
+        "Local catalog and QA hashes are provenance evidence, not external theorem proof. Recorded historical PDF binary SHA remains unverified in this review.",
+        "Bounded in-batch/prior-batch/selected-core semantic comparisons, not global deduplication, split reconciliation or current-gold admission."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-plan-214",
+      "qcb-core-plan-216",
+      "qcb-core-plan-220"
+    ],
+    "rejected": [
+      "qcb-core-plan-211",
+      "qcb-core-plan-215",
+      "qcb-core-plan-218",
+      "qcb-core-plan-219"
+    ],
+    "uncertain": [
+      "qcb-core-plan-212",
+      "qcb-core-plan-213",
+      "qcb-core-plan-217"
+    ],
+    "absent_ids": [],
+    "exact_rejections": {
+      "qcb-core-plan-211": "Sparsity/number-of-labels s is conflated with qubit count s; H tensor s has2^s branches. Padded matchings need not have exactly one NONZERO per row/column; same-dimension simple-support zero-regularization is not generally automatic.",
+      "qcb-core-plan-215": "The same square-root loading on source and target gives a positive magnitude, not the negative diagonal entry; A=-I supplies an exact sign counterexample. Primary source itself has the phase gap.",
+      "qcb-core-plan-218": "Correct parity linear identities are mistaken for unconditional loss-free deterministic state transformation; scalar A=1/2,f=x gives squared norm1/4, and zero outputs have no conditional state.",
+      "qcb-core-plan-219": "One fixed-outer-basis off-diagonal argument does not rule out all three transforms; an iff-style normal/SVD-gauge assertion is false, and the inverse requires an omitted invertibility condition."
+    },
+    "uncertainties": {
+      "qcb-core-plan-212": "Correct contraction only under unique nonzero matching coverage, not merely separate permutation oracles. Source has the standing cover; the exact standalone question does not clearly carry it.",
+      "qcb-core-plan-213": "Sound intended two-delta proof for the primary figure, but question's forward tail D then O_r conflicts with required O_r† then D†. A valid cyclic sparse oracle contradicts the literal forward-tail claim.",
+      "qcb-core-plan-217": "Correct sufficient parity theorem with a unitary zero-sign convention; complete grading overstates necessity for fixed spectra or discusses an undefined parity-mixed transform."
+    },
+    "disposition": "Three accepted, four rejected, three uncertain; all requested IDs present. Each item distinguishes surviving mathematics from the failing or ambiguous literal QA/source-interface claim. No canonical repair, quarantine or admission performed.",
+    "stable_release_limit": "Private bounded next-checkpoint evidence only. No complete-catalog correctness, global deduplication, cross-split pooling, kernel closure, novelty, stable release or PR102 approval."
+  }
+}

@@ -7,6 +7,19 @@ This additive guard does not alter earlier pipeline hashes or claim new proofs.
 from qcb_nl import WITHDRAWN_NATIVE
 
 WITHDRAWN_KEYS = {
+    'qcb-core-plan-112-sym-antisym-projectors-swap-operator': 'Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.',
+    'qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample': 'The one-dimensional tensor square need not be the original character; finite complex scope is also unbound.',
+    'qcb-core-plan-117-non-unitarizable-infinite-group-counterexample': 'The compact-group extension omits continuity; Haar averaging does not apply to every abstract representation.',
+    'qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed': 'The scalar-Schur/division-ring-collapse summary omits finite dimension, despite a valid real two-dimensional example.',
+    'qcb-core-plan-119-finite-vs-compact-haar-boundary': 'Raw compact-group matrix coefficients are not orthonormal without dimension normalization; continuity scope is missing.',
+    'qcb-core-plan-120-dual-representation-conjugate-boundary': 'Equal real characters do not classify self-duality for arbitrary nonsemisimple group representations.',
+    'qcb-core-plan-211-s-sparse-konig-matching-decomposition': 'Sparsity and label-qubit count are conflated; zero-padding and regularization claims need additional structure.',
+    'qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919': 'Separate permutation maps do not imply a unique disjoint cover of each nonzero matrix position.',
+    'qcb-core-plan-213-dual-oracle-row-column-sparse-prop922': 'The literal forward oracle tail differs from the adjoint tail required by the source figure and amplitude proof.',
+    'qcb-core-plan-215-hermitian-sparse-block-encoding-prop924': 'The square-root conjugacy step fails for negative diagonal entries; the Hermitian SWAP circuit encodes the wrong sign.',
+    'qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence': 'Definite parity is sufficient, not necessary for coincidence on a fixed spectrum; scope is ambiguous.',
+    'qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure': 'An unnormalized non-isometric transformed vector is not a deterministic lossless quantum state.',
+    'qcb-core-plan-219-matrix-power-not-singular-value-transformation': 'The inverse lacks an invertibility premise and an SVD interior obstruction does not exclude all three transform forms.',
     'qcb-core-be-102': 'Dirty-input loss of a clean-branch guarantee is not universal simultaneous arithmetic failure and scratch corruption.',
     'qcb-core-be-104': 'Bare emitted gate products omit the compiler global phase and do not equal the claimed exact 0/1 permutation matrix.',
     'qcb-core-be-108': 'Independent row/column permutations preserve unitarity; same-axis algebra closure is not a necessary condition.',
@@ -68,7 +81,8 @@ def check_current_gold(items, *, frozen_preview_audit=False):
     if frozen_preview_audit:
         # Only reproduce the published historical preview for audit. Its CLI
         # separately refuses current native scoring/repackaging after a repair.
-        audit_only_keys = {'qcb-core-be-102', 'qcb-core-be-104', 'qcb-core-be-108', 'qcb-core-be-112', 'qcb-core-be-119', 'qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso', 'qcb-core-plan-105-schur-lemma-scalar-over-alg-closed', 'qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional', 'qcb-core-plan-107-pauli-twirl-maximally-mixed', 'qcb-core-plan-108-character-is-class-function-degree', 'qcb-core-plan-203-povm-amplitude-amplification-query-count', 'qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity', 'qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary', 'qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute', 'qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary', 'qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles',
+        audit_only_keys = {'qcb-core-plan-112-sym-antisym-projectors-swap-operator', 'qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample', 'qcb-core-plan-117-non-unitarizable-infinite-group-counterexample', 'qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed', 'qcb-core-plan-119-finite-vs-compact-haar-boundary', 'qcb-core-plan-120-dual-representation-conjugate-boundary', 'qcb-core-plan-211-s-sparse-konig-matching-decomposition', 'qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919', 'qcb-core-plan-213-dual-oracle-row-column-sparse-prop922', 'qcb-core-plan-215-hermitian-sparse-block-encoding-prop924', 'qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence', 'qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure', 'qcb-core-plan-219-matrix-power-not-singular-value-transformation',
+            'qcb-core-be-102', 'qcb-core-be-104', 'qcb-core-be-108', 'qcb-core-be-112', 'qcb-core-be-119', 'qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso', 'qcb-core-plan-105-schur-lemma-scalar-over-alg-closed', 'qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional', 'qcb-core-plan-107-pauli-twirl-maximally-mixed', 'qcb-core-plan-108-character-is-class-function-degree', 'qcb-core-plan-203-povm-amplitude-amplification-query-count', 'qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity', 'qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary', 'qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute', 'qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary', 'qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles',
             'qcb-core-sp-002', 'qcb-core-sp-006', 'qcb-core-sp-011',
             'qcb-core-sp-105', 'qcb-core-sp-107', 'qcb-core-sp-108', 'qcb-core-sp-111',
             'qcb-core-sp-113', 'qcb-core-sp-115', 'qcb-core-sp-117', 'qcb-core-sp-119',

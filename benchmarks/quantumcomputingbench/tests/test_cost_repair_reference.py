@@ -58,14 +58,14 @@ class CostRepairReferenceTests(unittest.TestCase):
         self.assertIn('never pass predictions', result.stderr)
 
 
-class WideLQContractReferenceTests(unittest.TestCase):
-    def test_actual_support_receipt_binds_three_roots_candidate_runner_and_substrate(self):
-        report = read_json(B / 'reports/textbook-v1/repairs/fixed-references/wide-lq-checked-receipt.json')
+class SingleRepairReferenceChecks:
+    """The same evidence rules apply to each separately inspected support packet."""
+    def test_actual_support_receipt_binds_roots_candidate_runner_and_substrate(self):
+        report = read_json(B / 'reports/textbook-v1/repairs/fixed-references' / self.receipt_name)
         self.assertEqual(report['source_sha256_lf'], text_sha(R / report['source_file']))
-        self.assertEqual(report['canonical_runner_sha256_lf'], text_sha(B / 'scripts/wide_lq_contract_reference.py'))
-        self.assertEqual(report['repair_record_digest'], digest(read_json(B / 'shared/repairs/la-206-cost-contract-successor.json')))
-        expected = {'QuantumBlockEncoding.QcbWideLQCostContract.' + n for n in
-                    ('actual_stage_cost', 'one_by_one_emit', 'one_by_one_budget_emit')}
+        self.assertEqual(report['canonical_runner_sha256_lf'], text_sha(B / 'scripts' / self.runner_name))
+        self.assertEqual(report['repair_record_digest'], digest(read_json(B / 'shared/repairs' / self.repair_name)))
+        expected = {self.namespace + n for n in self.root_names}
         self.assertEqual(set(report['checked_roots']), expected)
         parsed = {name: sorted(a.strip() for a in values.split(',') if a.strip())
                   for name, values in re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", report['reference_stdout'])}
@@ -82,11 +82,27 @@ class WideLQContractReferenceTests(unittest.TestCase):
         self.assertEqual(report['existing_compiled_module_count'], len(lean_module_targets(R)))
 
     def test_prediction_execution_is_not_enabled_by_reference_script(self):
-        result = subprocess.run([sys.executable, str(B / 'scripts/wide_lq_contract_reference.py'),
+        result = subprocess.run([sys.executable, str(B / 'scripts' / self.runner_name),
                                  '--build-root', str(R), '--output', str(R / '_out/not-executed-wide.json')],
                                 capture_output=True, text=True, timeout=30)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('never pass predictions', result.stderr)
+
+
+class WideLQContractReferenceTests(SingleRepairReferenceChecks, unittest.TestCase):
+    receipt_name = 'wide-lq-checked-receipt.json'
+    runner_name = 'wide_lq_contract_reference.py'
+    repair_name = 'la-206-cost-contract-successor.json'
+    namespace = 'QuantumBlockEncoding.QcbWideLQCostContract.'
+    root_names = ('actual_stage_cost', 'one_by_one_emit', 'one_by_one_budget_emit')
+
+
+class DirtyWorkBoundaryReferenceTests(SingleRepairReferenceChecks, unittest.TestCase):
+    receipt_name = 'dirty-work-checked-receipt.json'
+    runner_name = 'dirty_work_boundary_reference.py'
+    repair_name = 'be-102-dirty-work-boundary-repair.json'
+    namespace = 'QuantumBlockEncoding.QcbDirtyWorkBoundary.'
+    root_names = ('entering_work_preserved', 'row_preserved', 'dirty_three_correct_sum', 'dirty_one_wrong_sum')
 
 
 if __name__ == '__main__':

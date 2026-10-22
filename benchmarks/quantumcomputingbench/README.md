@@ -45,9 +45,28 @@ The [oracle/composition, representation and scientific-algorithm reviews](report
 also separate phase-aware programs from bare gate products, unitary composition
 from deterministic cleanup, finite-dimensional representation hypotheses from
 unrestricted claims, and original bit-oracle costs from derived angle-oracle
-costs. Primary-source access limits are recorded honestly, including the
-scientific-computation PDF whose text was inspected but whose historical binary
-hash was not freshly verified.
+costs. Primary-source access limits are recorded honestly. Earlier scientific
+reader batches inspected primary text without freshly verifying its binary
+hash; those reports are unchanged. The later exact repair reviews below did
+independently retrieve matching bytes, without retroactively approving the
+whole source or every earlier derivation.
+
+Three [reviewed answer repairs](shared/repairs/) restore the original questions:
+BE102 distinguishes actual dirty-input failure from absence of a clean-input
+certificate; plan107 retains the right adjoint in the Pauli twirl; plan204
+retains the complex conjugate and derives the full positive-POVM spectrum.
+Their exact [independent reviews](reports/textbook-v1/repairs/) cover the whole
+answer, rubric and explanatory steps, not only an isolated corrected formula.
+No real-overlap, full-rank or extra oracle premise was added.
+
+The [dirty-work support source](reports/textbook-v1/repairs/fixed-references/DirtyWorkBoundary.lean)
+and [actual receipt](reports/textbook-v1/repairs/fixed-references/dirty-work-checked-receipt.json)
+check four named roots for the fixed seven-wire program: unconditional entering
+work/row preservation and two distinguishing dirty-input examples. The allowed
+axioms and real sorry/wrong-target controls are recorded. This does not create
+four native Lean views or certify arbitrary-width adders or all quantum prose.
+Replay only the inspected source using
+`scripts/dirty_work_boundary_reference.py --build-root PATH --trusted-local-reference --output NEW_RECEIPT`.
 
 The [linear-algebra and stored-cost second pass](reports/textbook-v1/reader-reviews/)
 also distinguishes strict staircase zeros from diagonal entries, generated

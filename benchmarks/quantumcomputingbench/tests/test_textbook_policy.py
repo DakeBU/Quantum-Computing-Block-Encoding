@@ -46,6 +46,21 @@ class TextbookPolicyTests(unittest.TestCase):
             self.assertEqual(release.main(), 1)
         self.assertIn("historical preview contains a withdrawn predecessor", errors.getvalue())
 
+    def test_complex_and_dirty_work_repairs_keep_questions_and_rejected_predecessors_separate(self):
+        originals = {i['core_id']: i for i in self.historical}
+        current, decisions = apply_current_reader_policy(self.historical)
+        by_id = {i['core_id']: i for i in current}
+        for core in ('qcb-core-be-102', 'qcb-core-plan-107', 'qcb-core-plan-204'):
+            old, new = originals[core], by_id[core]
+            self.assertNotEqual(old['reference_answer'], new['reference_answer'])
+            self.assertEqual({k: old[k] for k in CONTRACT_FIELDS}, {k: new[k] for k in CONTRACT_FIELDS})
+            self.assertEqual(new['reviews'][0]['method'], 'independent-answer-successor-review')
+            row = next(r for r in decisions if r['core_id'] == core)
+            self.assertEqual(row['status'], 'reviewed_answer_successor_admitted_to_reader')
+            self.assertEqual(row['prior_withdrawal']['predecessor_item_digest'], digest(old))
+            with self.assertRaisesRegex(ValueError, 'withdrawn'):
+                check_current_gold([old])
+
     def test_public_reader_download_is_not_a_raw_review_or_control_log(self):
         current, _ = apply_current_reader_policy(self.historical)
         for item in current:

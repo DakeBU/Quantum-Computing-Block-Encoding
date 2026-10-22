@@ -1,0 +1,63 @@
+{
+  "schema_version": "qcb.inspected_dirty_work_boundary_reference.v1",
+  "execution_class": "trusted_inspected_fixed_reference",
+  "isolated_prediction_evaluation": false,
+  "canonical_runner_sha256_lf": "0d7917bc6145d612037c335dcec00b7495d6d32e961a16c6b52f6ad3f1eeabce",
+  "source_file": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/fixed-references/DirtyWorkBoundary.lean",
+  "source_sha256_lf": "5e55f3b8b04ab98d491146749825b342549851c77a77227c89ef6bc8c44327d8",
+  "source_sha256_bytes": "5e55f3b8b04ab98d491146749825b342549851c77a77227c89ef6bc8c44327d8",
+  "repair_record_digest": "e2392b76510772802787bd9cfa7f7d814a04db9173e58655f4fccf2c7a789238",
+  "lean_version": "Lean (version 4.29.1, x86_64-w64-windows-gnu, commit f72c35b3f637c8c6571d353742168ab66cc22c00, Release)",
+  "reference_exit_code": 0,
+  "checked_roots": {
+    "QuantumBlockEncoding.QcbDirtyWorkBoundary.entering_work_preserved": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.QcbDirtyWorkBoundary.row_preserved": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.QcbDirtyWorkBoundary.dirty_three_correct_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "QuantumBlockEncoding.QcbDirtyWorkBoundary.dirty_one_wrong_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "approved_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "reference_stdout": "'QuantumBlockEncoding.QcbDirtyWorkBoundary.entering_work_preserved' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.QcbDirtyWorkBoundary.row_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]\n'QuantumBlockEncoding.QcbDirtyWorkBoundary.dirty_three_correct_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'QuantumBlockEncoding.QcbDirtyWorkBoundary.dirty_one_wrong_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+  "reference_stderr": "",
+  "proof_inputs_sha256": "1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e",
+  "existing_compiled_module_count": 202,
+  "cached_checkout_commit": "3b56da964f97511cc478d942d513b3e01b9328ee",
+  "full_library_gate_execution": "Existing exact-digest/module-matching gate inherited; not rerun by this support check.",
+  "sorry_control": {
+    "exit_code": 0,
+    "offending_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext",
+      "sorryAx"
+    ],
+    "rejected": true
+  },
+  "wrong_target_control": {
+    "exit_code": 1,
+    "rejected": true
+  },
+  "limitations": [
+    "Four exact named support roots: unconditional entering-work/row preservation and two fixed dirty-input arithmetic witnesses, for the actual seven-wire circuit only.",
+    "Not a native formal-view admission, independent source-blind decoding, isolated prediction evaluation, all-prose kernel certification or finite-bit theorem."
+  ]
+}

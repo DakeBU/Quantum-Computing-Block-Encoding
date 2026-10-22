@@ -1,0 +1,161 @@
+{
+  "schema_version": "qcb.answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-107",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-107-pauli-adjoint-repair.json",
+  "repair_record_digest": "c6c7b731c68107c1b125b7d98580ee09d3c9db16660e823deb4d5275bc67c8e7",
+  "original_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+  "verdict": "accept",
+  "scope": {
+    "observed_head": "006ed812e2d54d4ec1a778b3ad613fcdda211e1a",
+    "selection": "Whole original from release.checked()[2] and complete current authored repair record, including answer, four rubric entries, core summary, five semantic steps, source/primary metadata and execution disclaimer.",
+    "output": "Only private _review_tmp/plan-107-pauli-adjoint-repair-review.json. Canonical source/data/candidate and sealed earlier reader reports not edited."
+  },
+  "provenance": {
+    "actual_task": "/root/qcb_formal_view_audit",
+    "independence": "Distinct from candidate author /root and original author representation-qit-author-b2. This reviewer authored neither candidate nor original and does not self-approve a repair.",
+    "exposure": "Previously reviewed and rejected the exact original107 in the101-110 batch. Reconstructed and checked this new candidate, with full question/answer/source exposure; not blind and not a new reviewer identity. Historical original rejection remains unchanged.",
+    "protocol": "Substantive-worker and shared contract/publication rules applied; PDF reading workflow used. No external human/expert or source-blind attestation inferred.",
+    "item_digest_method": "qcb_core.digest of entire actual original and entire current repair JSON; not a question-only or selected-field digest.",
+    "lean_rerun": false,
+    "additional_agents": false,
+    "admission_performed": false
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "11c31361c66f8f024eece34bda8ca89fd2754069adea474f939160f43b4dbdaf",
+    "projected_contract_hash": "11c31361c66f8f024eece34bda8ca89fd2754069adea474f939160f43b4dbdaf",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "contract_field_overrides_in_repair": [],
+    "assessment": "Constructed a private deep-copy answer projection using the same replacement fields inspected in qcb_textbook_policy: key/reference_answer/rubric/author and the two permitted exposition fields. Every actual CONTRACT_FIELDS value is exactly equal before and after. No question, assumptions, conventions, family, split, graph version/scope or source binding is changed. No future admitted full-item digest is invented, since that also depends on the review/admission wrapper.",
+    "exposure_of_scope": "C^2, density-state trace1 and supplied irreducibility already occur in the unchanged question; matrix T is a linear operator. No missing arbitrary-field or infinite-dimensional assumption is smuggled in."
+  },
+  "exposition_and_rubric_assessment": {
+    "original_semantic_step_count": 5,
+    "candidate_semantic_step_count": 5,
+    "rubric_ids": [
+      "r1",
+      "r2",
+      "r3",
+      "r4"
+    ],
+    "mechanical_scope": "check_exposition confirmed five steps and no graph nodes outside original targets/support. Candidate source bindings checked against actual LF files. These are structural checks, not proof or admission.",
+    "mathematical_scope": "All five claims keep the right adjoint and correct class phases. r1-r4 grade the complete requested Schur/trace argument; the summary no longer repeats the false QP right factor."
+  },
+  "source_checks": [
+    {
+      "file": "website/research/sources.json",
+      "declarations": [
+        "leditzky-2025-repth-qit metadata entry"
+      ],
+      "lines": "219-227",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "checked": "Exact current registry LF binding only; primary mathematics independently inspected as below."
+    },
+    {
+      "file": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "declarations": [
+        "CONTRACT_FIELDS",
+        "check_exposition",
+        "apply_current_reader_policy answer-successor projection"
+      ],
+      "lines": "12-27;153-207",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "checked": "Read actual immutable-contract field list, allowed exposition and answer-overlay replacements; no policy/admission mutation performed."
+    },
+    {
+      "file": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "declarations": [
+        "core_contract"
+      ],
+      "lines": "19-20",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "checked": "Read exact core-contract extraction; contract digests calculated from actual originals and privately projected items."
+    },
+    {
+      "file": "benchmarks/quantumcomputingbench/shared/repairs/plan-107-pauli-adjoint-repair.json",
+      "declarations": [
+        "complete repair JSON"
+      ],
+      "lines": "whole record",
+      "sha256_lf": "9d46261de5c8b7e19d2b4d3e11fc5d228749c746f1c2c5d207ab838459077741",
+      "checked": "Whole candidate read, including current metadata, and exact digest bound; an authored correction, not a Lean theorem."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+      "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "byte_count": 554175,
+      "pdf_page_count": 79,
+      "hash_match": true,
+      "last_modified_header": "Fri, 10 Apr 2026 12:15:47 GMT",
+      "response_date_header": "Thu, 22 Oct 2026 19:46:06 GMT",
+      "retrieval": "Actual read-only HTTPS memory retrieval in this review; hashlib SHA256 and bundled pypdf extraction. Raw PDF not saved or redistributed.",
+      "edition": "Title page independently read from retrieved bytes: April10,2026;79pages.",
+      "pages": [
+        20,
+        21,
+        37
+      ],
+      "zero_based_pdf_pages_extracted": [
+        0,
+        19,
+        20,
+        36
+      ],
+      "regions": "Complete Proposition3.17 statement/proof and Corollary3.18 on printed20; complete Example3.19/Eq3.27 on21; Exercise3.8 on37.",
+      "source_comparison": "The source supplies finite-dimensional complex scalar Schur and states the Pauli twirl identity, deferring expanded proof to an exercise. This review reconstructs the class-permutation/adjoint proof independently.",
+      "visual_inspection": {
+        "performed": false,
+        "limit": "No independent Leditzky page render inspected in this repair turn. Text/formulas read from the exact matching bytes; earlier exposure disclosed."
+      },
+      "local_lean_closure": "None. Original formal counterpart is none; planned source-concept anchors are not Lean roots."
+    }
+  ],
+  "execution": {
+    "mathematical_reconstruction": true,
+    "read_only_binding_checks": true,
+    "new_lean_execution": false,
+    "new_kernel_claim": false,
+    "human_expert_claim": false,
+    "blindness_claim": false,
+    "current_catalog_admission": false,
+    "raw_primary_pdf_saved": false
+  },
+  "limitations": [
+    "Acceptance is for this exact candidate and unchanged contract, not an approval of all source textbook claims or a transfer of predecessor acceptance.",
+    "Metadata/source byte equality is not by itself a proof. Mathematical reasoning and phase/conjugation checks are recorded separately.",
+    "No circuit construction, implementation query count, finite-bit runtime or source-publication seal is established."
+  ],
+  "original_defect": "The original answer and semantic step2 expand Q*T*Q as sum(QP)*rho*(QP), losing the reversed adjoint. For Q=X,rho=I/2 that wrong sum is zero, whereas the conjugated twirl is I/2. Products of distinct Hermitian Paulis are not generally Hermitian.",
+  "substantive_reconstruction": {
+    "correct_noncommutative_expansion": "For each Hermitian-unitary Pauli Q, Q(P rho P*)Q*=(QP)rho(QP)*; the right factor is P*Q*=PQ. For fixed Q, P->class(QP) permutes four Pauli classes, and a unit phase omega cancels exactly with its adjoint phase. This proves Q T Q*=T and hence QT=TQ, then commutation with all generated products and central phases.",
+    "schur_trace": "On actual C^2 the irreducibility in the question and finite complex Schur yield T=lambda I. Every conjugation has trace tr rho=1 by cyclicity and P*P=I, so tr T=1=2lambda. Thus T=I/2 for every density rho, with no entrywise calculation required.",
+    "full_answer_extensions": "Positivity is unnecessary for the linear map identity T(A)=tr(A)I/2, a valid additional consequence of the same proof for arbitrary 2x2 complex A. No formal theorem or implementation resources are inferred. There is no empty/dimension-zero parameter hidden in the fixed C^2 contract, and the fixed four-element sum uses normalization1/4 consistently.",
+    "necessity_and_minimality": "Restoring the adjoint in answer/rubric/exposition is necessary and directly fixes the witnessed false equality. The candidate supplies the complete sum/permutation proof without restricting input matrices or introducing hypotheses. No residual mathematical defect found in any candidate formula or quantifier."
+  }
+}
