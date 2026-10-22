@@ -1,0 +1,664 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "observed_head_at_start": "0b229454bcac07658738e184e255d3ae44e65957",
+    "requested_core_ids": [
+      "qcb-core-plan-411",
+      "qcb-core-plan-412",
+      "qcb-core-plan-413",
+      "qcb-core-plan-414",
+      "qcb-core-plan-415",
+      "qcb-core-plan-417",
+      "qcb-core-plan-418",
+      "qcb-core-plan-419",
+      "qcb-core-plan-420"
+    ],
+    "absent_ids": [],
+    "excluded_unavailable_core_ids": [
+      "qcb-core-plan-416"
+    ],
+    "historical_native_count": 213,
+    "current_reader_count_at_inspection": 169,
+    "selection": "Nine actual complete prepared rows from release.checked()[2].411 and418 are the corrected-v2 keys actually returned; withdrawn predecessor intentions are not substituted.416 was independently checked absent from the returned catalog and is NOT replaced from the authored file where an old row exists.",
+    "content_inspected": "All complete questions, answers, rubrics, assumptions, conventions, semantic steps and source metadata. Full operative accessible primary source definitions/proofs/exercise regions were read, with source gaps stated. Whole digests bind entire prepared records, not only displayed mathematics.",
+    "comparison_scope": "Bounded close-target comparisons below, with complete mathematical/grading contracts of305,306,318,319,404,406,407 inspected in this task context and their exact digests rechecked. A213-question term search covered transpose trick/Haar/symmetric subspace/symmetrization/stars-and-bars/Schur sampling/spectrum estimation; not all hits are claimed full counterpart reviews. No global dedup conclusion or tautological full pair ledger.",
+    "checkpoint_limit": "Private future-checkpoint review only. Current publication gate remains separately frozen; no canonical data, source, policy, prior candidate/report, history or production Lean is modified."
+  },
+  "provenance": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review. Prepared recorded authors include qit-applications-author-b3 and main-qit-apps-repair-author. No invented reviewer, human approval or collaborator acknowledgment.",
+    "exposure": "Not source-blind/verdict-blind: prior neighboring QIT reviews and exact411/418/412/413/419/420 exposure exist in this task context. These are freshly loaded actual full records. Parent identified the batch; parent conclusions/imported accept metadata are not used as mathematical evidence. No newly authored candidate is self-approved.",
+    "instructions_and_skills": "AGENTS/HARNESS, theorem-publication protocol and substantive-worker skill were refreshed; shared CONTRACT/ACCEPTANCE reread. Proof-digestion/evidence-routed-memory protocols and PDF guidance were read completely in this context, with their unchanged status checked. Using worker exact-contract/typed-boundary discipline and read-only primary-PDF guidance; no proof-bearing build or publication is performed.",
+    "new_kernel_execution": false,
+    "local_Lean_closure_claimed": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_performed": false,
+    "novelty_claimed": false,
+    "execution": "Only prepared-record/source reads, primary PDF text access and exact hash validation; no local Lean/prediction execution, simulator, external model evaluation, new agent, commit or push.",
+    "digest_method": "qcb_core.digest(entire actual prepared item); qcb_integrity.text_sha for LF-normalized tracked local file bindings. QA/catalog LF provenance is not proof or primary PDF-byte verification.",
+    "mutation_scope": "Only parent _review_tmp/qit-cloning-411-420-review.json written; completed401–410 packet and all earlier reports/candidates remain frozen."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "source": "Felix Leditzky, Representation-theoretic methods in quantum information theory,10 April2026/79-page edition; author-hosted FT25 course URL.",
+      "actual_access": "Genuine primary PDF text extraction. Complete newly relevant regions include Exercise6.1, compact Haar properties Eq3.3/Proposition3.39, symmetric-space definition and full Lemma4.7 polarization proof, full Lemma7.3 projector identity proof, full dimension-ratio/metric conversion within Proposition7.4, full Lemma7.5/Proposition7.6 mixed-state purification proof, full Proposition8.2 twirling/upper-bound proof and saturation calculation, Exercises8.3–8.6, Section9.1–9.2 measurement symmetry/Schur block region and cited MW16 footnote. Some complete regions already read in this same context are reused, not claimed as new independent executions.",
+      "proof_coverage_limits": "Exercises do not supply printed full solutions; independent reconstructions below fill their operative arguments. The Haar existence/uniqueness theorem and one-row irreducibility are upstream representation inputs, not local Lean closure. Notes defer the precise unitary-WLOG reduction; the genuinely retrieved MW16 lemma below exposes its performance quantifiers. No implementation/resource/circuit claims from unrelated source sections are accepted.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "historical_binary_hash_verified_in_this_review": false,
+      "retrieved_binary_sha256": null,
+      "limits": "Text cover/edition/anchors agree with recorded metadata. Earlier in this context a direct in-memory byte attempt failed WinError10013 and screenshots returned cache misses/no inspected pixels; no successful binary or visual verification is newly claimed. Dropped overbars in extracted text do not override explicit coefficient mathematics. No PDF saved/redistributed/relicensed."
+    },
+    {
+      "url": "https://arxiv.org/pdf/1310.2035v4",
+      "source": "Ashley Montanaro and Ronald de Wolf, A Survey of Quantum Property Testing; arXiv1310.2035v4, cover14/15 March2018;67 pages.",
+      "actual_access": "Genuine primary text retrieved from explicit version-v4 URL. Complete Section4.2.2 setup/Schur decomposition, Lemma20 statement and full proof on PDF41–43 (printed42–44) read. The floating URL initially returned this same v4 edition; the version-pinned URL was then separately opened.",
+      "operative_finding": "Lemma20 concerns a unitary-invariant PROPERTY and uniform completeness/soundness bounds for all states in/far from it. Its proof twirls effects and preserves worst-case parameters, then expresses the resulting joint-invariant effect as a stochastic postprocessing of P_lambda. It does not preserve arbitrary original fixed-state statistics.",
+      "limits": "The2026 notes cite the2016 published survey; this inspection is explicitly the2018 arXivv4 primary text, not a claim of byte-identical2016 publication or the historical2026 source PDF. No survey binary SHA was supplied or computed, no PDF storage/redistribution or visual-page verification. No general estimator risk theorem beyond the independently reconstructed conditional argument is attributed to the lemma."
+    }
+  ],
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Full leditzky-2025-repth-qit catalog entry: author URL, edition and historical PDF binary SHA. Metadata provenance only; no local tracked MW16 proof is invented."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+      "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+      "anchor": "Complete neighboring305/306/318/319 mathematical/grading contracts used for bounded spanning, invariant-algebra and concentration comparisons; content provenance, not primary proof."
+    }
+  ],
+  "bounded_semantic_comparisons": {
+    "binding_table": [
+      {
+        "core_id": "qcb-core-plan-305",
+        "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+        "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+        "family": "qit-permutation-conjugation-invariance",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-306",
+        "key": "qcb-core-plan-306-symmetric-power-spanning",
+        "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+        "family": "qit-symmetric-power-spanning",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-318",
+        "key": "qcb-core-plan-318-permutation-invariant-poly",
+        "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+        "family": "qit-permutation-invariant-poly",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-319",
+        "key": "qcb-core-plan-319-spectrum-concentration",
+        "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+        "family": "qit-spectrum-concentration",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-404",
+        "key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+        "item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+        "family": "definetti-bound-scaling",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-406",
+        "key": "qcb-core-plan-406-cloning-fidelity-asymptotics-and-ordering",
+        "item_digest": "8bf1b28a875f6ad1991b903518a8f3aba4204087b064b579c744440afa5614ca",
+        "family": "approximate-cloning-asymptotics",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-407",
+        "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+        "item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+        "family": "spectrum-estimation-consistency",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-411",
+        "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2",
+        "item_digest": "05e0d2384e44696ebe45e9477ead16e724d11c08a081759a128d460e2e821847",
+        "family": "maximally-entangled-intertwiner",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-412",
+        "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+        "item_digest": "b4183f8ccfaf78c2989b2a41175edfa0d6bd452671cb1a5d0c767b53fdac475d",
+        "family": "symmetric-subspace-haar-average",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-413",
+        "key": "qcb-core-plan-413-cloning-optimal-map-saturates-bound",
+        "item_digest": "50dfc466512f79d99c0a65bb7de21f90ba787a46dcb487bff9fd4a9c81908c17",
+        "family": "approximate-cloning-optimal-map",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-414",
+        "key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+        "item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+        "family": "haar-twirl-covariance",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-415",
+        "key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+        "item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+        "family": "spectrum-estimation-symmetries",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-417",
+        "key": "qcb-core-plan-417-symmetrized-vs-projected-state-identity",
+        "item_digest": "e2e13bbb34865744a0e5a9f2ab454f606e78c8144fe0237f4ed4c708ddceebdc",
+        "family": "symmetric-projection-symmetrization",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-418",
+        "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2",
+        "item_digest": "759b3d5a55c7fb2b6fdecb9196f4d8a053109e944bb8a426cdefc98a5cc0a376",
+        "family": "approximate-cloning-optimal-map",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-419",
+        "key": "qcb-core-plan-419-fidelity-telescoping-lower-bound",
+        "item_digest": "59c6bcb17e48756c7d9d42d22d2a2834b87745b5f7064cefc99fb1b53aa8b270",
+        "family": "fidelity-telescoping-bound",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-420",
+        "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+        "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+        "family": "symmetric-subspace-dimension",
+        "split": "test_public"
+      }
+    ],
+    "material_relations": [
+      {
+        "core_ids": [
+          "qcb-core-plan-412",
+          "qcb-core-plan-418",
+          "qcb-core-plan-419",
+          "qcb-core-plan-420",
+          "qcb-core-plan-306"
+        ],
+        "relation": "genuine symmetric-space lemma chain with different whole targets",
+        "reasoning": "306 proves the linear span of vector powers.420 counts the symmetric occupation basis.412 obtains a normalized Haar average/projector identity using support, irreducibility and trace.418 partially traces that identity to prove a CP map's exact trace/support condition.419 bounds a dimension ratio occurring in the pure de-Finetti fidelity proof. These share nontrivial mathematics but do not have the same requested reasoning; none of the arithmetic/counting identities alone proves the channel trace criterion or Haar integral. Linear vector span in306 is not convex pure-power density decomposition, as418's symmetric entangled witness demonstrates.",
+        "family_split_assessment": "Different families except the separately shared cloning-map family; every bound record is test_public. No new alias/core count or cross-split pooling."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-413",
+          "qcb-core-plan-418",
+          "qcb-core-plan-414",
+          "qcb-core-plan-406"
+        ],
+        "relation": "cloning construction admissibility, saturation, twirl and asymptotics are proper subtargets",
+        "reasoning": "418 establishes CP and the precise trace domain of the compression.413 computes constant pure-input squared fidelity.414 proves covariance of ANY twirled channel, used in the optimal upper-bound proof, whereas406 compares average/worst criteria and the positive-copy asymptotic dimension ratio. Pointwise saturation alone does not prove full-domain TP or average optimality; those distinct obligations justify retaining the tasks while recording shared ingredients.414's unqualified final scalar-output slogan is not required for413's valid trace calculation.",
+        "family_split_assessment": "413/418 share approximate-cloning-optimal-map;414 haar-twirl-covariance and406 approximate-cloning-asymptotics. All test_public; shared solutions must stay relation/split aware."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-417",
+          "qcb-core-plan-420",
+          "qcb-core-plan-404",
+          "qcb-core-plan-305",
+          "qcb-core-plan-318"
+        ],
+        "relation": "operator-conjugation invariance versus vector fixed points and support",
+        "reasoning": "417 proves equality only AFTER symmetric compression.420 falsely elevates that kind of symmetry to original symmetric support in the mixed theorem.404's correct purification mechanism enlarges local dimension to d^2.305 translates conjugation-invariant operators to symmetric tensors in End(V), not symmetric-support density operators in V^tensor n.318 parametrizes all permutation-invariant operators across ALL Schur blocks, not only the one-row block. The two-qubit singlet projector has permutation conjugation invariance but zero symmetric support, making the distinction concrete.",
+        "family_split_assessment": "These whole targets are not aliases, but the representation distinction is material and shared. All test_public; family names do not justify erasing this dependency or treating the false inference as a separate correct core."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-415",
+          "qcb-core-plan-407",
+          "qcb-core-plan-319"
+        ],
+        "relation": "measurement reduction versus estimator event/concentration",
+        "reasoning": "415 identifies a joint-invariant POVM and conditional worst-case symmetry reduction.319 studies KL concentration of its block weights;407 also validates normalized-diagram outputs but asks the false exact-equality event. A legitimate measurement and same-spectrum target do not prove any chosen consistency event. A future correctly qualified415 would supply the measurement foundation, not duplicate the complete neighborhood-rate proof.407's irrational-spectrum obstruction remains untouched.",
+        "family_split_assessment": "spectrum-estimation-symmetries, spectrum-estimation-consistency and qit-spectrum-concentration, all test_public. Close mechanism overlap is explicit; no global equivalence or new split decision is inferred."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-412",
+          "qcb-core-plan-414",
+          "qcb-core-plan-415"
+        ],
+        "relation": "different averaging objects and different preserved quantities",
+        "reasoning": "412 averages rank-one tensor states and gets a projector/dimension density.414 averages conjugated channels and proves a covariance identity, not invariant output for every input.415 permutation-averages effects with EXACT fixed-state statistics preservation, but unitary-averaging only preserves a specified uniform/Bayes performance criterion. Treating these three Haar/group averages as interchangeable loses normalization, type and quantifiers.",
+        "family_split_assessment": "Three different but materially connected targets, all test_public. Shared Haar tools are supporting mathematics, not complete-question aliases."
+      }
+    ],
+    "excluded_unavailable_core_ids": [
+      "qcb-core-plan-416"
+    ],
+    "question_search_hit_core_ids": [
+      "qcb-core-plan-117",
+      "qcb-core-plan-119",
+      "qcb-core-plan-406",
+      "qcb-core-plan-407",
+      "qcb-core-plan-305",
+      "qcb-core-plan-306",
+      "qcb-core-plan-308"
+    ],
+    "global_limit": "Bounded semantic findings only, not exhaustive all-pairs/global dedup, independent-core totals, cross-split reconciliation or permission to pool public test answers."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-411",
+      "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2",
+      "item_digest": "05e0d2384e44696ebe45e9477ead16e724d11c08a081759a128d460e2e821847",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Write Phi=d^(-1/2)sum_i e_i tensor e_i in the same fixed orthonormal basis on both copies. (X tensor I)Phi=d^(-1/2)sum_(j,i) X_(j,i)e_j tensor e_i. The coefficient of e_j tensor e_i in (I tensor X^T)Phi is (X^T)_(i,j)=X_(j,i), so the vectors agree for every complex linear X, not only a Hermitian or unitary one. With X=U, applying I tensor conjugate(U) gives (U tensor conjugate(U))Phi=(I tensor conjugate(U)*U^T)Phi. Taking entrywise conjugates of U U†=I yields conjugate(U)*U^T=I, hence exact vector invariance, not merely phase invariance.",
+        "boundaries_and_conventions": "d>=1 is explicit, so the normalized sum exists; d1 phases cancel exactly. Transpose/conjugation refer to the basis used in Phi, not to a basis-free transpose of a linear map. If bases change, the entangled representative and conjugation convention must be changed together. Unitarity is used only in part(b); part(a) is valid for all X. For d2,U=diag(1,i), U tensor U sends Phi to(|00>-|11>)/sqrt(2), which is not the original vector or even the same ray. Omitting conjugation is genuinely false, not a relabeling.",
+        "answer_rubric_exposition": "This is the actual prepared corrected-v2 record. Its finite-index expansion, conjugated unitarity identity, basis account and diagonal-phase counterexample satisfy all four criteria and four steps. It does not repeat the withdrawn predecessor's false intermediate identity. No self-approval of a new candidate or new formal adapter is inferred.",
+        "source_alignment": "Exercise6.1 gives the transpose trick and intended conjugate-unitary consequence as an exercise. Text extraction sometimes drops overbars, so the independent coefficient proof, not a missing typographic bar, determines the mathematics. No new PDF-byte hash or rendered fraction/overbar verification is claimed."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_apps_repairs.json",
+          "sha256_lf": "d68b56f479db126890f8deedafb5888544479bf5a46b641175cc92cc33c2887b",
+          "anchor": "Complete actual corrected-v2 authored record qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-411 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Complete Exercise6.1 transpose trick; PDF57/printed58; matched-basis vector convention. Exercise, not printed solution.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-412",
+      "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+      "item_digest": "b4183f8ccfaf78c2989b2a41175edfa0d6bd452671cb1a5d0c767b53fdac475d",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Let P=Pi_sym and X=integral |phi><phi|^tensor n dphi with normalized Haar pure-state measure. Every integrand is positive, trace1 and supported in Sym^n, so X=PXP and tr X=1. Replacing phi=V phi0 by U V phi0 and using left Haar invariance shows U^tensor n X(U†)^tensor n=X. Sym^n(C^d) carries the one-row irreducible U(d) representation; Schur then gives X=cP, so1=c tr P=c*d_sym and c=1/d_sym. This proves the exact normalized projector identity. Spanning by pure powers identifies the whole symmetric space, although merely proving each integrand's support does not require the full spanning theorem.",
+        "operative_dependencies": "The one-row irreducibility is the substantive representation-theory input, not a consequence of mere permutation invariance. Independently, in the occupation basis the diagonal unitary torus has distinct weights; any nonzero invariant subspace contains a weight vector by torus projection. Differentiating the unitary action and complexifying its Lie algebra gives E_ij occupation moves, with nonzero coefficients whenever the j occupation is positive. Such moves connect all occupation tuples of total n, so the subspace contains them all. This supplies the needed irreducibility mechanism rather than inferring it from the question name.",
+        "boundaries_and_grading": "For finite d>=1,n>=0, d_sym>0. n0 gives the scalar identity1 and the unique empty tensor, d1 gives rank1 for every n; no zero denominator occurs. The normalized measure excludes d0 because there are no unit vectors. All four criteria and three steps are correct. X is a trace-one density and P generally is not; the dimension multiplier must not be omitted. No efficient numerical Haar-integration/circuit implementation follows from this exact operator identity.",
+        "source_alignment": "The full Lemma7.3 proof and its pure-power-spanning dependency Lemma4.7 were read, including the derivative/finite-dimensional closure argument. The source invokes earlier irreducibility, not a new local Lean theorem; the independent mechanism above makes that dependency explicit."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete actual authored record qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-412 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Complete Lemma7.3 Eq7.9–7.14; Lemma4.7 Eq4.11–4.14 and symmetric-space definition; PDF59–60 and39–40, printed60–61 and40–41.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-413",
+      "key": "qcb-core-plan-413-cloning-optimal-map-saturates-bound",
+      "item_digest": "50dfc466512f79d99c0a65bb7de21f90ba787a46dcb487bff9fd4a9c81908c17",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Put p=|phi><phi| with ||phi||=1 and c=d_N/d_M. Cyclicity gives tr[p^tensorM T(p^tensorN)]=c tr[Pi_M p^tensorM Pi_M (p^tensorN tensor I)]. Since phi^tensorM is fixed by every factor permutation, Pi_M p^tensorM Pi_M=p^tensorM. The remaining product is p^tensorM because p^2=p on the first N slots, and its trace is1. Thus g(phi)=c for EVERY pure input and inf g=c. This equals the stated universal worst-case bound on admissible quantum cloners, so it saturates it. Root fidelity versus its square is not confused: a pure-target squared fidelity is exactly this trace.",
+        "map_validity_and_zero_cases": "M>=N is implicit in the specified nonnegative ancillary tensor count. For d>=1 the ratios are defined; M=N is allowed and gives g1, while a zero ancillary count means a scalar identity of trace1. Even N0 admits the same pointwise calculation if one extends the standard convention to zero supplied copies. The compression formula is CP and trace-nonincreasing on the full N-fold input algebra, with tr T(X)=tr(X Pi_N), not generally TP there. On each p^tensorN it does have trace1. A full CPTP channel is obtained by adding tr[(I-Pi_N)X]sigma, which changes no tested input. This completion/domain issue does not falsify the requested pointwise equation.",
+        "answer_rubric_exposition": "All four criteria, every projector/trace factorization and all three steps are sound on the named input family. The phrase upper bound for every map must mean admissible cloning channels (or their normalized symmetric-input restriction), not arbitrary scaled linear maps. The question takes the upper bound as context; it does not claim this short calculation proves optimality over a larger postselected/nonlinear class. No gate/query/finite-bit cost or uniqueness theorem is claimed.",
+        "source_alignment": "The entire preceding twirling/positivity upper-bound proof and pointwise equality calculation were inspected. Exercise8.5 explicitly supplies the full-domain completion distinction.418's corrected exact trace formula is a proper supporting subtarget, not an excuse to call the uncompleted formula full-domain TP."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete actual authored record qcb-core-plan-413-cloning-optimal-map-saturates-bound, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-413 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Full Eq8.25–8.29 fidelity calculation and preceding Proposition8.2 upper-bound proof; Exercise8.5 trace-nonincreasing/channel completion; PDF65–69, printed66–70.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-414",
+      "key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+      "item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_SCOPE_OR_EXPOSITION_UNCERTAINTY",
+      "reasoning": {
+        "valid_covariance_reconstruction": "In Tbar(V^tensorN X(V†)^tensorN), group the inner unitaries as U V, then set W=U V, so U=W V† and U†=V W†. The outside factors become V^tensorM (W†)^tensorM and W^tensorM(V†)^tensorM. Normalized Haar integration is unchanged, so pulling V outside proves exactly Tbar(V^tensorN X(V†)^tensorN)=V^tensorM Tbar(X)(V†)^tensorM. Each integrand is a unitary-channel conjugation of T, hence Tbar is CPTP. The substitution uses RIGHT translation, not bare left translation. On compact U(d) right invariance follows from uniqueness of normalized left Haar: the right-translated measure is again normalized and left invariant. The primary source explicitly lists both in Eq3.3/Proposition3.39.",
+        "exact_exposition_issue": "The reference's final sentence says covariance pins down Tbar on Sym^M up to a single parameter. What follows from Schur in the source is narrower: for the invariant INPUT tau_N=Pi_N/d_N, covariance makes OUTPUT Tbar(tau_N) invariant, and its symmetric M block is a scalar Pi_M/d_M times its mass lambda. For a general X the output is only covariant, not invariant. With d2,N=M1,T the identity channel, Tbar=T and Tbar(|0><0|)=|0><0|, which is not a scalar on Sym^1=C^2. This directly refutes any scalar-output reading for arbitrary X.",
+        "multiplicity_boundary": "Nor does unitary commutation alone force scalars on every isotypic component: it permits arbitrary matrices on the multiplicity factors. For d2,M3, the U(2) spin-one-half sector has multiplicity2 and a factor permutation acts nontrivially on that multiplicity while commuting with U^tensor3. Additional permutation commutation, as in415, removes that freedom. A channel is a superoperator intertwining conjugation representations, not itself an ordinary endomorphism on one U(d) irrep to which Schur can be applied without specifying spaces.",
+        "answer_rubric_exposition": "The covariance equation and main integral proof are correct. The parenthetical variable rewrite U->U V^(-1)=W is also not the previously declared W=UV, though the subsequent actual factorization uses the latter correctly. r2/step2 mislabel the right translation as left invariance; this is repairable by the compact-Haar argument, not a false covariance theorem. Withhold full acceptance until the final Schur/single-parameter explanation explicitly limits itself to invariant input and the symmetric output BLOCK. r1/r3 and the target equation need no replacement or added standing premise.",
+        "source_alignment": "The source's actual Eq8.16 explicitly inserts tau_N before the scalar-block conclusion. The reviewed answer omits that qualifier in its concluding explanation. This is an exposition scope uncertainty, not evidence against the source covariance identity, and no repair is authored here."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete actual authored record qcb-core-plan-414-twirled-channel-covariance-haar, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-414 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Eq3.3 and Proposition3.39 Haar properties; full Proposition8.2 covariance/use of tau_N and Eq8.16; Exercise8.4 Eq8.37–8.38; PDF13,33–34,65–66,69.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-415",
+      "key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+      "item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_SCOPE_OR_EXPOSITION_UNCERTAINTY",
+      "reasoning": {
+        "permutation_and_measurement_reconstruction": "Because Q_pi rho^tensor n Q_pi†=rho^tensor n, replacing EVERY effect E_y of a POVM by its permutation average preserves each tr(E_y rho^tensor n) exactly, for every rho. Positivity and sum_y E_y=I survive averaging. The Schur-Weyl orthogonal block projections P_lambda are positive, mutually orthogonal and sum to I; both commuting group actions preserve each block, hence [P_lambda,Q_pi]=[P_lambda,U^tensor n]=0. A POVM invariant under BOTH actions has effects E_y=sum_lambda a_(y,lambda)P_lambda with a>=0 and sum_y a_(y,lambda)=1; it is implemented by weak Schur sampling followed by that stochastic classical postprocessing.",
+        "unitary_wlog_requires_performance_contract": "The spectrum's invariance does not imply that a given estimator's effect probabilities are already basis invariant, or that Haar twirling preserves them pointwise. A correct WLOG statement is about a UNIFORM spectrum-only guarantee or unitarily invariant worst-case loss: if an estimator has error at most delta for every rho at a given spectral tolerance eps, averaging its conjugates preserves that uniform guarantee, because every conjugate has the same target spectrum. Likewise a Haar-invariant prior gives equal Bayes risk. The twirl may improve some orientations and worsen others. Neither uniform accuracy/loss nor a prior is explicitly specified in this exact question/empty assumptions; its request to explain precisely WLOG is not discharged by saying the invariant estimator is natural.",
+        "explicit_nonpreservation_witness": "For n1,d2, take the valid effect E=|0><0|, with outcomes assigned any two spectrum estimates, and rho=diag(4/5,1/5). Its probability is4/5; for the basis-swapped conjugate of rho it is1/5 despite the same spectrum. Haar-averaged E is I/2, with probability1/2 on each. Thus no claim that ALL spectrum-labeled measurements retain their original statistics under unitary averaging can be true. Weak Schur sampling at n1 has only lambda=(1), so a fixed classical postprocessing of it cannot reproduce this orientation-sensitive pair of probabilities.",
+        "primary_gap_resolved_and_grading": "The notes cite MW16 Lemma20 rather than prove the WLOG reduction. I genuinely retrieved/read the full upstream lemma and proof at arXiv1310.2035v4 (2018 text, not an asserted byte match to the2016 publication). It is a property-testing theorem with explicit acceptance lower/upper bounds UNIFORM over all states in a unitary-invariant property and all states far from it. Twirling preserves those worst-case PARAMETERS, not each state's acceptance probability. Its Schur/postprocessing argument supports the conditional reconstruction above, not an unrestricted statement that every measurement is simulable. The prepared reference's standard-result appeal omits this crucial quantifier distinction.",
+        "answer_rubric_exposition": "r1/r3/r4 and corresponding steps are correct. Step2 only motivates unitary symmetry and does not prove the stronger WLOG clause required by r2/the question. Mark uncertain pending an explicit intended performance contract or a precise statement of the conditional WLOG interpretation, rather than accept a pointwise-statistics equivalence by source authority. This does not refute the usual minimax spectrum-estimation symmetry reduction, nor assert407's false exact-equality consistency. No hidden guarantee, new question premise or repair is installed."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete actual authored record qcb-core-plan-415-spectrum-measurement-symmetry-wlog, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-415 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Complete Section9.1–9.2 Eq9.1–9.5 and MW16 footnote; PDF69–70, printed70–71. Upstream arXiv1310.2035v4 Section4.2.2/full Lemma20 proof, PDF41–43/printed42–44.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        },
+        {
+          "url": "https://arxiv.org/pdf/1310.2035v4",
+          "inspected_anchors": "Complete Section4.2.2/Lemma20 proof; PDF41–43, printed42–44; actual2018v4, not asserted2016 byte match.",
+          "access": "Genuine version-pinned primary text; uniform testing-parameter quantifiers critically compared, no pointwise-statistics simulation claim."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-417",
+      "key": "qcb-core-plan-417-symmetrized-vs-projected-state-identity",
+      "item_digest": "e2e13bbb34865744a0e5a9f2ab454f606e78c8144fe0237f4ed4c708ddceebdc",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "The group average P=(1/n!)sum_sigma Q_sigma satisfies P Q_pi=P because sigma->sigma*pi is a bijection of S_n, and Q_pi P=P by left reindexing. It is self-adjoint since inversion permutes the group and is idempotent by counting n! pairs for each product; its image is exactly the fixed-vector symmetric space, so P=Pi_n. These relations also absorb Q_pi†. Expanding Pi_n rhobar Pi_n termwise gives(1/n!)sum_pi Pi_n rho Pi_n, namely n! identical terms, which is Pi_n rho Pi_n. No commutativity between rho and an individual permutation was assumed.",
+        "normalization_and_empty_cases": "The statement holds for every operator rho by linearity, not just positive trace-one states. The compressed result is in general subnormalized; its trace is tr(rho Pi_n), which can be0. n0 uses S0={identity},0!=1 and the scalar empty tensor, so the formula is trivial; n1 is also trivial. For d2,n2,rho=|01><01|, rhobar=(|01><01|+|10><10|)/2, while Pi rho Pi=(1/2)|s><s| for s=(|01>+|10>)/sqrt(2). Equality of compressions does NOT say rhobar=rho or that rhobar lies entirely in the symmetric subspace.",
+        "answer_rubric_exposition": "All four criteria and three steps correctly show absorption, expansion and n!-term cancellation. No unexplained inverse/adjoint convention is needed: Q_pi†=Q_(pi^-1). The state validity of symmetrization follows because it is an average of unitary conjugations; the proof never renormalizes a compression and therefore has no zero-success branch division.",
+        "source_alignment": "Exercise8.3 gives precisely this identity and group-average hint, not a full printed solution. The fixed-vector definition/group-average source context was read and the complete finite-group proof is reconstructed here. This compression identity does not replace general permutation-invariant de-Finetti input by symmetric-support input."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete actual authored record qcb-core-plan-417-symmetrized-vs-projected-state-identity, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-417 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Exercise8.3 Eq8.36 and hint; Definition4.6 Eq4.10/group average and Section7.2 Eq7.7–7.8; PDF69,39,59, printed70,40,60.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-418",
+      "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2",
+      "item_digest": "759b3d5a55c7fb2b6fdecb9196f4d8a053109e944bb8a426cdefc98a5cc0a376",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Let K_j:v->v tensor e_j for an orthonormal basis of the M-N ancillary slots. Sum_j K_j X K_j†=X tensor I, so identity extension is CP, with potentially several Kraus operators. Composition with Y->Pi_M Y Pi_M and positive c=d_N/d_M is CP. Taking the last M-N factors' partial trace in Pi_M=d_M integral p_phi^tensorM gives Q=(d_M/d_N)Pi_N, since tr p_phi=1. Hence tr T(X)=c tr[(X tensor I)Pi_M]=c tr(XQ)=tr(X Pi_N) for every X by linearity, in particular for positive X.",
+        "support_equivalence": "For positive X, tr X-tr T(X)=tr[X(I-Pi_N)]=||(I-Pi_N)sqrt(X)||_HS^2>=0. Equality iff that product is zero, iff range sqrt(X), equivalently support X, is contained in Sym^N. Positivity is essential for this support criterion; cancellations can otherwise fake trace equality. For X0 the support is the zero subspace and equality holds. M=N gives T(X)=Pi_N X Pi_N and the same formula; the empty ancilla has one insertion map. d1 and N1 have Pi_N=I, so the map is TP on their whole input algebras. For d>=2,N>=2, a positive antisymmetric-supported input can be killed, so it is not generally a full-domain TP channel.",
+        "strictness_of_pure_power_condition": "For d2,N2, s=(|01>+|10>)/sqrt(2) is a normalized symmetric but entangled vector. Its projector has trace preserved for any M>=2. If this rank-one state were a convex mixture of pure powers, every positive-weight term would have to be supported on its one-dimensional range, forcing s itself proportional to a product power, impossible by Schmidt rank2. Thus symmetric support is strictly broader than the convex hull of pure powers. This is not contradicted by the linear SPAN of vector powers filling Sym^N.",
+        "answer_rubric_exposition": "The actual corrected-v2 record, all four criteria and five steps are correct: multi-Kraus identity extension, exact ratio, positive trace pairing and support equality are all explicit. No earlier wrong single-isometry argument, excessive trace multiplier or iff-pure-power-mixture condition is silently reused. The supplied Haar identity is an authorized input of this contract. No state-dependent normalization or success probability is hidden in c.",
+        "source_alignment": "Exercise8.5 states CP/trace-nonincreasing and a channel completion but does not print the corrected support proof. The exact partial trace and Hilbert–Schmidt square above independently establish it. Reading this row and its inherited accept metadata is not a new kernel run, admission or review of a newly authored repair candidate."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_apps_repairs.json",
+          "sha256_lf": "d68b56f479db126890f8deedafb5888544479bf5a46b641175cc92cc33c2887b",
+          "anchor": "Complete actual corrected-v2 authored record qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-418 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Actual corrected-v2 authored row; full Lemma7.3 Haar identity and Eq8.25/Exercise8.5 Eq8.39; PDF59–60,66–69, printed60–61,67–70.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-419",
+      "key": "qcb-core-plan-419-fidelity-telescoping-lower-bound",
+      "item_digest": "59c6bcb17e48756c7d9d42d22d2a2834b87745b5f7064cefc99fb1b53aa8b270",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "In the stated de-Finetti proof, d>=1 is a finite local dimension, k>=0 counts retained parties, and m=n-k>0 counts discarded parties. Factorials cancel to R=product_(j=1..d-1)(m+j)/(m+k+j). For k>=0 the difference between successive ratios is k/[(m+k+j)(m+k+j+1)]>=0, so every factor is at least(m+1)/(m+k+1). Thus R>=r^(d-1), r=1-a with a=k/(m+k+1) in[0,1). Bernoulli for integer exponent d-1>=0 gives r^(d-1)>=1-(d-1)a. Finally(d-1)/(m+k+1)<=d/m for m>0, so R>=1-kd/m.",
+        "boundaries_and_normalization": "d1 gives an empty product R1 and exponent0, so the minimal-factor argument is vacuous but the displayed lower bounds still hold. k0 makes every factor1, with equality throughout. If kd/m>1 the last lower bound is negative and merely vacuous; it is still true, not a negative fidelity assertion. The term kd/m is undefined at m0 in ordinary real arithmetic: that endpoint is excluded by the source theorem's k<n and by requiring the final displayed expression to be defined. The actual assumptions field is empty, so the proof-context domain should be made visible in exposition; this review does not extend the statement to arbitrary real/negative parameters or to m0.",
+        "answer_rubric_exposition": "All four criteria and three steps are valid within the named proof context and necessary expression-definedness domain. The question asks the elementary ratio chain, not a new proof that the weighted squared-fidelity integral equals R. That equality depends on the normalized conditional ensemble and Haar projector identity. With root fidelity F and normalized measure p, E F^2=R, trace-distance convexity and Jensen give D<=sqrt(1-R)<=sqrt(kd/m). Conditional states at zero-probability outcomes can be assigned arbitrary normalized representatives, since their weighted contribution vanishes; the ratio proof introduces no division by those probabilities.",
+        "source_alignment": "The full operative ratio calculation and subsequent metric-conversion proof were read. Their earlier dimension-binomial typo is not used: the correct d_m/d_(m+k) formula is checked directly. This is a source proof subtarget, not a gate cost, postselection implementation or independent asymptotic dimension claim."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete actual authored record qcb-core-plan-419-fidelity-telescoping-lower-bound, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-419 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Complete Proposition7.4 dimension ratio Eq7.25–7.34 and final Fuchs–van de Graaf/Jensen Eq7.35–7.43; PDF61–62, printed62–63.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-420",
+      "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+      "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "correct_count_and_asymptotics": "For d>=1,n>=0, each occupation tuple f_i>=0,sum_i f_i=n defines a normalized equal superposition of distinct product-basis words with those occupations. Different tuples have disjoint word supports and hence are orthogonal. The fixed vectors of factor permutations are exactly those constant on each word orbit, so these vectors form a basis of Sym^n. Stars-and-bars counts binom(n+d-1,d-1)=binom(n+d-1,n). At fixed d>=2 this is a degree d-1 polynomial, with leading coefficient1/(d-1)!, and division by d^n tends to0. n0 gives dimension1, d1 gives full-space fraction1; part(b) correctly excludes the latter.",
+        "exact_scope_counterexample": "The question(c)'s premise and reference's BOTH de-Finetti-theorems claim conflate invariant density operators with symmetric vectors/support. On two qubits let a=(|01>-|10>)/sqrt(2) and rho=|a><a|. Swapping gives Q a=-a, so Q rho Q†=rho: rho satisfies the permutation-invariant mixed-state theorem's hypothesis. But Pi_2 a=0, hence Pi_2 rho Pi_2=0 and rho is not supported in Sym^2(C^2). The full maximally mixed state I4/4 is another invariant example with nonzero antisymmetric support. The mixed theorem purifies into Sym^n(C^d tensor C^d), of local dimension d^2, then traces out ancillas; it does NOT put the original density into Sym^n(C^d). The source explicitly distinguishes those two settings.",
+        "ratio_and_estimation_overclaims": "Polynomial dimension versus exponential full dimension does not alone imply that the de-Finetti dimension ratio is close to1 for all k,m. Already d2,k=m gives R=(m+1)/(2m+1)->1/2, though each symmetric space is polynomially small. A regime such as k=o(m) for fixed d is needed; cloning with fixed M-N has that property. Spectrum estimation also uses ALL Schur-Weyl diagram blocks, not only the symmetric one; e.g. a full-rank rho^tensor2 has a positive antisymmetric outcome weight. Polynomially many block labels for fixed d and polynomial dimension of the SINGLE symmetric subspace are different facts.",
+        "answer_rubric_exposition": "Reject the full exact record despite sound(a)/(b), r1-r3 and the three count/asymptotic steps. r4/reference(c) and the question's unqualified support premise promote a false inference, not a stars-and-bars arithmetic error. Restricting the discussion to the PURE symmetric de-Finetti theorem, or explicitly mentioning the enlarged purification space for the mixed theorem, would be a visible correction; neither is silently installed. The last explanatory ratio/estimation slogans also require explicit scope and regimes. The source states the dimension formula but does not prove these added claims.",
+        "source_alignment": "The primary source's complete mixed-state purification/partial-trace route supplies the decisive distinction; it does not claim that every permutation-invariant state has original symmetric support.417's valid equality of compressed symmetrizations also does not imply such support. This is a prepared NL/exposition defect, not evidence that the actual mixed de-Finetti theorem or dimension formula is false."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete actual authored record qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary, full question/answer/rubric/assumptions/conventions/steps, compared with prepared row. Content provenance, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-420 returned by release.checked()[2], whole digest above; frozen data provenance only."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Symmetric dimension following Eq7.8; Proposition8.2 d_N; full Lemma7.5/Proposition7.6 mixed-state proof and general Schur-Weyl decomposition; PDF59,65,62–64, printed60,66,63–65.",
+          "access": "Genuine complete operative primary text read; shared edition/hash/visual limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical reader evidence, not new kernel/local Lean/native-formal/admission/blind/human/model approval or novelty.",
+        "Primary binary/visual equality unverified; exact limits and exercise/deferred-proof distinctions above. Bounded comparisons do not establish global dedup or authorize cross-split pooling."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-plan-411",
+      "qcb-core-plan-412",
+      "qcb-core-plan-413",
+      "qcb-core-plan-417",
+      "qcb-core-plan-418",
+      "qcb-core-plan-419"
+    ],
+    "rejected": [
+      "qcb-core-plan-420"
+    ],
+    "uncertain": [
+      "qcb-core-plan-414",
+      "qcb-core-plan-415"
+    ],
+    "absent_ids": [],
+    "excluded_unavailable_core_ids": [
+      "qcb-core-plan-416"
+    ],
+    "exact_rejections": {
+      "qcb-core-plan-420": "Correct stars-and-bars dimension/asymptotics, but false general mixed-de-Finetti symmetric-support premise in question/reference/r4; singlet density is permutation-invariant and entirely antisymmetric. Ratio/estimation slogans also lack scope."
+    },
+    "uncertainties": {
+      "qcb-core-plan-414": "Covariance is true; right-translation mislabeled as left and final scalar/single-parameter conclusion needs invariant input and a specified symmetric output block.",
+      "qcb-core-plan-415": "Permutation statistics preservation and Schur measurement are correct; unitary-WLOG requires an explicit uniform spectral-loss/accuracy or invariant-prior criterion. Retrieved MW16Lemma20 preserves worst-case parameters, not arbitrary original statistics."
+    },
+    "disposition": "Six accepted, one rejected, two uncertain. All nine requested rows present;416 deliberately excluded/absent. Corrected411/418 are assessed as actually prepared. No canonical correction, policy/quarantine decision or admission is made.",
+    "stable_release_limit": "Private future-checkpoint evidence only, separate from current frozen publication gate. Prior401–410 and all candidates/reports remain frozen; no global review/dedup/formal closure claim."
+  },
+  "worker_handoff": {
+    "objective": "Independent exact-item mathematical/source reader review of prepared QIT411/412/413/414/415/417/418/419/420.",
+    "mathematical_delta": "Separate fixed-vector symmetry, invariant density support and invariant operator algebra; establish exact CP compression trace/support equality; distinguish covariance from invariant output and pointwise statistics from worst-case WLOG. A singlet counterexample refutes420's unqualified support interpretation.",
+    "effect_on_root_frontier": "Nine remaining QIT obligations receive exact substantive dispositions; source/quantifier defects are exposed rather than imported accepts or plausible intended answers being reused.",
+    "named_evidence": "Whole prepared-item digests, tracked LF content bindings, complete primary proof/exercise anchors, upstream version-pinned MW16Lemma20 and exact symbolic counterexamples. No Lean roots/tests executed.",
+    "assumptions_and_conventions": "Finite complex state spaces and normalized Haar/root fidelity; explicit411matched basis and418positive-input support;419 m=n-k>0 from de-Finetti context/definedness; uniform-loss requirement for415 left unresolved rather than silently added.",
+    "failure_class": "SOURCE_INVALID",
+    "salvage_audit": "Keep420's sound count/asymptotics; keep414's valid covariance and415's permutation/Schur-measurement facts while isolating their overbroad conclusions. Six accepted proofs remain source/NL evidence, not formal admission.",
+    "process_memory_ids_consulted": [
+      "QBE-PM-VERIFIER-SEMANTIC-LEVEL",
+      "QBE-PM-LOW-TOKEN-CONTROL-PLANE"
+    ],
+    "direction_fingerprint": "Basis-sensitive transpose; Haar Schur normalization; Kraus/partial-trace support; finite-group absorption; compact left/right translations; invariant decision risk versus outcome statistics; antisymmetric density counterexample.",
+    "parallel_admission": "No new agent or alternative serious route; no common-blind-spot review asserted.",
+    "purification_exposition_status": "No source node or graph artifact newly sealed/purified/admitted; private report only.",
+    "residual_risk": "Historical2026 PDF binary hash and visual typography unverified. Survey inspected at2018v4, not2016 publication-byte identity.414/415 need explicit editorial interpretation before full acceptance.",
+    "recommended_next_step": "Parent independently inspect420's exact singlet/support obstruction and414/415 quantifier qualifiers, then decide separate authorized corrections or withholding. Any new successor requires distinct exact-candidate review.",
+    "files_changed": [
+      "_review_tmp/qit-cloning-411-420-review.json"
+    ]
+  }
+}

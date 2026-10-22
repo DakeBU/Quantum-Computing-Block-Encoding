@@ -1,0 +1,85 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-320",
+  "supersedes_key": "qcb-core-plan-320-isotropic-partial-transpose",
+  "supersedes_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+  "supersedes_contract_hash": "0164cb961b1796b8988514c3091185d2f45c0172e0dd169d8dbfb24b646861e7",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-320-textbook-question-v2-partial-transpose-state-boundary",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction, not an unchanged-question answer repair and not an equivalent restatement of the predecessor's requested proof. Retain the false state-level iff for assessment/refutation, then request the valid full sandwich/adjoint identity, unconditional OPERATOR-symmetry equivalence and the conditional PPT state-level theorem. PPT is a proved case/necessary positivity condition, not a new standing premise excluding the counterexample. The exact assumptions, conventions, family, split, frozen graph/source scope and four semantic steps remain reserved; only question changes among the nine contract fields. Original source wording and the frozen predecessor remain historical. No new core or Lean node is introduced.",
+  "question": "Work on C^d tensor C^d in the fixed local bases used for complex conjugation and partial transpose on the second subsystem. Write Gamma(Z)=Z^{T_B}. A state means a positive semidefinite operator of trace1. Call the invariance (U tensor conjugate(U))*Z*(U† tensor U^T)=Z for every unitary U isotropic OPERATOR SYMMETRY, and call (U tensor U)*Z*(U† tensor U†)=Z for every unitary U Werner OPERATOR SYMMETRY. An isotropic state or a Werner state must additionally be a state.\n\nAssess the predecessor's assertion: 'A state is isotropic if and only if its partial transpose on the second subsystem is a Werner state.' Is it true for every allowed local dimension and every state? For d>=2, use the normalized maximally entangled projector Phi_d=|Phi_d><Phi_d|, |Phi_d>=(1/sqrt(d))*sum_{i=1}^d |i,i>, to prove or refute that assertion. Compute Gamma(Phi_d) in terms of the swap F and test positivity on an explicit antisymmetric vector; do not redefine Werner state to mean only an invariant operator.\n\nFor arbitrary operators A,B,C,D on C^d and Z on C^d tensor C^d, prove the full sandwich identity Gamma((A tensor B)*Z*(C tensor D))=(A tensor D^T)*Gamma(Z)*(C tensor B^T). Apply it to an actual isotropic conjugation, specifying the distinct left and right factors and all adjoints, to prove the unconditional equivalence: Z has isotropic operator symmetry if and only if Gamma(Z) has Werner operator symmetry. No positivity or nonzero premise may be imposed on this operator statement.\n\nFinally, for an arbitrary density operator rho, prove the correct conditional state-level statement: [rho is isotropic and rho is PPT] if and only if [Gamma(rho) is a Werner state], where PPT means Gamma(rho)>=0. Explain why this is a conditional case, not a standing hypothesis that would silently remove the maximally entangled counterexample. Discuss the zero operator, d=1, and the lack of density states at d=0 without dividing by zero. Distinguish trace/Hermiticity preservation, positivity, and involutivity.",
+  "reference_answer": "The predecessor's state-level iff is false for every d>=2. The maximally entangled vector is normalized, and for any unitary U its coefficient at |a,b> after U tensor conjugate(U) is (1/sqrt(d))*sum_i U_{ai}*conjugate(U_{bi})=delta_{ab}/sqrt(d). Thus Phi_d is an isotropic positive trace-one state. Expanding it gives Phi_d=(1/d)*sum_{i,j}|i><j| tensor |i><j|, so\nGamma(Phi_d)=(1/d)*sum_{i,j}|i><j| tensor |j><i|=F/d.\nFor d>=2 the unit vector a=(|1,2>-|2,1>)/sqrt(2) satisfies F*a=-a. Hence <a|Gamma(Phi_d)|a>=-1/d<0. Although F/d is Hermitian, has trace1 because tr F=d, and has Werner operator symmetry, it is not positive and therefore is NOT a Werner state. This exact counterexample preserves the original state domain; it is not merely a failure to find a formal proof. At d=2 the spectrum is1/2,1/2,1/2,-1/2.\n\nFor the general identity, expand Z=sum_{i,j} Z_{ij} tensor E_{ij}, where E_{ij}=|i><j| on the second subsystem. Then\nGamma((A tensor B)*Z*(C tensor D))=sum_{i,j} A*Z_{ij}*C tensor (B*E_{ij}*D)^T\n =sum_{i,j} A*Z_{ij}*C tensor D^T*E_{ji}*B^T\n =(A tensor D^T)*Gamma(Z)*(C tensor B^T).\nThis uses only linearity and reversal of multiplication under ordinary transpose in the second factor. The first-factor multiplication remains in its original order; partial transpose is not an unrestricted anti-homomorphism of the full bipartite operator algebra.\n\nAn actual isotropic conjugation has A=U, B=conjugate(U), C=U† and D=(conjugate(U))†=U^T. Thus D^T=U and B^T=U†, giving\nGamma((U tensor conjugate(U))*Z*(U† tensor U^T))=(U tensor U)*Gamma(Z)*(U† tensor U†).\nThe two right factors are the adjoints of the two left factors, not another copy of them. Setting A=C=U and B=D=conjugate(U), as the predecessor answer did, is not this conjugation for a general unitary.\n\nSince Gamma^2=id, it is injective. If the isotropic conjugation fixes Z for every U, the displayed identity shows the Werner conjugation fixes Gamma(Z) for every U. Conversely, if that Werner conjugation fixes Gamma(Z), the same identity makes Gamma of the isotropic conjugation equal Gamma(Z); applying Gamma again gives equality with Z. Therefore isotropic operator symmetry of Z is equivalent to Werner operator symmetry of Gamma(Z), for EVERY operator Z, including nonpositive, non-Hermitian and zero operators. No state-preservation conclusion follows solely from this linear symmetry transport.\n\nFor the conditional theorem, let rho be any density operator; no PPT assumption has yet been imposed. Gamma preserves trace, Hermiticity and involutivity. If rho is isotropic AND PPT, Gamma(rho) has Werner symmetry by the operator equivalence, is positive by PPT, and has trace1, so it is a Werner state. Conversely, if Gamma(rho) is a Werner state, it is positive, so rho is PPT, and its Werner symmetry transports back to isotropic symmetry of the already-given state rho. This proves [rho isotropic and PPT] iff [Gamma(rho) Werner state]. The positivity condition is a conclusion/condition within this equivalence, not a standing premise restricting the earlier universal assessment. Phi_d is isotropic but not PPT for d>=2, exactly explaining why it refutes the old forward implication. The old reverse implication is valid when rho is already known to be a state; the universal iff fails through the forward positivity assertion.\n\nThe zero operator and its partial transpose satisfy both operator symmetries, but have trace0 and are not states. For d=1 the operator space consists of scalars, Gamma is the identity, and both conjugations act trivially. The unique density operator is1, is PPT, and satisfies both state symmetries; the nontrivial negative antisymmetric sector is absent. The source's nontrivial Werner family is presented for d>=2; this is its natural one-dimensional symmetry/state boundary, not a use of a parametrization with denominator d^2-1. At d=0 the bipartite space is zero-dimensional and its only operator is0: the operator identities are vacuous/trivial, but trace0 prevents any density state. Phi_d and its1/sqrt(d) normalization are not defined or used there.\n\nThis is an explicitly changed question contract: it replaces a demand to prove a false state iff by refuting it and proving the correct symmetry transport and conditional PPT case. The source's Eq6.46 supports the sandwich identity, while Eq6.45's overbroad state wording does not prove positivity. Static source inspection and this mathematical reconstruction are not a newly executed Lean theorem, a native formal view, or successor approval.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Explicitly assesses/refutes the predecessor's unconditional state iff for d>=2: proves Phi_d is an isotropic density operator, computes Gamma(Phi_d)=F/d and exhibits a normalized antisymmetric vector with expectation-1/d. Distinguishes Werner symmetry from a positive trace-one Werner state."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Proves the full sandwich formula for arbitrary A,B,C,D,Z by second-factor matrix units or an equivalent complete argument. Uses A=U,B=conjugate(U),C=U†,D=U^T for an actual conjugation and retains all right adjoints; does not silently set U†=U."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Uses the correct sandwich identity and Gamma^2=id to prove both directions of the unconditional operator-symmetry equivalence for every Z, without a positivity, nonzero or PPT standing premise."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "For arbitrary density rho proves [isotropic and PPT] iff [Gamma(rho) Werner state], explaining the role of trace/Hermiticity versus positivity and why PPT is a conditional case rather than a hidden restriction. Handles zero operator, d=1 and absence of d=0 density states without invalid normalization or a false claim of equivalence to the predecessor's requested proof."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Partial transpose transports isotropic and Werner OPERATOR symmetries involutively, but may destroy positivity: Phi_d maps to F/d. The state-level equivalence holds exactly for the isotropic PPT case, not for all isotropic states.",
+    "semantic_steps": [
+      {
+        "claim": "The isotropic state Phi_d has partial transpose F/d, whose antisymmetric expectation is-1/d for d>=2; this refutes the original state-level iff while preserving its valid symmetry-transport target.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The full sandwich identity reverses only second-factor multiplication. An isotropic conjugation uses left U tensor conjugate(U) and right U† tensor U^T, yielding Werner conjugation after partial transpose.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Involutivity proves isotropic operator symmetry of any Z iff Werner operator symmetry of Gamma(Z), without positivity or nonzero assumptions.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For a density rho, isotropic symmetry plus PPT is equivalent to Gamma(rho) being a Werner state. Zero is not a state; d=1 is trivial and d=0 has no density states. No hidden PPT premise restores the false predecessor.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit entry near219 inspected: author-hosted URL https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf, recorded10 April2026/79-page edition and historical binary SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3. This LF hash authenticates metadata only. Genuine primary PDF text was read in this task context: density positivity/trace Definition2.1, printed3/PDF2; complete Werner Definition6.1, printed52/PDF51; complete isotropic Definition6.7 and Eq6.44-6.46 plus Phi^T_B=F/d/Proposition6.8, printed57/PDF56. Eq6.46 is valid, but Eq6.45's state wording does not supply positivity. No historical binary-hash equality or rendered-page verification is claimed."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+      "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+      "anchor": "Complete mathematical/grading fields of original plan-320 near2010 inspected, including the false state iff, right-adjoint substitution error, rubric, assumptions/conventions, four semantic steps and summary. Binds predecessor QA provenance, not correctness of its inherited acceptance or this proposed correction."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Entire actual prepared qcb-core-plan-320-isotropic-partial-transpose loaded via release.checked()[2] and bound by supersedes_item_digest. The new contract substitutes only the question; all eight other CONTRACT_FIELDS are inherited literally. Same family, split, frozen graph/source scope and four semantic steps, with no new Lean declaration or core."
+    }
+  ],
+  "execution": "Private explicit question-version2 authoring by the actual /root/qcb_boundary_repair_review task. I authored the preceding exact-item reader finding and have full source/parent-disposition exposure; this is NOT an independent review or self-approval of my candidate. Required repository protocols and substantive-worker skill read in this task context; primary text and mathematical reconstruction are source/NL-only. Direct in-memory PDF-byte retrieval previously failed with WinError10013 and visual page attempts did not yield inspected pixels, so the historical binary SHA remains UNVERIFIED. No PDF saved or redistributed, no Lean/kernel execution, native formal admission, model evaluation, novelty/human approval, canonical/policy/source edit or new agent. Only _review_tmp/plan-320-partial-transpose-state-successor.json is written. All prior reports and candidates remain frozen; distinct exact-content question-change review is required before any admission."
+}

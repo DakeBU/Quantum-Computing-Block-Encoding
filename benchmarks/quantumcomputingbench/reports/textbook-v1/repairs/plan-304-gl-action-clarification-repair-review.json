@@ -1,0 +1,38 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "method": "independent-answer-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-plan-304",
+  "repair_record_digest": "10c7a95815b55413a3f292826b15174f06ce558e4d3a47c26304f56f57c5adf2",
+  "original_item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+  "verdict": "accept",
+  "exposure": {
+    "role": "Actual /root/qcb_native_comparison reviewing the exact candidate authored by /root/qcb_formal_view_audit. I did not author, amend or self-approve this candidate; distinct identity strings do not establish human/real-world independence automatically.",
+    "prior_context": "Parent supplied the common-GL-versus-unitary clarification concern. I have prior personal Leditzky-source exposure from other bounded QIT work, and the complete candidate exposes its author rationale and references to earlier findings. This is not blind/source-blind; I read the actual complete candidate and historical304 question, answer, five rubric entries, five steps, assumptions, conventions and source metadata. I did not read the cited other review packet to derive a verdict or treat an intended unitary theorem as the current question.",
+    "binding_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "candidate_file": "_review_tmp/plan-304-gl-action-clarification-repair.json",
+    "candidate_sha256_lf": "7b11f6c5dcc7ef3d41b206c2c83a2ea2cb5c384fc4ce4d4bff3039875faa7dfb",
+    "actual_primary_retrieval": "For this review I independently fetched https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf in memory:554175 bytes,79 pages, raw SHA25690784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3, matching the original/candidate pin. Complete printed39–42 were text-extracted and read, including the full operative Proposition4.10 proof; I personally rendered and visually inspected printed42. No PDF/page file saved or redistributed; no entire-book or external Alcaraz-proof inspection claimed.",
+    "verification_limit": "Schema/binding checks and mathematical/source reconstruction only. No fresh Lean/kernel/nativeformal result, production algorithm, efficient Schur transform, unitary-only spanning theorem, blind decoder, model/human/expert, novelty, admission or stable-publication claim. I independently corroborated source bytes/pins/pages and the candidate mathematics, not all actions in its author's execution narrative."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "0a1210e64058fbc9844b798192122398397094a6ce67c6c6af5192f14476ae61",
+    "all_nine_contract_fields_unchanged": true,
+    "schema": "The exact13-field qcb.textbook_answer_successor.v1 schema matches the established answer-successor schema, with pending_distinct_review and no unknown/contract fields. Exact core/key/whole-predecessor binding and distinct author/reviewer checked. The five rubric IDs are unique positive-weight entries; exposition has only core_summary and five semantic steps with existing allowed nodes.",
+    "assessment": "The literal question is already about B=span_C{g^tensor(n):g∈GL(V)}, assumes the full endomorphism-power description of A', and asks for B=A' and B'=A. Answer-only clarification suffices. The candidate changes the erroneous unitary-only phrasing in the answer/summary, not the question or any of the nine CONTRACT_FIELDS. Shadow composition preserves all nine fields, family/split/frozen graph/source scope, five steps and inherited primary_sources.",
+    "scope_limit": "No new bridge equating unitary-generated and GL-generated spans is assumed or certified. The corrected proof meets the actual common-invertible-action target directly; it does not rewrite this into a unitary-only or independent-factor action question."
+  },
+  "substantive_reconstruction": {
+    "common_action_inclusion": "For Q_pi acting by factor permutation and any one endomorphism X, both Q_pi X^tensor(n) and X^tensor(n)Q_pi send a pure tensor to the same list of X-transformed vectors in permuted order. Pure tensors span V^tensor(n), so the equality holds on the full space. In particular it holds for every g∈GL(V), proving the actual defined B⊆A'. The same g acts in every factor; neither 'diagonal matrix' nor merely unitary g is substituted. This directly discharges rubric1 and step1 instead of relying on the narrower sentence in the source.",
+    "interpolation_and_singular_generators": "The question supplies A'=span{X^tensor(n):X∈End(V)}, so the remaining task is genuinely every X, including singular X. When d>0, det(X+tI) is monic of degree d; its finite root set leaves n+1 distinct complex sample points. F(t)=(X+tI)^tensor(n) is an operator-valued polynomial of degree at most n, by expansion over which of the n factors contributes tI. The candidate's Lagrange coefficients have nonzero denominators at distinct samples and reconstruct F(0)=sum_j ell_j(0)F(t_j). Each sample uses an invertible X+t_jI and therefore belongs to the GL-defined B, with no unitarity claim; linearity then puts X^tensor(n) in B. This verifies rubric2–4 and steps2–4. No coefficient-degree equality or d≥n premise is necessary.",
+    "bicommutant_and_boundaries": "A is the image span of the finite permutation group: it contains the identity, is closed under products and, for the canonical inner product on(C^d)^tensor(n), satisfies Q_pi†=Q_(pi^-1). It is thus a finite-dimensional unital star algebra, so its bicommutant equals A. Once B=A' has been proved, B'=A''=A follows; the theorem is not applied to an arbitrary non-self-adjoint subalgebra. At n=0 the tensor unit is C, all zeroth tensor powers are1, both algebras are C and one interpolation sample suffices. At d=0,n>0 the ambient tensor power and End algebra are zero, so both commutants within that algebra and both spans are zero. The n=0,d=0 case is covered by the tensor-unit branch, not incorrectly treated as zero. These checks justify rubric5/step5, including nonfaithful permutation actions when d<n.",
+    "source_and_limits": "Own full reads of39–42 confirm Proposition4.5's finite-group bicommutant context, Eqs4.8–4.9's factor actions, the given Corollary4.8 endomorphism-span description, the GL declaration on41 and Proposition4.10/Eqs4.15–4.16/interpolation proof on42. The latter defines B with GL but its first-inclusion sentence only names U_d; the candidate supplies the direct full-GL computation instead of importing source Proposition4.9's externally deferred unitary/GL irreducibility assertion. All five rubric entries and five semantic steps correspond to the reconstructed proof. This acceptance is an algebraic exact-answer clarification, not certification of an efficient basis transform, an uninspected external theorem, or a fresh local Lean result."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Exact local LF binding for the Leditzky source-registry metadata only. Independently fetched primary554175bytes/79pages/raw SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3; complete printed39–42 personally read, including Proposition4.5 context and full Proposition4.10 proof, with42 visually inspected for this review. No external Alcaraz proof or local Lean dependency is inferred from metadata."
+    }
+  ]
+}

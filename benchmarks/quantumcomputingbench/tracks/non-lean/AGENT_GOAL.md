@@ -58,6 +58,15 @@ refutation, then state the correct exact degree or universal upper bound without
 excluding zero-step/endpoint cases. Do not turn a necessary condition into a
 sufficient one in either the reference, rubric or process-step explanation.
 
+Read the current quantum-contract checkpoint before extending planned material.
+Keep exact operators, projected branches and normalized state targets distinct;
+do not infer universal postselection necessity from a particular implementation.
+Distinguish operator symmetry from state positivity, and fixed-tolerance
+consistency from exact equality on a finite estimator grid. Check the full
+reference, rubric and process steps, even when the central formula is correct.
+Record shared subproofs such as the concentration step in plan-319/plan-407;
+shared graph nodes do not establish either complete equivalence or distinctness.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite

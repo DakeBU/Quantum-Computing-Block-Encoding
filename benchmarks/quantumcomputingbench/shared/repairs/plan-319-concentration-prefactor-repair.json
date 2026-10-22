@@ -1,0 +1,70 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-319",
+  "supersedes_key": "qcb-core-plan-319-spectrum-concentration",
+  "supersedes_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+  "author": "/root",
+  "key": "qcb-core-plan-319-textbook-v1-prefactor-and-neighborhood-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question complete answer/rubric/exposition repair. Preserve all nine contract fields, fixed-d assumption, original source/graph scope, family/split and four semantic steps. Correct the bare-exponential process claim and clarify total neighborhood mass versus individual/exact-matching outcomes. Supply the prefactor-aware finite-n proof and zero-spectrum cases without a full-rank premise. No new question/core/native formal view, resource or admission claim.",
+  "reference_answer": "Let n>=1, let lambda=(lambda_1,...,lambda_d) be a partition of n padded by zeros, and put p=lambda/n. Write s_1>=...>=s_d>=0 for the fixed spectrum and P_lambda for the ORTHOGONAL Schur-Weyl isotypical projection. Its probability is w_lambda=tr(P_lambda*rho^tensor(n)); these weights are nonnegative and sum to1. The Schur-Weyl form rho^tensor(n)=directsum_lambda I_(V_lambda) tensor omega_lambda(rho) gives w_lambda=f_lambda*tr(omega_lambda(rho)), with f_lambda=dim(V_lambda). A general unnormalized Young symmetrizer is not substituted for this orthogonal measurement projection.\n\nHere is a precise finite-n statement of the exponential rate, with natural logarithms. Put r=d(d-1)/2 and D(p||s)=sum_i p_i log(p_i/s_i), taking zero-p terms as0 and D=infinity if p has positive mass outside the support of s. Then\n(n+d)^(-r-d)*exp(-n*D(p||s)) <= w_lambda <= (n+d)^r*exp(-n*D(p||s)).\nBoth polynomial factors matter: the coefficient-one upper inequality is false. For rho=I_2/2,n=2,lambda=(2,0), the symmetric subspace has rank3, so w_lambda=3/4, whereas exp(-nD((1,0)||(1/2,1/2)))=1/4.\n\nFor completeness the polynomial-qualified bound can be reconstructed without dropping its prefactors. First suppose s is strictly positive. The Schur character tr(omega_lambda(diag(s))) is a sum of m_lambda=dim(U_lambda^d) monomials s^nu indexed by semistandard tableaux. The row-constant tableau has weight lambda. Every tableau weight has sorted content majorized by lambda: any k labels occupy at most min(k,h) cells of each height-h column, whose sum is lambda_1+...+lambda_k. Rearranging nu against the decreasing log(s_i), then summing by parts with these partial-sum inequalities, gives s^nu<=s^lambda. Consequently s^lambda <= tr(omega_lambda(rho)) <= m_lambda*s^lambda. This uses only the necessary content restriction, not a false fixed-word survival converse.\n\nLet C_lambda=n!/(product_i lambda_i!). Since each standard tableau is determined by which numbers occupy each increasing row, f_lambda<=C_lambda. The padded hook formula also gives\nf_lambda=n!*product_(i<j)(lambda_i-lambda_j+j-i)/product_i (lambda_i+d-i)! >= C_lambda/(n+d)^r:\nevery numerator factor is at least1, and the r extra factors after the lambda_i! terms are each at most n+d. The Weyl dimension formula gives m_lambda=product_(i<j)(lambda_i-lambda_j+j-i)/(j-i)<=(n+d)^r.\n\nThe elementary multinomial bounds are (n+1)^(-d)*exp(nH(p))<=C_lambda<=exp(nH(p)), with H(p)=-sum_i p_i log p_i. One proof keeps the polynomial explicit: in n independent samples with probabilities p=lambda/n, the probability of type lambda is C_lambda*product_i p_i^lambda_i. It is at most1, giving the upper bound. It is also a maximum type probability. For another type mu, when lambda_i>0 the coordinate likelihood-ratio factor lambda_i^(mu_i-lambda_i)*lambda_i!/mu_i! is at most1: for an increase it is a product lambda_i/(lambda_i+t), and for a decrease a product (lambda_i-t)/lambda_i. If lambda_i=0 but mu_i>0, that type has probability0. Thus lambda is a mode; at most(n+1)^d types have total probability1, so its probability is at least(n+1)^(-d). This proves the lower bound, including zero entries of p with the usual0^0=1 product convention. Combining the character, hook and multinomial bounds with exp(nH(p))*s^lambda=exp(-nD(p||s)) proves the displayed lower bound, since n+1<=n+d, and proves the upper bound as well.\n\nIf s has rank q<d, a diagram with more than q rows has weight0: its first column cannot be strictly filled using only the q positive-eigenvalue labels. For such a diagram D=infinity, so both exponential bounds are0. If lambda has at most q rows, use the same character argument on the positive support; its surviving tableaux still include the leading monomial and number at most m_lambda. The same d-dependent bounds follow. No full-rank hypothesis is added. A trace-one state has d>=1; n=0 is irrelevant to normalized row lengths, which are only defined here for n>=1.\n\nTo pass from one block to concentration of the TOTAL probability, fix epsilon>0. On the probability simplex restricted to the positive support of s, D(p||s) is continuous and vanishes only at p=s. On the compact closed set ||p-s||_1>=epsilon it therefore has a strictly positive minimum delta_epsilon, unless the set is empty and the event is impossible. Diagrams outside the support already have weight0. There are at most(n+1)^d diagrams, so a union bound gives\nPr(||lambda/n-s||_1>=epsilon) <= (n+1)^d*(n+d)^r*exp(-n*delta_epsilon) ->0.\nThe count-of-diagrams factor cannot be omitted from this finite-n argument. Polynomial growth cannot defeat a fixed positive exponential rate when d is fixed.\n\nThe exact exponential scale is D: the two-sided inequalities give -log(w_lambda)/n = D(lambda/n||s)+O_d(log(n+d)/n) for nonzero supported weights. Along supported sequences with lambda/n tending to p, the rate tends to D(p||s); unsupported diagrams have zero weight and infinite rate. This is neighborhood concentration, not eventual equality lambda/n=s, and it does not say one near-spectrum block keeps a probability bounded below by a positive constant. The public question concerns mathematical probabilities, not an efficiently implemented Schur transform, a finite-bit resource certificate or a new local Lean proof.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Defines orthogonal Schur-Weyl block probabilities, nonnegativity and their total normalization; does not use a general unnormalized Young symmetrizer as a measurement projector."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Derives w_lambda=f_lambda tr(omega_lambda(rho)) and the polynomial-qualified exponential scale from appropriate character/dimension bounds, with natural-log entropy and zero-spectrum conventions explicit."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Retains polynomial prefactors in every finite-n claim; identifies D(lambda/n||s) as the exponential rate, not a universally valid coefficient-one upper bound. Does not assume full rank or a false content-only survival iff."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Proves concentration in every fixed neighborhood with the count-of-diagrams union factor and fixed d. Does not claim an exact matching diagram or a constant lower probability for each near-spectrum block, and distinguishes mathematical concentration from an implemented measurement/cost certificate."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Schur-Weyl block probabilities have relative-entropy exponential rate with explicit polynomial prefactors; summing over diagrams proves total concentration in fixed neighborhoods of the spectrum, not exact matching or constant atom weights.",
+    "semantic_steps": [
+      {
+        "claim": "The orthogonal Schur-Weyl projections give nonnegative per-diagram weights summing to one.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Each weight is f_lambda times the Schur-character trace; necessary tableau-content majorization, hook/Weyl and explicit multinomial bounds control it without a pointwise survival converse.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The weight lies between (n+d)^(-d(d+1)/2) exp(-nD) and (n+d)^(d(d-1)/2) exp(-nD), not below the bare coefficient-one exponential; unsupported diagrams have zero weight.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "For every fixed neighborhood of the spectrum, sum over at most(n+1)^d diagrams to bound the outside mass by a polynomial times exp(-n delta_epsilon), tending to zero. Individual blocks or exact equality are not required.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky source metadata only. Bounded author-hosted primary text actually read: Eq5.35-5.36 (printed51), Lemma9.3/relative entropy9.12, complete Proposition9.4/proof9.13-9.32 (printed73-75), full asymptotic union argument9.33-9.37 and Proposition9.5 statement9.38-9.39 (printed75-76). Hook/Weyl and Schur-character facts are the cited representation interfaces; the elementary mode proof and expanded zero-support/union argument are independent reconstruction, not local Lean closure."
+    }
+  ],
+  "execution": "Private authorship by /root, distinct from tensor-symmetry-author-b3 but not self-reviewed or source-blind. Read all actual prepared question/reference/rubric/assumptions/conventions/steps/primary-source fields and the complete six-item review reasons including the319 witness; qcb_core.digest binds the entire original, including historical metadata not used as proof. New bounded source text was accessed through the author-hosted PDF via web. Earlier in this continuous turn root independently fetched the same pinned554175byte79page PDF (SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3); no separate fresh binary or visual check of these new operative pages is asserted. No primary PDF/page is redistributed. No Lean/kernel execution, canonical write, admission, model experiment, human approval or new identity. This exact candidate remains pending a distinct mathematical review; PR104 is frozen and unaffected."
+}

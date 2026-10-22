@@ -1,0 +1,111 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-407",
+  "question_version": 2,
+  "repair_record": "_review_tmp/plan-407-fixed-neighborhood-state-successor.json",
+  "repair_record_digest": "87ffafa152bb4ce9810d460206df4bfb6f65ca0a8ed9bcee4cc966010725b33c",
+  "original_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+  "original_contract_hash": "df551f43bd9ee6937018c39bad53ba61fdcec54489bfa28c58aed7307f7bfc36",
+  "successor_contract_hash": "bd70d7c3406d456f52bcb1fa331f1e00117b9e38165b63dff5105473b9913f81",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate question, complete reference answer, rubric and exposition are mathematically correct as an explicit first question-version2 successor. This is not equivalence to the predecessor proof demand, current gold restoration, policy admission, native formal alignment, a fresh kernel certificate or source-blind/human approval.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate author /root/qcb_formal_view_audit and the recorded predecessor author.",
+    "repair_author": "/root/qcb_formal_view_audit",
+    "original_author": "qit-applications-author-b3",
+    "exposure": "Not blind: this reviewer independently identified/reviewed the actual401/407 original defects in the completed401–410 batch and has prior QIT/primary-source exposure. Candidate author read that report. Full exact current candidate, complete actual prepared original and operative primary/source contracts were inspected for this new gate. A predecessor verdict and parent intent are not mathematical evidence for successor acceptance."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared original returned by release.checked()[2]), including metadata, not the current reader successor.",
+    "repair_record_digest": "qcb_core.digest(entire exact parsed private candidate JSON), including question/answer/rubric/exposition and all execution/source metadata.",
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the exact original nine-field contract with ONLY question replaced by candidate.question. Candidate has no separate top-level assumptions/conventions/family/split/graph/source overrides.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "actual_checks": "Programmatically verified exact candidate schema/key set, pending-distinct-review marker, version2 key grammar, supersedes key/whole-item/contract hashes, changed question, positive rubric schema and source LF bindings. Only question differs among the nine fields; all other eight are literally inherited. Exposition has exactly3 steps AND exactly the predecessor's per-step supporting-node lists, not merely subsets. New/old hashes differ.",
+    "retained_contract_values": "family=spectrum-estimation-consistency; split=test_public; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; assumptions=[]; conventions=[]; target_nodes=[\"concept:probability\",\"concept:matrix-analysis\"]; supporting_nodes=[]; source_refs retained exactly as hashed."
+  },
+  "contract_change_assessment": {
+    "classification": "Explicit question-contract successor; no unchanged-question or predecessor-equivalence claim.",
+    "predecessor_literal_reading": "The original explicitly identifies consistency with Pr(hat r!=r)->0. A fixed irrational ordered spectrum is unattainable on every finite rational partition grid, so that event has probability1 for every n. Pointwise positive KL values on p!=r cannot give a fixed positive gap on a punctured set that accumulates at r.",
+    "changed_requested_reasoning": "Version2 keeps that false exact-equality statement for assessment/refutation, then asks the correct forall fixed epsilon>0 convergence-in-probability statement, retaining the supplied per-outcome bound and requiring its diagram-count union factor. The exact success event and the required counterexample/reasoning change materially; this is not an equivalent restatement or a silent weakening in the answer.",
+    "retained_family_target_scope": "Same reserved spectrum-estimation-consistency family, test_public split, graph snapshot, source_refs, probability/matrix-analysis nodes and3 steps are inherited. Estimator-domain validation and the supplied outcome bound remain. Fixed n>=1, fixed density/d and natural-log/support conventions are made explicit in the new QUESTION, not installed as separate changed assumption/convention fields.",
+    "hypotheses_and_minimality": "All spectra, including zero eigenvalues and d1, remain; no full-rank promise, attainable-grid promise or positive atom lower bound is introduced. Fixed epsilon is explicit rather than a secretly shrinking radius. No implemented Schur circuit, finite-bit exact-spectrum oracle or additional core count is asserted.",
+    "bounded_overlap319": "The fixed-neighborhood/KL-plus-polynomial union proof is substantially the same concentration subtarget as original319, whole digest f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f. The exposed319 answer repair has digest2fcc7f4bda646993c9b2da0b02c61c075fe06acbea9d840480a5643486142182 and supplies a stronger two-sided rate reconstruction; this review does not reapprove it.407 additionally validates the estimator and refutes exact equality, so no full-question equivalence or new alias decision is inferred merely from the shared subproof. Both prepared families are test_public; no cross-split pooling or global dedup conclusion.",
+    "admission_boundary": "This private mathematical review does not stage or change the current-reader policy, prior withdrawal, source/graph scope, historical data or version-lineage implementation. Original remains historical; any integration and stable-release decision is separate."
+  },
+  "substantive_reconstruction": {
+    "valid_estimator": "For n>=1, each lambda_i/n is nonnegative, their nonincreasing order is preserved and their sum is1. diag(lambda/n) is a density with that ordered spectrum. n0 division is excluded explicitly, not assigned a default estimator.",
+    "irrational_and_moving_grid": "Let t=1/sqrt(2), r=(t,1-t); it is ordered/full rank because1>t>1/2. Every finite lambda_i/n is rational, so equality is impossible and Pr(hat r!=r)=1. For sufficiently large n, lambda^(n)=(floor(nt),n-floor(nt)) is ordered, its normalized vector approaches r and never equals it; KL tends to0 by continuity on a full-rank target. This disproves a uniform positive punctured-simplex gap. The rational r=(1/2,1/2) example on odd n independently shows rationality alone does not fix the universal equality limit.",
+    "support_face_and_gap": "Use zero-p terms0 and D infinity when p gives positive weight to a zero r_i. The stipulated single-outcome bound then forces that outcome weight0. On the remaining support face F, all relevant r_i are positive and p log p is continuously extended by0, so D is continuous. F intersect {||p-r||_1>=epsilon} is compact; if nonempty its minimum is positive because D vanishes only at r and epsilon>0 excludes r. If empty, the outside event has probability0. This handles all zero-spectrum cases without assuming full rank or compactness of an incorrectly punctured domain.",
+    "union_and_constants": "With h=d(d-1)/2, at most(n+1)^d padded diagrams exist. Summing the given bound over epsilon-away supported diagrams yields Pr(||hat r-r||_1>=epsilon)<=(n+1)^(h+d)exp(-n delta_epsilon). Both factors are necessary in this argument; h+d=d(d+1)/2. Natural-log Pinsker gives D>=||p-r||_1^2/2 (since TV=||p-r||_1/2), so the explicit bound(n+1)^[d(d+1)/2]exp(-n epsilon^2/2) is correct, including incompatible supports with zero weight. It may exceed1 for small n and remains a valid upper bound.",
+    "limit_and_endpoints": "For fixed d,epsilon, (h+d)log(n+1)-n delta_epsilon tends to minus infinity. Thus total probability in every fixed open epsilon-ball tends to1. This says neither that an exact matching diagram eventually exists nor that any one nearby atom keeps a positive limiting mass. At d1 the only diagram(n) matches r1; for rank-one sorted r at larger d only lambda=(n,0,...) can have positive weight by the same bound. These special cases coexist with the decisive general irrational counterexample; they do not rescue its false universal exact event.",
+    "source_gap_and_scope": "The original algorithm paragraph prints the same exact-equality overclaim; citing it cannot defeat the rational-grid witness. The later Proposition9.5 is explicitly a fixed-epsilon theorem. Extracted Eq9.35 omits a union-count polynomial invoked by its own following text; the candidate correctly writes the actual sum instead. Pinsker is a stated source theorem, not derived from mere nonnegativity. No measurement-implementation cost, pointwise lower atom bound or new formal theorem is inferred."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: exact original event is retained for assessment and explicit refutation, then the corrected fixed-epsilon event/domain, support and polynomial count are stated transparently. No hidden full-rank or changing-d hypothesis.",
+    "reference_answer": "Accept in full. The irrational witness, floor-grid sequence, supported compactness proof, explicit count, natural-log Pinsker constant and fixed-d limiting argument are correct. It correctly distinguishes zero-support impossible outcomes and total neighborhood mass from exact/individual atoms.",
+    "rubric": "All c1-c4 are justified: estimator normalization; exact-equality refutation and moving rates; positive supported away-region and h+d union factor; fixed-d decay, d1/rank-one cases and bounded319 overlap. The rubric does not reward the false predecessor event or a missing count factor.",
+    "exposition": "The core summary and all three complete steps consistently say fixed-neighborhood convergence, not exact matching. The original per-step node lists are exactly retained: probability; probability; matrix-analysis. The overlap notice does not add graph scope, a new core or formal evidence.",
+    "necessity_minimality_verdict": "Accept the entire exact first question-version2 candidate, not equivalence with the old false proof demand, automatic split reconciliation or current-reader admission."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+      "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+      "anchor": "Complete authored predecessor qcb-core-plan-407-spectrum-estimator-normalized-partition-validity and exact actual prepared counterpart question/answer/all rubric/assumptions/conventions/three semantic steps read. Tracked QA provenance only, not mathematical proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Entire historical prepared qcb-core-plan-407 bound by original_item_digest through release.checked()[2]. Frozen content provenance, not admission or a new proof."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Full leditzky-2025-repth-qit metadata entry and recorded primary URL/edition/binary pin read. LF catalog binding is metadata only; operative primary text is separately inspected as detailed below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "CONTRACT_FIELDS, check_exposition and question_successor rules read to validate exact nine-field replacement, version2 grammar and graph/step bounds. This is schema/lineage evidence, never a mathematical proof or policy admission run."
+    }
+  ],
+  "primary_source_checks": {
+    "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+    "recorded_edition": "10 April2026;79 pages",
+    "inspected_operative_regions": "Leditzky10 April2026/79-page PDF: Algorithm9.1 Eq9.6 and false exact-equality sentence; complete previously inspected Lemma9.3/Proposition9.4 operative proof Eq9.7–9.32, plus fresh full Section9.4 Eq9.33–9.42/Proposition9.5/Pinsker, PDF70–75/printed71–76. Source clauses are assessed critically, not copied as authority.",
+    "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "reviewer_historical_binary_hash_verified": false,
+    "reviewer_retrieved_binary_sha256": null,
+    "actual_access": "Genuine primary PDF text extraction at author-hosted URL. Full operative definitions/displayed equations and relevant proof/exercise contexts were inspected in this continuous task context and key candidate-specific regions reread for this gate. No rendered-page/diagram-pixel inspection is newly claimed.",
+    "candidate_author_byte_claim_limit": "The candidate author reports its own successful in-memory binary retrieval and matching historical hash. This reviewer has NOT independently verified that execution or those bytes. My own fresh read-only urllib attempts to BOTH primary URLs in this gate were blocked with WinError10013. Text cover/date/anchors agree with catalog but do not establish binary equality. I do not transfer the author's hash-verification flag to myself or rewrite frozen earlier reports.",
+    "source_proof_limit": "The positivity exercise has no printed full solution; the exact d1 eigenvalue analysis is independently reconstructed. For407 the original false exact event is source-inherited, the per-outcome estimate is supplied in the question, and Pinsker is a named source theorem. No source citation is treated as a local Lean proof.",
+    "redistribution": "No PDF/page saved, redistributed or relicensed; no long primary passages copied."
+  },
+  "provenance": {
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "retrieval": "Complete actual historical prepared original via release.checked()[2] and complete exact private candidate read, including source/execution metadata. Not substituted authored/current repaired intentions.",
+    "instruction_status": "Required AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared contract/acceptance texts were read completely in this context and checked unchanged from the preceding objective; substantive-worker skill reread for this gate. PDF guidance previously read completely remains the read-only primary-access discipline.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "formal_status": "Independent mathematical/source/exact-binding review only. No new local Lean node, compiled theorem, native formal view, fixed-reference replay or efficient implementation is claimed.",
+    "source_hash_method": "qcb_integrity.text_sha of each whole tracked local source/data file; qcb_core.digest for whole candidate/original/contracts. Successful schema checks do not decide mathematical truth.",
+    "mutation_scope": "Only parent _review_tmp/plan-407-fixed-neighborhood-state-successor-review.json written by this gate. No candidate, canonical source/data/policy, old report, history, current publication gate, commit or push changed.",
+    "remaining_limits": "No global semantic dedup, alias reconciliation, split pooling, theorem novelty or stable admission. Author execution claims not independently audited beyond the exact content/source-math review."
+  }
+}

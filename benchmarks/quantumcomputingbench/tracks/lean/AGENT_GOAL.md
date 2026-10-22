@@ -50,6 +50,14 @@ SP111 includes zero-step degree collapse as well as the exact mass identity.
 An existing elevation or mass lemma can support part of these questions without
 certifying every new obligation. Keep that coverage explicit in the alignment.
 
+Read the current quantum-contract checkpoint as well. Formalize the current
+question's actual quantifiers: a partial-transpose symmetry identity does not
+prove state positivity, a compression formula does not certify a normalized
+whole output, and a concentration bound does not prove exact spectrum equality.
+Question successors plan-011/plan-320/plan-401/plan-407 retain these distinctions
+explicitly. Reuse their checked subtargets where appropriate without silently
+dropping the counterexample, boundary cases or remaining NL obligations.
+
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install
 system packages, contact administrators, launch long GPU jobs or paid training.

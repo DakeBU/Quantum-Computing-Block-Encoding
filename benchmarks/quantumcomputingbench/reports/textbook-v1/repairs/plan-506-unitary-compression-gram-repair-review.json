@@ -1,0 +1,54 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-506",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-506-unitary-compression-gram-repair.json",
+  "repair_record_digest": "0b41bdab4b8ec2575cbb444bce29200125e83fad05ccfed50e8a427842bf9a93",
+  "repair_record_sha256_lf": "68f58063438b905a8fac0760230726ba9543a0524f6dc97e7f56b031f873b0cb",
+  "original_item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+  "verdict": "accept",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f",
+    "projected_contract_hash": "0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f",
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "assessment": "Full original mathematical/grading/source fields and complete candidate answer/rubric/exposition actually read. No question-contract field is overridden; same six steps and allowed source nodes checked. This exact answer correction does not transfer old acceptance metadata or imply policy admission."
+  },
+  "substantive_reconstruction": {
+    "full_gram": "The first p columns of U=[B,F;G,H] have Gram B†B+G†G=I. Thus ||Bx||^2=||x||^2-||Gx||^2 for EVERY x, proving contraction. The original individual-column inference is indeed insufficient: columns of[1,1;0,0] have length1 but the normalized vector(1,1)/sqrt2 is sent to(sqrt2,0). The candidate corrects that implication, not the true unitary-compression theorem.",
+    "rotated_columns": "B=W1 C V1† gives (GV1)†GV1=I-C^2, whose diagonal entries are nonnegative and off-diagonal entries zero. Thus0<=c_j<=1 and the lower columns have orthogonal lengths s_j=sqrt(1-c_j^2). Nonzero s_j can be divided out. At s_j=0 the column vanishes and one chooses an orthonormal complement vector instead; q>=p guarantees enough dimensions. Repeated c_j impose no uniqueness requirement.",
+    "complete_factorization": "After left diag(W1†,W2†) and right diag(V1,I), the first columns are L=[C;S;0]. For K=[[S,0],[-C,0],[0,I]], direct multiplication gives L†L=I,K†K=I,L†K=0. There are p+q columns in[L,K], so it is unitary. The remaining transformed columns Y span the same orthogonal complement, hence K†Y is a q-dimensional unitary; naming it V2† gives Y=K V2† and exactly the advertised signed CS factorization. q=p removes the third block; p=0 reduces to an arbitrary remaining unitary. No QR uniqueness or invertible S is assumed.",
+    "chebyshev_domain": "The actual normalized block singular values c_j lie in[0,1]; a Hermitian variant may have signed eigenvalues in[-1,1]. General nonnormal eigenvalues are not SVT arguments and a target encoded at scale alpha supplies sigma(A)/alpha. The real-angle formulas are valid in this interval, with second-kind polynomial endpoints±(l+1) as specified. The answer explicitly avoids treating endpoint sine quotients as defined, asserting |U_l|<=1, or equating a domain guarantee with a uniform precision/error theorem.",
+    "rubric_source_and_scope": "All four rubric entries, six full steps and summary read and accepted. They correct proof/exposition while preserving the nine-field question contract. Root actually read the complete primary Theorem10.9/Eq10.81-10.89 proof and surrounding normalized CS representation10.90-10.94. The L/K endpoint-safe proof is independently reconstructed above, not a claim that every detail is printed in the abbreviated source. Existence of basis changes is not an efficient implementation or gate/query bound."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Lin-Wiebe metadata only. Actual primary operative text and independent mathematics are separately stated; a local metadata hash is not external-binary verification or formal closure."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "reviewed_at_private_path": "_review_tmp/plan-506-unitary-compression-gram-repair.json",
+    "actual_identity": "/root",
+    "independence": "Distinct from candidate author /root/qcb_native_comparison and original polynomial-signals-author-b3. Root authored neither. Root had read the original independent502-510 finding and candidate before this exact review; not blind, a human expert, or a new reviewer identity.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+      "digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+      "sha256_lf": "2dc739852d11cb9cbb3cc0acaa873b0070c2a42d6af7b6133ef70a2742299f42"
+    },
+    "primary_access": "Genuine web primary text at https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf; operative Definition10.4, Example10.8 and full Theorem10.9 proof read. Recorded29April2026/447-page source pin56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599 was not freshly recomputed from raw bytes in THIS review. The candidate author separately reports matching bytes/visual pages; that execution is not reattributed to root. No new source-page pixel inspection or PDF redistribution.",
+    "execution": "Read-only prepared-record access, exact digest/contract/LF checks and independently reconstructed algebra. No kernel/native-formal admission, prediction isolation, model evaluation, production circuit, source-blind seal, human approval or stable-release claim. Private review authoring only; future transport/admission separate."
+  }
+}

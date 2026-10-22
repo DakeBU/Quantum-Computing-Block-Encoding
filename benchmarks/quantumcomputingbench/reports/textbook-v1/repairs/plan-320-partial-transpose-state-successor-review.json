@@ -1,0 +1,146 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-320",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-320-partial-transpose-state-successor.json",
+  "repair_record_digest": "c597c3868f09a50231b7f2be997a94e9a1cabc30ccae49277cd65f19c08f9004",
+  "repair_record_sha256_lf": "88c9212c55f7528347b12601020d33b3375d034deb6df74697c7a6d36310729c",
+  "original_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+  "original_contract_hash": "0164cb961b1796b8988514c3091185d2f45c0172e0dd169d8dbfb24b646861e7",
+  "successor_contract_hash": "7e02133d768c2c2525f000b0e7671e0665919c75600a3eea91edd0e774260b7f",
+  "verdict": "accept",
+  "verdict_scope": "Complete exact question-version2 candidate, reference, rubric and four-step exposition accepted as an explicitly changed mathematical contract. Not equivalence to the predecessor, restoration of old acceptance, policy admission or a new formal/kernel theorem.",
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of the entire actual historical prepared item from current release.checked()[2], including metadata.",
+    "repair_record_digest": "qcb_core.digest of complete exact parsed private candidate, including question/answer/rubric/exposition/source/execution metadata.",
+    "repair_record_sha256_lf": "qcb_integrity.text_sha of the whole actual private candidate.",
+    "original_contract_hash": "qcb_core.digest(qcb_curriculum.core_contract(original)).",
+    "successor_contract_hash": "qcb_core.digest of that original contract with only question replaced by the exact candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_equality": {
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "retained_scope": {
+      "core_id": "qcb-core-plan-320",
+      "family": "qit-isotropic-partial-transpose",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a"
+    },
+    "actual_checks": "Whole predecessor and complete candidate read. Supersedes key/item digest/contract hash agree with actual original; version2 and changed question confirmed. All eight other contract fields are inherited exactly. check_exposition/check_source_bindings passed read-only; four original semantic steps and every supporting node stay in original scope. No projected admitted full-item digest or admission execution is invented."
+  },
+  "contract_change_assessment": {
+    "classification": "Explicit first question-contract successor, not an unchanged-question answer repair.",
+    "predecessor_false_vs_salvageable": "The old state iff is false for d>=2 because Gamma(Phi_d)=F/d is not positive. Its source Eq6.45 has the same overbroad state wording. The full sandwich identity and unconditional operator-symmetry equivalence are valid, but the old reference additionally substitutes non-adjoint right factors. This is an exact mathematical counterexample, not environmental/proof-search failure.",
+    "changed_requested_reasoning": "Version2 asks the reader to assess/refute the original demand, compute the negative antisymmetric expectation, prove the complete arbitrary sandwich/operator symmetry theorem, and then prove the precise conditional state theorem with boundary cases. It does not claim these requested proofs are equivalent to proving the old false state iff.",
+    "hypotheses_and_ppt_boundary": "The original equal-local-dimension and second-subsystem transpose assumptions, symmetry conventions and fixed source scope stay exact. Fixed bases make the existing transpose/conjugation operation explicit. PPT is not inserted into assumptions or treated as a standing premise: the candidate begins with arbitrary states for the counterexample and arbitrary operators for symmetry, then states [isotropic AND PPT] iff [Gamma(rho) Werner state] for arbitrary density rho. This preserves the counterexample rather than excluding it.",
+    "family_and_graph_retention": "Same isotropic/partial-transpose/Werner symmetry-transport family qit-isotropic-partial-transpose, test_public split, frozen graph version, source_refs, targets/support and four semantic steps remain. The correction refines the same target's positivity boundary; no new source graph node, core count or fresh Lean closure is asserted.",
+    "necessity_and_minimality": "An answer-only edit cannot truthfully prove the old unconditional state statement, and simply renaming Werner state as operator symmetry or silently assuming PPT would change it without disclosure. The candidate retains the false assertion for assessment and explicitly versions the valid replacements. Extra zero/d=1/d=0 discussion and full sandwich proof make the corrected contract precise without imposing a new nonzero/positive-d premise on the operator theorem.",
+    "admission_boundary": "Historical rejected original and original source wording remain auditable. This independent review neither edits them nor admits/transports the candidate, approves a lineage implementation or upgrades stale companions."
+  },
+  "substantive_reconstruction": {
+    "isotropic_counterexample": "For d>=2, ||Phi_d||^2=d/d=1. Its coefficient after U tensor conjugate(U) at(a,b) is sum_i U_ai conjugate(U_bi)/sqrt(d)=delta_ab/sqrt(d), hence the rank-one projector is an isotropic density state. Expanding matrix units gives Gamma(Phi_d)=sum_ij E_ij tensor E_ji/d=F/d. On the unit vector(|1,2>-|2,1>)/sqrt2 it has expectation-1/d. It is Hermitian, trace tr(F)/d=d/d=1 and common-U invariant, but not positive. The source word 'state' therefore overreaches despite the true symmetry identity.",
+    "full_sandwich": "Write arbitrary Z=sum_ij Z_ij tensor E_ij. The sandwich partial transpose is sum_ij A Z_ij C tensor(B E_ij D)^T=sum_ij A Z_ij C tensor D^T E_ji B^T, exactly(A tensor D^T)Gamma(Z)(C tensor B^T). This proof is complex-linear, dimension-independent, applies to non-Hermitian and zero Z, reverses only multiplication in the second factor and does not assert Gamma is a full bipartite anti-homomorphism.",
+    "correct_conjugation_substitution": "For an actual isotropic conjugation the left factors are A=U,B=conjugate(U), while the right factors are C=U^dagger,D=U^T=(conjugate(U))^dagger. Thus D^T=U and B^T=U^dagger. The transformed sandwich is(U tensor U)Gamma(Z)(U^dagger tensor U^dagger). No U^dagger=U shortcut is permitted; setting the right factors equal to the left factors would be a different sandwich.",
+    "both_operator_directions": "If the isotropic conjugation fixes Z for every U, applying Gamma and the identity yields Werner invariance of Gamma(Z). Conversely Werner invariance makes Gamma of the isotropic conjugation equal Gamma(Z); involutivity Gamma^2=id gives back equality to Z. Neither direction needs positivity, trace, Hermiticity or nonzero Z. Trace is preserved by keeping diagonal coefficients; Gamma also commutes with taking adjoint, hence preserves Hermiticity, but neither fact implies positivity.",
+    "conditional_state_theorem": "Fix any density rho. If it has isotropic symmetry and Gamma(rho)>=0, operator transport gives Werner symmetry, positivity is exactly the PPT condition and trace is still1: Gamma(rho) is a Werner state. If Gamma(rho) is a Werner state, it is positive, giving PPT, and its Werner symmetry transports back to isotropic symmetry of the already-given density rho. Thus the candidate's bracketed equivalence is exact. The old reverse implication is valid on density rho, while the forward positivity implication fails at Phi_d.",
+    "one_zero_and_empty_dimensions": "Zero Z satisfies both operator symmetries but has trace0 and is not a state. At d=1, Gamma is identity and conjugation by U tensor U or U tensor conjugate(U) is scalar conjugation and hence trivial; the unique density is1 and is PPT. No antisymmetric vector exists there. At d=0 the endomorphism space has only0 with trace0, so no density exists; operator identities are trivial and no1/sqrt(d), F/d or1/(d^2-1) normalization is used. The source's nontrivial Werner parameterization assumes d>=2, while this natural boundary extension is proved directly rather than plugged into it.",
+    "exact_scope_and_resources": "All formulas concern operators in the fixed bases, not a physical implementation of partial transpose as a positive quantum channel. The counterexample itself shows why such positivity cannot be inferred. No circuit, state-preparation, finite-bit runtime or new native formal certificate follows."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: explicitly separates positive trace-one states from invariant operators, retains the old assertion for refutation, requests the right general sandwich and conditional theorem, and leaves all arbitrary operators in scope.",
+    "reference_answer": "Accept in full. Normalization, negative expectation, full right adjoints, both directions, preservation/nonpreservation distinctions and d=1/d=0 are correct. No positivity is smuggled into the unconditional operator theorem.",
+    "rubric": "All c1-c4 are sound: exact state counterexample; full sandwich and correct conjugation factors; unconditional operator symmetry in both directions; conditional PPT state theorem and all boundaries. No criterion rewards the false state iff or a hidden PPT premise.",
+    "exposition": "All four claims and the core summary read. They distinguish the false positivity step from the valid symmetry target, keep source support/count and acknowledge changed requested reasoning.",
+    "necessity_minimality_verdict": "Accept this exact explicitly changed question contract only. Source Eq6.46 is retained; Eq6.45's overbroad state conclusion is not inherited as proof or silently fixed in history."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete Leditzky metadata entry219-227 inspected: URL, printed10 April2026/79-page edition and recorded historical pin. LF binding is metadata only; actual primary mathematics and fresh binary access are separated below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "CONTRACT_FIELDS/check_exposition12-27; question-successor old/new contract projection30-123; answer-successor projection153-207 read in the continuous review context. Actual fields used in private binding checks, no admission invoked."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "anchor": "core_contract19-20 read and used to extract exact nine-field predecessor contracts."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10 April2026,79 pages; FT25 course directory",
+      "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "byte_count": 554175,
+      "pdf_page_count": 79,
+      "hash_match": true,
+      "retrieval": "This reviewer freshly retrieved the primary PDF through an approved read-only HTTPS memory fetch and independently computed raw binary SHA256; bundled pypdf extracted complete operative pages. No PDF/intermediate page saved or redistributed. Earlier author/reviewer byte-access limits remain their own historical provenance, not silently relabeled.",
+      "last_modified_header": "Fri, 10 Apr 2026 12:15:47 GMT",
+      "response_date_header": "Thu, 22 Oct 2026 20:32:29 GMT",
+      "zero_based_pdf_pages_read": [
+        2,
+        51,
+        56
+      ],
+      "operative_regions": "Printed3 Definition2.1, printed52 Definition6.1 and complete printed57 Definition6.7/Eq6.44-6.46, Phi partial-transpose relation and Prop6.8 context.",
+      "visual_inspection": {
+        "performed": false,
+        "limit": "No inspected pixels for these operative pages. A web screenshot request for printed57 failed. Exact matching-byte text was read; no typography/whole-book rendering claim."
+      },
+      "local_lean_closure": "None: primary-source NL only; conceptual graph nodes do not establish local Lean proofs.",
+      "source_comparison": "Definition2.1 requires positivity and trace1; Definition6.1 defines Werner states within quantum states. Eq6.46 is the correct arbitrary sandwich. The adjoining Eq6.45 state wording omits the necessary positivity qualification, and the same printed57 region supplies Gamma(Phi)=F/d, consistent with the independent negative-eigenvector diagnosis. No blanket approval of neighboring propositions or printed source correctness."
+    }
+  ],
+  "provenance": {
+    "observed_head": "be93e03c1524fe1d7ea2e02796789d65fae90951",
+    "reviewed_at_private_path": "_review_tmp/plan-320-partial-transpose-state-successor.json",
+    "transport_note": "repair_record uses intended canonical destination; actual reviewed bytes were private at reviewed_at_private_path. No transport or admission performed.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+      "reviewed_at_private_path": "_review_tmp/representation-qit-312-320-review.json",
+      "digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+      "sha256_lf": "0360127cb02a68a8a41b06113f888984c11baa38e934cdcee6350e5602a2a92e",
+      "reviewer": "/root/qcb_boundary_repair_review",
+      "exposure": "Actual319/320 findings, report scope/provenance and relevant source limitations read. This prior report is not by this reviewer; for320 it is by the candidate author and cannot self-approve the candidate. No assertion of independently checking every other finding/comparator in that report."
+    },
+    "instructions": "Substantive-worker and PDF skills used. Mandatory AGENTS/HARNESS/publication/digestion/memory/shared-contract instructions were read in preceding objectives of this continuous context; skill text refreshed. Exact-contract mathematical evidence remains distinct from policy/build gates.",
+    "hash_method": "qcb_core.digest(entire actual prepared original from current release.checked()[2] and entire parsed candidate including metadata); qcb_integrity.text_sha for LF-normalized whole files. Candidate and old/new or unchanged contract digests recomputed programmatically.",
+    "independence": "Actual reviewer /root/qcb_formal_view_audit, distinct from original author tensor-symmetry-author-b3 and candidate author /root/qcb_boundary_repair_review. Authored neither. Prior Leditzky source exposure exists; full source/candidate/parent rationale and inherited metadata visible. Not blind or a new identity; no previous independent original319/320 verdict by this task claimed.",
+    "new_kernel_execution": false,
+    "native_formal_admission": false,
+    "source_blind_review": false,
+    "human_or_expert_approval": false,
+    "model_evaluation": false,
+    "additional_agents": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this private *-review.json output authored. Candidates, frozen originals, earlier reports, source-binding modules, production Lean, policy and PR104 unchanged; no commit/push.",
+    "limits": "Independent bounded mathematical reader/source review, not global dedup, source-publication seal, new Lean closure, circuit/oracle construction, implemented measurement, finite-bit cost or novelty approval."
+  }
+}

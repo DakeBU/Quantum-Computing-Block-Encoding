@@ -1,0 +1,81 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-304",
+  "supersedes_key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+  "supersedes_item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-304-textbook-v1-gl-action-clarification",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition clarification. The literal question is already about GL(V), not just U(V), and is mathematically correct. Replace the reference's unitary-only parenthesis and diagonal-unitary core summary with the actual common invertible-linear action; make degree an upper bound and the finite-group bicommutant conditions explicit. Preserve all nine contract fields, five semantic steps, source/graph scope, family and split. Original contract hash 0a1210e64058fbc9844b798192122398397094a6ce67c6c6af5192f14476ae61. No unitary/GL span equivalence is silently assumed or newly claimed proved; no question change or new core.",
+  "reference_answer": "Use the question's exact algebra B=span_C{g^tensor(n):g in GL(V)}; 'diagonal action' here means the SAME g acts on every tensor factor, not that g is a diagonal matrix or necessarily a unitary. Write Q_pi for the factor-permutation action. For every endomorphism X, Q_pi X^tensor(n)=X^tensor(n) Q_pi: on a pure tensor both sides apply X to each factor and put the factors in the same permuted positions. Pure tensors span, so this is an operator equality for all X. In particular it holds for every invertible g, not merely unitary g. Hence every generator of B commutes with A, giving B subset A'.\n\nFor the reverse inclusion use the GIVEN description A'=span_C{X^tensor(n):X in End(V)}. Fix any such X, including a singular one. If d>0, det(X+tI) is a monic scalar polynomial of degree d, so only finitely many complex t make X+tI singular. Choose n+1 distinct complex numbers t_0,...,t_n outside that finite set. Every F(t_j)=(X+t_j I)^tensor(n) then belongs to B by its definition using GL(V). The operator-valued polynomial F(t) has degree AT MOST n: expand the n factors, collecting the finitely many terms with each power of t. Lagrange interpolation applies coefficientwise in this finite-dimensional operator space, and gives F(0)=sum_{j=0}^n ell_j(0)F(t_j), where ell_j(t)=product_{k!=j}(t-t_k)/(t_j-t_k). The denominators are nonzero because the sample points are distinct. B is a complex linear subspace, so F(0)=X^tensor(n) lies in B. Thus the span of all such powers, A', is contained in B. Together the inclusions prove B=A'.\n\nFinally A is the finite-dimensional unital star algebra spanned by the permutation representation of the finite group S_n: products stay in the group image, the identity is present, and Q_pi^dagger=Q_(pi^-1). Thus the finite-dimensional double-commutant theorem applies to THIS algebra and gives A''=A; it is not asserted for arbitrary non-self-adjoint subalgebras. Since B=A', we obtain B'=A''=A, as requested.\n\nFor n=0 the tensor power is C, both algebras are the scalar algebra and F is constant; one interpolation sample suffices. If V=0 and n>0 the ambient tensor power and endomorphism algebra are zero and the conclusion is trivial; this avoids asserting an exact nonzero polynomial degree in a zero operator space. No d>=n premise is needed. The source Prop4.10/Eq4.15-4.16 proof is a GL(V) argument. The historical word 'unitary' in its first inclusion is insufficient wording for the defined B, but the pure-tensor computation above establishes the full GL inclusion directly. A separate unitary-only spanning theorem can be true, but it is NOT proved merely because X+tI is invertible: those interpolation samples need not be unitary. No such bridge is assumed or needed here. This is an algebraic mutual-commutant proof, not an efficient Schur-transform algorithm, fresh Lean result or source-publication approval.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Uses B=span{g^tensor(n):g in GL(V)} and proves factor-permutation commutation for every g (indeed every endomorphism), not only unitary generators."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Uses the explicitly given A' characterization to reduce the reverse inclusion to every endomorphism power, including singular X."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Uses det(X+tI) to choose n+1 distinct invertible shifts over C and places their powers in the GL-defined algebra B, without treating these shifts as necessarily unitary."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Treats F(t) as an operator-valued polynomial of degree at most n and applies valid Lagrange interpolation at distinct points to obtain X^tensor(n) in B."
+    },
+    {
+      "id": "r5",
+      "weight": 1,
+      "criterion": "Combines both inclusions and applies the finite-dimensional group-image/unital-star bicommutant theorem to A to get B'=A; preserves zero/empty boundaries and adds no unitary-only or d>=n premise."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The permutation algebra and the algebra spanned by the common GL(V) action g^tensor(n) are mutual commutants. Pure-tensor commutation and interpolation from invertible shifts prove the GL claim without a unitary-only span substitution.",
+    "semantic_steps": [
+      {
+        "claim": "Every common endomorphism action X^tensor(n) commutes with factor permutations, so in particular the GL-generated B lies in A'.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The given A'=span{X^tensor(n)} reduces the reverse inclusion to arbitrary endomorphism powers, including singular X.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Outside finitely many complex shift values X+tI is invertible, so choose n+1 distinct such points with their tensor powers in the GL algebra B.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The operator-valued polynomial F(t)=(X+tI)^tensor(n) has degree at most n; Lagrange interpolation at those distinct points puts F(0)=X^tensor(n) in B.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Hence B=A'; A is the finite-group image unital star algebra, so A''=A and B'=A, with empty/zero tensor cases understood separately.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky metadata entry219-227 read; local LF binding is metadata only. Independently retrieved pinned author-hosted PDF554175bytes/79pages raw SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3. Complete printed39-40 finite-group commutant context Prop4.5 and tensor action4.8-4.9, printed41 Lemma4.7/Cor4.8/GL declaration and Prop4.10 statement, and full printed42 Prop4.10 proof/Eq4.15-4.16 read. The source defines B using GL although its first-inclusion sentence names U_d. The repaired pure-tensor argument proves that inclusion for all GL directly; no externally deferred unitary/GL irreducibility result is passed off as the interpolation proof."
+    }
+  ],
+  "execution": "Private authorship by the actual /root/qcb_formal_view_audit task, not a distinct review of my candidate. Full current catalog and historical prepared plan304 questions/answers/rubric/steps/assumptions/conventions/source metadata read and whole digests matched at observed head 0b229454bcac07658738e184e255d3ae44e65957. Parent's nomenclature concern, historical accept labels and the prior /root/qcb_boundary_repair_review plan304 finding were visible; not source- or verdict-blind. Prior Leditzky exposure disclosed. Substantive-worker/PDF guidance and required repository protocols used in this continuous context. Fresh independent memory retrieval matched the exact554175byte/79page source pin; all operative text/proof regions above inspected, with no fresh visual-rendering claim. No PDF/page saved or redistributed, no Lean/kernel/native formal execution, efficient algorithm, novelty, human/model approval, admission, canonical/source/policy edit, extra agent, commit/push or PR104 change. Only this private full-schema candidate is authored, pending a distinct exact-candidate review."
+}

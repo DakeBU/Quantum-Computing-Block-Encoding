@@ -1,0 +1,108 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-401",
+  "question_version": 2,
+  "repair_record": "_review_tmp/plan-401-isotropic-dimension-state-successor.json",
+  "repair_record_digest": "4918d3f5fbe8d0227ba7c73816fb923c33ed514af235ad01372127bd8c35e00d",
+  "original_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+  "original_contract_hash": "35796e5369f3f45d58d9b62103d321787c8fd234a7d0ed8d6b8b4c585181b9cf",
+  "successor_contract_hash": "f5d6e502b09f0ff671db99348e926bb515551af628bffba62aebf9a08184d1e9",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate question, complete reference answer, rubric and exposition are mathematically correct as an explicit first question-version2 successor. This is not equivalence to the predecessor proof demand, current gold restoration, policy admission, native formal alignment, a fresh kernel certificate or source-blind/human approval.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate author /root/qcb_formal_view_audit and the recorded predecessor author.",
+    "repair_author": "/root/qcb_formal_view_audit",
+    "original_author": "qit-applications-author-b3",
+    "exposure": "Not blind: this reviewer independently identified/reviewed the actual401/407 original defects in the completed401–410 batch and has prior QIT/primary-source exposure. Candidate author read that report. Full exact current candidate, complete actual prepared original and operative primary/source contracts were inspected for this new gate. A predecessor verdict and parent intent are not mathematical evidence for successor acceptance."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared original returned by release.checked()[2]), including metadata, not the current reader successor.",
+    "repair_record_digest": "qcb_core.digest(entire exact parsed private candidate JSON), including question/answer/rubric/exposition and all execution/source metadata.",
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the exact original nine-field contract with ONLY question replaced by candidate.question. Candidate has no separate top-level assumptions/conventions/family/split/graph/source overrides.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "actual_checks": "Programmatically verified exact candidate schema/key set, pending-distinct-review marker, version2 key grammar, supersedes key/whole-item/contract hashes, changed question, positive rubric schema and source LF bindings. Only question differs among the nine fields; all other eight are literally inherited. Exposition has exactly3 steps AND exactly the predecessor's per-step supporting-node lists, not merely subsets. New/old hashes differ.",
+    "retained_contract_values": "family=isotropic-state-positivity; split=test_public; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; assumptions=[]; conventions=[]; target_nodes=[\"concept:operator-theory\",\"concept:matrix-analysis\"]; supporting_nodes=[]; source_refs retained exactly as hashed."
+  },
+  "contract_change_assessment": {
+    "classification": "Explicit question-contract successor; no unchanged-question or predecessor-equivalence claim.",
+    "predecessor_literal_reading": "The prepared question has empty assumptions/conventions and does not exclude d1, but demands an exact bounded interval with two tight endpoints. Its answer/rubric constrain a nonexistent complement sector at d1 and divide by d^2-1. At d1 Phi=I and rho(x)=I for all real x; x=-1 is already a counterexample to the asserted universal lower bound.",
+    "changed_requested_reasoning": "Version2 preserves the all-real parameter positivity problem, explicitly assesses that dimension-independent finite-endpoint assertion, and asks for the correct dimension branches, multiplicities, negativity witnesses and endpoint ranks. It no longer demands proving the false universal finite-interval claim. This is a material requested-reasoning change, not an equivalent original answer or an unchanged-question repair.",
+    "retained_family_target_scope": "The original isotropic-state-positivity family, test_public split, graph snapshot, source_refs and operator-theory/matrix-analysis nodes are inherited exactly. Positive integer d states the meaningful nonzero dimension domain; d0 was already incompatible with the stipulated rank-one trace-one Phi. d1 is retained, not dropped.",
+    "hypotheses_and_minimality": "Original assumptions/conventions stay empty. The question itself now makes the existing density-space dimensions explicit and separates d1/d>=2; it does not impose d>=2 globally, x>=0 as a premise, separability, PPT or a channel assumption. The change corrects the actual boundary defect without changing the family or claiming a new distinct core.",
+    "admission_boundary": "This private mathematical review does not stage or change the current-reader policy, prior withdrawal, source/graph scope, historical data or version-lineage implementation. Original remains historical; any integration and stable-release decision is separate."
+  },
+  "substantive_reconstruction": {
+    "trace_and_hermiticity": "For real x, rho is Hermitian and tr rho=(1-x)+(x/d^2)d^2=1 for any positive d. With P=Phi,Q=I-P, rho=aP+bQ, a=1-x+x/d^2,b=x/d^2. This decomposition makes the positivity question spectral, but a coefficient only imposes a positivity constraint if its projector has nonzero rank.",
+    "nontrivial_dimension": "For d>=2, rank P=1,rank Q=d^2-1>0. Positivity is equivalent to a,b>=0, giving0<=x<=L=d^2/(d^2-1). For x<0, |1,2> is a unit vector orthogonal to Phi_d with expectation b<0. For x>L the unit Phi_d vector has expectation a<0. Conversely nonnegative coefficients make the operator PSD. x0 gives Phi,rank1; xL gives(I-Phi)/(d^2-1),rank d^2-1. Values1<x<=L are valid and must not be discarded by a convex-mixture-only argument.",
+    "degeneracy_and_d1": "At x=1 the two labeled sectors have the same numerical eigenvalue1/d^2, whose combined multiplicity is d^2; the candidate explicitly says its two coefficients need not be distinct. At d=1, P=I,Q=0,a=1 and b=x is merely a coefficient on zero. The sole actual eigenvalue is1 for every real x, so all R is the valid parameter set and there are no two finite tight endpoints. No eigenvector exists in a zero-rank sector. d0 has only a zero operator with trace0 and cannot instantiate Phi or the formula.",
+    "scope_boundary": "These are exact density positivity statements only. They do not classify entanglement/PPT or prove a depolarizing implementation. Nonzero-sector spectral constraints and the trivial one-dimensional branch are independent of any source's shorthand parameter range."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: explicitly preserves/refutes the universal finite-endpoint assertion and asks the complete positive-dimension problem instead of silently excluding d1.",
+    "reference_answer": "Accept in full. Trace, coefficients, both nonzero sector multiplicities, sharp interval, explicit unit witnesses and endpoint states/ranks are correct. The coincident x1 eigenvalue and absent d1 complement are handled distinctly.",
+    "rubric": "All c1-c4 fit the changed question: d1 all-real witness; trace/decomposition with actual multiplicities; exact d>=2 necessity/sufficiency and negative vectors; endpoint ranks/d0 noninstantiability. No criterion confuses eigenvalue coefficients with nonzero eigenspaces.",
+    "exposition": "All three claims and the core summary agree with the full dimension split. The exact original per-step nodes are preserved: operator-theory; matrix-analysis+operator-theory; matrix-analysis. No extra graph node or semantic step is added.",
+    "necessity_minimality_verdict": "Accept the whole exact question-version2 candidate. The original remains historical and its universally bounded parameter answer is not declared equivalent or restored as gold."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+      "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+      "anchor": "Complete authored predecessor qcb-core-plan-401-isotropic-positivity-x-range and exact actual prepared counterpart question/answer/all rubric/assumptions/conventions/three semantic steps read. Tracked QA provenance only, not mathematical proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Entire historical prepared qcb-core-plan-401 bound by original_item_digest through release.checked()[2]. Frozen content provenance, not admission or a new proof."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Full leditzky-2025-repth-qit metadata entry and recorded primary URL/edition/binary pin read. LF catalog binding is metadata only; operative primary text is separately inspected as detailed below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "CONTRACT_FIELDS, check_exposition and question_successor rules read to validate exact nine-field replacement, version2 grammar and graph/step bounds. This is schema/lineage evidence, never a mathematical proof or policy admission run."
+    }
+  ],
+  "primary_source_checks": {
+    "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+    "recorded_edition": "10 April2026;79 pages",
+    "inspected_operative_regions": "Leditzky10 April2026/79-page PDF: complete isotropic Definition6.7/Proposition6.8 Eq6.47 and Exercise6.2 context, PDF56–57/printed57–58. The exercise supplies no worked solution; the d1 analysis and unit-vector sharpness witnesses above are independent reconstruction, not invented printed source theorems.",
+    "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "reviewer_historical_binary_hash_verified": false,
+    "reviewer_retrieved_binary_sha256": null,
+    "actual_access": "Genuine primary PDF text extraction at author-hosted URL. Full operative definitions/displayed equations and relevant proof/exercise contexts were inspected in this continuous task context and key candidate-specific regions reread for this gate. No rendered-page/diagram-pixel inspection is newly claimed.",
+    "candidate_author_byte_claim_limit": "The candidate author reports its own successful in-memory binary retrieval and matching historical hash. This reviewer has NOT independently verified that execution or those bytes. My own fresh read-only urllib attempts to BOTH primary URLs in this gate were blocked with WinError10013. Text cover/date/anchors agree with catalog but do not establish binary equality. I do not transfer the author's hash-verification flag to myself or rewrite frozen earlier reports.",
+    "source_proof_limit": "The positivity exercise has no printed full solution; the exact d1 eigenvalue analysis is independently reconstructed. For407 the original false exact event is source-inherited, the per-outcome estimate is supplied in the question, and Pinsker is a named source theorem. No source citation is treated as a local Lean proof.",
+    "redistribution": "No PDF/page saved, redistributed or relicensed; no long primary passages copied."
+  },
+  "provenance": {
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "retrieval": "Complete actual historical prepared original via release.checked()[2] and complete exact private candidate read, including source/execution metadata. Not substituted authored/current repaired intentions.",
+    "instruction_status": "Required AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared contract/acceptance texts were read completely in this context and checked unchanged from the preceding objective; substantive-worker skill reread for this gate. PDF guidance previously read completely remains the read-only primary-access discipline.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "formal_status": "Independent mathematical/source/exact-binding review only. No new local Lean node, compiled theorem, native formal view, fixed-reference replay or efficient implementation is claimed.",
+    "source_hash_method": "qcb_integrity.text_sha of each whole tracked local source/data file; qcb_core.digest for whole candidate/original/contracts. Successful schema checks do not decide mathematical truth.",
+    "mutation_scope": "Only parent _review_tmp/plan-401-isotropic-dimension-state-successor-review.json written by this gate. No candidate, canonical source/data/policy, old report, history, current publication gate, commit or push changed.",
+    "remaining_limits": "No global semantic dedup, alias reconciliation, split pooling, theorem novelty or stable admission. Author execution claims not independently audited beyond the exact content/source-math review."
+  }
+}
