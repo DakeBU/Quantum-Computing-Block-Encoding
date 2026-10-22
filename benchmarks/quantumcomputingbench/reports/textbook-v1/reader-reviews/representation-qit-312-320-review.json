@@ -1,0 +1,1027 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "observed_head_at_start": "a0836e38501d3976663ca561424063e78ba32214",
+    "requested_core_ids": [
+      "qcb-core-plan-312",
+      "qcb-core-plan-313",
+      "qcb-core-plan-315",
+      "qcb-core-plan-318",
+      "qcb-core-plan-319",
+      "qcb-core-plan-320"
+    ],
+    "present_prepared_core_ids": [
+      "qcb-core-plan-312",
+      "qcb-core-plan-313",
+      "qcb-core-plan-315",
+      "qcb-core-plan-318",
+      "qcb-core-plan-319",
+      "qcb-core-plan-320"
+    ],
+    "absent_ids": [],
+    "historical_native_count": 213,
+    "current_reader_count_at_inspection": 166,
+    "current_reader_presence_at_inspection": [
+      {
+        "core_id": "qcb-core-plan-312",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-313",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-315",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-318",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-319",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-320",
+        "present": true
+      }
+    ],
+    "selection": "Actual complete prepared records loaded via release.checked()[2], not substituted authored rows or current successors. All six requested IDs present. Current reader count/presence is an inspection-time observation, not this review's admission.",
+    "content_inspected": "Complete questions, full reference answers, all rubric criteria, assumptions, conventions, all semantic steps, summaries and primary/source metadata. Exact whole-item hashes include metadata not used as mathematical proof. Close neighboring full mathematical/grading contracts were compared.",
+    "review_target": "Private evidence for a future checkpoint, not the current checkpoint or PR103. No canonical record, policy, production Lean or frozen candidate is changed.",
+    "comparison_scope": "All15 within-batch pairs plus twelve close exact-item neighboring pairs. Relevant prepared314/316/317 were sought but were not returned by release.checked()[2]; they are not requested batch absences and no authored substitutes are used."
+  },
+  "provenance": {
+    "actual_identity": "The actual /root/qcb_boundary_repair_review task, distinct from tensor-symmetry-author-b3. No invented reviewer, collaborator acknowledgment or human approval.",
+    "exposure": "Not source-blind or verdict-blind. This same task previously inspected312/318/319 as neighboring contracts and has prior QIT reader exposure; fresh actual whole records and newly relevant primary regions were read for this objective. Historical imported acceptance metadata is not a verdict for this review. Parent specified the bounded scope, not the resulting mathematical conclusions.",
+    "instructions_and_skills": "Using qbe-substantive-worker for exact-contract/source/typed-boundary inspection and PDF guidance for read-only primary access. Required AGENTS/HARNESS, theorem-publication, proof-digestion, evidence-routed-memory and shared contract/acceptance texts were read completely in this context and compared unchanged through a0836e3; worker/PDF skill texts were also read completely in this context.",
+    "new_kernel_execution": false,
+    "local_Lean_closure_claimed": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_performed": false,
+    "novelty_claimed": false,
+    "digest_method": "qcb_core.digest(entire actual prepared item); qcb_integrity.text_sha for LF-normalized tracked local source hashes. Local QA/catalog hashes are content provenance, not a binary PDF hash.",
+    "execution": "Read-only source/prepared-record/policy inspection and hash validation. Primary PDF text was accessed at its author-hosted URL. No local Lean/prediction execution, source proof compilation, numerical simulator, remote model run, extra agent, commit or push.",
+    "mutation_scope": "Only parent-workspace _review_tmp/representation-qit-312-320-review.json is written. Existing SP successors, plan307 candidate and earlier reports remain frozen and untouched."
+  },
+  "primary_source_checks": {
+    "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+    "source": "Felix Leditzky, Representation-theoretic methods in quantum information theory,10 April2026/79-page edition.",
+    "actual_access": "Genuine primary PDF text extraction from the author-hosted URL. New complete operative regions include Proposition5.5/cycle identity and Exercise5.1; hook formula and worked(4,2,1) example; Corollary5.19 parameter-count proof; Eq5.35-5.36 and full later Lemma9.3/Proposition9.4 upper-bound proof through Eq9.32 and neighborhood discussion; Definition6.1 and complete Werner twirl Proposition6.3 proof; entire isotropic Definition6.7/Eq6.44-6.46/Phi partial-transpose paragraph. Earlier cover and related commutant/Young/Weyl contexts were inspected in this same task context.",
+    "proof_coverage_limits": "Hook formula and some entropy bounds are stated, not fully proved in the cited primary regions. The cycle identity is partly an exercise; it is reconstructed pointwise here. Chapter5's two-sided rate is not proved there; the later upper-bound proof is read in full, while external [Har05] and exact lower-bound constants are not newly verified. Primary Eq6.45's state wording and extracted Eq9.35's missing union-count factor are critically assessed, not blindly accepted.",
+    "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "historical_binary_hash_verified_in_this_review": false,
+    "retrieved_binary_sha256": null,
+    "byte_and_visual_limits": "A direct in-memory byte retrieval earlier in this context failed with WinError10013 socket denial; it was not retried for this objective. Earlier screenshot requests returned cache misses/no inspected pixels. No new binary-byte equality or rendered-page verification is claimed. Text cover date and anchors agree with the recorded edition, but that is weaker evidence than hash equality.",
+    "redistribution": "No PDF saved, redistributed or relicensed; report deductions/counterexamples are independently reconstructed, with no long source passages copied.",
+    "local_binding_limit": "Tracked catalog/QA LF hashes bind metadata and reviewed content only, not primary proof, binary equality or formal closure."
+  },
+  "bounded_semantic_comparisons": {
+    "within_batch_pair_count": 15,
+    "within_batch_pairs": [
+      {
+        "left": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-313",
+          "key": "qcb-core-plan-313-cycle-type-conjugacy",
+          "item_digest": "2aa47cab42159b2c4d10c188b1f176c3bf6fa3799aff9b9f0e347853a9f92974",
+          "family": "qit-cycle-type-conjugacy",
+          "split": "test_public"
+        },
+        "relation": "different partition-related targets",
+        "reason": "312 evaluates dimensions of a Young-labelled irreducible via hook lengths.313 classifies S_n conjugacy by cycle supports and relabeling. The shared use of partitions is not the same mathematical claim or proof."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-315",
+          "key": "qcb-core-plan-315-werner-twirl-visibility",
+          "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+          "family": "qit-werner-twirl-visibility",
+          "split": "test_public"
+        },
+        "relation": "shared tiny representation ingredient, not whole target",
+        "reason": "The n=2 row/column hook dimensions underlying Werner symmetric/antisymmetric sectors are elementary extremes of312.315 asks Haar averaging, fixed points and visibility, none of which is a tableau count."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "relation": "distinct dimension factors and requested bounds",
+        "reason": "312 counts S_n/SYT dimensions for a fixed diagram.318 counts endomorphisms of U(d) multiplicity blocks and uses Weyl bounds; substituting the exponentially large Specht dimensions for U(d) dimensions would be an error. The hook recipe is representation background, not a whole alias."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "relation": "hook-dimensional subtarget versus asymptotic probability",
+        "reason": "319's w_lambda includes the Specht dimension f_lambda, controlled asymptotically by hook/entropy estimates.312 only computes one seven-box f_lambda and extremes, with no density spectrum, KL rate or neighborhood probability."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-320",
+          "key": "qcb-core-plan-320-isotropic-partial-transpose",
+          "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+          "family": "qit-isotropic-partial-transpose",
+          "split": "test_public"
+        },
+        "relation": "no identified whole-target equivalence",
+        "reason": "A hook-length count does not assert the partial-transpose symmetry identity or preservation of positivity.320's failure is present already for the maximally entangled state at d=2, independently of312's seven-box combinatorics."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-313",
+          "key": "qcb-core-plan-313-cycle-type-conjugacy",
+          "item_digest": "2aa47cab42159b2c4d10c188b1f176c3bf6fa3799aff9b9f0e347853a9f92974",
+          "family": "qit-cycle-type-conjugacy",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-315",
+          "key": "qcb-core-plan-315-werner-twirl-visibility",
+          "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+          "family": "qit-werner-twirl-visibility",
+          "split": "test_public"
+        },
+        "relation": "different conjugation actions and outputs",
+        "reason": "313 conjugates individual finite permutations and preserves cycle lengths.315 conjugates density operators by diagonal unitaries and averages Haar measure. A shared word conjugation supplies no target/solution alias."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-313",
+          "key": "qcb-core-plan-313-cycle-type-conjugacy",
+          "item_digest": "2aa47cab42159b2c4d10c188b1f176c3bf6fa3799aff9b9f0e347853a9f92974",
+          "family": "qit-cycle-type-conjugacy",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "relation": "classification background, not parameter theorem",
+        "reason": "Cycle-type conjugacy helps label irreducible S_n types, but318 additionally needs Schur-Weyl multiplicity spaces and a fixed-d Weyl dimension bound. It does not ask to construct a cycle-matching conjugator."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-313",
+          "key": "qcb-core-plan-313-cycle-type-conjugacy",
+          "item_digest": "2aa47cab42159b2c4d10c188b1f176c3bf6fa3799aff9b9f0e347853a9f92974",
+          "family": "qit-cycle-type-conjugacy",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "relation": "classification background, not concentration",
+        "reason": "313 identifies finite-group conjugacy classes;319 studies trace weights of tensor-power states and a relative-entropy large-deviation rate. The rate is not inferred from merely counting cycle types."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-313",
+          "key": "qcb-core-plan-313-cycle-type-conjugacy",
+          "item_digest": "2aa47cab42159b2c4d10c188b1f176c3bf6fa3799aff9b9f0e347853a9f92974",
+          "family": "qit-cycle-type-conjugacy",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-320",
+          "key": "qcb-core-plan-320-isotropic-partial-transpose",
+          "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+          "family": "qit-isotropic-partial-transpose",
+          "split": "test_public"
+        },
+        "relation": "distinct mathematical maps and quantifiers",
+        "reason": "313's relabeling identity is inside a permutation group.320 concerns a linear partial-transpose map transporting U tensor conjugate(U) covariance. The latter's state-level claim fails through positivity, not cycle decomposition."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-315",
+          "key": "qcb-core-plan-315-werner-twirl-visibility",
+          "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+          "family": "qit-werner-twirl-visibility",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "relation": "complementary commutants, not the same invariant class",
+        "reason": "At n=2,315's Werner output commutes with every U tensor U and lies in span{I,F}.318's permutation-invariant operators commute only with F and may be arbitrary on the symmetric/antisymmetric sectors. For d=2 those spaces have complex dimensions2 versus3^2+1^2=10; |00><00| commutes with swap but is not a Werner state. Do not identify the classes by the word invariant."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-315",
+          "key": "qcb-core-plan-315-werner-twirl-visibility",
+          "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+          "family": "qit-werner-twirl-visibility",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "relation": "different invariant-state operations",
+        "reason": "315 actively twirls two systems under diagonal unitaries and preserves one swap moment.319 starts with rho tensor n, already permutation invariant, and studies its diagram distribution. A Haar twirl/fixed-point proof does not establish the KL concentration rate."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-315",
+          "key": "qcb-core-plan-315-werner-twirl-visibility",
+          "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+          "family": "qit-werner-twirl-visibility",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-320",
+          "key": "qcb-core-plan-320-isotropic-partial-transpose",
+          "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+          "family": "qit-isotropic-partial-transpose",
+          "split": "test_public"
+        },
+        "relation": "shared Werner symmetry, different positivity behavior",
+        "reason": "315 averages unitary conjugations and therefore preserves positivity and trace.320 applies partial transpose, which preserves trace and symmetry relations but can destroy positivity. Their common Werner terminology cannot justify320's false state iff."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "relation": "structural subtarget plus additional probabilistic specialization",
+        "reason": "318 supplies the form I_V_lambda tensor C_lambda for an arbitrary permutation-invariant operator and a polynomial coordinate count.319 specializes to a tensor-power density operator but must additionally control its trace weights through character/hook estimates and KL. Polynomially many coordinates alone does not imply concentration."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-320",
+          "key": "qcb-core-plan-320-isotropic-partial-transpose",
+          "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+          "family": "qit-isotropic-partial-transpose",
+          "split": "test_public"
+        },
+        "relation": "different commutants and missing positivity constraint",
+        "reason": "318 describes the S_n-commuting operator algebra, whereas320 transports a diagonal-unitary symmetry by a nonpositive linear map. A finite parameterization of invariant operators does not turn every trace-one Hermitian representative into a state."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-320",
+          "key": "qcb-core-plan-320-isotropic-partial-transpose",
+          "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+          "family": "qit-isotropic-partial-transpose",
+          "split": "test_public"
+        },
+        "relation": "state assumptions matter differently",
+        "reason": "319 assumes a positive density operator and an ordered probability spectrum.320's partial transpose of an isotropic state may have negative eigenvalues, so its F/d counterexample cannot be inserted as a density input into319. Neither question is an alias or an authorization to erase positivity."
+      }
+    ],
+    "neighboring_full_contexts": [
+      {
+        "core_id": "qcb-core-plan-407",
+        "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+        "item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+        "family": "spectrum-estimation-consistency",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-415",
+        "key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+        "item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+        "family": "spectrum-estimation-symmetries",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-420",
+        "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+        "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+        "family": "symmetric-subspace-dimension",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-302",
+        "key": "qcb-core-plan-302-double-commutant-bicommutant",
+        "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+        "family": "qit-double-commutant-bicommutant",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-304",
+        "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+        "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+        "family": "qit-schur-weyl-mutual-commutant",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-305",
+        "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+        "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+        "family": "qit-permutation-conjugation-invariance",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-306",
+        "key": "qcb-core-plan-306-symmetric-power-spanning",
+        "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+        "family": "qit-symmetric-power-spanning",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-309",
+        "key": "qcb-core-plan-309-majorization-annihilation",
+        "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+        "family": "qit-majorization-annihilation",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-310",
+        "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+        "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+        "family": "qit-schur-weyl-dimension-count",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-311",
+        "key": "qcb-core-plan-311-weyl-dim-u2",
+        "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+        "family": "qit-weyl-dim-u2",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-007",
+        "key": "qcb-core-plan-007-werner-entanglement-threshold",
+        "item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+        "family": "qit-symmetry-entanglement",
+        "split": "test_public"
+      }
+    ],
+    "neighbor_pairs": [
+      {
+        "left": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "same hook formula, different complete computation",
+        "reason": "310 has four-box shapes, U3 multiplicities and an81-dimensional sum.312 has shape(4,2,1) at seven boxes and arbitrary row/column extremes. Their one-row count and hook recipe overlap, but complete targets differ."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "different representation dimensions",
+        "reason": "311 derives lambda_1-lambda_2+1 for U2 from tableaux and a determinant twist.312 computes S_n dimensions with hook lengths. These two dimensions for a diagram need not agree."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "relation": "commutant-block prerequisite",
+        "reason": "302 gives I on each irreducible group factor tensor arbitrary multiplicity endomorphism.318 applies this structure to the tensor representation of S_n and adds fixed-d polynomial dimension bounds. The additional counting claim is not in302."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "relation": "Schur-Weyl prerequisite versus parameter counting",
+        "reason": "304 establishes mutual commutants by endomorphism-power interpolation and bicommutant.318 consumes that structure but asks a quantitative number-of-parameters bound, not another interpolation proof."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "relation": "finite-dimensional operator-span bridge",
+        "reason": "In finite dimension305 identifies S_n-invariant operator tensors with the span of X tensor n.318's C^d domain supplies finite dimension explicitly, unlike305's standalone omission. The invariant space is shared, but318 asks parameter counting and uses Schur-Weyl/Weyl estimates."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "relation": "symmetric-space subtarget for an alternative count",
+        "reason": "Applying306 to End(C^d) yields the space whose occupation-basis dimension is binom(n+d^2-1,n). That alternative exact coordinate count is compatible with318 but is not the same requested polarization proof as306."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-420",
+          "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+          "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+          "family": "symmetric-subspace-dimension",
+          "split": "test_public"
+        },
+        "relation": "shared stars-and-bars mechanism after changing carrier",
+        "reason": "420 counts Sym^n(C^d) and compares it with d^n.318's alternative operator-symmetric carrier is End(C^d) of dimension d^2, not C^d. Its exact alternative count uses d^2 in the binomial; confusing these two carrier dimensions would change the contract."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "necessary support implication, not a fixed-word iff",
+        "reason": "319 only needs that weights violating majorization cannot occur.309 incorrectly claims the converse for every fixed tableau/word. The fixed filling that vanishes despite allowed content does not invalidate the true one-way support restriction or the Schur character bound."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-407",
+          "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+          "item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+          "family": "spectrum-estimation-consistency",
+          "split": "test_public"
+        },
+        "relation": "shared neighborhood concentration with a materially stronger false equality demand",
+        "reason": "407 uses the same weak-Schur outcome bound and neighborhood union-bound reasoning, but its literal question/reference/rubric also demand Pr(lambda/n != s)->0. For an irrational ordered spectrum every lambda/n is rational, so that probability is1 at every n.319 asks closeness, not eventual exact equality. This is a genuine shared valid subtarget plus a non-equivalent false quantifier in407; the old neighbor's acceptance metadata is not evidence."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-415",
+          "key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+          "item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+          "family": "spectrum-estimation-symmetries",
+          "split": "test_public"
+        },
+        "relation": "measurement-structure prerequisite versus rate",
+        "reason": "415 asks whether symmetry-adapted effects and the Schur-Weyl projective measurement are WLOG.319 assumes the diagram blocks and asks trace-weight concentration/rate. Correctly forming a projective measurement does not by itself prove its large-deviation bound, and an unspecified WLOG decision criterion is not repaired by319."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-315",
+          "key": "qcb-core-plan-315-werner-twirl-visibility",
+          "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+          "family": "qit-werner-twirl-visibility",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-007",
+          "key": "qcb-core-plan-007-werner-entanglement-threshold",
+          "item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+          "family": "qit-symmetry-entanglement",
+          "split": "test_public"
+        },
+        "relation": "visibility/twirl subtarget of a separability construction",
+        "reason": "007's two-qubit Werner threshold uses swap visibility and twirling a product state for the separable direction.315 proves visibility preservation and fixed points for the Haar map but asks no entanglement threshold. Overlap is substantive, not whole-question equivalence; no approval of all007 rubric directions is imported."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-320",
+          "key": "qcb-core-plan-320-isotropic-partial-transpose",
+          "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+          "family": "qit-isotropic-partial-transpose",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-007",
+          "key": "qcb-core-plan-007-werner-entanglement-threshold",
+          "item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+          "family": "qit-symmetry-entanglement",
+          "split": "test_public"
+        },
+        "relation": "shared transpose-swap identity, different false/valid conclusion",
+        "reason": "007 uses F^T_B=2*Phi and a negative partial-transpose eigenvalue as an entanglement witness.320 instead incorrectly calls the symmetry-transported partial transpose a state without positivity. The same operator identity supports the need to retain that positivity boundary, not a whole-target alias."
+      }
+    ],
+    "nearby_not_returned_by_prepared_loader": [
+      "qcb-core-plan-314",
+      "qcb-core-plan-316",
+      "qcb-core-plan-317"
+    ],
+    "search_coverage": "Bounded prepared-question inventory used Werner/isotropic/partial-transpose/cycle-type/spectrum/hook/permutation-invariant terms and the known neighboring Schur-Weyl interfaces. Full mathematical/grading contexts were inspected for the bound neighbors listed. Unselected hits, historical excluded records and absent neighboring IDs are not certified distinct or silently substituted.",
+    "whole_contract_alias_result": "No exact whole-question alias is established. Real shared subtargets and hypotheses/quantifier differences are listed explicitly; different names, source anchors or graph nodes are not used as proof of distinctness.",
+    "family_and_split_assessment": "All reviewed and selected neighboring prepared records have split=test_public, so this bounded set exhibits no cross-split conflict. Shared subtargets span different families; no split pooling or independent-count conclusion follows. IDs, families, splits, graph scopes and labels remain unchanged.",
+    "global_dedup_complete": false,
+    "cross_split_pooling_authorized": false,
+    "source_checks": [
+      {
+        "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+        "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+        "anchor": "Complete actual reviewed mathematical/grading contents and source metadata for the six authored rows; exact prepared records are separately bound. Content provenance only."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+        "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+        "anchor": "All actual prepared reviewed/comparator records, with whole item digests. This binds contents for target comparison, not blanket correctness of neighboring answers."
+      },
+      {
+        "path": "website/research/sources.json",
+        "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "Leditzky catalog entry near219: URL/edition/recorded historical PDF SHA only, not primary proof or verified downloaded bytes."
+      }
+    ]
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-312",
+      "key": "qcb-core-plan-312-hook-length-standard",
+      "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "For lambda=(4,2,1), the hook rows are[6,4,2,1],[3,1],[1]. Each hook counts its own box plus boxes to its right and below in the same column. Their product is6*4*2*1*3*1*1=144. The numerator is7!=5040, so the number is5040/144=35. No U(d) multiplicity is being counted here; this is the S7/SYT dimension.",
+        "extreme_cases": "For one row(n), the hooks are n,n-1,...,1; for one column(1^n), they are the same list down the column. Both hook products equal n!, giving one standard tableau. At n=0 the empty diagram has empty hook product1 and0!=1, again one empty tableau; no zero denominator arises. This combinatorial count has no local-dimension restriction, unlike asking whether the corresponding representation occurs in(C^d) tensor n.",
+        "answer_rubric_exposition": "All seven hooks, arithmetic, extreme cases, all four rubric criteria and four semantic steps are correct. The assumptions fix the main shape to seven boxes, while the separate extremes are the arbitrary-n checks explicitly requested. The source provides the hook formula and this worked example; the task applies that stated theorem rather than requesting a new proof of the hook-length formula.",
+        "source_alignment": "Complete Proposition5.10(i)/Eq5.9-5.10 and Example5.11/Eq5.12-5.13 were inspected. The source's drawn hook labels were also recoverable as text; no rendered figure or historical PDF-byte equality is claimed.",
+        "bounded_relation": "Shares the hook computation method and one-row subtarget with310, but310 fixes n=4,d=3 and also computes U3 dimensions and an81 sum.318 counts U(d)-block parameters rather than these S_n dimensions, and319 uses the latter only as an entropy-scale multiplicity."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Complete mathematical/grading fields for authored qcb-core-plan-312 near line1169 and exact prepared counterpart read: question, answer, all rubric criteria, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-312-hook-length-standard loaded via release.checked()[2]; whole item digest includes metadata. Frozen content provenance, not primary theorem proof."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full leditzky-2025-repth-qit source-catalog entry near219 inspected. It records the author-hosted URL,10 April2026/79-page edition and historical PDF binary SHA. LF hash binds metadata only, not PDF-byte equality or mathematics."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026;79 pages; FT25 course directory",
+          "inspected_anchors": "Complete Proposition5.10(i) Eq5.9-5.10 and Example5.11 Eq5.12-5.13, printed45-46/PDF44-45; hook formula is stated and example worked, not a proof of the general hook theorem.",
+          "access": "Genuine author-hosted PDF text extraction, bounded complete operative text and context inspected. Text/statement/proof/deferred-proof distinctions are explicit.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover/edition was observed in this same task context and source anchors agree; historical binary SHA remains unverified. Earlier direct byte retrieval in this context failed with WinError10013 and screenshots returned cache misses. No fresh binary or visual verification, PDF storage or redistribution."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only. No kernel/native formal admission, source-blindness, human/model/expert approval or novelty claim.",
+        "Recorded historical PDF SHA remains unverified; local QA/catalog LF bindings are content provenance only.",
+        "Semantic comparison is bounded; no global deduplication, split reconciliation or admission is inferred."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-313",
+      "key": "qcb-core-plan-313-cycle-type-conjugacy",
+      "item_digest": "2aa47cab42159b2c4d10c188b1f176c3bf6fa3799aff9b9f0e347853a9f92974",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Let c=(i_1,...,i_k) with distinct listed entries and Q=sigma*c*sigma^-1 in the usual right-to-left composition convention. Then Q(sigma(i_a))=sigma(c(i_a))=sigma(i_(a+1)), with cyclic indexing, and Q fixes any point outside sigma({i_1,...,i_k}). Thus Q is exactly(sigma(i_1),...,sigma(i_k)). Conjugation distributes over products, and a bijection sends disjoint cycle supports to disjoint supports, so the complete multiset of cycle lengths is preserved.",
+        "converse_and_boundaries": "If pi and eta have the same cycle type on the SAME finite set, pair their cycles by length, including all1-cycles, choose a cyclic listing for each pair, and map the a-th entry of each first cycle to the a-th entry of its paired second cycle. Disjoint cycle supports partition the ground set, so this map is a bijection. The preceding formula gives sigma*pi*sigma^-1=eta. Equal-length cycles or choices of starting entry make sigma nonunique, not ill-defined after choices are fixed. For the empty set S0 only the identity occurs; fixed points and a1-cycle are also covered.",
+        "answer_rubric_exposition": "The full answer, r1-r4 and four steps prove both directions correctly, without claiming literal uniqueness of a written cycle listing. Cycle decomposition is unique only up to cycle order and cyclic rotation; that standard convention does not compromise cycle type or the constructed conjugator. The ambient finite set must remain fixed as the explicit assumption requires.",
+        "source_alignment": "Complete Proposition5.5 and Eq5.4 plus Exercise5.1/Eq5.37 were inspected. The primary gives the relabeling formula and conjugacy claim but leaves the computational verification as an exercise; the pointwise proof and converse above supply the missing detail independently.",
+        "bounded_relation": "Cycle-type partitions index conjugacy classes and eventually irreps, whereas312 computes dimensions of a Young-labelled irrep. Sharing partition labels is not an identity between group conjugacy classification and tableau enumeration; neither entails the full invariant-state or concentration questions."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Complete mathematical/grading fields for authored qcb-core-plan-313 near line1274 and exact prepared counterpart read: question, answer, all rubric criteria, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-313-cycle-type-conjugacy loaded via release.checked()[2]; whole item digest includes metadata. Frozen content provenance, not primary theorem proof."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full leditzky-2025-repth-qit source-catalog entry near219 inspected. It records the author-hosted URL,10 April2026/79-page edition and historical PDF binary SHA. LF hash binds metadata only, not PDF-byte equality or mathematics."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026;79 pages; FT25 course directory",
+          "inspected_anchors": "Complete Proposition5.5(i)-(iii) and conjugation Eq5.4, printed44/PDF43, plus Exercise5.1 Eq5.37, printed51/PDF50. Direct cycle computation is assigned as an exercise; independently completed here.",
+          "access": "Genuine author-hosted PDF text extraction, bounded complete operative text and context inspected. Text/statement/proof/deferred-proof distinctions are explicit.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover/edition was observed in this same task context and source anchors agree; historical binary SHA remains unverified. Earlier direct byte retrieval in this context failed with WinError10013 and screenshots returned cache misses. No fresh binary or visual verification, PDF storage or redistribution."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only. No kernel/native formal admission, source-blindness, human/model/expert approval or novelty claim.",
+        "Recorded historical PDF SHA remains unverified; local QA/catalog LF bindings are content provenance only.",
+        "Semantic comparison is bounded; no global deduplication, split reconciliation or admission is inferred."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-315",
+      "key": "qcb-core-plan-315-werner-twirl-visibility",
+      "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "definition_and_state_domain": "For a finite local dimension, define T(X)=integral_{U(d)} (U tensor U)*X*(U† tensor U†) dU with normalized Haar measure. This is the map specified in words by the question/convention. For rho positive, every quadratic form of each conjugated integrand is nonnegative, so T(rho) is positive; cyclicity and normalized measure give tr T(rho)=tr rho=1. Thus proving symmetry really does produce a Werner STATE, not merely an invariant operator.",
+        "invariance_and_fixed_points": "For fixed V, (V tensor V)T(X)(V† tensor V†)=integral ((VU) tensor(VU))*X*((VU)† tensor(VU)†)dU=T(X) by LEFT invariance. If W already has this Werner symmetry, each integrand of T(W) equals W and the average equals W. Taking W=T(rho) gives T^2(rho)=T(rho); the same projection identity holds linearly for arbitrary operators.",
+        "visibility": "The swap F obeys F(U tensor U)=(U tensor U)F on every pure tensor and hence on the whole space. Therefore tr(F*T(rho))=integral tr((U† tensor U†)*F*(U tensor U)*rho)dU=tr(F*rho). This overlap is real and lies in[-1,1] because F is Hermitian with eigenvalues plus or minus1 and rho is a state. The proof does not need the explicit two-sector Werner parametrization or any division by d^2-1.",
+        "answer_rubric_exposition": "All four rubric criteria, four semantic steps and the complete reference are mathematically correct. The reference supplies the map definition in words rather than a displayed equation; its convention unambiguously specifies the conjugation average. Positivity/trace preservation, implicit in its use of state, are checked explicitly above rather than assumed from symmetry alone. The d=1 extension is trivial with F=I and visibility1; primary Werner Definition6.1 uses d>=2 for its nontrivial family. There is no arbitrary-visibility or singular-parametrization claim at d=1.",
+        "source_alignment_and_limits": "Complete Definition6.1, twirl Eq6.19 and Proposition6.3 proof Eq6.20-6.27 were inspected. Left invariance and trace cyclicity suffice; a finite exact implementation, an efficient unitary design, local-oracle synthesis or a finite-bit cost is not inferred from the Haar integral.",
+        "bounded_relation": "007 uses this twirl/visibility preservation as a subtarget of the Werner separability construction.320 transports operator symmetry by partial transpose, which need not preserve positivity; T here is a positive mixture of unitary conjugations, so its state conclusion does not share320's defect."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Complete mathematical/grading fields for authored qcb-core-plan-315 near line1484 and exact prepared counterpart read: question, answer, all rubric criteria, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-315-werner-twirl-visibility loaded via release.checked()[2]; whole item digest includes metadata. Frozen content provenance, not primary theorem proof."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full leditzky-2025-repth-qit source-catalog entry near219 inspected. It records the author-hosted URL,10 April2026/79-page edition and historical PDF binary SHA. LF hash binds metadata only, not PDF-byte equality or mathematics."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026;79 pages; FT25 course directory",
+          "inspected_anchors": "Complete Definition6.1, Eq6.19 and full Proposition6.3 proof Eq6.20-6.27, printed52-55/PDF51-54. State positivity/trace checked independently in addition to the printed symmetry proof.",
+          "access": "Genuine author-hosted PDF text extraction, bounded complete operative text and context inspected. Text/statement/proof/deferred-proof distinctions are explicit.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover/edition was observed in this same task context and source anchors agree; historical binary SHA remains unverified. Earlier direct byte retrieval in this context failed with WinError10013 and screenshots returned cache misses. No fresh binary or visual verification, PDF storage or redistribution."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only. No kernel/native formal admission, source-blindness, human/model/expert approval or novelty claim.",
+        "Recorded historical PDF SHA remains unverified; local QA/catalog LF bindings are content provenance only.",
+        "Semantic comparison is bounded; no global deduplication, split reconciliation or admission is inferred."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-318",
+      "key": "qcb-core-plan-318-permutation-invariant-poly",
+      "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Schur-Weyl decomposes H as a direct sum of V_lambda tensor U_lambda^d, with inequivalent S_n irreps V_lambda. A permutation-commuting operator has no cross-isotypical blocks and has form directsum_lambda I_V_lambda tensor C_lambda, with C_lambda arbitrary in End(U_lambda^d). Let m_lambda=dim U_lambda^d. The operator space therefore has complex dimension sum_lambda m_lambda^2. This is not sum(dim V_lambda)^2, and I on the Specht factor does not force the entire block to be a scalar.",
+        "explicit_polynomial_bound": "There are at most(n+1)^d possible row-length tuples. Weyl's factor for i<j is1+(lambda_i-lambda_j)/(j-i), which lies between1 and n+1 for an allowed partition. There are d(d-1)/2 factors, so m_lambda<=(n+1)^(d(d-1)/2). Squaring and summing yields sum_lambda m_lambda^2<=(n+1)^(d+d(d-1))=(n+1)^(d^2), a polynomial in n for fixed d. The reference's spelled-out exponent is read as the explicitly cited d(d-1)/2, not as unparenthesized multiplication of(n+1)^d by(d-1)/2.",
+        "scalar_and_boundary_scope": "For arbitrary complex operators this counts complex parameters; equivalently twice as many real coordinates. For Hermitian invariant operators the real dimension is sum m_lambda^2, with a trace-one affine constraint reducing it by one when relevant; positivity is a subset, not extra independent coordinates. Either convention remains polynomial. The claim is information/dimension compression, not a free polynomial-time algorithm for finding a Schur basis or reading an exponentially stored matrix. Fixed d is essential; no uniform polynomial-in(n,d) conclusion follows. n=0 gives a one-dimensional empty tensor space; d=1 gives one scalar block.",
+        "answer_rubric_exposition": "Accept the complete question, answer, r1-r4 and all four steps. The full intended exponent and parameter field can be written more explicitly, but the source anchors, context and fixed-d assumption make the claimed polynomial bound correct. No positivity, normalization or access assumption is silently imposed on the arbitrary operator in this question.",
+        "source_alignment": "Complete Corollary5.19 proof Eq5.30-5.34, including the row-tuple count and Weyl dimension bound, were inspected, with the Schur-Weyl/commutant basis from Sections4-5. The source supplies the entire short argument; no local Lean closure is inferred.",
+        "bounded_relation": "302/304 provide the commutant/block structure,305/306 give a finite-dimensional symmetric-operator-tensor description, and310/311 instantiate dimension formulas. For finite d an occupation-basis count also gives the exact alternative dimension binom(n+d^2-1,n), compatible with the same space. That is an exposition bridge, not a new admitted theorem or a duplicate whole question.319 adds positivity, a special tensor-power state and exponential weights beyond this parameter count."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Complete mathematical/grading fields for authored qcb-core-plan-318 near line1800 and exact prepared counterpart read: question, answer, all rubric criteria, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-318-permutation-invariant-poly loaded via release.checked()[2]; whole item digest includes metadata. Frozen content provenance, not primary theorem proof."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full leditzky-2025-repth-qit source-catalog entry near219 inspected. It records the author-hosted URL,10 April2026/79-page edition and historical PDF binary SHA. LF hash binds metadata only, not PDF-byte equality or mathematics."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026;79 pages; FT25 course directory",
+          "inspected_anchors": "Complete Eq5.30-5.34 and Corollary5.19 proof, printed50/PDF49, with Weyl formula5.11 and Schur-Weyl commutant context read earlier in this task context.",
+          "access": "Genuine author-hosted PDF text extraction, bounded complete operative text and context inspected. Text/statement/proof/deferred-proof distinctions are explicit.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover/edition was observed in this same task context and source anchors agree; historical binary SHA remains unverified. Earlier direct byte retrieval in this context failed with WinError10013 and screenshots returned cache misses. No fresh binary or visual verification, PDF storage or redistribution."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only. No kernel/native formal admission, source-blindness, human/model/expert approval or novelty claim.",
+        "Recorded historical PDF SHA remains unverified; local QA/catalog LF bindings are content provenance only.",
+        "Semantic comparison is bounded; no global deduplication, split reconciliation or admission is inferred."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-319",
+      "key": "qcb-core-plan-319-spectrum-concentration",
+      "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_target_and_rate": "The intended fixed-d neighborhood-concentration theorem and the full reference's relative-entropy rate with polynomial prefactors are correct. Put w_lambda=tr(P_lambda*rho tensor n)=f_lambda*tr(omega_lambda(rho)), p=lambda/n, f_lambda=dim V_lambda and m_lambda=dim U_lambda^d. For ordered positive eigenvalues s, the Schur character tr omega_lambda(diag s) is a sum of m_lambda weight monomials. Every weight is majorized by lambda and contributes at most s^lambda, while the row-constant semistandard filling contributes s^lambda itself. Thus s^lambda<=tr omega_lambda(diag s)<=m_lambda*s^lambda. Hook/entropy estimates give log f_lambda=n*H(p)+O_d(log(n+d)); adding log s^lambda=n*sum_i p_i log s_i yields log w_lambda=-n*D(p||s)+O_d(log(n+d)), the stated exact exponential rate up to polynomial factors.",
+        "explicit_source_bound_and_source_gap": "Primary Eq5.36 states (n+d)^(-d(d+1)/2)*exp(-nD)<=w_lambda<=(n+d)^(d(d-1)/2)*exp(-nD). The cited Chapter5 region states rather than proves the entropy estimate5.32 and the full two-sided concentration bound, referring generally to [Har05]. The later complete Proposition9.4 proof gives the upper bound with(n+1)^(d(d-1)/2, using necessary majorization, a hook-to-multinomial estimate and the entropy identity; those dependencies/proof regions were read. No full external [Har05] proof or exact lower-bound constants are claimed newly verified. The independent hook/Stirling/weight argument above reconstructs the polynomial-order two-sided exponential rate without treating an arbitrary nonorthogonal Young symmetrizer as an orthogonal measurement projector.",
+        "neighborhood_quantifier": "For every fixed epsilon>0, let delta_epsilon=inf{D(p||s):p an ordered probability vector, ||p-s||_1>=epsilon}. It is positive (or use Pinsker delta_epsilon>=epsilon^2/2 with natural logarithms). A union bound over at most(n+1)^d diagrams gives Pr(||lambda/n-s||_1>=epsilon)<=(n+1)^(d+d(d-1)/2)*exp(-n*delta_epsilon), using the upper bound from9.4. This tends to0. It proves convergence in probability within every fixed neighborhood, not Pr(lambda/n != s)->0. Near s, individual weights may still decay polynomially; the statement does not require one exact diagram to retain fixed positive probability.",
+        "zero_spectrum_boundary": "Use the standard relative-entropy conventions0*log(0/s)=0 and D(p||s)=infinity when p has positive mass where s_i=0. If rho has rank r and lambda has more than r rows, the Schur character vanishes because a column longer than r cannot be filled with only the positive-eigenvalue labels; w_lambda=0. Otherwise the preceding monomial argument restricts to the positive support. No full-rank assumption is needed. n>=1 is needed for lambda/n, consistent with the large-n question; d=1 has the single certain outcome and D=0.",
+        "literal_exposition_obstruction": "The exact semantic step3 says the weight 'is bounded by the exponential of minus n times the relative entropy' without its polynomial factor. Read as the literal coefficient-one inequality w_lambda<=exp(-nD), that is FALSE. For rho=I_2/2,n=2,lambda=(2,0), the symmetric projector has rank3 and rho tensor2=I_4/4, so w_lambda=3/4. But p=(1,0),D(p||s)=log2 and exp(-2D)=1/4. The full reference explicitly qualifies the rate by polynomial prefactors and rubric r4 discusses them, so the intended theorem is not refuted; the standalone step is either an overly abbreviated rate description or an erroneous sharper bound.",
+        "answer_rubric_exposition_disposition": "Mark uncertain for the full exact record until the semantic-step bound is made unambiguous; the question, the reference's polynomial-qualified rate and the four rubric criteria are otherwise sound. Do not silently drop a required prefactor, add full rank, replace fixed neighborhoods by exact equality, or regard source Eq9.35 as a valid union bound without the count-of-diagrams factor. As extracted,9.35 omits that factor even though its text invokes it; the correct bound is reconstructed above. No repair or canonical change is authored here.",
+        "bounded_relation": "318 supplies polynomially many block parameters but not the probability/rate theorem.309's false iff for fixed words is unnecessary: the one-way majorization support restriction suffices.407 asks a stronger exact-equality consistency claim, false for irrational spectra; that is not an equivalent restatement of this valid neighborhood target.415 concerns which symmetry-adapted measurement may be used, not the rate calculation itself."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Complete mathematical/grading fields for authored qcb-core-plan-319 near line1905 and exact prepared counterpart read: question, answer, all rubric criteria, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-319-spectrum-concentration loaded via release.checked()[2]; whole item digest includes metadata. Frozen content provenance, not primary theorem proof."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full leditzky-2025-repth-qit source-catalog entry near219 inspected. It records the author-hosted URL,10 April2026/79-page edition and historical PDF binary SHA. LF hash binds metadata only, not PDF-byte equality or mathematics."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026;79 pages; FT25 course directory",
+          "inspected_anchors": "Complete Eq5.31-5.36 and accompanying text, printed50-51/PDF49-50; complete Lemma9.3 and Proposition9.4 proof Eq9.7-9.32, printed72-75/PDF71-74; neighborhood discussion Eq9.33-9.41/Proposition9.5, printed75-76/PDF74-75. Deferred entropy/lower-bound proofs and the extracted union-bound omission are separately identified, not claimed closed.",
+          "access": "Genuine author-hosted PDF text extraction, bounded complete operative text and context inspected. Text/statement/proof/deferred-proof distinctions are explicit.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover/edition was observed in this same task context and source anchors agree; historical binary SHA remains unverified. Earlier direct byte retrieval in this context failed with WinError10013 and screenshots returned cache misses. No fresh binary or visual verification, PDF storage or redistribution."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only. No kernel/native formal admission, source-blindness, human/model/expert approval or novelty claim.",
+        "Recorded historical PDF SHA remains unverified; local QA/catalog LF bindings are content provenance only.",
+        "Semantic comparison is bounded; no global deduplication, split reconciliation or admission is inferred."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-320",
+      "key": "qcb-core-plan-320-isotropic-partial-transpose",
+      "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_operator_identity": "The general sandwich identity is [(A tensor B)Z(C tensor D)]^T_B=(A tensor D^T)*Z^T_B*(C tensor B^T). It follows by expanding Z into matrix units on subsystem B and reversing the second-factor multiplication under transpose. For an isotropic CONJUGATION, the correct substitutions are A=U,B=conjugate(U),C=U†,D=U^T. Consequently [(U tensor conjugate(U))*Z*(U† tensor U^T)]^T_B=(U tensor U)*Z^T_B*(U† tensor U†). Involutivity then gives an exact equivalence of the two OPERATOR SYMMETRIES.",
+        "false_state_conclusion": "Partial transpose preserves trace and Hermiticity but is not a positive map on bipartite operators in general. The question calls its partial transpose a Werner STATE, which additionally requires positivity. Isotropic symmetry does not ensure PPT, so the state-level iff as requested is false even though the algebraic symmetry transport is true.",
+        "explicit_counterexample": "For any d>=2, let |Phi_d>=(1/sqrt(d))*sum_i |i,i> and rho=|Phi_d><Phi_d|. It is a normalized positive state. (U tensor conjugate(U))|Phi_d>=|Phi_d> because sum_i U_ai*conjugate(U_bi)=delta_ab, so rho is isotropic. Direct partial transposition gives rho^T_B=F/d. For the normalized antisymmetric vector a=(|1,2>-|2,1>)/sqrt(2), F*a=-a and <a|rho^T_B|a>=-1/d<0. Thus rho^T_B has trace1 and Werner symmetry but is NOT positive and hence is NOT a Werner state. At d=2 its eigenvalues are1/2,1/2,1/2,-1/2. This is an exact symbolic witness, not a numerical diagnostic.",
+        "independent_answer_error": "The reference correctly writes the general sandwich formula, but then sets X_1=X_2=U and Y_1=Y_2=conjugate(U). Those assignments do not describe conjugation: the right factors must be U† and U^T. Literal substitution into its own formula would give (U tensor U†)*Z^T_B*(U tensor U†), not the claimed conjugation by U tensor U. The missing right adjoints cannot be justified by unitarity U†=U, which is false for a general U. Rubric r2/steps2-3 need this distinction as well as the positivity correction.",
+        "source_scope": "Primary Definition6.1 defines a Werner state as a quantum STATE, not merely a U tensor U-invariant operator; the density definition includes positivity. The extracted Eq6.45 paragraph itself says isotropic iff partial transpose is a Werner state, so the positivity overreach is inherited from the primary exposition. Eq6.46 is valid and supports only symmetry transport. Repeating the printed word state or citing the catalog does not make F/d positive. The subsequent Phi partial-transpose identity in the same region is consistent with the counterexample.",
+        "salvage_and_no_silent_repair": "For a density rho, the correct unconditional statement is isotropic symmetry iff rho^T_B has Werner SYMMETRY. If rho is additionally PPT, its partial transpose is a Werner state precisely in the isotropic case. Adding PPT or replacing Werner state by invariant operator changes the demanded statement and must be explicit; neither is installed as a hidden assumption here. The reverse implication from a positive Werner rho^T_B to isotropic rho is valid because rho is already assumed a state. d=1 is trivial but does not rescue the universal d>=2 claim.",
+        "answer_rubric_exposition_disposition": "Reject the exact question/reference/core summary and full rubric as a state-level iff; also flag the incorrect sandwich substitutions. The valid involutive linear symmetry identity is salvageable but is not the false positivity assertion. No question successor, answer repair, new hypothesis or formal admission is produced.",
+        "bounded_relation": "315 preserves positivity because twirling averages positive unitary conjugations; partial transpose does not.007's partial-transpose entanglement witness already relies on this failure of positivity. The same formula F^T_B=d*Phi appears, but an entanglement threshold or a Haar twirl is not the whole symmetry-transport contract."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Complete mathematical/grading fields for authored qcb-core-plan-320 near line2010 and exact prepared counterpart read: question, answer, all rubric criteria, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire exact prepared qcb-core-plan-320-isotropic-partial-transpose loaded via release.checked()[2]; whole item digest includes metadata. Frozen content provenance, not primary theorem proof."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full leditzky-2025-repth-qit source-catalog entry near219 inspected. It records the author-hosted URL,10 April2026/79-page edition and historical PDF binary SHA. LF hash binds metadata only, not PDF-byte equality or mathematics."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026;79 pages; FT25 course directory",
+          "inspected_anchors": "Complete Definition6.1 Werner state, printed52/PDF51; Definition6.7 and entire Eq6.44-6.46 partial-transpose paragraph, Phi^T_B=F/d and Proposition6.8/Eq6.47, printed57/PDF56. Printed state-level wording is assessed critically; it is not a proof of positivity.",
+          "access": "Genuine author-hosted PDF text extraction, bounded complete operative text and context inspected. Text/statement/proof/deferred-proof distinctions are explicit.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover/edition was observed in this same task context and source anchors agree; historical binary SHA remains unverified. Earlier direct byte retrieval in this context failed with WinError10013 and screenshots returned cache misses. No fresh binary or visual verification, PDF storage or redistribution."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only. No kernel/native formal admission, source-blindness, human/model/expert approval or novelty claim.",
+        "Recorded historical PDF SHA remains unverified; local QA/catalog LF bindings are content provenance only.",
+        "Semantic comparison is bounded; no global deduplication, split reconciliation or admission is inferred."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-plan-312",
+      "qcb-core-plan-313",
+      "qcb-core-plan-315",
+      "qcb-core-plan-318"
+    ],
+    "rejected": [
+      "qcb-core-plan-320"
+    ],
+    "uncertain": [
+      "qcb-core-plan-319"
+    ],
+    "absent_ids": [],
+    "exact_rejections": {
+      "qcb-core-plan-320": "Isotropic Phi_d has partial transpose F/d with negative antisymmetric eigenvalue for d>=2, so it has Werner symmetry but is not a Werner state. The reference also omits right adjoints in its sandwich substitutions."
+    },
+    "uncertainties": {
+      "qcb-core-plan-319": "The intended neighborhood/KL-rate result and full polynomial-qualified reference are correct. The standalone semantic step drops the polynomial factor and could assert the false coefficient-one inequality; rho=I_2/2,n=2,lambda=(2) gives3/4 versus1/4. Clarify that exact exposition before accepting the full record."
+    },
+    "disposition": "Four accepted, one rejected, one uncertain; no requested ID absent. Positive intended theorems, false state/positivity claims and ambiguous shorthand are distinguished. No admission, repair or quarantine is performed by this private report.",
+    "stable_release_limit": "Bounded future-checkpoint evidence only, not current checkpoint approval, global correctness/deduplication, cross-split reconciliation, native formal closure, source-blind/human approval or novelty."
+  },
+  "worker_handoff": {
+    "objective": "Bounded substantive reader/source review of prepared QIT312/313/315/318/319/320.",
+    "mathematical_delta": "An exact maximally-entangled counterexample refutes320's state iff and correct sandwich arguments isolate its valid symmetry transport.319's valid neighborhood theorem is reconstructed with the necessary polynomial prefactors and an exact witness against deleting them.",
+    "failure_class": "SOURCE_INVALID",
+    "salvage_audit": "Retain320's involutive operator-symmetry identity,315's positive Haar twirl,318's commutant parameter bound and319's polynomial-qualified concentration target. No fragment is promoted to a new local Lean/admission certificate.",
+    "process_memory_ids_consulted": [
+      "QBE-PM-VERIFIER-SEMANTIC-LEVEL",
+      "QBE-PM-LOW-TOKEN-CONTROL-PLANE"
+    ],
+    "direction_fingerprint": "Positive state versus invariant operator; correct adjoint/transpose sandwich; polynomial prefactor versus exact exponential inequality; fixed-neighborhood versus exact-equality convergence.",
+    "parallel_admission": "No new agent or alternate implementation route; no cross-route common-blind-spot review is claimed.",
+    "default_route": "Exact combinatorial counts and pointwise conjugation; Haar reindexing and trace cyclicity; Schur-Weyl/Weyl dimension bounds; character/entropy rate and an explicit union bound; matrix-unit partial transpose and a negative eigenvector.",
+    "purification_exposition_status": "Private source/reader findings only. No source Anchor, graph edge, page or candidate is marked PROOF_SEALED/PURIFIED or approved.",
+    "residual_risk": "Historical binary-source equality and visual typography unverified.319's isolated semantic-step interpretation needs an explicit editorial disposition, though its intended theorem is correct.",
+    "recommended_next_step": "Parent independently inspect320's exact state counterexample and319's prefactor witness, then decide any separate content-bound correction or withdrawal. Predecessor findings are not successor approval.",
+    "files_changed": [
+      "_review_tmp/representation-qit-312-320-review.json"
+    ]
+  }
+}

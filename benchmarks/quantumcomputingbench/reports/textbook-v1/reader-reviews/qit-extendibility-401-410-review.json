@@ -1,0 +1,685 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "observed_head_at_start": "be93e03c1524fe1d7ea2e02796789d65fae90951",
+    "observed_head_before_report_write": "0b229454bcac07658738e184e255d3ae44e65957",
+    "requested_core_ids": [
+      "qcb-core-plan-401",
+      "qcb-core-plan-402",
+      "qcb-core-plan-403",
+      "qcb-core-plan-404",
+      "qcb-core-plan-405",
+      "qcb-core-plan-406",
+      "qcb-core-plan-407",
+      "qcb-core-plan-408",
+      "qcb-core-plan-409",
+      "qcb-core-plan-410"
+    ],
+    "absent_ids": [],
+    "historical_native_count": 213,
+    "current_reader_count_at_initial_inspection": 169,
+    "selection": "All ten complete actual prepared records returned by release.checked()[2], not authored substitutes or intended repaired questions.402 is already the prepared corrected-v2 key. Current-reader count is a moving inspection-time observation, not a verdict/admission by this report.",
+    "content_inspected": "Complete questions, reference answers, every rubric criterion, assumptions, conventions, semantic steps and source metadata. Local authored originals/402 corrected row and complete operative accessible primary regions were inspected. Whole item digests include all metadata, without taking inherited reviews as evidence.",
+    "comparison_scope": "Bounded exact-contract comparisons below. Close counterparts412,413,418,419,420,319 were read in full mathematical/grading fields;006 and416 were sought but absent from release.checked()[2], with no authored substitutes. Search also scanned all213 returned questions for cloning/extendibility/pure-marginal/de-Finetti terms. No all-pairs/global semantic deduplication or split pooling conclusion.",
+    "checkpoint_limit": "Private future-checkpoint evidence outside frozen PR104; no existing report/candidate/canonical record, policy, production Lean, frozen data or history is modified."
+  },
+  "provenance": {
+    "actual_identity": "/root/qcb_boundary_repair_review; the actual task identity, not an invented reviewer. This is distinct from the prepared authors qit-applications-author-b3/main-qit-apps-repair-author.",
+    "exposure": "Source-exposed mathematical reader review, not source-blind/verdict-blind. Same task has prior neighboring QIT/source exposure and parent highlighted402/407 as targets to check. Parent reasoning and imported acceptance metadata are not mathematical evidence. Exact records and counterexamples were independently reconstructed.",
+    "instructions_and_skills": "Required AGENTS/HARNESS, theorem-publication, proof-digestion, evidence-routed-memory and shared CONTRACT/ACCEPTANCE texts were read completely in this context and checked unchanged through the observed start commit. qbe-substantive-worker was reread completely for this objective; PDF guidance was read completely in this context. Worker exact-contract/source/typed-boundary rules and read-only primary-access guidance govern this output.",
+    "new_kernel_execution": false,
+    "local_Lean_closure_claimed": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_performed": false,
+    "novelty_claimed": false,
+    "execution": "Read-only source/prepared-record/hash inspection and author-hosted primary PDF text access. No local Lean/prediction/proof execution, simulator, external model run, new agent, commit or push.",
+    "digest_method": "qcb_core.digest of each entire actual prepared item; qcb_integrity.text_sha for LF-normalized tracked local file bindings. Local QA/catalog hashes bind content/provenance only, not primary proof or PDF binary equality.",
+    "mutation_scope": "Only parent-workspace _review_tmp/qit-extendibility-401-410-review.json is newly written; all old reports and frozen SP/plan307/plan320 candidates remain untouched."
+  },
+  "primary_source_checks": {
+    "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+    "source": "Felix Leditzky, Representation-theoretic methods in quantum information theory;10 April2026,79-page edition, FT25 author-hosted course URL.",
+    "actual_access": "Genuine primary PDF text extraction was inspected at the author URL. Complete operative regions: isotropic definition/positivity and separability exercises; Section7.1 extension definition/Lemma7.1/Example7.2; full Haar-projector Lemma7.3 and Proposition7.4 proof; full symmetric-purification Lemma7.5 and Proposition7.6 proof; Exercises7.1–7.3; Theorem8.1 proof; full Proposition8.2 twirling upper-bound proof and Eq8.25–8.33; Exercises8.4–8.6; Algorithm9.1 and full later KL upper-bound proof/neighborhood conclusion. Some already-read primary regions were reused in this same task context; newly relevant regions were read completely.",
+    "proof_coverage_limits": "JV13 analytic extendibility classification and DPS04 converse all-k theorem are cited, not proved in these notes and not newly inspected upstream. Several channel/pure-marginal/average-fidelity results are exercises, not printed solutions. Their required arguments are independently reconstructed below; no local formal closure is inferred.402 explicitly supplies the analytic criteria as premises. Printed Algorithm9.1's exact-equality assertion is false; it is not accepted by source authority.",
+    "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "historical_binary_hash_verified_in_this_review": false,
+    "retrieved_binary_sha256": null,
+    "byte_and_visual_limits": "The source cover/date and anchors agree with the recorded edition as text. Earlier in this task context a direct in-memory byte retrieval failed with WinError10013 socket denial, and screenshot requests returned cache misses/no inspected pixels; those routes were not successfully repeated here. No matching binary bytes or rendered fraction pixels have been verified by this reviewer. Do not inherit402's author's visual-inspection claim.",
+    "redistribution": "No PDF saved or redistributed, no source relicensing or long passage copying. Mathematical derivations/counterexamples below are original reconstruction."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Full leditzky-2025-repth-qit entry, recorded edition/URL/historical binary SHA. Catalog metadata only, not proof or byte verification."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/scripts/release.py",
+      "sha256_lf": "02d03fedcc4c6e6e3dde4eaf512800f66c1c2db2a9d52eb55cc0e50e99f3b457",
+      "anchor": "checked() prepares/validates historical native records and returns them at tuple index2; read-only loading is not a new formal run."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+      "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+      "anchor": "Full neighboring319 mathematical/grading contract read, including fixed-d premise and polynomial-qualified reference; content provenance only."
+    }
+  ],
+  "bounded_semantic_comparisons": {
+    "binding_table": [
+      {
+        "core_id": "qcb-core-plan-401",
+        "key": "qcb-core-plan-401-isotropic-positivity-x-range",
+        "item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+        "family": "isotropic-state-positivity",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-402",
+        "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds-corrected-v2",
+        "item_digest": "e44a4b02385956e555df305910fd11506ff3e11002d06ca0e3b57f07499a1820",
+        "family": "werner-isotropic-extendibility",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-403",
+        "key": "qcb-core-plan-403-extendibility-channel-converse-counterexample",
+        "item_digest": "e4a453dba730b81064c7eab905c12090da22e6fb67aa29a08ee0feccfc0ce3f0",
+        "family": "extendibility-under-channels",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-404",
+        "key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+        "item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+        "family": "definetti-bound-scaling",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-405",
+        "key": "qcb-core-plan-405-no-cloning-orthogonal-or-equal-boundary",
+        "item_digest": "c77d7ed511391ab1864f7706a6fc6b3a476a578c5cbf169260939dff0ae77fef",
+        "family": "no-cloning-orthogonality",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-406",
+        "key": "qcb-core-plan-406-cloning-fidelity-asymptotics-and-ordering",
+        "item_digest": "8bf1b28a875f6ad1991b903518a8f3aba4204087b064b579c744440afa5614ca",
+        "family": "approximate-cloning-asymptotics",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-407",
+        "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+        "item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+        "family": "spectrum-estimation-consistency",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-408",
+        "key": "qcb-core-plan-408-separable-infinite-extendibility-and-hierarchy",
+        "item_digest": "682c79e81015ae2267b8ddef78c927dc7e1d68ec526c14ae7e30f002b5c310c8",
+        "family": "separable-infinite-extendibility",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-409",
+        "key": "qcb-core-plan-409-pure-bipartite-extension-forced-product",
+        "item_digest": "a64a1d8b27cf0fe3a7a66f8b4bf60d7ebf0a288ef911b5e8cdcc2fdaac26500a",
+        "family": "pure-state-extension",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-410",
+        "key": "qcb-core-plan-410-channel-preserves-k-extendibility",
+        "item_digest": "7f9d8bb4088fa19fc4b12e3fd2430d713e777a164111aa1fed72a0972f83e30e",
+        "family": "extendibility-under-channels",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-319",
+        "key": "qcb-core-plan-319-spectrum-concentration",
+        "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+        "family": "qit-spectrum-concentration",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-412",
+        "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+        "item_digest": "b4183f8ccfaf78c2989b2a41175edfa0d6bd452671cb1a5d0c767b53fdac475d",
+        "family": "symmetric-subspace-haar-average",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-413",
+        "key": "qcb-core-plan-413-cloning-optimal-map-saturates-bound",
+        "item_digest": "50dfc466512f79d99c0a65bb7de21f90ba787a46dcb487bff9fd4a9c81908c17",
+        "family": "approximate-cloning-optimal-map",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-418",
+        "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2",
+        "item_digest": "759b3d5a55c7fb2b6fdecb9196f4d8a053109e944bb8a426cdefc98a5cc0a376",
+        "family": "approximate-cloning-optimal-map",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-419",
+        "key": "qcb-core-plan-419-fidelity-telescoping-lower-bound",
+        "item_digest": "59c6bcb17e48756c7d9d42d22d2a2834b87745b5f7064cefc99fb1b53aa8b270",
+        "family": "fidelity-telescoping-bound",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-420",
+        "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+        "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+        "family": "symmetric-subspace-dimension",
+        "split": "test_public"
+      }
+    ],
+    "material_relations": [
+      {
+        "core_ids": [
+          "qcb-core-plan-403",
+          "qcb-core-plan-409",
+          "qcb-core-plan-410"
+        ],
+        "relation": "theorem, converse counterexample and proper proof subtarget, not whole-target aliases",
+        "reasoning": "410 universally transports ANY k-extension through a CPTP channel.403 refutes the converse by one nonextendible pure input and a noisy extendible output.409 proves pure-marginal factorization for ANY extension; its entangled corollary is a necessary subproof of403's chosen witness, but409 has no channel/noise threshold and403 does not ask for general factorization. Different requested quantifiers and constructions justify retaining whole targets while recording the real overlap.",
+        "family_split_assessment": "403/410 share family extendibility-under-channels;409 has pure-state-extension. All are test_public; the shared family/proof ingredient must not be interpreted as independent cross-split examples."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-402",
+          "qcb-core-plan-408"
+        ],
+        "relation": "restricted analytic all-k thresholds versus universal constructive sufficient direction",
+        "reasoning": "408 proves SEP contained in intersection Ext_k for all bipartite states by an explicit compatible product extension.402 uses GIVEN exact finite-k analytic criteria only for Werner/isotropic states and takes their supremum, obtaining their separable thresholds. The finite-k floor calculation and d>=3 all-Werner2 conclusion are absent from408. The all-k implication on these invariant families is overlapping mathematics, but the full tasks are not equivalent and408 alone cannot derive402's sharp bounds.",
+        "family_split_assessment": "Different named families but same test_public split; mathematical overlap is retained explicitly, not erased by names. Neither question imposes PPT extensions."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-401",
+          "qcb-core-plan-402",
+          "qcb-core-plan-403"
+        ],
+        "relation": "valid-state domain boundary and channel-admissibility prerequisite",
+        "reasoning": "401's diagonalization supplies the isotropic state parameter upper endpoint for d>=2;402 expressly assumes x in its valid state range, and403 must choose D_x CPTP rather than use a lower extendibility threshold for arbitrary real x. These are different targets, not duplicates: positivity alone says nothing about k-extendibility; the successful403 witness x=c is already inside[0,1].401's d1 defect does not infect402's explicit d>=3 arithmetic or403's existential d2 witness.",
+        "family_split_assessment": "isotropic-state-positivity, werner-isotropic-extendibility and extendibility-under-channels all test_public. No current relation or false predecessor is pooled into training."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-404",
+          "qcb-core-plan-412",
+          "qcb-core-plan-419",
+          "qcb-core-plan-420"
+        ],
+        "relation": "proper de-Finetti ingredients, no complete aliases",
+        "reasoning": "412 proves the Haar projector identity,420 counts its symmetric dimension,419 bounds a dimension ratio, and404 explains the pure-versus-mixed local-dimension substitution and n,k scaling. The first three feed the full pure theorem; none alone gives404's symmetric purification or mixed trace-distance contraction. Conversely404 takes the theorems as given, not a reproof of their Haar/counting ingredients. Repeated symmetric-subspace words do not imply whole-target equality.",
+        "family_split_assessment": "Four different families, all test_public. These are source/lemma-linked exercises and should remain in one relation-aware split cluster if datasets are reorganized; no split change is performed."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-406",
+          "qcb-core-plan-413",
+          "qcb-core-plan-418",
+          "qcb-core-plan-419",
+          "qcb-core-plan-420"
+        ],
+        "relation": "cloning fidelity target with shared saturation and dimension-ratio subtargets",
+        "reasoning": "413's exact pointwise saturation is used in406(b), while418 proves CP and exact trace/support conditions needed to interpret that candidate as a valid input-domain channel.406 adds copy-number asymptotics and infimum-versus-Haar-average optimality, so these full questions differ.419's product lower-bound method is closely related to406(a) after changing ratio indices, but419 bounds a de-Finetti average fidelity in terms of k/(n-k), not an N->M cloner.420 is the dimension count, not either approximation theorem.",
+        "family_split_assessment": "413/418 share approximate-cloning-optimal-map;406 approximate-cloning-asymptotics;419 fidelity-telescoping-bound;420 symmetric-subspace-dimension. All test_public. Reusing these arguments creates substantive dependency, not new independent evidence."
+      },
+      {
+        "core_ids": [
+          "qcb-core-plan-407",
+          "qcb-core-plan-319"
+        ],
+        "relation": "same concentration mechanism but materially different requested success event",
+        "reasoning": "319 asks closeness/neighborhood concentration at KL rate up to polynomial prefactors with fixed d.407(a) adds estimator-domain validation, but407(b) explicitly demands exact equality with high probability. Neighborhood success cannot imply the latter on a rational estimator grid and an irrational target. A future corrected407 could have a major shared subtarget with319; the actual false exact-equality record is not made equivalent to the true neighborhood result.319's separate prefactor-exposition concern is not re-adjudicated here.",
+        "family_split_assessment": "spectrum-estimation-consistency and qit-spectrum-concentration, both test_public. Different family labels do not negate the genuine shared KL argument; no merge or cross-split pooling decision follows."
+      }
+    ],
+    "absent_neighbor_ids": [
+      "qcb-core-plan-006",
+      "qcb-core-plan-416"
+    ],
+    "global_limit": "No exhaustive pair ledger/global dedup completion, new distinct-core count or split reconciliation. Only consequential close-target relations are listed; no mathematical distinction is inferred from names or graph nodes."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-401",
+      "key": "qcb-core-plan-401-isotropic-positivity-x-range",
+      "item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "reconstruction": "For d>=2, write rho=a*Phi+b*(I-Phi), a=1-x+x/d^2 and b=x/d^2. The two nonzero spectral subspaces have ranks1 and d^2-1. Trace is a+(d^2-1)b=1. Positivity is equivalent to b>=0 and a>=0, hence0<=x<=d^2/(d^2-1). For x<0 any unit vector orthogonal to Phi is a negative-eigenvalue witness; above the upper endpoint the normalized maximally entangled vector is the witness. At the lower endpoint the state is rank1, and at the upper it has rank d^2-1.",
+        "exact_boundary_defect": "The actual question supplies no d>=2 assumption; assumptions and conventions are empty. d=1 is a legitimate nonzero Hilbert space with a normalized rank-one Phi=I. Then rho(x)=(1-x)I+xI=I for EVERY real x. There is no complement eigenvector (its proposed multiplicity is0), b>=0 is not a positivity requirement, and d^2/(d^2-1) is undefined. For example d1,x=-1 is a valid density operator, contradicting r3/r5 and the reference's claimed iff. d0 cannot support the stipulated trace-one Phi and is already excluded by that premise.",
+        "answer_rubric_exposition": "Reject the complete exact record as self-contained: r1 is correct, r2 must distinguish an absent spectral subspace, and r3-r5/semantic step3 omit a genuine boundary case. The d>=2 intended theorem is sound, not a bad eigenvalue computation. The source's nontrivial isotropic setting cannot silently insert a missing standing dimension restriction into this prepared question. Either explicitly restrict that domain or state the d1 branch in a separately authorized correction; no correction is made here.",
+        "source_alignment": "Exercise6.2 states the nontrivial positivity calculation without a worked proof. Complete isotropic definition/exercise context was inspected. The local catalog is provenance, not evidence that a rank-zero spectral sector has an eigenvalue."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-401-isotropic-positivity-x-range; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-401 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Definition6.7/isotropic parameterization and Exercise6.2; PDF56–57, printed57–58.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-402",
+      "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds-corrected-v2",
+      "item_digest": "e44a4b02385956e555df305910fd11506ff3e11002d06ca0e3b57f07499a1820",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "exact_record": "This is the actual corrected-v2 prepared key, not the older authored question. It expressly fixes integer d>=3, k>=1, valid state parameters and the GROUPED supplied Werner condition alpha>=(1-d)/k. No finding about the superseded 1-d/k wording is transferred onto this corrected contract.",
+        "reconstruction": "At k2, (1-d)/2<=-1, so every alpha in[-1,1] satisfies the condition, including d3,alpha=-1 at equality. These negative thresholds increase to0. Alpha>=0 satisfies every finite k; for alpha<0 choose an integer k>(d-1)/(-alpha) to violate it. Put c=d/(d+1)>0. For0<=x<c, the isotropic condition is1/k>=1-x/c>0, equivalently1<=k<=1/(1-x/c); therefore the maximal integer is its floor. x0 permits only k1. An exactly integral cutoff is included. At x=c and throughout the remaining valid state interval every finite k works. A supremum/limit condition, not a finite universal cutoff, gives all-k thresholds alpha>=0,x>=c.",
+        "answer_rubric_exposition": "All four rubric criteria and all four steps match this arithmetic. The reference explicitly uses the criteria as premises rather than pretending to prove the analytic extension theorem. The alternative 1-d/k tends to1 and is not the same function; it would not imply the supplied all-k threshold0. No PPT-preserving extension requirement is added: these are ordinary k-extensions.",
+        "source_alignment": "Complete Example7.2 Eq7.5–7.6 and its context were read as primary text. Extraction separates numerator1-d from denominator k and agrees with the explicit premise. The notes cite JV13 for analytic characterization rather than prove it. That upstream proof and rendered fraction pixels are not newly verified by this reviewer; the predecessor author's visual-inspection claim is not my evidence."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_apps_repairs.json",
+          "sha256_lf": "d68b56f479db126890f8deedafb5888544479bf5a46b641175cc92cc33c2887b",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds-corrected-v2 at corrected-v2 row near line3 inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-402 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Example7.2, Eq7.5–7.6 and all-k discussion; PDF58–59, printed59–60. Analytic proof deferred to JV13.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-403",
+      "key": "qcb-core-plan-403-extendibility-channel-converse-counterexample",
+      "item_digest": "e4a453dba730b81064c7eab905c12090da22e6fb67aa29a08ee0feccfc0ce3f0",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "An explicit witness within the reference's family is d2,k2,input Phi_2 and x=2/3. D_x=(1/3)id+(2/3)R, R(X)=tr(X)I/2. R has Kraus operators |i><j|/sqrt(2), so D_x is CPTP as a convex combination of CPTP maps. Since the B marginal of Phi_2 is I/2, (id tensor D_x)(Phi_2)=(1/3)Phi_2+(2/3)I/4. The given2-extension threshold is1/3, so x2/3 satisfies it. Independently, averaging |v><v| tensor |conjugate(v)><conjugate(v)| over Haar qubits produces this state: its isotropic overlap is1/2, hence coefficient x2/3. This is a separable mixture and the common-index construction gives extensions for all finite k.",
+        "input_obstruction": "For any extension of the pure Phi_2 marginal, purification across AB:B'C has Schmidt rank1; after discarding C the extension is Phi_2 tensor omega. Its AB' marginal is I/2 tensor omega, not Phi_2, since the latter is pure entangled. Thus the input is not2-extendible while the displayed channel output is. This is an existential counterexample; no d1 entanglement is asserted.",
+        "answer_rubric_exposition": "The actual explicit example and all four criteria/three steps are sound. The phrase pick any such x must still mean a channel-admissible x: the lower extension threshold alone does NOT make D_x CPTP for arbitrarily large x. The exhibited x=c lies in[0,1], so its validity is proved without an extra hypothesis or a Choi-range assumption. An answer choosing x100 would fail the question's quantum-channel premise despite meeting the lower inequality. This loose phrase is recorded, not used as a universal-channel theorem.",
+        "source_alignment": "Exercise7.2(ii) asks for a counterexample and gives the depolarizing identity; its proof is not printed. Example7.2 supplies the ordinary isotropic criterion, while Exercise7.3 supplies only the pure-marginal proof hint. The witness, Kraus check and contradiction above are independent reconstructions, not a claimed local formal proof."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-403-extendibility-channel-converse-counterexample; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-403 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Exercise7.2(ii)/Eq7.61, Exercise7.3; PDF64, printed65; Example7.2 Eq7.6, PDF59.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-404",
+      "key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+      "item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_SCOPE_OR_EXPOSITION_UNCERTAINTY",
+      "reasoning": {
+        "reconstruction": "Use D(rho,sigma)=||rho-sigma||_1/2, so its maximum for states is1. For finite d and integers0<=k<n, the pure theorem has bound Bp=sqrt(d*k/(n-k)). A permutation-invariant mixed rho has a specially chosen symmetric purification on pairs A_iR_i with dim R_i=d. In a product computational basis, vec(sqrt(rho)) is invariant under simultaneous real tensor-factor permutations, because sqrt(rho) commutes with them. Apply the pure theorem with local pair dimension d^2; then trace all R_i, using contraction, to get Bm=sqrt(d^2*k/(n-k)) with a mixture of mixed tensor powers. An arbitrary purification need not have this symmetry; d is a sufficient worst-case ancillary dimension, not the minimum needed for every rho.",
+        "thresholds_and_zero_cases": "For k<n, Bp<1 iff n>k(1+d), and Bm<1 iff n>k(1+d^2). Equality gives bound1, not a strict improvement. k0 gives bound0 for n>0. n=k is outside these denominator formulas. At fixed finite d, either bound vanishes precisely when k/(n-k)->0, equivalent to k=o(n). If d is allowed to grow, the actual necessary and sufficient bound conditions are d(n)k/(n-k)->0 and d(n)^2 k/(n-k)->0, respectively; k1,d(n)=n is already a counterexample to an unqualified variable-d version. At d1 all actual state distances are zero, though the loose displayed numerical bounds need not vanish for k proportional to n.",
+        "exact_uncertainty": "The intended fixed-d scaling theorem is correct. However the final reference sentence and rubric r4 demand d-times larger total n at any fixed accuracy, without the earlier word roughly. For0<eps<=1 and k>0, Bp<=eps requires n>=k(1+d/eps^2), while Bm<=eps requires n>=k(1+d^2/eps^2). The ratio of the real thresholds is(eps^2+d^2)/(eps^2+d), NOT d for d>1. It is exactly the excess n-k that scales by d. For d2,k1,eps1/2 the respective thresholds are n9 and n17, not n9 and n18. Integer rounding further prevents an exact multiplicative count.",
+        "answer_rubric_exposition": "Withhold full acceptance pending whether r4's wording is intended as approximate asymptotic scaling or an exact total-party assertion. r1-r3 and the first two steps are correct; step3 is correct for fixed d, which should be explicit in an asymptotic explanation. No question/domain rewrite or assertion that the de Finetti theorem itself is false is made. The stronger exact total-n sentence does not follow from the displayed correct inequalities.",
+        "source_alignment": "Complete Lemma7.3, Proposition7.4 proof, Lemma7.5 proof and Proposition7.6 proof were inspected, as were trace distance and contraction definitions. Their Haar dimension ratio d_(n-k)/d_n, Fuchs–van de Graaf and Jensen argument leads to these stated bounds. Source extraction has a local binomial typo in an early proof line; the ratio and correct symmetric dimension, not that typo, are used."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-404 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Definition2.13/Proposition2.15; full Lemma7.3, Proposition7.4 Eq7.15–7.43, Lemma7.5 Eq7.44–7.56 and Proposition7.6 Eq7.57–7.59; PDF59–64, printed60–65.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-405",
+      "key": "qcb-core-plan-405-no-cloning-orthogonal-or-equal-boundary",
+      "item_digest": "c77d7ed511391ab1864f7706a6fc6b3a476a578c5cbf169260939dff0ae77fef",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "The question fixes exact vector equations, not equality of rays or density operators. Let z=<psi|phi>. The two input inner products equal z because the common blank has norm1, while the prescribed outputs have inner product z^2. U†U=I gives z=z^2, whose complex roots are exactly0 and1. z0 means orthogonal vectors; z1 gives ||psi-phi||^2=2-2 Re z=0, so the chosen normalized vectors are exactly equal. Necessity is sufficient: for the orthogonal case the two input vectors and desired outputs are orthonormal pairs, so extend each pair to an orthonormal basis of the same AB space and map one basis to the other. For equal vectors there is only one specified normalized input/output and the same unitary-extension argument applies.",
+        "phase_and_endpoints": "The reference parenthetical up to a phase is weaker than what z1 actually proves; it must NOT be read as allowing arbitrary different representatives under these strict equations. For example phi=-psi has z=-1 and cannot satisfy both exact equations, since linearity produces a minus sign on the input but two minus signs on the prescribed output. If physical cloning were instead defined only up to output global phases, the ray-level criterion would be |z| in{0,1}; that is not the displayed contract. The reference explicitly retains z1 and finishes with equal, so its main criterion is not replaced by that different statement.",
+        "answer_rubric_exposition": "The exact overlap calculation, roots, orthogonal/equal interpretation, sharp boundary and |0>,|+> example satisfy all four criteria and three steps. The concrete overlap1/sqrt(2) lies strictly between the roots, hence cannot be cloned. A nonorthogonal set must contain a genuinely distinct pair for the no-cloning conclusion; an identical repeated state is not an obstruction. The optional orthonormal-family example is possible by the same isometry-to-unitary extension. The sufficiency and precise phase interpretation supplied here close exposition shorthand, without changing the question.",
+        "source_alignment": "Theorem8.1 and its complete Eq8.2–8.6 proof were read. The printed theorem's universal-unknown-state conclusion uses this necessary overlap obstruction. Sufficiency for a fixed admissible pair is reconstructed above; no unknown-state or approximate-cloning gate complexity is inferred."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-405-no-cloning-orthogonal-or-equal-boundary; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-405 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Theorem8.1 and complete Eq8.2–8.6 proof; PDF64–65, printed65–66.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-406",
+      "key": "qcb-core-plan-406-cloning-fidelity-asymptotics-and-ordering",
+      "item_digest": "8bf1b28a875f6ad1991b903518a8f3aba4204087b064b579c744440afa5614ca",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "For d>=1, integers N>=1 and M=N+K>=N, cancellation gives d_N/d_M=product_(j=1..K)[(N+j)/(N+d-1+j)]=product(1-a_j), a_j=(d-1)/(N+d-1+j) in[0,1). Induction gives product(1-a_j)>=1-sum a_j>=1-K(d-1)/N>=1-Kd/N. This uses actual a_j in[0,1], not multiplication of a possibly negative crude lower factor1-d/N. For fixed K AND d, the lower bound tends to1 and the dimension ratio is at most1, so squeezing proves convergence. K0 is the empty product1, d1 gives ratio1 exactly. N0 makes the stated1/N expression undefined and is outside this positive-copy statement.",
+        "ordering_and_optimality": "For any admissible quantum cloner, g(psi)=tr[psi^tensorM T(psi^tensorN)] is squared root-fidelity against a pure target, and inf g<=Haar-average g. A constant-fidelity candidate attaining d_N/d_M therefore has equal worst/average fidelities, but constancy alone does not prove average optimality. To verify the missing upper-bound reasoning, twirl any CPTP channel under U(d). Haar invariance preserves its average and makes the twirled g constant, so its worst fidelity equals the original average. The standard worst-case upper bound d_N/d_M then bounds the average as well. That worst bound follows by positivity of Tbar(Pi_N-psi^tensorN): the symmetric M block of Tbar(Pi_N/d_N) is lambda*Pi_M/d_M with0<=lambda<=1 by covariance/Schur and trace normalization, hence gbar<=lambda*d_N/d_M.",
+        "map_domain_check": "The symmetric compression T0(X)=(d_N/d_M)Pi_M(X tensor I)Pi_M is CP and has trace tr(X Pi_N), not trace tr X on arbitrary full-space inputs. For a genuine full-domain channel use Ttilde(X)=T0(X)+tr[(I-Pi_N)X]sigma with any fixed state sigma. The added positive measure-and-prepare term makes it CPTP and vanishes on all psi^tensorN, so the same constant fidelity and optimum hold. Thus the reference's optimal map is legitimate on the symmetric input domain, or via this completion; it must not be advertised as an uncompleted TP map on all inputs.",
+        "answer_rubric_exposition": "All requested algebraic steps, all four rubric criteria and three semantic steps are valid in the standard positive-integer quantum-cloner context. The reference explicitly fixes both K and d in its limit. Universal maps here means admissible state-output quantum cloners as in the source, not arbitrary linear maps or postselected normalized nonlinear operations; unrestricted scaled linear maps need not obey this fidelity upper bound. This is a fidelity/sample-copy statement, not an implementation/query/gate/finite-bit cost guarantee.",
+        "source_alignment": "Complete Proposition8.2/twirling upper-bound proof, Eq8.25–8.30, Remark8.3 and Exercises8.4–8.6 were inspected. The average proof is posed as an exercise, not printed in full; the twirling argument above is independently supplied. Exercise8.5 explicitly distinguishes CP trace-nonincreasing compression from its channel completion. No fresh kernel execution or external Werner98 proof inspection is claimed."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-406-cloning-fidelity-asymptotics-and-ordering; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-406 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Section8.2, complete Proposition8.2 Eq8.9–8.24, Eq8.25–8.33/Remark8.3, Exercises8.4–8.6 Eq8.37–8.39; PDF65–69, printed66–70.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-407",
+      "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+      "item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_subtarget": "For n>=1, partition inequalities survive division by positive n and sum_i lambda_i/n=1, so part(a), r1 and semantic step1 give a valid ordered probability vector. The given single-diagram KL upper bound is the polynomial-qualified bound, not a coefficient-one exponential.",
+        "decisive_counterexample": "Take the fixed full-rank qubit state diag(1/sqrt(2),1-1/sqrt(2)). Its spectrum is ordered and irrational. Every estimator component lambda_i/n is rational for every finite positive integer n. Consequently hat r can NEVER equal this true r: Pr(hat r!=r)=1 for every n, not a sequence tending to0. Even r=(1/2,1/2) is unattainable for odd n, so a rational spectrum does not rescue the asserted limit on all n. This refutes the literal question(b), reference conclusion and rubric r3 without relying on the probability distribution beyond its partition-valued support.",
+        "quantifier_error": "D(p||r)>0 at each p!=r does not provide a single delta>0 uniformly on the punctured simplex. The admissible normalized partitions change with n and can approach r; their positive KL distances then approach0. Holding an outcome-dependent delta fixed while n grows is invalid. Correct consistency is: for every FIXED eps>0, Pr(||hat r-r||_1>=eps)->0. On that closed away-from-r set, natural-log Pinsker gives D>=eps^2/2 (with infinity where support is incompatible), and at most(n+1)^d outcomes plus the given prefactor yield (n+1)^(d(d-1)/2+d)*exp(-n eps^2/2)->0 for fixed d. This proves convergence in probability, not exact equality.",
+        "answer_rubric_exposition": "Reject the entire demanded consistency clause. The reference correctly mentions outcomes bounded away from r and probability near r, then wrongly concludes exact equality. r2's pointwise positivity is true but cannot justify r3; r4 only controls a uniform positive-rate region. Step2 is a valid neighborhood statement and step3 is valid only in that qualified sense. No repaired neighborhood intention is silently substituted for the historical question.",
+        "source_alignment": "Algorithm9.1 itself prints the same false exact-equality claim; this is a source-inherited defect, not support for it. The complete subsequent Proposition9.4 proof and Proposition9.5 fixed-epsilon statement distinguish the valid theorem. The extracted Eq9.35 also omits the union-count polynomial shown by its own following explanation; the independent union bound above restores that factor explicitly. No exact-spectrum algorithm, finite-bit equality test or zero-radius success statement is obtained."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-407-spectrum-estimator-normalized-partition-validity; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-407 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Algorithm9.1 Eq9.6 and false exact-equality sentence; complete Proposition9.4 proof Eq9.15–9.32, Section9.4 Eq9.33–9.42 and Proposition9.5; PDF70–75, printed71–76.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-408",
+      "key": "qcb-core-plan-408-separable-infinite-extendibility-and-hierarchy",
+      "item_digest": "682c79e81015ae2267b8ddef78c927dc7e1d68ec526c14ae7e30f002b5c310c8",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "For a finite-dimensional separable rho=sum_i p_i a_i tensor b_i, form Omega_k=sum_i p_i a_i tensor b_i^tensor k. Each term is positive and trace1, so the convex sum is a state. Tracing all B_j except B_l contributes product_(j!=l)tr b_i=1 termwise, leaving rho on AB_l. The same classical index i is essential; using independent unrelated indices would lose the specified A:B correlations. This one construction yields a compatible family for all positive integers k.",
+        "quantifiers_and_boundaries": "For any k-extension, discard k-k' systems for1<=k'<=k; positivity, trace and the retained AB_l marginals are preserved by partial trace. Thus Ext1 is all states and the finite sets decrease. Ext_infinity may be defined as intersection_(k>=1)Ext_k, namely forall finite k exists a k-extension. The separable construction supplies that and even compatibility; arbitrary separately chosen extensions are not automatically one consistent infinite-chain state. k1 is trivial. No normalized state exists on a zero-dimensional system. Pure product states satisfy every k, while pure entangled states fail already k2; finite extendibility does not imply separability.",
+        "answer_rubric_exposition": "All four criteria, three steps and explicit marginal checks are correct. The requested deduction is SEP contained in the all-k intersection and the nested chain, not a proof of the reverse equality. The final monogamy sentence uses the finite-dimensional all-k/SEP result as contextual interpretation; it must not be read as derived from(a)-(b) alone or as saying a single finite k excludes every entangled state. For example the qubit isotropic x1/2 state is entangled but2-extendible. No infinite-dimensional trace-class separability theorem or PPT-extension variant is asserted.",
+        "source_alignment": "Complete extendibility definition, Lemma7.1 proof, hierarchy paragraph and Exercise7.1 were inspected. The reverse Ext_infinity contained in SEP and the state-dependent finite cutoff are stated with a DPS04 citation, not proved in this source region. That upstream converse is not claimed newly verified. The requested constructive direction and marginal argument are independently checked."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-408-separable-infinite-extendibility-and-hierarchy; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-408 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Section7.1 definition Eq7.1, hierarchy Eq7.2, complete Lemma7.1 proof and finite-k entangled example Eq7.3–7.4; Exercise7.1; PDF58,64, printed59,65.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-409",
+      "key": "qcb-core-plan-409-pure-bipartite-extension-forced-product",
+      "item_digest": "a64a1d8b27cf0fe3a7a66f8b4bf60d7ebf0a288ef911b5e8cdcc2fdaac26500a",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Purify rho_ABB' to a normalized chi_ABB'C. Across AB:B'C write chi=sum_(j:q_j>0)sqrt(q_j)u_j tensor w_j with orthonormal Schmidt families. The AB marginal has nonzero eigenvalues q_j. Since it is the rank-one projector psi, exactly one q survives and its value is1. The associated u equals psi up to a phase, which can be absorbed into w because only the projector/marginal was prescribed. Thus chi=psi tensor w after that harmless choice, and rho_ABB'=psi_AB tensor omega_B', omega=tr_C|w><w| positive trace1.",
+        "corollary_and_boundaries": "If a second AB' marginal also equalled the entangled psi, this forced product would instead give psi_A tensor omega_B'. A product density cannot be the same pure entangled state: purity would require both factors rank1 and hence a product vector, contradicting entanglement. Therefore no2-extension exists. This excludes no pure product state: psi=a tensor b has extensions a tensor b^tensor k. Zero Schmidt coefficients are discarded, not counted as extra terms; trace1 excludes an empty Schmidt list or zero-dimensional occupied system. The theorem does not require B'=B except for interpreting the2-extension corollary.",
+        "answer_rubric_exposition": "The full purification, Schmidt-rank argument, partial trace and corollary satisfy all four criteria and three steps. Step2's vector equality is a selectable Schmidt phase convention because the hypothesis fixes a projector, unlike405's fixed pair of exact vector equations. No extra separability/PPT/rank assumption is inserted.",
+        "source_alignment": "Exercise7.3 provides the exact question and purification/Schmidt hint, while Section7.1 invokes its result. There is no printed full solution in the source. The derivation above supplies the operative rank argument independently; an exercise citation or catalog LF hash is not represented as a formal proof."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-409-pure-bipartite-extension-forced-product; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-409 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Exercise7.3 and its full purification/Schmidt hint; Section7.1 pure-entangled obstruction; PDF64 and58, printed65 and59.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-410",
+      "key": "qcb-core-plan-410-channel-preserves-k-extendibility",
+      "item_digest": "7f9d8bb4088fa19fc4b12e3fd2430d713e777a164111aa1fed72a0972f83e30e",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Given a state Omega_AB1...Bk with all AB_i marginals rho, define Omega'=(id_A tensor N^tensor k)(Omega). Tensor products and identity extensions of CP maps are CP, so this is positive even when the original systems are entangled. TP gives trace1. For each i, TP on a discarded factor yields tr_B'_j(id tensor N_j)(X)=tr_B_j X as an operator identity on the other registers; this follows by pairing with every observable there, or from N_j†(I)=I. Repeated use for j!=i gives tr_(B' except i)Omega'=(id_A tensor N)(rho)=sigma, as required.",
+        "contract_boundaries": "The output B' may have a different finite dimension; only its k copies must be identified with one another. No input extension symmetry is needed beyond equal marginals (one may symmetrize but the proof does not require it). k1 is immediate, and k>=1 is the ordinary definition. Mere positivity of N is insufficient on entangled input: transposition sends a maximally entangled projector to F/d with a negative antisymmetric eigenvalue for d>=2. Trace-nonincreasing operations or postselection are not covered: their branch probabilities and normalized marginals need not obey the TP identity.",
+        "answer_rubric_exposition": "All four rubric criteria and three semantic steps correctly locate CP at positivity and TP at unit trace AND at marginal preservation. The argument proves one-way preservation, not a converse or strict improvement, and not PPT extendibility under arbitrary positive maps. It is a structural channel theorem, with no gate/query/precision/cleanup resource bound.",
+        "source_alignment": "Exercise7.2(i), the complete definition of extension and the quantum-channel footnote were inspected. The preservation proof is an exercise, not a printed proof; the explicit construction and marginal identity are reconstructed above. Channels are explicitly CPTP in the actual question, so no informal word map enlarges this domain."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+          "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+          "anchor": "Complete authored mathematical/grading record qcb-core-plan-410-channel-preserves-k-extendibility; whole question/answer/rubric/assumptions/conventions/steps inspected and compared with actual prepared item. Content provenance only, not a proof."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-410 loaded through release.checked()[2]; exact whole-item digest above. Frozen QA provenance, not primary proof or admission."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "inspected_anchors": "Exercise7.2(i), Eq7.60 and CPTP channel footnote; Section7.1 Eq7.1; PDF64/58, printed65/59.",
+          "access": "Genuine primary text access; proof-versus-exercise/deferred-proof distinction stated in reasoning. Historical binary equality and rendered pixels unverified; shared primary-source limits apply."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "NL/source mathematical review only; no new kernel, local Lean closure, native-formal/admission, blind/human/model approval or novelty claim.",
+        "Whole-target semantic comparison is bounded; material shared subtargets are listed above, not treated as global dedup or cross-split authorization."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-plan-402",
+      "qcb-core-plan-403",
+      "qcb-core-plan-405",
+      "qcb-core-plan-406",
+      "qcb-core-plan-408",
+      "qcb-core-plan-409",
+      "qcb-core-plan-410"
+    ],
+    "rejected": [
+      "qcb-core-plan-401",
+      "qcb-core-plan-407"
+    ],
+    "uncertain": [
+      "qcb-core-plan-404"
+    ],
+    "absent_ids": [],
+    "exact_rejections": {
+      "qcb-core-plan-401": "d1 leaves rho(x)=I for all real x; empty assumptions do not justify the bounded interval or a complement eigenvalue of multiplicity0.",
+      "qcb-core-plan-407": "Irrational true spectrum can never equal the rational normalized-partition estimator, so the requested exact-inequality event has probability1 at all n. Fixed-neighborhood convergence is different."
+    },
+    "uncertainties": {
+      "qcb-core-plan-404": "Valid fixed-d bounds/purification, but r4/reference exact d-times total-n wording is not implied; only excess n-k has that exact scaling. Variable-d asymptotics also require explicit dimension factors."
+    },
+    "disposition": "Seven accepts, two exact-record rejects and one exposition/scope uncertainty.402's actual corrected-v2 premise is assessed,407's historical false event is preserved. No repair, quarantine, admission or canonical edit is performed.",
+    "stable_release_limit": "Future-checkpoint private evidence only; no global correctness/dedup, shared-formal-core integration, current checkpoint approval or cross-split pooling."
+  },
+  "worker_handoff": {
+    "objective": "Independent bounded mathematical/source reader review of actual prepared planned QIT401–410.",
+    "mathematical_delta": "Distinguish a zero-multiplicity eigenvalue sector from a positivity constraint; exact equality from fixed-neighborhood convergence; total n from excess n-k; exact-vector phase from ray-level cloning; symmetric-input trace preservation from a full-domain cloning channel.",
+    "failure_class": "SOURCE_INVALID",
+    "salvage_audit": "Retain401's valid d>=2 spectral calculation and407's domain/neighborhood subtargets without silently repairing their records. Retain404's symmetric purification and correct thresholds while withholding its exact total-n scaling phrase.402 corrected-v2 arithmetic and constructive channel/extension arguments are independently accepted.",
+    "process_memory_ids_consulted": [
+      "QBE-PM-VERIFIER-SEMANTIC-LEVEL",
+      "QBE-PM-LOW-TOKEN-CONTROL-PLANE"
+    ],
+    "direction_fingerprint": "Finite-rank spectral decomposition; exact quantifiers; purification/Schmidt collapse; CPTP marginal identities; Haar twirling and dimension-ratio fidelity; rational estimator grid versus fixed-epsilon KL concentration.",
+    "parallel_admission": "No new agent/alternate implementation route or common-blind-spot review claimed.",
+    "purification_exposition_status": "Private reader findings only, no source/graph node marked sealed/purified or formally admitted.",
+    "residual_risk": "Historical primary PDF byte equality/visual typography unverified; upstream JV13/DPS04 full proofs not newly read;404 needs explicit editorial disposition. Imported accept metadata is not fresh evidence.",
+    "recommended_next_step": "Parent independently inspect exact401 d1 and407 irrational-spectrum witnesses and decide separately authorized correction/withholding. Clarify404's fixed-d/excess-party wording before treating its full rubric as accepted. Any successors require their own distinct review.",
+    "files_changed": [
+      "_review_tmp/qit-extendibility-401-410-review.json"
+    ]
+  }
+}

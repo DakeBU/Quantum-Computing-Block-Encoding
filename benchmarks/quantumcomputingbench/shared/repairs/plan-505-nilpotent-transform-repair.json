@@ -1,0 +1,83 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "author": "/root/qcb_native_comparison",
+  "admission": "pending_distinct_review",
+  "core_id": "qcb-core-plan-505",
+  "supersedes_key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+  "supersedes_item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+  "key": "qcb-core-plan-505-textbook-v1-nilpotent-svt-normality-boundary-repair",
+  "change_scope": "Private unchanged-question answer/rubric/exposition successor only. The actual question asks for the nilpotent SVD, its even degree-two singular-value transform, the discrepancy and a correct resolving principle; these demands are true, so no question correction is needed. Preserve all nine CONTRACT_FIELDS, core/family/split, graph/source scope and six semantic steps. Exact original question-contract hash:7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197. Remove the false normal-matrix generalization, keep the nilpotent calculation, distinguish the ordinary polynomial/Jordan issue and contrast normal (i/2)I. This is authorship, not independent approval or admission.",
+  "reference_answer": "Use the ordered standard basis e_1,e_2. The operator is A=[[0,1],[0,0]], so A^2=0 and both eigenvalues are zero. A singular value decomposition is A=W Sigma V† with W=I_2, Sigma=diag(1,0), and V=X=[[0,1],[1,0]]. Indeed Sigma X=A. Equivalently A†A=diag(0,1), so the right singular vector for singular value1 is e_2 and that for singular value0 is e_1.\n\nThe stipulated even singular-value transformation uses the right singular vectors on both sides. Since T_2(x)=2x^2-1, T_2(Sigma)=diag(1,-1). Therefore T_2^SV(A)=V T_2(Sigma)V†=X diag(1,-1)X=diag(-1,1). Its second diagonal entry is+1, so it is not -I_2. The same result follows directly from the even-transform identity T_2^SV(A)=2A†A-I_2.\n\nFor comparison, the ordinary polynomial evaluated on A is T_2(A)=2A^2-I_2=-I_2. Thus the alleged output -I_2 is the ordinary polynomial in this particular example, not the output of the specified singular-value transform. One must not generally determine a function of a defective matrix merely from its eigenvalue list: this A is not diagonalizable, and for example T_1(A)=A is nonzero even though T_1(0)=0. Here the ordinary degree-two result happens to reduce to -I because A^2=0. The resolution is that an even singular-value transformation is V f(Sigma)V†, whereas ordinary polynomial evaluation forms f(A); these are different operations for general A.\n\nA sufficient agreement statement is: for a Hermitian H and a function of definite parity, the parity-defined singular-value transformation agrees with the spectral function f(H). To see the sign boundary correctly, write H=Q D Q†, Sigma=|D| and choose a diagonal unitary J with J_jj=sign(D_jj) at nonzero eigenvalues and J_jj=+1 at zero. Then H=(QJ)Sigma Q† is an SVD with unitary left factor. For even f, f(|D|)=f(D), so the right transformation agrees. For odd f, f(0)=0 and J f(|D|)=f(D), so the balanced transformation agrees too. No zero-eigenvalue division or nonunitary sign(0)=0 factor is needed.\n\nNormality alone is not such a sufficient condition. For the normal contraction B=(i/2)I_2, the singular values are1/2 and T_2^SV(B)=(-1/2)I_2, while the ordinary polynomial T_2(B)=2B^2-I_2=(-3/2)I_2. These differ in magnitude, not just a sign or global phase. General normal matrices may have complex eigenphases, whereas Hermitian eigenvalues have only real signs; definite parity handles those real signs, not arbitrary complex phases. Conversely normality is not necessary for every individual coincidence, since the odd degree-one transform equals A for any square A. The relevant principle for the question is therefore the precise right-even singular-value formula, which produces diag(-1,1), not a blanket rule equating eigenvalue and singular-value transformations for normal matrices.\n\nThese are exact matrix identities and the projected-block meaning of the stated transformation. No deterministic normalized-state preparation, gate compilation, query bound, or approximation-error guarantee is inferred from the matrix calculation.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Exhibits and verifies A=I_2 diag(1,0)X†, with singular values1 and0 and X as the right-singular-vector matrix."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Computes T_2(Sigma)=diag(1,-1) from T_2(1)=1 and T_2(0)=-1, using the stipulated even singular-value convention."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Pulls back by the right singular vectors to obtain diag(-1,1), explicitly differing from -I_2; distinguishes this from the ordinary polynomial T_2(A)=2A^2-I_2=-I_2."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Resolves the paradox by distinguishing singular-value/right-vector transformation from ordinary polynomial evaluation, without inferring general defective-matrix functions from eigenvalues alone or asserting that normality alone ensures agreement."
+    }
+  ],
+  "exposition": {
+    "core_summary": "For A=[[0,1],[0,0]], the even singular-value transform T_2^SV(A)=2A†A-I=diag(-1,1), whereas the ordinary polynomial T_2(A)=2A^2-I=-I. Hermitian definite-parity agreement is sufficient; normality alone fails, as B=(i/2)I shows.",
+    "semantic_steps": [
+      {
+        "claim": "The nilpotent A=[[0,1],[0,0]] has SVD W=I, Sigma=diag(1,0), V=X, since Sigma X=A.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The scalar polynomial T_2(x)=2x^2-1 gives T_2(Sigma)=diag(1,-1).",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The stipulated right-even transform is X diag(1,-1)X†=diag(-1,1)=2A†A-I.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The ordinary polynomial equals T_2(A)=2A^2-I=-I because A^2=0; this is not a general rule determining defective-matrix functions from their eigenvalue list.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The actual singular-value output has a+1 second diagonal entry, so it differs from the proposed -I output.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Definite-parity SVT agrees with spectral evaluation for Hermitian matrices, with unit-modulus sign completion at zero; normality alone does not ensure agreement, since B=(i/2)I has T_2^SV(B)=-I/2 but T_2(B)=-3I/2.",
+        "supporting_nodes": [
+          "concept:operator-theory",
+          "concept:approximation"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry entry lin-wiebe-2026-qasc, metadata only. Personally retrieved pinned primary: complete p165 Definition10.4/Eqs10.14–10.16 and pp173–174 Eq10.73/Example10.8/Eqs10.77–10.80. The zero-eigenvalue unitary sign completion, ordinary-polynomial distinction and normal (i/2)I counterexample are this author's explicit mathematical reconstruction, not a claim that the source supplied those qualifications or that local Lean closure was checked."
+    }
+  ],
+  "execution": "Private source-grounded authorship, pending distinct independent review; no selfapproval/admission/kernel/nativeformal/stable claim. I previously authored the independent502–510 reader review and diagnosed505's false normality generalization, read root's reconciliation message, and reread the complete current prepared historical505 question, answer, rubric, assumptions, conventions, graph/source fields and semantic steps through release.checked()[2]; no blindness or new identity is claimed. For this authoring task I independently re-fetched https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf in memory:5718900 bytes,447 pages, raw SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599, matching the inherited pin. I read complete pages165,173–176, and personally rendered in memory and viewed174/175; no PDF/images/source bytes were saved or redistributed. Source reasoning and source inspection are not fresh kernel or production-circuit verification. Only this private candidate's answer/rubric/exposition is authored; original source metadata and all nine contract fields are preserved."
+}

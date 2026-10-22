@@ -1,0 +1,81 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "core_ids": [
+      "qcb-core-plan-010",
+      "qcb-core-plan-011"
+    ],
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "record_selection": "Full actual prepared question/answer/rubric/assumptions/conventions/native summary/source_refs/primary_sources and all semantic steps read from release.checked()[2]. Hashes bind entire items, not only selected mathematical fields.",
+    "mutation_limit": "Only this private report is authored. No admission, original rewrite, production Lean change or PR104 edit."
+  },
+  "provenance": {
+    "actual_identity": "/root",
+    "independence": "Distinct from original native-planned-author; root authored neither original. Stored answers and inherited acceptance metadata visible; not blind, human review or a new reviewer identity.",
+    "execution": "Read-only exact-item access and source inspection; independently derived matrix identities and explicit counterexamples. No kernel, arbitrary prediction, model baseline or implementation run.",
+    "primary_url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+    "primary_regions": "Complete operative Chapter9 opening/9.1 through Definition9.2, Eq9.11-9.14 and Example9.3 including implementation caveat; printed141-144, zero-basedPDF140-143. Text actually accessed via web; surrounding9.2 was also returned but no blanket approval is claimed.",
+    "binary_pin_limit": "Recorded447-page29April2026 edition and historical SHA56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599. This objective used genuine primary extracted text, not a fresh raw-byte hash or visual verification; earlier independent byte retrievals are not reattributed as this review execution.",
+    "graph_limit": "Conceptual verification/block-encoding/matrix-analysis anchors do not establish local Lean closure. No new formal view, source-blind seal, resource guarantee or stable certification.",
+    "redistribution": "No primary PDF saved or redistributed; report contains independently reconstructed arguments and counterexamples."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-010",
+      "key": "qcb-core-plan-010-entry-vs-operator-norm-verification",
+      "item_digest": "13ff4d7410b8c1c651c0e8a652cb201ded626374ddf50a7f712d2a82784b3abf",
+      "question_contract_hash": "2434f9619ce11e416298ed6a4f592aff67aa1626ae6dd1817eb42555a6d57e4c",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The complete exact-unit-factor and approximate-error targets are sound. With J mapping b to |0^m> tensor b, B=J† U J, so its ij entry is exactly the stated overlap. For U=U_B U_C, the adjoint of U_B† J|i> is <i|J† U_B, proving the two-state inner-product identity without changing the multiplication order. Equality of all d^2 entries is equality on a basis, hence operator equality, not a numerical sampling certificate. The approximate definition controls ||A-alpha B||_2. For E with |E_ij|<=delta, Cauchy-Schwarz gives ||Ex||_2<=d*delta*||x||_2, so there IS a dimension-dependent bound, but no dimension-free guarantee at the same entry tolerance. E=delta*ones(d,d) attains d*|delta| on the normalized all-ones vector. Taking delta=1/d gives entries tending to zero and norm1; E is itself a contraction and admits a unitary dilation, so the example need not violate the compression norm constraint. Thus the reference statement that norm is not controlled by entrywise size must be read with its immediately following dimensional accumulation qualification, not as denial of finite-dimensional norm equivalence. All four grading criteria and three semantic steps retain that qualification. Prepare/apply/overlap identifies a complex amplitude mathematically; it is not a claim that one measurement reads an exact complex entry or that all-entry certification is efficient. The source Eq9.11 uses the scaled operator error,9.12 gives the exact entries and9.13 the adjoint factorization. No physical measurement sample complexity or new Lean certificate follows.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Lin-Wiebe source metadata only. Actual operative primary text was independently accessed at its author-hosted URL; metadata hashing is not a primary-binary or Lean proof certificate."
+        }
+      ],
+      "formal_status": "not_run_source_only"
+    },
+    {
+      "core_id": "qcb-core-plan-011",
+      "key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+      "item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+      "question_contract_hash": "8befbf010523ba0d7470bf3d315f6611a2d90965f3ea9f3481c107697e864693",
+      "verdict": "reject",
+      "semantic_core_verdict": "pending_repair",
+      "reasoning": "The requested SVD dilation and first three rubric criteria are true, but the final universal postselection necessity in the question, answer, rubric4, summary and step3 is false as stated. S=sqrt(I-Sigma^2) is real diagonal and commutes with Sigma; the middle block is Hermitian and squares to diag(Sigma^2+S^2,S^2+Sigma^2)=I. Multiplying the unitary outer factors yields top-left W Sigma V†=A and upper-right W S. Thus the exact one-ancilla construction is valid for every stipulated contraction, including singular and zero A. Also no nonunitary A equals a system-only unitary AS AN EXACT LINEAR OPERATOR on every input. That fact does not imply every implementation of its normalized output state requires an ancilla and probabilistic postselection. Take A=cI on an n-qubit system with real0<c<1. It satisfies every original premise and is nonunitary, yet A|b>/||A|b>||=|b> for every normalized input: the native identity produces the desired normalized state deterministically without any ancillary qubit. In the displayed dilation the selected success probability is c^2, but that is a property of this chosen unnormalized branch, not a universal lower bound for all state-generation procedures. Likewise A=diag(1,1/2) and input|0> have selected success1 despite A being nonunitary. If A|b>=0, conditioning on the success branch is undefined and must not be described as recovering a normalized output. A deterministic operation cannot equal the subnormalized branch rho->A rho A† for every density when A†A differs from I, because that branch fails trace preservation on some inputs. Keeping that exact-branch assertion distinct from normalized state preparation salvages the useful impossibility statement without the universal claim. Primary Example9.3 proves the block construction and explicitly withholds an efficient one-/two-qubit implementation; Figure9.1/9.2 describe postselection of that construction, not universal necessity. Correcting the final requested claim requires an explicit question successor; an answer-only replacement or new standing premise would silently change the false demand.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Lin-Wiebe source metadata only. Actual operative primary text was independently accessed at its author-hosted URL; metadata hashing is not a primary-binary or Lean proof certificate."
+        }
+      ],
+      "formal_status": "not_run_source_only"
+    }
+  ],
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Lin-Wiebe source metadata only. Actual operative primary text was independently accessed at its author-hosted URL; metadata hashing is not a primary-binary or Lean proof certificate."
+    }
+  ],
+  "bounded_semantic_comparisons": [
+    {
+      "left": {
+        "core_id": "qcb-core-plan-010",
+        "item_digest": "13ff4d7410b8c1c651c0e8a652cb201ded626374ddf50a7f712d2a82784b3abf"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-011",
+        "item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53"
+      },
+      "relation": "distinct full targets with shared block interface",
+      "reason": "010 verifies a given block and distinguishes exact entries from approximate norm.011 constructs a larger unitary for an arbitrary contraction and overclaims postselection necessity. The contraction in010 example can use011 dilation, but this proper auxiliary construction does not identify the complete questions. No whole-catalog, cross-cohort or transitive split/dedup conclusion."
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-214",
+  "supersedes_key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+  "supersedes_item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-214-textbook-v1-qubitization-source-and-sector-clarification",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition clarification, not a question-contract correction. Actual resolved ID is qcb-core-plan-214, not sp-214. Preserve all nine CONTRACT_FIELDS, family/split/frozen graph/source scope and five steps; original contract hash fa6d5317e5460f774b682be442b3a28aaf6d927eb9775d600bc204dec418b186. Section9.8, Example9.17 and Definition9.23 are correct source identifiers; the qubitization equations are10.30-10.40, not9.30-9.40. The old primary_sources anchor string also has that bad equation range, and its page list omits printed155 for Example9.17: it remains frozen and is NOT overridden by the current answer-successor schema. Correct operative pages are155,159,167-168. The correction is explicitly documented in this answer/source evidence, with any additive primary-metadata transport still a separate operation. Clarify admissible oracle completion, exact normalization and one-dimensional endpoint sectors rather than overstate a universal2D/approximate Chebyshev identity. No question/core/source node, standing premise or admission is changed.",
+  "reference_answer": "(i) Write P=|0^m><0^m| tensor I. For positive normalizer alpha, an exact block encoding constrains only the clean compression: (<0^m| tensor I) U_A (|0^m> tensor I)=A/alpha. The other blocks are not independently arbitrary: they must jointly complete a unitary. But that unitarity constraint does not require the whole completion to be self-adjoint. Thus a Hermitian encoded block need not imply U_A=U_A^dagger.\n\n(ii) A concrete completion consistent with Example9.17 is the following. Take A=(1/2)I_2 and one ancilla qubit, set b=sqrt(3)/2, and choose R=[[1/2,-b],[b,1/2]], U_A=R tensor I_2, with the ancilla first. Then R^T R=I_2, so U_A is unitary, and its clean block is A. On input |0>|i> it produces ((1/2)|0>+b|1>)|i>, exactly the source amplitude-oracle action for this diagonal A. Yet R^dagger=R^T has the opposite off-diagonal signs and differs from R, so U_A is not Hermitian. More generally use a real a in(0,1) and b=sqrt(1-a^2). The specified |0> input action alone does not uniquely determine the completion on |1>: [[a,b],[b,-a]] is a different, Hermitian-unitary completion with the same first column. The point is that a non-Hermitian completion is allowed, not that every amplitude oracle must be non-Hermitian.\n\n(iii) Definition9.23 in Section9.8, printed159, calls a block encoding Hermitian when it also satisfies the GLOBAL condition U_A=U_A^dagger. This is strictly stronger than merely encoding Hermitian A, as the preceding example proves. The nontrivial qubitization closure is in Section10.2.1, printed167-168, Eqs10.30-10.40; the old references9.30/9.34 (and9.30-9.40 in historical primary metadata) are incorrect equation locators, not alternative versions of this proof.\n\nHere is the precise exact-encoding motivation. If U_A is an exact Hermitian block encoding with scale alpha, put C=A/alpha. Compression of a unitary implies ||C||<=1. For an eigenvector v of C with eigenvalue lambda, let a_vec=|0^m>v. Then U_A a_vec=lambda a_vec+e_perp, with P e_perp=0 and ||e_perp||^2=1-lambda^2, as in Eq10.30-10.33. If |lambda|<1, define b_vec=e_perp/sqrt(1-lambda^2). Hermitian unitarity gives U_A^2=I; applying U_A a second time gives U_A b_vec=sqrt(1-lambda^2)a_vec-lambda b_vec (Eq10.34). Consequently span{a_vec,b_vec} is invariant and U_A has matrix [[lambda,sqrt(1-lambda^2)],[sqrt(1-lambda^2),-lambda]] there (Eq10.35), a reflection. Z_P=2P-I has matrix diag(1,-1) on this basis, so the iterate Q=U_A Z_P has matrix [[lambda,-sqrt(1-lambda^2)],[sqrt(1-lambda^2),lambda]], a rotation (Eq10.38-10.39). Its kth power has clean diagonal entry T_k(lambda), giving the exact clean block T_k(C), with source Eq10.40-10.41. When alpha=1 this is T_k(A).\n\nIf lambda=+1 or-1, e_perp=0 and the clean vector already spans a ONE-dimensional invariant subspace. No normalized leakage vector is needed or divided by zero; the same clean-block identity follows from lambda^k=T_k(lambda). In particular one must not claim every eigenvector necessarily yields a nontrivial2D sector. For an approximate block encoding, self-adjointness still defines HBE, but the preceding exact formula applies to its actual compression; it is not automatically an exact T_k(A/alpha) identity or an error bound for the requested A. These distinctions explain the structural usefulness of Hermiticity without claiming it is necessary for every more general qubitization construction. This is source/NL algebra, not a freshly executed circuit, finite-bit bound or local Lean certificate.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "States the exact clean compression A/alpha and distinguishes coupled unitary-completion constraints from global self-adjointness; does not infer whole-unitary Hermiticity from the encoded block."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Gives a unitary non-Hermitian rotation completion matching the amplitude-oracle |0> action and a Hermitian diagonal clean block, without claiming the first-column specification uniquely forces that completion."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Correctly states Section9.8/Definition9.23's extra global requirement U_A=U_A^dagger, and identifies Section10.2.1/Eq10.30-10.40 as the actual qubitization proof locators."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Explains exact normalized closure through U_A^2=I and two reflections for |lambda|<1; handles lambda=±1 as1D, gives T_k(A/alpha) at general scale, and does not extend an exact identity to arbitrary approximate HBE without an error argument."
+    }
+  ],
+  "exposition": {
+    "core_summary": "A Hermitian clean block does not force a Hermitian unitary completion. Definition9.23 adds global self-adjointness; the exact scaled qubitization proof is Eq10.30-10.40, with2D interior sectors and1D endpoint sectors.",
+    "semantic_steps": [
+      {
+        "claim": "Only the clean compression A/alpha is prescribed by an exact block encoding; the remaining coupled unitary-completion conditions do not force U_A=U_A^dagger.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "An admissible rotation completion for A=(1/2)I_2 has the required amplitude-oracle first column but is not Hermitian; other completions of that first column may be Hermitian.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Section9.8/Definition9.23 adds global U_A=U_A^dagger, strictly stronger than Hermiticity of the encoded block.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For exact HBE and eigenvalues of C=A/alpha strictly inside[-1,1], U_A^2=I closes the2D clean/leakage sector as in Eq10.30-10.35; at ±1 the clean sector is1D.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Combining U_A with Z_P yields the rotation and exact Chebyshev clean block T_k(C) in Eq10.38-10.41; no unproved approximate or finite-bit guarantee is inferred.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Lin–Wiebe metadata entry230-238 read; LF hash is metadata only. Independently retrieved operative PDF5718900bytes/447pages raw SHA56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599 matches the historical pin. Complete Example9.17/Eq9.72-9.73 printed155, Section9.8/Definition9.23 printed159 and Section10.2.1 complete closure Eq10.24-10.41 printed167-168 read. Eq9.xx is not the qubitization locator. Actual source explicitly handles lambda=±1 separately. The concrete unitary completion and scaled/boundary exposition are reconstructed, not claimed newly Lean-certified."
+    }
+  ],
+  "execution": "Private authoring by the actual /root/qcb_formal_view_audit task, not independent approval of this candidate. Full actual current catalog item and historical release.checked()[2] item were read and whole digests matched at observed head 0b229454bcac07658738e184e255d3ae44e65957. Parent's source-debt description and historical acceptance metadata were exposed; prior source/reader review work is disclosed, not blindness. Substantive-worker/PDF guidance used, mandatory repository protocols read in this continuous context. This reviewer independently fetched the author-hosted Lin–Wiebe PDF into memory, verified the raw binary pin and read complete operative pages; no new visual inspection of these pages is claimed, no PDF/page saved or redistributed. No Lean/kernel/native-formal execution, model/human approval, novelty, admission, canonical/source/policy edit, commit/push, extra agent or PR104 change. Only this private candidate is authored, pending distinct exact-content review. Historical primary_sources metadata is not silently overwritten; its remaining locator debt is explicitly identified in change_scope."
+}

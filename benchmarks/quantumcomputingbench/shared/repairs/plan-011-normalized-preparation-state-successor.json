@@ -1,0 +1,67 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-011",
+  "supersedes_key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+  "supersedes_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+  "supersedes_contract_hash": "8befbf010523ba0d7470bf3d315f6611a2d90965f3ea9f3481c107697e864693",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-011-textbook-question-v2-normalized-preparation-boundary",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction, not an answer-only repair or an equivalent restatement of the predecessor's requested proof. Preserve the exact SVD unitary dilation and no-exact-system-unitary claim. Replace the universal demand to prove ancilla/postselection necessity for nonunitary A by explicit assessment/refutation for NORMALIZED state preparation, while retaining the chosen branch probability and exact unnormalized-operator boundary. Keep original assumptions/conventions (both empty), family/split, frozen graph/source scope and the same three semantic steps/nodes; only question changes among the nine contract fields. No deterministic implementation of the unnormalized nonunitary A, efficient gate synthesis, new core or formal admission is claimed.",
+  "question": "Let A be any n-qubit matrix, of size N=2^n, with ||A||<=1 and a singular value decomposition A=W Sigma V^dagger, with W,V unitary and Sigma real diagonal with entries in[0,1]. Set S=sqrt(I-Sigma^2) and U_A=diag(W,I)*[[Sigma,S],[S,-Sigma]]*diag(V^dagger,I), with the one ancillary qubit indexing the two block rows and columns. Prove that U_A is unitary and its clean ancilla-0 block is exactly A.\n\nFor every normalized system vector b, compute the full U_A(|0> tensor b), the probability p_b of measuring ancilla0, and, only when p_b>0, the normalized conditioned system vector. Explain what happens when A b=0. Characterize precisely the inputs with p_b=1, using the norm-one subspace ker(I-A^dagger A), and give an example of a nonunitary A with such an input.\n\nNow assess the predecessor's assertion that whenever A is nonunitary, extra ancillas and probabilistic postselection are unavoidable for ANY procedure preparing the NORMALIZED target A b/||A b|| on all inputs where it is defined. Prove or refute this assertion using A=cI with real0<c<1, and distinguish the success probability of the displayed block-encoding branch from a universal necessity claim about all normalized-state procedures. Separately prove the valid exact-linear-operator statement: a nonunitary A cannot equal a system-only unitary on every input. Explain also why the unnormalized branch rho->A rho A^dagger cannot be a deterministic trace-preserving operation on every density rho unless A^dagger A=I. Do not identify that unnormalized branch with its normalized output ray, silently exclude kernel inputs, or claim that arbitrary A admits a deterministic normalized-state procedure. State what this SVD existence construction does NOT establish about efficient one-/two-qubit gate implementation.",
+  "reference_answer": "Since the singular values lie in[0,1], S is a well-defined nonnegative real diagonal matrix, S^2=I-Sigma^2, and S Sigma=Sigma S. The middle matrix M=[[Sigma,S],[S,-Sigma]] is Hermitian, and block multiplication gives M^dagger M=M^2=[[Sigma^2+S^2,Sigma S-S Sigma],[S Sigma-Sigma S,S^2+Sigma^2]]=diag(I,I). It is therefore unitary. Both outer block-diagonal factors are unitary, so U_A is unitary. Multiplying the blocks explicitly gives U_A=[[W Sigma V^dagger,W S],[S V^dagger,-Sigma]]=[[A,W S],[S V^dagger,-Sigma]]. Thus the clean block is exactly A, an exact unit-factor one-ancilla block encoding.\n\nFor normalized b this same full matrix gives U_A(|0> tensor b)=|0> tensor A b+|1> tensor S V^dagger b. The two ancillary sectors are orthogonal. Their squared norms add to1, with p_b=||A b||^2=<b|A^dagger A|b> and failure probability1-p_b=||S V^dagger b||^2. If p_b>0, conditioning on outcome0 gives the normalized system vector A b/sqrt(p_b). The amplitude A b before conditioning is generally subnormalized; it is not itself a normalized physical output state. If A b=0, p_b=0 and the selected outcome never occurs, so its conditioned state is UNDEFINED; one must not divide by zero or call the zero vector a state. In particular A=0 has no defined normalized target on any input.\n\nBecause A is a contraction, I-A^dagger A is positive semidefinite. For normalized b, p_b=1 exactly when <b|(I-A^dagger A)|b>=0. A positive square root shows that this happens exactly when (I-A^dagger A)b=0, i.e. b belongs to K=ker(I-A^dagger A). This is the norm-one subspace, spanned by right singular vectors of singular value1. On it A preserves norms and inner products; the displayed branch is certain and the failure component vanishes. A may be nonunitary while K is nonzero: A=diag(1,1/2) on a qubit has p_|0>=1. This does not make A unitary on the entire system, nor claim that an arbitrary input lies in K. A strictly contractive example cI has K={0} even though its normalized-state target is simple.\n\nThe asserted universal necessity for NORMALIZED state preparation is false. Take A=cI with real0<c<1. For every normalized b, A b=c b is nonzero and A b/||A b||=b. The system-only identity prepares that normalized target deterministically, with no ancillary qubit and no postselection. Yet the chosen unit-factor dilation branch above has success probability c^2. That probability characterizes this compression/selected unnormalized branch, not all procedures producing the same output ray. The identity does NOT implement the unnormalized operator cI as an exact linear map: it discards its scalar norm loss, which normalized state preparation does not retain. This one counterexample refutes universal necessity; it does not establish a deterministic normalized-state implementation for every nonunitary A. In general normalization is input dependent, and this construction asserts no such generic procedure.\n\nThe correct exact-operator obstruction remains. If a system-only unitary U equaled A on every input vector, then U=A as a matrix and A^dagger A=U^dagger U=I, which for a square finite-dimensional A implies unitarity. Thus a nonunitary A cannot equal any such U. Equivalently, some right singular value of a nonunitary square contraction is less than1, and on a corresponding unit vector ||A b||<1 whereas U preserves norm. This is different from equality of normalized rays. More generally a deterministic trace-preserving operation has trace1 on every input density rho. The branch rho->A rho A^dagger has trace tr(rho A^dagger A), equal to1 for every density rho only if A^dagger A=I: apply the condition to every pure projector, so the Hermitian A^dagger A-I has zero quadratic form and is zero. Conversely A^dagger A=I makes this square-matrix branch unitary and trace preserving. For nonunitary A the branch is a trace-nonincreasing operation, not a deterministic normalized output channel. Its conditioned density A rho A^dagger/tr(A rho A^dagger), when the denominator is positive, is a different normalized expression and is undefined at zero denominator.\n\nAll these statements allow singular and zero A; no nonzero-target or norm-loss premise was smuggled into the original contraction domain. When A itself is unitary, S=0 and no system-only unitarity obstruction exists; the construction still supplies a valid but unnecessary dilation. Example9.3/Eq9.14 proves finite-dimensional existence, and Section9.1/Eq9.4 describes the selected branch. Neither gives an efficient decomposition of a general supplied dense A or this U_A into simple one-/two-qubit gates, an efficient SVD-access oracle, finite-bit costs or a new local Lean certificate. This expressly versioned question corrects a false universal normalized-preparation claim while preserving the exact dilation and exact-operator statements.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Proves M is Hermitian-unitary using S^2=I-Sigma^2 and commutativity, and concludes the full product is unitary."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Multiplies the full blocks correctly, obtains clean block A and failure component S V^dagger b, and derives selected probability ||A b||^2 and the normalized conditioned state only when positive; handles kernel/zero A and norm-one subspace K, including a nonunitary p=1 example."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Explicitly refutes universal ancilla/postselection necessity for normalized state preparation using A=cI,0<c<1 and the deterministic system identity; distinguishes its output ray from the exact unnormalized map and the chosen dilation's c^2 success probability. Does not claim generic deterministic normalized preparation."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Proves no nonunitary A equals a system-only unitary on every input, and identifies A^dagger A=I as the exact trace-preservation condition for the branch on all density inputs. Separates subnormalized/conditioned operations and states the absence of an efficient one-/two-qubit implementation guarantee."
+    }
+  ],
+  "exposition": {
+    "core_summary": "SVD gives an exact one-ancilla unitary dilation of every contraction. Its chosen branch has probability||A b||^2, but exact-operator nonunitarity does not force probabilistic normalized state preparation: cI has the identity as its normalized target procedure.",
+    "semantic_steps": [
+      {
+        "claim": "M=[[Sigma,S],[S,-Sigma]] is Hermitian-unitary because S^2=I-Sigma^2 and Sigma,S commute.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The full product is unitary with clean block A and failure block S V^dagger; its selected probability is||A b||^2, with conditioning undefined on the kernel and probability1 precisely on normalized vectors in ker(I-A^dagger A).",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Nonunitary A equals no system-only unitary as an exact operator, and its unnormalized branch is not trace preserving on all densities. But cI refutes universal ancilla/postselection necessity for normalized output rays; no generic deterministic normalized procedure or efficient gate synthesis is claimed.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete Lin–Wiebe metadata entry230-238 read; this LF hash binds metadata only. Actual independently retrieved operative primary PDF: 5718900bytes/447pages raw SHA56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599, matching the historical pin. Complete printed141-144 Section9.1, Fig9.1/9.2 and Eq9.1-9.13 branch/definition context, plus complete Example9.3/Eq9.14 and its implementation caveat read. These establish the dilation and chosen branch, not universal necessity over all normalized-state procedures. cI, norm-one/kernel and trace-preservation arguments are this task's explicit mathematical reconstruction, not attributed as source theorems or new Lean results."
+    }
+  ],
+  "execution": "Private question-version2 authoring by the actual /root/qcb_formal_view_audit task, not self-approval. Full actual prepared plan011 question/reference/rubric/assumptions/conventions/three semantic steps/source metadata read through release.checked()[2]; exact prior item and contract digests programmatically checked. Root's complete _review_tmp/encoding-foundations-010-011-review.json and its cI diagnosis were exposed; this is not source- or verdict-blind, and prior source exposure is disclosed. Mandatory repository protocols and substantive-worker/PDF guidance read in this continuous context. Fresh independent read-only HTTPS memory retrieval verified the5718900byte447page Lin–Wiebe historical binary pin in this objective; complete operative text read, no visual verification of these pages claimed and no PDF/page saved or redistributed. No deterministic implementation of unnormalized nonunitary A, Lean/kernel/native formal execution, model/human/expert approval, efficient circuit/finite-bit theorem, novelty, admission, canonical/source/policy edit, extra agent, commit/push or PR104 change. Only this private candidate is authored; a distinct exact-content question-change review remains required."
+}

@@ -52,6 +52,74 @@
         "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
         "finding_digest": "87a3bd96b762a6434e855a55bee89412168140113f31b0e9ae758b40f5f70c43"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-320",
+      "predecessor_key": "qcb-core-plan-320-isotropic-partial-transpose",
+      "predecessor_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+      "reason": "Explicit first question-version2 correction, not an unchanged-question answer repair and not an equivalent restatement of the predecessor's requested proof. Retain the false state-level iff for assessment/refutation, then request the valid full sandwich/adjoint identity, unconditional OPERATOR-symmetry equivalence and the conditional PPT state-level theorem. PPT is a proved case/necessary positivity condition, not a new standing premise excluding the counterexample. The exact assumptions, conventions, family, split, frozen graph/source scope and four semantic steps remain reserved; only question changes among the nine contract fields. Original source wording and the frozen predecessor remain historical. No new core or Lean node is introduced.",
+      "repair": "shared/repairs/plan-320-partial-transpose-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-320-partial-transpose-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-320",
+        "predecessor_key": "qcb-core-plan-320-isotropic-partial-transpose",
+        "predecessor_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+        "reason": "Partial transpose transports operator symmetry but not state positivity; a maximally entangled state maps to the nonpositive swap divided by dimension.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+        "review_digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+        "finding_digest": "67bcc2c402586f17aefc82809acea89ad9159ded86b184014e0768aac06f02cb"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-011",
+      "predecessor_key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+      "predecessor_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+      "reason": "Explicit first question-version2 correction, not an answer-only repair or an equivalent restatement of the predecessor's requested proof. Preserve the exact SVD unitary dilation and no-exact-system-unitary claim. Replace the universal demand to prove ancilla/postselection necessity for nonunitary A by explicit assessment/refutation for NORMALIZED state preparation, while retaining the chosen branch probability and exact unnormalized-operator boundary. Keep original assumptions/conventions (both empty), family/split, frozen graph/source scope and the same three semantic steps/nodes; only question changes among the nine contract fields. No deterministic implementation of the unnormalized nonunitary A, efficient gate synthesis, new core or formal admission is claimed.",
+      "repair": "shared/repairs/plan-011-normalized-preparation-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-011-normalized-preparation-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-011",
+        "predecessor_key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+        "predecessor_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+        "reason": "An exact nonunitary linear operator is not a native unitary, but its normalized output need not require postselection; a nonzero scalar identity is a counterexample.",
+        "review": "reports/textbook-v1/reader-reviews/encoding-foundations-010-011-review.json",
+        "review_digest": "5a155ddc15bd54290a7dfd292bd7e6166c6b7c6c7969ac4b46be2d368ceb2912",
+        "finding_digest": "d9269435cbdfb1fc7da2499a9274a5df80a07d47e35e71b871f016ba5e5c60ac"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-401",
+      "predecessor_key": "qcb-core-plan-401-isotropic-positivity-x-range",
+      "predecessor_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+      "reason": "Explicit first question-contract correction. Preserve the original positivity/trace/eigenvalue target and require assessment of its dimension-independent interval claim, but include the allowed d=1 branch instead of silently imposing d>=2. All-real x and all nonzero Hilbert dimensions remain; d=0 was already incompatible with the stipulated rank-one trace-one Phi. Only question changes among the nine CONTRACT_FIELDS; original assumptions/conventions stay empty, and family/split/frozen graph/source scope/three semantic steps remain reserved. Not an equivalent proof demand, answer-only repair, new core, or admission.",
+      "repair": "shared/repairs/plan-401-isotropic-dimension-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-401-isotropic-dimension-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-401",
+        "predecessor_key": "qcb-core-plan-401-isotropic-positivity-x-range",
+        "predecessor_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+        "reason": "The positivity interval silently assumes dimension at least two; at dimension one the state is the identity for every real parameter.",
+        "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+        "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+        "finding_digest": "7dd8cd3e026c51b8ed2c8c4d778a9efd2a03f7ed1e0eed62f935411c088158f8"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-407",
+      "predecessor_key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+      "predecessor_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+      "reason": "Explicit first question-contract correction, not equivalent to the predecessor's demand to prove Pr(hat r!=r)->0. Keep that exact-equality assertion for assessment/refutation and replace the false proof demand with fixed-epsilon convergence in probability using the original polynomial-qualified outcome bound and an explicit diagram-count union factor. Keep estimator-domain validation, all spectra including zeros, original assumptions/conventions (empty), family spectrum-estimation-consistency, split, frozen graph/source scope and three semantic steps. Only question changes among the nine fields. The corrected neighborhood theorem substantially overlaps plan319's concentration subtarget; this is reserved lineage under existing407, not an additional distinct core or global deduplication/alias decision.",
+      "repair": "shared/repairs/plan-407-fixed-neighborhood-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-407-fixed-neighborhood-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-407",
+        "predecessor_key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+        "predecessor_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+        "reason": "Exact spectrum equality is impossible for an irrational spectrum at every finite sample count; neighborhood consistency is a different statement.",
+        "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+        "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+        "finding_digest": "3edbf7781b4db74af20cc4116027f3749ed29fb005d2ca662d4316887f8e879d"
+      }
     }
   ],
   "answer_successors": [
@@ -248,6 +316,73 @@
         "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
         "finding_digest": "785c061d3ee33b72d66f626d11f373296581ded85ba7591272e007e75c37db39"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-319",
+      "predecessor_key": "qcb-core-plan-319-spectrum-concentration",
+      "predecessor_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+      "reason": "Unchanged-question complete answer/rubric/exposition repair. Preserve all nine contract fields, fixed-d assumption, original source/graph scope, family/split and four semantic steps. Correct the bare-exponential process claim and clarify total neighborhood mass versus individual/exact-matching outcomes. Supply the prefactor-aware finite-n proof and zero-spectrum cases without a full-rank premise. No new question/core/native formal view, resource or admission claim.",
+      "repair": "shared/repairs/plan-319-concentration-prefactor-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-319-concentration-prefactor-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-319",
+        "predecessor_key": "qcb-core-plan-319-spectrum-concentration",
+        "predecessor_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+        "reason": "The concentration exposition drops a polynomial prefactor; a single outcome is not bounded by the bare exponential and neighborhood sums require a count.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+        "review_digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+        "finding_digest": "e99edf0301fa05d76b800d1e2b763f13ef5f7373b09000cb63a4596033772f29"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-505",
+      "predecessor_key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+      "predecessor_item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+      "reason": "Private unchanged-question answer/rubric/exposition successor only. The actual question asks for the nilpotent SVD, its even degree-two singular-value transform, the discrepancy and a correct resolving principle; these demands are true, so no question correction is needed. Preserve all nine CONTRACT_FIELDS, core/family/split, graph/source scope and six semantic steps. Exact original question-contract hash:7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197. Remove the false normal-matrix generalization, keep the nilpotent calculation, distinguish the ordinary polynomial/Jordan issue and contrast normal (i/2)I. This is authorship, not independent approval or admission.",
+      "repair": "shared/repairs/plan-505-nilpotent-transform-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-505-nilpotent-transform-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-505",
+        "predecessor_key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+        "predecessor_item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+        "reason": "The nilpotent calculation is valid but the answer incorrectly extends Hermitian parity agreement to arbitrary normal matrices.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "bb72ef8f9a6c3abd5b7ef2db3c60c19833ca45d95da90475b051991c82387333"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-506",
+      "predecessor_key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+      "predecessor_item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+      "reason": "Private unchanged-question answer/rubric/exposition successor only. The actual question's unitary-compression bound and CS structure are true for p\u2264q, so answer-only repair suffices without weakening the demand. Preserve all nine CONTRACT_FIELDS, core/family/split, graph/source scope and six semantic steps. Exact original question-contract hash:0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f. Replace the insufficient individual-column-length inference by the full Gram identity, rotated-column orthogonality and a zero-sine-safe orthonormal completion; give the complete CS factorization and precise real Chebyshev domain. This is authorship, not independent approval or admission.",
+      "repair": "shared/repairs/plan-506-unitary-compression-gram-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-506-unitary-compression-gram-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-506",
+        "predecessor_key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+        "predecessor_item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+        "reason": "Individual column lengths do not imply the spectral bound; the complete proof needs the full Gram identity and zero-sine-safe rotated-column completion.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "33cbe77c883d1429de099cee3dfc04c2d66e8590d4520aeeb01b0374874924d3"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-214",
+      "predecessor_key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+      "predecessor_item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+      "reason": "Unchanged-question answer/rubric/exposition clarification, not a question-contract correction. Actual resolved ID is qcb-core-plan-214, not sp-214. Preserve all nine CONTRACT_FIELDS, family/split/frozen graph/source scope and five steps; original contract hash fa6d5317e5460f774b682be442b3a28aaf6d927eb9775d600bc204dec418b186. Section9.8, Example9.17 and Definition9.23 are correct source identifiers; the qubitization equations are10.30-10.40, not9.30-9.40. The old primary_sources anchor string also has that bad equation range, and its page list omits printed155 for Example9.17: it remains frozen and is NOT overridden by the current answer-successor schema. Correct operative pages are155,159,167-168. The correction is explicitly documented in this answer/source evidence, with any additive primary-metadata transport still a separate operation. Clarify admissible oracle completion, exact normalization and one-dimensional endpoint sectors rather than overstate a universal2D/approximate Chebyshev identity. No question/core/source node, standing premise or admission is changed.",
+      "repair": "shared/repairs/plan-214-qubitization-source-clarification-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-214-qubitization-source-clarification-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-plan-304",
+      "predecessor_key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+      "predecessor_item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+      "reason": "Unchanged-question answer/rubric/exposition clarification. The literal question is already about GL(V), not just U(V), and is mathematically correct. Replace the reference's unitary-only parenthesis and diagonal-unitary core summary with the actual common invertible-linear action; make degree an upper bound and the finite-group bicommutant conditions explicit. Preserve all nine contract fields, five semantic steps, source/graph scope, family and split. Original contract hash 0a1210e64058fbc9844b798192122398397094a6ce67c6c6af5192f14476ae61. No unitary/GL span equivalence is silently assumed or newly claimed proved; no question change or new core.",
+      "repair": "shared/repairs/plan-304-gl-action-clarification-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-304-gl-action-clarification-repair-review.json"
     }
   ],
   "withdrawals": [
@@ -646,6 +781,123 @@
       "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
       "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
       "finding_digest": "2994fbf67f6441a17218102ef2a26bc8179f74b6249587445d75ed95495eb471"
+    },
+    {
+      "core_id": "qcb-core-plan-502",
+      "predecessor_key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+      "predecessor_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+      "reason": "Directed qubitization planes need not be distinct and non-Hermitian global completion does not universally force paired-iterate necessity.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+      "finding_digest": "e34e7ac69cf7f42a89f5d771db3532fdadbf90e17c75e6a088860be09ad8864c"
+    },
+    {
+      "core_id": "qcb-core-plan-504",
+      "predecessor_key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+      "predecessor_item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+      "reason": "Projected SVT blocks are not whole normalized output states; U maps the input plane forward while U-adjoint, not U, supplies the reverse.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+      "finding_digest": "deaf47730e88830d63e81f5fd432a11dd62efb6e05eb7b47ce6e7c82a354e059"
+    },
+    {
+      "core_id": "qcb-core-plan-509",
+      "predecessor_key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+      "predecessor_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+      "reason": "The balanced selected-block identity is sound but the exclusive-success-port claim fails on allowed degenerate spectra.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+      "finding_digest": "5b0bbdc9fe85d50082bb174b7e1fd26f26a23d699689671f4608892618f8eb6a"
+    },
+    {
+      "core_id": "qcb-core-plan-510",
+      "predecessor_key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+      "predecessor_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+      "reason": "The exact unit-normalized input block premise is missing; an arbitrary-scale block encoding cannot imply the stated output coefficient factor.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+      "finding_digest": "410ccd51e78b2071927d9f67951836196e7c4a9ea7647781d82297320fcd62d2"
+    },
+    {
+      "core_id": "qcb-core-plan-513",
+      "predecessor_key": "qcb-core-plan-513-grover-two-reflection-rotation",
+      "predecessor_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+      "reason": "The allowed one-element search has no normalized bad vector or requested two-dimensional plane; the endpoint needs explicit treatment.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "8f5aca8a2b1a2bdf4cd54d2b5126fa33b84f7598bb44e4394483ec4afdb1a348"
+    },
+    {
+      "core_id": "qcb-core-plan-515",
+      "predecessor_key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+      "predecessor_item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+      "reason": "The all-marked case has no normalized bad state; a positive Theta iteration optimum and near-unit integer-round success do not hold uniformly.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "75d97ae9fc5e1d85f1e51d6a6f4c84fb6d021b76bea6a8e4d9e8c4a18940f840"
+    },
+    {
+      "core_id": "qcb-core-plan-517",
+      "predecessor_key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+      "predecessor_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+      "reason": "Real arcsine is undefined outside its domain, but the answer falsely rejects valid complex multiple-angle continuation and mishandles negative hyperbolic arguments.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "bb15f37a2e8deeec8147b21b53ea6258b68ad076a504ab74faa9b88c478f1a71"
+    },
+    {
+      "core_id": "qcb-core-plan-518",
+      "predecessor_key": "qcb-core-plan-518-classical-search-lower-bound",
+      "predecessor_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+      "reason": "The claimed N-minus-one randomized bounded-error lower bound is false; a symmetric four-input two-query algorithm succeeds with probability three quarters.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "3ac468c2706e32d6cc769a47839576b4c6a02a98ebb853e8aa0e77aca7cf1365"
+    },
+    {
+      "core_id": "qcb-core-plan-520",
+      "predecessor_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+      "predecessor_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+      "reason": "Amplitude increments are not positive at every iteration; the early-angle window, inverse-preparation access and calibrated stopping rule require explicit scope.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "1a2ec98812099b35814fa779424d2c24c4504ff5db248ef5f32e30a3e2870eea"
+    },
+    {
+      "core_id": "qcb-core-plan-404",
+      "predecessor_key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+      "predecessor_item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+      "reason": "At fixed accuracy it is the excess copy count n-minus-k, not the total n, that scales by exactly the dimension factor.",
+      "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+      "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+      "finding_digest": "e7638c3136c2047766855d9329ffbfd597ff7fdfa426e8de22a8f9f1632b2137"
+    },
+    {
+      "core_id": "qcb-core-plan-414",
+      "predecessor_key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+      "predecessor_item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+      "reason": "Twirling gives channel covariance; Schur scalar output follows only for invariant input and the specified symmetric output block, not arbitrary states.",
+      "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+      "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+      "finding_digest": "6786b3ea4a98fe328e01a3358cad1b502a9b0b6d208222455343324831bfd329"
+    },
+    {
+      "core_id": "qcb-core-plan-415",
+      "predecessor_key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+      "predecessor_item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+      "reason": "Unitary twirling preserves a uniform invariant worst-case testing guarantee, not each fixed state measurement distribution; the WLOG performance quantifiers are missing.",
+      "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+      "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+      "finding_digest": "255fe64423284aaf29fc37d3945ae22098f4ff0d4685b94c2319dedbac851528"
+    },
+    {
+      "core_id": "qcb-core-plan-420",
+      "predecessor_key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+      "predecessor_item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+      "reason": "Permutation-invariant mixed states need not have original symmetric support; the mixed de Finetti proof instead uses an enlarged symmetric purification space.",
+      "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+      "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+      "finding_digest": "054eb2176652b357778927631005014e6031653129241046875b9c11b5e26403"
     }
   ]
 }
