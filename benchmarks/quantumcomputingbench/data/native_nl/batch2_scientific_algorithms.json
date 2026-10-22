@@ -1,0 +1,2310 @@
+[
+  {
+    "core_id": "qcb-core-plan-201",
+    "key": "qcb-core-plan-201-povm-lcu-success-probability-completeness",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "A POVM P = {P_i : i in [2^m]} is implemented through block encodings as follows. For each outcome i we are given a unitary U_i that is a (beta, a)-block-encoding of sqrt(P_i), all sharing the SAME ancilla size a and the SAME subnormalization factor beta > 0, so that U_i |0^a> |psi> = (1/beta) |0^a> sqrt(P_i) |psi> + |perp_i>, where (<0^a| tensor I)|perp_i> = 0. Define the controlled unitary W = sum_i |i><i| tensor U_i acting on an output register in the uniform superposition |u> = (1/sqrt(2^m)) sum_i |i>, an ancilla register |0^a>, and the system register |psi>. After applying W one measures the ancilla register and postselects on the outcome 0^a. Starting from |u> |0^a> |psi>, derive in full the probability P(succ) of obtaining 0^a on the ancilla, show that it equals exactly 1/(beta^2 2^m) independent of the input state |psi>, and identify precisely where the POVM completeness relation sum_i P_i = I and the mutual orthogonality of the output-register basis states are used.",
+    "reference_answer": "Apply W to the uniform-superposition input. Because W is block-diagonal in the output register, W |u> |0^a> |psi> = (1/sqrt(2^m)) sum_i |i> (U_i |0^a> |psi>) = (1/(beta sqrt(2^m))) sum_i |i> |0^a> sqrt(P_i)|psi> + |perp>, where |perp> = (1/sqrt(2^m)) sum_i |i> |perp_i> satisfies (I tensor <0^a| tensor I)|perp> = 0 because each (<0^a| tensor I)|perp_i> = 0. Postselecting the ancilla on 0^a projects out |perp> entirely, since |perp> has zero overlap with the subspace spanned by |0^a> on the ancilla. The unnormalized postselected vector is therefore (1/(beta sqrt(2^m))) sum_i |i> |0^a> sqrt(P_i)|psi>. Its squared norm is the success probability. The output-register states |i> are mutually orthonormal, so the cross terms vanish and the norm squared factorizes outcome by outcome: P(succ) = (1/(beta^2 2^m)) sum_i || sqrt(P_i)|psi> ||^2 = (1/(beta^2 2^m)) sum_i <psi| sqrt(P_i)^dagger sqrt(P_i) |psi> = (1/(beta^2 2^m)) sum_i <psi| P_i |psi>. Here we used sqrt(P_i)^dagger sqrt(P_i) = P_i because each P_i is positive semidefinite and sqrt(P_i) is its unique PSD square root. Finally, by POVM completeness sum_i P_i = I, so sum_i <psi| P_i |psi> = <psi| I |psi> = 1 for any normalized |psi>. Hence P(succ) = 1/(beta^2 2^m), which is manifestly independent of |psi>. Completeness is what collapses the state-dependent sum to the constant 1; the orthogonality of the |i> is what prevents interference between different outcomes so the sum of norms (not a norm of a sum) appears.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Applies W to |u>|0^a>|psi>, obtains the branch (1/(beta sqrt(2^m))) sum_i |i>|0^a> sqrt(P_i)|psi> plus an orthogonal remainder annihilated by <0^a|",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows postselection on 0^a removes the perpendicular part and computes P(succ) as the squared norm of the surviving vector",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses orthonormality of the |i> to get sum_i ||sqrt(P_i)|psi>||^2 = sum_i <psi|P_i|psi> (PSD square root), and completeness sum_i P_i = I to reduce it to 1",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes P(succ) = 1/(beta^2 2^m) and states it is independent of |psi>, correctly attributing the two uses (completeness -> constant; orthogonality -> no interference)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:probability",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Each U_i is a (beta,a)-block-encoding of sqrt(P_i) with common a and common beta",
+      "The output register is prepared in the exact uniform superposition over 2^m labels",
+      "|psi> is a normalized pure system state"
+    ],
+    "conventions": [
+      "sqrt(P_i) denotes the unique positive semidefinite square root of the PSD effect P_i",
+      "Postselection on 0^a means projecting the ancilla onto |0^a> and renormalizing"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "W acts block-diagonally, so W|u>|0^a>|psi> = (1/sqrt(2^m)) sum_i |i> U_i|0^a>|psi>.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Substituting the block-encoding action gives a clean branch (1/(beta sqrt(2^m))) sum_i |i>|0^a> sqrt(P_i)|psi> plus |perp> with zero 0^a-overlap.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Postselection on 0^a annihilates |perp> because each (<0^a| tensor I)|perp_i> = 0.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Orthonormality of the |i> makes the squared norm a sum of per-outcome squared norms, with no cross terms.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "sum_i ||sqrt(P_i)|psi>||^2 = sum_i <psi|P_i|psi> using sqrt(P_i)^dagger sqrt(P_i)=P_i for PSD P_i.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Completeness sum_i P_i = I collapses the sum to <psi|psi> = 1, giving P(succ)=1/(beta^2 2^m) independent of |psi>.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A multi-step derivation combining block-encoding action, postselection, orthonormality bookkeeping and two distinct uses of the POVM axioms; more than recall but a clean structured argument."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "153",
+          "anchors": "Lemma 9.15; Eq. (9.55)-(9.62); W = sum_i |i><i| tensor U_i; P(succ)=1/(beta^2 2^m)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-generalized-measurement",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Implementing a POVM through shared-beta block encodings of sqrt(P_i) gives postselection success probability exactly 1/(beta^2 2^m), with completeness collapsing the state-dependent sum.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-202",
+    "key": "qcb-core-plan-202-povm-conditional-output-state-update-rule",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Continue the POVM-by-block-encoding construction of Lemma 9.15: after applying W = sum_i |i><i| tensor U_i to |u> |0^a> |psi> and successfully postselecting the block-encoding ancilla on 0^a, the (renormalized) joint state of the output register and the system register is proportional to sum_i |i> tensor sqrt(P_i)|psi>. Prove that this joint state is correctly normalized, that measuring the output register in the computational basis yields outcome i with conditional probability P(i | succ) = <psi| P_i |psi>, and that the resulting post-measurement system state is sqrt(P_i)|psi> / sqrt(<psi|P_i|psi>). Then explain how the mixed-state update rule rho -> sqrt(P_i) rho sqrt(P_i) / Tr(P_i rho) follows from the pure-state result, and why the overall outcome probability for i (not conditioned on success) is still proportional to <psi|P_i|psi>.",
+    "reference_answer": "Normalization: the squared norm of sum_i |i> sqrt(P_i)|psi> is, using orthonormality of the |i>, sum_i ||sqrt(P_i)|psi>||^2 = sum_i <psi|P_i|psi> = <psi|(sum_i P_i)|psi> = <psi|psi> = 1 by completeness. So after postselection the normalized joint state is exactly |Phi> = sum_i |i> tensor sqrt(P_i)|psi>. Measuring the output register in the computational basis: the probability of reading label i is the squared norm of the component attached to |i>, namely ||sqrt(P_i)|psi>||^2 = <psi| sqrt(P_i)^dagger sqrt(P_i) |psi> = <psi|P_i|psi> (PSD square root), so P(i|succ) = <psi|P_i|psi>. Conditioned on reading i, the system register collapses to the normalized vector sqrt(P_i)|psi> / || sqrt(P_i)|psi> || = sqrt(P_i)|psi> / sqrt(<psi|P_i|psi>), which is exactly the pure-state version of the generalized-measurement update. Mixed states: for rho = sum_k q_k |psi_k><psi_k|, run the same circuit on each pure branch; the map |psi><psi| -> sqrt(P_i)|psi><psi|sqrt(P_i) is linear in the input operator, and summing with weights q_k and renormalizing by the total weight Tr(P_i rho) gives rho -> sqrt(P_i) rho sqrt(P_i) / Tr(P_i rho). Linearity is what lets the pure-state formula be lifted verbatim to density operators. Unconditional probability: P(outcome i) = P(succ) * P(i|succ) = (1/(beta^2 2^m)) <psi|P_i|psi>, i.e. proportional to <psi|P_i|psi> with the i-independent proportionality constant 1/(beta^2 2^m); amplitude amplification later removes the constant penalty but never changes the relative weights, so the correct POVM statistics Tr(P_i rho) are reproduced.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves normalization of sum_i |i> sqrt(P_i)|psi> via orthonormality + completeness sum_i P_i = I",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Derives P(i|succ) = <psi|P_i|psi> as the squared norm of the |i> component, using the PSD square-root identity",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Identifies the collapsed system state sqrt(P_i)|psi>/sqrt(<psi|P_i|psi>) and lifts it to the mixed-state rule by linearity in rho",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the unconditional probability is (1/(beta^2 2^m)) <psi|P_i|psi>, i.e. proportional to <psi|P_i|psi> with an outcome-independent constant",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:probability",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Postselection on 0^a has already succeeded",
+      "The |i> form an orthonormal computational basis of the output register",
+      "P_i are PSD effects summing to the identity"
+    ],
+    "conventions": [
+      "sqrt(P_i) is the unique PSD square root",
+      "Mixed-state results are obtained by convex-linear extension of the pure-state map"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Orthonormality + completeness give ||sum_i |i> sqrt(P_i)|psi>||^2 = sum_i <psi|P_i|psi> = 1, so the joint state is normalized.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "The weight on label |i> is ||sqrt(P_i)|psi>||^2 = <psi|P_i|psi>, so P(i|succ) = <psi|P_i|psi>.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Collapsing on i leaves the normalized system vector sqrt(P_i)|psi>/sqrt(<psi|P_i|psi>).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The map |psi><psi| -> sqrt(P_i)|psi><psi|sqrt(P_i) is linear, so convex mixing yields rho -> sqrt(P_i) rho sqrt(P_i)/Tr(P_i rho).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Chaining with P(succ) gives unconditional P(i) = (1/(beta^2 2^m)) <psi|P_i|psi>, proportional to the target statistic.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires chaining normalization, conditional measurement statistics, the pure-to-mixed lift by linearity, and the composition of success and conditional probabilities."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "153-154",
+          "anchors": "Lemma 9.15; Eq. (9.63)-(9.66); update rule Eq. (9.51)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-generalized-measurement",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "After postselection the POVM circuit yields outcome i with probability <psi|P_i|psi> and the correct sqrt(P_i)-update, with the mixed-state rule following by linearity.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-203",
+    "key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "In the block-encoding implementation of a 2^m-outcome POVM via W = sum_i |i><i| tensor U_i (each U_i a (beta,a)-block-encoding of sqrt(P_i)), a single run succeeds (ancilla returns 0^a) with probability P(succ) = 1/(beta^2 2^m). Explain quantitatively why naive repetition is wasteful, and show that amplitude amplification raises the success probability to a constant while using only O(beta 2^{m/2} log(1/delta)) queries to W and W^dagger to reach failure probability at most delta. State clearly which quantity plays the role of the 'good' amplitude, why the amplification cost scales as 1/sqrt(P(succ)), and where the logarithmic factor log(1/delta) comes from.",
+    "reference_answer": "Naive repetition: a single run flags success with probability p := P(succ) = 1/(beta^2 2^m), so the expected number of independent repetitions to see one success is 1/p = beta^2 2^m, which grows exponentially in m. Each repetition uses O(1) queries to W, so naive repetition costs O(beta^2 2^m) queries. Amplitude amplification: the postselected run prepares a state of the form sqrt(p) |good> + sqrt(1-p) |bad>, where |good> is the normalized component with the ancilla equal to 0^a (the 'good' amplitude is sqrt(p)). Standard amplitude amplification applies O(1/sqrt(p)) rounds, each round being one call to the preparation unitary (built from W) and its inverse (hence W^dagger), interleaved with reflections about |good> and about the initial state. After O(1/sqrt(p)) = O(beta 2^{m/2}) rounds the amplitude of |good> is rotated to Theta(1), so a single final measurement succeeds with constant probability. The quadratic speedup is exactly the replacement of 1/p (classical) by 1/sqrt(p) (quantum): amplitude amplification rotates an angle theta with sin^2(theta) = p by equal increments, and reaching angle pi/2 needs O(1/theta) = O(1/sqrt(p)) steps since theta ~ sqrt(p) for small p. The log(1/delta) factor: one amplified round still leaves a constant failure probability c < 1; to drive the total failure probability below delta one repeats the amplified procedure O(log(1/delta)) times (majority/until-success), each repetition independently failing with probability at most c, so c^{O(log(1/delta))} <= delta. Multiplying the per-amplification cost O(beta 2^{m/2}) by the O(log(1/delta)) outer repetitions gives the total query count O(beta 2^{m/2} log(1/delta)) to W and W^dagger.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States naive repetition costs 1/P(succ) = beta^2 2^m runs/queries and is therefore exponentially wasteful in m",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the 'good' amplitude as sqrt(P(succ)) and that amplitude amplification needs O(1/sqrt(P(succ))) = O(beta 2^{m/2}) rounds, each calling W and W^dagger",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains the 1/sqrt(p) scaling via the angle theta with sin^2 theta = p and rotating to pi/2 in O(1/theta) steps (quadratic speedup over 1/p)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Attributes the log(1/delta) factor to O(log(1/delta)) outer repetitions driving failure probability below delta, giving total O(beta 2^{m/2} log(1/delta))",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:complexity",
+      "concept:probability"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "P(succ) = 1/(beta^2 2^m) from the shared-beta block-encoding construction",
+      "A reflection about the good subspace (ancilla = 0^a) is available at O(1) query cost",
+      "The initial preparation uses O(1) queries to W"
+    ],
+    "conventions": [
+      "Query cost is measured in calls to W and W^dagger",
+      "delta is the target failure probability of the overall measurement"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Single-shot success probability p = 1/(beta^2 2^m), so classical repetition needs 1/p = beta^2 2^m runs.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "The run prepares sqrt(p)|good> + sqrt(1-p)|bad>; the good amplitude is sqrt(p).",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Amplitude amplification rotates the good angle theta (sin^2 theta = p) to pi/2 in O(1/theta) = O(1/sqrt(p)) rounds.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Each round uses one W and one W^dagger plus reflections, giving O(1/sqrt(p)) = O(beta 2^{m/2}) queries.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "O(log(1/delta)) outer repetitions push the residual constant failure probability below delta.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Total query cost is O(beta 2^{m/2} log(1/delta)) to W and W^dagger.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines the explicit success probability with the quadratic amplitude-amplification scaling and a confidence-boosting log factor; needs the angle argument, not just a quoted formula."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "153-154",
+          "anchors": "Lemma 9.15; Eq. (9.57) O(beta 2^{m/2} log(1/delta)); Eq. (9.67)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-generalized-measurement",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Amplitude amplification turns the 1/(beta^2 2^m) single-shot success into a constant using O(beta 2^{m/2} log(1/delta)) queries to W and W^dagger, a quadratic gain over naive repetition.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-204",
+    "key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "Two normalized but possibly non-orthogonal pure states |psi> and |phi> are given with overlap c := <psi|phi>, |c| < 1, and we are promised the unknown state is one of them. Consider the three-element POVM with P_psi = (1/(1+|c|)) |phi_perp><phi_perp|, P_phi = (1/(1+|c|)) |psi_perp><psi_perp|, and P_? = I - P_psi - P_phi, where |psi_perp> := (|phi> - c|psi>)/sqrt(1-|c|^2) and |phi_perp> := (|psi> - c*|phi>)/sqrt(1-|c|^2). Demonstrate by a concrete counterexample-style argument that NO two-element POVM {E_psi, E_phi} (with only the two conclusive labels and no inconclusive outcome) can be unambiguous, i.e. cannot simultaneously satisfy <phi|E_psi|phi> = 0 and <psi|E_phi|psi> = 0 while being a valid POVM, whenever 0 < |c| < 1. Then verify that the given three-element POVM is unambiguous and explain why introducing P_? is exactly the structural escape that restores validity.",
+    "reference_answer": "Unambiguity requires E_psi to never fire on phi and E_phi to never fire on psi: <phi|E_psi|phi> = 0 and <psi|E_phi|psi> = 0. Since E_psi, E_phi are PSD, <phi|E_psi|phi> = 0 forces E_psi|phi> = 0 (a PSD operator with zero expectation on a vector annihilates it), so range(E_psi) is orthogonal to |phi>; in the two-dimensional span{|psi>,|phi>} this means E_psi is supported on the one-dimensional complement of |phi>, i.e. E_psi = a |phi_perp><phi_perp| for some a >= 0. Likewise E_phi = b |psi_perp><psi_perp|, b >= 0. A two-element POVM must satisfy completeness E_psi + E_phi = I on span{|psi>,|phi>}. Take the matrix element in state |psi>: <psi|E_psi|psi> + <psi|E_phi|psi> = <psi|I|psi> = 1. But <psi|E_phi|psi> = 0 by unambiguity, so <psi|E_psi|psi> = 1. Now <psi|E_psi|psi> = a |<psi|phi_perp>|^2. Compute <psi|phi_perp> = (<psi|psi> - c<psi|phi>)/sqrt(1-|c|^2) = (1 - |c|^2)/sqrt(1-|c|^2) = sqrt(1-|c|^2). So a (1-|c|^2) = 1, giving a = 1/(1-|c|^2). By symmetry b = 1/(1-|c|^2). Then E_psi + E_phi = (1/(1-|c|^2)) (|phi_perp><phi_perp| + |psi_perp><psi_perp|). This operator does NOT equal I when c != 0: its trace is 2/(1-|c|^2) > 2 = Tr(I on the 2D space) whenever |c| > 0, so E_psi + E_phi != I. Hence no valid two-element unambiguous POVM exists for 0 < |c| < 1 -- completeness is violated because the two rank-one effects are forced to be too 'heavy'. The fix: keep P_psi, P_phi rank-one on |phi_perp>, |psi_perp> but SHRINK their weights to 1/(1+|c|) (instead of the forced 1/(1-|c|^2) = 1/((1-|c|)(1+|c|))), and absorb the deficit into P_? = I - P_psi - P_phi. One checks P_psi, P_phi >= 0 trivially, and P_? >= 0 because the weight 1/(1+|c|) is small enough (the eigenvalues of P_psi+P_phi on the 2D space are (1 +/- |c|)/(1+|c|), so its operator norm is exactly 1 and I - (P_psi+P_phi) >= 0). Unambiguity still holds: <phi|P_psi|phi> ∝ |<phi|phi_perp>|^2 = 0 and <psi|P_phi|psi> ∝ |<psi|psi_perp>|^2 = 0. Thus the inconclusive outcome P_? is not cosmetic: it is the exact slack that lets positivity and completeness coexist with unambiguity once the states overlap.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows unambiguity + positivity forces E_psi = a|phi_perp><phi_perp|, E_phi = b|psi_perp><psi_perp| (PSD zero-expectation annihilation)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Derives a = b = 1/(1-|c|^2) from completeness element <psi|...|psi>=1 using <psi|phi_perp> = sqrt(1-|c|^2)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Exhibits the contradiction: E_psi+E_phi has trace 2/(1-|c|^2) > 2 so it cannot equal I for 0 < |c| < 1, hence no two-element unambiguous POVM exists",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Verifies the three-element POVM is unambiguous and PSD, and explains P_? is the slack reconciling positivity, completeness and unambiguity",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability",
+      "concept:block-encoding"
+    ],
+    "supporting_nodes": [
+      "concept:matrix-analysis"
+    ],
+    "assumptions": [
+      "0 < |c| < 1 (states overlap but are distinct)",
+      "The ambient space is span{|psi>,|phi>}, two-dimensional",
+      "Unambiguity means a conclusive label never fires on the wrong state"
+    ],
+    "conventions": [
+      "|psi_perp>, |phi_perp> are the normalized complements defined in the problem",
+      "A POVM must have PSD elements summing to I on the relevant space"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "<phi|E_psi|phi>=0 with E_psi PSD forces E_psi|phi>=0, so E_psi = a|phi_perp><phi_perp|; symmetrically E_phi = b|psi_perp><psi_perp|.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "<psi|phi_perp> = (1-|c|^2)/sqrt(1-|c|^2) = sqrt(1-|c|^2), so completeness in |psi> gives a = 1/(1-|c|^2); by symmetry b = 1/(1-|c|^2).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Then Tr(E_psi+E_phi) = 2/(1-|c|^2) > 2 = Tr(I) for 0<|c|<1, contradicting E_psi+E_phi = I.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Therefore no valid two-element unambiguous POVM exists once the states overlap.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Shrinking the weights to 1/(1+|c|) and adding P_? = I - P_psi - P_phi restores positivity and completeness while keeping unambiguity.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A genuine impossibility argument: it must turn unambiguity+positivity into a rank/weight constraint and expose a trace contradiction, then show the inconclusive outcome is the exact repair."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "152-153",
+          "anchors": "Example 9.14; Eq. (9.53) definitions of psi_perp, phi_perp; Eq. (9.54) POVM P_psi,P_phi,P_?",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-state-discrimination",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Unambiguous discrimination of overlapping states is impossible with only two conclusive outcomes (completeness forces trace > 2); the inconclusive P_? is the structural slack that restores a valid POVM.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-205",
+    "key": "qcb-core-plan-205-state-discrimination-povm-validity-unambiguity",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For the unambiguous-discrimination POVM with P_psi = (1/(1+|c|)) |phi_perp><phi_perp|, P_phi = (1/(1+|c|)) |psi_perp><psi_perp|, P_? = I - P_psi - P_phi, where c = <psi|phi>, |c| < 1, and |psi_perp>, |phi_perp> are defined as in the text, prove the three properties that make it a legitimate unambiguous POVM for state discrimination: (i) P_psi, P_phi, P_? are all positive semidefinite; (ii) P_psi + P_phi + P_? = I; (iii) the conclusive outcomes are unambiguous, i.e. <phi|P_psi|phi> = 0 and <psi|P_phi|psi> = 0. For (i) you must actually verify that P_? >= 0, not merely assert it, by diagonalizing I - P_psi - P_phi on the two-dimensional space span{|psi>,|phi>}.",
+    "reference_answer": "Property (ii) is immediate from the definition P_? := I - P_psi - P_phi, so P_psi + P_phi + P_? = I exactly, with no assumption on c. Property (iii): compute <phi|phi_perp>. Since |phi_perp> = (|psi> - c*|phi>)/sqrt(1-|c|^2), we get <phi|phi_perp> = (<phi|psi> - c*<phi|phi>)/sqrt(1-|c|^2) = (c* - c*)/sqrt(1-|c|^2) = 0 (using <phi|psi> = c* and <phi|phi>=1). Hence <phi|P_psi|phi> = (1/(1+|c|))|<phi|phi_perp>|^2 = 0. Symmetrically, <psi|psi_perp> = (<psi|phi> - c<psi|psi>)/sqrt(1-|c|^2) = (c - c)/sqrt(1-|c|^2) = 0, so <psi|P_phi|psi> = 0. The conclusive outcomes never fire on the wrong state. Property (i): P_psi, P_phi are nonnegative multiples of rank-one projectors |phi_perp><phi_perp|, |psi_perp><psi_perp|, hence PSD. For P_?, restrict to span{|psi>,|phi>} (off this plane I - P_psi - P_phi acts as the identity, which is PSD). Both |phi_perp> and |psi_perp> are unit vectors; a direct computation of their overlap gives |<phi_perp|psi_perp>| = |c|. In the (non-orthogonal) spanning pair {|phi_perp>, |psi_perp>}, the operator S := P_psi + P_phi = (1/(1+|c|))(|phi_perp><phi_perp| + |psi_perp><psi_perp|) is a scaled sum of two unit rank-one projectors with Gram overlap |c|; such a sum has eigenvalues (1 +/- |c|) times the scalar 1/(1+|c|), i.e. eigenvalues 1 and (1-|c|)/(1+|c|). Hence ||S|| = 1 (attained) and the smaller eigenvalue is (1-|c|)/(1+|c|) >= 0. Therefore P_? = I - S has eigenvalues 1 - 1 = 0 and 1 - (1-|c|)/(1+|c|) = 2|c|/(1+|c|), both >= 0 for |c| in [0,1). So P_? >= 0 (with a zero eigenvalue, showing the weight 1/(1+|c|) is the largest that keeps P_? PSD). All three properties hold, so the family is a valid unambiguous-discrimination POVM.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States (ii) P_psi+P_phi+P_? = I holds by definition of P_?",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Proves (iii) by computing <phi|phi_perp> = 0 and <psi|psi_perp> = 0 explicitly, hence <phi|P_psi|phi> = <psi|P_phi|psi> = 0",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Argues P_psi, P_phi >= 0 as nonnegative scalings of rank-one projectors",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Verifies P_? >= 0 by diagonalizing S = P_psi+P_phi on the 2D span, finding eigenvalues {1, (1-|c|)/(1+|c|)} so I - S has eigenvalues {0, 2|c|/(1+|c|)} >= 0",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis",
+      "concept:probability"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "|c| < 1 and both states normalized",
+      "<phi|psi> = c*, <psi|phi> = c"
+    ],
+    "conventions": [
+      "|psi_perp>, |phi_perp> are the unit complements from the text",
+      "Positivity of P_? is checked on span{|psi>,|phi>} since it acts as identity off that plane"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "P_psi+P_phi+P_? = I holds by definition of P_?.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "<phi|phi_perp> = (c* - c*)/sqrt(1-|c|^2) = 0 and <psi|psi_perp> = 0, giving unambiguity <phi|P_psi|phi> = <psi|P_phi|psi> = 0.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "P_psi, P_phi are nonnegative scalings of rank-one projectors, hence PSD.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "In basis {|phi_perp>,|psi_perp>} with Gram overlap |c|, S = P_psi+P_phi has eigenvalues {1, (1-|c|)/(1+|c|)}.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Thus ||S|| = 1 and I - S = P_? has eigenvalues 0 and 2|c|/(1+|c|), both >= 0 for |c|<1.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires an explicit 2x2 diagonalization of a non-orthogonal rank-one sum to certify PSD of P_?, beyond quoting the POVM axioms."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "152-153",
+          "anchors": "Example 9.14; Eq. (9.53)-(9.54); checks P_psi,P_phi,P_? >= 0 and sum = I, unambiguity",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-state-discrimination",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The two-conclusive-one-inconclusive discrimination POVM is valid: P_? = I - P_psi - P_phi stays PSD because P_psi+P_phi has operator norm exactly 1.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-206",
+    "key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Lemma 9.15 assumes that for every outcome i the block encoding U_i of sqrt(P_i) uses the SAME ancilla size a and the SAME subnormalization factor beta. Investigate what breaks if these two uniformity assumptions are dropped. Specifically: (a) if the U_i had different subnormalization factors beta_i, show that the controlled unitary W = sum_i |i><i| tensor U_i followed by postselection on 0^a would NOT yield the clean superposition sum_i |i> sqrt(P_i)|psi> that is needed, and identify what spurious operator appears instead; (b) if the U_i used different ancilla registers (different sizes a_i, or disjoint ancillas), explain why a single joint postselection event '0^a' is no longer well defined and how this changes the success-probability bookkeeping. In each case state the minimal fix (if any) that restores the construction.",
+    "reference_answer": "(a) Different beta_i. The block-encoding action becomes U_i |0^a>|psi> = (1/beta_i) |0^a> sqrt(P_i)|psi> + |perp_i>. After W on the uniform superposition and postselection on 0^a, the surviving (unnormalized) joint state is (1/sqrt(2^m)) sum_i (1/beta_i) |i> sqrt(P_i)|psi>. This is NOT proportional to the required sum_i |i> sqrt(P_i)|psi>: the weights are distorted by the factors 1/beta_i. Measuring the output register then yields label i with probability proportional to (1/beta_i^2) <psi|P_i|psi> rather than <psi|P_i|psi>, i.e. the effective implemented family is {P_i' = P_i/beta_i^2} (up to normalization), a DIFFERENT and generally non-complete measurement because sum_i P_i/beta_i^2 != I in general. The spurious object is a diagonal reweighting by 1/beta_i^2; statistics are biased toward outcomes with small beta_i. Minimal fix: rescale to a common beta := max_i beta_i by replacing each U_i with a block encoding of (beta_i/beta) sqrt(P_i) (pad the subnormalization up), or equivalently prepare the output register in a NON-uniform superposition sum_i (beta_i/beta)|i> designed to cancel the 1/beta_i weights, restoring sum_i |i> sqrt(P_i)|psi> after postselection. The uniform-superposition PREP and the common beta are two sides of the same requirement. (b) Different ancillas. If U_i acts on its own ancilla register of size a_i (or on disjoint physical ancillas), then 'measure the ancilla and postselect on 0^a' is ambiguous: there is no single shared register whose value 0^a flags success for every branch simultaneously. In W = sum_i |i><i| tensor U_i, branch i touches ancilla-set i while leaving the others idle, so a global postselection onto all-zeros across the union of ancillas conflates 'U_i produced its clean block' with 'the idle ancillas of the other branches happen to read 0', double counting and breaking the clean identity (I tensor <0^a| tensor I)|perp> = 0 that was essential. The bookkeeping P(succ) = (1/(beta^2 2^m)) sum_i <psi|P_i|psi> relied on a single projector |0^a><0^a| commuting with the branch structure; with per-branch ancillas the projector factorizes differently per branch and the sum no longer collapses by completeness. Minimal fix: use one shared ancilla register of common size a = max_i a_i, embedding each U_i so that it only returns the designated register to 0^a on its clean block (pad smaller encodings with unused-but-reset ancilla qubits), which is exactly the 'same ancilla size a' hypothesis. There is no cheaper fix that avoids a shared success flag: without it the postselection event is not a single projector and the completeness collapse fails.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "For (a) shows postselection yields sum_i (1/beta_i)|i> sqrt(P_i)|psi>, so measured statistics become proportional to (1/beta_i^2)<psi|P_i|psi>, an incorrectly reweighted (non-complete) family",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the spurious diagonal reweighting by 1/beta_i^2 and that sum_i P_i/beta_i^2 != I in general",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "For (b) explains a single '0^a' postselection event is ill-defined with per-branch ancillas and why the completeness collapse of P(succ) breaks",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States the minimal fixes: common beta via subnormalization padding (or compensating non-uniform PREP), and a single shared ancilla register of size a = max_i a_i",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:probability",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "W = sum_i |i><i| tensor U_i is the controlled block-encoding selector",
+      "Success is defined as the block-encoding ancilla returning 0^a"
+    ],
+    "conventions": [
+      "beta_i denotes a per-outcome subnormalization; a_i a per-outcome ancilla size",
+      "A valid POVM requires the implemented effects to sum to I"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "With distinct beta_i, postselection leaves (1/sqrt(2^m)) sum_i (1/beta_i)|i> sqrt(P_i)|psi>, not the clean sum_i |i> sqrt(P_i)|psi>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Measured statistics become proportional to (1/beta_i^2)<psi|P_i|psi>, i.e. the effective family {P_i/beta_i^2} which need not sum to I.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Fix (a): pad all encodings to a common beta, or use a compensating non-uniform PREP sum_i (beta_i/beta)|i>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "With per-branch ancillas there is no single projector |0^a><0^a| flagging success for all branches, so (I tensor <0^a| tensor I)|perp>=0 fails.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Fix (b): embed every U_i into one shared ancilla register of size a = max_i a_i so a single all-zeros event flags success.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A hypothesis-diagnosis task: it must trace exactly how dropping each uniformity assumption corrupts the postselected state or the success-flag projector, and give the minimal structural repair."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "153",
+          "anchors": "Lemma 9.15; shared ancilla a and shared beta hypotheses; W = sum_i |i><i| tensor U_i; P(succ)=1/(beta^2 2^m)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-generalized-measurement",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The 'same ancilla a / same beta' hypotheses of Lemma 9.15 are load-bearing: dropping common beta reweights the measured effects by 1/beta_i^2; dropping the shared ancilla destroys the single success-flag projector.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-207",
+    "key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Given a real matrix A with ||A||_max < 1 and A_ij real, suppose we have a bit oracle that writes a d'-bit fixed-point representation of A_ij into a work register: O~_A |0^{d'}>|i>|j> = |A~_ij>|i>|j>. Using classical arithmetic one first produces O'_A |0^d>|i>|j> = |theta~_ij>|i>|j> with theta~_ij = arccos(A_ij)/pi in [0,1) a d-bit value. Then a controlled rotation CR transfers theta~_ij to the amplitude of a fresh ancilla qubit. Prove that the full procedure O_A = (I_1 tensor (O'_A)^{-1}) * CR * (I_1 tensor O'_A), acting on |0>|0^d>|i>|j>, produces exactly the amplitude-oracle state (A~_ij |0> + sqrt(1 - A~_ij^2) |1>) |0^d>|i>|j>, i.e. with the d-bit work register returned to |0^d>. State precisely why the final uncomputation step (O'_A)^{-1} is mandatory -- i.e. why the work register cannot simply be discarded ('no free cleanup') -- and what would go wrong with the amplitude oracle's action if it were left entangled.",
+    "reference_answer": "Track the registers (ancilla qubit, d-bit work register, index registers i,j). Step 1 (apply I_1 tensor O'_A): |0>|0^d>|i>|j> -> |0>|theta~_ij>|i>|j>. The index registers are untouched; the work register now holds the angle. Step 2 (controlled rotation CR, controlled on the work register, acting on the ancilla qubit): CR implements |0>|theta~> -> (cos(pi theta~)|0> + sin(pi theta~)|1>)|theta~>. With A~_ij := cos(pi theta~_ij) (and theta~_ij = arccos(A_ij)/pi so cos(pi theta~_ij) = A_ij up to the d-bit rounding), this gives (A~_ij |0> + sqrt(1 - A~_ij^2) |1>) |theta~_ij>|i>|j>, using sin(pi theta~) = sqrt(1 - cos^2(pi theta~)) = sqrt(1 - A~_ij^2) >= 0 for theta~ in [0,1) (nonnegative sine on (0,pi)). Step 3 (apply I_1 tensor (O'_A)^{-1}): the rotation acted only on the ancilla qubit and did NOT alter the work register, so (O'_A)^{-1} maps |theta~_ij>|i>|j> back to |0^d>|i>|j> conditioned on each (i,j). Crucially (O'_A)^{-1} is a function only of (i,j), which are unchanged, so it uncomputes the angle coherently and uniformly across the ancilla's |0> and |1> branches (it acts as identity on the ancilla qubit). The result is (A~_ij |0> + sqrt(1 - A~_ij^2) |1>) |0^d>|i>|j>, exactly the amplitude oracle O_A with the work register restored. Why uncomputation is mandatory (no free cleanup): if we skipped (O'_A)^{-1} and merely 'discarded' |theta~_ij>, the true quantum state is (A~_ij|0> + sqrt(1-A~_ij^2)|1>) |theta~_ij>|i>|j> -- the ancilla qubit is correlated with the work register through the shared dependence on (i,j). Tracing out (discarding) the work register leaves a MIXED state on the ancilla+index registers whenever different (i,j) produce different theta~, destroying the coherent superposition A~_ij|0> + sqrt(1-A~_ij^2)|1>. Worse, when O_A is used inside a larger block-encoding circuit that interferes different (i,j) branches (e.g. the sparse-matrix LCU of Fig. 9.7), the residual record |theta~_ij> acts as a which-path marker: branches with different angles no longer interfere, so the intended matrix element <0|<i|U_A|0>|j> = A_ij is corrupted into a decohered, generally wrong value. Hence the garbage register must be coherently returned to |0^d> by (O'_A)^{-1}; discarding is not free because a quantum computer cannot erase an entangled register without either uncomputation or decoherence. The ancilla qubit carrying the amplitude is deliberately NOT uncomputed -- it is the output -- but the intermediate angle register must be.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Tracks the three stages and shows O'_A loads |theta~_ij>, CR produces A~_ij|0> + sqrt(1-A~_ij^2)|1> with sin = sqrt(1-cos^2) >= 0 on the range",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows (O'_A)^{-1} uncomputes the work register to |0^d> because it depends only on the unchanged indices (i,j) and acts as identity on the ancilla qubit",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains that discarding |theta~_ij> instead leaves the ancilla correlated with the work register, so tracing it out gives a mixed (decohered) ancilla state",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the which-path consequence: a residual angle record kills interference between (i,j) branches in a downstream block encoding, corrupting the encoded entry; hence uncomputation is mandatory ('no free cleanup')",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:operator-theory",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "||A||_max < 1 and A_ij real so arccos(A_ij) is well defined and sin(pi theta~) >= 0",
+      "O'_A is a reversible classical-arithmetic unitary depending only on (i,j)",
+      "CR is controlled on the work register and acts on a single fresh ancilla qubit"
+    ],
+    "conventions": [
+      "A~_ij = cos(pi theta~_ij) is the d-bit-rounded entry",
+      "'Discarding' a register means tracing it out; a quantum computer cannot erase an entangled register for free"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "O'_A maps |0>|0^d>|i>|j> to |0>|theta~_ij>|i>|j>, loading the angle into the work register.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "CR gives (cos(pi theta~)|0> + sin(pi theta~)|1>)|theta~>|i>|j> = (A~_ij|0> + sqrt(1-A~_ij^2)|1>)|theta~_ij>|i>|j>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "(O'_A)^{-1} depends only on the unchanged (i,j) and acts as identity on the ancilla, so it restores |0^d> coherently across both ancilla branches.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Skipping it leaves the ancilla correlated with |theta~_ij>; tracing out the work register decoheres the amplitude superposition.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "A leftover angle record is a which-path marker that destroys interference of (i,j) branches downstream, corrupting the encoded entry A_ij.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires correct register bookkeeping of a compute-rotate-uncompute pattern and a precise statement of why coherent uncomputation (not discarding) is required."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "154-155",
+          "anchors": "Example 9.16; Eq. (9.68) amplitude oracle; Eq. (9.69) bit oracle; Eq. (9.70)-(9.71) compute-rotate-uncompute",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-matrix-access",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The amplitude oracle is built by load-angle / controlled-rotate / uncompute-angle; the final (O'_A)^{-1} is mandatory because discarding the entangled work register would decohere the amplitude and spoil downstream interference.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-208",
+    "key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "The amplitude oracle O_A |0>|i>|j> = (A_ij |0> + sqrt(1 - |A_ij|^2) |1>) |i>|j> is often introduced alongside a standing convenience assumption ||A||_max < 1. Determine the EXACT condition under which the right-hand side is a valid normalized state and the oracle is a legitimate unitary action, by analyzing the three regimes |A_ij| < 1, |A_ij| = 1, and |A_ij| > 1 (for each: is it a unit vector, what does the controlled-rotation angle do, does the oracle exist). Then state carefully whether the strict inequality ||A||_max < 1 is NECESSARY or merely a sufficient convenience, explain the downstream consequence for the subnormalization factor of the resulting block encoding, and why one preprocesses A by dividing out an upper bound on ||A||_max before building the oracle.",
+    "reference_answer": "The right-hand side A_ij|0> + sqrt(1-|A_ij|^2)|1> is a unit vector with a real nonnegative second coefficient iff 1 - |A_ij|^2 >= 0, i.e. iff |A_ij| <= 1. The sharp validity condition is therefore |A_ij| <= 1, NOT the strict |A_ij| < 1. Regime |A_ij| < 1: 1 - |A_ij|^2 > 0, the state is a genuine normalized superposition with rotation angle theta = 2 arccos(|A_ij|) strictly in (0,pi); the amplitude of |0> faithfully encodes A_ij with both branches populated. Regime |A_ij| = 1: 1 - |A_ij|^2 = 0, so the second (sqrt) term is exactly zero and the state is A_ij|0> (a unit vector, basis state up to phase). This is a perfectly LEGITIMATE normalized amplitude oracle -- the rotation angle is simply 0 or pi (an endpoint of the range), and O_A remains a valid unitary action; nothing degenerates about its validity. The only caveat is purely numerical: if finite-precision arithmetic rounds A~_ij slightly ABOVE 1, then sqrt(1-A~_ij^2) becomes imaginary, so one keeps a small guard below 1 for robustness. But |A_ij| = 1 itself is inside the valid regime. Regime |A_ij| > 1: now 1 - |A_ij|^2 < 0 and sqrt(1 - |A_ij|^2) is imaginary, so there is no real controlled-rotation producing A_ij|0> + sqrt(1-|A_ij|^2)|1> as a unit vector; the amplitude oracle of this form does not exist. An entry of magnitude strictly above 1 cannot be encoded as a single-qubit amplitude. Necessity vs sufficiency: the oracle exists and is normalized for the full closed range |A_ij| <= 1, so ||A||_max <= 1 (allowing equality) is the actual requirement. The strict ||A||_max < 1 commonly assumed in the text is a SUFFICIENT CONVENIENCE, not a necessity: it guarantees a non-degenerate two-branch rotation for every entry and a numerical margin against rounding above 1, but entries exactly equal to 1 are still fine. It is only |A_ij| > 1 that is genuinely excluded. Downstream: a block encoding built from the oracle has subnormalization factor at least ||A|| (for the s-sparse LCU construction exactly alpha = s ||A||_max). If some |A_ij| > 1 the per-entry amplitude encoding is impossible; and even in the valid regime a larger ||A||_max pushes alpha up. Therefore one preprocesses by choosing a known upper bound M >= ||A||_max and building the oracle for A/M, whose entries satisfy |(A/M)_ij| <= 1, guaranteeing valid normalized states and a controlled subnormalization; taking M strictly above ||A||_max additionally restores the strict-inequality numerical margin.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies the sharp validity condition as |A_ij| <= 1 (closed), not strict |A_ij| < 1, from 1 - |A_ij|^2 >= 0",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Treats |A_ij| = 1 correctly as a LEGITIMATE normalized oracle (second term exactly zero, valid unitary; only a numerical rounding caveat), NOT a case where the oracle degenerates or fails to exist",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows |A_ij| > 1 makes sqrt(1-|A_ij|^2) imaginary so no real controlled-rotation amplitude oracle exists -- the only genuinely excluded regime",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States that ||A||_max < 1 is a sufficient convenience (non-degenerate branches + numerical margin), not a necessity, and connects to alpha = s||A||_max and preprocessing A -> A/M",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:approximation",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The amplitude is produced by a real controlled Y-rotation of angle 2 arccos(|A_ij|)",
+      "Finite-precision arithmetic may round A~_ij slightly off A_ij"
+    ],
+    "conventions": [
+      "||A||_max is the maximum absolute matrix entry (max-norm)",
+      "A valid amplitude requires sqrt(1-|A_ij|^2) to be real and nonnegative"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A real normalized amplitude requires 1 - |A_ij|^2 >= 0, i.e. the sharp condition is |A_ij| <= 1 (closed, not strict).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For |A_ij| < 1 the rotation angle 2 arccos(|A_ij|) is in (0,pi) and both branches are populated.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "At |A_ij| = 1 the sqrt term is exactly 0 and the state A_ij|0> is a legitimate normalized oracle; only rounding above 1 is a numerical caveat.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "For |A_ij| > 1 the coefficient is imaginary, so no real controlled-rotation amplitude oracle exists -- the only excluded regime.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Thus ||A||_max < 1 is a sufficient convenience, not a necessity; one encodes A/M for M >= ||A||_max to control validity and the subnormalization alpha.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A regime analysis distinguishing the sharp validity condition |A_ij| <= 1 from the merely-convenient strict assumption, tied to the downstream subnormalization; requires not overclaiming necessity."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "154-155",
+          "anchors": "Section 9.6; Eq. (9.68); standing convenience assumption ||A||_max < 1; subnormalization alpha = s||A||_max (Section 9.7)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-matrix-access",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The amplitude oracle is valid exactly for |A_ij| <= 1 (|A_ij| = 1 is legitimate, only the sqrt term vanishes); ||A||_max < 1 is a sufficient convenience, not a necessity, and only |A_ij| > 1 is excluded.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-209",
+    "key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "concept",
+    "question": "Two input models for the entries of a matrix A appear in the sparse block-encoding discussion: the BIT oracle O~_A |0^{d'}>|i>|j> = |A~_ij>|i>|j>, which writes a classical fixed-point string into a register, and the AMPLITUDE oracle O_A |0>|i>|j> = (A_ij|0> + sqrt(1-|A_ij|^2)|1>)|i>|j>, which encodes the entry as the amplitude of an ancilla qubit. Explain conceptually (i) what distinguishes the two as computational resources -- which is a 'digital/query' interface and which is an 'analog/amplitude' interface; (ii) why building the amplitude oracle from the bit oracle requires both controlled rotations (gate work) and uncomputation (query work), i.e. the amplitude oracle is strictly derived, not primitive; and (iii) in a resource count for the overall block encoding, why it is natural to charge the construction one forward and one inverse bit-oracle query plus the gates of a controlled rotation, and why the work register must be counted as borrowed (returned clean), not consumed.",
+    "reference_answer": "(i) The bit oracle is a DIGITAL/query interface: it deposits a classical bit string A~_ij into a register, which can be read, fanned out via CNOTs, and processed by reversible arithmetic. It makes the numeric value explicitly available but says nothing by itself about amplitudes. The amplitude oracle is an ANALOG/amplitude interface: it hides the value A_ij in the probability amplitude of |0> on an ancilla qubit, which is exactly the form a block encoding needs (the encoded entry must appear as an <0|...|0>-type amplitude), but which cannot be read out directly without measurement/estimation. The two interfaces trade explicitness (bit) for direct usability inside interference-based circuits (amplitude). (ii) The amplitude oracle is derived, not primitive: to turn a stored value into an amplitude one must (a) convert A~_ij to an angle theta~_ij via reversible classical arithmetic (a bit-oracle-type query O'_A), (b) perform a controlled Y-rotation CR that maps the angle into the ancilla amplitude -- irreducibly gate work, since no bit oracle produces amplitudes on its own -- and (c) uncompute the angle register with (O'_A)^{-1}, a second (inverse) query, to disentangle the amplitude qubit from the intermediate data. Thus amplitude oracle = query + controlled-rotation gates + inverse query. The rotation is where 'digital' becomes 'analog'; the two queries bracket it to keep the transformation reversible. (iii) Resource accounting: the natural charge is one forward bit-oracle query O'_A, the controlled-rotation gate(s) CR (whose gate count grows with the angle precision d), and one inverse query (O'_A)^{-1}. Both the forward and inverse queries are counted because reversibility forces the uncomputation; you cannot amortize it away. The d-bit work register is counted as BORROWED/clean ancilla: it starts in |0^d> and must be returned to |0^d> by the uncomputation, so it does not add to the persistent ancilla budget of the block encoding (it is reusable across calls), but it is NOT free either -- it must physically exist during the call and the inverse query must be paid for. Counting it as consumed would overstate the ancilla footprint; counting the uncomputation as free would understate the query/gate cost. The honest ledger is: +2 queries, +CR gates, +d borrowed-and-returned work qubits, +1 persistent amplitude ancilla (the actual output qubit), with 'no free cleanup' meaning the inverse query is a real line item.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Distinguishes bit oracle as a digital/query (explicit value) interface and amplitude oracle as an analog/amplitude interface suited to block encodings",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Explains the amplitude oracle is derived: arithmetic query -> controlled rotation (gate work) -> inverse query (uncompute), with the rotation being the irreducible digital-to-analog step",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Justifies charging one forward + one inverse query plus controlled-rotation gates, tying the inverse query to reversibility ('no free cleanup')",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the d-bit work register is borrowed/clean (returned to |0^d>, reusable) and must not be counted as consumed, while the amplitude ancilla is the persistent output",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:complexity",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A bit oracle and reversible classical arithmetic are available",
+      "The block encoding requires the entry as an amplitude of a flagged ancilla"
+    ],
+    "conventions": [
+      "Query cost counts oracle calls; gate cost counts elementary gates; ancilla cost distinguishes borrowed (clean) from persistent",
+      "'No free cleanup' means uncomputation is a counted resource"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The bit oracle exposes A~_ij as a readable classical string (digital/query interface).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The amplitude oracle hides A_ij in an ancilla amplitude, the form block encodings consume (analog interface).",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Converting between them needs arithmetic (query) + controlled rotation (gates) + uncomputation (inverse query); the rotation is the irreducible digital-to-analog step.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Reversibility forces counting both the forward and inverse queries, so cleanup is not free.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "The d-bit work register is borrowed clean (returned to |0^d>), while the amplitude qubit is the persistent output ancilla.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A conceptual comparison of two input models with a correct resource-accounting narrative; no single computation but requires precise distinctions."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "154-155",
+          "anchors": "Section 9.6; Eq. (9.68) amplitude oracle; Eq. (9.69) bit oracle; Example 9.16 construction and uncomputation",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-matrix-access",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The bit oracle is a digital/query interface and the amplitude oracle an analog interface; the latter is derived via query + controlled rotation + inverse query, with the work register borrowed clean, not consumed.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-210",
+    "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let A be a diagonal N x N matrix (a 1-sparse matrix whose only nonzero entries are A_ii), with ||A||_max <= 1. Using the simplified amplitude oracle O_A |0>|i> = (A_ii |0> + sqrt(1 - |A_ii|^2) |1>) |i>, set U_A := O_A. Prove by direct evaluation of the matrix element <0|<i| U_A |0>|j> that U_A is a (1,1)-block-encoding of A, i.e. <0|<i| U_A |0>|j> = A_ii delta_ij, so THIS construction has subnormalization factor alpha = 1 with a single ancilla qubit. Explain why no index-permutation oracle is needed here, in contrast to the general 1-sparse case. Then discuss precisely in what sense alpha = 1 is or is not optimal: state the general lower bound any block encoding must obey, and say whether alpha = 1 is a global optimum for every diagonal A with ||A||_max <= 1 or only in a specific case.",
+    "reference_answer": "Apply U_A = O_A to |0>|j>: U_A |0>|j> = (A_jj |0> + sqrt(1-|A_jj|^2)|1>)|j>. Now take the overlap with <0|<i|: <0|<i| U_A |0>|j> = A_jj <0|0> <i|j> + sqrt(1-|A_jj|^2) <0|1> <i|j>. The second term vanishes because <0|1> = 0. The first term is A_jj <i|j> = A_jj delta_ij. When i = j this equals A_jj = A_ii; when i != j it is 0. Hence <0|<i| U_A |0>|j> = A_ii delta_ij, which is precisely the (i,j) entry of the diagonal matrix A. By the definition of block encoding, (<0| tensor I) U_A (|0> tensor I) = A exactly, with one ancilla qubit (m = 1) and subnormalization alpha = 1, so U_A is in BE_{1,1}(A). No permutation oracle is needed because for a DIAGONAL matrix the row index equals the column index: the single nonzero entry in column j sits at row c(j) = j, i.e. the sparsity permutation c is the identity. In the general 1-sparse case the unique nonzero entry of column j lives at row c(j) != j, so one must apply an index permutation O_c |j> = |c(j)> to move the amplitude-carrying basis state from |j> to |c(j)>; for the diagonal case c = id, so O_c = I and U_A = O_A alone suffices. Optimality -- stated carefully. The general lower bound is that any (alpha,m)-block-encoding of A must satisfy alpha >= ||A|| (operator norm), because the encoded top-left block equals A/alpha and a sub-block of a unitary has operator norm at most 1, forcing ||A||/alpha <= 1. For a diagonal A, ||A|| = max_i |A_ii|. The present construction FIXES alpha = 1 regardless of the entries; this value saturates the lower bound (hence is globally optimal) ONLY in the case ||A|| = max_i |A_ii| = 1, e.g. when some |A_ii| = 1. If instead max_i |A_ii| = r < 1 strictly, then alpha = 1 is a VALID but NOT optimal subnormalization: the lower bound only demands alpha >= r, and a smaller alpha = r is mathematically achievable -- for example by encoding A/r (whose max entry has modulus 1) with this very construction to obtain an (r,1)-block-encoding of A. Thus alpha = 1 is a property of THIS fixed construction, globally optimal exactly when ||A|| = 1, and for ||A|| < 1 merely a valid upper bound rather than the minimum. The honest statement: the construction yields alpha = 1; it meets the alpha >= ||A|| floor iff ||A|| = 1, and is not subnormalization-optimal when ||A|| < 1.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Applies U_A = O_A to |0>|j> and expands the overlap <0|<i| U_A |0>|j>",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses <0|1> = 0 to kill the second term and <i|j> = delta_ij to obtain A_ii delta_ij, concluding U_A in BE_{1,1}(A) (this construction's alpha = 1)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains the sparsity permutation is the identity for a diagonal matrix (c(j)=j), so no O_c is needed, unlike the general 1-sparse case",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States alpha >= ||A|| and correctly limits optimality: alpha = 1 is globally optimal ONLY when ||A|| = max_i|A_ii| = 1; for ||A|| < 1 it is valid but NOT optimal (a smaller alpha = ||A|| is achievable, e.g. by encoding A/||A||)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is diagonal with ||A||_max <= 1",
+      "O_A acts as the single-index amplitude oracle"
+    ],
+    "conventions": [
+      "BE_{alpha,m}(A) denotes an (alpha,m)-block-encoding of A",
+      "The ancilla success flag is the first qubit returning |0>"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "U_A|0>|j> = (A_jj|0> + sqrt(1-|A_jj|^2)|1>)|j>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "<0|<i|U_A|0>|j> = A_jj <0|0><i|j> + sqrt(1-|A_jj|^2)<0|1><i|j>, and <0|1>=0 kills the second term.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "<i|j> = delta_ij gives <0|<i|U_A|0>|j> = A_ii delta_ij, so U_A in BE_{1,1}(A) with this construction's alpha = 1.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For diagonal A the sparsity permutation is c(j)=j, so O_c = I and no permutation oracle is required.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Any block encoding needs alpha >= ||A||; alpha = 1 saturates this iff ||A|| = 1, and for ||A|| < 1 a smaller alpha = ||A|| is achievable, so alpha = 1 is not globally optimal there.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "foundational",
+      "rationale": "A short exact calculation plus two conceptual observations (permutation triviality and the carefully-bounded sense in which alpha = 1 is optimal); requires not overclaiming global optimality."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "155",
+          "anchors": "Example 9.17; Eq. (9.72)-(9.73); U_A in BE_{1,1}(A)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-sparse-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The amplitude oracle is a (1,1)-block-encoding of a diagonal matrix (<0|<i|O_A|0>|j> = A_ii delta_ij); the construction's alpha = 1 is globally optimal only when ||A|| = 1, not for every diagonal A with ||A|| < 1.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-211",
+    "key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "To block-encode a general s-sparse matrix A (at most s nonzeros per row and per column, ||A||_max = 1), one decomposes A into 1-sparse pieces. View the sparsity pattern as a bipartite graph with left vertices the row indices and right vertices the column indices, with an edge (i,j) whenever A_ij != 0; pad with zero entries so every row and column has exactly s incident edges, making the graph s-regular. Prove that this s-regular bipartite graph decomposes into exactly s disjoint perfect matchings, so that A = sum_{ell in [s]} A^{(ell)} with each A^{(ell)} 1-sparse, and explain how each matching ell yields a permutation j -> c(j,ell) of [N] that can be queried by a single permutation oracle O_c |ell>|j> = |ell>|c(j,ell)>. Then explain why this is precisely what makes the LCU circuit of Fig. 9.7 produce a block encoding with subnormalization factor alpha = s, and why alpha = s (= s ||A||_max) is the natural choice rather than something smaller.",
+    "reference_answer": "Edge decomposition: an s-regular bipartite graph has, by Koenig's line-coloring theorem (edge-coloring version), chromatic index exactly s, i.e. its edges can be properly colored with s colors so that no two edges of the same color share a vertex. Each color class is therefore a set of vertex-disjoint edges covering -- because the graph is s-regular and bipartite with equal side sizes N -- every vertex exactly once; that is a PERFECT MATCHING. There are exactly s color classes, so the edge set partitions into s disjoint perfect matchings M_1,...,M_s. From matchings to permutations: fix matching ell. In a perfect matching every column vertex j is matched to a unique row vertex, call it c(j,ell); conversely every row is matched to a unique column. Hence j -> c(j,ell) is a bijection of [N] onto itself, i.e. a permutation. Packaging all s matchings, the single oracle O_c |ell>|j> = |ell>|c(j,ell)> encodes, for each color ell, the corresponding permutation. 1-sparse pieces: define A^{(ell)} by A^{(ell)}_{c(j,ell),j} = A_{c(j,ell),j} and all other entries zero. Each A^{(ell)} has exactly one nonzero per row and per column (it is supported on matching M_ell), so it is 1-sparse; and because the s matchings partition ALL edges of the (padded) graph, every nonzero entry A_ij belongs to exactly one matching, giving A = sum_{ell in [s]} A^{(ell)}. LCU and alpha = s: the circuit uses the s-qubit Hadamard-type map D |0^s> = (1/sqrt(s)) sum_ell |ell> to form a uniform superposition over the s matchings, O_A to load the entry amplitude for the selected matching, and O_c to route the index; this is an LCU over the equal-weight family {A^{(ell)}} with s terms each of 1-norm (coefficient) at most ||A||_max = 1. The standard LCU block-encoding subnormalization is the coefficient 1-norm, here sum_ell 1 = s. So U_A in BE_{s, s+1}(A), i.e. <0|<0^s|<i| U_A |0>|0^s>|j> = (1/s) A_ij, matching alpha = s. Why alpha = s is natural: Lemma 2.46 gives ||A|| <= s ||A||_max, and any block encoding must satisfy alpha >= ||A||, which for a worst-case s-sparse matrix can be as large as s ||A||_max; the construction attains alpha = s ||A||_max = s, so it meets the generic sparse bound. One cannot generally pick alpha < s with this oracle structure because the equal 1/sqrt(s) amplitudes spread the single real entry over s branches, giving exactly a 1/s matrix element; a smaller alpha would require either knowing the entries are smaller (reducing ||A||_max) or using a non-uniform PREP tailored to the actual row/column norms.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Invokes Koenig's edge-coloring theorem to show an s-regular bipartite graph has chromatic index s, so its edges split into s disjoint perfect matchings",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Argues each perfect matching gives a bijection j -> c(j,ell), a permutation of [N], queried by O_c |ell>|j> = |ell>|c(j,ell)>",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Defines the 1-sparse A^{(ell)} on each matching and shows A = sum_ell A^{(ell)} because the matchings partition all edges",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the LCU over {A^{(ell)}} with D = H^{tensor s} gives subnormalization alpha = s (coefficient 1-norm), consistent with ||A|| <= s||A||_max and alpha >= ||A||",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:complexity"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A has at most s nonzeros per row and per column, padded to exactly s (s-regular bipartite pattern)",
+      "||A||_max = 1 (entries normalized)",
+      "An entry/amplitude oracle O_A and a permutation oracle O_c are available"
+    ],
+    "conventions": [
+      "c(j,ell) is the row matched to column j in the ell-th matching",
+      "D = H^{tensor s} creates the uniform superposition over the s matchings",
+      "LCU subnormalization equals the coefficient 1-norm of the decomposition"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "An s-regular bipartite graph has chromatic index s (Koenig), so its edges partition into s disjoint perfect matchings.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Each perfect matching defines a bijection j -> c(j,ell), a permutation of [N], packaged by O_c.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Setting A^{(ell)} to agree with A on matching ell and zero elsewhere makes each A^{(ell)} 1-sparse with A = sum_ell A^{(ell)}.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The circuit is an equal-weight LCU over {A^{(ell)}} using D = H^{tensor s}, O_A, O_c.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The coefficient 1-norm s gives subnormalization alpha = s, so U_A in BE_{s,s+1}(A), consistent with ||A|| <= s||A||_max and alpha >= ||A||.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires a graph-theoretic structural theorem (Koenig edge coloring) linked to the permutation-oracle model and the LCU subnormalization accounting; multi-ingredient."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "155-156",
+          "anchors": "Section 9.7; Koenig line-coloring (Die25 Prop 5.3.1); Eq. (9.77) A = sum A^{(ell)}; Eq. (9.78)-(9.80); alpha = s",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-sparse-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "An s-regular bipartite sparsity pattern splits into s perfect matchings (Koenig), giving A = sum_ell A^{(ell)} of 1-sparse pieces and an equal-weight LCU block encoding with alpha = s.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-212",
+    "key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Consider the s-sparse LCU block-encoding circuit U_A = (I tensor D tensor I)(I tensor O_c) O_A (I tensor D tensor I), where D |0^s> = (1/sqrt(s)) sum_{ell in [s]} |ell>, O_A |0>|ell>|j> = (A_{c(j,ell),j}|0> + sqrt(1 - |A_{c(j,ell),j}|^2)|1>)|ell>|j>, and O_c |ell>|j> = |ell>|c(j,ell)>, with each j -> c(j,ell) a permutation. By propagating |0>|0^s>|j> through D, O_A, O_c and separately propagating |0>|0^s>|i> through D (using that D is Hermitian), evaluate the inner product <0|<0^s|<i| U_A |0>|0^s>|j> and show it equals (1/s) A_ij. Explain carefully why the single clean sum over ell collapses to one surviving term and how the Kronecker delta delta_{i,c(j,ell)} selects it; also explain why the |1> (unflagged) component of O_A does not contribute.",
+    "reference_answer": "Forward propagation of the source |0>|0^s>|j>: Apply D to the s-qubit register: |0>|0^s>|j> -> (1/sqrt(s)) sum_ell |0>|ell>|j>. Apply O_A: -> (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0> + sqrt(1-|A_{c(j,ell),j}|^2)|1>)|ell>|j>. Apply O_c (permuting the index register): -> (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0> + sqrt(1-|...|^2)|1>)|ell>|c(j,ell)>. Backward propagation of the target: instead of multiplying the leftmost (I tensor D tensor I) onto this line, apply it to |0>|0^s>|i>; since D is Hermitian, (I tensor D tensor I) on the left acts as D on |0^s> on the right of the bra, giving the ket (1/sqrt(s)) sum_{ell'} |0>|ell'>|i>. Inner product: <0|<0^s|<i| U_A |0>|0^s>|j> = ((1/sqrt(s)) sum_{ell'} <0|<ell'|<i|) ((1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0> + sqrt(1-|...|^2)|1>)|ell>|c(j,ell)>). The ancilla overlap <0 | (A|0> + sqrt(...)|1>) = A_{c(j,ell),j}, because <0|0> = 1 and <0|1> = 0 -- this is exactly why the |1> component drops out: the success flag <0| annihilates it. The s-register overlap <ell'|ell> = delta_{ell',ell} collapses the double sum to a single sum over ell. The index overlap <i|c(j,ell)> = delta_{i,c(j,ell)} keeps only the matching(s) ell for which c(j,ell) = i, i.e. the row that column j is matched to in matching ell equals the queried row i. Thus <0|<0^s|<i| U_A |0>|0^s>|j> = (1/s) sum_ell A_{c(j,ell),j} delta_{i,c(j,ell)} = (1/s) A_ij: if A_ij != 0 there is a unique ell with c(j,ell) = i (that nonzero entry lives in exactly one matching), contributing A_{i,j}; if A_ij = 0 no ell satisfies both the delta and a nonzero entry, so the sum is 0. The overall (1/s) is the LCU subnormalization. Hence U_A in BE_{s,s+1}(A).",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Propagates |0>|0^s>|j> correctly through D, O_A, O_c to (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0>+...|1>)|ell>|c(j,ell)>",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses Hermiticity of D to propagate the target to (1/sqrt(s)) sum_{ell'} |0>|ell'>|i> and forms the inner product",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows <0| annihilates the |1> component (success flag), <ell'|ell> = delta collapses to one sum, and <i|c(j,ell)> = delta_{i,c(j,ell)} selects the matched term",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes (1/s) sum_ell A_{c(j,ell),j} delta_{i,c(j,ell)} = (1/s) A_ij, handling both A_ij != 0 (unique ell) and A_ij = 0, so U_A in BE_{s,s+1}(A)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Each j -> c(j,ell) is a permutation of [N]",
+      "D |0^s> = (1/sqrt(s)) sum_ell |ell> and D is Hermitian",
+      "O_A flags the entry amplitude on |0> of the ancilla"
+    ],
+    "conventions": [
+      "The success flag is the ancilla returning |0> and the s-register returning |0^s>",
+      "delta_{i,c(j,ell)} encodes that row i is matched to column j in matching ell"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "D, O_A, O_c map |0>|0^s>|j> to (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0>+sqrt(1-|.|^2)|1>)|ell>|c(j,ell)>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Hermiticity of D turns the leftmost factor into D on the target, giving (1/sqrt(s)) sum_{ell'} |0>|ell'>|i>.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "<0| kills the |1> branch; <ell'|ell>=delta collapses the double sum to one sum over ell.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "<i|c(j,ell)> = delta_{i,c(j,ell)} keeps only the matching with c(j,ell)=i.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The surviving term is (1/s) A_ij (unique ell if A_ij!=0, else 0), so U_A in BE_{s,s+1}(A).",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A careful amplitude-propagation and inner-product computation with three distinct delta/flag collapses; standard but detail-heavy."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "156-157",
+          "anchors": "Proposition 9.19; Eq. (9.81)-(9.84); U_A in BE_{s,s+1}(A)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-sparse-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Propagating source and (Hermitian-D) target through the sparse LCU circuit gives <0|<0^s|<i|U_A|0>|0^s>|j> = (1/s)A_ij, with the success flag dropping the |1> branch and delta_{i,c(j,ell)} selecting one matching.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-213",
+    "key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "An alternative s-sparse input model uses two (2n)-qubit oracles O_r |ell>|i> = |r(i,ell)>|i> and O_c |ell>|j> = |c(j,ell)>|j>, where r(i,ell) and c(j,ell) give the ell-th nonzero entry in row i and column j respectively, together with the entry oracle O_A |0>|i>|j> = (A_ij|0> + sqrt(1-|A_ij|^2)|1>)|i>|j> (controlled by both indices). The circuit of Fig. 9.8 applies D, O_c, O_A, then a SWAP, then D and O_r. Prove that the resulting U_A satisfies <0|<0^n|<i| U_A |0>|0^n|j> = (1/s) A_ij, so U_A in BE_{s,n+1}(A). In particular, explain the roles of the two separate delta constraints delta_{i,c(j,ell)} and delta_{r(i,ell'),j}, and why -- when A_ij = 0 -- the computation still gives 0 even though the rotation in O_A may be arbitrary on zero entries.",
+    "reference_answer": "Propagate the source |0>|0^n>|j>. Apply D, O_c, O_A: |0>|0^n>|j> -> (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0> + sqrt(1-|A_{c(j,ell),j}|^2)|1>)|c(j,ell)>|j>, where O_c has written the matched row index c(j,ell) into the first register and O_A loaded the entry amplitude (controlled by the row c(j,ell) and column j). Apply SWAP, which exchanges the (row-like) and (column-like) registers: -> (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0> + sqrt(1-|...|^2)|1>)|j>|c(j,ell)>. Propagate the target |0>|0^n>|i>. Apply D and O_r: -> (1/sqrt(s)) sum_{ell'} |0>|r(i,ell')>|i>. Inner product: <0|<0^n|<i| U_A |0>|0^n>|j> = (1/s) sum_{ell,ell'} A_{c(j,ell),j} <r(i,ell')|j> <i|c(j,ell)> (the ancilla <0| picks out A and kills the sqrt(1-|.|^2)|1> term). The two deltas: <i|c(j,ell)> = delta_{i,c(j,ell)} forces the matched row of column j in matching ell to be exactly i; <r(i,ell')|j> = delta_{r(i,ell'),j} forces the matched column of row i in matching ell' to be exactly j. Evaluate: = (1/s) sum_{ell,ell'} A_{c(j,ell),j} delta_{i,c(j,ell)} delta_{r(i,ell'),j}. If A_ij != 0, there is a unique ell with c(j,ell) = i (the nonzero (i,j) lies in exactly one column-matching) and a unique ell' with r(i,ell') = j (likewise for the row structure), so exactly one term survives, giving (1/s) A_{i,j} = (1/s) A_ij. If A_ij = 0: there is NO matching ell with c(j,ell) = i that carries a nonzero entry, and/or no ell' with r(i,ell') = j; hence for every (ell,ell') at least one delta is zero OR the surviving A_{c(j,ell),j} with c(j,ell) = i equals A_ij = 0. Either way the sum is 0. Crucially, even though O_A's rotation on a zero entry may be arbitrary (the text allows this), that arbitrary amplitude never contributes to the final matrix element: the two independent deltas from O_c and O_r only let a term survive when BOTH the column structure routes column j to row i and the row structure routes row i to column j, which happens only on genuine nonzero positions; on zero positions the position is simply not in the sparsity pattern so no (ell,ell') pair selects it. The joint row/column consistency is what makes the arbitrary zero-entry rotations harmless. Thus <0|<0^n|<i| U_A |0>|0^n>|j> = (1/s) A_ij and U_A in BE_{s,n+1}(A).",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Propagates the source through D, O_c, O_A, SWAP and the target through D, O_r correctly",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Writes the inner product as (1/s) sum_{ell,ell'} A_{c(j,ell),j} delta_{i,c(j,ell)} delta_{r(i,ell'),j} with the ancilla <0| removing the |1> term",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains the two deltas enforce column-side routing (c(j,ell)=i) and row-side routing (r(i,ell')=j), selecting a unique term when A_ij != 0 to give (1/s)A_ij",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains why A_ij = 0 yields 0 and why arbitrary O_A rotations on zero entries are harmless because no (ell,ell') pair selects a zero position",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "O_r, O_c expose the ell-th nonzero in each row/column; O_A loads entry amplitudes controlled by both indices",
+      "On zero entries A_ij = 0, the O_A rotation may be arbitrary",
+      "ell is expanded into an n-qubit register"
+    ],
+    "conventions": [
+      "r(i,ell), c(j,ell) index the ell-th nonzero of row i, column j",
+      "The success flag is the ancilla |0> and both index-side ancilla registers |0^n>"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "D, O_c, O_A, SWAP map the source to (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0>+...|1>)|j>|c(j,ell)>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "D, O_r map the target to (1/sqrt(s)) sum_{ell'} |0>|r(i,ell')>|i>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The ancilla <0| extracts A_{c(j,ell),j}, giving (1/s) sum_{ell,ell'} A_{c(j,ell),j} delta_{i,c(j,ell)} delta_{r(i,ell'),j}.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For A_ij != 0 unique ell, ell' survive via both deltas, yielding (1/s)A_ij.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For A_ij = 0 no (ell,ell') selects the position, so arbitrary zero-entry rotations never contribute and the element is 0.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires handling a two-sided (row and column) oracle model with two independent delta constraints and a correct argument that arbitrary zero-entry rotations are annihilated."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "158-159",
+          "anchors": "Proposition 9.22; Fig. 9.8; Eq. (9.88)-(9.92); U_A in BE_{s,n+1}(A)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-sparse-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The two-oracle (O_r, O_c) sparse model gives <0|<0^n|<i|U_A|0>|0^n>|j> = (1/s)A_ij; the paired deltas enforce row/column consistency so arbitrary rotations on zero entries never contribute.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-214",
+    "key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "A Hermitian matrix A does NOT automatically have a Hermitian block encoding: even for a Hermitian diagonal A and even when the approximation error is exactly 0, a generic (alpha, m, 0)-block-encoding U_A need not satisfy U_A = U_A^dagger -- only the upper-left n-qubit block of U_A is guaranteed Hermitian. (i) Explain precisely what the block-encoding definition does and does not constrain about U_A, so that Hermiticity of the encoded block does not propagate to the whole unitary. (ii) Give a concrete small example illustrating that the amplitude-oracle block encoding of a Hermitian diagonal matrix (Example 9.17) is generally not a Hermitian matrix. (iii) State what additional structural requirement defines a Hermitian block encoding (Definition 9.23) and why it is a strictly stronger condition useful for qubitization.",
+    "reference_answer": "(i) The block-encoding definition only constrains the top-left n-qubit block: U_A in BE_{alpha,m}(A, 0) means (<0^m| tensor I) U_A (|0^m> tensor I) = A/alpha, i.e. it pins down the single sub-block indexed by ancilla = 0^m on both input and output. The remaining blocks (ancilla going 0^m -> nonzero, nonzero -> 0^m, and nonzero -> nonzero) are completely free apart from the global constraint that U_A be unitary. Hermiticity of A forces the top-left block to be Hermitian, but says nothing about the off-diagonal blocks or the complementary block; unitarity does not force those to make U_A self-adjoint. So A = A^dagger does not imply U_A = U_A^dagger. (ii) Example: take the 1x1-ancilla amplitude oracle for a diagonal A with a single real entry a = A_11 in (0,1). On the relevant 2x2 ancilla block (fixed index), U_A acts as the single-qubit rotation R = [[a, -sqrt(1-a^2)],[sqrt(1-a^2), a]] (a real rotation by angle theta with cos theta = a). This R is NOT symmetric/Hermitian: its off-diagonal entries are -sqrt(1-a^2) and +sqrt(1-a^2), which differ in sign, so R != R^T = R^dagger (for real R). The top-left entry is a = A_11 (Hermitian, trivially), yet the full U_A (a rotation, not a reflection) is not Hermitian. Thus even the block encoding of a Hermitian (indeed diagonal) matrix is generically non-Hermitian. (iii) Definition 9.23 adds the explicit requirement U_A = U_A^dagger: an (alpha,m,eps)-block-encoding that is ALSO a Hermitian matrix is called an (alpha,m,eps)-Hermitian-block-encoding (set HBE_{alpha,m}(A,eps)). This is strictly stronger: it is an extra global constraint on all blocks of U_A, not just the encoded sub-block, and generic block encodings (like the rotation above) violate it. It is useful for qubitization because when U_A = U_A^dagger each eigenvector |v_i> of A is 'qubitized' into a 2D invariant subspace H_i on which U_A acts as a reflection [[lambda_i, sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), -lambda_i]]; the self-adjointness is exactly what lets you apply U_A a second time to Eq. (9.30) and close the 2D subspace (Eq. (9.34)), which is the mechanism that turns U_A Z_Pi into a rotation implementing Chebyshev polynomials T_k(A). Without Hermiticity the simple reflection structure (and hence the clean two-step closure) is not available.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Explains the block-encoding definition fixes only the top-left ancilla-0^m block = A/alpha, leaving the other blocks free subject to global unitarity, so Hermiticity does not propagate",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Gives a concrete example: the amplitude-oracle encoding of a real diagonal entry acts as a rotation [[a,-sqrt(1-a^2)],[sqrt(1-a^2),a]] which is not Hermitian though its (1,1) block is",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States Definition 9.23: a Hermitian block encoding additionally requires U_A = U_A^dagger (set HBE), a strictly stronger global condition",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains why Hermiticity matters for qubitization: it makes U_A a reflection on each 2D qubitized subspace, enabling the two-step closure and Chebyshev T_k(A)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is Hermitian (indeed can be taken diagonal) with entries in (0,1)",
+      "A block encoding only constrains the ancilla-0^m sub-block"
+    ],
+    "conventions": [
+      "BE_{alpha,m}(A,0) fixes (<0^m| tensor I)U_A(|0^m> tensor I) = A/alpha",
+      "HBE additionally demands U_A = U_A^dagger"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The definition pins only the top-left block A/alpha; the other blocks are free up to unitarity, so A=A^dagger does not force U_A=U_A^dagger.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The amplitude-oracle encoding of a real diagonal entry a acts as a rotation with off-diagonals +/- sqrt(1-a^2), hence non-Hermitian.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Definition 9.23 adds U_A = U_A^dagger, a strictly stronger global constraint (set HBE).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Hermiticity makes U_A a reflection on each 2D qubitized subspace, enabling the second-application closure.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "That closure is what yields the Chebyshev rotation structure used in qubitization.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A boundary/diagnosis task separating what the block-encoding definition constrains from Hermiticity, with a concrete non-Hermitian example and the qubitization payoff."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "159, 163-168",
+          "anchors": "Section 9.8; Definition 9.23 (HBE); Example 9.17; qubitization Eq. (9.30)-(9.40)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-hermitian-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A Hermitian A need not have a Hermitian block encoding -- only the encoded block is Hermitian; Definition 9.23's U_A = U_A^dagger is a strictly stronger condition that enables the qubitization reflection structure.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-215",
+    "key": "qcb-core-plan-215-hermitian-sparse-block-encoding-prop924",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For an s-sparse Hermitian matrix A with ||A||_max <= 1, the Hermitian block-encoding circuit of Fig. 9.9 uses one location oracle O_c |ell>|j> = |c(j,ell)>|j>, an (n+1)-qubit SWAP, and a square-root entry oracle O_A |i>|0>|j> = |i>(sqrt(A_ij)|0> + sqrt(1 - |A_ij|)|1>)|j> acting on a single-qubit register, where for complex/negative entries one writes A_ij = |A_ij| e^{i theta_ij} and sqrt(A_ij) = sqrt(|A_ij|) e^{i theta_ij / 2}. Prove that the circuit yields <0|<0^n|<0|<i| U_A |0>|0^n>|0>|j> = (1/s) A_ij, so U_A in HBE_{s,n+2}(A). You must show explicitly where Hermiticity A_ij = A_ji^* is used to combine the two square-root factors sqrt(A_{c(j,ell),j}) and sqrt(A_{c(i,ell'),i})^* into A_ij.",
+    "reference_answer": "Propagate the source |0>|0^n>|0>|j> through D, O_c, O_A: -> (1/sqrt(s)) sum_ell |0>|c(j,ell)>(sqrt(A_{c(j,ell),j})|0> + sqrt(1-|A_{c(j,ell),j}|)|1>)|j>. Apply the (n+1)-qubit SWAP, which exchanges the first register pair (a,i) with the second (b,j): -> (1/sqrt(s)) sum_ell (sqrt(A_{c(j,ell),j})|0> + sqrt(1-|...|)|1>)|j>|0>|c(j,ell)>. Propagate the target |0>|0^n>|0>|i> through D, O_c, O_A: -> (1/sqrt(s)) sum_{ell'} |0>|c(i,ell')>(sqrt(A_{c(i,ell'),i})|0> + sqrt(1-|A_{c(i,ell'),i}|)|1>)|i>. Form the inner product <0|<0^n|<0|<i| U_A |0>|0^n>|0>|j>. The two single-qubit ancillas each contribute a <0|(sqrt(A)|0> + sqrt(1-|A|)|1>) overlap, keeping only the sqrt(A)|0> part (the |1> terms are annihilated by <0|): one factor sqrt(A_{c(j,ell),j}) from the source and, from the target bra, the conjugate sqrt(A_{c(i,ell'),i})^* (a bra conjugates amplitudes). The register overlaps give delta_{i,c(j,ell)} (target row index i must match the routed source index c(j,ell)) and delta_{c(i,ell'),j} (routed target index must match j). So <0|<0^n|<0|<i| U_A |0>|0^n>|0>|j> = (1/s) sum_{ell,ell'} sqrt(A_{c(j,ell),j}) sqrt(A_{c(i,ell'),i})^* delta_{i,c(j,ell)} delta_{c(i,ell'),j}. When A_ij != 0 there is a unique ell with c(j,ell) = i and a unique ell' with c(i,ell') = j, so the surviving term is (1/s) sqrt(A_{i,j}) sqrt(A_{j,i})^*. Now use Hermiticity: A_ji = A_ij^*, hence sqrt(A_{j,i})^* = sqrt(A_ij^*)^* = sqrt(A_ij) (since conjugating the entry and then its square root returns the original square root: (sqrt(|A_ij|) e^{-i theta_ij/2})^* = sqrt(|A_ij|) e^{i theta_ij/2} = sqrt(A_ij)). Therefore sqrt(A_ij) sqrt(A_ji)^* = sqrt(A_ij) sqrt(A_ij) = (sqrt(A_ij))^2 = A_ij. This gives (1/s) A_ij, and when A_ij = 0 the deltas select no nonzero term, giving 0. Hence <0|<0^n|<0|<i| U_A |0>|0^n>|0>|j> = (1/s) A_ij for all i,j, so U_A in HBE_{s,n+2}(A). The two-register symmetric structure (source and target each run D, O_c, O_A, bridged by SWAP) is what makes U_A Hermitian, and Hermiticity of A is precisely what lets the two half-entries sqrt(A_{ij}) and sqrt(A_{ji})^* multiply back to the full entry A_ij.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Propagates source (D, O_c, O_A, SWAP) and target (D, O_c, O_A) correctly in the two-register layout",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows the ancilla <0| overlaps keep sqrt(A_{c(j,ell),j}) from the ket and the conjugate sqrt(A_{c(i,ell'),i})^* from the bra, with deltas delta_{i,c(j,ell)}, delta_{c(i,ell'),j}",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Reaches the surviving term (1/s) sqrt(A_ij) sqrt(A_ji)^* for A_ij != 0",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Uses A_ji = A_ij^* to show sqrt(A_ji)^* = sqrt(A_ij), hence the product is A_ij, concluding U_A in HBE_{s,n+2}(A)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is Hermitian and s-sparse with ||A||_max <= 1",
+      "O_A loads the square root sqrt(A_ij) = sqrt(|A_ij|) e^{i theta_ij/2}",
+      "One location oracle O_c suffices because A is Hermitian (same nonzero pattern in row and column)"
+    ],
+    "conventions": [
+      "HBE_{alpha,m}(A) is a Hermitian (alpha,m)-block-encoding (U_A = U_A^dagger)",
+      "A bra conjugates amplitudes; sqrt(z^*)^* = sqrt(z) on the principal branch used"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "D, O_c, O_A, SWAP map the source to (1/sqrt(s)) sum_ell (sqrt(A_{c(j,ell),j})|0>+...|1>)|j>|0>|c(j,ell)>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "D, O_c, O_A map the target to (1/sqrt(s)) sum_{ell'} |0>|c(i,ell')>(sqrt(A_{c(i,ell'),i})|0>+...|1>)|i>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Ancilla <0| overlaps keep sqrt(A_{c(j,ell),j}) and conjugate sqrt(A_{c(i,ell'),i})^*; deltas give the unique matched term (1/s) sqrt(A_ij) sqrt(A_ji)^*.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Hermiticity A_ji = A_ij^* gives sqrt(A_ji)^* = sqrt(A_ij).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence the product is (sqrt(A_ij))^2 = A_ij, so the element is (1/s)A_ij and U_A in HBE_{s,n+2}(A).",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A two-register Hermitian-circuit evaluation requiring square-root bookkeeping and the explicit use of A_ij = A_ji^* to recombine half-entries; genuinely multi-step."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "159-161",
+          "anchors": "Proposition 9.24; Fig. 9.9; Eq. (9.93)-(9.98); U_A in HBE_{s,n+2}(A)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-hermitian-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Fig. 9.9 produces a Hermitian block encoding: the matched term is (1/s)sqrt(A_ij)sqrt(A_ji)^*, and Hermiticity A_ji = A_ij^* recombines it to (1/s)A_ij, giving U_A in HBE_{s,n+2}(A).",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-216",
+    "key": "qcb-core-plan-216-block-encoding-beyond-computational-basis-def925",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "The block-encoding notion generalizes beyond computational-basis subspaces. Fix rank-N and rank-N' orthogonal projectors Pi, Pi' on an ambient space C^{MN} (M = 2^m), with orthonormal bases {|phi_j>}_{j in [N]} for range(Pi) and {|psi_i>}_{i in [N']} for range(Pi'). Collect these as the first columns of unitaries Xi, Xi' and let Xi_N, (Xi')_{N'} be those column blocks. For a unitary U_A on C^{MN}, define the induced block A~ := ((Xi')_{N'})^dagger U_A Xi_N in C^{N' x N}. Prove that the (i,j) entry of A~ equals <psi_i| U_A |phi_j>, that A~ coincides with the compression Pi' U_A Pi expressed in the chosen bases, and hence that the exact relation Pi' U_A Pi = sum_{i,j} |psi_i> A_ij <phi_j| is equivalent to A~ = A. Then state the (alpha,m,eps)-generalized block-encoding condition ||A - alpha A~|| <= eps and explain why it reduces to the ordinary computational-basis definition when Pi = Pi' = |0^m><0^m| tensor I and N' = N.",
+    "reference_answer": "Entry formula: Xi_N has columns |phi_0>,...,|phi_{N-1}>, so Xi_N |e_j> = |phi_j> for the standard basis vector |e_j> of C^N; similarly (Xi')_{N'} |e_i> = |psi_i>, hence ((Xi')_{N'})^dagger |x> has i-th component <psi_i|x>. Therefore the (i,j) entry of A~ = ((Xi')_{N'})^dagger U_A Xi_N is A~_{ij} = <e_i| ((Xi')_{N'})^dagger U_A Xi_N |e_j> = (((Xi')_{N'})|e_i>)^dagger U_A (Xi_N |e_j>) = <psi_i| U_A |phi_j>. Compression identity: the orthogonal projectors can be written Pi = sum_j |phi_j><phi_j| and Pi' = sum_i |psi_i><psi_i| (spectral form on their ranges). Then Pi' U_A Pi = sum_{i,j} |psi_i> <psi_i| U_A |phi_j> <phi_j| = sum_{i,j} |psi_i> A~_{ij} <phi_j|. So Pi' U_A Pi, re-expressed in the bases {|psi_i>}, {|phi_j>}, has exactly the matrix of coefficients A~. Consequently the exact encoding requirement Pi' U_A Pi = sum_{i,j} |psi_i> A_ij <phi_j| holds if and only if A~_{ij} = A_ij for all i,j, i.e. A~ = A. Approximate condition: allowing a subnormalization alpha and error eps, U_A is an (alpha,m,eps)-generalized block-encoding of A with respect to (Pi,Pi') iff ||A - alpha A~|| <= eps (operator norm), i.e. the compression alpha A~ = alpha Pi' U_A Pi (in the chosen bases) approximates A. Reduction to the usual definition: set Pi = Pi' = Pi_{0^m} := |0^m><0^m| tensor I and N' = N. Then range(Pi) = range(Pi') is the computational ancilla-0^m subspace; choosing Xi = Xi' = I (identity, whose first N columns are |0^m>|j>) gives Xi_N |e_j> = |0^m>|j> and (Xi')_{N'} |e_i> = |0^m>|i>, so A~_{ij} = <0^m|<i| U_A |0^m>|j>, which is exactly the standard top-left block (<0^m| tensor I) U_A (|0^m> tensor I). Thus ||A - alpha A~|| <= eps becomes the ordinary (alpha,m,eps)-block-encoding condition. The generalization is purely a change of input/output subspaces (via Pi, Pi' and the basis unitaries) from the fixed computational ancilla-flag subspace to arbitrary ones.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows A~_{ij} = <psi_i| U_A |phi_j> using that Xi_N, (Xi')_{N'} map standard basis vectors to the chosen orthonormal basis vectors",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Writes Pi = sum_j |phi_j><phi_j|, Pi' = sum_i |psi_i><psi_i| and derives Pi' U_A Pi = sum_{i,j} |psi_i> A~_{ij} <phi_j|",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Concludes the exact encoding Pi' U_A Pi = sum |psi_i> A_ij <phi_j| is equivalent to A~ = A, and states the approximate condition ||A - alpha A~|| <= eps",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Shows the reduction to the computational-basis definition for Pi = Pi' = |0^m><0^m| tensor I, N' = N (A~_{ij} = <0^m|<i|U_A|0^m>|j>)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Pi, Pi' are orthogonal projectors of ranks N, N' with the given orthonormal bases",
+      "Xi, Xi' are unitaries whose first N, N' columns are those bases",
+      "N' <= MN"
+    ],
+    "conventions": [
+      "Xi_N, (Xi')_{N'} are the first-column blocks; A~ = ((Xi')_{N'})^dagger U_A Xi_N",
+      "Operator-norm error ||.|| defines the approximation"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Xi_N|e_j> = |phi_j>, (Xi')_{N'}|e_i> = |psi_i>, so A~_{ij} = <psi_i| U_A |phi_j>.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "With Pi = sum_j |phi_j><phi_j|, Pi' = sum_i |psi_i><psi_i|, Pi' U_A Pi = sum_{i,j} |psi_i> A~_{ij} <phi_j|.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence Pi' U_A Pi = sum |psi_i> A_ij <phi_j| iff A~ = A; approximately, ||A - alpha A~|| <= eps.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "For Pi=Pi'=|0^m><0^m| tensor I, N'=N, A~_{ij} = <0^m|<i|U_A|0^m>|j>, the standard block.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "So the generalized condition reduces to the ordinary (alpha,m,eps)-block-encoding definition.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A linear-algebra derivation identifying a compression with a basis-expressed induced block; conceptually clean but requires careful projector/column bookkeeping."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "161-162",
+          "anchors": "Section 9.9; Eq. (9.99)-(9.105); Definition 9.25 generalized block encoding",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-generalized-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The induced block A~ = ((Xi')_{N'})^dagger U_A Xi_N has entries <psi_i|U_A|phi_j> and equals the compression Pi' U_A Pi in the chosen bases; ||A - alpha A~|| <= eps generalizes the computational-basis definition.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-217",
+    "key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For a square matrix A with SVD A = W Sigma V^dagger, three generalized matrix functions are defined: f^diamond(A) = W f(Sigma) V^dagger (balanced), f^triangleright(A) = V f(Sigma) V^dagger (right), f^triangleleft(A) = W f(Sigma) W^dagger (left). The singular value transformation uses the diamond version for odd f and the right/triangleright version for even f. Prove that when A is Hermitian with eigendecomposition A = V D V^dagger (D indefinite, real), writing the SVD as A = W Sigma V^dagger with W = V sign(D) and Sigma = |D|, the singular value transformation f_SV(A) equals the ordinary eigenvalue transformation f(A) = V f(D) V^dagger whenever f has definite parity (odd or even). Treat the odd and even cases separately, and explain why definite parity is exactly the hypothesis that removes the sign ambiguity between singular values |lambda| and eigenvalues lambda.",
+    "reference_answer": "Setup: A Hermitian gives A = V D V^dagger with real diagonal D = diag(lambda_i). Its SVD is A = W Sigma V^dagger with Sigma = |D| = diag(|lambda_i|) (singular values are nonnegative) and W = V sign(D), where sign(D) = diag(sign(lambda_i)) flips the sign of the i-th column of V whenever lambda_i < 0. One checks W Sigma V^dagger = V sign(D) |D| V^dagger = V D V^dagger = A, since sign(D)|D| = D. Odd case: f_SV(A) = f^diamond(A) = W f(Sigma) V^dagger = V sign(D) f(|D|) V^dagger. Now f(|D|) = diag(f(|lambda_i|)). Because f is odd, f(|lambda_i|) = sign(lambda_i) f(lambda_i) for each i: if lambda_i >= 0 then |lambda_i| = lambda_i and sign = +1; if lambda_i < 0 then f(|lambda_i|) = f(-lambda_i) = -f(lambda_i) = sign(lambda_i) f(lambda_i). Hence sign(D) f(|D|) = diag(sign(lambda_i) * sign(lambda_i) f(lambda_i)) = diag(f(lambda_i)) = f(D) (using sign(lambda_i)^2 = 1 for lambda_i != 0). Therefore f_SV(A) = V f(D) V^dagger = f(A). Even case: f_SV(A) = f^triangleright(A) = V f(Sigma) V^dagger = V f(|D|) V^dagger. Because f is even, f(|lambda_i|) = f(lambda_i) for every i (f(-x) = f(x)), so f(|D|) = f(D). Therefore f_SV(A) = V f(D) V^dagger = f(A). Role of definite parity: the SVD only sees |lambda_i| (the singular values are the absolute eigenvalues), discarding the sign carried by eigenvalues. To reconstruct f(A) = V f(D) V^dagger one must recover f(lambda_i) from f(|lambda_i|). This is possible exactly when the sign of f(lambda_i) relative to f(|lambda_i|) is determined by the sign of lambda_i in a fixed way: for odd f the sign flips with lambda_i (and the diamond's W = V sign(D) supplies precisely that flip), while for even f there is no sign to recover (f ignores it). For an f WITHOUT definite parity, f(lambda) and f(-lambda) are independent, so f(|lambda_i|) does not determine f(lambda_i) and the SVT cannot equal the eigenvalue transformation; definite parity is thus the exact structural hypothesis that eliminates the |lambda| vs lambda sign ambiguity.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Sets up A = V D V^dagger = W Sigma V^dagger with Sigma = |D|, W = V sign(D) and verifies W Sigma V^dagger = A",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Odd case: f^diamond(A) = V sign(D) f(|D|) V^dagger and f(|lambda_i|) = sign(lambda_i) f(lambda_i), so sign(D)f(|D|) = f(D), giving f(A)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Even case: f^triangleright(A) = V f(|D|) V^dagger and f(|lambda_i|) = f(lambda_i), giving f(D) and f(A)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains definite parity is exactly what lets f(|lambda|) determine f(lambda) (sign recovered for odd, irrelevant for even); without it the SVT differs from the eigenvalue transformation",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:operator-theory",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is Hermitian with real eigendecomposition A = V D V^dagger",
+      "f has definite parity (either odd or even)",
+      "The SVD uses nonnegative singular values Sigma = |D|"
+    ],
+    "conventions": [
+      "sign(D) = diag(sign(lambda_i)); W = V sign(D)",
+      "f_SV uses f^diamond for odd f and f^triangleright for even f (Definition 10.4)"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Sigma = |D|, W = V sign(D) satisfy W Sigma V^dagger = V D V^dagger = A.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Odd f: f(|lambda_i|) = sign(lambda_i) f(lambda_i), so sign(D) f(|D|) = f(D) and f^diamond(A) = V f(D) V^dagger = f(A).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Even f: f(|lambda_i|) = f(lambda_i), so f(|D|) = f(D) and f^triangleright(A) = V f(D) V^dagger = f(A).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The SVD only exposes |lambda_i|, so recovering f(lambda_i) needs the sign relation supplied by definite parity.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Without definite parity f(|lambda|) does not determine f(lambda), so SVT differs from the eigenvalue transformation.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires careful handling of the sign(D) factor in both parities and a precise statement of why parity resolves the singular-value sign ambiguity."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "164-165",
+          "anchors": "Definitions 10.1-10.4; Eq. (10.7)-(10.16); SVT = eigenvalue transformation for definite parity",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-singular-value-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "For Hermitian A, the singular value transformation equals the eigenvalue transformation when f has definite parity: odd f uses the sign(D) factor to recover signs, even f ignores them.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-218",
+    "key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For a general square matrix A with SVD given by A|v_i> = sigma_i|w_i>, A^dagger|w_i> = sigma_i|v_i>, sigma_i >= 0, define the one-ancilla dilated Hermitian matrix A~ = [[0, A^dagger],[A, 0]]. Define |z_i^pm> = (1/sqrt(2))(|0>|v_i> pm |1>|w_i>). Prove that A~ is Hermitian, that A~ |z_i^pm> = pm sigma_i |z_i^pm> (so the |z_i^pm> are a complete set of eigenvectors with eigenvalues pm sigma_i), and deduce that for an even function f, f(A~)|0>|psi> = |0> f^triangleright(A)|psi> while for an odd function f, f(A~)|0>|psi> = |1> f^diamond(A)|psi>. Explain how this shows that applying an eigenvalue transformation to the dilated matrix automatically realizes the singular value transformation of A, and why measuring the ancilla gives a definite outcome (0 for even f, 1 for odd f).",
+    "reference_answer": "Hermiticity: A~^dagger = [[0, A^dagger],[A, 0]]^dagger = [[0, A^dagger],[A, 0]] = A~, since the (2,1) block A becomes (A^dagger)^dagger = A in position (1,2)... more precisely the adjoint swaps off-diagonal blocks and conjugate-transposes them: the (1,2) block A^dagger has adjoint A placed in (2,1), and the (2,1) block A has adjoint A^dagger placed in (1,2); these reproduce A~. So A~ is Hermitian. Eigenvectors: compute A~|z_i^pm> = (1/sqrt(2)) A~(|0>|v_i> pm |1>|w_i>). Using the block action A~(|0>|x>) = |1>(A|x>) and A~(|1>|y>) = |0>(A^dagger|y>) (the off-diagonal blocks move the ancilla and apply A or A^dagger): A~|0>|v_i> = |1>(A|v_i>) = sigma_i |1>|w_i>, and A~|1>|w_i> = |0>(A^dagger|w_i>) = sigma_i |0>|v_i>. Hence A~|z_i^pm> = (1/sqrt(2))(sigma_i|1>|w_i> pm sigma_i|0>|v_i>) = (sigma_i/sqrt(2))(pm|0>|v_i> + |1>|w_i>) = pm sigma_i * (1/sqrt(2))(|0>|v_i> pm |1>|w_i>) = pm sigma_i |z_i^pm>. So the |z_i^pm> are eigenvectors with eigenvalues pm sigma_i; as {|v_i>}, {|w_i>} are orthonormal bases, the {|z_i^pm>} form a complete orthonormal eigenbasis of the 2N-dimensional space. Matrix function: f(A~) = sum_i (|z_i^+> f(sigma_i) <z_i^+| + |z_i^-> f(-sigma_i) <z_i^-|). Expanding into the |0>,|1> blocks and using f_even(x) = (f(x)+f(-x))/2, f_odd(x) = (f(x)-f(-x))/2 gives f(A~) = [[ sum_i |v_i> f_even(sigma_i) <v_i|, sum_i |v_i> f_odd(sigma_i) <w_i| ],[ sum_i |w_i> f_odd(sigma_i) <v_i|, sum_i |w_i> f_even(sigma_i) <w_i| ]] = [[ f^triangleright_even(A), f^diamond_odd(A^dagger) ],[ f^diamond_odd(A), f^triangleleft_even(A) ]]. Now act on |0>|psi>: the |0> (ancilla) input picks out the first block-column. If f is EVEN, f_odd = 0, so f(A~)|0>|psi> = |0>(sum_i |v_i> f(sigma_i) <v_i|)|psi> = |0> f^triangleright(A)|psi>; the ancilla stays |0>. If f is ODD, f_even = 0, so f(A~)|0>|psi> = |1>(sum_i |w_i> f(sigma_i) <v_i|)|psi> = |1> f^diamond(A)|psi>; the ancilla flips to |1>. Interpretation: performing an eigenvalue transformation f on the Hermitian dilation A~ (which is what qubitization/QSVT does for Hermitian matrices) automatically produces, in the system register, the singular value transformation of A -- the diamond (odd) or triangleright (even) version -- because the eigenvalues of A~ are exactly the signed singular values pm sigma_i. The ancilla outcome is DEFINITE (0 for even, 1 for odd) because a definite-parity f kills one of the two parity components (f_odd or f_even), leaving the output entirely in a single ancilla branch; one therefore reads the ancilla deterministically and keeps the transformed system state with no postselection loss.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows A~ = [[0,A^dagger],[A,0]] is Hermitian",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes A~|0>|v_i> = sigma_i|1>|w_i>, A~|1>|w_i> = sigma_i|0>|v_i>, hence A~|z_i^pm> = pm sigma_i |z_i^pm> (complete eigenbasis with signed singular values)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Expands f(A~) into blocks via f_even, f_odd and identifies the triangleright/diamond/triangleleft generalized functions",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Deduces f(A~)|0>|psi> = |0> f^triangleright(A)|psi> (even) and = |1> f^diamond(A)|psi> (odd), explaining the definite ancilla outcome from parity killing one component",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:operator-theory",
+      "concept:block-encoding"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A has SVD with A|v_i> = sigma_i|w_i>, A^dagger|w_i> = sigma_i|v_i>, sigma_i >= 0",
+      "{|v_i>}, {|w_i>} are orthonormal bases",
+      "f has definite parity"
+    ],
+    "conventions": [
+      "A~ acts as A~(|0>|x>) = |1>A|x>, A~(|1>|y>) = |0>A^dagger|y>",
+      "f_even(x) = (f(x)+f(-x))/2, f_odd(x) = (f(x)-f(-x))/2"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A~^dagger = A~, so A~ is Hermitian.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A~|0>|v_i> = sigma_i|1>|w_i> and A~|1>|w_i> = sigma_i|0>|v_i>, giving A~|z_i^pm> = pm sigma_i|z_i^pm>.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "f(A~) decomposes into blocks f^triangleright_even(A), f^diamond_odd(A), etc. via f_even, f_odd.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Even f: f(A~)|0>|psi> = |0> f^triangleright(A)|psi>; odd f: f(A~)|0>|psi> = |1> f^diamond(A)|psi>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Definite parity zeroes one component, so the ancilla outcome is deterministic (0 even, 1 odd) with no postselection loss.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires the full eigenstructure of the dilation, the block expansion of f(A~) into parity components, and the deterministic-ancilla consequence; a substantial derivation."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "165-166",
+          "anchors": "Eq. (10.17)-(10.23); dilated Hermitian A~, eigenvectors |z_i^pm> with eigenvalues pm sigma_i; parity split",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-singular-value-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The dilation A~ = [[0,A^dagger],[A,0]] has eigenvalues pm sigma_i with eigenvectors |z_i^pm>; an eigenvalue transform of A~ realizes the SVT of A, with a deterministic ancilla outcome fixed by parity.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-219",
+    "key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "Not every eigenvalue transformation can be realized as a singular value transformation. Consider the matrix power f(x) = x^2 applied to a general diagonalizable but non-Hermitian matrix A = V D V^{-1} with SVD A = W Sigma V^dagger. Show by a concrete structural argument that A^2 generally CANNOT be written as a singular value transformation of A (i.e. as W g(Sigma) V^dagger, V g(Sigma) V^dagger, or W g(Sigma) W^dagger for any scalar g), by exhibiting the obstruction A^2 = W Sigma (V^dagger W) Sigma V^dagger in which the unitary factor V^dagger W does not simplify. Contrast this with the matrix inverse f(x) = x^{-1}, which IS a singular value transformation (A^{-1} = V Sigma^{-1} W^dagger = f_SV(A^dagger) with the odd f(x) = x^{-1}), and explain what property of the inverse makes it exceptional.",
+    "reference_answer": "Write the SVD A = W Sigma V^dagger. Then A^2 = (W Sigma V^dagger)(W Sigma V^dagger) = W Sigma (V^dagger W) Sigma V^dagger. A singular value transformation produces one of W g(Sigma) V^dagger (balanced/diamond), V g(Sigma) V^dagger (right), or W g(Sigma) W^dagger (left): in each case the two outer unitary factors are W,V (or V,V or W,W) and the MIDDLE is a single diagonal function g(Sigma) of the singular values, with NO interior unitary between two Sigma factors. In A^2 = W Sigma (V^dagger W) Sigma V^dagger there is an interior unitary M := V^dagger W sandwiched between the two Sigma's. For a general non-Hermitian A, V and W are different unitaries and M = V^dagger W is a generic unitary that does not commute with Sigma and is not diagonal; hence Sigma M Sigma is not a function of Sigma alone -- it mixes the singular directions. There is no scalar g with Sigma M Sigma = g(Sigma) unless M is diagonal in the singular basis (which happens only in special cases, e.g. A normal so that V = W up to phases). Therefore A^2 cannot in general be put in any of the three SVT forms: the obstruction is precisely the non-trivial interior factor V^dagger W. (Concretely, for A = W Sigma V^dagger with Sigma = diag(2,1) and V^dagger W a 45-degree rotation, Sigma(V^dagger W)Sigma has off-diagonal entries, so it is not any diagonal g(Sigma).) Contrast -- the inverse is exceptional: A^{-1} = (W Sigma V^dagger)^{-1} = (V^dagger)^{-1} Sigma^{-1} W^{-1} = V Sigma^{-1} W^dagger (using V,W unitary). This has the diamond/SVT form with the outer unitaries V and W^dagger and middle diagonal Sigma^{-1} = g(Sigma) for g(x) = x^{-1}, and NO interior unitary. Equivalently, since f(x) = x^{-1} is ODD, f_SV(A^dagger) = f^diamond(A^dagger) = V Sigma^{-1} W^dagger = A^{-1}. What makes the inverse exceptional is that x^{-1} is a function applied to EACH singular value independently and the inversion of a product of unitaries-times-diagonal reverses the order WITHOUT inserting any interior unitary between two diagonals -- there is only ONE Sigma factor to transform, so no V^dagger W cross term ever appears. Powers A^k for k >= 2 (and matrix exp, log, etc.) involve PRODUCTS of A, each contributing its own W,Sigma,V^dagger, which forces interior V^dagger W factors; the inverse (a single reciprocal) is the one monomial that avoids this.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes A^2 = W Sigma (V^dagger W) Sigma V^dagger and identifies the interior unitary M = V^dagger W between the two Sigma factors",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Argues the three SVT forms have a single diagonal g(Sigma) in the middle with no interior unitary, so A^2 is not an SVT unless V^dagger W is diagonal (special/normal cases)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows the inverse A^{-1} = V Sigma^{-1} W^dagger IS an SVT (odd f(x)=x^{-1}, f_SV(A^dagger)=A^{-1}) with no interior unitary",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the exception: inversion transforms a single Sigma factor, so no cross term V^dagger W arises, unlike higher powers / exp / log which multiply several A's",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:operator-theory",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is diagonalizable, generally non-Hermitian, with SVD A = W Sigma V^dagger and V, W different unitaries",
+      "An SVT must have the form (outer unitary) g(Sigma) (outer unitary) with a scalar g"
+    ],
+    "conventions": [
+      "g(Sigma) denotes a diagonal function of the singular values",
+      "A is normal exactly when W = V up to phases, the special case where V^dagger W is diagonal"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A^2 = W Sigma (V^dagger W) Sigma V^dagger exhibits an interior unitary M = V^dagger W between two Sigma factors.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "SVT forms carry a single diagonal g(Sigma) in the middle, so Sigma M Sigma is not g(Sigma) unless M is diagonal.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For generic non-Hermitian A, M = V^dagger W is not diagonal, so A^2 is not an SVT.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "A^{-1} = V Sigma^{-1} W^dagger has the odd-SVT form with no interior unitary, so it is an SVT.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The inverse transforms a single Sigma factor, avoiding the cross term that powers/exp/log inevitably create.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A structural impossibility/exception contrast requiring the SVD algebra of products and recognition that the interior V^dagger W is the obstruction, with the inverse as the exceptional odd case."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "166",
+          "anchors": "Eq. (10.20) parity-block form; discussion of A^k not expressible via SVD; inverse exception A^{-1}=V Sigma^{-1} W^dagger",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-singular-value-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Matrix powers A^k are generally not singular value transformations because A^2 = W Sigma (V^dagger W) Sigma V^dagger has an irreducible interior unitary; the inverse is the exceptional odd SVT A^{-1} = V Sigma^{-1} W^dagger.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-220",
+    "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let U_A in HBE_{1,m}(A) be a Hermitian block encoding of a Hermitian A with ||A|| <= 1, spectral decomposition A = sum_i lambda_i |v_i><v_i|, so that U_A |0^m>|v_i> = lambda_i |0^m>|v_i> + sqrt(1-lambda_i^2)|perp_i> with Pi|perp_i> = 0, Pi = |0^m><0^m| tensor I. For -1 < lambda_i < 1, prove that H_i = span{|0^m>|v_i>, |perp_i>} is a 2D invariant subspace of U_A on which U_A is a reflection [[lambda_i, sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), -lambda_i]], that the iterate O = U_A Z_Pi (with Z_Pi = 2 Pi - I) acts on H_i as the rotation [[lambda_i, -sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), lambda_i]], and hence that O^k restricted to H_i has top-left entry T_k(lambda_i) (Chebyshev polynomial of the first kind), so O^k = (U_A Z_Pi)^k is a (1,m,0)-block-encoding of T_k(A). State where Hermiticity of U_A is used.",
+    "reference_answer": "Invariant subspace and reflection form: by the HBE relation, U_A|0^m>|v_i> = lambda_i|0^m>|v_i> + sqrt(1-lambda_i^2)|perp_i>, with |perp_i> normalized and orthogonal to the Pi-subspace. Since U_A is Hermitian (U_A = U_A^dagger) and U_A is unitary, U_A^2 = I. Apply U_A again to the identity above: U_A(U_A|0^m>|v_i>) = |0^m>|v_i>, i.e. lambda_i U_A|0^m>|v_i> + sqrt(1-lambda_i^2) U_A|perp_i> = |0^m>|v_i>. Substituting U_A|0^m>|v_i> and solving gives U_A|perp_i> = sqrt(1-lambda_i^2)|0^m>|v_i> - lambda_i|perp_i>. Thus both U_A|0^m>|v_i> and U_A|perp_i> lie in H_i = span{|0^m>|v_i>, |perp_i>}, so H_i is invariant, and in the ordered basis B_i = {|0^m>|v_i>, |perp_i>} the matrix of U_A is [[lambda_i, sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), -lambda_i]], a (symmetric, trace-0, determinant -1) reflection. Hermiticity is used precisely here: applying U_A = U_A^dagger a SECOND time (via U_A^2 = I) is what produces the closed expression for U_A|perp_i> and hence the 2D invariance; without Hermiticity U_A|perp_i> need not stay in H_i. Iterate as rotation: H_i is invariant for Pi too, with [Pi]_{B_i} = [[1,0],[0,0]] (since |0^m>|v_i> is in range(Pi) and |perp_i> is orthogonal to it). Hence Z_Pi = 2Pi - I has [Z_Pi]_{B_i} = [[1,0],[0,-1]], a reflection. The iterate O = U_A Z_Pi has matrix [[lambda_i, sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), -lambda_i]] [[1,0],[0,-1]] = [[lambda_i, -sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), lambda_i]], which with lambda_i = cos theta_i is exactly the rotation [[cos theta_i, -sin theta_i],[sin theta_i, cos theta_i]] (product of two reflections = rotation). Chebyshev powers: therefore [O^k]_{B_i} = [[cos k theta_i, -sin k theta_i],[sin k theta_i, cos k theta_i]] = [[T_k(lambda_i), -sqrt(1-lambda_i^2) U_{k-1}(lambda_i)],[sqrt(1-lambda_i^2) U_{k-1}(lambda_i), T_k(lambda_i)]], using T_k(cos theta) = cos(k theta) and U_{k-1}(cos theta) = sin(k theta)/sin theta. The top-left entry is T_k(lambda_i). Block encoding of T_k(A): the vectors {|0^m>|v_i>} span range(Pi), and on each H_i the (0^m,0^m) component of O^k equals T_k(lambda_i). Summing over i, Pi O^k Pi = sum_i T_k(lambda_i) |0^m>|v_i><v_i|<0^m| = |0^m><0^m| tensor T_k(A). Hence (<0^m| tensor I) O^k (|0^m> tensor I) = T_k(A), i.e. O^k = (U_A Z_Pi)^k in BE_{1,m,0}(T_k(A)). (For lambda_i = pm 1 the subspace is already 1D-invariant and T_k(pm1) = (pm1)^k is reproduced trivially.)",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Uses U_A Hermitian (U_A^2 = I) to apply U_A twice and derive U_A|perp_i> = sqrt(1-lambda_i^2)|0^m>|v_i> - lambda_i|perp_i>, proving H_i is 2D-invariant with the reflection matrix",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Explicitly identifies where Hermiticity is used (the second application / U_A^2 = I closing the subspace)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Computes [Z_Pi]_{B_i} = diag(1,-1) and the product O = U_A Z_Pi as the rotation [[lambda_i,-sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2),lambda_i]]",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Raises to the k-th power to get top-left entry T_k(lambda_i) and sums over i to conclude O^k in BE_{1,m,0}(T_k(A))",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "U_A in HBE_{1,m}(A) is Hermitian with ||A|| <= 1",
+      "A = sum_i lambda_i |v_i><v_i| with -1 < lambda_i < 1 (edge cases lambda_i = pm 1 handled separately)",
+      "Pi = |0^m><0^m| tensor I; Z_Pi = 2Pi - I"
+    ],
+    "conventions": [
+      "lambda_i = cos theta_i with 0 < theta_i < pi",
+      "T_k(cos theta) = cos(k theta), U_{k-1}(cos theta) = sin(k theta)/sin theta"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "U_A Hermitian unitary gives U_A^2 = I; applying U_A twice yields U_A|perp_i> = sqrt(1-lambda_i^2)|0^m>|v_i> - lambda_i|perp_i>, so H_i is 2D invariant.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "In B_i, [U_A]_{B_i} = [[lambda_i, sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), -lambda_i]], a reflection.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "[Z_Pi]_{B_i} = diag(1,-1), so O = U_A Z_Pi has [O]_{B_i} = [[lambda_i,-sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2),lambda_i]], a rotation.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "[O^k]_{B_i} has top-left entry cos(k theta_i) = T_k(lambda_i).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Summing over i gives Pi O^k Pi = |0^m><0^m| tensor T_k(A), so O^k in BE_{1,m,0}(T_k(A)).",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "The central qubitization theorem: it requires the Hermitian two-step subspace closure, the reflection-times-reflection = rotation identity, and the Chebyshev power computation summed over the spectrum."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "167-168",
+          "anchors": "Section 10.2.1; Eq. (10.25)-(10.41); iterate O = U_A Z_Pi; O^k in BE_{1,m,0}(T_k(A))",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-qubitization",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "For a Hermitian block encoding, each eigenvector is qubitized into a 2D subspace where U_A is a reflection and O = U_A Z_Pi a rotation; O^k has top-left T_k(lambda_i), so (U_A Z_Pi)^k block-encodes the Chebyshev polynomial T_k(A).",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "scientific-algorithms-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

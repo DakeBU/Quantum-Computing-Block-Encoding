@@ -1,0 +1,2393 @@
+[
+  {
+    "core_id": "qcb-core-plan-501",
+    "key": "qcb-core-plan-501-chebyshev-degree-two-top-block",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "A single-ancilla unitary U encodes an n-qubit Hermitian operator A in its top-left block, in the sense that applying the projector P that keeps only the ancilla-zero flag gives P U P = A tensored with that flag, and in this subsection U is itself Hermitian (U equals its own adjoint). Let R be the reflection that sends the ancilla-zero flag to itself and multiplies every ancilla-nonzero component by minus one, and set O = U R. Working on one eigenvector v of A with eigenvalue t, where the flagged pair {flagged v, a normalized orthogonal state orthogonal to the flag} spans a two-dimensional invariant plane, prove that the top-left (flag-to-flag) entry of O squared equals 2 t^2 minus 1, so that the degree-two Chebyshev polynomial of A, namely 2 A^2 minus the identity, appears in the top-left block of O squared.",
+    "reference_answer": "On the invariant plane with ordered basis {flagged v, the orthogonal companion}, the encoding relations give U the matrix [[t, sqrt(1-t^2)],[sqrt(1-t^2), -t]]: the first column is U acting on flagged v, which keeps amplitude t on the flag and sends amplitude sqrt(1-t^2) off the flag, and Hermiticity together with unitarity forces the stated symmetric second column. The reflection R has matrix diag(1,-1) on this plane because it fixes the flagged direction and negates the orthogonal one. Hence O = U R = [[t, sqrt(1-t^2)],[sqrt(1-t^2), -t]] diag(1,-1) = [[t, -sqrt(1-t^2)],[sqrt(1-t^2), t]], which is a plane rotation with cosine t and sine sqrt(1-t^2). Squaring a rotation doubles the angle, so O^2 = [[t^2-(1-t^2), -2 t sqrt(1-t^2)],[2 t sqrt(1-t^2), t^2-(1-t^2)]]. The top-left entry is t^2-(1-t^2) = 2 t^2 - 1, which is the degree-two Chebyshev value at t. Since every eigenvector of A furnishes such a plane and the flag-to-flag entry is 2 t^2 - 1 on each, the full flag-to-flag block of O^2 is the operator 2 A^2 - I; equivalently O^2 block-encodes the degree-two Chebyshev polynomial of A.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes U on the invariant plane as the symmetric reflection-type matrix with top entry t and off-diagonal sqrt(1-t^2), justified by the encoding relation plus Hermiticity/unitarity",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies R as diag(1,-1) on the plane and forms O = U R as a plane rotation with cosine t",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Squares the rotation and extracts top-left entry 2 t^2 - 1",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes the flag-to-flag block of O^2 is 2 A^2 - I by ranging over all eigenvectors",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [
+      "Chebyshev polynomials are the standard first-kind family with T_2(x) = 2 x^2 - 1",
+      "The flag is the all-zeros state of the ancilla register; P projects onto it"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The encoding relation makes the first column of U on the plane carry amplitude t on the flag and sqrt(1-t^2) off it.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Hermiticity and unitarity fix U on the plane as [[t, sqrt(1-t^2)],[sqrt(1-t^2), -t]].",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The flag reflection R is diag(1,-1) on the plane.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "O = U R equals a plane rotation [[t,-sqrt(1-t^2)],[sqrt(1-t^2),t]].",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Squaring doubles the angle; the diagonal entry becomes 2 t^2 - 1.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Ranging over eigenvectors upgrades the entry to the operator 2 A^2 - I.",
+        "supporting_nodes": [
+          "concept:operator-theory",
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A short but genuine derivation: build the 2x2 reflection, recognize the product as a rotation, square it, and lift the scalar identity to the operator block."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "169-172",
+          "anchors": "Section 10.2.1 Hermitian-block-encoding qubitization, Example 10.5 identity T2(A) = 2A^2 - I in the top-left block of O^2 with O = U_A Z_Pi, and the Proposition 10.6 statement that repeating the iterate k times block-encodes T_k(A)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-chebyshev-eigenvalue-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "With a Hermitian block encoding, one qubitization iterate O = U R is a plane rotation whose square has top-left entry 2t^2-1, so O^2 block-encodes the degree-two Chebyshev polynomial 2A^2-I.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-502",
+    "key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Keep the Hermitian operator A with block-encoding unitary U (single ancilla, flag reflection R) but now DO NOT assume U is Hermitian. On the eigenvector v with eigenvalue t the map U sends the flagged state into a two-dimensional plane H' spanned by {flagged v, a flag-orthogonal state}, while the adjoint of U sends that plane H' back to the plane H spanned by {flagged v, another flag-orthogonal state}. Prove that forming the operator E = (adjoint of U) R U R realizes, on the plane H, a rotation by twice the eigenphase, and deduce precisely which Chebyshev orders are produced by E to the k-th power versus by U R times E to the k-th power. Explain why a single U R, which sufficed in the Hermitian-unitary case, no longer gives a clean Chebyshev block here.",
+    "reference_answer": "On H the composite E = adjoint(U) R U R acts as follows. In the basis of H the reflection R is diag(1,-1); U maps H to H' with plane matrix [[t, sqrt(1-t^2)],[sqrt(1-t^2), -t]]; and adjoint(U) maps H' back to H with the same symmetric plane matrix. Multiplying adjoint(U) R U R gives [[t,sqrt(1-t^2)],[sqrt(1-t^2),-t]] diag(1,-1) [[t,sqrt(1-t^2)],[sqrt(1-t^2),-t]] diag(1,-1), which simplifies to the square of the plane rotation [[t,-sqrt(1-t^2)],[sqrt(1-t^2),t]], i.e. a rotation by twice the eigenphase arccos(t). Taking the k-th power rotates by 2k times that phase, so the diagonal entry is cos(2k arccos t) = T_{2k}(t) and the off-diagonal is minus sqrt(1-t^2) times U_{2k-1}(t) (second-kind Chebyshev). Hence E to the k-th power block-encodes the EVEN order Chebyshev polynomial T_{2k}(A). Prepending one extra U R gives a rotation by (2k+1) eigenphases, whose diagonal entry is T_{2k+1}(t), so (U R) times E^k block-encodes the ODD order T_{2k+1}(A). A single U R is not enough when U is not Hermitian because U alone maps H to the DIFFERENT plane H'; only by following U R with adjoint(U) R does the trajectory return to the starting plane H, which is what makes repeated iteration accumulate a well-defined rotation angle and produce the Chebyshev entries. Thus parity of the target order is tied to whether the number of reflection pairs is matched (even) or carries one extra half-pair (odd).",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Sets up U mapping H to H' and adjoint(U) mapping back, each as the symmetric 2x2 plane matrix, with R = diag(1,-1)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows E = adjoint(U) R U R equals the square of a plane rotation, i.e. rotation by twice the eigenphase",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Deduces E^k gives T_{2k}(A) and (U R) E^k gives T_{2k+1}(A), identifying the second-kind off-diagonal",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains that a lone U R fails because it lands in H' not H, so the adjoint pairing is required to return to H",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [
+      "concept:approximation"
+    ],
+    "assumptions": [
+      "A is Hermitian but its block-encoding unitary U need not be Hermitian"
+    ],
+    "conventions": [
+      "T_m and U_m denote first- and second-kind Chebyshev polynomials",
+      "Eigenphase of t means arccos(t)"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "U maps the flagged eigenvector into a plane H' distinct from the starting plane H.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Adjoint(U) maps H' back to H, each with the symmetric 2x2 plane matrix.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "R is diag(1,-1) on each plane.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The product adjoint(U) R U R equals the square of a single plane rotation.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Its k-th power has diagonal T_{2k}(t) and off-diagonal -sqrt(1-t^2) U_{2k-1}(t).",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Prepending one U R shifts to odd order, giving T_{2k+1}(t).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "A single U R lands in H', not H, so no clean repeated Chebyshev accumulates without the adjoint pairing.",
+        "supporting_nodes": [
+          "concept:block-encoding",
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires tracking two distinct subspaces, recognizing that the adjoint pairing is what restores a closed rotation, and mapping even/odd order to pair-matching."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "170-172",
+          "anchors": "Section 10.2.2 general-block-encoding Hermitian qubitization: the two subspaces H_i and H'_i with U mapping H_i to H'_i, the matrix representations in Eqs. (10.51)-(10.55), the even/odd split with (U_A^dagger Z_Pi U_A Z_Pi)^k giving T_{2k} (Eqs. 10.56-10.57) and the extra U_A Z_Pi giving T_{2k+1} (Eqs. 10.58-10.59), and Proposition 10.6",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-chebyshev-eigenvalue-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "When the block-encoding unitary is not Hermitian, U maps the eigenvector plane to a different plane, so the adjoint-paired iterate adjoint(U) R U R is needed to return; its powers give even Chebyshev orders and one extra U R gives odd orders.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-503",
+    "key": "qcb-core-plan-503-second-kind-offdiagonal",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "On the invariant plane attached to a value t in the closed interval from minus one to one, the qubitization iterate acts as the plane rotation M = [[t, -sqrt(1-t^2)],[sqrt(1-t^2), t]]. Prove that the k-th power of M has diagonal entries equal to the first-kind Chebyshev value T_k(t) and off-diagonal entries equal to plus or minus sqrt(1-t^2) times the second-kind Chebyshev value U_{k-1}(t). Make explicit the trigonometric definitions you use and verify the degenerate behavior at t = 1 and t = -1.",
+    "reference_answer": "Write t = cos(p) with p = arccos(t) in [0, pi], so sqrt(1-t^2) = sin(p) (nonnegative on this range). Then M = [[cos p, -sin p],[sin p, cos p]] is exactly the rotation by angle p. Powers of a rotation add angles: M^k = [[cos(k p), -sin(k p)],[sin(k p), cos(k p)]]. By the definitions T_k(cos p) = cos(k p) and U_{k-1}(cos p) = sin(k p)/sin(p), the diagonal entries are cos(k p) = T_k(t) and the off-diagonal entries are minus sin(k p) = minus sin(p) [sin(k p)/sin(p)] = minus sqrt(1-t^2) U_{k-1}(t) (upper right) and plus sqrt(1-t^2) U_{k-1}(t) (lower left). Degenerate cases: at t = 1, p = 0, so M = identity and M^k = identity; indeed T_k(1) = 1 and sqrt(1-t^2) U_{k-1}(1) = 0 since the prefactor sin(p) vanishes even though U_{k-1}(1) = k is finite. At t = -1, p = pi, so M^k = diag(cos(k pi), cos(k pi)) = (-1)^k identity; consistently T_k(-1) = (-1)^k and the off-diagonal prefactor sqrt(1-t^2) = 0 kills the U term. Thus the off-diagonal genuinely carries the second-kind polynomial, but always multiplied by sqrt(1-t^2), which is why it vanishes exactly at the spectral endpoints.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Substitutes t = cos p and identifies M as a rotation by p with sin p = sqrt(1-t^2)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses the angle-addition / rotation-power identity to get M^k with cos(kp), sin(kp)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Matches diagonal to T_k(t) and off-diagonal to plus/minus sqrt(1-t^2) U_{k-1}(t) via the standard Chebyshev definitions",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Checks t = 1 and t = -1, noting the sqrt(1-t^2) prefactor annihilates the finite U_{k-1} at the endpoints",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:approximation",
+      "concept:harmonic-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [
+      "T_k(cos p) = cos(k p) and U_{k-1}(cos p) = sin(k p)/sin p",
+      "sqrt(1-t^2) is taken nonnegative, matching p in [0, pi]"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Set t = cos p so sqrt(1-t^2) = sin p and M is the rotation by p.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Rotation powers add angles: M^k rotates by k p.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Diagonal cos(k p) equals T_k(t).",
+        "supporting_nodes": [
+          "concept:approximation",
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Off-diagonal sin(k p) equals sin p times U_{k-1}(t), i.e. sqrt(1-t^2) U_{k-1}(t).",
+        "supporting_nodes": [
+          "concept:approximation",
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "At t = 1 the prefactor sin p = 0 kills the finite U_{k-1}(1) = k, giving the identity.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "At t = -1 the power is (-1)^k identity, consistent with T_k(-1) = (-1)^k and zero off-diagonal.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Standard rotation-power computation but requires correctly separating the finite second-kind value from its vanishing sqrt(1-t^2) prefactor at the endpoints."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "171-174",
+          "anchors": "Eq. (10.56) matrix power of the qubitization iterate with diagonal T_{2k} and off-diagonal -sqrt(1-lambda^2) U_{2k-1}, and the parallel singular-value forms Eqs. (10.72), (10.74) carrying the same second-kind off-diagonal structure",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-chebyshev-eigenvalue-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Powering the plane rotation produces first-kind Chebyshev on the diagonal and second-kind Chebyshev times sqrt(1-t^2) off-diagonal; the prefactor forces the off-diagonal to vanish at the spectral endpoints.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-504",
+    "key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let A be a general (not necessarily normal) n-qubit operator with singular value decomposition sending each right singular vector v_i to sigma_i times the left singular vector w_i. A block-encoding unitary U realizes A in its flag block, and the qubitization construction attaches to each index i a plane spanned by the flagged right vector and a flag-orthogonal companion, mapped by U to a plane spanned by the flagged LEFT vector and its companion. Prove that the EVEN qubitization output assembles into the operator sum over i of v_i times T_{2k}(sigma_i) times the adjoint of v_i, whereas the ODD output assembles into sum over i of w_i times T_{2k+1}(sigma_i) times the adjoint of v_i. Explain why the parity of the Chebyshev order decides whether the left factor is a right singular vector or a left singular vector.",
+    "reference_answer": "Fix index i and work on the plane with the flagged right vector as first basis element. The even iterate returns the trajectory to the starting (right-vector) plane after each adjoint-paired step, so after k pairs the flag-to-flag amplitude is T_{2k}(sigma_i) and the input flagged right vector is sent back to the flagged right vector scaled by T_{2k}(sigma_i); summing the rank-one contributions over i gives the operator sum_i v_i T_{2k}(sigma_i) adjoint(v_i), a generalized matrix function built from the RIGHT singular vectors on both sides. The odd output applies one extra U step, which carries the flagged right vector into the flagged LEFT vector plane; hence after the extra half-pair the amplitude T_{2k+1}(sigma_i) multiplies a map from the right vector v_i to the left vector w_i, giving the rank-one term w_i T_{2k+1}(sigma_i) adjoint(v_i) and the operator sum_i w_i T_{2k+1}(sigma_i) adjoint(v_i). The parity controls the vectors because each application of U swaps the right-vector plane with the left-vector plane: an even number of U factors (matched by adjoints) returns to the right-vector side so both outer factors are v_i, while an odd number ends on the left-vector side so the outer left factor becomes w_i. This is exactly the statement that an even singular value transformation is pulled back by the right vectors, while an odd one carries the balanced structure sending right vectors to left vectors.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Explains the even iterate returns to the right-vector plane so both outer factors are v_i, yielding sum_i v_i T_{2k}(sigma_i) adjoint(v_i)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Explains the extra U in the odd iterate lands on the left-vector plane, giving sum_i w_i T_{2k+1}(sigma_i) adjoint(v_i)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the flag-to-flag amplitudes are exactly T_{2k}(sigma_i) and T_{2k+1}(sigma_i)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Ties parity of the order to the even/odd count of U applications swapping right and left singular-vector planes",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A may be non-normal and non-diagonalizable; only its singular value decomposition is used"
+    ],
+    "conventions": [
+      "sigma_i are the singular values; v_i right singular vectors, w_i left singular vectors",
+      "Chebyshev first-kind polynomials T_m"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Each U application swaps the flagged right-vector plane with the flagged left-vector plane.",
+        "supporting_nodes": [
+          "concept:block-encoding",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Even adjoint-paired iteration returns to the right-vector plane with amplitude T_{2k}(sigma_i).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Summing rank-one terms gives sum_i v_i T_{2k}(sigma_i) adjoint(v_i).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "One extra U lands on the left-vector plane with amplitude T_{2k+1}(sigma_i).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Summing gives sum_i w_i T_{2k+1}(sigma_i) adjoint(v_i).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Parity equals the even/odd count of U factors, hence selects v_i or w_i on the left.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Needs the generalized-matrix-function viewpoint and careful bookkeeping of which singular-vector subspace the trajectory ends in as a function of order parity."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "172-174",
+          "anchors": "Section 10.3 Chebyshev singular value transformation: Eqs. (10.61)-(10.72) even output T^{triangleright}_{2k}(A) = sum_i v_i T_{2k}(sigma_i) adjoint(v_i) (Eq. 10.73) and odd output T^{diamond}_{2k+1}(A) = sum_i w_i T_{2k+1}(sigma_i) adjoint(v_i) (Eq. 10.75), Proposition 10.7",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-chebyshev-singular-value-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Even singular value transformations use the right singular vectors on both sides, while odd ones send right vectors to left vectors; the swap happens because each U application exchanges the two singular-vector planes and parity counts the swaps.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-505",
+    "key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "Consider the two-by-two operator A that sends the first basis vector to zero and the second basis vector to the first (the strictly upper-triangular nilpotent). A tempting inference says: since the only eigenvalue of A is zero, any Chebyshev transformation of A should equal the Chebyshev value at zero times a projector pattern, so the degree-two singular value transformation of A should be the degree-two Chebyshev value at zero, namely minus one, times the identity. Show by explicit computation that this inference is FALSE: compute the singular value decomposition of A, compute the degree-two singular value transformation, and exhibit the discrepancy. State the correct principle that resolves the paradox.",
+    "reference_answer": "The nilpotent A has matrix [[0,1],[0,0]]. Its singular value decomposition uses singular values 1 and 0, left singular vectors forming the identity, and right singular vectors given by the swap: A = W Sigma adjoint(V) with W = identity, Sigma = diag(1,0), and V the swap matrix [[0,1],[1,0]]. The degree-two SINGULAR VALUE transformation applies T_2 to the singular values, not the eigenvalues: T_2(1) = 2(1)^2 - 1 = 1 and T_2(0) = 2(0)^2 - 1 = -1, giving T_2 of Sigma = diag(1,-1). Pulling back by the right singular vectors (even order uses V on both sides): the transformed operator is V diag(1,-1) adjoint(V) = swap times diag(1,-1) times swap = diag(-1, 1). This is NOT minus the identity: it has a plus one entry. The tempting inference failed because it used the EIGENVALUES of A, which are both zero (A is nilpotent and non-normal), whereas the construction transforms the SINGULAR VALUES, which are 1 and 0. For a non-normal operator eigenvalues and singular values differ sharply, and the qubitization/Chebyshev machinery acts on singular values; only when A is normal (in particular Hermitian) do eigenvalue and singular value transformations coincide up to signs. Hence the correct principle: the degree-two output is the generalized matrix function built from singular values, giving diag(-1,1), contradicting the eigenvalue-based guess of minus the identity.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Gives the singular value decomposition with singular values 1 and 0 and the swap as right singular vectors",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes T_2 on the singular values as diag(1,-1), explicitly using T_2(1)=1 and T_2(0)=-1",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Pulls back by the right singular vectors to get diag(-1,1), exhibiting the plus-one entry absent from minus the identity",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the error: the transform acts on singular values not eigenvalues, which diverge for the non-normal nilpotent",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [
+      "concept:approximation"
+    ],
+    "assumptions": [
+      "A is non-normal; eigenvalues and singular values differ"
+    ],
+    "conventions": [
+      "Degree-two singular value transformation uses right singular vectors on both sides (even parity)",
+      "T_2(x) = 2 x^2 - 1"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The nilpotent A = [[0,1],[0,0]] has singular values 1 and 0 with swap right vectors.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "T_2 applied to the singular values gives diag(1,-1).",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Pulling back by the swap gives diag(-1,1).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Both eigenvalues of A are zero, so an eigenvalue-based guess predicts minus the identity.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The actual output diag(-1,1) differs, refuting the guess.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Resolution: the transform acts on singular values, which differ from eigenvalues for non-normal A.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A concrete falsification requiring the explicit singular value decomposition of a non-normal matrix and recognition that the construction is singular-value based."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "173-174",
+          "anchors": "Example 10.8: the 2x2 nilpotent A = [[0,1],[0,0]], its SVD W = I, Sigma = diag(1,0), V = X, and T^{triangleright}_2(A) = V T_2(Sigma) adjoint(V) = diag(-1,1), with the explicit (1,1)-block-encoding check Eqs. (10.79)-(10.80)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-chebyshev-singular-value-transformation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "For the non-normal nilpotent, the degree-two singular value transformation is diag(-1,1) from singular values 1 and 0, not minus the identity predicted by its zero eigenvalues; the construction acts on singular values.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-506",
+    "key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "A unitary U is written in two-by-two block form with top-left block B occupying the first p coordinates (p at most q, total p+q). Prove that the singular values of the top-left block B all lie in the closed interval from zero to one, and that there is a cosine-sine structure in which the diagonal cosine matrix C (the singular values of B) and a nonnegative diagonal sine matrix S satisfy C squared plus S squared equals the identity. Explain concretely why this forces every value fed into the Chebyshev polynomials during qubitization to lie in the interval from minus one to one.",
+    "reference_answer": "Let B = W C adjoint(V) be a singular value decomposition of the top-left block, with C = diag(c_1,...,c_p) nonnegative. Because B is a sub-block of a unitary U, each column of U has unit norm and columns are orthonormal; in particular the first p columns, whose top parts are the columns of B, have squared norm one, so the squared column norm of B is at most one, forcing every singular value c_j at most one. Nonnegativity gives c_j in [0,1]. Now bring in the lower-left block: after absorbing W and V into outer unitaries, orthonormality of the (now rotated) columns of U says that for each j the top contribution c_j squared plus the bottom contribution must equal one; writing the bottom contribution as s_j squared with s_j nonnegative gives c_j squared plus s_j squared equal to one for every j, i.e. C squared plus S squared equals the identity, with S = diag(s_1,...,s_p). Thus S = sqrt(I - C squared) is forced and real. Consequence for qubitization: the encoded operator's singular values are exactly these c_j in [0,1], and these are the scalar arguments on which the qubitization planes act. Chebyshev polynomials T_m and U_m are evaluated at these c_j, all within [0,1], hence certainly within the interval from minus one to one where T_m(cos p) = cos(m p) is the valid oscillatory representation. If the argument could exceed one the cosine representation would break down (Chebyshev values would grow hyperbolically), so the embedding-in-a-unitary constraint is exactly what keeps the polynomial arguments in the stable trigonometric regime.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows each singular value of the top-left block is at most one using unit-norm orthonormal columns of the unitary",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Derives C squared plus S squared equal to the identity with S nonnegative, i.e. S = sqrt(I - C squared)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the encoded singular values are these c_j in [0,1]",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains this keeps all Chebyshev arguments in [-1,1] so the cosine representation stays valid rather than growing hyperbolically",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:operator-theory",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [
+      "C = diag(c_j) are singular values of the top-left block; S = diag(s_j) nonnegative",
+      "Chebyshev first/second kind evaluated on [-1,1] via cosine/sine of a real angle"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Columns of the unitary are orthonormal and unit norm.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The top-left block's columns inherit squared norm at most one, bounding its singular values by one.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Orthonormality splits each unit column into c_j squared plus s_j squared equal to one.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence C squared plus S squared equals the identity with S = sqrt(I - C squared).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The encoded singular values are these c_j in [0,1].",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Chebyshev arguments stay in [-1,1], keeping the cosine representation valid.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines the embedding bound on sub-blocks of a unitary with the Pythagorean cosine-sine identity and connects it to the admissible Chebyshev argument range."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "174-176",
+          "anchors": "Theorem 10.9 cosine-sine decomposition: U = diag(W1,W2) [[C,S,0],[S,-C,0],[0,0,I]] diag(adjoint(V1),adjoint(V2)) with C, S real nonnegative diagonal and C^2 + S^2 = I_p, including the proof remark that singular values C of the embedded block lie in [0,1] (Eqs. 10.81-10.89)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-cosine-sine-decomposition",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Sub-blocks of a unitary have singular values in [0,1] and admit a cosine-sine structure with C^2+S^2=I, which pins every Chebyshev argument into [-1,1] and keeps the trigonometric polynomial representation valid.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-507",
+    "key": "qcb-core-plan-507-z-reflection-commutes-not-xy",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "In the cosine-sine view of qubitization the flag reflection is built from the single-qubit operator Z acting on the ancilla flag, and the large outer unitaries that diagonalize the construction are block-diagonal with respect to the split between the flag sector and its orthogonal complement. A student claims the construction would work identically if the flag reflection were instead built from the Pauli X operator, since X is also a self-inverse single-qubit unitary. Show that the student is wrong by proving that the Z-based reflection commutes with the block-diagonal outer unitaries whereas an X-based reflection generically does not, and explain why this commutation is essential to the clean cosine-sine factorization.",
+    "reference_answer": "The flag reflection from Z is, in the flag-versus-complement split, the operator that is plus the identity on the flag sector and minus the identity on the complement; call it D = diag(+I, -I). The outer unitaries have the block-diagonal form diag(W, W') (and similarly diag(V, V')), where W acts entirely within the flag sector and W' entirely within the complement, because they come from singular value decompositions respecting that split. Two block-diagonal operators with respect to the SAME split commute when one of them is a scalar (plus or minus one) multiple of the identity on each block: D diag(W,W') = diag(+W, -W') = diag(W,W') D. Hence the Z-based reflection commutes with the outer unitaries, which is exactly why the reflection can be pulled through the factorization and its definition need not reference W, W', V, V'. Now replace Z by X. An X-based reflection acts within the ancilla as an off-diagonal swap, so in the flag-versus-complement split it has nonzero blocks COUPLING the flag sector to the complement: schematically it looks like [[0, I],[I, 0]] rather than diag(+I,-I). Multiplying this by diag(W,W') gives [[0, W'],[W, 0]], while diag(W,W') times it gives [[0, W],[W', 0]]; these are equal only if W = W', which fails generically. Therefore an X-based reflection does not commute with the outer unitaries, it entangles the two graded sectors, and the clean direct-sum-of-two-dimensional-rotations structure collapses. The essential point is that only a reflection that is diagonal in the grading (as Z provides) preserves the block-diagonal symmetry that makes qubitization factor into independent planar rotations.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes the Z-based reflection as diag(+I,-I) in the flag/complement grading and the outer unitaries as diag(W,W')",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Proves commutation diag(+I,-I) diag(W,W') = diag(W,W') diag(+I,-I)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows an X-based reflection is off-diagonal [[0,I],[I,0]] and computes the two products disagreeing unless W = W'",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains commutation is what lets the reflection be pulled through the factorization, preserving independent planar rotations",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [
+      "The flag/complement split is the grading into ancilla-zero and ancilla-nonzero sectors",
+      "Z gives a diagonal reflection diag(+I,-I); X gives an off-diagonal swap in that grading"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The Z reflection is diag(+I,-I) in the flag/complement grading.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Outer unitaries are block-diagonal diag(W,W') respecting the same grading.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "A per-block scalar reflection commutes with any block-diagonal operator.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Commutation lets the reflection be pulled through without referencing W, W'.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "An X reflection is off-diagonal [[0,I],[I,0]], coupling the sectors.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Its products with diag(W,W') disagree unless W = W', so it fails to commute and breaks the factorization.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean refutation hinging on the diagonal-versus-off-diagonal structure of the reflection relative to the grading; requires an explicit non-commuting product."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "176",
+          "anchors": "Theorem 10.10 and Eq. (10.96): Z_Pi decomposes as a direct sum of Z blocks, commuting with the outer unitaries W-tilde and V-tilde thanks to the block-diagonal structure, with the explicit remark that this would fail if Z were replaced by Pauli X or Y",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-cosine-sine-decomposition",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The flag reflection built from Z is diagonal in the flag/complement grading so it commutes with the block-diagonal outer unitaries; an X-based reflection is off-diagonal, fails to commute, and destroys the clean cosine-sine factorization.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-508",
+    "key": "qcb-core-plan-508-lcu-select-query-count",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "To build a block encoding of a linear combination of even Chebyshev transforms, sum over k from 0 to K-1 of coefficients times the degree-2k Chebyshev transform, one needs a select operation that, conditioned on an index register holding k, applies the degree-2k transform. The degree-2k transform is itself built from 2k uses of the base block-encoding unitary. (a) Prove that a direct index-controlled implementation that applies each degree-2k transform independently uses a number of base-unitary queries that grows quadratically in K. (b) Prove that an implementation exploiting the binary digits of the index, which reuses a single squared iterate across the digits, uses only 2K-2 base-unitary queries when K is a power of two, and observe that this equals the query count of a single degree-(2K-2) transform. State the query counts without converting them into gate or state-preparation costs.",
+    "reference_answer": "(a) In the direct implementation the branch for index k runs the degree-2k transform, costing 2k queries to the base unitary. Summing independently over k from 0 to K-1 gives total queries 2 times (0 + 1 + ... + (K-1)) = 2 times K(K-1)/2 = K(K-1), which is of order K squared. The inefficiency is that the squared base iterate used inside degree-2k is rebuilt from scratch for every k rather than reused. (b) Write K = 2^a and the index k in binary as digits k_{a-1} ... k_0. The degree-2k transform equals the squared base iterate raised to the power k. Using the binary expansion, k = sum over j of k_j 2^j, so raising to the power k is achieved by, for each digit position j, conditionally applying the squared iterate raised to the 2^j power exactly when digit k_j is one. The squared iterate to the 2^j power is applied once per position, contributing 2 times 2^j base-unitary queries (each squared iterate is two base-unitary uses). The total is 2 times (1 + 2 + 4 + ... + 2^{a-1}) = 2 times (2^a - 1) = 2^{a+1} - 2 = 2K - 2 queries. This matches the query count of a single degree-(2K-2) transform, which uses 2 times (K-1) = 2K-2 base-unitary queries, so the whole controlled sum costs no more base-unitary queries than one top-order term. These are counts of queries to the base unitary only; translating them into elementary-gate counts or into the cost of preparing the index-register superposition is a separate accounting that depends on additional oracle implementations and is not performed here.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows the direct implementation costs 2 times sum of k = K(K-1), order K squared, and identifies the non-reuse as the cause",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Explains the binary-digit scheme raises the squared iterate to the power k via per-digit controlled applications",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Computes the total as 2 times (2^a - 1) = 2K - 2 queries for K = 2^a",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Observes 2K-2 equals a single degree-(2K-2) transform's query count and keeps the accounting at query level without converting to gate or preparation cost",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:complexity",
+      "concept:block-encoding"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "K is a power of two so the binary digit scheme is exact"
+    ],
+    "conventions": [
+      "Query count means uses of the base block-encoding unitary; gate and state-preparation costs are not included",
+      "The degree-2k transform uses exactly 2k base-unitary queries"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Each degree-2k branch costs 2k base-unitary queries.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Independent summation over k gives K(K-1), order K squared.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Binary expansion of k turns the power into per-digit controlled applications of the squared iterate to the 2^j power.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Each position contributes 2 times 2^j queries.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The geometric sum totals 2^{a+1}-2 = 2K-2 queries.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "This equals a single degree-(2K-2) transform; counts stay at query level only.",
+        "supporting_nodes": [
+          "concept:complexity",
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires both the quadratic naive bound and the geometric-series argument for the binary reuse, plus discipline to report only query counts."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "177-178",
+          "anchors": "Section 10.5 LCU and qubitization: the select oracle Eq. (10.100), the O(K^2) cost of the direct implementation because the iterates are not reused, and the efficient binary implementation Fig. 10.3 with total queries 2(1+2+...+2^{a-1}) = 2^{a+1}-2 = 2K-2 equal to one T_{2K-2} block encoding",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-lcu-chebyshev-synthesis",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A direct index-controlled select of even Chebyshev transforms costs order K^2 base-unitary queries, but reusing one squared iterate across the binary digits of the index costs only 2K-2 queries, equal to a single top-order term.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-509",
+    "key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "The pure qubitization-plus-linear-combination construction directly produces block encodings of polynomials of DEFINITE parity (all-even or all-odd Chebyshev content). Suppose instead you are given a general real polynomial f with no parity symmetry and a Hermitian operator A, and you want a block encoding of f(A). Prove that f splits uniquely into an even part and an odd part, that each part is separately implementable by the parity-respecting construction, and that combining them with one additional ancilla qubit to form f(A) multiplies the subnormalization factor by two. Explain why the factor two is unavoidable in this naive combination.",
+    "reference_answer": "Define f_even(x) = (f(x) + f(-x))/2 and f_odd(x) = (f(x) - f(-x))/2. Then f_even is invariant under x to minus x (even) and f_odd changes sign (odd), their sum is f, and this decomposition is unique because any even-plus-odd representation must satisfy these two averaging formulas. Since each part has definite parity, the parity-respecting qubitization/linear-combination construction yields a block encoding of f_even(A) with some subnormalization factor and a block encoding of f_odd(A) with its factor; normalizing both to a common subnormalization c, each is a block encoding of its target divided by c. To add them, introduce one extra ancilla qubit prepared in an equal superposition and controlled-select between the two block encodings: the standard two-term linear combination of unitaries produces, in the flag block, (f_even(A)/c + f_odd(A)/c)/2 = f(A)/(2c). Hence the realized subnormalization is 2c, twice the common factor c of the two parts. The factor two is unavoidable in this naive scheme because the equal-superposition control spreads unit amplitude across the two branches as 1/sqrt(2) each, and the coherent recombination that lands both contributions in the same flag block divides the summed operator by the number of branches (here two); only one of the two orthogonal control-basis outcomes carries the desired sum, so the success amplitude, and thus the inverse subnormalization, is halved. Any genuinely parity-mixed target assembled from two definite-parity pieces by a single balanced control therefore pays this factor-two subnormalization penalty.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Gives the unique even/odd split f_even = (f(x)+f(-x))/2, f_odd = (f(x)-f(-x))/2 summing to f",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States each definite-parity part is implementable by the parity-respecting construction",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows combining with one balanced-control ancilla yields f(A)/(2c), i.e. subnormalization 2c",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the factor two comes from the two-branch balanced superposition halving the success amplitude",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:approximation",
+      "concept:block-encoding",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is Hermitian so eigenvalue transformation f(A) is well defined"
+    ],
+    "conventions": [
+      "Subnormalization factor is the constant by which the encoded operator is divided inside the flag block",
+      "Even/odd parts defined by x to minus x symmetry"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "f_even and f_odd defined by symmetric and antisymmetric averages sum to f uniquely.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Each has definite parity and is implementable with subnormalization c.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "A balanced-control ancilla selects between the two block encodings.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Coherent recombination lands (f_even + f_odd)/c divided by two in the flag block.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The result is f(A)/(2c), i.e. subnormalization 2c.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The two-branch balanced superposition halves the success amplitude, forcing the factor two.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines the elementary parity decomposition with a quantitative subnormalization accounting for a two-term balanced linear combination."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "179",
+          "anchors": "Eq. (10.105) f_even(x) = (f(x)+f(-x))/2, f_odd(x) = (f(x)-f(-x))/2, and the statement that combining the two block encodings with one more ancilla to realize f(A) = f_even(A) + f_odd(A) multiplies the subnormalization factor by two",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-lcu-chebyshev-synthesis",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A parity-mixed polynomial splits uniquely into even and odd parts, each separately block-encodable; recombining them with one balanced-control ancilla realizes f(A) but doubles the subnormalization factor because the two-branch superposition halves the success amplitude.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-510",
+    "key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "concept",
+    "question": "State precisely, and justify the shape of, the resource guarantee for building a block encoding of the singular value transformation of a degree-d polynomial of definite parity written in the Chebyshev basis as a sum over k from 0 to d of coefficients alpha_k times the degree-k Chebyshev transform, given a single-ancilla block-encoding unitary for the operator A. Address: (i) the subnormalization factor achieved; (ii) the number of additional ancilla qubits in terms of d; (iii) the number of queries to the block-encoding unitary and its adjoint in terms of d. Be explicit that the query count is not silently promoted to a gate or state-preparation count.",
+    "reference_answer": "The guarantee is: there is a block encoding of the singular value transformation whose subnormalization factor is the 1-norm of the Chebyshev coefficient vector, that is the sum of the absolute values of the alpha_k (written ||alpha||_1); it uses on the order of log base two of d additional ancilla qubits; and it queries the block-encoding unitary together with its adjoint on the order of d times. Justification of each piece. (i) The subnormalization ||alpha||_1 arises because the construction is a linear combination of unitaries over the Chebyshev terms, and a linear combination with coefficients alpha_k, implemented by a prepare-select-unprepare sandwich, produces the target scaled by the coefficient 1-norm; this is the generic constant for such a non-amplified linear combination. (ii) The index register that selects which Chebyshev order to apply must address the orders up to d, so it needs about log base two of d qubits; this is where the additional ancillas come from, on top of the single block-encoding ancilla. (iii) Because the select step reuses a single squared iterate across the binary digits of the index (rather than rebuilding each order independently), the total number of base-unitary and adjoint queries scales linearly in the top order, i.e. on the order of d, not the order of d squared a naive sum would give. Crucially, these are counts of ancilla qubits and of queries to the given block-encoding unitary and its adjoint; the number of elementary gates additionally depends on how the prepare and unprepare steps over the index register are implemented (which may itself require structured memory access), and converting the query bound into a gate bound or folding in state-preparation and readout costs is a separate accounting not implied by the query statement.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States subnormalization equals the Chebyshev coefficient 1-norm ||alpha||_1 and ties it to the linear-combination-of-unitaries structure",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States the extra ancilla count is on the order of log base two of d, from the index register addressing orders up to d",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the query count to the block-encoding unitary and its adjoint is on the order of d, justified by reuse of the squared iterate",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explicitly separates the query count from gate / prepare / readout costs rather than converting automatically",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:complexity",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The polynomial has definite parity equal to d modulo two"
+    ],
+    "conventions": [
+      "||alpha||_1 is the sum of absolute values of the Chebyshev coefficients",
+      "Query count refers to uses of the block-encoding unitary and its adjoint; gate and preparation costs are separate"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A definite-parity degree-d polynomial is a linear combination of Chebyshev transforms with coefficients alpha_k.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The prepare-select-unprepare linear combination yields subnormalization equal to ||alpha||_1.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The index register addressing orders up to d needs about log base two of d ancillas.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Reusing the squared iterate across binary digits gives order d queries, not order d squared.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Queries counted are to the block-encoding unitary and its adjoint only.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Gate, prepare, and readout costs are a separate accounting not implied here.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A precise statement with justification of three distinct resource quantities, and the discipline to keep query counts separate from gate and preparation costs."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "178",
+          "anchors": "Theorem 10.12 (LCU based singular value transformation for polynomials of definite parity): a (||alpha||_1, m+a)-block encoding of f^{SV}(A) using a = O(log_2 d) additional ancilla qubits and O(d) queries to U_A and its adjoint, with the gate complexity Eq. (10.102) depending separately on the prepare oracle cost",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-lcu-chebyshev-synthesis",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A definite-parity degree-d Chebyshev polynomial is block-encoded with subnormalization equal to the coefficient 1-norm, about log d extra ancillas, and order d queries to the block-encoding unitary and its adjoint, kept distinct from gate and preparation costs.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-511",
+    "key": "qcb-core-plan-511-subspace-blockencoding-reflections-reduce",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Suppose an operator A maps an N-dimensional input space into an N'-dimensional output space and is accessed through a single unitary U on a larger space together with two projectors: an input projector of rank N and an output projector of rank N'. Define the two reflections as twice the respective projector minus the identity, and define the qubitization iterate as the product of the adjoint of U, the OUTPUT reflection, U, and the INPUT reflection. (a) Prove that when the input and output ranks are equal this iterate reduces, after a suitable change of basis, to the ordinary same-space qubitization iterate. (b) Explain precisely what feature of the construction continues to make sense when the ranks differ, and why the two-dimensional reduction underlying the cosine-sine analysis still applies.",
+    "reference_answer": "(a) When N' = N the output projector has the same rank as the input projector, so there is a unitary change of basis identifying the output subspace with the input subspace; under this identification the output reflection becomes the input reflection and U together with its adjoint act between two copies of the same N-dimensional flagged subspace. Substituting, the iterate adjoint(U) (output reflection) U (input reflection) becomes adjoint(U) (input reflection) U (input reflection), which is exactly the standard same-space qubitization iterate adjoint(U) R U R with the single reflection R = 2(input projector) - I. Thus the general iterate specializes to the ordinary one up to the basis change. (b) When the ranks differ the construction still makes sense because the iterate is defined purely as a product of two reflections built from genuine projectors; nothing in that definition requires the two projector ranks to agree. The cosine-sine / two-dimensional reduction continues to apply because the product of two reflections always decomposes the ambient space into mutually orthogonal subspaces that are at most two-dimensional and invariant: on each such plane each reflection acts as a one-dimensional sign flip relative to the plane's intersection with the respective projector range, and the product of the two reflections acts as a rotation of that plane. The possibly different ranks only change how many planes are paired versus left as fixed vectors (the mismatch in dimension contributes extra invariant one-dimensional pieces), but every two-dimensional block still carries a planar rotation whose angle encodes a singular value of A. Hence the same singular-value transformation analysis via two-dimensional rotations survives when N' is not equal to N; this is the natural setting for a basis-changed singular value transformation.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows that equal ranks allow a basis change identifying output with input subspace, reducing the iterate to adjoint(U) R U R with one reflection",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States the general iterate is well defined for any ranks since it is just a product of two projector reflections",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains the product of two reflections always splits the space into at most two-dimensional invariant planes",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Notes rank mismatch only alters the count of paired planes versus fixed vectors, with each plane still a rotation encoding a singular value",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis",
+      "concept:block-encoding"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is accessed by a unitary with an input projector of rank N and an output projector of rank N'"
+    ],
+    "conventions": [
+      "Each reflection is twice a projector minus the identity",
+      "The iterate is adjoint(U) (output reflection) U (input reflection)"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Equal ranks give a unitary identifying the output subspace with the input subspace.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Under this identification the iterate becomes adjoint(U) R U R, the ordinary same-space iterate.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "For general ranks the iterate is still a well-defined product of two projector reflections.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A product of two reflections splits the space into at most two-dimensional invariant planes.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Rank mismatch only changes the number of paired planes versus fixed one-dimensional pieces.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Each two-dimensional plane is a rotation whose angle encodes a singular value of A.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires understanding that qubitization beyond the computational basis is a two-reflection product and that the Jordan two-dimensional reduction is insensitive to rank equality."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "179-180",
+          "anchors": "Section 10.6 qubitization beyond the computational basis: reflections Z_Pi = 2 Pi - I and Z_{Pi'} = 2 Pi' - I (Eq. 10.106), the iterate U^dagger Z_{Pi'} U Z_Pi (Eq. 10.107), the remark that N' = N reduces to the usual iterate under a change of basis while N' != N remains well defined with the same CS-decomposition analysis, and the Notes-and-references statement of Jordan's lemma that a product of two reflections acts as a rotation on an invariant two-dimensional subspace",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-qubitization-beyond-basis",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Qubitization beyond the computational basis is a product of two projector reflections; equal input/output ranks reduce it to the ordinary iterate, and unequal ranks still admit the two-dimensional rotation analysis because any two-reflection product splits into at most two-dimensional invariant planes.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-512",
+    "key": "qcb-core-plan-512-rotation-reflections-overlap-example",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Take the smallest nontrivial subspace-encoding example: a four-dimensional space, the identity as the accessing unitary, an input projector that keeps the first qubit in its zero state, and an output projector obtained by rotating the input projector by a real angle theta on the first qubit (via the planar rotation with cosine theta on the diagonal and the usual off-diagonal signs). With the encoded operator read off as the overlap between the rotated and unrotated flagged bases, prove that the encoded operator equals cosine theta times the two-dimensional identity, and that the qubitization iterate (product of the two reflections, since the unitary is the identity) equals the planar rotation by twice theta on the first qubit tensored with the identity. Deduce the eigenphases of the iterate and relate them to the encoded singular value.",
+    "reference_answer": "The input projector keeps the first qubit at zero, so its range is spanned by the two states with first qubit zero; the unrotated flagged basis is these two states. The output projector is the input projector conjugated by the single-qubit rotation R(theta) on the first qubit, so its range is spanned by R(theta) applied to the same two states, giving the rotated flagged basis. The encoded operator is the matrix of overlaps between the rotated output basis vectors and the unrotated input basis vectors: each overlap is the inner product of a state with its R(theta)-rotation, which on the first qubit is cosine theta and on the second qubit is one; cross terms vanish by orthogonality of the second qubit. Hence the overlap matrix is cosine theta times the two-dimensional identity, so the encoded operator is cosine theta times the identity and its single distinct singular value is cosine theta. Because the accessing unitary is the identity, the qubitization iterate is just the product of the two reflections: (output reflection)(input reflection). On the first qubit the input reflection is the Pauli Z (plus one on zero, minus one on one), and the output reflection is R(theta) Z R(theta)-adjoint; their product R(theta) Z R(theta)-adjoint Z equals the planar rotation by twice theta. Tensoring with the untouched second qubit, the iterate is R(2 theta) on the first qubit tensored with the identity. A planar rotation by angle 2 theta has eigenvalues e to the plus and minus i 2 theta, each with multiplicity two here. These eigenphases plus and minus 2 theta determine the encoded singular value through cosine theta: the half of the eigenphase is theta, and its cosine is exactly the encoded singular value cosine theta. Thus the two-reflection product converts the geometric overlap cosine theta into a rotation whose eigenphase is twice the arccosine of that singular value.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies the unrotated and rotated flagged bases and computes the overlap matrix as cosine theta times the identity",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Concludes the encoded operator is cosine theta times the identity with singular value cosine theta",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows the two-reflection product equals R(theta) Z R(theta)-adjoint Z = rotation by twice theta on the first qubit tensored with identity",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Gives eigenphases plus/minus 2 theta and relates them to the singular value via cosine theta = cosine of the half eigenphase",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis",
+      "concept:block-encoding"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "theta lies strictly between zero and a right angle so cosine theta is a nondegenerate singular value"
+    ],
+    "conventions": [
+      "R(theta) is the planar rotation with cosine theta on the diagonal",
+      "The input reflection restricts to Pauli Z on the first qubit"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The input and output flagged bases are the first-qubit-zero states and their R(theta) rotations.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Overlaps between the two bases give cosine theta on the diagonal, zero off-diagonal.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence the encoded operator is cosine theta times the identity, singular value cosine theta.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "With identity accessing unitary the iterate is the product of the two reflections.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "On the first qubit this product is R(theta) Z R(theta)-adjoint Z = R(2 theta).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Eigenphases plus/minus 2 theta satisfy cosine of the half-phase equals the singular value cosine theta.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A concrete worked instance of qubitization beyond the computational basis, requiring the overlap-matrix definition and the two-reflection-equals-double-rotation identity."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "179-180",
+          "anchors": "Example 10.13: m = n = 1, U_A = I, Pi = |0><0| tensor I so Z_Pi = Z tensor I, R(theta) rotation (Eq. 10.109), Pi' = Xi' Pi adjoint(Xi'), overlap matrix A_ij = <psi_i|phi_j> giving A = cos theta times I_2 (Eq. 10.110), and the iterate U^dagger Z_{Pi'} U Z_Pi = R(2 theta) tensor I with eigenphases plus/minus 2 theta determining the singular value cos theta (Eq. 10.111)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-qubitization-beyond-basis",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "In the identity-unitary two-qubit example the encoded operator is cosine theta times the identity and the two-reflection iterate is a rotation by twice theta, whose eigenphases plus/minus 2 theta encode the singular value cosine theta.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-513",
+    "key": "qcb-core-plan-513-grover-two-reflection-rotation",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "In the single-marked-element search problem the Grover iterate is the product of two reflections: first the reflection that flips the sign of the marked basis state (identity minus twice the projector onto the marked state), then the reflection about the uniform superposition (twice the projector onto the uniform state minus the identity). Working in the two-dimensional real plane spanned by the marked state and the normalized uniform superposition of all unmarked states, prove that the Grover iterate acts as a rotation by a fixed angle, and determine that angle in terms of the overlap of the uniform superposition with the marked state. Show in particular that applying the iterate k times sends the initial uniform state to a state whose marked-direction amplitude is the sine of an odd multiple of the half-angle.",
+    "reference_answer": "Let the search space have N basis states with one marked. Set the half-angle by sine of half the angle equal to the overlap of the uniform superposition with the marked state, which is one over the square root of N; call the full angle the quantity whose half has that sine. Decompose the uniform superposition as sine of the half-angle times the marked state plus cosine of the half-angle times the normalized unmarked superposition. In this orthonormal plane the marked-flip reflection fixes the unmarked direction and negates the marked direction, so it is the diagonal reflection diag(-1, +1) with respect to the ordered basis (marked, unmarked). The reflection about the uniform superposition is twice the projector onto the uniform state minus the identity, which is a reflection whose fixed mirror axis is the uniform direction; that axis sits at the half-angle from the unmarked direction. The product of two planar reflections whose mirror axes differ by an angle is a rotation by twice that angle; here the two mirror axes (the unmarked axis for the first reflection and the uniform axis for the second) differ by the half-angle, so the Grover iterate is a rotation by the full angle. Direct computation confirms the iterate sends the marked state to cosine of the angle times the marked state minus sine of the angle times the unmarked state, and the unmarked state to sine of the angle times the marked state plus cosine of the angle times the unmarked state, i.e. a rotation by the full angle. Applying the rotation k times rotates the initial uniform state (which sits at the half-angle from the unmarked axis) by k full angles, reaching total angle (2k+1) times the half-angle; its marked-direction amplitude is the sine of (2k+1) times the half-angle. Choosing k so that this odd multiple of the half-angle is near a right angle makes the marked amplitude near one, which is the amplification mechanism.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Decomposes the uniform state as sine(half-angle) marked plus cosine(half-angle) unmarked with sine(half-angle) = 1/sqrt(N)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the two reflections as planar mirrors with the marked-flip being diag(-1,+1) and the uniform reflection having axis along the uniform direction",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses the two-reflection-equals-rotation-by-twice-the-axis-angle fact to conclude the iterate is a rotation by the full angle",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Shows the k-th power gives marked amplitude sine of (2k+1) times the half-angle",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Exactly one marked element among N basis states"
+    ],
+    "conventions": [
+      "Sine of the half-angle equals the overlap 1/sqrt(N) of the uniform state with the marked state",
+      "A product of two planar reflections with axes differing by phi is a rotation by 2 phi"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Define the half-angle by sine(half-angle) = 1/sqrt(N) and expand the uniform state in the marked/unmarked plane.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The marked-flip reflection is diag(-1,+1) on the (marked, unmarked) basis.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The uniform reflection is a mirror with axis along the uniform direction.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Two mirrors with axes differing by the half-angle compose to a rotation by the full angle.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Direct computation confirms the rotation action on marked and unmarked states.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The k-th power gives marked amplitude sine of (2k+1) times the half-angle.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A standard but genuine two-reflection-to-rotation derivation requiring correct identification of the mirror axes and the odd-multiple amplitude after k iterations."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "183-185",
+          "anchors": "Theorem 11.2 proof: Grover iterate G = (2|psi_0><psi_0| - I)(I - 2|x_0><x_0|) (Eq. 11.9), the invariant two-dimensional subspace and submatrix [G] = [[cos theta, -sin theta],[sin theta, cos theta]] (Eqs. 11.11-11.14), the decomposition |psi_0> = sin(theta/2)|x_0> + cos(theta/2)|x_0 perp> (Eq. 11.16) with theta = 2 arcsin(1/sqrt(N)), and G^k|psi_0> = sin((2k+1)theta/2)|x_0> + cos((2k+1)theta/2)|x_0 perp> (Eq. 11.18)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The Grover iterate is a product of two planar reflections whose axes differ by the half-angle (arcsine of 1/sqrt(N)), so it is a rotation by the full angle; its k-th power gives marked amplitude sine of (2k+1) half-angles.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-514",
+    "key": "qcb-core-plan-514-grover-failure-bound",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For the single-marked search with N basis states, after choosing the number of iterations to be the nearest integer at or below a quarter of pi over the half-angle minus one half, prove that the failure probability (the probability of NOT measuring the marked state) is at most four over N. Then explain carefully why this residual failure does not spoil the overall square-root-of-N query scaling, by giving the expected-query argument. Keep the accounting in terms of oracle queries.",
+    "reference_answer": "Let the half-angle be the arcsine of one over the square root of N, so the per-iteration rotation angle is twice the half-angle. After k iterations the marked-direction amplitude is the sine of (2k+1) times the half-angle, hence the failure probability is the cosine squared of (2k+1) times the half-angle. Choosing k as the floor of (a quarter of pi over the half-angle minus one half) guarantees that (2k+1) times the half-angle is at least a right angle minus the full rotation angle and at most a right angle. Therefore the cosine of (2k+1) half-angles is at most the cosine of (a right angle minus the full rotation angle) which equals the sine of the full rotation angle. So the failure probability is at most sine squared of the full angle = four times sine squared of the half-angle times cosine squared of the half-angle, which is at most four times sine squared of the half-angle = four over N (using sine of the half-angle = one over the square root of N and cosine squared at most one). This is the claimed bound. Why the scaling survives: a single run uses order square root of N queries to the marking oracle (k is of order square root of N) and succeeds with probability at least one minus four over N. If a run fails it can be detected by classically checking the returned candidate with one more oracle query, and the procedure is repeated; the number of runs until the first success is geometric with success probability at least one minus four over N, so the expected number of runs is one over that success probability, which is one plus a vanishing correction. The expected total queries are therefore order square root of N divided by (one minus four over N) = order square root of N. By a Markov-type argument the query count is also order square root of N with probability at least two thirds. Thus the residual failure of a single run only multiplies the query cost by a factor approaching one and does not change the square-root-of-N scaling. All counts here are oracle queries; translating to elementary gates would additionally require the cost of the diffusion and oracle circuits and is not performed.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes failure probability as cosine squared of (2k+1) half-angles and uses the k choice to bound the argument near a right angle",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Derives the bound failure at most sine squared of the full angle = 4 sine squared(half) cosine squared(half) at most 4/N",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Gives the expected-query argument: geometric repetition with success at least 1 - 4/N yields expected queries order sqrt(N)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Keeps the accounting in oracle queries and does not silently convert to gate cost",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:approximation",
+      "concept:complexity",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Exactly one marked element; the candidate can be verified with one extra oracle query"
+    ],
+    "conventions": [
+      "Half-angle = arcsine(1/sqrt(N)); failure probability = cosine squared of (2k+1) half-angles",
+      "Counts are oracle queries, not elementary gates"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Failure probability equals cosine squared of (2k+1) times the half-angle.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The chosen k forces (2k+1) half-angles into a right-angle neighborhood.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Bounding the cosine gives failure at most sine squared of the full angle.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "This is 4 sine squared(half) cosine squared(half) at most 4/N.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Geometric repetition with success at least 1 - 4/N gives expected queries order sqrt(N).",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "All counts are oracle queries; gate conversion is not performed.",
+        "supporting_nodes": [
+          "concept:complexity",
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires the trigonometric failure bound plus the expected-query repetition argument, with care to keep the cost in oracle queries."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "185-186",
+          "anchors": "Theorem 11.2 and Eqs. (11.19)-(11.21): the choice k = floor(pi/(2 theta) - 1/2) giving (2k+1)theta/2 >= pi/2 - theta, the failure bound P(fail) = cos^2((2k+1)theta/2) <= sin^2(theta) = 4 sin^2(theta/2) cos^2(theta/2) <= 4/N, and the expected query complexity O(sqrt(N)/P(succ)) = O(sqrt(N)) with classical checking",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The optimal iteration count bounds Grover's single-run failure probability by 4/N; detectable failure plus geometric repetition keeps the expected oracle-query cost at order sqrt(N).",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-515",
+    "key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Generalize the single-marked analysis to the case of M marked elements among N basis states (M at least one, known in advance). Collecting the marked states into one normalized good state and the unmarked states into one normalized bad state, prove that the uniform superposition makes an angle with the bad state whose half-angle has sine equal to the square root of M over N, and determine how the optimal number of Grover iterations scales with M and N. Explain why knowing M in advance is necessary for this direct choice, and what goes wrong if M is unknown.",
+    "reference_answer": "Collect the marked states into the normalized good state (equal superposition of the M marked basis states) and the unmarked states into the normalized bad state (equal superposition of the N minus M unmarked basis states). The uniform superposition over all N states equals the square root of (M over N) times the good state plus the square root of ((N minus M) over N) times the bad state; writing this as sine of the half-angle times good plus cosine of the half-angle times bad identifies sine of the half-angle with the square root of M over N. The Grover iterate restricted to the good/bad plane is again a product of two reflections (the oracle reflection fixing the bad state and flipping the good state, and the reflection about the uniform state), hence a rotation by the full angle equal to twice the half-angle. After k iterations the good-direction amplitude is the sine of (2k+1) times the half-angle, so the success probability is the sine squared of that. To make the success probability near one we need (2k+1) times the half-angle near a right angle, i.e. k approximately a quarter of pi divided by the half-angle minus one half; since the half-angle is approximately the square root of M over N for M much smaller than N, this gives k of order the square root of N over M. Thus more marked states reduce the required iteration count as the square root of N over M. Knowing M in advance is necessary because the half-angle, and hence the rotation speed, depends on M; the stopping index k that lands the state near the good direction is a function of M. If M is unknown the rotation angle is unknown, so a fixed k can overshoot or undershoot the good direction, driving the success probability back down (over-rotation past a right angle decreases the good amplitude). Remedies such as trying exponentially growing guesses for the iteration count or using amplitude estimation are then needed, but the direct single-shot choice of k requires M to be known.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes the uniform state as sqrt(M/N) good plus sqrt((N-M)/N) bad, identifying sine(half-angle) = sqrt(M/N)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Argues the iterate is again a two-reflection rotation by the full angle, giving success probability sine squared of (2k+1) half-angles",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Determines the optimal k of order sqrt(N/M) from putting (2k+1) half-angles near a right angle",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains M must be known because the rotation angle depends on M, and an unknown M causes over/under-rotation lowering success",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:approximation",
+      "concept:operator-theory",
+      "concept:complexity"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "M at least one and known in advance; marked set has M elements among N"
+    ],
+    "conventions": [
+      "Good/bad states are the normalized marked/unmarked superpositions",
+      "sine of the half-angle equals sqrt(M/N)"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The uniform state decomposes as sqrt(M/N) good plus sqrt((N-M)/N) bad.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Hence sine of the half-angle equals sqrt(M/N).",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The iterate is a two-reflection rotation by the full angle on the good/bad plane.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Success probability after k steps is sine squared of (2k+1) half-angles.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Optimal k of order sqrt(N/M) places the amplitude near the good direction.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Unknown M leaves the rotation angle unknown, so a fixed k over- or under-rotates.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Extends the single-marked rotation picture to M marked states, requiring the M-dependent angle and a discussion of why advance knowledge of M is essential."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "187",
+          "anchors": "Example 11.3 generalization to multiple marked states: good state |w> = (1/sqrt(M)) sum_{f(x)=1}|x> (Eq. 11.23), bad state |w perp> (Eq. 11.24), |psi_0> = sqrt(M/N)|w> + sqrt((N-M)/N)|w perp> = sin(theta/2)|w> + cos(theta/2)|w perp> with sin(theta/2) = sqrt(M/N) (Eq. 11.25), G^k|psi_0> = sin((2k+1)theta/2)|w> + cos((2k+1)theta/2)|w perp> (Eq. 11.28) and k approx pi/(2 theta) - 1/2 approx (pi/4) sqrt(N/M)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "With M known marked states the uniform state's half-angle has sine sqrt(M/N), so the optimal iteration count scales as sqrt(N/M); an unknown M leaves the rotation angle unknown and a fixed iteration count over- or under-rotates.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-516",
+    "key": "qcb-core-plan-516-grover-odd-chebyshev-identity",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "View Grover's single-marked search through qubitization beyond the computational basis. Let the uniform state and the marked state define rank-one projectors, and let the reflection about the uniform state play the role of the accessing unitary while the two projector reflections play the roles of the input and output reflections. The encoded scalar is the overlap a = one over the square root of N = sine of the half-angle. Prove the identity that the odd-order flagged qubitization output, namely the output projector times the accessing unitary times (the full odd iterate) applied between the input and output projectors, equals the first-kind Chebyshev value of odd order 2k+1 at a, times the rank-one map from the uniform state to the marked state. Then use the fact that this odd Chebyshev value equals plus or minus the sine of (2k+1) times the arcsine of a to recover the Grover success amplitude, and identify the global phase relating this iterate to the standard Grover iterate.",
+    "reference_answer": "The encoded operator is the one-by-one scalar a = sine of the half-angle = one over the square root of N, since the overlap of the uniform state with the marked state is a. The flagged odd iterate assembles, by the qubitization-beyond-the-basis construction, into the first-kind Chebyshev polynomial of odd order evaluated at the singular value a, acting as the rank-one operator sending the uniform state to the marked state: the output projector times the accessing unitary times the odd iterate between the two projectors equals T_{2k+1}(a) times (marked state)(uniform state adjoint). This is because the two-reflection iterate is a rotation whose (2k+1)-fold application produces, on the one-dimensional flagged overlap, exactly the odd Chebyshev amplitude, and the surrounding projectors extract the marked-from-uniform rank-one component. Now use the special-argument identity: for a in the interval from zero to one, the odd first-kind Chebyshev value T_{2k+1}(a) equals (minus one) to the k times the sine of (2k+1) times the arcsine of a. Since the arcsine of a is the half-angle, this is (minus one) to the k times the sine of (2k+1) half-angles. The magnitude of the flagged amplitude is therefore the absolute value of the sine of (2k+1) half-angles, which is exactly the Grover success amplitude for measuring the marked state after k iterations; letting the sine of (2k+1) half-angles approach one recovers the Grover query complexity (k of order the square root of N). The only difference from the standard Grover iterate is the sign (minus one) to the k: the qubitization iterate (reflection about uniform composed with the negated marked reflection) equals minus the standard Grover iterate, so its k-th power carries the global phase (minus one) to the k, which does not affect measurement probabilities. Hence Grover search is literally an odd Chebyshev singular value transformation of the scalar a, up to a measurement-irrelevant global phase.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the encoded scalar is a = 1/sqrt(N) = sine of the half-angle, as the uniform-marked overlap",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Establishes the flagged odd iterate equals T_{2k+1}(a) times the rank-one map from uniform to marked state",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Applies the identity T_{2k+1}(a) = (-1)^k sine of (2k+1) arcsine(a) to recover the Grover success amplitude",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Identifies the global phase (-1)^k relating this iterate to minus the standard Grover iterate, noting it is measurement-irrelevant",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:harmonic-analysis",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Single marked element; a = 1/sqrt(N) in the interval from zero to one"
+    ],
+    "conventions": [
+      "T_{2k+1}(a) = (-1)^k sine((2k+1) arcsine(a)) for a in [0,1]",
+      "Global phases do not change measurement probabilities"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The uniform-marked overlap gives the encoded scalar a = 1/sqrt(N) = sine of the half-angle.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The flagged odd iterate equals T_{2k+1}(a) times (marked)(uniform adjoint).",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The special-argument identity turns T_{2k+1}(a) into (-1)^k sine of (2k+1) half-angles.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "The magnitude is the Grover success amplitude after k iterations.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Letting this sine approach one recovers k of order sqrt(N).",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The qubitization iterate is minus the standard Grover iterate, giving a global phase (-1)^k.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Connects the amplitude-amplification picture to the Chebyshev singular value transformation via a special-argument polynomial identity and a careful global-phase accounting."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "187-188",
+          "anchors": "Example 11.4 (Grover's algorithm as Chebyshev singular value transformation): R_{psi_0} as block encoding of the scalar a = 1/sqrt(N) = sin(theta/2) (Eq. 11.29), projectors Pi = |psi_0><psi_0|, Pi' = |x_0><x_0|, the identity Pi' U_A Z_Pi (U_A^dagger Z_{Pi'} U_A Z_Pi)^k Pi = T_{2k+1}(a)|x_0><psi_0| = (-1)^k sin((2k+1)theta/2)|x_0><psi_0| (Eq. 11.30), T_{2k+1}(a) = (-1)^k sin((2k+1) arcsin a), and U_A^dagger Z_{Pi'} U_A Z_Pi = -G differing from Grover by the global phase (-1)^k",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Grover search is an odd Chebyshev singular value transformation of the scalar 1/sqrt(N): the flagged odd iterate is T_{2k+1}(a) times the uniform-to-marked map, equal to (-1)^k sine of (2k+1) half-angles, matching the Grover amplitude up to a global phase.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-517",
+    "key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "The analysis of Grover search as a Chebyshev transform uses the identity that for an argument a in the closed interval from zero to one, the odd first-kind Chebyshev value of order 2k+1 equals (minus one) to the k times the sine of (2k+1) times the arcsine of a. A student wants to reuse this exact identity for an argument a greater than one (imagining an unnormalized overlap). Determine precisely on what domain the identity is valid, prove it on that domain, and show by a concrete value that the naive extension to a greater than one is false. State the correct replacement representation outside the interval.",
+    "reference_answer": "Validity domain: the identity holds exactly for a in the closed interval from minus one to one, and in particular on from zero to one as used for Grover. Proof on that domain: for a in from minus one to one write a = sine of phi with phi = arcsine of a in the interval from minus a right angle to a right angle, equivalently a = cosine of (a right angle minus phi). By the defining relation of the first-kind Chebyshev polynomial, T_m(cosine of beta) = cosine of (m beta). Put beta = a right angle minus phi and m = 2k+1: T_{2k+1}(a) = cosine of ((2k+1)(a right angle minus phi)) = cosine of ((2k+1) right angles minus (2k+1) phi). Since (2k+1) is odd, (2k+1) right angles is an odd multiple of a right angle, and cosine of (an odd multiple of a right angle minus x) = (minus one) to the k times sine of x. Hence T_{2k+1}(a) = (minus one) to the k times sine of ((2k+1) phi) = (minus one) to the k times sine of ((2k+1) arcsine of a), proving the identity for a in from minus one to one. Failure for a greater than one: take a = 2 and k = 1, so order 3. The genuine Chebyshev value is T_3(2) = 4 times 2 cubed minus 3 times 2 = 32 minus 6 = 26. The naive right-hand side would require the arcsine of 2, which is not a real number, so sine of (3 arcsine of 2) is not a real quantity bounded by one; there is no way it equals 26. Even interpreting arcsine via complex values, the clean real identity (minus one) to the k times a real sine bounded in magnitude by one cannot produce 26, since the left side grows without bound while a real sine is at most one in magnitude. So the identity is false for a greater than one. Correct replacement outside from minus one to one: for a greater than one use the hyperbolic representation T_m(a) = hyperbolic cosine of (m times the inverse hyperbolic cosine of a) (and for a less than minus one the corresponding reflected form). This grows like a hyperbolic cosine, matching the unbounded growth of T_3(2) = 26, rather than the bounded oscillation of the sine form.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the identity is valid precisely on the closed interval from minus one to one (used on zero to one for Grover)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Proves it via a = sine phi, T_m(cos beta) = cos(m beta) with beta = right angle minus phi and the odd-order sign (-1)^k",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows the naive a greater than one extension fails with the concrete value T_3(2) = 26 versus a bounded sine",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Gives the correct hyperbolic-cosine replacement T_m(a) = cosh(m arccosh a) outside the interval",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:harmonic-analysis",
+      "concept:approximation",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [
+      "T_m(cos beta) = cos(m beta); arcsine real only on from minus one to one",
+      "Outside the interval the first-kind Chebyshev uses the hyperbolic-cosine representation"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "For a in from minus one to one set a = sine phi with real phi.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Use T_m(cos beta) = cos(m beta) with beta = right angle minus phi.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Odd order gives T_{2k+1}(a) = (-1)^k sine((2k+1) arcsine a).",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "For a = 2, k = 1 the true value is T_3(2) = 26.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "A real sine is bounded by one, so it cannot equal 26; the extension fails.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Outside the interval the correct form is T_m(a) = cosh(m arccosh a).",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A boundary/domain question requiring the trigonometric proof on [-1,1] and a concrete numeric refutation of the out-of-range extension plus the hyperbolic replacement."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "187-188",
+          "anchors": "Example 11.4 use of T_{2k+1}(a) = (-1)^k sin((2k+1) arcsin a) for a in [0,1] (Eq. 11.30), with the standing restriction that the encoded singular value a = 1/sqrt(N) lies in [0,1] from the cosine-sine range C^2 + S^2 = I established in Section 10.4",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The identity T_{2k+1}(a) = (-1)^k sine((2k+1) arcsine a) holds only on [-1,1]; for a greater than one it fails concretely (T_3(2)=26 against a bounded sine) and must be replaced by the hyperbolic-cosine form.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-518",
+    "key": "qcb-core-plan-518-classical-search-lower-bound",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Prove the classical query lower bound for unstructured search: for a Boolean function on n-bit strings promised to have a unique marked input, no unbiased classical algorithm can identify the marked input with probability greater than one half using fewer than two-to-the-n minus one queries in the worst case. Make explicit the role of the padding-to-a-fixed-number-of-queries reduction and the indistinguishability-of-two-candidates argument. Then state why this does NOT by itself establish any quantum lower bound.",
+    "reference_answer": "Let the domain have two-to-the-n = N strings and suppose, for contradiction, an unbiased algorithm identifies the unique marked string using at most N minus two queries in the worst case. First, pad: if the algorithm sometimes uses fewer than N minus two queries, append arbitrary extra queries up to exactly N minus two; this cannot hurt, because once the marked string is found all later queries return zero on non-marked inputs and reveal nothing new, so without loss of generality the algorithm always makes exactly N minus two queries with distinct inputs x_1, through x_{N-2}. Those N minus two queried inputs leave exactly two unqueried strings; call them x-star and x-prime. Consider the two worlds in which the marked string is x-star versus x-prime. In BOTH worlds every queried input is unmarked, so every query returns zero: the observed evidence f(x_1) = ... = f(x_{N-2}) = 0 is identical in the two worlds. Therefore the algorithm's output distribution is the same whether the answer is x-star or x-prime, so it cannot distinguish them; any fixed guess is correct in at most one of the two equally consistent worlds, giving success probability at most one half on this pair. Hence to exceed one half the algorithm must make at least N minus one queries, which is the claimed bound. The padding reduction is what lets us assume a fixed query count so that exactly two candidates remain; the indistinguishability argument is what forces the one-half ceiling, because identical evidence cannot support a better-than-even decision between two equally likely hypotheses. Why this gives no quantum lower bound: the argument counts classical queries each returning one deterministic bit and relies on the evidence being a fixed set of zero/one answers. A quantum algorithm queries the oracle in superposition, so a single quantum query can probe all inputs coherently and the evidence is not a list of classical bit answers; the counting of distinguishable classical transcripts does not apply. Establishing a quantum lower bound requires a genuinely quantum argument (such as a hybrid/adversary method), and indeed the quantum query complexity is only order the square root of N, far below the classical N minus one.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Sets up the contradiction hypothesis of at most N-2 queries and the padding to exactly N-2 distinct queries",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the two unqueried candidates x-star and x-prime and argues the evidence (all zeros) is identical in both worlds",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Concludes indistinguishability forces success probability at most one half, hence at least N-1 queries are needed",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the argument counts classical deterministic query answers and so gives no quantum lower bound, which is only order sqrt(N)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:complexity",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Unique marked element; algorithm is unbiased"
+    ],
+    "conventions": [
+      "N = two-to-the-n; worst-case classical query count",
+      "Quantum queries act in superposition, unlike the classical bit answers counted here"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Assume at most N-2 queries and pad to exactly N-2 distinct queries without loss.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Exactly two strings x-star and x-prime remain unqueried.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "In both candidate worlds all queried answers are zero, identical evidence.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Identical evidence forces success probability at most one half on the pair.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Hence at least N-1 queries are required to exceed one half.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "The classical-transcript counting does not bound superposed quantum queries, which cost only order sqrt(N).",
+        "supporting_nodes": [
+          "concept:operator-theory",
+          "concept:complexity"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean classical lower-bound proof requiring the padding reduction and indistinguishability, plus an accurate statement of why it does not transfer to the quantum setting."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "181-183",
+          "anchors": "Proposition 11.1 and its proof: no unbiased classical algorithm identifies the marked x-star with probability greater than 1/2 using fewer than 2n - 1 queries, via padding to 2n - 2 queries, the two remaining candidates x-star and x-prime, and identical evidence f(x_1) = ... = f(x_{2n-2}) = 0; contrasted with the quantum O(sqrt(N)) query scaling of Grover (Theorem 11.2)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Classical unstructured search needs at least N-1 worst-case queries because padding leaves two unqueried candidates with identical all-zero evidence, capping success at one half; the classical-transcript counting gives no quantum bound, which is only order sqrt(N).",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-519",
+    "key": "qcb-core-plan-519-phase-kickback-bit-to-phase-oracle",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "The marking information for search is first given as a bit oracle that adds the function value into an answer qubit modulo two. Prove that running this bit oracle with the answer qubit prepared in the minus state converts it into a phase oracle that multiplies each input basis state by minus one exactly when it is marked, leaving the answer qubit unchanged. Make explicit why this is a clean conversion (the answer qubit factorizes out and can be reused), and explain the resource consequence: that one phase-oracle reflection costs one bit-oracle query plus state preparation of the answer qubit, with no measurement or amplification required.",
+    "reference_answer": "Prepare the answer qubit in the minus state, the equal superposition of zero and one with a relative minus sign, normalized by one over the square root of two. The bit oracle maps an input string x with answer bit y to the same x with answer bit y exclusive-or f(x). Apply it to x tensored with the minus state: by linearity it sends the minus state's two components, (x,0) with plus sign and (x,1) with minus sign, to (x, f(x)) with plus sign and (x, 1 exclusive-or f(x)) with minus sign. If f(x) = 0 this is (x,0) plus sign and (x,1) minus sign, i.e. x tensored with the minus state unchanged. If f(x) = 1 this is (x,1) with plus sign and (x,0) with minus sign, i.e. x tensored with (minus the minus state) = (minus one) times x tensored with the minus state. In both cases the result is (minus one) to the f(x) times x tensored with the minus state. Hence the overall action is x tensored with minus state mapping to (minus one) to the f(x) times the same, which is exactly a phase oracle applying the sign (minus one) to the f(x) on the input register while the answer qubit is returned unchanged in the minus state. The conversion is clean because the answer qubit comes out in the identical minus state regardless of x, so it factorizes completely out of the input register and is left unentangled; therefore it can be prepared once and reused across every application of the phase oracle (including both the marked-state reflection and, by the same device, the diffusion reflection). Resource consequence: one application of the phase-oracle reflection costs exactly one query to the bit oracle plus the one-time preparation of the answer qubit in the minus state (a single-qubit state preparation), and crucially it requires no measurement and no amplification, because phase kickback is a unitary, deterministic effect; the sign is imprinted coherently rather than read out. Thus converting bit access to phase access is free up to a reusable ancilla, and the search's query accounting can be stated directly in phase-oracle reflections.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Computes the bit oracle on x tensored with the minus state and obtains (minus one) to the f(x) times the same state",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows the answer qubit returns unchanged in the minus state for both f(x) = 0 and f(x) = 1",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains the answer qubit factorizes out unentangled and can be prepared once and reused",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States the resource consequence: one phase reflection = one bit-oracle query plus one-time minus-state preparation, with no measurement or amplification",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:block-encoding"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The bit oracle adds f(x) into the answer qubit modulo two"
+    ],
+    "conventions": [
+      "The minus state is (|0> - |1>)/sqrt(2)",
+      "Query cost is counted in oracle calls; the reusable ancilla is prepared once"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Prepare the answer qubit in the minus state.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The bit oracle sends x tensored with minus state to (minus one) to the f(x) times the same.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For both values of f(x) the answer qubit returns unchanged.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The answer qubit factorizes out unentangled and is reusable.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "One phase reflection costs one bit-oracle query plus a one-time minus-state preparation.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "No measurement or amplification is needed since phase kickback is a coherent unitary effect.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "basic",
+      "rationale": "A direct and self-contained computation of phase kickback with an explicit resource reading; conceptually central but technically short."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "183-186",
+          "anchors": "Grover's algorithm phase-kickback step: V_f|x,-> = (1/sqrt(2))(|x,f(x)> - |x,1 + f(x)>) = (-1)^{f(x)}|x,-> (Eq. 11.4), the induced reflection R_{x_0} = I - 2|x_0><x_0| (Eqs. 11.7-11.8), and the reuse remark that the signal qubit |-> only changes up to a sign so it can be reused for both R_{psi_0} and R_{x_0} (around Eq. 11.22)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Running the bit oracle on an answer qubit in the minus state imprints the sign (minus one) to the f(x) on the input and returns the answer qubit unchanged, so one phase reflection costs one bit-oracle query plus a one-time reusable minus-state preparation with no measurement.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-520",
+    "key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+    "topic": "planned_polynomial_signals",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Amplitude amplification generalizes Grover search to a good subspace defined by a projector, where a state-preparation unitary produces a state whose overlap with the good subspace has magnitude equal to the square root of the initial success probability. Suppose this initial success probability is a small positive number p (for example the fraction of good states). (a) Prove that the amplitude-based reflection scheme increases the good-subspace amplitude per iteration by an amount of order the square root of p, whereas naive classical repetition increases the accumulated success probability only linearly in p per trial. (b) Deduce that reaching a constant success probability needs order one over the square root of p amplitude-amplification iterations against order one over p classical trials, and explain precisely why working with amplitudes rather than probabilities is the origin of the quadratic speedup. Keep the comparison at the level of queries to the state-preparation unitary and the good-subspace reflection.",
+    "reference_answer": "Set the half-angle so that the sine of the half-angle equals the square root of p; this is the overlap magnitude of the prepared state with the good subspace. (a) The amplitude-amplification iterate is, as in Grover, a product of two reflections (the reflection about the good subspace and the reflection about the prepared state), hence a rotation by the full angle equal to twice the half-angle in the two-dimensional plane spanned by the good and bad components. Each iteration therefore rotates the state vector by the fixed angle twice the half-angle; for small p the half-angle is approximately the square root of p, so each iteration increases the good-direction amplitude (the sine of the running angle) by an increment of order twice the square root of p near the start. In contrast, classical repetition does not rotate an amplitude: each independent trial succeeds with probability p and the probability of having succeeded at least once after t trials is one minus (one minus p) to the t, which for small p grows like p times t, i.e. the accumulated success PROBABILITY increases linearly in p per trial. So one quantum iteration buys an amplitude increment of order the square root of p, while one classical trial buys a probability increment of order p. (b) To reach a constant good-direction amplitude (success probability of order one) the running angle must reach order a right angle; since each iteration advances the angle by order the square root of p, the number of iterations needed is order a right angle divided by the square root of p, i.e. order one over the square root of p iterations, each costing one query to the state-preparation unitary (and its adjoint) and one good-subspace reflection. Classically, reaching constant cumulative success probability needs p times t of order one, i.e. t of order one over p trials, each costing one state preparation and one check. The ratio is one over the square root of p against one over p, a quadratic saving. The origin of the quadratic speedup is precisely that the quantum procedure manipulates the AMPLITUDE, which grows linearly in the number of iterations at rate the square root of p, while the measured probability is the SQUARE of the amplitude; so when the amplitude reaches order one the probability also reaches order one, but the amplitude only had to travel a distance set by the square root of p, not p. Equivalently, a rotation by an angle of order the square root of p per step reaches a right angle in order one over the square root of p steps, and Born's rule converts the linear-in-steps amplitude growth into the quadratic advantage over probability-based classical sampling. All costs are counted in state-preparation-unitary and good-subspace-reflection calls.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Sets sine of the half-angle = sqrt(p) and shows the iterate is a two-reflection rotation advancing the amplitude by order sqrt(p) per step",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Contrasts classical repetition giving accumulated success probability growing linearly in p per trial (1 - (1-p)^t approximately p t)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Deduces order 1/sqrt(p) quantum iterations versus order 1/p classical trials to reach constant success",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the quadratic speedup arises because amplitude grows linearly in steps while measured probability is its square (Born's rule), keeping costs in state-preparation and reflection calls",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:approximation",
+      "concept:complexity",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Initial success probability p is small and positive; the good subspace is defined by a projector"
+    ],
+    "conventions": [
+      "sine of the half-angle equals sqrt(p); amplitude is the sine of the running angle",
+      "Costs counted in state-preparation-unitary and good-subspace-reflection calls"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Set sine of the half-angle = sqrt(p), the overlap of the prepared state with the good subspace.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The iterate is a two-reflection rotation by the full angle in the good/bad plane.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Each iteration raises the good amplitude by order sqrt(p) for small p.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Classical repetition raises accumulated success probability only like p per trial.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Reaching constant success needs order 1/sqrt(p) iterations versus order 1/p trials.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Born's rule squares the linearly growing amplitude, yielding the quadratic speedup.",
+        "supporting_nodes": [
+          "concept:approximation",
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires the amplitude-versus-probability growth comparison and the Born-rule explanation of the quadratic speedup, with costs kept in oracle/reflection calls."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "181-182",
+          "anchors": "Chapter 11 introduction and Section 11.2: amplitude amplification rotates amplitude between success and failure branches, is fully unitary and needs quadratically fewer operations than statistical sampling, with the explicit statement that quantum algorithms work with wavefunction amplitudes whose square gives probability so a rotation by theta grows probability like theta squared (around Eq. 11.1 and the quadratic-advantage discussion), and the generalization to a good-subspace projector Pi_good with I - Pi_good = Pi_bad",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed"
+        }
+      }
+    ],
+    "family": "qsc-grover-amplitude-amplification",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Amplitude amplification rotates the good-subspace amplitude by order sqrt(p) per iteration, reaching constant success in order 1/sqrt(p) iterations versus 1/p classical trials; the quadratic speedup is because amplitude grows linearly in steps while measured probability is its square.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "polynomial-signals-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

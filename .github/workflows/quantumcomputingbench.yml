@@ -1,0 +1,43 @@
+name: QuantumComputingBench contracts
+on:
+  push:
+    branches: [main, loty]
+    paths:
+      - 'benchmarks/quantumcomputingbench/**'
+      - '.github/workflows/quantumcomputingbench.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/quantumcomputingbench/**'
+      - 'QuantumBlockEncoding/**'
+      - 'website/research/**'
+      - 'web/library/declarations.json'
+      - '.github/workflows/quantumcomputingbench.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r benchmarks/quantumcomputingbench/requirements.txt
+      - run: python -m unittest discover -s benchmarks/quantumcomputingbench/tests -v
+        env:
+          PYTHONUTF8: '1'
+          PYTHONDONTWRITEBYTECODE: '1'
+      - run: python benchmarks/quantumcomputingbench/scripts/qcb.py validate --version release-v3
+        env:
+          PYTHONUTF8: '1'
+      - run: python benchmarks/quantumcomputingbench/scripts/release.py validate
+        env:
+          PYTHONUTF8: '1'
+      # This job validates checked artifacts and software contracts. It does NOT
+      # claim to rerun Lean or to provision a container verifier image.

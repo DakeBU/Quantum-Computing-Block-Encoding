@@ -1,0 +1,275 @@
+{
+  "reviewer": "tensor-symmetry-reviewer-b3",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-plan-301-tensor-commutant-lemma",
+      "authored_sha256": "10a9d5adcffbf543de5ae54feec1bff4fce5f0e6557da80bce6b69cc71d65d76",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Lemma 4.4 (tensor commutant: commutant of End(V) tensor 1 is 1 tensor End(W)). Block-matrix proof matches source Eq.(4.2)-(4.3) exactly. Finite-dim complex V,W stated. Uses center(End V)=scalars, justified in-proof via rank-one ops/irreducibility, no unstated hypothesis. Distinct from representation-batch plan-105 (EndG scalar of ONE irrep): this is the tensor-factor commutant. New core.",
+      "checked_sources": [
+        "p39#Lemma4.4",
+        "p39#Eq4.2-4.3"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-302-double-commutant-bicommutant",
+      "authored_sha256": "1f487571d392a9d81738b46fc6e61ec3aecd8adf3b1e75d846dc71e8b24217b0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 4.5(i)-(iii) + Exercise 4.2 bicommutant step. Pairwise-INEQUIVALENT irreducibles with multiplicity n_alpha correctly assumed (so A' has no cross-type blocks); isotypical projections in A force block-diagonality. Uses 301 as sub-lemma (within-batch), A''=A by second application. Correct.",
+      "checked_sources": [
+        "p39-40#Prop4.5",
+        "p40#Eq4.4-4.7",
+        "p43#Exercise4.2"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-303-external-product-irrep",
+      "authored_sha256": "cd7571ea0869dcc970ec92887f33a9e3bb1baaba446984c856d1e3ef5933d638",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "External product (phi tensor psi)(g,h)=phi(g) tensor psi(h) vs diagonal phi(g) tensor phi(g): contrast correct. Irreducibility via character-norm factorization, exhaustion via conjugacy-class counting #irr(GxH)=#cls(G)*#cls(H), valid for FINITE groups per assumptions. Minor anchor nit: Exercise 4.1 is on PDF p43 (Sec 4.4), not p38; Def 4.2 + the two facts are p38. Math unaffected. New core.",
+      "checked_sources": [
+        "p38#Def4.2",
+        "p38#facts(i)(ii)",
+        "p43#Exercise4.1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+      "authored_sha256": "2fc0107b3da69519eb96eabe911f289f603a909c55d730750fa2fc4db6ba6146",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Schur-Weyl mutual commutant: B=span{U^{tn}} equals A'=span{X^{tn}}, B'=A. The 'A'=span X^{tn} known' hypothesis is exactly Cor 4.8, explicitly flagged as given (not smuggled). Lagrange interpolation correctly extends invertible X+t1 to non-invertible X at t=0 (degree-n poly, n+1 points). Domain correct: GL(V) diagonal; NO spurious d>=n restriction. Double commutant for final step. Absent from rep batch and first-50. New core.",
+      "checked_sources": [
+        "p41-42#Prop4.10",
+        "p42#Eq4.15-4.16",
+        "p41#Cor4.8(given)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+      "authored_sha256": "5dc83b6f2238773e3823cab9559e495a29d5c6d016005e4a2108896723c7d573",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Cor 4.8: conjugation-invariant C in span{X^{tn}}. Identifies End(V^{tn})~End(V)^{tn}, conjugation by permutation = factor action on End(V)^{tn}, invariance => symmetric subspace, applies spanning lemma (306/Lemma 4.7) with underlying space End(V). Faithful. New core.",
+      "checked_sources": [
+        "p41#Cor4.8"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-306-symmetric-power-spanning",
+      "authored_sha256": "f8be92b8101ea32f3499eb57189d6681b8df11ab31888ce6d5b25208e79dc084",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Lemma 4.7: Sym^n(V)=span{v^{tn}}. Reverse inclusion via polarization (symmetrized basis tensors as mixed partials Eq.4.11-4.14), limits of difference quotients of single-vector powers, closedness of finite-dim span W. Finite-dim stated. Matches source. New core.",
+      "checked_sources": [
+        "p41#Lemma4.7",
+        "p41#Eq4.11-4.14"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-307-young-row-bound",
+      "authored_sha256": "663dc0527443230c15c5e2198e7795542ad091ba999f8c88fd38cc3ad7097c22",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Young diagram p>d rows contributes nothing: filled tableau from d-letter alphabet, first column length p>d, pigeonhole => repeated label, column antisymmetrization (c_T factor of e_T=r_T c_T) kills it. Mechanism correctly identified. Faithful to p48 remark. New core.",
+      "checked_sources": [
+        "p48#Sec5.4.2"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+      "authored_sha256": "2506a4973852a2bb16c6b9668abe66ed181a1f21b0a94452eb143aa012f865a9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Antisymmetrizer P_a vanishes if d<n: image=totally antisymmetric subspace spanned by wedges; repeated index => vanishing wedge; n>d pigeonhole; rank=C(d,n)=0. Matches Exercise 5.2. Distinct from 307 (signed average projector vs Young symmetrizer; n>d vs row-count), not a repeated count.",
+      "checked_sources": [
+        "p51#Exercise5.2",
+        "p51#Eq5.38"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-309-majorization-annihilation",
+      "authored_sha256": "42226b87d3908f58792763b2be388d15e8861239b1a94d2ec3e26eab0cf38f0a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Majorization annihilation Eq.(5.25): e_T kills v iff sorted content NOT majorized by lambda, i.e. some 1<=k<=d-1 with sum of k largest contents > sum of first k rows. k-range matches source. Column-strict-filling-feasibility justification is a correct gloss. Generalizes 307 but a distinct quantitative criterion. New core.",
+      "checked_sources": [
+        "p48-49#Eq5.25"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+      "authored_sha256": "5e19012096fcef37530d606ca6cacbe5b9585d10a6e9249a7711f5b1a2895631",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "(C^3)^{t4} recomputed independently: partitions of 4 into <=3 parts (4),(3,1),(2,2),(2,1,1); d_lambda=1,3,2,3; m_{lambda,3}=15,15,6,3 [(4):C(6,2)=15; (3,1):3*5/2*2=15; (2,2):1*2*3=6; (2,1,1):2*3/2*1=3]; products 15,45,12,9 sum 81=3^4. All correct, matches Exercise 5.3(iii)/Eq.5.29. New core.",
+      "checked_sources": [
+        "p45-46#Prop5.10",
+        "p51#Exercise5.3(iii)",
+        "p50#Eq5.29"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-311-weyl-dim-u2",
+      "authored_sha256": "868158cb2d86e98e9960718bffce599684f17ce8a8bbc940473d1acd2e5814be",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "dim U^2_lambda=lambda_1-lambda_2+1 two ways: (a) two-letter SSYT (columns forced 1-over-2, lambda_1-lambda_2 free first-row cells => +1); (b) det^{lambda_2} tensor Sym^m(C^2), m=lambda_1-lambda_2, det 1-dim, Sym^m dim m+1. Agree. Matches Eq.5.26. New core.",
+      "checked_sources": [
+        "p46#Prop5.10(ii)Eq5.11",
+        "p48#Eq5.26-5.28"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-312-hook-length-standard",
+      "authored_sha256": "84fd0837714576cddb95b0421809af47a3441e0bbbb31f2fdbfaa73743e7f85b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Hook formula (4,2,1): hooks 6,4,2,1/3,1/1, product 144, 7!=5040, 5040/144=35. Matches Example 5.11. Single-row and single-column of n: hook product n! each, count 1. Correct. New core (concrete computation, distinct from 310's sum identity).",
+      "checked_sources": [
+        "p45-46#Prop5.10(i)",
+        "p46#Example5.11Eq5.12-5.13"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-313-cycle-type-conjugacy",
+      "authored_sha256": "3a952232775e76e710dfde3c698515e14f7ac1554c2878ddc2f84c99e766363d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Conjugate of cycle by sigma = cycle on sigma-images (Eq.5.4/5.37); both directions of cycle-type conjugacy (forward: disjoint-cycle length preservation; converse: explicit sigma matching equal-length cycles entrywise, well-defined as cycles partition ground set). Complete. New core.",
+      "checked_sources": [
+        "p44#Prop5.5Eq5.4",
+        "p51#Exercise5.1Eq5.37"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-314-n2-sym-antisym-split",
+      "authored_sha256": "bb6c0e49692a2a3ee758a5e6dc98ead163ff505c2c02cbba8f3a5c3324d5524c",
+      "verdict": "reject",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-plan-112-sym-antisym-projectors-swap-operator"
+      ],
+      "notes": "OVERCLAIM. native_nl.new_problem_core=true, existing_core_aliases=[] but the core -- F involution (F^2=1), eigenvalues +-1, (1+-F)/2 complementary orthogonal projectors onto sym/antisym subspaces of a tensor square -- IS the core of representation-batch plan-112 (sym-antisym-projectors-swap-operator), proved there identically. Only increment is dim Sym=d(d+1)/2, dim Lambda=d(d-1)/2 (just source Eq.6.9/6.11), insufficient for a new core. Math CORRECT and faithful to p52-53; reject is purely for the unasked novelty overclaim, not a math error. Shared-lemma collision found by content comparison, not ID.",
+      "checked_sources": [
+        "p52-53#Eq6.5-6.14",
+        "p53#Eq6.9",
+        "p53#Eq6.11"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-315-werner-twirl-visibility",
+      "authored_sha256": "9ea0e407b718cc1eed1f3fb4d4102b0c5f75a68b28890ceb61006b401da25832",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "U-tensor-U Haar twirl: yields Werner state (left-invariance), idempotent (Werner states are fixed points), preserves visibility alpha=tr(F rho) (cyclicity + (UtU)^dag F (UtU)=F). Matches Prop 6.3(i)(ii). Distinct from Pauli-twirl plan-107: there commutant is scalar (irreducible=>Schur, single point); here commutant is 2-dim (sym (+) antisym), twirl lands on 1-param Werner family. Not the same twirling core. New core.",
+      "checked_sources": [
+        "p54-55#Prop6.3",
+        "p54#Eq6.19-6.27"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-316-werner-entangled-iff",
+      "authored_sha256": "66411fc6eb6e4b21a635e47454ca1fc9c31d798fda48b586e3ce3e289814680a",
+      "verdict": "reject",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-plan-007-werner-entanglement-threshold"
+      ],
+      "notes": "OVERCLAIM. new_problem_core=true, aliases=[] but the core -- Werner state entangled iff tr(F rho)<0, via F^{T_B}=d|Phi+><Phi+| giving a negative PT eigenvalue plus twirled-product separability for alpha>=0 -- is first-50 core plan-007 (werner-entanglement-threshold), same iff and method (two-qubit, PT eigenvalue x/2, swap-trick). This generalizes to general d (lambda_1=alpha(d^2-1), Eq.6.37-6.38) but the core result/proof is the same; d=2 is the special case. Math CORRECT; reject for novelty overclaim (should be existing_view aliasing plan-007).",
+      "checked_sources": [
+        "p55-56#Lemmas6.4-6.5",
+        "p55#Prop6.6",
+        "p56#Eq6.31-6.38"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-317-multipartite-werner-commutant",
+      "authored_sha256": "8853097b6aa73f710fa4f78e634959681ea262eecc1b1870d69b5b624e21df0a",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-plan-304-schur-weyl-mutual-commutant"
+      ],
+      "notes": "Multipartite Werner (U^{tn}-invariant) states = linear combinations of factor-permutation operators. Faithful to Eq.6.39-6.40. But core content is the Schur-Weyl mutual-commutant A'=B (span of permutations) applied -- i.e. plan-304 re-used. core_verdict existing_view (alias plan-304) to avoid double-counting the mutual-commutant core; the problem framing is a legitimate distinct question so the item is accepted, only core-novelty downgraded. Not an external overclaim (its own new_problem_core/aliases are internally consistent in spirit).",
+      "checked_sources": [
+        "p56#Eq6.39-6.40"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-318-permutation-invariant-poly",
+      "authored_sha256": "00234e4d4cd3cf5ae5315e138f0e4b4ac7c68a77e42a37483114aa3fd9aae4f6",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Permutation-invariant operator = poly(n) parameters for fixed d: Schur-Weyl blocks (<=d-row diagrams), invariance => identity on each S_n factor, free on each U_d factor; count = sum over diagrams of (dim U^d_lambda)^2; bounded by #diagrams<=(n+1)^d (Eq.5.31) times dim U^d_lambda<=(n+1)^{d(d-1)/2} (Eq.5.33) => polynomial. Matches Cor 5.19. New core.",
+      "checked_sources": [
+        "p50#Cor5.19",
+        "p50#Eq5.31",
+        "p50#Eq5.33"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-319-spectrum-concentration",
+      "authored_sha256": "9ff965febeb6a984fd97f8c9dd1c0c0940c0e063623ad3aad2b956e8c2b21a03",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Spectrum concentration: rho^{tn} block-diagonal; block weight = dim V_lambda * tr omega_lambda(rho); two-sided bound ~ exp(-n D(lambda-bar||s)) up to poly(n) prefactors (Eq.5.36). D>=0, =0 only at lambda-bar=s => mass concentrates near spectrum; poly prefactors cannot beat the exponential. Rate correctly D(lambda-bar||s). Matches Eq.5.35-5.36. New core.",
+      "checked_sources": [
+        "p50-51#Eq5.35-5.36"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-320-isotropic-partial-transpose",
+      "authored_sha256": "e42a1e8388de7634740bbaf180fa857f3a46344e9617272f5d415c4714969353",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "rho isotropic (invariant under U-tensor-conj(U)) iff rho^{T_B} Werner. Uses PT sandwich identity Eq.6.46 and (conj U)^T=U^dag, transporting U-tensor-conj(U) symmetry into U-tensor-U (Werner); PT involution gives both directions. Matches Def 6.7/Eq.6.45-6.46. New core.",
+      "checked_sources": [
+        "p57#Def6.7",
+        "p57#Eq6.44",
+        "p57#Eq6.45-6.46"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

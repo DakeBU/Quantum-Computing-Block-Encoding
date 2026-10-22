@@ -1,0 +1,143 @@
+{
+  "reviewer": "structured-prep-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-sp-101",
+      "authored_sha256": "9fe187d059d0067427770a7b3fd7d56bccd33b0326f64ac24619f5e13e34adb7",
+      "verdict": "reject",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Core math is correct and matches the source exactly: jetPolynomial writes P in the (x-a) basis with coeff v(j)/j!, eval_iterate_derivative gives (d^j P)(a) = j! * taylorcoeff_j, and jetPolynomial_jet concludes (d^j P)(a) = v(j) for j<=k. All three semantic steps substantive, nonzero-normalizer handled (j! cast nonzero, field_simp cancels). DEFECT (coordinator flag confirmed): the reference_answer appends an unasked, unproven, ambiguous claim -- 'the construction has degree at most k, which is the minimal degree able to carry k+1 independent derivative constraints at a single node.' This conflates 'the construction has degree at most k' with a minimality statement. It is false as literally attached to the construction's own degree (for v=0 the polynomial is 0, degree < k; for v with v(k)=0 degree < k), and the intended worst-case/dimension-count justification (dim of P_<=k = k+1 constraints) is never argued and not in the question. Decorative over-claim beyond what is asked and proven -> reject the item as written; the asked statement itself is fully valid and the source backs it. Minimal fix: delete the trailing minimality clause (or restate as 'degree at most k, which suffices for k+1 constraints').",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L28-29 def jetPolynomial",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L32-35 theorem eval_iterate_derivative",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L38-49 theorem jetPolynomial_jet"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-102",
+      "authored_sha256": "f4e8499831d72776720a2806bb494df6a590587174027e3608e42e4135932a4c",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Matches jet_eq_of_pow_dvd_sub exactly: (X-a)^(k+1) | p-q, j<=k => k+1-j>=1 => (X-a) | derivative^[j](p-q) => eval at a is 0 => jets agree by linearity (iterate_derivative_sub). Sign/multiplicity reasoning correct. Sharpness witness p-q=(x-a)^(k+1) with nonzero (k+1)-th derivative (k+1)! at a is a genuine, correct counter-illustration showing j=k+1 is not forced -- not padding. 3 distinct substantive steps (order-drop, vanishing-at-root, linearity+sharpness). No universal/parametric over-claim. Source-inspection only.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L52-62 theorem jet_eq_of_pow_dvd_sub"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-103",
+      "authored_sha256": "14dd68a4f23563cb597665c6f3712c95bc935d1a52d177e86045c803bb415784",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Matches coefficientSeries_coeff (a_{k,r}=sum_m C(k+r-m,k)/m!), coefficientSeries_coeff_nonneg, coefficientSeries_coeff_zero=1, coefficientPolynomial_pos (finite nonneg sum, r=0 term =1 >0 via single_le_sum), and sourceInterpolant_pos. Zero regime handled: the strictness case split t=0 vs t>0 mirrors the source by_cases hz (p+1=0) exactly -- at t=0 first term exp(-1)*A_k(0)>0; at t>0 second term positive. Prefactors sign correct (exp(-1)>0, powers nonneg). 4 substantive steps, no padding, no numerical=parametric substitution (exact real/formal-series algebra). Distinct from sp-106 (which proves the coeff formula+nonneg at series level) and sp-107 (structural/symmetry). ",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L184-204 coefficientSeries_coeff / _nonneg / _zero",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L254-265 theorem coefficientPolynomial_pos",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L267-286 theorem sourceInterpolant_pos (by_cases hz handles t=0 regime)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-104",
+      "authored_sha256": "a276c2f80673616a1ea57d8d4122e0f77b94d584c7a5bc9fdac64e225d1199b7",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "CRT/degree-count uniqueness matching pow_dvd_sub_of_jet_eq (jet-agreement <=> (X-a)^(k+1) divisibility, via X^(k+1) | taylor and factorial-nonzero resolve_left), endpointModuli_coprime (IsCoprime.pow of x+1 vs x, difference a unit), and sourceInterpolant_unique (coprime.mul_dvd then natDegree_le_of_dvd vs 2k+2 while deg(p-q)<=2k+1 => contradiction => p=q). Coprimality and degree budget roles explained correctly; 'difference is 1' unit argument matches isCoprime_X_sub_C_of_isUnit_sub(by norm_num). 3 substantive steps. Distinct core from sp-105 (necessity/counterexample side of same bound).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L381-392 theorem pow_dvd_sub_of_jet_eq",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L120-127 leftModulus/rightModulus/endpointModuli_coprime",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L395-417 theorem sourceInterpolant_unique (hm: product natDegree = 2k+2)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-105",
+      "authored_sha256": "b320581beab3617324b67469738a84918a92428e280467c9c767ce8451d269ee",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Counterexample E=(x+1)^(k+1) x^(k+1), degree 2k+2, order-(k+1) zero at each node => all k-jets vanish at -1 and 0; adding E to any solution preserves jets but changes polynomial => uniqueness fails without degree bound. This is exactly the sharpness complement of sourceInterpolant_unique's hypothesis natDegree<=2k+1 and the leftModulus*rightModulus degree-2k+2 count (lines 408-413). Coset/dimension claim ('solutions form a coset of ideal (E); allowing degree 2k+1+d adds d-dim family') is mathematically correct and here it IS the asked content (question explicitly asks to 'state the exact dimension'), unlike the sp-101 decorative over-claim -- so not a defect. 3 substantive steps. Counterexample task genuinely constructs the minimal vanishing-ideal generator.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L120-123 leftModulus=(X-C(-1))^(k+1), rightModulus=(X-C0)^(k+1)",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L408-417 sourceInterpolant_unique degree count: product natDegree=2k+2 vs budget 2k+1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-106",
+      "authored_sha256": "677d79e2df56d4d292651871dd7581b9d27d242f25d40a4ffc620dc3f8ccfaae",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Cauchy-product coefficient identity: [X^r](exp * (1-X)^-(k+1)) = sum_m (1/m!) C(k+(r-m),k) = sum_m C(k+r-m,k)/m!, matching coefficientSeries_coeff exactly (uses coeff_exp=1/m! and invOneSubPow_val_succ_eq_mk_add_choose = C(k+i,k), antidiagonal->range reindex i=r-m). Nonnegativity (each term nonneg) and r=0 value 1 (single term C(k,k)/0!) match _nonneg and _zero. Reindex antidiagonal argument correct and substantive. Distinct from sp-103: this is the series-level coefficient lemma; sp-103 is the downstream polynomial positivity on [-1,0]. 3 steps, convolution + reindex + nonneg/value are each distinct. No numerical substitution.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L169-170 def coefficientSeries = exp * invOneSubPow(k+1)",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L184-195 coefficientSeries_coeff (antidiagonal reindex)",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L197-204 coefficientSeries_coeff_nonneg / _zero"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-107",
+      "authored_sha256": "e43b2943668b2aa8af0a8e2cc5e40fc938d5396d64948f1365f7c09b3294c27b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Concept task: structural decomposition of the symmetric two-point interpolant. Matches sourceInterpolant_eval closed form S(p)=exp(-1)(1-t)^(k+1)A_k(t)+t^(k+1)A_k(1-t) with t=p+1, endpointFactor=(1-X)^(k+1)*coefficientPolynomial, and sourceInterpolant (taylor 1 of C(exp(-1))*endpointFactor + endpointFactor.comp(1-X)). Role of each ingredient correct: order-(k+1) factor annihilates opposite node's k-jet (endpointFactor_one_jet uses (X-C1)^(k+1) | endpointFactor), A_k(0)=1 gives node value, reflection t->1-t swaps terms up to exp(-1). Nonzero/sign: A_k(0)=1 (coefficientSeries_coeff_zero) load-bearing and correct. 3 substantive conceptual steps, no padding. Distinct from sp-103/sp-106 (positivity/coeff) -- this is the decomposition/symmetry concept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L176-182 endpointFactor / sourceInterpolant",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L227-235 endpointFactor_one_jet (order-(k+1) decoupling)",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L298-308 theorem sourceInterpolant_eval (t=p+1 symmetric form)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-108",
+      "authored_sha256": "9cc34668add9f89fcdfb2d2a9868644f1b812f742d0e687edc599a46e3aeeb99",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Degree-elevation identity t^i(1-t)^(k+1) = sum_{j=0}^{k-i} w(k,i,j) B_{2k+1,i+j}(t) with w=C(k-i,j)/C(2k+1,i+j). Matches elevation_term exactly: C(2k+1,i+j) in B cancels denominator of w, 2k+1-(i+j)=(k+1)+(k-i-j) regrouping, leaving t^i(1-t)^(k+1)*C(k-i,j)t^j(1-t)^(k-i-j); and elevation_sum: sum over j is binomial (t+(1-t))^(k-i)=1 (add_pow). C(2k+1,i+j) nonzero (Nat.choose_pos, i+j<=2k+1) correctly used as the normalizer -- nonzero-normalizer check passes. Nonnegativity deduction matches sourceBernsteinCoefficient_nonneg (a_{k,i}>=0, w>=0, exp(-1)>0 reflected copy). tensor/index bookkeeping (i+j=r collection) correct. 3 substantive steps. Distinct Bernstein-representation core.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteBernstein.lean#L50-66 elevationWeight / elevation_term (choose_pos nonzero denom)",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L69-84 theorem elevation_sum (add_pow => 1)",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L167-173 sourceBernsteinCoefficient / _nonneg"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-109",
+      "authored_sha256": "0aae479b5f31e085a66ef068a8fff9a6d344e070b7bce84f7c7351b39adbea08",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Operator-algebra de Casteljau: T_s=(1-s)Id+s*Shift, L_u c = i->(T_u^i c)(0). Matches casteljauStep (t.coefficientShift+(1-t).1), casteljauStep_mul_parameter (T_{ut}=(1-t).1+t.T_u, verified entrywise -- matches reference step 1 up to the equivalent form), leftRestriction_step (semiconjugacy L_u(T_{ut}c)=T_t(L_u c)), casteljau_leftRestriction (Function.Semiconj.iterate_right d times), leftRestriction_eval (apex = Bernstein sum, reparametrise to u*t). The semiconjugacy->iterate->readout chain is exactly the source structure, not index bookkeeping. 4 genuinely distinct substantive steps (linear step/left-edge def, scaled-parameter factorization, semiconjugacy+iteration, apex->Bernstein translation). No padding. Distinct from sp-110 (bounds/stability).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteBernstein.lean#L219-247 casteljauStep / casteljau_eq_sum",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L252-277 casteljauStep_mul_parameter / leftRestriction_step / casteljau_leftRestriction (Semiconj.iterate_right)",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L279-282 theorem leftRestriction_eval (reparametrise to u*t)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-110",
+      "authored_sha256": "2d65f5d3a4669fbc454d4ea731a6762a131902700e8409c0d4d86487dd0b363d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Convex-hull/stability: partition of unity (basis_sum: sum B_{d,r}=1) + basis_nonneg on [0,1] => Bernstein sum is convex combination (bernstein_sum_bounds in Icc lo hi). Each de Casteljau subdivision output is such a sum (leftRestriction_bounds, rightRestriction_bounds), and the second-step parameter (v-u)/(1-u) in [0,1] for 0<=u<v<=1 (div_nonneg + div_le_one with 1-u>0) -- the parameter-in-[0,1] check matches restrictCoefficients_bounds hypotheses (hden:0<1-u). Final restrictCoefficients_bounds composes both. Sign/zero: 1-u>0 strict (from u<v<=1) correctly load-bearing in division. Finite-vs-continuous: coefficients indexed over finite range, basis continuous but evaluated pointwise -- no conflation. 3 substantive steps. Distinct from sp-109 (exact reparametrisation vs bound preservation).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteBernstein.lean#L327-346 basis_sum / bernstein_sum_bounds (convex combination)",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L348-361 leftRestriction_bounds / rightRestriction_bounds",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L364-374 restrictCoefficients_bounds ((v-u)/(1-u) in [0,1], hden 0<1-u)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

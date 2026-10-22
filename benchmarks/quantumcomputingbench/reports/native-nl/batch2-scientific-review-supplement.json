@@ -1,0 +1,67 @@
+{
+  "reviewer": "scientific-algorithms-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "supplements": "reports/native-nl/batch2-scientific-review.json",
+  "note": "Supplemental pass addressing coordinator follow-up: (1) resolve the primary-source hash caveat against the actual PDF; (2) resolve the Eq.(9.95) sqrt form on the rendered page and its effect on item 215; (3) a skeptical overclaim pass on items 201-220 beyond numerical witnesses, surfacing one genuine edge-case defect in item 210. The prior report file is preserved unchanged; only the deltas below supersede it.",
+  "primary_source_resolution": {
+    "pdf_path_inspected": "temp/qasc-primary.pdf (5,718,900 bytes)",
+    "computed_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+    "claimed_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+    "verdict": "MATCH - caveat RESOLVED. The authored primary_source sha256 is confirmed by direct Python hashlib.sha256 of the actual PDF binary. The earlier mismatch was only against temp/qasc-batch2-primary.txt, a derived text extract (hash 79823d64fb4c7a68113e7689696e50a00229e6ef0237227c728f10cbe43e0cd5); the real PDF is authentic. All source_refs primary_source digests in batch2_scientific_algorithms.json are therefore verified against the genuine source."
+  },
+  "eq_9_95_resolution": {
+    "method": "rendered PDF page (pdf index 159, printed p.160) region containing Eq.(9.95) at 4x zoom and read visually",
+    "actual_source_form": "O_A |i>|0>|j> = |i> ( sqrt(A_ij) |0> + sqrt(1 - |A_ij|) |1> ) |j>",
+    "finding": "The source genuinely writes sqrt(1 - |A_ij|), NOT sqrt(1 - |A_ij|^2). This is CORRECT, not a typo: Eq.(9.95) is a SQUARE-ROOT entry oracle whose |0> amplitude is sqrt(A_ij), so the two squared amplitudes are |sqrt(A_ij)|^2 + |sqrt(1-|A_ij|)|^2 = |A_ij| + (1 - |A_ij|) = 1 under the standing assumption ||A||_max <= 1. It is structurally distinct from the amplitude oracle Eq.(9.68)/(9.72), whose |0> amplitude is A_ij itself and therefore requires sqrt(1 - |A_ij|^2). My prior report's characterization of this as a 'source-faithful quirk/typo' was INCORRECT and is withdrawn.",
+    "impact_on_215": "NONE. Item 215 reproduces Eq.(9.95) exactly as the source has it (sqrt(1-|A_ij|)) and it is the mathematically correct normalization for a square-root oracle. The assumption string in 215 ('O_A loads the square root sqrt(A_ij)') correctly flags this as a square-root oracle. 215 remains ACCEPT; the source-vs-semantic label is consistent."
+  },
+  "skeptical_overclaim_pass": {
+    "scope": "All 20 items re-examined for claims that exceed what the source/mathematics support, independent of the numerical spot-checks already reported.",
+    "clean": [
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220
+    ],
+    "clean_notes": "201 P(succ) psi-independence correct via completeness. 203 amplitude-amplification O(beta 2^{m/2} log(1/delta)) and 'quadratic speedup' correctly hedged. 204 assumes 0<|c|<1 (c=0 orthogonal case correctly excluded, where two outcomes WOULD suffice). 205 |c|<1 stated; P_? PSD verified at |c|->0 and |c|->0.999. 211 'alpha=s natural rather than smaller' is explicitly hedged ('with this oracle structure','generally','worst case'), consistent with the 210 lesson, so not an overclaim. 215 sqrt(1-|A_ij|) correct (see eq_9_95_resolution). 217 definite-parity equivalence holds incl. sigma_i=0. 219 A^{-1}=V Sigma^{-1} W^dag verified; exp/log non-SVT asserted by analogy matching the source's own claim. No hidden overclaims found in these 19.",
+    "defect_found": [
+      210
+    ]
+  },
+  "superseding_items": [
+    {
+      "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity",
+      "authored_sha256": "1bfc7fa6882126f4d53d012cace884eb17770cb1b3b3b3590c5cdfbaa09d3bb3",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "supersedes_prior_verdict": "accept",
+      "notes": "REVISED after skeptical edge-case pass. The core (1,1)-block-encoding identity <0|<i|O_A|0>|j> = A_ii delta_ij is correct and holds for ALL diagonal A with ||A||_max <= 1, including A=0 (both sides 0) - the graded identity portion is fine. However the OPTIMALITY discussion contains an unqualified edge-case overclaim: the reference answer, rubric r4, semantic_steps[4] and native_nl assert that for ||A|| < 1 'a smaller alpha = ||A|| is achievable, e.g. by encoding A/||A||'. This FAILS for the zero matrix A=0, which is in the stated domain (||A||_max = 0 <= 1): (i) 'encoding A/||A||' is division by zero / undefined; (ii) a subnormalization factor must be strictly positive, and the infimum of valid alpha for A=0 is 0 but is UNATTAINED, so there is no 'smaller achievable alpha = ||A|| = 0'. The claim 'alpha = 1 is globally optimal iff ||A|| = 1, otherwise not optimal' is correct only for A != 0; at A=0 alpha=1 is simply one of infinitely many valid (never-optimal, no-minimum) choices. FIX (minimal): add the qualifier ||A|| > 0 (equivalently A != 0) to the 'smaller alpha achievable' statement in reference_answer, rubric r4, semantic_steps[4] and native_nl core_summary; optionally note the A=0 degenerate case where no positive-minimal alpha exists. Pending that qualifier. (This is a narrow, honestly-reported defect; the earlier coordinator-flagged false-global-optimality claim WAS fixed, this is a further corner the fix did not cover.)",
+      "checked_sources": [
+        "Example 9.17",
+        "Eq.(9.72)-(9.73)",
+        "U_A in BE_{1,1}(A)",
+        "alpha>=||A|| floor",
+        "A=0 degenerate case",
+        "PDF p.155"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ],
+  "net_verdicts": "Of 20 items: 19 accept (201-209, 211-220) unchanged from the prior report; 1 pending (210) superseding its prior accept. All core_verdict new_distinct. Primary-source hash caveat and the 215 source-fidelity note from the prior report are both resolved in author's favor (hash matches; 9.95 form correct)."
+}

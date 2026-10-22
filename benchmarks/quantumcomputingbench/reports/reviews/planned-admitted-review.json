@@ -1,0 +1,18 @@
+{
+  "reviewer": "main-session-primary-source-review-distinct-from-planned-author",
+  "method": "distinct-context-source-review",
+  "independence": "Main reviewer read exact primary textbook extracts independently from author; not human or Lean certification.",
+  "items": [
+    {
+      "key": "qit-bell-partial-trace-maximally-mixed-001",
+      "authored_sha256": "5b6ea6eb82a3a3961b7a8744f4d52eb2f1b2cd579eb53617696a0f00ceca645e",
+      "verdict": "accept",
+      "notes": "Verified primary PDF exact hash and pp3-7 Eqs2.14-2.18,2.22. Computational partial trace yields I/2; basis independence follows nondegenerate trace pairing. Global Bell state is explicitly pure, so a product factorization would force both factors rank1, contradict mixed marginal. Entanglement uses pure-separable implies product, not mixed marginal alone. Wording by definition is imprecise but argument preserves this essential pure-global premise.",
+      "checked_sources": [
+        "qit-bell-partial-trace-maximally-mixed-001",
+        "QIT primary PDF pp3-7"
+      ],
+      "formal_status": "not_applicable"
+    }
+  ]
+}

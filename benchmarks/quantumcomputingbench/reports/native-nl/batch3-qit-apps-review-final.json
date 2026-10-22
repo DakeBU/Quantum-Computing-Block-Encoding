@@ -1,0 +1,274 @@
+{
+  "reviewer": "qit-applications-reviewer-b3",
+  "method": "distinct-context-source-review",
+  "scope": "final_consolidated_original_20",
+  "supersedes_notes_for": [
+    "qcb-core-plan-402 (OCR reason)",
+    "qcb-core-plan-411 (accept->pending)"
+  ],
+  "preserves": [
+    "batch3-qit-apps-review.json",
+    "batch3-apps-supplemental-review.json"
+  ],
+  "repairs_reviewed_in": "batch3-apps-repairs-review.json",
+  "items": [
+    {
+      "key": "qcb-core-plan-401-isotropic-positivity-x-range",
+      "authored_sha256": "878b4d6d5e2d1cbc1810eb238373c522c0d8d303a20ae4272de068351606d100",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: tr rho(x)=1 identically; rho=a Phi+b(I-Phi), a=(1-x)+x/d^2, b=x/d^2 (mult d^2-1); interval [0,d^2/(d^2-1)] with both endpoints tight. Sound.",
+      "checked_sources": [
+        "p58#Exercise 6.2"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds",
+      "authored_sha256": "6d25bf62de607d1ddb7369e045f91ec83b2d7cfd3a3c7ddec8604b6f6acec327",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [
+        "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds-corrected-v2"
+      ],
+      "notes": "PENDING -- reason CORRECTED to OCR/linearization grouping error (supersedes first-pass 'false math' framing). The MAIN item's question text states the Werner criterion as 'alpha >= 1 - d/k'. Visual inspection of PDF p59 Eq 7.5 (temp/qit-page-59.png) and Figure 1(a) (d=2 shows alpha>=-1/k) confirm the TRUE printed formula is alpha >= (1-d)/k -- numerator grouping (1-d). The bounded primary TXT extract linearized the stacked fraction as 'alpha >= 1 - d / k', which the author (and this reviewer's first pass) misread as 1-d/k. Under the correct (1-d)/k grouping the item's intended sub-claim 'every d>=3 Werner state is 2-extendible' is TRUE ((1-d)/2<=-1<=alpha) and the all-k limit is 0=separability. So the content is correct; the as-written MAIN item carries the wrong (OCR-corrupted) formula 1-d/k and therefore stays pending until replaced by the corrected-v2 item in batch3_apps_repairs.json (reviewed accept). The underlying math is not wrong -- it is a source-linearization typo, now repaired.",
+      "checked_sources": [
+        "p59#Example 7.2 Eq (7.5) visual (fraction (1-d)/k)",
+        "p60#Eq (7.6), Figure 1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-403-extendibility-channel-converse-counterexample",
+      "authored_sha256": "fbaf65ea9e4c126c5433fb2d4a488b3128dcbe3db19914bc01dc95cc5d635450",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: Phi+ pure entangled => not 2-extendible; (id⊗D_x)(Phi+)=isotropic rho(x); 2-ext window x>=d/(2(d+1)); converse of channel-monotonicity disproved. Sound.",
+      "checked_sources": [
+        "p59#Eqs (7.3)-(7.4)",
+        "p60#Eq (7.6)",
+        "p65#Exercise 7.2, Eq (7.61)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+      "authored_sha256": "26de1f9940b1f7619ecc2231a9c0e1cf37b7839a92b4fb5e2914bbbe91cc12cc",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: d^2 from purification onto doubled d^2-dim local system + partial-trace monotonicity; non-triviality n-k>dk vs n-k>d^2k; vanishing iff k=o(n). Sound.",
+      "checked_sources": [
+        "p62-65#Prop 7.4, 7.6; Lemma 7.5; Eqs (7.15),(7.57)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-405-no-cloning-orthogonal-or-equal-boundary",
+      "authored_sha256": "8791a41283d1a29fcb619915917231eff18742d1b3e25c376ad51d51ed60629b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: unitarity => <psi|phi>=<psi|phi>^2 => overlap in {0,1}; |0>,|+> unclonable. Sound.",
+      "checked_sources": [
+        "p65-66#Theorem 8.1 proof"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-406-cloning-fidelity-asymptotics-and-ordering",
+      "authored_sha256": "dc81c3d401fdc15d4f21940575e8b2febafe1b2163abaa122bdc0af9aaf204f3",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: d_N/d_M=prod(N+j)/(N+d-1+j)>=1-Kd/N ->1 for fixed K; F<=F_avg (inf<=average); input-independent optimal map => both coincide. Sound.",
+      "checked_sources": [
+        "p68#Eqs (8.30)-(8.33), Remark 8.3"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+      "authored_sha256": "4fc6b0432f05e301c0d250d8a4f480b7dec52ba1e998364ef061ac2e17095680",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [
+        "qcb-core-plan-319-spectrum-concentration"
+      ],
+      "notes": "Verified: lambda/n valid ordered spectrum; D>=0 eq iff equal gives strictly positive off-spectrum exponent; polynomially many outcomes * exp(-n delta)->0; prefactor dominated. Sound. Thematic overlap with schur-batch 319 (same Prop 9.4 bound) noted; distinct emphasis (estimator validity/consistency); judged distinct.",
+      "checked_sources": [
+        "p71-74#Algorithm 9.1, Prop 9.4"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-408-separable-infinite-extendibility-and-hierarchy",
+      "authored_sha256": "1b0e5677aa93666f8dcde8e4ce4b5a66d2b188fd700410b4675522f8b38c762b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: explicit k-extension of separable state (shared-index copies), marginal recovery via tr=1, k=>k' by discarding, chain Ext_1 superset ... superset SEP, monogamy. Sound.",
+      "checked_sources": [
+        "p59#Lemma 7.1, (7.2)",
+        "p65#Exercise 7.1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-409-pure-bipartite-extension-forced-product",
+      "authored_sha256": "536d78614953acad359f4622b7521ec3b466399f76ee45334fa957faf0a67e50",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: purify + Schmidt across (AB:B'C); AB-marginal=rank-1 psi forces single term => psi_AB⊗omega_B'; pure entangled has no 2-extension. Sound.",
+      "checked_sources": [
+        "p59#Eqs (7.3)-(7.4)",
+        "p65#Exercise 7.3"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-410-channel-preserves-k-extendibility",
+      "authored_sha256": "5612be9e92bd842ce156d0d7e3aca72b2392f3f903d3b1d45aa9af5e41ca094a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: apply N independently to each B_i; tensor of CPTP is CPTP; tr_{B'_j}N(X)=tr_{B_j}X commutes partial trace past N; each A B'_i marginal=(id⊗N)(rho). CP/TP roles correct. Sound.",
+      "checked_sources": [
+        "p65#Exercise 7.2(i)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance",
+      "authored_sha256": "484658ddf0e741ea703cfb796c958468f0868f1b28ac7d1bf3e073b4fed791c4",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [
+        "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2"
+      ],
+      "notes": "PENDING (downgraded from first-pass accept). MAIN reference_answer embeds a FALSE intermediate -- 'for unitary U, U^T=conj(U^dagger) is false in general' -- but that identity is TRUE for every matrix (conj(U^dagger)=U^T by definition; verified ||U^T-conj(U^dagger)||=0). It also contains abandoned false-starts in part (b). The final conj(U)U^T=I computation and the U⊗barU invariance conclusion are correct, and the item correctly uses U⊗barU where source Exercise 6.1 (p58) literally says 'U⊗U' (false verbatim). Violates original-complete-NL / no-false-starts standard; stays pending until replaced by corrected-v2 (reviewed accept: single clean barU U^T=conj(UU^dagger)=I line, explicit U=diag(1,i) counterexample, explicit source U⊗U-vs-U⊗barU discrepancy note).",
+      "checked_sources": [
+        "p58#Exercise 6.1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+      "authored_sha256": "98488b705339d9e83012a2c008b43605d145cd24140f32aef4f43c9acfd41f96",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: X=int|phi><phi|^n supported on Sym^n, U^n-invariant by Haar left-invariance, Schur => X=c Pi_sym, tr fixes c=1/d_sym. Sound.",
+      "checked_sources": [
+        "p60-61#Lemma 7.3, Eqs (7.9)-(7.14)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-413-cloning-optimal-map-saturates-bound",
+      "authored_sha256": "2584f03a093c42d0fb5c55651d1a225e9b14d25d3b9155a6469d054bb7eec646",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: Pi_M phi^M Pi_M=phi^M (symmetric), factorizes to (d_N/d_M)*1*1=d_N/d_M for every phi => saturates. Sound.",
+      "checked_sources": [
+        "p67-68#Eqs (8.25)-(8.29)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+      "authored_sha256": "5735ba54ec0992f90b77c637bd597cecc12e57b69da8a08da8e8c69cb7642b77",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: W=UV substitution + Haar invariance => Tbar(V^N X V^N dagger)=V^M Tbar(X) V^M dagger. Covariance correct. Sound.",
+      "checked_sources": [
+        "p66-67#Eq (8.10), Prop 8.2",
+        "p69#Exercise 8.4"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+      "authored_sha256": "bb838be241d118742e921eca6bf9c0f6038d687e01d1b08d918c1ac2a6c27fe4",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified concept: (i) permutation symmetry free (rho^n perm-invariant, symmetrized effect same statistics); (ii) U^n-invariance natural wlog [MW16]; (iii) P_lambda>=0, sum=I, commute with Q_pi and U^n. Correctly cites wlog as stated result. Sound.",
+      "checked_sources": [
+        "p70-71#Sec 9.1-9.2, Eqs (9.1)-(9.5)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-416-young-projector-majorization-annihilation",
+      "authored_sha256": "5793d5bb883879e006ed837f5ca14aa87c995c65f76fe98c8f4bb42c6d3beb9c",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": [
+        "qcb-core-plan-309-majorization-annihilation"
+      ],
+      "notes": "SEMANTIC DUPLICATE of schur-batch core 309 (majorization-annihilation): identical Lemma 9.3 statement and column-antisymmetrization proof (f_1<=lambda_1, f_1+f_2<=lambda_1+lambda_2, ...), reworded 'proof' vs 'boundary'. Proof itself correct; rejected on duplication (no same-proof-reworded new count).",
+      "checked_sources": [
+        "p72-73#Lemma 9.3"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-417-symmetrized-vs-projected-state-identity",
+      "authored_sha256": "5c2d6d1cd4aea699ae28c45cfa2df18944d95a70ac999a867f793d745fed9fd2",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: Pi_n Q_pi=Pi_n from Pi_n=(1/n!)sum Q_sigma reindexing; Pi_n rhobar Pi_n=(1/n!)sum (Pi_n Q_pi)rho(Q_pi dagger Pi_n)=Pi_n rho Pi_n (average collapses). Sound.",
+      "checked_sources": [
+        "p70#Exercise 8.3"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing",
+      "authored_sha256": "5554acbc9ae0f5845bfa9d2248f2fad2f0d24c52712294696f4011d81561e524",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [
+        "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2"
+      ],
+      "notes": "PENDING (reaffirmed, three defects). MAIN answer: (1) part (a) CP reason wrong -- calls X->X⊗I a 'single isometric Kraus' map; it needs d^{M-N} Kraus ops (rank(X⊗I)>rank(X), impossible for single isometry); map is CP but reason false. (2) part (b) trace-non-increase proof unsound -- its factor (d_N/d_M)d^{M-N}>1, does not prove non-increase; correct is tr T(X)=tr(X Pi_N)<=tr X (verified). (3) part (b) equality condition wrong -- 'mixtures of pure powers'; correct is support in Sym^N (Bell (|01>+|10>)/sqrt2 symmetric, trace-preserved, not a pure-power mixture, verified). Underlying Exercise 8.5(i) statement is true. Stays pending until replaced by corrected-v2 (reviewed accept: multi-Kraus CP, Q=(d_M/d_N)Pi_N via Haar identity, exact tr T(X)=tr(X Pi_N), Sym^N-support equality with HS-norm argument).",
+      "checked_sources": [
+        "p67#Eq (8.25)",
+        "p69#Exercise 8.5"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-419-fidelity-telescoping-lower-bound",
+      "authored_sha256": "93ab4c5cb839f719e572eebd277315144379dfa4552a17723f8b92b2e0466e87",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: R=prod(m+j)/(k+m+j), min factor at j=1 => R>=((m+1)/(k+m+1))^{d-1}; Bernoulli => >=1-(d-1)k/(k+m+1); crude => >=1-kd/m. Three inequalities correct. Sound.",
+      "checked_sources": [
+        "p62#Eqs (7.30)-(7.34), Prop 7.4"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+      "authored_sha256": "0fa19d2695734c3117d3007accbfdb296367a4f1812c526ce96b94a7b78ea4d9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified: stars-and-bars => binom(n+d-1,n); degree-(d-1) polynomial vs d^n => fraction ->0; de Finetti/cloning live in Sym^n. Sound.",
+      "checked_sources": [
+        "p60#Weyl dim formula",
+        "p66#Prop 8.2"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

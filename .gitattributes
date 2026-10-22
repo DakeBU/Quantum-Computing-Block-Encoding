@@ -1,3 +1,5 @@
 # Executable evidence hashes must survive Windows/Linux checkouts unchanged.
 executable-exports/SP-HERMITE-001/** text eol=lf
 *.sh text eol=lf
+# Benchmark text hashes are LF-canonical on all supported platforms.
+benchmarks/quantumcomputingbench/** text eol=lf

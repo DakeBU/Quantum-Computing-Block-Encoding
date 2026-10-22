@@ -1,0 +1,14 @@
+{
+  "independent_review_pending": true,
+  "inherited_reviewed_release": 26,
+  "provisional": 12,
+  "schema_valid": 46,
+  "structural_errors": [],
+  "whole_graph_complete": false,
+  "withdrawn_old_gold": [
+    "k-becost-lexicographic-order",
+    "neg-prepare-firstcolumn-positivity",
+    "neg-ry-not-half-only-at-pi",
+    "qs-resource-depth-parallel-vs-serial"
+  ]
+}

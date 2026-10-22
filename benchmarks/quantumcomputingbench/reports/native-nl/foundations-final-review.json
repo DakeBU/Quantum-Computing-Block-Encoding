@@ -1,0 +1,127 @@
+{
+  "reviewer": "native-foundations-reviewer-distinct-context",
+  "method": "distinct-context-source-review",
+  "supersedes": "foundations-review.json (initial pass; la-001/002/009 were rejected as duplicates and have since been replaced by the author with new cores)",
+  "items": [
+    {
+      "key": "qcb-core-la-001",
+      "authored_sha256": "c32f50345c3e10b7e493f0d95b2edb01b22bff34726d394d0fa5bf1cb3060a68",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REPLACEMENT of the originally-rejected clog2 duplicate. New core targets TensorTrainCanonical.exists_core_lq (L67-80): reshaping a core's (Fin 2 x Fin r) composite column label to a flat Fin (2r) index via finProdFinEquiv, thin LQ in flat coordinates, and reindexing back to recover A = R*Q with Q*Q^T = 1 and inner dimension min(l, 2r). Verified exactly: Core (L18) is Matrix (Fin l) (Fin 2 x Fin r), slice (L20-21), and exists_core_lq uses e : Fin 2 x Fin r = Fin (2*r), ThinLQ.exists_thin_lq, with the Q-isometry recovered via e.sum_comp (bijective sum-reindexing) - exactly the three NL claims (bijection of size 2r; relabel leaves entries unchanged so R*Q reproduces the core; row-orthonormality survives bijective column reindexing; inner dim min(l,2r)). No v3 item targets exists_core_lq (v3 covers ThinLQ.exists_thin_lq and TensorTrainCanonical.contract/chainMass_eq/complexCore_isometry, not this reshape bridge). Node-prefix defect now fixed ('declaration:' present).",
+      "checked_sources": ["QuantumBlockEncoding/TensorTrainCanonical.lean#exists_core_lq L67-80", "QuantumBlockEncoding/TensorTrainCanonical.lean#Core L18", "QuantumBlockEncoding/TensorTrainCanonical.lean#slice L20-21"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-002",
+      "authored_sha256": "2199d5f84f7355851540a810554f614f8d9b5e164efcf26e7bf8d3502889c618",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REPLACEMENT of the originally-rejected betterThan duplicate. New core targets TensorTrainCanonical.absorb (L58-60) and absorb_slice (L62-64). Verified exactly: absorb A R a x = sum over b of A a (x.1, b) * R b x.2 (contracts R into the right bond, carrying the emitted bit x.1 through), and absorb_slice proves slice (absorb A R) bit = slice A bit * R by rfl. The NL answer's claims - absorption is per-bit-branch right multiplication, the slice identity, and no bit-mixing because the sum runs only over the right-bond index while the bit label is carried through unchanged - are all precise and source-grounded. No v3 item targets absorb/absorb_slice. Node-prefix defect now fixed.",
+      "checked_sources": ["QuantumBlockEncoding/TensorTrainCanonical.lean#absorb L58-60", "QuantumBlockEncoding/TensorTrainCanonical.lean#absorb_slice L62-64", "QuantumBlockEncoding/TensorTrainCanonical.lean#slice L20-21"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-003",
+      "authored_sha256": "bc049b679041507c9d3fd64149d51cd5a5bac42fa02b24ed1fe1027319bfe62d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after the 'declaration:' prefix was added. Verified exactly against Core.lean: Coeff inductive language rat|symbol|add|mul|neg (L148-154); evalWith (L175-181); the simp lemmas evalWith_rat/symbol/add/mul/neg (L183-196) are the homomorphism identities. NL homomorphism-onto-the-rationals framing accurate. No v3 overlap. Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/Core.lean#Coeff L148-154", "QuantumBlockEncoding/Core.lean#Coeff.evalWith L175-181", "QuantumBlockEncoding/Core.lean#evalWith_rat..evalWith_neg L183-196"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-004",
+      "authored_sha256": "fe6a626ae2b2ed84eab89698695933e0766d13c32a0e440f86b74bac730fb4ec",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against BlockEncoding.lean OperatorBlockEncodingCandidate (L103-116, 2^(n+a) dimension note) and ConcreteSemantics.lean flatToProductRegister (L190-198), productRegisterBlockProjection (L201-204), productRegisterBlockProjection_flatToProductRegister (L210-217, rfl). All three NL claims accurate. No v3 overlap. Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean#OperatorBlockEncodingCandidate L103-116", "QuantumBlockEncoding/ConcreteSemantics.lean#flatToProductRegister L190-198", "QuantumBlockEncoding/ConcreteSemantics.lean#productRegisterBlockProjection L201-204", "QuantumBlockEncoding/ConcreteSemantics.lean#productRegisterBlockProjection_flatToProductRegister L210-217"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-005",
+      "authored_sha256": "5d10a22183ada6fbd36368b8f9377e65dcb7685eb4cbfb2fa13448672feca059",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against RealIsometryCompletion.lean exists_orthogonal_completion (L20-59): arbitrary injective placement e, V^T V = 1, basis-extension via exists_orthonormalBasis_extension_of_card_eq. Four-part NL proof faithful. No v3 overlap. Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/RealIsometryCompletion.lean#exists_orthogonal_completion L20-59"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-006",
+      "authored_sha256": "89c89cb62c2d4735013a9f4d8eef6143a80c4651284ae7653c0da157f53ed2e5",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against RealIsometryCompletion.lean signFlip (L62-63), signFlip_orthogonal (L65-72), signFlip_det=-1 (L74-75), mul_signFlip_preserves (L77-79), exists_specialOrthogonal_completion_of_unused (L83-104), exists_specialOrthogonal_completion (L107-121). Orientation-repair construction accurate; distinct from la-005 (completion) and from la-009/la-011 which, though they share the exists_specialOrthogonal_completion node, pose different semantic cores (dimension-counting / r=N boundary). Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip L62-63", "QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip_orthogonal L65-72", "QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip_det L74-75", "QuantumBlockEncoding/RealIsometryCompletion.lean#mul_signFlip_preserves L77-79", "QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion_of_unused L83-104", "QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion L107-121"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-007",
+      "authored_sha256": "aae4b468aeabc7cf2db3693ec50bc17410609aab680d24625ef49714ed7a96ec",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against ConcreteSemantics.lean applyVec_basisKet (L70-74), applyVec_twoBasisSuperposition (L79-88), applyVec_twoBasisSuperposition_apply (L93-100). Linearity derivation (vector + scalar form) and the two-columns-suffice consequence accurate. No v3 overlap. Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/ConcreteSemantics.lean#applyVec_basisKet L70-74", "QuantumBlockEncoding/ConcreteSemantics.lean#applyVec_twoBasisSuperposition L79-88", "QuantumBlockEncoding/ConcreteSemantics.lean#applyVec_twoBasisSuperposition_apply L93-100"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-008",
+      "authored_sha256": "aae2068ebe42bcab68de4dec3a05cffc66536ec3ab6908085f1d5ce6022dd5de",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against ConcreteSemantics.lean cleanBasisActionAmplitude (L249-256), cleanBasisActionAmplitude_eq_signalSystemBlockProjection (L259-269), pointwiseProjection_iff_cleanBasisAction (L277-294, genuine biconditional). Bridge + both directions + universal-quantifier role accurate. No v3 overlap. Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/ConcreteSemantics.lean#cleanBasisActionAmplitude L249-256", "QuantumBlockEncoding/ConcreteSemantics.lean#cleanBasisActionAmplitude_eq_signalSystemBlockProjection L259-269", "QuantumBlockEncoding/ConcreteSemantics.lean#pointwiseProjection_iff_cleanBasisAction L277-294"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-009",
+      "authored_sha256": "fe6641445b318dff1aedf211300d2fe0bcdc7867e5e8d2df2897bbef69209c76",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REPLACEMENT of the originally-rejected chainMass_eq duplicate. New core targets RealIsometryCompletion.exists_specialOrthogonal_completion (L107-121), focusing on (a) the dimension obstruction r <= N from orthonormality -> linear independence, and (b) the pigeonhole counting that an injective e : Fin r -> Fin N with r < N is non-surjective. Verified against source: the theorem body derives non-surjectivity via Fintype.card_le_of_surjective + omega against r < N (L112-118); the r <= N obstruction and orthonormality setup live in exists_orthogonal_completion (L20-59). The NL proof's independence argument and surjection-cardinality contradiction are mathematically correct and precise. SHARES the exists_specialOrthogonal_completion target node with la-006 and la-011, but the semantic core is DISTINCT: la-009 is the dimension-counting/pigeonhole lemma, la-006 is the sign-flip orientation construction, la-011 is the r=N necessity counterexample. Accept as a new distinct view (not a duplicate of the other two, and no v3 overlap). Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion L107-121", "QuantumBlockEncoding/RealIsometryCompletion.lean#exists_orthogonal_completion L20-59"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-010",
+      "authored_sha256": "13ab4ea855414e1d7ed4bc3123846488d43cf4712e614815a8f8a111c0751efb",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against TensorTrainCanonical.lean paddedCore (L255-258), paddedCore_inactive_output (L260-262), complexCore_isometry (L215-226, supporting), paddedCore_active_isometry (L295-315). The row-vs-column orthonormality counterexample under zero-padding is correct and precise. Targets (paddedCore_active_isometry, paddedCore_inactive_output) have no v3 overlap; complexCore_isometry appears only as support (that node IS released as v3 qcb-486b9aec70c569866488 but is not an authored target here). Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/TensorTrainCanonical.lean#paddedCore L255-258", "QuantumBlockEncoding/TensorTrainCanonical.lean#paddedCore_inactive_output L260-262", "QuantumBlockEncoding/TensorTrainCanonical.lean#complexCore_isometry L215-226", "QuantumBlockEncoding/TensorTrainCanonical.lean#paddedCore_active_isometry L295-315"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-011",
+      "authored_sha256": "24824d476c5a121569b353d514958f4d63a3762b0ceeb86cb57a83fdb95a9a32",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against RealIsometryCompletion.lean exists_specialOrthogonal_completion (L107-121, hr : r < N), signFlip_det (L74-75), exists_specialOrthogonal_completion_of_unused (L83-104). The r=N necessity counterexample V=diag(1,-1) (det=-1, unique completion, no SO completion) is correct. SHARES the exists_specialOrthogonal_completion target with la-006/la-009 but poses the distinct r=N boundary/necessity view. No v3 overlap. Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion L107-121", "QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion_of_unused L83-104", "QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip_det L74-75"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-012",
+      "authored_sha256": "bb68f47cdd5fbe98757aded4f3d1f40700e5c47606183df4587f196728c03de3",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from initial accept; hash recomputed after prefix fix. Verified against TensorTrainCanonical.lean RankReduced (L51-55, new left bond = min(l, 2*m')), exists_core_lq (L67-80, factor-of-two from the emitted bit of dimension 2), head_bound (L104-110, l'<=l and l'<=2*m'), last_bond_le_two (L113-117, penultimate bond <= 2 for Chain 1 l 1), maxBond_le (L203-207, supporting). Factor-of-two explanation and both boundary bounds accurate. NOTE: exists_core_lq is now also the TARGET of la-001, but la-001 poses the reshape/thin-LQ construction core while la-012 uses it only as support for the min-recurrence boundary bounds (targets are head_bound/last_bond_le_two) - distinct cores, no internal duplication. No v3 overlap. Prefix now correct.",
+      "checked_sources": ["QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced L51-55", "QuantumBlockEncoding/TensorTrainCanonical.lean#exists_core_lq L67-80", "QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced.head_bound L104-110", "QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced.last_bond_le_two L113-117", "QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced.maxBond_le L203-207"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

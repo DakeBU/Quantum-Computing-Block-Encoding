@@ -55,7 +55,7 @@ class BenchmarkLaunchTests(unittest.TestCase):
         )
         self.assertIn("planned topics clearly separated from verified library evidence", news)
 
-    def test_readme_and_agent_handoff_exist_without_claiming_a_release(self) -> None:
+    def test_readme_and_agent_handoff_keep_preview_evidence_boundaries(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         benchmark = ROOT / "benchmarks/quantumcomputingbench"
         self.assertTrue((benchmark / "README.md").is_file())
@@ -64,7 +64,13 @@ class BenchmarkLaunchTests(unittest.TestCase):
         news = readme.split("## News", 1)[1]
         self.assertLess(news.index("21 October 2026"), news.index("18 October 2026"))
         self.assertIn("currently in development", readme)
-        self.assertIn("not a dataset release", (benchmark / "README.md").read_text(encoding="utf-8"))
+        bench_readme = (benchmark / "README.md").read_text(encoding="utf-8")
+        self.assertIn("v0.1.0-preview.1", bench_readme)
+        self.assertIn("not complete whole-graph coverage", bench_readme)
+        self.assertIn("ENV_BLOCKED", bench_readme)
+        self.assertIn("UNMEASURED", bench_readme)
+        self.assertIn("no aggregate distinct-core", bench_readme)
+        self.assertTrue((benchmark / "manifests/integration-20261022/admission.json").is_file())
 
 
 class RequiredPublicationArtifactTests(unittest.TestCase):

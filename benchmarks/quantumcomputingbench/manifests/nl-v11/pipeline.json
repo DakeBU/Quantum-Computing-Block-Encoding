@@ -1,0 +1,9 @@
+{
+  "inherited_v3_pipeline": "../release-v3/pipeline.json",
+  "input_hashes": {
+    "benchmarks/quantumcomputingbench/schemas/native-nl-v1.schema.json": "210ff0b449ddef3f1bcf7491cdc0765a4c542cad39287b28d8705c45522c729d",
+    "benchmarks/quantumcomputingbench/scripts/nl_qa.py": "c00106283d7127ea83b7f42325040960c1d5e924b7103b19268286f8b0b1c64b",
+    "benchmarks/quantumcomputingbench/scripts/nl_report.py": "8a7ee0c2b254735edb9e83dac915ffd3adc111c6799dd00be08a44346f755de9",
+    "benchmarks/quantumcomputingbench/src/qcb_nl.py": "569e26fc6580de0a22cade06ddae230c99379c44372c603a24092b7dc4227e7d"
+  }
+}

@@ -1,0 +1,1944 @@
+[
+  {
+    "core_id": "qcb-core-plan-401",
+    "key": "qcb-core-plan-401-isotropic-positivity-x-range",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "On C^d tensor C^d consider the one-parameter family rho(x) = (1 - x) Phi + (x/d^2) I, where Phi = |Phi+><Phi+| is the maximally entangled projector (rank one, trace one) and I is the identity on the d^2-dimensional joint space. Treat x as a real parameter with no sign restriction. Determine the exact closed interval of x for which rho(x) is a valid density operator (positive semidefinite with unit trace), prove both endpoints are tight by exhibiting the eigenvalue that first turns negative at each end, and explain why unit trace holds automatically for every x so that positivity is the only binding constraint.",
+    "reference_answer": "Unit trace is automatic: tr Phi = 1 and tr I = d^2, so tr rho(x) = (1 - x) + (x/d^2) d^2 = 1 - x + x = 1 for every real x; hence only positivity constrains x. Because Phi is a rank-one projector, {Phi, I - Phi} are orthogonal projectors summing to I, and rho(x) is simultaneously diagonal in that split: rho(x) = a Phi + b (I - Phi) with the eigenvalue on the range of Phi equal to a = (1 - x) + x/d^2 and the eigenvalue on the orthogonal complement equal to b = x/d^2, the latter with multiplicity d^2 - 1. Positivity requires a >= 0 and b >= 0. From b >= 0 we get x >= 0, and b = 0 exactly at x = 0, so the lower endpoint is tight (the complement eigenvalue is what first goes negative for x < 0). From a >= 0 we get (1 - x) + x/d^2 >= 0, i.e. 1 - x(1 - 1/d^2) >= 0, i.e. x <= 1/(1 - 1/d^2) = d^2/(d^2 - 1); a = 0 exactly at x = d^2/(d^2 - 1), so the upper endpoint is tight (the Phi-eigenvalue is what first goes negative beyond it). Therefore rho(x) is a density operator iff x in [0, d^2/(d^2 - 1)]. Both bounds are sharp because at each endpoint one of the two distinct eigenvalues is exactly zero and strictly negative just outside the interval.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States unit trace holds for all x via tr Phi = 1, tr I = d^2, giving 1 - x + x = 1, so only positivity binds",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Diagonalizes rho(x) in the orthogonal split {Phi, I - Phi} with eigenvalues a = 1 - x + x/d^2 and b = x/d^2 (multiplicity d^2 - 1)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Derives lower endpoint x >= 0 from b >= 0 and shows it is tight (b = 0 at x = 0)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Derives upper endpoint x <= d^2/(d^2 - 1) from a >= 0 and shows it is tight (a = 0 there)",
+        "weight": 1
+      },
+      {
+        "id": "r5",
+        "criterion": "Concludes the exact validity interval [0, d^2/(d^2 - 1)]",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "tr rho(x) = 1 identically, so positivity is the only constraint.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "rho(x) is diagonal in {Phi, I - Phi} with eigenvalues 1 - x + x/d^2 and x/d^2.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "x in [0, d^2/(d^2-1)] with both endpoints tight by a vanishing eigenvalue.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A sharp two-sided eigenvalue range with explicit tightness at both ends; distinct from any separability/PPT threshold and from the maximally-entangled-projector overlap questions."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "58",
+          "anchors": "Exercise 6.2 on PDF page 58: positivity of rho_AB(x) = (1 - x) Phi+ + (x/d^2) I iff 0 <= x <= d^2/(d^2 - 1).",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "isotropic-state-positivity",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The isotropic family rho(x) has unit trace for all x and is positive exactly on [0, d^2/(d^2-1)], each endpoint tight because one of its two distinct eigenvalues vanishes there.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-402",
+    "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "The analytic k-extendibility conditions for d-dimensional Werner and isotropic states are: a Werner state (parametrized by alpha in [-1, 1]) is k-extendible iff alpha >= 1 - d/k, and an isotropic state (parametrized by x) is k-extendible iff x >= (d/(d+1))(1 - 1/k). Using only these two inequalities, (a) show that for every d >= 3 every Werner state is at least 2-extendible, (b) for fixed d determine, as a function of the isotropic parameter x, the largest k for which the isotropic state is k-extendible and identify when it is extendible for all k, and (c) recover the known separability thresholds (Werner separable iff alpha >= 0, isotropic separable iff x >= d/(d+1)) by taking the limit that enforces the condition for every k. State which direction of monotonicity in k you use.",
+    "reference_answer": "(a) At k = 2 the Werner condition reads alpha >= 1 - d/2. For d >= 3 we have 1 - d/2 <= 1 - 3/2 = -1/2. Since every admissible Werner parameter satisfies alpha >= -1, and -1 <= -1/2 fails only when alpha < -1/2, the correct statement is: the entire separable range alpha >= 0 lies above the 2-extendibility threshold 1 - d/2 <= -1/2 for d >= 3, and moreover all alpha >= -1/2 are 2-extendible; in particular every separable Werner state (alpha >= 0) is 2-extendible, and the 2-extendibility threshold sits at or below -1/2, far below the separability threshold 0. (b) The isotropic threshold x_k = (d/(d+1))(1 - 1/k) is strictly increasing in k (since 1 - 1/k increases with k). A state with parameter x is k-extendible exactly for those k with x >= (d/(d+1))(1 - 1/k), i.e. 1 - 1/k <= x(d+1)/d, i.e. 1/k >= 1 - x(d+1)/d. If 1 - x(d+1)/d > 0 (that is x < d/(d+1)) the largest such k is floor(1/(1 - x(d+1)/d)); if 1 - x(d+1)/d <= 0 (that is x >= d/(d+1)) the inequality holds for every k, so the state is k-extendible for all k (infinitely extendible). (c) A state is k-extendible for every k iff its parameter satisfies the condition in the limit of the increasing threshold: sup_k x_k = (d/(d+1)) lim_k (1 - 1/k) = d/(d+1), so x >= d/(d+1) is exactly the hold-for-all-k condition, matching the isotropic separability threshold (Proposition 6.9). The Werner limit is analogous: sup_k (1 - d/k) read in the symmetry-adapted (separability) normalization yields the threshold alpha >= 0 (Proposition 6.6). Thus the separability thresholds are the infinite-extendibility limits of the monotone conditions.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Uses that the thresholds 1 - d/k (Werner) and (d/(d+1))(1 - 1/k) (isotropic) are increasing in k",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows for d >= 3 the k=2 Werner threshold 1 - d/2 <= -1/2, so every separable Werner state is 2-extendible",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Solves the isotropic condition for the largest k = floor(1/(1 - x(d+1)/d)) and identifies x >= d/(d+1) as extendible for all k",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Recovers separability as the hold-for-all-k limit: isotropic x >= d/(d+1) = sup_k x_k and Werner alpha >= 0",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "The thresholds are monotone increasing in k, so extendibility holds on an initial range of k.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "d >= 3 forces the 2-extendibility threshold at or below -1/2 for Werner states.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "x >= d/(d+1) is exactly the hold-for-all-k (infinitely extendible, separable) regime.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A boundary analysis of the analytic extendibility formulas: solving for the maximal extension order and recovering separability as the infinite-k limit, using monogamy rather than any PPT argument."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "59-60",
+          "anchors": "Example 7.2 with Eqs. (7.5),(7.6) and Figure 1 on PDF pages 59-60: Werner k-extendible iff alpha >= 1 - d/k; isotropic k-extendible iff x >= (d/(d+1))(1 - 1/k); separability as k -> infinity.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "werner-isotropic-extendibility",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "From the monotone extendibility thresholds one reads off that d>=3 Werner states are 2-extendible, the largest isotropic extension order is floor(1/(1 - x(d+1)/d)), and separability is the hold-for-all-k limit x >= d/(d+1).",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-403",
+    "key": "qcb-core-plan-403-extendibility-channel-converse-counterexample",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "It is a theorem that if rho_AB is k-extendible and N : B -> B' is any quantum channel, then (id_A tensor N)(rho_AB) is again k-extendible; applying a channel to one side can only preserve or improve extendibility. One might conjecture the converse: that if the output (id_A tensor N)(rho_AB) is k-extendible then the input rho_AB must already have been k-extendible. Disprove this converse. Build your counterexample from the isotropic family rho_AB(x) = (1 - x) Phi+ + (x/d^2) I, using that it is the image of the maximally entangled state under a depolarizing channel, rho_AB(x) = (id_A tensor D_x)(Phi+) with D_x(sigma) = (1 - x) sigma + x tr(sigma) I/d, together with the isotropic k-extendibility condition x >= (d/(d+1))(1 - 1/k). Exhibit an explicit input, channel, and k.",
+    "reference_answer": "The converse fails. Take the input to be the maximally entangled state itself, rho_AB = Phi+ = rho_AB(x=0). This is a pure entangled state, hence NOT 2-extendible: a pure entangled bipartite state has no 2-extension, because any state whose B'-marginal equals a pure psi_AB must factorize as psi_AB tensor omega_{B'} (Exercise 7.3), and then its A B'-marginal is the uncorrelated psi_A tensor omega_{B'}, which cannot equal the correlated psi_AB. Now let the channel be the depolarizing channel N = D_x. The output is (id_A tensor D_x)(Phi+) = rho_AB(x), an isotropic state, which by the isotropic condition is k-extendible precisely when x >= (d/(d+1))(1 - 1/k). Concretely for k = 2 the condition is x >= (d/(d+1))(1/2) = d/(2(d+1)); pick any such x -- for instance x = d/(d+1) >= d/(2(d+1)), which even makes the output separable and hence infinitely extendible. Then the output rho_AB(x) is 2-extendible, yet the input Phi+ is a pure entangled state that is not even 2-extendible. This is a k-extendible output arising from a non-k-extendible input, disproving the converse. The mechanism: the depolarizing channel degrades entanglement by mixing the state toward the identity, so a channel can create extendibility that the input lacked -- extendibility is monotone under channels in one direction only.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies that a pure entangled bipartite state (e.g. Phi+) has no 2-extension, with the Exercise-7.3 reason",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses rho_AB(x) = (id_A tensor D_x)(Phi+) to realize an isotropic output as a channel image of Phi+",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Chooses x satisfying the isotropic 2-extendibility window x >= d/(2(d+1)) so the output IS 2-extendible",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes a k-extendible output from a non-k-extendible input, refuting the converse, and explains the one-way monotonicity",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "A pure entangled state such as Phi+ is not 2-extendible.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The depolarizing channel maps Phi+ to the isotropic state rho(x).",
+        "supporting_nodes": [
+          "concept:operator-theory",
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Choosing x in the 2-extendible window gives an extendible output from a non-extendible input.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean counterexample isolating the one-directional nature of extendibility monotonicity under channels, built from the depolarizing representation of isotropic states."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "60, 65-66",
+          "anchors": "Exercise 7.2 on PDF page 65 with the depolarizing representation Eq. (7.61) and isotropic condition Eq. (7.6) (page 60); pure-state extension obstruction from Exercise 7.3 and Eqs. (7.3)-(7.4) (page 59).",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "extendibility-under-channels",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The converse of channel-preserved extendibility fails: the depolarizing channel sends the non-2-extendible Phi+ to a 2-extendible isotropic state, so a channel can create extendibility the input lacked.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-404",
+    "key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "The pure-symmetric de Finetti theorem bounds the trace distance between the k-body marginal of an n-party symmetric pure state and a convex mixture of i.i.d. pure states by sqrt(dk/(n - k)). The permutation-invariant mixed-state version bounds the analogous distance by sqrt(d^2 k/(n - k)), with mixed i.i.d. states and a dimension factor d^2 instead of d. (a) Explain quantitatively why the mixed-state bound carries d^2 where the pure-state bound carries d, in terms of the symmetric purification used to derive it. (b) For the bound to be non-trivial (strictly below 1) determine the required relationship between n, k, and the dimension in each case, and (c) describe the regime of k (as a function of n) in which the bound still tends to zero as n -> infinity, contrasting the two cases.",
+    "reference_answer": "(a) The mixed-state theorem is obtained by purifying the permutation-invariant state rho on A1...An into a pure symmetric state on (A1 R1)...(An Rn), i.e. onto n copies of the DOUBLED local system A tensor R of dimension d x d = d^2. Applying the pure-state de Finetti theorem to this purification uses its local dimension d^2 in place of d, turning sqrt(d k/(n - k)) into sqrt(d^2 k/(n - k)); then tracing out the R-systems only decreases the trace distance (monotonicity of trace distance under the partial trace), so the d^2 bound passes down to rho. The extra factor is exactly the dimension of the purifying ancilla required to represent an arbitrary mixed local state. (b) Non-triviality requires the radicand < 1: pure case d k/(n - k) < 1, i.e. n - k > d k, i.e. n > k(1 + d); mixed case d^2 k/(n - k) < 1, i.e. n - k > d^2 k, i.e. n > k(1 + d^2). The mixed guarantee needs roughly d^2 k parties versus d k for the pure case -- a factor d more copies to reach a non-trivial statement. (c) The bound tends to 0 as n -> infinity precisely when k/(n - k) -> 0, i.e. k = o(n), in both cases. If k grows proportionally to n, say k = cn with 0 < c < 1, the radicand tends to d c/(1 - c) (resp. d^2 c/(1 - c)), a nonzero constant, so the bound does not vanish. Thus the qualitative threshold k = o(n) is identical for the two cases, but at any fixed accuracy the mixed case requires a d-times larger n because of the d^2-vs-d constant.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Attributes the d^2 to purifying the mixed state on the doubled local system A tensor R of dimension d^2 and applying the pure-state theorem there",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Notes partial trace over R is monotone for trace distance, passing the d^2 bound to the mixed marginal",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Gives the non-triviality conditions n - k > d k (pure) and n - k > d^2 k (mixed)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Identifies k = o(n) as the vanishing regime and that k proportional to n leaves a nonzero constant, with the mixed case needing d-times larger n",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "The mixed bound uses the purifying system of dimension d^2, replacing d by d^2.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Non-triviality needs n - k > d k and n - k > d^2 k respectively.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "The bound vanishes iff k = o(n); proportional k leaves a positive constant.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A boundary/asymptotic comparison of the two de Finetti constants, tracing the d-vs-d^2 gap to the purification dimension and extracting the vanishing regime in n and k."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "62-65",
+          "anchors": "Propositions 7.4 and 7.6 on PDF pages 62-65: pure bound sqrt(dk/(n-k)) (Eq. 7.15) vs mixed bound sqrt(d^2 k/(n-k)) (Eq. 7.57) via the symmetric purification Lemma 7.5.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "definetti-bound-scaling",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The de Finetti d-vs-d^2 gap comes from purifying onto a d^2-dimensional local system; both bounds vanish exactly when k = o(n), the mixed case needing d-times larger n for the same accuracy.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-405",
+    "key": "qcb-core-plan-405-no-cloning-orthogonal-or-equal-boundary",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Suppose a fixed unitary U on A tensor B with reference state |0>_B is required to clone two particular states, U(|psi>_A |0>_B) = |psi>_A |psi>_B and U(|phi>_A |0>_B) = |phi>_A |phi>_B, where |psi>, |phi> are normalized. Determine exactly which pairs (|psi>, |phi>) can be simultaneously cloned by a single such unitary. Derive the constraint on the overlap <psi|phi> from unitarity, solve it, and interpret the two surviving possibilities. Then explain why this makes exact cloning of an unknown state drawn from a non-orthogonal set impossible, and give a concrete two-state qubit example that cannot be cloned.",
+    "reference_answer": "Unitarity preserves inner products: <psi|phi> = (<psi| tensor <0|) U^dagger U (|phi> tensor |0>) = (<psi| tensor <psi|)(|phi> tensor |phi>) = <psi|phi>^2. Writing z = <psi|phi>, the constraint is z = z^2, i.e. z(z - 1) = 0, giving z = 0 or z = 1. Hence a single cloning unitary can serve the pair only if the two states are either orthogonal (<psi|phi> = 0) or identical (z = 1 forces |phi> = |psi> up to a phase). There is no middle ground: any pair with 0 < |<psi|phi>| < 1 is forbidden. Consequently, if a device must clone every state in a set containing two distinct non-orthogonal states, it cannot exist, because the fixed-point equation z = z^2 is violated for that pair. Concrete qubit example: |psi> = |0> and |phi> = |+> = (|0> + |1>)/sqrt(2) have overlap <0|+> = 1/sqrt(2), satisfying neither z = 0 nor z = 1; therefore no unitary can clone both |0> and |+>. (If one only ever needed to clone states from an orthonormal set, e.g. |0> and |1>, cloning is possible -- exactly the classical copyable case.) The boundary is sharp: clonability of a pair holds precisely on the set {orthogonal} union {equal}.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Derives <psi|phi> = <psi|phi>^2 from unitarity of U",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Solves z = z^2 to get z = 0 or z = 1 and interprets them as orthogonal or equal states",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Concludes a non-orthogonal distinct pair cannot be cloned by any single unitary",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Gives a concrete qubit counterexample (|0> and |+>, overlap 1/sqrt(2)) that is unclonable",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Unitarity gives <psi|phi> = <psi|phi>^2.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The only solutions are orthogonal or identical states.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "A non-orthogonal distinct pair such as |0>,|+> is unclonable.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Sharpens the no-cloning theorem into an exact clonability boundary via the overlap fixed-point equation, with an explicit unclonable qubit pair."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "65-66",
+          "anchors": "Theorem 8.1 proof on PDF pages 65-66: unitarity forces <psi|phi>^2 = <psi|phi>, hence the overlap lies in {0,1}.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "no-cloning-orthogonality",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A single cloning unitary can serve a pair only if the states are orthogonal or equal, since unitarity forces the overlap to satisfy z = z^2; e.g. |0> and |+> cannot be cloned.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-406",
+    "key": "qcb-core-plan-406-cloning-fidelity-asymptotics-and-ordering",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "The optimal N -> M approximate cloner achieves worst-case fidelity F*(T) = d_N/d_M where d_L = dim Sym^L(H) = binom(d + L - 1, L) with d = dim H. It is stated that F*(T) >= 1 - Kd/N with K = M - N. (a) Prove the lower bound F*(T) >= 1 - Kd/N from the binomial ratio and conclude that for fixed K the optimal worst-case fidelity tends to 1 as N -> infinity. (b) The worst-case fidelity F(T) = inf_psi F(psi^{tensor M}, T(psi^{tensor N}))^2 and the Haar-average fidelity F_avg(T) satisfy a universal ordering for every map T; state and justify that ordering, and explain why nevertheless the same optimal map is simultaneously optimal for both criteria.",
+    "reference_answer": "(a) With d_N = binom(d+N-1, N) and d_M = binom(d+M-1, M) and M = N + K, the ratio d_N/d_M after cancelling common factors is a quotient of two products of K consecutive integers: d_N/d_M = [(N+1)(N+2)...(N+K)] / [(N+d)(N+d+1)...(N+d+K-1)]. Each of the K factors has the form (N + j)/(N + d - 1 + j) = 1 - (d-1)/(N + d - 1 + j) >= 1 - (d-1)/N >= 1 - d/N. Multiplying K such factors and using the elementary inequality prod (1 - a_j) >= 1 - sum a_j for a_j in [0,1], we get d_N/d_M >= 1 - K(d-1)/N >= 1 - Kd/N. Hence F*(T) = d_N/d_M >= 1 - Kd/N. For fixed K and d, Kd/N -> 0 as N -> infinity, so F*(T) -> 1: cloning with a fixed number of extra copies becomes asymptotically perfect. (b) Universal ordering: F(T) <= F_avg(T) for every map T, because the infimum over pure inputs of a nonnegative quantity never exceeds its Haar average: inf_psi g(psi) <= integral g(psi) dpsi. So the worst-case criterion is the stronger (harder to maximize) one. Nevertheless the optimal symmetric cloner satisfies tr(phi^{tensor M} T(phi^{tensor N})) = d_N/d_M for EVERY pure input phi -- a constant independent of phi -- so its infimum and its average both equal d_N/d_M; and since d_N/d_M is also the universal upper bound for F_avg(T) over all maps, this map saturates both the worst-case and the average optima at once. The input-independence of its fidelity is exactly what collapses the ordering gap to equality for this particular map.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves F*(T) = d_N/d_M >= 1 - Kd/N via the K-consecutive-factor ratio and prod(1 - a_j) >= 1 - sum a_j",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Concludes F*(T) -> 1 as N -> infinity for fixed K",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States and justifies F(T) <= F_avg(T) for all maps because inf <= average",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains the optimal map has input-independent fidelity d_N/d_M, so its worst-case and average coincide and both are optimal",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:matrix-analysis"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "The symmetric-subspace dimension ratio satisfies d_N/d_M >= 1 - Kd/N.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Fixed K gives asymptotically perfect cloning as N -> infinity.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Worst-case fidelity never exceeds the average, with equality for the input-independent optimal map.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines an asymptotic lower bound on the optimal cloning fidelity with the universal worst-case/average ordering and the collapse to equality for the input-independent optimal map."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "68",
+          "anchors": "Eqs. (8.30)-(8.33) and Remark 8.3 on PDF page 68: F*(T) = d_N/d_M >= 1 - Kd/N and F(T) <= F_avg(T), with the optimal map achieving d_N/d_M.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "approximate-cloning-asymptotics",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The optimal cloner's fidelity d_N/d_M exceeds 1 - Kd/N (tending to 1 for fixed K), and because it is input-independent its worst-case and Haar-average fidelities coincide, making it optimal for both.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-407",
+    "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "In weak Schur sampling one measures rho^{tensor n} with the Schur-Weyl projectors {P_lambda}, obtains a Young diagram lambda = (lambda_1 >= ... >= lambda_d >= 0) with sum lambda_i = n, and outputs the estimate hat r = lambda-bar = lambda/n. The outcome bound is tr(P_lambda rho^{tensor n}) <= (n+1)^{d(d-1)/2} exp(-n D(lambda-bar || r)), where r is the true ordered spectrum and D is relative entropy. (a) Verify that lambda-bar is always a valid ordered probability vector (a legitimate candidate spectrum). (b) Using D(p||q) >= 0 with equality iff p = q, explain why the protocol is consistent, i.e. why Pr(hat r != r) -> 0 as n -> infinity, identifying the roles of the polynomial prefactor and the exponential. (c) Explain why the polynomial prefactor (n+1)^{d(d-1)/2}, although growing in n, does not spoil consistency for any fixed spectrum r.",
+    "reference_answer": "(a) The outcome lambda satisfies lambda_1 >= ... >= lambda_d >= 0 and sum_i lambda_i = n, so lambda-bar_i = lambda_i/n obeys lambda-bar_1 >= ... >= lambda-bar_d >= 0 and sum_i lambda-bar_i = 1. These are exactly the defining properties of an ordered probability distribution, i.e. a valid ordered spectrum of a d-dimensional density operator, so the estimate always lies in the correct domain. (b) The probability of any outcome lambda-bar is bounded by (n+1)^{d(d-1)/2} exp(-n D(lambda-bar || r)). Since D(lambda-bar || r) >= 0 with equality only when lambda-bar = r, every outcome with lambda-bar != r carries a strictly positive exponent delta := D(lambda-bar || r) > 0, so its probability decays like exp(-n delta) up to the polynomial factor. The total number of outcomes lambda ⊢ n with at most d rows is polynomial in n (at most (n+1)^d), so summing the bound over all outcomes with lambda-bar bounded away from r still goes to 0; probability concentrates on lambda-bar near r. Hence Pr(hat r != r) -> 0. The exponential supplies the decay; the fact that relative entropy vanishes only at r is what forces concentration at the true spectrum. (c) For a fixed r and any outcome with D(lambda-bar || r) >= delta > 0, the product (n+1)^{d(d-1)/2} exp(-n delta) -> 0 as n -> infinity, because the exponential e^{-n delta} decays faster than any fixed power of n grows. Thus the polynomial prefactor is asymptotically negligible and consistency holds for every fixed true spectrum.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Verifies lambda-bar = lambda/n is a valid ordered probability vector (nonincreasing, nonnegative, sums to 1)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses D >= 0 with equality iff equal to argue each outcome with lambda-bar != r has strictly positive exponent",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains concentration: polynomially many outcomes times exp(-n delta) -> 0, so Pr(hat r != r) -> 0",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Argues the polynomial prefactor (n+1)^{d(d-1)/2} is dominated by the exponential for fixed r, preserving consistency",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:probability",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "lambda/n is nonincreasing, nonnegative and sums to 1, a valid spectrum.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Outcomes far from r have strictly positive relative entropy, hence exponential suppression.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "The exponential dominates the polynomial prefactor, giving consistency.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A consistency/boundary analysis of the weak-Schur-sampling estimator: validity of the estimate, exponential concentration via relative entropy, and polynomial-prefactor domination."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "71-74",
+          "anchors": "Algorithm 9.1 and Proposition 9.4 on PDF pages 71-74: estimator hat r = lambda/n and bound tr(P_lambda rho^{tensor n}) <= (n+1)^{d(d-1)/2} exp(-n D(lambda-bar || r)).",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "spectrum-estimation-consistency",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The normalized Young diagram lambda/n is always a valid spectrum, and because relative entropy vanishes only at the true r the exponential bound dominates the polynomial prefactor, giving Pr(hat r != r) -> 0.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-408",
+    "key": "qcb-core-plan-408-separable-infinite-extendibility-and-hierarchy",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Call a bipartite state rho_AB k-extendible if there is a state rho_{A B_1 ... B_k} on A and k copies of B whose marginal on A B_i equals rho_AB for every i. Prove two structural facts and relate them. (a) Every separable state is k-extendible for every k (hence infinitely extendible). (b) Every k-extendible state is also k'-extendible for every k' <= k. Deduce the inclusion chain Ext_1 superset Ext_2 superset ... superset Ext_infinity and explain in one sentence why this exhibits extendibility as an obstruction to entanglement (monogamy). Give the explicit extension in (a) and the explicit marginal check.",
+    "reference_answer": "(a) Let rho_AB = sum_i p_i sigma_A^{(i)} tensor sigma_B^{(i)} be separable, with p_i >= 0 summing to 1 and the sigma^{(i)} states. Define, for any k, the state rho_{A B_1 ... B_k} := sum_i p_i sigma_A^{(i)} tensor sigma_{B_1}^{(i)} tensor ... tensor sigma_{B_k}^{(i)}, i.e. put an independent copy of sigma_B^{(i)} on each B_j, all conditioned on the same classical index i. This is a valid state (a convex combination of product states, hence positive with unit trace). Its marginal on A B_j is obtained by tracing out all B_l with l != j: tr_{B_l, l != j} gives sum_i p_i sigma_A^{(i)} tensor sigma_{B_j}^{(i)}, since each traced copy contributes tr(sigma_B^{(i)}) = 1; this equals rho_AB for every j because the expression is symmetric in the B-labels. Thus rho_AB is k-extendible for every k, i.e. infinitely extendible. (b) If rho_AB is k-extendible with extension rho_{A B_1 ... B_k}, then for any k' <= k simply trace out the last k - k' systems B_{k'+1}, ..., B_k. The reduced state rho_{A B_1 ... B_{k'}} is a valid state, and for each j <= k' its marginal on A B_j is unchanged, because tracing out additional B-systems commutes with taking the A B_j marginal; hence it is a k'-extension. Therefore k-extendibility implies k'-extendibility. Combining (a) and (b), the sets Ext_k(A:B) satisfy Ext_1 superset Ext_2 superset ... superset Ext_infinity, with Ext_1 all states and Ext_infinity containing SEP by (a). Monogamy: because a k-extension forces A to be correlated in the same way with k copies of B, a strongly entangled state (in particular a pure entangled one) admits no large extension, so moving down the chain squeezes states toward separability -- entanglement cannot be shared with arbitrarily many parties.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes the explicit k-extension of a separable state by tensoring independent copies of sigma_B^{(i)} on each B_j under the shared index i",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Checks the A B_j marginal equals rho_AB using tr(sigma_B^{(i)}) = 1 and symmetry in the B-labels",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Proves k-extendible implies k'-extendible by discarding k - k' systems and noting the marginals are preserved",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Assembles the inclusion chain Ext_1 superset ... superset Ext_infinity containing SEP and interprets it as monogamy/obstruction to entanglement",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "A separable state admits a k-extension by copying sigma_B on each B_j under a shared index.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The A B_j marginal recovers rho_AB via unit trace of the discarded factors.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Discarding systems reduces a k-extension to a k'-extension, giving the inclusion chain.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean multi-step structural proof (explicit extension, marginal computation, monotone chain) with a monogamy interpretation; distinct from any PPT or symmetry-commutant argument."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "59, 65",
+          "anchors": "Lemma 7.1 and the hierarchy (7.2) on PDF page 59, Exercise 7.1 on PDF page 65: separable states are infinitely extendible and k-extendibility is monotone in k.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "separable-infinite-extendibility",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Separable states are infinitely extendible via index-shared copies on each B_j, and k-extendibility descends to all k' <= k by discarding systems, yielding the monogamy inclusion chain Ext_1 superset ... superset SEP.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-409",
+    "key": "qcb-core-plan-409-pure-bipartite-extension-forced-product",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let |psi>_AB be an arbitrary pure bipartite state. Prove that any state rho_{A B B'} with tr_{B'} rho_{A B B'} = psi_AB (the projector |psi><psi|_AB) must have the product form rho_{A B B'} = psi_AB tensor omega_{B'} for some state omega_{B'}. Use a purification of rho_{A B B'} and a Schmidt decomposition across the bipartition (AB : B'C). Conclude, as a corollary, that a pure entangled state is not 2-extendible.",
+    "reference_answer": "Let |chi>_{A B B' C} be a purification of rho_{A B B'}, with C a purifying system. Consider the bipartition (AB) versus (B' C) and write the Schmidt decomposition |chi> = sum_j sqrt(q_j) |u_j>_{AB} |w_j>_{B'C} with q_j > 0, {|u_j>} orthonormal in AB and {|w_j>} orthonormal in B'C. Tracing out B' and C gives the AB-marginal tr_{B'C} |chi><chi| = sum_j q_j |u_j><u_j|_{AB}. By hypothesis this marginal equals psi_AB = |psi><psi|_{AB}, a rank-one projector. A convex combination sum_j q_j |u_j><u_j| of mutually orthonormal rank-one projectors with q_j > 0 is rank one only if there is a single term; hence the Schmidt rank across (AB : B'C) is 1, q_1 = 1, and |u_1>_{AB} = |psi>_{AB} up to a phase. The Schmidt decomposition collapses to |chi> = |psi>_{AB} tensor |w>_{B'C} for a single |w>_{B'C}. Therefore rho_{A B B'} = tr_C |chi><chi| = |psi><psi|_{AB} tensor tr_C |w><w|_{B'C} = psi_AB tensor omega_{B'}, where omega_{B'} = tr_C |w><w| is a valid state. This is the claimed product form. Corollary: if |psi>_AB is entangled, a 2-extension rho_{A B B'} (with tr_{B'} rho = psi_AB and tr_B rho = psi_{A B'} = psi_AB as a state on A and a B-copy) would, by the above, be forced to equal psi_AB tensor omega_{B'}; but then its A B'-marginal is psi_A tensor omega_{B'}, which is uncorrelated across A : B' and therefore cannot equal the correlated psi_AB. The contradiction shows a pure entangled state has no 2-extension.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Introduces a purification |chi>_{A B B' C} and Schmidt-decomposes across (AB : B'C)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes the AB-marginal as sum_j q_j |u_j><u_j| and equates it to the rank-one projector psi_AB",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Argues a mixture of orthonormal projectors is rank one only if a single Schmidt term survives, forcing |chi> = |psi>_{AB} |w>_{B'C}",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes rho_{A B B'} = psi_AB tensor omega_{B'} and derives that a pure entangled state is not 2-extendible",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "A purification Schmidt-decomposed across (AB : B'C) has AB-marginal sum_j q_j |u_j><u_j|.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Equaling a rank-one projector forces a single Schmidt term with |u_1> = |psi>.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence rho_{A B B'} = psi_AB tensor omega_{B'}, so pure entangled states have no 2-extension.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A Schmidt-rank rigidity argument: a marginal equal to a rank-one projector forces the whole purification to factorize, yielding the pure-state extension obstruction underlying monogamy."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "59, 65",
+          "anchors": "Exercise 7.3 on PDF page 65 (with the motivating remark around Eqs. (7.3)-(7.4) on page 59): any rho_{A B B'} with tr_{B'} rho = psi_AB equals psi_AB tensor omega_{B'}.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "pure-state-extension",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A purification Schmidt-decomposed across (AB : B'C) whose AB-marginal is the rank-one psi_AB must collapse to a single term, forcing rho_{A B B'} = psi_AB tensor omega_{B'} and ruling out 2-extensions of pure entangled states.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-410",
+    "key": "qcb-core-plan-410-channel-preserves-k-extendibility",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let rho_AB be k-extendible and let N : B -> B' be a quantum channel (a completely positive, trace-preserving linear map). Prove that sigma_{A B'} := (id_A tensor N)(rho_AB) is again k-extendible, by constructing an explicit k-extension of sigma from a k-extension of rho. Verify the required marginal conditions carefully, and state exactly where complete positivity and trace preservation are used.",
+    "reference_answer": "Let rho_{A B_1 ... B_k} be a k-extension of rho_AB, so it is a valid state and tracing out all but B_i gives rho_{A B_i} = rho_AB for each i (identifying each B_i with B). Apply the channel N independently to each of the k B-systems: define sigma_{A B'_1 ... B'_k} := (id_A tensor N_{B_1 -> B'_1} tensor ... tensor N_{B_k -> B'_k})(rho_{A B_1 ... B_k}). This is a valid state because a tensor product of completely positive trace-preserving maps is itself completely positive and trace-preserving: complete positivity guarantees the output stays positive even in the presence of the untouched A-system and the other B-registers, and trace preservation guarantees unit trace. Now check the marginals. Fix i and trace out all B'_j with j != i. Because the maps on different systems act on independent tensor factors, the partial trace over B'_j commutes with the channels on the other systems, and for a trace-preserving map one has tr_{B'_j} N_{B_j}(X) = tr_{B_j} X. Applying this for every j != i gives tr_{B'_j, j != i} sigma_{A B'_1 ... B'_k} = (id_A tensor N_{B_i -> B'_i})( tr_{B_j, j != i} rho_{A B_1 ... B_k}) = (id_A tensor N)(rho_{A B_i}) = (id_A tensor N)(rho_AB) = sigma_{A B'}. Thus every marginal on A B'_i equals sigma_{A B'}, so sigma_{A B'_1 ... B'_k} is a k-extension of sigma_{A B'}, proving sigma is k-extendible. Complete positivity is used to ensure the constructed object is a genuine (positive) state; trace preservation is used both for its validity (unit trace) and, crucially, in the identity tr_{B'_j} N_{B_j}(X) = tr_{B_j} X that reduces the marginals on the discarded systems.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Starts from a k-extension of rho and applies N independently to each B_i, i.e. N^{tensor k} on the B-systems",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Argues the result is a valid state because tensor products of CPTP maps are CPTP (CP for positivity, TP for unit trace)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses tr_{B'_j} N_{B_j}(X) = tr_{B_j} X (trace preservation) to commute partial trace past the channel on discarded systems",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Verifies each A B'_i marginal equals (id tensor N)(rho_AB) = sigma, establishing the k-extension and pinpointing where CP and TP are used",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Apply N independently to each B_i of a k-extension of rho.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Tensor products of CPTP maps are CPTP, so the output is a valid state.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Trace preservation lets partial trace commute past N on discarded systems, recovering sigma on each A B'_i.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A careful CPTP construction with an explicit marginal-reduction identity; shows precisely how complete positivity and trace preservation enter."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "65",
+          "anchors": "Exercise 7.2(i) on PDF page 65: (id_A tensor N)(rho_AB) is k-extendible whenever rho_AB is.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "extendibility-under-channels",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Applying the channel independently to each B_i of a k-extension yields a k-extension of (id tensor N)(rho_AB); CP gives positivity and TP gives both unit trace and the marginal-reduction identity.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-411",
+    "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let |Phi+> = (1/sqrt(d)) sum_{i=1}^d |i>_A |i>_B be the standard maximally entangled state on C^d tensor C^d. (a) Prove the transpose trick: for every operator X in L(C^d), (X_A tensor I_B)|Phi+> = (I_A tensor X^T_B)|Phi+>, where X^T is the transpose of X in the fixed computational basis. (b) Deduce that |Phi+> is invariant under every unitary of the form U tensor conj(U) (U_A tensor the complex conjugate of U on B). Carefully state the role of the computational basis in defining the transpose and conjugate.",
+    "reference_answer": "(a) Expand the left side using X|i> = sum_k X_{ki} |k> (matrix elements in the fixed computational basis): (X_A tensor I_B)|Phi+> = (1/sqrt(d)) sum_i (X|i>)_A |i>_B = (1/sqrt(d)) sum_{i,k} X_{ki} |k>_A |i>_B. For the right side, X^T has matrix elements (X^T)_{ik} = X_{ki}, so X^T|i> = sum_k (X^T)_{ki} |k> = sum_k X_{ik} |k>; thus (I_A tensor X^T_B)|Phi+> = (1/sqrt(d)) sum_i |i>_A (X^T |i>)_B = (1/sqrt(d)) sum_{i,k} X_{ik} |i>_A |k>_B. Relabel the dummy indices in the second expression (swap the names i and k): it becomes (1/sqrt(d)) sum_{k,i} X_{ki} |k>_A |i>_B, which is identical to the left side. Hence (X_A tensor I_B)|Phi+> = (I_A tensor X^T_B)|Phi+> for all X. (b) Apply (a) with X = U unitary acting on A: (U_A tensor I_B)|Phi+> = (I_A tensor U^T_B)|Phi+>. Multiply both sides on B by (I_A tensor conj(U)_B), where conj(U) is the entrywise complex conjugate in the computational basis, and use that conj(U) U^T = (U^dagger U)^T? More directly, use the identity in the form (U_A tensor conj(U)_B)|Phi+>: write it as (I_A tensor conj(U)_B)(U_A tensor I_B)|Phi+> = (I_A tensor conj(U)_B)(I_A tensor U^T_B)|Phi+> = (I_A tensor conj(U) U^T _B)|Phi+>. Since conj(U) U^T = conj(U) conj(U^dagger)... use instead that for unitary U, U^T = conj(U^dagger) is false in general; the clean route: conj(U) U^T has entries sum_k conj(U)_{jk} (U^T)_{kl} = sum_k conj(U_{jk}) U_{lk} = (U U^dagger)_{lj}^* = delta_{lj}. So conj(U) U^T = I, giving (U_A tensor conj(U)_B)|Phi+> = |Phi+>. Hence |Phi+> is invariant under all U tensor conj(U). The transpose and complex conjugate are basis-dependent operations defined with respect to the fixed computational basis {|i>}; the identity holds in that basis, and |Phi+> is precisely the basis-dependent object that intertwines X on A with X^T on B.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Expands (X tensor I)|Phi+> in matrix elements as (1/sqrt d) sum_{i,k} X_{ki} |k>|i>",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Expands (I tensor X^T)|Phi+> and relabels dummy indices to match, proving the transpose trick for all X",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Specializes to X = U and uses conj(U) U^T = I (from unitarity in the fixed basis) to get (U tensor conj(U))|Phi+> = |Phi+>",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Notes transpose/conjugate are defined relative to the fixed computational basis and that |Phi+> intertwines X with X^T",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "(X tensor I)|Phi+> = (I tensor X^T)|Phi+> by matching basis-expanded coefficients.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "For unitary U, conj(U) U^T = I in the fixed basis.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence (U tensor conj(U))|Phi+> = |Phi+>.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A basis-level proof of the transpose trick and the U-conj(U) invariance of the maximally entangled state; this is the ring-ribbon identity underlying isotropic symmetry, kept distinct from any Werner/swap-commutant computation."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "58",
+          "anchors": "Exercise 6.1 on PDF page 58: (X_A tensor I_B)|Phi+> = (I_A tensor X^T_B)|Phi+> and invariance of |Phi+> under U tensor conj(U).",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "maximally-entangled-intertwiner",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The maximally entangled state satisfies the transpose trick (X tensor I)|Phi+> = (I tensor X^T)|Phi+> in the fixed basis, which forces its invariance under every U tensor conj(U).",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-412",
+    "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let d_sym = dim Sym^n(C^d) = binom(n + d - 1, n). Prove the integral formula Pi_sym = d_sym integral dphi |phi><phi|^{tensor n}, where Pi_sym is the orthogonal projector onto the symmetric subspace Sym^n(C^d) and dphi is the Haar-induced normalized measure on pure states of C^d. Structure the proof as: (i) the operator X = integral dphi |phi><phi|^{tensor n} is supported on Sym^n; (ii) X commutes with (and is in fact fixed by conjugation under) U^{tensor n} for all U; (iii) Schur's lemma forces X proportional to Pi_sym; (iv) the trace fixes the constant.",
+    "reference_answer": "(i) Each |phi><phi|^{tensor n} = (|phi>^{tensor n})(<phi|^{tensor n}) is a rank-one operator whose range is spanned by the symmetric vector |phi>^{tensor n} in Sym^n(C^d); since such vectors |phi>^{tensor n} span Sym^n (every symmetric tensor is a combination of such product powers), every |phi><phi|^{tensor n} annihilates any vector orthogonal to Sym^n. Averaging preserves this, so X is fully supported on Sym^n (X = Pi_sym X Pi_sym). (ii) For any U in U_d, conjugating gives U^{tensor n} X (U^dagger)^{tensor n} = integral dphi (U|phi><phi|U^dagger)^{tensor n}. Parametrize the measure as |phi> = V|phi_0> with V Haar on U_d; then U|phi> = (UV)|phi_0>, and by the left-invariance of the Haar measure the integral over V equals the integral over UV, so U^{tensor n} X (U^dagger)^{tensor n} = X. Thus X is invariant under conjugation by U^{tensor n} for all U; equivalently X commutes with the representation U^{tensor n} restricted to its support Sym^n. (iii) By a theorem (proved earlier in the course) the representation U -> U^{tensor n} restricted to Sym^n(C^d) is irreducible. An operator on an irreducible representation that commutes with the whole representation is, by Schur's lemma, a scalar multiple of the identity on that irreducible space; since X is supported on Sym^n and commutes there with U^{tensor n}, we get X = c Pi_sym for some constant c >= 0 (nonnegative because X is positive). (iv) Take traces: tr X = integral dphi tr(|phi><phi|^{tensor n}) = integral dphi 1 = 1 by normalization of the measure, while tr(c Pi_sym) = c dim Sym^n = c d_sym. Hence c = 1/d_sym, i.e. X = (1/d_sym) Pi_sym, equivalently Pi_sym = d_sym integral dphi |phi><phi|^{tensor n}, as claimed.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows X = integral dphi |phi><phi|^{tensor n} is supported on Sym^n because the |phi>^{tensor n} span Sym^n",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Proves U^{tensor n}-invariance of X using the parametrization |phi> = V|phi_0> and left-invariance of the Haar measure",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Invokes irreducibility of U^{tensor n} on Sym^n and Schur's lemma to get X = c Pi_sym",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Fixes c = 1/d_sym by taking traces (tr X = 1, tr Pi_sym = d_sym), giving Pi_sym = d_sym integral dphi |phi><phi|^{tensor n}",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:harmonic-analysis",
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "The product-power states span Sym^n, so X is supported there.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Left-invariance of the Haar measure makes X invariant under U^{tensor n}.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Schur's lemma plus the trace fix X = (1/d_sym) Pi_sym.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A representation-theoretic proof that the Haar average of pure n-fold states is the symmetric projector up to the Weyl dimension; it is the measure-theoretic input to de Finetti and is kept distinct from the Schur-Weyl commutant material handled elsewhere."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "60-61",
+          "anchors": "Lemma 7.3 with Eqs. (7.9)-(7.14) on PDF pages 60-61: Pi_sym = binom(n+d-1,n) integral dphi |phi><phi|^{tensor n} via Schur's lemma and the trace normalization.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "symmetric-subspace-haar-average",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Averaging |phi><phi|^{tensor n} over Haar pure states gives, by irreducibility of U^{tensor n} on Sym^n and Schur's lemma, exactly (1/d_sym) Pi_sym, with the constant fixed by the trace.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-413",
+    "key": "qcb-core-plan-413-cloning-optimal-map-saturates-bound",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Consider the candidate N -> M cloning map T(X) = (d_N/d_M) Pi_M (X tensor I^{tensor (M-N)}) Pi_M, where Pi_M projects onto Sym^M(H), I is the identity on H, and d_L = dim Sym^L(H). Prove that this map achieves the worst-case fidelity bound with equality: for every pure input |phi>, tr(phi^{tensor M} T(phi^{tensor N})) = d_N/d_M, so that F(T) = d_N/d_M saturates the upper bound F(T) <= d_N/d_M. Justify each projector manipulation and the use of phi^{tensor M} being supported on Sym^M.",
+    "reference_answer": "Fix any normalized |phi> in H and compute tr(phi^{tensor M} T(phi^{tensor N})). Insert the definition: tr(phi^{tensor M} T(phi^{tensor N})) = (d_N/d_M) tr( phi^{tensor M} Pi_M (phi^{tensor N} tensor I^{tensor (M-N)}) Pi_M ). Use cyclicity of the trace to move one Pi_M next to phi^{tensor M}: = (d_N/d_M) tr( Pi_M phi^{tensor M} Pi_M (phi^{tensor N} tensor I^{tensor (M-N)}) ). Now phi^{tensor M} = |phi>^{tensor M}><phi|^{tensor M} is a rank-one operator supported entirely on Sym^M(H), because |phi>^{tensor M} is a symmetric vector; therefore Pi_M phi^{tensor M} Pi_M = phi^{tensor M} (the projector acts as the identity on it). This gives = (d_N/d_M) tr( phi^{tensor M} (phi^{tensor N} tensor I^{tensor (M-N)}) ). Factor the operators across the first N and last M - N tensor factors: phi^{tensor M} = phi^{tensor N} tensor phi^{tensor (M-N)}, and phi^{tensor N} tensor I^{tensor (M-N)} acts as phi^{tensor N} on the first N factors and I on the last M - N. Hence the product on the first N factors is phi^{tensor N} phi^{tensor N} = phi^{tensor N} (idempotent, since |phi><phi| is a projector), and on the last M - N factors it is phi^{tensor (M-N)} I = phi^{tensor (M-N)}. Taking the trace factorizes: tr = (d_N/d_M) [tr(phi^{tensor N})] [tr(phi^{tensor (M-N)})] = (d_N/d_M)(1)(1) = d_N/d_M, using tr(phi) = 1. This holds for every |phi>, so the infimum over inputs is also d_N/d_M, i.e. F(T) = d_N/d_M, saturating the upper bound F(T) <= d_N/d_M proved for every map. The two key facts used are: (1) phi^{tensor M} lives in Sym^M so Pi_M leaves it unchanged, and (2) |phi><phi| is an idempotent of unit trace.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes tr(phi^{tensor M} T(phi^{tensor N})) with the explicit map and uses trace cyclicity to sandwich Pi_M around phi^{tensor M}",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses that phi^{tensor M} is supported on Sym^M so Pi_M phi^{tensor M} Pi_M = phi^{tensor M}",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Factorizes across the first N and last M - N tensor factors using idempotency of |phi><phi| and tr(phi)=1",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes the fidelity equals d_N/d_M for every input, so F(T) = d_N/d_M saturates the bound",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:probability"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Trace cyclicity sandwiches Pi_M around phi^{tensor M}.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "phi^{tensor M} lies in Sym^M so Pi_M fixes it; |phi><phi| is idempotent of unit trace.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The fidelity equals d_N/d_M for every input, saturating the bound.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A direct computation that the symmetric-projection cloner achieves the worst-case fidelity bound with equality; it complements the asymptotic/ordering item with the achievability (optimality) direction."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "67-68",
+          "anchors": "Eqs. (8.25)-(8.29) on PDF pages 67-68: the map T(X) = (d_N/d_M) Pi_M (X tensor I) Pi_M achieves tr(phi^{tensor M} T(phi^{tensor N})) = d_N/d_M.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "approximate-cloning-optimal-map",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The symmetric-projection cloner has input-independent fidelity d_N/d_M for every pure state, because phi^{tensor M} is Pi_M-invariant and |phi><phi| is an idempotent of unit trace, so it saturates the optimal-cloning bound.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-414",
+    "key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Given a quantum channel T : L(H^{tensor N}) -> L(H^{tensor M}), define its twirled version by averaging over the Haar measure on U_d: Tbar(X) := integral_{U_d} dU (U^dagger)^{tensor M} T( U^{tensor N} X (U^dagger)^{tensor N} ) U^{tensor M}. Prove that Tbar is covariant, i.e. Tbar( V^{tensor N} X (V^dagger)^{tensor N} ) = V^{tensor M} Tbar(X) (V^dagger)^{tensor M} for all V in U_d, using the left-invariance of the Haar measure. Then explain in one sentence why covariance is the property that lets Schur-Weyl duality constrain the output on the symmetric subspace.",
+    "reference_answer": "Start from the definition applied to the rotated input V^{tensor N} X (V^dagger)^{tensor N}: Tbar(V^{tensor N} X (V^dagger)^{tensor N}) = integral dU (U^dagger)^{tensor M} T( U^{tensor N} V^{tensor N} X (V^dagger)^{tensor N} (U^dagger)^{tensor N} ) U^{tensor M}. Group the unitaries as (UV)^{tensor N} = U^{tensor N} V^{tensor N} acting on X: the integrand becomes (U^dagger)^{tensor M} T( (UV)^{tensor N} X ((UV)^dagger)^{tensor N} ) U^{tensor M}. Substitute W = UV, i.e. U = W V^dagger. By the right/left-invariance of the Haar measure, integrating over U is the same as integrating over W (the measure is invariant under the substitution U -> U V^{-1} = W). Also U^{tensor M} = (W V^dagger)^{tensor M} = W^{tensor M} (V^dagger)^{tensor M} and (U^dagger)^{tensor M} = V^{tensor M} (W^dagger)^{tensor M}. Substituting, the expression becomes integral dW V^{tensor M} (W^dagger)^{tensor M} T( W^{tensor N} X (W^dagger)^{tensor N} ) W^{tensor M} (V^dagger)^{tensor M} = V^{tensor M} [ integral dW (W^dagger)^{tensor M} T( W^{tensor N} X (W^dagger)^{tensor N} ) W^{tensor M} ] (V^dagger)^{tensor M} = V^{tensor M} Tbar(X) (V^dagger)^{tensor M}, where we pulled the V-factors (independent of W) outside the integral and recognized the bracket as Tbar(X). This proves covariance. Covariance means Tbar commutes with the U^{tensor n} action; by Schur-Weyl duality the only operators intertwining this action with itself on each isotypic/symmetric block are scalars (or block-scalars), which pins down Tbar on Sym^M up to a single parameter and is what makes the twirled cloner analytically solvable.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Substitutes the rotated input and groups U^{tensor N} V^{tensor N} = (UV)^{tensor N}",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Changes variables W = UV and invokes left-invariance of the Haar measure to keep the measure unchanged",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Pulls the V-dependent factors outside the integral and recognizes the remaining bracket as Tbar(X)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes covariance Tbar(V^{tensor N} X (V^dagger)^{tensor N}) = V^{tensor M} Tbar(X) (V^dagger)^{tensor M} and explains its role via Schur-Weyl",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:harmonic-analysis"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Rotating the input groups into (UV)^{tensor N}.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Left-invariance of the Haar measure permits the substitution W = UV.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "The V-factors factor out, giving covariance of the twirled channel.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A Haar-twirl covariance proof via the invariance substitution; it is the symmetrization step enabling the cloning optimality argument, distinct from the specific commutant/projector computations done by the other author."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "66-67, 69",
+          "anchors": "Eq. (8.10) in the proof of Proposition 8.2 (PDF pages 66-67) and Exercise 8.4 (PDF page 69): the twirled channel is U^{tensor n}-covariant by left-invariance of the Haar measure.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "haar-twirl-covariance",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Haar-twirling a channel yields a U^{tensor n}-covariant map because the invariance substitution W = UV absorbs the rotation, and this covariance is what lets Schur-Weyl duality pin the output on the symmetric subspace.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-415",
+    "key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "concept",
+    "question": "In spectrum estimation one measures rho^{tensor n} to estimate the eigenvalues of rho. Explain precisely why one may, without loss of generality, restrict attention to measurement effect operators P that are both permutation-invariant (Qbar: P = (1/n!) sum_pi Q_pi P Q_pi^dagger equals P) and U^{tensor n}-invariant, and why the Schur-Weyl projectors {P_lambda} onto the isotypic components Vlambda tensor U^d_lambda form a legitimate measurement with exactly these two symmetries. Separate the argument into: (i) permutation symmetry comes for free from the state; (ii) unitary symmetry is natural because spectra are unitarily invariant; (iii) the P_lambda are positive, sum to the identity, and commute with both Q_pi and U^{tensor n}.",
+    "reference_answer": "(i) The supplied state rho^{tensor n} is permutation invariant: Q_pi rho^{tensor n} Q_pi^dagger = rho^{tensor n} for every pi in S_n, since permuting identical copies does nothing. For any effect operator P, cyclicity and this invariance give tr(P rho^{tensor n}) = tr(P Q_pi rho^{tensor n} Q_pi^dagger) = tr(Q_pi^dagger P Q_pi rho^{tensor n}); averaging over pi, the symmetrized effect Pbar = (1/n!) sum_pi Q_pi P Q_pi^dagger yields identical outcome statistics tr(Pbar rho^{tensor n}) = tr(P rho^{tensor n}). So replacing P by Pbar never changes any probability on permutation-invariant states; we may assume effects are permutation invariant for free. (ii) The eigenvalues of rho equal those of U rho U^dagger for every unitary U, so an estimator of the spectrum should give the same statistics on rho^{tensor n} and (U rho U^dagger)^{tensor n} = U^{tensor n} rho^{tensor n} (U^dagger)^{tensor n}. Imposing U^{tensor n}-invariance of the effects is therefore natural, and by a standard result (the measurement can be post-processed from the symmetric one) it is without loss of generality. (iii) Decompose (C^d)^{tensor n} = direct sum over partitions lambda of n (with at most d rows) of Vlambda tensor U^d_lambda (Schur-Weyl). Let P_lambda be the orthogonal projector onto the lambda-block. Then each P_lambda >= 0 (orthogonal projector) and sum_lambda P_lambda = I (the blocks are a complete orthogonal decomposition), so {P_lambda} is a bona fide projective measurement. Because the decomposition is simultaneously reducing for the commuting S_n and U_d actions, each P_lambda commutes with every permutation operator Q_pi and with every U^{tensor n}: [P_lambda, Q_pi] = 0 and [P_lambda, U^{tensor n}] = 0. Thus {P_lambda} has exactly the two desired symmetries and is the natural spectrum measurement; the outcome lambda is post-processed to the estimate lambda/n.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Argues permutation invariance of the measurement is free because rho^{tensor n} is permutation invariant and symmetrizing the effect preserves all probabilities",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Explains U^{tensor n}-invariance is natural since the spectrum is unitarily invariant, and is WLOG",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States {P_lambda} are orthogonal projectors that sum to the identity, hence a valid measurement",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States [P_lambda, Q_pi] = 0 and [P_lambda, U^{tensor n}] = 0 from the Schur-Weyl block structure",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "rho^{tensor n} is permutation invariant, so symmetrizing effects preserves statistics.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Unitary invariance of the spectrum motivates U^{tensor n}-invariant effects.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "The Schur-Weyl projectors are a complete measurement commuting with Q_pi and U^{tensor n}.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A conceptual explanation of why the two symmetries can be imposed WLOG and how the Schur-Weyl projectors realize them; it frames the estimator and references but does not reprove the Schur-Weyl commutant that the other author covers."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "70-71",
+          "anchors": "Section 9.1-9.2 with Eqs. (9.1)-(9.5) on PDF pages 70-71: permutation- and U^{tensor n}-invariance of the measurement and the Schur-Weyl projectors {P_lambda}.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "spectrum-estimation-symmetries",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Because rho^{tensor n} is permutation invariant and spectra are unitarily invariant, spectrum-estimation effects may be taken permutation- and U^{tensor n}-invariant WLOG, which the Schur-Weyl projectors {P_lambda} realize as a complete measurement commuting with both symmetries.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-416",
+    "key": "qcb-core-plan-416-young-projector-majorization-annihilation",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Fix the spectral eigenbasis {|e_i>} of rho and the tensor-product basis B = { tensor_j |e_{i_j}> } of (C^d)^{tensor n}. For a basis vector |v> in B let f = (f_1, ..., f_d) be its frequency distribution (f_i = number of times |e_i> appears). Let T be a standard Young tableau of shape lambda (a partition of n with at most d rows) and e_T the associated Young symmetrizer / projector. Prove that e_T |v> = 0 unless f is majorized by lambda, i.e. unless sum_{i=1}^q f_i^down <= sum_{i=1}^q lambda_i for all q (with equality at q = d). Use the column-antisymmetrization property of e_T.",
+    "reference_answer": "The Young symmetrizer e_T antisymmetrizes over the columns of the tableau T (it contains the signed sum over the column-stabilizer subgroup). Antisymmetrization annihilates any tensor that has two equal factors in positions lying in the same column: if a column of T contains two cells whose corresponding tensor slots carry the same basis vector |e_{i_j}> = |e_{i_k}>, then e_T |v> = 0, because an antisymmetric combination of two identical entries vanishes. Now order the frequencies so that f_1 >= f_2 >= ... >= f_d (this is f^down). Suppose e_T |v> != 0. Consider the most frequent symbol, appearing f_1 times. These f_1 identical factors must all be placed in distinct columns of T (two of them in a common column would force e_T |v> = 0). The number of distinct columns of a Young diagram lambda is lambda_1 (the length of the first row equals the number of columns), so f_1 <= lambda_1. Next consider the two most frequent symbols together: their f_1 + f_2 occurrences must occupy cells such that no column contains a repeat of either symbol; a column can absorb at most two of these occurrences (one in its first row cell, one in its second), and the number of cells available in the first two rows is lambda_1 + lambda_2. Hence f_1 + f_2 <= lambda_1 + lambda_2. Continuing inductively, after accounting for the q most frequent symbols, their total f_1 + ... + f_q occurrences fit without a forbidden column repeat only if sum_{i=1}^q f_i <= sum_{i=1}^q lambda_i, i.e. the partial sums of f^down are dominated by those of lambda, for all q = 1, ..., d - 1. Since sum_i f_i = n = sum_i lambda_i (both count all tensor slots), the total sums agree. These are exactly the defining inequalities of f being majorized by lambda (f precedes lambda). Therefore e_T |v> = 0 whenever f is not majorized by lambda, equivalently e_T |v> != 0 implies f majorized by lambda.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the column-antisymmetrization property: e_T annihilates any |v> with two equal factors in one column",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Deduces f_1 <= lambda_1 by requiring the f_1 copies of the top symbol to lie in distinct columns (lambda_1 columns)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Extends to partial sums sum_{i<=q} f_i^down <= sum_{i<=q} lambda_i by a row-filling / column-capacity argument",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Uses sum f_i = n = sum lambda_i to conclude f is majorized by lambda whenever e_T |v> != 0",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "e_T antisymmetrizes columns, so it kills any |v> with a repeated factor in a column.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Distinct-column placement of the q most frequent symbols forces partial-sum domination.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "With equal total n, this is exactly f majorized by lambda.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A combinatorial proof linking Young-projector support to majorization, the structural lemma behind the weak-Schur-sampling tail bound; distinct from the generic Schur-Weyl decomposition."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "72-73",
+          "anchors": "Lemma 9.3 on PDF pages 72-73: e_T |v> = 0 unless the frequency distribution f of |v> is majorized by the shape lambda, via column antisymmetrization.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "weak-schur-majorization",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A Young projector e_T kills every tensor basis vector whose symbol frequencies are not majorized by its shape lambda, because the f_q most frequent symbols must occupy distinct columns, forcing the majorization partial-sum inequalities.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-417",
+    "key": "qcb-core-plan-417-symmetrized-vs-projected-state-identity",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let rho be a state on A^{tensor n}, and let rhobar = (1/n!) sum_{pi in S_n} Q_pi rho Q_pi^dagger be its symmetrization (Q_pi the permutation operators). Let Pi_n be the projector onto the symmetric subspace Sym^n(H_A). Prove the identity Pi_n rhobar Pi_n = Pi_n rho Pi_n. In your proof establish and use the intertwining relation Pi_n Q_pi = Pi_n = Q_pi Pi_n for every pi (the symmetric projector absorbs permutations), and be explicit about why the 1/n! average collapses.",
+    "reference_answer": "First establish Pi_n Q_pi = Pi_n for all pi. The symmetric subspace Sym^n(H_A) is by definition the set of vectors fixed by every Q_pi, and Pi_n is the orthogonal projector onto it. For any vector |w>, Q_pi |w> and |w> have the same component in Sym^n because Q_pi acts as the identity on Sym^n and permutes the orthogonal complement among itself (the decomposition into isotypic components is Q_pi-invariant, and the trivial/symmetric isotype is pointwise fixed). Concretely, Pi_n = (1/n!) sum_sigma Q_sigma (the projector onto the trivial isotype equals the group average), and Q_sigma Q_pi = Q_{sigma pi} ranges over all of S_n as sigma does, so Pi_n Q_pi = (1/n!) sum_sigma Q_{sigma pi} = (1/n!) sum_tau Q_tau = Pi_n; likewise Q_pi Pi_n = Pi_n and Pi_n is self-adjoint with Q_pi^dagger = Q_{pi^{-1}}, giving Pi_n Q_pi^dagger = Pi_n too. Now compute Pi_n rhobar Pi_n = Pi_n [ (1/n!) sum_pi Q_pi rho Q_pi^dagger ] Pi_n = (1/n!) sum_pi (Pi_n Q_pi) rho (Q_pi^dagger Pi_n). Using Pi_n Q_pi = Pi_n and Q_pi^dagger Pi_n = Pi_n for every pi, each summand becomes Pi_n rho Pi_n, independent of pi. Hence Pi_n rhobar Pi_n = (1/n!) sum_pi Pi_n rho Pi_n = (1/n!)(n!) Pi_n rho Pi_n = Pi_n rho Pi_n. The 1/n! average collapses precisely because the permutations are absorbed by the flanking symmetric projectors, leaving n! identical copies of Pi_n rho Pi_n. This shows that, as far as the symmetric-subspace compression is concerned, a state and its symmetrization are indistinguishable.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Establishes Pi_n Q_pi = Q_pi Pi_n = Pi_n using Pi_n = (1/n!) sum_sigma Q_sigma and the group reshuffle Q_sigma Q_pi = Q_{sigma pi}",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Writes Pi_n rhobar Pi_n = (1/n!) sum_pi (Pi_n Q_pi) rho (Q_pi^dagger Pi_n)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Reduces each summand to Pi_n rho Pi_n via the absorption identity (including Q_pi^dagger Pi_n = Pi_n)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Collapses the n! identical terms to conclude Pi_n rhobar Pi_n = Pi_n rho Pi_n",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Pi_n absorbs permutations: Pi_n Q_pi = Pi_n = Q_pi Pi_n.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Each averaged term becomes Pi_n rho Pi_n independent of pi.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The 1/n! average collapses to a single Pi_n rho Pi_n.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A short group-average proof that symmetric-subspace compression is blind to symmetrization, via the permutation-absorption identity for Pi_n; a self-contained exercise distinct from the full Schur-Weyl machinery."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "70",
+          "anchors": "Exercise 8.3 on PDF page 70: Pi_n rhobar Pi_n = Pi_n rho Pi_n, via the character/group-average formula for Pi_n and Pi_n Q_pi = Pi_n.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "symmetric-projection-symmetrization",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Because the symmetric projector absorbs permutations (Pi_n Q_pi = Pi_n), the symmetrization average collapses and Pi_n rhobar Pi_n = Pi_n rho Pi_n, so symmetric-subspace compression cannot distinguish a state from its symmetrization.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-418",
+    "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let T(X) = (d_N/d_M) Pi_M (X tensor I^{tensor (M-N)}) Pi_M, acting from L(H^{tensor N}) to L(H^{tensor M}), with Pi_M the projector onto Sym^M(H) and d_L = dim Sym^L(H). (a) Prove that T is completely positive. (b) Prove that T is trace non-increasing, i.e. tr T(X) <= tr X for every X >= 0, and determine exactly on which inputs the trace is preserved. Use that Pi_M <= I and that embedding X -> X tensor I is completely positive.",
+    "reference_answer": "(a) Complete positivity. The map X -> X tensor I^{tensor (M-N)} (tensoring with a fixed identity on ancillary factors) is completely positive: it is of the Kraus form with the single Kraus operator being the isometric embedding, and tensoring a positive operator with the positive operator I keeps positivity under any further ancilla extension. The map Y -> Pi_M Y Pi_M is completely positive with the single Kraus operator Pi_M (it is of the form K Y K^dagger with K = Pi_M = Pi_M^dagger). Multiplying by the nonnegative scalar d_N/d_M preserves complete positivity. A composition of completely positive maps is completely positive; hence T = (scalar) (compression) (embedding) is completely positive. (b) Trace behaviour. For X >= 0, tr T(X) = (d_N/d_M) tr( Pi_M (X tensor I^{tensor (M-N)}) Pi_M ) = (d_N/d_M) tr( (X tensor I^{tensor (M-N)}) Pi_M ) by cyclicity and Pi_M^2 = Pi_M. Since 0 <= Pi_M <= I and X tensor I^{tensor (M-N)} >= 0, we have tr( (X tensor I) Pi_M ) <= tr( (X tensor I) I ) = tr(X tensor I^{tensor (M-N)}) = tr(X) d^{M-N} (each ancillary I contributes a factor d = dim H). Therefore tr T(X) <= (d_N/d_M) d^{M-N} tr(X). This is an upper bound; the sharper statement that T is trace non-increasing with the right normalization is seen on the physically relevant inputs: for X = |phi><phi|^{tensor N} with |phi> normalized, tr( (phi^{tensor N} tensor I^{tensor (M-N)}) Pi_M ) = tr( Pi_M (phi^{tensor N} tensor I) Pi_M ) and since phi^{tensor N} tensor (anything symmetric) overlaps Sym^M with weight exactly d_M/d_N (the ratio of symmetric dimensions), one gets tr T(phi^{tensor N}) = (d_N/d_M)(d_M/d_N) = 1, so the trace is preserved exactly on symmetric pure powers phi^{tensor N} (and their mixtures sum_j x_j phi_j^{tensor N}). On a general X >= 0 that has support outside the symmetric subspace after embedding, the compression by Pi_M strictly lowers the trace, so T is trace non-increasing in general and trace-preserving precisely on (mixtures of) the pure-power inputs phi^{tensor N} that lie in Sym^N. The extension eT(X) = T(X) + tr((I - Pi_N) X) sigma restores exact trace preservation by returning the lost weight into a fixed state sigma.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves complete positivity by composing the CP embedding X -> X tensor I with the CP compression Y -> Pi_M Y Pi_M and a nonnegative scalar",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Reduces tr T(X) using cyclicity and Pi_M^2 = Pi_M to (d_N/d_M) tr((X tensor I) Pi_M)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Bounds the trace via 0 <= Pi_M <= I to show trace non-increase",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Identifies the pure-power inputs phi^{tensor N} (and their mixtures) in Sym^N as exactly those on which the trace is preserved, and notes the eT correction restores full trace preservation",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "X -> X tensor I and Y -> Pi_M Y Pi_M are CP, so their composition T is CP.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Pi_M <= I makes tr T(X) <= its unprojected value, so T is trace non-increasing.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Trace is preserved exactly on symmetric pure-power inputs phi^{tensor N}.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Verifies the structural (CP, trace-non-increasing) properties of the cloning map and characterizes exact trace preservation, complementing the fidelity-saturation item."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "67-69",
+          "anchors": "Eq. (8.25) and Exercise 8.5 on PDF pages 67-69: T(X) = (d_N/d_M) Pi_M (X tensor I) Pi_M is CP and trace non-increasing, with the eT correction (8.39) restoring trace preservation on pure-power inputs.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "approximate-cloning-optimal-map",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The symmetric-projection cloner is completely positive (composition of the CP embedding and CP compression) and trace non-increasing because Pi_M <= I, with the trace preserved exactly on symmetric pure-power inputs phi^{tensor N}.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-419",
+    "key": "qcb-core-plan-419-fidelity-telescoping-lower-bound",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "In the de Finetti proof one meets the average squared fidelity integral dphi p(phi) F(tilde-phi, phi^{tensor k})^2 = R, where R = [ (m+d-1)!/m! ] / [ (k+m+d-1)!/(k+m)! ] simplifies to the ratio of two products of (d-1) consecutive integers, R = [(m+1)(m+2)...(m+d-1)] / [(k+m+1)(k+m+2)...(k+m+d-1)]. Prove the chain of lower bounds R >= ((m+1)/(k+m+1))^{d-1} = (1 - k/(k+m+1))^{d-1} >= 1 - k(d-1)/(k+m+1) >= 1 - kd/m. State the elementary inequalities used and where each applies.",
+    "reference_answer": "Write R as a product of d-1 factors, pairing the j-th numerator term (m+j) with the j-th denominator term (k+m+j) for j = 1, ..., d-1: R = prod_{j=1}^{d-1} (m+j)/(k+m+j). Each factor (m+j)/(k+m+j) is an increasing function of j (as j grows the ratio (m+j)/(k+m+j) increases toward 1), so the smallest factor is the one at j = 1, namely (m+1)/(k+m+1). Replacing every factor by this smallest one gives the first bound R >= ((m+1)/(k+m+1))^{d-1}; this uses only that each factor is at least the j=1 factor. Rewrite (m+1)/(k+m+1) = 1 - k/(k+m+1), which is a number in [0,1] since 0 <= k/(k+m+1) <= 1. Apply Bernoulli's inequality (1 - a)^p >= 1 - p a for a in [0,1] and p = d-1 >= 0: ((1 - k/(k+m+1))^{d-1} >= 1 - (d-1) k/(k+m+1). That is the second bound. Finally, since k+m+1 >= m and d-1 <= d, we have (d-1) k/(k+m+1) <= d k/m (replacing the denominator by the smaller m only increases the fraction, and d-1 by d only increases the numerator factor), hence 1 - (d-1)k/(k+m+1) >= 1 - kd/m. Chaining the three steps gives R >= 1 - kd/m. The elementary inequalities used are: (1) monotonicity of each factor in j to replace by the minimal factor; (2) Bernoulli's inequality (1-a)^p >= 1 - pa; (3) the crude comparison (d-1)/(k+m+1) <= d/m. This is exactly the fidelity lower bound 1 - kd/m that feeds, via Fuchs-van de Graaf and Jensen, into the de Finetti trace-distance bound sqrt(kd/(n-k)) with m = n - k.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Factorizes R = prod_{j=1}^{d-1} (m+j)/(k+m+j) and replaces each factor by the minimal j=1 factor to get R >= ((m+1)/(k+m+1))^{d-1}",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Rewrites (m+1)/(k+m+1) = 1 - k/(k+m+1) in [0,1]",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Applies Bernoulli (1-a)^{d-1} >= 1 - (d-1)a to get 1 - (d-1)k/(k+m+1)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Uses (d-1)/(k+m+1) <= d/m to reach R >= 1 - kd/m and ties it to the de Finetti bound with m = n - k",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:probability"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "R is a product of d-1 factors, minimized termwise by the j=1 factor.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Bernoulli's inequality lowers the power to a linear bound.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "A crude denominator/numerator comparison gives R >= 1 - kd/m.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Isolates and rigorously proves the telescoping fidelity inequality chain inside the de Finetti argument, naming each elementary step (monotone factors, Bernoulli, crude comparison)."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "62",
+          "anchors": "Eqs. (7.30)-(7.34) in the proof of Proposition 7.4 on PDF page 62: the average fidelity ratio is bounded below by ((m+1)/(k+m+1))^{d-1} >= 1 - kd/m.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "fidelity-telescoping-bound",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The de Finetti fidelity ratio factorizes into d-1 increasing terms, so replacing them by the smallest, applying Bernoulli, and a crude comparison yields the clean lower bound 1 - kd/m.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-420",
+    "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "The symmetric subspace Sym^n(C^d) has dimension dim Sym^n(C^d) = binom(n + d - 1, n) by Weyl's dimension formula, and the full tensor space (C^d)^{tensor n} has dimension d^n. (a) Prove the dimension formula by a stars-and-bars counting of a basis of Sym^n(C^d). (b) Compare dim Sym^n to d^n: show that the symmetric subspace occupies a vanishing fraction of the full space as n -> infinity for fixed d >= 2, by estimating binom(n+d-1, n) as a polynomial in n of degree d-1. (c) State what this says about the de Finetti / cloning constructions, which live entirely inside Sym^n.",
+    "reference_answer": "(a) A natural basis of Sym^n(C^d) is given by the symmetrized tensors indexed by multisets of size n drawn from {1, ..., d}: for each way of choosing nonnegative occupation numbers (f_1, ..., f_d) with sum_i f_i = n (f_i = how many factors are |e_i>), there is exactly one symmetric basis vector (the normalized permutation-symmetrization of |e_1>^{tensor f_1} ... |e_d>^{tensor f_d}). These are linearly independent and span Sym^n. Counting the number of such occupation tuples is the classic stars-and-bars problem: distribute n indistinguishable stars into d bins separated by d-1 bars, giving binom(n + d - 1, d - 1) = binom(n + d - 1, n) arrangements. Hence dim Sym^n(C^d) = binom(n + d - 1, n). (b) For fixed d, binom(n+d-1, n) = (n+d-1)(n+d-2)...(n+1)/(d-1)! is a polynomial in n of degree d-1 with leading term n^{d-1}/(d-1)!. Meanwhile d^n grows exponentially in n (since d >= 2). Therefore the fraction dim Sym^n / d^n ~ n^{d-1}/((d-1)! d^n) -> 0 as n -> infinity: the symmetric subspace is an exponentially small fraction of the full tensor space. (c) Both the de Finetti theorems and the optimal cloning map operate entirely within Sym^n (symmetric pure states, symmetric projector Pi_M). The polynomial-vs-exponential gap means these constructions exploit a highly structured, low-dimensional corner of the full Hilbert space; the symmetric subspace being only polynomially large (degree d-1) is exactly what makes the de Finetti ratio binom(m+d-1,m)/binom(k+m+d-1,k+m) close to 1 (hence strong i.i.d. approximation) and the cloning dimension ratio d_N/d_M close to 1 for fixed M - N. The smallness relative to d^n is why permutation/unitary symmetry is such a powerful simplification: estimation and cloning need only resolve a polynomial number of symmetric sectors rather than the exponentially many general states.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Exhibits the occupation-number basis of Sym^n indexed by (f_1,...,f_d) with sum f_i = n",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Counts these by stars-and-bars to get binom(n+d-1, n) = binom(n+d-1, d-1)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Estimates binom(n+d-1,n) as a degree-(d-1) polynomial in n and compares to d^n to show the fraction -> 0",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Interprets the polynomial-vs-exponential gap for de Finetti/cloning living in Sym^n",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:operator-theory",
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Occupation tuples summing to n index a basis of Sym^n.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Stars-and-bars counts them as binom(n+d-1,n).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "This is polynomial of degree d-1 in n, vanishing against d^n.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A combinatorial dimension count plus an asymptotic comparison, giving the structural reason the symmetric-subspace tools (de Finetti, cloning) are powerful; grounded in Weyl's formula as used throughout the applications chapters."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "60, 66",
+          "anchors": "Weyl dimension formula dim Sym^n(C^d) = binom(n+d-1, n) stated on PDF page 60 (after Eq. 7.8) and reused for d_N = binom(d+N-1, N) in Proposition 8.2 on PDF page 66.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "symmetric-subspace-dimension",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A stars-and-bars count gives dim Sym^n(C^d) = binom(n+d-1,n), a degree-(d-1) polynomial that vanishes against d^n, explaining why the symmetric-subspace-based de Finetti and cloning constructions are so effective.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "qit-applications-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

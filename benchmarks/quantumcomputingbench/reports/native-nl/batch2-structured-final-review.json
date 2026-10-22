@@ -1,0 +1,277 @@
+{
+  "reviewer": "structured-prep-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "source_file_sha256_whole": "3b26e9eb0d3d4963c260559f59c1610653a8b31b5d64bc324955cd464b5f150d",
+  "items": [
+    {
+      "key": "qcb-core-sp-101",
+      "authored_sha256": "425a03b0613f0875b51ce482cec2cb799d9e6398e8283b346633be6f977e9590",
+      "verdict": "reject",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Core math (the asked statement) is correct and source-backed: jetPolynomial in (x-a) basis coeff v(j)/j!, eval_iterate_derivative (d^j P)(a)=j!*taylorcoeff_j, jetPolynomial_jet => v(j) for j<=k; nonzero-normalizer (j! cast nonzero) handled. Author REVISED the reference_answer since the partial review (hash changed from 9fe187d0 to 425a03b0): the earlier flatly-FALSE 'minimal degree able to carry k+1 constraints' was softened and the degenerate cases (v=0 -> zero poly, v(k)=0 -> degree<k) are now correctly acknowledged, calling k 'an upper bound on this construction's degree, not a universal minimum'. However the answer STILL contains an unasked, unproven necessity claim -- 'The bound k is the generic (worst-case) degree needed to carry k+1 derivative constraints at a single node' -- which is a dimension-count assertion neither requested by the question (which asks only to prove (d^j P)(a)=v(j)) nor proved in the answer; plus a duplicated-phrase typo 'has degree at most k, has degree at most k'. Reject stands: reference answer carries out-of-scope unproven material and a text defect. Minimal fix: delete the entire trailing 'The bound k is the generic (worst-case) degree needed...' sentence and the duplicated clause.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L28-29 def jetPolynomial",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L32-35 theorem eval_iterate_derivative",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L38-49 theorem jetPolynomial_jet"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-102",
+      "authored_sha256": "f4e8499831d72776720a2806bb494df6a590587174027e3608e42e4135932a4c",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Matches jet_eq_of_pow_dvd_sub exactly (verified L52-62): (X-a)^(k+1)|p-q, j<=k => k+1-j>=1 => (X-a)|derivative^[j](p-q) => eval a =0 => jets agree by linearity. Sharpness witness p-q=(x-a)^(k+1) correct and substantive, not padding. 3 distinct substantive steps. Unchanged from partial (hash identical).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L52-62 theorem jet_eq_of_pow_dvd_sub"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-103",
+      "authored_sha256": "14dd68a4f23563cb597665c6f3712c95bc935d1a52d177e86045c803bb415784",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Matches coefficientSeries_coeff/_nonneg/_zero and coefficientPolynomial_pos (L254-265, single_le_sum, r=0 term=1) and sourceInterpolant_pos (L267-286). Zero regime handled: by_cases hz (p+1=0) in source matches the t=0 vs t>0 strictness split. Prefactor signs correct. 4 substantive steps, exact algebra, no numerical substitution. Distinct from sp-106 (series-level) and sp-107 (symmetry). Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L184-204 coefficientSeries_coeff/_nonneg/_zero",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L254-286 coefficientPolynomial_pos / sourceInterpolant_pos (by_cases hz handles t=0)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-104",
+      "authored_sha256": "a276c2f80673616a1ea57d8d4122e0f77b94d584c7a5bc9fdac64e225d1199b7",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "CRT/degree-count uniqueness matching pow_dvd_sub_of_jet_eq (L381-392), endpointModuli_coprime (L125-127, IsCoprime.pow, 'difference is 1' unit), sourceInterpolant_unique (L395-417, coprime.mul_dvd then natDegree vs product 2k+2 while deg(p-q)<=2k+1). Coprimality + degree-budget roles correctly explained. 3 substantive steps. Distinct from sp-105 (necessity side). Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L381-392 pow_dvd_sub_of_jet_eq",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L120-127 moduli / endpointModuli_coprime",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L395-417 sourceInterpolant_unique (product natDegree=2k+2)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-105",
+      "authored_sha256": "b320581beab3617324b67469738a84918a92428e280467c9c767ce8451d269ee",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Counterexample E=(x+1)^(k+1)x^(k+1), degree 2k+2, order-(k+1) zero at each node => all k-jets vanish; adding E breaks uniqueness without degree bound -- exactly the sharpness complement of sourceInterpolant_unique's degree hypothesis and the L408-413 2k+2 count. Dimension/coset claim IS asked content here (question explicitly requests the dimension), unlike sp-101's gratuitous digression -- not a defect. 3 substantive steps. Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L120-123 leftModulus/rightModulus",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L408-417 sourceInterpolant_unique degree count 2k+2 vs budget 2k+1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-106",
+      "authored_sha256": "677d79e2df56d4d292651871dd7581b9d27d242f25d40a4ffc620dc3f8ccfaae",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Cauchy-product coeff identity matching coefficientSeries_coeff (L184-195): coeff_exp=1/m!, invOneSubPow=C(k+i,k), antidiagonal->range reindex i=r-m; nonneg + r=0 value 1 match _nonneg/_zero. Reindex argument substantive. Distinct from sp-103 (downstream polynomial positivity). 3 steps, no numerical substitution. Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L169-170 coefficientSeries = exp*invOneSubPow",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L184-204 coefficientSeries_coeff/_nonneg/_zero"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-107",
+      "authored_sha256": "e43b2943668b2aa8af0a8e2cc5e40fc938d5396d64948f1365f7c09b3294c27b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Concept decomposition matching sourceInterpolant_eval (L298-308), endpointFactor (L177), endpointFactor_one_jet (L227-235, order-(k+1) decoupling), A_k(0)=1 (coefficientSeries_coeff_zero). Roles correct, nonzero A_k(0)=1 load-bearing. Reflection t->1-t symmetry up to exp(-1) correct. 3 substantive conceptual steps. Distinct from sp-103/106. Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L176-182 endpointFactor/sourceInterpolant",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L227-235 endpointFactor_one_jet",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L298-308 sourceInterpolant_eval"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-108",
+      "authored_sha256": "9cc34668add9f89fcdfb2d2a9868644f1b812f742d0e687edc599a46e3aeeb99",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Degree-elevation identity matching elevation_term (L57-66, C(2k+1,i+j) cancels w denom, 2k+1-(i+j)=(k+1)+(k-i-j) regroup) and elevation_sum (L69-84, add_pow => (t+(1-t))^(k-i)=1). Nonzero-normalizer C(2k+1,i+j) via Nat.choose_pos checked. Nonneg deduction matches sourceBernsteinCoefficient_nonneg (L170-173). Index collection i+j=r correct. 3 steps. Distinct Bernstein-representation core. Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteBernstein.lean#L50-66 elevationWeight/elevation_term (choose_pos nonzero denom)",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L69-84 elevation_sum (add_pow)",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L167-173 sourceBernsteinCoefficient_nonneg"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-109",
+      "authored_sha256": "0aae479b5f31e085a66ef068a8fff9a6d344e070b7bce84f7c7351b39adbea08",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Operator-algebra de Casteljau matching casteljauStep (L219-247), casteljauStep_mul_parameter (L252-257), leftRestriction_step + casteljau_leftRestriction (L259-277, Function.Semiconj.iterate_right), leftRestriction_eval (L279-282). Semiconjugacy->iterate->apex chain is the genuine structure. 4 distinct substantive steps, no padding. Distinct from sp-110. Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteBernstein.lean#L219-247 casteljauStep/casteljau_eq_sum",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L252-277 casteljauStep_mul_parameter/leftRestriction_step/casteljau_leftRestriction (Semiconj.iterate_right)",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L279-282 leftRestriction_eval"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-110",
+      "authored_sha256": "2d65f5d3a4669fbc454d4ea731a6762a131902700e8409c0d4d86487dd0b363d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Convex-hull stability matching basis_sum (L327-330) + bernstein_sum_bounds (L333-346) + leftRestriction_bounds/rightRestriction_bounds (L348-361) + restrictCoefficients_bounds (L364-374). Second-step parameter (v-u)/(1-u) in [0,1] via 1-u>0 (hden) checked; strict 1-u>0 from u<v<=1 load-bearing in division. 3 substantive steps. Distinct from sp-109 (exact reparametrise vs bound preservation). Unchanged from partial.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteBernstein.lean#L327-346 basis_sum/bernstein_sum_bounds",
+        "QuantumBlockEncoding/HermiteBernstein.lean#L348-374 leftRestriction_bounds/rightRestriction_bounds/restrictCoefficients_bounds ((v-u)/(1-u) in [0,1])"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-111",
+      "authored_sha256": "bcdfb742d4d5ab6d6eb41b6e34e57bf711946ccb3382224f62f1c500b64a2c0b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Faulhaber discrete-mass closed form. Source HermiteIntervalMass.lean sha ff87cc69 verified; read in full. Matches powerSumClosed_eq (L27-31, = sum_j j^degree via Mathlib sum_range_pow, exact Bernoulli/Faulhaber not Euler-Maclaurin approximation), affineSquared_eval (L37-39, (p.eval(start+step x))^2, degree 2 deg q via affineSquared_degree L59-71), polynomialMassClosed_eq (L47-57, finite-sum swap Finset.sum_comm + eval_eq_sum_range'). count=0 edge (empty sum=0, P_r(0)=0) correct. Exactness claim honest: all three identities are exact. Bound 'at least D' requirement correctly stated. 3 substantive steps. NEW family hermite-discrete-mass, absent from parent (61 items, no hermite families) and distinct within batch.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteIntervalMass.lean#L20-31 powerSumClosed/_eq (Faulhaber sum_range_pow)",
+        "QuantumBlockEncoding/HermiteIntervalMass.lean#L34-71 affineSquared/_eval/_degree (degree 2 deg q)",
+        "QuantumBlockEncoding/HermiteIntervalMass.lean#L42-57 polynomialMassClosed/_eq (finite sum_comm)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-112",
+      "authored_sha256": "5cd05910e1dcaadca98e9773cc9f823407d84d1502fcb2ca704815168877e186",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Boundary task: geometric exponential mass with step=0 corner. Matches exponentialMassClosed (L90-93, if step=0 then count*exp(2 start) else exp(2 start)*((exp 2step)^count -1)/(exp 2step -1)) and exponentialMassClosed_eq (L96-116). ZERO-REGIME / nonzero-denominator check is the crux and is correct: for step!=0, exp(2 step)!=1 derived via Real.exp_injective (source L111-114), so geom_sum_eq applies with nonzero denom; step=0 branch gives count*exp(2 start). Genuine 0/0 at step=0, limit-agreement (L'Hopital) argument correct, piecewise continuity honest. Sign (exp>0) fine. 3 substantive steps. Same new family as sp-111 but distinct core (geometric vs Faulhaber).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteIntervalMass.lean#L90-116 exponentialMassClosed/_eq (exp_injective => exp(2 step)!=1, geom_sum_eq, step=0 branch)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-113",
+      "authored_sha256": "a6731338d6c6f392be7bb5546106b2c88e28bd64ac1575d3462ac8b9252fdb14",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Width-uniform norm>=1 lower bound. Matches gridPoint_central (L175-182, central index 2^n -> p=0 for all L, verified algebra), smoothInitial_zero (L163-165, =1 via sourceInterpolant_right_jet k 0), sampled_mass_ge_one (L186-195, Finset.single_le_sum at centralIndex, sq_nonneg others). The claim 'positivity used only to keep bound honest not to prove it' is accurate: the proof needs only a_c^2=1 and nonneg squares. Uniformity in k,n,L correct (central point stays at 0). Nonzero-normalizer tie-in (strict positivity => nonzero norm) correctly separated. 3 substantive steps. Distinct core within family.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteIntervalMass.lean#L168-182 centralIndex/gridPoint_central (2^n -> 0 all L)",
+        "QuantumBlockEncoding/HermiteIntervalMass.lean#L163-165 smoothInitial_zero (=1)",
+        "QuantumBlockEncoding/HermiteIntervalMass.lean#L186-195 sampled_mass_ge_one (single_le_sum, sq_nonneg)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-114",
+      "authored_sha256": "62d8704eb632101902ec6464d7233847e1d3317798ba2a0e50d1a8c29a448439",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Additive-argument rank bound via shifted-Taylor factorization. Source HermiteCutRank.lean sha c0f038bd verified; read in full. Matches polynomial_add_factorization (L34-45, A x i = (taylor (u x) p).coeff i, B i y = v y^i, via eval_eq_sum_range' + Fin.sum_univ_eq_sum_range) and FactorsThrough.rank_le (L27-31, rank_mul_le_left + rank_le_card_width) and polynomial_add_rank_le (L47-50, <= d+1). Degree-controls-inner-dimension reasoning correct; additive structure essential point correct. REVISED since partial-era intake (hash 62d8704e; reference_answer now rewrites the formerly type-leaked 'Fin (d+1)' into plain English '(number of rows) by (d+1) matrix / inner dimension d+1' -- confirmed NO Lean type/API identifier leak remains). 3 substantive steps. NEW family hermite-cut-rank.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteCutRank.lean#L24-31 FactorsThrough/rank_le (rank_mul_le_left, rank_le_card_width)",
+        "QuantumBlockEncoding/HermiteCutRank.lean#L34-50 polynomial_add_factorization/_rank_le (shifted-Taylor, inner dim d+1)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-115",
+      "authored_sha256": "a9bca561f668f5de9dba3f789739d2aacb3fddf6d26e8444dac60d71b0ff05d0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Concept: four composition laws + width arithmetic. Matches FactorsThrough.add (L73-81, Sum ι κ, direct sum => widths ADD), .neg (L83-87, same width), .pointwise_mul (L90-105, ι×κ => widths MULTIPLY), .scale (L251-257, same width). Base pieces: threshold_factorization width Fin 2 (L134-148), exponential_add_factorization width Unit=1 (L67-70, exp_add split), polynomial width d+1 (L34). Composition examples (indicator*exp=2, band=2+2=4, 4*(2k+2)) correct per the laws. tensor/index (Cartesian product inner index) correct. Symbolic-not-dense framing accurate. 3 substantive steps. Distinct from sp-116 (which instantiates these on the actual datum).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteCutRank.lean#L73-105 FactorsThrough.add/.neg/.pointwise_mul (widths add / preserve / multiply)",
+        "QuantumBlockEncoding/HermiteCutRank.lean#L251-257 FactorsThrough.scale (width preserved)",
+        "QuantumBlockEncoding/HermiteCutRank.lean#L61-70,134-148 product/exponential_add (width 1) / threshold_factorization (width 2)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-116",
+      "authored_sha256": "d2e5e7705e721614dad7bde2cb6840f7268e199a42fa778a4501d4116c650e04",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Full-datum rank <= 8k+12 explicit factorization. Matches hermite_affine_factorization (L202-241, hleft=threshold*exp, hmiddle=(hB.add hA.neg)*hpoly, hright=complement*exp, hsum), hermiteBond_card=8k+12 (L197-199, verified card arithmetic: 2*1 + (2+2)*(2k+2) + 2*1 = 8k+12), blockIndex_lt_iff (L108-131, two-state binary-cut separation), threshold_complement_factorization (L151-167), hermite_affine_cut_rank_le (L243-248). Width accounting exact: left 2, middle 4*(2k+2)=8k+8, right 2 => 8k+12, uniform over cut. Honest scope caveat ('separation certificate only, not a gate compiler') matches module docstring. 3 substantive steps. Distinct core.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteCutRank.lean#L108-131 blockIndex_lt_iff (two-state cut)",
+        "QuantumBlockEncoding/HermiteCutRank.lean#L193-199 HermiteBond/hermiteBond_card=8k+12",
+        "QuantumBlockEncoding/HermiteCutRank.lean#L202-248 hermite_affine_factorization/_cut_rank_le (left2+middle(8k+8)+right2)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-117",
+      "authored_sha256": "ba061255a3c159a75090ce956365803282a47645b6e1a19f5e1a4fc33952d742",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Counterexample/gap: rank bound does NOT close state preparation. Source HermiteSampleStructure.lean sha eda04790 verified; read in full. The module docstring (L4-5) and HermiteCutRank docstring (L7-12) EXPLICITLY state the certificates 'are not a gate compiler, an isometry completion, or a finite-precision algorithm' and 'a rank bound alone does not close the polynomial-resource state-preparation task' -- the item quotes this faithfully, not fabricated. sampled_cut_rank_le (L41-46) and normalized_cut_factorization (L50-58, exact normalization keeps same factor width, a factorization NOT a compiler) exist as claimed. The rank-1 'arbitrary factor vectors' gap argument is logically valid (low rank compatible with hard/incomputable factors). Two concrete missing ingredients (gate sequence/angles+isometrization; true global normalization) correctly identified. 3 substantive steps. Distinct counterexample core (meta-logical gap, not an algebra identity).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteSampleStructure.lean#L4-5,41-58 docstring 'not a circuit compiler'; sampled_cut_rank_le; normalized_cut_factorization (scale, width preserved)",
+        "QuantumBlockEncoding/HermiteCutRank.lean#L7-12 docstring 'rank bound alone does not close state-preparation'",
+        "QuantumBlockEncoding/HermiteCutRank.lean#L27-31 FactorsThrough.rank_le (existence-of-factorization, not construction)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-118",
+      "authored_sha256": "e84d90e365306b02531594771ec4cb11ce5e741097239d5e92aa8379dccafeb4",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Counterexample: value-agreement alone insufficient for C^1 (ReLU). Source HermiteSmoothness.lean sha da475685 verified; read in full. f=0,g=x,c=0 => splice=ReLU, continuous (value match) but left deriv 0 != right deriv 1 => not C^1. Matches hasDerivAt_splice (L38-54, needs hv:f c=g c AND hd:deriv f c=deriv g c) and deriv_splice (L56-61) and contDiff_splice (L64-90, induction consuming one jet per order, base uses value match for continuity, succ differentiates+recurses). 'all k+1 equations genuinely used / dropping any breaks the chain' claim correct and matches the induction structure. Finite-vs-continuous handled correctly (C^0 vs C^1 distinction precise). 3 substantive steps. NEW family hermite-smooth-gluing.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteSmoothness.lean#L22,38-61 splice/hasDerivAt_splice/deriv_splice (needs value AND deriv match)",
+        "QuantumBlockEncoding/HermiteSmoothness.lean#L64-90 contDiff_splice (induction, one jet-eq per order)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-119",
+      "authored_sha256": "704c3451821e1ac7180af7f590619746e27a93a61017f381b03c03254c689796",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Global C^k of the target via double splice. Matches contDiff_right_splice (L100-108, polynomial contDiff_aeval + exp(-.) comp, right jets via sourceInterpolant_right_iteratedDeriv + iteratedDeriv_exp_neg where d^j exp(-p)=(-1)^j exp(-p) =(-1)^j at 0), right_splice_eventuallyEq (L111-115, splice = S near -1 since -1<0), contDiff_double_splice (L118-125, iteratedDeriv_exp + sourceInterpolant_left_iteratedDeriv), smoothInitial_eq_double_splice (L128-142, incl p=0 value 1 agreement) and smoothInitial_contDiff (L145-147). The 'near -1 the right splice equals S' step correct (open nbhd argument). Reuses one gluing theorem twice, each discharged by endpoint jets -- accurate. 3 substantive steps. Distinct from sp-118 (positive proof vs counterexample).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteSmoothness.lean#L92-108 iteratedDeriv_exp/_exp_neg/contDiff_right_splice",
+        "QuantumBlockEncoding/HermiteSmoothness.lean#L111-125 right_splice_eventuallyEq/contDiff_double_splice",
+        "QuantumBlockEncoding/HermiteSmoothness.lean#L128-147 smoothInitial_eq_double_splice/_contDiff"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-120",
+      "authored_sha256": "2d2baa17b11a1b392b28704a0fb04e7603ce1796bbe305454f44be88cf6a8424",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Boundary: exact-comparison binary search correctness + cost. Source HermiteBinaryCutoff.lean sha 3e236d65 verified; read in full. Matches search_value (L59-91, interval invariant start<=cutIndex<=start+2^remaining, induction; base case returns start or start+1 covering endpoint boundary cases; succ compares exact midpoint gridPointNat(start+2^remaining) via middle_point L51-55 and half_span L46-50, recurses into correct half) and compute_value (L108-113, top-level invariant via cutIndex_le_midpoint). COST exact: search_cost (L35-44) = 2*remaining field + (remaining+1) compare; compute_field_operations=2n+2 (L126-128), compute_comparisons=n+1 (L122-124) -- item's '2n field ops + n+1 comparisons for search proper; 2n+2 incl pi*L mul and 0-width sub initialisation' matches exactly. Honest scope caveat (natural arithmetic/powers-of-two/bit-complexity outside the real-arithmetic cost model) matches module docstring L8-13. n=0 base case explicitly handled. 3 substantive steps. NEW family hermite-cutoff-search.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermiteBinaryCutoff.lean#L24-91 search/search_value/half_span/middle_point (interval invariant, endpoint+n=0 cases)",
+        "QuantumBlockEncoding/HermiteBinaryCutoff.lean#L95-113 compute/compute_value (cutIndex_le_midpoint, root_span)",
+        "QuantumBlockEncoding/HermiteBinaryCutoff.lean#L35-44,115-128 search_cost/compute_cost/_comparisons(n+1)/_field_operations(2n+2)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

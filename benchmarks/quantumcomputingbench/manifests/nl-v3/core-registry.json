@@ -1,0 +1,1489 @@
+{
+  "coordination_status": "pending_real_Lean_collaborator_acknowledgment",
+  "integration_allowed": false,
+  "legacy_views_for_reconciliation": [
+    {
+      "family": "breadth-cubic-unnormalized-operator",
+      "legacy_key": "breadth-cubic-unnormalized-operator",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.CubicStatePreparation.cubicOperator"
+      ],
+      "proposed_core_id": "qcb-legacy-258387d20734d551",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "breadth-banded-inverse-register",
+      "legacy_key": "breadth-banded-inverse-register",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.BandedSparseAccess.accessEquiv_clean_slot"
+      ],
+      "proposed_core_id": "qcb-legacy-61489eed853a01da",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "breadth-ghl-hermitian-pieces",
+      "legacy_key": "breadth-ghl-hermitian-pieces",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitian_decomposition"
+      ],
+      "proposed_core_id": "qcb-legacy-84c6ff0f71d04337",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "breadth-robin-norm-convention-counterexample",
+      "legacy_key": "breadth-robin-norm-convention-counterexample",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.matrixOneNorm"
+      ],
+      "proposed_core_id": "qcb-legacy-1216298b54cf4a5f",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "breadth-hermite-resource-scope",
+      "legacy_key": "breadth-hermite-resource-scope",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.HermitePolynomialPreparation.exists_polynomial_resources"
+      ],
+      "proposed_core_id": "qcb-legacy-f1f243c299b965ac",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "breadth-hermite-angle-budget",
+      "legacy_key": "breadth-hermite-angle-budget",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_distance_le"
+      ],
+      "proposed_core_id": "qcb-legacy-9e20abe9e9b4e4de",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "breadth-stored-projection-cost",
+      "legacy_key": "breadth-stored-projection-cost",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.StoredHermiteRawCost.collectStages_total_cost"
+      ],
+      "proposed_core_id": "qcb-legacy-d96c9d5332f6ebf8",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "breadth-bell-chronological-wires",
+      "legacy_key": "breadth-bell-chronological-wires",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.StatePreparationBenchmarks.bellVerified_cost"
+      ],
+      "proposed_core_id": "qcb-legacy-40fe7376e0c0a682",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "thin-lq",
+      "legacy_key": "qcb-authored-0001",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+      ],
+      "proposed_core_id": "qcb-legacy-1779a4bc485c10da",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "thin-lq",
+      "legacy_key": "qcb-authored-0002",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"
+      ],
+      "proposed_core_id": "qcb-legacy-e63a7137565675b6",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "thin-lq",
+      "legacy_key": "qcb-authored-0003",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"
+      ],
+      "proposed_core_id": "qcb-legacy-691f9aa7678598f5",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "thin-lq",
+      "legacy_key": "qcb-authored-0004",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_factorization"
+      ],
+      "proposed_core_id": "qcb-legacy-2165e6e22143f90f",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "tensor-train",
+      "legacy_key": "qcb-authored-0005",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"
+      ],
+      "proposed_core_id": "qcb-legacy-d841df1ddcb238ca",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "tensor-train",
+      "legacy_key": "qcb-authored-0006",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq"
+      ],
+      "proposed_core_id": "qcb-legacy-d44bf8aa24b65e1f",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "tensor-train",
+      "legacy_key": "qcb-authored-0007",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"
+      ],
+      "proposed_core_id": "qcb-legacy-539b20af324670fa",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "primitive-semantics-convention",
+      "legacy_key": "k-ry-half-angle-convention",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.standardRyMatrix"
+      ],
+      "proposed_core_id": "qcb-legacy-4561e19978f48efb",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "core-vocabulary",
+      "legacy_key": "k-clog2-gridsize-identity",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.clog2_gridSize"
+      ],
+      "proposed_core_id": "qcb-legacy-d9c6e823c9dfc5c4",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "state-preparation-certificate",
+      "legacy_key": "k-firstcolumn-prepares-target",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.FirstColumnMatches"
+      ],
+      "proposed_core_id": "qcb-legacy-b41be699aa80e4a0",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "givens-decomposition",
+      "legacy_key": "r-decomposeSO-count-identity",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_length",
+        "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_action"
+      ],
+      "proposed_core_id": "qcb-legacy-dcfdceddc835834c",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "real-amplitude-preparation",
+      "legacy_key": "r-preparecircuit-firstcolumn-normalization",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn"
+      ],
+      "proposed_core_id": "qcb-legacy-664ad4445c1358b5",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "primitive-semantics-composition",
+      "legacy_key": "r-eval-circuit-order-dagger",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.evalPrimitiveCircuit_dagger"
+      ],
+      "proposed_core_id": "qcb-legacy-8cb4e269e087fc19",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "primitive-semantics-phase",
+      "legacy_key": "qs-global-phase-program-semantics",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.evalPrimitiveProgram"
+      ],
+      "proposed_core_id": "qcb-legacy-ce7b7b3bafe0d404",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "real-amplitude-preparation",
+      "legacy_key": "qs-prepare-ry-cx-counts",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_ryCount",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_cxCount"
+      ],
+      "proposed_core_id": "qcb-legacy-3e449529aedf9417",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "givens-decomposition",
+      "legacy_key": "neg-givens-count-needs-SO-not-O",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_action"
+      ],
+      "proposed_core_id": "qcb-legacy-0d64d5f52bcb3998",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qit-state-foundations",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "primary_targets": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "proposed_core_id": "qcb-legacy-2dfd344370a5f17c",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qsc-block-encoding-composition",
+      "legacy_key": "qasc-lcu-sum-additive-error-prop910-001-corrected-v2",
+      "primary_targets": [
+        "concept:block-encoding",
+        "family:prepare-select",
+        "family:matrix-contract"
+      ],
+      "proposed_core_id": "qcb-legacy-38089f742e06102f",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qsc-block-encoding-composition",
+      "legacy_key": "qasc-product-block-encoding-error-prop912-001-corrected-v2",
+      "primary_targets": [
+        "concept:block-encoding",
+        "concept:matrix-analysis",
+        "family:spectral-filter"
+      ],
+      "proposed_core_id": "qcb-legacy-b3d4002a703c1bba",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qit-channel-foundations",
+      "legacy_key": "qit-channel-adapter-boundary-001",
+      "primary_targets": [
+        "concept:operator-theory",
+        "family:spectral-filter"
+      ],
+      "proposed_core_id": "qcb-legacy-0eade34f3e20f03e",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qit-representation-ordering",
+      "legacy_key": "qit-schur-weyl-prereq-ordering-001",
+      "primary_targets": [
+        "concept:tensor-networks",
+        "family:local-isometry"
+      ],
+      "proposed_core_id": "qcb-legacy-199decc88173552d",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qit-channel-foundations",
+      "legacy_key": "qit-amplitude-damping-invariant-vs-capacity-001",
+      "primary_targets": [
+        "concept:operator-theory",
+        "concept:verification"
+      ],
+      "proposed_core_id": "qcb-legacy-6fd3efb8e8fc1d53",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qsc-block-encoding-reuse",
+      "legacy_key": "qsc-block-encoding-dedup-adapter-001",
+      "primary_targets": [
+        "concept:block-encoding",
+        "family:spectral-filter",
+        "family:matrix-contract"
+      ],
+      "proposed_core_id": "qcb-legacy-45641fca1b280c88",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qsc-transforms-resources",
+      "legacy_key": "qsc-fourier-not-qpe-certificate-001",
+      "primary_targets": [
+        "concept:harmonic-analysis",
+        "concept:complexity",
+        "family:prepare-select"
+      ],
+      "proposed_core_id": "qcb-legacy-eec12a8dfd8ff523",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qsc-query-complexity",
+      "legacy_key": "qsc-foundations-query-cost-charging-001",
+      "primary_targets": [
+        "concept:complexity",
+        "concept:probability",
+        "family:charged-access"
+      ],
+      "proposed_core_id": "qcb-legacy-558ad730fddaf31b",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "qit-composite-entanglement",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "primary_targets": [
+        "concept:tensor-networks",
+        "concept:operator-theory"
+      ],
+      "proposed_core_id": "qcb-legacy-5d81190e6ffae968",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "resource-accounting",
+      "legacy_key": "qs-resource-depth-parallel-vs-serial-corrected-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.Resource.parallel"
+      ],
+      "proposed_core_id": "qcb-legacy-3aabc3b698c0edf3",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "real-amplitude-preparation",
+      "legacy_key": "neg-prepare-firstcolumn-positivity-corrected-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareMatrixLE_firstColumn"
+      ],
+      "proposed_core_id": "qcb-legacy-a42cabf51f11aac5",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "primitive-semantics-convention",
+      "legacy_key": "neg-ry-not-half-only-at-pi-corrected-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.standardRyMatrix_two_arccos_eq_amplitudeRotation"
+      ],
+      "proposed_core_id": "qcb-legacy-ff2a44ac8d29a6f5",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "block-encoding-cost",
+      "legacy_key": "k-becost-lexicographic-order-corrected-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.BlockEncodingCost.betterThan"
+      ],
+      "proposed_core_id": "qcb-legacy-0c6c2888d6685c32",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "lean-primitive-semantics",
+      "legacy_key": "lean-standardRyMatrix-zero-corrected-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.standardRyMatrix_zero"
+      ],
+      "proposed_core_id": "qcb-legacy-20151c7a1ece9101",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "lean"
+    },
+    {
+      "family": "lean-primitive-semantics",
+      "legacy_key": "lean-flipBit-involutive-corrected-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.flipBit_flipBit"
+      ],
+      "proposed_core_id": "qcb-legacy-384a1096dbc2f3ba",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "lean"
+    },
+    {
+      "family": "lean-givens-decomposition",
+      "legacy_key": "lean-planeMatrix-det-applicability-corrected-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.AdjacentGivens.planeMatrix_det"
+      ],
+      "proposed_core_id": "qcb-legacy-ee3988c2553ff116",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "lean"
+    },
+    {
+      "family": "resource-accounting",
+      "legacy_key": "exact-resource-six-coordinates-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.Resource.parallel"
+      ],
+      "proposed_core_id": "qcb-legacy-a305932dc9708699",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "block-encoding-cost",
+      "legacy_key": "exact-oracle-abstract-unit-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.Gate.resource"
+      ],
+      "proposed_core_id": "qcb-legacy-5721d8e0956d2331",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "core-vocabulary",
+      "legacy_key": "exact-clog2-boundaries-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.clog2"
+      ],
+      "proposed_core_id": "qcb-legacy-29809e6b8cea20e9",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "real-amplitude-preparation",
+      "legacy_key": "exact-sparse-strict-necessity-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn"
+      ],
+      "proposed_core_id": "qcb-legacy-926b5ab09a65d163",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    },
+    {
+      "family": "real-amplitude-preparation",
+      "legacy_key": "exact-zero-subtree-angle-v3",
+      "primary_targets": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle"
+      ],
+      "proposed_core_id": "qcb-legacy-025ab4133564537f",
+      "state": "legacy alias proposal; collaborator reconciliation required",
+      "view": "natural_language_or_hybrid"
+    }
+  ],
+  "new_cores": [
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-001",
+      "family": "be-projected-block-contract",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Defines the block-encoding projected-block contract: A = alpha*(<0^a| tensor I)U(|0^a> tensor I) exactly, operator-norm epsilon bound approximately, with explicit dimensions.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+        "declaration:QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-002",
+      "family": "be-auxiliary-accounting",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "be-auxiliary-accounting",
+      "summary": "Explains the semantic split between signal (selection flag) and pure-ancilla (cleaned working) qubits, why both are charged, and why an uncleaned ancilla breaks the clean projection.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RegisterLayout",
+        "declaration:QuantumBlockEncoding.RegisterLayout.auxiliaryQubits"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-003",
+      "family": "be-unitary-completion-nonuniqueness",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "dev",
+      "split_group": "be-unitary-completion-nonuniqueness",
+      "summary": "Refutes uniqueness of the dilating unitary: a rotation and a reflection share the same clean entry x, so a clean-block (or clean-action) certificate pins U only on the clean sub-block and leaves the garbage branch free; A does not determine U or its cost.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-004",
+      "family": "be-lcu-stage-roles",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "be-lcu-stage-roles",
+      "summary": "Describes the four LCU stages (prepare/amplitude/select/unprepare), their registers, and why unprepare must be the adjoint of prepare on the shared selector ancilla.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-005",
+      "family": "be-projection-action-equivalence",
+      "reviewed_core_status": "duplicate",
+      "reviewer_aliases": [
+        "qcb-core-la-008"
+      ],
+      "split": "dev",
+      "split_group": "be-projection-action-equivalence+block-encoding certification styles / projection-vs-action equivalence",
+      "summary": "Proves the pointwise equivalence between the projected-block certificate and the clean-basis-action certificate via column selection, and extends it to arbitrary inputs by linearity.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-006",
+      "family": "be-lcu-clean-entry",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "be-lcu-clean-entry",
+      "summary": "Derives the exact clean projected entry of the logical LCU matrix as a selector sum with SELECT matching indicator and conjugate-times-itself PREPARE weights, explaining the |prepare|^2 selection probability and the shared selector register.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-007",
+      "family": "be-postselection-success",
+      "reviewed_core_status": "existing_view",
+      "reviewer_aliases": [
+        "qcb-core-plan-008-normalized-block-success-probability"
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Computes the all-zero postselection success probability ||A v||^2/alpha^2 of a block encoding from unitarity and the projected-block contract, and derives the 1/alpha query cost and normalizer charge.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-008",
+      "family": "be-scalar-dilation-contraction",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "dev",
+      "split_group": "be-scalar-dilation-contraction",
+      "summary": "Uses the 2x2 scalar dilation to derive the sharp |x|<=1 orthogonality boundary and the contraction lower bound: a normalizer-1 clean block cannot encode a scalar of magnitude above 1.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_normSq"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-009",
+      "family": "be-one-sparse-support-boundary",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "be-one-sparse-support-boundary",
+      "summary": "Refutes the claim that the one-sparse route encodes any one-nonzero-per-column matrix: a two-nonzero column violates the fixed-support hypothesis, while a zero-amplitude column is reconstructed exactly.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.oneSparse_from_support",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-010",
+      "family": "be-product-fresh-ancilla",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "be-product-fresh-ancilla",
+      "summary": "Explains the product clean-block identity (pointwise equality under matrix multiplication) and refutes the same-ancilla shortcut: the second factor needs a fresh/reset ancilla or it acts on the first factor's garbage branch; product resource cost adds auxiliary counts.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.productCleanBlockCertificate",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.matrix_mul_congr_pointwise"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-011",
+      "family": "be-lcu-phase-cancellation",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "dev",
+      "split_group": "be-lcu-phase-cancellation",
+      "summary": "Shows the all-(-1) LCU filler phases give lower-right clean entry -N and so cannot equal S1 (whose lower-right block is 0) for nonzero normalizer, and gives the phase-balanced correction that recovers S1.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight",
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-012",
+      "family": "be-permutation-orthogonal-clean",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "be-permutation-orthogonal-clean",
+      "summary": "Proves a bijective index map yields a rational-orthogonal permutation unitary (injectivity for columns, surjectivity for rows) and derives its 0/1 partial-permutation clean block and expressiveness limit.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct_permMatrix_entry"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-be-013",
+      "family": "be-exact-to-approx-boundary",
+      "reviewed_core_status": "existing_view",
+      "reviewer_aliases": [
+        "qcb-core-plan-010-entry-vs-operator-norm-verification"
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Explains the free exact-to-zero-error-approximate repackaging (reusing the pointwise clean-block proof as the epsilon=0 bound) and the boundary that an operator-norm statement still needs a pointwise-to-norm bridge theorem.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-013",
+      "family": "native-expansion-mechanism-013",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "native-expansion-mechanism-013",
+      "summary": "Let P permute computational-basis labels and let a circuit have chronological matrices U1,...,Ut. Prove that consistently renaming every wire realizes P(Ut...U1)P inverse rather than inserting a physical permutation gate. Explain why output-only relabeling would fail to preserve circuit multiplication.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_circuit"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-014",
+      "family": "native-expansion-mechanism-014",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-014",
+      "summary": "A circuit uses only single-qubit rotations, bit flips and controlled bit flips. A bijection relabels all physical wires, preserving which wire controls which target. Which of total instruction count, rotation count and controlled-bit-flip count must stay unchanged? Does this alone prove equal nearest-neighbor routing cost on fixed hardware?",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.gateCount"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-015",
+      "family": "native-expansion-mechanism-015",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-015+native-expansion-mechanism-016",
+      "summary": "Define R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]]. Derive the exact operator distance between R(a) and R(b), and prove it is at most |a-b|/2. Why does adding any number of untouched spectator qubits not multiply the distance by a dimension factor?",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-016",
+      "family": "native-expansion-mechanism-016",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-015+native-expansion-mechanism-016",
+      "summary": "For the real rotation R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]], compare R(theta+2pi) and R(theta). A colleague claims the two full operators have distance0 because every output probability agrees. Refute or prove that claim, and distinguish bare-system global-phase equivalence from coherent branch use.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-017",
+      "family": "native-expansion-mechanism-017",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "native-expansion-mechanism-017",
+      "summary": "A reversible gate flips a target bit exactly when two control bits are both1. Assume each control wire is distinct from the target, but allow the two control wires to coincide. Prove the gate is its own inverse and explain what it reduces to when the controls coincide.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ccxBasisAction_involutive"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-018",
+      "family": "native-expansion-mechanism-018",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "native-expansion-mechanism-018",
+      "summary": "On a two-bit string(c,t), consider the update that flips c itself when c=t=1 and otherwise does nothing. Does the familiar self-inverse proof for a two-control target flip remain valid when one control is also the target? Give a concrete collision and explain the lost hypothesis.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ccxBasisAction"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-019",
+      "family": "native-mathematical-expansion-019",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "dev",
+      "split_group": "native-mathematical-expansion-019",
+      "summary": "Let S and T be Hermitian matrices on one finite system and X a Hermitian matrix on a second system. Prove that H=S tensor X+T tensor I is Hermitian without assuming that S and T commute. Give a counterexample showing that the same conclusion can fail if X is not Hermitian.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian",
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-020",
+      "family": "native-mathematical-expansion-020",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "native-mathematical-expansion-020",
+      "summary": "A finite row stencil is a list of offset/coefficient pairs. Its matrix entry at row i and column j is the sum of coefficients of every pair with i+offset=j; no modular wrapping is used. Prove that merging repeated offsets by summing their coefficients leaves every matrix entry unchanged. Use the pairs (1,2),(1,-2),(-1,3) to show why list width and the number of nonzero matrix entries need not agree.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.stencilRowCoeff"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-001",
+      "family": "composite-index reshaping / bijective reindexing invariance",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "composite-index reshaping / bijective reindexing invariance",
+      "summary": "exists_core_lq reshapes a core's (Fin 2 x Fin r) column index to a flat Fin (2r) index via a bijection, applies thin LQ, and reindexes back; A = R*Q and Q*Q-transpose = 1 hold with inner dimension min(l, 2r).",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_core_lq"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-002",
+      "family": "residual absorption / per-bit-slice right multiplication",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "residual absorption / per-bit-slice right multiplication",
+      "summary": "absorb A R contracts R into the right bond of A; absorb_slice shows slice(absorb A R, bit) = slice(A, bit) * R, so absorption is per-bit right multiplication that never mixes emitted-bit branches.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.absorb",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.absorb_slice"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-003",
+      "family": "symbolic algebra evaluation homomorphism",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "symbolic algebra evaluation homomorphism",
+      "summary": "evalWith env : Coeff -> Rat is a homomorphism: it fixes constants, reads symbols from env, and commutes with add, mul, neg.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.Coeff.evalWith",
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_add",
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_mul",
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_neg"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-004",
+      "family": "register tensor ordering / block indexing",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "A system-on-n-qubits candidate with a auxiliary qubits has a 2^(n+a) unitary; the signal register is high-order; the explicit product-register branch equals the flattened signal-system block projection.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.flatToProductRegister",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.productRegisterBlockProjection_flatToProductRegister"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-005",
+      "family": "orthonormal completion / isometry extension",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "orthonormal completion / isometry extension",
+      "summary": "Prescribed orthonormal columns placed at arbitrary distinct positions via an injection extend to an orthogonal matrix agreeing on those positions.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_orthogonal_completion"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-006",
+      "family": "special-orthogonal completion / orientation repair",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair",
+      "summary": "When r < N, prescribed orthonormal columns extend to a determinant-+1 orthogonal matrix by a single sign flip on an unused column, preserving all prescribed columns.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion",
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion_of_unused"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-007",
+      "family": "linearity of matrix-vector action / sparse-input collapse",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "dev",
+      "split_group": "linearity of matrix-vector action / sparse-input collapse",
+      "summary": "A(a|left>+b|right>) = a*col(left)+b*col(right) and row-k amplitude = a*A[k,left]+b*A[k,right], by linearity of mulVec on basis kets.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_twoBasisSuperposition",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_twoBasisSuperposition_apply"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-008",
+      "family": "block-encoding certification styles / projection-vs-action equivalence",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "dev",
+      "split_group": "be-projection-action-equivalence+block-encoding certification styles / projection-vs-action equivalence",
+      "summary": "Projected-block pointwise equality to the target is equivalent to the clean-basis action equality, bridged by cleanBasisActionAmplitude = signalSystemBlockProjection entry.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-009",
+      "family": "isometry dimensional obstruction / finite-cardinality counting",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair",
+      "summary": "Orthonormal columns (V-transpose V = I_r) force r <= N by independence; and when r < N an injective placement e : Fin r -> Fin N is non-surjective by card_le_of_surjective, leaving a spare position.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-010",
+      "family": "zero-padding embedding / row-vs-column isometry under padding",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "dev",
+      "split_group": "zero-padding embedding / row-vs-column isometry under padding",
+      "summary": "Zero-padding a right-canonical core preserves active clean-input column orthonormality (paddedCore_active_isometry) but destroys physical-register row orthonormality, since padded rows are zero (paddedCore_inactive_output).",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.paddedCore_active_isometry",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.paddedCore_inactive_output"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-011",
+      "family": "necessity of the strict dimension bound / completion failure",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair",
+      "summary": "The r < N hypothesis in exists_specialOrthogonal_completion is necessary: a fully-prescribed det=-1 orthonormal frame (e.g. diag(1,-1)) has no determinant-+1 completion, since no unused column remains for the sign-flip repair.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-la-012",
+      "family": "bond-dimension recurrence / canonicalization boundary bounds",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "bond-dimension recurrence / canonicalization boundary bounds+canonicalization-rank-bounds",
+      "summary": "The backward recurrence new left bond = min(l, 2m') gives head_bound (l' <= l and l' <= 2m') and last_bond_le_two (penultimate bond <= 2 when the terminal bond is 1).",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.head_bound",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.last_bond_le_two"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-001",
+      "family": "qit-measurement-foundations",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "A general positive-operator measurement fixes outcome probabilities but not the post-measurement state; orthogonality/idempotency of projectors is what supplies a canonical update.",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:probability"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-002",
+      "family": "qit-separability-criteria",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Positive partial transpose is a necessary separability test certified by a negative eigenvalue; it is also sufficient only when the dimension product is at most 6, with bound entangled states as the converse boundary.",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-003",
+      "family": "qit-state-foundations",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "The density operators form a convex set: positivity needs nonnegative weights, unit trace needs the weights to sum to one, and the extreme points are exactly the pure states.",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:probability"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-004",
+      "family": "qit-state-foundations",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "An isometry with orthonormal columns maps one pure-state ensemble of a mixed state to another realizing the same state, proving ensembles are infinitely non-unique.",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-005",
+      "family": "qit-composite-entanglement",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Product states give independent local outcomes, but separable mixtures can be classically correlated; purity forces a separable state to be a single uncorrelated product, so correlated separable states are necessarily mixed.",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:probability"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-006",
+      "family": "qit-distance-measures",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "The trace norm equals the maximum of |tr(XU)| over unitaries, bounded via SVD and attained at U = V W-dagger; the optimizer depends on X, so the maximization cannot be replaced by any fixed unitary.",
+      "target_nodes": [
+        "concept:matrix-analysis",
+        "concept:operator-theory"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-007",
+      "family": "qit-symmetry-entanglement",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "A U-tensor-U-invariant two-qubit (Werner) state is entangled exactly when its swap overlap x is negative, proved by a partial-transpose eigenvalue x/2 and a dimension-independent swap-trick separability argument.",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-008",
+      "family": "qsc-block-encoding-access",
+      "reviewed_core_status": "existing_view",
+      "reviewer_aliases": [
+        "qsc-block-encoding-dedup-adapter-001"
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Postselecting the all-zeros ancilla of a block encoding succeeds with probability ||A|b>||^2/alpha^2, recovering the lost norm and penalizing oversized subnormalization, while the kept state is the normalized A|b>.",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:probability"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-009",
+      "family": "qsc-block-encoding-access",
+      "reviewed_core_status": "existing_view",
+      "reviewer_aliases": [
+        "qsc-block-encoding-dedup-adapter-001"
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Because any block of a unitary is a contraction, embedding A at factor alpha requires alpha >= ||A||; a unit factor is impossible once ||A|| > 1, and the bound fixes the scale but not an efficient circuit.",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:matrix-analysis"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-010",
+      "family": "qsc-block-encoding-verification",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Entrywise checks certify an exact unit-factor block encoding and equal the operator identity, but approximate embedding is defined by an operator-norm bound that small per-entry errors can violate after dimensional accumulation.",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:verification"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-011",
+      "family": "qsc-block-encoding-dilation",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "Any contraction A dilates to a one-ancilla unitary with A as its top-left block via its SVD; because a non-unitary A is no native system-only gate, the ancilla and postselection that absorb the norm loss are unavoidable.",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:matrix-analysis"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-plan-012",
+      "family": "qsc-lcu-subnormalization",
+      "reviewed_core_status": "uncertain",
+      "reviewer_aliases": [
+        "qasc-lcu-sum-additive-error-prop910-001",
+        "qasc-product-block-encoding-error-prop912-001",
+        "qsc-block-encoding-dedup-adapter-001"
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "summary": "In a prepare-select-unprepare LCU implementation the subnormalization factor ||beta||_2 ||gamma||_2 is bounded below by ||alpha||_1 via Cauchy-Schwarz, attained at the symmetric split sqrt(|alpha_i|), which maximizes the success probability.",
+      "target_nodes": [
+        "concept:block-encoding",
+        "family:prepare-select"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-001",
+      "family": "signed-amplitude-angles",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "summary": "Why the per-split rotation angle carries the sign of the second sibling amplitude, so negative real amplitudes are reproduced exactly rather than as magnitudes.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle_firstColumn",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.pairNorm"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-002",
+      "family": "sequential-bond-input-promise",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "sequential-bond-input-promise+sequential-transfer-composition",
+      "summary": "Only clean fresh-bit-zero columns drive the emitted state, and introducing the fresh zero bit is norm-preserving rather than a postselection.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_apply",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.freshZero",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_freshZero"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-003",
+      "family": "canonicalization-input-promise",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "canonicalization-input-promise+canonicalization-residual-norm",
+      "summary": "Canonicalization derives a normalized initial boundary and exact amplitude recovery from only the sum-of-squares-one hypothesis, assuming no target-state equality.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_normalized_state",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_rightCanonical_normalized"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-004",
+      "family": "canonicalization-residual-norm",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "canonicalization-input-promise+canonicalization-residual-norm",
+      "summary": "Right-canonicalization concentrates all squared mass in the residual initial boundary while leaving the terminal bond at dimension one.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.residual_mass",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_rightCanonical_normalized"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-005",
+      "family": "marginal-norm-pythagorean",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "summary": "The low-wire marginal has the same total squared norm as the full table, via the per-pair Pythagorean identity and a last-bit reindexing.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq_marginal",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.pairNorm_sq",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.marginal",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-006",
+      "family": "normalization-identity",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "summary": "Dividing a real table by the square root of its strictly positive total squared norm yields an exactly unit state, with nonvanishing of the norm the single load-bearing hypothesis.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-007",
+      "family": "sequential-transfer-composition",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "test_public",
+      "split_group": "sequential-bond-input-promise+sequential-transfer-composition",
+      "summary": "The sequential run amplitude equals the chronological transfer contraction of the cores applied to the boundary, provable by induction using only clean-column equality.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_eq_transfer",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.transfer",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_apply"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-008",
+      "family": "coherent-success-probability",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "coherent-success-probability",
+      "summary": "Unitary sequential stages from a basis boundary keep total probability one at every length, a coherent success with mass-neutral fresh-zero padding and no postselection.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_run_basisBoundary",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_step",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_run"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-009",
+      "family": "core-circuit-isometry",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "core-circuit-isometry+tensor-train",
+      "summary": "Orthonormal real core rows become orthonormal complex input-bond columns under the output-row/input-column orientation, because realness makes conjugation trivial.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-010",
+      "family": "canonicalization-rank-bounds",
+      "reviewed_core_status": "duplicate",
+      "reviewer_aliases": [
+        "qcb-core-la-012"
+      ],
+      "split": "train",
+      "split_group": "bond-dimension recurrence / canonicalization boundary bounds+canonicalization-rank-bounds",
+      "summary": "Canonicalization's reduced bonds obey l'=min(l,2m'), yielding a two-sided head bound, a sharp at-most-two penultimate bond for scalar trains, and non-expansion of the maximal bond.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.head_bound",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.last_bond_le_two",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.maxBond_le"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-011",
+      "family": "terminal-cleanup-unitarity-obstruction",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "terminal-cleanup-unitarity-obstruction",
+      "summary": "Demanding terminal cleanup on all padded columns forces more orthonormal vectors than a 2-dimensional output subspace admits, so for active dimension > 2 it breaks unitarity; the library restricts the condition to active columns plus a support invariant.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_terminalCore_of_supported",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_terminalCore"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-012",
+      "family": "rank-change-support-gauge",
+      "reviewed_core_status": "new_distinct",
+      "reviewer_aliases": [],
+      "split": "train",
+      "split_group": "rank-change-support-gauge",
+      "summary": "Inactive zero-padded completion columns are gauge freedom: support propagation forces the emitted state to equal the tensor contraction regardless of those columns, refuting an ambiguity claim.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_eq_transfer_of_supported",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_supported",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.transfer_boundary_supported"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    },
+    {
+      "aliases": [],
+      "core_id": "qcb-core-sp-013",
+      "family": "sparse-zero-subtree-boundary",
+      "reviewed_core_status": "existing_view",
+      "reviewer_aliases": [
+        "qcb-core-sp-001",
+        "qcb-core-sp-006"
+      ],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "summary": "Zero sibling pairs are harmless vanishing subtrees handled by angle zero; only a globally zero vector breaks the normalized first-column identity, so strict positivity of the total norm is the minimal honest hypothesis.",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq"
+      ],
+      "views": [
+        "natural_language"
+      ]
+    }
+  ],
+  "note": "No acknowledgment invented. IDs/families are versioned proposals, not merged into shared formal corpus.",
+  "schema_version": "qcb.core_registry.v1"
+}

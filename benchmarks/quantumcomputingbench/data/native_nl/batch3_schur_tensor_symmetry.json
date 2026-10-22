@@ -1,0 +1,2114 @@
+[
+  {
+    "core_id": "qcb-core-plan-301",
+    "key": "qcb-core-plan-301-tensor-commutant-lemma",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let V and W be finite-dimensional complex vector spaces and identify End(V tensor W) with End(V) tensor End(W). Consider the subalgebra A consisting of operators of the form a tensor 1 with a in End(V), where 1 is the identity on W. Prove that the commutant of A inside End(V tensor W), that is the set of all operators commuting with every element of A, is exactly the set of operators 1 tensor b with b in End(W).",
+    "reference_answer": "Write n for the dimension of W and fix a basis of W, so every operator T on V tensor W becomes an n-by-n block matrix with blocks that are endomorphisms of V. In this basis a tensor 1 is block diagonal with the single block a repeated on the diagonal. First inclusion: any operator 1 tensor b has blocks that are scalar multiples of the identity on V, namely the entry of b times the identity, and these commute with the block-diagonal a tensor 1 because scalars commute with a; so every 1 tensor b lies in the commutant. Second inclusion: suppose a block operator T commutes with a tensor 1 for all a in End(V). Comparing blocks, the (i,j) block of (a tensor 1) T is a times the (i,j) block of T, while that of T (a tensor 1) is the (i,j) block of T times a, so block times a equals a times block for every a in End(V) and every pair i,j. An operator on V that commutes with all of End(V) must be a scalar multiple of the identity (apply the relation to rank-one operators, or use that the defining action of End(V) on V is irreducible). Hence each block equals a scalar times the identity on V, which means T = 1 tensor c where c in End(W) collects those scalars. Therefore the commutant equals the operators 1 tensor b, as claimed.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States both inclusions must be shown and proves the easy direction that every 1 tensor b commutes with every a tensor 1",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Introduces the block-matrix form in a basis of W and identifies a tensor 1 as block diagonal with repeated block a",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Derives from the commutation relation that each block commutes with every endomorphism of V",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes each block is a scalar multiple of the identity because only scalars commute with all of End(V), giving T = 1 tensor c",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "V and W are finite-dimensional complex vector spaces."
+    ],
+    "conventions": [
+      "End(V tensor W) is identified with End(V) tensor End(W); 1 denotes the identity on the indicated factor."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Operators 1 tensor b are block-scalar and commute with the block-diagonal a tensor 1.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "In a basis of W the commutation of T with every a tensor 1 forces each block to commute with every a.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Only scalar multiples of the identity commute with all of End(V), so each block is a scalar times the identity.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Collecting the scalar blocks shows T = 1 tensor c, proving the commutant is 1 tensor End(W).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean two-inclusion commutant computation requiring the block-matrix device and the fact that the center of End(V) is the scalars."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "39",
+          "anchors": "Lemma 4.4 and its block-matrix proof around Eq. (4.2)-(4.3), p.39",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-tensor-commutant-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The commutant of End(V) tensor 1 inside End(V tensor W) is exactly 1 tensor End(W), proved by a block-matrix argument.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-302",
+    "key": "qcb-core-plan-302-double-commutant-bicommutant",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let a finite group act on a finite-dimensional space V with isotypical decomposition V = direct sum over alpha of (V_alpha tensor C^{n_alpha}) into pairwise inequivalent irreducible pieces V_alpha appearing with multiplicity n_alpha. Let A be the algebra of operators generated by the representation. Prove that the commutant A' equals the direct sum over alpha of (1 on V_alpha, tensored with End(C^{n_alpha})), and deduce that the double commutant equals A.",
+    "reference_answer": "The isotypical projections onto the summands V_alpha tensor C^{n_alpha} lie in A, so any element b of the commutant A' commutes with each such projection and is therefore block diagonal: b is a direct sum of pieces b_alpha, each an endomorphism of V_alpha tensor C^{n_alpha}. On the alpha block the algebra A restricts to (End(V_alpha) tensored with the identity on the multiplicity space): the irreducible action on V_alpha with the multiplicity factor left untouched. By the commutant lemma for a tensor product, the commutant of (End(V_alpha) tensor identity) inside End(V_alpha tensor C^{n_alpha}) is (identity on V_alpha, tensored with End(C^{n_alpha})); hence each b_alpha has this form and A' is the stated direct sum. Conversely every such operator commutes with A, so this is an equality. Applying the same commutant lemma a second time: the commutant of (identity on V_alpha tensor End(C^{n_alpha})) inside each block is (End(V_alpha) tensor identity), and summing over alpha shows the double commutant equals the direct sum of (End(V_alpha) tensor identity), which is A. Thus the bicommutant recovers A.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Uses that the isotypical projections lie in A to show any element of A' is block diagonal across the alpha summands",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the restriction of A to the alpha block as endomorphisms of V_alpha with an untouched multiplicity factor",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Applies the tensor commutant lemma to get the multiplicity-space form of each block, hence A' is the stated direct sum",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Applies the commutant lemma a second time to the description of A' and sums over alpha to conclude the double commutant equals A",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The representation is of a finite group on a finite-dimensional complex space; the pieces V_alpha are pairwise inequivalent irreducibles."
+    ],
+    "conventions": [
+      "Direct sums are over the distinct irreducible types alpha; the identity is taken on the indicated factor."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Central isotypical projections lie in A, forcing elements of A' to be block diagonal.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "On each block A acts as endomorphisms of V_alpha with the multiplicity factor untouched.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The tensor commutant lemma gives A' as the direct sum of multiplicity-space endomorphism algebras.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Taking the commutant of A' blockwise returns End(V_alpha) tensor identity, so the double commutant equals A.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Builds on the commutant lemma and the isotypical decomposition; the student must track block structure and apply the lemma twice."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "39-40, 43",
+          "anchors": "Proposition 4.5(i)-(iii) with Eq. (4.4)-(4.7); the final step is Exercise 4.2, p.39-40 and p.43",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-double-commutant-bicommutant",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "For an isotypical representation the commutant is the sum of multiplicity-space endomorphism algebras and the double commutant recovers A.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-303",
+    "key": "qcb-core-plan-303-external-product-irrep",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "concept",
+    "question": "Given representations (phi, V) of a group G and (psi, W) of a group H, the external product representation of the direct product G cross H acts on V tensor W by sending the pair (g,h) to phi(g) tensor psi(h). Explain precisely how this differs from the inner tensor representation of a single group acting on V tensor W, and give the reasoning behind the two standard facts: that the external product of two irreducible representations is irreducible, and that every irreducible representation of G cross H arises this way.",
+    "reference_answer": "In the external product the two tensor factors are driven by independent group elements: the pair (g,h) acts as phi(g) tensor psi(h). In the inner tensor representation of a single group G on V tensor W the same element g acts as phi(g) tensor phi(g), so both factors move together; the two constructions use different groups and are not the same action. Irreducibility of an external product of irreducibles: the character of the external product factorizes as the product of the two characters, chi(g,h) = chi over V of g, times chi over W of h, and the averaged squared modulus of a character over G cross H factorizes as the product of the averaged squared moduli over G and over H separately. Each factor equals one when V and W are irreducible, so the averaged squared modulus of chi is one, which is exactly the irreducibility criterion. Exhaustion: the number of external products of irreducibles equals the number of irreducibles of G times that of H, which equals the number of conjugacy classes of G times that of H; a conjugacy class of the product group is a product of a class in each factor, so this count is the number of conjugacy classes of G cross H, hence the number of its irreducibles. Since the external products are distinct irreducibles and there are exactly that many, they exhaust all irreducibles of the product group.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Contrasts independent action phi(g) tensor psi(h) of the product group with the diagonal phi(g) tensor phi(g) of a single group",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States the character of an external product factorizes as a product of the two factor characters",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses factorization of the averaged squared modulus of the character to conclude irreducibility from irreducibility of each factor",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Gives the counting argument via conjugacy classes of a product group to show every irreducible of G cross H arises as an external product",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "G and H are finite groups; characters and conjugacy-class counting are available."
+    ],
+    "conventions": [
+      "The external product sends (g,h) to phi(g) tensor psi(h); the inner tensor sends g to phi(g) tensor phi(g)."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The product group acts with independent elements on the two factors, unlike the diagonal single-group action.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The external-product character factorizes as a product of factor characters.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The averaged squared modulus factorizes, so irreducibility of each factor gives irreducibility of the product.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Counting conjugacy classes of the product group shows these exhaust all its irreducibles.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Conceptual contrast plus two standard representation-theoretic arguments (character norm factorization and conjugacy-class counting)."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "38",
+          "anchors": "Definition 4.2 external product Eq. (4.1) and the two facts stated after it; Exercise 4.1, p.38",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-external-product-irrep",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "External product representations of a direct product act with independent factors; irreducibility and exhaustion follow from character factorization and conjugacy-class counting.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-304",
+    "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "On the n-fold tensor power of V = C^d let the symmetric group S_n act by permuting tensor factors, spanning an algebra A, and let the general linear group GL(V) act diagonally by sending U to the n-fold tensor power of U, spanning an algebra B. Assume it is already known that the commutant A' equals the span of all operators of the form the n-fold tensor power of a single endomorphism X of V. Prove that B equals A', and conclude using the double commutant theorem that the commutant of B equals A.",
+    "reference_answer": "First B is contained in A': each diagonal operator (the n-fold power of a unitary) commutes with every factor permutation, so B commutes with A and lies in A'. For the reverse inclusion we show every generator of A', namely the n-fold power of an arbitrary endomorphism X, lies in B, including non-invertible X. Fix X in End(V). For all but finitely many scalars t the operator X + t times the identity is invertible, hence its n-fold tensor power lies in B for those t. Now view the map sending t to the n-fold tensor power of (X + t times identity) as a function of t: expanding the product it is a polynomial in t of degree n whose coefficients are fixed operators (the symmetrized partial tensor terms). A polynomial of degree n taking values in the subspace B at more than n distinct points must have every coefficient in B, so by Lagrange interpolation the entire curve lies in B for all t, in particular at t = 0, giving the n-fold power of X in B. Thus A', the span of these powers, is contained in B, and together with B contained in A' we get B = A'. Finally the double commutant theorem gives the bicommutant of A equal to A; since that bicommutant is the commutant of A' = B, we conclude the commutant of B equals A.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows B is contained in A' because diagonal operators commute with factor permutations",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Reduces the reverse inclusion to proving the n-fold power of every endomorphism X, invertible or not, lies in B",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses that X + t times identity is invertible for all but finitely many t so its power lies in B there",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Applies the polynomial / Lagrange interpolation argument in t to pass from generic t to t = 0, placing the power of X in B",
+        "weight": 1
+      },
+      {
+        "id": "r5",
+        "criterion": "Concludes B = A' and invokes the double commutant theorem to get the commutant of B equal to A",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "V = C^d is finite-dimensional; the span of tensor powers is the known commutant of the permutation algebra."
+    ],
+    "conventions": [
+      "The n-fold tensor power of X denotes X applied to each of the n factors."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Diagonal operators commute with permutations, so B is contained in A'.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "It suffices to show the n-fold power of every endomorphism X is in B.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For all but finitely many t, X + t identity is invertible so its n-fold power is in B.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The map t to the n-fold power of (X + t identity) is a degree-n polynomial, so interpolation forces the power of X into B at t=0.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Hence B = A', and the double commutant theorem yields the commutant of B equal to A.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "The crux is the Lagrange interpolation trick to include non-invertible X, plus correct use of the double commutant theorem."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "41-42",
+          "anchors": "Proposition 4.10 with the subalgebras Eq. (4.15)-(4.16) and the Lagrange-interpolation span argument, p.41-42",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-schur-weyl-mutual-commutant",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The permutation and diagonal-unitary algebras on a tensor power are each other's commutants, proved via a polynomial-in-t interpolation argument.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-305",
+    "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let C be an operator on the n-fold tensor power of V that is invariant under conjugation by every factor permutation, meaning the permutation operator times C times its inverse equals C for every element of S_n. Prove that C is a linear combination of operators of the form the n-fold tensor power of a single endomorphism X of V; you may use the fact that the symmetric subspace of any n-fold tensor power equals the span of the n-fold powers of single vectors.",
+    "reference_answer": "Identify the operator space End(V^{tensor n}) with the n-fold tensor power of End(V): an operator on the tensor power is a tensor of operators on the factors. Under this identification, conjugating an operator C by a factor permutation is exactly the natural permutation action of S_n on the n-fold tensor power of End(V), permuting the n copies of End(V). The hypothesis that conjugation by every permutation fixes C therefore says that C is a fixed point of this permutation action, i.e. C lies in the symmetric subspace of the n-fold tensor power of End(V). Now apply the stated spanning fact with the underlying space taken to be End(V) in place of V: the symmetric subspace of its n-fold tensor power is spanned by the n-fold powers of single elements of End(V). Hence C is a linear combination of operators that are the n-fold tensor power of a single endomorphism X of V, which is the claim.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies the operator space with the n-fold tensor power of End(V) so operators are tensors of single-factor operators",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Recognizes conjugation by a factor permutation as the permutation action on the n copies of End(V)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Translates the conjugation-invariance hypothesis into the statement that C lies in the symmetric subspace of that tensor power",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Applies the spanning lemma with underlying space End(V) to write C as a combination of n-fold powers of single endomorphisms",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The spanning fact for symmetric subspaces is taken as given and applied to the space End(V)."
+    ],
+    "conventions": [
+      "The n-fold tensor power of End(V) carries the factor-permutation action; its fixed points form the symmetric subspace."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Operators on the tensor power correspond to tensors in the n-fold power of End(V).",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Conjugation by a permutation is the factor-permutation action on this power of End(V).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Invariance means C lies in the symmetric subspace of the n-fold power of End(V).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The symmetric-power spanning lemma for End(V) expresses C as a combination of tensor powers of single endomorphisms.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires the conceptual move of transporting a permutation action from vectors to operators and reusing the symmetric-power spanning lemma."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "41",
+          "anchors": "Corollary 4.8 and its proof via the tensor-factor action on End(V), p.41",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-permutation-conjugation-invariance",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Operators commuting with all tensor-factor permutations under conjugation are combinations of tensor powers of single endomorphisms, via the operator symmetric subspace.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-306",
+    "key": "qcb-core-plan-306-symmetric-power-spanning",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let V be a finite-dimensional complex vector space and let the symmetric subspace of its n-fold tensor power be the set of tensors fixed by every permutation of the n factors. Prove that this symmetric subspace equals the span of the n-fold powers of single vectors v of V.",
+    "reference_answer": "Call the span of the single-vector powers W. One inclusion is immediate: each n-fold power of a single vector is unchanged by any factor permutation, so W is contained in the symmetric subspace. For the reverse inclusion, start from the standard spanning set of the symmetric subspace obtained by symmetrizing basis tensors: for a basis of V the symmetrized basis tensors, each a sum over all permutations of a fixed arrangement of basis vectors, span the symmetric subspace. These symmetrized tensors are polarizations: each equals a mixed partial derivative, evaluated at the origin, of the single-vector power of a vector of the form (first basis vector plus t_2 times second plus ... plus t_n times last), differentiated once in each of t_2, ..., t_n. Each such derivative is a limit of difference quotients of elements that are themselves n-fold powers of single vectors, all of which lie in W. Because V is finite-dimensional, W is a finite-dimensional and hence closed subspace, so these limits remain in W. Therefore every symmetrizer, and thus the whole symmetric subspace, lies in W, giving equality.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves the easy inclusion that each single-vector power is permutation invariant, so the span W sits inside the symmetric subspace",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Recalls that symmetrized basis tensors span the symmetric subspace",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Expresses each symmetrized tensor as a mixed partial derivative (polarization) of a single-vector power",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Argues the derivative is a limit of difference quotients of single-vector powers in W, which is closed, so the symmetric subspace lies in W",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:tensor-networks",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "V is finite-dimensional, so finite-dimensional subspaces are closed."
+    ],
+    "conventions": [
+      "A single-vector power repeats the same vector v in each of the n factors."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Single-vector powers are permutation invariant, so their span lies in the symmetric subspace.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Symmetrized basis tensors span the symmetric subspace.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Each symmetrizer is a polarization: a mixed derivative of a single-vector power.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Derivatives are limits of difference quotients in the closed finite-dimensional span, so the symmetric subspace lies in W.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "The polarization identity and the closedness-of-finite-dimensional-subspace argument are the non-obvious ingredients."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "41",
+          "anchors": "Lemma 4.7 and the polarization identity Eq. (4.11)-(4.14), p.41",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-symmetric-power-spanning",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The symmetric subspace of a tensor power is spanned by the n-fold powers of single vectors, proved by polarization and a closedness argument.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-307",
+    "key": "qcb-core-plan-307-young-row-bound",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "In the Schur-Weyl decomposition of the n-fold tensor power of C^d, only Young diagrams with at most d rows contribute. Using the realization of the unitary-group irreducible pieces by Young symmetrizers acting on tensor basis vectors, explain precisely why a Young diagram with more than d rows contributes nothing, and identify the exact algebraic mechanism responsible.",
+    "reference_answer": "Fix a standard tableau T of shape lambda and a tensor basis vector v obtained by choosing one basis label from the alphabet of size d for each of the n factors. Record the labels into the diagram by writing the label from factor j into the box that carries the number j in T; call the result the filled tableau of v. The Young symmetrizer is the product of row symmetrization followed by column antisymmetrization, and the column antisymmetrization carries the sign of each column permutation. Suppose lambda has p rows with p greater than d. Then the first column has p boxes, but the labels placed in them are drawn from the d-element alphabet; since p is greater than d, by the pigeonhole principle two boxes in the first column receive the same label. Antisymmetrizing a column that contains two equal entries gives zero: the transposition swapping those two equal boxes fixes v yet contributes a factor of minus one, so the antisymmetrized sum cancels in pairs. Hence the symmetrizer sends v to zero for every basis vector v, so it annihilates the whole tensor power and the piece associated with lambda is absent. The decisive mechanism is the column antisymmetrization combined with pigeonhole on a d-letter alphabet; this is exactly why diagrams need at most d rows.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Describes filling a tableau from a tensor basis vector by placing each label into the box labelled by its factor position",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the Young symmetrizer as row symmetrization followed by signed column antisymmetrization",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses pigeonhole: more than d rows forces a repeated label in the first column of length p greater than d",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Shows column antisymmetrization kills any vector with a repeated column entry, so the symmetrizer annihilates every basis vector and the lambda-piece vanishes",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:tensor-networks",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The alphabet of tensor labels has exactly d letters."
+    ],
+    "conventions": [
+      "A filled tableau places tensor labels into boxes according to the standard labels of T."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Each tensor basis vector induces a filled tableau by recording its labels in the boxes.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The Young symmetrizer antisymmetrizes over columns with signs.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A diagram with more than d rows forces, by pigeonhole, equal labels in the first column.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Antisymmetrizing a column with a repeated entry gives zero, so the symmetrizer annihilates the whole space.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A boundary/vanishing phenomenon driven by pigeonhole and the sign structure of column antisymmetrization."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "48",
+          "anchors": "Section 5.4.2 remark that tableaux with more than d rows are annihilated by the Young symmetrizer, p.48",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-young-row-bound",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Young diagrams with more than d rows contribute nothing to the tensor power of C^d because column antisymmetrization annihilates every vector with a forced repeated label.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-308",
+    "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Let P be the antisymmetrizing projector on the n-fold tensor power of C^d, defined as the average over S_n of the sign of a permutation times the corresponding factor permutation. Prove that if d is strictly less than n then P annihilates the entire space, and interpret this as the statement that the totally antisymmetric subspace of the tensor power is zero whenever n exceeds d.",
+    "reference_answer": "The image of P is the totally antisymmetric subspace, consisting of tensors that pick up the sign of any permutation when their factors are permuted. A spanning set for this image is obtained by antisymmetrizing basis tensors; the antisymmetrization of a basis tensor is, up to a scalar, the wedge of the chosen basis vectors. If two of the chosen indices coincide, this wedge is zero, because the transposition exchanging the two equal factors both fixes the tensor and multiplies it by minus one, forcing it to vanish. A nonzero antisymmetrized basis tensor therefore requires all n indices to be distinct, i.e. a strictly increasing choice of n labels drawn from the d-element alphabet. When n is greater than d there is no such choice: any n labels from a d-element set must repeat by the pigeonhole principle. Hence every antisymmetrized basis tensor is zero, the spanning set is trivial, the antisymmetric subspace is the zero subspace, and P is the zero operator. Equivalently its rank is the number of n-element subsets of a d-element set, which is zero for n greater than d.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies the image of P as the totally antisymmetric subspace and gives its spanning set by antisymmetrized basis tensors",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows a repeated index makes the antisymmetrized tensor vanish via the fixing-but-sign-flipping transposition",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Observes a nonzero antisymmetrized tensor needs n distinct labels from a d-element set",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes by pigeonhole that n greater than d forces every spanning tensor to zero, so P is zero and the dimension vanishes",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The basis vectors form a fixed basis of C^d."
+    ],
+    "conventions": [
+      "The totally antisymmetric subspace is the image of the signed average P."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The image of P is spanned by wedges of basis vectors.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A repeated index gives a vanishing wedge because the swap fixes the tensor yet flips its sign.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Nonzero wedges require n distinct labels from the d-element alphabet.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For n greater than d pigeonhole forbids distinct labels, so the antisymmetric subspace is zero and P is zero.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "A short boundary result: the antisymmetric power vanishes above the dimension, argued by distinct-index counting."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "51",
+          "anchors": "Exercise 5.2 on the antisymmetric projector Eq. (5.38), p.51",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-antisymmetrizer-vanishing",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The antisymmetrizer on the n-fold tensor power of C^d is identically zero when n exceeds d, since no wedge of n distinct basis vectors exists.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-309",
+    "key": "qcb-core-plan-309-majorization-annihilation",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Fix a standard Young tableau T of shape lambda, a partition of n into at most d parts, and a tensor basis vector v of the n-fold tensor power of C^d. Let the content vector record how many times each basis label appears in v, and let the sorted content be that vector rearranged in non-increasing order. State the exact condition, in terms of majorization of the sorted content by lambda, under which the Young symmetrizer annihilates v, and justify why that condition is the right one.",
+    "reference_answer": "Claim: the Young symmetrizer annihilates v exactly when the sorted content is not majorized by lambda, i.e. when there is some index k between 1 and d minus 1 for which the sum of the k largest content values exceeds the sum of the first k row lengths of lambda. Equivalently the symmetrizer leaves v nonzero precisely when the sorted content is majorized by lambda, meaning all partial sums of the sorted content are at most the corresponding partial sums of lambda. Justification: the symmetrizer ends with antisymmetrization along the columns of T, so a surviving vector must admit a placement of the multiset of labels into the diagram that is strictly increasing down every column, because any column holding two equal labels is killed by antisymmetrization. A column-strict filling of lambda using the given label multiplicities exists if and only if the sorted multiplicities fit under the row-length partial sums: seating the k most frequent labels into the diagram without a forced column repetition requires that their total count not exceed the capacity of the first k rows for every k, which is precisely the majorization condition. If this fails at some k, then the k most frequent labels cannot be seated without a repeated column entry, so every arrangement is annihilated and the symmetrizer sends v to zero.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the exact criterion: the symmetrizer kills v iff the sorted content is not majorized by lambda, i.e. some partial sum of sorted contents exceeds the row-length partial sum",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Explains that survival requires a column-strict (strictly increasing down columns) placement of the labels",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Links existence of a column-strict filling to the majorization inequality on partial sums",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes that violating the inequality at some k forces a column repetition and hence annihilation",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:probability",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "lambda is a partition of n into at most d parts; v is a tensor basis vector of the n-fold tensor power of C^d."
+    ],
+    "conventions": [
+      "Majorization means every partial sum of the non-increasing content vector is bounded by the corresponding partial sum of lambda."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The symmetrizer leaves v nonzero only if the labels admit a strictly-column-increasing placement in lambda.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A column-strict filling with given multiplicities exists iff the sorted multiplicities fit under the row partial sums.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "This fitting condition is exactly the majorization of the sorted content by lambda.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Failure of majorization at some k forces a repeated column entry, so the symmetrizer annihilates v.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Connects the annihilation condition to majorization and column-strict fillings; requires reasoning about partial sums."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "48-49",
+          "anchors": "Majorization annihilation condition Eq. (5.25) and the ordering of sorted content versus lambda, p.48-49",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-majorization-annihilation",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The Young symmetrizer annihilates a tensor basis vector exactly when the sorted content vector is not majorized by the shape, via column-strict feasibility.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-310",
+    "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For the fourth tensor power of C^3, determine all Young diagrams that index irreducible pieces in the Schur-Weyl decomposition, compute for each the dimension of the symmetric-group piece using hook lengths and the dimension of the unitary-group piece using the Weyl dimension formula for dimension three, and verify that eighty-one equals the sum over diagrams of the product of these two dimensions.",
+    "reference_answer": "The relevant diagrams are the partitions of 4 into at most 3 parts: (4), (3,1), (2,2), and (2,1,1). Compute each pair of dimensions. For (4): there is one standard tableau so the symmetric-group dimension is 1; the Weyl formula gives the unitary dimension 15 (the dimension of the degree-four symmetric power of C^3, which is six choose two). Product 15. For (3,1): hook lengths are four, two, one across the first row and one in the second, product eight, so the symmetric-group dimension is twenty-four over eight equal to 3; the Weyl formula with parts three, one, zero gives three times five halves times two equal to 15. Product 45. For (2,2): hook lengths are three and two across the first row and two and one across the second, product twelve, so the symmetric-group dimension is twenty-four over twelve equal to 2; the Weyl formula with parts two, two, zero gives one times two times three equal to 6. Product 12. For (2,1,1): hook lengths are four and one across the first row and two then one down the first column, product eight, so the symmetric-group dimension is twenty-four over eight equal to 3; the Weyl formula with parts two, one, one gives two times three halves times one equal to 3. Product 9. Summing the products fifteen, forty-five, twelve, nine gives eighty-one, which equals three to the fourth, confirming the identity.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Lists exactly the partitions of 4 into at most 3 parts: (4), (3,1), (2,2), (2,1,1)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes each symmetric-group dimension correctly from hook lengths as one, three, two, three",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Computes each unitary dimension correctly from the Weyl formula as fifteen, fifteen, six, three",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Forms the products and sums them to eighty-one, verifying three to the fourth equals the sum of the products",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:tensor-networks",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Diagrams with more than three rows are excluded for C^3."
+    ],
+    "conventions": [
+      "Hook length of a box counts boxes to its right, boxes below it, and the box itself; the Weyl formula is the product over row pairs of the row-length differences adjusted by the index gap, divided by the index gap."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The contributing diagrams are the partitions of 4 with at most 3 rows.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Hook-length computations give symmetric-group dimensions one, three, two, three.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The Weyl dimension formula gives unitary dimensions fifteen, fifteen, six, three.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Summing the products gives fifteen plus forty-five plus twelve plus nine equal to eighty-one.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A concrete multi-part computation exercising both dimension formulas and the Schur-Weyl bookkeeping identity."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "45-46, 50-51",
+          "anchors": "Schur-Weyl decomposition Eq. (5.8); dimension formulas Proposition 5.10 Eq. (5.9)-(5.11); Exercise 5.3(iii) and the sum rule Eq. (5.29), p.45-46 and p.50-51",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-schur-weyl-dimension-count",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Explicit Schur-Weyl dimension count for the fourth power of C^3 verifying eighty-one equals the sum of products of the two piece dimensions over the four admissible diagrams.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-311",
+    "key": "qcb-core-plan-311-weyl-dim-u2",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For the two-dimensional unitary group, the irreducible pieces appearing in tensor powers of C^2 are indexed by partitions lambda = (lambda_1, lambda_2) with two parts. Prove that the dimension of the piece associated with such a partition equals lambda_1 minus lambda_2 plus one, and explain how this follows both from the semistandard-tableau count and from the explicit description of the piece as a determinant power times a symmetric power.",
+    "reference_answer": "Semistandard count: the dimension equals the number of semistandard Young tableaux of shape lambda with entries from the two-letter alphabet {1,2}, that is fillings weakly increasing along rows and strictly increasing down columns. In the two-row shape the two cells of any column must be 1 above 2, which is forced; the only freedom is in the first row, which has lambda_1 minus lambda_2 cells beyond the part covered by the second row, and those cells must be weakly increasing in {1,2}, so they are some number of 1s followed by 2s. The number of such choices is lambda_1 minus lambda_2 plus one, giving the dimension. Explicit description: the piece is isomorphic to the determinant representation raised to the power lambda_2, tensored with the degree-m symmetric power of C^2, where m equals lambda_1 minus lambda_2. The determinant factor is one-dimensional, so it does not change the dimension; the symmetric power of degree m of a two-dimensional space has dimension m plus one. Hence the dimension is m plus one equal to lambda_1 minus lambda_2 plus one, matching the tableau count. Both routes agree because tensoring by the one-dimensional determinant shifts the highest weight without changing dimension, and the symmetric power is exactly the semistandard content of the first-row freedom.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the dimension equals the number of two-letter semistandard tableaux of shape lambda",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows the columns are forced to be 1 over 2 and the only freedom is the lambda_1 minus lambda_2 extra first-row cells, giving lambda_1 minus lambda_2 plus one fillings",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Gives the determinant-power-times-symmetric-power description and notes the determinant factor is one-dimensional",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes the symmetric power of degree lambda_1 minus lambda_2 has dimension lambda_1 minus lambda_2 plus one, matching the tableau count",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:tensor-networks",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "lambda has exactly two parts with lambda_1 at least lambda_2 at least zero."
+    ],
+    "conventions": [
+      "The determinant representation sends a unitary to its determinant; the degree-m symmetric power of C^2 has dimension m plus one."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The dimension is the number of two-letter semistandard tableaux of shape lambda.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Columns are forced 1 over 2; only the lambda_1 minus lambda_2 extra first-row cells vary.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The piece is a one-dimensional determinant power times a degree-m symmetric power.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The degree-m symmetric power of C^2 has dimension m plus one, agreeing with the count.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Two independent derivations of the same dimension, requiring both the tableau combinatorics and the determinant/symmetric-power structure."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "46, 48",
+          "anchors": "Proposition 5.10(ii) Eq. (5.11) and the U2 structure Eq. (5.26)-(5.28), p.46 and p.48",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-weyl-dim-u2",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The two-dimensional unitary irreducible piece for a two-part partition has dimension lambda_1 minus lambda_2 plus one, from both tableau counting and the determinant-times-symmetric-power form.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-312",
+    "key": "qcb-core-plan-312-hook-length-standard",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "The number of standard Young tableaux of a shape lambda with n boxes equals n factorial divided by the product of all hook lengths of the diagram. Compute this number for the shape (4,2,1), displaying the hook length of every box, and separately compute the number for the single-row shape (n) and the single-column shape with n boxes to confirm the formula gives the expected extreme cases.",
+    "reference_answer": "For the shape (4,2,1) with seven boxes, the hook lengths are as follows. First row, four boxes: the leftmost has three boxes to its right, two boxes below it (one in each of rows two and three in that column), plus itself, giving six; the next has two to the right, one below, plus itself, giving four; the next has one to the right, none below, plus itself, giving two; the last has none to the right, none below, plus itself, giving one. Second row, two boxes: the leftmost has one to the right, one below (row three in that column), plus itself, giving three; the next has none to the right, none below, plus itself, giving one. Third row, one box: hook length one. The product of hooks is six times four times two times one times three times one times one equal to one hundred forty-four. Then seven factorial is five thousand forty, and five thousand forty divided by one hundred forty-four equals thirty-five, so there are thirty-five standard tableaux of shape (4,2,1). Extremes: for the single row (n) every hook length is just the number of boxes to its right plus itself, giving n, n minus one, down to one, whose product is n factorial, so the count is n factorial over n factorial equal to one. For the single column with n boxes the hooks are likewise n, n minus one, down to one by symmetry, product n factorial, count one. Both extremes correctly give a single standard tableau.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Correctly assigns all seven hook lengths of (4,2,1) as six, four, two, one in the first row, three, one in the second, one in the third",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes the hook product as one hundred forty-four and seven factorial as five thousand forty",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Divides to obtain thirty-five standard tableaux for (4,2,1)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Checks the single-row and single-column shapes both give hook product n factorial and hence exactly one standard tableau",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:matrix-analysis",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "lambda = (4,2,1) is a partition of seven."
+    ],
+    "conventions": [
+      "The hook length of a box counts boxes to its right in its row, boxes below it in its column, and the box itself."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The hook lengths of (4,2,1) are six, four, two, one; three, one; one.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Their product is one hundred forty-four and seven factorial is five thousand forty.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The quotient is thirty-five standard tableaux.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Single-row and single-column shapes have hook product n factorial, giving count one.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "A direct application of the hook length formula with an explicit worked shape and two sanity-check extremes."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "45-46",
+          "anchors": "Proposition 5.10(i) Eq. (5.9)-(5.10) and Example 5.11 Eq. (5.12)-(5.13), p.45-46",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-hook-length-standard",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The hook length formula gives thirty-five standard tableaux for shape (4,2,1) and exactly one for a single row or single column of n boxes.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-313",
+    "key": "qcb-core-plan-313-cycle-type-conjugacy",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Two permutations in the symmetric group are conjugate if and only if they have the same cycle type. Prove the key computational identity that conjugating a single cycle by an arbitrary permutation sigma relabels its entries by sigma, and use it to establish both directions of the conjugacy criterion.",
+    "reference_answer": "Key identity: let a cycle send each listed entry to the next and the last back to the first, and let sigma be any permutation. The conjugate sigma times cycle times sigma inverse acts on sigma applied to a listed entry by first undoing sigma, then applying the cycle to move to the next listed entry, then applying sigma; the net effect sends sigma of an entry to sigma of the next entry, and fixes everything outside the sigma-image of the listed entries. Thus the conjugate is again a cycle of the same length whose entries are the sigma-images of the original entries. Forward direction: write any permutation as a product of disjoint cycles. Conjugating the whole product by sigma conjugates each cycle, replacing its entries by their sigma-images while preserving all cycle lengths and keeping the cycles disjoint (sigma is a bijection). Hence the conjugate has the same multiset of cycle lengths, i.e. the same cycle type. Converse: given two permutations with the same cycle type, align their disjoint-cycle decompositions so that cycles of equal length are paired, and define sigma to map the entries of each cycle of the first permutation, in order, to the entries of the paired cycle of the second. This sigma is a well-defined permutation because the cycle decompositions partition the ground set, and by the key identity it conjugates the first permutation to the second. Therefore same cycle type is equivalent to conjugacy.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves the identity that conjugating a cycle by sigma yields the cycle with entries replaced by their sigma-images",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses disjoint cycle decomposition to show conjugation preserves the multiset of cycle lengths (forward direction)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Constructs an explicit sigma matching cycle decompositions entrywise for two permutations of equal cycle type (converse)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Verifies this sigma is a well-defined permutation and conjugates one to the other, completing the equivalence",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Permutations act on a fixed finite set; every permutation has a disjoint cycle decomposition."
+    ],
+    "conventions": [
+      "Cycle type is the multiset of cycle lengths in non-increasing order."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Conjugating a cycle by sigma produces the cycle on the sigma-images of its entries.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Conjugating a disjoint-cycle product preserves all cycle lengths, so cycle type is a conjugacy invariant.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Matching equal-length cycles entrywise defines a permutation sigma relating two same-type permutations.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "This sigma conjugates one permutation to the other, giving the converse.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Standard but complete proof of the cycle-type conjugacy criterion resting on the single-cycle conjugation identity."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "44, 51",
+          "anchors": "Proposition 5.5(i)-(iii) with the conjugation identity Eq. (5.4) and Exercise 5.1 Eq. (5.37), p.44 and p.51",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-cycle-type-conjugacy",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Permutations are conjugate exactly when they share a cycle type, proved via the identity that conjugation relabels cycle entries by the conjugating permutation.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-314",
+    "key": "qcb-core-plan-314-n2-sym-antisym-split",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "For the second tensor power of C^d, prove that the space splits as the direct sum of the symmetric subspace and the antisymmetric subspace, that these are the plus-one and minus-one eigenspaces of the swap operator, and compute their dimensions as d times d plus one over two and d times d minus one over two respectively.",
+    "reference_answer": "The swap operator F exchanges the two tensor factors; it is an involution since swapping twice is the identity, so F squared equals the identity and its eigenvalues are plus one and minus one. The operators one half times (identity plus F) and one half times (identity minus F) are complementary orthogonal projectors: they sum to the identity, each squares to itself using F squared equal to identity, and their product is zero. Their ranges are the plus-one eigenspace, the symmetric subspace of tensors unchanged by the swap, and the minus-one eigenspace, the antisymmetric subspace of tensors negated by the swap; hence the second tensor power is the direct sum of these two subspaces. Dimensions: a basis of the symmetric subspace is given by the symmetrized products of basis vectors, one for each unordered pair of indices with repetition allowed, of which there are d plus one choose two equal to d times d plus one over two. A basis of the antisymmetric subspace is given by the wedges of distinct basis vectors, one for each unordered pair of distinct indices, of which there are d choose two equal to d times d minus one over two. These dimensions sum to d squared, the dimension of the full second tensor power, confirming the direct sum.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows the swap operator is an involution with eigenvalues plus and minus one",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Exhibits the two projectors one half times identity plus or minus F as complementary orthogonal projectors",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Identifies their ranges as the symmetric and antisymmetric subspaces and concludes the direct sum",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Computes the dimensions as d times d plus one over two and d times d minus one over two and checks they sum to d squared",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "d is at least two."
+    ],
+    "conventions": [
+      "The swap operator F exchanges the two factors; symmetric means fixed by F, antisymmetric means negated by F."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The swap operator squares to the identity, so its eigenvalues are plus and minus one.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The operators one half times identity plus or minus F are complementary orthogonal projectors.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Their ranges are the symmetric and antisymmetric subspaces, giving a direct sum decomposition.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The dimensions d times d plus one over two and d times d minus one over two sum to d squared.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "Foundational decomposition for n equals two; combines the involution spectral argument with elementary dimension counts."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "52-53",
+          "anchors": "Schur-Weyl for n equals two Eq. (6.5)-(6.14): symmetric and antisymmetric subspaces and their dimensions, p.52-53",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-n2-sym-antisym-split",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The second tensor power of C^d splits into symmetric and antisymmetric eigenspaces of the swap with dimensions d(d+1)/2 and d(d-1)/2 summing to d squared.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-315",
+    "key": "qcb-core-plan-315-werner-twirl-visibility",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Define the twirling map that averages an operator over all transformations of the form a unitary tensored with the same unitary, using the invariant measure on the unitary group. Prove that twirling any state produces a Werner state, that this Werner state is already invariant under further twirling, and that its visibility, defined as the trace of the state against the swap operator, equals the trace of the original state against the swap.",
+    "reference_answer": "Twirling produces a Werner state: by left invariance of the invariant measure, applying a fixed unitary pair to the twirled operator and reaveraging merely reparametrizes the integration variable, leaving the integral unchanged; hence the twirled operator commutes with every unitary-tensor-unitary conjugation, which is the defining symmetry of a Werner state. Already invariant: if a state already has the Werner symmetry, then every term in the twirl average equals the state itself, so the average is the state; applying this to an already-twirled operator shows twirling is idempotent, i.e. the twirled state is a fixed point. Visibility preserved: the visibility is the trace of the state against the swap operator. Compute the visibility of the twirled state by moving the swap inside the average and using cyclicity of the trace to conjugate the swap by the unitary pair; the swap commutes with every unitary tensored with itself, so the conjugated swap equals the swap, and the unitary pair cancels against its adjoint. Each term of the average therefore reduces to the trace of the original state against the swap, and averaging a constant returns that constant. Hence the twirled state has the same visibility as the original.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows twirling yields the Werner symmetry using left invariance of the measure to reparametrize the average",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Proves twirling is idempotent: an already-symmetric state is a fixed point, so the twirled state is invariant under further twirling",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses cyclicity of the trace and the swap's invariance under unitary-tensor-unitary conjugation to evaluate the twirled visibility",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes each averaged term equals the original trace against the swap, so visibility is preserved",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The invariant measure on the unitary group is normalized and left invariant."
+    ],
+    "conventions": [
+      "The swap operator exchanges the two subsystems; visibility is the trace of the state against the swap; twirling averages the unitary-tensor-unitary conjugation."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Left invariance of the measure makes the twirl commute with every unitary-tensor-unitary conjugation.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "An already-Werner state is unchanged by the twirl, so twirling is idempotent.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Cyclicity of the trace plus the swap's invariance let the unitary pair cancel inside the visibility integral.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Averaging the constant original trace against the swap preserves the visibility.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines invariance of the measure, idempotency of a projection-like average, and the swap-invariance trace trick."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "54-55",
+          "anchors": "Proposition 6.3 properties of Werner states with the twirl Eq. (6.19)-(6.27), p.54-55",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-werner-twirl-visibility",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Twirling sends any state to a twirl-invariant Werner state whose visibility, measured against the swap, equals that of the original state.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-316",
+    "key": "qcb-core-plan-316-werner-entangled-iff",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "A Werner state is entangled if and only if its visibility, the trace against the swap operator, is negative. Prove the entangled direction using the positive-partial-transpose criterion by computing the partial transpose of the swap operator and locating a negative eigenvalue, and explain why nonnegative visibility yields a separable state.",
+    "reference_answer": "Parametrize the Werner state in the standard one-parameter family in which it is an affine combination of the identity and the swap operator with coefficients fixed by the visibility and the normalization of the trace. Partial transpose of the swap: writing the swap in a product basis as the sum over index pairs of the outer product that exchanges the two labels, transposing on the second subsystem turns it into the sum over index pairs of the outer product of a maximally correlated vector, which equals d times the projector onto the maximally entangled state. The identity is unchanged by partial transposition. Hence the partial transpose of the Werner state is an affine combination of the identity and the maximally entangled projector; this operator has two eigenvalues, one on the maximally entangled vector and one on its orthogonal complement. A short computation shows the eigenvalue associated with the maximally entangled direction is proportional to the visibility times the quantity d squared minus one, which is negative exactly when the visibility is negative (using d at least two). A state whose partial transpose has a negative eigenvalue fails the positive-partial-transpose criterion and is therefore entangled; thus negative visibility forces entanglement. Conversely, for nonnegative visibility one exhibits an explicit separable preparation: twirling a suitable product state produces a Werner state of any prescribed nonnegative visibility, and twirling preserves separability because it averages conjugates of a separable state; hence every Werner state with nonnegative visibility is separable. Combining the two directions gives the stated equivalence.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes the Werner state as an affine combination of the identity and the swap fixed by visibility and trace normalization",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes the partial transpose of the swap as d times the maximally entangled projector and leaves the identity fixed",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Finds the eigenvalue along the maximally entangled direction proportional to visibility times d squared minus one, negative iff visibility is negative",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Invokes the positive-partial-transpose criterion for the entangled direction and an explicit twirled separable preparation for nonnegative visibility",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The two subsystems have equal dimension d at least two; the positive-partial-transpose criterion is available."
+    ],
+    "conventions": [
+      "Visibility is the trace of the state against the swap; a state with a negative partial-transpose eigenvalue is entangled."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The Werner state is an affine combination of identity and swap set by its visibility.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Partial transposing the swap gives d times the maximally entangled projector.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The eigenvalue on the maximally entangled vector is proportional to visibility times d squared minus one.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Negativity triggers the positive-partial-transpose criterion for entanglement; nonnegative visibility admits a separable twirled preparation.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A full both-directions entanglement characterization using the partial transpose spectrum and a separable-preparation argument."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "55-56",
+          "anchors": "Lemmas 6.4-6.5 and Proposition 6.6 with the partial transpose computation Eq. (6.31)-(6.38), p.55-56",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-werner-entangled-iff",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A Werner state is entangled exactly when its visibility is negative, shown via the partial transpose of the swap having a negative eigenvalue and a separable preparation otherwise.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-317",
+    "key": "qcb-core-plan-317-multipartite-werner-commutant",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "A multipartite state on n copies of C^d that is invariant under the simultaneous action of the same unitary on every copy must be a linear combination of the permutation operators of the symmetric group acting on the factors. Prove this using the mutual-commutant relationship between the diagonal unitary action and the factor-permutation action.",
+    "reference_answer": "Let A be the algebra spanned by the diagonal unitary operators that apply the same unitary to all n factors, and let B be the algebra spanned by the factor permutations. By the Schur-Weyl mutual-commutant theorem these two algebras are each other's commutants inside the full operator algebra of the tensor power: the commutant of the diagonal unitary algebra is exactly the span of the factor permutations. The invariance hypothesis states that conjugating the state by every diagonal unitary leaves it fixed, which is equivalent to the state commuting with every diagonal unitary (conjugation invariance for unitaries is the same as commuting with them). Therefore the state lies in the commutant of the diagonal unitary algebra. By the mutual-commutant theorem that commutant is the span of the factor permutations, so the state is a linear combination of the permutation operators, as claimed. The remark that these permutation operators are not in general positive semidefinite shows this expansion, while always valid, need not display the state as a manifestly valid density operator; that is a separate positivity question, not an obstruction to the linear-combination conclusion.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Introduces the diagonal unitary algebra and the permutation algebra and states their mutual-commutant relationship",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Translates unitary conjugation invariance into the state commuting with every diagonal unitary",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Places the state in the commutant of the diagonal unitary algebra",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Uses the mutual-commutant theorem to identify that commutant as the span of permutations, giving the linear-combination form",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Each of the n subsystems is C^d; the same unitary acts on all copies simultaneously."
+    ],
+    "conventions": [
+      "Diagonal unitary action applies one unitary to every factor; the permutation operators implement the factor-permuting action of the symmetric group."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The diagonal unitary algebra and the permutation algebra are mutual commutants on the tensor power.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Unitary conjugation invariance is equivalent to commuting with every diagonal unitary.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Hence the state lies in the commutant of the diagonal unitary algebra.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "That commutant is the span of factor permutations, so the state is their linear combination.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Applies Schur-Weyl mutual commutants to characterize multipartite unitarily-invariant states as permutation combinations."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "56",
+          "anchors": "Multipartite Werner states Eq. (6.39)-(6.40) and the commutant identity, p.56",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-multipartite-werner-commutant",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Multipartite states invariant under the diagonal unitary action are linear combinations of factor-permutation operators, by the mutual-commutant theorem.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-318",
+    "key": "qcb-core-plan-318-permutation-invariant-poly",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "A permutation-invariant operator on the n-fold tensor power of C^d, meaning one unchanged by conjugation by every factor permutation, is determined by only polynomially many parameters in n when d is held fixed. Explain precisely why, using the Schur-Weyl block decomposition together with the polynomial bounds on the number of diagrams and on the dimensions of the unitary-group pieces.",
+    "reference_answer": "By Schur-Weyl duality the tensor power decomposes into blocks indexed by Young diagrams with at most d rows, each block a tensor product of a symmetric-group piece and a unitary-group piece. Permutation invariance, via the mutual-commutant structure, forces the operator to act as the identity on each symmetric-group factor and to be an arbitrary operator on each unitary-group factor; concretely the operator is a direct sum over diagrams of the identity on the symmetric-group piece tensored with a free operator on the unitary-group piece. The number of free parameters is therefore the sum over admissible diagrams of the squared dimension of the unitary-group piece. Two polynomial bounds control this. First, the number of admissible diagrams is at most the number of ways to fill d row lengths each between zero and n, bounded by n plus one to the power d, which is polynomial in n for fixed d. Second, the dimension of each unitary-group piece is bounded by a fixed polynomial in n of degree depending only on d, namely at most n plus one to the power d times d minus one over two. Multiplying a polynomial number of diagrams by a polynomial squared dimension gives a total parameter count polynomial in n with d fixed. Hence a permutation-invariant operator, though living in an exponentially large space, is pinned down by only polynomially many numbers.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Invokes the Schur-Weyl block decomposition into diagram-indexed blocks with at most d rows",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses permutation invariance to force the operator to be identity on each symmetric-group factor and free on each unitary-group factor",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the parameter count is the sum over diagrams of the squared unitary-piece dimension",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Applies the polynomial bound on the number of diagrams and the polynomial bound on unitary-piece dimensions to conclude a polynomial total in n",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:complexity",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The local dimension d is fixed while n grows."
+    ],
+    "conventions": [
+      "A permutation-invariant operator is a direct sum over diagrams of the identity on the symmetric-group piece times a free operator on the unitary-group piece."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Schur-Weyl gives blocks indexed by diagrams with at most d rows.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Permutation invariance makes the operator identity on symmetric-group factors and free on unitary-group factors.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The parameter count is the sum over diagrams of squared unitary-piece dimensions.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Polynomially many diagrams times polynomially bounded dimensions give a polynomial total in n.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A quantitative boundary result on parameter counts; requires combining the block structure with both polynomial estimates."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "50",
+          "anchors": "Corollary 5.19 with the diagram-count bound Eq. (5.31) and unitary-dimension bound Eq. (5.33), p.50",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-permutation-invariant-poly",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Permutation-invariant operators on the tensor power of a fixed-dimension system are determined by only polynomially many parameters, via Schur-Weyl blocks and polynomial dimension bounds.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-319",
+    "key": "qcb-core-plan-319-spectrum-concentration",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Let a density operator on C^d have spectrum given by a probability vector in non-increasing order, and consider the n-fold tensor power of this density operator decomposed by Schur-Weyl into blocks indexed by Young diagrams. Explain precisely why the total weight carried by the block of a diagram concentrates, for large n, on those diagrams whose normalized row-length vector is close to the spectrum, and identify the exact rate governing the decay away from the spectrum.",
+    "reference_answer": "The tensor power of the density operator is permutation invariant, so by Schur-Weyl it is block diagonal with one block per admissible diagram; the weight of a block is the trace of the tensor power restricted to that block. This weight factorizes as the dimension of the symmetric-group piece times the trace of the induced operator on the unitary-group piece. Writing the normalized diagram as the row-length vector divided by n, the two-sided bound on this weight is governed by the relative entropy between the normalized diagram and the spectrum: up to polynomial-in-n prefactors, the weight is the exponential of minus n times the relative entropy of the normalized diagram against the spectrum. Relative entropy is nonnegative and vanishes exactly when the normalized diagram equals the spectrum. Therefore when the normalized diagram is far from the spectrum the relative entropy is bounded away from zero and the weight decays exponentially in n; only diagrams whose normalized row lengths are close to the spectrum, where the relative entropy is near zero, retain non-negligible weight. The polynomial prefactors, coming from the number of diagrams and the dimension bounds, cannot overcome the exponential suppression, so for large n the probability mass concentrates on normalized diagrams near the spectrum. The exact decay rate is the relative entropy of the normalized diagram against the spectrum, appearing in the exponent multiplied by minus n.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Uses permutation invariance of the tensor power to get a block-diagonal Schur-Weyl decomposition with per-diagram weights",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Factorizes each block weight as the symmetric-group dimension times the trace on the unitary-group piece",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the exponential bound with rate given by the relative entropy of the normalized diagram against the spectrum",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Argues nonnegativity and the vanishing-only-at-equality of relative entropy force concentration near the spectrum, with polynomial prefactors unable to overcome the exponential",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:probability",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The density operator is fixed with spectrum a probability vector; n grows large with d fixed."
+    ],
+    "conventions": [
+      "The normalized diagram divides each row length by n; relative entropy of p against q is the sum of p times log of p over q."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The tensor power is block diagonal by Schur-Weyl with per-diagram weights.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Each block weight factorizes as symmetric-group dimension times unitary-piece trace.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The weight is bounded by the exponential of minus n times the relative entropy against the spectrum.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Relative entropy vanishes only at the spectrum, so mass concentrates there as n grows.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A concentration-of-measure boundary statement requiring the relative-entropy rate and the dominance of exponential over polynomial factors."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "50-51",
+          "anchors": "Concentration of measure Eq. (5.35)-(5.36) with the relative-entropy bound, p.50-51",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-spectrum-concentration",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The Schur-Weyl block weights of a tensor-power density operator concentrate for large n on diagrams whose normalized rows match the spectrum, at a relative-entropy decay rate.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-320",
+    "key": "qcb-core-plan-320-isotropic-partial-transpose",
+    "topic": "planned_tensor_symmetry",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "A bipartite state of equal local dimension is called isotropic if it is invariant under conjugation by every transformation of the form a unitary tensored with its complex conjugate. Prove that a state is isotropic if and only if its partial transpose on the second subsystem is a Werner state, using the algebraic identity relating partial transposition to conjugation by a unitary and its conjugate.",
+    "reference_answer": "Recall the identity for partial transposition on the second subsystem: for operators X_1, Y_1, X_2, Y_2 and any middle operator Z, the partial transpose of (X_1 tensor Y_1) Z (X_2 tensor Y_2) equals (X_1 tensor the transpose of Y_2) times the partial transpose of Z times (X_2 tensor the transpose of Y_1). Apply this with the isotropic symmetry transformation, namely X_1 = X_2 = a unitary and Y_1 = Y_2 = its complex conjugate, acting on the state. On the left we partial-transpose the conjugated state; using that the transpose of the complex conjugate of a unitary is its adjoint, the right side becomes the unitary tensored with the unitary (not its conjugate) acting by conjugation on the partial transpose of the state. Therefore: the state is unchanged by conjugation with a unitary tensored with its conjugate if and only if, after partial transposition, the partial transpose is unchanged by conjugation with a unitary tensored with the same unitary. The former is exactly the isotropic symmetry; the latter is exactly the Werner symmetry. Hence a state is isotropic precisely when its partial transpose on the second subsystem is a Werner state. The equivalence is a clean transport of symmetry group through the partial transpose, with no loss because partial transposition is an involution.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the algebraic partial-transpose identity for sandwiched tensor-product operators",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Applies it with the isotropic transformation unitary tensored with its conjugate and uses that the transpose of a conjugated unitary is its adjoint",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows the partial transpose of the isotropic symmetry becomes the unitary-tensored-with-itself (Werner) symmetry",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes the equivalence both ways using that partial transposition is an involution",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The two subsystems have equal local dimension; partial transposition is taken on the second subsystem."
+    ],
+    "conventions": [
+      "Isotropic symmetry conjugates by a unitary tensored with its complex conjugate; Werner symmetry conjugates by a unitary tensored with itself."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The partial-transpose identity rewrites a sandwiched conjugation after transposing the second factor.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "With unitary tensored with conjugate, the transpose of the conjugate unitary is its adjoint.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Thus the isotropic symmetry transports to the Werner symmetry on the partial transpose.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Partial transposition is an involution, so the equivalence holds in both directions.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A symmetry-transport proof hinging on the partial-transpose sandwich identity and the adjoint-of-conjugate-unitary fact."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "57",
+          "anchors": "Definition 6.7 isotropic states Eq. (6.44) and the partial-transpose equivalence Eq. (6.45)-(6.46), p.57",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations only; source text not redistributed/relicensed"
+        }
+      }
+    ],
+    "family": "qit-isotropic-partial-transpose",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A bipartite state is isotropic exactly when its partial transpose is a Werner state, via transport of the symmetry group through partial transposition.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "tensor-symmetry-author-b3",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

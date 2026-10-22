@@ -1,0 +1,393 @@
+{
+  "schema_version": "qcb.path_migration.v1",
+  "source_commit": "51e6bbba3d4783fadfcda3566fb174299a9d118c",
+  "reason": "Relocate web-uploaded benchmark artifacts to the canonical benchmark namespace. Matching content remains present, and original paths/blobs remain recoverable in Git history.",
+  "hash_policy": "Original raw bytes plus SHA-256 of LF-canonical UTF-8 text; only CRLF-to-LF normalization is permitted.",
+  "files": [
+    {
+      "original_path": "data/authored/breadth.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/authored/breadth.json",
+      "original_bytes_sha256": "835e72d08f63e537566b9e482d33238e0e304c4e7460fa182722ed080aa9c608",
+      "canonical_lf_sha256": "835e72d08f63e537566b9e482d33238e0e304c4e7460fa182722ed080aa9c608",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/authored/expansion.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/authored/expansion.json",
+      "original_bytes_sha256": "2e16f7d41abcb479d093e6d02c5ce958cf3881b4db07bb223f2b80382a71b303",
+      "canonical_lf_sha256": "2e16f7d41abcb479d093e6d02c5ce958cf3881b4db07bb223f2b80382a71b303",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/authored/pilot.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/authored/pilot.json",
+      "original_bytes_sha256": "62915e47927dded73e1ac3ccfb9fa899932315398176370ce7b361844f8609f6",
+      "canonical_lf_sha256": "62915e47927dded73e1ac3ccfb9fa899932315398176370ce7b361844f8609f6",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/authored/planned-corrections.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/authored/planned-corrections.json",
+      "original_bytes_sha256": "6be58fda57c93383016eca2bb80fb65fe67e0766073564f0d92ff4717fae8779",
+      "canonical_lf_sha256": "6be58fda57c93383016eca2bb80fb65fe67e0766073564f0d92ff4717fae8779",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/authored/planned.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/authored/planned.json",
+      "original_bytes_sha256": "087112af8989cf36f949521751fd12f833eb707ed3b846a03e4a34754476b9db",
+      "canonical_lf_sha256": "087112af8989cf36f949521751fd12f833eb707ed3b846a03e4a34754476b9db",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/authored/repairs-v3.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/authored/repairs-v3.json",
+      "original_bytes_sha256": "bbb2648902cf349216a2b310f0d4ab3c0abe53aa8582f58a195d1342d8d16949",
+      "canonical_lf_sha256": "bbb2648902cf349216a2b310f0d4ab3c0abe53aa8582f58a195d1342d8d16949",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/native_nl/block_encoding.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/native_nl/block_encoding.json",
+      "original_bytes_sha256": "3745f86c4b97f32e355220f38338509458d5438a3b6c2f1e972d368ef67a607b",
+      "canonical_lf_sha256": "3745f86c4b97f32e355220f38338509458d5438a3b6c2f1e972d368ef67a607b",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/native_nl/expansion1.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/native_nl/expansion1.json",
+      "original_bytes_sha256": "5808b9f90faf5fd1552924386bf2c94fa05ef937ae590d09da8c1de1cfc3cf71",
+      "canonical_lf_sha256": "5808b9f90faf5fd1552924386bf2c94fa05ef937ae590d09da8c1de1cfc3cf71",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/native_nl/expansion2.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/native_nl/expansion2.json",
+      "original_bytes_sha256": "9ad9156bbd8d89e507b3656df3fa7b7aa7e821c49069d3f3e19bd77c414523ac",
+      "canonical_lf_sha256": "9ad9156bbd8d89e507b3656df3fa7b7aa7e821c49069d3f3e19bd77c414523ac",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/native_nl/foundations.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/native_nl/foundations.json",
+      "original_bytes_sha256": "4d99cd0958f536f649c10f1b881b950428cba6b1b10d63441e00af8de76a712a",
+      "canonical_lf_sha256": "4d99cd0958f536f649c10f1b881b950428cba6b1b10d63441e00af8de76a712a",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/native_nl/planned.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/native_nl/planned.json",
+      "original_bytes_sha256": "afb90ee041855b1a011081522c41e4166fcd758236e55161f7cc9a2cd1f784bb",
+      "canonical_lf_sha256": "afb90ee041855b1a011081522c41e4166fcd758236e55161f7cc9a2cd1f784bb",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/native_nl/repairs-native-v2.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/native_nl/repairs-native-v2.json",
+      "original_bytes_sha256": "30447beb9db0c470185094eb89e39db8e135da5dacfd1392ce500c6090a2191f",
+      "canonical_lf_sha256": "30447beb9db0c470185094eb89e39db8e135da5dacfd1392ce500c6090a2191f",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/native_nl/state_preparation.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/native_nl/state_preparation.json",
+      "original_bytes_sha256": "5996872e8c0e368dd0e7c685c4e80964e353f9aa9d7fbb0b6821aca351f5d27b",
+      "canonical_lf_sha256": "5996872e8c0e368dd0e7c685c4e80964e353f9aa9d7fbb0b6821aca351f5d27b",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/expanded-v2/candidates.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/expanded-v2/candidates.json",
+      "original_bytes_sha256": "8a0663c65bd812c7ed35b170a1a448db6060fb69211763ab1162f96b0ce0366b",
+      "canonical_lf_sha256": "8a0663c65bd812c7ed35b170a1a448db6060fb69211763ab1162f96b0ce0366b",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/expanded-v2/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/expanded-v2/items.json",
+      "original_bytes_sha256": "05cc785f01a0128c5edb5ae46102d48fd76dcbd1a3e2199c55f7b3ecd3c487b8",
+      "canonical_lf_sha256": "05cc785f01a0128c5edb5ae46102d48fd76dcbd1a3e2199c55f7b3ecd3c487b8",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/expanded-v2/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/expanded-v2/prompts-closed_book.json",
+      "original_bytes_sha256": "aa78c4dcaa0a9e285ddfd5450bcb3dff1215c61683df3e75c870cb4ee48fc8e8",
+      "canonical_lf_sha256": "aa78c4dcaa0a9e285ddfd5450bcb3dff1215c61683df3e75c870cb4ee48fc8e8",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/expanded-v2/prompts-open_library.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/expanded-v2/prompts-open_library.json",
+      "original_bytes_sha256": "52376b1ff22a10837d21c4a9d890baf2d39d5eff989700ba4a53757a99c98b00",
+      "canonical_lf_sha256": "52376b1ff22a10837d21c4a9d890baf2d39d5eff989700ba4a53757a99c98b00",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/expanded-v2/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/expanded-v2/release.json",
+      "original_bytes_sha256": "43a57dd0fd8a31d6afb3d5882fbf5b1be2748b154f0e38ea938b6df1e9a03c83",
+      "canonical_lf_sha256": "43a57dd0fd8a31d6afb3d5882fbf5b1be2748b154f0e38ea938b6df1e9a03c83",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v1/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v1/items.json",
+      "original_bytes_sha256": "83255bbfb0cd503b9a3ab4471419d330219291e6132b1b79a04ac7c59c5ed6c3",
+      "canonical_lf_sha256": "83255bbfb0cd503b9a3ab4471419d330219291e6132b1b79a04ac7c59c5ed6c3",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v1/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v1/prompts-closed_book.json",
+      "original_bytes_sha256": "11de0fc138a9b640f71e3b6b80e1636d20cd12bae4205a17675f80900ef5ed73",
+      "canonical_lf_sha256": "11de0fc138a9b640f71e3b6b80e1636d20cd12bae4205a17675f80900ef5ed73",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v1/provisional.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v1/provisional.json",
+      "original_bytes_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "canonical_lf_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v1/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v1/release.json",
+      "original_bytes_sha256": "c75a9653866792372fd73cab09c37b3405e8f2f279da08138bbae9f07034a889",
+      "canonical_lf_sha256": "c75a9653866792372fd73cab09c37b3405e8f2f279da08138bbae9f07034a889",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v2/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v2/items.json",
+      "original_bytes_sha256": "cea4da0ccff50ba6995a96e8ef5ae8892d2fb00fbe51be1067298c21a4915478",
+      "canonical_lf_sha256": "cea4da0ccff50ba6995a96e8ef5ae8892d2fb00fbe51be1067298c21a4915478",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v2/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v2/prompts-closed_book.json",
+      "original_bytes_sha256": "60421378f809bf6a11c0f4f99208c768f05e3e8b3c7121cbb38090493ad0f591",
+      "canonical_lf_sha256": "60421378f809bf6a11c0f4f99208c768f05e3e8b3c7121cbb38090493ad0f591",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v2/provisional.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v2/provisional.json",
+      "original_bytes_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "canonical_lf_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v2/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v2/release.json",
+      "original_bytes_sha256": "aa31a0c1712cfdce9bc2f5cffb03d8c2436177ac6a76563201642866c82018a2",
+      "canonical_lf_sha256": "aa31a0c1712cfdce9bc2f5cffb03d8c2436177ac6a76563201642866c82018a2",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v3/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v3/items.json",
+      "original_bytes_sha256": "b6451d6284947b0c39165ee9b6de224855ff1d027f5fa61f887db8d3218f2fab",
+      "canonical_lf_sha256": "b6451d6284947b0c39165ee9b6de224855ff1d027f5fa61f887db8d3218f2fab",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v3/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v3/prompts-closed_book.json",
+      "original_bytes_sha256": "a2400141a4f93051ab4880b8d6f99532032e95b7fd376fb1ac3cb266b560dfb0",
+      "canonical_lf_sha256": "a2400141a4f93051ab4880b8d6f99532032e95b7fd376fb1ac3cb266b560dfb0",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v3/provisional.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v3/provisional.json",
+      "original_bytes_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "canonical_lf_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v3/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v3/release.json",
+      "original_bytes_sha256": "fc7324d9c6aa40f85638102ebdaadea36a94166560c966b5cfcf2402ece1c7d5",
+      "canonical_lf_sha256": "fc7324d9c6aa40f85638102ebdaadea36a94166560c966b5cfcf2402ece1c7d5",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v4/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v4/items.json",
+      "original_bytes_sha256": "d0131bc33eca966b300c1c54e1859e2002a81b3a57a304df2b7177b1b35704a3",
+      "canonical_lf_sha256": "d0131bc33eca966b300c1c54e1859e2002a81b3a57a304df2b7177b1b35704a3",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v4/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v4/prompts-closed_book.json",
+      "original_bytes_sha256": "2fe868a59d8499b9846c3af4b07d84fbd82fc7d0b3473175d73a03917ccf2178",
+      "canonical_lf_sha256": "2fe868a59d8499b9846c3af4b07d84fbd82fc7d0b3473175d73a03917ccf2178",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v4/provisional.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v4/provisional.json",
+      "original_bytes_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "canonical_lf_sha256": "37459bd53fc363e9613330581958d6b929a6febc860fc1dbbb5cce8f260b11ef",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/nl-v4/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/nl-v4/release.json",
+      "original_bytes_sha256": "6fe99ed1bbf0151b7e14e213362b04f38a6ef0a4b3fb1424f64e01ccdedeb33e",
+      "canonical_lf_sha256": "6fe99ed1bbf0151b7e14e213362b04f38a6ef0a4b3fb1424f64e01ccdedeb33e",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/pilot-v1/candidates.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/pilot-v1/candidates.json",
+      "original_bytes_sha256": "bf3b9cd258b9df66d11e2b5a4e4ef7cec2a457b7449c7fd5cc0c64b716b13903",
+      "canonical_lf_sha256": "bf3b9cd258b9df66d11e2b5a4e4ef7cec2a457b7449c7fd5cc0c64b716b13903",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/pilot-v1/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/pilot-v1/items.json",
+      "original_bytes_sha256": "340bc6e79625891cac4575ad28895a5a02087689ee87ab6566369f09953b4932",
+      "canonical_lf_sha256": "340bc6e79625891cac4575ad28895a5a02087689ee87ab6566369f09953b4932",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v1/candidates.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v1/candidates.json",
+      "original_bytes_sha256": "92a8219bcc81d15081ec98edbeea8e6df6b694e5bfd3c059098f49f995ec82ed",
+      "canonical_lf_sha256": "92a8219bcc81d15081ec98edbeea8e6df6b694e5bfd3c059098f49f995ec82ed",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v1/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v1/items.json",
+      "original_bytes_sha256": "6604184234c99252669874fbce2825ca0217fef81bdb1a0eb03b149c9d1e6891",
+      "canonical_lf_sha256": "6604184234c99252669874fbce2825ca0217fef81bdb1a0eb03b149c9d1e6891",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v1/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v1/prompts-closed_book.json",
+      "original_bytes_sha256": "9273310da0aa7e2d715d2fc3a881a8521b248b8043be354293088993fc387077",
+      "canonical_lf_sha256": "9273310da0aa7e2d715d2fc3a881a8521b248b8043be354293088993fc387077",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v1/prompts-open_library.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v1/prompts-open_library.json",
+      "original_bytes_sha256": "dc26249d6dc661e9a1c06be23cd7ebd76b9a2632492798bac25683bed13567a4",
+      "canonical_lf_sha256": "dc26249d6dc661e9a1c06be23cd7ebd76b9a2632492798bac25683bed13567a4",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v1/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v1/release.json",
+      "original_bytes_sha256": "ced740692644757298203d23b8800efecb420188ee63b0bc66b5266107f186fd",
+      "canonical_lf_sha256": "ced740692644757298203d23b8800efecb420188ee63b0bc66b5266107f186fd",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v2/candidates.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v2/candidates.json",
+      "original_bytes_sha256": "0663ca3b44f61053ac2f065413f495d1b5ecd214d80cf609d2f4a38abbfa3e40",
+      "canonical_lf_sha256": "0663ca3b44f61053ac2f065413f495d1b5ecd214d80cf609d2f4a38abbfa3e40",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v2/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v2/items.json",
+      "original_bytes_sha256": "bbc94324d656017e2ad75993f895819c5fd7491f59edf0799183e4d4e22b0f38",
+      "canonical_lf_sha256": "bbc94324d656017e2ad75993f895819c5fd7491f59edf0799183e4d4e22b0f38",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v2/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v2/prompts-closed_book.json",
+      "original_bytes_sha256": "9273310da0aa7e2d715d2fc3a881a8521b248b8043be354293088993fc387077",
+      "canonical_lf_sha256": "9273310da0aa7e2d715d2fc3a881a8521b248b8043be354293088993fc387077",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v2/prompts-open_library.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v2/prompts-open_library.json",
+      "original_bytes_sha256": "dc26249d6dc661e9a1c06be23cd7ebd76b9a2632492798bac25683bed13567a4",
+      "canonical_lf_sha256": "dc26249d6dc661e9a1c06be23cd7ebd76b9a2632492798bac25683bed13567a4",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v2/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v2/release.json",
+      "original_bytes_sha256": "4452f8c3855c2a68665a08af958ff9060dcebb773ece98769fc39b21b18c2b7b",
+      "canonical_lf_sha256": "4452f8c3855c2a68665a08af958ff9060dcebb773ece98769fc39b21b18c2b7b",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v3/candidates.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v3/candidates.json",
+      "original_bytes_sha256": "d2a27e832b6ff4a7070e390043d99c4f8c694b00b42be2dbb098d562f8cde0b1",
+      "canonical_lf_sha256": "d2a27e832b6ff4a7070e390043d99c4f8c694b00b42be2dbb098d562f8cde0b1",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v3/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v3/items.json",
+      "original_bytes_sha256": "61872c829a7ba7cb032900ece4388bd1960274b0b93b0cee69cbbf5f19a47e0e",
+      "canonical_lf_sha256": "61872c829a7ba7cb032900ece4388bd1960274b0b93b0cee69cbbf5f19a47e0e",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v3/prompts-closed_book.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v3/prompts-closed_book.json",
+      "original_bytes_sha256": "4d1c939ead00e353bb6d43515c5142f0d92059142d2f6afaed51feb221b87050",
+      "canonical_lf_sha256": "4d1c939ead00e353bb6d43515c5142f0d92059142d2f6afaed51feb221b87050",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v3/prompts-open_library.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v3/prompts-open_library.json",
+      "original_bytes_sha256": "d65592013e373ce30eaf10d23881b877867829ed5e00d4176ebd6a34d1687c13",
+      "canonical_lf_sha256": "d65592013e373ce30eaf10d23881b877867829ed5e00d4176ebd6a34d1687c13",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v3/prompts-provisional.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v3/prompts-provisional.json",
+      "original_bytes_sha256": "c989bc782dcd510f7d69d6423619e3fb95ad275a666f8b70fa2d8be657fa26c7",
+      "canonical_lf_sha256": "c989bc782dcd510f7d69d6423619e3fb95ad275a666f8b70fa2d8be657fa26c7",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v3/provisional.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v3/provisional.json",
+      "original_bytes_sha256": "df1f4b4f4b586b1899ce9b2cda4c9468ef43453cfb181e068db8d0f8084438d5",
+      "canonical_lf_sha256": "df1f4b4f4b586b1899ce9b2cda4c9468ef43453cfb181e068db8d0f8084438d5",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/release-v3/release.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/release-v3/release.json",
+      "original_bytes_sha256": "066842c0d2a0dfabaa83125b1e0acec240400025f02bf7a7cd6d5c3772155462",
+      "canonical_lf_sha256": "066842c0d2a0dfabaa83125b1e0acec240400025f02bf7a7cd6d5c3772155462",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/v0.1/candidates.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/v0.1/candidates.json",
+      "original_bytes_sha256": "39efcd87e1e3d9aff807ea8d1c026f070e0818fc3a6eb769c2936ad3ebe7648e",
+      "canonical_lf_sha256": "39efcd87e1e3d9aff807ea8d1c026f070e0818fc3a6eb769c2936ad3ebe7648e",
+      "content_preserved": true
+    },
+    {
+      "original_path": "data/public/v0.1/items.json",
+      "canonical_path": "benchmarks/quantumcomputingbench/data/public/v0.1/items.json",
+      "original_bytes_sha256": "39efcd87e1e3d9aff807ea8d1c026f070e0818fc3a6eb769c2936ad3ebe7648e",
+      "canonical_lf_sha256": "39efcd87e1e3d9aff807ea8d1c026f070e0818fc3a6eb769c2936ad3ebe7648e",
+      "content_preserved": true
+    }
+  ]
+}

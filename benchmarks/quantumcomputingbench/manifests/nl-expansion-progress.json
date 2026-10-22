@@ -1,0 +1,113 @@
+{
+  "batches": [
+    {
+      "author_claimed_step_counts": {
+        "3": 18,
+        "4": 2
+      },
+      "batch": "batch2_structured_preparation.json",
+      "candidate_records": 20,
+      "independently_accepted_records": 19,
+      "note": "Review existence is checked by authored digest; final release requires full artifact/source/split validation.",
+      "scope": "Hermite finite sampled polynomial and interval-mass mathematics",
+      "state": "candidate_or_reviewed_not_released_here",
+      "validation_errors": []
+    },
+    {
+      "author_claimed_step_counts": {
+        "4": 20
+      },
+      "batch": "batch2_matrix_constructions.json",
+      "candidate_records": 20,
+      "independently_accepted_records": 0,
+      "note": "Review existence is checked by authored digest; final release requires full artifact/source/split validation.",
+      "scope": "Elimination, Gray placement and matrix-construction invariants",
+      "state": "candidate_or_reviewed_not_released_here",
+      "validation_errors": []
+    },
+    {
+      "author_claimed_step_counts": {
+        "4": 6,
+        "5": 14
+      },
+      "batch": "batch2_oracle_composition.json",
+      "candidate_records": 20,
+      "independently_accepted_records": 14,
+      "note": "Review existence is checked by authored digest; final release requires full artifact/source/split validation.",
+      "scope": "Coherent sparse access and quantum operator construction",
+      "state": "candidate_or_reviewed_not_released_here",
+      "validation_errors": []
+    },
+    {
+      "author_claimed_step_counts": {
+        "3": 20
+      },
+      "batch": "batch2_stored_costs.json",
+      "candidate_records": 20,
+      "independently_accepted_records": 19,
+      "note": "Review existence is checked by authored digest; final release requires full artifact/source/split validation.",
+      "scope": "Stored exact-real producer refinement and charged operations",
+      "state": "candidate_or_reviewed_not_released_here",
+      "validation_errors": []
+    },
+    {
+      "author_claimed_step_counts": {
+        "4": 11,
+        "5": 9
+      },
+      "batch": "batch2_representation_qit.json",
+      "candidate_records": 20,
+      "independently_accepted_records": 20,
+      "note": "Review existence is checked by authored digest; final release requires full artifact/source/split validation.",
+      "scope": "Inspected primary representation theory pp17-36",
+      "state": "candidate_or_reviewed_not_released_here",
+      "validation_errors": []
+    },
+    {
+      "author_claimed_step_counts": {
+        "5": 18,
+        "6": 2
+      },
+      "batch": "batch2_scientific_algorithms.json",
+      "candidate_records": 20,
+      "independently_accepted_records": 20,
+      "note": "Review existence is checked by authored digest; final release requires full artifact/source/split validation.",
+      "scope": "Inspected primary scientific algorithms pp151-168",
+      "state": "candidate_or_reviewed_not_released_here",
+      "validation_errors": []
+    },
+    {
+      "batch": "batch3_schur_tensor_symmetry.json",
+      "candidate_records": 0,
+      "independently_accepted_records": 0,
+      "scope": "Inspected primary Schur tensor symmetry pp38-57",
+      "state": "not_delivered"
+    },
+    {
+      "batch": "batch3_quantum_information_apps.json",
+      "candidate_records": 0,
+      "independently_accepted_records": 0,
+      "scope": "Inspected primary quantum information applications pp58-74",
+      "state": "not_delivered"
+    },
+    {
+      "author_claimed_step_counts": {
+        "6": 19,
+        "7": 1
+      },
+      "batch": "batch3_polynomial_signals.json",
+      "candidate_records": 20,
+      "independently_accepted_records": 0,
+      "note": "Review existence is checked by authored digest; final release requires full artifact/source/split validation.",
+      "scope": "Inspected primary polynomial signals pp169-188",
+      "state": "candidate_or_reviewed_not_released_here",
+      "validation_errors": []
+    }
+  ],
+  "candidate_records": 140,
+  "complete": false,
+  "independently_accepted_records": 92,
+  "local_lean_verification_performed": false,
+  "publishing": "local_only_no_push",
+  "schema_version": "qcb.native_expansion_status.v1"
+}

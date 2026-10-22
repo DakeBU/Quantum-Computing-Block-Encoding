@@ -1,0 +1,167 @@
+{
+  "reviewer": "native-sp-review-distinct-context",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-sp-001",
+      "authored_sha256": "6ba451948aa65e41f8452e8c4278574b7cce0121fe6206e62f8931172b39c5e9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified splitAngle (lines 150-155) and splitAngle_firstColumn (157-201) in source; cited sha256 a6ded7... matches actual file. Math checks: standardRy sends zero column to (r cos(phi/2), r sin(phi/2)); phi/2=arccos(a/r) gives first child a exactly (a/r in [-1,1] since r>0, cos_arccos branch verified lines 170-173); bare magnitude yields |b|=r*sin(arccos) nonneg on [0,pi] (lines 174-180); sign branch negates half-angle when b<0 flipping lower entry to -|b|=b (lines 192-201); zero pair -> rational 0. All four rubric points faithful to source. Distinct from foundations batch (no node overlap).",
+      "checked_sources": [
+        "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-002",
+      "authored_sha256": "5968dc6bcc5e33419017d2c5d541f6de6a200942a80e989c66978942d95ce0cf",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified freshZero (39-41), step (56-59), step_apply (64-68) and amplitudeMass_freshZero (304-306); sha256 ad4542... matches. Clean-column collapse: step_apply sums only U(.,.)(0,a) i.e. fresh-bit-input-0 columns against prior amplitudes (freshZero zeroes the fresh-bit-1 slice); amplitudeMass_freshZero proves mass invariance (padding adjoins zeros). Deterministic-enlargement/no-postselection reading is correct. Distinct from foundations batch.",
+      "checked_sources": [
+        "QuantumBlockEncoding/SequentialBondPreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-003",
+      "authored_sha256": "650f0db46f37a350d224eb2d6d96cfdf3dbe17ea4fb37862903af928dc363472",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified exists_normalized_state (183-195) and exists_rightCanonical_normalized (172-178); sha256 b8d1e... matches. Theorem derives (a) mass u = 1 and (b) contract C x 0 0 = sum a u a * contract D x a 0 from the single hypothesis sum of squared amplitudes = 1, with no target-state equality; terminal bond stays 1. Faithful. Not present in foundations.json batch (that batch covers exists_core_lq/absorb/RankReduced/paddedCore/complexCore/RealIsometryCompletion/Coeff, not the normalized-state existence). CAVEAT: a pre-foundations v3 chainMass-family item was flagged by coordinator as possibly adjacent; per scope limits I did not exhaustively rescan all legacy v3 cores. Primary claim (amplitude-recovery + normalization as derived OUTPUT promises) is a distinct framing within reviewed material.",
+      "checked_sources": [
+        "QuantumBlockEncoding/TensorTrainCanonical.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-004",
+      "authored_sha256": "5bb9629c6b5485acf45a7ce61b4b72e7403f0d8ba3b2b9321e0ce4a9f21be18b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified residual_mass (161-168), chainMass_eq (142-157), exists_rightCanonical_normalized (172-178); sha256 b8d1e... matches. residual_mass: chainMass C v = mass (vecMul v R); chainMass_eq shows right-canonical (orthonormal-row) cores compose to a mass-preserving map (mass_vecMul applied per core). Mass concentrated in residual initial boundary, terminal bond dim 1. Shares exists_rightCanonical_normalized with sp-003 but primary emphasis (mass localization via row-isometry) is distinct from sp-003's amplitude recovery. Faithful; distinct from foundations batch.",
+      "checked_sources": [
+        "QuantumBlockEncoding/TensorTrainCanonical.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-005",
+      "authored_sha256": "9ed87dd53818e9235278ef35d6ebb9116776d32df6c3577ced99bded5d85ea8a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified pairNorm_sq (147-148), marginal (204-205), normSq (211), normSq_marginal (216-221); sha256 a6ded7... matches. pairNorm_sq = Real.sq_sqrt of nonneg radicand => m(b)^2 = child0^2+child1^2; normSq_marginal reindexes via lastBasisEquiv and sum_univ_two (the (prefix,last-bit) bijection), giving normSq(marginal f)=normSq f with NO positivity/normalization assumed. Pythagorean + last-bit reindexing proof faithful. Distinct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-006",
+      "authored_sha256": "8f7b85e039e676b2e60d47a0e1b830a10b66a59576d512d30086e755d4632c87",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified normalized_sum_sq (311-317): div_pow; Finset.sum_div; Real.sq_sqrt(normSq_nonneg); div_self(ne_of_gt positive). sha256 matches. Strict positivity 0<normSq is exactly the load-bearing step (div_self needs S nonzero) -- correct and cleanly stated. Connects to prepareCircuit_firstColumn first column f(b)/sqrt(normSq). This is the correct strict-positivity normalization item (contrast sp-013). Distinct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-007",
+      "authored_sha256": "e4ee81e508aa581f6943cffde31cda938629e55dc985012f2492c964fcf2209d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified transfer (86-89) and run_eq_transfer (100-109); sha256 matches. Induction: base transfer 0 = 1 / run 0 = boundary; step uses step_apply clean-column collapse + cleanColumns hypothesis + IH + mulVec_mulVec to fold coreSlice(K n)(x last) * transfer K n (init x) = transfer K (n+1) x. Only clean (fresh-bit-0) columns enter; fresh-bit-1 completion columns irrelevant. Faithful. Distinct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/SequentialBondPreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-008",
+      "authored_sha256": "46468f69187ec379fc76e7df52ac1c297733538878c2cc8a944ef4352342bf54",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified amplitudeMass (288-289), amplitudeMass_mulVec (292-300), amplitudeMass_step (316-324), amplitudeMass_run (327-332), amplitudeMass_run_basisBoundary (336-340), liftStage_unitary (72-78); sha256 matches. Step factors as freshZero (mass-neutral) then lifted Kronecker-with-identity unitary action (mass-preserving via M^dagger M = 1); induction propagates to run; basis boundary mass = 1. Coherent-success/no-postselection interpretation correct. Distinct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/SequentialBondPreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-009",
+      "authored_sha256": "2411b5493e310a27a95b55596eb56f1f2e7488a9d6ef4224fb5a0e0d6fb0a72c",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified complexCore (211-212) and complexCore_isometry (215-226); sha256 matches. (complexCore A)^dagger * complexCore A = 1 proved by Complex.ext: real part reproduces (A*A^T)_{a,c}=delta via hA, imaginary part vanishes (real embeddings). Realness => conjugation trivial => real row-orthonormality transfers to complex column orthonormality under output-row/input-column orientation. Faithful. OVERLAP NOTE: complexCore_isometry appears as a SUPPORTING node of foundations qcb-core-la-010, but la-010's problem core is the zero-padding row-vs-column counterexample, not this base isometry; sp-009 is a distinct standalone problem on the isometry itself. Not a duplicate.",
+      "checked_sources": [
+        "QuantumBlockEncoding/TensorTrainCanonical.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-010",
+      "authored_sha256": "15db68aa5549420f71184e377a3b783634b541e2ad8cec8d673076386aafc11c",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": [
+        "qcb-core-la-012"
+      ],
+      "notes": "DUPLICATE of foundations qcb-core-la-012. Verified head_bound (104-110), last_bond_le_two (113-117), maxBond (198-200), maxBond_le (203-207); source math correct and sha256 matches. BUT core content is identical to la-012: same backward recurrence l'=min(l,2m'), same two-sided head bound (l'<=l and l'<=2m'), same sharp scalar-boundary penultimate-bond<=2 specialization, same 'factor of two from emitted bit' explanation. sp-010 only additionally foregrounds maxBond_le (non-expansion), which la-012 already carries as a supporting_node. No new mathematics; rejected as a re-worded restatement of an existing accepted foundations core.",
+      "checked_sources": [
+        "QuantumBlockEncoding/TensorTrainCanonical.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-011",
+      "authored_sha256": "0e67117ed23352951fba07af08b7731d0cdfcba7fb903f5b572b6365d23076c0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified terminalCore (177-178), step_terminalCore (182-190), step_terminalCore_no_leakage (194-199), step_terminalCore_of_supported (204-222) and the source comment lines 201-203 ('Requiring this terminal action on all padded input columns would be incompatible with unitarity for bond dimension greater than two.'); sha256 matches. Dimension/orthogonality obstruction (d>2 orthonormal columns cannot fit in a 2-dim output subspace) is sound and matches the source's restricted active-column-only hypothesis + support invariant. Faithful; distinct from foundations batch.",
+      "checked_sources": [
+        "QuantumBlockEncoding/SequentialBondPreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-012",
+      "authored_sha256": "c3c6f5365b85e774b590141965c571b37af4386f5e51f733d43c33a858085ffd",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified transfer_boundary_supported (125-135), run_eq_transfer_of_supported (140-163), run_supported (166-174); sha256 matches. Support-propagation induction splits step sum into active (fixed by cleanColumns) and inactive (killed by zero prior amplitude via transfer_boundary_supported), giving run = transfer applied to boundary with no constraint on inactive completion columns => inactive completions are gauge freedom for the emitted state. Three minimal hypotheses (initialSupport, coreSupport, active-only cleanColumns) match source exactly. Refutation of the ambiguity claim is correct. Distinct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/SequentialBondPreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-sp-013",
+      "authored_sha256": "ae9d254c3309208eaf4b7e3f31a7bc2d0959faa940b43c57078f20e7f1c81ff2",
+      "verdict": "reject",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-sp-001",
+        "qcb-core-sp-006"
+      ],
+      "notes": "REJECT: problematic step claim. Verified splitAngle zero-branch (150-155), prepareCircuit_firstColumn (275-308), normalized_sum_sq (311-317); sha256 matches. Part (i) (zero sibling pair = vanishing subtree, angle zero canonical, per-split identity passes through zero norm) is CORRECT. Part (ii)/r4 is MATHEMATICALLY WRONG for the cited node: it states the minimal honest hypothesis for the whole-vector normalized first-column claim allows 'individual entries ... zero or NEGATIVE', but prepareCircuit_firstColumn carries a load-bearing hypothesis nonneg : for all b, 0 <= f b. The base case (n=0, lines 280-289) derives hf : 0 < f b and uses Real.sqrt_sq (le_of_lt hf); a single negative entry gives f(b)/sqrt(f(b)^2)=f(b)/|f(b)|=-1 != 1 (empty circuit emits amplitude 1), so negatives genuinely break the cited theorem. The item is internally contradictory: its own unresolved_issues admits 'prepareCircuit_firstColumn, which assumes nonnegativity'. Core is also a recombination of sp-001 (zero-branch) + sp-006 (strict-positivity normalization) with no genuinely new verified mathematics; the one novel assertion (negatives allowed) is false. existing_view relative to sp-001/sp-006.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

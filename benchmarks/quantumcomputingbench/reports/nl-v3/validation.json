@@ -1,0 +1,56 @@
+{
+  "schema_version": "qcb.native_validation.v1",
+  "baseline_commit": "5fd07170d84f60a16d564d75cd72e87e26c5b837",
+  "working_branch": "qcb/nl-qa",
+  "native_version": "nl-v3",
+  "python_tests": {
+    "passed": 97,
+    "failed": 0,
+    "skipped": 0
+  },
+  "unchanged_repository_harness": {
+    "passed": 98,
+    "failed": 0
+  },
+  "legacy_v3_validate": {
+    "retained_items": 46,
+    "status": "passed",
+    "frozen_pipeline_and_evidence_changed": false
+  },
+  "native_items": {
+    "author_records": 58,
+    "independent_reviewed_new_cores": 50,
+    "provisional": 8
+  },
+  "actual_reviews": [
+    "foundations-final-review.json",
+    "preparation-review.json",
+    "planned-review.json",
+    "block-review.json",
+    "expansion1-review.json",
+    "expansion2-review.json"
+  ],
+  "source_hashes_checked": true,
+  "schema_checked": true,
+  "exact_and_near_duplicate_checks": true,
+  "reviewer_semantic_novelty_checks": true,
+  "core_view_aliases_grouped": true,
+  "legacy_split_locks_checked": true,
+  "primary_target_nodes": 76,
+  "incidental_support_only_nodes": 56,
+  "full_universe_nodes": 5153,
+  "scoring_fixtures": "software only, not model performance",
+  "local_lean_verification_performed": false,
+  "inherited_formal_evidence": "original v3 provenance preserved, not rerun",
+  "paid_model_calls": 0,
+  "model_baseline": "unmeasured",
+  "collaborator_acknowledgment": "pending; no invented approval; integration_allowed=false",
+  "push_status": "AUTH_BLOCKED; no authenticated GitHub identity",
+  "goal_complete": false,
+  "remaining": [
+    "Several hundred reviewed mathematical cores and wider primary-target coverage",
+    "Deeper genuine semantic composition coverage beyond current2-4step majority",
+    "Real collaborator acknowledgment of canonical core IDs/families",
+    "Working-branch push after authorized GitHub connection is available"
+  ]
+}

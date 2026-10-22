@@ -1,0 +1,289 @@
+{
+  "assignments": [
+    {
+      "group": "breadth-cubic-unnormalized-operator",
+      "id": "qcb-93a09f278c059a57a12e",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "breadth-banded-inverse-register",
+      "id": "qcb-50319d5f3f55c7b54564",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "breadth-ghl-hermitian-pieces",
+      "id": "qcb-c48492565a0aca0bbf44",
+      "split": "dev",
+      "track": "reasoning"
+    },
+    {
+      "group": "breadth-robin-norm-convention-counterexample",
+      "id": "qcb-e146e2a572a3f5879482",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "breadth-hermite-resource-scope",
+      "id": "qcb-0114312eb64b6d738216",
+      "split": "train",
+      "track": "quantum_semantics"
+    },
+    {
+      "group": "breadth-hermite-angle-budget",
+      "id": "qcb-5f21f62723a5d87ab091",
+      "split": "dev",
+      "track": "reasoning"
+    },
+    {
+      "group": "breadth-stored-projection-cost",
+      "id": "qcb-dd4d719e69bf777883b6",
+      "split": "dev",
+      "track": "reasoning"
+    },
+    {
+      "group": "breadth-bell-chronological-wires",
+      "id": "qcb-8c3fa22bd6ad10255484",
+      "split": "dev",
+      "track": "quantum_semantics"
+    },
+    {
+      "group": "thin-lq",
+      "id": "qcb-b9a7b2a73ff0963c1320",
+      "split": "test_public",
+      "track": "knowledge"
+    },
+    {
+      "group": "thin-lq",
+      "id": "qcb-40a4882e33e6dd73800f",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "thin-lq",
+      "id": "qcb-a8475534b4cd8de8c152",
+      "split": "test_public",
+      "track": "knowledge"
+    },
+    {
+      "group": "thin-lq",
+      "id": "qcb-446f1cb1cc79ac26a9dd",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "tensor-train",
+      "id": "qcb-f5b1f9df507f6ac9283d",
+      "split": "train",
+      "track": "quantum_semantics"
+    },
+    {
+      "group": "tensor-train",
+      "id": "qcb-2cdd78eeb72fde677022",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "tensor-train",
+      "id": "qcb-486b9aec70c569866488",
+      "split": "train",
+      "track": "quantum_semantics"
+    },
+    {
+      "group": "primitive-semantics-convention",
+      "id": "qcb-8f9946a41726f8015d5a",
+      "split": "train",
+      "track": "knowledge"
+    },
+    {
+      "group": "core-vocabulary",
+      "id": "qcb-09248f41459defbf7817",
+      "split": "train",
+      "track": "knowledge"
+    },
+    {
+      "group": "state-preparation-certificate",
+      "id": "qcb-06abc9602b94fbaa9b7f",
+      "split": "train",
+      "track": "knowledge"
+    },
+    {
+      "group": "givens-decomposition",
+      "id": "qcb-bfb9e6dcbff5e726ec0e",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "real-amplitude-preparation",
+      "id": "qcb-f9c0c2fcf9cbae389111",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "primitive-semantics-composition",
+      "id": "qcb-237d731d8a44aaf4afb4",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "primitive-semantics-phase",
+      "id": "qcb-c90c7afcd009e812ae4f",
+      "split": "train",
+      "track": "quantum_semantics"
+    },
+    {
+      "group": "real-amplitude-preparation",
+      "id": "qcb-c1e0219d1dc24b615295",
+      "split": "test_public",
+      "track": "quantum_semantics"
+    },
+    {
+      "group": "givens-decomposition",
+      "id": "qcb-6d839eb906836883ccdb",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-07aec2c5f00e7d131782",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-6702a446193a42a15b47",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-4392f9ee285000ca498d",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-e0f351112cbc2da61ca6",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-e5c9896b7220bea738ac",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-9902cd07add363912a86",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-a1ec1059e81ccb4499c8",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-58f826cc4bbe09db4432",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-4d03e87283fb896129e3",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "qit-channel-foundations+qit-composite-entanglement+qit-representation-ordering+qit-state-foundations+qsc-block-encoding-composition+qsc-block-encoding-reuse+qsc-query-complexity+qsc-transforms-resources",
+      "id": "qcb-a950db1fdcd9d482cc2e",
+      "split": "test_public",
+      "track": "planned"
+    },
+    {
+      "group": "resource-accounting",
+      "id": "qcb-894edda95e2c05d525d2",
+      "split": "train",
+      "track": "quantum_semantics"
+    },
+    {
+      "group": "real-amplitude-preparation",
+      "id": "qcb-070c55b06f300dbc0474",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "primitive-semantics-convention",
+      "id": "qcb-c19db65651f1861543f9",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "block-encoding-cost",
+      "id": "qcb-8a5954c3aa05ceb23e54",
+      "split": "train",
+      "track": "knowledge"
+    },
+    {
+      "group": "lean-primitive-semantics",
+      "id": "qcb-c75b0af65ae40b3cd680",
+      "split": "train",
+      "track": "lean"
+    },
+    {
+      "group": "lean-primitive-semantics",
+      "id": "qcb-cb7d5fbf1366be23d369",
+      "split": "train",
+      "track": "lean"
+    },
+    {
+      "group": "lean-givens-decomposition",
+      "id": "qcb-d2b43ab3f432d569853e",
+      "split": "dev",
+      "track": "lean"
+    },
+    {
+      "group": "resource-accounting",
+      "id": "qcb-f6defaf48d0af1226fe7",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "block-encoding-cost",
+      "id": "qcb-51859e0ab30c0da582c3",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "core-vocabulary",
+      "id": "qcb-8ec6aa2f97a0b4cf0af1",
+      "split": "train",
+      "track": "reasoning"
+    },
+    {
+      "group": "real-amplitude-preparation",
+      "id": "qcb-d796c630819b0695d93b",
+      "split": "test_public",
+      "track": "reasoning"
+    },
+    {
+      "group": "real-amplitude-preparation",
+      "id": "qcb-7dad08acd21d3cbefa3d",
+      "split": "test_public",
+      "track": "reasoning"
+    }
+  ],
+  "exposure_warning": "Retrospective public grouped diagnostic; v2 and its answers were public. Not secret, unseen, or contamination-free.",
+  "holdout_families": [
+    "breadth-banded-inverse-register",
+    "givens-decomposition",
+    "real-amplitude-preparation",
+    "thin-lq"
+  ],
+  "planned_track": "separate planned/OOD test_public stratum",
+  "shared_foundations": "Support lemmas can be shared across splits; family and target-solution unions are indivisible."
+}

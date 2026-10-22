@@ -1,0 +1,56 @@
+{
+  "schema_version": "qcb.native_validation.v1",
+  "baseline_commit": "5fd07170d84f60a16d564d75cd72e87e26c5b837",
+  "working_branch": "qcb/nl-qa",
+  "native_version": "nl-v4",
+  "python_benchmark_tests": {
+    "passed": 99,
+    "failed": 0,
+    "skipped": 0,
+    "executed_in_real_git_checkout_and_user_archive": true
+  },
+  "unchanged_repository_harness": {
+    "passed": 98,
+    "failed": 0
+  },
+  "legacy_v3_validate": {
+    "passed": true,
+    "retained_items": 46,
+    "frozen_files_unchanged": true
+  },
+  "active_records": 58,
+  "admitted_distinct_core_ids": 50,
+  "same_core_repairs": 3,
+  "novelty_count_policy": "47 new-distinct reviewed records +3independently reviewed corrected successors of same existing native IDs; repairs add0newcores",
+  "provisional_records": 8,
+  "source_hashes_checked": true,
+  "schemas_checked": true,
+  "mathematical_novelty_reviews": "actual distinct-context AI review; not human or compilation",
+  "review_count_artifacts": 8,
+  "duplicate_and_alias_split_tests_passed": true,
+  "full_node_ledger": 5153,
+  "primary_target_nodes": 76,
+  "support_only_nodes": 56,
+  "reviewed_step_counts": {
+    "2": 6,
+    "3": 41,
+    "4": 3
+  },
+  "evidence_relations": {
+    "local_source_supported": 17,
+    "nl_bridge_from_inspected_source": 24,
+    "primary_source_nl_only": 9
+  },
+  "local_lean_verification_performed": false,
+  "model_baseline": "unmeasured",
+  "paid_model_calls": 0,
+  "collaborator_coordination": "pending actual canonical core/family acknowledgment; shared integration_allowed=false",
+  "publishing": "AUTH_BLOCKED no available GitHub identity; never main",
+  "goal_complete": false,
+  "remaining": [
+    "Several hundred reviewed cores and wider primary-target mathematical coverage",
+    "Actual Lean-equipped collaborator acknowledgment before shared integration",
+    "More genuine deep composition beyond current mostly2-4reviewed steps",
+    "Provisional equivalence/mathematical scope questions in review queue"
+  ]
+}

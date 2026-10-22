@@ -1,0 +1,67 @@
+{
+  "reviewer": "native-foundations-reviewer-distinct-context",
+  "method": "distinct-context-source-review",
+  "batch": "expansion1 (la-013..018, main-native-expansion-author)",
+  "items": [
+    {
+      "key": "qcb-core-la-013",
+      "authored_sha256": "9305b61c39d4aef7038208f2046b779584b17c6a2ad0073f30dc845d95fa8bda",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against PrimitiveWireRename.lean (sha256 matches authored 9f9b653d...). matrix e M = reindexAlgEquiv (basisEquiv e) M is conjugation by the basis permutation (matrix_apply L30-33: (matrix e M) a b = M (a∘e) (b∘e)). eval_circuit (L112-118) proves evalPrimitiveCircuit (circuit e c) = matrix e (evalPrimitiveCircuit c) by induction using eval_gate (L83-109, each gate conjugated) and matrix_mul (L35-38, the AlgEquiv map_mul homomorphism that lets interior P⁻¹P pairs cancel through the product). The NL claim 'consistent renaming realizes P(Ut...U1)P⁻¹, not a one-sided permutation / free SWAP' is faithful: matrix_mul is exactly the ring-homomorphism property making conjugation distribute over the product, and the module docstring (L3-5) states this is a proof-bearing placement operation, not a physical SWAP. The output-only P-U2-P-U1 counterexample (nontrivial involutive P, identity stages -> P^2=I != P) is mathematically correct. No v3 or sibling-native_nl item references PrimitiveWireRename.* (grep confirmed empty). New distinct core. Node prefixes correct ('declaration:').",
+      "checked_sources": ["QuantumBlockEncoding/PrimitiveWireRename.lean#matrix_mul L35-38", "QuantumBlockEncoding/PrimitiveWireRename.lean#eval_gate L83-109", "QuantumBlockEncoding/PrimitiveWireRename.lean#eval_circuit L112-118", "QuantumBlockEncoding/PrimitiveWireRename.lean#matrix_apply L30-33"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-014",
+      "authored_sha256": "5213f75f15d99118b1004b5c15cee2dac8ddf028688ea5a7278f1f1db233507f",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against PrimitiveWireRename.lean: gate (L16-20) maps each PrimitiveGate kind to the same kind with relabeled target/control (preserving control-target roles, with the cx distinctness proof carried through via e.injective); gateCount (L120-121), ryCount (L123-127), cxCount (L129-133) are all proved invariant under circuit e by structural induction. The NL answer's three claims - all three logical counts invariant, control-target roles preserved, and hardware nearest-neighbor routing NOT inferred equal (the permutation can map an adjacent pair to a distant pair on fixed connectivity) - are precise and source-grounded; the routing caveat correctly matches the module docstring's 'not a free physical SWAP'. No v3/sibling overlap. New distinct core (counts invariance under wire renaming), disjoint from v3's gate-count resource laws which concern RealAmplitudePreparation synthesis, not renaming. Prefixes correct.",
+      "checked_sources": ["QuantumBlockEncoding/PrimitiveWireRename.lean#gate L16-20", "QuantumBlockEncoding/PrimitiveWireRename.lean#gateCount L120-121", "QuantumBlockEncoding/PrimitiveWireRename.lean#ryCount L123-127", "QuantumBlockEncoding/PrimitiveWireRename.lean#cxCount L129-133"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-015",
+      "authored_sha256": "ecbf46695249f3e0d1efdd1fa13e2fbcf72914cb478f84f0850b279dfbb50a5a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against PrimitiveRyPerturbation.lean (sha256 matches authored 57ad888a...). standardRy_difference_factor (L29-37): standardRyMatrix a - standardRyMatrix b = (2 sin((a-b)/4)) • standardRyMatrix((a+b)/2+pi), derived from the centered sum-difference identity (L17-26) - exact equality retaining the scalar sign, not up-to-phase. liftedRy_distance (L62-70): the exact L2 operator norm = 2|sin((a-b)/4)|, using CStarRing.norm_of_mem_unitary on the lifted unitary (norm 1) so there is NO dimension factor from spectators. liftedRy_distance_le (L72-79): <= |a-b|/2 via Real.abs_sin_le_abs. The NL answer's quarter-angle sine formula, the 1/2 Lipschitz factor, and the dimension-independence explanation (identity-tensor + unitary conjugation both preserve induced norm) are all exact and source-grounded. No v3/sibling node overlap (liftedRy_* absent elsewhere). New distinct core. Prefixes correct.",
+      "checked_sources": ["QuantumBlockEncoding/PrimitiveRyPerturbation.lean#standardRy_centered_difference L17-26", "QuantumBlockEncoding/PrimitiveRyPerturbation.lean#standardRy_difference_factor L29-37", "QuantumBlockEncoding/PrimitiveRyPerturbation.lean#liftedRy_distance L62-70", "QuantumBlockEncoding/PrimitiveRyPerturbation.lean#liftedRy_distance_le L72-79"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-016",
+      "authored_sha256": "6fd7b7850fd8503f2409fc5c6987125a2ca86c9047a4e9b461432a956523e484",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against PrimitiveRyPerturbation.lean. The claim R(theta+2pi) = -R(theta) follows from standardRy_difference_factor at a=theta+2pi, b=theta: factor = 2 sin((2pi)/4) • standardRy(...) = 2 sin(pi/2) = 2, and standardRy((a+b)/2+pi) is the unitary with norm 1, giving exact distance 2 (= 2|sin(2pi/4)|=2) via liftedRy_distance. The sign-flip of both sin and cos entries under +2pi (i.e. +pi to the half-angle) is correct. The refutation (distance 2, not 0, despite equal output probabilities because the sign is a bare-system GLOBAL phase, which becomes a RELATIVE phase between control branches under coherent controlled use) is mathematically sound and matches the exact-vs-phase-quotiented-metric distinction. POSSIBLE-OVERLAP NOTE (coordinator-flagged): v3 item qcb-c90c7afcd009e812ae4f ('global phase and program composition', target evalPrimitiveProgram) and qcb-c19db65651f1861543f9 ('RY convention misuse') touch the global-phase / RY-convention theme. However la-016's CORE is the exact operator-norm DISTANCE result (2|sin((a-b)/4)|, specialized to distance 2 at 2pi) via liftedRy_distance - a different Lean node and a different quantitative statement from the v3 program-composition/convention items. Judged new_distinct (overlapping-theme, distinct core); recorded here rather than claimed fully orthogonal. Prefixes correct.",
+      "checked_sources": ["QuantumBlockEncoding/PrimitiveRyPerturbation.lean#standardRy_difference_factor L29-37", "QuantumBlockEncoding/PrimitiveRyPerturbation.lean#liftedRy_distance L62-70", "data/public/release-v3/items.json#qcb-c90c7afcd009e812ae4f", "data/public/release-v3/items.json#qcb-c19db65651f1861543f9"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-017",
+      "authored_sha256": "bb144aef3b9a99076acab7eaf999f16f7a6591335cc8f74d180e0445f21fda88",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against ReversibleClassical.lean (sha256 matches authored 01ea24f5...). ccxBasisAction (L24-28): flips target via xBasisAction iff state control0 = 1 AND state control1 = 1, else identity. ccxBasisAction_involutive (L30-50): proved requiring ONLY c0_ne_target and c1_ne_target (NOT c0 != c1) - the inactive branch is immediate, the active branch uses that flipping the target preserves both control bits (c0, c1 via c0_ne_target/c1_ne_target at L37-40) so the predicate survives and the second flip cancels via xBasisAction_involutive. ccxBasisEquiv (L52-61) packages this as an Equiv. The NL answer's two-case involution argument, the correct minimal hypothesis (control-target distinctness is load-bearing; pairwise control distinctness is only an encoding constraint - confirmed: the involutive theorem does not take c0_ne_c1), and the coincident-controls reduction (c=1 AND c=1 <=> c=1, one controlled flip) are all exact and faithful. The ReversibleGate inductive (L14-21) does carry c0_ne_c1 as a constructor field, but the involution proof genuinely does not use it - the author's distinction is accurate. No v3/sibling node overlap (ccxBasis* absent elsewhere). New distinct core. Prefixes correct.",
+      "checked_sources": ["QuantumBlockEncoding/ReversibleClassical.lean#ReversibleGate L14-21", "QuantumBlockEncoding/ReversibleClassical.lean#ccxBasisAction L24-28", "QuantumBlockEncoding/ReversibleClassical.lean#ccxBasisAction_involutive L30-50", "QuantumBlockEncoding/ReversibleClassical.lean#ccxBasisEquiv L52-61"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-018",
+      "authored_sha256": "7634a9efd55a21bca28f764ca87e18e6a132b1d5c7c6ad977964710525d7770e",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against ReversibleClassical.lean. This is the complementary counterexample to la-017: when a control coincides with the target (c0 = target), the involution breaks. The concrete collision is correct: with the self-flipping-control update, input (1,1) -> (0,1) (predicate active, control-as-target flips to 0), while (0,1) is already inactive -> (0,1); two distinct inputs map to (0,1), so the map is non-injective, hence not reversible/unitary on basis states, and a second application of (1,1) does not restore it because the activation predicate became false after the first flip. The identified lost hypothesis - ccxBasisAction_involutive's reliance (L37-40) on flipping the target preserving all control bits, which fails exactly when a control equals the target - is precisely the c0_ne_target / c1_ne_target premise. The 'mathematical counterexample, not a compiler/API rejection' framing is honest and matches that ReversibleGate's constructor merely forbids this encoding while the math reason is non-injectivity. No v3/sibling overlap. New distinct core (necessity of control-target distinctness), complementary to la-017. Prefixes correct.",
+      "checked_sources": ["QuantumBlockEncoding/ReversibleClassical.lean#ccxBasisAction L24-28", "QuantumBlockEncoding/ReversibleClassical.lean#ccxBasisAction_involutive L30-50", "QuantumBlockEncoding/ReversibleClassical.lean#ReversibleGate L14-21"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

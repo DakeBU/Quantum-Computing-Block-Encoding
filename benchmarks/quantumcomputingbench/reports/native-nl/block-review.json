@@ -1,0 +1,147 @@
+{
+  "reviewer": "native-be-review-distinct-context",
+  "method": "distinct-context-source-review",
+  "source_root": "QuantumComputingBench-NL/QuantumBlockEncoding (MAIN)",
+  "source_hashes_verified": {
+    "QuantumBlockEncoding/BlockEncoding.lean": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+    "QuantumBlockEncoding/CircuitSemantics.lean": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666",
+    "QuantumBlockEncoding/ConcreteSemantics.lean": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+    "QuantumBlockEncoding/BlockEncodingClassics.lean": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+    "QuantumBlockEncoding/GHLHamiltonian.lean": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+    "QuantumBlockEncoding/Robin/ComplexLCU.lean": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+    "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340"
+  },
+  "notes_global": "All 7 cited source files match their stored sha256 exactly; review is against live MAIN. signalSystemBlockProjection confirmed at namespace QuantumBlockEncoding (CircuitSemantics.lean line 753), no ConcreteSemantics subnamespace; parent node-ref fix verified, no math change. Primary novelty findings: be-005 duplicates foundations la-008 (identical target_nodes and identical equivalence proof); be-003 was revised to a distinct nonuniqueness counterexample and no longer duplicates la-008; be-007 and be-013 are views of planned qsc cores plan-008 and plan-010 respectively.",
+  "items": [
+    {
+      "key": "qcb-core-be-001",
+      "authored_sha256": "671bf50544fc5a21921cbbcd552f8b770637f209d6f5050e3761346499cae104",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Projected-block contract A = alpha*(<0^a|I)U(|0^a>I), epsilon-norm bound with exact=epsilon0, dims 2^(n+a) and 2^n. Grounded in structure OperatorBlockEncodingCandidate (BlockEncoding.lean 103-116) and ApproximateOperatorBlockEncodingCandidate (136-153); approximationBound doc-string matches reference verbatim. Native conceptual statement of the contract and dimensions, not a bare API field recall - correctly derives the per-entry scalar equation and dimension facts. Distinct from equivalence/success/boundary cores.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean 85-153", "QuantumBlockEncoding/CircuitSemantics.lean signalSystemBlockProjection 741-772"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-002",
+      "authored_sha256": "cc8aa28cb5ad1115d28a6b717d3d08f577aa14c00b0f8fb6cb2db6a5dbc8ed37",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Semantic split of signal (postselection flag) vs pure ancilla (cleaned working qubits), auxiliaryQubits = signalQubits + pureAncillas. Verified RegisterLayout (BlockEncoding.lean 14-18) and def auxiliaryQubits (27-28) whose own doc-string states 'combines the signal qubits selecting the block with pure ancillas that must be returned to a clean state' - matches reference. The uncleaned-ancilla-breaks-projection claim is a correct consequence of the all-zero bra/ket contract. Genuine conceptual reasoning, not a one-field translation; distinct from be-001.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean 14-30, 50-55, 103-116"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-003",
+      "authored_sha256": "42622b1c9a627d10751c3184fb7181f9c1420ba4916fd11920417534d48cd889",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REVISED version inspected (family be-unitary-completion-nonuniqueness). No longer the projected-block/clean-action equivalence (that is be-005/la-008); current question refutes uniqueness of the dilating unitary for a fixed clean entry x with 0<|x|<1 by exhibiting a rotation and a reflection with the same clean block, naming the free matrix data. Target node cleanBlockBy (BlockEncodingClassics.lean 39-41) with scalarDilation lemmas (532-595) support both orthogonal realizations of entry x. Sound; distinct new core, no longer duplicates la-008.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean cleanBlockBy 39-41, scalarDilation 532-595"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-004",
+      "authored_sha256": "2b134260d81b88fd46955494a247ff92b77b34389200d230dde6391532549bbc",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Four-stage LCU (prepare/amplitude/select/unprepare) register roles and why unprepare = PREPARE-dagger on the shared selector. Verified defs selectorLift (ComplexLCU.lean 254), amplitudeLift (284), selectLift (330), prepareAmplitudeSelectUnprepare (352, noncomputable). Composition star(selectorLift prepare)*selectLift*(amplitudeLift*selectorLift prepare) matches the reference ordering. Native reading of the construction, not entry recall; complementary to be-006. Accept.",
+      "checked_sources": ["QuantumBlockEncoding/Robin/ComplexLCU.lean 254-367"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-005",
+      "authored_sha256": "49107573667056ff1425e8feb3970e0570e32daa1f2ff99089a64d3396bea5c5",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": ["qcb-core-la-008"],
+      "notes": "DUPLICATE of foundations la-008. Identical target_nodes {pointwiseProjection_iff_cleanBasisAction, cleanBasisActionAmplitude_eq_signalSystemBlockProjection} (verified set-equal). Both prove the same biconditional (projected-block pointwise equality <=> clean-basis-action equality) via the same single bridge (applyVec_basisKet column-selection), both directions, same linearity extension and failure-branch remark. be-005 only adds the explicit s*systemDim+k index; same mathematical core already authored in foundations. Reject as duplicate, not counted toward native-BE quota.",
+      "checked_sources": ["QuantumBlockEncoding/ConcreteSemantics.lean applyVec_basisKet 70-74, cleanBasisActionAmplitude 249-256, cleanBasisActionAmplitude_eq_signalSystemBlockProjection 259-269, pointwiseProjection_iff_cleanBasisAction 277-294", "native_nl/foundations.json qcb-core-la-008 645-735"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-006",
+      "authored_sha256": "2304719fd6af16e9d093a9514dfc917e38e004715a03267f9a951ae43569fbf7",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Exact clean projected entry of the logical LCU matrix. Theorem prepareAmplitudeSelectUnprepare_cleanEntry (ComplexLCUProjection.lean 172-220) states exactly the reference formula: sum over selectorIndex of [if permutation j systemColumn = systemRow then star(prepare j cleanSelector)*rotation j systemColumn cleanCoeff cleanCoeff*prepare j cleanSelector else 0]. Supporting lemmas star_selectorLift_mul_clean (147-169), selectLift_mul_amplitudeLift_mul_selectorLift_clean (113-144), amplitudeLift_apply (17-29) present and used. The |prepare|^2 interpretation is the author's correct reading of the proved algebra. Distinct advanced derivation. Accept.",
+      "checked_sources": ["QuantumBlockEncoding/Robin/ComplexLCUProjection.lean 17-220", "QuantumBlockEncoding/Robin/ComplexLCU.lean prepareAmplitudeSelectUnprepare 352-367"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-007",
+      "authored_sha256": "2bb59f58aa67cbf13308b51aff190206d50c0c781b6ee7b6427ece2eb487f3a1",
+      "verdict": "pending",
+      "core_verdict": "existing_view",
+      "core_aliases": ["qcb-core-plan-008-normalized-block-success-probability"],
+      "notes": "Postselection success probability p = ||A v||^2/alpha^2, post-measurement (A v)/||A v||, p<1 since alpha>=||A||, O(1/p) vs O(alpha/||A v||) amplitude-amplification cost. Same mathematical result as planned core plan-008-normalized-block-success-probability (qsc-block-encoding-access), whose summary states the identical ||A|b>||^2/alpha^2 success probability. be-007 is a legitimate nl_bridge derivation (no operator-norm theorem exists in BlockEncoding.lean/ConcreteSemantics.lean - it is an analytic bridge, not a literal source theorem) but it is a VIEW of plan-008, not a new distinct block-encoding core. Pending/existing_view so parent can alias-group vs reject; should not be counted as fresh distinct alongside plan-008.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean ApproximateOperatorBlockEncodingCandidate 136-153", "QuantumBlockEncoding/ConcreteSemantics.lean 249-294 (no operator-norm theorem present)", "native_nl/planned.json plan-008"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-008",
+      "authored_sha256": "cce998f56ac3950843fc18a54f3e8dbc1863dab10ee3361d88ae4a9e65ce80fa",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "2x2 scalar dilation [[x,y],[y,-x]]: row self-overlaps x*x+y*y, cross-overlap 0, orthogonality iff x*x+y*y=1, real y iff |x|<=1, boundary |x|=1, contraction interpretation. All cited lemmas verified: scalarDilation (BlockEncodingClassics.lean 532-537), row0/row1_normSq = x*x+y*y (560-566), rows01_orthogonal = 0 (583-588), row0_unit_norm_of (573-576). Thematically adjacent to plan-009 (alpha>=||A|| lower bound) but be-008 is a CONCRETE sharp 2x2 instance with an explicit orthogonality/real-y computation on distinct source (scalarDilation Gram lemmas), not plan-009's general operator-norm-of-a-unitary-block proof. Accept as distinct; adjacency noted.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean 528-595"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-009",
+      "authored_sha256": "24b0f58126e649becd3ceb70b24a09763600e3a5fdbfd65e5df08b5313538e89",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "One-sparse route counterexample: a column with two nonzeros violates the fixed-support hypothesis of oneSparse_from_support, while a zero-amplitude column is reconstructed. Verified def oneSparseMatrix (123-125), oneSparseMatrix_entry_if (127-132), oneSparse_from_support hypothesis 'row != c col -> A row col = 0' (139-147), OneSparseCertificate (155-170). Witness A(0,0)=A(1,0)=1 genuinely has two nonzeros in column 0 and cannot satisfy the support predicate for any c; the zero-column witness is reconstructed. Sound true counterexample, distinct. Accept.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean 115-170"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-010",
+      "authored_sha256": "b3f6671c8215168e66bcfaeae7ab58ddeb0c2fade935d1ea846bb1094db41687",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Product clean-block = matrix product of extracted clean blocks via matrix_mul_congr_pointwise, plus the same-ancilla fallacy. Verified theorem matrix_mul_congr_pointwise (792-797), def productCleanBlockCertificate 'cleanBlock := Matrix.mul left.cleanBlock right.cleanBlock' (800-808), productResourceCost adding auxiliaryQubits/gateCount/depth (832-839). Reference correctly scopes the leaf as pure clean-block algebra charging no reuse while productResourceCost ADDS auxiliary counts. CAVEAT: reference phrase 'uncompute/reset' slightly understates that a mid-circuit reset is not unitary and cannot free-clean arbitrary garbage; the faithful mechanism is uncompute (inverse returning ancilla to zero on the clean branch) or disjoint fresh ancillas, which the additive productResourceCost reflects. Acceptable since it pairs reset with uncompute and the additive cost; math core correct and distinct. Accept, nuance flagged for optional tightening.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean 778-839", "QuantumBlockEncoding/ConcreteSemantics.lean 271-294 failure-branch comment"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-011",
+      "authored_sha256": "04d3f50176edb00bd51d71eac4e07c34fd9a4390c9ba332e4e5b1756b8626da6",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "LCU filler-phase counterexample: all-(-1) phases give lower-right clean entry -N, differing from S1 (lower-right 0) for N!=0; the phase-balanced assignment recovers S1. Verified def scaledControlledPhaseSource (191), def eq29PrintedClean with both filler phases -1 (221-229), theorem eq29PrintedClean_lowerRight = -normalizerA (247-251), eq29PrintedClean_ne_S1 under hN: normalizerA != 0 (254-262), def S1 (117), eq29PhaseBalancedClean_eq_S1 using one +1 and one -1 phase (268-296). Reference -N entry, correction, and B-Hermitian hypothesis match live theorems exactly. Concrete, sound, distinct from be-006. Accept.",
+      "checked_sources": ["QuantumBlockEncoding/GHLHamiltonian.lean 117, 191-296"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-012",
+      "authored_sha256": "11029073d5461683372ec6b1fea6a40e5ee3c8d3906c09d7864741e624c615d1",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Permutation matrix orthogonality: columnInner = identity by injectivity, rowInner = identity needs surjectivity, hence bijectivity => IsRationalOrthogonal; plus 0/1 partial-permutation clean block. Verified def permMatrix (19-20), columnInner/rowInner/IsRationalOrthogonal (23-36), permMatrix_columnInner_of_injective (283), permMatrix_rowInner_of_bijective (330), permMatrix_isRationalOrthogonal_of_bijective (389-394), productIndex (48-57), cleanBlockProduct_permMatrix_entry (81-86). Injective-vs-surjective role split and 0/1 expressiveness-limit interpretation match the lemma hypotheses. Distinct advanced core. Accept.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean 19-113, 283-394"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-013",
+      "authored_sha256": "21fd48b1d9663e241f763be62f0b828764bdebd9dd141171a138810a91bac79e",
+      "verdict": "pending",
+      "core_verdict": "existing_view",
+      "core_aliases": ["qcb-core-plan-010-entry-vs-operator-norm-verification"],
+      "notes": "Exact-to-zero-error-approximate repackaging (epsilon=0, approximationBound = same PointwiseEq) and the boundary that a zero-error incumbent does not yield an operator-norm bound without a pointwise-to-norm bridge. Source objects verified: ExactCleanBlock (623-641), ZeroErrorApproxCleanBlock epsilon:=0 approximationBound:=PointwiseEq (865-872), exactAsZeroErrorApproxCleanBlock + _bound (877-888), VerifiedOperatorBlockEncoding.asZeroErrorApprox doc 'Analytic backends can later replace this with a theorem connecting exact block equality to a concrete operator-norm inequality' (BlockEncoding.lean 165-184). CONCERN: the first half (certificate fields, promotion sets epsilon=0, reuses proof) is largely a structure-field/software-packaging description bordering on API recall; the genuinely mathematical content (entrywise equality alone does not give an operator-norm statement, needs a bridge theorem) is the SAME scope distinction as planned core plan-010-entry-vs-operator-norm-verification (qsc-block-encoding-verification). Pending/existing_view: substantive math overlaps plan-010, remainder is packaging; recommend parent alias-group under plan-010 or reject rather than count as distinct native core.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean 623-641, 865-888", "QuantumBlockEncoding/BlockEncoding.lean 148-184", "native_nl/planned.json plan-010"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

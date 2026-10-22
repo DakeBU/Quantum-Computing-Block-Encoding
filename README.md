@@ -6,7 +6,7 @@
 
 **Reusable quantum mathematics, inspectable proofs, and training and evaluation tasks for specialized models.**
 
-QuantumComputinglib connects readable quantum mathematics to Lean evidence. **ASPBE** is its proof-gated Automatic State Preparation and Block Encoding construction system. **QuantumComputingBench** is the new graph-grounded QA project, currently in development.
+QuantumComputinglib connects readable quantum mathematics to Lean evidence. **ASPBE** is its proof-gated Automatic State Preparation and Block Encoding construction system. **QuantumComputingBench** provides a graph-grounded public QA preview for specialized quantum-computing models; whole-graph expansion is currently in development.
 
 [![Lean 4](https://img.shields.io/badge/Lean-4-6f42c1?style=flat-square)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-pinned-2f705c?style=flat-square)](https://github.com/leanprover-community/mathlib4)
@@ -42,6 +42,8 @@ See the [public-claims protocol](docs/math-2-0-positioning.md).
 ## News 🔥
 
 Reverse chronological order; audited milestones, explicit research intakes and minimum project-history anchors. An intake is not a completion claim.
+
+- **22 October 2026 — QuantumComputingBench preview.** The [integrated preview](benchmarks/quantumcomputingbench/docs/integration-release-2026-10-22.md) retains 213 native-NL core IDs after quarantining four of the 217 imported admissions, plus a separate 26-record legacy diagnostic cohort. It provides source/review provenance, checksum-bearing exports and explicit formal-verification boundaries, not complete whole-graph coverage or a newly Lean-certified NL corpus.
 
 - **21 October 2026 — QuantumComputingBench starts.** We are launching [QuantumComputingBench](benchmarks/quantumcomputingbench/) to build graph-grounded QA for training and evaluating specialized quantum-computing models across knowledge, mathematical reasoning and Lean skills, with planned topics clearly separated from verified library evidence.
 

@@ -1,0 +1,364 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/qcb.item.v1",
+  "title": "QuantumComputingBench item v1",
+  "type": "object",
+  "required": [
+    "answer_format",
+    "assumptions",
+    "author",
+    "authored_hash",
+    "context_hash",
+    "conventions",
+    "difficulty",
+    "evidence_status",
+    "exposure",
+    "family",
+    "formal",
+    "formal_context",
+    "graph_version",
+    "id",
+    "key",
+    "language",
+    "lifecycle",
+    "lineage",
+    "primary_sources",
+    "question",
+    "reference_answer",
+    "relation_types",
+    "release_policy",
+    "reviews",
+    "rubric",
+    "schema_version",
+    "semantic_step_count",
+    "semantic_steps",
+    "skills",
+    "source_refs",
+    "split",
+    "split_group",
+    "structural_distance_definition",
+    "structural_graph_distance",
+    "support_count",
+    "supporting_nodes",
+    "target_nodes",
+    "task_hash",
+    "topic",
+    "track",
+    "unresolved_issues",
+    "validation",
+    "verification_receipts"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reference_answer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topic": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "split_group": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "graph_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "structural_distance_definition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_nodes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "supporting_nodes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "conventions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "relation_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": "qcb.item.v1"
+    },
+    "language": {
+      "type": "string"
+    },
+    "track": {
+      "enum": [
+        "knowledge",
+        "reasoning",
+        "quantum_semantics",
+        "lean",
+        "planned"
+      ]
+    },
+    "answer_format": {
+      "enum": [
+        "rubric",
+        "exact",
+        "lean"
+      ]
+    },
+    "lifecycle": {
+      "enum": [
+        "candidate",
+        "validated",
+        "released"
+      ]
+    },
+    "split": {
+      "enum": [
+        "train",
+        "dev",
+        "test_public"
+      ]
+    },
+    "release_policy": {
+      "const": "public"
+    },
+    "exposure": {
+      "enum": [
+        "closed_book",
+        "approved_interface",
+        "open_library"
+      ]
+    },
+    "support_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "semantic_step_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "structural_graph_distance": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "semantic_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "supporting_nodes"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "supporting_nodes": {
+            "type": "array",
+            "minItems": 0,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "rubric": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "criterion",
+          "weight"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "criterion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "anchor",
+          "license"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "anchor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "author": {
+      "type": "object",
+      "required": [
+        "identity",
+        "method"
+      ]
+    },
+    "lineage": {
+      "type": "object",
+      "required": [
+        "template",
+        "family",
+        "seed",
+        "tokens",
+        "cost_usd"
+      ]
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "formal",
+        "nl_alignment",
+        "answer_quality"
+      ]
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "verification_receipts": {
+      "type": "array"
+    },
+    "unresolved_issues": {
+      "type": "array"
+    },
+    "formal": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "formal_context": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "difficulty": {
+      "type": "object",
+      "required": [
+        "level",
+        "rationale"
+      ]
+    },
+    "authored_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "primary_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "url",
+          "sha256",
+          "edition",
+          "pages",
+          "anchors",
+          "inspection",
+          "redistribution"
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}

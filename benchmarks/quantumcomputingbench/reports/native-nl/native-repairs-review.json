@@ -1,0 +1,44 @@
+{
+  "reviewer": "native-foundations-reviewer-distinct-context",
+  "method": "distinct-context-source-review",
+  "batch": "repairs-native-v2 (corrected successors of be-001/002/010, main-native-repair-author)",
+  "note": "These are repaired successors of EXISTING cores (new_problem_core:false, supersedes set). They are NOT counted as new reviewed cores. core_verdict is 'existing_view' for all; repair_admission:true records that the mathematical correction is sound and the item may replace its predecessor key, not that a new core was added.",
+  "items": [
+    {
+      "key": "qcb-core-be-001-corrected-v2",
+      "authored_sha256": "748a78a8b9aa787ff8d42756f335efd4558c25244cefbac43265c50adccc89ef",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": ["qcb-core-be-001"],
+      "supersedes": "qcb-core-be-001",
+      "repair_admission": true,
+      "notes": "Repair of be-001. Verified against BlockEncoding.lean (sha256 matches fe06f75a...) OperatorBlockEncodingCandidate (L103-116, unitary dimension 2^(systemQubits+auxiliaryQubits)) and ApproximateOperatorBlockEncodingCandidate (L136-153, approximationBound comment ||A - alpha*((<0^a| tensor I)U(|0^a> tensor I))|| <= epsilon), plus CircuitSemantics.lean (sha256 matches 761ac3a9...) signalSystemBlockProjection (L741-772: block = M(signalIdx*rows+i, signalIdx*cols+j)). The corrected math is sound: U is 2^(n+a) square, B and A are 2^n square; exact encoding A = alpha*B is the epsilon=0 case of the operator-norm bound; the entrywise equivalent U((0,i),(0,j)) = A(i,j)/alpha is valid PRECISELY because the repair now makes alpha strictly positive hence nonzero (division premise). The alpha=0 boundary analysis (undivided equation reduces to A=0 and does not determine B, so the divided statement is undefined) is correct - this is the key mathematical fix. The 'scale not optimal / no efficient implementation inferred' caveat is appropriate. CORE IS UNCHANGED (same projected-block contract as be-001); the repair sharpens the alpha>0 / zero-scale premise. new_problem_core:false and existing_core_aliases:[qcb-core-be-001] are correctly set - no count inflation. Node prefixes correct. repair_admission:true: the correction is mathematically correct and the successor may replace the be-001 key.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean#OperatorBlockEncodingCandidate L103-116", "QuantumBlockEncoding/BlockEncoding.lean#ApproximateOperatorBlockEncodingCandidate L136-153", "QuantumBlockEncoding/CircuitSemantics.lean#signalSystemBlockProjection L741-772"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-002-corrected-v2",
+      "authored_sha256": "e8d5be5f48079fa3e14ecc63e131ea8aa652710a086289ab1e440566a16ed6c1",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": ["qcb-core-be-002"],
+      "supersedes": "qcb-core-be-002",
+      "repair_admission": true,
+      "notes": "Repair of be-002. Verified against BlockEncoding.lean RegisterLayout (L14-18: systemQubits, signalQubits, pureAncillas) and auxiliaryQubits (L22-28: = signalQubits + pureAncillas, docstring 'pure ancillas that must be returned to a clean state'), plus BlockEncodingCost (L50-55). The corrected math is sound: workspace cleanliness on signal success is the ADDITIONAL promise that for every data input v the S=0 projection leaves |0>_S|0>_W (x) Tv with no S=0,W-nonzero component - this is exactly the 'must be returned to a clean state' obligation the docstring records, and it is NOT implied by the doubly-projected (S=0,W=0) submatrix. The rotation counterexample is valid: with 1-dim S and D and a workspace qubit R=[[cos t,-sin t],[sin t,cos t]], 0<t<pi/2, the doubly-projected block is the scalar cos t (a legitimate exact block for that scalar target), yet R|0> = cos t|0> + sin t|1> leaves the workspace dirty while signal success is certain. The cost point - both signal and pure-ancilla qubits occupy physical space (auxiliaryQubits sums them) and projection is not uncomputation - is correct and grounded in the layout/cost defs. CORE UNCHANGED (same auxiliary-accounting / clean-vs-flag semantics as be-002); the repair adds the explicit success-sector cleanup promise and the rotation counterexample. new_problem_core:false, alias:[qcb-core-be-002] correct. Prefixes correct. repair_admission:true.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean#RegisterLayout L14-18", "QuantumBlockEncoding/BlockEncoding.lean#RegisterLayout.auxiliaryQubits L22-28", "QuantumBlockEncoding/BlockEncoding.lean#BlockEncodingCost L50-55"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-010-corrected-v2",
+      "authored_sha256": "b2d9eb86699ef770d9f6075c27d8c653ae6a3e049fcbe41b7f5685aa56771afc",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": ["qcb-core-be-010"],
+      "supersedes": "qcb-core-be-010",
+      "repair_admission": true,
+      "notes": "Repair of be-010. Verified against BlockEncodingClassics.lean (sha256 matches 94ac6632...) matrix_mul_congr_pointwise (L792-797, pointwise equality is preserved by matrix multiplication) and productCleanBlockCertificate (L800-808, cleanBlock := Matrix.mul left.cleanBlock right.cleanBlock, blockProof := matrix_mul_congr_pointwise ...), plus productResourceCost (L831-836, auxiliaryQubits and gateCount ADD, depth adds). The corrected math is sound: with DISJOINT auxiliary registers each all-zero projection fixes its own factor and summing over the shared data index k gives sum_k A(i,k)B(k,j) = AB (exactly the Matrix.mul in the certificate). The X/X same-register counterexample is correct: 1-dim data + qubit ancilla, U=V=X gives each clean block <0|X|0> = 0 so the matrix product AB = 0, but the same-register composite <0|XX|0> = <0|I|0> = 1 != 0 - so reusing one register does NOT realize AB. The cleanup caveats are mathematically correct and are the substantive repair: resetting an entangled ancilla is non-unitary (can erase coherence) and applying V-inverse cancels V on the WHOLE state (erasing the desired action, not just garbage), so neither is a free coherent product repair; a different cleanup must be separately proved and charged. CORE UNCHANGED (same product-fresh-ancilla reasoning as be-010); the repair makes the disjoint-register product proof explicit and adds the X/X and reset/inverse counterexamples. ConcreteSemantics.lean (sha256 matches 454c0c5e...) orthogonal-failure-branch comment (L271-294) correctly cited as supporting the garbage-branch point. new_problem_core:false, alias:[qcb-core-be-010] correct. Prefixes correct. repair_admission:true.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean#matrix_mul_congr_pointwise L792-797", "QuantumBlockEncoding/BlockEncodingClassics.lean#productCleanBlockCertificate L800-808", "QuantumBlockEncoding/BlockEncodingClassics.lean#productResourceCost L831-836", "QuantumBlockEncoding/ConcreteSemantics.lean#orthogonal-failure-branch-comment L271-294"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

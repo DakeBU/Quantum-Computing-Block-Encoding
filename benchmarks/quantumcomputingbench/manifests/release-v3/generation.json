@@ -1,0 +1,17 @@
+{
+  "authoring_hash": "c88c53b610a7ca4a7dee9c8ce81dfe9c5953c2a6cb44a6f41086cbcd56fb5f0f",
+  "batches": [
+    "breadth.json",
+    "expansion.json",
+    "pilot.json",
+    "planned-corrections.json",
+    "planned.json",
+    "repairs-v3.json"
+  ],
+  "benchmark_complete": false,
+  "calls": 0,
+  "cost_usd": 0,
+  "independent_review_of_new_items": "pending",
+  "method": "curated-source-inspected authoring; not an automated full-graph authoring agent",
+  "new_reference_checked_candidates": 12
+}
