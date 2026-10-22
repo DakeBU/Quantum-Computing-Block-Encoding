@@ -1,0 +1,193 @@
+{
+  "schema_version": "qcb.mathematical_reader_review.v1",
+  "method": "independent-mathematical-reader-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "provenance": {
+    "item_source": "The actual prepared item dictionary returned by qcb_curriculum.load_catalog in qcb-release-integration; whole item_digest computed with qcb_core.digest.",
+    "scope": "Full questions, reference answers, assumptions, conventions and rubrics for qcb-core-la-001 through qcb-core-la-010, with complete relevant local source definitions and proof bodies inspected. This is an independent NL mathematical review, not a formal-view comparison or a fresh Lean execution.",
+    "bounded_alias_check": "Compared the ten requested mathematical tasks with one another, then inspected the complete questions of nearby candidates la-011, la-012, la-110, la-206, la-218, sp-004, sp-009, be-012 and plan-216 selected from current prepared items by target/semantic keywords. Shared declarations were only candidate retrieval signals. The conclusions and hypotheses, rather than shared graph nodes, determine the distinctions recorded below. No exhaustive global semantic deduplication is claimed.",
+    "execution_limits": "Source reading and digest validation do not establish a fresh kernel check, algorithm implementation, numerical experiment, browser check, source-blindness, or computational resource theorem. Existing review records were not used as mathematical evidence. Only this temporary report was written; source and catalog data were preserved."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-la-001",
+      "item_digest": "f871c32a18b71fb5ea483f94e2941d10f0b34a1ea600577f1e392fdb2d0412c3",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Let l be the old left dimension, O=Fin 2 x Fin r, e:O~Fin(2r), and k=min(l,2r). The flat matrix is Af(a,j)=A(a,e^-1(j)). ThinLQ supplies R:l x k and Qf:k x 2r with Af=R Qf and Qf Qf^T=I_k. Define Q(a,o)=Qf(a,e(o)). Then (RQ)(a,o)=(R Qf)(a,e(o))=A(a,o). The row Gram entry is sum_o Qf(a,e(o))Qf(c,e(o)), equal by bijective finite reindexing to the flat Gram delta(a,c). These calculations independently justify all three rubric requirements and the reference answer, including the exact dimension k. The word inverse is harmless here: transporting the flat labeling back means precomposing with e on an original pair. The full exists_core_lq body does exactly these two calculations, and I inspected the complete ThinLQ existence proof rather than assuming the name implies a factorization. k is a thin ambient dimension, not necessarily the matrix rank: rank-deficient and zero matrices are included. If l=0 or r=0 then k=0 and the empty products and identities have the correct carriers. This is conditional on a thin orthonormal factorization/existence theorem, not a constructive efficiency claim. Nearby la-012 asks consequences of an already given backward min recurrence; sp-004 asks global boundary mass, and la-206/la-218 ask stored-operation cost/dispatch contracts. None requests this bijection/product/Gram transport conclusion, so the bounded candidates are not exact aliases.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "anchor": "Core and slice, lines 18-21; complete exists_core_lq statement and proof, lines 67-80."
+        },
+        {
+          "path": "QuantumBlockEncoding/ThinLQ.lean",
+          "sha256_lf": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a",
+          "anchor": "Complete sum_prefix_of_zero, exists_factor_of_le and exists_thin_lq definitions/proofs; the wide Gram-Schmidt existence branch and tall (A,identity) branch, including min dimensions and empty carriers."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-002",
+      "item_digest": "ca7a9fcd324216a1144307b9d48138420f5a9609c644b95f81d80c8ccc438408",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "With A:l x (2m) and R:m x r, the absorbed core has shape l x (2r). For a fixed bit beta, its (a,j) slice entry is sum_b A(a,(beta,b))R(b,j), exactly (slice(A,beta) R)(a,j). The output beta is not summed over, so the beta=0 and beta=1 slices are separately right-multiplied; neither contributes an entry to the other slice. The defining formulas and complete absorb_slice proof support that identity directly, with no orthogonality, normalization or invertibility requirement. This is the full mathematical content of the answer and all three rubric criteria. When the old bond m=0 the sum is zero, and when l or r vanishes the appropriate equality is vacuous; no exceptional assumption is missing. The answer does not claim that an arbitrary residual preserves norms or canonicality, which would be false, and gives no cost or executable canonicalization assertion. la-110 uses an absorbed terminal boundary to prove an entire chronological chain readout; that is a further global contraction statement, not the same local per-bit slice identity. la-001 concerns factorization and bijective column relabeling, not residual contraction. These share mechanisms without being exact semantic aliases.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "anchor": "Complete Core/slice definitions, lines 18-21, and absorb/absorb_slice definitions and proof, lines 58-64."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-003",
+      "item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "All five recursive evaluation equations are correct, and evaluation is surjective because rat(q) maps to every rational q. The source, however, defines Coeff as raw inductive expression syntax with constructors rat, symbol, add, mul and neg and structural DecidableEq. It supplies constructor operations, not a quotient by ring identities. For example add(rat(0),rat(0)) is a different constructor term from rat(0), so zero+zero=zero is false as an equality of Coeff; associatively rebracketed add trees are likewise distinct. Thus this carrier with those source operations is not a ring or a rational algebra in the ordinary ring/algebra sense. The reference answer's unqualified homomorphism-of-the-symbolic-coefficient-algebra claim, and especially rubric r3 demanding a '(ring/algebra) homomorphism', conceal this distinction precisely where the question asks for the structure to be stated accurately. A correct weaker statement is that evalWith is a surjective homomorphism for the operation signature, i.e. an interpretation of the free term algebra, preserving the displayed constructors and constants. One may also descend to a suitably specified quotient algebra, but neither that quotient nor its well-definedness is in the record or source. If 'algebra' were explicitly defined in the universal-algebra sense, the constructor-preservation assertion would be sound; the current rubric does not make that qualification and allows the false ring-homomorphism identification as gold. I therefore reject this exact answer/rubric record rather than silently supply the missing interpretation. This is an exposition/category mismatch, not a failure of the source evalWith equations. Within the bounded candidate set, no other task asks about this symbolic evaluation object; its semantic core is distinct independently of this correctness finding.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/Core.lean",
+          "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894",
+          "anchor": "Complete inductive Coeff and constructor-operation instances, lines 148-173; complete evalWith and five defining lemmas, lines 176-196; zero/one evaluation lemmas, lines 202-207."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-004",
+      "item_digest": "33cc06733514e0836a461f03019dbbcf4881b1b6963dfe5207cb05932deb4106",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "There are 2^a signal labels and 2^n system labels, hence 2^a*2^n=2^(n+a) joint labels on each side of the square full matrix. This counts basis states, not amplitudes as additional states. The specified flattening is F(s,i)=s*2^n+i, with signal high-order. For fixed s, productRegisterBlockProjection(flatToProductRegister(U),s)(i,j) and signalSystemBlockProjection(U,s)(i,j) both reduce to U(F(s,i),F(s,j)); the complete source theorem proves literal definitional equality. This independently verifies the dimension, order and entrywise equality portions of the answer and rubric. n=0 gives a one-dimensional system block and a=0 gives the single signal branch equal to U itself; these fit the same formulas. The relevant generic definitions also support rectangular row/column dimensions, although this question concerns a square qubit register. Reading OperatorBlockEncodingCandidate fixes the size but its stored isUnitary and blockContainsTarget propositions alone do not prove a particular candidate is unitary or contains a desired normalized operator; the answer asserts neither. la-008 uses this indexing to prove a projection-versus-action logical equivalence, a different target. plan-216 concerns compressions in arbitrary chosen subspace bases and an approximation contract, while be-012 adds permutation/bijectivity and Gram constraints. Their shared projection vocabulary is not an exact alias of the dimension/relabeling task.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+          "anchor": "Complete OperatorBlockEncodingCandidate structure and size note, lines 97-116."
+        },
+        {
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256_lf": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+          "anchor": "Complete ProductRegisterMatrix, flatToProductRegister, productRegisterBlockProjection and productRegisterBlockProjection_flatToProductRegister definitions/proof, lines 183-217."
+        },
+        {
+          "path": "QuantumBlockEncoding/CircuitSemantics.lean",
+          "sha256_lf": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666",
+          "anchor": "Complete signalSystemBlockRowIndex/ColIndex, index bounds and signalSystemBlockProjection definitions/proofs, lines 696-776."
+        },
+        {
+          "path": "QuantumBlockEncoding/Core.lean",
+          "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894",
+          "anchor": "Matrix as Fin-indexed entries and PointwiseEq, lines 15-23; gridSize(n)=2^n, line 44."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-005",
+      "item_digest": "9de300e5af170f37dfbbb8e216ddc6a74157f274971779218e9477ade22a8db4",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For V:N x r real, (V^T V)(a,b)=sum_i V(i,a)V(i,b)=delta(a,b), so its columns are orthonormal. Taking inner products with the columns in any vanishing linear combination forces each coefficient zero and gives r<=N. An injection e:Fin r -> Fin N identifies r distinct physical positions; the partial family f(e(a))=V_col(a) is well-defined because e is injective and stays orthonormal. Finite-dimensional orthonormal-basis extension fills the complement of image(e), which has N-r labels; placing that full basis in columns produces U^T U=I and U(i,e(a))=V(i,a). This accounts for every ingredient requested by the question and every rubric step, including arbitrary noncontiguous placement. I read the complete proof: it forms the range-restricted family, applies orthonormal-basis extension with dimension N, and extracts the two required entrywise conclusions. r=0 is completion of the empty family; r=N leaves no freedom and yields the prescribed frame with its assigned order; N=r=0 yields the empty orthogonal matrix. Neither determinant +1 nor a computational Gram-Schmidt implementation or preprocessing cost follows, and the answer promises only existence. la-006 adds a spare-column orientation constraint, la-009 extracts the dimension/counting obstruction, and la-011 asks for a full-frame counterexample. Those statements have shared ingredients but are not identical to arbitrary-position orthogonal completion.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256_lf": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d",
+          "anchor": "Complete exists_orthogonal_completion statement and proof, lines 20-59, including orthonormality of col/range-restricted f and orthonormal-basis extension."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-006",
+      "item_digest": "4eae07a7fa7dc01f54e03e5d15700d11bec10c23f9368e6d01b5f44fc0d675f6",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Taking determinants of U^T U=I gives det(U)^2=1 over the reals. If det(U)=1 keep U. Otherwise pick j outside image(e), which exists since r<N, and take S diagonal with S(j,j)=-1 and every other diagonal entry +1. Then S^T S=I, det(S)=-1, (US)^T(US)=I and det(US)=1. The entry formula (US)(i,k)=U(i,k)S(k,k) proves exactly that only column j changes sign. In particular every prescribed column e(a) is unchanged, with no sign or global-phase weakening of its entries. The complete signFlip lemmas and both special-orthogonal completion proofs use the same argument, and the answer/rubric correctly distinguish right multiplication from row flipping. Strictness guarantees N>0 and an available column; it is sufficient for every data set, not necessary for an individual already positively oriented full frame. The question and answer say 'cannot in general' when r=N, which is correct: for N>=1 a fully prescribed reflection is an obstruction, while an already positive full frame and the N=0 empty frame need no repair. There is no claimed search cost for the unused label or efficient completion algorithm. la-011 overlaps the last obstruction explanation, but its entire task is the boundary counterexample; la-006 additionally requires a universal constructive orientation repair for all strict frames. la-005 only guarantees O(N), and la-009 only dimension/counting. This is a partial-overlap dependency cluster, not an exact duplicate conclusion.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256_lf": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d",
+          "anchor": "Complete exists_orthogonal_completion, lines 20-59; signFlip/signFlip_orthogonal/signFlip_det/mul_signFlip_preserves, lines 62-79; complete exists_specialOrthogonal_completion_of_unused and exists_specialOrthogonal_completion proofs, lines 83-121."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-007",
+      "item_digest": "f10f3a23733971a2aa0b150a90124936ed6d12d8b403eff4b77380607f85064c",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For any finite complex A:m x n and scalars a,b, mulVec additivity and complex scalar homogeneity give A(a e_left+b e_right)=a A e_left+b A e_right. Each basis delta kills every term of the finite input sum except its named column, so the result is a col_left(A)+b col_right(A), and output coordinate k is a A(k,left)+b A(k,right). No conjugation of a or b appears: this is a linear operator action, not an inner product. The complete source definitions and both vector/coordinate proofs match this derivation, and all four rubric criteria are satisfied. The indices need not be different; if left=right the amplitudes combine to (a+b) times one column. Either coefficient may be zero; no normalization, orthogonality, square shape or unitarity is required. A zero input dimension admits no chosen basis indices, while an empty output carrier gives the empty-vector equality. The practical 'only two columns/entries' consequence is valid for the stated two-term input or that one queried output amplitude. It must not be read as saying arbitrary dense inputs or full all-input block-encoding verification need only two columns; nor does it bound the cost of retrieving either column. The answer itself scopes the sufficiency statement to a two-term superposition. la-008 asks a universal clean-branch certificate equivalence over every basis pair, and la-004 is register reindexing; neither is an exact alias of sparse two-term linearity.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256_lf": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+          "anchor": "Complete FiniteMatrix/StateVector/basisKet definitions and basisKet_apply, lines 25-47; applyVec, lines 55-59; complete applyVec_basisKet and twoBasisSuperposition vector/coordinate proofs, lines 70-100."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-008",
+      "item_digest": "ffed957ea2517808e052738941799ab1478ba9bade87b7bf84f0987ffc74cd0d",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For fixed clean signal s, the delta input at F(s,input) selects the column U(_,F(s,input)); reading output F(s,output) gives U(F(s,output),F(s,input)). The projected block definition reads exactly the same entry. Thus for each output/input pair the clean-action equation equals the projected-entry equation. Rewriting by this bridge proves each implication under universal quantification, as in the complete pointwiseProjection_iff_cleanBasisAction body. The answer supplies both directions and covers all four rubric criteria. The bridge and equivalence hold for finite semiring matrices without a unitarity premise; a physical complex unitary is a valid specialization. Extending the block equality to arbitrary input vectors follows by summing these entry equalities against each input coefficient. In a generic noncommutative semiring this means the actual multiplication order in the finite sum, not an extra claim of left scalar linearity. It also does not identify the full output action with the target when leakage to other signal values exists; only the clean output projection is compared. A fixed Fin signalDim label entails signalDim>0, while a zero system dimension makes both quantified conditions vacuous. No normalizer, approximation or unitarity certificate is manufactured. la-004 proves a product/flat representation equality and la-007 sparse-input linearity; neither asks this all-basis logical equivalence. plan-216 is a broader subspace compression with different bases/projectors and an approximation condition, so it is related but not identical.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256_lf": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+          "anchor": "basisKet/applyVec/applyVec_basisKet, lines 33-74; complete cleanBasisActionAmplitude and cleanBasisActionAmplitude_eq_signalSystemBlockProjection, lines 249-269; complete pointwiseProjection_iff_cleanBasisAction proof, lines 277-294."
+        },
+        {
+          "path": "QuantumBlockEncoding/CircuitSemantics.lean",
+          "sha256_lf": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666",
+          "anchor": "Complete signal/system compound index definitions and bounds, lines 696-739, and block projection definition/application, lines 753-776."
+        },
+        {
+          "path": "QuantumBlockEncoding/Core.lean",
+          "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894",
+          "anchor": "Matrix and universal entrywise PointwiseEq definition, lines 15-23."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-009",
+      "item_digest": "b31607a7ea2a259a413bb5b7c11780ee9b302542f801bc1ce38ca72cfc3e1311",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For V:N x r real, its Gram identity says <v_a,v_b>=delta(a,b). If sum_a c_a v_a=0, pairing with v_b gives c_b=0 for every b, so the r columns are linearly independent and r<=dim(R^N)=N. For placement e:Fin r -> Fin N, assuming surjectivity implies N<=r by finite cardinality; this contradicts r<N, hence some target is missing. In the equality regime r=N an injection between finite sets of equal size is bijective, giving no missing position. These arguments verify the reference answer and every rubric criterion; they do not depend on a determinant, a prefix placement or an orthogonal completion algorithm. I inspected the source's conversion from the real Gram equation to Orthonormal and the full finite-cardinality contradiction in exists_specialOrthogonal_completion. The dimensional independence argument is independently reconstructed mathematical background, rather than misreported as a new named theorem in that file. The empty-frame cases are consistent: r=0<N gives unused positions, N=r=0 gives none, and N=0<r cannot satisfy the Gram premise. The phrase 'exactly when' is therefore correct within the feasible orthonormal/injective setting. la-005 concludes existence of a complete orthogonal frame, la-006 additionally corrects orientation, and la-011 gives a full-frame negative example. This task isolates the feasibility/counting conclusion, so sharing their source theorem is not itself an alias.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256_lf": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d",
+          "anchor": "Complete exists_orthogonal_completion, lines 20-59, including Gram-to-Orthonormal derivation; complete exists_specialOrthogonal_completion, lines 107-121, especially card_le_of_surjective and unused-index extraction."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-010",
+      "item_digest": "492aef4134070695970d651e98c5bf482a5c7d14719d34b8b92091a7a6178ff5",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The answer's elementary clean-column illustration is mathematically sound: the active column c=(1,0)^T has c^dagger c=1 but cc^dagger=diag(1,0), and if an inactive input column is also displayed as zero then the padded square matrix has rows (1,0),(0,0) and the same row Gram. These distinguish the restricted active-column matrix from its possible zero-input padding, rather than asserting all physical columns are orthonormal. I checked the full source shape explicitly: A:Core(1,1) with A(0,(0,0))=1 and A(0,(1,0))=0 obeys AA^T=1; with B=2, paddedCore is 4 x 2, its active input column is (1,0,0,0)^T up to the chosen output enumeration, its inactive input column is zero, and its row Gram is diag(1,0,0,0). Thus the compressed fixed-bit illustration embeds in the actual bit/bond backend and gives a genuine counterexample to the reviewer's physical row-identity claim. The complete definitions require l<=B and r<=B for the active embedding; 'larger' is read with those capacities. Summing active-column products over the added zero output rows changes nothing, giving the exact restricted Gram delta(a,c), not an identity on all Fin B input labels. For a supported boundary v this yields ||Pv||^2=v^dagger(P^dagger P)_active v=||v||^2; equivalently before the transpose/real-to-complex orientation, ||vA||^2=vAA^T v^T. The answer and four rubric criteria identify the surviving relation and the zero-row obstruction correctly. Padding need not destroy a previously valid row identity for every dimension, and the unpadded rectangular circuit matrix may already lack row orthonormality; the claim is a counterexample to a blanket guarantee. Empty active input is vacuous, and a nontrivial new zero row precludes row identity. sp-009 proves the unpadded real-row/complex-column transport; this task adds padding, restricted active indices and a false row-identity counterexample, so it is not an exact alias or a claim that a full unitary circuit has been constructed.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "anchor": "Core, line 18; complete mass/mass_vecMul definitions/proof, lines 119-135; complexCore/complexCore_isometry, lines 211-226; complete padVector, paddedCore and inactive-output theorem, lines 246-262; complete paddedCore_active_isometry statement/proof, lines 295-315."
+        },
+        {
+          "path": "QuantumBlockEncoding/ThinLQ.lean",
+          "sha256_lf": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a",
+          "anchor": "Complete sum_prefix_of_zero proof, used by active padded-core finite-sum restriction."
+        },
+        {
+          "path": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+          "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5",
+          "anchor": "Complete Core and Stage abbreviations, lines 29-34: core is (Fin 2 x B)-by-B complex and full stage has an additional input-bit carrier."
+        }
+      ]
+    }
+  ]
+}

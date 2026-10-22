@@ -18,6 +18,10 @@ milestone; stable benchmark admission is a separate decision.
   explanatory summaries and semantic steps are repaired too, without changing
   question contracts or silently transferring historical acceptance.
 - Standard site build/link checks and real desktop/mobile/theme/browser tests.
+- Exact-content rejected/ambiguous records have reserved IDs and non-answer
+  withdrawal notices; current search/downloads exclude their unapproved content.
+  Stable review obligations keep the original scope instead of shrinking with
+  the displayed question count.
 
 ## Remaining acceptance work
 

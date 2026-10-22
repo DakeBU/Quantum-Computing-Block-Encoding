@@ -1,0 +1,203 @@
+{
+  "schema_version": "qcb.mathematical_reader_review.v1",
+  "method": "independent-mathematical-reader-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "provenance": {
+    "item_source": "Actual prepared items returned by qcb_curriculum.load_catalog in qcb-release-integration; item_digest is qcb_core.digest of the entire prepared item.",
+    "scope": "Full NL questions, answers, assumptions, conventions, rubrics and semantic steps for la-011 through la-020. Relevant exact local definitions and complete proof bodies were inspected. Source inspection is not a fresh Lean/kernel check, circuit execution, source-blind decode or numerical experiment.",
+    "alias_scope": "Compared the ten requested tasks with one another and with previously inspected full questions la-001, la-003, la-005, la-006, la-009, la-010 and sp-009. Also read complete questions for candidate neighbors la-213, be-104, be-107, be-110, be-011 and sp-001. Shared declarations were retrieval signals, not evidence of identical mathematical conclusions. This is a bounded comparison, not a global deduplication result.",
+    "mutation_scope": "Only this temporary report outside the repository was written. The preceding report and the frozen source/catalog checkpoint were left intact. No repair was authored."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-la-011",
+      "item_digest": "71e5ff52e00d5ec5c88b81ae1265a8094d961c43c77f466c3fb32c8b23f7196f",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The proposed frame in dimension two is V=diag(1,-1), placed in both available positions with the identity placement. Directly V^T V=I and det(V)=-1. Any matrix agreeing with every prescribed column is entrywise V, so there is no remaining completion freedom and no determinant-positive solution. This independently proves the negative conclusion and both of the first two rubric criteria. The strict theorem's proof obtains a label outside the placement image by finite-cardinality contradiction; its orientation step multiplies on the right by a single-column signFlip at that unused label. When r=N and the placement is injective, it is surjective, so exactly this step loses its witness. The reference answer correctly identifies that missing ingredient. The counterexample is an actual reflection; the informal determinant-minus-one terminology should be read as orientation reversal in general dimensions, not a classification of every improper orthogonal matrix as a single hyperplane reflection. The claim is failure of an unconditional extension guarantee, not failure for every full frame: a determinant-positive full frame and the empty N=0 frame already meet the orientation condition. No resource or algorithm guarantee is inferred. la-006 proves the universal strict-case repair and includes an obstruction explanation, so there is genuine subproblem overlap; la-011's requested explicit full-frame counterexample is not the same full contract as that constructive theorem or la-005's O(N) completion.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256_lf": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d",
+          "anchor": "Complete signFlip definition and orthogonality/determinant/preserved-column proofs, lines 62-79; complete exists_specialOrthogonal_completion_of_unused and strict completion proofs, lines 83-121."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-012",
+      "item_digest": "b53e888a9d2bde591363f2eb202ee553d7d833c9cfc4f8c52e0ce21427338a09",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For every nonempty RankReduced cons node, the source fixes the new head carrier to Fin(min(l,2m')), where m' is the already reduced next bond. Thus min(l,2m')<=l and min(l,2m')<=2m' give the two simultaneous bounds without any full-rank premise. The factor two is the cardinality of the physical-bit factor Fin 2 in the column carrier Fin 2 x Fin m'; it is not a padding allowance or a logarithmic qubit count. Repeating the same head argument on each tail establishes the every-core statement. The last core of any nonempty scalar-terminal chain is its length-one suffix; on that suffix m'=1, hence the immediately preceding active bond is at most two. This is the valid general-chain use of the answer's length-one discussion, and the source last_bond_le_two proof indeed eliminates the zero-length tail to identify its next bond with one. The question/rubric/answer agree on these bounds. An empty chain has no penultimate core, so the last-core claim applies only when that core exists. Zero or deficient active ranks remain allowed, and the bound may be zero rather than two. The complete exists_rightCanonical induction and maxBond_le proof preserve the terminal bond and bound the whole maximum; no efficient canonicalization or bit-complexity theorem is established. la-001 proves the reshaping and Gram transport that supplies the recurrence; sp-009 proves a real-to-complex isometry; la-010 treats padded active columns. Those are related premises or later consumers rather than the same boundary-inequality conclusion.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "anchor": "Core and Chain, lines 18-26; complete RankReduced definition, lines 51-55; exists_core_lq and exists_rightCanonical proofs, lines 67-100; complete head_bound and last_bond_le_two proofs, lines 104-117; maxBond and maxBond_le, lines 197-207."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-013",
+      "item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The algebra and the output-only counterexample are correct once P is the basis permutation induced by the stated wire renaming: replacing each U_j by P U_j P^-1 gives P(U_t...U_1)P^-1 by cancellation; two identity stages with a nontrivial involutive P give output-only product P^2=I instead of P. The source precisely supplies a wire equivalence e:Fin m~Fin n, its induced bitstring basisEquiv, a gate-kind-preserving wire map and matrix reindexing by that induced equivalence. It does not implement every permutation of computational-basis labels by a wire rename. The NL question starts with 'Let P permute computational-basis labels' and does not explicitly identify P with that induced basisEquiv. Under an unrestricted reading the requested wire-renaming statement is false: on a one-wire register the only wire bijection is identity, so renaming leaves RY(theta) unchanged, whereas the basis-label permutation P=X exchanges 0 and 1 and conjugates RY(theta) to RY(-theta), different for theta=pi/2. A general basis reindexing still obeys the algebraic conjugation rule, but that is a broader representation operation than relabeling each physical wire. The reference answer assumes the missing relation in its first sentence rather than establishing or stating it. Because the intended induced-wire reading is plausible and correct while the literal unrestricted reading has this counterexample, I record uncertainty requiring a scope clarification, rather than approve an unstated restriction. This is independent of the correct physical-SWAP caveat. la-014 concerns logical counts for an explicitly given wire bijection and is not an alias; be-104 concerns semantic refinement of a compiled reversible program, not basis reindexing.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+          "sha256_lf": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727",
+          "anchor": "Complete basisEquiv, gate, circuit and matrix definitions, lines 10-28; matrix_apply/matrix_mul, lines 30-38; full context/oneQubit/x_action/cx_action/eval_gate proofs and complete eval_circuit proof through line 118."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+          "anchor": "standardRyMatrix half-angle definition, lines 18-20; PrimitiveBasis and xBasisAction, lines 115-125; chronological evalPrimitiveCircuit definition, lines 374-378."
+        },
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+          "anchor": "Complete realOrthogonalRotation entry definition, lines 23-29, and realRotation definition, lines 60-63; these fix the signs in the one-wire counterexample."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-014",
+      "item_digest": "cc4258a0f2ab565d82b3abe29fb1f7cbd0112c16d5ad88e0b35d780ac7c0bdd1",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The specified wire bijection maps X(t) to X(e(t)), RY/RZ(t,angle) to the same rotation kind and angle at e(t), and CX(c,t) to CX(e(c),e(t)) with the same ordered control/target roles. Its circuit action is List.map, so list length and the indicator at every rotation/CX position are unchanged. In particular total instruction count, rotation count and controlled-flip count all stay equal. I inspected both the source count definitions and the complete induction proofs; although the named theorem counts RY specifically, RZ preservation and a combined single-qubit rotation count follow by exactly the same gate-kind correspondence. No merging, resynthesis or conversion to a different primitive set is performed. Zero-qubit registers admit only an empty valid primitive list; empty lists also satisfy all three invariances. The reference answer correctly declines a hardware-routing inference: on a fixed three-wire path a relabeling can send the logical adjacent pair (0,1) to the nonadjacent pair (0,2), leaving logical counts equal but changing required routing. A hardware-graph automorphism would be an additional condition, absent here. This checks all three rubric requirements without treating physical SWAPs as free. la-013 asks the operator conjugation/cancellation law, and la-213 bounds scheduled depth by instruction count; neither has this gate-kind/count-invariance conclusion.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+          "sha256_lf": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727",
+          "anchor": "gate/circuit definitions, lines 16-23; complete gateCount, ryCount and cxCount statements/proofs, lines 120-133; module placement-versus-physical-SWAP boundary."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveCircuit.lean",
+          "sha256_lf": "d5019ef58ce1ce65664d2a40979cdd652ca691c94743532c59dfe18cf2036d4c",
+          "anchor": "Complete PrimitiveGate and PrimitiveCircuit definitions, lines 95-101; gateCount, ryCount and cxCount definitions, lines 132-150."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-015",
+      "item_digest": "4ac0d74781d50ead023fd5830a7e8e5cda93b4580d32f2f4ef85299e32890567",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Writing u=(a+b)/2 and v=(a-b)/2, the entrywise sum-difference identities give R(u+v)-R(u-v)=2 sin(v/2) R(u+pi). Thus the signed factor is 2 sin((a-b)/4), and the remaining matrix is the same half-angle rotation at (a+b)/2+pi. It is real orthogonal and complex unitary, so its Euclidean induced norm is one. Homogeneity gives exactly 2|sin((a-b)/4)|, and |sin x|<=|x| gives the factor-one-half bound |a-b|/2. This checks the exact formula, half-angle convention and inequality, not merely an entrywise estimate. For any finite number of spectator qubits, the source lift is a simultaneous basis reindexing of R tensor identity. The same difference factors as the same scalar times a lifted unitary, whose norm is one; equivalently tensoring identity and unitary basis placement preserve this induced norm. Hence there is no dimension factor, including with no spectators. A named target requires at least one qubit, so no zero-dimensional identity-norm edge case is being used. a=b and shifts by 4pi give zero distance; a shift by 2pi gives distance two, consistent with the exact formula. I read the complete centered/difference/lift/norm proofs and their underlying primitive definitions. The answer and all three rubric criteria are sound; exact-real angles, gate synthesis, numerical angle computation and finite-bit cost remain separate. la-016 specializes the phase-sensitive 2pi boundary, while sp-001 concerns the sign choice in a loader angle; these are related but not identical tasks.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+          "sha256_lf": "57ad888af7a81ac5067f6655160fecf1f197a91b0414bc5e510786b9eed27e32",
+          "anchor": "Entire module inspected, especially complete standardRy_centered_difference, standardRy_difference_factor, lift_sub/lift_smul, liftedRy_difference_factor, liftedRy_distance and liftedRy_distance_le proofs, lines 17-79, with L2 operator-norm scope and evaluation limits."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+          "anchor": "standardRyMatrix and standardRyMatrix_unitary, lines 18-20 and 91-93; complete liftPrimitiveOneQubit definition, application formula and unitary proof, lines 194-229."
+        },
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+          "anchor": "Complete realOrthogonalRotation definition/unitarity proof and realRotation definition, lines 23-63; complete realRotation_unitary proof, lines 81-85."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-016",
+      "item_digest": "9c8a04ca1889fb0a56d3f452b52f5640741fb20e9f1d4e4962b89aef5642bc12",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The parameter shift adds pi to both sine/cosine arguments, giving R(theta+2pi)=-R(theta). Consequently R(theta+2pi)-R(theta)=-2R(theta), with induced operator norm two, agreeing with 2|sin(2pi/4)|. Since R is unitary, its norm is one; no probability-only metric was substituted. For any isolated input the two output state vectors differ by a common global phase -1 and so give the same probabilities in every measurement, but that does not make their exact matrices equal. In a controlled application diag(I,-R) differs from diag(I,R) by diag(I,-I), a relative phase between coherent control sectors; on a superposed control these need not represent the same state or channel. This conceptual extension is an independently derived direct-sum calculation, not a separately claimed controlled-gate theorem in the inspected norm module. The question, answer and all three rubric criteria correctly separate the exact operator metric from a global-phase quotient. A 4pi shift would give actual equality, so the result is not an assertion that every nonzero parameter shift has maximal distance. The source supplies the exact norm formula and sign-retaining factorization, and the primitive half-angle definition fixes the convention. No physical compilation, measurement simulation or finite-precision procedure is claimed. This is a special-case conceptual consequence of la-015, with additional probability/controlled-phase distinctions; it is not identical to the full arbitrary-angle distance and spectator theorem. sp-001 treats amplitude sign recovery within a real loader, another different conclusion.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+          "sha256_lf": "57ad888af7a81ac5067f6655160fecf1f197a91b0414bc5e510786b9eed27e32",
+          "anchor": "Complete signed difference factorization and lifted exact L2 norm proofs, lines 17-68; module explicitly retains exact phase and excludes numerical/finite-bit claims."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+          "anchor": "Exact standardRyMatrix half-angle definition, lines 18-20, and its unitary theorem, lines 91-93."
+        },
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+          "anchor": "realOrthogonalRotation entries, lines 23-29; realRotation definition, lines 60-63, and complete unitary proof, lines 81-85."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-017",
+      "item_digest": "f717b346a68d9dddbefdc009acf698ff6aca04c0531629f56fab06200a6b0999",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Let p(x) be x(c0)=1 and x(c1)=1. If p is false the entire string is fixed, so the second application is also inactive. If p is true, only the target changes. The two hypotheses c0!=target and c1!=target ensure both control values stay one, so the second application uses the same true predicate and the second bit flip cancels the first. This proves involution on every bitstring; all other wires are pointwise unchanged. If c0=c1 the conjunction repeats the same one-bit test and reduces exactly to a controlled X, without requiring the controls to be distinct. The complete ccxBasisAction_involutive and ccxBasisEquiv definitions use precisely these two control-target hypotheses and no c0!=c1, while ReversibleGate.ccx deliberately has the stronger pairwise-distinct instruction encoding. The answer explicitly distinguishes that encoding condition from the mathematical action and meets all three rubric criteria. With coincident controls a two-wire register suffices; three distinct wires are needed only for the pairwise-distinct instruction form. Registers too small to supply a control distinct from the target have no admissible instance. The result establishes a reversible basis action and its permutation extension, not the availability or resource cost of a primitive Toffoli with repeated labels. la-018 removes a load-bearing hypothesis and proves noninjectivity, so it is a boundary counterexample rather than an alias. be-110 gives a selector-indexed general inverse construction and be-104 a compilation refinement; neither is this minimal-assumption local involution.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/ReversibleClassical.lean",
+          "sha256_lf": "01ea24f54500974985702a0f968e28d93b2bd04a1aefaf05da848c9b7fe64711",
+          "anchor": "ReversibleGate.ccx distinctness fields, lines 14-20; complete ccxBasisAction definition, involution proof and ccxBasisEquiv construction, lines 24-61."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+          "anchor": "PrimitiveBasis, flipBit, xBasisAction and full involution proof, lines 115-134; cxBasisAction and its distinct-control-target involution, lines 143-156."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-018",
+      "item_digest": "c6d32bc846decf5ac3703d8ef0c1d92984d3bd2cacfb16960bdb04a891b21afd",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "In the ordered two-bit coordinates (c,t), taking control0=c, control1=t and target=c gives the specified update. At input (1,1) the activation predicate is true and the first coordinate flips, producing (0,1). At input (0,1) it is false, so that distinct input has the same output. This is a direct collision; applying the map again to the first output also leaves (0,1), so it is not involutive. A linear operator sending each computational-basis vector to this named output basis vector would have two identical columns, whereas a unitary preserves orthogonality of the distinct input columns. Thus the map cannot be reversible/unitary on this basis without changing the specified task or adding recorded information. The source's total ccxBasisAction permits this index substitution, but the involution theorem requires every control to differ from the target; its proof uses exactly the now-false preservation of the first control value. The stronger typed ReversibleGate instruction would also reject the label choice, but the answer correctly bases the impossibility on mathematics instead of that API restriction. The collision and lost hypothesis meet all three rubric criteria. No finite simulator or compiler execution was needed or performed to derive these two symbolic evaluations. la-017 proves the valid complementary hypothesis regime; be-104/110 assume genuine bijections and address different compilation/control questions, so the negative task is not an alias of their positive results.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/ReversibleClassical.lean",
+          "sha256_lf": "01ea24f54500974985702a0f968e28d93b2bd04a1aefaf05da848c9b7fe64711",
+          "anchor": "Complete ccxBasisAction and full ccxBasisAction_involutive proof, lines 24-50, especially c0_ne_target/c1_ne_target and preserved-control equalities; typed ccx encoding, lines 14-20."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+          "anchor": "Complete flipBit/xBasisAction definitions and target-flip involution proof, lines 117-134."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-019",
+      "item_digest": "2608e997670f03f1d37ccd000716a0a0478826035c40e22316b4639af5704267",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For product indices (i,u),(j,v), the conjugate-transposed entry of S tensor X is conjugate(S(j,i) X(v,u))=S(i,j) X(u,v), using Hermiticity of each factor over the complex field. Thus (S tensor X)^dagger=S tensor X; the same calculation applies to T tensor I since I is Hermitian. Adjoint additivity then gives H^dagger=H. There is no multiplication S T or T S, so their commutator is irrelevant; one does not need simultaneous diagonalization. The complete tensor/add/identity closure proofs in the source justify the same generic argument, and its one-dimensional Hamiltonian theorem is a specialization using the already Hermitian S1 and S2 pieces. For necessity of the X premise, the given outer one-dimensional factors S=[1], T=[0] reduce H to X=[[0,1],[0,0]], whose adjoint has its nonzero entry at (1,0) instead of (0,1). This verifies the counterexample and all rubric requirements exactly. The total matrix dimension is the product of the two system dimensions; empty factor carriers make the equality vacuous but do not invalidate the nonempty counterexample. This is Hermitian closure, not positive semidefiniteness, a norm bound, block encoding or a Hamiltonian simulation implementation. be-107 is block-diagonal unitarity, and be-011 is a filler-phase cancellation defect in an LCU source: they have different predicates/conclusions despite sharing adjoints or Hamiltonian vocabulary.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+          "sha256_lf": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+          "anchor": "Complete CMatrix/add/adjoint/IsHermitian definitions, lines 33-55; identity, lines 181-182; complete tensor/oneDimHamiltonian definitions and entry formula, lines 367-384; complete identity_isHermitian, tensor_isHermitian, add_isHermitian and oneDimHamiltonian_isHermitian proofs, lines 387-417."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-020",
+      "item_digest": "af12f58eabab10496249efa91b5f940edea14c74f6121a7b860ae69e321d3fc6",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Under the record's explicitly stated scalar/complex matrix semantics, for fixed finite-grid i,j the only contributing integer offset is d=j-i. Its entry is the sum of the coefficients in that offset group. Replacing each group by one pair with its scalar coefficient sum preserves that entry by associativity/commutativity of complex addition. Since i,j were arbitrary, it preserves the matrix. In the example the +1 group sums to 2+(-2)=0 and the -1 group remains 3; hence each row has at most one nonzero entry, at j=i-1 when that finite-grid column exists. At i=0 it does not. The original width is three, the merged width may be two if an explicit zero is retained or one if it is removed, and neither width automatically equals numerical support. This validates the full answer and three rubric criteria, including nonmodular truncation and the separate loader/reversibility/cost boundary. There is a material source-level distinction: stencilRowCoeff returns raw Coeff syntax and special-cases a single matching coefficient; its addition is a constructor fold, not a commutative ring operation on syntax. Thus reassociation, reordering or replacing add(rat(2),rat(-2)) by rat(0) is NOT a literal Coeff equality. I inspected Coeff and evalWith as well as the complete stencil and matrix definitions; evaluation preserves all sums, so the stated scalar theorem is sound after numeric interpretation, and the concrete rational example embeds in complex scalars. Acceptance is of this NL scalar contract, as the assumptions and answer expressly specify, not a claim that the raw source matrix is syntactically unchanged or that the local Lean source contains a proved arbitrary merge theorem. This differs from la-003, which asks what algebraic structure the syntax evaluator itself has. No bounded candidate requests the same offset-merging/support/truncation conclusion.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RobinMatrix.lean",
+          "sha256_lf": "e957b6a5961ad2c22cfd154f17cbbec3e7668027b2f526d9f762798eb1c50038",
+          "anchor": "Complete stencilRowCoeff definition and integer equality/filter/fold semantics, lines 15-26; full robinRowEntries and buildRobinMatrix definitions, lines 36-63."
+        },
+        {
+          "path": "QuantumBlockEncoding/Core.lean",
+          "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894",
+          "anchor": "Complete raw Coeff constructor/operation definitions, lines 148-173; complete evalWith and operation/constant evaluation lemmas, lines 176-220; full StencilEntry definition with Int offset and Coeff coefficient, lines 238-241."
+        }
+      ]
+    }
+  ]
+}

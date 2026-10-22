@@ -27,7 +27,7 @@ class CurriculumTests(unittest.TestCase):
                 **{k: c[k] for k in ("core_id", "contract_hash", "family", "split", "snapshot_id")}}
 
     def test_one_core_one_home_and_same_registry_for_both_tracks(self):
-        expected = 213 - sum(r["status"] == "withheld_pending_distinct_repair_review" for r in self.catalog["reader_decisions"])
+        expected = 213 - sum(r["status"].startswith("withheld_") for r in self.catalog["reader_decisions"])
         self.assertEqual(len(self.catalog["cores"]), expected)
         self.assertEqual(len(self.items), expected)
         self.assertEqual(len(self.catalog["parts"]), 5)
@@ -42,6 +42,29 @@ class CurriculumTests(unittest.TestCase):
         result = shared.validate_proposals(self.catalog, [self.proposal(), self.proposal("non-lean")])
         self.assertEqual(result["new_cores_admitted"], 0)
         self.assertFalse(result["distributed_lock_claimed"])
+
+    def test_withheld_core_identity_and_split_remain_reserved(self):
+        self.assertTrue(self.catalog["withheld_cores"])
+        for core in self.catalog["withheld_cores"]:
+            p = self.proposal()
+            p.update({k: core[k] for k in ("core_id", "contract_hash", "family", "split", "snapshot_id")})
+            p["source_nodes"] = core["target_nodes"]
+            self.assertEqual(shared.validate_proposals(self.catalog, [p])["new_cores_admitted"], 0)
+            p["split"] = "other"
+            with self.assertRaisesRegex(ValueError, "contract/family/split"):
+                shared.validate_proposals(self.catalog, [p])
+
+    def test_withdrawal_cannot_shrink_stable_review_obligation(self):
+        result = shared.stable_readiness(self.catalog)
+        withheld = {c["core_id"] for c in self.catalog["withheld_cores"]}
+        self.assertEqual(result["required_core_reviews"], self.catalog["historical_native_core_count"])
+        self.assertTrue(withheld <= set(result["pending_core_ids"]))
+        self.assertEqual(set(result["withheld_core_ids"]), withheld)
+        self.assertFalse(result["gates"]["reader_withdrawals_resolved"])
+        reduced = deepcopy(self.catalog)
+        reduced["cores"].pop()
+        with self.assertRaisesRegex(ValueError, "historical core obligation"):
+            shared.stable_readiness(reduced)
 
     def test_existing_contract_and_split_mutations_fail(self):
         for key in ("contract_hash", "family", "split", "snapshot_id"):
@@ -188,6 +211,19 @@ class CurriculumTests(unittest.TestCase):
             self.assertEqual(graph_path.read_bytes(), graph_bytes)
             self.assertEqual((root / "search-index.json").read_bytes(), before)
             self.assertTrue(reader.check_site(root)["question_only_search"])
+            for core in self.catalog["withheld_cores"]:
+                notice = (root / reader.HUB / "cores" / core["core_id"] / "index.html").read_text(encoding="utf-8")
+                self.assertIn("data-qcb-withheld", notice)
+                self.assertNotIn('id="solution"', notice)
+                self.assertNotIn('id="hint"', notice)
+            exported = read_json(root / "data/quantumcomputingbench/reader-items.json")["items"]
+            self.assertFalse({c["core_id"] for c in self.catalog["withheld_cores"]} & {i["core_id"] for i in exported})
+            export_path = root / "data/quantumcomputingbench/reader-items.json"
+            tampered = read_json(export_path)
+            tampered["items"][0]["reference_answer"] = "An unreviewed replacement answer."
+            write_json(export_path, tampered)
+            with self.assertRaisesRegex(ValueError, "exact reviewed content"):
+                reader.check_site(root)
             text = (root / "index.html").read_text(encoding="utf-8")
             self.assertEqual(text.count('id="quantumcomputingbench"'), 1)
 

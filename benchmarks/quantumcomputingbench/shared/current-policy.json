@@ -1,6 +1,6 @@
 {
   "schema_version": "qcb.textbook_current_policy.v1",
-  "policy": "Frozen historical releases are unchanged. Withhold exact rejected predecessor answers; admit an additive answer/rubric successor, including affected explanatory summary/steps, only after a distinct content-bound review. Question contracts, graph scope, step counts, cores and splits do not change.",
+  "policy": "Frozen historical releases are unchanged. Withhold exact rejected predecessor answers; admit an additive answer/rubric successor, including affected explanatory summary/steps, only after a distinct content-bound review. Question contracts, graph scope, step counts, cores and splits do not change. Exact independently reviewed rejected or ambiguous records are withheld without deleting history; withdrawal alone does not satisfy stable acceptance.",
   "answer_successors": [
     {
       "core_id": "qcb-core-sp-002",
@@ -25,6 +25,168 @@
       "reason": "Active dimension > 2 makes even active-only unitary terminal cleanup impossible; the source's supported state-action theorem is conditional and does not establish a unitary remedy.",
       "repair": "shared/repairs/sp-011-terminal-feasibility-repair.json",
       "review": "reports/textbook-v1/repairs/sp-011-terminal-feasibility-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-la-003",
+      "predecessor_key": "qcb-core-la-003",
+      "predecessor_item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+      "reason": "Raw constructor syntax is not a ring under its constructors; evaluation preserves operations, not an unqualified ring/algebra structure.",
+      "repair": "shared/repairs/la-003-syntax-semantics-repair.json",
+      "review": "reports/textbook-v1/repairs/la-003-syntax-semantics-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-003",
+        "predecessor_key": "qcb-core-la-003",
+        "predecessor_item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+        "reason": "Raw constructor syntax is not a ring under its constructors; evaluation preserves operations, not an unqualified ring/algebra structure.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-001-010-review.json",
+        "review_digest": "184e5889cf196e497230736df566fdb68ecee48f9e9a676d608bd6c0facfb841",
+        "finding_digest": "f090a10ade6316a4d4b74ea2c247cc5acbadaff876c2d126e36406ecfe3fe1ad"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-105",
+      "predecessor_key": "qcb-core-sp-105",
+      "predecessor_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+      "reason": "The unrestricted fixed-jet solution set needs its countably infinite affine dimension; the answer/rubric only grade finite degree-capped slices.",
+      "repair": "shared/repairs/sp-105-affine-dimension-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-105-affine-dimension-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-105",
+        "predecessor_key": "qcb-core-sp-105",
+        "predecessor_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+        "reason": "The unrestricted fixed-jet solution set needs its countably infinite affine dimension; the answer/rubric only grade finite degree-capped slices.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+        "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+        "finding_digest": "fef4bb8b3a59dd636393f754ffefc5910f00f35717d54593d9bc8eeac3846eab"
+      }
+    }
+  ],
+  "withdrawals": [
+    {
+      "core_id": "qcb-core-be-003",
+      "predecessor_key": "qcb-core-be-003",
+      "predecessor_item_digest": "a757beddff8a7a05762348e416f2e50a373efa53005468c33f43d4ea53b61de8",
+      "reason": "The question and explicit assumptions use different scalar target ranges; the supplied witnesses are correct but the literal public contract needs clarification.",
+      "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "finding_digest": "ce9239275d214f69c3f75465f848a35a5c123c4d0e836e54b2cc41a9c080ee07"
+    },
+    {
+      "core_id": "qcb-core-be-004",
+      "predecessor_key": "qcb-core-be-004",
+      "predecessor_item_digest": "69ef913513b5551fc106df171152b284d3ab8de62ca563ee680e1e751cfaa977",
+      "reason": "PREPARE-dagger is a sufficient architectural choice, not the unique final gate with the same clean row; projected correctness does not imply deterministic selector cleanup.",
+      "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "finding_digest": "707fb90219b42b5a2ee811cc875a99c39ad58c29253a58af49cd677e558f112f"
+    },
+    {
+      "core_id": "qcb-core-be-008",
+      "predecessor_key": "qcb-core-be-008",
+      "predecessor_item_digest": "f7551d5420a1e61e7be02a212873d5cc4384b08c62628605282e64b91c4a7181",
+      "reason": "A larger signal register cannot evade the clean-block contraction bound; real and rational square-root existence must also be distinguished.",
+      "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "finding_digest": "f53f7d473a8dea4823d16ac7c401577259b9d70a5744233157bcb088204ea38e"
+    },
+    {
+      "core_id": "qcb-core-be-009",
+      "predecessor_key": "qcb-core-be-009",
+      "predecessor_item_digest": "81aa90c475f83c6c482f6e7f35e5c20125c17896170b3c3306ef5600c8c76dcb",
+      "reason": "The proposed counterexample violates the at-most-one-nonzero-per-column premise and cannot refute it; a fixed versus existential support map must be distinguished.",
+      "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "finding_digest": "fea98e3562be629e82f7a4e733ee182d623a0bf36e2dba6e33e7ea0c4d158ee9"
+    },
+    {
+      "core_id": "qcb-core-be-012",
+      "predecessor_key": "qcb-core-be-012",
+      "predecessor_item_digest": "f2574f4e42e99fa324af5c0df2eb12570c39d40fa042763277872b2a3b8abb8a",
+      "reason": "An injective self-map on a finite basis is automatically surjective; source lemma signatures do not establish an extra independent necessity.",
+      "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "finding_digest": "4d6fa0174c308e192484ab625f67d247932d688f61e3f09a5b3c5685cd757a0d"
+    },
+    {
+      "core_id": "qcb-core-la-013",
+      "predecessor_key": "qcb-core-la-013",
+      "predecessor_item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+      "reason": "The permutation must be explicitly induced by the wire bijection; arbitrary basis permutations need not give the stated circuit rename.",
+      "review": "reports/textbook-v1/reader-reviews/linear-algebra-011-020-review.json",
+      "review_digest": "91acd2c7c75eb4d0db95f87b1743b0352f6925cf3ea20b40fa0b0edee81b0807",
+      "finding_digest": "dc6de2ac88b200ae76d61dd5e4488e8958fd2eda342d20d710d6279f81ea1d67"
+    },
+    {
+      "core_id": "qcb-core-plan-003",
+      "predecessor_key": "qcb-core-plan-003-density-set-convexity",
+      "predecessor_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+      "reason": "The literal boundary-equals-pure-states clause is false; the answer silently substitutes extreme points. Relative and ambient boundary also differ.",
+      "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
+      "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
+      "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0"
+    },
+    {
+      "core_id": "qcb-core-sp-107",
+      "predecessor_key": "qcb-core-sp-107",
+      "predecessor_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+      "reason": "The standalone question does not specify A_k(0)=1 used for the endpoint values; weighted reflection needs explicit shape/weight semantics.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+      "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+      "finding_digest": "a09afc1e0293de4db4da7412ddffcad481527cdcc3ca65a356dcd27300291de4"
+    },
+    {
+      "core_id": "qcb-core-sp-108",
+      "predecessor_key": "qcb-core-sp-108",
+      "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+      "reason": "The question gives the false degree k+1 for t^i(1-t)^(k+1); its degree is i+k+1.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+      "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+      "finding_digest": "a00068654d14500fe3903fde2955649e61d1f1e6ea184f3dd168c9359eddd2dc"
+    },
+    {
+      "core_id": "qcb-core-sp-111",
+      "predecessor_key": "qcb-core-sp-111",
+      "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+      "reason": "The allowed zero grid step invalidates the claimed exact degree 2*deg(q); only an upper bound follows.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+      "finding_digest": "87a3bd96b762a6434e855a55bee89412168140113f31b0e9ae758b40f5f70c43"
+    },
+    {
+      "core_id": "qcb-core-sp-113",
+      "predecessor_key": "qcb-core-sp-113",
+      "predecessor_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+      "reason": "The answer/rubric wrongly attribute the unit grid anchor to strict positivity rather than the central-index and endpoint identity.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+      "finding_digest": "b81bd650d3b6b65a3997bdd8b1ed2f9eaa69ebb5ba2c3716c32dc76e5506548e"
+    },
+    {
+      "core_id": "qcb-core-sp-115",
+      "predecessor_key": "qcb-core-sp-115",
+      "predecessor_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+      "reason": "The width-two threshold assertion omits the bounded natural suffix premise; an allowed unrestricted threshold matrix has rank three.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+      "finding_digest": "207301599011cac2c810f0e5331bcc1e48f81b689ff8fd692d08c78aa3738f0b"
+    },
+    {
+      "core_id": "qcb-core-sp-117",
+      "predecessor_key": "qcb-core-sp-117",
+      "predecessor_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+      "reason": "The answer conflates rank one at a single cut, all-cut product structure, exact-real circuit existence and a computed finite-bit compiler.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+      "finding_digest": "114d7fd61409efca3a2e77f0052725e3460c5c1ff061a1bd45c875e410e07828"
+    },
+    {
+      "core_id": "qcb-core-sp-119",
+      "predecessor_key": "qcb-core-sp-119",
+      "predecessor_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+      "reason": "The question may conflate a family of order-k bridges with one fixed infinitely smooth function; its quantifiers need clarification.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+      "finding_digest": "58557745ed1b5f803ae270ac6a915b0621373c468f46c39e57f8885babc9c70b"
     }
   ]
 }

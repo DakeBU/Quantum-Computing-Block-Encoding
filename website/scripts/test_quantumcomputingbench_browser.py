@@ -28,8 +28,8 @@ def run(root, output, channel=None):
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     base = f"http://127.0.0.1:{server.server_port}/"
-    rows, formal_rows, failures = [], [], []
-    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers", "native_formal_panels")}
+    rows, formal_rows, withdrawal_rows, failures = [], [], [], []
+    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers", "native_formal_panels", "quarantined_content_excluded")}
     core_route = HUB + "cores/" + catalog["cores"][0]["core_id"] + "/index.html"
     routes = [HUB + "index.html", HUB + "non-lean/index.html", HUB + "lean/index.html",
               HUB + "non-lean/state-preparation/structured_preparation/index.html",
@@ -73,6 +73,15 @@ def run(root, output, channel=None):
                 if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
                     failures.append("core overflow: " + route)
             # Check actual expanded targets/proofs, not only folded companions.
+            for core in catalog.get("withheld_cores", []):
+                route = HUB + "cores/" + core["core_id"] + "/index.html"
+                page.goto(base + route, wait_until="domcontentloaded")
+                if not page.locator('[data-qcb-withheld]').count() or page.locator('#solution, #hint, #rubric').count():
+                    failures.append("quarantine notice exposed original exercise content: " + route)
+                if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
+                    failures.append("quarantine notice overflow: " + route)
+                withdrawal_rows.append({"core_id": core["core_id"], "width": 390, "excluded_from_reader": True})
+            # check_site also checks ordinary search and reader JSON exclusion.
             for width in (390, 1280):
                 page.set_viewport_size({"width": width, "height": 900})
                 for theme in THEMES:
@@ -144,6 +153,7 @@ def run(root, output, channel=None):
               "browser_channel": channel or "playwright-chromium", "checks": checks,
               "route_viewport_theme_checks": rows, "all_core_mobile_checks": len(catalog["cores"]),
               "native_formal_panel_checks": formal_rows,
+              "withdrawal_notice_checks": withdrawal_rows,
               "failures": failures, "manual_visual_review": "not asserted by this script",
               "question_only_search": "Exact question summaries checked by check_site; reference answers are not indexed."}
     (output / "browser-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

@@ -22,13 +22,41 @@ def check_source_bindings(bindings):
             raise ValueError("mathematical review source binding changed")
 
 
+def check_withdrawal(row, original):
+    """Bind a disposition to its actual predecessor, independent finding and sources."""
+    if (row["core_id"] != original["core_id"] or original["key"] != row["predecessor_key"]
+            or digest(original) != row["predecessor_item_digest"]):
+        raise ValueError("reader quarantine does not bind its exact predecessor")
+    review_path = B / row["review"]
+    if not review_path.resolve().is_relative_to(B):
+        raise ValueError("external quarantine review paths are forbidden")
+    review = read_json(review_path)
+    findings = [r for r in review.get("items", []) if r.get("core_id") == row["core_id"]]
+    if (digest(review) != row["review_digest"] or len(findings) != 1
+            or review.get("method") != "independent-mathematical-reader-review"
+            or not review.get("reviewer") or review["reviewer"] == original["author"]["identity"]):
+        raise ValueError("reader quarantine lacks an exact independent review")
+    finding = findings[0]
+    if (digest(finding) != row["finding_digest"] or finding.get("item_digest") != digest(original)
+            or finding.get("verdict") not in {"reject", "uncertain"} or not finding.get("reasoning")):
+        raise ValueError("reader quarantine is not backed by this rejected or uncertain content")
+    check_source_bindings(finding["source_checks"])
+    return finding
+
+
 def apply_current_reader_policy(native):
     items = {i["core_id"]: deepcopy(i) for i in native}
     decisions = []
-    for row in read_json(B / "shared/current-policy.json")["answer_successors"]:
+    policy = read_json(B / "shared/current-policy.json")
+    rows = policy["answer_successors"] + policy.get("withdrawals", [])
+    if len({row["core_id"] for row in rows}) != len(rows):
+        raise ValueError("a core cannot have conflicting reader policy decisions")
+    for row in policy["answer_successors"]:
         original = items.pop(row["core_id"])
         if original["key"] != row["predecessor_key"] or digest(original) != row["predecessor_item_digest"]:
             raise ValueError("textbook withdrawal does not bind its exact historical predecessor")
+        if row.get("prior_withdrawal"):
+            check_withdrawal(row["prior_withdrawal"], original)
         repair_path, review_path = B / row["repair"], B / row["review"]
         if not repair_path.resolve().is_relative_to(B) or not review_path.resolve().is_relative_to(B):
             raise ValueError("external repair/review paths are forbidden")
@@ -80,6 +108,11 @@ def apply_current_reader_policy(native):
                 items[row["core_id"]] = current
                 decision["status"] = "reviewed_answer_successor_admitted_to_reader"
         decisions.append(decision)
+    for row in policy.get("withdrawals", []):
+        original = items.pop(row["core_id"])
+        finding = check_withdrawal(row, original)
+        decisions.append({**row, "status": "withheld_pending_mathematical_correction",
+                          "finding_verdict": finding["verdict"]})
     return list(items.values()), decisions
 
 

@@ -17,6 +17,14 @@ preview assets remain historical, not automatically current gold. Their native
 scoring/repackaging entry fails closed until a separately versioned data release
 is prepared. The current reader export preserves the original core and split.
 
+**Further reader review:** exact rejected or ambiguous questions/answers are
+withheld through the same [bound current policy](shared/current-policy.json),
+without inventing a replacement. Their core IDs, contracts and splits remain
+reserved for corrections, and old links display a withdrawal notice rather than
+an unapproved answer. Current reader/search exports exclude these records.
+Withdrawal does **not** remove a core from the stable-release review obligation.
+All historical content and the substantive findings remain inspectable.
+
 ## Hierarchical exercise book
 
 The website reader organizes the retained native cores into five parts:
@@ -57,15 +65,17 @@ synthesis results, or kernel certification of the entire NL explanation.
 
 | Cohort | Current scope | Evidence and use |
 | --- | --- | --- |
-| Native NL, `nl-v12` + integration admission overlay | 213 retained core IDs from 238 active records; 21 provisional + 4 newly quarantined | Original English knowledge, proof, counterexample and boundary QA; imported source-grounded AI reviews plus integration audit |
+| Frozen native preview, `nl-v12` + integration admission overlay | 213 preview core IDs from 238 active records; 21 provisional + 4 integration quarantines | Historical public distribution, before subsequent current-reader withdrawals; not automatically current gold |
 | Legacy, `release-v3` | 26 inherited-review diagnostics | Separate public diagnostic cohort, not pooled native training |
 | Legacy provisional | 12 repaired/new diagnostics plus 8 other historical candidates | Preserved for review; not released gold |
 | Fixed Lean references | 16 checked claims and 3 reference application harnesses | Formal reference evidence, not certification of all NL answers or untrusted predictions |
 | Coverage universe | 5,153 nodes with dispositions | A denominator/ledger, not 5,153 questions or completed coverage |
 
-Native evidence remains separated: 60 local-source-supported answers, 53 original
+Frozen preview evidence remains separated: 60 local-source-supported answers, 53 original
 NL bridges and 100 primary-source NL-only answers. Native train/dev/public-test
-counts are **74 / 21 / 118**. Nine admitted same-core repairs do not add cores.
+counts are **74 / 21 / 118**. Current-reader totals and exclusions are generated
+by `scripts/curriculum.py validate`; do not reuse the frozen totals as current
+reader counts. Nine historical admitted same-core repairs do not add cores.
 The questions require mathematical understanding, not Lean syntax or API recall.
 
 The four integration quarantines concern square roots/instruments, a PPT
@@ -78,6 +88,12 @@ Cross-cohort semantic core reconciliation and actual external Lean-collaborator
 acknowledgment remain pending. We deliberately publish **no aggregate distinct-core
 count** and no combined training split. The preview co-releases preserved cohorts;
 it does not fabricate shared-core approval.
+
+The [first bounded cross-cohort audit](reports/textbook-v1/cohort-reconciliation/review-at-8533b9b.json)
+records its prior selection snapshot, a confirmed same-core pair and cross-split
+mechanism overlap. It is not exhaustive global deduplication, does not approve
+unlisted pairs, and predates the current withdrawals and latest answer repairs.
+Its historical inventory count must not be reused as the latest reader count.
 
 **Isolated untrusted Lean evaluation: ENV_BLOCKED. Real-model baseline: UNMEASURED.**
 Source inspection, successful execution, useful progress, formal correctness and

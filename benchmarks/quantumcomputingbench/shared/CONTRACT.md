@@ -30,6 +30,11 @@ remain where they are; reader pages resolve their exact admitted source records.
    before proposal admission. Do not patch a frozen snapshot or silently mix node
    identities/source hashes across graph versions. Submit the refresh request and
    source evidence with your candidate if the current registry lacks its anchor.
+8. A withheld core remains reserved in `withheld_cores`, with its original
+   contract, graph scope, family and split. It is not current gold. Proposing a
+   correction does not restore it automatically, and withdrawal does not erase
+   its stable-release obligation. Question changes require an explicit reviewed
+   successor; an answer-only repair cannot silently alter the original premises.
 
 ## Concurrent collaborators
 

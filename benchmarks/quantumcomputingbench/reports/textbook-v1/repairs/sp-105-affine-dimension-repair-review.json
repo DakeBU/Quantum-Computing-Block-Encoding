@@ -1,0 +1,57 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-sp-105",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-105-affine-dimension-repair.json",
+  "repair_record_digest": "3e6bc43d7c1c1f10a8a83c16b1fa833dcdb3f8a55662ec5273d302f520b1063f",
+  "original_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+  "verdict": "accept",
+  "verdict_scope": "Correctness and unchanged-question fitness of the entire exact additive successor, including reference answer, all rubric criteria, core summary and all three semantic steps. This does not approve the historical predecessor or claim a newly compiled dimension theorem.",
+  "independence": {
+    "actual_identity": "/root/qcb_boundary_repair_review is the actual separately dispatched reviewer task and authored neither the candidate nor the original record.",
+    "repair_author": "/root",
+    "original_author": "structured-preparation-author-b2",
+    "distinct_from_repair_author": true,
+    "exposure": "Not blind. The parent identified the desired review risks, and the full candidate and original prepared record, including historical review metadata, were visible. Mathematical acceptance follows the reconstruction below, not the parent's assertions or earlier verdicts. No new reviewer identity or independent kernel execution is invented."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "e239c4f961247b71d53bc63f03b5731eac7660e8dd9d5a253d3a45ba183fd15c",
+    "retrieval": "Selected the full actual qcb-core-sp-105 prepared historical native record returned by scripts/release.checked()[2], rather than a current-reader item that may be withheld. Read the entire question, answer, rubric, assumptions, conventions, semantic steps and exact source references.",
+    "hash_definition": "original_item_digest=qcb_core.digest(entire prepared original); repair_record_digest=qcb_core.digest(entire parsed exact candidate JSON); contract_hash=qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}). CONTRACT_FIELDS are question, assumptions, conventions, family, split, graph_version, target_nodes, supporting_nodes and source_refs.",
+    "reasoning": "The literal question has no degree restriction on the full solution set and explicitly asks its exact dimension, after requesting the degree-2k+2 counterexample. Empty assumptions/conventions do not authorize introducing a finite cap. The successor gives the unrestricted affine dimension explicitly and separately discusses capped slices. Calling the fixed-data solution set affine is the necessary clarification of the question's word 'space', not a changed constraint: nonzero fixed jets do not contain the zero polynomial. k being a nonnegative integer is the typing implicit in derivatives through order k and in the source interface. The arbitrary endpoint data remain arbitrary real jets. No source-specific exponential jet values are silently added. Family hermite-interpolant-uniqueness, train split, graph/source scope and three-step count remain unchanged."
+  },
+  "substantive_reconstruction": {
+    "vanishing_kernel": "Let A=(x+1)^(k+1), B=x^(k+1), E=AB, with k>=0. E is monic of degree 2k+2. At -1 the A factor supplies a zero of multiplicity at least k+1, and at 0 the B factor does so, hence all derivatives of orders 0 through k vanish at both nodes. Conversely, if a polynomial h has these zero jets, its Taylor coefficients at each node through order k vanish because h^(j)(a)=j! times that Taylor coefficient and j! is nonzero over R. Thus A divides h and B divides h. The distinct linear factors are coprime, so their powers are coprime and E divides h. This proves equality of the zero-jet kernel with E R[x], including the converse needed for the full solution set.",
+    "nonempty_affine_fiber": "For prescribed real derivative values u_j at -1 and v_j at 0, the local Taylor polynomials sum_{j=0}^k u_j(x+1)^j/j! and sum_{j=0}^k v_j x^j/j! realize the two local jets. Coprimality gives a Chinese-remainder polynomial with those residues modulo A and B. Taking its remainder modulo E leaves both residues unchanged and yields a representative p0 of degree less than 2k+2, hence at most 2k+1. This constructs a solution for arbitrary real data, not just the source's exp(-1),(-1)^j special data. Every other solution p satisfies E divides p-p0, so the complete set is exactly p0+E R[x]. It is a vector subspace exactly when all prescribed jets vanish, because only then does it contain zero.",
+    "unrestricted_affine_dimension": "Multiplication by E is an injective R-linear map R[x] onto E R[x]: if E q=0 then q=0 since R[x] is an integral domain and E is nonzero. The images of the standard monomial basis are E x^m for m in N. Every polynomial multiplier has finite monomial support, so this family spans the translation space. For any finite linear combination sum_m c_m E x^m=0, canceling nonzero E gives the zero polynomial sum_m c_m x^m, forcing every c_m=0. The family is therefore a countably infinite Hamel basis. The affine dimension is aleph_0 over R; the uncountability of R or of the affine set itself does not change this algebraic dimension. The answer correctly avoids substituting either a finite dimension or the cardinality of the coefficient set.",
+    "capped_slices_and_sharpness": "For d>=0 and the cap 2k+1+d, a nonzero multiplier q satisfies deg(E q)=2k+2+deg(q). Because deg(p0)<=2k+1, its leading term cannot cancel that of nonzero E q. Thus deg(p0+E q)<=2k+1+d exactly when deg(q)<=d-1, while q=0 is always allowed. Equivalently the multipliers are the span of 1,x,...,x^(d-1), interpreted as the zero space when d=0. These slices have affine dimension d. In particular degree<=2k+1 admits only p0 and the next degree admits the new direction E. The unrestricted fiber is not any one of these finite slices, although it is their increasing union. For k=0 this reduces to E=x(x+1), a unique affine-linear interpolant plus arbitrary multiples of E, so the smallest-order boundary case also works. All-zero jets give p0=0 and the same dimension reasoning without an artificial nonzero-polynomial degree assumption.",
+    "source_boundary": "The generic source interfaces jetPolynomial_jet, twoPointInterpolant_left/right and jet-to-divisibility converses support arbitrary local data. sourceInterpolant_unique is a theorem for the source's particular exponential endpoint data with an explicit degree cap; it is not by itself a theorem of arbitrary-jet affine dimension. The candidate labels the new dimension conclusion as natural-language linear algebra. No current source file is represented as containing a compiled Hamel-dimension result."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept. It supplies the explicit monic counterexample, establishes arbitrary-data existence and the full affine fiber, proves the unrestricted countably infinite real dimension by a basis, distinguishes affine from linear structure, and gives capped slices only as a comparison. Its degree arithmetic and zero-data/d=0 boundaries are correct.",
+    "rubric": {
+      "r1": "Correctly requires nonzero E, exact degree and all endpoint derivatives through k vanishing.",
+      "r2": "Correctly uses p+E and the lower-degree divisibility obstruction to refute unrestricted uniqueness and explain sharpness.",
+      "r3": "Correctly requires a nonempty affine coset and enough existence/divisibility reasoning for arbitrary fixed endpoint jets.",
+      "r4": "Correctly requires countably infinite real affine dimension with the translation-space basis, preventing the predecessor's omission of the actual unrestricted dimension. It does not require a finite cap in place of the original target."
+    },
+    "core_summary": "Correctly identifies the vanishing kernel, full nonempty affine coset, unrestricted dimension and sharp finite-degree boundary.",
+    "semantic_steps": "All three exact steps were read. They follow counterexample/kernel, affine-fiber and dimension reasoning and retain the original allowed nodes and step count. The named source nodes are contextual source anchors, not an asserted elaborated dependency graph: endpointModuli_coprime alone does not prove vanishing derivatives, and sourceInterpolant_unique alone does not prove the infinite-dimensional basis claim. The complete source checks and explicitly disclosed NL extension preserve this distinction.",
+    "necessity_and_minimality": "The predecessor's finite-cap examples and coset observation did not explicitly answer the exact unrestricted dimension asked. The successor supplies that missing answer and its nonempty-affine justification while preserving the original mathematical request. No question rewrite, new hypothesis, new graph node or altered split is needed."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Read the complete module. jetPolynomial and eval_iterate_derivative/jetPolynomial_jet define arbitrary local jets; jet_eq_of_pow_dvd_sub and pow_dvd_sub_of_jet_eq give both multiplicity directions; twoPointInterpolant with its full extended-gcd congruence proofs gives the generic CRT construction; leftModulus/rightModulus and endpointModuli_coprime fix the two endpoint powers. interpolant_degree explains the remainder degree bound; sourceInterpolant_unique uses nonzero-difference divisibility and degree 2k+2 versus the 2k+1 cap. The unrestricted affine-basis proof is independently reconstructed NL mathematics, not attributed to a nonexistent local dimension declaration."
+    }
+  ],
+  "provenance": {
+    "source_inspection": "Complete exact candidate JSON and actual prepared predecessor read; full HermitePolynomial source read. Repository protocols previously read remain applicable.",
+    "new_kernel_execution": false,
+    "external_primary_source_dependency": "None required for this local polynomial-interface review; no external source statement or efficiency result is newly claimed.",
+    "verification": "Bindings use repository qcb_core.digest and LF-normalized qcb_integrity.text_sha; they identify the inspected objects and are not substitutes for the mathematical reconstruction.",
+    "mutation_scope": "Only the two specifically requested new successor-review files are authored in this pass. Original items, candidate records, source files, prior reviews and current policy remain untouched."
+  }
+}
