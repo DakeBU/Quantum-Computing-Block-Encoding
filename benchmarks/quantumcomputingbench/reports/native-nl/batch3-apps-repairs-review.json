@@ -1,0 +1,55 @@
+{
+  "reviewer": "qit-applications-reviewer-b3",
+  "method": "distinct-context-source-review",
+  "scope": "repair_items_review",
+  "reviews": "benchmarks/quantumcomputingbench/data/native_nl/batch3_apps_repairs.json",
+  "items": [
+    {
+      "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds-corrected-v2",
+      "authored_sha256": "673e15cbc9670a69a88be577cb5d5629c0fd27c85110403e2cccd9dbb7e7572b",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds"
+      ],
+      "repair_admission": true,
+      "notes": "Repair of original 402 OCR-grouping defect, verified sound against visually-inspected PDF p59 Eq 7.5. Correct criterion is alpha >= (1-d)/k (numerator grouping (1-d), confirmed on temp/qit-page-59.png and Figure 1(a) d=2 giving alpha>=-1/k=(1-2)/k). Math checked by hand: (i) k=2, d>=3 => (1-d)/2 <= -1, and every admissible alpha>=-1 satisfies it, so EVERY d>=3 Werner state is 2-extendible (now TRUE universally, fixing the original item's false sub-claim); (ii) thresholds (1-d)/k are negative and increase to 0 as k grows, so holding for all k <=> alpha>=0 (if alpha<0, large k with (1-d)/k > alpha violates it) = separability threshold, limit 0 clean (NOT 1); (iii) isotropic with c=d/(d+1): x>=c(1-1/k) <=> 1/k>=1-x/c, so for 0<=x<c the allowed k are 1<=k<=1/(1-x/c), largest = floor of that; x>=c => all k; all-k threshold x>=d/(d+1). The explicit grouping remark ('(1-d)/k not 1-d/k; the latter tends to 1 and is a different false criterion') is correct and is the honest primary-typo/linearization admission. new_problem_core=false, aliased to original; no new core added. Repair is mathematically sound and faithful; accept.",
+      "checked_sources": [
+        "p59#Example 7.2 Eq (7.5) visual (fraction (1-d)/k)",
+        "p60#Eq (7.6), Figure 1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2",
+      "authored_sha256": "02f6d579d4e141cb80774d084956158b43678070545820a6e726530accf8e670",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-plan-411-transpose-trick-and-UU-invariance"
+      ],
+      "repair_admission": true,
+      "notes": "Repair of original 411 (which carried the false intermediate 'U^T=conj(U^dagger) is false' and abandoned false-starts). Verified clean and sound. (a) Transpose trick: (X⊗I)|Phi>=(1/sqrt d)sum_{i,j}X(j,i)|j>|i>; (I⊗X^T)|Phi>=(1/sqrt d)sum_{i,j}X(i,j)|i>|j>, equal after dummy-index swap -- correct. (b) (U⊗barU)|Phi>=(I⊗barU)(U⊗I)|Phi>=(I⊗barU U^T)|Phi>, and barU U^T=conj(U U^dagger)=conj(I)=I, so invariant -- the derivation is now a single correct line with NO false statement (previously it wrongly called U^T=conj(U^dagger) 'false'; that identity is in fact true for every matrix). Explicit counterexample U=diag(1,i): U⊗U sends (|00>+|11>)/sqrt2 to (|00>-|11>)/sqrt2, verified, correctly showing un-conjugated U⊗U does NOT fix |Phi> and that the source Exercise 6.1 'U⊗U' wording is a genuine discrepancy repaired to U⊗barU. Basis-dependence of transpose/conjugate stated. new_problem_core=false, aliased; no new core. Sound; accept.",
+      "checked_sources": [
+        "p58#Exercise 6.1 (source states U⊗U; true stabilizer U⊗barU)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2",
+      "authored_sha256": "846b5156d862681c6353df2a78c46227f71da0d7b1626f77169660714c42514a",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing"
+      ],
+      "repair_admission": true,
+      "notes": "Repair of original 418 (wrong single-isometry CP reason, unsound trace-non-increase bound, wrong pure-power equality condition). Verified sound. CP: embedding X->X⊗I is given via orthonormal insertion maps K_j:v->v⊗e_j with sum_j K_j X K_j^dagger = X⊗I (multi-Kraus, explicitly 'needs several Kraus maps, not one isometry') -- correct, fixing the false single-Kraus claim; composed with CP compression Y->Pi_M Y Pi_M and positive scaling. Exact trace: partial trace of Pi_M over last M-N factors Q = d_M int|phi><phi|^N = (d_M/d_N)Pi_N (each traced projector has trace 1), verified via the Haar identity Pi_L=d_L int|phi><phi|^L; then tr T(X)=(d_N/d_M)tr[(X⊗I)Pi_M]=(d_N/d_M)tr(XQ)=tr(X Pi_N)<=tr X since Pi_N<=I -- the correct exact formula replacing the earlier bound whose factor exceeded 1. Equality iff tr[X(I-Pi_N)]=0, shown equivalent (for X>=0) to supp(X) in Sym^N via ||(I-Pi_N)X^{1/2}||_HS^2 = tr[X(I-Pi_N)] -- correct. Counterexample (|01>+|10>)/sqrt2 is symmetric (trace preserved) yet not a mixture of pure powers (pure entangled != convex comb of product pure states), correctly showing the condition is Sym^N-support, strictly larger than separable pure-power mixtures. new_problem_core=false, aliased; no new core. Sound; accept.",
+      "checked_sources": [
+        "p60-61#Lemma 7.3 Eq (7.9) Haar identity",
+        "p67-69#Eq (8.25), Exercise 8.5"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

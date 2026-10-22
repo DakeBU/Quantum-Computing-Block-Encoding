@@ -1,0 +1,1064 @@
+[
+  {
+    "core_id": "qcb-core-la-101",
+    "key": "qcb-core-la-101",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A planar rotation acts on two rows by the half-angle convention: the first row becomes cos(t/2)*x - sin(t/2)*y and the second becomes sin(t/2)*x + cos(t/2)*y, where (x,y) are the two entries in some column. Choosing the elimination angle to be the negative of the exact angle whose cosine and sine (times the pair length r=sqrt(x^2+y^2)) reproduce x and y, prove that this rotation sends the pair (x,y) to (r,0). Then explain why the special pair x=y=0 needs no separate division-by-zero case.",
+    "reference_answer": "By construction the exact split angle a satisfies cos(a/2)*r = x and sin(a/2)*r = y. The elimination angle is -a, so cos(-a/2)=cos(a/2) and sin(-a/2)=-sin(a/2). The transformed first entry is cos(a/2)*x + sin(a/2)*y = cos(a/2)*(cos(a/2)*r) + sin(a/2)*(sin(a/2)*r) = (cos^2(a/2)+sin^2(a/2))*r = r by the Pythagorean identity. The transformed second entry is -sin(a/2)*x + cos(a/2)*y = -sin(a/2)*cos(a/2)*r + cos(a/2)*sin(a/2)*r = 0. Hence the pair maps to (r,0) exactly, with no approximation. For x=y=0 the length r is 0 and the chosen elimination angle is defined to be 0, so the rotation is the identity and the already-zero pair stays (0,0); no reciprocal of a vanishing norm is ever formed, so the construction is total. This is an exact-real elimination identity, not a floating-point or arithmetic-cost claim.",
+    "rubric": [
+      {"id": "c1", "criterion": "Use cos(a/2)*r=x, sin(a/2)*r=y and the Pythagorean identity to get first entry r", "weight": 1},
+      {"id": "c2", "criterion": "Show the second entry cancels to exactly 0", "weight": 1},
+      {"id": "c3", "criterion": "Explain the zero pair is handled by angle 0 with no division", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.eliminate_pair"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.eliminationAngle",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.eliminationAngle_zero",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.splitAngle_real_firstColumn"
+    ],
+    "assumptions": [
+      "Finite-dimensional real matrices; two selected rows and one column",
+      "The split angle reproduces the pair up to the nonnegative length r"
+    ],
+    "conventions": [
+      "RY half-angle convention: a plane rotation uses cos(t/2) and sin(t/2)",
+      "Elimination angle is the negative of the exact preparation angle; zero pivots get angle 0",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Record the defining identities cos(a/2)*r=x and sin(a/2)*r=y of the split angle.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.splitAngle_real_firstColumn"]},
+      {"claim": "Substitute into the first transformed entry and collapse via cos^2+sin^2=1 to get r.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.eliminate_pair"]},
+      {"claim": "Substitute into the second transformed entry and cancel to 0.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.eliminate_pair"]},
+      {"claim": "Handle the zero pair by the defined angle 0, giving the identity with no division.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.eliminationAngle_zero"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Multi-step exact trigonometric cancellation plus a totality boundary case."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "splitAngle_real_firstColumn84-97; eliminationAngle99-99; eliminationAngle_zero101-102; eliminate_pair104-119", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-givens-pair-elimination",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A half-angle plane rotation by the negative exact split angle sends a column pair (x,y) to (sqrt(x^2+y^2),0); the zero pair uses angle 0 and needs no division.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-102",
+    "key": "qcb-core-la-102",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Replacing two distinct rows i and j of a square matrix by the linear mixtures (a*row_i + b*row_j) and (c*row_i + d*row_j) multiplies the determinant by (a*d - b*c). Use this to prove that a plane rotation acting on rows i and j by the half-angle convention leaves the determinant unchanged.",
+    "reference_answer": "Expanding the determinant linearly in the two updated rows produces four terms. The two terms that reuse the same original row twice (coefficients a*c on row_i in both slots, and b*d on row_j in both slots) are determinants with two equal rows, hence 0. The surviving cross terms are a*d times the original determinant and b*c times the determinant with rows i and j swapped; the swap introduces one transposition, so its sign is -1 and that determinant equals -det. Collecting gives (a*d)*det + (b*c)*(-det) = (a*d - b*c)*det. For a plane rotation the mixing coefficients are a=cos(t/2), b=-sin(t/2), c=sin(t/2), d=cos(t/2), so a*d - b*c = cos^2(t/2) + sin^2(t/2) = 1. Therefore the rotation preserves the determinant exactly. This is an exact algebraic identity about the determinant, not an arithmetic evaluation cost.",
+    "rubric": [
+      {"id": "c1", "criterion": "Kill the repeated-row terms via equal-row determinant 0", "weight": 1},
+      {"id": "c2", "criterion": "Identify the swap term sign as -1 and assemble a*d - b*c", "weight": 1},
+      {"id": "c3", "criterion": "Specialize rotation coefficients to get factor cos^2+sin^2=1", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.det_two_row_mix",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.rotateRows_det"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.planeMatrix_det"
+    ],
+    "assumptions": [
+      "Finite-dimensional real square matrix; two distinct selected rows",
+      "Determinant is multilinear and alternating in rows"
+    ],
+    "conventions": [
+      "RY half-angle convention for the rotation coefficients",
+      "A single row transposition contributes sign -1",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Expand the determinant multilinearly in both replaced rows into four terms.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.det_two_row_mix"]},
+      {"claim": "Discard the two equal-row terms as zero determinants.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.det_two_row_mix"]},
+      {"claim": "Evaluate the swap term with sign -1 and collect the factor a*d - b*c.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.det_two_row_mix"]},
+      {"claim": "Substitute the rotation coefficients to obtain the factor cos^2+sin^2=1.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.rotateRows_det"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Multilinear determinant expansion with a sign bookkeeping and a trigonometric specialization."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "det_two_row_mix341-365; rotateRows_det367-378; planeMatrix_det381-383", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-givens-determinant",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Mixing two rows by (a,b),(c,d) scales the determinant by a*d-b*c; for a plane rotation this factor is cos^2+sin^2=1, so the determinant is preserved.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-103",
+    "key": "qcb-core-la-103",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A sequence of plane rotations is applied to a matrix in chronological order (the first listed rotation acts first). Prove that reversing the list and negating every rotation angle undoes the whole sequence exactly, returning the original matrix.",
+    "reference_answer": "First, a single plane rotation by angle t followed by the plane rotation on the same ordered pair by -t is the identity: on the chosen two rows the composed linear map has matrix [[cos,-sin],[sin,cos]] times [[cos,sin],[-sin,cos]], which equals the identity because cos^2+sin^2=1 and the cross terms cancel; all other rows are untouched. This gives the single-step inverse law. Now argue by induction on the applied list. For the empty list there is nothing to undo. For a list (step :: rest), applying it means first acting by step then by rest; the proposed undo is (reverse rest ++ [step^{-1}]) with every angle negated, i.e. first undo rest then undo step. By the induction hypothesis undoing rest returns the matrix to the state right after step, and then the single-step inverse law removes step, recovering the original matrix. Because each step is distinct on an adjacent ordered pair, the inverse law applies at every stage. The result is an exact recovery statement, not an assertion about numerical conditioning.",
+    "rubric": [
+      {"id": "c1", "criterion": "Prove the single-step inverse law plane(t) then plane(-t) is identity", "weight": 1},
+      {"id": "c2", "criterion": "Set up induction on the list with correct reversed/negated undo order", "weight": 1},
+      {"id": "c3", "criterion": "Combine induction hypothesis and single-step law to recover the matrix", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.applySteps_reverse_inverse"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.planeMatrix_inverse",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.applySteps_append",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.Step.inverse"
+    ],
+    "assumptions": [
+      "Finite-dimensional real matrices; each step acts on a distinct ordered row pair",
+      "Chronological application: the first listed rotation acts first"
+    ],
+    "conventions": [
+      "RY half-angle convention; the inverse rotation negates the angle",
+      "Undo list is the reversed list with every angle negated",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Establish the two-row inverse law plane(-t)*plane(t)=1 via cos^2+sin^2=1.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.planeMatrix_inverse"]},
+      {"claim": "Rewrite the reversed-negated undo of (step::rest) as undo-rest then undo-step.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.applySteps_append"]},
+      {"claim": "Apply the induction hypothesis to cancel rest.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.applySteps_reverse_inverse"]},
+      {"claim": "Apply the single-step inverse law to cancel the leading step and recover the matrix.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.Step.inverse"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Structural list induction resting on an exact two-row inverse identity."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "planeMatrix_inverse57-60; Step.inverse197-198; applySteps_append200-205; applySteps_reverse_inverse207-220", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-rotation-reversibility",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Reversing a chronological list of plane rotations and negating every angle exactly inverts the sequence, by a single-step inverse law plus list induction.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-104",
+    "key": "qcb-core-la-104",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A column is cleared by a bottom-up sweep: starting from a low index, adjacent rows are rotated upward one pair at a time so that each lower entry is folded into the one above it. Prove that after sweeping the window of rows from lo to lo+count, every entry of that column strictly below the top row lo is zero, while any row lying outside the window (above lo or below lo+count) is left exactly as it was.",
+    "reference_answer": "Argue by induction on the number of adjacent eliminations. The outside-invariance is proved first: a single adjacent elimination on the pair (r,r+1) changes only rows r and r+1, so any row whose index is below lo or above lo+count is never one of these pairs across the whole sweep, and its value is unchanged; this is a direct per-step bookkeeping over the recursion. For the zeroing claim, consider a row index v with lo < v <= lo+count. In the inductive step the sweep performs the elimination that folds row v into v-1 (clearing the entry at v) and then recurses on the remaining upper eliminations, which only touch rows at or above v-1 and hence, by outside-invariance for the smaller window, do not disturb the freshly created zero at v. The base pivot pair uses the exact elimination identity, which places 0 in the lower slot. Thus every strictly-below entry ends at 0 while the frame outside the window is untouched. This describes exact-real elimination semantics, not an iteration-count cost.",
+    "rubric": [
+      {"id": "c1", "criterion": "Prove rows outside the window are unchanged by every step", "weight": 1},
+      {"id": "c2", "criterion": "Use the pair elimination to zero the swept entry, by induction over the window", "weight": 1},
+      {"id": "c3", "criterion": "Argue later eliminations do not disturb an already-created zero", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_zeroed"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_outside",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.eliminateEntry_pivot",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.eliminateEntry_unchanged"
+    ],
+    "assumptions": [
+      "Finite-dimensional real matrix; the swept window stays within the row range",
+      "Each elimination touches only one adjacent ordered row pair"
+    ],
+    "conventions": [
+      "Bottom-up sweep: lower rows are folded into the next higher row",
+      "RY half-angle convention; a zero pair produces an identity step",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Show one adjacent elimination fixes every row other than the touched pair.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.eliminateEntry_unchanged"]},
+      {"claim": "Propagate this to full outside-invariance of the sweep by induction.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_outside"]},
+      {"claim": "Zero the current swept entry using the exact pair-elimination identity.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.eliminateEntry_pivot"]},
+      {"claim": "Use outside-invariance on the smaller window to protect the created zero.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_zeroed"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Nested induction coordinating a zeroing invariant with a window-outside invariant."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "eliminateEntry_pivot145-149; eliminateEntry_unchanged151-154; columnSweep_outside265-281; columnSweep_zeroed283-303", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-sweep-zeroing-invariant",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A bottom-up adjacent sweep zeros a column strictly below its top window row while leaving rows outside the window untouched, by a zeroing induction protected by outside-invariance.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-105",
+    "key": "qcb-core-la-105",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Let B have orthonormal columns (B^T B = I) and suppose one column c of B is supported only on its diagonal row, i.e. every entry of column c off that row is zero. Prove that the diagonal entry B[c,c] squares to 1. If in addition the sweep guarantees that this pivot is nonnegative, prove that it equals exactly +1.",
+    "reference_answer": "The (c,c) entry of B^T B is the inner product of column c with itself, which equals the sum over all rows of B[row,c]^2. By the support hypothesis only the diagonal row survives, so this sum collapses to B[c,c]^2. Orthonormality gives the (c,c) entry of B^T B equal to 1, hence B[c,c]^2 = 1. A real number whose square is 1 is +1 or -1; combined with the sweep guarantee 0 <= B[c,c], the only possibility is +1. The nonnegativity itself comes from the elimination placing the pivot equal to a pair length sqrt(x^2+y^2) >= 0, propagated through the recursion. This settles the pivot sign without any normalization or square-root reciprocal, purely from orthonormality and a sign bound.",
+    "rubric": [
+      {"id": "c1", "criterion": "Collapse the diagonal Gram entry to a single squared term using support", "weight": 1},
+      {"id": "c2", "criterion": "Conclude the square equals 1 from orthonormality", "weight": 1},
+      {"id": "c3", "criterion": "Use the nonnegative-pivot guarantee to pin the value to +1", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.orthogonal_supported_column_sq"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_pivot_nonneg",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_prefix_succ"
+    ],
+    "assumptions": [
+      "Finite-dimensional real matrix with B^T B = I",
+      "The named column is supported only on its diagonal row"
+    ],
+    "conventions": [
+      "Pivots produced by elimination equal a nonnegative pair length",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Write the diagonal Gram entry as the sum of squared column entries.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.orthogonal_supported_column_sq"]},
+      {"claim": "Collapse the sum to the single diagonal term via the support hypothesis.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.orthogonal_supported_column_sq"]},
+      {"claim": "Deduce the pivot squares to 1 from orthonormality.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.orthogonal_supported_column_sq"]},
+      {"claim": "Combine the square-one condition with the nonnegativity bound to force +1.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_pivot_nonneg"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Gram-entry collapse followed by a sign argument tying square-one to a nonnegativity bound."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "columnSweep_pivot_nonneg422-439; orthogonal_supported_column_sq441-455; columnSweep_prefix_succ457-483", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-orthonormal-pivot-sign",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "An orthonormal matrix with a column supported only on its diagonal has that pivot squaring to 1; a nonnegative-pivot guarantee pins it to exactly +1.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-106",
+    "key": "qcb-core-la-106",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Suppose a real NxN matrix A is orthogonal (A^T A = I), has determinant 1, and its first N-1 columns have already been reduced to the standard identity prefix (column c equals the c-th coordinate vector for every c < N-1 index, where N-1 denotes the last index k with k+1=N). Prove that A must equal the identity matrix. Explain precisely where the determinant hypothesis is used.",
+    "reference_answer": "First show A is diagonal. For any column, if it is one of the fixed early columns it is already a coordinate vector, so its off-diagonal entries vanish. For the single last column, orthogonality against each fixed early column forces its entries in the early rows to be zero: the inner product of the last column with a fixed coordinate column equals that one surviving entry, which must be 0. The remaining possible nonzero off-diagonal entries lie in the last column at the last row region, but the symmetric orthogonality argument eliminates those too, leaving A diagonal. On the diagonal, every early entry is 1 by the prefix hypothesis, so A = diag(1,...,1,A[last,last]). Taking determinants of a diagonal matrix gives the product of diagonal entries, which here is exactly A[last,last]. The determinant hypothesis det A = 1 therefore forces A[last,last] = 1. Without det = 1 the last diagonal could be -1 (a reflection), which is still orthogonal with an identity prefix but is not the identity; the determinant is precisely what selects the +1 orientation. Hence A = I.",
+    "rubric": [
+      {"id": "c1", "criterion": "Use orthogonality with fixed coordinate columns to force off-diagonal zeros", "weight": 1},
+      {"id": "c2", "criterion": "Reduce A to a diagonal with 1s except possibly the last entry", "weight": 1},
+      {"id": "c3", "criterion": "Use det = 1 to pin the last diagonal to +1 and note -1 is the alternative", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.matrix_eq_one_of_last_prefix"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.orthogonal_zero_of_fixed_column",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.matrix_eq_one_of_full_prefix"
+    ],
+    "assumptions": [
+      "Finite-dimensional real matrix with A^T A = I and det A = 1",
+      "First N-1 columns are already the standard identity prefix"
+    ],
+    "conventions": [
+      "The determinant of a diagonal matrix is the product of its diagonal entries",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Zero every off-diagonal entry by orthogonality with the fixed coordinate columns.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.orthogonal_zero_of_fixed_column"]},
+      {"claim": "Conclude A is diagonal with 1s in the first N-1 positions.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.matrix_eq_one_of_last_prefix"]},
+      {"claim": "Compute the determinant as the single remaining diagonal entry.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.matrix_eq_one_of_last_prefix"]},
+      {"claim": "Apply det = 1 to force the last diagonal to +1, excluding the -1 reflection.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.matrix_eq_one_of_last_prefix"]}
+    ],
+    "difficulty": {"level": "advanced", "rationale": "Combines an orthogonality off-diagonal argument with a determinant orientation lock and an explicit alternative."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "orthogonal_zero_of_fixed_column403-408; matrix_eq_one_of_full_prefix485-488; matrix_eq_one_of_last_prefix490-525", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-so-identity-termination",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "An orthogonal det-1 matrix whose first N-1 columns are the identity prefix must be the identity; the determinant hypothesis pins the final diagonal to +1 rather than a -1 reflection.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-107",
+    "key": "qcb-core-la-107",
+    "topic": "matrix_constructions",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A width-n binary-reflected Gray labeling assigns to each index in 0..2^n-1 a computational-basis string, little-endian, with the recursion that index 2*q+b carries head bit (b xor (q mod 2)) over the Gray label of q. Prove that two numerically consecutive indices (second = first + 1) carry labels that differ in exactly one physical bit, i.e. the second label is obtained from the first by a single X action on one wire.",
+    "reference_answer": "Induct on the width n. For n=0 there are no two distinct indices, so the claim is vacuous. For width n+1 write first = 2*q + b. There are two cases by the parity of first. If first is even (b=0), then first+1 = 2*q+1 shares the same tail q, so the Gray tails coincide and only the head bit can change; the head recursion gives head(first+1) = flip(head(first)) because the tail q is unchanged and the stored head toggles, so exactly the head wire flips. If first is odd (b=1), then first+1 = 2*(q+1), the head bit is governed by the parity of the quotient and stays equal while the tail advances from q to q+1; applying the induction hypothesis to the tail yields a single flipped wire there, and lifting that wire through the tail embedding gives one physical X action on the full string. In both cases exactly one wire changes, and the explicit head-parity lemmas certify which. This is a statement about which single basis relabeling realizes the step, not a gate-cost estimate.",
+    "rubric": [
+      {"id": "c1", "criterion": "Set up induction on width with the correct even/odd split on the first index", "weight": 1},
+      {"id": "c2", "criterion": "Even case: tail fixed, head toggles via the head-parity lemma", "weight": 1},
+      {"id": "c3", "criterion": "Odd case: head fixed, tail advances and the induction hypothesis gives one flipped wire", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GrayBasis.adjacent"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GrayBasis.headBit_even",
+      "declaration:QuantumBlockEncoding.GrayBasis.headBit_odd",
+      "declaration:QuantumBlockEncoding.GrayBasis.equiv"
+    ],
+    "assumptions": [
+      "Little-endian primitive basis strings of a fixed width",
+      "Gray recursion: head of 2*q+b is b xor (q mod 2) over the Gray label of q"
+    ],
+    "conventions": [
+      "A single X action flips exactly one chosen wire of the basis string",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Reduce to width induction and split on the parity of the first index.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayBasis.adjacent"]},
+      {"claim": "Even first index: tail unchanged, head bit toggles.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayBasis.headBit_even"]},
+      {"claim": "Odd first index: head bit unchanged, tail quotient advances.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayBasis.headBit_odd"]},
+      {"claim": "Lift the inductive single-wire flip of the tail to the full string.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayBasis.equiv"]}
+    ],
+    "difficulty": {"level": "advanced", "rationale": "Width induction over a reflected Gray recursion with parity-dependent head/tail casework."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/GrayBasis.lean", "sha256": "658e01d906fc1ed4dd12983ae62c1a45f5639a9d0cbff35c825db9b78445d3db", "anchor": "equiv15-22; headBit_even37-42; headBit_odd44-52; adjacent54-94", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-gray-single-wire-adjacency",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Consecutive binary-reflected Gray indices differ by exactly one physical wire flip, proved by width induction with parity-split head/tail casework.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-108",
+    "key": "qcb-core-la-108",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A rectangular NxM real matrix A is reduced to an upper-trapezoidal residual by accumulating plane rotations into a single orthogonal transform matrix T, so that T*A equals the residual. Prove that T^T times the residual recovers A exactly, and state why T^T is a valid left inverse of T here.",
+    "reference_answer": "The accumulated transform T is a product of plane rotations, each of which is orthogonal; a product of orthogonal matrices is orthogonal, so T^T T = I. The construction guarantees T*A = residual by chaining the per-step actions (each plane rotation left-multiplies the current matrix, matching the chronological product). Multiplying this identity on the left by T^T gives T^T*(T*A) = T^T*residual. The left side regroups by associativity as (T^T T)*A = I*A = A, using orthogonality. Hence T^T*residual = A, an exact reconstruction. T^T is the valid left inverse precisely because T is orthogonal: no numerical pseudo-inverse or least-squares step is involved; the inverse is the transpose by the orthogonality identity. Furthermore T has determinant 1 since each plane rotation has determinant 1, so T is a genuine rotation, not merely an orthogonal reflection. These are exact matrix identities, not an evaluation-cost claim.",
+    "rubric": [
+      {"id": "c1", "criterion": "Establish T^T T = I from a product of orthogonal plane rotations", "weight": 1},
+      {"id": "c2", "criterion": "Left-multiply T*A = residual by T^T and regroup via orthogonality", "weight": 1},
+      {"id": "c3", "criterion": "Note T has determinant 1 so the transpose is the exact inverse", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RectangularGivens.exact_recovery"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.RectangularGivens.transform_orthogonal",
+      "declaration:QuantumBlockEncoding.RectangularGivens.transform_mul",
+      "declaration:QuantumBlockEncoding.RectangularGivens.transform_det"
+    ],
+    "assumptions": [
+      "Finite-dimensional real rectangular matrix; the transform is the accumulated rotation product",
+      "Each plane rotation is orthogonal with determinant 1"
+    ],
+    "conventions": [
+      "Chronological product: the transform left-multiplies the matrix to the residual",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Show the accumulated transform is orthogonal (T^T T = I).", "supporting_nodes": ["declaration:QuantumBlockEncoding.RectangularGivens.transform_orthogonal"]},
+      {"claim": "Record the reduction identity T*A = residual.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RectangularGivens.transform_mul"]},
+      {"claim": "Left-multiply by T^T and collapse T^T T to the identity.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RectangularGivens.exact_recovery"]},
+      {"claim": "Note determinant 1 confirms a genuine rotation and exact transpose inverse.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RectangularGivens.transform_det"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Short orthogonality-based recovery argument with an explicit determinant remark."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/RectangularGivens.lean", "sha256": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133", "anchor": "transform_mul130-133; transform_orthogonal144-145; transform_det147-148; exact_recovery150-153", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-rectangular-exact-recovery",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The accumulated rotation transform is orthogonal with determinant 1, so its transpose times the upper-trapezoidal residual recovers the original rectangular matrix exactly.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-109",
+    "key": "qcb-core-la-109",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A finite matrix-product chain of width-D cores produces an amplitude for a bit string by chronological matrix contraction, with a fixed left boundary vector of length D. Contracting that left boundary into the first core yields a chain with left bond 1. Prove that the single scalar amplitude of this closed chain equals the sum over a of left[a] times the open chain's amplitude indexed by a.",
+    "reference_answer": "Write the first core as a function A[a,out] of an incoming bond a and an output index out, and let the rest of the chain contract to a vector indexed by its own incoming bond. Closing the left boundary replaces the first core by the single-row core whose entry at out is sum over a of left[a]*A[a,out]. The amplitude of the closed chain for a string x is then sum over out of (sum over a of left[a]*A[a,out]) * (tail amplitude at bond out). Expanding the inner definition this is a double sum over a and out of left[a]*A[a,out]*(tail amplitude at out). The open chain's amplitude indexed by a is sum over out of A[a,out]*(tail amplitude at out). So the target expression sum over a of left[a]*(open amplitude at a) is sum over a of left[a]* sum over out of A[a,out]*(tail at out), which is the same double sum with the two finite summations exchanged. Exchanging the order of a finite double sum is valid, so the two expressions are equal. This is an exact contraction identity about absorbing a boundary vector, not a claim about contraction runtime.",
+    "rubric": [
+      {"id": "c1", "criterion": "Express the closed-chain amplitude as a double sum over the first bond and output", "weight": 1},
+      {"id": "c2", "criterion": "Express the target as left-weighted open amplitudes, also a double sum", "weight": 1},
+      {"id": "c3", "criterion": "Equate the two by exchanging the finite summation order", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.MatrixProductChain.closeLeft_contract"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.MatrixProductChain.closeLeft",
+      "declaration:QuantumBlockEncoding.MatrixProductChain.readout"
+    ],
+    "assumptions": [
+      "Fixed-width real cores; left boundary vector of length D; terminal bond 1",
+      "Amplitudes are finite chronological matrix contractions"
+    ],
+    "conventions": [
+      "Closing the left boundary absorbs the vector into the first core only",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Expand the closed-chain amplitude using the folded first core.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.closeLeft"]},
+      {"claim": "Rewrite it as a double sum over the first bond and the output index.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.closeLeft_contract"]},
+      {"claim": "Express the left-weighted open amplitudes as the same double sum.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.readout"]},
+      {"claim": "Conclude equality by exchanging the finite summation order.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.closeLeft_contract"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Contraction identity resting on a finite double-sum exchange."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/MatrixProductChain.lean", "sha256": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974", "anchor": "readout14-17; closeLeft38-40; closeLeft_contract42-49", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-mpc-left-boundary",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Folding a left boundary vector into the first core of a matrix-product chain gives a scalar amplitude equal to the left-weighted sum of open-chain amplitudes, via a finite double-sum exchange.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-110",
+    "key": "qcb-core-la-110",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "In a matrix-product chain with width-D cores and a fixed right boundary vector of length D, define the readout of a bit string as the chronological matrix-vector product that starts from the right boundary and applies each core's selected matrix in turn. Prove that building the chain by absorbing the right boundary into the last core (so the terminal bond is 1) reproduces exactly this readout at every incoming bond.",
+    "reference_answer": "Induct on the number of cores beyond the last. The base case is a single core: absorbing the right vector makes the last core's entry at incoming bond a equal to sum over out-dependent action of (selected matrix times right)[a], which is by definition the readout of a length-one word at bond a; the terminal bond-1 contraction is just this scalar. For the inductive step with one more core on the left, the contraction of the built chain at bond a is sum over b of (selected matrix of the new core)[a,b] times the contraction of the shorter built chain at bond b. By the induction hypothesis the shorter contraction equals the readout starting one step later, so the whole expression is sum over b of M[a,b] * readout(rest)[b], which is exactly the matrix-vector product defining readout at the current step. Hence the built chain contracts to the readout for every word and every incoming bond. This identifies two definitions of the same amplitude; it makes no contraction-cost assertion and the terminal rank is one by construction.",
+    "rubric": [
+      {"id": "c1", "criterion": "Base case: single absorbed core equals the length-one readout", "weight": 1},
+      {"id": "c2", "criterion": "Inductive step expands the contraction as a matrix-vector product over the next bond", "weight": 1},
+      {"id": "c3", "criterion": "Apply the induction hypothesis to match the readout recursion", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.MatrixProductChain.tailChain_contract"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.MatrixProductChain.tailChain",
+      "declaration:QuantumBlockEncoding.MatrixProductChain.readout"
+    ],
+    "assumptions": [
+      "Fixed-width real cores; right boundary vector of length D",
+      "Readout is the chronological matrix-vector product from the right boundary"
+    ],
+    "conventions": [
+      "Absorbing the right boundary makes the terminal bond 1",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Set up induction on the number of cores left of the last.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.tailChain"]},
+      {"claim": "Base case: the single absorbed core equals the length-one readout.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.tailChain_contract"]},
+      {"claim": "Inductive step: expand the contraction as a sum over the next bond.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.tailChain_contract"]},
+      {"claim": "Match the readout recursion by the induction hypothesis.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.readout"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Structural induction identifying a built chain's contraction with a matrix-vector readout."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/MatrixProductChain.lean", "sha256": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974", "anchor": "readout14-17; tailChain20-24; tailChain_contract26-35", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-mpc-terminal-absorption",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Absorbing the right boundary vector into the last core of a matrix-product chain (terminal bond 1) reproduces the chronological matrix-vector readout at every incoming bond, by induction.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-111",
+    "key": "qcb-core-la-111",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "boundary",
+    "question": "A matrix-product chain stores dense local cores; the number of stored scalars sums 2*l*m across cores, where l and m are the left and right bond dimensions of each core. Given that every bond of the chain is at most D and the chain has n cores, prove the stored-scalar count is at most 2*n*D^2. Then explain why this counts stored addresses only, and does not by itself bound arithmetic runtime.",
+    "reference_answer": "Induct on the chain. The empty chain stores 0 scalars, which is at most 2*0*D^2. For a chain whose first core has bonds l (left) and m (right) followed by a tail, the stored count is 2*l*m + stored(tail). The bond bound gives l <= D and m <= D, so 2*l*m <= 2*D*D = 2*D^2. By the induction hypothesis stored(tail) <= 2*(n-1)*D^2. Adding, the total is at most 2*D^2 + 2*(n-1)*D^2 = 2*n*D^2. The required m <= D for the first core is read from the bound on the tail's leading left bond (or directly for a terminal core), so the inequality closes at every step. This counts the number of real entries physically laid out in the cores: it is a storage/address measure. It says nothing about the number of multiplications or additions used to contract the chain, nor about numerical precision; those are separate quantities. A per-bit-string amplitude still requires its own contraction work, which this bound does not estimate.",
+    "rubric": [
+      {"id": "c1", "criterion": "Per-core bound 2*l*m <= 2*D^2 from both bond bounds", "weight": 1},
+      {"id": "c2", "criterion": "Induction summing to 2*n*D^2 with correct bond extraction", "weight": 1},
+      {"id": "c3", "criterion": "Explain this is a stored-address count, not a runtime bound", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.MatrixProductChain.storedScalars_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.MatrixProductChain.storedScalars",
+      "declaration:QuantumBlockEncoding.MatrixProductChain.ofKernel_storedScalars"
+    ],
+    "assumptions": [
+      "Fixed-width real cores; every bond dimension is at most D",
+      "Stored-scalar count sums 2*l*m over all cores"
+    ],
+    "conventions": [
+      "Stored scalars count physically laid-out entries, not arithmetic operations",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Bound a single core's stored entries by 2*D^2 using both bond bounds.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.storedScalars"]},
+      {"claim": "Extract the tail's leading bond to justify m <= D at each step.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.storedScalars_le"]},
+      {"claim": "Sum over cores by induction to reach 2*n*D^2.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.storedScalars_le"]},
+      {"claim": "Distinguish stored addresses from contraction arithmetic cost.", "supporting_nodes": ["declaration:QuantumBlockEncoding.MatrixProductChain.ofKernel_storedScalars"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Clean storage induction with an explicit boundary between an address count and a runtime claim."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/MatrixProductChain.lean", "sha256": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974", "anchor": "storedScalars75-77; storedScalars_le79-93; ofKernel_storedScalars95-98", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-mpc-storage-bound",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A matrix-product chain of n cores with bonds at most D stores at most 2*n*D^2 scalars; this is a stored-address count and not a bound on contraction arithmetic.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-112",
+    "key": "qcb-core-la-112",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A rectangular NxM real matrix is reduced column by column: at column k, if a pivot row exists, a bottom-up adjacent sweep clears that column below the diagonal. Say a matrix has the upper-prefix property at index k when, for every already-processed column c < k, every entry strictly below row c in column c is zero. Prove that processing one more column advances this staircase property from index k to k+1, and hence that after processing all M columns the residual is upper-trapezoidal (entry at row r, column c is zero whenever c < r).",
+    "reference_answer": "Prove the one-step advance first. Assume the upper-prefix property holds at index k = col and sweep column col with the bottom-up adjacent eliminations. For the newly processed column col itself, the sweep zeros every entry strictly below its diagonal row, so the staircase condition is met for c = col. For an earlier column c < col, we must check its below-diagonal entries were not disturbed; the entries of column c strictly at or below row c were already all zero by the prefix hypothesis, and clearing column col only rotates rows using eliminations that preserve a column already made zero on the swept window, so those zeros survive. Combining the freshly cleared column with the preserved earlier columns gives the property at index col+1. Now induct over the remaining columns: starting from the vacuous property at index 0 (no earlier columns), each processed column advances the index by one, and columns beyond the pivot range leave the staircase intact because there is no pivot row to rotate. After all M columns the property holds at index M, which says exactly that every entry below the diagonal in every column is zero, i.e. the residual is upper-trapezoidal. This is an exact structural invariant of the elimination, not a statement about arithmetic cost.",
+    "rubric": [
+      {"id": "c1", "criterion": "Show the freshly swept column is zero below its diagonal", "weight": 1},
+      {"id": "c2", "criterion": "Show earlier columns' below-diagonal zeros are preserved by the new sweep", "weight": 1},
+      {"id": "c3", "criterion": "Induct from the vacuous index 0 to full upper-trapezoidal residual at index M", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RectangularGivens.sweep_upperPrefix"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.RectangularGivens.columnSweep_upperPrefix",
+      "declaration:QuantumBlockEncoding.RectangularGivens.reduced_zero_below",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_preserves_zero_column"
+    ],
+    "assumptions": [
+      "Finite real NxM matrix; columns processed in order with a bottom-up adjacent sweep",
+      "A pivot row exists only when the column index is below the row count"
+    ],
+    "conventions": [
+      "Upper-prefix at index k: each processed column c<k is zero strictly below row c",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Zero the freshly processed column strictly below its diagonal via the bottom-up sweep.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RectangularGivens.columnSweep_upperPrefix"]},
+      {"claim": "Preserve earlier columns' below-diagonal zeros using zero-column invariance of the sweep.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_preserves_zero_column"]},
+      {"claim": "Advance the staircase property from index k to k+1 by combining both facts.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RectangularGivens.sweep_upperPrefix"]},
+      {"claim": "Induct from the vacuous index 0 to a full upper-trapezoidal residual at index M.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RectangularGivens.reduced_zero_below"]}
+    ],
+    "difficulty": {"level": "advanced", "rationale": "Column-by-column staircase invariant whose inductive step combines fresh zeroing with preservation of earlier zeros."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/RectangularGivens.lean", "sha256": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133", "anchor": "UpperPrefix49-50; columnSweep_upperPrefix52-65; sweep_upperPrefix67-83; reduced_zero_below135-139", "license": "MIT (repository LICENSE)"},
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "columnSweep_preserves_zero_column305-323", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-rectangular-staircase-invariant",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Processing one more column advances the elimination's upper-prefix staircase from index k to k+1 (fresh column cleared, earlier zeros preserved), so after M columns the residual is upper-trapezoidal.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-113",
+    "key": "qcb-core-la-113",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "boundary",
+    "question": "A deterministic thin factorization is produced for every real m-by-n matrix with inner dimension exactly min(m,n). Explain the construction for both shape regimes and prove the factor with orthonormal rows satisfies Q*Q^T = I in each case, with no linear-independence or nonzero-row hypothesis. In particular, what are R and Q when the matrix is tall (n <= m)?",
+    "reference_answer": "Two regimes. If m <= n (wide), the inner dimension is m; R and Q are extracted from eliminating the transpose, and Q*Q^T = I holds because the accumulated transform is orthogonal, so a prefix of its rows forms a submatrix of an orthogonal matrix, and the (i,j) entry of Q*Q^T is the (castLE i, castLE j) entry of transform*transform^T = I, i.e. the identity restricted to the prefix. If instead n <= m (tall), the inner dimension is n; the construction simply takes R = A and Q = I_n, since A = A*I and I*I^T = I trivially. Both branches are total and require no rank or nonzero-row assumption: rank-deficient, zero, or repeated-row matrices are handled identically, because the elimination assigns angle zero to vanishing pivots rather than dividing by them. The shared conclusion is that min(m,n) orthonormal rows always exist constructively; the inner dimension never collapses below min(m,n) even at deficient rank. This is an exact matrix-semantics statement about an explicit construction, not an efficient numerical algorithm.",
+    "rubric": [
+      {"id": "c1", "criterion": "Wide case: Q*Q^T=I from a prefix of an orthogonal transform", "weight": 1},
+      {"id": "c2", "criterion": "Tall case: R=A, Q=I_n with the trivial identities", "weight": 1},
+      {"id": "c3", "criterion": "Note no rank/nonzero-row hypothesis and inner dimension exactly min(m,n)", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_orthogonal",
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factorOfLE",
+      "declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor_correct"
+    ],
+    "assumptions": [
+      "Finite real matrix of any shape; inner dimension is min(m,n)",
+      "No linear-independence or nonzero-row assumption"
+    ],
+    "conventions": [
+      "Tall case uses R=A and Q the identity; wide case uses transpose elimination",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Split the construction by the shape comparison m<=n versus n<=m.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"]},
+      {"claim": "Wide case: derive Q*Q^T=I as the identity restricted to a prefix of an orthogonal transform.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.wide_orthogonal"]},
+      {"claim": "Tall case: exhibit R=A, Q=I with the trivial factorization and orthonormality.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor"]},
+      {"claim": "Observe totality at deficient rank and the exact min(m,n) inner dimension.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveThinLQ.factor_correct"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Two-regime construction with a prefix orthogonality argument and an explicit degenerate-shape boundary."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/ConstructiveThinLQ.lean", "sha256": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af", "anchor": "wide_orthogonal51-58; factorOfLE61-66; factor69-75; factor_correct78-80", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-thinlq-all-shapes",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A deterministic thin factorization exists for every real matrix with inner dimension exactly min(m,n); the orthonormal-row factor satisfies Q*Q^T=I in both wide (transpose elimination) and tall (R=A, Q=I) regimes, with no rank hypothesis.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-114",
+    "key": "qcb-core-la-114",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A greedy swap process extends a finite injection e from r original indices into N physical positions: starting from the identity permutation, at stage k it swaps the current image of index k with the target e(k). Prove that after r stages the resulting permutation p agrees with e on every original index, i.e. p(castLE a) = e(a) for all a < r.",
+    "reference_answer": "Induct on the stage count k, proving the stronger statement: after k stages the permutation agrees with e on every index a with a.val < k. At k=0 the claim is vacuous. At stage k+1 the permutation is p_k followed by the transposition swapping p_k(k) with e(k). Take any index a with a.val < k+1. If a.val = k, then the fresh swap sends p_k(k) to e(k); since the composition first applies p_k (landing on p_k(k)) and then the swap (sending it to e(k)), index k maps to e(k) as required. If a.val < k, the induction hypothesis gives p_k(a) = e(a); it remains to see the new transposition fixes e(a). It does because e(a) differs from both swap endpoints: e(a) != p_k(k) since p_k is injective and a != k (otherwise p_k(a)=p_k(k)=e(a) would force, via injectivity of e, a=k), and e(a) != e(k) since e is injective and a != k. A transposition fixes any point distinct from its two endpoints, so p_{k+1}(a) = p_k(a) = e(a). Taking k=r gives agreement on all original indices. This is an exact placement guarantee, not a sorting-cost estimate.",
+    "rubric": [
+      {"id": "c1", "criterion": "Strengthen to agreement on indices below k and induct", "weight": 1},
+      {"id": "c2", "criterion": "Stage k: the fresh swap sends index k to e(k)", "weight": 1},
+      {"id": "c3", "criterion": "Earlier indices preserved because e(a) avoids both swap endpoints (injectivity)", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.extendPrefix_agrees"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.extendPrefix"
+    ],
+    "assumptions": [
+      "e is an injection from r original indices into N physical positions",
+      "The extension is built by greedy transpositions starting from the identity"
+    ],
+    "conventions": [
+      "A transposition fixes every point other than its two endpoints",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "State the stronger below-k agreement invariant and set up induction.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.extendPrefix"]},
+      {"claim": "Stage k case: the fresh transposition carries index k to e(k).", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.extendPrefix_agrees"]},
+      {"claim": "Earlier index case: apply the induction hypothesis.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.extendPrefix_agrees"]},
+      {"claim": "Show e(a) differs from both swap endpoints using injectivity of p_k and e.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.extendPrefix_agrees"]}
+    ],
+    "difficulty": {"level": "advanced", "rationale": "Strengthened induction with injectivity-driven case analysis on transposition fixed points."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean", "sha256": "1b61cbc9ad587cc2ae2a7cdc7bacd3b7d39fb05274833a3fea5dbb4dff69678c", "anchor": "extendPrefix167-172; extendPrefix_agrees174-198", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-greedy-injection-extension",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A greedy transposition process extending a finite injection agrees with the target injection on every original index, proved by a strengthened induction using injectivity to protect earlier placements.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-115",
+    "key": "qcb-core-la-115",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "An orthogonal matrix U is reoriented to have determinant 1 by multiplying it with a sign-flip on a single designated unused column exactly when U already has the wrong sign; the choice is made by the parity (sign) of an accompanying column permutation, not by evaluating the determinant. Prove the reoriented matrix is orthogonal with determinant 1 regardless of which branch is taken.",
+    "reference_answer": "Let P be the column permutation and consider two branches. If sign(P) = +1, the output is the permuted matrix permuteColumns(U,P) alone; a column permutation of an orthogonal matrix is orthogonal (its Gram matrix is the identity permuted on both sides, still the identity), and its determinant equals sign(P) times det(U) = (+1)*(1) = 1 when U has determinant 1. If sign(P) = -1, the output is permuteColumns(U,P) multiplied by a single-column sign flip S. Orthogonality: S is orthogonal (it is a diagonal of plus/minus ones), and a product of orthogonal matrices is orthogonal, with S^T (permuteColumns Gram) S = S^T I S = I. Determinant: det(permuteColumns(U,P)*S) = det(permuteColumns(U,P)) * det(S) = (sign(P)*det U) * (-1) = (-1)*(1)*(-1) = 1. Because the orthogonal group over the reals has only signs plus or minus one for a permutation, these two branches are exhaustive, and both yield orthogonal determinant-one matrices. Crucially the branch is selected by the discrete permutation parity, so no real determinant comparison or thresholding is performed. This is an exact orientation-fix construction, not a numerical sign test.",
+    "rubric": [
+      {"id": "c1", "criterion": "Positive-parity branch: permuted matrix orthogonal with det 1", "weight": 1},
+      {"id": "c2", "criterion": "Negative-parity branch: single sign-flip restores det 1 and keeps orthogonality", "weight": 1},
+      {"id": "c3", "criterion": "Note the branch is chosen by discrete parity, not a determinant evaluation", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.orientColumns_det"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.orientColumns_orthogonal",
+      "declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.permuteColumns_det",
+      "declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.permuteColumns_orthogonal"
+    ],
+    "assumptions": [
+      "Finite real orthogonal matrix with determinant 1 before reorientation",
+      "The sign flip acts on a single designated unused column"
+    ],
+    "conventions": [
+      "Branch selection uses the permutation parity, a discrete value in {+1,-1}",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Positive-parity branch: permuted matrix is orthogonal with determinant sign(P)*det U = 1.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.permuteColumns_det"]},
+      {"claim": "Negative-parity branch: compose with a single-column sign flip to multiply the determinant by -1.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.orientColumns_det"]},
+      {"claim": "Show orthogonality survives the sign flip since it is itself orthogonal.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.orientColumns_orthogonal"]},
+      {"claim": "Conclude both exhaustive parity branches give orthogonal determinant-one matrices.", "supporting_nodes": ["declaration:QuantumBlockEncoding.ConstructiveIsometryCompletion.permuteColumns_orthogonal"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Two-branch determinant/orthogonality bookkeeping driven by discrete permutation parity."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean", "sha256": "1b61cbc9ad587cc2ae2a7cdc7bacd3b7d39fb05274833a3fea5dbb4dff69678c", "anchor": "permuteColumns_orthogonal223-229; permuteColumns_det231-234; orientColumns237-240; orientColumns_orthogonal242-254; orientColumns_det256-267", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-parity-orientation-fix",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Reorienting an orthogonal matrix to determinant 1 by a single sign-flip chosen from column-permutation parity yields an orthogonal det-1 matrix on both parity branches, without ever evaluating the determinant.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-116",
+    "key": "qcb-core-la-116",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "boundary",
+    "question": "A real matrix indexed by width-(q+1) computational-basis labels is converted to Gray coordinates by relabeling both its rows and its columns through a fixed bijection between labels and the numerical indices 0..2^(q+1)-1 (the same bijection on each side). Prove that this relabeling preserves orthogonality, i.e. if A^T A = I then the Gray-coordinate matrix is again orthogonal, and that it preserves the determinant exactly. Identify precisely why using the same bijection on rows and columns is essential.",
+    "reference_answer": "The symmetric relabeling is the reindexing map that sends a matrix A to the matrix whose (i,j) entry is A at the labels corresponding to i and j under the fixed bijection. Because the same bijection is applied to rows and to columns, this map is multiplicative: the reindexing of a product equals the product of the reindexings, since the internal summation index of matrix multiplication is itself relabeled consistently and a bijective reindexing of a finite sum does not change its value. It also sends the identity matrix to the identity, because the identity's entries depend only on whether the two labels coincide, a property preserved by any bijection applied equally to both sides. Orthogonality: apply the reindexing to the hypothesis A^T A = I. Transpose commutes with symmetric relabeling (swapping row and column roles is unaffected by using one bijection on both), so reindex(A)^T reindex(A) = reindex(A^T A) = reindex(I) = I. Hence the Gray-coordinate matrix is orthogonal. Determinant: a symmetric reindexing is a similarity-type conjugation by a permutation, and the determinant is invariant under relabeling both axes by the same permutation, so det is unchanged exactly. The same-bijection requirement is essential: if rows and columns were relabeled by different bijections, the map would not respect multiplication (the shared summation index would be split), transpose would not commute with it, and the determinant could pick up a relative permutation sign. Thus using one bijection on both axes is exactly what makes relabeling an algebra isomorphism preserving these invariants. This is an exact transport fact, not a numerical change of basis cost.",
+    "rubric": [
+      {"id": "c1", "criterion": "State that symmetric relabeling is multiplicative and fixes the identity", "weight": 1},
+      {"id": "c2", "criterion": "Derive orthogonality by applying the relabeling to A^T A = I, using transpose compatibility", "weight": 1},
+      {"id": "c3", "criterion": "Argue determinant invariance and explain why one shared bijection is essential", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.grayCoordinates_orthogonal"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.grayCoordinates",
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.grayCoordinates_det"
+    ],
+    "assumptions": [
+      "Finite real matrix indexed by width-(q+1) labels; a fixed label/index bijection",
+      "The same bijection relabels rows and columns"
+    ],
+    "conventions": [
+      "Symmetric reindexing is an algebra equivalence on matrices preserving multiplication and the identity",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Describe symmetric relabeling as a multiplicative, identity-fixing reindexing map.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.grayCoordinates"]},
+      {"claim": "Apply the map to A^T A = I and use transpose compatibility to get orthogonality.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.grayCoordinates_orthogonal"]},
+      {"claim": "Conclude the determinant is unchanged under the symmetric relabeling.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.grayCoordinates_det"]},
+      {"claim": "Explain that one shared bijection is required for multiplicativity and sign-free determinant.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.grayCoordinates"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Transport of orthogonality and determinant through a symmetric reindexing with an explicit single-bijection necessity argument."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/GrayGivensCompiler.lean", "sha256": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce", "anchor": "grayCoordinates159-162; grayCoordinates_orthogonal169-175; grayCoordinates_det177-180", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-gray-coordinate-transport",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Symmetric Gray-coordinate relabeling of a matrix preserves orthogonality and the determinant exactly, because one shared row/column bijection makes it a multiplicative identity-fixing reindexing.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-117",
+    "key": "qcb-core-la-117",
+    "topic": "matrix_constructions",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A real SO matrix on 2^(q+1) Gray-ordered indices is compiled to a circuit by first decomposing it into adjacent plane rotations, then realizing each plane as a selected RY rotation whose target wire is the single Gray-flip wire of that adjacent pair, with every other wire a control. Prove that reindexing the adjacent plane matrix by the Gray labeling equals the selected two-level plane on that target wire, and explain how the half-angle sign depends on the target bit of the first index.",
+    "reference_answer": "Fix an adjacent pair (first, second) with second = X_target(first) in Gray labels. Reindexing the plane matrix by the Gray equivalence sends row/column named states back to their numerical indices. The plane rotates only the two indices first and second and fixes all others; under Gray labeling these two indices are exactly the two computational-basis states that share the same control context (all non-target bits equal) and differ only on the target wire, which is precisely the pair acted on by the selected RY plane with that chosen control context. For a named state outside this control context, both the reindexed plane and the selected plane act as the identity, matching entrywise. Inside the context, the 2x2 action is the real RY block; here the orientation matters: the plane's convention lists the pair by numerical order (first, then second), whereas the selected plane orders the pair by the target bit value 0 then 1. If the first index already has target bit 0 the orders agree and the angle is theta; if the first index has target bit 1 the two orderings are swapped, which conjugates the RY block by the bit-swap and is exactly the RY block at angle -theta. Hence the reindexed plane equals the selected plane at angle theta when the first target bit is 0 and at -theta otherwise. This matches a basis relabeling to a controlled rotation; it is a semantic correspondence, not a gate-count claim.",
+    "rubric": [
+      {"id": "c1", "criterion": "Identify the Gray pair as the shared-control-context two-level pair", "weight": 1},
+      {"id": "c2", "criterion": "Match identity action for states outside the control context", "weight": 1},
+      {"id": "c3", "criterion": "Explain the half-angle sign flip from first index target bit via pair ordering", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.edge_plane_transport"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.same_context_iff",
+      "declaration:QuantumBlockEncoding.selectedRyPlaneMatrix",
+      "declaration:QuantumBlockEncoding.realRyPlaneBlock"
+    ],
+    "assumptions": [
+      "A real SO matrix on 2^(q+1) indices; the adjacent pair differs by one Gray wire flip",
+      "Every non-target wire is a control; the target is the Gray-flip wire"
+    ],
+    "conventions": [
+      "Plane orders the pair numerically; the selected plane orders by target bit 0 then 1",
+      "Reversed ordering negates the RY half-angle",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Characterize the two reindexed-plane indices as the shared-context target-wire pair.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.same_context_iff"]},
+      {"claim": "Match identity action off the control context entrywise.", "supporting_nodes": ["declaration:QuantumBlockEncoding.selectedRyPlaneMatrix"]},
+      {"claim": "On the context, reduce both sides to the real RY 2x2 block.", "supporting_nodes": ["declaration:QuantumBlockEncoding.realRyPlaneBlock"]},
+      {"claim": "Track the pair ordering to get angle theta or -theta from the first index target bit.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.edge_plane_transport"]}
+    ],
+    "difficulty": {"level": "advanced", "rationale": "Basis-relabeling correspondence with careful control-context matching and an orientation-dependent sign."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/GrayGivensCompiler.lean", "sha256": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce", "anchor": "same_context_iff21-37; edge_plane_transport54-86", "license": "MIT (repository LICENSE)"},
+      {"path": "QuantumBlockEncoding/SelectedRyPlane.lean", "sha256": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40", "anchor": "realRyPlaneBlock42-45; selectedRyPlaneMatrix58-66", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-gray-plane-transport",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Reindexing an adjacent plane rotation by the Gray labeling equals a selected RY two-level plane on the Gray-flip wire; the half-angle is theta or -theta according to the first index's target bit, from the pair ordering.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-118",
+    "key": "qcb-core-la-118",
+    "topic": "matrix_constructions",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A selected RY plane fixes every computational-basis vector whose control context differs from the chosen one, and acts as a 2x2 real rotation on the single pair sharing the chosen context and differing on the target bit. Prove that two basis states lie in the same control context if and only if they are equal or related by a single X action on the target wire.",
+    "reference_answer": "The control context of a basis state is the restriction of its bit string to all wires other than the target. Two states share this context exactly when they agree on every non-target wire. Consider their target bits. If the two target bits are equal, then agreeing on all other wires plus agreeing on the target wire means the two full strings are identical, so the states are equal. If the two target bits differ, then they agree everywhere except the target wire, which is precisely the relation that one is obtained from the other by flipping the target bit, i.e. a single X action on the target wire; the non-target context is manifestly unchanged by flipping only the target bit. Conversely, equal states trivially share context, and a single target-wire X action changes only the target bit and leaves every other wire fixed, so it preserves the control context. Hence same context holds if and only if the states are equal or target-wire X-related. This pins down exactly the two-dimensional invariant subspace a selected rotation can touch, and is a statement about which basis pair is affected, not about implementation cost.",
+    "rubric": [
+      {"id": "c1", "criterion": "Define control context as the non-target restriction and split on target-bit equality", "weight": 1},
+      {"id": "c2", "criterion": "Equal target bits force equal states; differing bits give a single X relation", "weight": 1},
+      {"id": "c3", "criterion": "Converse: equality and target X both preserve the context", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.same_context_iff"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.x_context",
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.bit_eq_or_flip",
+      "declaration:QuantumBlockEncoding.selectedRyPlaneMatrix_fixed_column"
+    ],
+    "assumptions": [
+      "Basis states are bit strings; the control context is the non-target restriction",
+      "A single X action flips only the target wire"
+    ],
+    "conventions": [
+      "The selected plane fixes states outside the chosen context",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Reduce same-context to agreement on all non-target wires and split by target-bit equality.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.bit_eq_or_flip"]},
+      {"claim": "Equal target bits give equal states; differing bits give a target-wire X relation.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.same_context_iff"]},
+      {"claim": "Show a target X action preserves the non-target context (converse direction).", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.x_context"]},
+      {"claim": "Relate this invariant pair to the fixed-column behavior of the selected plane.", "supporting_nodes": ["declaration:QuantumBlockEncoding.selectedRyPlaneMatrix_fixed_column"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "Iff characterization by target-bit casework with an explicit converse."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/GrayGivensCompiler.lean", "sha256": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce", "anchor": "bit_eq_or_flip12-13; x_context15-19; same_context_iff21-37", "license": "MIT (repository LICENSE)"},
+      {"path": "QuantumBlockEncoding/SelectedRyPlane.lean", "sha256": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40", "anchor": "selectedRyPlaneMatrix_fixed_column122-129", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-control-context-pair",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Two basis states share a selected RY plane's control context if and only if they are equal or related by a single target-wire X, pinning the exact 2D pair the rotation can touch.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-119",
+    "key": "qcb-core-la-119",
+    "topic": "matrix_constructions",
+    "track": "quantum_semantics",
+    "task_kind": "counterexample",
+    "question": "A selected RY rotation with c controls uses exactly 2^c RY gates and 2*(2^c - 1) CX gates per selected rotation and makes zero oracle calls. A reader claims that because a general real SO matrix on these wires is realized by such selected planes, the per-stage gate counts show the SO matrix is prepared in a number of gates linear in the matrix dimension. Give a boundary/counterexample analysis of why that linear-in-dimension conclusion does not follow from the per-rotation counts.",
+    "reference_answer": "The per-rotation counts are correct and oracle-free, but they are costs of one selected plane, not of the whole SO matrix. Realizing an SO matrix on 2^(q+1) Gray-ordered indices decomposes it into N*(N-1)/2 adjacent planes with N = 2^(q+1), i.e. a quadratic number of planes in the dimension. Each full-control plane with c = q controls costs on the order of 2^q RY and CX gates. Multiplying the number of planes by the per-plane cost gives a total on the order of (dimension squared) times (dimension), i.e. cubic in N, as the explicit bound 6*(2^q)^3 records; it is emphatically not linear in N. The error is treating a single-rotation resource line as if it were the whole-matrix resource. A concrete small witness: for q = 1 (N = 4) the SO matrix needs N(N-1)/2 = 6 adjacent planes, each with 1 control costing 2 RY and 2 CX, so already 12 RY and 12 CX gates, far more than any count linear in N = 4 would predict as a single-rotation line. Moreover the full-control claim only applies when the controls enumerate all non-target wires; a bounded plane list realizing an arbitrary prescribed stage is itself a separate obligation, not granted by the per-rotation formula. So neither the arithmetic nor the structural premise supports a linear-in-dimension total.",
+    "rubric": [
+      {"id": "c1", "criterion": "Separate per-rotation cost from whole-matrix cost", "weight": 1},
+      {"id": "c2", "criterion": "Count the quadratic number of planes and multiply to a cubic total, not linear", "weight": 1},
+      {"id": "c3", "criterion": "Give the q=1 witness and note the decomposition obligation caveat", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.compileSelectedRy_ryCount",
+      "declaration:QuantumBlockEncoding.compileSelectedRy_cxCount"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GrayGivensCompiler.compileSO_cubic_bound",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_length",
+      "declaration:QuantumBlockEncoding.compileSelectedRySteps_noOracle"
+    ],
+    "assumptions": [
+      "Per selected rotation: 2^c RY, 2*(2^c-1) CX, zero oracle calls",
+      "An SO matrix decomposes into N*(N-1)/2 adjacent planes, N=2^(q+1)"
+    ],
+    "conventions": [
+      "Full-control plane uses c=q controls; counts are gate tallies, not runtime",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "State the correct per-rotation RY/CX/oracle counts.", "supporting_nodes": ["declaration:QuantumBlockEncoding.compileSelectedRy_ryCount"]},
+      {"claim": "Count the quadratic number of adjacent planes for an SO matrix.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_length"]},
+      {"claim": "Multiply plane count by per-plane cost to get a cubic, not linear, total.", "supporting_nodes": ["declaration:QuantumBlockEncoding.GrayGivensCompiler.compileSO_cubic_bound"]},
+      {"claim": "Exhibit the q=1 witness and note the separate decomposition obligation.", "supporting_nodes": ["declaration:QuantumBlockEncoding.compileSelectedRySteps_noOracle"]}
+    ],
+    "difficulty": {"level": "advanced", "rationale": "Resource-accounting counterexample distinguishing per-rotation from whole-matrix cost with a concrete witness."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/SelectedRyPlane.lean", "sha256": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40", "anchor": "compileSelectedRy_ryCount143-148; compileSelectedRy_cxCount150-156; compileSelectedRySteps_noOracle225-227", "license": "MIT (repository LICENSE)"},
+      {"path": "QuantumBlockEncoding/GrayGivensCompiler.lean", "sha256": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce", "anchor": "compileSO_cubic_bound196-199", "license": "MIT (repository LICENSE)"},
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "decomposeSO_length611-613", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-selected-ry-resource-fallacy",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Per selected-rotation gate counts (2^c RY, 2*(2^c-1) CX, no oracle) do not make a full SO matrix linear in dimension: a quadratic number of planes times per-plane cost is cubic, shown with a q=1 witness.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-120",
+    "key": "qcb-core-la-120",
+    "topic": "matrix_constructions",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A list of plane rotations can be applied to a matrix in two ways. The step-by-step action takes the list and the matrix and applies the first listed rotation to the matrix, then the next to the result, and so on. Alternatively one forms a single accumulated matrix from the list (built so that the last listed rotation multiplies on the left-most, i.e. the product is taken in reverse-list order) and multiplies it once against the matrix. Prove that these two procedures agree for every list and every matrix, and explain why the accumulated product must be taken in reverse list order.",
+    "reference_answer": "Induct on the list. For the empty list, the step-by-step action returns the matrix unchanged and the accumulated matrix is the identity, so both give the matrix. For a list (step :: rest) applied to M, the step-by-step action first forms step.matrix * M (applying step) and then applies rest to that, so by the induction hypothesis it equals accMatrix(rest) * (step.matrix * M). Associativity of matrix multiplication rewrites this as (accMatrix(rest) * step.matrix) * M. The accumulated matrix of the whole list is defined as accMatrix(rest) * step.matrix precisely so that the leading step sits on the right of the product; hence (accumulated matrix of the full list) * M, matching the claim. The reverse-list product order is forced by the chronological convention: the first listed rotation acts first on M, so it must be the right-most factor (closest to M), which means later list entries accumulate to its left. Taking the product in forward order would apply the rotations in the wrong temporal sequence and break the agreement. Therefore the two procedures coincide exactly for all lists, with the reverse order being the unique convention consistent with first-listed-acts-first. This is an exact identity about two equal formulations, not a claim about multiplication cost.",
+    "rubric": [
+      {"id": "c1", "criterion": "Base case: empty list gives the matrix via identity accumulation", "weight": 1},
+      {"id": "c2", "criterion": "Inductive step uses associativity to peel the leading step onto the right", "weight": 1},
+      {"id": "c3", "criterion": "Explain reverse product order is forced by first-listed-acts-first", "weight": 1}
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.applySteps_eq_matrix_mul"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.applySteps",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.stepsMatrix",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.Step.matrix"
+    ],
+    "assumptions": [
+      "Finite real matrices; each list entry is a plane rotation with its own matrix",
+      "Chronological convention: the first listed rotation acts first"
+    ],
+    "conventions": [
+      "The accumulated matrix multiplies the list in reverse order (last entry left-most)",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {"claim": "Base case: empty list gives the matrix, matching identity accumulation.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.applySteps"]},
+      {"claim": "Expand the step-by-step action of a cons list as leading step then rest.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.Step.matrix"]},
+      {"claim": "Apply the induction hypothesis and reassociate to isolate the full accumulated matrix.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.applySteps_eq_matrix_mul"]},
+      {"claim": "Explain the reverse product order is the unique convention matching first-listed-acts-first.", "supporting_nodes": ["declaration:QuantumBlockEncoding.AdjacentGivens.stepsMatrix"]}
+    ],
+    "difficulty": {"level": "intermediate", "rationale": "List induction reconciling an iterated action with a single reverse-order matrix product via associativity and a convention argument."},
+    "source_refs": [
+      {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c", "anchor": "Step.matrix188-189; applySteps192-195; stepsMatrix633-635; applySteps_eq_matrix_mul637-642", "license": "MIT (repository LICENSE)"}
+    ],
+    "family": "matrix-constructions-step-action-matrix-equivalence",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Iterated step-by-step application of a plane-rotation list equals one multiplication by the accumulated matrix taken in reverse list order; the reverse order is forced by first-listed-acts-first.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "matrix-constructions-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

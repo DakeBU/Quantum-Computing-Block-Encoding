@@ -1,0 +1,126 @@
+{
+  "reviewer": "native-foundations-reviewer-distinct-context",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-la-001",
+      "authored_sha256": "75bfe78a349b3ddacf6bcebae6b8236f891840e95247f4582e4bdbd54c89d00f",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": ["qcb-8ec6aa2f97a0b4cf0af1", "qcb-09248f41459defbf7817"],
+      "notes": "Math is correct and faithful to source: Core.lean defines clog2 m = if m<=1 then 0 else Nat.log2 (m-1)+1 (lines 52-53), with clog2_zero/clog2_one (57-61), log2_pred_two_pow_succ (63-91) and clog2_gridSize giving clog2(2^n)=n (93-100). But the core is NOT novel: released v3 item qcb-8ec6aa2f97a0b4cf0af1 ('library boundary diagnostics') targets QuantumBlockEncoding.clog2 and qcb-09248f41459defbf7817 ('finite-dimensional resource vocabulary') targets clog2_gridSize - the same definition, the same 2^n=n fact and the same empty/singleton clamp. The authored new_problem_core:true / existing_core_aliases:[] claim is therefore inaccurate. Reject as duplicate of existing v3 solutions; coordinator reports author is repairing this. Secondary defect: target_nodes use bare 'QuantumBlockEncoding.clog2' instead of the v3 'declaration:' prefix convention.",
+      "checked_sources": ["QuantumBlockEncoding/Core.lean#clog2 L52-53", "QuantumBlockEncoding/Core.lean#clog2_zero L57-58", "QuantumBlockEncoding/Core.lean#clog2_one L60-61", "QuantumBlockEncoding/Core.lean#log2_pred_two_pow_succ L63-91", "QuantumBlockEncoding/Core.lean#clog2_gridSize L93-100", "QuantumBlockEncoding/Core.lean#gridSize L43-44", "data/public/release-v3/items.json#qcb-8ec6aa2f97a0b4cf0af1", "data/public/release-v3/items.json#qcb-09248f41459defbf7817"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-002",
+      "authored_sha256": "3db91466b6dc20424261aa89bc3e38f84f43e8be4b4241d9bfd1d8d882d366ac",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": ["qcb-8a5954c3aa05ceb23e54"],
+      "notes": "Math is correct and matches BlockEncoding.lean: betterThan (L69-77) is the strict lexicographic order with priority gateCount < depth < auxiliaryQubits < oracleCalls, noWorseThan (L79-82) is equality-or-betterThan. The question also correctly warns that the comparison priority differs from the struct field order (struct lists auxiliaryQubits, gateCount, depth, oracleCalls at L50-55) - a genuine and accurate subtlety. However the core is NOT novel: released v3 provisional item qcb-8a5954c3aa05ceb23e54 ('block-encoding resource comparison') already targets QuantumBlockEncoding.BlockEncodingCost.betterThan with the same lexicographic content. Author's new_problem_core:true is inaccurate; coordinator reports author is repairing. Same bare-name target_nodes prefix defect.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean#BlockEncodingCost L50-55", "QuantumBlockEncoding/BlockEncoding.lean#betterThan L69-77", "QuantumBlockEncoding/BlockEncoding.lean#noWorseThan L79-82", "data/public/release-v3/items.json#qcb-8a5954c3aa05ceb23e54"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-003",
+      "authored_sha256": "74776743ba4ea3288d52b0481ed943415d6bf808be721e41f5ec8ffc7688a15a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified exactly against Core.lean: Coeff is the inductive language rat|symbol|add|mul|neg (L148-154); evalWith env (L175-181) sends rat q->q, symbol name->env name, and recurses on add/mul/neg; the simp lemmas evalWith_rat/symbol/add/mul/neg (L183-196) are precisely the homomorphism identities. The NL answer's homomorphism-onto-the-rationals framing (commutes with +,*,neg; 0,1 preserved via OfNat) is accurate; the only mild gloss is that evalWith_zero/one are not separate named lemmas but follow from evalWith_rat on the OfNat instances - acceptable. No released v3 item targets Coeff.evalWith or the symbolic-coefficient algebra; genuinely new core. Defect: bare-name target_nodes (missing 'declaration:' prefix).",
+      "checked_sources": ["QuantumBlockEncoding/Core.lean#Coeff L148-154", "QuantumBlockEncoding/Core.lean#Coeff.evalWith L175-181", "QuantumBlockEncoding/Core.lean#evalWith_rat..evalWith_neg L183-196"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-004",
+      "authored_sha256": "0d96c41220c2585fd4b8a4bffb36164f9c2979abc576967070c1273dab4efc22",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against BlockEncoding.lean OperatorBlockEncodingCandidate (L103-116, with the explicit dimension note that a target on 2^n with a auxiliary qubits yields a 2^(n+a) unitary) and ConcreteSemantics.lean flatToProductRegister (L190-198, signal high-order / system low-order), productRegisterBlockProjection (L201-204), and productRegisterBlockProjection_flatToProductRegister (L210-217, proved by rfl - definitional identity). The NL answer's three claims (dimension 2^(n+a); signal high-order so flat = signal*systemDim+system; product-register branch equals flattened projection entry-for-entry) are all accurate and source-grounded. No v3 item covers flatToProductRegister / productRegisterBlockProjection; new core. Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean#OperatorBlockEncodingCandidate L103-116", "QuantumBlockEncoding/ConcreteSemantics.lean#flatToProductRegister L190-198", "QuantumBlockEncoding/ConcreteSemantics.lean#productRegisterBlockProjection L201-204", "QuantumBlockEncoding/ConcreteSemantics.lean#productRegisterBlockProjection_flatToProductRegister L210-217"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-005",
+      "authored_sha256": "60de891fcd94b6f2efe29f8f02115bdacec2ca6cfd72b6d5870c86128e79f5a8",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against RealIsometryCompletion.lean exists_orthogonal_completion (L20-59). The theorem takes V : Matrix (Fin N) (Fin r) R, an embedding e : Fin r -> Fin N (arbitrary injective placement, not a prefix), hypothesis V^T V = 1, and produces U with U^T U = 1 and U i (e a) = V i a. The proof uses orthonormal_iff_ite, builds the column family, and invokes ho.exists_orthonormalBasis_extension_of_card_eq (basis extension in EuclideanSpace) - exactly the three ingredients the rubric demands (V^T V = I <=> orthonormal columns with r<=N; injective placement preserves orthonormality; orthonormal-basis extension fills remaining positions). The four-part NL proof is faithful and precise. No v3 item targets RealIsometryCompletion; new core. Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/RealIsometryCompletion.lean#exists_orthogonal_completion L20-59"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-006",
+      "authored_sha256": "d0bda6268817d98d60ae6cdc7fe7dd536d3c5fe0cf3fd2f2ef261bbb159c3e04",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against RealIsometryCompletion.lean: signFlip (L62-63, diagonal with a single -1), signFlip_orthogonal (L65-72), signFlip_det = -1 (L74-75), mul_signFlip_preserves (L77-79, right-mult by signFlip changes only the chosen column), exists_specialOrthogonal_completion_of_unused (L83-104) and exists_specialOrthogonal_completion requiring hr : r < N (L107-121, which derives the unused column from non-surjectivity of e via Fintype.card). The NL proof's determinant-in-{+1,-1} from orthogonality, the single-column sign flip on an unused position, U*S stays orthogonal with det +1, and preservation of prescribed columns are all exact. The r<N necessity explanation is accurate and is independently witnessed by la-011. New core distinct from la-005 (orientation repair vs mere completion). Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip L62-63", "QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip_orthogonal L65-72", "QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip_det L74-75", "QuantumBlockEncoding/RealIsometryCompletion.lean#mul_signFlip_preserves L77-79", "QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion_of_unused L83-104", "QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion L107-121"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-007",
+      "authored_sha256": "c7a1ed23e9bd2d36222c4a774b414de4658b3ac7100a12fa921382ac2f2fe8b9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against ConcreteSemantics.lean: applyVec_basisKet (L70-74, acting on a basis ket selects the matrix column via Matrix.mulVec_single_one), applyVec_twoBasisSuperposition (L79-88, A(a*|left>+b*|right>) = a*col(left)+b*col(right) via mulVec_add/mulVec_smul) and applyVec_twoBasisSuperposition_apply (L93-100, coordinate form row k = a*A[k,left]+b*A[k,right]). The NL proof's use of linearity (additivity + scalar homogeneity), the column identification, the coordinate read, and the practical 'only two columns/entries needed' consequence are all precise and source-grounded. No v3 item covers these mulVec linearity lemmas; new core. Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/ConcreteSemantics.lean#applyVec_basisKet L70-74", "QuantumBlockEncoding/ConcreteSemantics.lean#applyVec_twoBasisSuperposition L79-88", "QuantumBlockEncoding/ConcreteSemantics.lean#applyVec_twoBasisSuperposition_apply L93-100"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-008",
+      "authored_sha256": "c8cbbcde9c21ee821657ab5c70c7f55e8beb67cfbb73fd3faaafa85b3aa86d88",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against ConcreteSemantics.lean: cleanBasisActionAmplitude (L249-256), cleanBasisActionAmplitude_eq_signalSystemBlockProjection (L259-269, the bridging identity proved via applyVec_basisKet) and pointwiseProjection_iff_cleanBasisAction (L277-294, a genuine biconditional with both directions resting on the bridge applied at arbitrary output/input). The NL proof correctly states the bridge, both implications, and the universal-quantifier role; the parenthetical that linearity extends the basis action to arbitrary inputs and that an orthogonal failure branch is separate unitarity evidence matches the source docstring. New core, no v3 overlap. Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/ConcreteSemantics.lean#cleanBasisActionAmplitude L249-256", "QuantumBlockEncoding/ConcreteSemantics.lean#cleanBasisActionAmplitude_eq_signalSystemBlockProjection L259-269", "QuantumBlockEncoding/ConcreteSemantics.lean#pointwiseProjection_iff_cleanBasisAction L277-294"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-009",
+      "authored_sha256": "956e268ea4e2e4d42fe63fea2e89ff1f4dd06425d2878717a7b8681fd06e37bd",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": ["qcb-2cdd78eeb72fde677022"],
+      "notes": "Math is correct and faithful to TensorTrainCanonical.lean: mass (L119-120), mass_vecMul (L122-135, mass(vecMul v Q)=mass v when Q*Q^T=1 via the dotProduct collapse), RightCanonical (L44-47), chainMass (L137-139) and chainMass_eq (L141-157, inductive composition). But the headline chain-mass-preservation core duplicates released v3 item qcb-2cdd78eeb72fde677022 ('Right-canonical tensor train preserves total mass') which targets the SAME QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq. The authored new_problem_core:true / aliases:[] is inaccurate. Reject as duplicate; coordinator reports author is repairing (the mass_vecMul row-isometry lemma alone could be a distinct narrower core, but as authored the item re-poses the already-released chainMass_eq result). Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/TensorTrainCanonical.lean#mass L119-120", "QuantumBlockEncoding/TensorTrainCanonical.lean#mass_vecMul L122-135", "QuantumBlockEncoding/TensorTrainCanonical.lean#RightCanonical L44-47", "QuantumBlockEncoding/TensorTrainCanonical.lean#chainMass L137-139", "QuantumBlockEncoding/TensorTrainCanonical.lean#chainMass_eq L141-157", "data/public/release-v3/items.json#qcb-2cdd78eeb72fde677022"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-010",
+      "authored_sha256": "a9ed385908347c243d9bad94bc349b21cc8ee6ffc0da0a2867a13406a38973dc",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against TensorTrainCanonical.lean: paddedCore (L255-258, zero-pads outputs beyond the active rank), paddedCore_inactive_output (L260-262, padded output rows with r<=b.val are identically 0), complexCore_isometry (L215-226) and paddedCore_active_isometry (L295-315, the active clean-input column Gram matrix stays the identity after embedding). The counterexample (active block [1] padded to column (1,0) in dimension 2: column relation gives 1, row relation gives diag(1,0)!=I) is mathematically correct and precisely distinguishes surviving column-orthonormality from destroyed row-orthonormality - the general 'a zero row cannot satisfy row-orthonormality' reasoning is sound. Note: complexCore_isometry is a RELEASED v3 target (qcb-486b9aec70c569866488, 'Circuit orientation...isometry condition'), but it appears here only as a supporting node; the authored TARGETS are paddedCore_active_isometry and paddedCore_inactive_output, which no v3 item covers, so the core is genuinely new. Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/TensorTrainCanonical.lean#paddedCore L255-258", "QuantumBlockEncoding/TensorTrainCanonical.lean#paddedCore_inactive_output L260-262", "QuantumBlockEncoding/TensorTrainCanonical.lean#complexCore_isometry L215-226", "QuantumBlockEncoding/TensorTrainCanonical.lean#paddedCore_active_isometry L295-315", "data/public/release-v3/items.json#qcb-486b9aec70c569866488"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-011",
+      "authored_sha256": "b5566d0b03ef3b7db35bae51e8a2923e31761376a4d59359c8e5bc281983b943",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against RealIsometryCompletion.lean exists_specialOrthogonal_completion (L107-121) whose hypothesis is exactly hr : r < N, plus signFlip_det (L74-75) and exists_specialOrthogonal_completion_of_unused (L83-104). The counterexample is mathematically correct: in N=2, r=2, V=diag(1,-1) has V^T V = I but det = -1 and is its own unique completion, so no det-+1 completion exists; the identified missing step (the sign-flip orientation repair needs an unused column, available only when r<N) is precisely right and complements la-006. This is a necessity-of-hypothesis counterexample distinct from la-006's positive result; no v3 item covers it. Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion L107-121", "QuantumBlockEncoding/RealIsometryCompletion.lean#exists_specialOrthogonal_completion_of_unused L83-104", "QuantumBlockEncoding/RealIsometryCompletion.lean#signFlip_det L74-75"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-012",
+      "authored_sha256": "9d850c795658039c06dec7f2e4a0c3538840bce0e87c827de1a30d38c81fb7ef",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against TensorTrainCanonical.lean: RankReduced (L51-55, the inductive relation whose cons case fixes the new left bond at Core (min l (2*m')) m' - i.e. new left = min(l, 2*m')), exists_core_lq (L67-80, thin LQ with the physical bit/right-bond product giving min l (2*r) via finProdFinEquiv - this is where the factor of two comes from, the emitted bit of dimension 2), head_bound (L104-110, l' <= l AND l' <= 2*m' via min_le_left/min_le_right) and last_bond_le_two (L113-117, for Chain 1 l 1 the penultimate bond <= 2*1 = 2). The NL answer's factor-of-two explanation (emitted bit dimension 2 times right bond = reshape column count), the simultaneous min bounds in (a), and the length-one terminal specialization in (b) are all accurate and source-grounded. maxBond_le (L203-207) correctly cited as supporting the 'never enlarges' fact. New boundary-reasoning core, no v3 overlap. Bare-name target_nodes defect.",
+      "checked_sources": ["QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced L51-55", "QuantumBlockEncoding/TensorTrainCanonical.lean#exists_core_lq L67-80", "QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced.head_bound L104-110", "QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced.last_bond_le_two L113-117", "QuantumBlockEncoding/TensorTrainCanonical.lean#RankReduced.maxBond_le L203-207"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

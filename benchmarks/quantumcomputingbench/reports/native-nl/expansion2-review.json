@@ -1,0 +1,27 @@
+{
+  "reviewer": "native-foundations-reviewer-distinct-context",
+  "method": "distinct-context-source-review",
+  "batch": "expansion2 (la-019..020, main-native-expansion2-author)",
+  "items": [
+    {
+      "key": "qcb-core-la-019",
+      "authored_sha256": "58107080c81d99f8268780061fcdb31605f20023001d68167a07fde0ab1e0f59",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against GHLHamiltonian.lean (sha256 matches authored 2e453b72...). tensor (L367-369): (A tensor B) row col = A row.1 col.1 * B row.2 col.2. tensor_isHermitian (L394-400): proved entrywise via map_mul using BOTH hA and hB (conj of a product = product of conjs, each rewritten by the factor's Hermiticity) - no commutation of A,B needed, confirming the NL claim that no S*T product appears. add_isHermitian (L402-408): entrywise via map_add. oneDimHamiltonian_isHermitian (L410-417): H = add (tensor S1 xXi) (tensor S2 I), proved by add_isHermitian over the two tensor_isHermitian instances (identity_isHermitian L385-392 handles the I factor) - again no S1,S2 commutation. The NL proof's tensor+additive adjoint calculation, the explicit no-commutation observation, and the non-Hermitian counterexample (first system 1-dim, S=[1], T=[0], X=[[0,1],[0,0]] so H=X != X-dagger) are all mathematically correct and faithful to source. NOVELTY: distinct from v3 item qcb-c48492565a0aca0bbf44 (target hermitian_decomposition), which DECOMPOSES a Hamiltonian into Hermitian parts; la-019's cores (tensor_isHermitian, add_isHermitian - the tensor/sum Hermiticity CLOSURE lemmas) are different Lean nodes and a different statement. grep confirmed these nodes appear in no v3 or sibling native_nl batch. New distinct core. Node prefixes correct ('declaration:').",
+      "checked_sources": ["QuantumBlockEncoding/GHLHamiltonian.lean#tensor L367-369", "QuantumBlockEncoding/GHLHamiltonian.lean#tensor_isHermitian L394-400", "QuantumBlockEncoding/GHLHamiltonian.lean#add_isHermitian L402-408", "QuantumBlockEncoding/GHLHamiltonian.lean#identity_isHermitian L385-392", "QuantumBlockEncoding/GHLHamiltonian.lean#oneDimHamiltonian_isHermitian L410-417", "data/public/release-v3/items.json#qcb-c48492565a0aca0bbf44"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-020",
+      "authored_sha256": "2ff26c458402a5c760b43003db68b0e942afdd82cde3b286603858db01b05f66",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified against RobinMatrix.lean (sha256 matches authored e957b6a5...). stencilRowCoeff (L21-26): filterMap keeps the coeff of each entry whose offset satisfies rowIdx + offset = colIdx (integer, no modular wrapping), then returns 0 for the empty match, the single coeff for one match, or the left-fold sum for several - exactly the 'sum of all matching coefficients' additive semantics the NL question states. buildRobinMatrix (L56-63): entry (row,col) = stencilRowCoeff row col (robinRowEntries ...). The NL proof's entrywise invariance under merging repeated offsets (grouping a finite scalar sum by equal offset; associativity/commutativity of + preserve the sum, matching the foldl over Coeff.add) is correct. The worked example (1,2),(1,-2),(-1,3): offset +1 coeff 2+(-2)=0 so entry at j=i+1 vanishes; offset -1 coeff 3 so entry at j=i-1 = 3 when in-grid; list has 3 pairs, merged list 2 (incl. a zero), at most one nonzero matrix entry per row, and left-boundary truncation when j=i-1 < 0 - all mathematically sound, consistent with the Nat column index / finite gridSize. The honest caveat that list length does not determine access/oracle cost and that collided-label loaders are not automatically reversible is appropriate. NOVELTY: distinct from v3 item qcb-e146e2a572a3f5879482 (target matrixOneNorm) which computes a matrix one-norm on the Robin matrix; la-020's cores (stencilRowCoeff additive entry semantics + merging invariance, buildRobinMatrix) are different Lean nodes and a different statement. grep confirmed no v3/sibling overlap. New distinct core. Node prefixes correct.",
+      "checked_sources": ["QuantumBlockEncoding/RobinMatrix.lean#stencilRowCoeff L21-26", "QuantumBlockEncoding/RobinMatrix.lean#robinRowEntries L37-48", "QuantumBlockEncoding/RobinMatrix.lean#buildRobinMatrix L56-63", "data/public/release-v3/items.json#qcb-e146e2a572a3f5879482"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

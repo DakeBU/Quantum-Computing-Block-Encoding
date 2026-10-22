@@ -1,0 +1,51 @@
+{
+  "author_claimed_new_core_candidates": 56,
+  "candidate_records_not_established_new": 8,
+  "canonical_core_ids": 56,
+  "confirmed_distinct_released_cores": 48,
+  "existing_view_aliases": [],
+  "independent_duplicate_or_existing_views": 7,
+  "independent_new_distinct_cores": 48,
+  "legacy_items_compared": 46,
+  "legacy_overlap_candidates": [
+    {
+      "core_id": "qcb-core-plan-002",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0058,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-004",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0062,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-006",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0411,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-007",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0097,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-sp-009",
+      "legacy_key": "qcb-authored-0007",
+      "question_similarity": 0.0201,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    }
+  ],
+  "near_duplicate_candidates": [],
+  "new_core_candidates": 56,
+  "normalized_duplicate_questions": 0,
+  "semantic_dedup_status": "automatic exact/near checks plus actual reviewer core verdict; similarity alone is not semantic dedup proof"
+}

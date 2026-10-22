@@ -1,0 +1,42 @@
+{
+  "candidate_cores": 56,
+  "candidate_records": 56,
+  "counts_by_topic": {
+    "angle_approximation": 1,
+    "block_encoding": 13,
+    "linear_algebra": 12,
+    "phase_semantics": 1,
+    "planned_quantum_information": 7,
+    "planned_scientific_computing": 5,
+    "reversible_classical": 2,
+    "state_preparation": 13,
+    "wire_placement": 2
+  },
+  "duplicate_or_existing_view_records": 7,
+  "goal_complete": false,
+  "independent_new_distinct_core_verdicts": 48,
+  "local_lean_verification_performed": false,
+  "reviewed_by_evidence_relation": {
+    "local_source_supported": 18,
+    "nl_bridge_from_inspected_source": 21,
+    "primary_source_nl_only": 9
+  },
+  "reviewed_by_semantic_steps": {
+    "2": 8,
+    "3": 37,
+    "4": 3
+  },
+  "reviewed_by_topic": {
+    "angle_approximation": 1,
+    "block_encoding": 10,
+    "linear_algebra": 12,
+    "phase_semantics": 1,
+    "planned_quantum_information": 7,
+    "planned_scientific_computing": 2,
+    "reversible_classical": 2,
+    "state_preparation": 11,
+    "wire_placement": 2
+  },
+  "reviewed_cores": 48,
+  "version": "nl-v2"
+}

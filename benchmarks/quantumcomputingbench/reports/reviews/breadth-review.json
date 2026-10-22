@@ -1,0 +1,116 @@
+{
+  "reviewer": "breadth-review-distinct-context",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "breadth-cubic-unnormalized-operator",
+      "authored_sha256": "c5fa279a020a0ac93d98919e63aae00db256b8b5bbc81d41206fff869d1d0f43",
+      "verdict": "accept",
+      "notes": "Verified against actual decls. gridPoint n j = j/2^n, cubicAmplitude = (j/2^n)^3 (CubicStatePreparation.lean:31-36). For n=1: v=(0,(1/2)^3)=(0,1/8), ||v||^2=1/64 != 1 -- numerics correct. cubicOperator row col = if col.val=0 then cubicAmplitude row else 0 (:43-44): only column 0 nonzero, so O|0>=v, O|1>=0, rank-one, exactly as stated. Unitary norm-preservation obstruction correct; QueryOperatorTarget with conservativeNormalizer=2^n (:60-67) is operator (not state) target, 'not claimed optimal' matches docstring. For n=1 normalized vector is |1>: correct. No defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/CubicStatePreparation.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "breadth-banded-inverse-register",
+      "authored_sha256": "fa959eccba66da945219c95c00fd45351d18bb9d2026a1183094082e7a65ea5d",
+      "verdict": "accept",
+      "notes": "modularSumEquiv toFun (a,r)=(a+r,r), invFun (b,r)=(b-r,r) (BandedSparseAccess.lean:29-34); accessEquiv = liftLoaderEquiv.trans modularSumEquiv (:44-46), so F(a,r)=(L(a)+r,r) (:52-55). Inverse order correct: undo SUM then loader gives F^{-1}(b,r)=(L^{-1}(b-r),r). accessEquiv_preserves_row holds for every input (:70-74) -- row preservation alone gives no info on L(slot), correct. accessEquiv_clean_slot requires loader_spec : forall slot, loader(slotWord n slot)=offset slot (:58-66) -- premise correctly retained. accessMatrix_unitary (:82) is semantic; paper gate bounds (:90-95) are source-facing only, not executable certificates per module docstring -- the semantics-vs-cost separation is faithful. No defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/BandedSparseAccess.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "breadth-ghl-hermitian-pieces",
+      "authored_sha256": "62d34678247b4b2f5f3364f352cb5241be874974767b9f7009db3f2d3a7cb5a1",
+      "verdict": "accept",
+      "notes": "adjoint A i j = conj(A j i) (GHLHamiltonian.lean:48-49). antiHermitianPart = (A i j - conj(A j i))/(2i) (:60-61); antiHermitianPart_isHermitian PROVES IsHermitian despite the name (:80-86) -- conjugating 1/(2i)->-1/(2i) and A-A^dag -> -(A-A^dag) cancel, exactly the reference claim. hermitianPart_isHermitian (:74). hermitian_decomposition: A = hermitianPart + I*antiHermitianPart = H+iK (:64-71). homogenizedS=[[A,B],[0,0]] (:108-114); homogenizedS_eq_S1_add_iS2 (:125-129) and S1_isHermitian/S2_isHermitian (:132-136) require NO Hermitian-A/B hypothesis -- matches 'neither A nor B must be Hermitian'. B-Hermitian only needed for S1/S2_lowerLeft_of_B_hermitian (:150,171). All signs/claims correct.",
+      "checked_sources": [
+        "QuantumBlockEncoding/GHLHamiltonian.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "breadth-robin-norm-convention-counterexample",
+      "authored_sha256": "fdb3edb82e8a821eb54c171e09bbec59fcdbc10a1982d76ea8041a9f77af4e5e",
+      "verdict": "accept",
+      "notes": "matrixRowAbsSum folds absolute values across columns of a fixed row (RobinMatrix.lean:96-100); matrixOneNorm = max over rows of row-abs-sum (:106-109) i.e. maximum absolute ROW sum. For M=[[1,2],[0,0]]: row sums 3 and 0 -> returns 3. Standard induced column-vector l1 operator norm = max absolute COLUMN sum = max(1,2)=2. So the implementation quantity equals the induced infinity-norm, not the induced l1-norm -- the convention-mismatch counterexample is mathematically correct (3 != 2). No docstring proves equality; the 'record mismatch, do not change production def' stance is honest. No defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RobinMatrix.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "breadth-hermite-resource-scope",
+      "authored_sha256": "edad127cb7b24812471addfa80c6873791bdf12927c29d841a84771af7131b42",
+      "verdict": "accept",
+      "notes": "exists_polynomial_resources (HermitePolynomialResources.lean:11-24): circuit : PrimitiveCircuit ((n+1)+bondQubits k) -- wire count (n+1)+bondQubits(k) correct. gateCount <= 48(n+1)(2k+6)^3 AND resource.depth <= same (via resource_depth_le_gateCount.trans hg, :24) AND oracleCalls=0 AND unitary. All-zero input column: forall x b, eval ... (Fin.append x b)(fun _=>0) = if b=(fun _=>0) then normalizedAmplitude k (n+1) L (primitiveBasisLEEquiv (n+1) x) else 0 -- data register x first, bond b appended, clean bond when b=0, exactly as stated. L>0 hypothesis present. 'Exact-real primitive, no finite-bit/Clifford+T' scope guard correct. No defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomialResources.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "breadth-hermite-angle-budget",
+      "authored_sha256": "6783e626ca1429820513f559d218d52f33f03ab06737eeef33337c577105f1eb",
+      "verdict": "accept",
+      "notes": "GateAligned (PrimitiveCircuitPerturbation.lean:16-19): only RY angles change on same target, |a.eval-b.eval|<=delta; Aligned = Forall2 preserving length/position (:22-23). GateAligned.distance_le <= delta/2 (:39-46). aligned_eval_distance_le <= length*delta/2 by telescoping with unitary-invariant operator norm (:49-76). hermiteAngleBudget = epsilon/(24(n+1)(2k+6)^3) (:88-89) = 2*epsilon/G with G=48(n+1)(2k+6)^3 -- factor 24 and half-angle correct. prepare_conditional_distance_le (:98-119): length<=G, so G*(2eps/G)/2 = eps. Denominators positive incl eps=0 (positivity). L2 induced operator norm (:14), chronological eval convention (:10). Equal-counts/probability-only insufficiency and 'not a free rounding algorithm' guards correct. No defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "breadth-stored-projection-cost",
+      "authored_sha256": "c4bed98889ee32f4b701046bb4e4201f39cc0ff852c4a9c49011772516d314b0",
+      "verdict": "accept",
+      "notes": "ordinary cost = sum over Op (StoredHermiteRawCost.lean:21); ordinary_eq_total identifies it with StoredRectangularGivens.total over the eight ops {field,sqrt,angle,trig,compare,read,write,emit} (:24-29). collectStages_cost adds m*(3*read+3*write) (:80-84); collectStages_total_cost = sum_i ordinary(f i) + 6*m (:86-93) -- overhead 6m = 3 reads+3 writes per stage, correct and nonzero despite cached producers. m=3, each 10: 3*10+6*3 = 30+18 = 48, correct. Selected integer/exponential counters separately scoped (:179-214), not arbitrary-precision bit work; 'unit charge for exact-real op is not a bit-runtime theorem' guard correct. No defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredHermiteRawCost.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "breadth-bell-chronological-wires",
+      "authored_sha256": "fec53dc63f06cb05edb71256c5cfe2e99850ecb818d4389b6f2b68aa6dc10eee",
+      "verdict": "accept",
+      "notes": "bellRyAngle = piRational(1/2), eval = pi/2 (StatePreparationBellRoute.lean:18-24); RY(pi/2) uses pi/4 half-angle -> warmRobinUniformBitPrepare with first column (cos pi/4, sin pi/4)=(1/sqrt2,1/sqrt2), both positive, no minus sign. bellRy_col_zero: nonzero at labels 0 and 1 (:116-131). Little-endian label=sum bit_j 2^j so label 1 = q0=1,q1=0, correct. bellControl=0, bellTargetWire=1 (:31-33); CX(q0,q1) sends column-1 to row-3 (bellCx_entry_31=1, :180-184), label 0 fixed -> (|00>+|11>)/sqrt2 = labels 0,3. bellVerified_cost = {auxiliaryQubits 0, gateCount 2, depth 2, oracleCalls 0} proved by decide (:260-263). Big-endian reinterpretation of label 1 would excite the other qubit -- endian warning correct. No defect.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StatePreparationBellRoute.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qit-pure-state-projector-density-001-corrected-v2",
+      "authored_sha256": "fc2df07ac2a9bb3b5199d318794f8360c98e122d4523f730356ee678fb228ab9",
+      "verdict": "accept",
+      "notes": "Checked against bounded primary extract. Definition 2.1 (density operator: positivity rho>=0, normalization tr rho=1) and Eq 2.4 standard inner product present verbatim. Text states a pure density matrix has rank 1 and equals projector |psi><psi| with <psi|psi>=1, equivalently tr rho=1, and is an extreme point of the convex compact set of density matrices -- the answer's Hermiticity, positivity (<phi|rho|phi>=|<psi|phi>|^2), tr rho=<psi|psi>=1, rho^2=rho rank-one, and extreme-point/one-dimensional-support argument are all faithful. Corrected boundary (supersedes v1): zero-vector case rho=0 is idempotent (0^2=0) with trace 0, not a state; only c>0 permits renormalization, zero vector has no normalized representative -- mathematically correct and source-consistent. formal_status not_applicable (planned/NL track). No defect.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.txt (Leditzky FT25 math595-repth-qit, Definition 2.1, Eq 2.4, pure-state projector characterization)"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qasc-lcu-sum-additive-error-prop910-001-corrected-v2",
+      "authored_sha256": "d35490e9d21b8fbedd11dbee4c22a5c85d5e8f074ee45ff44bb4b4297c46bdc3",
+      "verdict": "accept",
+      "notes": "Checked against bounded primary extract. Prop 9.10 verbatim: UAj in BE_{alpha_j,a}(Aj,eps_j), alpha_j>=0, gamma:=sum alpha_j>0, VPREP|0^m>=(1/sqrt gamma)sum sqrt(alpha_j)|j> (9.38), W=(VPREP^dag tensor I)USEL(VPREP tensor I) (9.39), W in BE_{gamma,a+m}(sum Aj, sum eps_j) (9.40). Proof: Bj=<0^a|UAj|0^a>, ||Aj-alpha_j Bj||<=eps_j, ||Bj||<=1; <0^m,0^a|W|...>=sum (alpha_j/gamma)Bj (9.41); ||sum Aj - gamma<...>||<=sum||Aj-alpha_j Bj||<=sum eps_j (9.42). Answer reproduces this exactly: subnormalization gamma, additive error sum eps_j (triangle, no cancellation -> add not max), gamma=sum alpha_j forced by unit-norm of prepare state, a+m ancilla accounting. Corrected gamma>0 boundary (if all alpha_j=0 prepare undefined) is source-faithful. formal_status not_applicable. No defect.",
+      "checked_sources": [
+        "temp/qasc-primary.pdf.txt (Lin-Wiebe QASC Proposition 9.10, Eqs 9.37-9.42)"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qasc-product-block-encoding-error-prop912-001-corrected-v2",
+      "authored_sha256": "95a6d1ebe3672c11da17f3174568cd96092ccb0d40ed21ee8726bf904949b84d",
+      "verdict": "accept",
+      "notes": "Checked against bounded primary extract. Prop 9.12 verbatim: UAj in BE_{alpha_j,a_j}(Aj,eps_j), U in BE_{prod alpha_j, sum a_j}(A_{M-1}...A_0, prod(alpha_j+eps_j)-prod alpha_j) (9.44). Disjoint ancillas => <0^{sum a_j}|U|...>=B_{M-1}...B_0 (9.45). Induction 9.47: base M=1 immediate; step with P, P~, ||(A-aB)P||+||aB(P-P~)|| <= eps||P||+alpha||P-P~||, ||Aj||<=alpha_j+eps_j, ||P||<=prod(alpha_j+eps_j) (9.48), telescopes to prod(alpha_j+eps_j)-prod alpha_j (9.49). Answer reproduces induction exactly. Additive-vs-multiplicative contrast and sum a_j disjoint-ancilla cost correct; Example 11.9/Fig 9.6 deferred-measurement a+1 non-optimality note matches source. Corrected scope (alpha_j>0, eps_j>=0; relative-error ~prod alpha_j * sum eps_j/alpha_j is first-order for small eps_j/alpha_j at fixed M, NOT an identity; exact bound is the theorem) is faithful and avoids overclaim. formal_status not_applicable. No defect.",
+      "checked_sources": [
+        "temp/qasc-primary.pdf.txt (Lin-Wiebe QASC Proposition 9.12, Eqs 9.43-9.49; Example 9.11/11.9)"
+      ],
+      "formal_status": "not_applicable"
+    }
+  ]
+}

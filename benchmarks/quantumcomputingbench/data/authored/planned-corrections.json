@@ -1,0 +1,306 @@
+[
+  {
+    "key": "qit-pure-state-projector-density-001-corrected-v2",
+    "topic": "Part III Quantum Information: pure states as rank-one projectors satisfying the density-operator axioms",
+    "track": "planned",
+    "question": "Let H = C^d with the standard inner product of Eq. (2.4), and let |psi> in H be a unit vector, <psi|psi> = 1. Define rho := |psi><psi|. Starting only from Definition 2.1 (a quantum state is a density operator with rho >= 0 and tr rho = 1), prove that rho is a legitimate quantum state, that it is a rank-one orthogonal projector (rho^2 = rho = rho^dagger), and explain in what precise sense this makes rho an extreme point (pure state) of the convex set of density operators. State explicitly which step uses normalization of |psi> and why dropping it breaks the trace condition.",
+    "reference_answer": "Hermiticity: rho^dagger = (|psi><psi|)^dagger = |psi><psi| = rho. Positivity: for any |phi>, <phi|rho|phi> = <phi|psi><psi|phi> = |<psi|phi>|^2 >= 0, hence rho >= 0. Trace/normalization: in any orthonormal basis, tr rho = sum_i <e_i|psi><psi|e_i> = <psi|(sum_i |e_i><e_i|)|psi> = <psi|psi> = 1, where the final equality is exactly the unit-norm hypothesis computed with the Eq. (2.4) inner product. Both Definition 2.1 conditions hold, so rho is a quantum state. Idempotency: rho^2 = |psi><psi|psi><psi| = <psi|psi>|psi><psi| = rho, so rho is an orthogonal projector onto the one-dimensional span{|psi>}, hence rank 1. Extreme point: if rho = p sigma_1 + (1-p) sigma_2 with 0<p<1 and density operators sigma_i, positivity forces the range of each sigma_i inside range(rho) = span{|psi>}; the only trace-one state supported on a one-dimensional space is |psi><psi|, so sigma_1 = sigma_2 = rho and the decomposition is trivial. Thus rho is an extreme point (pure state), matching the text's statement that a pure density matrix has rank 1 and equals a projector |psi><psi|. If normalization were dropped (<psi|psi> = c != 1) then tr rho = c != 1 violates Definition 2.1, Idempotency becomes rho^2=c rho: it fails for nonzero psi with c!=1, but the zero vector gives the zero idempotent, which still has trace0 and is not a state. Only for c>0 may one renormalize rho=|psi><psi|/c; the zero vector has no normalized state representative.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves rho = rho^dagger and rho >= 0 via <phi|rho|phi> = |<psi|phi>|^2",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes tr rho = <psi|psi> = 1 and identifies normalization of |psi> as the step giving trace one",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows rho^2 = rho using <psi|psi>=1, concluding rank-one orthogonal projector",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Argues purity via one-dimensional support forcing a trivial convex decomposition, and notes failure of trace/idempotency without normalization",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Finite-dimensional H = C^d with the standard inner product of Eq. (2.4).",
+      "|psi> is a fixed unit vector; density-operator conditions are exactly Definition 2.1."
+    ],
+    "conventions": [
+      "Inner product conjugate-linear in the first argument per Eq. (2.4): <psi|phi> = sum_i psi_i^* phi_i.",
+      "Pure state = extreme point of the convex set of density operators."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "rho = |psi><psi| is Hermitian and positive semidefinite since <phi|rho|phi> = |<psi|phi>|^2 >= 0.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "tr rho = <psi|psi> = 1 exactly because |psi> is normalized, giving the Definition 2.1 trace condition.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "rho^2 = rho so rho is a rank-one orthogonal projector whose one-dimensional support forces purity.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean several-step derivation from the density-operator axioms; the extreme-point argument needs support/convexity reasoning beyond idempotency."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source id leditzky-2025-repth-qit (status primary-text-checked; registry SHA256 90784b02...; 10 April 2026 edition)",
+        "license": "course lecture notes (c) Felix Leditzky; not redistributed in this dataset; only short definitions/equations referenced, original questions and prose"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "3-7",
+          "anchors": "Definition 2.1 (density operator: positivity, tr=1); Eq. (2.4) standard inner product; pure-state projector characterization (rank 1, rho=|psi><psi|, <psi|psi>=1); Eqs. (2.14)-(2.15) partial trace definition; Example 2.6 Eqs. (2.17)-(2.18) Bell state Phi+ and its density matrix; Eq. (2.22) maximally-mixed marginals",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed"
+        }
+      }
+    ],
+    "family": "qit-state-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "supersedes": "qit-pure-state-projector-density-001",
+    "author": {
+      "identity": "main-session-correction-author",
+      "method": "Source-backed boundary-case correction",
+      "independence": "self-authored correction; distinct-context review required"
+    }
+  },
+  {
+    "key": "qasc-lcu-sum-additive-error-prop910-001-corrected-v2",
+    "topic": "Part IV Scientific Computing: additive error of an LCU sum of block encodings (Proposition 9.10)",
+    "track": "planned",
+    "question": "Proposition 9.10 (Lin-Wiebe, p.149) states that given block encodings U_{A_j} in BE_{alpha_j,a}(A_j, eps_j), j in [M], M=2^m, alpha_j >= 0, with select oracle U_SEL = sum_j |j><j| tensor U_{A_j} and prepare oracle V_PREP|0^m> = (1/sqrt gamma) sum_j sqrt(alpha_j)|j>, gamma = sum_j alpha_j > 0, the operator W = (V_PREP^dagger tensor I) U_SEL (V_PREP tensor I) satisfies W in BE_{gamma, a+m}(sum_j A_j, sum_j eps_j). Derive (i) the subnormalization factor of the sum and (ii) the total block-encoding error, prove the error bound, and explain why the errors add (not the max) and why gamma = sum_j alpha_j rather than something smaller.",
+    "reference_answer": "Set B_j := <0^a|U_{A_j}|0^a>, so by BE_{alpha_j,a}(A_j,eps_j) we have ||A_j - alpha_j B_j|| <= eps_j and ||B_j|| <= 1. Computing the (|0^m,0^a>) block of W, the prepare amplitudes sqrt(alpha_j)/sqrt(gamma) on each side contract through U_SEL to weight term j by (sqrt(alpha_j)/sqrt(gamma))^2 = alpha_j/gamma, giving <0^m,0^a|W|0^m,0^a> = sum_j (alpha_j/gamma) B_j (Eq. 9.41). (i) Hence W encodes gamma * sum_j (alpha_j/gamma) B_j with subnormalization gamma = sum_j alpha_j and target sum_j A_j. (ii) The error is ||sum_j A_j - gamma<0^m,0^a|W|0^m,0^a>|| = ||sum_j (A_j - alpha_j B_j)|| <= sum_j ||A_j - alpha_j B_j|| <= sum_j eps_j by the triangle inequality (Eq. 9.42), so W in BE_{gamma,a+m}(sum_j A_j, sum_j eps_j). Errors add because each term independently contributes its deviation A_j - alpha_j B_j and the triangle inequality admits no cancellation guarantee, so sum_j eps_j (not the max) is the faithful worst-case bound. gamma = sum_j alpha_j is forced by unit-norm of the prepare state: |V_PREP|0^m>|^2 = (1/gamma) sum_j alpha_j = 1; any smaller gamma makes the amplitudes exceed norm one and V_PREP non-unitary. The a+m ancilla count is the a block ancillas plus the m-qubit control register indexing the M = 2^m summands. The gamma>0 premise is essential: if every alpha_j=0, this prepare state is undefined and the construction is not applicable. This fixes the scale of this construction, not a global lower bound on all possible block encodings.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies B_j = <0^a|U_{A_j}|0^a> with ||A_j-alpha_j B_j||<=eps_j, ||B_j||<=1, and computes the W block = sum_j (alpha_j/gamma)B_j",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Gives subnormalization gamma = sum_j alpha_j and target sum_j A_j",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Proves total error <= sum_j eps_j via the triangle inequality and explains why errors add not max",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Justifies gamma = sum_j alpha_j by unit-norm of V_PREP|0^m> and notes a+m ancilla accounting",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "family:prepare-select",
+      "family:matrix-contract"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Each U_{A_j} is a genuine (alpha_j, a, eps_j)-block encoding with shared ancilla size a; M=2^m summands on an m-qubit control register.",
+      "Spectral-norm error convention for ||A_j - alpha_j B_j||.",
+      "gamma=sum alpha_j is strictly positive; eps_j>=0; normalization optimality refers only to these fixed prepare amplitudes, not arbitrary constructions."
+    ],
+    "conventions": [
+      "BE_{alpha,a}(A,eps): ||A - alpha<0^a|U|0^a>|| <= eps, ||<0^a|U|0^a>|| <= 1.",
+      "V_PREP|0^m> = (1/sqrt gamma) sum_j sqrt(alpha_j)|j>; W = (V_PREP^dagger tensor I)U_SEL(V_PREP tensor I)."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The (0^m,0^a) block of W equals sum_j (alpha_j/gamma)B_j from the squared prepare amplitudes.",
+        "supporting_nodes": [
+          "family:prepare-select"
+        ]
+      },
+      {
+        "claim": "Multiplying by gamma recovers sum_j alpha_j B_j, approximating sum_j A_j.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Triangle inequality bounds the deviation by sum_j eps_j; errors add with no cancellation.",
+        "supporting_nodes": [
+          "family:matrix-contract"
+        ]
+      },
+      {
+        "claim": "Unit-norm of the prepare state forces gamma = sum_j alpha_j; ancilla count is a+m.",
+        "supporting_nodes": [
+          "family:prepare-select"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A genuine block-encoding derivation combining the LCU block computation, triangle-inequality error accounting, a normalization-driven subnormalization argument and honest ancilla accounting."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source id lin-wiebe-2026-qasc (status primary-text-checked; registry SHA256 56825000...; 29 April 2026 447-page edition)",
+        "license": "author-hosted lecture notes (c) Lin Lin and Nathan Wiebe; not redistributed in this dataset; only short propositions/equations referenced, original questions and prose"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "146-150",
+          "anchors": "Proposition 9.10 Eqs. (9.37)-(9.42) (sum of M=2^m block-encoded matrices, additive error); Proposition 9.12 Eqs. (9.43)-(9.49) (product of M block-encoded matrices on disjoint ancillas, multiplicative error by induction)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed"
+        }
+      }
+    ],
+    "family": "qsc-block-encoding-composition",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "supersedes": "qasc-lcu-sum-additive-error-prop910-001",
+    "author": {
+      "identity": "main-session-correction-author",
+      "method": "Source-backed boundary-case correction",
+      "independence": "self-authored correction; distinct-context review required"
+    }
+  },
+  {
+    "key": "qasc-product-block-encoding-error-prop912-001-corrected-v2",
+    "topic": "Part IV Scientific Computing: multiplicative error of a product of block encodings on disjoint ancillas (Proposition 9.12)",
+    "track": "planned",
+    "question": "Proposition 9.12 (Lin-Wiebe, p.150) block-encodes a product A_{M-1}...A_0 by applying U_{A_j} in BE_{alpha_j, a_j}(A_j, eps_j) sequentially on disjoint ancilla registers and a common system register, yielding U in BE_{prod_j alpha_j, sum_j a_j}(A_{M-1}...A_0, prod_j (alpha_j+eps_j) - prod_j alpha_j). Prove the error bound by induction on M, using ||B_j|| <= 1 and ||A_j|| <= alpha_j+eps_j. Then contrast this multiplicative error growth with the additive error of the sum construction (Prop. 9.10) and explain the resource meaning of disjoint ancilla registers. Assume alpha_j>0, eps_j>=0; when using a first-order relative-error approximation, explicitly require all eps_j/alpha_j small (fixed M).",
+    "reference_answer": "For each j set B_j := <0^{a_j}|U_{A_j}|0^{a_j}>, so ||A_j - alpha_j B_j|| <= eps_j, ||B_j|| <= 1, and ||A_j|| <= ||A_j - alpha_j B_j|| + alpha_j||B_j|| <= alpha_j+eps_j. Disjoint ancillas make the all-zero ancilla block factorize: <0^{a_0+...+a_{M-1}}|U|0^{...}> = B_{M-1}...B_0 (Eq. 9.45). We prove ||prod_j A_j - prod_j (alpha_j B_j)|| <= prod_j(alpha_j+eps_j) - prod_j alpha_j by induction on M. Base M=1: ||A_0 - alpha_0 B_0|| <= eps_0 = (alpha_0+eps_0) - alpha_0. Step: let P = prod_{j<=M-2}A_j, P~ = prod_{j<=M-2}(alpha_j B_j). Then ||A_{M-1}P - (alpha_{M-1}B_{M-1})P~|| <= ||(A_{M-1}-alpha_{M-1}B_{M-1})P|| + ||alpha_{M-1}B_{M-1}(P-P~)|| <= eps_{M-1}||P|| + alpha_{M-1}||P-P~||. With ||P|| <= prod_{j<=M-2}(alpha_j+eps_j) and the induction hypothesis ||P-P~|| <= prod_{j<=M-2}(alpha_j+eps_j) - prod_{j<=M-2}alpha_j, this is <= eps_{M-1}prod_{j<=M-2}(alpha_j+eps_j) + alpha_{M-1}[prod_{j<=M-2}(alpha_j+eps_j) - prod_{j<=M-2}alpha_j] = (alpha_{M-1}+eps_{M-1})prod_{j<=M-2}(alpha_j+eps_j) - alpha_{M-1}prod_{j<=M-2}alpha_j = prod_j(alpha_j+eps_j) - prod_j alpha_j, completing the induction. Contrast: the sum (Prop. 9.10) has additive error sum_j eps_j and additive subnormalization gamma=sum_j alpha_j; the product has multiplicative subnormalization prod_j alpha_j and error prod(alpha_j+eps_j)-prod alpha_j, which for small eps_j is approximately (prod alpha_j) sum_j (eps_j/alpha_j) -- relative errors add while absolute error is amplified by the product of subnormalizations. Disjoint ancilla registers: each factor keeps its own a_j ancillas (not reused), so total ancilla cost is sum_j a_j; disjointness is exactly what lets the zero-ancilla block factor into B_{M-1}...B_0. This is simple but not ancilla-optimal (the text notes Example 11.9/Fig. 9.6 reduces a two-factor product to a+1 ancillas via deferred measurement). The relative-error comparison is a first-order expansion for fixed M with positive alpha_j and small eps_j/alpha_j; it is not an identity. The exact product-minus-product estimate is the theorem.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Sets B_j = <0^{a_j}|U_{A_j}|0^{a_j}>, derives ||A_j|| <= alpha_j+eps_j, and uses disjointness to factor the zero-ancilla block as B_{M-1}...B_0",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Carries out the induction base and step correctly including ||P|| <= prod(alpha_j+eps_j)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Arrives at prod_j(alpha_j+eps_j) - prod_j alpha_j and interprets it (relative errors add; absolute error amplified by product subnormalization)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Contrasts additive sum vs multiplicative product accounting and explains disjoint-ancilla cost sum_j a_j with the non-optimality note",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "family:spectral-filter"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Each U_{A_j} is an (alpha_j, a_j, eps_j)-block encoding; registers a_0,...,a_{M-1} disjoint, system register shared.",
+      "Spectral-norm error convention; compatible dimensions for the product A_{M-1}...A_0.",
+      "alpha_j>0 and eps_j>=0. The relative-error asymptotic is only for max_j eps_j/alpha_j small at fixed M; the displayed polynomial bound is exact without asymptotics."
+    ],
+    "conventions": [
+      "BE_{alpha,a}(A,eps): ||A - alpha<0^a|U|0^a>|| <= eps, ||<0^a|U|0^a>|| <= 1.",
+      "Product ordering A_{M-1}...A_0 reflects applying U_{A_0} first; subnormalization multiplies to prod_j alpha_j."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Disjoint ancillas make the zero-ancilla block factor as B_{M-1}...B_0 with ||B_j||<=1 and ||A_j||<=alpha_j+eps_j.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Induction with the triangle inequality and ||P||<=prod(alpha_j+eps_j) yields the telescoping product bound.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The error prod(alpha_j+eps_j)-prod alpha_j behaves like relative-error addition, contrasting the additive sum.",
+        "supporting_nodes": [
+          "family:spectral-filter"
+        ]
+      },
+      {
+        "claim": "Total ancilla cost sum_j a_j is simple but not optimal; disjointness enables the block factorization.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A full induction proof of a multiplicative error bound plus a quantitative contrast with the additive construction and honest ancilla-resource accounting."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source id lin-wiebe-2026-qasc (status primary-text-checked; registry SHA256 56825000...; 29 April 2026 447-page edition)",
+        "license": "author-hosted lecture notes (c) Lin Lin and Nathan Wiebe; not redistributed in this dataset; only short propositions/equations referenced, original questions and prose"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "146-150",
+          "anchors": "Proposition 9.10 Eqs. (9.37)-(9.42) (sum of M=2^m block-encoded matrices, additive error); Proposition 9.12 Eqs. (9.43)-(9.49) (product of M block-encoded matrices on disjoint ancillas, multiplicative error by induction)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed"
+        }
+      }
+    ],
+    "family": "qsc-block-encoding-composition",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "supersedes": "qasc-product-block-encoding-error-prop912-001",
+    "author": {
+      "identity": "main-session-correction-author",
+      "method": "Source-backed boundary-case correction",
+      "independence": "self-authored correction; distinct-context review required"
+    }
+  }
+]

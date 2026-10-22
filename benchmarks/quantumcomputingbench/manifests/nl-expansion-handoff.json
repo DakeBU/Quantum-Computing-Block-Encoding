@@ -1,0 +1,29 @@
+{
+  "schema_version": "qcb.native_expansion_handoff.v1",
+  "commit": "06bf796929d0bbb3a6eb0debed39766d896a9592",
+  "parent_milestone": "e5d759ea9f0598617a5c887751e5473f3f9a3ff7",
+  "branch": "qcb/nl-qa",
+  "version": "nl-v12",
+  "local_only_no_push": true,
+  "new_tracked_changed_files": 179,
+  "matched_user_files": 179,
+  "missing_user_files": [],
+  "different_user_files": [],
+  "prior_files_modified": [
+    "benchmarks/quantumcomputingbench/README.md",
+    "benchmarks/quantumcomputingbench/manifests/nl-goal.json"
+  ],
+  "prior_files_missing": [],
+  "admitted_distinct_core_ids": 217,
+  "active_records": 238,
+  "same_core_repairs": 9,
+  "provisional": 21,
+  "new_since50": 167,
+  "python_tests_passed": 114,
+  "repo_harness_passed": 98,
+  "frozen_v3_and_native_v4_unchanged": true,
+  "local_lean_verification_performed": false,
+  "paid_model_calls": 0,
+  "core_coordination": "real collaborator confirmation still pending before shared integration; no blocker for local NL work",
+  "goal_complete": false
+}

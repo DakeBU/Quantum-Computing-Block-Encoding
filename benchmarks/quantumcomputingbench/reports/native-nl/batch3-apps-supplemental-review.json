@@ -1,0 +1,44 @@
+{
+  "reviewer": "qit-applications-reviewer-b3",
+  "method": "distinct-context-source-review",
+  "supplements": "batch3-qit-apps-review.json",
+  "items": [
+    {
+      "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds",
+      "authored_sha256": "6d25bf62de607d1ddb7369e045f91ec83b2d7cfd3a3c7ddec8604b6f6acec327",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Carried from first-pass review (unchanged, re-affirmed). Sub-part (a) prompt is mathematically FALSE as stated: 'for d>=3 every Werner state is at least 2-extendible'. Werner alpha in [-1,1]; k=2 threshold is alpha>=1-d/2. At d=3 that is alpha>=-1/2, so valid Werner states with alpha in [-1,-1/2) are NOT 2-extendible (numerically confirmed: alpha=-1,-0.75 valid but not 2-ext). The universal claim holds only for d>=4 (1-d/2<=-1), or must be restricted to SEPARABLE Werner states (alpha>=0 >= -1/2) for d>=3. Source p59 states it loosely as 'for d>=3 every Werner state is at least 2-extendible' -- this is a genuine looseness in the primary (not an OCR artifact): the intended reading is the separable subset. The reference_answer silently narrows to the true separable-subset statement, so prompt and answer are inconsistent and the item is not a clean complete NL problem. FIX: either restrict (a)'s hypothesis to d>=4, or to separable Werner states, and state the source's looseness explicitly rather than silently. Parts (b) largest k=floor(1/(1-x(d+1)/d)) and (c) sup_k thresholds=>separability are correct. Verdict pending until the (a) hypothesis is repaired honestly against the primary.",
+      "checked_sources": [
+        "p59-60#Example 7.2, Eqs (7.5),(7.6), Figure 1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance",
+      "authored_sha256": "484658ddf0e741ea703cfb796c958468f0868f1b28ac7d1bf3e073b4fed791c4",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REVISED from accept to pending (coordinator-flagged, verified). The reference_answer is NOT a clean complete proof: it contains a FALSE mathematical assertion and false-starts, violating the original-complete-NL / no-false-starts goal. Specifically it writes 'for unitary U, U^T = conj(U^dagger) is false in general' -- but that identity is TRUE for EVERY matrix (dagger = conjugate-transpose, so conj(U^dagger) = conj(conj(U^T)) = U^T; numerically ||U^T - conj(U^dagger)||=0 for random unitary and for generic non-unitary matrices). The answer also opens part (b) with an abandoned mis-step ('Multiply both sides on B by (I⊗conj(U))... and use that conj(U)U^T = (U^dagger U)^T? More directly...') before restarting. The final computation conj(U)U^T = I (entrywise sum_k conj(U_jk)U_lk = (UU^dagger)_lj = delta_lj) is correct and the conclusion (|Phi+> invariant under U⊗conj(U)) is correct and numerically verified. SEPARATE PRIMARY ISSUE handled correctly by the author but which must be made EXPLICIT not silent: source Exercise 6.1 (p58) literally says |Phi+> is 'invariant under any unitary of the form U⊗U' -- taken verbatim this is FALSE (U⊗U does not stabilize |Phi+> for general U; the true stabilizer is U⊗conj(U) = U⊗\\bar U, exactly what the transpose trick yields with X=U). The item silently repairs U⊗U -> U⊗\\bar U; per the original-NL/no-false-start standard this repair should be stated with explicit primary-typo status, not performed silently. FIX: rewrite reference_answer (b) as a single clean line '(U⊗\\bar U)|Phi+> = (I⊗\\bar U)(U⊗I)|Phi+> = (I⊗\\bar U U^T)|Phi+> = (I⊗I)|Phi+> = |Phi+>, since \\bar U U^T = I for unitary U', delete the false 'U^T=conj(U^dagger) is false' remark and the abandoned step, and annotate the source U⊗U vs U⊗\\bar U discrepancy as a primary looseness being corrected. Part (a) transpose-trick derivation is correct. Verdict pending until the false intermediate and false-starts are removed and the repair is explicit.",
+      "checked_sources": [
+        "p58#Exercise 6.1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing",
+      "authored_sha256": "5554acbc9ae0f5845bfa9d2248f2fad2f0d24c52712294696f4011d81561e524",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REVISED from pending (first pass flagged only part b) to pending with ADDITIONAL defects in part (a) (coordinator-flagged, verified). Three problems. (1) Part (a) CP justification is WRONG: it claims the embedding X -> X⊗I^{⊗(M-N)} 'is of the Kraus form with the single Kraus operator being the isometric embedding'. That is false -- X⊗I_K needs K=d^{M-N} Kraus operators K_j = I_N⊗|j> (so X⊗I = sum_j K_j X K_j^†), NOT one. A single isometry V would give V X V^† with rank <= rank(X), but X⊗I has strictly larger rank (numerically: rank(X)=2 vs rank(X⊗I)=4 for d=2,N=1,M=2). The map IS completely positive (tensoring with fixed I_K>=0 is CP), but the stated single-Kraus reason is incorrect; correct reason is the K-term Kraus sum above (or: X->X⊗I_K = id⊗(trace-rescaled state-prep) is manifestly CP). (2) Part (b) trace argument is unsound as previously noted: it bounds tr T(X) <= (d_N/d_M) d^{M-N} tr X, but (d_N/d_M)d^{M-N} > 1 (=1.33,1.5,1.5 for (d,N,M)=(2,1,2),(2,2,3),(3,1,2)), so it does NOT prove trace-non-increasing. Correct identity (verified): tr T(X) = tr(X Pi_N), and since 0<=Pi_N<=I, tr T(X) <= tr X. (3) Part (b) trace-preservation CHARACTERIZATION is WRONG: the answer says trace is preserved 'precisely on (mixtures of) the pure-power inputs phi^{⊗N}'. The correct condition is support contained in Sym^N(H) (equivalently Pi_N X Pi_N = X), which is STRICTLY larger than the convex hull of pure powers {phi^{⊗N}}: e.g. the Bell/antisymmetric-free symmetric entangled state (|01>+|10>)/sqrt2 lies in Sym^2(C^2) and has tr T = 1 (verified) yet is entangled and is NOT any mixture of pure powers phi^{⊗2}. (The set of mixtures of pure powers = separable symmetric states, a proper subset of all density operators on Sym^N.) FIX: give the K-term Kraus decomposition for CP; prove non-increase via tr T(X)=tr(X Pi_N) with Pi_N<=I; and state trace-preservation holds exactly on states supported in Sym^N (Pi_N X Pi_N = X), citing the eT correction Eq (8.39) for general X. Underlying Exercise 8.5(i) statement (T is CP and trace-non-increasing) is TRUE; only the supplied proof and the equality-condition claim are defective. Verdict pending until all three are corrected.",
+      "checked_sources": [
+        "p67#Eq (8.25)",
+        "p69#Exercise 8.5, Eq (8.39)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "author_claimed_new_core_candidates": 229,
+  "candidate_records_not_established_new": 21,
+  "canonical_core_ids": 238,
+  "confirmed_distinct_released_cores": 217,
+  "existing_view_aliases": [
+    {
+      "aliases": [
+        "qcb-core-sp-101"
+      ],
+      "core_id": "qcb-core-sp-101"
+    },
+    {
+      "aliases": [
+        "qcb-core-la-205"
+      ],
+      "core_id": "qcb-core-la-205"
+    },
+    {
+      "aliases": [
+        "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity"
+      ],
+      "core_id": "qcb-core-plan-210"
+    },
+    {
+      "aliases": [
+        "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds"
+      ],
+      "core_id": "qcb-core-plan-402"
+    },
+    {
+      "aliases": [
+        "qcb-core-plan-411-transpose-trick-and-UU-invariance"
+      ],
+      "core_id": "qcb-core-plan-411"
+    },
+    {
+      "aliases": [
+        "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing"
+      ],
+      "core_id": "qcb-core-plan-418"
+    },
+    {
+      "aliases": [
+        "qcb-core-be-001"
+      ],
+      "core_id": "qcb-core-be-001"
+    },
+    {
+      "aliases": [
+        "qcb-core-be-002"
+      ],
+      "core_id": "qcb-core-be-002"
+    },
+    {
+      "aliases": [
+        "qcb-core-be-010"
+      ],
+      "core_id": "qcb-core-be-010"
+    }
+  ],
+  "independent_duplicate_or_existing_views": 29,
+  "independent_new_distinct_cores": 208,
+  "legacy_items_compared": 46,
+  "legacy_overlap_candidates": [
+    {
+      "core_id": "qcb-core-la-113",
+      "legacy_key": "qcb-authored-0003",
+      "question_similarity": 0.0595,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-101",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0165,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-102",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0189,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-103",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0176,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-104",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0287,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-105",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0202,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-106",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0212,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-107",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0361,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-110",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0166,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-111",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0155,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-112",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "question_similarity": 0.0179,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-114",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0237,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-116",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0145,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-117",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0235,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-118",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0117,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-411",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0277,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-418",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0657,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-505",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0146,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-507",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0127,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-401",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0267,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-405",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0126,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-409",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0152,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-413",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0245,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-416",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0057,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-417",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0529,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-301",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0192,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-302",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0245,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-303",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "question_similarity": 0.0488,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-304",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "question_similarity": 0.0207,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-305",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "question_similarity": 0.0321,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-306",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "question_similarity": 0.0428,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-307",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "question_similarity": 0.0403,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-308",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.035,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-314",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0117,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-317",
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "question_similarity": 0.0219,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-320",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0214,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-002",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0058,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-004",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0062,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-006",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0411,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-plan-007",
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "question_similarity": 0.0097,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    },
+    {
+      "core_id": "qcb-core-sp-009",
+      "legacy_key": "qcb-authored-0007",
+      "question_similarity": 0.0201,
+      "same_primary_target_set": true,
+      "state": "requires semantic core comparison; same target alone is not same problem"
+    }
+  ],
+  "near_duplicate_candidates": [],
+  "new_core_candidates": 229,
+  "normalized_duplicate_questions": 0,
+  "semantic_dedup_status": "automatic exact/near checks plus actual reviewer core verdict; similarity alone is not semantic dedup proof"
+}

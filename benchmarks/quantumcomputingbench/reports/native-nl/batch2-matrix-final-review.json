@@ -1,0 +1,226 @@
+{
+  "reviewer": "matrix-constructions-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-la-101",
+      "authored_sha256": "b634271af1792dd34af5409925fe34854278b585ed255775b353a8888d673724",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged from prior review (hash identical). Exact-real Givens pair elimination: eliminate_pair (AdjacentGivens.lean:104-119) via Pythagorean identity; eliminationAngle_zero (101-102) zero-pivot totality; splitAngle_real_firstColumn (84-97). Reference answer and rubric map exactly. Exact-real, not cost.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets eliminate_pair.",
+      "checked_sources": ["QuantumBlockEncoding/AdjacentGivens.lean#eliminate_pair104-119", "QuantumBlockEncoding/AdjacentGivens.lean#eliminationAngle99-102", "QuantumBlockEncoding/AdjacentGivens.lean#splitAngle_real_firstColumn84-97"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-102",
+      "authored_sha256": "55a1b6fe6c8d04f1caf3e9f7c5084071505af22c786905cfc72ba895de90e1c0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Determinant invariance via two-row mix a*d-b*c: det_two_row_mix (AdjacentGivens.lean:341-365) uses det_zero_of_row_eq and det_permute/sign_swap=-1; rotateRows_det (367-378) specializes to cos^2+sin^2=1. Exact algebraic identity.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets det_two_row_mix / rotateRows_det.",
+      "checked_sources": ["QuantumBlockEncoding/AdjacentGivens.lean#det_two_row_mix341-365", "QuantumBlockEncoding/AdjacentGivens.lean#rotateRows_det367-378", "QuantumBlockEncoding/AdjacentGivens.lean#planeMatrix_det381-383"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-103",
+      "authored_sha256": "1cc173d62ef4f616d610bfa79096c0567979a3bb787d4ca1bea3a608f0aa7a54",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Reverse+negate undoes a chronological rotation list: applySteps_reverse_inverse (AdjacentGivens.lean:207-220) list induction with applySteps_append (200-205) and planeMatrix_inverse (57-60). Exact recovery.",
+      "counterexample_or_novelty": "Distinct: no corpus item on rotation-list reversibility.",
+      "checked_sources": ["QuantumBlockEncoding/AdjacentGivens.lean#applySteps_reverse_inverse207-220", "QuantumBlockEncoding/AdjacentGivens.lean#planeMatrix_inverse57-60", "QuantumBlockEncoding/AdjacentGivens.lean#applySteps_append200-205", "QuantumBlockEncoding/AdjacentGivens.lean#Step.inverse197-198"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-104",
+      "authored_sha256": "ba3a86451a0c82b7c9beb6196bfc4d3fd60a47b81ddbb1288a466b62bc206ccc",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Column sweep zeroing invariant + outside invariance: columnSweep_zeroed (AdjacentGivens.lean:283-303) protected by columnSweep_outside (265-281), eliminateEntry_pivot (145-149)/eliminateEntry_unchanged (151-154). Exact-real semantics.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets columnSweep_zeroed/columnSweep_outside. Note la-112 (new staircase invariant) sits one level above, over RectangularGivens.sweep — different declaration and statement.",
+      "checked_sources": ["QuantumBlockEncoding/AdjacentGivens.lean#eliminateEntry_pivot145-149", "QuantumBlockEncoding/AdjacentGivens.lean#eliminateEntry_unchanged151-154", "QuantumBlockEncoding/AdjacentGivens.lean#columnSweep_outside265-281", "QuantumBlockEncoding/AdjacentGivens.lean#columnSweep_zeroed283-303"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-105",
+      "authored_sha256": "4fcfc87f6f01cd77a1232c90193dffc52b7a8dd0474d707e6eb6bcf6045e54eb",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Orthonormal diagonal-supported column => pivot^2=1, nonneg => +1: orthogonal_supported_column_sq (AdjacentGivens.lean:441-455) via Finset.sum_eq_single + orthonormality; columnSweep_pivot_nonneg (422-439). Pure orthonormality + sign bound.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets orthogonal_supported_column_sq / columnSweep_pivot_nonneg.",
+      "checked_sources": ["QuantumBlockEncoding/AdjacentGivens.lean#columnSweep_pivot_nonneg422-439", "QuantumBlockEncoding/AdjacentGivens.lean#orthogonal_supported_column_sq441-455", "QuantumBlockEncoding/AdjacentGivens.lean#columnSweep_prefix_succ457-483"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-106",
+      "authored_sha256": "3df0529517b8c857721ee77f2450515489e24fc796a0fb06009dc6b729ca8e0b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Orthogonal det-1 with identity prefix on first N-1 columns => identity; det pins last diagonal to +1 vs -1 reflection: matrix_eq_one_of_last_prefix (AdjacentGivens.lean:490-525) via orthogonal_zero_of_fixed_column (403-408), det_diagonal.",
+      "counterexample_or_novelty": "Distinct from foundations la-006/la-011 (SO completion existence); this is the identity-uniqueness/termination lemma with the determinant orientation lock.",
+      "checked_sources": ["QuantumBlockEncoding/AdjacentGivens.lean#orthogonal_zero_of_fixed_column403-408", "QuantumBlockEncoding/AdjacentGivens.lean#matrix_eq_one_of_full_prefix485-488", "QuantumBlockEncoding/AdjacentGivens.lean#matrix_eq_one_of_last_prefix490-525"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-107",
+      "authored_sha256": "90a6d63ffcaf6ad3ef21c0303bf0ec01b2d7f59dc55de611804331aaf285aa75",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Binary-reflected Gray adjacency, one wire flip: GrayBasis.adjacent (GrayBasis.lean:54-94) width induction, parity split headBit_even (37-42)/headBit_odd (44-52), lift through equiv (15-22). quantum_semantics; not gate cost.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets GrayBasis.adjacent.",
+      "checked_sources": ["QuantumBlockEncoding/GrayBasis.lean#equiv15-22", "QuantumBlockEncoding/GrayBasis.lean#headBit_even37-42", "QuantumBlockEncoding/GrayBasis.lean#headBit_odd44-52", "QuantumBlockEncoding/GrayBasis.lean#adjacent54-94"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-108",
+      "authored_sha256": "2f4b6442fb14f178a85821640f45b51d3350de028eda945fe9b70cceeba6c33d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Rectangular exact recovery T^T*residual=A: exact_recovery (RectangularGivens.lean:150-153) from transform_mul (130-133), transform_orthogonal (144-145), transform_det (147-148). Exact matrix identities.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets RectangularGivens.exact_recovery.",
+      "checked_sources": ["QuantumBlockEncoding/RectangularGivens.lean#transform_mul130-133", "QuantumBlockEncoding/RectangularGivens.lean#transform_orthogonal144-145", "QuantumBlockEncoding/RectangularGivens.lean#transform_det147-148", "QuantumBlockEncoding/RectangularGivens.lean#exact_recovery150-153"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-109",
+      "authored_sha256": "a35e534e70df9ebe4b35503789f466495d3c04896165aa4f3f9279d9416edc23",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). MPS left-boundary absorption via finite double-sum exchange: closeLeft_contract (MatrixProductChain.lean:42-49) Finset.sum_comm; closeLeft (38-40); readout (14-17). Exact contraction identity.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets closeLeft_contract.",
+      "checked_sources": ["QuantumBlockEncoding/MatrixProductChain.lean#readout14-17", "QuantumBlockEncoding/MatrixProductChain.lean#closeLeft38-40", "QuantumBlockEncoding/MatrixProductChain.lean#closeLeft_contract42-49"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-110",
+      "authored_sha256": "4e25e81d902b894691cb143a6c4faa9aaa1da872a0888f3d737ed762d9145317",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). MPS terminal absorption: tailChain_contract (MatrixProductChain.lean:26-35) induction on n; tailChain (20-24); readout (14-17). Complementary to la-109 (left vs right boundary).",
+      "counterexample_or_novelty": "Distinct: no corpus item targets tailChain_contract; not a duplicate of la-109.",
+      "checked_sources": ["QuantumBlockEncoding/MatrixProductChain.lean#readout14-17", "QuantumBlockEncoding/MatrixProductChain.lean#tailChain20-24", "QuantumBlockEncoding/MatrixProductChain.lean#tailChain_contract26-35"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-111",
+      "authored_sha256": "a60fa87d9b3b9cc1654ba523ab2f539f0c78154e79980a975f5ef6681e60f4cb",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). MPS stored-scalar bound 2*n*D^2: storedScalars_le (MatrixProductChain.lean:79-93) chain induction; storedScalars (75-77); ofKernel_storedScalars (95-98). Storage-address count, disclaims runtime.",
+      "counterexample_or_novelty": "Distinct from batch2_stored_costs la-207/la-208 (operation-counter cost of StoredMatrixProductChain); different quantity and module.",
+      "checked_sources": ["QuantumBlockEncoding/MatrixProductChain.lean#storedScalars75-77", "QuantumBlockEncoding/MatrixProductChain.lean#storedScalars_le79-93", "QuantumBlockEncoding/MatrixProductChain.lean#ofKernel_storedScalars95-98"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-112",
+      "authored_sha256": "ecc2990169ceb645c38626b71193636e0fc51424c4db80a9e0e4e3840230377d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REPLACED item (previous wide-LQ-factorization version was rejected as existing_view of la-001; author substituted a genuinely different core). New hash matches MAIN. MATH/SOURCE faithful: the staircase upper-prefix invariant advance. Source sweep_upperPrefix (RectangularGivens.lean:67-83) proves UpperPrefix (49-50) advances from k to k+remaining by induction, one-step advance from columnSweep_upperPrefix (52-65), which clears the fresh column (reduced_zero_below/columnSweep_zeroed) and preserves earlier zeros via AdjacentGivens.columnSweep_preserves_zero_column (305-323); reduced_zero_below (135-139) gives the final upper-trapezoidal residual. All anchors verified in both files (RectangularGivens sha256 8066d811...35fa133, AdjacentGivens sha256 a43c3b4f...37a58d9c). Reference answer (one-step advance then induction over M columns from vacuous index 0) matches exactly. This is the column-level staircase invariant, distinct from la-104's single-column zeroing (columnSweep_zeroed).",
+      "counterexample_or_novelty": "Distinct: targets RectangularGivens.sweep_upperPrefix (whole-sweep staircase property), not present elsewhere; la-104 is the single columnSweep_zeroed one level below. No overlap with la-001/la-108 (those are exact-recovery/LQ, not the trapezoidal-prefix invariant).",
+      "checked_sources": ["QuantumBlockEncoding/RectangularGivens.lean#UpperPrefix49-50", "QuantumBlockEncoding/RectangularGivens.lean#columnSweep_upperPrefix52-65", "QuantumBlockEncoding/RectangularGivens.lean#sweep_upperPrefix67-83", "QuantumBlockEncoding/RectangularGivens.lean#reduced_zero_below135-139", "QuantumBlockEncoding/AdjacentGivens.lean#columnSweep_preserves_zero_column305-323"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-113",
+      "authored_sha256": "e7935c068a3ec926af41f1cfb114a8effcdd2e32994167f468677512ea6d7bf2",
+      "verdict": "reject",
+      "core_verdict": "existing_view",
+      "core_aliases": ["qcb-core-la-001"],
+      "notes": "Unchanged (hash identical; still the all-shapes thin-LQ factorization). MATH/SOURCE faithful: factor (ConstructiveThinLQ.lean:69-75) splits m<=n (wide via factorOfLE 61-66; tall R=A,Q=1), factor_correct (78-80), wide_orthogonal (51-58); inner dim exactly min(m,n), no rank hypothesis; tall answer R=A,Q=I matches source. REJECT (novelty, carried forward): same thin-LQ factorization core as foundations la-001 (exists_core_lq: A=R*Q, Q*Q^T=1, inner dim min). All-shapes constructive packaging is a proof-view of an already-present LQ-factorization fact; different lemma name is not novelty. Note: the former dup partner la-112 was replaced with a distinct core, so la-113's only remaining alias is la-001.",
+      "counterexample_or_novelty": "No novel content: constructive all-shapes thin-LQ equals the existing A=R*Q / Q*Q^T=1 factorization core la-001. core_verdict existing_view.",
+      "checked_sources": ["QuantumBlockEncoding/ConstructiveThinLQ.lean#wide_orthogonal51-58", "QuantumBlockEncoding/ConstructiveThinLQ.lean#factorOfLE61-66", "QuantumBlockEncoding/ConstructiveThinLQ.lean#factor69-75", "QuantumBlockEncoding/ConstructiveThinLQ.lean#factor_correct78-80"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-114",
+      "authored_sha256": "a745c973f7dc0465fbe62930824580d002adfc16eeaf12b298a94049a74a2fe0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Greedy injection extension: extendPrefix_agrees (ConstructiveIsometryCompletion.lean:174-198) proves p(castLE a)=e(a) for a<k by induction using injectivity of the running permutation and e; extendPrefix (167-172). Combinatorial permutation core.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets the greedy injection-extension lemma.",
+      "checked_sources": ["QuantumBlockEncoding/ConstructiveIsometryCompletion.lean#extendPrefix167-172", "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean#extendPrefix_agrees174-198"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-115",
+      "authored_sha256": "4a17f9c4784a4e87ba93313bee56758a08cd97a3c2b9cb1cccfdfe7af6f9fa51",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unchanged (hash identical). Parity-driven orientation fix (sign-flip iff sign(p) wrong, no determinant test), orthogonal det-1 both branches: orientColumns_det (ConstructiveIsometryCompletion.lean:256-267) split_ifs on sign p via Int.units_eq_one_or, permuteColumns_det (231-234), signFlip_det; orientColumns_orthogonal (242-254).",
+      "counterexample_or_novelty": "Distinct: no corpus item targets orientColumns_det/orthogonal. Related to foundations la-006 signFlip but that is the existence theorem; this is the constructive parity-branch operator.",
+      "checked_sources": ["QuantumBlockEncoding/ConstructiveIsometryCompletion.lean#permuteColumns_orthogonal223-229", "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean#permuteColumns_det231-234", "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean#orientColumns237-240", "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean#orientColumns_orthogonal242-254", "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean#orientColumns_det256-267"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-116",
+      "authored_sha256": "5cd3abe5921dcd5e9adc7c121d253b30257a3ae4f23a4ae92cdeb080faf2e21e",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REPLACED item (previous prescribed-SO-completion version was rejected as existing_view of la-006; author substituted a different core). New hash matches MAIN. MATH/SOURCE faithful: symmetric Gray-coordinate reindex preserves orthogonality and determinant. Source grayCoordinates_orthogonal (GrayGivensCompiler.lean:169-175) proves (grayCoordinates A)^T*(grayCoordinates A)=1 from A^T A=1 via the reindexAlgEquiv being multiplicative (map_mul) + map_one; grayCoordinates_det (177-180) preserves det via reindexAlgEquiv; grayCoordinates (159-162) is the symmetric same-bijection row+column reindex. Reference answer correctly identifies that the SAME bijection on both sides is what makes the reindex multiplicative/transpose-commuting. Checked parent dup flag against la-013 (expansion1.json, PrimitiveWireRename.eval_circuit): that is wire-rename conjugation P(Ut..U1)P^{-1} preserving circuit MULTIPLICATION — a different declaration and a different matrix property (conjugation/product-preservation vs orthogonality+determinant invariance). Not a duplicate; genuine new core.",
+      "counterexample_or_novelty": "Distinct: targets GrayGivensCompiler.grayCoordinates_orthogonal/_det (orthogonality + determinant invariance under symmetric reindex). Related in spirit to la-013 wire-conjugation but a different declaration and property; parent dup flag resolved as non-duplicate.",
+      "checked_sources": ["QuantumBlockEncoding/GrayGivensCompiler.lean#grayCoordinates159-162", "QuantumBlockEncoding/GrayGivensCompiler.lean#grayCoordinates_orthogonal169-175", "QuantumBlockEncoding/GrayGivensCompiler.lean#grayCoordinates_det177-180"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-117",
+      "authored_sha256": "08c888b150da635febb203eb25edc332e15fa1adf1b88ac55fa089c5d578bc3a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Hash changed vs prior review: author ADDED a second source_refs entry (SelectedRyPlane.lean realRyPlaneBlock42-45; selectedRyPlaneMatrix58-66); target and Q/A math unchanged. MATH/SOURCE faithful: edge_plane_transport (GrayGivensCompiler.lean:54-86) proves realTransport basis (planeMatrix ..theta) = selectedRyPlaneMatrix target context (theta or -theta by first-index target bit); same_context_iff (21-37). The added SelectedRyPlane anchors (realRyPlaneBlock, selectedRyPlaneMatrix) verified. All node references resolve.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets edge_plane_transport (Gray-reindex of a plane rotation = selected RY two-level plane).",
+      "checked_sources": ["QuantumBlockEncoding/GrayGivensCompiler.lean#same_context_iff21-37", "QuantumBlockEncoding/GrayGivensCompiler.lean#edge_plane_transport54-86", "QuantumBlockEncoding/SelectedRyPlane.lean#realRyPlaneBlock42-45", "QuantumBlockEncoding/SelectedRyPlane.lean#selectedRyPlaneMatrix58-66"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-118",
+      "authored_sha256": "7424a5088a44e1b8b030ce07fd0b0cec21f407ea7ce57374c12cd0e27fb67581",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Hash changed vs prior review: author ADDED a second source_refs entry (SelectedRyPlane.lean selectedRyPlaneMatrix_fixed_column122-129); target and Q/A math unchanged. MATH/SOURCE faithful: same_context_iff (GrayGivensCompiler.lean:21-37) proves two basis states share the control context iff equal or related by a single target-wire X, via bit_eq_or_flip (12-13) and x_context (15-19); the added fixed-column anchor (SelectedRyPlane.lean:122) verified. All node references resolve.",
+      "counterexample_or_novelty": "Distinct: no corpus item targets same_context_iff. Shares module with la-117 but a different lemma (context equivalence vs plane transport).",
+      "checked_sources": ["QuantumBlockEncoding/GrayGivensCompiler.lean#bit_eq_or_flip12-13", "QuantumBlockEncoding/GrayGivensCompiler.lean#x_context15-19", "QuantumBlockEncoding/GrayGivensCompiler.lean#same_context_iff21-37", "QuantumBlockEncoding/SelectedRyPlane.lean#selectedRyPlaneMatrix_fixed_column122-129"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-119",
+      "authored_sha256": "f19d2f09bbd3e1ea11435914df884c39d30c61c291a261e8f41188b0b17ad5ba",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Hash changed vs prior review: author expanded source_refs to three files (SelectedRyPlane.lean compileSelectedRy_ryCount143-148, compileSelectedRy_cxCount150-156, compileSelectedRySteps_noOracle225-227; GrayGivensCompiler.lean compileSO_cubic_bound196-199; AdjacentGivens.lean decomposeSO_length611-613); targets and Q/A math unchanged. MATH/SOURCE faithful: per-rotation 2^c RY and 2*(2^c-1) CX, zero oracle; boundary analysis that a quadratic number of planes (decomposeSO_length) times per-plane cost is cubic (compileSO_cubic_bound), not linear in dimension, q=1 witness. All target and supporting node references resolve.",
+      "counterexample_or_novelty": "Counterexample/boundary item: refutes linear-in-dimension SO preparation from per-rotation gate counts; cubic lower structure. Distinct.",
+      "checked_sources": ["QuantumBlockEncoding/SelectedRyPlane.lean#compileSelectedRy_ryCount143-148", "QuantumBlockEncoding/SelectedRyPlane.lean#compileSelectedRy_cxCount150-156", "QuantumBlockEncoding/SelectedRyPlane.lean#compileSelectedRySteps_noOracle225-227", "QuantumBlockEncoding/GrayGivensCompiler.lean#compileSO_cubic_bound196-199", "QuantumBlockEncoding/AdjacentGivens.lean#decomposeSO_length611-613"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-120",
+      "authored_sha256": "7f33014a04a89d17db489fa0d743ffca000de876eac7e2b722c42a8efc8403d9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "REPLACED item (previous SO-decomposition-count version was rejected as duplicate of decomposeSO_length; author substituted a different core). New hash matches MAIN. MATH/SOURCE faithful: step-action vs accumulated-matrix equivalence. Source applySteps_eq_matrix_mul (AdjacentGivens.lean:637-642) proves applySteps steps A = stepsMatrix steps * A by list induction with associativity; applySteps (192-195, first-listed acts first), stepsMatrix (633-635, defined as stepsMatrix rest * step.matrix so the leading step is right-most), Step.matrix (188-189). Reference answer's induction (empty => identity; cons => accMatrix(rest)*step.matrix*M by associativity) and the explanation that reverse-list product order is forced by first-listed-acts-first match exactly. Distinct from la-103 (reverse+negate INVERSE recovery) and from la-120's prior count core; this is the exact construction/induction identity between the two application procedures.",
+      "counterexample_or_novelty": "Distinct: targets applySteps_eq_matrix_mul (step-action = accumulated reverse-order product). Not the prior decomposeSO_length count; not la-103 (which is the inverse-recovery lemma). No duplicate found in corpus.",
+      "checked_sources": ["QuantumBlockEncoding/AdjacentGivens.lean#Step.matrix188-189", "QuantumBlockEncoding/AdjacentGivens.lean#applySteps192-195", "QuantumBlockEncoding/AdjacentGivens.lean#stepsMatrix633-635", "QuantumBlockEncoding/AdjacentGivens.lean#applySteps_eq_matrix_mul637-642"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

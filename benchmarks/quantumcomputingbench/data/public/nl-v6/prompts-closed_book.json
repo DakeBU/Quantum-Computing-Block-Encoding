@@ -1,0 +1,2284 @@
+[
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-91bad03f60703a92a44c",
+    "language": "en",
+    "question": "Let (G, .) and (H, *) be groups with identities e_G and e_H, and let phi: G -> H be a group homomorphism, meaning phi(x.y) = phi(x)*phi(y) for all x, y in G. Prove from the homomorphism property alone (without assuming phi is injective, surjective, or that G or H is finite) that phi(e_G) = e_H and that phi(g^{-1}) = phi(g)^{-1} for every g in G. State explicitly which group axioms (uniqueness of identity, uniqueness of inverses, cancellation) you invoke at each step, and explain why these two facts justify the standing claims that every representation phi satisfies phi(e) = 1_V and phi(g^{-1}) = phi(g)^{-1}.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "2402a26f91ab8dd36aab5ed55c7e1d4fb465da101143f204e5445e6268a05ab6",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b87b2fed369724fb0cfe",
+    "language": "en",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G, and let <.|.> be any inner product on V. Define the averaged form <v|w>_G := (1/|G|) sum_{g in G} <phi(g) v | phi(g) w>. Prove that (a) <.|.>_G is again an inner product on V; (b) every phi(g) is unitary with respect to <.|.>_G, i.e. <phi(g) v | phi(g) w>_G = <v|w>_G; and (c) consequently, for any G-invariant subspace W, its orthogonal complement W^perp taken with respect to <.|.>_G is also G-invariant, so that V = W (+) W^perp as representations. Explain exactly where the ability to average over G is used.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "3f1ec006682acdbb536e22d7543b1189b81f3d92028b90f918bfe316bed58c2e",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-a2935ca908a46361c8c8",
+    "language": "en",
+    "question": "Let (phi, V) be a representation of a finite group G over a field whose characteristic does not divide |G|, and let W be a G-invariant subspace with some (not necessarily invariant) projection P_W onto W (P_W^2 = P_W, im P_W = W). Define Q_W := (1/|G|) sum_{g in G} phi(g) P_W phi(g)^{-1}. Prove that Q_W commutes with every phi(g), that im Q_W = W and Q_W is a projection, and conclude that ker Q_W is a G-invariant complement, so V = W (+) ker Q_W as representations. Indicate where the hypothesis on the characteristic is used.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "4b017d9b5abb1a8bc7943761bbadd084a862c7d9c3aaf3cf8b7bcffab77790a4",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-34676e53453227de87c8",
+    "language": "en",
+    "question": "Let (phi_1, V_1) and (phi_2, V_2) be irreducible representations of a group G and let f: V_1 -> V_2 be G-equivariant, meaning f . phi_1(g) = phi_2(g) . f for all g in G. Prove that either f = 0 or f is an isomorphism (so V_1 ~ V_2). Your proof must show that ker f is a G-invariant subspace of V_1 and that im f is a G-invariant subspace of V_2, and then use irreducibility to force the conclusion.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "cd5a03350db8d38238b59f6de712d694db8fa994406f474241ecba5daacdb2a0",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-4ef698d5dad28a562bba",
+    "language": "en",
+    "question": "Let (phi, V) be an irreducible representation of a group G on a finite-dimensional vector space V over an algebraically closed field F (for example F = C), and let f: V -> V be G-equivariant, i.e. f . phi(g) = phi(g) . f for all g. Prove that f = lambda . 1_V for some scalar lambda in F. Make explicit where algebraic closure and finite dimension are used, and derive as a corollary that any operator X commuting with an irreducible representation is a scalar multiple of the identity.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8384de500d2720014c1dce044a96a54d6f805c3d8cb8cb6a8b281580697ec2d4",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f295ac98c7e9fcfd5b85",
+    "language": "en",
+    "question": "Let G be an abelian group. Prove that every complex irreducible representation (phi, V) of G is one-dimensional. You may use Schur's Lemma. Make clear exactly where commutativity of G and where the complex (algebraically closed) field are used, and explain why the statement can fail if the field is not algebraically closed.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "f01e27e8bc3a7b0ba258e89bde78d03b51a2830f30e81d455eb9496849bef692",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f1a286509bf953f99bf2",
+    "language": "en",
+    "question": "Let rho be any single-qubit density matrix (a 2x2 positive semidefinite operator with trace 1). Using the fact that the Pauli operators {1, X, Y, Z} generate an irreducible representation of the single-qubit Pauli group acting on C^2, prove that (1/4)(rho + X rho X + Y rho Y + Z rho Z) = (1/2) 1. Base your argument on Schur's Lemma / the commutant-is-scalars corollary and on the trace, not on a brute-force coordinate computation.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "1b5756f54feb3e5f7b9d3a594c210c78bbe153db151fca6e6ad9c54f58261d11",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-42762457a35d52d108dc",
+    "language": "en",
+    "question": "Let (phi, V) be a finite-dimensional representation of a group G and define its character by chi(g) := tr(phi(g)). Prove that (a) chi is a class function, i.e. chi(h g h^{-1}) = chi(g) for all g, h in G, and (b) chi(e) = dim V. State precisely which properties of the trace and which property of phi you use, and explain why being a class function means chi is really a function on conjugacy classes.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "4f4f731de9be2373ec8246abca084b0e1cb513bcfb03d99f20fa1acc2946ac28",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-062ced27e7c425e06b4d",
+    "language": "en",
+    "question": "Let G be a finite group and let the characters of its pairwise inequivalent complex irreducible representations W_1, ..., W_k be chi_1, ..., chi_k, orthonormal for the inner product (x, y) = (1/|G|) sum_{g} conj(x(g)) y(g); so (chi_i, chi_j) = delta_{ij}. Let (phi, V) be an arbitrary finite-dimensional complex representation with isotypical decomposition V ~ (+)_i W_i^{(+) n_i} (n_i the multiplicity of W_i). Prove that n_i = (chi_i, chi_V), where chi_V is the character of V. Then prove the two consequences: V is irreducible iff (chi_V, chi_V) = 1, and two representations are isomorphic iff they have equal characters.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "ea113d36c58925e6934f6ca5d497fc01dc25549c636995883d751af4bddcfb4f",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-c78c1706e82383b2075f",
+    "language": "en",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G, and let ( phi_U, U) be a complex irreducible representation of G. Recall that Hom_G(U, V) is the space of intertwiners f: U -> V, i.e. linear maps satisfying f . phi_U(g) = phi(g) . f for all g, and that Hom_G is additive in each argument: Hom_G(X, Y (+) Z) ~ Hom_G(X, Y) (+) Hom_G(X, Z). Prove that dim Hom_G(U, V) equals the multiplicity k of U in the isotypical decomposition of V. You should use Schur's Lemma to evaluate Hom_G(U, U) and Hom_G(U, F) where F collects the irreducible summands of V inequivalent to U.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8f166953014899b3cfc29f716a7967dd2c1d25a63af12f3847ee563dff86e16c",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-1731d8dbf2a88cbaddab",
+    "language": "en",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G, and for X in L(V) define the symmetrized operator Xbar := (1/|G|) sum_{g in G} phi(g) X phi(g)^{-1}. (a) Prove that Xbar is G-invariant, i.e. phi(h) Xbar = Xbar phi(h) for all h in G. (b) Using Schur's Lemma, prove that if V = W_1 (+) W_2 is a multiplicity-free decomposition into two inequivalent irreducibles, then in a basis adapted to W_1, W_2 the operator Xbar is block diagonal with each diagonal block a scalar multiple of the identity, and the off-diagonal blocks vanish. Explain which part of Schur kills the off-diagonal blocks and which part scalarizes the diagonal blocks.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "cd506ddfe5d47a38676df65ef4a8662220d1bfe3626c4bfc4bca8d66bf8b1402",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-9e65565c1cb2d9f390d4",
+    "language": "en",
+    "question": "Let (phi, V) be a representation of a group G and consider the tensor-square representation on V (x) V with the swap operator F defined by F(|x> (x) |y>) = |y> (x) |x>, extended linearly. (a) Prove F^2 = 1 and that F commutes with phi(g) (x) phi(g) for all g. (b) Define Pi_sym := (1/2)(1 + F) and Pi_asym := (1/2)(1 - F). Prove that Pi_sym and Pi_asym are orthogonal projections with Pi_sym + Pi_asym = 1 and Pi_sym Pi_asym = 0, that their images are exactly the +1 and -1 eigenspaces of F, and that both images are G-invariant subspaces, giving V (x) V = Sym^2(V) (+) Lambda^2(V) as representations.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "c409fb92032c9304c394802e2c80f45a6ef6233236d9dc8d835ee26d890ee6ce",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-179a913dcd0b76b7062e",
+    "language": "en",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G. For the trivial representation, define P := (1/|G|) sum_{g in G} phi(g). Prove that (a) P is idempotent (P^2 = P), (b) im P = V^G := {|v> : phi(g)|v> = |v> for all g}, and (c) P commutes with every phi(h). Then explain, by taking the trace, why tr P equals the multiplicity of the trivial representation in V (the number of independent G-invariant vectors), connecting to the general character-projection formula P_W = (dim W / |G|) sum_g conj(chi_W(g)) phi(g).",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "9efb104cea1d42f81e2940887d22f66bc4a27c33b947de88fb7e77e5fcdad674",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-c9acfbfe820076580eed",
+    "language": "en",
+    "question": "A student claims: for any representation (phi, V) of a finite group G and any X in L(V), the symmetrized operator Xbar = (1/|G|) sum_g phi(g) X phi(g)^{-1} is always block diagonal with respect to the isotypical decomposition AND each diagonal block is a scalar multiple of the identity. Decide whether the second half of this claim is true in general. Give an explicit counterexample using the action of S_2 = {e, (12)} on (C^2)^{(x)2} by permuting the two tensor factors (so phi((12)) = F, the swap), and explain precisely what feature of the decomposition makes the diagonal block fail to be scalar.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8f25d699b1394213fd163f484bf17adb5dfb96c04f932235d8eae45b0ca2b797",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d33440227781b9477deb",
+    "language": "en",
+    "question": "A student asserts: the tensor product of two irreducible representations of a group G is again irreducible. Show this is false by a counterexample. Specifically, take any representation (phi, V) of G with dim V >= 2 (you may take V irreducible) and consider the tensor-square representation on V (x) V. Exhibit a proper nonzero G-invariant subspace of V (x) V, and compute the dimensions to show V (x) V cannot be irreducible when dim V >= 2.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "12c40d6c90939895333bc4015506f399147bca60286a7e23f93287caa4d7d72c",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-ab9e69a77679b622b412",
+    "language": "en",
+    "question": "Proposition 3.22 says the decomposition of a representation into isotypical components is unique. A student over-reads this as: 'the decomposition of a representation into irreducible subrepresentations is unique.' Show by counterexample that the finer decomposition into individual irreducible subspaces is NOT unique, even though the isotypical components are. Use the trivial-isotypical component of the S_2 action on (C^2)^{(x)2} (equivalently, any space carrying the trivial representation with multiplicity >= 2) and exhibit two genuinely different splittings into irreducible lines.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "945d58f54d5d0936ba2f5cd3fbc4e68bb83df419865f9b10f5145c304d97c9c1",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-3ed24b9404884f2db3b8",
+    "language": "en",
+    "question": "A student claims: 'every finite-dimensional representation of every group can be made unitary by averaging an inner product over the group, so every invariant subspace has an invariant complement.' Explain why the averaging argument requires the group to be finite (or compact, with Haar measure), and give a counterexample: a finite-dimensional representation of an infinite group that has an invariant subspace with NO invariant complement (hence is not unitarizable and not completely reducible).",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "3805e25ec4a6748300b02236398f7ba9072e6e96a3d7d90507292e259c307343",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-2926d88c8013aec59e50",
+    "language": "en",
+    "question": "Part (ii) of Schur's Lemma concludes that a G-equivariant endomorphism of an irreducible representation is a scalar multiple of the identity, under the hypothesis that the field is algebraically closed. Delineate the boundary of this result: show precisely why algebraic closure is needed by exhibiting an irreducible real representation whose equivariant endomorphism algebra (commutant) is strictly larger than the real scalars, and state what part (i) still guarantees without algebraic closure.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "a12befcff416d18ac8b8647f0676c83d9726317aa0e6b28a5ed9a9f630da6d91",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-43175e14f91a0c73e006",
+    "language": "en",
+    "question": "Many representation-theoretic results for finite groups (invariant complements, complete reducibility, character orthogonality) are proved using the averaging (1/|G|) sum_{g in G}. For compact groups this is replaced by integration against the Haar probability measure. Delineate carefully which statements carry over verbatim to infinite compact groups and which must be modified or fail. In particular address: (a) existence of invariant complements and complete reducibility; (b) finite-dimensionality of irreducible representations; (c) the identity sum_i (dim W_i)^2 = |G| and formulas explicitly involving |G|.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "147ddd28672b72948c0ff8be430fcdcf68b3197412eab88ea5d2fa1dcb5ba87f",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-c84e5003eb3549b8c2fa",
+    "language": "en",
+    "question": "For a finite-dimensional representation (phi, V) of a group G, the dual representation (phi^*, V^*) is defined by phi^*(g)(L) = L . phi(g)^{-1}. (a) Prove that in a basis phi^*(g) = phi(g^{-1})^T, and that if (phi, V) is unitary then phi^*(g) = conj(phi(g)) (the entrywise complex conjugate). (b) Delineate the boundary between a representation and its dual: give the character relation chi_{V^*}(g) = conj(chi_V(g)) for unitary representations, and explain precisely when V is isomorphic to its dual (self-dual) versus not, giving an explicit example of a NON-self-dual irreducible representation. (c) State what remains true regardless: (phi^*, V^*) is irreducible iff (phi, V) is.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "350468c1b2fa3b5fb4390ca3a5e37f8691814dd7a5d2015bfd99216dea0f4be0",
+    "topic": "planned_representation_qit",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Each U_i is a (beta,a)-block-encoding of sqrt(P_i) with common a and common beta",
+      "The output register is prepared in the exact uniform superposition over 2^m labels",
+      "|psi> is a normalized pure system state"
+    ],
+    "conventions": [
+      "sqrt(P_i) denotes the unique positive semidefinite square root of the PSD effect P_i",
+      "Postselection on 0^a means projecting the ancilla onto |0^a> and renormalizing"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f10f96112b8c111b9f55",
+    "language": "en",
+    "question": "A POVM P = {P_i : i in [2^m]} is implemented through block encodings as follows. For each outcome i we are given a unitary U_i that is a (beta, a)-block-encoding of sqrt(P_i), all sharing the SAME ancilla size a and the SAME subnormalization factor beta > 0, so that U_i |0^a> |psi> = (1/beta) |0^a> sqrt(P_i) |psi> + |perp_i>, where (<0^a| tensor I)|perp_i> = 0. Define the controlled unitary W = sum_i |i><i| tensor U_i acting on an output register in the uniform superposition |u> = (1/sqrt(2^m)) sum_i |i>, an ancilla register |0^a>, and the system register |psi>. After applying W one measures the ancilla register and postselects on the outcome 0^a. Starting from |u> |0^a> |psi>, derive in full the probability P(succ) of obtaining 0^a on the ancilla, show that it equals exactly 1/(beta^2 2^m) independent of the input state |psi>, and identify precisely where the POVM completeness relation sum_i P_i = I and the mutual orthogonality of the output-register basis states are used.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "19349f95b6d1eb044233b2b5ab0452f983a5327f4dd85cd0fae1a0930283e574",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Postselection on 0^a has already succeeded",
+      "The |i> form an orthonormal computational basis of the output register",
+      "P_i are PSD effects summing to the identity"
+    ],
+    "conventions": [
+      "sqrt(P_i) is the unique PSD square root",
+      "Mixed-state results are obtained by convex-linear extension of the pure-state map"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-e65658d05b17c01a0444",
+    "language": "en",
+    "question": "Continue the POVM-by-block-encoding construction of Lemma 9.15: after applying W = sum_i |i><i| tensor U_i to |u> |0^a> |psi> and successfully postselecting the block-encoding ancilla on 0^a, the (renormalized) joint state of the output register and the system register is proportional to sum_i |i> tensor sqrt(P_i)|psi>. Prove that this joint state is correctly normalized, that measuring the output register in the computational basis yields outcome i with conditional probability P(i | succ) = <psi| P_i |psi>, and that the resulting post-measurement system state is sqrt(P_i)|psi> / sqrt(<psi|P_i|psi>). Then explain how the mixed-state update rule rho -> sqrt(P_i) rho sqrt(P_i) / Tr(P_i rho) follows from the pure-state result, and why the overall outcome probability for i (not conditioned on success) is still proportional to <psi|P_i|psi>.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "11b0bc7e058f3512393acaff01fa70778e93a9d9a5ec6af77e0e324ba32daf5d",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "P(succ) = 1/(beta^2 2^m) from the shared-beta block-encoding construction",
+      "A reflection about the good subspace (ancilla = 0^a) is available at O(1) query cost",
+      "The initial preparation uses O(1) queries to W"
+    ],
+    "conventions": [
+      "Query cost is measured in calls to W and W^dagger",
+      "delta is the target failure probability of the overall measurement"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-bd87b86b494c7ec77077",
+    "language": "en",
+    "question": "In the block-encoding implementation of a 2^m-outcome POVM via W = sum_i |i><i| tensor U_i (each U_i a (beta,a)-block-encoding of sqrt(P_i)), a single run succeeds (ancilla returns 0^a) with probability P(succ) = 1/(beta^2 2^m). Explain quantitatively why naive repetition is wasteful, and show that amplitude amplification raises the success probability to a constant while using only O(beta 2^{m/2} log(1/delta)) queries to W and W^dagger to reach failure probability at most delta. State clearly which quantity plays the role of the 'good' amplitude, why the amplification cost scales as 1/sqrt(P(succ)), and where the logarithmic factor log(1/delta) comes from.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "1eded23af502ce25ffd7e8cb62758962c7be4844849e76172832ad5bca4a7213",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "0 < |c| < 1 (states overlap but are distinct)",
+      "The ambient space is span{|psi>,|phi>}, two-dimensional",
+      "Unambiguity means a conclusive label never fires on the wrong state"
+    ],
+    "conventions": [
+      "|psi_perp>, |phi_perp> are the normalized complements defined in the problem",
+      "A POVM must have PSD elements summing to I on the relevant space"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-6c19532aa31ecc7003a4",
+    "language": "en",
+    "question": "Two normalized but possibly non-orthogonal pure states |psi> and |phi> are given with overlap c := <psi|phi>, |c| < 1, and we are promised the unknown state is one of them. Consider the three-element POVM with P_psi = (1/(1+|c|)) |phi_perp><phi_perp|, P_phi = (1/(1+|c|)) |psi_perp><psi_perp|, and P_? = I - P_psi - P_phi, where |psi_perp> := (|phi> - c|psi>)/sqrt(1-|c|^2) and |phi_perp> := (|psi> - c*|phi>)/sqrt(1-|c|^2). Demonstrate by a concrete counterexample-style argument that NO two-element POVM {E_psi, E_phi} (with only the two conclusive labels and no inconclusive outcome) can be unambiguous, i.e. cannot simultaneously satisfy <phi|E_psi|phi> = 0 and <psi|E_phi|psi> = 0 while being a valid POVM, whenever 0 < |c| < 1. Then verify that the given three-element POVM is unambiguous and explain why introducing P_? is exactly the structural escape that restores validity.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "ed3bccf607a3ce7d5b70680494a80a9dcfd78a0cfd395453ac95e6844313e76a",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "|c| < 1 and both states normalized",
+      "<phi|psi> = c*, <psi|phi> = c"
+    ],
+    "conventions": [
+      "|psi_perp>, |phi_perp> are the unit complements from the text",
+      "Positivity of P_? is checked on span{|psi>,|phi>} since it acts as identity off that plane"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-c2665c41e7fc3381116a",
+    "language": "en",
+    "question": "For the unambiguous-discrimination POVM with P_psi = (1/(1+|c|)) |phi_perp><phi_perp|, P_phi = (1/(1+|c|)) |psi_perp><psi_perp|, P_? = I - P_psi - P_phi, where c = <psi|phi>, |c| < 1, and |psi_perp>, |phi_perp> are defined as in the text, prove the three properties that make it a legitimate unambiguous POVM for state discrimination: (i) P_psi, P_phi, P_? are all positive semidefinite; (ii) P_psi + P_phi + P_? = I; (iii) the conclusive outcomes are unambiguous, i.e. <phi|P_psi|phi> = 0 and <psi|P_phi|psi> = 0. For (i) you must actually verify that P_? >= 0, not merely assert it, by diagonalizing I - P_psi - P_phi on the two-dimensional space span{|psi>,|phi>}.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "ad368185fb19df8737cfe936f1893bc6157404dff08516ed089144fe3df00efd",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "W = sum_i |i><i| tensor U_i is the controlled block-encoding selector",
+      "Success is defined as the block-encoding ancilla returning 0^a"
+    ],
+    "conventions": [
+      "beta_i denotes a per-outcome subnormalization; a_i a per-outcome ancilla size",
+      "A valid POVM requires the implemented effects to sum to I"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-043fbff1acaf3c6c6013",
+    "language": "en",
+    "question": "Lemma 9.15 assumes that for every outcome i the block encoding U_i of sqrt(P_i) uses the SAME ancilla size a and the SAME subnormalization factor beta. Investigate what breaks if these two uniformity assumptions are dropped. Specifically: (a) if the U_i had different subnormalization factors beta_i, show that the controlled unitary W = sum_i |i><i| tensor U_i followed by postselection on 0^a would NOT yield the clean superposition sum_i |i> sqrt(P_i)|psi> that is needed, and identify what spurious operator appears instead; (b) if the U_i used different ancilla registers (different sizes a_i, or disjoint ancillas), explain why a single joint postselection event '0^a' is no longer well defined and how this changes the success-probability bookkeeping. In each case state the minimal fix (if any) that restores the construction.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "70c505beeca8ef6ada2c4fcacb880999dcedf5a6747815cfd72a88324149c0d2",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "||A||_max < 1 and A_ij real so arccos(A_ij) is well defined and sin(pi theta~) >= 0",
+      "O'_A is a reversible classical-arithmetic unitary depending only on (i,j)",
+      "CR is controlled on the work register and acts on a single fresh ancilla qubit"
+    ],
+    "conventions": [
+      "A~_ij = cos(pi theta~_ij) is the d-bit-rounded entry",
+      "'Discarding' a register means tracing it out; a quantum computer cannot erase an entangled register for free"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-0d0ff8c3004e3ea3f694",
+    "language": "en",
+    "question": "Given a real matrix A with ||A||_max < 1 and A_ij real, suppose we have a bit oracle that writes a d'-bit fixed-point representation of A_ij into a work register: O~_A |0^{d'}>|i>|j> = |A~_ij>|i>|j>. Using classical arithmetic one first produces O'_A |0^d>|i>|j> = |theta~_ij>|i>|j> with theta~_ij = arccos(A_ij)/pi in [0,1) a d-bit value. Then a controlled rotation CR transfers theta~_ij to the amplitude of a fresh ancilla qubit. Prove that the full procedure O_A = (I_1 tensor (O'_A)^{-1}) * CR * (I_1 tensor O'_A), acting on |0>|0^d>|i>|j>, produces exactly the amplitude-oracle state (A~_ij |0> + sqrt(1 - A~_ij^2) |1>) |0^d>|i>|j>, i.e. with the d-bit work register returned to |0^d>. State precisely why the final uncomputation step (O'_A)^{-1} is mandatory -- i.e. why the work register cannot simply be discarded ('no free cleanup') -- and what would go wrong with the amplitude oracle's action if it were left entangled.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "bb998a2b287b7fdb5d03da1f8aeb06d4694e9362ef020fe08f4c11f63d5cad58",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "The amplitude is produced by a real controlled Y-rotation of angle 2 arccos(|A_ij|)",
+      "Finite-precision arithmetic may round A~_ij slightly off A_ij"
+    ],
+    "conventions": [
+      "||A||_max is the maximum absolute matrix entry (max-norm)",
+      "A valid amplitude requires sqrt(1-|A_ij|^2) to be real and nonnegative"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-826bfd04621bcedac0f2",
+    "language": "en",
+    "question": "The amplitude oracle O_A |0>|i>|j> = (A_ij |0> + sqrt(1 - |A_ij|^2) |1>) |i>|j> is often introduced alongside a standing convenience assumption ||A||_max < 1. Determine the EXACT condition under which the right-hand side is a valid normalized state and the oracle is a legitimate unitary action, by analyzing the three regimes |A_ij| < 1, |A_ij| = 1, and |A_ij| > 1 (for each: is it a unit vector, what does the controlled-rotation angle do, does the oracle exist). Then state carefully whether the strict inequality ||A||_max < 1 is NECESSARY or merely a sufficient convenience, explain the downstream consequence for the subnormalization factor of the resulting block encoding, and why one preprocesses A by dividing out an upper bound on ||A||_max before building the oracle.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "029387dec2a947a9c7445bf04d705109ea8c9c4690c4246e045d5c879d8b89ba",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A bit oracle and reversible classical arithmetic are available",
+      "The block encoding requires the entry as an amplitude of a flagged ancilla"
+    ],
+    "conventions": [
+      "Query cost counts oracle calls; gate cost counts elementary gates; ancilla cost distinguishes borrowed (clean) from persistent",
+      "'No free cleanup' means uncomputation is a counted resource"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-e428039e7b2358991895",
+    "language": "en",
+    "question": "Two input models for the entries of a matrix A appear in the sparse block-encoding discussion: the BIT oracle O~_A |0^{d'}>|i>|j> = |A~_ij>|i>|j>, which writes a classical fixed-point string into a register, and the AMPLITUDE oracle O_A |0>|i>|j> = (A_ij|0> + sqrt(1-|A_ij|^2)|1>)|i>|j>, which encodes the entry as the amplitude of an ancilla qubit. Explain conceptually (i) what distinguishes the two as computational resources -- which is a 'digital/query' interface and which is an 'analog/amplitude' interface; (ii) why building the amplitude oracle from the bit oracle requires both controlled rotations (gate work) and uncomputation (query work), i.e. the amplitude oracle is strictly derived, not primitive; and (iii) in a resource count for the overall block encoding, why it is natural to charge the construction one forward and one inverse bit-oracle query plus the gates of a controlled rotation, and why the work register must be counted as borrowed (returned clean), not consumed.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "78d0d9f6938ea220a577c339dd1f7a57671ab5a9b26eb022b763f330238c760c",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A has at most s nonzeros per row and per column, padded to exactly s (s-regular bipartite pattern)",
+      "||A||_max = 1 (entries normalized)",
+      "An entry/amplitude oracle O_A and a permutation oracle O_c are available"
+    ],
+    "conventions": [
+      "c(j,ell) is the row matched to column j in the ell-th matching",
+      "D = H^{tensor s} creates the uniform superposition over the s matchings",
+      "LCU subnormalization equals the coefficient 1-norm of the decomposition"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-e483b02aa3e3a47da8a5",
+    "language": "en",
+    "question": "To block-encode a general s-sparse matrix A (at most s nonzeros per row and per column, ||A||_max = 1), one decomposes A into 1-sparse pieces. View the sparsity pattern as a bipartite graph with left vertices the row indices and right vertices the column indices, with an edge (i,j) whenever A_ij != 0; pad with zero entries so every row and column has exactly s incident edges, making the graph s-regular. Prove that this s-regular bipartite graph decomposes into exactly s disjoint perfect matchings, so that A = sum_{ell in [s]} A^{(ell)} with each A^{(ell)} 1-sparse, and explain how each matching ell yields a permutation j -> c(j,ell) of [N] that can be queried by a single permutation oracle O_c |ell>|j> = |ell>|c(j,ell)>. Then explain why this is precisely what makes the LCU circuit of Fig. 9.7 produce a block encoding with subnormalization factor alpha = s, and why alpha = s (= s ||A||_max) is the natural choice rather than something smaller.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "e939bbb2049aca5779e65e0293b1b85d1b099ec5ac5945f1747c89aec226d94f",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Each j -> c(j,ell) is a permutation of [N]",
+      "D |0^s> = (1/sqrt(s)) sum_ell |ell> and D is Hermitian",
+      "O_A flags the entry amplitude on |0> of the ancilla"
+    ],
+    "conventions": [
+      "The success flag is the ancilla returning |0> and the s-register returning |0^s>",
+      "delta_{i,c(j,ell)} encodes that row i is matched to column j in matching ell"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-786878785abe012e47e6",
+    "language": "en",
+    "question": "Consider the s-sparse LCU block-encoding circuit U_A = (I tensor D tensor I)(I tensor O_c) O_A (I tensor D tensor I), where D |0^s> = (1/sqrt(s)) sum_{ell in [s]} |ell>, O_A |0>|ell>|j> = (A_{c(j,ell),j}|0> + sqrt(1 - |A_{c(j,ell),j}|^2)|1>)|ell>|j>, and O_c |ell>|j> = |ell>|c(j,ell)>, with each j -> c(j,ell) a permutation. By propagating |0>|0^s>|j> through D, O_A, O_c and separately propagating |0>|0^s>|i> through D (using that D is Hermitian), evaluate the inner product <0|<0^s|<i| U_A |0>|0^s>|j> and show it equals (1/s) A_ij. Explain carefully why the single clean sum over ell collapses to one surviving term and how the Kronecker delta delta_{i,c(j,ell)} selects it; also explain why the |1> (unflagged) component of O_A does not contribute.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "e5642d7c9956e4c7a16995e816ab5ee45f8bfdbf65f3810ae874b18bd1952097",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "O_r, O_c expose the ell-th nonzero in each row/column; O_A loads entry amplitudes controlled by both indices",
+      "On zero entries A_ij = 0, the O_A rotation may be arbitrary",
+      "ell is expanded into an n-qubit register"
+    ],
+    "conventions": [
+      "r(i,ell), c(j,ell) index the ell-th nonzero of row i, column j",
+      "The success flag is the ancilla |0> and both index-side ancilla registers |0^n>"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-e03db24f6e4bff50fa45",
+    "language": "en",
+    "question": "An alternative s-sparse input model uses two (2n)-qubit oracles O_r |ell>|i> = |r(i,ell)>|i> and O_c |ell>|j> = |c(j,ell)>|j>, where r(i,ell) and c(j,ell) give the ell-th nonzero entry in row i and column j respectively, together with the entry oracle O_A |0>|i>|j> = (A_ij|0> + sqrt(1-|A_ij|^2)|1>)|i>|j> (controlled by both indices). The circuit of Fig. 9.8 applies D, O_c, O_A, then a SWAP, then D and O_r. Prove that the resulting U_A satisfies <0|<0^n|<i| U_A |0>|0^n|j> = (1/s) A_ij, so U_A in BE_{s,n+1}(A). In particular, explain the roles of the two separate delta constraints delta_{i,c(j,ell)} and delta_{r(i,ell'),j}, and why -- when A_ij = 0 -- the computation still gives 0 even though the rotation in O_A may be arbitrary on zero entries.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "b60d8d33b1ba5b4bca8f3f8701c368f8ff8bdb15563f3c67bbba2b6f20534cd0",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A is Hermitian (indeed can be taken diagonal) with entries in (0,1)",
+      "A block encoding only constrains the ancilla-0^m sub-block"
+    ],
+    "conventions": [
+      "BE_{alpha,m}(A,0) fixes (<0^m| tensor I)U_A(|0^m> tensor I) = A/alpha",
+      "HBE additionally demands U_A = U_A^dagger"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-82321b6104672df9fd09",
+    "language": "en",
+    "question": "A Hermitian matrix A does NOT automatically have a Hermitian block encoding: even for a Hermitian diagonal A and even when the approximation error is exactly 0, a generic (alpha, m, 0)-block-encoding U_A need not satisfy U_A = U_A^dagger -- only the upper-left n-qubit block of U_A is guaranteed Hermitian. (i) Explain precisely what the block-encoding definition does and does not constrain about U_A, so that Hermiticity of the encoded block does not propagate to the whole unitary. (ii) Give a concrete small example illustrating that the amplitude-oracle block encoding of a Hermitian diagonal matrix (Example 9.17) is generally not a Hermitian matrix. (iii) State what additional structural requirement defines a Hermitian block encoding (Definition 9.23) and why it is a strictly stronger condition useful for qubitization.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "a597d2efbc856facf32a069e5884b7c2c33b24c2008bea6414df4ea514d98d61",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A is Hermitian and s-sparse with ||A||_max <= 1",
+      "O_A loads the square root sqrt(A_ij) = sqrt(|A_ij|) e^{i theta_ij/2}",
+      "One location oracle O_c suffices because A is Hermitian (same nonzero pattern in row and column)"
+    ],
+    "conventions": [
+      "HBE_{alpha,m}(A) is a Hermitian (alpha,m)-block-encoding (U_A = U_A^dagger)",
+      "A bra conjugates amplitudes; sqrt(z^*)^* = sqrt(z) on the principal branch used"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f19f2309c5daf90ed496",
+    "language": "en",
+    "question": "For an s-sparse Hermitian matrix A with ||A||_max <= 1, the Hermitian block-encoding circuit of Fig. 9.9 uses one location oracle O_c |ell>|j> = |c(j,ell)>|j>, an (n+1)-qubit SWAP, and a square-root entry oracle O_A |i>|0>|j> = |i>(sqrt(A_ij)|0> + sqrt(1 - |A_ij|)|1>)|j> acting on a single-qubit register, where for complex/negative entries one writes A_ij = |A_ij| e^{i theta_ij} and sqrt(A_ij) = sqrt(|A_ij|) e^{i theta_ij / 2}. Prove that the circuit yields <0|<0^n|<0|<i| U_A |0>|0^n>|0>|j> = (1/s) A_ij, so U_A in HBE_{s,n+2}(A). You must show explicitly where Hermiticity A_ij = A_ji^* is used to combine the two square-root factors sqrt(A_{c(j,ell),j}) and sqrt(A_{c(i,ell'),i})^* into A_ij.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "ffd5e21c07c57cb6a54219e5d4d438e7257c29d5e11257618cc497b5e926a3cc",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Pi, Pi' are orthogonal projectors of ranks N, N' with the given orthonormal bases",
+      "Xi, Xi' are unitaries whose first N, N' columns are those bases",
+      "N' <= MN"
+    ],
+    "conventions": [
+      "Xi_N, (Xi')_{N'} are the first-column blocks; A~ = ((Xi')_{N'})^dagger U_A Xi_N",
+      "Operator-norm error ||.|| defines the approximation"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-63f0c8db36edc34fd9b7",
+    "language": "en",
+    "question": "The block-encoding notion generalizes beyond computational-basis subspaces. Fix rank-N and rank-N' orthogonal projectors Pi, Pi' on an ambient space C^{MN} (M = 2^m), with orthonormal bases {|phi_j>}_{j in [N]} for range(Pi) and {|psi_i>}_{i in [N']} for range(Pi'). Collect these as the first columns of unitaries Xi, Xi' and let Xi_N, (Xi')_{N'} be those column blocks. For a unitary U_A on C^{MN}, define the induced block A~ := ((Xi')_{N'})^dagger U_A Xi_N in C^{N' x N}. Prove that the (i,j) entry of A~ equals <psi_i| U_A |phi_j>, that A~ coincides with the compression Pi' U_A Pi expressed in the chosen bases, and hence that the exact relation Pi' U_A Pi = sum_{i,j} |psi_i> A_ij <phi_j| is equivalent to A~ = A. Then state the (alpha,m,eps)-generalized block-encoding condition ||A - alpha A~|| <= eps and explain why it reduces to the ordinary computational-basis definition when Pi = Pi' = |0^m><0^m| tensor I and N' = N.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "afb656d87a470be889e81399de157ae85d25c650fa3023f617133653a2d93b1e",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A is Hermitian with real eigendecomposition A = V D V^dagger",
+      "f has definite parity (either odd or even)",
+      "The SVD uses nonnegative singular values Sigma = |D|"
+    ],
+    "conventions": [
+      "sign(D) = diag(sign(lambda_i)); W = V sign(D)",
+      "f_SV uses f^diamond for odd f and f^triangleright for even f (Definition 10.4)"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b66d8deeb02822322ed2",
+    "language": "en",
+    "question": "For a square matrix A with SVD A = W Sigma V^dagger, three generalized matrix functions are defined: f^diamond(A) = W f(Sigma) V^dagger (balanced), f^triangleright(A) = V f(Sigma) V^dagger (right), f^triangleleft(A) = W f(Sigma) W^dagger (left). The singular value transformation uses the diamond version for odd f and the right/triangleright version for even f. Prove that when A is Hermitian with eigendecomposition A = V D V^dagger (D indefinite, real), writing the SVD as A = W Sigma V^dagger with W = V sign(D) and Sigma = |D|, the singular value transformation f_SV(A) equals the ordinary eigenvalue transformation f(A) = V f(D) V^dagger whenever f has definite parity (odd or even). Treat the odd and even cases separately, and explain why definite parity is exactly the hypothesis that removes the sign ambiguity between singular values |lambda| and eigenvalues lambda.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "a26b57dba685894bfd54399a9fb8b48034c67d6d4915c32974541b034ef6f2be",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A has SVD with A|v_i> = sigma_i|w_i>, A^dagger|w_i> = sigma_i|v_i>, sigma_i >= 0",
+      "{|v_i>}, {|w_i>} are orthonormal bases",
+      "f has definite parity"
+    ],
+    "conventions": [
+      "A~ acts as A~(|0>|x>) = |1>A|x>, A~(|1>|y>) = |0>A^dagger|y>",
+      "f_even(x) = (f(x)+f(-x))/2, f_odd(x) = (f(x)-f(-x))/2"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b52719350e3f8f6cb070",
+    "language": "en",
+    "question": "For a general square matrix A with SVD given by A|v_i> = sigma_i|w_i>, A^dagger|w_i> = sigma_i|v_i>, sigma_i >= 0, define the one-ancilla dilated Hermitian matrix A~ = [[0, A^dagger],[A, 0]]. Define |z_i^pm> = (1/sqrt(2))(|0>|v_i> pm |1>|w_i>). Prove that A~ is Hermitian, that A~ |z_i^pm> = pm sigma_i |z_i^pm> (so the |z_i^pm> are a complete set of eigenvectors with eigenvalues pm sigma_i), and deduce that for an even function f, f(A~)|0>|psi> = |0> f^triangleright(A)|psi> while for an odd function f, f(A~)|0>|psi> = |1> f^diamond(A)|psi>. Explain how this shows that applying an eigenvalue transformation to the dilated matrix automatically realizes the singular value transformation of A, and why measuring the ancilla gives a definite outcome (0 for even f, 1 for odd f).",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "f61732ef8084adfd97ef027724ae52c42ab5b95a68bec88823f15769f28eea7f",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A is diagonalizable, generally non-Hermitian, with SVD A = W Sigma V^dagger and V, W different unitaries",
+      "An SVT must have the form (outer unitary) g(Sigma) (outer unitary) with a scalar g"
+    ],
+    "conventions": [
+      "g(Sigma) denotes a diagonal function of the singular values",
+      "A is normal exactly when W = V up to phases, the special case where V^dagger W is diagonal"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d81c42c42220d9f55689",
+    "language": "en",
+    "question": "Not every eigenvalue transformation can be realized as a singular value transformation. Consider the matrix power f(x) = x^2 applied to a general diagonalizable but non-Hermitian matrix A = V D V^{-1} with SVD A = W Sigma V^dagger. Show by a concrete structural argument that A^2 generally CANNOT be written as a singular value transformation of A (i.e. as W g(Sigma) V^dagger, V g(Sigma) V^dagger, or W g(Sigma) W^dagger for any scalar g), by exhibiting the obstruction A^2 = W Sigma (V^dagger W) Sigma V^dagger in which the unitary factor V^dagger W does not simplify. Contrast this with the matrix inverse f(x) = x^{-1}, which IS a singular value transformation (A^{-1} = V Sigma^{-1} W^dagger = f_SV(A^dagger) with the odd f(x) = x^{-1}), and explain what property of the inverse makes it exceptional.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "fea3d94c0e94bd4985fc090193504130d4df0518848755b734244e4c2489e01f",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "U_A in HBE_{1,m}(A) is Hermitian with ||A|| <= 1",
+      "A = sum_i lambda_i |v_i><v_i| with -1 < lambda_i < 1 (edge cases lambda_i = pm 1 handled separately)",
+      "Pi = |0^m><0^m| tensor I; Z_Pi = 2Pi - I"
+    ],
+    "conventions": [
+      "lambda_i = cos theta_i with 0 < theta_i < pi",
+      "T_k(cos theta) = cos(k theta), U_{k-1}(cos theta) = sin(k theta)/sin theta"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-eb0e575d5a33ae0e37ea",
+    "language": "en",
+    "question": "Let U_A in HBE_{1,m}(A) be a Hermitian block encoding of a Hermitian A with ||A|| <= 1, spectral decomposition A = sum_i lambda_i |v_i><v_i|, so that U_A |0^m>|v_i> = lambda_i |0^m>|v_i> + sqrt(1-lambda_i^2)|perp_i> with Pi|perp_i> = 0, Pi = |0^m><0^m| tensor I. For -1 < lambda_i < 1, prove that H_i = span{|0^m>|v_i>, |perp_i>} is a 2D invariant subspace of U_A on which U_A is a reflection [[lambda_i, sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), -lambda_i]], that the iterate O = U_A Z_Pi (with Z_Pi = 2 Pi - I) acts on H_i as the rotation [[lambda_i, -sqrt(1-lambda_i^2)],[sqrt(1-lambda_i^2), lambda_i]], and hence that O^k restricted to H_i has top-left entry T_k(lambda_i) (Chebyshev polynomial of the first kind), so O^k = (U_A Z_Pi)^k is a (1,m,0)-block-encoding of T_k(A). State where Hermiticity of U_A is used.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "93f4c3a8bdd9c533c8ae158597d33c7a309ce8922cc13034d4fecb1f1f761a19",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional real matrices stored as nested vectors; all scalars are exact reals",
+      "Eight independent primitive counters; each primitive call costs one unit of its own counter"
+    ],
+    "conventions": [
+      "Proof checking, counter bookkeeping and loop-index arithmetic are free; a materialized pass of length M charges two reads and two writes per index",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f8c828d6288ae2b58400",
+    "language": "en",
+    "question": "Work in an exact-real word-operation model that keeps eight separate running counters: field operations, square roots, inverse-cosine calls, other trigonometric calls, exact comparisons, stored-word reads, stored-word writes, and emitted records. Each primitive call adds one unit to its own counter; proof checking, counter bookkeeping and loop-index arithmetic are free, and stored data are nested vectors. A plane rotation acts on two stored length-M real rows u and v with coefficients c and s, returning rows whose j-th entries are c*u_j - s*v_j and s*u_j + c*v_j. The implementation first materializes a stored vector of M computed entry-pairs, then materializes the first output row and the second output row as two further stored passes. Every materialized pass over M indices additionally charges two reads and two writes per index to write each intermediate value and read it back for projection, and each single entry-pair is computed with exactly the six field operations c*u_j, s*v_j, s*u_j, c*v_j, their difference, and their sum. Prove that rotating the two rows costs exactly 6*M field operations, 10*M reads and 6*M writes, and account for the origin of every read and write.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "67d0d8df3dbda464c93aa56d53720ec9c46f299b5b12ba566bbf3a0cdc70ae5a",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional real matrices stored as nested vectors of N rows",
+      "Replacing a stored row is charged as a full persistent copy of N reads and N writes"
+    ],
+    "conventions": [
+      "No in-place-update or copy-on-write optimization is assumed; the bound is an exact-real operation count, not a finite-bit runtime",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8b5706a83a1150200f95",
+    "language": "en",
+    "question": "Continue in the eight-counter exact-real operation model where stored matrices are vectors of N stored rows and replacing one stored row is charged as a full persistent copy costing N reads and N writes, never an in-place update. A rotation step on an N-by-M stored matrix reads the two rows i and j to be combined, computes the two rotated rows (whose production costs 6*M field, 10*M read and 6*M write), and then stores the two new rows with two separate persistent row-replacements. Prove that one such rotation step costs 6*M field operations, 10*M + 2*N + 2 reads, and 6*M + 2*N writes, and explain why the step cannot be made cheaper by assuming in-place row updates.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "f45ab52aa0ae2187f3251598a846a9c08025a7fb4d15ab7f9cec21cf0f0058f7",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional real stored matrices; eight independent primitive counters",
+      "The per-step budget is independent of the angle-computation branch"
+    ],
+    "conventions": [
+      "A zero-angle rotation still emits one record; the budget is an upper bound on arithmetic counters only",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-16789e0cd201c61f5633",
+    "language": "en",
+    "question": "In the eight-counter exact-real model, a column sweep eliminates entries below a pivot by performing a chronological chain of elimination steps. Each step first computes an elimination angle and the two rotation coefficients (bounded by a fixed per-step budget B that is independent of which branch of the angle computation is taken), applies a rotation to the stored matrix, and then emits exactly one rotation record (one unit on the emitted-record counter). A sweep performing k steps is defined by recursion: zero steps emit nothing and do no work; a sweep of k+1 steps performs one elimination step and then recurses on the resulting matrix, emitting one record for the step. Prove by induction on k that (a) the total cost of a k-step sweep is at most k*(B + one emit) on every counter, and (b) the emitted-record counter equals exactly k, even though some steps may rotate by a harmless zero angle.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "9654b480868274c42c9972e64e62e848de27b78a9d1599a421be0879c3a72a57",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Recorded steps carry an exact angle and a pair of adjacent rows",
+      "Eight independent primitive counters in the exact-real model"
+    ],
+    "conventions": [
+      "The accumulated transform is replayed, never formed as a dense matrix product; costs are not finite-bit runtimes",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-ab016d966c7415d35386",
+    "language": "en",
+    "question": "A rectangular elimination records a chronological list of two-row rotation steps. Rather than forming the accumulated orthogonal transform by multiplying out dense plane-rotation matrices, a stored replay starts from a materialized identity and re-applies each recorded two-row rotation to the stored matrix in order; the empty list charges one read of the end marker, and each recorded step charges one read of the record, one field operation for halving its angle, two trigonometric calls for the pair of coefficients, and one stored two-row rotation. On a k-by-N working matrix a single such rotation costs the fixed amount described earlier (field, read and write terms linear in N and in the matrix dimension). Prove two things about replaying a list of L steps: first, that the result denotes exactly the product of the recorded plane rotations applied to the starting matrix, and second, that the total cost is L times a fixed per-step budget plus one extra read, with the extra read coming from the empty-list base case.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "d91d06db12c3a3286f6741f3b47ed84dba0691a13cac895fe5d3668d76728135",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Wide shape m at most n; stored matrices are nested vectors",
+      "Each materialization reads two stored words per output entry plus the surcharge"
+    ],
+    "conventions": [
+      "Sequential stage costs add per counter; bounds are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-de91be99c554b9625684",
+    "language": "en",
+    "question": "A stored thin LQ factorization of a wide m-by-n stored matrix (with m at most n) proceeds in four materialized stages: transpose the matrix, run the full stored rectangular compilation on the transpose, extract the triangular factor from the compiled residual, and extract the orthonormal factor from the compiled transform. Transposing and each extraction are implemented as a materialization that reads two stored words per output entry (one row read, one entry read) and then pays the standard materialization surcharge. The transpose of an m-by-n matrix is an n-by-m materialization, the compilation runs on an n-by-m matrix, the triangular extraction is an m-by-m materialization, and the orthonormal extraction is an m-by-n materialization. Prove that the total per-counter cost of the wide factorization is the sum of these four stage budgets, and that the resulting factors exactly satisfy A = R*Q with Q having orthonormal rows, so the cost bound is a certificate for the same run that produces the correct factors.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "0106ff1c9c6e73a612ba997b953558df1cdb13e8a0444357d7fc96b1354342d5",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Reading a stored core entry is a row read followed by an entry read (two reads)",
+      "Eight independent primitive counters; pure zero carries no charge"
+    ],
+    "conventions": [
+      "The accumulation addition is one field operation per summand; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-c089baece659f2d59a86",
+    "language": "en",
+    "question": "In the eight-counter exact-real model, a bounded sum over an index set of size k is evaluated by a monadic fold: starting from the pure value zero (no charge), each of the k summands is produced and then added to the running accumulator with one field addition. Suppose every summand has the same per-counter cost B. Prove that the whole sum costs exactly k*(B + one field operation). Then specialize to a single contraction entry over a bond of size D, where each summand reads one entry of a stored core (two reads) and one entry of a stored vector (one read) and multiplies them (one field), so B is three reads plus one field, and conclude that the entry costs exactly D*(three reads + two field operations).",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "51d2992bc1b340eaef534bc1b0cf40e4055797fc0d19dbeb3c5a0106d28c8653",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "All cores stored and bond-bounded by D; reference copying is charged per remaining core",
+      "Eight independent primitive counters; input cores already materialized"
+    ],
+    "conventions": [
+      "No kernel callback is evaluated in production; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d2319217120afeeafa0b",
+    "language": "en",
+    "question": "A stored matrix-product chain over n+1 cores, each of bond size D, is closed into a scalar-boundary chain in two conceptual halves. First the tail is processed recursively: at the last position the terminal core is contracted against a right boundary vector, and at every earlier position the current core is kept while the remaining table is copied by reference and the tail is recursed; a fixed small per-node record is charged at each position. Second the leftmost core is contracted against a left boundary vector. The returned chain exactly refines the kernel chain contracted against the two boundary vectors. Prove that the summed cost of the whole closure is bounded by a polynomial that is quadratic in the chain length n and cubic-free but quadratic in the bond D, and explain why the tail recursion contributes an n-squared term while the single left closure contributes only a bond-dependent term with no dependence on n.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "f6dff3feb169b3675b7651b6963959841395d22329c0a3f5c5964711e64af180",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Every bond along the chain is at most D; input cores are stored tables",
+      "Eight independent primitive counters plus a fixed six-word node record"
+    ],
+    "conventions": [
+      "The recursive environment is read, not recomputed; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-0049b6643cf6b76ff522",
+    "language": "en",
+    "question": "A stored tensor-train norm is computed by streaming local Gram environments from right to left. At the empty tail the environment is a materialized identity of bond size r. At a non-empty node carrying a core of left bond l and right bond m, the recursively computed right environment E (an m-by-m stored matrix) is updated: for each of the two physical bits the core slice is contracted with E (a first materialized pass) and the result is contracted with the transposed slice (a second materialized pass), and the two per-bit matrices are added; a fixed six-word node record is charged. Each per-node update therefore costs on the order of l*m*m + l*l*m matrix-contraction work plus additive and materialization terms. Assume every bond along a length-n chain is at most D. Prove by induction on the chain that the total summed cost of the Gram computation is bounded by n*(24*D-cubed + 25*D-squared + 20*D + 6) + 5*D-squared + 4*D + 6.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "b4358b9c337147c7a945c846a49c21d3c3e81d3a00398cbb2711f6ae2cc0ba1c",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Scalar-boundary chain; the Gram environment is a 1-by-1 stored matrix",
+      "Reading a stored matrix entry is one row read plus one entry read"
+    ],
+    "conventions": [
+      "The environment is already materialized before the boundary step; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b8f44402027ba18e2e26",
+    "language": "en",
+    "question": "Given the stored right-to-left Gram-environment computation of a scalar-boundary tensor-train chain (which returns a 1-by-1 stored environment), the stored norm is obtained by reading the single scalar entry of that environment and taking its exact square root. Prove that the norm computation's cost equals the Gram computation's cost plus exactly two reads and one square root on the appropriate counters, and hence that its summed total exceeds the Gram total by exactly three. Then state precisely what mathematical quantity the returned scalar equals and why charging only two reads and one square root is the correct marginal cost of the scalar boundary.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "3b55f69ba3a6423468b1f8776b1be61a47673f700e049a7c1038e4325e9e0b4c",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "The operation tags form a finite type with exactly eight inhabitants",
+      "Cost functions map tags to natural numbers"
+    ],
+    "conventions": [
+      "Totals are operation counts in the exact-real model, not finite-bit runtimes",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-bf4cebe7a3787551e5ab",
+    "language": "en",
+    "question": "Two notions of total cost appear in the stored exact-real model. One, call it the ordinary total, is the sum of a cost function over the finite type of all operation tags. The other, call it the enumerated total, is the explicit eight-term sum field + square root + inverse-cosine + other-trig + comparison + read + write + emitted-record. Prove that these two totals are equal as functions of the cost, that the total of a sum of two costs is the sum of their totals, that the total of the zero cost is zero, and that the total of a single unit charge on one tag is one. Explain why these simple algebraic facts are exactly what licenses replacing a sum-over-tags by the fixed eight-term expression in later cost proofs.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "4d20fe61475c51994c7b2fd6be69371e88a709e54129ad20658baa770252f45c",
+    "topic": "stored_cost_refinement",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A single run returns the chain and its full ledger of ordinary and named integer counters",
+      "The four integer counters take the stated closed forms"
+    ],
+    "conventions": [
+      "The named integer counters cover only those operations; no finite-bit or whole-machine runtime, and the source is unnormalized",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8c3f378ad16b740e1d84",
+    "language": "en",
+    "question": "A stored Hermite raw-source assembly builds a scalar-boundary tensor-train chain for a state-preparation amplitude. One single run of the assembly returns the chain together with a work ledger carrying both the eight ordinary exact-real counters and four separately named integer counters (quotient calls, remainder calls, integer doublings, integer additions), plus a count of exponential-function calls. For parameters k and n it is proved on the same run that the chain denotes the explicit raw-source kernel chain, that the ordinary total is bounded by a stated polynomial in k and n, that the exponential calls are at most 3*(n+1)+1, and that the four integer counters equal (n+1)*(n+2), (n+1)-squared, n, and 4*(n+1) respectively. Prove that the four integer counters sum to 2*n-squared + 10*n + 7, and explain carefully which costs this certificate does and does not account for, especially regarding finite-bit arithmetic and normalization.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "61b6799a77e1b16e9c1077b5bedc1b583d3c564f8bb73a77dfc57045a1e9d9a2",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Depth is computed by the per-wire scheduling fold, not an assigned serial surrogate",
+      "Gate count is the list length; touched wires determine the pushed layer"
+    ],
+    "conventions": [
+      "The reported resource depth equals the scheduling depth; this is a layer-count bound, not a runtime claim",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b9901d5e1d311c3aacc3",
+    "language": "en",
+    "question": "A primitive quantum circuit is a chronological list of gates, each gate acting on a set of touched wires. A per-wire scheduling fold tracks, for every wire, the earliest layer at which its next gate can be placed: processing a gate pushes every touched wire to one more than the maximum current depth over the gate's touched wires, and leaves untouched wires unchanged. The circuit depth is the maximum over all wires of the final per-wire depths; the gate count is the length of the list. Prove that the circuit depth is at most the gate count, i.e. that scheduling in parallel layers never makes the reported depth exceed the number of gates. Identify the key per-step inequality that drives the induction.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "95dba6b4d5534fed046180a718df92a9bfd1485180fae20640c1585f7402ce3b",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Materialization charges supplier work plus a dimension-fixed storage surcharge",
+      "Suppliers may perform data-dependent amounts of counted work"
+    ],
+    "conventions": [
+      "The input callback cost is an explicit boundary not certified by the constructor; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-2247b379af25183b5d86",
+    "language": "en",
+    "question": "A stored N-by-M matrix is built by materializing an entry supplier: for each of the N*M entries the supplier is run to produce a value, and the construction charges, on top of the supplier's own counted work, two reads and two writes per entry plus two reads and two writes per row to store and project. The proved cost identity is that the materialized matrix costs the double sum of the supplier's per-entry costs plus (N*M + N) times the two-read-two-write surcharge. A colleague claims this identity proves that building any N-by-M stored matrix always costs a fixed polynomial in N and M alone. Give a precise counterexample showing the claim is false, and state the exact condition under which a clean polynomial-in-dimensions bound does hold.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "dc04662395dcadd4a5561e77f41d870ef2027346a4afd75ea9c373cc53a5405a",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "The angle routine returns zero early when the computed norm is zero",
+      "The angle budget bounds every counter for all inputs"
+    ],
+    "conventions": [
+      "The budget is a branch-independent upper bound, not an exact per-input count; exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-ce0e40504d36d1060248",
+    "language": "en",
+    "question": "The elimination-angle routine in the exact-real model computes a norm from two inputs x and y: it squares both, adds them, takes a square root, and tests whether that root is zero. If the root is zero it returns the angle zero immediately; otherwise it divides, takes an inverse cosine, tests the sign of y, conditionally negates, doubles, and negates again. A branch-independent angle budget of seven field operations, one square root, one inverse-cosine and two comparisons is proved to be an upper bound on the angle cost for all inputs. A colleague concludes that every call to the angle routine performs exactly one inverse-cosine call. Refute this with a specific input, and explain the precise logical relationship between the proved budget and the actual per-input cost.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "62bd4c7a118278d509084f10e3606781e8eb2ab6fd43b9cda5f14003b5a14ed3",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "The identity is materialized by an index-equality comparison per entry",
+      "Materialization adds the two-read-two-write surcharge per entry and per row"
+    ],
+    "conventions": [
+      "Stored constants are not free primitives; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8e2dea76f95072f459b0",
+    "language": "en",
+    "question": "In the stored exact-real model the identity matrix of size N is not a primitive constant but is materialized: each of the N*N entries is produced by an exact comparison deciding whether its row and column indices are equal (returning one or zero), and the materialization adds the standard two-read-two-write surcharge per entry and per row. The proved identity cost is N*N comparisons plus (N*N + N) times the two-read-two-write surcharge. A colleague treats the stored identity as a zero-cost input when bounding a larger algorithm. Explain why this is wrong in general, work out the exact summed cost, and determine the boundary size N at which the identity genuinely costs nothing.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "0d9be32a7721524eb7be83a6f303f51dc61c8b227f194eb5e9c14e6202bb9745",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Persistent append copies only the left spine and shares the right list",
+      "Append is charged the left length on the read and write counters"
+    ],
+    "conventions": [
+      "Cost is asymmetric in the two operands; exact-real operation count, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-52addc85f92446f231ab",
+    "language": "en",
+    "question": "When a stored sweep concatenates its chronological step logs, it uses a persistent list append that copies the spine of the left list while sharing the right list unchanged; the append is charged exactly the length of the left list in reads and the same in writes, with the right list contributing nothing. A colleague asserts two things: first that appending two logs is a constant-cost pointer operation, and second that the cost depends on the total number of records in both logs. Show that both assertions are wrong by exhibiting append costs for concrete left/right lengths, and state the exact rule the cost actually follows.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "197a301537485f405e0e659bb8345d08d5cb8559bf3ca8a4f4fafe5b55a5c76f",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "The dispatcher charges one comparison and branches on m at most n",
+      "The thin inner dimension is the minimum of m and n"
+    ],
+    "conventions": [
+      "The tall branch runs no elimination; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-df57f3046c2c05017fc1",
+    "language": "en",
+    "question": "A stored thin-LQ dispatcher takes an m-by-n stored matrix and charges one exact comparison to decide the shape. When m is at most n (the wide case) it transposes, runs the full stored rectangular compilation, and extracts both factors. When m exceeds n (the tall case) it does none of that: it returns the input matrix as the triangular factor together with a materialized identity of size n as the orthonormal factor. Explain what the tall branch returns and why it is correct, and compare the cost of the tall branch against the wide branch. In particular, refute the claim that a thin-LQ factorization always performs a sweep of eliminations.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "e16efef3b9c471a562bce8d736a5649f62f9f6b049b4faeaee842630899e45c1",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "The base exponential count is n+2 (one coefficient plus n+1 tail calls)",
+      "Each stage makes zero to two injection calls, one per enabled left-full child guard"
+    ],
+    "conventions": [
+      "The exact count is guard-dependent; only an inequality cap is provable; exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-3ed520baf4ea724cb943",
+    "language": "en",
+    "question": "In the stored Hermite raw-source assembly, exponential-function calls are tracked by their own counter. The total number of exponential calls on a run with parameters k and n equals a fixed base of n+2 (one coefficient call plus n+1 cached tail calls) plus the sum over the n+1 stages of each stage's injection calls, where each stage makes between zero and two injection calls depending on whether a left-full child guard is enabled. The overall cap proved is 3*(n+1)+1 exponential calls. A colleague claims every stage always contributes exactly two exponential calls, so the exact count is always n+2 + 2*(n+1). Refute this and give the exact count's actual range as a function of how many guards are enabled.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "0e6acf79d857e9e30dfaacda7aa385ccbc4c6168d6fb5246e64fc5d660343f40",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Cores have bond D; the chain is closed to scalar boundaries of dimension one",
+      "Maximum bond is the maximum bond dimension over the chain"
+    ],
+    "conventions": [
+      "The bond bound is structural, separate from construction cost; exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-768e85ff41f382870a2e",
+    "language": "en",
+    "question": "A stored matrix-product chain is assembled from n+1 stored cores, each of bond size D, closed against left and right boundary vectors of length D to form a scalar-boundary chain. It is proved that the maximum bond of the resulting chain is at most the maximum of D and one. Interpret this bond bound as a statement about the represented object, explain why the maximum with one appears, and determine the boundary values of D for which the bond equals one rather than D. Also state what this does and does not say about the cost of building the chain.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "b075aea442229464760567200fff4f8c092e393938961c4a8bbf46334a3d99c8",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8f0cd5c551b9e1ec5882",
+    "language": "en",
+    "question": "Let p and q be real polynomials and a a real point. Suppose (x-a)^{k+1} divides the difference p-q. Prove that for every order j with 0 <= j <= k, the j-th derivatives of p and q agree at a: (d^j p/dx^j)(a) = (d^j q/dx^j)(a). Explain precisely why the hypothesis forces agreement of all jets strictly below the multiplicity k+1, and why it says nothing about the j = k+1 derivative in general.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "75288bc780ab7e196a476f3a4f58c22ad62eebccb099019ae7b46ceb4da0bdc5",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-21934bffe092872bf6f1",
+    "language": "en",
+    "question": "Consider the generating power series obtained as the product of the exponential series exp(X) and the series 1/(1-X)^{k+1}. Let its degree-r coefficient be a_{k,r}. In the coordinate t, define A_k(t) as the truncation of this series to degrees 0..k, i.e. A_k(t) = sum_{r=0}^{k} a_{k,r} t^r. The source polynomial, in the shifted coordinate t = p+1, is a positive combination S(p) = exp(-1) * (1-t)^{k+1} * A_k(t) + t^{k+1} * A_k(1-t). Prove that A_k(t) > 0 for every t >= 0, and deduce that S(p) > 0 for every p in the closed interval [-1, 0].",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "7ef977c0771d5c3478263e39205e0c296f12c775eda106b7c8a116a93d7e80f2",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-01f9c7efc192d885642b",
+    "language": "en",
+    "question": "Two real polynomials p and q both have degree at most 2k+1, and both satisfy the same two-point jet data: all derivatives through order k agree at the node -1, and all derivatives through order k agree at the node 0. Prove that p = q. Structure the argument around the two 'endpoint multiplicity' polynomials (x+1)^{k+1} and x^{k+1}, and explain where coprimality and the degree budget 2k+1 enter.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "7c879d58b6a577ad86f9188d1c63bfedd8ef7f07aed48b1ae88b800691bf5aa1",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d8d9e0d85ffb30ad7a17",
+    "language": "en",
+    "question": "A colleague claims that the two-point jet data 'all derivatives through order k agree at -1 and at 0' pins down a real polynomial uniquely, with no restriction on its degree. Show this is false by exhibiting an explicit nonzero polynomial of degree 2k+2 all of whose derivatives through order k vanish at both -1 and 0. Conclude that the degree bound 2k+1 in the uniqueness statement cannot be dropped, and state the exact dimension of the space of polynomials sharing a fixed set of such endpoint jets.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "2bf0cf630eddd3f71451b9cab5ce567a2be95e25f29dadd02762bba72b4047c7",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8d5c81189bdb1bc8c34c",
+    "language": "en",
+    "question": "Let the generating series be C(X) = exp(X) * (1 - X)^{-(k+1)} as formal power series over the reals. Prove that its coefficient of X^r is exactly sum_{m=0}^{r} C(k + r - m, k) / m!, where C(.,.) is the binomial coefficient, and prove that this coefficient is nonnegative for every r, with the r=0 coefficient equal to 1. You may use that exp(X) has coefficient 1/m! in degree m and that (1-X)^{-(k+1)} has coefficient C(k+i, k) in degree i.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "5c4612dfdf8210f04b654cc325464bf49bf9bdca2b3a08e9fd57494637c1a4a1",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f15faf44d1b18da8ae50",
+    "language": "en",
+    "question": "In the shifted coordinate t = p + 1, the source Hermite bridge polynomial is written as a sum of two endpoint contributions: S(p) = exp(-1) * (1-t)^{k+1} * A_k(t) + t^{k+1} * A_k(1-t), where A_k is a fixed degree-<=k polynomial. Explain the structural role of each ingredient: why the coordinate is centred so that the two nodes p = -1 and p = 0 become t = 0 and t = 1, why each term carries a factor raised to the power k+1, how the two terms specialise the required endpoint values exp(-1) at p=-1 and 1 at p=0, and why the construction is manifestly symmetric under the reflection t -> 1-t up to the constant exp(-1).",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "94cad124e349cb27ff7fd1719d9aed0349957e868ff8a8fab957fc941fe1b422",
+    "topic": "structured_preparation",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-cbfe42e6b8817c6eaa61",
+    "language": "en",
+    "question": "Work with the degree-d Bernstein basis B_{d,r}(t) = C(d,r) t^r (1-t)^{d-r}. For fixed k, i with i <= k, consider the single endpoint-factor monomial t^i (1-t)^{k+1} of degree k+1. Prove the exact degree-elevation identity that writes it in the degree-(2k+1) Bernstein basis: t^i (1-t)^{k+1} = sum_{j=0}^{k-i} w(k,i,j) * B_{2k+1, i+j}(t), where w(k,i,j) = C(k-i, j) / C(2k+1, i+j). Deduce that the full source polynomial has a Bernstein coefficient vector with all nonnegative entries on [0,1].",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "4782a4bed082030d38da7c04a08dce3910023fed0dbc077fbf8d41df272a0222",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-263d965bb007c8b4eb97",
+    "language": "en",
+    "question": "A degree-d polynomial is held as a coefficient row c(0),...,c(d) in the Bernstein basis, so that its value at t is sum_{r=0}^{d} c(r) B_{d,r}(t). One de Casteljau step with parameter s replaces the row c by the row with entries (1-s) c(i) + s c(i+1). Let L_u denote the operation that reads the left edge of the de Casteljau triangle built with parameter u (its i-th output is the result of i de Casteljau steps at u applied to c, read at position 0). Prove that evaluating the L_u-transformed coefficients at parameter t reproduces the original polynomial at the rescaled parameter u*t: sum_r (L_u c)(r) B_{d,r}(t) = sum_r c(r) B_{d,r}(u t).",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "9f60a897b2c80da54c7c08ba23c6d9623a83a357dc4f0c5ae4e2da9eff2fc134",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-118b1619a4aee1d7dd78",
+    "language": "en",
+    "question": "Let a degree-d polynomial be given by Bernstein coefficients c(0),...,c(d), all lying in a common interval [lo, hi]. Suppose we restrict the polynomial to a subinterval [u, v] with 0 <= u < v <= 1 by two successive de Casteljau subdivisions, producing new Bernstein coefficients c'(0),...,c'(d) for the restricted piece. Prove that every restricted coefficient c'(i) still lies in [lo, hi]. Identify the two structural facts about the Bernstein basis that make this true.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "222e15f330fd9d82945ec485bd2d36f7752009ecfc4193ea46819bfa5e24ae1d",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "q is an arbitrary real polynomial; the coefficient bound used must be at least 2 deg q",
+      "samples are taken on the exact real arithmetic progression, not a rounded grid"
+    ],
+    "conventions": [
+      "the empty sum (count=0) is zero and the power-sum polynomial satisfies P_r(0)=0"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-06cd47a29d40f15cce9f",
+    "language": "en",
+    "question": "Let q be a real polynomial and consider sampling it on an arithmetic progression x_j = start + step * j for j = 0,1,...,count-1. We want the exact discrete squared mass M = sum_{j=0}^{count-1} q(x_j)^2 as a closed-form expression whose size depends on the degree of q, not on count. Let g(x) = q(start + step*x)^2, a polynomial of degree D = 2*deg(q), with coefficients g_0,...,g_D. Using the power-sum identity sum_{j=0}^{count-1} j^r = P_r(count) (a fixed polynomial in count, e.g. the Faulhaber/Bernoulli formula), prove the exact identity M = sum_{r=0}^{D} g_r * P_r(count), and explain why this is an exact algebraic equality rather than a quadrature approximation.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "59426c823e37077caf10084c53200347b862688e8c7dd26b41a5a80c619ea837",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [
+      "samples use the exact grid x_j = start + step*j; the right tail reuses the same formula with negated start and step"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-4778acd79348efb107ed",
+    "language": "en",
+    "question": "On the exponential tail of the target, the sampled amplitude at x_j = start + step*j is exp(x_j), and the discrete squared mass over count samples is E = sum_{j=0}^{count-1} exp(x_j)^2. Give the exact closed form for E, and treat the boundary case step = 0 explicitly. Explain precisely why the generic geometric-series formula exp(2 start) * ((exp(2 step))^count - 1) / (exp(2 step) - 1) is well defined exactly when step is nonzero, what it degenerates to as the ratio approaches 1, and what the correct value is when step = 0.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "46987e42bff116466072220be525f1b23ae1f61ddbdc98fe9d8607692167e149",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-16cf2f6b91f0e6bb7371",
+    "language": "en",
+    "question": "The target function is strictly positive everywhere and passes through the value 1 at the physical point p = 0 (the splice point). On a register of n+1 qubits the grid has 2^{n+1} points indexed in little-endian order, and the central index 2^n maps to the grid point p = 0. Prove that the unnormalized squared sample norm N = sum_j (amplitude at grid point j)^2 is at least 1, uniformly in the smoothing order k, the width n, and the physical scale L > 0. Explain why identifying a single known sample value suffices and why strict positivity of all samples is used only to keep the bound honest rather than to prove it.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "d7898e4ad349942490f2051cfc17f66e37d71fdc5142245ed986ce2546a7787d",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-937920e35f31bbc84aa2",
+    "language": "en",
+    "question": "Consider a bivariate real array F(x,y) = q(u(x) + v(y)), where q is a real polynomial of degree at most d and u, v are arbitrary real-valued functions of the row index x and column index y respectively. Prove that F factorizes as a matrix product A * B with inner dimension d+1, and conclude that the rank of F is at most d+1. Make explicit which polynomial identity provides the factorization and why only the degree of q — not the number of rows or columns — controls the inner dimension.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8b614e6706f44336d8bf2a029e216db595e59d3b13e231f89266a26cba617364",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f4fbd4e32f208fcd30f9",
+    "language": "en",
+    "question": "A bivariate array is said to 'factor through width w' if it can be written as a product of a (rows x w) and a (w x cols) matrix. Explain how four composition laws combine finite-width factorizations, and give the exact width each produces: (i) a sum of two arrays factoring through widths w1 and w2; (ii) the negation of an array factoring through w; (iii) the entrywise (Hadamard) product of arrays factoring through w1 and w2; (iv) a constant scalar multiple of an array factoring through w. Then explain how these laws let one assemble a width bound for a function built as a sum of products of a threshold indicator, an exponential, and a polynomial, without ever forming a dense matrix.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "13e9c19e3d66fc7b775b490f0172399093ef0656e9f0932e8a462cc37c329f33",
+    "topic": "structured_preparation",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the suffix index satisfies v(y) < M so each threshold reduces to a two-state separation across the cut",
+      "the bound is a rank/separation certificate and asserts no circuit compiler"
+    ],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-caed3d27b15d8ccbb59b",
+    "language": "en",
+    "question": "The full target initial datum is a piecewise function: an exponential left tail for p < -1, a degree-<=2k+1 polynomial bridge for -1 <= p < 0, and an exponential right tail for p >= 0. Sample it on an integer-indexed grid and split the index as M*u(x) + v(y) across a binary cut, where v(y) < M. Prove that the resulting bivariate sample array has rank at most 8k+12, uniformly over the cut location, by exhibiting an explicit finite-width factorization. Account for every additive piece and the exact width it contributes.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "d52fcca9fd6590311d67caa34c4fecbe188a9f5f01e166ff071f89d99a612592",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the claim concerns logical sufficiency; it does not deny that a bounded cut rank is useful structural context for an MPS/TT route"
+    ],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-7e4cf78e15edbddba1be",
+    "language": "en",
+    "question": "A reader argues: 'Since the sampled Hermite amplitude array has every bipartite cut rank bounded by 8k+12, the state can be prepared by a polynomial-resource circuit; the rank bound closes the state-preparation task.' Explain why this inference is not valid as stated. Exhibit the logical gap by distinguishing what a cut-rank/factorization certificate actually provides from what a state-preparation circuit requires, and identify at least two concrete ingredients that the rank bound alone does not supply.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "239c46095d0a49354891ac16d8d25e1e4058581b0e8210c467ebb755677530cb",
+    "topic": "structured_preparation",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-27d152a0b01f5b9e37c5",
+    "language": "en",
+    "question": "A gluing principle states: if two real functions f and g are each C^k and all their derivatives through order k agree at a cut point c, then the spliced function (equal to f for x < c and g for x >= c) is C^k. A student claims the jet-matching hypothesis is unnecessary — that merely requiring f and g to be C^k and to agree in value at c (f(c) = g(c)) already gives a C^k splice. Disprove this for k = 1 with an explicit example, and explain exactly which derivative order fails and why the full jet-matching hypothesis through order k is needed for a C^k conclusion.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "ad5b1531c748bbf99e004ffbac47e9511e7124505b135069e0ec96b85fd5050d",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-4def9b432fa979d2903c",
+    "language": "en",
+    "question": "The target initial datum is the piecewise function equal to exp(p) for p < -1, to the source polynomial S(p) for -1 <= p <= 0, and to exp(-p) for p > 0. Assume it is already known that S matches the required endpoint jets: all derivatives of S through order k equal those of exp at the left junction p = -1, and all derivatives of S through order k equal those of exp(-p) at the right junction p = 0. Prove that the full target is globally C^k for every natural number k, using a reusable two-piece C^k gluing theorem applied twice.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "64c72b6fcca82d8a56de4d7bcbb57c9bf52e3312faa7ad5bcf19cbe05db11c63",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "L > 0 so the grid step is positive and comparisons against -1 are well posed",
+      "the cost model counts only real field operations and exact real comparisons; natural-index and bit-level costs are out of scope"
+    ],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-67b95b72c0c86c5f45f5",
+    "language": "en",
+    "question": "To locate where the left exponential tail meets the polynomial bridge on a grid of 2^n cells, one performs an exact-comparison binary search carrying real interval endpoints: starting from the real interval [lower, lower+span] with span equal to the full width, each of n steps halves the span, forms the midpoint, compares it against the threshold -1, and recurses into the half that still contains the crossing. The search returns an index 'cutIndex'. Prove that this search returns exactly the true cutoff index for every width n and scale L > 0, including the boundary cases where the crossing is at the very first grid point or at the very last, and the single-cell (n = 0) base case. State the exact number of real comparisons and real field operations the search performs.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "0ae661d5bcfbd3f3f7820db0d44697a504cf2bf644caf423a2f841b95c06cb01",
+    "topic": "structured_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Real orthogonal 2x2 matrices; target in (0,1) so s = sqrt(1-x^2) > 0 and the two witnesses are genuinely distinct",
+      "Clean block is the single embedded entry U(0,0)"
+    ],
+    "conventions": [
+      "cleanBlockBy embed U (row,col) = U(embed row, embed col); here embed sends the system index to total index 0",
+      "Garbage/failure branch = entries off the clean embedding"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-24f7f60110cd46dd50da",
+    "language": "en",
+    "question": "Fix a total space of dimension 2 and a system embedding that sends the single system index to total index 0, so the clean block is the one entry U(0,0). A contributor claims that specifying the target A (here the scalar at position (0,0)) and demanding U be real orthogonal determines U uniquely. Refute this: for the target entry x with 0 < |x| < 1, exhibit two DISTINCT real orthogonal 2x2 matrices whose clean block is the same x, verify both are orthogonal, identify exactly which matrix data is left free by the block-encoding contract, and state the general principle about how much of U a clean-block (or even clean-action) certificate pins down.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "1734eb486e87ab7b4cff48128cf5750119ab34da0aff0ebb40727113bb1b5bee",
+    "topic": "block_encoding",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Registers factor as coefficient x (selector x system)",
+      "Clean value fixes coefficient and selector to their zero/clean indices"
+    ],
+    "conventions": [
+      "Composition order is star(selectorLift prepare) * selectLift * amplitudeLift * selectorLift prepare",
+      "PREPARE and UNPREPARE share the selector register"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-258ce557cd0ca27b8a0b",
+    "language": "en",
+    "question": "A logical linear-combination-of-unitaries block encoding is assembled as unprepare after select after amplitude after prepare, on a product of a coefficient register, a selector register, and the system register. Describe the role of each of the four stages, say which registers each stage touches, and explain why the final stage is the adjoint (dagger) of the first rather than an independent gate. What exactly plays the role of the ancilla that must be returned to zero?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "c51d4033fac6827872ee205ba0347431ae7d84efa3635a7c3bd1e6593fd029b7",
+    "topic": "block_encoding",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Input and output pinned to the clean coefficient and clean selector",
+      "rotation(j,systemColumn) is a coefficient-register unitary; only its clean diagonal entry survives"
+    ],
+    "conventions": [
+      "SELECT uses the controlled system equivalence; matching condition is permutation(j)(systemColumn) = systemRow",
+      "PREPARE amplitude is prepare(j, cleanSelector); UNPREPARE contributes its complex conjugate"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-1d1ed8bfe8fc5407f079",
+    "language": "en",
+    "question": "For the logical unprepare-select-amplitude-prepare LCU matrix on registers coefficient x (selector x system), derive the exact clean projected entry between clean input (clean coefficient, clean selector, systemColumn) and clean output (clean coefficient, clean selector, systemRow). Show that it is a finite sum over selector indices, that each surviving term carries the SELECT matching condition on the system permutation, and that each term's weight is the conjugate of a PREPARE amplitude times the controlled coefficient rotation diagonal entry times the PREPARE amplitude. Explain concretely why the selector weight appears as conjugate-times-itself and what this means physically.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "a9b3bd069a5b23dddc6b75dfef8f30d3c9d2d7790edaf659d831286417445a5b",
+    "topic": "block_encoding",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Real rational entries; normalizer fixed to 1",
+      "Clean block is the single top-left entry x"
+    ],
+    "conventions": [
+      "Dilation layout [[x,y],[y,-x]] with clean entry at (0,0)",
+      "Orthogonality tested entrywise by row Gram overlaps"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b9fcb37c9b625419bb56",
+    "language": "en",
+    "question": "Consider the 2x2 scalar dilation whose top-left clean entry is x, whose two off-diagonal entries are both y, and whose bottom-right entry is -x. Treat the single top-left entry as the one-dimensional clean block encoding the scalar x with normalizer 1. Determine the exact condition on (x,y) under which this dilation is orthogonal (a valid real one-qubit-signal block encoding), compute the two row self-overlaps and the row cross-overlap, and explain the boundary: what is the largest |x| for which a real y exists making the dilation orthogonal, and what does exceeding it mean for block-encoding a scalar of magnitude greater than 1 with normalizer 1?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "49191506c656a12fd921fc1030d2e4070a8d03d5929df8054c13818d31e70a40",
+    "topic": "block_encoding",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Rational matrix backend; support map c is a function on columns",
+      "Reconstruction uses amp(col) = target(c(col), col)"
+    ],
+    "conventions": [
+      "Column-sparse: at most one nonzero per column at the fixed row c(col)",
+      "A zero amplitude column is the degenerate allowed case"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-08f652cd34b4acd02aa9",
+    "language": "en",
+    "question": "A one-sparse block-encoding route reconstructs a target matrix from a column support map c and column amplitudes: entry (row, col) is amp(col) when row = c(col) and 0 otherwise. Suppose a contributor claims this route can exactly encode ANY matrix with at most one nonzero per column. Give a concrete small target that is NOT reconstructed by the one-sparse formula, state exactly which hypothesis of the one-sparse reconstruction lemma it violates, and then exhibit a genuine zero-containing one-sparse target that IS correctly reconstructed, confirming that a zero amplitude column is allowed but a second nonzero per column is not.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "0a69d984de8d3125ca8d111698eb57f8d91c4750b367b91b716ee5b84f198570",
+    "topic": "block_encoding",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Normalizer N (normalizerA) is a complex scalar; the counterexample needs N != 0",
+      "B is Hermitian (as in the PDE theorem) for the corrected block to equal S1"
+    ],
+    "conventions": [
+      "Each term scaled by 1/2; filler is N*e^{i*phi} on the lower-right diagonal",
+      "S1 is the Hermitian part of [[A,B],[0,0]] with lower-right block 0"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-6cb0ab49f8cefb8aa8af",
+    "language": "en",
+    "question": "In an LCU-style assembly of a Hermitian piece, each selected term contributes a scaled controlled-phase source whose upper block carries the intended operator and whose lower-right filler block is normalizer times a phase e^{i*phi}. A source writes both filler phases as e^{i*pi} = -1 and claims the two filler blocks cancel so the clean block equals the intended Hermitian piece S1. Show by direct computation of the lower-right clean entry that the printed all-(-1)-phase choice does NOT cancel, give the exact value of that entry, prove the clean block therefore differs from S1 when the normalizer is nonzero, and exhibit the corrected phase assignment that does make the fillers cancel while preserving the intended operator blocks.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "efc83fdaf4e8fed3071bca367e611bbc373a92490f4b44aa261c5593c84aa225",
+    "topic": "block_encoding",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Rational matrix backend; p is a self-map of the finite basis",
+      "Clean block uses the all-zero ancilla embedding via productIndex"
+    ],
+    "conventions": [
+      "permMatrix p (row,col) = 1 iff row = p(col)",
+      "productIndex (a,s) = a*system + s; clean embedding fixes a = zero"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d47a2f06f91426b66c24",
+    "language": "en",
+    "question": "A reversible-classical block-encoding route realizes the full unitary as a permutation matrix on the flattened ancilla-system basis, with the clean block taken from the all-zero ancilla embedding. Prove that a permutation matrix built from a bijective index map is a valid real orthogonal unitary proxy (its column and row Gram matrices are the identity), and separately give the exact clean-block entry formula for such a permutation under the product embedding. Explain why bijectivity (not merely injectivity) is needed for the row Gram condition, and why the clean block of a permutation is itself a 0/1 partial-permutation matrix rather than an arbitrary target.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "fbfe306224f4a395f447d25dc5f13232c47ef031a0242468342b0ff3f1009886",
+    "topic": "block_encoding",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-42a38bdf8bb5853c6484",
+    "language": "en",
+    "question": "Let P permute computational-basis labels and let a circuit have chronological matrices U1,...,Ut. Prove that consistently renaming every wire realizes P(Ut...U1)P inverse rather than inserting a physical permutation gate. Explain why output-only relabeling would fail to preserve circuit multiplication.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "5c1318bc6b6b63046938635d2582d8ef2a796a95619e2ddf223893e43402da0e",
+    "topic": "wire_placement",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8413b0a4decea71b52c8",
+    "language": "en",
+    "question": "A circuit uses only single-qubit rotations, bit flips and controlled bit flips. A bijection relabels all physical wires, preserving which wire controls which target. Which of total instruction count, rotation count and controlled-bit-flip count must stay unchanged? Does this alone prove equal nearest-neighbor routing cost on fixed hardware?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "b881a2a341152237b49ee605317e92cae14c3fdf39f2586ddf424e4e7703fb7e",
+    "topic": "wire_placement",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-5b5d7822642e661eb4fb",
+    "language": "en",
+    "question": "Define R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]]. Derive the exact operator distance between R(a) and R(b), and prove it is at most |a-b|/2. Why does adding any number of untouched spectator qubits not multiply the distance by a dimension factor?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "242ad29257e9eb9b7116b6087db3acec1a0f3c996f657866981eb925281dad66",
+    "topic": "angle_approximation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-49f19240811e3d6c12fa",
+    "language": "en",
+    "question": "For the real rotation R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]], compare R(theta+2pi) and R(theta). A colleague claims the two full operators have distance0 because every output probability agrees. Refute or prove that claim, and distinguish bare-system global-phase equivalence from coherent branch use.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "5486b84e77ad663eb57a30b4d49c7de5cf3f19d6fd86e3afd6c081a666ab9d3e",
+    "topic": "phase_semantics",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b8bdbeb7e17fc4a4eb4d",
+    "language": "en",
+    "question": "A reversible gate flips a target bit exactly when two control bits are both1. Assume each control wire is distinct from the target, but allow the two control wires to coincide. Prove the gate is its own inverse and explain what it reduces to when the controls coincide.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "50b472475599286fe11b801718a3354581022be388574d11745bcc4808c44275",
+    "topic": "reversible_classical",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-ff4c9f5ddef56430df40",
+    "language": "en",
+    "question": "On a two-bit string(c,t), consider the update that flips c itself when c=t=1 and otherwise does nothing. Does the familiar self-inverse proof for a two-control target flip remain valid when one control is also the target? Give a concrete collision and explain the lost hypothesis.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "7c291c054fb57303c579fab08a1b5bafd71f6c36799a67ffd9671a04aeeee329",
+    "topic": "reversible_classical",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex matrices; ordinary conjugate transpose",
+      "All declared products have compatible dimensions"
+    ],
+    "conventions": [
+      "Tensor factors ordered as written; stencil offsets are ordinary integers, not modular wrapping",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-1ce49b65237a2b88b7ce",
+    "language": "en",
+    "question": "Let S and T be Hermitian matrices on one finite system and X a Hermitian matrix on a second system. Prove that H=S tensor X+T tensor I is Hermitian without assuming that S and T commute. Give a counterexample showing that the same conclusion can fail if X is not Hermitian.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "385a3ff7096cac772cca77ea20d294ca38ea56c3a278c20ef366f4673a858e19",
+    "topic": "hamiltonian_composition",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite-dimensional complex matrices; ordinary conjugate transpose",
+      "All declared products have compatible dimensions"
+    ],
+    "conventions": [
+      "Tensor factors ordered as written; stencil offsets are ordinary integers, not modular wrapping",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-5847f92e78677fb6dacd",
+    "language": "en",
+    "question": "A finite row stencil is a list of offset/coefficient pairs. Its matrix entry at row i and column j is the sum of coefficients of every pair with i+offset=j; no modular wrapping is used. Prove that merging repeated offsets by summing their coefficients leaves every matrix entry unchanged. Use the pairs (1,2),(1,-2),(-1,3) to show why list width and the number of nonzero matrix entries need not agree.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "b8f02d87efb80643b127563aaaf0a9b4d2c530909cddacde1eb0297c57b1769f",
+    "topic": "sparse_stencil_algebra",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the core is a real matrix with composite column index (bit of 2 values, right bond of r values)",
+      "a thin factorization with orthonormal rows exists in flat coordinates"
+    ],
+    "conventions": [
+      "columns reshaped by a fixed finite-product bijection of size 2r",
+      "orthonormal rows means Q*Q-transpose = identity"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-cfdd2b20b3b363c1b0f8",
+    "language": "en",
+    "question": "A single core of a finite real tensor train is a real matrix whose rows are indexed by the left bond and whose columns are indexed by a composite label: an ordered pair of an emitted bit (two values) and a right-bond index (r values). To factorize this core, one reshapes that composite column label into a single flat column label and then performs a thin factorization in the flat coordinates. Explain (a) why the reshaping is a genuine bijection and what the flat label's size is, (b) why performing the factorization in flat coordinates and then relabeling the result back by the inverse reshaping produces valid factors of the original core, and (c) why the row-orthonormality of the orthonormal factor is unaffected by the relabeling. State the resulting inner (new left-bond) dimension.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "2ffb4cbdbb0209bba0bfbd6abd58fd20ddec3b4586d34eb310f3c9d020c78650",
+    "topic": "linear_algebra",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A is a core emitting one bit of two values with a right-bond index",
+      "R is a real matrix on the right-bond index"
+    ],
+    "conventions": [
+      "a bit-slice fixes the emitted bit and leaves an ordinary left-by-right matrix",
+      "absorption acts only on the right-bond coordinate"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-991947ac5819309d2550",
+    "language": "en",
+    "question": "During backward canonicalization of a finite real tensor train, a residual matrix R (left over from factorizing a later core) must be absorbed into the right bond of the preceding core A, where A emits one bit of two possible values and has a right-bond index. The absorption produces a new core whose entry at left index a and composite column (bit, j) is the sum over the old right-bond index b of A at (a, bit, b) times R at (b, j). Explain in matrix-slice terms what this absorption does to each of the two emitted-bit branches of A, and justify why it does not mix the two bit branches together. State the single slice identity that captures this.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8cd6beae636663fc110bf73e9725814d46830db87da13a2cc065fb2f83c9492a",
+    "topic": "linear_algebra",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the environment assigns a rational to every symbol name"
+    ],
+    "conventions": [
+      "coefficients are symbolic expressions over the rationals",
+      "evaluation is relative to a fixed environment"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-aa59450a6c037ff66ba8",
+    "language": "en",
+    "question": "A stencil coefficient is written in a small symbolic language whose expressions are built from rational constants, named symbols, and the operations addition, multiplication, and negation. Given an environment that assigns a rational number to each symbol name, the coefficient is turned into a concrete rational number by a single evaluation map. State how this map treats each of the five kinds of expression, and state precisely which algebraic structure the evaluation preserves (that is, which equalities relate the value of a compound expression to the values of its parts).",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "fc08a7ea66752f3f3f39e8804e459f26bad37b706cc8ea1ba6d3ff31c294d9ec",
+    "topic": "linear_algebra",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "system register has 2^n states",
+      "a auxiliary qubits are used"
+    ],
+    "conventions": [
+      "signal/ancilla register is high-order, system register is low-order",
+      "flat index = signal * systemDim + system"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b17b7b36b8d49589df85",
+    "language": "en",
+    "question": "A block-encoding unitary represents an operator that acts on the 2^n states of an n-qubit system register, using a auxiliary qubits. (a) What is the dimension of the square matrix representing the full unitary, and why? (b) The full index is a flattened combination of a signal/ancilla register and the system register; state which register is treated as the high-order (most significant) part of the index and which as the low-order part. (c) If one instead keeps the two registers explicit as an ordered pair (signal, system) and reads off the sub-matrix for one fixed value of the signal register, how does that sub-matrix relate to the sub-matrix obtained by projecting the single flattened unitary onto the same signal branch?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "1d31c3b53c14d764f0bb09400ae8f43f1e2294102aaea9e502028e34d642ac2b",
+    "topic": "linear_algebra",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "V has orthonormal columns, i.e. V-transpose * V = I_r",
+      "the placement of columns is an injection into the N positions"
+    ],
+    "conventions": [
+      "real matrices",
+      "orthogonal matrix means U-transpose * U = I",
+      "inner-product space R^N has dimension N"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-cce7fbbcaf7696206042",
+    "language": "en",
+    "question": "You are given r real column vectors in R^N that are orthonormal (each has unit length and distinct ones are orthogonal), presented as the columns of an N-by-r matrix V satisfying V-transpose times V equals the r-by-r identity. You are also given an arbitrary assignment that places these r columns into r distinct column positions among the N columns of a target N-by-N matrix (the positions need not be the first r columns, and need not be contiguous). Prove that there exists an N-by-N real orthogonal matrix U (U-transpose times U equals the N-by-N identity) whose columns at exactly those r prescribed positions are the given vectors. Make explicit each ingredient your argument relies on.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "5ad895b00de268977aa716f53882a6f23cf8a28bb323dc9fdcf740c4aae4e43a",
+    "topic": "linear_algebra",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "an orthogonal completion with the prescribed columns exists",
+      "r < N so at least one column is unused"
+    ],
+    "conventions": [
+      "real matrices",
+      "SO(N) = orthogonal matrices of determinant +1",
+      "sign flip is a diagonal matrix with a single -1 entry"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-4781b1df2da2d22a6614",
+    "language": "en",
+    "question": "Suppose r orthonormal real columns are placed at r distinct positions among the N columns of an orthogonal matrix, and suppose r < N so at least one column position is left free. The naive completion to an orthogonal matrix may land in the reflection family (determinant -1) rather than the rotation family (determinant +1). Prove that one can always repair the orientation so the final matrix has determinant exactly +1 while leaving every one of the r prescribed columns completely unchanged. Explain why the strict inequality r < N is exactly what makes the repair possible, and why the repair cannot in general be done when r = N.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "831b55b70b38e19adce962a75022f9c80cbf839fc8cd3e274e2793726a831b2b",
+    "topic": "linear_algebra",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "finite complex matrices and vectors",
+      "|left> and |right> are computational-basis states"
+    ],
+    "conventions": [
+      "basis ket is a Kronecker delta at its index",
+      "matrix-vector action uses the standard finite sum"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-ae29e06f605ae9485a6d",
+    "language": "en",
+    "question": "In a finite complex matrix backend, acting with an operator on a computational-basis state (a vector with a single 1 at one position and 0 elsewhere) returns the corresponding column of the operator. Using only this fact and the linearity of matrix-vector multiplication, prove that acting with an operator A on the two-term superposition a*|left> + b*|right>, where |left> and |right> are two basis states, gives a*(column left of A) + b*(column right of A), and that the amplitude read at output row k equals a*A[k,left] + b*A[k,right]. Explain why this means a block-encoding or state-preparation witness never needs to reconstruct the whole matrix-vector product: only two named columns, or two named entries, are ever required.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "86fb24816a0a438a3c334176690b6c6d4bb7b33db4d5b14e54219fc4412f8772",
+    "topic": "linear_algebra",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "a fixed clean signal value is chosen",
+      "finite matrices over a semiring backend"
+    ],
+    "conventions": [
+      "signal-system flattening with signal high-order",
+      "pointwise matrix equality quantifies over all entries"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-55625631ad3256b66bc4",
+    "language": "en",
+    "question": "Two proof styles are commonly used to certify that a flattened signal-system unitary block-encodes a target operator on the system register at a fixed 'clean' signal value. Style A proves a pointwise equality: the matrix block obtained by projecting the unitary onto that clean signal branch equals the target matrix entry by entry. Style B proves an action statement: for every clean-signal basis input and every clean-signal output row, the amplitude the unitary produces equals the corresponding target matrix entry. Prove that these two styles are logically equivalent, by first showing the single bridging identity that the clean-input/clean-output amplitude of the unitary equals exactly one entry of the projected block.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "938ce99e195dcde6306d2080eb9ceff6ac742884a4208ad9e67741dbeefcd0fb",
+    "topic": "linear_algebra",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "V-transpose * V = I_r (orthonormal columns)",
+      "the placement e is an injection from r labels into N positions",
+      "part (b) additionally assumes r < N"
+    ],
+    "conventions": [
+      "real matrices and the standard inner product on R^N",
+      "orthonormal family is linearly independent; dimension bounds independent families"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-447df43633bf6cb53175",
+    "language": "en",
+    "question": "Let V be a real N-by-r matrix whose columns are orthonormal, expressed by the identity V-transpose times V equals the r-by-r identity. (a) Prove the dimensional obstruction r <= N. (b) Suppose further that the strict inequality r < N holds and that the r columns are placed at r distinct positions among the N available column positions via an injective assignment from the r column-labels into the N positions. Prove that this assignment cannot be surjective, i.e. at least one of the N positions receives no prescribed column. Make the counting argument explicit and explain how these two facts together guarantee a spare position exists exactly when r < N.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "acd79e90535b6b73651b347da8f15c1faa4fc21c0e6d861394efae9b28f0f4db",
+    "topic": "linear_algebra",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the original core is right-canonical (orthonormal rows before padding)",
+      "padding appends zero outputs beyond the active rank"
+    ],
+    "conventions": [
+      "active clean-input columns are indexed by the original ranks",
+      "column orthonormality is the conjugate-transpose-times-matrix Gram identity"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-87a232dc855788272f02",
+    "language": "en",
+    "question": "When embedding a right-canonical tensor-train core into a larger fixed physical register by zero-padding its outputs, one claims the active clean-input columns remain orthonormal and that right-multiplication of the boundary stays mass-preserving. A reviewer argues: 'the padded core still satisfies core times core-transpose equals the identity on the physical register, so its rows are orthonormal and nothing changes'. Show by an explicit small example that the reviewer's blanket claim is false: padding generally destroys the ROW orthonormality relation even though it preserves the COLUMN orthonormality of the active clean-input columns. State precisely which relation survives padding and which does not, and why only the surviving one is used.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "18a9866503da9a2e04a1c39bddaa84e502c5a12d874f8222c4a8db6ff9c236ce",
+    "topic": "linear_algebra",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "prescribed columns are orthonormal",
+      "the conjecture drops the strict inequality and allows prescribed-count = dimension"
+    ],
+    "conventions": [
+      "real matrices",
+      "determinant +1 means rotation (SO(N)), -1 means reflection"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-62fef30d1298c65d628e",
+    "language": "en",
+    "question": "The special-orthogonal completion result guarantees that prescribed orthonormal columns can be extended to a determinant-+1 orthogonal matrix WHENEVER the number of prescribed columns is strictly less than the ambient dimension. A student conjectures the strict inequality is just a technical convenience and that the result still holds when the prescribed columns already fill all the positions (number of prescribed columns equal to the ambient dimension). Give an explicit counterexample disproving the student's conjecture, and identify exactly which step of the strictly-fewer-columns argument has no analogue in the fully-prescribed case.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "ad2a2affbde35d46423697310aff24bfdc1b1ac95baed884f4f325d5a33478b8",
+    "topic": "linear_algebra",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "canonicalization follows the backward min(l, 2*m') recurrence",
+      "the terminal bond of a scalar-boundary chain is dimension one"
+    ],
+    "conventions": [
+      "each core emits one bit of dimension 2",
+      "bond dimensions are the dependent inner indices, not padded"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f99e973b80791f7531d2",
+    "language": "en",
+    "question": "A finite real tensor train is right-canonicalized by sweeping from the terminal bond backward, replacing each core by one with orthonormal rows while absorbing a residual into the preceding core. The active left bond dimension produced at each core obeys the exact backward recurrence: the new left bond is the minimum of (the current left bond) and (twice the next active bond). Using only this recurrence and the fact that the sweep never enlarges any bond, prove two boundary facts: (a) after canonicalization every core's left bond is at most its original left bond AND at most twice its next active bond; and (b) for a scalar-boundary chain whose terminal bond is forced to dimension one, the active bond immediately before the terminal bond is at most two. Explain where the factor of two comes from.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "2dd97acc20e2b8f4de89801179f11bc0c1e99abe655f6a989548527791a19423",
+    "topic": "linear_algebra",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-e718fe5a4937f44d02d3",
+    "language": "en",
+    "question": "A measurement is described either by a family of orthogonal projectors P_j (positive, summing to the identity, and mutually orthogonal P_jP_k = 0 for j != k) or, more generally, by a family of positive operators E_k that are positive and sum to the identity but are not required to be orthogonal or idempotent. For a system in state rho, in both cases outcome label k occurs with probability tr(rho E_k) (respectively tr(rho P_j)). Explain precisely why the projector family determines a well-defined post-measurement state for each outcome, whereas the general positive-operator family does not; identify exactly which of the three projector properties is responsible for the probabilities being a valid distribution and which is responsible for a canonical state update, and state what extra structure is needed to assign an update rule to the general family.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "bf82ab8a2dd80f98bd712a0a6db2a812f21885479ddf8d5d31a5368c467b634e",
+    "topic": "planned_quantum_information",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-97a6943376f6d578b32c",
+    "language": "en",
+    "question": "On a two-part system the partial transpose acts by transposing only the second factor of each elementary tensor while leaving the first factor fixed, extended linearly. Call a joint state separable if it is a probabilistic mixture of product states. (a) Prove that every separable state stays positive under the partial transpose, so that a single negative eigenvalue of the partial transpose certifies entanglement. (b) Illustrate on the two-qubit maximally entangled state whose density matrix has 1/2 on the four corners of the 4x4 matrix and 0 elsewhere: compute its partial transpose and exhibit the negative eigenvalue. (c) State precisely the converse boundary - for which local dimensions is a positive partial transpose also sufficient for separability, and what is the name and significance of the states that violate the converse in larger dimensions.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "776e842ce0ebc1068726c6e240d6897b8c43b32043e8349e7265d97ed05e67b7",
+    "topic": "planned_quantum_information",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-6cfbc4c43765863a73e3",
+    "language": "en",
+    "question": "A quantum state is defined to be an operator rho that is positive (nonnegative expectation in every vector) and has trace one. Prove directly from this definition that the set of states is convex: given states rho_1, ..., rho_n and probabilities p_1, ..., p_n (nonnegative, summing to one), show that rho = sum_i p_i rho_i is again a state. Identify which hypothesis on the p_i is needed for positivity and which for the trace condition, and give a one-line reason why the boundary of this convex set is exactly the pure states.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "75c2a51fa9e3327afcff02b119636503b1c73117d52f74da297ac01426c30002",
+    "topic": "planned_quantum_information",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-6b58585097a0e9be3e6f",
+    "language": "en",
+    "question": "A mixed state can be written as a probabilistic mixture of pure states |psi_i> with weights p_i; such a list is called a realizing ensemble. Prove that a mixed state has more than one realizing ensemble by the following explicit construction. Set unnormalized vectors |psi'_i> = sqrt(p_i) |psi_i>, so that the state equals sum_i |psi'_i><psi'_i|. Let V be any rectangular matrix with k >= r rows and r columns whose columns are orthonormal (so V with its conjugate transpose on the left gives the r-by-r identity). Define |phi'_j> = sum_l V_{jl} |psi'_l> for j = 1, ..., k. Show that the k outer products |phi'_j><phi'_j| again sum to the same state, and hence (after renormalizing) give a generally different, and generally longer, pure-state ensemble for it. Explain why genuinely new ensembles exist.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "bf595497c6ab539fb15d37f8b68bffc3e66f6b76e31f340f3471e90551296205",
+    "topic": "planned_quantum_information",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-e78c4883c82dc59a3e4a",
+    "language": "en",
+    "question": "Call a bipartite state a product state if it factorizes as a single tensor product of local states, and separable if it is a probabilistic mixture of product states. (a) Show that in a product state the outcomes of any two local measurements are statistically independent (the joint expectation factorizes). (b) Exhibit a concrete separable two-qubit state that is NOT a product state and compute a pair of local measurements whose outcomes are correlated, demonstrating that separable states can carry classical correlation even though each term in the mixture is uncorrelated. (c) Reconcile this with the textbook remark that a PURE separable state is automatically a product state - i.e. explain why your correlated example must be mixed.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "59bcb9a36713b58d63cbd6e25ecaf9069cf4281831e663188428f9b827359772",
+    "topic": "planned_quantum_information",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d833b7165e2ce9e8d1ce",
+    "language": "en",
+    "question": "The trace norm of an operator X is the sum of its singular values. Prove the variational characterization that this norm equals the maximum, over all unitaries U, of the absolute value of the trace of (X times U). Use a singular value decomposition X = W Sigma V-dagger (with W, V unitary and Sigma the diagonal matrix of singular values) and the Cauchy-Schwarz inequality for the Hilbert-Schmidt inner product <A,B> = tr(A-dagger B). Then exhibit a specific unitary U that attains the maximum, and explain why this shows the trace norm cannot be reproduced by testing against any fixed single unitary.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "839156b38157744e8b666ebacb1d5d2e448f3e3c6d7dd19086dc11dfb0f6234b",
+    "topic": "planned_quantum_information",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-aa860dcde852c09e8107",
+    "language": "en",
+    "question": "A two-qubit state invariant under all local transformations of the form U tensor U can be written with a single real parameter x in [-1,1] as rho(x) = ((2 - x)/6) I + ((2x - 1)/6) F, where I is the identity and F is the swap operator (F|a>|b> = |b>|a>). It is given that x equals the trace overlap tr(F rho). Determine the exact threshold in x at which rho(x) becomes entangled, prove the entangled direction using the partial-transpose test (you may use that the partial transpose of F is twice the projector onto the maximally entangled state, and that the identity resolves into the four Bell projectors), and explain in one or two sentences why the separable direction holds without appealing to any low-dimension sufficiency shortcut.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "2bcb273c18a5006328b5033d1e7118c33bfe18ffbfd45cf7601c5d8768356928",
+    "topic": "planned_quantum_information",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-498430b17f3a7e53e621",
+    "language": "en",
+    "question": "To certify that an (m+n)-qubit unitary U exactly embeds an n-qubit matrix A as its all-zeros block with unit factor, one checks the entrywise identities <0^m, i| U |0^m, j> = A_{ij} for all computational-basis indices i, j. (a) Explain operationally how each such entry can be read off by preparing the ancilla in all-zeros and the system in basis state j, applying U, and overlapping with the all-zeros-ancilla basis state i, and how a composed unitary U = U_B U_C lets one evaluate the two halves independently before overlapping. (b) Explain why checking all entries equal to A_{ij} is equivalent to the exact operator identity (all-zeros block of U equals A), but why for an APPROXIMATE embedding entrywise closeness of each A_{ij} is NOT the right accuracy notion: give the quantity that the definition of approximate embedding actually controls and explain how it can be large even when every entry error is tiny.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "f385cf9ed4eb9d76b0b53de72cf3aa5588094a2f71f4c0f82743bff23b59ca56",
+    "topic": "planned_scientific_computing",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "conventions": [],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-c05f0489c9a34c962f92",
+    "language": "en",
+    "question": "A quantum computer natively applies only unitary operations, yet many scientific-computing tasks require applying a non-unitary matrix A. Show that this mismatch can always be bridged by dilation: given any n-qubit matrix A with operator norm at most 1 and singular value decomposition A = W Sigma V-dagger (W, V unitary, Sigma diagonal with entries in [0,1]), prove that the (n+1)-qubit operator built blockwise from W, V, Sigma and sqrt(I - Sigma^2), namely the product of diag(W, I), the 2x2-block matrix [[Sigma, sqrt(I-Sigma^2)],[sqrt(I-Sigma^2), -Sigma]], and diag(V-dagger, I), is unitary and has A exactly as its top-left block. Then explain why this does NOT mean A itself can be substituted by a single native unitary acting on the system register alone, i.e. why the extra ancilla and postselection are unavoidable when A is non-unitary.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "cd19ab475382e9c8ef2dd540a2ac506a794ca3bf9e3fd9fef8031d0fdd299131",
+    "topic": "planned_scientific_computing",
+    "track": "planned"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "U unitary on the stated finite tensor product",
+      "alpha>0 is a real scale; epsilon>=0; column-vector convention"
+    ],
+    "conventions": [
+      "Auxiliary register pinned to the all-zero value selects the clean block",
+      "Exact case is the epsilon=0 instance of the approximate operator-norm bound"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-9aa2db7cc60e10000594",
+    "language": "en",
+    "question": "Let U be a unitary on n system qubits and a auxiliary qubits. For a strictly positive real alpha, define B=(<0^a| tensor I)U(|0^a> tensor I). State what it means for U to encode a system operator A exactly or with induced-operator-norm error at most epsilon>=0. Give the matrix dimensions and derive the scalar entry condition equivalent to exact encoding. Explain why division by alpha needs its stated premise.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "c13f2c50528cc25b7cffe4b00107cb0bf53d4a2f70e4fb149bb3a6b2fd0f3094",
+    "topic": "block_encoding",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Unitary circuit on S tensor W tensor D",
+      "A clean workspace promise concerns all input data vectors on the signal-success subspace"
+    ],
+    "conventions": [
+      "auxiliaryQubits = signalQubits + pureAncillas",
+      "Clean block uses the all-zero auxiliary bra and ket simultaneously"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-be0f58115df2d75d689f",
+    "language": "en",
+    "question": "A circuit acts on a signal register S, a workspace W and a data register D, starting S,W at zero. The signal value0 is called success. Explain the additional mathematical promise needed to call W clean on every successful branch. Does knowing only the smaller submatrix obtained by projecting BOTH S and W to zero imply that promise? Give a two-dimensional workspace counterexample, and explain which auxiliary qubits still occupy physical space.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8ed915539093e751129d98e5c79b4d61c337609db19017e22ca1be7895375a32",
+    "topic": "block_encoding",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "U,V unitary with unit normalization for simplicity",
+      "Each clean block uses its own auxiliary bra/ket0; column-vector chronological order"
+    ],
+    "conventions": [
+      "Product applies right factor first (B), then left (A), to the system",
+      "Clean branch requires all-zero ancilla before each factor"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-997c309d1dba1dfd0304",
+    "language": "en",
+    "question": "Suppose unitaries U and V have clean blocks A and B on the same data space. Explain why applying V then U with DISJOINT auxiliary registers initialized at zero yields clean block AB. Show concretely why simply reusing a single auxiliary register can fail. Is resetting that register or applying its inverse automatically a free coherent repair?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "19fd86c68eec8d7cf232cf58ab3624e5087ce215e6d768aa916a70bd43bed992",
+    "topic": "block_encoding",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "a and b are arbitrary real sibling amplitudes; the claim concerns one binary split, not the whole recursive loader",
+      "the real Y-rotation convention is the standard orthogonal rotation used by the library backend"
+    ],
+    "conventions": [
+      "wires are little-endian; the split acts on one new highest wire",
+      "the pair norm is the Euclidean length sqrt(a^2 + b^2) and the all-zero pair is assigned angle zero"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-92caf678d8f22ccf1e54",
+    "language": "en",
+    "question": "In the low-wire-first recursive loader for a finite real amplitude table, each binary split of a sibling pair of real amplitudes (a, b) is realised by a single uniformly-controlled real Y-rotation. The rotation angle is twice a signed polar angle: its magnitude is the inverse cosine of a divided by the pair norm sqrt(a^2 + b^2), and its sign is taken from the sign of b (with the all-zero pair assigned angle zero). Explain the role of the sign branch, and why using the bare inverse-cosine magnitude alone would fail for a general real amplitude table.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "3b01bce98dc5e4b867928b6da39f57c27771e1d4a21126344927db3f3228201e",
+    "topic": "state_preparation",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the stage is a genuine matrix-vector action on the fresh-bit-and-bond register, followed only by basis regrouping",
+      "no claim is made that the stage's clean columns implement any particular tensor core"
+    ],
+    "conventions": [
+      "the fresh output bit is appended at the highest wire; already-emitted bits are passive",
+      "amplitude mass is the sum of star(amplitude) times amplitude over all basis labels"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-1f19dcb434fb7b2f9fab",
+    "language": "en",
+    "question": "A sequential bond-dimension construction prepares a state one output bit at a time: each stage acts on a freshly introduced bit set to zero together with the current bond register, appending the new bit at the highest wire while previously emitted bits stay passive. (i) Which input columns of a stage's local matrix can actually influence an emitted amplitude, and (ii) does introducing the fresh zero bit amount to a postselection or measurement?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "1f436afe4aab304d6508230d1475e704c28149f127e27c1729114a23c736220e",
+    "topic": "state_preparation",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the train has scalar left and right boundaries (both dimension one) and real cores",
+      "the sole numeric hypothesis is that the sum of squared contracted amplitudes is one"
+    ],
+    "conventions": [
+      "right-canonical means every individual core has orthonormal rows",
+      "amplitudes are read off by full contraction of the chain for each bit word"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-b5cd6cf46bbdddaf1bde",
+    "language": "en",
+    "question": "A finite real tensor train with scalar (dimension-one) left and right boundaries defines its amplitudes by full contraction over all cores. Suppose the only hypothesis is that the sum of squared contracted amplitudes equals one. After right-canonicalization, what is guaranteed about (a) the new initial boundary vector and (b) each individual target amplitude, and what is deliberately NOT assumed?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "2b3aa64ebcc133ee41f3c18db196966e2bf35e3808943ab5365b9fd8987ec7a5",
+    "topic": "state_preparation",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the input train is normalized (chain mass one) with a scalar terminal bond",
+      "canonicalization uses orthonormal-row (right-canonical) cores"
+    ],
+    "conventions": [
+      "mass is the sum of squared entries of a real boundary vector",
+      "vecMul v R denotes the row-vector action of the residual matrix on the boundary"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-a9711a5ddf9a6dd05d29",
+    "language": "en",
+    "question": "A normalized finite real tensor train with a scalar terminal bond is right-canonicalized from the terminal end inward, absorbing each residual matrix into the preceding core. After this process, where does the total squared mass of the state reside, and what are the dimensions of the two boundary bonds?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "58e3a5fa8fa6db58861c4bccfed6a8de022fff43e0dc352201eaeb2980730d18",
+    "topic": "state_preparation",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "f is an arbitrary real table on n+1 wires; no positivity or normalization is assumed",
+      "the marginal is defined by the sibling-pair Euclidean length as in the source"
+    ],
+    "conventions": [
+      "normSq g is the sum of squared entries; wires are little-endian with the last bit split off by snoc",
+      "pairNorm is the nonnegative Euclidean length of a pair"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-336534b6616f1544cef1",
+    "language": "en",
+    "question": "For a finite real amplitude table f on n+1 wires, define its low-wire marginal by taking, at each prefix word b, the Euclidean length of the sibling pair (f at b-with-last-bit-0, f at b-with-last-bit-1). Prove that the total squared Euclidean norm of the marginal equals the total squared Euclidean norm of f. Explain why this makes the recursive marginal pass norm-faithful.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8ac3123a4b2b6a5c48387dfd57f08a7691bbda2fd7217289ca8382f197be0e31",
+    "topic": "state_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the total squared norm S is strictly positive",
+      "entries are real; normalization is by division by sqrt(S)"
+    ],
+    "conventions": [
+      "normSq is the sum of squared entries; sqrt is the real nonnegative square root"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-53c894b6a2517d10e4a1",
+    "language": "en",
+    "question": "Let f be a finite real amplitude table whose total squared Euclidean norm S = sum_b f(b)^2 is strictly positive. Prove that dividing every entry by sqrt(S) yields an exactly normalized state, i.e. sum_b (f(b)/sqrt(S))^2 = 1, and identify exactly where strict positivity of S is used.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "e3baa20abda38cc9c392803ecfb44a26e6f63424821ab3efe7575763444b3b77",
+    "topic": "state_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the only hypothesis is clean-column equality of each stage with the corresponding tensor core; no global state action is assumed",
+      "the boundary is an explicit bond vector supplied to the run"
+    ],
+    "conventions": [
+      "the last emitted core multiplies on the left (same order as circuit evaluation)",
+      "transfer at length 0 is the identity matrix"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-38379234beb95f4a335c",
+    "language": "en",
+    "question": "In the sequential bond construction, a complete state after n emitted bits is produced by applying stage matrices in order, starting from an explicit bond boundary vector. Assume for each stage index t and each clean input column (fresh bit input = 0, bond input a) the stage entry equals the corresponding tensor core entry K t. Prove by induction on n that the full run amplitude at bit word x and final bond label b equals the matrix-vector product of the chronological transfer contraction of the cores with the boundary, (transfer K n x) applied to the boundary, read at b. State precisely which columns of the stages are therefore irrelevant.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "e7e82f8a936619121ecf0bb750eddb33eaea84902a858c41e6db14c34a142534",
+    "topic": "state_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "each stage is a full unitary on the fresh-bit-and-bond register",
+      "the run starts from a single bond basis label"
+    ],
+    "conventions": [
+      "amplitude mass is sum of star(amplitude) times amplitude; a basis boundary has one unit coordinate",
+      "the lifted stage is the Kronecker product of identity on passive wires with the stage"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-938d6925b4acd7eb28a9",
+    "language": "en",
+    "question": "In the sequential bond construction, suppose every stage matrix is a full unitary on the fresh-bit-and-bond register and the run starts from a single bond basis label (one bond coordinate equal to one, the rest zero). Prove that the total probability (sum of squared amplitude moduli over all basis labels) of the emitted state is exactly one at every length n. Explain why this is a coherent success statement with no postselection, and what role the fresh-zero padding plays.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "4867425811d27d299b922c549a2e0237310cdd910db2feabc98b9d9491eb84e2",
+    "topic": "state_preparation",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "A is a real core with orthonormal rows A * A^T = 1",
+      "the complex embedding uses (bit, new bond) as output rows and old bond as input columns"
+    ],
+    "conventions": [
+      "conjTranspose is the complex conjugate transpose; realness means entrywise conjugation is the identity",
+      "the isometry condition is (complexCore A)^dagger (complexCore A) = 1 on the input-bond index"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8b38b213fb13632febd2",
+    "language": "en",
+    "question": "A real tensor-train core carries orthonormal rows (its row-canonical condition). Show that embedding such a core into a complex matrix with the physical bit and new bond as output rows and the old bond as input columns yields a genuine circuit isometry: the conjugate-transpose times the matrix is the identity on the input-bond index. Explain why real orthonormal rows translate exactly to orthonormal complex input columns under this orientation.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "a787511806f6461accade6977a07384e5a474f0d819cb595b1c6608f7aa38ac4",
+    "topic": "state_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the physical bond register is padded strictly larger than the active bond, with active dimension greater than two",
+      "the full terminal stage is required to be unitary"
+    ],
+    "conventions": [
+      "terminal core sends inputs to a single clean output bond label carrying a 2-row emitted-bit block",
+      "active columns are the occupied input bond labels; inactive columns are free completion data"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d4e14114abc61d4d8a26",
+    "language": "en",
+    "question": "In the sequential bond construction with a padded physical bond register larger than the active bond, a tempting simplification is to demand that the terminal cleanup stage send EVERY padded input column (not just the active ones) into the single clean output label. Show by a dimension/orthogonality argument that for an active bond dimension greater than two this demand is incompatible with the stage being unitary, and state the correct restricted condition the library uses instead.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "f32459794bd9854cfb9a138ed4c381873857d91d9a312991fd7576089a0042e9",
+    "topic": "state_preparation",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "ranks change inside a fixed padded register, with an explicit active-label predicate per stage",
+      "stages agree with the tensor cores only on active input columns; inactive completions are arbitrary"
+    ],
+    "conventions": [
+      "active a means the predicate holds for bond label a at that stage; inactive labels are the complement",
+      "transfer is the chronological contraction of the cores"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-7670f03c241e05e1459d",
+    "language": "en",
+    "question": "In the sequential bond construction with rank changes inside a fixed padded register, a reader claims: 'If the completion columns of the stages (the inputs for inactive, zero-padded bond labels) are chosen differently, the emitted state could change, so the construction is ambiguous.' Refute this using the support-propagation argument, and state precisely the minimal hypotheses under which the emitted state is uniquely the tensor contraction regardless of the inactive completion.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "f4c67b740c47b4c5325831da68cdd8b960696985035e9874f675429b499af9e2",
+    "topic": "state_preparation",
+    "track": "quantum_semantics"
+  }
+]

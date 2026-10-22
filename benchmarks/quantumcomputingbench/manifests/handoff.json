@@ -1,0 +1,20 @@
+{
+  "schema_version": "qcb.handoff.v1",
+  "current_release": "release-v2",
+  "snapshot_id": "qcb-snapshot-fb5abbac40331cbc6b85e84d",
+  "implementation_commits": [
+    "4d9f4c8e951b0eafdb64e9c8b166fc5a3f35a6be",
+    "48d3e638d4c5843c7d1da3a76082547c29382711"
+  ],
+  "commit_location": "separate local canonical checkout, not user source archive",
+  "source_archive_commit": null,
+  "pushed": false,
+  "user_archive_git_initialized": false,
+  "complete": false,
+  "tests": {
+    "benchmark_passed": 56,
+    "repository_harness_passed": 98,
+    "lean": "ENV_BLOCKED: lake absent"
+  },
+  "next_batch": "manifests/release-v2/next-batches.json; actual Lean isolated replay first, then remaining mathematical authoring; 37 bounded queues."
+}

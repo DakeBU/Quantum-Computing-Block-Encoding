@@ -1,0 +1,128 @@
+{
+  "schema_version": "qcb.nl_goal.v1",
+  "goal_id": "qcb-native-nl-knowledge-reasoning",
+  "objective": "Build the native natural-language knowledge and mathematical-reasoning component of QuantumComputingBench, grounded in QuantumComputinglib's graph and inspected mathematical sources, without requiring Lean installation.",
+  "baseline_commit": "5fd07170d84f60a16d564d75cd72e87e26c5b837",
+  "baseline_branch": "loty",
+  "working_branch": "qcb/nl-qa",
+  "canonical_remote": "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench.git",
+  "integration_check": "Only origin/loty contains baseline; origin/main is 3b56da964f97511cc478d942d513b3e01b9328ee and does not contain loty.",
+  "baseline_tests": {
+    "python_benchmark_passed": 74,
+    "failed": 0,
+    "successor_python_contract_passed": 114
+  },
+  "milestones": {
+    "baseline_and_core_coordination": "baseline established; branch created; registry pending author batch and real collaborator acknowledgment",
+    "first_50_distinct_native_cores": "completed: initial50 records reviewed, duplicates isolated; 2bounded expansions yielded50 reviewed new-distinct cores from58records",
+    "independent_review_and_python_release": "nl-v12correctedlocalfrozen,238records217admitted21provisional;114Pythonregressiontests; samecore math/source corrections independentlyreviewed",
+    "bounded_expansion_toward_several_hundred": "9bounded20recordbatchesdelivered andindependentlyreviewed: admittedcoreIDs50->217, full5153ledger, ongoingcoverage/deepersemanticdedup"
+  },
+  "completion_criteria": [
+    "Native mathematical questions understandable without Lean, declaration names or filenames",
+    "50 coherent candidate cores initially, then bounded expansion toward several hundred reviewed cores",
+    "Original complete answers, content rubrics, inspected complete sources and step-support mappings",
+    "Canonical mathematical core IDs shared across NL/Lean/hybrid views with honest dedup and split grouping",
+    "Primary-target coverage distinct from incidental supporting-node mentions across the full universe",
+    "Real independent review or explicit provisional status, no fabricated receipts or new compilation claims",
+    "Python schema/hash/duplicate/split/scoring tests and preserved frozen v3 evidence/history",
+    "Exact commits, topic/depth/evidence counts, unresolved mathematics and Lean-collaborator targets at handoff"
+  ],
+  "constraints": [
+    "No Lean/Lake/Docker/system-package installation",
+    "No production Lean changes",
+    "No paid model/training/GPU/admin jobs",
+    "Never push main or rewrite shared history",
+    "No private evaluator material in public artifacts"
+  ],
+  "collaborator_coordination": {
+    "status": "pending",
+    "required_before_integration": true,
+    "mechanism": "Versioned core registry and formal-candidate handoff; actual collaborator acknowledgment must not be invented."
+  },
+  "local_lean_verification_performed": false,
+  "complete": false,
+  "next_action": "Continue Python-only reviewed expansion from nl-v12, prioritize uncovered primary mathematical areas and genuine cross-topic proofs; reconcile aliases with real collaborator before shared integration. Keep no-push and no new local Lean verification.",
+  "publishing": {
+    "status": "LOCAL_ONLY_USER_REQUEST",
+    "working_branch": "qcb/nl-qa",
+    "main_push_forbidden": true,
+    "push_authorized": false,
+    "historical_dry_run_error": "could not read Username; no authenticated GitHub identity"
+  },
+  "implementation_commits": [
+    "01ae6235"
+  ],
+  "current_candidate_records": 238,
+  "current_independently_reviewed_new_cores": 217,
+  "current_version": "nl-v12",
+  "counts": {
+    "reviewed_topics": {
+      "angle_approximation": 1,
+      "block_encoding": 10,
+      "hamiltonian_composition": 1,
+      "linear_algebra": 12,
+      "matrix_constructions": 19,
+      "oracle_composition": 13,
+      "phase_semantics": 1,
+      "planned_polynomial_signals": 19,
+      "planned_quantum_information": 7,
+      "planned_quantum_information_apps": 19,
+      "planned_representation_qit": 20,
+      "planned_scientific_algorithms": 20,
+      "planned_scientific_computing": 2,
+      "planned_tensor_symmetry": 17,
+      "reversible_classical": 2,
+      "sparse_stencil_algebra": 1,
+      "state_preparation": 11,
+      "stored_cost_refinement": 20,
+      "structured_preparation": 20,
+      "wire_placement": 2
+    },
+    "reviewed_evidence": {
+      "local_source_supported": 60,
+      "nl_bridge_from_inspected_source": 53,
+      "primary_source_nl_only": 104
+    },
+    "reviewed_depth": {
+      "2": 6,
+      "3": 95,
+      "4": 55,
+      "5": 40,
+      "6": 20,
+      "7": 1
+    },
+    "primary_target_nodes": 211,
+    "incidental_support_only_nodes": 165,
+    "universe_nodes": 5153
+  },
+  "reviewed_count_policy": "217admitted distinct core IDs, including9independently reviewed same-ID repairs; repairs add0cores.21provisional/duplicateviewrecords excluded.",
+  "remaining_mathematical_issues": [
+    "21provisional records are actual duplicate/views or unresolvedsemanticcoreequivalence; see review-queue",
+    "Cross-batch novelty overlap should continue semanticreview, not rely solely reviewer target-nameuniqueness",
+    "Wholegraphprimarycoverage211of5153 totalnodes (341navigation/private/evidenceexclusions) remainspartial",
+    "Actual canonicalcore/familycoordination acknowledgment required before sharedintegration, not blockerlocalauthoring",
+    "More source-faithful deeper composition, broader supported mathareas and optional authorizedbaseline remain"
+  ],
+  "active_expansion": {
+    "state": "Nine batches authored/reviewed; latest217admitted distinct IDs,167increment over baseline50; local-only no push",
+    "requested_batches": 9,
+    "candidate_core_target_per_batch": 20,
+    "reviewed_goal": "several hundred, no automatic acceptance quota",
+    "topics": [
+      "structured_preparation",
+      "matrix_constructions",
+      "oracle_composition",
+      "stored_cost_refinement",
+      "planned_representation_qit",
+      "planned_scientific_algorithms",
+      "planned_tensor_symmetry",
+      "planned_quantum_information_apps",
+      "planned_polynomial_signals"
+    ],
+    "note": "Nine scoped batches now active: each genuine authoring plus distinct reviewer, not generated count credit.",
+    "delivered_candidate_records": 180,
+    "admitted_new_cores_before_apps": 145,
+    "admitted_incremental_core_ids": 167
+  }
+}

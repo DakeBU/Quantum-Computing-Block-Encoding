@@ -1,0 +1,1739 @@
+[
+ {
+  "core_id": "qcb-core-sp-101",
+  "key": "qcb-core-sp-101",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Fix a real point a and a natural number k, and prescribe target values v(0), v(1), ..., v(k). Define a degree-at-most-k real polynomial P by taking the local Taylor polynomial centred at a whose coefficient of (x-a)^j is v(j)/j!. Prove that for every j with 0 <= j <= k the ordinary j-th derivative of P evaluated at a equals exactly v(j). You may use the fact that the j-th derivative of a polynomial at a point equals j! times the degree-j Taylor coefficient of the polynomial about that point.",
+  "reference_answer": "Write P = sum over i in {0,...,k} of (v(i)/i!) * (x-a)^i. The key bridge is that for any polynomial Q, (d^j/dx^j Q)(a) = j! * c_j, where c_j is the coefficient of (x-a)^j in the Taylor expansion of Q about a; equivalently c_j is the degree-j coefficient of the shifted polynomial Q(x+a). Step 1: the Taylor coefficients of P about a are read off directly: the coefficient of (x-a)^j is v(j)/j! for j <= k and 0 for j > k, because P is already written in the (x-a) basis. Step 2: apply the bridge at order j <= k: (d^j P/dx^j)(a) = j! * (coefficient of (x-a)^j) = j! * (v(j)/j!). Step 3: since j! is a nonzero natural number cast into the reals, j! * (v(j)/j!) = v(j) exactly. Hence every requested jet value is reproduced, and the construction has degree at most k, has degree at most k. The bound k is the generic (worst-case) degree needed to carry k+1 derivative constraints at a single node; particular data may be realised by a lower-degree polynomial (all-zero data gives the zero polynomial, and if v(k)=0 the degree drops below k), so k is an upper bound on this construction's degree, not a universal minimum for every data vector. No approximation is involved: the identities are exact real-polynomial identities.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Writes P in the (x-a) monomial basis with coefficient v(j)/j! and identifies these as the Taylor coefficients about a.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Invokes the derivative/Taylor-coefficient bridge: j-th derivative at a equals j! times the degree-j Taylor coefficient.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Cancels j! against the 1/j! normalization to conclude the j-th derivative at a equals v(j) for all j <= k.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Notes the degree bound k and that the identities are exact (no numerical approximation).",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial_jet",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.eval_iterate_derivative"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [
+   "v is an arbitrary real sequence; only its first k+1 entries are constrained",
+   "derivatives are ordinary real polynomial derivatives"
+  ],
+  "conventions": [
+   "the center a is fixed and the polynomial is expressed in the shifted basis (x-a)"
+  ],
+  "semantic_steps": [
+   {
+    "claim": "The j-th derivative at a of any polynomial equals j! times its degree-j Taylor coefficient about a.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.eval_iterate_derivative"
+    ]
+   },
+   {
+    "claim": "The polynomial written in the (x-a) basis has degree-j coefficient v(j)/j! for j<=k.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial"
+    ]
+   },
+   {
+    "claim": "Multiplying the coefficient by j! cancels the normalization, giving exactly v(j).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial_jet"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Requires linking the ordinary iterated derivative to Taylor coefficients and tracking the factorial normalization, not just quoting a derivative rule."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+    "anchor": "lines 27-49: def jetPolynomial (a : R) (k : N) (v : N -> R) := taylor (-a) (sum_{j in range (k+1)} monomial j (v j / j!)); theorem eval_iterate_derivative (p) (a) (j) : (derivative^[j] p).eval a = j! * (taylor a p).coeff j; theorem jetPolynomial_jet (a k j v) (hj : j <= k) : (derivative^[j] (jetPolynomial a k v)).eval a = v j",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-jet-interpolation",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "A single Taylor-truncation polynomial reproduces every prescribed derivative up to order k exactly, via the j! normalization of Taylor coefficients.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-102",
+  "key": "qcb-core-sp-102",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Let p and q be real polynomials and a a real point. Suppose (x-a)^{k+1} divides the difference p-q. Prove that for every order j with 0 <= j <= k, the j-th derivatives of p and q agree at a: (d^j p/dx^j)(a) = (d^j q/dx^j)(a). Explain precisely why the hypothesis forces agreement of all jets strictly below the multiplicity k+1, and why it says nothing about the j = k+1 derivative in general.",
+  "reference_answer": "Set r = p - q, so (x-a)^{k+1} | r. Step 1 (differentiation lowers the zero order by at most j): differentiating a function with a zero of order m at a exactly j times leaves a zero of order at least m-j; formally, (x-a)^{m-j} divides the j-th derivative of r whenever (x-a)^m | r. With m = k+1 and j <= k we get m-j = k+1-j >= 1. Step 2: therefore (x-a)^{k+1-j} divides (d^j r/dx^j); since k+1-j >= 1, in particular (x-a)^1 = (x-a) divides the j-th derivative of r. Step 3: a polynomial divisible by (x-a) vanishes at a; evaluating (d^j r/dx^j) at a gives 0. Step 4: derivatives are linear, so (d^j r/dx^j)(a) = (d^j p/dx^j)(a) - (d^j q/dx^j)(a) = 0, i.e. the jets agree. Why only below the multiplicity: at j = k+1 we have m-j = 0, so the argument only yields (x-a)^0 = 1 dividing the derivative, a vacuous statement; the (k+1)-th derivatives need not agree. Concretely p - q = (x-a)^{k+1} has k-th derivative 0 at a but nonzero (k+1)-th derivative (k+1)!, witnessing that the bound is sharp.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "States that dividing by (x-a)^{k+1} and differentiating j<=k times leaves divisibility by (x-a)^{k+1-j} with exponent >= 1.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Concludes (x-a) divides the j-th derivative of p-q, hence it vanishes at a.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Uses linearity of the derivative to transfer vanishing of the difference's jet into equality of the jets of p and q.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Explains sharpness: at order k+1 the exponent drops to 0, and p-q=(x-a)^{k+1} shows the (k+1)-th derivatives can differ.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermitePolynomial.jet_eq_of_pow_dvd_sub"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "A zero of order k+1 differentiated j<=k times retains a zero of order k+1-j >= 1.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.jet_eq_of_pow_dvd_sub"
+    ]
+   },
+   {
+    "claim": "Divisibility by (x-a) forces vanishing at a, so the j-th derivative of p-q is 0 at a.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.jet_eq_of_pow_dvd_sub"
+    ]
+   },
+   {
+    "claim": "Linearity transfers this to equality of the individual jets of p and q for all j<=k, and the bound is sharp at k+1.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.jet_eq_of_pow_dvd_sub"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Needs the order-dropping behaviour of differentiation on high-multiplicity zeros plus a sharpness witness, beyond rote derivative computation."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+    "anchor": "lines 51-62: theorem jet_eq_of_pow_dvd_sub (p q : R[X]) (a : R) (k j : N) (hj : j <= k) (h : (X - C a)^(k+1) | p - q) : (derivative^[j] p).eval a = (derivative^[j] q).eval a; proof uses pow_sub_dvd_iterate_derivative_of_pow_dvd and X - C a | derivative^[j] (p-q)",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-jet-interpolation",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "A zero of multiplicity k+1 in p-q forces all derivatives through order k to agree at the point, with the bound sharp at order k+1.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-103",
+  "key": "qcb-core-sp-103",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Consider the generating power series obtained as the product of the exponential series exp(X) and the series 1/(1-X)^{k+1}. Let its degree-r coefficient be a_{k,r}. In the coordinate t, define A_k(t) as the truncation of this series to degrees 0..k, i.e. A_k(t) = sum_{r=0}^{k} a_{k,r} t^r. The source polynomial, in the shifted coordinate t = p+1, is a positive combination S(p) = exp(-1) * (1-t)^{k+1} * A_k(t) + t^{k+1} * A_k(1-t). Prove that A_k(t) > 0 for every t >= 0, and deduce that S(p) > 0 for every p in the closed interval [-1, 0].",
+  "reference_answer": "Step 1 (coefficients are nonnegative): the coefficient a_{k,r} equals the Cauchy product sum_{m=0}^{r} (1/m!) * C(k+r-m, k), where C denotes a binomial coefficient coming from 1/(1-X)^{k+1} = sum C(k+i, k) X^i and 1/m! from exp. Each summand is a quotient of nonnegative reals, so a_{k,r} >= 0, and a_{k,0} = C(k,k)/0! = 1 > 0. Step 2 (positivity of A_k on t >= 0): A_k(t) = sum_{r=0}^{k} a_{k,r} t^r is a finite sum of nonnegative terms a_{k,r} t^r (products of nonnegative a_{k,r} and nonnegative t^r). The r=0 term is a_{k,0} = 1, which is strictly positive, so the whole sum is at least 1 > 0. Step 3 (positivity of S on [-1,0]): put t = p+1. For p in [-1,0] we have t in [0,1], so both t >= 0 and 1-t >= 0. Then A_k(t) > 0 and A_k(1-t) > 0 by Step 2. The prefactors exp(-1) > 0, (1-t)^{k+1} >= 0, t^{k+1} >= 0 are nonnegative. Step 4 (strictness): if t = 0 the second term vanishes but the first is exp(-1) * 1 * A_k(0) > 0; otherwise t > 0 makes t^{k+1} * A_k(1-t) > 0, so one term is always strictly positive while the other is nonnegative. Hence S(p) > 0 throughout [-1,0].",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Computes a_{k,r} as the Cauchy product sum of 1/m! and binomial C(k+r-m,k), establishing nonnegativity and a_{k,0}=1.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Concludes A_k(t) >= 1 > 0 for all t >= 0 because the degree-0 term is 1 and all other terms are nonnegative.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Substitutes t=p+1, noting p in [-1,0] gives t and 1-t both in [0,1] so both A_k factors are positive.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Handles strictness by a case split on t=0 vs t>0 so that at least one of the two nonnegative terms is strictly positive.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientPolynomial_pos",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_pos"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The series coefficient a_{k,r} is a Cauchy product of 1/m! and binomials, hence nonnegative with a_{k,0}=1.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff"
+    ]
+   },
+   {
+    "claim": "A finite nonnegative sum whose constant term is 1 is at least 1, so A_k(t)>0 for t>=0.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientPolynomial_pos"
+    ]
+   },
+   {
+    "claim": "With t=p+1 in [0,1], both A_k(t) and A_k(1-t) are positive and the prefactors nonnegative.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_pos"
+    ]
+   },
+   {
+    "claim": "A case split on t=0 vs t>0 keeps one strictly positive term, giving S(p)>0 on [-1,0].",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_pos"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "Combines a Cauchy-product coefficient identity, a nonnegativity-of-terms argument, a coordinate change, and a careful strictness case split."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+    "anchor": "lines 168-205: def coefficientSeries (k) := PowerSeries.exp R * (invOneSubPow R (k+1)).val; theorem coefficientSeries_coeff : coeff r = sum_{m in range (r+1)} C(k+r-m,k)/m!; coefficientSeries_coeff_nonneg; coefficientSeries_coeff_zero = 1. lines 254-286: coefficientPolynomial_pos (k) (t) (ht: 0<=t) : 0 < eval t; sourceInterpolant_pos (k) (p) (hp : p in Icc (-1) 0) : 0 < (sourceInterpolant k).eval p",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-source-positivity",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The source Hermite bridge polynomial is strictly positive on [-1,0] because its generating-series coefficients are nonnegative with constant term one.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-104",
+  "key": "qcb-core-sp-104",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Two real polynomials p and q both have degree at most 2k+1, and both satisfy the same two-point jet data: all derivatives through order k agree at the node -1, and all derivatives through order k agree at the node 0. Prove that p = q. Structure the argument around the two 'endpoint multiplicity' polynomials (x+1)^{k+1} and x^{k+1}, and explain where coprimality and the degree budget 2k+1 enter.",
+  "reference_answer": "Step 1 (each endpoint gives a divisibility): since p and q share all jets through order k at -1, the difference p-q has a zero of order at least k+1 at -1, i.e. (x+1)^{k+1} divides p-q. The equivalence used is: agreement of all derivatives through order k at a point a is equivalent to (x-a)^{k+1} dividing the difference (one direction is the high-multiplicity-zero fact; the converse is proved by reading Taylor coefficients, all of which through degree k vanish). The same at 0 gives x^{k+1} divides p-q. Step 2 (coprimality combines the two): (x+1)^{k+1} and x^{k+1} are coprime because their bases x+1 and x differ by a unit (their difference is 1), and coprimality is preserved under taking powers. For coprime factors each dividing the same element, their product divides it; hence (x+1)^{k+1} * x^{k+1} divides p-q. Step 3 (degree accounting forces zero difference): the product has degree (k+1)+(k+1) = 2k+2. If p-q were nonzero, a nonzero multiple of a degree-(2k+2) polynomial would have degree at least 2k+2. But deg(p-q) <= max(deg p, deg q) <= 2k+1 < 2k+2, a contradiction. Therefore p-q = 0, i.e. p = q. The degree budget 2k+1 is exactly one below the combined multiplicity 2k+2, which is what makes the only common solution the zero difference; coprimality is what lets the two separate divisibilities multiply.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Translates jet agreement at each node into divisibility of p-q by (x+1)^{k+1} and by x^{k+1} respectively (both directions of the equivalence).",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Establishes coprimality of the two endpoint moduli (bases differ by a unit, preserved under powers) to multiply the divisibilities.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Computes the product degree 2k+2 and compares with the degree budget 2k+1 on p-q.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Concludes p-q=0 since a nonzero multiple of the degree-(2k+2) product cannot have degree <= 2k+1, and identifies 2k+1 as the sharp budget.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.pow_dvd_sub_of_jet_eq",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "Jet agreement through order k at a node is equivalent to divisibility by (x-node)^{k+1}, applied at -1 and 0.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.pow_dvd_sub_of_jet_eq"
+    ]
+   },
+   {
+    "claim": "The two endpoint moduli are coprime, so their product divides p-q.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime"
+    ]
+   },
+   {
+    "claim": "The product has degree 2k+2 while deg(p-q) <= 2k+1, forcing p-q = 0.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "A genuine Chinese-remainder/degree-counting uniqueness argument requiring both the divisibility equivalence and coprime-product reasoning."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+    "anchor": "lines 119-127: leftModulus k = (X - C(-1))^(k+1); rightModulus k = (X - C 0)^(k+1); endpointModuli_coprime k : IsCoprime. lines 380-417: pow_dvd_sub_of_jet_eq (p q a k) (h : forall j<=k, jets equal) : (X-C a)^(k+1) | p - q; sourceInterpolant_unique (k p) (hp : natDegree <= 2k+1) (hl hr : endpoint jets) : p = sourceInterpolant k",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-interpolant-uniqueness",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "Two degree-<=2k+1 polynomials with matching k-jets at both endpoints coincide, by coprime endpoint moduli and a degree-count against the combined multiplicity 2k+2.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-105",
+  "key": "qcb-core-sp-105",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "counterexample",
+  "question": "A colleague claims that the two-point jet data 'all derivatives through order k agree at -1 and at 0' pins down a real polynomial uniquely, with no restriction on its degree. Show this is false by exhibiting an explicit nonzero polynomial of degree 2k+2 all of whose derivatives through order k vanish at both -1 and 0. Conclude that the degree bound 2k+1 in the uniqueness statement cannot be dropped, and state the exact dimension of the space of polynomials sharing a fixed set of such endpoint jets.",
+  "reference_answer": "Counterexample: take E(x) = (x+1)^{k+1} * x^{k+1}, a polynomial of degree (k+1)+(k+1) = 2k+2. Step 1: at the node -1, E has the factor (x+1)^{k+1}, i.e. a zero of order k+1 there; hence all derivatives of E through order k vanish at -1 (a zero of order k+1 kills derivatives 0..k). Symmetrically the factor x^{k+1} makes all derivatives through order k vanish at 0. So E carries the all-zero endpoint jet data, exactly the data that the zero polynomial also carries. Step 2: E is not the zero polynomial (it is monic of degree 2k+2), so if p is any solution of a given jet-data problem, p + E is a different polynomial with identical endpoint jets. Thus the solution is not unique once degree 2k+2 is allowed; the colleague's claim fails. Step 3 (exact structure): the solutions of fixed endpoint jet data form a coset of the ideal generated by E = (x+1)^{k+1} x^{k+1}. Within any degree bound 2k+1 the coset meets the degree-<=2k+1 space in exactly one point (that is the uniqueness theorem). Allowing degree 2k+2 adds the one-dimensional direction spanned by E, and more generally allowing degree 2k+1+d adds a d-dimensional family (multiples of E by polynomials of degree < d). So the degree-2k+1 budget is sharp: it is the largest budget on which the jet data has a unique solution.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Exhibits E(x)=(x+1)^{k+1} x^{k+1} of degree 2k+2 and verifies it has vanishing derivatives through order k at both -1 and 0.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Argues that adding E to any solution gives a distinct polynomial with the same endpoint jets, defeating the no-degree-bound uniqueness claim.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Identifies the solution set as a coset of the ideal generated by E and that the degree-<=2k+1 slice is a single point.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "States sharpness: degree 2k+1 is the maximal budget for uniqueness; each extra degree adds one dimension of freedom.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "E=(x+1)^{k+1} x^{k+1} has order-(k+1) zeros at both nodes, so its k-jets at -1 and 0 all vanish.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime"
+    ]
+   },
+   {
+    "claim": "Adding nonzero E to any solution preserves endpoint jets but changes the polynomial, so uniqueness fails without a degree bound.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique"
+    ]
+   },
+   {
+    "claim": "The degree-2k+1 budget is exactly one below deg E = 2k+2, which is why it is the sharp budget for a unique solution.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Requires constructing the minimal nonzero element of the vanishing ideal and reasoning about coset dimension, not merely citing uniqueness."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+    "anchor": "lines 119-166: leftModulus k = (X-C(-1))^(k+1), rightModulus k = (X-C 0)^(k+1); interpolant degree <= 2k+1; product (leftModulus*rightModulus).natDegree = 2k+2 used in uniqueness degree count. lines 394-417: sourceInterpolant_unique requires hp : natDegree <= 2k+1",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-interpolant-uniqueness",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The product (x+1)^{k+1} x^{k+1} of degree 2k+2 carries all-zero endpoint k-jets, proving the degree-2k+1 bound in the uniqueness theorem is necessary and sharp.",
+   "evidence_relation": "nl_bridge_from_inspected_source",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-106",
+  "key": "qcb-core-sp-106",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Let the generating series be C(X) = exp(X) * (1 - X)^{-(k+1)} as formal power series over the reals. Prove that its coefficient of X^r is exactly sum_{m=0}^{r} C(k + r - m, k) / m!, where C(.,.) is the binomial coefficient, and prove that this coefficient is nonnegative for every r, with the r=0 coefficient equal to 1. You may use that exp(X) has coefficient 1/m! in degree m and that (1-X)^{-(k+1)} has coefficient C(k+i, k) in degree i.",
+  "reference_answer": "Step 1 (Cauchy product): the coefficient of X^r in a product of two power series F*G is the convolution sum_{m=0}^{r} [X^m]F * [X^{r-m}]G. Here [X^m] exp = 1/m! and [X^{i}] (1-X)^{-(k+1)} = C(k+i, k). Step 2 (substitute i = r-m): the convolution becomes sum_{m=0}^{r} (1/m!) * C(k + (r-m), k) = sum_{m=0}^{r} C(k+r-m, k)/m!, which is the asserted closed form. The index substitution is valid because as m ranges over 0..r the complementary index r-m ranges over r..0, covering the same antidiagonal. Step 3 (nonnegativity): every summand is a ratio of a nonnegative binomial coefficient and a positive factorial, hence nonnegative; a finite sum of nonnegative reals is nonnegative. Step 4 (value at r=0): the sum collapses to the single term m=0, giving C(k, k)/0! = 1/1 = 1. This closed form is what makes the truncation A_k the exact finite object underlying the positive source polynomial, and its nonnegativity is exactly the ingredient needed downstream for positivity.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Applies the Cauchy-product (convolution) formula for the coefficient of X^r in a product of two power series.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Substitutes the known coefficients 1/m! (exponential) and C(k+i,k) (negative binomial) and reindexes to the closed form sum_{m} C(k+r-m,k)/m!.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Shows each term is a nonnegative-binomial-over-positive-factorial ratio, so the coefficient is nonnegative.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Evaluates the r=0 case as the single term C(k,k)/0!=1.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff_nonneg",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff_zero"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The coefficient of X^r in exp(X)*(1-X)^{-(k+1)} is the convolution of 1/m! and C(k+i,k).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff"
+    ]
+   },
+   {
+    "claim": "Reindexing i=r-m yields the closed form sum_{m=0}^{r} C(k+r-m,k)/m!.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff"
+    ]
+   },
+   {
+    "claim": "Each summand is nonnegative, so the coefficient is nonnegative; at r=0 it equals 1.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff_nonneg"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "A concrete Cauchy-product computation with a negative-binomial series plus a reindexing and nonnegativity argument."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+    "anchor": "lines 184-204: theorem coefficientSeries_coeff (k r) : coeff r (coefficientSeries k) = sum_{m in range (r+1)} C(k+r-m,k)/m!; uses invOneSubPow_val_succ_eq_mk_add_choose and coeff_exp; coefficientSeries_coeff_nonneg; coefficientSeries_coeff_zero : coeff 0 = 1",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-source-positivity",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The exp times negative-binomial generating series has coefficient sum_m C(k+r-m,k)/m!, which is nonnegative and equals 1 at degree 0.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-107",
+  "key": "qcb-core-sp-107",
+  "topic": "structured_preparation",
+  "track": "knowledge",
+  "task_kind": "concept",
+  "question": "In the shifted coordinate t = p + 1, the source Hermite bridge polynomial is written as a sum of two endpoint contributions: S(p) = exp(-1) * (1-t)^{k+1} * A_k(t) + t^{k+1} * A_k(1-t), where A_k is a fixed degree-<=k polynomial. Explain the structural role of each ingredient: why the coordinate is centred so that the two nodes p = -1 and p = 0 become t = 0 and t = 1, why each term carries a factor raised to the power k+1, how the two terms specialise the required endpoint values exp(-1) at p=-1 and 1 at p=0, and why the construction is manifestly symmetric under the reflection t -> 1-t up to the constant exp(-1).",
+  "reference_answer": "The coordinate t = p+1 maps the physical splice interval p in [-1,0] onto t in [0,1], sending the left node p=-1 to t=0 and the right node p=0 to t=1; this normalises the two interpolation nodes to the unit interval endpoints. Each term is a product of a 'vanishing' factor and a 'value-carrying' factor. In the first term, (1-t)^{k+1} vanishes to order k+1 at t=1 (the right node), so the entire first term and all its derivatives through order k vanish at p=0; thus the first term is responsible only for the left node. At t=0 the first term equals exp(-1) * 1 * A_k(0); because A_k(0) is the degree-0 coefficient of the generating series, which is 1, the first term contributes exactly exp(-1) at the left node, matching the required left endpoint value exp(-1). Symmetrically the second term t^{k+1} vanishes to order k+1 at t=0 (left node), so it only affects the right node, where it equals 1^{k+1} * A_k(0) = 1, matching the required right endpoint value 1 (= (-1)^0). The power k+1 is what guarantees each term's derivatives through order k vanish at the opposite node, decoupling the two endpoints' jet data. Finally the construction is symmetric under t -> 1-t: this reflection swaps the two terms (and swaps A_k(t) with A_k(1-t), and (1-t)^{k+1} with t^{k+1}), the only asymmetry being the scalar exp(-1) weighting the left value versus 1 on the right. This mirrors the physical left/right exponential tails exp(p) and exp(-p) meeting the polynomial bridge.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Explains t=p+1 maps [-1,0] to [0,1] sending the nodes -1,0 to 0,1.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Identifies (1-t)^{k+1} and t^{k+1} as order-(k+1) vanishing factors that decouple the two nodes' jet data.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Shows each term delivers the correct endpoint value (exp(-1) at the left, 1 at the right) using A_k(0)=1.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Describes the reflection symmetry t -> 1-t swapping the two terms up to the scalar exp(-1).",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_eval",
+   "declaration:QuantumBlockEncoding.HermitePolynomial.endpointFactor"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The coordinate t=p+1 normalises the interpolation nodes to t=0 and t=1.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_eval"
+    ]
+   },
+   {
+    "claim": "Each order-(k+1) factor annihilates the opposite node's k-jet, decoupling the endpoints.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.endpointFactor"
+    ]
+   },
+   {
+    "claim": "Using A_k(0)=1 each term yields the right endpoint value, and t->1-t exposes the symmetry up to exp(-1).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Conceptual decomposition of a symmetric two-point interpolant into decoupled endpoint contributions, requiring understanding of multiplicity and symmetry rather than a single computation."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+    "anchor": "lines 176-182,288-308: endpointFactor k = (1-X)^(k+1) * coefficientPolynomial k; sourceInterpolant k = taylor 1 (C(exp(-1))*endpointFactor k + (endpointFactor k).comp(1-X)); sourceInterpolant_eval (k p) : eval p = exp(-1)*(1-(p+1))^(k+1)*A_k(p+1) + (p+1)^(k+1)*A_k(1-(p+1))",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-source-positivity",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The source bridge is a symmetric sum of two order-(k+1) endpoint-decoupled terms in the coordinate t=p+1, each delivering one node's value via A_k(0)=1.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-108",
+  "key": "qcb-core-sp-108",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Work with the degree-d Bernstein basis B_{d,r}(t) = C(d,r) t^r (1-t)^{d-r}. For fixed k, i with i <= k, consider the single endpoint-factor monomial t^i (1-t)^{k+1} of degree k+1. Prove the exact degree-elevation identity that writes it in the degree-(2k+1) Bernstein basis: t^i (1-t)^{k+1} = sum_{j=0}^{k-i} w(k,i,j) * B_{2k+1, i+j}(t), where w(k,i,j) = C(k-i, j) / C(2k+1, i+j). Deduce that the full source polynomial has a Bernstein coefficient vector with all nonnegative entries on [0,1].",
+  "reference_answer": "Step 1 (single term check): multiply out w(k,i,j) * B_{2k+1,i+j}(t). Here B_{2k+1,i+j}(t) = C(2k+1,i+j) t^{i+j} (1-t)^{2k+1-(i+j)}. The denominator C(2k+1,i+j) of w cancels the binomial in B, leaving C(k-i,j) t^{i+j} (1-t)^{2k+1-i-j}. Writing 2k+1-i-j = (k+1) + (k-i-j), this is t^i (1-t)^{k+1} * [C(k-i,j) t^j (1-t)^{(k-i)-j}]. Step 2 (sum over j via binomial theorem): summing over j=0..k-i, the bracketed terms are exactly the binomial expansion of (t + (1-t))^{k-i} weighted by C(k-i,j): sum_j C(k-i,j) t^j (1-t)^{(k-i)-j} = (t+(1-t))^{k-i} = 1. Hence the sum equals t^i (1-t)^{k+1} * 1, proving the elevation identity. Step 3 (nonnegativity of coefficients): the source polynomial's left endpoint factor is sum_i a_{k,i} t^i (1-t)^{k+1} with a_{k,i} >= 0 (the generating-series coefficients). Collecting the degree-elevated contributions assigns to each Bernstein index r a coefficient that is a sum of products a_{k,i} * w(k,i,j) with i+j=r; each factor is nonnegative (a_{k,i} >= 0 and w = C(k-i,j)/C(2k+1,i+j) >= 0), so every Bernstein coefficient is nonnegative. The full source polynomial adds a reflected copy (weight exp(-1) > 0) with the same nonnegativity, so its complete Bernstein coefficient vector is nonnegative. Nonnegativity on [0,1] matters because the Bernstein basis functions are themselves nonnegative there, so a nonnegative coefficient vector certifies the polynomial is nonnegative on [0,1] without evaluating it.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Cancels the Bernstein binomial C(2k+1,i+j) against the denominator of w to reduce one term to t^i(1-t)^{k+1} times a weighted monomial.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Sums over j and recognises the binomial theorem (t+(1-t))^{k-i}=1 to prove the degree-elevation identity exactly.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Combines the identity with nonnegative generating-series coefficients a_{k,i} to show each collected Bernstein coefficient is nonnegative.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Notes nonnegative coefficients plus nonnegative basis functions certify nonnegativity of the source polynomial on [0,1].",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.leftCoefficient_nonneg",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "Cancelling the shared binomial reduces w*B_{2k+1,i+j} to t^i(1-t)^{k+1} times C(k-i,j) t^j (1-t)^{k-i-j}.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term"
+    ]
+   },
+   {
+    "claim": "Summing over j invokes (t+(1-t))^{k-i}=1, giving the exact elevation t^i(1-t)^{k+1}.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum"
+    ]
+   },
+   {
+    "claim": "Nonnegative a_{k,i} and nonnegative weights w make every collected Bernstein coefficient nonnegative, including the reflected exp(-1)-weighted copy.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "A real degree-elevation computation closing with the binomial theorem, then a structural nonnegativity argument across collected coefficients."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+    "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+    "anchor": "lines 50-84: elevationWeight k i j = C(k-i,j)/C(2k+1,i+j); elevation_term : weight * basis (2k+1) (i+j) t = t^i (1-t)^(k+1) * C(k-i,j) * t^j * (1-t)^(k-i-j); elevation_sum : sum_{j in range (k-i+1)} weight*basis = t^i (1-t)^(k+1) via add_pow. lines 166-173: sourceBernsteinCoefficient_nonneg",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-bernstein-representation",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "Each source monomial t^i(1-t)^{k+1} degree-elevates exactly into the degree-2k+1 Bernstein basis with weights C(k-i,j)/C(2k+1,i+j), yielding a nonnegative Bernstein coefficient vector.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-109",
+  "key": "qcb-core-sp-109",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "A degree-d polynomial is held as a coefficient row c(0),...,c(d) in the Bernstein basis, so that its value at t is sum_{r=0}^{d} c(r) B_{d,r}(t). One de Casteljau step with parameter s replaces the row c by the row with entries (1-s) c(i) + s c(i+1). Let L_u denote the operation that reads the left edge of the de Casteljau triangle built with parameter u (its i-th output is the result of i de Casteljau steps at u applied to c, read at position 0). Prove that evaluating the L_u-transformed coefficients at parameter t reproduces the original polynomial at the rescaled parameter u*t: sum_r (L_u c)(r) B_{d,r}(t) = sum_r c(r) B_{d,r}(u t).",
+  "reference_answer": "Model the Bernstein state as an infinite coefficient row acted on by the linear 'de Casteljau step' operator T_s := (1-s) * Id + s * Shift, where Shift sends c(i) to c(i+1). The i-th left-edge output is (T_u^i c)(0), so L_u c = (i -> (T_u^i c)(0)). Step 1 (parameter composition): a single step at a scaled parameter factors as T_{u t} = (1-t) * Id + t * T_u. This is checked entrywise: ((1-t)Id + t T_u) c (i) = (1-t) c(i) + t[(1-u)c(i) + u c(i+1)] = (1 - u t) c(i) + u t c(i+1) = T_{u t} c (i). Step 2 (semiconjugacy): consequently L_u intertwines the step at scaled parameter with the step at t: L_u (T_{u t} c) = T_t (L_u c). This is the operator identity that says applying one scaled step then taking the left edge equals taking the left edge then applying one unscaled step. Step 3 (iterate the semiconjugacy d times): because L_u is a semiconjugacy from T_{u t} to T_t, it intertwines their d-th iterates: L_u (T_{u t}^d c) = T_t^d (L_u c). Reading position 0 of both sides gives (T_t^d (L_u c))(0) = (T_{u t}^d c)(0). Step 4 (translate to Bernstein sums): the left-edge-at-0 of a d-fold de Casteljau triangle equals the Bernstein sum, i.e. (T_s^d c)(0) = sum_{r=0}^{d} c(r) B_{d,r}(s). Applying this with the row L_u c and parameter t on the left, and with c and parameter u t on the right, yields exactly sum_r (L_u c)(r) B_{d,r}(t) = sum_r c(r) B_{d,r}(u t). This is the exact affine-restriction law: left de Casteljau subdivision reparametrises the curve to [0,u].",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Represents the de Casteljau step as the linear operator T_s=(1-s)Id+s Shift and identifies L_u as the left edge (T_u^i c)(0).",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Proves the parameter-composition identity T_{u t}=(1-t)Id + t T_u entrywise.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Derives the semiconjugacy L_u T_{u t} = T_t L_u and iterates it d times, then reads position 0.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Converts via (T_s^d c)(0)=sum_r c(r)B_{d,r}(s) to the Bernstein-sum identity, concluding the u*t reparametrisation.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteBernstein.casteljauStep",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.casteljauStep_mul_parameter",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.leftRestriction_step",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.casteljau_leftRestriction",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.leftRestriction_eval"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The de Casteljau step is a linear operator and the left restriction is its iterated left edge.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.casteljauStep"
+    ]
+   },
+   {
+    "claim": "The scaled step factors as T_{u t} = (1-t)Id + t T_u, verified entrywise.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.casteljauStep_mul_parameter"
+    ]
+   },
+   {
+    "claim": "Hence L_u is a semiconjugacy T_{u t} -> T_t, which iterates to the d-th powers.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.leftRestriction_step",
+     "declaration:QuantumBlockEncoding.HermiteBernstein.casteljau_leftRestriction"
+    ]
+   },
+   {
+    "claim": "Reading the triangle apex gives the Bernstein-sum reparametrisation to u*t.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.leftRestriction_eval"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "Requires an operator-algebra view of de Casteljau (linear step, semiconjugacy, iteration) rather than index bookkeeping, and translating back to Bernstein sums."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+    "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+    "anchor": "lines 219-282: casteljauStep t = t . coefficientShift + (1-t) . 1; casteljauStep_mul_parameter : casteljauStep (u*t) = (1-t).1 + t.casteljauStep u; leftRestriction u c i = casteljau i c u 0; leftRestriction_step : leftRestriction u (casteljauStep (u*t) c) = casteljauStep t (leftRestriction u c); casteljau_leftRestriction via Function.Semiconj.iterate_right; leftRestriction_eval : sum_r leftRestriction u c r * basis d r t = sum_r c r * basis d r (u*t)",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-bernstein-subdivision",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "Left de Casteljau subdivision at u reparametrises a Bernstein polynomial to u*t exactly, proved by a semiconjugacy of the linear step operator iterated d times.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-110",
+  "key": "qcb-core-sp-110",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Let a degree-d polynomial be given by Bernstein coefficients c(0),...,c(d), all lying in a common interval [lo, hi]. Suppose we restrict the polynomial to a subinterval [u, v] with 0 <= u < v <= 1 by two successive de Casteljau subdivisions, producing new Bernstein coefficients c'(0),...,c'(d) for the restricted piece. Prove that every restricted coefficient c'(i) still lies in [lo, hi]. Identify the two structural facts about the Bernstein basis that make this true.",
+  "reference_answer": "Two facts drive the proof. Fact A (partition of unity): the Bernstein basis functions of a fixed degree sum to 1 at every t, i.e. sum_{r=0}^{d} B_{d,r}(t) = 1. Fact B (nonnegativity on [0,1]): each B_{d,r}(t) >= 0 for t in [0,1]. Together they say that any Bernstein sum sum_r c(r) B_{d,r}(t) with t in [0,1] is a convex combination of the c(r), hence lies between min and max of the coefficients; in particular if all c(r) in [lo,hi] the value lies in [lo,hi]. Step 1 (one subdivision preserves bounds): each new coefficient produced by a single de Casteljau subdivision at a parameter in [0,1] is itself a Bernstein sum of a sub-row of the original coefficients evaluated at that parameter. By Facts A and B it is a convex combination of coefficients from [lo,hi], hence in [lo,hi]. This applies to the right-edge (upper) subdivision at u in [0,1]: all its outputs stay in [lo,hi]. Step 2 (second subdivision): the left-edge (lower) subdivision is applied at the parameter (v-u)/(1-u). Because 0 <= u < v <= 1 we have 0 <= (v-u)/(1-u) <= 1 (the numerator is nonnegative and at most the positive denominator 1-u). So the second subdivision is again evaluated at a parameter in [0,1], and by the same convex-combination argument its outputs — the restricted coefficients c'(i) — remain in [lo,hi]. Step 3 (conclusion): composing the two bound-preserving subdivisions keeps every c'(i) in [lo,hi]. This is the exact numerical-stability property of de Casteljau subdivision: restricting to a subinterval never amplifies coefficients beyond the original range, in contrast to monomial-basis restriction which can.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "States the partition-of-unity and nonnegativity facts and concludes any Bernstein sum on [0,1] is a convex combination of its coefficients.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Shows one de Casteljau subdivision at a parameter in [0,1] outputs convex combinations, hence stays in [lo,hi] (applied to the u subdivision).",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Verifies the second subdivision parameter (v-u)/(1-u) lies in [0,1] using 0<=u<v<=1.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Composes the two bound-preserving steps to conclude all restricted coefficients remain in [lo,hi], noting this is the stability advantage of the Bernstein basis.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteBernstein.basis_sum",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.bernstein_sum_bounds",
+   "declaration:QuantumBlockEncoding.HermiteBernstein.restrictCoefficients_bounds"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "Partition of unity plus basis nonnegativity make every Bernstein sum on [0,1] a convex combination of its coefficients.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.basis_sum",
+     "declaration:QuantumBlockEncoding.HermiteBernstein.bernstein_sum_bounds"
+    ]
+   },
+   {
+    "claim": "Each de Casteljau output is such a convex combination, so a subdivision at a parameter in [0,1] preserves the bounds.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.bernstein_sum_bounds"
+    ]
+   },
+   {
+    "claim": "The second subdivision parameter (v-u)/(1-u) lies in [0,1], so composing both keeps all restricted coefficients in [lo,hi].",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBernstein.restrictCoefficients_bounds"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Requires recognising the convex-hull property from partition of unity and nonnegativity, plus checking the derived subdivision parameter lies in the unit interval."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+    "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+    "anchor": "lines 313-374: restrictCoefficients d u v c = leftRestriction ((v-u)/(1-u)) (rightRestriction d u c); basis_sum : sum_r basis d r t = 1; bernstein_sum_bounds (ht: t in Icc 0 1) (hc: c r in Icc lo hi) : sum in Icc lo hi; restrictCoefficients_bounds (hu:0<=u)(huv:u<v)(hv:v<=1) : restricted coeff in Icc lo hi",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-bernstein-subdivision",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "De Casteljau subinterval restriction keeps every Bernstein coefficient inside the original range, because each new coefficient is a convex combination (partition of unity plus nonnegativity).",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-111",
+  "key": "qcb-core-sp-111",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Let q be a real polynomial and consider sampling it on an arithmetic progression x_j = start + step * j for j = 0,1,...,count-1. We want the exact discrete squared mass M = sum_{j=0}^{count-1} q(x_j)^2 as a closed-form expression whose size depends on the degree of q, not on count. Let g(x) = q(start + step*x)^2, a polynomial of degree D = 2*deg(q), with coefficients g_0,...,g_D. Using the power-sum identity sum_{j=0}^{count-1} j^r = P_r(count) (a fixed polynomial in count, e.g. the Faulhaber/Bernoulli formula), prove the exact identity M = sum_{r=0}^{D} g_r * P_r(count), and explain why this is an exact algebraic equality rather than a quadrature approximation.",
+  "reference_answer": "Step 1 (expand the square as a polynomial): g(x) = q(start + step*x)^2 is a polynomial in x; write it in the monomial basis g(x) = sum_{r=0}^{D} g_r x^r, where D = deg(g) = 2*deg(q) because squaring doubles the degree and the affine substitution x -> start + step*x does not raise degree. Then q(x_j)^2 = g(j) = sum_{r=0}^{D} g_r j^r, evaluating g at the integer index j. Step 2 (sum over samples and swap orders): M = sum_{j=0}^{count-1} g(j) = sum_{j} sum_{r=0}^{D} g_r j^r. Both sums are finite, so Fubini for finite sums lets us exchange them: M = sum_{r=0}^{D} g_r (sum_{j=0}^{count-1} j^r). Step 3 (insert the closed power sum): by the Faulhaber identity sum_{j=0}^{count-1} j^r = P_r(count), a fixed polynomial in count given by Bernoulli numbers. Substituting gives M = sum_{r=0}^{D} g_r P_r(count), a sum of only D+1 = 2 deg(q)+1 terms, independent of count. Step 4 (exactness): every step is an identity between polynomials evaluated at integers — expansion of the square, the finite exchange of summation, and the Faulhaber identity, which is itself an exact theorem (not an asymptotic or Euler-Maclaurin approximation). The only requirement is that the coefficient index runs up to a bound at least D, so that g is fully captured; the identity holds for every count including count = 0 (empty sum = 0 and P_r(0) = 0). Hence M is reproduced exactly with a degree-sized expression, with no continuum/quadrature substitution.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Writes g(x)=q(start+step x)^2 in the monomial basis and identifies deg g = 2 deg q, so q(x_j)^2 = sum_r g_r j^r.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Exchanges the finite double sum to get M = sum_r g_r (sum_j j^r).",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Substitutes the exact Faulhaber power-sum polynomial P_r(count) for the inner sum, giving a degree-sized closed form.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Justifies exactness: all three manipulations are exact identities (Faulhaber is a theorem, not an approximation), valid for every count including 0.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed",
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq",
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared",
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [
+   "q is an arbitrary real polynomial; the coefficient bound used must be at least 2 deg q",
+   "samples are taken on the exact real arithmetic progression, not a rounded grid"
+  ],
+  "conventions": [
+   "the empty sum (count=0) is zero and the power-sum polynomial satisfies P_r(0)=0"
+  ],
+  "semantic_steps": [
+   {
+    "claim": "The squared affine sample g(x)=q(start+step x)^2 has degree 2 deg q, so q(x_j)^2 = g(j) = sum_r g_r j^r.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared"
+    ]
+   },
+   {
+    "claim": "Exchanging the finite sums gives M = sum_r g_r (sum_j j^r).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+    ]
+   },
+   {
+    "claim": "The exact Faulhaber identity sum_j j^r = P_r(count) yields a degree-sized closed form valid for all count.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Combines a degree-doubling observation, a finite Fubini exchange, and the exact Faulhaber power-sum theorem, with care that the identity is exact and count-uniform."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+    "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+    "anchor": "lines 20-57: powerSumClosed count degree = sum_{i in range (degree+1)} bernoulli i * C(degree+1,i) * count^(degree+1-i)/(degree+1); powerSumClosed_eq : (powerSumClosed count degree : R) = sum_{j in range count} j^degree (via sum_range_pow); affineSquared p start step = (p.comp (C start + C step*X))^2; polynomialMassClosed_eq (h : affineSquared.natDegree <= bound) : polynomialMassClosed = sum_{j in range count} (p.eval (start+step*j))^2",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-discrete-mass",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The discrete squared mass of polynomial samples on an arithmetic grid equals a degree-sized Faulhaber combination of power sums, an exact identity independent of the sample count.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-112",
+  "key": "qcb-core-sp-112",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "boundary",
+  "question": "On the exponential tail of the target, the sampled amplitude at x_j = start + step*j is exp(x_j), and the discrete squared mass over count samples is E = sum_{j=0}^{count-1} exp(x_j)^2. Give the exact closed form for E, and treat the boundary case step = 0 explicitly. Explain precisely why the generic geometric-series formula exp(2 start) * ((exp(2 step))^count - 1) / (exp(2 step) - 1) is well defined exactly when step is nonzero, what it degenerates to as the ratio approaches 1, and what the correct value is when step = 0.",
+  "reference_answer": "Rewrite each squared term: exp(x_j)^2 = exp(2 x_j) = exp(2 start + 2 step j) = exp(2 start) * (exp(2 step))^j. So E = exp(2 start) * sum_{j=0}^{count-1} q^j with common ratio q = exp(2 step). Generic case (step != 0): since exp is injective and 2 step != 0, we have exp(2 step) != 1, so the ratio q != 1 and the finite geometric sum has the closed form sum_{j=0}^{count-1} q^j = (q^count - 1)/(q - 1). Hence E = exp(2 start) * ((exp(2 step))^count - 1)/(exp(2 step) - 1). The denominator exp(2 step) - 1 is nonzero exactly because step != 0, which is what makes the division well defined. Boundary case (step = 0): then q = exp(0) = 1 and every term equals exp(2 start), so the sum is count copies: E = count * exp(2 start). The generic formula is undefined here (its denominator is 0), so a separate branch is mandatory; this is not a removable notational nuisance but a genuine 0/0 at step = 0. The two branches agree in the limit: as step -> 0 the generic expression tends to exp(2 start) * count by L'Hopital/the limit of (q^count-1)/(q-1) at q=1, matching the step=0 value, so the piecewise definition is continuous across the boundary. A single formula without the case split would either divide by zero at step = 0 or silently return a wrong value, so the explicit boundary branch is required for a total, correct definition.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Rewrites exp(x_j)^2 = exp(2 start)*(exp(2 step))^j, exhibiting a geometric series with ratio exp(2 step).",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Gives the generic closed form and argues the ratio exp(2 step) != 1 (hence denominator nonzero) exactly when step != 0, by injectivity of exp.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Handles step=0 as a separate branch E = count*exp(2 start), noting the generic formula is a genuine 0/0 there.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Explains the two branches agree in the step->0 limit, so the piecewise definition is continuous and total.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.exponentialMassClosed",
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.exponentialMassClosed_eq"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [
+   "samples use the exact grid x_j = start + step*j; the right tail reuses the same formula with negated start and step"
+  ],
+  "semantic_steps": [
+   {
+    "claim": "Each squared exponential sample factors as exp(2 start) times (exp(2 step))^j, a geometric term.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.exponentialMassClosed_eq"
+    ]
+   },
+   {
+    "claim": "For step != 0 the ratio exp(2 step) != 1 by injectivity of exp, so the geometric-sum formula applies with nonzero denominator.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.exponentialMassClosed_eq"
+    ]
+   },
+   {
+    "claim": "For step = 0 the ratio is 1 and the sum is count*exp(2 start); the branches agree in the limit, giving a total continuous definition.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.exponentialMassClosed"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "A geometric-sum evaluation whose crux is the degenerate ratio-equals-one boundary where the closed form is 0/0 and a separate branch is forced."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+    "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+    "anchor": "lines 89-116: exponentialMassClosed start step count = if step = 0 then count * exp(2*start) else exp(2*start) * ((exp(2*step))^count - 1)/(exp(2*step)-1); exponentialMassClosed_eq : = sum_{j in range count} (exp(start+step*j))^2; proof needs exp(2*step) != 1 derived from step != 0 via exp_injective, then geom_sum_eq",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-discrete-mass",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The exponential-tail discrete squared mass is a geometric sum whose closed form requires an explicit step=0 branch where the common ratio is one, with both branches agreeing in the limit.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-113",
+  "key": "qcb-core-sp-113",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "The target function is strictly positive everywhere and passes through the value 1 at the physical point p = 0 (the splice point). On a register of n+1 qubits the grid has 2^{n+1} points indexed in little-endian order, and the central index 2^n maps to the grid point p = 0. Prove that the unnormalized squared sample norm N = sum_j (amplitude at grid point j)^2 is at least 1, uniformly in the smoothing order k, the width n, and the physical scale L > 0. Explain why identifying a single known sample value suffices and why strict positivity of all samples is used only to keep the bound honest rather than to prove it.",
+  "reference_answer": "Step 1 (locate a unit sample): the central index c = 2^n on n+1 qubits maps, under the little-endian grid p_j = -pi L + j * (2 pi L / 2^{n+1}), to the point p = 0. Indeed j = 2^n gives -pi L + 2^n * (2 pi L / 2^{n+1}) = -pi L + pi L = 0, independent of L. Step 2 (value at the splice): the sampled amplitude at p = 0 is the target value there. On the middle branch the target equals the source polynomial, whose value at p = 0 is its order-0 right-endpoint jet, which is prescribed to be (-1)^0 = 1. Hence the central sample equals 1 exactly, for every k, n, L. Step 3 (single-term lower bound): N = sum_j a_j^2 is a sum of nonnegative squares. The term at the central index is a_c^2 = 1^2 = 1. A sum of nonnegative reals is at least any one of its terms (drop the others, which are >= 0). Therefore N >= 1. Step 4 (role of positivity): the inequality itself only needs a_c^2 = 1 and that the remaining terms are >= 0 — the latter holds for any squares. Strict positivity of all samples is a separate, stronger structural fact; here it guarantees that the full norm is genuinely bounded below by a real sample rather than by a positivity oracle, i.e. the conditioning anchor is realised by an actual grid point, and simultaneously ensures the normalizer is nonzero so normalization is well defined. The bound is width-uniform precisely because the central point stays at p = 0 for every n and L, so the unit sample never disappears as the register grows.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Shows the central index 2^n maps to p=0 under the little-endian grid, independently of L.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Identifies the sample at p=0 as the target value 1 (the order-0 right-endpoint jet), exact for all k,n,L.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Bounds the nonnegative-square sum below by its central term 1^2=1, giving N>=1.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Explains positivity realises the anchor by an actual sample and makes the normalizer nonzero, but the inequality needs only one unit term plus nonnegativity.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.centralIndex",
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.gridPoint_central",
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.smoothInitial_zero",
+   "declaration:QuantumBlockEncoding.HermiteIntervalMass.sampled_mass_ge_one"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The central index 2^n maps to grid point 0 for every width and scale L.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.gridPoint_central"
+    ]
+   },
+   {
+    "claim": "The target value at p=0 is 1 (the order-0 right jet), so the central sample equals 1 exactly.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.smoothInitial_zero"
+    ]
+   },
+   {
+    "claim": "A nonnegative-square sum is at least its central term 1, giving the width-uniform bound N>=1.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteIntervalMass.sampled_mass_ge_one"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Requires locating an exact unit sample via the grid-point identity at the splice and using a single-term lower bound, plus articulating what positivity does and does not contribute."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+    "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+    "anchor": "lines 162-195: smoothInitial_zero : smoothInitial k 0 = 1 (from sourceInterpolant_right_jet k 0); centralIndex n = <2^n, _> : Fin (gridSize (n+1)); gridPoint_central : gridPoint (n+1) L (centralIndex n) = 0; sampled_mass_ge_one : 1 <= sum_j (sampledAmplitude k (n+1) L j)^2 via Finset.single_le_sum at centralIndex",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-discrete-mass",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The unnormalized sample norm is at least 1 uniformly in order, width and scale, because the central grid point sits at the splice where the target equals 1.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-114",
+  "key": "qcb-core-sp-114",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "Consider a bivariate real array F(x,y) = q(u(x) + v(y)), where q is a real polynomial of degree at most d and u, v are arbitrary real-valued functions of the row index x and column index y respectively. Prove that F factorizes as a matrix product A * B with inner dimension d+1, and conclude that the rank of F is at most d+1. Make explicit which polynomial identity provides the factorization and why only the degree of q — not the number of rows or columns — controls the inner dimension.",
+  "reference_answer": "Step 1 (shifted-Taylor expansion of an additive argument): fix a row x and let a = u(x). Expand q about a: for any real s, q(a + s) = sum_{i=0}^{d} c_i(a) s^i, where c_i(a) is the degree-i coefficient of the Taylor expansion of q about a (the sum stops at d because deg q <= d, so the shifted polynomial also has degree <= d). Step 2 (separate the variables): apply this with a = u(x) and s = v(y): F(x,y) = q(u(x) + v(y)) = sum_{i=0}^{d} c_i(u(x)) * v(y)^i. Each summand is a product of a function of x alone, A(x,i) := c_i(u(x)), and a function of y alone, B(i,y) := v(y)^i. Step 3 (read off the matrix product): define A as the (number of rows) by (d+1) matrix with entries A(x,i) and B as the (d+1) by (number of columns) matrix with entries B(i,y). Then (A B)(x,y) = sum_{i=0}^{d} A(x,i) B(i,y) = F(x,y), i.e. F = A * B exactly, with inner dimension d+1. Step 4 (rank bound): the rank of a product A*B is at most the number of columns of A, which is d+1; equivalently the inner dimension bounds the rank. Hence rank F <= d+1. Why the inner dimension is degree-controlled: the only data that produce the finite factorization are the d+1 Taylor coefficients of q; the number of distinct values of u and v (i.e. the matrix dimensions) is irrelevant. The additive structure u(x)+v(y) is essential — it is what lets the single-variable Taylor expansion separate the two indices into a sum of d+1 rank-one pieces. A generic bivariate function without this additive polynomial structure would have no such bound.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Expands q about a=u(x) as a degree-<=d polynomial in the shift s, truncating at d because deg q <= d.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Substitutes s=v(y) to write F(x,y)=sum_{i=0}^d c_i(u(x)) v(y)^i, separating each term into a function of x times a function of y.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Assembles the matrices A (rows x (d+1)) and B ((d+1) x cols) so that A*B = F with inner dimension d+1.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Concludes rank F <= d+1 via rank(A*B) <= inner dimension, and explains the bound depends only on deg q, not matrix size, with additivity essential.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.polynomial_add_factorization",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.rank_le",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.polynomial_add_rank_le"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "Taylor-expanding q about u(x) gives q(u(x)+v(y)) = sum_{i<=d} c_i(u(x)) v(y)^i, a sum of d+1 separable terms.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.polynomial_add_factorization"
+    ]
+   },
+   {
+    "claim": "These terms assemble into a product A*B with inner dimension d+1 (the explicit finite-width factorization).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough"
+    ]
+   },
+   {
+    "claim": "A matrix product has rank at most its inner dimension, so rank F <= d+1, controlled only by deg q.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.rank_le",
+     "declaration:QuantumBlockEncoding.HermiteCutRank.polynomial_add_rank_le"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "A clean separable-factorization proof hinging on the shifted-Taylor expansion of an additive argument and the rank-of-product bound, with attention to why only degree matters."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+    "sha256": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+    "anchor": "lines 23-50: FactorsThrough F := exists A : Matrix a i R, B : Matrix i b R, F = A*B; FactorsThrough.rank_le : F.rank <= Fintype.card i; polynomial_add_factorization (p) (d) (hd: p.natDegree <= d) (u v) : FactorsThrough (i := Fin (d+1)) (fun x y => p.eval (u x + v y)) via A x i = (taylor (u x) p).coeff i, B i y = v y^i; polynomial_add_rank_le : rank <= d+1",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-cut-rank",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "An additive polynomial array q(u(x)+v(y)) factorizes with inner dimension deg(q)+1 via shifted Taylor coefficients, bounding its rank by the degree alone.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-115",
+  "key": "qcb-core-sp-115",
+  "topic": "structured_preparation",
+  "track": "knowledge",
+  "task_kind": "concept",
+  "question": "A bivariate array is said to 'factor through width w' if it can be written as a product of a (rows x w) and a (w x cols) matrix. Explain how four composition laws combine finite-width factorizations, and give the exact width each produces: (i) a sum of two arrays factoring through widths w1 and w2; (ii) the negation of an array factoring through w; (iii) the entrywise (Hadamard) product of arrays factoring through w1 and w2; (iv) a constant scalar multiple of an array factoring through w. Then explain how these laws let one assemble a width bound for a function built as a sum of products of a threshold indicator, an exponential, and a polynomial, without ever forming a dense matrix.",
+  "reference_answer": "The four laws: (i) Sum: if F factors through width w1 and G through w2, then F + G factors through width w1 + w2. One stacks the left factors side by side and the right factors on top of each other (direct sum of inner index sets), so the new inner dimension adds. (ii) Negation: if F factors through w, then -F factors through the same width w; negate one factor (e.g. the left), the inner dimension is unchanged. (iii) Entrywise product: if F factors through w1 and G through w2, their Hadamard product (x,y) -> F(x,y) G(x,y) factors through width w1 * w2; the inner index set is the Cartesian product of the two, with left/right factors multiplied componentwise. Widths multiply. (iv) Scaling: a constant multiple c*F factors through the same width w (absorb c into the left factor). Assembling a width bound: a threshold indicator 1[M u(x) + v(y) < T] factors through width 2 (a two-state prefix/suffix separation across the binary cut); an exponential exp(u(x)+v(y)) factors through width 1 (it splits as a product exp(u(x)) exp(v(y))); a polynomial q(u(x)+v(y)) of degree <= d factors through width d+1 (shifted Taylor). A piece like 'indicator times exponential' uses law (iii): width 2*1 = 2; 'indicator times polynomial' uses (iii): width 2*(d+1). Summing the left-tail, middle, and right-tail pieces uses law (i): the total width is the sum of the pieces' widths. Negation (ii) lets one express a difference of two indicators (a band) and scaling (iv) lets one weight the left tail by exp(-1). Because every law manipulates only the factor matrices and inner index sets, the composite width bound is obtained symbolically, never materialising the full array; the final width is a fixed linear function of the degree d (independent of the array dimensions).",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "States the sum law adds widths (direct sum of inner index sets) and the negation law preserves width.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "States the entrywise-product law multiplies widths (Cartesian product of inner index sets) and the scaling law preserves width.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Gives the base widths: threshold indicator = 2, exponential = 1, degree-<=d polynomial = d+1.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Assembles a sum-of-products width bound using product (multiply), sum (add), negation, and scaling laws without forming a dense matrix.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.add",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.neg",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.pointwise_mul",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.scale",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.threshold_factorization",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.exponential_add_factorization"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "Sum adds widths and negation preserves width (direct sum / sign on inner index sets).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.add",
+     "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.neg"
+    ]
+   },
+   {
+    "claim": "Entrywise product multiplies widths and scaling preserves width.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.pointwise_mul",
+     "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.scale"
+    ]
+   },
+   {
+    "claim": "Base pieces have widths 2 (threshold), 1 (exponential), d+1 (polynomial), composed to a symbolic total width.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.threshold_factorization",
+     "declaration:QuantumBlockEncoding.HermiteCutRank.exponential_add_factorization"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Conceptual mastery of an algebra of finite-width factorizations: which operation adds vs multiplies inner dimensions and how base pieces compose symbolically."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+    "sha256": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+    "anchor": "lines 61-105,250-257: product_factorization width Unit; exponential_add_factorization (exp(u+v)) width Unit; FactorsThrough.add -> Sum i k; FactorsThrough.neg same i; FactorsThrough.pointwise_mul -> i x k; FactorsThrough.scale same i. lines 133-148: threshold_factorization width Fin 2",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-cut-rank",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "Finite-width factorizations form an algebra: sum adds widths, Hadamard product multiplies them, negation and scaling preserve them, letting composite width bounds be assembled symbolically.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-116",
+  "key": "qcb-core-sp-116",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "The full target initial datum is a piecewise function: an exponential left tail for p < -1, a degree-<=2k+1 polynomial bridge for -1 <= p < 0, and an exponential right tail for p >= 0. Sample it on an integer-indexed grid and split the index as M*u(x) + v(y) across a binary cut, where v(y) < M. Prove that the resulting bivariate sample array has rank at most 8k+12, uniformly over the cut location, by exhibiting an explicit finite-width factorization. Account for every additive piece and the exact width it contributes.",
+  "reference_answer": "Write the sampled datum as a sum of three terms selected by threshold indicators of the integer index n(x,y) = M u(x) + v(y). Let A, B be the integer cutoffs for the thresholds p < -1 and p < 0 respectively (obtained by a ceiling of an affine expression; across the cut each threshold indicator factors through width 2). Term 1 (left tail): 1[n < A] * exp(grid), width 2 * 1 = 2 (indicator times exponential). Term 2 (middle): (1[n < B] - 1[n < A]) * q(grid), where q is the source polynomial of degree <= 2k+1. The band indicator is a difference of two width-2 indicators, so by the sum/negation laws it factors through width 2 + 2 = 4; multiplied entrywise by the polynomial of width (2k+1)+1 = 2k+2 gives width 4 * (2k+2) = 8k+8. Term 3 (right tail): (1 - 1[n < B]) * exp(-grid), the complement indicator times an exponential; the complement factors through width 2 and the exponential through width 1, so width 2 * 1 = 2. Summing the three terms adds widths: 2 + (8k+8) + 2 = 8k+12. Each threshold indicator truly separates across the binary cut because 'M u(x) + v(y) < T' reduces, using v(y) < M, to a two-row condition (u(x) < T/M, or u(x) = T/M together with v(y) < T mod M) — exactly a two-state separation. The exponential separations use exp(a+b) = exp(a) exp(b) (width 1), and the polynomial separation uses the shifted-Taylor factorization (width deg+1). The combined explicit width is a finite index set of cardinality 8k+12, so the rank of the sample array is at most 8k+12, independent of the register width and of where the cut is placed. This is a separation certificate only; it does not by itself furnish a gate compiler or a finite-precision algorithm.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Decomposes the sampled datum into left-tail, middle-band, and right-tail terms selected by threshold indicators of the cut index.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Assigns widths: left tail 2 (indicator x exp), right tail 2 (complement indicator x exp).",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Computes the middle width 8k+8 as band-indicator width 4 (difference of two width-2 indicators) times polynomial width 2k+2.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Sums the widths 2+(8k+8)+2 = 8k+12, notes threshold separation uses the v(y)<M two-state reduction, and concludes rank <= 8k+12 uniformly, flagging it is only a rank certificate.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteCutRank.hermite_affine_factorization",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.hermiteBond_card",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.hermite_affine_cut_rank_le",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.threshold_complement_factorization",
+   "declaration:QuantumBlockEncoding.HermiteCutRank.blockIndex_lt_iff"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [
+   "the suffix index satisfies v(y) < M so each threshold reduces to a two-state separation across the cut",
+   "the bound is a rank/separation certificate and asserts no circuit compiler"
+  ],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The datum splits into three indicator-selected pieces; each threshold indicator separates across the binary cut into two states.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.blockIndex_lt_iff",
+     "declaration:QuantumBlockEncoding.HermiteCutRank.threshold_complement_factorization"
+    ]
+   },
+   {
+    "claim": "Left/right tails contribute width 2 each; the middle band contributes width 4*(2k+2)=8k+8.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.hermite_affine_factorization"
+    ]
+   },
+   {
+    "claim": "Summing widths gives an index set of cardinality 8k+12, bounding the sample rank uniformly over the cut.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.hermiteBond_card",
+     "declaration:QuantumBlockEncoding.HermiteCutRank.hermite_affine_cut_rank_le"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "Requires assembling the full piecewise sample from indicator, exponential, and polynomial factorizations and bookkeeping the composed widths to the exact 8k+12, plus the two-state threshold reduction."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+    "sha256": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+    "anchor": "lines 192-248: HermiteBond k = Sum (Sum (Fin 2 x Unit) ((Sum (Fin 2)(Fin 2)) x Fin (2k+2))) (Fin 2 x Unit); hermiteBond_card = 8k+12; hermite_affine_factorization builds hleft = threshold.pointwise_mul exp, hmiddle = (hB.add hA.neg).pointwise_mul hpoly, hright = complement.pointwise_mul exp, hsum = (hleft.add hmiddle).add hright; hermite_affine_cut_rank_le : rank <= 8k+12",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-cut-rank",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The full exponential-polynomial-exponential sample array has cut rank at most 8k+12, assembled as 2 + 4(2k+2) + 2 from indicator, exponential, and polynomial finite-width factorizations.",
+   "evidence_relation": "nl_bridge_from_inspected_source",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-117",
+  "key": "qcb-core-sp-117",
+  "topic": "structured_preparation",
+  "track": "quantum_semantics",
+  "task_kind": "counterexample",
+  "question": "A reader argues: 'Since the sampled Hermite amplitude array has every bipartite cut rank bounded by 8k+12, the state can be prepared by a polynomial-resource circuit; the rank bound closes the state-preparation task.' Explain why this inference is not valid as stated. Exhibit the logical gap by distinguishing what a cut-rank/factorization certificate actually provides from what a state-preparation circuit requires, and identify at least two concrete ingredients that the rank bound alone does not supply.",
+  "reference_answer": "The inference conflates a structural separation certificate with a constructive compilation. What the certificate provides is: for each bipartite cut, an explicit algebraic factorization F = A B with inner dimension at most 8k+12, hence a rank bound. This is a statement about the existence and width of a low-rank decomposition of the sample matrix. What state preparation requires is strictly more: (1) an actual sequence of elementary gates (e.g. uniformly controlled rotations and CX) whose unitary's first column equals the normalized amplitude vector; (2) the real rotation angles — i.e. an isometry/QR-type completion of the low-rank factors into unitary tensors — together with a finite-precision or exact-angle model; (3) handling of normalization by the true global sample norm, which the per-cut factorization does not compute. A low rank per cut is necessary context for an MPS/TT route but not sufficient: a bounded-rank matrix of amplitudes does not come with a canonical-form gauge, an isometrization of the cores, or a bound on the arithmetic/gate cost of realising those cores. Counterexample-style gap: one can have a family of matrices all of rank 1 (the extreme low-rank case) whose entries are arbitrary efficiently-or-inefficiently describable functions; rank 1 alone says nothing about whether the single factor vectors are preparable by a short circuit or even computable to finite precision. Thus 'rank <= 8k+12 for all cuts' is compatible with both easy and hard preparation problems, so it cannot by itself close the task. The source material is explicit that the factorization certificates 'are not a gate compiler, an isometry completion, or a finite-precision algorithm,' and that a rank bound alone does not close the polynomial-resource state-preparation task; the separate normalization supplier and the explicit RY/CX circuit are additional, independent constructions.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Separates what the certificate gives (an explicit low-rank factorization / rank bound per cut) from what preparation needs (an actual gate sequence realizing the normalized amplitudes).",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Identifies at least two missing ingredients, e.g. isometrization/angles of the low-rank factors and computation of the true global normalization.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Gives a gap argument (e.g. even rank 1 says nothing about preparability/finite-precision of the factor vectors), showing the bound is compatible with hard preparation.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Concludes the rank bound is necessary structural context but not sufficient to close the state-preparation task.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.rank_le",
+   "declaration:QuantumBlockEncoding.HermiteSampleStructure.sampled_cut_rank_le",
+   "declaration:QuantumBlockEncoding.HermiteSampleStructure.normalized_cut_factorization"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [
+   "the claim concerns logical sufficiency; it does not deny that a bounded cut rank is useful structural context for an MPS/TT route"
+  ],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "A cut-rank certificate is an existence-of-low-rank-factorization statement, not a construction of gates.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.rank_le",
+     "declaration:QuantumBlockEncoding.HermiteSampleStructure.sampled_cut_rank_le"
+    ]
+   },
+   {
+    "claim": "Preparation additionally needs isometrization/angles of the factors and the true global normalization, which the per-cut factorization does not supply.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSampleStructure.normalized_cut_factorization"
+    ]
+   },
+   {
+    "claim": "Even extreme low rank is compatible with hard-to-prepare factors, so the rank bound cannot close the task.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSampleStructure.sampled_cut_rank_le"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "A conceptual boundary question demanding a precise necessary-vs-sufficient distinction and a gap/counterexample argument, not a computation."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteSampleStructure.lean",
+    "sha256": "eda04790bd59d39a49da0e98bc9602261ef7c5b0cdb531d88a97c3f6d1036d1f",
+    "anchor": "lines 1-58: 'Neither a rank bound nor normalization supplies a primitive circuit compiler.' sampled_cut_rank_le : rank <= 8k+12; normalized_cut_factorization : the real amplitudes retain the same factor width after exact normalization (a factorization, not a compiler)",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-cut-rank",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "A per-cut rank bound of 8k+12 is a separation certificate, not a construction; preparation still needs factor isometrization, angles, and true normalization, so the rank bound alone does not close the task.",
+   "evidence_relation": "nl_bridge_from_inspected_source",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-118",
+  "key": "qcb-core-sp-118",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "counterexample",
+  "question": "A gluing principle states: if two real functions f and g are each C^k and all their derivatives through order k agree at a cut point c, then the spliced function (equal to f for x < c and g for x >= c) is C^k. A student claims the jet-matching hypothesis is unnecessary — that merely requiring f and g to be C^k and to agree in value at c (f(c) = g(c)) already gives a C^k splice. Disprove this for k = 1 with an explicit example, and explain exactly which derivative order fails and why the full jet-matching hypothesis through order k is needed for a C^k conclusion.",
+  "reference_answer": "Counterexample at k = 1, cut c = 0. Take f(x) = 0 and g(x) = x. Both are C^1 (indeed C^infinity), and they agree in value at 0: f(0) = 0 = g(0). The splice is h(x) = 0 for x < 0 and h(x) = x for x >= 0, which is exactly the ReLU function (max(x,0)). Step 1 (continuity holds): h is continuous because the one value-matching condition f(0) = g(0) is satisfied; so h is C^0. Step 2 (first derivative fails): the left derivative of h at 0 is f'(0) = 0, while the right derivative is g'(0) = 1. Since 0 != 1, h is not differentiable at 0, hence not C^1. The student's weakened hypothesis (value agreement only) is therefore insufficient: it controls order 0 but leaves the order-1 jets mismatched. Step 3 (what the real principle needs): to obtain C^1 we must also require f'(0) = g'(0); more generally for C^k we need iterated-derivative agreement at every order j = 0,1,...,k. The proof of the correct principle is by induction on k: the base case uses continuity from value matching; the inductive step differentiates the splice, which is itself a splice of f' and g' (using that the one-sided derivatives coincide precisely because f'(c)=g'(c)), and then applies the hypothesis one order lower. Each induction level consumes exactly one jet-matching equation, so all k+1 equations j = 0,...,k are genuinely used. Dropping any of them breaks the chain at that order, exactly as the ReLU example breaks at order 1. Hence the jet-matching hypothesis through order k is necessary, not decorative, and value agreement alone yields only continuity.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Gives an explicit k=1 example (f=0, g=x, i.e. ReLU) with f(0)=g(0) but mismatched first derivatives.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Shows the splice is continuous (value match) but not differentiable at 0 because left derivative 0 != right derivative 1.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "States the correct hypothesis needs derivative agreement at every order j=0..k, not just the value.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Explains the inductive proof consumes one jet-matching equation per order, so each of the k+1 equations is genuinely used.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_splice",
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.hasDerivAt_splice",
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.deriv_splice"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "With only value agreement, the splice (ReLU) is continuous but has unequal one-sided first derivatives at the cut.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.hasDerivAt_splice"
+    ]
+   },
+   {
+    "claim": "Hence it fails to be C^1, disproving the weakened claim; C^1 additionally requires f'(c)=g'(c).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.deriv_splice"
+    ]
+   },
+   {
+    "claim": "The correct C^k gluing is proved by induction consuming one jet-matching equation per order, so all orders 0..k are needed.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_splice"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "intermediate",
+   "rationale": "Requires producing a minimal explicit counterexample pinpointing the failing derivative order and connecting it to the inductive structure of the correct hypothesis."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteSmoothness.lean",
+    "sha256": "da47568584b8435a07431a7ebae29836796018f76d02b4d8b0c4169830ec68bc",
+    "anchor": "lines 56-90: deriv_splice needs hv : f c = g c and hd : deriv f c = deriv g c; contDiff_splice (k c f g) (hf hg : ContDiff k) (hjet : forall j <= k, iteratedDeriv j f c = iteratedDeriv j g c) : ContDiff k (splice c f g); proof by induction on k, base uses value match for continuity, succ step differentiates and recurses with jets one order lower",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-smooth-gluing",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "C^k gluing of two pieces needs derivative agreement at every order through k, not just value matching; ReLU (f=0, g=x) matches values yet fails C^1 at the cut.",
+   "evidence_relation": "nl_bridge_from_inspected_source",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-119",
+  "key": "qcb-core-sp-119",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "proof",
+  "question": "The target initial datum is the piecewise function equal to exp(p) for p < -1, to the source polynomial S(p) for -1 <= p <= 0, and to exp(-p) for p > 0. Assume it is already known that S matches the required endpoint jets: all derivatives of S through order k equal those of exp at the left junction p = -1, and all derivatives of S through order k equal those of exp(-p) at the right junction p = 0. Prove that the full target is globally C^k for every natural number k, using a reusable two-piece C^k gluing theorem applied twice.",
+  "reference_answer": "Represent the target as a nested double splice: first glue the polynomial piece to the right exponential at p = 0, then glue the left exponential to that result at p = -1. Step 1 (right junction, p = 0): the polynomial p -> S(p) is C^k (polynomials are C^infinity), and p -> exp(-p) is C^k (composition of exp with negation). The jet-matching hypothesis at p = 0 is given: the derivatives of S through order k equal those of exp(-p) at 0. Here one uses that the j-th derivative of exp(-p) is (-1)^j exp(-p), equal at p=0 to (-1)^j, matching the prescribed right-endpoint jet (-1)^j of S. By the two-piece C^k gluing theorem, the right splice R(p) = (S for p < 0, exp(-p) for p >= 0) is C^k. Step 2 (left junction, p = -1): now glue exp (which is C^k) to R at p = -1. The left exponential exp has j-th derivative exp, equal at p=-1 to exp(-1). On a neighborhood of p = -1 the right splice R coincides with the polynomial S (since -1 < 0, points near -1 are < 0, where R = S), so the derivatives of R at -1 equal those of S at -1, which by hypothesis equal exp(-1) through order k. Thus exp and R satisfy the jet-matching hypothesis at -1. Applying the gluing theorem again, the double splice (exp for p < -1, R otherwise) is C^k. Step 3 (identify with the target): the double splice equals the original piecewise target: for p < -1 it is exp(p); for -1 <= p < 0 it is R = S(p); at p = 0 both the <=0 and >0 conventions give value 1 (S(0) = 1 = exp(0)); for p > 0 it is exp(-p). So the target is exactly the double splice, hence C^k. Since k is arbitrary and the same argument runs for every k, the target is C^k for all k. The construction reuses a single gluing theorem twice, each application discharged by the known endpoint jets; smoothness is thus reduced entirely to the Hermite jet-matching of S.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Sets up the target as a nested double splice: polynomial-with-right-exponential at 0, then left-exponential-with-that at -1.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Discharges the right junction using the known S right-jets and iteratedDeriv of exp(-p)=(-1)^j exp(-p), applying the gluing theorem to get a C^k right splice.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Discharges the left junction by noting R equals S near -1 (eventually-equal) and using exp's jets exp(-1), applying the gluing theorem again.",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "Identifies the double splice with the original target (including value 1 at the splice) and concludes C^k for every k.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_right_splice",
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_double_splice",
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.smoothInitial_eq_double_splice",
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.smoothInitial_contDiff",
+   "declaration:QuantumBlockEncoding.HermiteSmoothness.right_splice_eventuallyEq"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The polynomial and right exponential glue C^k at 0 using the known right-endpoint jets and iteratedDeriv of exp(-p).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_right_splice"
+    ]
+   },
+   {
+    "claim": "Near -1 the right splice coincides with the polynomial, so exp glues to it C^k at -1 via the left-endpoint jets.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.right_splice_eventuallyEq",
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_double_splice"
+    ]
+   },
+   {
+    "claim": "The double splice equals the target initial datum, which is therefore globally C^k for every k.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.smoothInitial_eq_double_splice",
+     "declaration:QuantumBlockEncoding.HermiteSmoothness.smoothInitial_contDiff"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "A multi-step regularity proof that reuses one gluing theorem twice, with the subtlety that the second junction's jets are read off via local coincidence of the inner splice with the polynomial."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteSmoothness.lean",
+    "sha256": "da47568584b8435a07431a7ebae29836796018f76d02b4d8b0c4169830ec68bc",
+    "anchor": "lines 99-147: contDiff_right_splice k : ContDiff k (splice 0 (S) (exp(-.))) via sourceInterpolant_right_iteratedDeriv and iteratedDeriv_exp_neg; right_splice_eventuallyEq : the right splice =f near -1 equals S; contDiff_double_splice k uses iteratedDeriv_exp and sourceInterpolant_left_iteratedDeriv; smoothInitial_eq_double_splice; smoothInitial_contDiff k : ContDiff k (smoothInitial k)",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-smooth-gluing",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "The exponential-polynomial-exponential target is globally C^k for every k, proved by applying a reusable two-piece gluing theorem at both junctions using the Hermite endpoint jets.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ },
+ {
+  "core_id": "qcb-core-sp-120",
+  "key": "qcb-core-sp-120",
+  "topic": "structured_preparation",
+  "track": "reasoning",
+  "task_kind": "boundary",
+  "question": "To locate where the left exponential tail meets the polynomial bridge on a grid of 2^n cells, one performs an exact-comparison binary search carrying real interval endpoints: starting from the real interval [lower, lower+span] with span equal to the full width, each of n steps halves the span, forms the midpoint, compares it against the threshold -1, and recurses into the half that still contains the crossing. The search returns an index 'cutIndex'. Prove that this search returns exactly the true cutoff index for every width n and scale L > 0, including the boundary cases where the crossing is at the very first grid point or at the very last, and the single-cell (n = 0) base case. State the exact number of real comparisons and real field operations the search performs.",
+  "reference_answer": "Model the search by an interval invariant: at a node with 'remaining' halvings left, 'start' already-decided low-order index, and current interval first point gridPoint(start) and width span = step * 2^remaining, assume the true cutoff c = cutIndex satisfies start <= c <= start + 2^remaining (it lies in the current interval). We prove the returned value equals c by induction on 'remaining'. Base case (remaining = 0, one cell): the interval has a single cell starting at 'start'. The search compares the grid point at 'start' against -1. If gridPoint(start) < -1, then 'start' is still below the threshold, so the crossing is at start+1 and the hypotheses force c = start+1; the search returns start+1. Otherwise 'start' is at or past the threshold, so c = start and the search returns start. In both branches the returned value equals c; this also covers the endpoint boundary cases (crossing at the first or last point) because the invariant pins c to one of the two interval ends when the cell is minimal. Inductive step (remaining+1): the search forms the midpoint, which equals gridPoint(start + 2^remaining) (the first point of the upper half), and compares it to -1. If it is below -1, the crossing lies in the upper half, so recurse with start' = start + 2^remaining and the same remaining; the lower bound updates to start' <= c (since the midpoint is still below threshold, c >= start + 2^remaining) and the width halves, preserving the invariant, so by induction the recursion returns c. If it is at or past -1, the crossing lies in the lower half; recurse with the same start and halved width, and the invariant's upper bound tightens to c <= start + 2^remaining, again returning c. The key geometric identities are span/2 = step * 2^remaining and gridPoint(start) + step*2^remaining = gridPoint(start+2^remaining), which make the carried real endpoints exact — no ceiling evaluation or grid enumeration occurs. Starting the top-level search with the full interval [-pi L, 0] and remaining = n satisfies the initial invariant (the cutoff lies between index 0 and the midpoint index 2^n), so the top-level call returns cutIndex exactly. Cost: each of the n internal halvings performs 2 real field operations (one division to halve the span, one addition to form the midpoint) and 1 real comparison; the base level performs 1 comparison. The top-level producer additionally does one multiplication (pi*L) and one subtraction (0 - width) to initialise the interval. Hence the search proper uses exactly 2n field operations and n+1 comparisons; including initialisation the producer uses 2n+2 field operations and n+1 comparisons. Natural-index arithmetic, powers of two, and counter bookkeeping are outside this real-arithmetic cost model; finite-bit comparison of arbitrary real inputs is not claimed.",
+  "rubric": [
+   {
+    "id": "r1",
+    "criterion": "Formulates the interval invariant start <= cutIndex <= start + 2^remaining and proves the base case returns start or start+1 by the single comparison, covering endpoint boundary cases.",
+    "weight": 1
+   },
+   {
+    "id": "r2",
+    "criterion": "Proves the inductive step: the midpoint equals gridPoint(start+2^remaining), and each comparison recurses into the correct half while preserving the invariant.",
+    "weight": 1
+   },
+   {
+    "id": "r3",
+    "criterion": "Uses the exact real identities span/2 = step*2^remaining and gridPoint(start)+step*2^remaining = gridPoint(start+2^remaining) so endpoints stay exact (no ceiling/enumeration).",
+    "weight": 1
+   },
+   {
+    "id": "r4",
+    "criterion": "States the exact cost: 2n field operations and n+1 comparisons for the search (2n+2 field ops with the pi*L and subtraction initialisation), noting the real-arithmetic cost model's scope.",
+    "weight": 1
+   }
+  ],
+  "target_nodes": [
+   "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search",
+   "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search_value",
+   "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.compute_value",
+   "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search_cost",
+   "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.compute_cost"
+  ],
+  "supporting_nodes": [],
+  "assumptions": [
+   "L > 0 so the grid step is positive and comparisons against -1 are well posed",
+   "the cost model counts only real field operations and exact real comparisons; natural-index and bit-level costs are out of scope"
+  ],
+  "conventions": [],
+  "semantic_steps": [
+   {
+    "claim": "The interval invariant start <= cutIndex <= start+2^remaining with the base-case single comparison returns start or start+1, covering endpoint cases.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search_value"
+    ]
+   },
+   {
+    "claim": "The inductive step compares the exact midpoint gridPoint(start+2^remaining) and recurses into the correct half, preserving the invariant, so compute returns cutIndex.",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search",
+     "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.compute_value"
+    ]
+   },
+   {
+    "claim": "The search costs 2n field operations and n+1 comparisons (2n+2 field ops including the pi*L / subtraction initialisation).",
+    "supporting_nodes": [
+     "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search_cost",
+     "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.compute_cost"
+    ]
+   }
+  ],
+  "difficulty": {
+   "level": "advanced",
+   "rationale": "An invariant-based correctness proof of a recursive real-interval binary search with explicit boundary cases, plus an exact operation count under a stated restricted cost model."
+  },
+  "source_refs": [
+   {
+    "path": "QuantumBlockEncoding/HermiteBinaryCutoff.lean",
+    "sha256": "3e236d6572ceba6d0418cb75da49512152bf03586cebc03b4d9cd8132029d098",
+    "anchor": "lines 22-128: search (remaining start lower span) recursion; search_value (hlo : start <= cutIndex) (hhi : cutIndex <= start + 2^remaining) : (search ...).value = cutIndex via half_span and middle_point; compute n L = do width<-mul pi L; lower<-sub 0 width; search n 0 lower width; compute_value : = cutIndex; search_cost : cost op = 2*remaining*tick field op + (remaining+1)*tick compare op; compute_comparisons = n+1; compute_field_operations = 2n+2",
+    "license": "MIT (repository LICENSE)"
+   }
+  ],
+  "family": "hermite-cutoff-search",
+  "answer_format": "rubric",
+  "evidence_status": "source_inspected",
+  "formal": null,
+  "unresolved_issues": [],
+  "native_nl": {
+   "core_summary": "An exact-real-interval binary search returns the true tail/bridge cutoff index for every width and scale, with endpoint and single-cell boundary cases, using 2n field operations and n+1 comparisons.",
+   "evidence_relation": "local_source_supported",
+   "formal_counterpart": "existing_source_not_freshly_verified",
+   "author_identity": "structured-preparation-author-b2",
+   "new_problem_core": true,
+   "existing_core_aliases": []
+  }
+ }
+]

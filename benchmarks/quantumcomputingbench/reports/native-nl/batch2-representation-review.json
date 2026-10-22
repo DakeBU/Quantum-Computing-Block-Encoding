@@ -1,0 +1,206 @@
+{
+  "reviewer": "representation-qit-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-plan-101-homomorphism-preserves-identity-inverse",
+      "authored_sha256": "63004826f1366f7dddf24c00455f9521ecd9891ede347edc8585bbb4b732111a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Matches source Def 3.5 + Eq (3.23)-(3.24). Proof is correct: phi(e_G)=e_H from phi(g)=phi(e_G.g)=phi(e_G)*phi(g) + uniqueness of identity in H; phi(g^{-1})=phi(g)^{-1} from two-sided inverse + uniqueness. Correctly flags that invertibility of phi(g) is a consequence, not a hypothesis. Axiom attribution (r3) genuine. Depth 5 steps, no padding. Original NL elaboration of the source's 2-line argument, not a copy.",
+      "checked_sources": ["PDF p.17 Def 3.5, Eq (3.23)-(3.24); Def 3.6 remark phi(e)=1_V, phi(g^{-1})=phi(g)^{-1}"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-102-weyl-unitarity-trick-invariant-complement",
+      "authored_sha256": "8b305314587bb309270e760b8f3632435e4daee2dbbf05808f828f30a4c9d337",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": ["qcb-core-plan-103-invariant-complement-averaged-projection"],
+      "notes": "Matches source alternative (Weyl unitarity) proof of Prop 3.14, pp.19-20. (a) sesquilinear/Hermitian/positive-definite with g=e term for definiteness - correct. (b) G-invariance via homomorphism property + reindexing g'=gh bijection - correct. (c) adjoint of <.|.>_G-unitary phi(g) is phi(g^{-1}); <phi(g)u|w>_G=<u|phi(g^{-1})w>_G=0 for u in W^perp, w in W - correct. Distinct CORE from plan-103 (different method: inner-product averaging over C vs averaged projection over any field char-not-dividing-|G|); listed as related alias not duplicate, since source itself gives both as separate proofs. Pinpoints averaging+reindexing as essential. Depth 5 genuine.",
+      "checked_sources": ["PDF pp.19-20 Prop 3.14 alternative proof (Weyl unitarity trick), <v|w>_G averaged inner product, W^perp invariant, phi(g^{-1})=phi(g)^dagger"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-103-invariant-complement-averaged-projection",
+      "authored_sha256": "95eab25be08b78c39f7152d99b985b1e1e8079cea362b3333b28006a25a55c03",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": ["qcb-core-plan-102-weyl-unitarity-trick-invariant-complement"],
+      "notes": "Matches source first proof of Prop 3.14 (Eq 3.26), pp.19-20. Equivariance phi(h)Q_W phi(h)^{-1}=Q_W via reindexing g'=hg - correct. im Q_W subset W by invariance; Q_W fixes W pointwise (uses P_W|_W=id and W invariant under phi(g)^{-1}); hence im Q_W=W and Q_W^2=Q_W - correct. Correctly isolates the 1/|G| normalization as exactly where char not dividing |G| is used (verified: needs |G| invertible in field). ker Q_W invariant complement since Q_W commutes with phi. Distinct from plan-102 by method/generality (any suitable field, not just C). Depth 5 genuine.",
+      "checked_sources": ["PDF pp.19-20 Prop 3.14 first proof, Q_W=(1/|G|)sum phi(g)P_W phi(g)^{-1} Eq (3.26), char-not-dividing-|G| hypothesis"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+      "authored_sha256": "9050d792001a448f278b5fcbf2e3bc29097fc735646000e0a5c66f6f4966358d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Schur's Lemma part (i), source Prop 3.17(i) p.20. ker f G-invariant (f(phi_1(g)v)=phi_2(g)f(v)=0) and im f G-invariant via equivariance - both correct. Irreducibility dichotomy ker in {0,V_1}, im in {0,V_2}; nonzero f => injective+surjective => iso intertwining phi_1,phi_2. Correctly notes NO field hypothesis needed for part (i) - matches source. Distinct from plan-105 (part ii). Depth 5 genuine.",
+      "checked_sources": ["PDF p.20 Prop 3.17(i), kernel/image G-invariant (cf. Exercise 3.6)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+      "authored_sha256": "a198b47c1b942cc9528c4702abb3f1477a10afd1bc7b104da4103151155ec158",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Schur part (ii) + Corollary 3.18, source pp.20-21. Correctly derives eigenvalue lambda from algebraic closure + finite dimension (flags both as essential, with correct remark that over R or infinite-dim an operator may lack an eigenvalue). f'=f-lambda 1 equivariant, non-invertible (nonzero kernel), so =0 by part (i) => f=lambda 1. Commutant corollary stated correctly. Distinct from plan-104. Depth 5 genuine.",
+      "checked_sources": ["PDF pp.20-21 Prop 3.17(ii) over algebraically closed field, Corollary 3.18 (commutant of irrep = scalars)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+      "authored_sha256": "3d3bd7bcb6305d8e12cd1d35cde71d29b9902a4d386a148301d8277a257e379e",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Corollary 3.20, source p.21. Abelianness => phi(h) commutes with all phi(g) => equivariant; Schur(ii) over C => phi(h)=lambda_h 1; every nonzero v spans invariant line => dim V=1. Correct attribution of where commutativity vs algebraic closure enter. Boundary remark (real cyclic-group rotation irreducible over R but 2-dim) is a correct author-supplied example NOT in source body - legitimate original addition, verified: 90-deg rotation has eigenvalues +-i, no real invariant line. Depth 5 genuine.",
+      "checked_sources": ["PDF p.21 Corollary 3.20 (complex irreps of abelian group are 1-dimensional), via Prop 3.17"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+      "authored_sha256": "2d5da121eb71064030a90d95be59cc1900547b16bb65b9b2ee2b0f8f00204983",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Example 3.19 Eq (3.27), source p.21. Verified the phase argument: for Pauli Q, QP=(phase)R with R Pauli; P rho P^dagger insensitive to global phase (cancels between P and P^dagger); multiplication by Q permutes the 4 Pauli classes bijectively, so Q T(rho) Q = T(rho). Pauli rep on C^2 irreducible => Schur commutant corollary => T=lambda 1. Trace fix: tr(P rho P)=tr(rho)=1 via P^2=1 and cyclicity, tr T=1=2 lambda => lambda=1/2. Correct, Schur-based not brute-force as required. Depth 5 genuine.",
+      "checked_sources": ["PDF p.21 Example 3.19 Eq (3.27), irreducible Pauli representation + Schur (Prop 3.17), cf. Cor 3.18"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-108-character-is-class-function-degree",
+      "authored_sha256": "bd1a2d45d2c1745bbdd0aa0e68704f9afc3502f5810b7b70928cd748299897f8",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Def 3.28 + Eq (3.84) + Prop 3.29(i), source pp.29-30. phi(hgh^{-1})=phi(h)phi(g)phi(h)^{-1} via multiplicativity + phi(h^{-1})=phi(h)^{-1}; cyclicity tr(ABA^{-1})=tr(B) => chi class function; chi(e)=tr(1_V)=dim V. Correct. METADATA-FIX ITEM: MAIN adds top-level supporting_nodes=['concept:operator-theory'] vs worktree empty; Q/A/rubric/steps byte-identical to worktree. Added node is math-neutral and consistent (operator-theory is referenced by semantic_steps but was missing from target/supporting coverage). Authored_sha256 recomputed on MAIN canonical. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.29-30 Def 3.28 (chi(g)=tr phi(g)), Eq (3.83) class function, Eq (3.84) cyclicity proof, Prop 3.29(i) chi(e)=dim V"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-109-multiplicity-character-inner-product",
+      "authored_sha256": "4bf9cae4710a999fbcfc29aa431207455fb67b83fc8ac5db493996f8efecc18c",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 3.30 + Prop 3.31(i)-(iii), source pp.29-31. chi_V=sum n_j chi_j (additivity); (chi_i,chi_V)=n_i by orthonormality; (chi_V,chi_V)=sum n_i^2=1 iff single n_i=1 (n_i nonneg integers) iff irreducible; iso iff equal character via multiplicities determined by chi_V. Correct handling of conjugate-linear-first-slot inner product (n_j real nonneg). Depth 4 genuine; genuinely uses orthogonality relations not just recall.",
+      "checked_sources": ["PDF pp.29-31 Prop 3.30 (orthonormality, inner product Eq 3.85), Prop 3.31(i)-(iii)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+      "authored_sha256": "561297a41dd48ef8f585a014ddf2584161e29e7b3a803325aa829039f938ea14",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 3.33(i) + Eq (3.89)-(3.91), source pp.31-32. V~U^{+k}+F; additivity of Hom_G; Schur(ii) Hom_G(U,U)=C.1_U dim 1; Schur(i)+inequivalence Hom_G(U,W)=0 for W not~U so Hom_G(U,F)=0; sum => dim Hom_G(U,V)=k. Correct, both parts of Schur used with inequivalence tracked. Depth 4 genuine, conceptually distinct from the character-count route of plan-109.",
+      "checked_sources": ["PDF pp.31-32 Prop 3.33(i) k=dim hom_G(U,V), Eq (3.89)-(3.91) additivity + Schur evaluations, Cor 3.34"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-111-symmetrization-block-diagonal-isotypical",
+      "authored_sha256": "e87fa4bdea6aec951679223a988f90a2edd3b38deeb4a606b6f88906dee9b35f",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 3.23 + worked S_2/S_3 computations Section 3.4.1, source pp.21-24. (a) Xbar equivariant via reindexing g'=hg - correct. (b) multiplicity-free V=W1+W2 inequivalent irreps; blocks A_ij are intertwiners W_j->W_i; off-diagonal zero by Schur(i), diagonal scalar by Schur(ii). Correctly names which part of Schur does which, and notes the with-multiplicity generalization (1_W tensor arbitrary multiplicity-space operator). Distinct from plan-110/114: this is the scalar-block multiplicity-free statement. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.21-24 Prop 3.23 Eq (3.32), Section 3.4.1 S_2 Eq (3.42)-(3.49) and S_3 Eq (3.52)-(3.57)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+      "authored_sha256": "f71103660cebdd50ae412a3082fd24f026f21d80120842e468b2def4415bb183",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Example 3.25 + Eq (3.78), source pp.26-28. F^2=1 (involution, eigenvalues +-1); F commutes with phi(g) tensor phi(g) by swapping factors - correct. Pi_sym=(1+F)/2, Pi_asym=(1-F)/2 idempotent; Pi_sym+Pi_asym=1; Pi_sym Pi_asym=(1-F^2)/4=0; images are +-1 eigenspaces (double-inclusion verified); projectors are polynomials in F so commute with phi(g)^{tensor2} => images G-invariant => V tensor V = Sym^2 + Lambda^2. Hermiticity of F (F unitary + F^2=1 => F=F^dagger) correct in the QIT inner-product context. Depth 5 genuine.",
+      "checked_sources": ["PDF pp.26-28 Example 3.25, swap F, projectors Pi_sym/Pi_asym Eq (3.78), V tensor V = Sym^2(V) + Lambda^2(V)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-113-character-projector-isotypical-component",
+      "authored_sha256": "aea2faac6a4528148b62971b7ffa9911efae096666dbb17b4b86dab3c08ac1f0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 3.32 special case (trivial character), source pp.30-31. phi(h)P=P=Pphi(h) via reindexing; P^2=P from phi(g)P=P; im P=V^G by double inclusion (image vectors fixed; invariant vectors satisfy P|v>=|v>); tr P=dim V^G=multiplicity of trivial irrep, correctly tied to P_W=(dim W/|G|)sum conj(chi_W(g))phi(g). tr-equals-rank for idempotent is valid. METADATA-FIX ITEM: MAIN adds top-level supporting_nodes=['concept:matrix-analysis'] vs worktree empty; Q/A/rubric/steps byte-identical. Added node math-neutral and consistent with steps. authored_sha256 on MAIN canonical. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.30-31 Prop 3.32 Eq (3.87) and the P=(1/|G|)sum phi(g) projector onto V^G"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-114-multiplicity-breaks-schur-scalar-counterexample",
+      "authored_sha256": "dd254b1c05f0c9d078d20a1faa37fa1ef22988d5dc6c7440cec1881a0af9fb9c",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 3.4.2 Limitations/Multiplicities, source pp.26-27. Correctly judges: block-diagonal half TRUE, scalar-diagonal half FALSE in general. Counterexample verified: S_2 on (C^2)^{tensor2}, Vtriv=3-dim +1 eigenspace of F (trivial irrep multiplicity 3), Vsgn 1-dim. X=|00><11|: F|00>=|00>, F|11>=|11> so FXF=X, Xbar=X=|00><11|, supported in Vtriv, rank-1 trace-0 NOT scalar on 3-dim Vtriv. Multiplicity>1 cause correctly identified (diagonal block = 1_W tensor arbitrary multiplicity-space operator). Complementary to plan-111 (not duplicate: proves the converse failure). METADATA-FIX ITEM: MAIN adds supporting_nodes=['concept:tensor-networks'] vs worktree empty; Q/A/steps byte-identical, consistent with step node use. authored_sha256 on MAIN canonical. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.26-27 Section 3.4.2, (C^2)^{tensor2}=Vtriv+Vsgn with Vtriv~W_triv tensor C^3 mult 3, Eq (3.69)-(3.72) 1_W tensor X_triv form"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+      "authored_sha256": "0f685f23f73d1bb1434284f647a7c953d80a6983f18ca2ef7a1db42afabc357a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Example 3.25 Eq (3.77), source pp.26-28. Claim correctly refuted: for d=dim V>=2, swap F commutes with phi(g) tensor phi(g), F^2=1, +-1 eigenspaces Sym^2/Lambda^2 are G-invariant; dim Sym^2=d(d+1)/2, dim Lambda^2=d(d-1)/2 both proper nonzero (Lambda^2>=1, Sym^2>=3) and <d^2 for d>=2 => Lambda^2 proper nonzero invariant subspace => reducible. d=1 degenerate case correctly noted. Distinct from plan-112 (which proves the projector/eigenspace structure); here the core is the dimension-count reducibility conclusion. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.26-28 Example 3.25, dim Sym^2=d(d+1)/2, dim Lambda^2=d(d-1)/2 Eq (3.77), V tensor V reducible for deg V>=2"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-116-nonunique-irrep-splitting-isotypical-counterexample",
+      "authored_sha256": "c87711e56277950a149c70d8175b8691b3aa15733dce1a42b754ed8b7cca32d4",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 3.22 contrasted with Section 3.4.2, source pp.21,26-27. Correctly diagnoses over-reading: isotypical components unique, finer splitting of a multiplicity>=2 component NOT unique. Vtriv=Sym^2(C^2)=+1 eigenspace of F is the unique 3-dim trivial-isotypical component. Since S_2 acts as identity on Vtriv, every line is a trivial subrep; two explicit distinct splittings given (span|00>,|11>,(|01>+|10>)/sqrt2 vs (|00>+|11>)/sqrt2,(|00>-|11>)/sqrt2,(|01>+|10>)/sqrt2) with span|00> absent from the second - verified genuinely different, both valid. Non-uniqueness attributed to multiplicity-space basis choice. METADATA-FIX ITEM: MAIN adds supporting_nodes=['concept:tensor-networks'] vs worktree empty; Q/A/steps byte-identical, consistent. authored_sha256 on MAIN canonical. Distinct from plan-114 (same example space but different claim: splitting uniqueness vs scalar-block). Depth 4 genuine.",
+      "checked_sources": ["PDF p.21 Prop 3.22 (uniqueness of isotypical components/multiplicities), pp.26-27 Section 3.4.2 Vtriv multiplicity 3 basis-dependence"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-117-non-unitarizable-infinite-group-counterexample",
+      "authored_sha256": "539dcf73495a63fcc387f052302cb84676ff7b60cef664e5e67eea87179fb53e",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 3.14/3.16 (finite averaging) vs Prop 3.39/Section 3.8 (Haar), source pp.19-20,34-35. Correctly explains averaging needs finite normalization or invariant probability measure, absent for general infinite non-compact groups. Classic shear counterexample verified: G=(R,+), phi(t)=[[1,t],[0,1]] is a homomorphism (phi(s)phi(t)=phi(s+t)); W=span(e_1) invariant; any complement line span(v=(a,b)), b!=0 would need phi(t)v=(a+tb,b)=lambda(t)v forcing lambda=1 and tb=0 for all t - impossible. So no invariant complement => not completely reducible / not unitarizable. Author-supplied example (not in source body) but standard and correctly derived; pinpoints finiteness/compactness as the essential Maschke/Haar hypothesis. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.19-20 Prop 3.14 & Prop 3.16 (finite averaging), pp.34-35 Prop 3.39/Section 3.8 (Haar measure replacement)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+      "authored_sha256": "38a1629c6d225e596e7884fd301b999b0ca1c7d2c8ea388cc75d0caf8573920d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Prop 3.17(i)/(ii) boundary + Cor 3.18, source pp.20-21. Correctly separates: part (i) holds over any field (kernel/image invariance), part (ii) needs eigenvalue in field (algebraic closure). Boundary example verified: R=[[0,-1],[1,0]] on R^2 irreducible over R (eigenvalues +-i, no real invariant line); commutant computed exactly {aI+bR} (I verified by solving AR=RA: A=[[p,q],[-q,p]]=pI+bR), isomorphic to C, strictly larger than real scalars, R itself non-scalar. Division-algebra refinement (det a^2+b^2>0 => invertible) is what survives from part (i); correctly notes real/complex/quaternionic trichotomy collapsing to scalars under algebraic closure. Author-supplied example, standard and correct. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.20-21 Prop 3.17(i)/(ii) with algebraic-closure hypothesis in (ii), Cor 3.18 commutant"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-119-finite-vs-compact-haar-boundary",
+      "authored_sha256": "5876c9847a05601035acfda69eb985603d7f76a3ddb770ca0b3752c635638af2",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 3.8 + Prop 3.39/3.42, source pp.34-35. (1/|G|)sum -> Haar probability integral; invariance/normalization-based proofs transfer verbatim. (a) invariant complements, complete reducibility, character orthonormality carry over via Haar-averaged inner product - correct. (b) finite-dimensionality of irreps automatic for finite groups (subrep of finite regular rep) but becomes the nontrivial Peter-Weyl theorem for compact groups (unitary irreps) - correct and well-delineated. (c) sum_i (dim W_i)^2=|G| and |G|-explicit formulas fail for infinite G; regular rep -> infinite-dim L^2(G), Peter-Weyl decomposition - correct, matches Prop 3.42. Nuanced genuine scope analysis, not recall. Depth 4 genuine.",
+      "checked_sources": ["PDF pp.34-35 Section 3.8, Prop 3.39 (Haar), Example 3.40 (finite=counting), Prop 3.42 (Peter-Weyl)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-120-dual-representation-conjugate-boundary",
+      "authored_sha256": "b0625427754c5f38d2bbdb43f6e1bef4315d915f6558e6a94ba53f7ae3175933",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Def 3.26, Eq (3.79)-(3.80), Prop 3.29(ii), source pp.28-29. (a) phi^*(g)=phi(g^{-1})^T from phi^*(g)(L)=L.phi(g)^{-1} (matches Eq 3.79); unitary => phi^*(g)=conj(phi(g)) (verified: (phi(g)^dagger)^T=conj(phi(g))). (b) chi_{V^*}(g)=tr(phi(g^{-1})^T)=chi_V(g^{-1})=conj(chi_V(g)) for unitary (eigenvalues on unit circle); self-dual iff character real-valued. Non-self-dual example verified: Z/3, phi(g)=omega (primitive cube root), dual phi^*(g)=omega^2 = the OTHER nontrivial irrep, inequivalent since omega!=omega^2. (c) V^* irreducible iff V via annihilator inclusion-reversing bijection of invariant subspaces - correct, matches source remark. Author-supplied Z/3 example, correct. Depth 5 genuine.",
+      "checked_sources": ["PDF pp.28-29 Def 3.26, Eq (3.79)-(3.80) phi^*(g)=phi(g^{-1})^T and unitary conjugate, irreducible iff; Prop 3.29(ii) chi(g^{-1})=conj(chi(g))"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

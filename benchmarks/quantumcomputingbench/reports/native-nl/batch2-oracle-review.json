@@ -1,0 +1,278 @@
+{
+  "reviewer": "oracle-composition-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-be-101",
+      "authored_sha256": "583afa6f5b6b1cfd1dda16e2aa8a6cabf3db6af171d8850ee41ef47a95a0af19",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "XOR-by-constant involution core: L(s)=(s XOR 3) mod 8 flips low 2 bits; self-inverse via (s^3)^3=s, image table [3,2,1,0,7,6,5,4]. Verified def primitiveOffset3 (L29-30) + @[simp] primitiveOffset3_table native_decide (L32-34) + two-X-gate program primitiveAccess3ReversibleProgram (L40-41). mod-8 inert for Fin 8 confirmed. Cores unique to batch2 (grep primitiveOffset3 only here). Query-vs-physical not conflated: pure permutation claim, no cost claim.",
+      "checked_sources": [
+        "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean#primitiveOffset3",
+        "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean#primitiveOffset3_table"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-102",
+      "authored_sha256": "e4056d1d7b7060616f9c65a24af00da31916a3ef7c93bcee6e9e979abc6ac459",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Clean-ancilla contract core: work=0 hypothesis load-bearing because modularAdd3 uses wire 6 as CCX carry scratch (verified ModularAdder3.lean L203-206: ccx 3 0 6 / ccx 6 1 2 / ccx 3 0 6). cleanAction bundles 3 independent conjuncts (sum / row preserved / work->0) at L48-57, split as _preserves_row L60-64 and _workspaceClean L67-70. Dirty-ancilla (work=1) leaves certified subspace: honest, native_decide +revert over clean subspace only. Distinct from be-101.",
+      "checked_sources": [
+        "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean#primitiveAccess3_cleanAction",
+        "QuantumBlockEncoding/ModularAdder3.lean#modularAdd3ReversibleProgram"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-103",
+      "authored_sha256": "7c0f4612a71d5953522237df4a17ae21a3b24dc76835e6fdad585e8bd60f3393",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "be-101/102 same witness object"
+      ],
+      "notes": "Accounting-honesty core: resource=circuit.resource by rfl (L83-84), oracleCalls=0 (L87-89) scoped to the fixed 3-bit witness primitiveAccess3Program. Verified both theorems rfl/by-lemma. Content is genuine source-faithful (not API-recall): 'import brings scope not a theorem claim' and 'zero-oracle is about this finite witness not arbitrary width' matches module docstring L8-12 and the def. BUT it is a conceptual/record-keeping view of the SAME witness object as be-101/102; no new mathematical core -> existing_view. Still accept (honest, bounded, no free-query assumption).",
+      "checked_sources": [
+        "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean#primitiveAccess3Program_resource_faithful",
+        "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean#primitiveAccess3Program_oracleCalls_eq_zero"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-104",
+      "authored_sha256": "db3818dd51975b3b4c717e4342344997a7f222a263fbb09e396bec8c99beba53",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Compiler-soundness refinement core: evalPrimitiveProgram program = equivPermutationMatrix of the basis bijection (primitiveAccess3Program_eval L77-80 via compileReversibleProgram_eval). Verified; equivPermutationMatrix def ComplexLCU L148-151. Refinement-not-definition framing correct (two independent pipelines). Forces 0/1 permutation structure -> unitary+real. Distinct core (compiler eval equality), not duplicated elsewhere.",
+      "checked_sources": [
+        "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean#primitiveAccess3Program_eval",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#equivPermutationMatrix"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-105",
+      "authored_sha256": "07b1d392547bd08db353bd25dfc11e5f993f8874181cc6d0ec45a62db030935a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "2x2 real-rotation unitarity Gram core: M=[[c,-s],[s,c]], M*M=diag(c^2+s^2); unitary iff c^2+s^2=1. Verified realOrthogonalRotation L23-29 + realOrthogonalRotation_unitary L32-57 (Fin.sum_univ_two, off-diagonals cancel by ring). Conjugation trivial on reals -> correctly stated. Decl unique to batch2. Exact iff, not approx.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#realOrthogonalRotation",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#realOrthogonalRotation_unitary"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-106",
+      "authored_sha256": "d649c6f4df2030de254bf4e60432691366ce4c72d6a1f03130933b487a5a93c2",
+      "verdict": "reject",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Unitary-vs-cleanentry asymmetry core IS source-faithful and distinct: amplitudeRotation_unitary unconditional (L93-96 via realRotation_unitary), amplitudeRotation_cleanEntry needs BOTH -1<=x (lower) and x<=1 (upper) (L99-102 via Real.cos_arccos). formal field is null (no formal-status leak in current artifact). REJECT on a factual error in reference_answer prose: it asserts Mathlib arccos is 'pinned to 0 outside [-1,1]' -- false, Real.arccos clamps to pi for x<-1 (0 only for x>1). The answer then self-contradicts ('clamped ... to 0 or pi ... (1 or -1)'). The load-bearing exact-vs-approx boundary (-1<=x<=1) is correct, but the arccos-clamp justification is wrong; author must fix the prose. Core itself clean and acceptable once corrected.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#amplitudeRotation_unitary",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#amplitudeRotation_cleanEntry"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-107",
+      "authored_sha256": "fe6244409004d0abf1343335dd86a5de949426607a1878a3b0a0f3f987c82aeb",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Block-diagonal unitarity core: star commutes with blockDiagonal, product collapses blockwise to I. Verified blockDiagonal_unitary L122-145 (star_blockDiagonal entrywise + blockDiagonal_mul + pointwise star B_k*B_k=1). Over C, no cross-block interaction needed. Decl unique to batch2. Distinct from be-105 (single 2x2) and be-109 (Kronecker).",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#blockDiagonal_unitary"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-108",
+      "authored_sha256": "9eb0b48454b75fabea81f686b055eaa60d3e0a3b256a7f96fdbdddae53104afe",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Reindex-unitarity core: reindexAlgEquiv by one equiv on both axes preserves unitarity; star commutes with reindex, reindex multiplicative. Verified reindex_unitary L105-119 (star_reindex rfl + reindexAlgEquiv_mul). Same-equiv-both-axes essentiality is exactly the multiplicativity invoked. Decl unique to batch2. Distinct core.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#reindex_unitary"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-109",
+      "authored_sha256": "816cc121a75fba5891b25ca32c69c6ad48d7464e6d273eaa2909da217c5334a2",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Kronecker-lift unitarity core: I_c (x) (PREPARE (x) I_s) unitary from PREPARE unitary via kronecker_mem_unitary applied twice. Verified selectorLift def L254-264 and selectorLift_unitary L267-281. selectorLift DEF is shared with block_encoding be-004 (assembly description) but the per-lift UNITARITY LEMMA core (selectorLift_unitary) is unique to batch2 (grep). be-004 uses the def only as a building block of the full composition, not as this standalone proof. new_distinct, accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#selectorLift",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#selectorLift_unitary"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-110",
+      "authored_sha256": "99ef0d93c67a37bc13e9ae5a711df2587ad4eb3e247b33ed5d25b2a4a4c1c93e",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Controlled-permutation (SELECT) bijection+unitarity core: F(coeff,(s,x))=(coeff,(s,p_s(x))) with two-sided inverse using (p_s)^{-1} at SAME s; permutation matrix -> unitary. Verified controlledSystemEquiv L315-327 (left_inv/right_inv by simp) + selectLift_unitary L340-349 via equivPermutationMatrix_unitary. Same-selector-for-inverse essentiality correct. Decl unique to batch2. Distinct core.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#controlledSystemEquiv",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#selectLift_unitary"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-111",
+      "authored_sha256": "1a1e2d48b722159d8a69b84cb0b32d1f118ecfedcbf834143b7d2d508e3a4b9b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Permutation-matrix composition (contravariant) core: P(second)*P(first)=P(first.trans second); left-mult selects inverse-image row, single surviving summand, order reversal forced by column-vector left action. Verified equivPermutationMatrix_mul_apply L167-187 and equivPermutationMatrix_mul L206-223. Decls unique to batch2. Distinct core (composition law), not the per-permutation unitarity of be-110.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#equivPermutationMatrix_mul_apply",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#equivPermutationMatrix_mul"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-112",
+      "authored_sha256": "9ead8e89e7f7196bce2055e46fade74b3e8d95ef583dc14010f24e80aefa996f",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Full LCU-composition unitarity core: PREPARE-dag*SELECT*AMP*PREPARE unitary from 3 local certificates via unitaryGroup.mul_mem + Unitary.star_mem. Verified prepareAmplitudeSelectUnprepare def L352-367 and _unitary L370-399. The composition OBJECT appears in block_encoding be-004/be-006, but THIS theorem (group-closure unitarity of the whole composite) is unique to batch2 (grep prepareAmplitudeSelectUnprepare_unitary only here); be-004 is a role/concept description, be-006 is the clean-entry projection. new_distinct, accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#prepareAmplitudeSelectUnprepare",
+        "QuantumBlockEncoding/Robin/ComplexLCU.lean#prepareAmplitudeSelectUnprepare_unitary"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-113",
+      "authored_sha256": "1da245c40bc20469c9ef7e2d84e01bd65ce32093394a1b1afa8fd207dfa3345c",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": [
+        "qcb-core-be-006"
+      ],
+      "notes": "Clean projected-entry core: selector sum with SELECT indicator and conj(PREPARE)*rotation*PREPARE weight. Verified prepareAmplitudeSelectUnprepare_cleanEntry (ComplexLCUProjection L172-220) and selectLift_mul_amplitudeLift_mul_selectorLift_clean L113-144. DUPLICATE of block_encoding.json qcb-core-be-006: be-006 derives the identical clean entry from the identical theorem (same anchor prepareAmplitudeSelectUnprepare_cleanEntry) with the same 'conjugate-times-itself weight' explanation. be-113 adds only a restatement of the SELECT indicator in forward (p_s(y)=x) vs backward ((p_s)^{-1}(x)=y) form -- a cosmetic equivalence, not a new mathematical core. Same first-50 source core -> reject as duplicate.",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean#prepareAmplitudeSelectUnprepare_cleanEntry",
+        "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean#selectLift_mul_amplitudeLift_mul_selectorLift_clean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-114",
+      "authored_sha256": "310d0785f273c1215741cb56c9cfcd5443ea4a974a7e2edf4a36cc92c1428153",
+      "verdict": "reject",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-be-006"
+      ],
+      "notes": "Clean-PREPARE-bra projection core: star(selectorLift prepare)*operator at clean (c0,s0,row) = sum_s conj(prepare(s,s0))*operator(c0,(s,row)). Verified star_selectorLift_mul_clean (ComplexLCUProjection L147-169). This sub-lemma is the exact machinery block_encoding be-006 already cites (star_selectorLift_mul_clean appears in be-006). be-114 isolates that intermediate step and adds a coherent-vs-incoherent-mixture discussion -- a conceptual re-view of be-006's existing projection core, with no new source core beyond what be-006 covers. reject (existing_view of a first-50 core).",
+      "checked_sources": [
+        "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean#star_selectorLift_mul_clean"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-115",
+      "authored_sha256": "21dc7bb24159e85b53353a1e39d3b54508085a63c88aa0ef019ed76f844f77ab",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Cartesian/Hermitian decomposition core: A=H1+iH2 with H1=(A+A-dag)/2, H2=(A-A-dag)/(2i), both Hermitian. Verified hermitianPart L56-57, antiHermitianPart L60-61, hermitian_decomposition L64-71; subagent confirmed hermitianPart_isHermitian L73-77 and antiHermitianPart_isHermitian L79-86 ARE proven (not just the identity). Decls antiHermitianPart/hermitian_decomposition UNIQUE to batch2 (grep). Distinct from la-019, which used only tensor/add Hermiticity, NOT the A=H1+iH2 decomposition. 2i!=0 care correct. accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/GHLHamiltonian.lean#hermitianPart",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#antiHermitianPart",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#hermitian_decomposition"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-116",
+      "authored_sha256": "a015a0d3e90cf2d300db72ae0a4f4e7df1e8abd174cf565d32263948a73f4fb9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Homogenized-S Hermitian-part block-structure core: S=[[A,B],[0,0]], S1=(S+S-dag)/2 has lower-right=0 (no hyp), upper-right=B/2 (no hyp), lower-left=B/2 iff B Hermitian. Verified homogenizedS L108-114, S1_upperRight L145-147, S1_lowerLeft_of_B_hermitian L150-153, S1_lowerRight L155-157. NUANCE (subagent): prose 'lower-left=B-dag/2 in general' is mathematically correct but has NO hypothesis-free theorem in source (only the Hermitian-hyp version is formalized) -- author claims slightly beyond the formalized decls, but all cited anchors are faithful and the Hermitian-dependence boundary is the certified content. Distinct core (block accounting of homogenization), accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/GHLHamiltonian.lean#homogenizedS",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#S1_upperRight",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#S1_lowerLeft_of_B_hermitian",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#S1_lowerRight"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-117",
+      "authored_sha256": "e0d6802d92abd1be053fe071a4d9deaa0045a140e2f4906353671072bc48af37",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": [
+        "qcb-core-be-011"
+      ],
+      "notes": "Phase-filler non-cancellation counterexample core: both filler phases=e^{i*pi}=-1 give lower-right clean=-N_A!=0 (!=S1), corrected one-phase-0-one-phase-pi cancels. Verified eq29PrintedClean_lowerRight=-normalizerA L247-251, eq29PrintedClean_ne_S1 L254-262, eq29PhaseBalancedClean_eq_S1 L268-296; subagent confirmed printed=both(-1), balanced=(1,-1). DUPLICATE of block_encoding.json qcb-core-be-011: SAME counterexample (same scaledControlledPhaseSource/eq29PrintedClean/eq29PhaseBalanced anchors), same -N value, same corrected-phase fix, same S1 lower-right=0 reasoning. No new core. reject as duplicate.",
+      "checked_sources": [
+        "QuantumBlockEncoding/GHLHamiltonian.lean#eq29PrintedClean_lowerRight",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#eq29PrintedClean_ne_S1",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#eq29PhaseBalancedClean_eq_S1"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-118",
+      "authored_sha256": "71b6b6e2b489bfe390876f22db1d3924673d93bb86611c4f3bf17d34a742d830",
+      "verdict": "reject",
+      "core_verdict": "duplicate",
+      "core_aliases": [
+        "qcb-core-la-019"
+      ],
+      "notes": "Tensor-sum Hermiticity core: H=S1(x)X+S2(x)I Hermitian from per-factor Hermiticity, no commutation needed. Verified identity_isHermitian L386-392, tensor_isHermitian L395-400, add_isHermitian L403-408, oneDimHamiltonian_isHermitian L411-417 (only hyp IsHermitian xXi; S1,S2 Hermitian derived). DUPLICATE of expansion2.json qcb-core-la-019: la-019 proves the SAME 'H=S(x)X+T(x)I Hermitian without S,T commuting' using the IDENTICAL four anchors (tensor_isHermitian/add_isHermitian/oneDimHamiltonian_isHermitian) and additionally supplies the non-Hermitian-X counterexample. Same core -> reject as duplicate.",
+      "checked_sources": [
+        "QuantumBlockEncoding/GHLHamiltonian.lean#tensor_isHermitian",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#add_isHermitian",
+        "QuantumBlockEncoding/GHLHamiltonian.lean#oneDimHamiltonian_isHermitian"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-119",
+      "authored_sha256": "3930676d7f50155fbf438b754d5a3c592fa44c416c48d90db6337c5b1c968369",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Source-transcript adapter core: 10-label oracle-call list (order only, no matrix semantics), SWAP='paper label only', layout systemQubits=3/signalQubits=9/pureAncillas=6, total 13 physical, effective signal=10 (=9 declared + 1 visible workspace). Verified warmRobinSourceCircuit L108-119 (10 entries, SWAP label), warmRobinSourceLayout_spec L152-156, warmRobinEffectiveSignalQubits_eq=10 L174-177; subagent confirmed warmRobinSourceCircuit_length=10, warmRobinTotalQubits_eq=13, effective=signal+visibleWorkspace. Honest 'transcript asserts order not semantics' + 9-vs-10 distinction. Decls unique to batch2. accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RobinEvolution.lean#warmRobinSourceCircuit",
+        "QuantumBlockEncoding/RobinEvolution.lean#warmRobinSourceLayout_spec",
+        "QuantumBlockEncoding/RobinEvolution.lean#warmRobinEffectiveSignalQubits_eq"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-120",
+      "authored_sha256": "2d2a8c5d6c7b162a45599db0f8b117e59ba6fa4813a742f9b6f9f12fa4a67807",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Involutive-oracle self-uncompute core: certificate bundles (a) U_indic_dagger.matrix=U_indic.matrix, (b) image map self-inverse, (c)+(d) matrix is a permutation (unique 1 per row/col); U^2=I so same oracle uncomputes; permutation-alone insufficient (P^{-1}!=P generally). Verified warmRobinIndicatorCertificate L180-210; subagent confirmed all four conjuncts present and proof assembles them. Distinct core (involution-certified uncompute, exact not approx). Decl unique to batch2. accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/RobinEvolution.lean#warmRobinIndicatorCertificate"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

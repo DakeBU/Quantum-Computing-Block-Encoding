@@ -1,0 +1,28 @@
+{
+  "reviewer": "structured-prep-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "repair_target": "qcb-core-sp-101",
+  "source_file": "benchmarks/quantumcomputingbench/data/native_nl/batch2_boundary_repairs.json",
+  "items": [
+    {
+      "key": "qcb-core-sp-101-corrected-v2",
+      "core_id": "qcb-core-sp-101",
+      "supersedes": "qcb-core-sp-101",
+      "authored_sha256": "d8a6293e384ffc9f1f7f679e95a6ebcc3423929ac86c5a79172913a6a6415fe6",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-sp-101"
+      ],
+      "repair_admission": true,
+      "new_problem_core": false,
+      "notes": "Repair of the rejected qcb-core-sp-101. REJECTION CAUSE now resolved: the entire unasked/unproven necessity sentence ('The bound k is the generic (worst-case) degree needed to carry k+1 derivative constraints at a single node') has been removed, and the duplicated-phrase typo ('has degree at most k, has degree at most k') is gone. The reference_answer now states only the sound content: (a) the exact jet conclusion (d^j P/dx^j)(a)=v(j) for j<=k, and (b) a correct degree UPPER bound ('each summand has degree at most k, so the finite sum has degree at most k. This is only an upper bound ... for example all-zero data gives the zero polynomial. No minimality claim or numerical approximation is needed'). The zero-polynomial example is a valid witness that k is not a universal lower bound; the explicit 'No minimality claim' disclaimer removes the out-of-scope assertion. The 'minimal' token scanned in the text is this disclaimer, not an over-claim -- no Lean/API identifier leak. Core math unchanged and still exactly matches the source: jetPolynomial (L28-29), eval_iterate_derivative (L32-35, nonzero j! normalizer handled), jetPolynomial_jet (L38-49). Q/rubric(r1-r4)/source_refs/semantic_steps otherwise unchanged from the original; rubric r4 now reads 'Notes the degree bound k and that the identities are exact (no numerical approximation)' which matches the corrected answer. SOUND repair -> accept; repair_admission true. core_verdict existing_view: same mathematical core as qcb-core-sp-101 (new_problem_core false, supersedes original same core ID, adds no new count).",
+      "checked_sources": [
+        "QuantumBlockEncoding/HermitePolynomial.lean#L28-29 def jetPolynomial (source sha256 f8a3e1d5... verified unchanged)",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L32-35 theorem eval_iterate_derivative",
+        "QuantumBlockEncoding/HermitePolynomial.lean#L38-49 theorem jetPolynomial_jet"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

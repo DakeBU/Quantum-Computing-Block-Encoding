@@ -1,0 +1,51 @@
+{
+  "reviewer": "main-session-primary-source-review-distinct-from-planned-author",
+  "method": "distinct-context-source-review",
+  "independence": "Main reviewer read exact primary textbook extracts independently from author; not human or Lean certification.",
+  "items": [
+    {
+      "key": "qit-pure-state-projector-density-001",
+      "authored_sha256": "7271aced82b97ca832443920a178eeca24ee695fa78357c6fecd48db2009dbc7",
+      "verdict": "reject",
+      "notes": "Primary Def2.1 and bounded pages3-7 read. Main projector/extremality argument valid but final unnormalized c!=1 assertion rho^2!=rho fails at psi=0 (zero is idempotent); division renormalization also needs nonzero norm. Keep draft until corrected and separately reviewed.",
+      "checked_sources": [
+        "qit-pure-state-projector-density-001",
+        "QIT primary PDF pp3-7"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qit-bell-partial-trace-maximally-mixed-001",
+      "authored_sha256": "5b6ea6eb82a3a3961b7a8744f4d52eb2f1b2cd579eb53617696a0f00ceca645e",
+      "verdict": "accept",
+      "notes": "Verified primary PDF exact hash and pp3-7 Eqs2.14-2.18,2.22. Computational partial trace yields I/2; basis independence follows nondegenerate trace pairing. Global Bell state is explicitly pure, so a product factorization would force both factors rank1, contradict mixed marginal. Entanglement uses pure-separable implies product, not mixed marginal alone. Wording by definition is imprecise but argument preserves this essential pure-global premise.",
+      "checked_sources": [
+        "qit-bell-partial-trace-maximally-mixed-001",
+        "QIT primary PDF pp3-7"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qasc-lcu-sum-additive-error-prop910-001",
+      "authored_sha256": "2bce190f558abf0dbaf6ca81935e8ce26e830cb33dabfb8f0e90ee8a1c1cd389",
+      "verdict": "reject",
+      "notes": "Primary Prop9.10 pp148-149 explicitly assumes gamma=sum alpha_j >0. Question only alpha_j>=0 permits all-zero gamma, making prepare undefined. Must state gamma>0 and distinguish construction normalization from global optimality.",
+      "checked_sources": [
+        "qasc-lcu-sum-additive-error-prop910-001",
+        "QASC primary PDF pp146-150"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qasc-product-block-encoding-error-prop912-001",
+      "authored_sha256": "957c0a804ef735fd84f96dc20209c3c7d6dae6d259eaef69918cd48643e85cb9",
+      "verdict": "reject",
+      "notes": "Primary Prop9.12 p150 induction valid under nonnegative norm/scale parameters, but answer approximate relative errors eps_j/alpha_j needs strictly positive alpha_j and eps_j/alpha_j small, omitted. Cannot release unqualified division when zero alpha allowed.",
+      "checked_sources": [
+        "qasc-product-block-encoding-error-prop912-001",
+        "QASC primary PDF pp146-150"
+      ],
+      "formal_status": "not_applicable"
+    }
+  ]
+}

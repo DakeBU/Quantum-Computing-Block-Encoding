@@ -1,0 +1,48 @@
+{
+  "schema_version": "qcb.native_validation.v1",
+  "version": "nl-v12",
+  "baseline_native_version": "nl-v4",
+  "python_tests": {
+    "passed": 114,
+    "failed": 0,
+    "skipped": 0
+  },
+  "repository_harness": {
+    "passed": 98,
+    "failed": 0
+  },
+  "active_author_records": 238,
+  "admitted_distinct_core_ids": 217,
+  "same_core_repairs": 9,
+  "new_over_baseline50": 167,
+  "provisional_records": 21,
+  "evidence_relations": {
+    "local_source_supported": 60,
+    "nl_bridge_from_inspected_source": 53,
+    "primary_source_nl_only": 104
+  },
+  "reviewed_semantic_steps": {
+    "2": 6,
+    "3": 95,
+    "4": 55,
+    "5": 40,
+    "6": 20,
+    "7": 1
+  },
+  "primary_target_nodes": 211,
+  "support_only_nodes": 165,
+  "universe_nodes": 5153,
+  "source_inspection_is_compilation": false,
+  "local_lean_verification_performed": false,
+  "paid_model_calls": 0,
+  "publishing": "LOCAL_ONLY_USER_REQUEST_NO_PUSH",
+  "collaborator_ack": "pending before shared integration; not a local authoring blocker",
+  "goal_complete": false,
+  "source_rendering": "Used preinstalled fitz after dedicated PDF renderer unavailable; no system package installed",
+  "negative_controls": [
+    "Current policy rejects withdrawn earlier native answers",
+    "Candidates/duplicateviews not gold",
+    "Copied prose does not automatically score rubric credit"
+  ],
+  "mathematical_risk_audit": "Bounded independent high-risk subset, no additional confirmed defects, not exhaustive proof verification"
+}

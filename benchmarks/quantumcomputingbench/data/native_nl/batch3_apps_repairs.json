@@ -1,0 +1,365 @@
+[
+  {
+    "core_id": "qcb-core-plan-402",
+    "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds-corrected-v2",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Fix d>=3. A d-dimensional Werner state has parameter alpha in [-1,1] and is k-extendible exactly when alpha >= (1-d)/k. An isotropic state has valid parameter x>=0 and is k-extendible exactly when x >= [d/(d+1)](1-1/k), for positive integers k. Using these given criteria, prove every Werner state is2-extendible, determine the largest k for a fixed isotropic x below d/(d+1), and find the two parameter thresholds for extendibility at every k. Explain why the numerator grouping in (1-d)/k is essential.",
+    "reference_answer": "For Werner states and k=2, (1-d)/2<=-1 because d>=3. Every allowed alpha>=-1 therefore satisfies the2-extendibility criterion. The thresholds (1-d)/k increase toward0 as k grows, since1-d<0. Thus satisfying every k is equivalent to alpha>=0: if alpha<0 a sufficiently large k violates the inequality. For isotropic states write c=d/(d+1)>0. The criterion x>=c(1-1/k) is equivalent to1/k>=1-x/c. For0<=x<c this right side is positive, so precisely the integers1<=k<=1/(1-x/c) are allowed; the largest is the floor of that real bound. If x>=c, every k satisfies the inequality. Hence all-k thresholds are alpha>=0 and x>=d/(d+1). This calculation uses (1-d)/k, not1-d/k. The latter tends to1 instead of0 and gives a different, false criterion for this parameterization. These conclusions follow from the stated analytic criteria, not from a new proof of the upstream extendibility theorem.",
+    "rubric": [
+      {
+        "id": "werner",
+        "criterion": "Use the exact grouped numerator and d>=3 to prove2extendibility",
+        "weight": 1
+      },
+      {
+        "id": "isotropic",
+        "criterion": "Derive floor cutoff for0<=x<c and allk forx>=c",
+        "weight": 1
+      },
+      {
+        "id": "limits",
+        "criterion": "Correct monotone thresholds and allk limits0,c",
+        "weight": 1
+      },
+      {
+        "id": "grouping",
+        "criterion": "Explain why (1-d)/k is not1-d/k",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability"
+    ],
+    "supporting_nodes": [
+      "concept:matrix-analysis"
+    ],
+    "assumptions": [
+      "d>=3 integer; k>=1 integer",
+      "Werner alpha∈[-1,1]; isotropic x in its valid state range",
+      "The supplied analytic criteria are exactly alpha>=(1-d)/k and x>=d/(d+1)*(1-1/k)"
+    ],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "At k2 the Werner threshold(1-d)/2<=-1, so all allowed alpha satisfy it.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The Werner thresholds increase to0; satisfying every k is equivalent to alpha>=0.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Rearranging the isotropic criterion below c gives the exact integer cutoff; at or above c every k works.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Changing fraction parentheses changes the supremum from0to1 and is not the same theorem.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A boundary analysis of the analytic extendibility formulas: solving for the maximal extension order and recovering separability as the infinite-k limit, using monogamy rather than any PPT argument."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "59-60",
+          "anchors": "Example7.2 PDFpp59-60, Eq7.5 with fraction (1-d)/k and Eq7.6; printed fraction visually inspected, not OCR linearization.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "werner-isotropic-extendibility",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Exact extendibility thresholds with Werner fraction(1-d)/k; all d>=3 states2extendible, finite isotropic k cutoff and allk parameter limits.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "main-qit-apps-repair-author",
+      "new_problem_core": false,
+      "existing_core_aliases": [
+        "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds"
+      ]
+    },
+    "supersedes": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds",
+    "author": {
+      "identity": "main-qit-apps-repair-author",
+      "method": "Exact PDF equation grouping and complete mathematical proof repair",
+      "independence": "self-authored repair requires distinct review"
+    },
+    "source_discrepancy": {
+      "kind": "PDF-text-extraction grouping error",
+      "printed_equation": "Eq7.5 alpha>=(1-d)/k, renderedPDFp59",
+      "misread_text": "alpha>=1-d/k",
+      "status": "Original printed PDF inspected; no claim of paper theorem correction"
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-411",
+    "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let |Phi+> = (1/sqrt(d)) sum_{i=1}^d |i>_A |i>_B be the standard maximally entangled state on C^d tensor C^d. (a) Prove the transpose trick: for every operator X in L(C^d), (X_A tensor I_B)|Phi+> = (I_A tensor X^T_B)|Phi+>, where X^T is the transpose of X in the fixed computational basis. (b) Deduce that |Phi+> is invariant under every unitary of the form U tensor conj(U) (U_A tensor the complex conjugate of U on B). Carefully state the role of the computational basis in defining the transpose and conjugate.",
+    "reference_answer": "Expand the left side: (X tensor I)|Phi>=(1/sqrt d)sum_{i,j}X(j,i)|j> tensor|i>. Expanding (I tensor X^T)|Phi> gives(1/sqrt d)sum_{i,j}X(i,j)|i> tensor|j>; interchanging dummy indices yields the same vector. For a unitary U, apply that identity with X=U and then apply I tensor bar U: (U tensor bar U)|Phi>=(I tensor bar U U^T)|Phi>. Since UU dagger=I, taking entrywise complex conjugates gives bar U U^T=I. The vector is therefore unchanged. Both transpose and bar refer to the same fixed orthonormal basis used to define|Phi>. In contrast U tensor U does not generally fix this vector: for d2 and U=diag(1,i), (|00>+|11>)/sqrt2 becomes(|00>-|11>)/sqrt2. Thus conjugation on the second factor is essential, not a removable notation convention.",
+    "rubric": [
+      {
+        "id": "expansion",
+        "criterion": "Correct finite-index transpose calculation with no false intermediate identity",
+        "weight": 1
+      },
+      {
+        "id": "unitarity",
+        "criterion": "Correct bar U U^T=I from unitary identity",
+        "weight": 1
+      },
+      {
+        "id": "basis",
+        "criterion": "Same fixed basis for transpose/conjugation and entangled vector",
+        "weight": 1
+      },
+      {
+        "id": "counterexample",
+        "criterion": "Valid diag(1,i) counterexample to missing conjugation",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [
+      "d>=1 finite; fixed common orthonormal basis defines transpose, conjugation and maximally entangled vector",
+      "U is unitary; X arbitrary linear operator"
+    ],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Expand both tensor actions and relabel the finite double sum to prove the transpose trick.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Conjugating UU dagger=I yields bar U U^T=I.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Combine the two identities to prove U tensor bar U invariance.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The diagonal phase example refutes U tensor U invariance without conjugation.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A basis-level proof of the transpose trick and the U-conj(U) invariance of the maximally entangled state; this is the ring-ribbon identity underlying isotropic symmetry, kept distinct from any Werner/swap-commutant computation."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "58",
+          "anchors": "Exercise 6.1 on PDF page 58: (X_A tensor I_B)|Phi+> = (I_A tensor X^T_B)|Phi+> and invariance of |Phi+> under U tensor conj(U).",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "maximally-entangled-intertwiner",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Transpose trick and exact U tensor bar U invariance in a fixed basis, with explicit counterexample and source discrepancy for un-conjugated U tensor U.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "main-qit-apps-repair-author",
+      "new_problem_core": false,
+      "existing_core_aliases": [
+        "qcb-core-plan-411-transpose-trick-and-UU-invariance"
+      ]
+    },
+    "supersedes": "qcb-core-plan-411-transpose-trick-and-UU-invariance",
+    "author": {
+      "identity": "main-qit-apps-repair-author",
+      "method": "Exact PDF equation grouping and complete mathematical proof repair",
+      "independence": "self-authored repair requires distinct review"
+    },
+    "source_discrepancy": {
+      "kind": "Printed-source notation/error boundary",
+      "source": "Exercise6.1 PDFp58 conclusion prints U tensor U without conjugation",
+      "approved_answer_scope": "Original transpose identity implies U tensor bar U; explicit diagonal-phase counterexample supplied",
+      "status": "Mathematical repair is explicit and independently reviewed; not silently attributed as literal source text"
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-418",
+    "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2",
+    "topic": "planned_quantum_information_apps",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let H=C^d with d>=1, and integers M>=N>=1. Let Pi_L project onto the symmetric subspace of H tensor L and d_L its dimension. Define T(X)=(d_N/d_M)Pi_M(X tensor I^{tensor(M-N)})Pi_M. Prove T is completely positive and derive the exact trace formula tr T(X)=tr(X Pi_N) for every positive X. You may use Pi_L=d_L times the Haar average of|phi><phi| tensor L over unit vectors. Characterize trace preservation for positive X and show why it includes more than mixtures of pure tensor powers.",
+    "reference_answer": "Choose an orthonormal basis e_j of the ancillary tensor factors and insertion maps K_j:v->v tensor e_j. Then sum_j K_j X K_j dagger=X tensor I, so this map is completely positive; generally it needs several Kraus maps, not one isometry. Compression Y->Pi_M Y Pi_M is also completely positive, and positive scaling preserves that property. Let Q be the partial trace of Pi_M over the last M-N factors. The given Haar identity gives Q=d_M integral |phi><phi| tensor N=(d_M/d_N)Pi_N, because each traced pure projector has trace1. Cyclicity and Pi_M squared=Pi_M yield tr T(X)=(d_N/d_M)tr[(X tensor I)Pi_M]=(d_N/d_M)tr(XQ)=tr(X Pi_N)<=tr X. Equality holds exactly when tr[X(I-Pi_N)]=0. For X>=0 this is equivalent to support(X) contained in the symmetric subspace: the positive square-root identity tr[X(I-Pi_N)]=||(I-Pi_N)X^(1/2)||_HS^2 gives the equivalence. Every mixture of pure powers lies there, but not every symmetric state is such a mixture. For d2,N2, the entangled vector(|01>+|10>)/sqrt2 is symmetric, so its projector preserves trace under T, yet it is not a mixture of pure powers (a pure entangled state cannot be a convex combination of product pure states). Thus support in Sym^N, not separability into pure powers, is the correct equality condition.",
+    "rubric": [
+      {
+        "id": "CP",
+        "criterion": "Use a sum of insertion Kraus maps, not a single isometry for tensoring with identity",
+        "weight": 1
+      },
+      {
+        "id": "partialtrace",
+        "criterion": "Derive partial trace of Pi_M using Haar average with correct dimension ratio",
+        "weight": 1
+      },
+      {
+        "id": "trace",
+        "criterion": "Exact trace formula and positive support equality condition",
+        "weight": 1
+      },
+      {
+        "id": "boundary",
+        "criterion": "Valid symmetric entangled counterexample to pure-power-mixture equality characterization",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:harmonic-analysis",
+      "concept:tensor-networks"
+    ],
+    "assumptions": [
+      "d>=1; M>=N>=1; X positive semidefinite",
+      "Haar pure-power projector identity as stated; fixed ancillary basis for Kraus insertions"
+    ],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Ancillary identity extension has Kraus maps v->v tensor e_j; compression and positive scaling preserve complete positivity.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Taking a partial trace in the Haar projector identity gives Q=(d_M/d_N)Pi_N.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Cyclicity and the partial-trace pairing give trT(X)=tr(XPi_N)<=trX.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The Hilbert-Schmidt square identifies equality exactly with symmetric support.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A symmetric entangled pure state shows equality is broader than mixtures of pure powers.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Verifies the structural (CP, trace-non-increasing) properties of the cloning map and characterizes exact trace preservation, complementing the fidelity-saturation item."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages)",
+          "pages": "60-61,67-69",
+          "anchors": "Lemma7.3 Eq7.9 Haar symmetric-projector identity; Eq8.25 cloning map and corresponding CP/trace exercise. Original trace-support proof supplied.",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical questions/explanations only, no source-text redistribution/relicensing"
+        }
+      }
+    ],
+    "family": "approximate-cloning-optimal-map",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Symmetric cloning map complete positivity via multi-Kraus identity extension and exact trace pairing; trace preserved on all symmetric support, not only separable pure-power mixtures.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "main-qit-apps-repair-author",
+      "new_problem_core": false,
+      "existing_core_aliases": [
+        "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing"
+      ]
+    },
+    "supersedes": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing",
+    "author": {
+      "identity": "main-qit-apps-repair-author",
+      "method": "Exact PDF equation grouping and complete mathematical proof repair",
+      "independence": "self-authored repair requires distinct review"
+    }
+  }
+]

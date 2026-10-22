@@ -1,0 +1,271 @@
+{
+  "reviewer": "stored-cost-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-la-201",
+      "authored_sha256": "a1413a362ca8abe2bdcfd68e6b82c14f2c56530f693dd4978194ef3ae4c8840c",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "rowPair_cost (StoredGivens 272-277) = M*(6 field+10 read+6 write) verified exactly; entryPair_cost=6 field (135-138); collect_cost adds 2 read+2 write/index (83-85). Three-pass read split (2M input + 2M pair + 6M readback) and 6M writes match source. Exact-real op count explicitly disclaimed as not bit-complexity. Source entryPair/rowPair are noncomputable defs so no runtime claim. sha256 matches file. Native math model fully specified in the question (eight counters, materialization surcharge), not a restatement.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredGivens.lean#rowPair_cost272-277",
+        "QuantumBlockEncoding/StoredGivens.lean#entryPair_cost135-138",
+        "QuantumBlockEncoding/StoredGivens.lean#collect_cost83-85"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-202",
+      "authored_sha256": "1928ecbde3f582bc4b0b5dd95c23520011016b24f75df1cf6905e0755e870fa0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "rotate_cost (StoredGivens 279-285) = 6M field, 10M+2N+2 read, 6M+2N write verified exactly; replace (67-68) charges N read + N write per persistent row-replacement. Math sound. CAVEAT (coordinator flag confirmed): reference clause that the 2N term is 'intrinsic because the data model is persistent... shares nothing destructively... entire spine must be copied' overgeneralizes - the full-copy is a CHARGED CONVENTION (module doc 13-14: 'Vector replacement is charged for a full copy, so no in-place-update or copy-on-write optimization is needed'), not an intrinsic property of all persistent structures. Question correctly frames it as 'charged as a full persistent copy' and reference also says 'the model deliberately charges the full copy', so the derivation stands; recommend softening 'intrinsic to persistence' to 'intrinsic to this charged full-copy contract'. Not a math defect; cost-contract vs necessary-implementation separation preserved.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredGivens.lean#rotate_cost279-285",
+        "QuantumBlockEncoding/StoredGivens.lean#replace67-68",
+        "QuantumBlockEncoding/StoredGivens.lean#module-doc13-14"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-203",
+      "authored_sha256": "0850d693cd6fc65317d7baa578fe3bbeb92ffdffa3703e9b640912cc27db56ad",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "columnSweep_cost_le (313-326): cost <= count*stepBudget on every counter (inequality via nlinarith); columnSweep_emit (343-353): emit counter = count EXACTLY. Both verified. Two-strength structure (exact for emit, inequality for arithmetic) is real and correctly explained. Zero-angle rotation still emits (227-228). stepBudget (300) = eliminationBudget + emit. sha matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredGivens.lean#columnSweep_cost_le313-326",
+        "QuantumBlockEncoding/StoredGivens.lean#columnSweep_emit343-353",
+        "QuantumBlockEncoding/StoredGivens.lean#stepBudget300"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-204",
+      "authored_sha256": "27685e7643853e7a719887ecf769fa5fc64a5fddf4a08e9068de06afe163edfa",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "replay_cost (StoredRectangularGivens 135-143) = L*replayStepBudget + 1 read; replayStepBudget (130-133)= field + 2 trig + rotation(6M field,10M read,6M write)+2N(read+write)+3 read. Trailing read is nil end-marker (replay [] = charge .read). replay_value (120-128) denotes applySteps = product of plane rotations applied to start (refines dense spec without evaluating it). Both induction claims verified. sha f8638a matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#replay_cost135-143",
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#replayStepBudget130-133",
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#replay_value120-128"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-205",
+      "authored_sha256": "b52e61a8665d15c2708064b0043e0877d17a9354dc54be56deb3a7af3222609d",
+      "verdict": "reject",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "MATH/SOURCE-FIDELITY DEFECT. Target theorem compile_total_cost_le (240-253) gives total <= N*M*(22*M+30*N+29)+5*N*N+4*N+M+1 - this final total IS correct in source. BUT the question's stated per-counter write budget is 'write = N*M*(6*M+10*N+1) + 2*N*N', dropping the '+2*N' present in actual source polynomialBudget .write = N*M*(6*M+10*N+1) + 2*N*N + 2*N (line 220). Consequently the problem is unsound as posed: summing the question's OWN eight stated polynomials yields 5*N*N+2*N+M+1 (only read supplies 2*N), not the claimed 4*N total. The reference answer compounds it: lists 'write 2*N*N' (matching the wrong question) yet asserts 'the linear-in-N terms give 4*N' (matching the correct source) - internal contradiction. A solver following the given data cannot derive the stated total. Fixable by restoring '+2*N' to the write line in both question and reference; until then reject.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#polynomialBudget213-221(write=line220)",
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#compile_total_cost_le240-253"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-206",
+      "authored_sha256": "725f4383e8b3cd07bace3617b8240b0cf94ce778340c0aa81c759f3e8f2e2e12",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "wide_cost_le (StoredThinLQ 104-109) <= extraction(n,m)+poly(n,m)+extraction(m,m)+extraction(m,n) verified; extractionBudget (40-41)=2NM read+(NM+N) surcharge = 'two stored words/output entry + materialization surcharge'. wide_correct (94-98): A=R*Q with Q*Q^T=1 (orthonormal rows). transpose_cost=extraction(n,m). Cost-and-correctness on same run. Reference 'dispatcher +1 comparison' refers to compile (125) not wide; question targets wide_* so consistent. sha ed08ef matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredThinLQ.lean#wide_cost_le104-109",
+        "QuantumBlockEncoding/StoredThinLQ.lean#wide_correct94-98",
+        "QuantumBlockEncoding/StoredThinLQ.lean#extractionBudget40-41"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-207",
+      "authored_sha256": "148335ca8125166d219ad7d91556e23ecc62b35eb5b30a6692bbf9a010970e1c",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "terminalEntry_cost (StoredMatrixProductChain 135-143) = D*(3 read + 2 field) verified via sumEntries_cost_eq (125-133): sum of k summands each cost B costs k*(B+field), the extra field being the accumulation addition. B here = 3 read + 1 field (core entry = row+entry read = 2, vector = 1, mul = 1 field). Monadic fold from pure zero (no base charge). sha 7a697d matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredMatrixProductChain.lean#terminalEntry_cost135-143",
+        "QuantumBlockEncoding/StoredMatrixProductChain.lean#sumEntries_cost_eq125-133"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-208",
+      "authored_sha256": "1f54199ed8ac608ac1fb278388cf4547f0c05ac84626f87aa15374a799d6a273",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "ofTable_total_cost_le (230-237) <= 20*D^2+30*D+5*n^2+7*n+31 verified. Decoupling confirmed: tailChain_total_cost_le (202-214)=10D^2+12D+5n^2+7n+13 (n^2 from arithmetic series of tailTable reference-copies over n positions, each tailTable_total_cost=5n); closeLeft_tail_total_cost_le (216-226)=10D^2+18D+18, a single bond-dependent initial contraction with NO n-dependence. Sum matches. terminal_total=10D^2+12D, initial_total=10rD+8r+4, node=6. All exact. sha matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredMatrixProductChain.lean#ofTable_total_cost_le230-237",
+        "QuantumBlockEncoding/StoredMatrixProductChain.lean#tailChain_total_cost_le202-214",
+        "QuantumBlockEncoding/StoredMatrixProductChain.lean#closeLeft_tail_total_cost_le216-226"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-209",
+      "authored_sha256": "525f93ae48f1a31e90f39f7494e64bb13581ffed7717383828d2eb3e7298777d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "gram_total_cost_le (StoredTensorTrainNorm 256-284) <= n*(24D^3+25D^2+20D+6)+5D^2+4D+6 verified by induction. update_total_cost_le (234-242)=12lm^2+12l^2m+8lm+17l^2+20l, bounded by 24D^3+25D^2+20D when l,m<=D (cubic from two matrix contractions). identity base = 5r^2+4r, node=6. Each node increments n-coefficient by one. Two uses of E are stored reads of same cached environment (not recomputation). sha 60fa71 matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredTensorTrainNorm.lean#gram_total_cost_le256-284",
+        "QuantumBlockEncoding/StoredTensorTrainNorm.lean#update_total_cost_le234-242"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-210",
+      "authored_sha256": "b96b116e32b89c4b9a876212cb1230052f7c21c4792528336993a1dc592c94a3",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "norm_cost (StoredTensorTrainNorm 286-290) = gram cost + 2 read + 1 sqrt verified (reading 1x1 entry = row read + entry read = 2 reads; one sqrt; six other counters unchanged). norm_total_cost_le (293-302): total = gram total + 3 exactly (bound +9 = +6+3). Semantic claim (returned scalar = Euclidean norm = sqrt of top-left Gram entry = sqrt of total squared mass) supported by norm_eq_sum (129-131). Marginal cost correct because environment already fully materialized by gram. sha matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredTensorTrainNorm.lean#norm_cost286-290",
+        "QuantumBlockEncoding/StoredTensorTrainNorm.lean#norm_total_cost_le293-302",
+        "QuantumBlockEncoding/StoredTensorTrainNorm.lean#norm_eq_sum129-131"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-211",
+      "authored_sha256": "9eb5b0c3eb89eabc4a351cfd1dfde2a2273bdd5121e92d71974288cfc953f496",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "SOURCE-REF SHA MISMATCH (content fully verified). ordinary_eq_total (StoredHermiteRawCost 24-29): ordinary cost = total cost; ordinary_add (31-32) additive; ordinary_zero (34)=0; ordinary_tick (36)=1 - all four algebraic facts verified exactly, anchors resolve, target node exists, native math sound. HOWEVER source_refs sha256 claims 'fd31cfd12a5e...' for StoredHermiteRawCost.lean, but ACTUAL file hash (LF, UTF-8) is '315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62'. The claimed fd31... is in fact the real hash of PrimitiveDepthBound.lean - author appears to have shifted/swapped hashes across files. Metadata-only defect: correct sha256 to 315e9f21... and this is accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredHermiteRawCost.lean#ordinary_eq_total24-29 (ACTUAL sha 315e9f210c44...; claimed fd31cfd12a5e WRONG)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-212",
+      "authored_sha256": "5d63180d65537b7b7287f1f8ad59798c82a8d5c4af68abd81e85ec8c3ae80804",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "SOURCE-REF SHA MISMATCH (content fully verified). raw_selected_integer_total (StoredHermiteRawCost 210-214): (n+1)(n+2)+(n+1)^2+n+4(n+1)=2n^2+10n+7 verified exactly; four integer-counter lemmas (quotient (n+1)(n+2), remainder (n+1)^2, doublings n, additions 4(n+1)) at 193-207 resolve; raw_certified (218-227) bundles the same-run certificate. Scoping caveat ('four named counters, not all integer work') accurate to module doc. SAME SHA DEFECT as la-211: claims fd31cfd12a5e, actual file 315e9f210c44.... Correct hash -> accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredHermiteRawCost.lean#raw_selected_integer_total210-214 (ACTUAL sha 315e9f210c44...; claimed fd31cfd12a5e WRONG)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-213",
+      "authored_sha256": "b00dbfb3a1c455249751addc1c1d8b4e9f8b8a53155efe4b4ff484209b7e485e",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "SOURCE-REF SHA MISMATCH (content fully verified). depth_le_gateCount (PrimitiveDepthBound 40-42): circuit.depth <= gateCount verified via foldl_nextWireDepth_le (23-33, each gate raises global bound by <=1) and nextWireDepth_le (12-19); resource_depth_le_gateCount (45-47) wraps it. Target node PrimitiveCircuit.depth_le_gateCount exists, anchors resolve, math correct (parallel-layer scheduling never exceeds gate count). HOWEVER sha256 claims '5b61bed75447...' for PrimitiveDepthBound.lean but ACTUAL file hash is 'fd31cfd12a5ed193608b0f666ee1e990981f36b45182fc34dd0fc2db1cf62b16'. Claimed 5b61... matches no current file in the module. Correct hash -> accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/PrimitiveDepthBound.lean#depth_le_gateCount40-42 (ACTUAL sha fd31cfd12a5e...; claimed 5b61bed75447 WRONG)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-214",
+      "authored_sha256": "578c15a1c884a80e0e2daf5ff9446be134ba4a99f235db4b31d09c3020daf2cd",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "COUNTEREXAMPLE valid. materialize_cost (StoredGivens 369-374)= double-sum of supplier per-entry costs + (N*M+N)*(2read+2write) surcharge. Claim 'always a fixed poly in N,M alone' correctly refuted: supplier charging j extra field ops gives sum = N*M*(M-1)/2, data-dependent. Source explicitly flags callback as boundary (materialize doc 75-76: 'charges storage but does not certify the callback scalar evaluation cost'). Correct conditional (uniform per-entry bound B => N*M*B + surcharge) stated. Clean separation of surcharge vs supplier work. sha matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredGivens.lean#materialize_cost369-374",
+        "QuantumBlockEncoding/StoredGivens.lean#materialize75-78"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-215",
+      "authored_sha256": "196b5315aa4111ce8bfa6f8b1256b52adc645a76994c5d082c62623a9d7f6880",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "COUNTEREXAMPLE valid. angle_cost_le (StoredGivens 257-261) proves angleBudget (253-255, 7 field+1 sqrt+1 angle+2 compare) is an UPPER BOUND for all inputs (inequality, branch-independent). Claim 'every call makes exactly one arccos' refuted by x=y=0: norm 0 -> sqrt 0 -> zeroTest true -> returns 0 immediately (angle 88-100), 0 arccos calls. Correctly explains budget tight only on nonzero branch; inequality not equality for arithmetic counters (contrast with exact emit counters elsewhere). sha matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredGivens.lean#angle_cost_le257-261",
+        "QuantumBlockEncoding/StoredGivens.lean#angle88-100",
+        "QuantumBlockEncoding/StoredGivens.lean#angleBudget253-255"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-216",
+      "authored_sha256": "18e765708f1cd84df16ca32843979ea96ee4c55af80f0e89d26d59c011c99605",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "BOUNDARY valid. identity_cost (StoredRectangularGivens 103-106)=identityBudget (100-101)= N^2 compare + (N^2+N)*(2read+2write). Identity is materialized (92-93, per-entry compare i=j). Summed total = N^2 + 4*(N^2+N) = 5N^2+4N (verified via identity_total_cost in StoredTensorTrainNorm 244-249). Strictly positive for N>=1 so never free; unique free boundary N=0 (empty matrix). 'Zero-cost input' assumption correctly refuted. sha matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#identity_cost103-106",
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#identityBudget100-101",
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#identity92-93"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-217",
+      "authored_sha256": "a5e4d4e93235284a7377a8ba3c22b7782ddc67c155550d0e13415329fe1814d5",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "COUNTEREXAMPLE valid. append (StoredRectangularGivens 21-22) cost = xs.length*(tick read + tick write) - left length on BOTH counters, right list shared (contributes 0). Both colleague assertions refuted: not constant (left length p costs p,p -> unbounded); not total-length (left 2/right 1000 = (2,2); left 1000/right 2 = (1000,1000); same total, different cost). Exact rule (cost = left length, independent of right) correctly stated and matches source. sha f8638a matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#append21-22"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-218",
+      "authored_sha256": "9c0749deb9304a94a32d3ee3903862a01b6b0203cc87a7c3a1253694eb571cf2",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "BOUNDARY valid. compile_cost_le (StoredThinLQ 177-187) + compileBody (111-119): tall branch (m>n) returns input matrix as R and materialized identity_n as Q (compile_Q 153-160 via identity_value), compile_correct (162-166) holds trivially (thin inner dim = min(m,n)=n). Tall cost = 1 compare + identityBudget(n)=5n^2+4n, NO field/sqrt/angle/trig/emit, NO sweep. Correctly refutes 'thin-LQ always sweeps' - only wide branch runs eliminations. Boundary = comparison m<=n. sha ed08ef matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredThinLQ.lean#compile_cost_le177-187",
+        "QuantumBlockEncoding/StoredThinLQ.lean#compileBody111-119",
+        "QuantumBlockEncoding/StoredThinLQ.lean#compile_correct162-166"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-219",
+      "authored_sha256": "46abb737a8b40e081360c02c18af4206fb4c0f3f6010be52a90409243eefd9ae",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "COUNTEREXAMPLE math valid BUT SAME SHA MISMATCH as 211/212. raw_exponentialCalls (StoredHermiteRawCost 181-185) = n+2 + sum over n+1 stages of guarded injection calls; stage_exponentialCalls (61-68) = sum of per-child left-full guard indicators (0..2); raw_exponentialCalls_le (187-191) cap 3(n+1)+1=3n+4. Claim 'every stage exactly 2' refuted: all guards off => exactly n+2; with g guards enabled (0<=g<=2(n+1)) exact count = n+2+g, range n+2 .. 3n+4; cap reached only when all fire. Math correct. SHA DEFECT: claims fd31cfd12a5e, actual StoredHermiteRawCost.lean = 315e9f210c44.... Fix hash -> accept.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredHermiteRawCost.lean#raw_exponentialCalls181-191 (ACTUAL sha 315e9f210c44...; claimed fd31cfd12a5e WRONG)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-la-220",
+      "authored_sha256": "e0e54e00dd05d9d8d847f44770961daa72fc594c9c1bb0a8c551862cb23c5df3",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "BOUNDARY valid. ofTable_maxBond (StoredMatrixProductChain 249-254): maxBond(denoteChain(ofTable...)) <= max D 1, via ofTable_refines + MatrixProductChain.ofKernel_maxBond. Structural (about stored object bonds), not cost. max with 1 appears because scalar boundaries give outer bonds dim 1 (floor). For D>=1, max D 1 = D; the max-with-1 only activates at degenerate D=0. Correctly distinguishes bond-nongrowth from construction cost (bounded separately by ofTable_total_cost_le). ofTable_certified (257-265) pairs refinement with cost. sha 7a697d matches.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredMatrixProductChain.lean#ofTable_maxBond249-254",
+        "QuantumBlockEncoding/StoredMatrixProductChain.lean#ofTable_certified257-265"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

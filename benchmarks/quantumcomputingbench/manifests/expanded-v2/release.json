@@ -1,0 +1,56 @@
+{
+  "baseline": "unmeasured",
+  "ids": [
+    "qcb-fa79b783bb19e3185f08",
+    "qcb-09c9d22ff627feb7a508",
+    "qcb-8f67652b356627963e2a",
+    "qcb-8e0f6ba56824586fc4a7",
+    "qcb-972daa80521df1ebd597",
+    "qcb-4454a0933d611f8f5a55",
+    "qcb-3bacf1fd40f8e892455d",
+    "qcb-1df8cbd2d0bacf7ae244",
+    "qcb-adbf54fad59009f999a6",
+    "qcb-f647dcacb45ddcba20ef",
+    "qcb-d4e36b408a2cccced34c",
+    "qcb-48bd8d624bca65fa818f",
+    "qcb-fa6396fa2731f52bfa6c",
+    "qcb-1746fa3a3a4e7260c0fa",
+    "qcb-2446d3e28b5ceb2655d8",
+    "qcb-68176f29e3c019f59219",
+    "qcb-1dec8a97968e9b889eb2",
+    "qcb-f0ff68339399fac2d90b",
+    "qcb-3d15e1d1d2a9bcc0b63d"
+  ],
+  "items_hash": "1d2617d1deaeff4f1d77241fc793dae8989135dc0ccd5263013e6667b4069355",
+  "license": "See dataset card; external source text not redistributed.",
+  "private_gold_published": false,
+  "schema_version": "qcb.release.v1",
+  "snapshot_id": "qcb-snapshot-19d3ce94f8c8a67f0643e9da",
+  "splits": {
+    "dev": [
+      "qcb-fa79b783bb19e3185f08",
+      "qcb-09c9d22ff627feb7a508",
+      "qcb-d4e36b408a2cccced34c",
+      "qcb-2446d3e28b5ceb2655d8",
+      "qcb-f0ff68339399fac2d90b"
+    ],
+    "test_public": [],
+    "train": [
+      "qcb-8f67652b356627963e2a",
+      "qcb-8e0f6ba56824586fc4a7",
+      "qcb-972daa80521df1ebd597",
+      "qcb-4454a0933d611f8f5a55",
+      "qcb-3bacf1fd40f8e892455d",
+      "qcb-1df8cbd2d0bacf7ae244",
+      "qcb-adbf54fad59009f999a6",
+      "qcb-f647dcacb45ddcba20ef",
+      "qcb-48bd8d624bca65fa818f",
+      "qcb-fa6396fa2731f52bfa6c",
+      "qcb-1746fa3a3a4e7260c0fa",
+      "qcb-68176f29e3c019f59219",
+      "qcb-1dec8a97968e9b889eb2",
+      "qcb-3d15e1d1d2a9bcc0b63d"
+    ]
+  },
+  "test_is_public": true
+}

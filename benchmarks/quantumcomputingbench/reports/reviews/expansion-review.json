@@ -1,0 +1,77 @@
+{
+  "reviewer": "main-session-source-review-distinct-from-expansion-author",
+  "method": "distinct-context-source-review",
+  "independence": "Distinct author/reviewer contexts; main integration reviewer, not human. Main corrected missing support-node membership on item0006 before review.",
+  "items": [
+    {
+      "key": "qcb-authored-0001",
+      "authored_sha256": "7bfcc04132808f5100340d975e636145f03b6d461fd23eb861588d8f71f75f67",
+      "verdict": "accept",
+      "notes": "Read ThinLQ exists_thin_lq and exists_factor_of_le completely: inner dimension min m n, no rank/nonzero assumptions, Q Q^T=I means orthonormal rows. Empty cases retained.",
+      "checked_sources": [
+        "QuantumBlockEncoding/ThinLQ.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qcb-authored-0002",
+      "authored_sha256": "c3d451ed42729ab10e1fd67e805463b8e11b28815da94815e8903c749691945b",
+      "verdict": "accept",
+      "notes": "Read sum_prefix_of_zero and GramSchmidt triangularity use in exists_factor_of_le. Vanishing tail condition and Fin.castLE prefix orientation are exact.",
+      "checked_sources": [
+        "QuantumBlockEncoding/ThinLQ.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qcb-authored-0003",
+      "authored_sha256": "6376b13251644d876c77b013aab0cdb999ab463e3f5e4dfb927bf1952b1952d1",
+      "verdict": "reject",
+      "notes": "ConstructiveThinLQ factor/wideR/wideQ and RectangularGivens are noncomputable defs. Deterministic exact-real mathematical supplier is not an explicit computable arithmetic algorithm. Answer overstates computability.",
+      "checked_sources": [
+        "QuantumBlockEncoding/ConstructiveThinLQ.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qcb-authored-0004",
+      "authored_sha256": "4216b530e54d8411797f330b395023de424372cd02fa85649cf994b8cd5bda53",
+      "verdict": "reject",
+      "notes": "Actual exact_recovery is transform.transpose * reduced = A. Answer step1 incorrectly writes reduced * transform = A.transpose and transposes this incorrectly. Final recovery expression matches code but intermediate equality is invalid.",
+      "checked_sources": [
+        "QuantumBlockEncoding/ConstructiveThinLQ.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qcb-authored-0005",
+      "authored_sha256": "d5405e05169837cc724a29838f8113308206124c828782cb148d56cf4a34b96d",
+      "verdict": "accept",
+      "notes": "Read Core/slice/Chain/Word/contract complete types. Output word order and scalar-boundary interpretation agree exactly with recursive definitions.",
+      "checked_sources": [
+        "QuantumBlockEncoding/TensorTrainCanonical.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qcb-authored-0006",
+      "authored_sha256": "2b857ef00f8eb1d491b8c09cebda5f6ace94ee5d2eae714a14fba902a12e81f4",
+      "verdict": "accept",
+      "notes": "Read chainMass_eq complete induction and mass_vecMul proof. Fintype product split, vecMul associativity, tail RightCanonical, slice recombination and row-isometry identity justify all five steps. Main integration added the already cited contract node; no question/answer change.",
+      "checked_sources": [
+        "QuantumBlockEncoding/TensorTrainCanonical.lean"
+      ],
+      "formal_status": "not_applicable"
+    },
+    {
+      "key": "qcb-authored-0007",
+      "authored_sha256": "cdcd55b9667fa7aa6539e41caf95eb75bff95bc4c27978cdf2306a00b85c6826",
+      "verdict": "accept",
+      "notes": "Read complexCore and complexCore_isometry full proof: real-row orthonormality becomes conjugate-transpose column isometry, output (bit,right bond) rows and left bond input columns. No claim of full circuit synthesis.",
+      "checked_sources": [
+        "QuantumBlockEncoding/TensorTrainCanonical.lean"
+      ],
+      "formal_status": "not_applicable"
+    }
+  ]
+}
