@@ -1,0 +1,54 @@
+{
+  "schema_version": "qcb.mathematical_reader_review.v1",
+  "reviewer": "/root/qcb_native_comparison",
+  "method": "independent-mathematical-reader-review",
+  "review_scope": "Independent mathematical assessment of the full three question/assumption/convention/answer/rubric records supplied in the bounded anti-anchored packet, checked against their exact local source definitions and supporting derivations. This is a separate NL correctness assessment, not an inference from formal-target agreement. No previous QA verdicts or other review records were read. No Lean execution or global cross-cohort novelty audit is claimed.",
+  "items": [
+    {
+      "core_id": "qcb-core-sp-005",
+      "item_digest": "4748bf7c81283496b115e778c1f365bd503d4384829e85ceb0959f348a5a97d4",
+      "question_contract_hash": "0821f527326022b9972f0d4083b8a2a99c179263e36e5d27112f6cb5c1c98865",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "I checked the supplied question, both assumptions, both conventions, complete reference answer and all four rubric criteria. For every prefix b, the radicand f(snoc b 0)^2+f(snoc b 1)^2 is nonnegative, so squaring its nonnegative square root returns that radicand. Summing gives sum_b f(snoc b 0)^2 + sum_b f(snoc b 1)^2. The inverse maps w -> (init w, w(last n)) and (b,v) -> snoc b v show that the two disjoint last-bit cases cover every full word exactly once. This proves the claimed equality for every real f, including negative entries and the all-zero table, with n=0 reducing to the single sibling pair. The supplied answer and rubric give these exact steps. The source definitions and normSq_marginal proof implement the same argument. The final recursive explanation is correct as an invariant about the denominator and norm mass: where the normalized preparation induction applies, marginal norm equality transfers positivity and preserves the normalization scale. It does not assert that zero mass has a normalized state or that this invariant alone proves a loader for arbitrary signed inputs; prepareCircuit_firstColumn separately carries its nonnegativity and positive-norm premises. Under that literal norm-faithfulness reading, the explanation answers the requested conceptual point without changing the unconditional norm identity. This core is explicitly the same existing norm-marginal target as formal view F1, not a new counted mathematical core; this local alias assessment makes no global deduplication or novelty claim.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-102",
+      "item_digest": "470ce4707a5d7cebab5a056b624cf70eb6448b2fdee43c594b57cf19d273943f",
+      "question_contract_hash": "4be120801daf6e4de98794d14d4c0db5f93bcb6924b3c6aae20252167d662f93",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "I checked the complete supplied question, assumptions, three conventions, reference answer and all three rubric criteria. Expanding simultaneously in rows i and j produces coefficients ac, ad, bc, bd. Distinctness of the positions makes the ac term have row_i in both positions and the bd term have row_j in both positions, so alternation kills both. The ad term retains the original row order. The bc term swaps exactly the two rows once, hence contributes -bc det A. Their sum is (ad-bc)det A with no need for invertibility or a nonzero determinant. Substitution a=d=cos(t/2), b=-sin(t/2), c=sin(t/2) yields cos(t/2)^2+sin(t/2)^2=1. Therefore the answer's generic determinant identity, rotation specialization and exact preservation conclusion are correct, and the rubric covers the decisive steps. In the source both updated rows use the old A; det_two_row_mix proves the alternating expansion and rotateRows_det uses the same half-angle and signs. Matrix size zero or one has no admissible distinct pair. The answer explicitly separates this algebraic identity from a cost claim and does not claim elimination or circuit synthesis. This core is the existing row-rotation determinant target, explicitly shared by formal view F2; that view is an alias, not another mathematical core or evidence of global semantic deduplication.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-009",
+      "item_digest": "3f133557d4caeab060a7631ee2641d0019434fd496c4f8fa413895aaf318e981",
+      "question_contract_hash": "108977edccc1cb916d3614d5b4d2927d1a82e337f901ff73421320ef956448b0",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "I independently checked the full supplied NL record, not just its final formal identity: its two assumptions, two conventions, question, complete reference answer and four rubric criteria. Write O=Fin 2 x Fin r and B(out,a)=ofReal(A(a,out)). For fixed input indices a,c, (B^dagger B)(a,c)=sum_out conjugate(ofReal(A(a,out)))*ofReal(A(c,out))=ofReal(sum_out A(a,out)*A(c,out)), because real embedding preserves multiplication and finite sums and fixes conjugation. The last real sum is (A*A^T)(a,c), equal by hypothesis to delta(a,c). The complex real part is therefore delta and its imaginary part zero, exactly as the reference answer states. The transpose orientation is essential: rows of A become columns of B, and the contracted index is the entire physical-bit/new-bond output, not merely the physical bit. This proves every mathematical step required by the rubric and the conceptual orientation explanation. The actual Core and complexCore definitions and the source complexCore_isometry proof agree with this calculation. Rectangular cases yield an isometric embedding, without output-side unitarity; zero input dimension is vacuous, and zero output dimension with positive input cannot satisfy the premise. The question itself specifies what circuit isometry means by its Gram identity, so acceptance carries no qubit encoding, unitary extension, implemented circuit, preparation algorithm or resource claim. This is the existing complex-core isometry target and the intentional same-core alias underlying formal view F3, not a second counted target or a global novelty/deduplication verdict. The NL proof is mathematically correct independently of whether a formal replay is performed.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ]
+    }
+  ]
+}

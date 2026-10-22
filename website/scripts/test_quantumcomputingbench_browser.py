@@ -28,8 +28,8 @@ def run(root, output, channel=None):
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     base = f"http://127.0.0.1:{server.server_port}/"
-    rows, failures = [], []
-    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers")}
+    rows, formal_rows, failures = [], [], []
+    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers", "native_formal_panels")}
     core_route = HUB + "cores/" + catalog["cores"][0]["core_id"] + "/index.html"
     routes = [HUB + "index.html", HUB + "non-lean/index.html", HUB + "lean/index.html",
               HUB + "non-lean/state-preparation/structured_preparation/index.html",
@@ -72,6 +72,49 @@ def run(root, output, channel=None):
                     failures.append("unfolded answer/evidence: " + route)
                 if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
                     failures.append("core overflow: " + route)
+            # Check actual expanded targets/proofs, not only folded companions.
+            for width in (390, 1280):
+                page.set_viewport_size({"width": width, "height": 900})
+                for theme in THEMES:
+                    for core in catalog["cores"]:
+                        formal = core["views"].get("lean")
+                        if not formal:
+                            continue
+                        route = HUB + "cores/" + core["core_id"] + "/index.html#lean"
+                        page.goto(base + route, wait_until="networkidle")
+                        page.evaluate("t => document.documentElement.dataset.theme = t", theme)
+                        panel = page.locator('#lean')
+                        if panel.get_attribute("open") is None:
+                            failures.append("formal fragment did not open companion: " + route)
+                            panel.locator(':scope > summary').click()
+                        if formal["formal_context"]["target"] not in panel.inner_text():
+                            failures.append("formal target changed: " + route)
+                        if page.locator('#solution').get_attribute("open") is not None:
+                            failures.append("formal navigation exposed NL solution: " + route)
+                        proof = page.locator('#lean-reference')
+                        if proof.get_attribute("open") is not None:
+                            failures.append("formal reference exposed by default: " + route)
+                        proof.locator('summary').focus()
+                        page.keyboard.press("Enter")
+                        if proof.get_attribute("open") is None or formal["reference_proof"] not in proof.inner_text():
+                            failures.append("formal proof keyboard disclosure failed: " + route)
+                        if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
+                            failures.append(f"expanded formal overflow: {route} {width} {theme}")
+                        contrast = panel.locator('pre').evaluate_all("""blocks => Math.min(...blocks.map(pre => {
+                          const rgb = text => text.match(/[\\d.]+/g).slice(0,3).map(Number);
+                          const lum = text => rgb(text).map(v => v/255).map(v => v <= .04045 ? v/12.92 : ((v+.055)/1.055)**2.4)
+                            .reduce((s,v,i) => s+v*[.2126,.7152,.0722][i],0);
+                          const foreground = lum(getComputedStyle(pre.querySelector('code')).color);
+                          const background = lum(getComputedStyle(pre).backgroundColor);
+                          return (Math.max(foreground,background)+.05)/(Math.min(foreground,background)+.05);
+                        }))""")
+                        if contrast < 4.5:
+                            failures.append(f"formal code contrast below 4.5: {route} {theme}: {contrast}")
+                        panel.scroll_into_view_if_needed()
+                        page.screenshot(path=str(output / f"formal-{core['core_id']}-{width}-{theme}.png"))
+                        formal_rows.append({"core_id": core["core_id"], "width": width, "theme": theme,
+                                            "target_and_reference_checked": True, "code_contrast_ratio": contrast})
+            page.set_viewport_size({"width": 390, "height": 900})
             page.goto(base + HUB + "non-lean/state-preparation/structured_preparation/index.html", wait_until="networkidle")
             total = page.locator('[data-qcb-card]').count()
             page.locator('[data-qcb-query]').fill('not-a-real-exercise-29815')
@@ -100,6 +143,7 @@ def run(root, output, channel=None):
               "reader_source_digest": manifest["reader_source_digest"], "source_commit": manifest["source_commit"],
               "browser_channel": channel or "playwright-chromium", "checks": checks,
               "route_viewport_theme_checks": rows, "all_core_mobile_checks": len(catalog["cores"]),
+              "native_formal_panel_checks": formal_rows,
               "failures": failures, "manual_visual_review": "not asserted by this script",
               "question_only_search": "Exact question summaries checked by check_site; reference answers are not indexed."}
     (output / "browser-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

@@ -7,10 +7,12 @@ Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
 
-**Current textbook correction:** a fresh State Preparation review found an
-input/output bond-index defect in the historical `qcb-core-sp-002` answer.
-[Current policy](shared/current-policy.json) withholds that exact predecessor
-and admits only a separately reviewed additive answer/rubric successor. Frozen
+**Current textbook corrections:** fresh State Preparation reviews found an
+input/output bond-index defect (`sp-002`), an unsupported arbitrary-signed
+loader claim (`sp-006`), and a terminal active-dimension feasibility error
+(`sp-011`). [Current policy](shared/current-policy.json) withholds those exact
+predecessors and admits only separately reviewed additive successors, including
+their explanatory summaries/steps when affected. Frozen
 preview assets remain historical, not automatically current gold. Their native
 scoring/repackaging entry fails closed until a separately versioned data release
 is prepared. The current reader export preserves the original core and split.
@@ -44,6 +46,12 @@ python benchmarks/quantumcomputingbench/scripts/curriculum.py stable-check
 `stable-check` intentionally exits 2 while reviews/reconciliation remain pending.
 No broad whole-graph completeness, new isolated evaluator or model baseline is
 implied by the website presentation.
+
+The first [native Lean companion batch](tracks/lean/README.md#first-native-formal-view-batch)
+contains three aligned library-lemma applications over existing core IDs.
+Source-blind decoding, independent comparison and actual reference/axiom checks
+are separate evidence records. They are not three new questions, deep proof
+synthesis results, or kernel certification of the entire NL explanation.
 
 ## What is ready
 

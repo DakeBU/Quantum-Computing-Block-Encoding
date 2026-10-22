@@ -19,6 +19,8 @@ WITHDRAWN_KEYS = {
     'qcb-core-plan-006-trace-norm-unitary-variational': 'integration quarantine: scalar counterexample and norm-bound argument',
     'qcb-core-plan-303-external-product-irrep': 'integration quarantine: wrong second tensor representation',
     'qcb-core-sp-002': 'textbook second pass: free output bond index conflated with summed input bond index; use the separately reviewed answer successor',
+    'qcb-core-sp-006': 'textbook second pass: arbitrary-real normalization does not remove the circuit theorem nonnegative-entry hypothesis',
+    'qcb-core-sp-011': 'textbook second pass: active dimension > 2 also forbids active-only unitary terminal cleanup',
 }
 
 
@@ -27,7 +29,7 @@ def check_current_gold(items, *, frozen_preview_audit=False):
     if frozen_preview_audit:
         # Only reproduce the published historical preview for audit. Its CLI
         # separately refuses current native scoring/repackaging after a repair.
-        withdrawn = [key for key in withdrawn if key != 'qcb-core-sp-002']
+        withdrawn = [key for key in withdrawn if key not in {'qcb-core-sp-002', 'qcb-core-sp-006', 'qcb-core-sp-011'}]
     if withdrawn:
         raise ValueError('withdrawn historical native gold: ' + ', '.join(withdrawn)
                          + '; use scripts/release.py for the current admission overlay; old files are audit-only')

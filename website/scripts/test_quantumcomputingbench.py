@@ -34,7 +34,9 @@ class CurriculumTests(unittest.TestCase):
         self.assertEqual(len({c["core_id"] for c in self.catalog["cores"]}), expected)
         self.assertEqual(set(c["topic"] for c in self.catalog["cores"]),
                          {t for p in self.catalog["parts"] for t in p["topics"]})
-        self.assertTrue(all(c["views"].keys() == {"non-lean"} for c in self.catalog["cores"]))
+        self.assertTrue(all("non-lean" in c["views"] and set(c["views"]) <= {"non-lean", "lean"} for c in self.catalog["cores"]))
+        self.assertEqual(sum("lean" in c["views"] for c in self.catalog["cores"]),
+                         self.catalog["native_formal_view_admission"].get("admitted_views", 0))
 
     def test_compatible_tracks_do_not_admit_another_core(self):
         result = shared.validate_proposals(self.catalog, [self.proposal(), self.proposal("non-lean")])
@@ -118,6 +120,17 @@ class CurriculumTests(unittest.TestCase):
         self.assertNotIn('href="javascript:', body)
         self.assertNotIn("<img", body)
         self.assertNotIn("/blob/", body)
+
+    def test_native_formal_panel_exposes_exact_target_not_kernel_certified_prose(self):
+        rows = [c for c in self.catalog["cores"] if "lean" in c["views"]]
+        for core in rows:
+            view = core["views"]["lean"]
+            body = reader.core_body(core, self.items[core["core_id"]], self.catalog, self.graph, set(self.graph), "../../../")
+            self.assertIn(reader.esc(view["formal_context"]["target"]), body)
+            self.assertIn(reader.esc(view["reference_proof"]), body)
+            self.assertIn("kernel does not certify every sentence", body)
+            self.assertNotIn("No aligned Lean view has been admitted", body)
+            self.assertIn("#lean", reader.exercise_cards([core], "../../../", self.items, "lean"))
 
     def test_formal_diagnostics_bind_exact_records_not_native_alias_guesses(self):
         warmups = reader.formal_warmups()

@@ -15,7 +15,7 @@
 .qcb-disclosure { margin: 1.1rem 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 6px; }
 .qcb-disclosure summary { font: 600 .92rem/1.7 var(--ui-font); cursor: pointer; }
 .qcb-disclosure[open] summary { margin-bottom: 1rem; }
-.qcb-reader pre { max-width: 100%; overflow-x: auto; padding: 1rem; background: var(--surface-subtle); font-size: .8rem; }
+.qcb-reader pre { max-width: 100%; overflow-x: auto; padding: 1rem; color: var(--code-ink); background: var(--code-bg); font-size: .8rem; }
 .qcb-reader code, .qcb-sources, .qcb-reader a { overflow-wrap: anywhere; }
 .qcb-reader pre code { overflow-wrap: normal; }
 .qcb-reader li { margin: .55rem 0; }

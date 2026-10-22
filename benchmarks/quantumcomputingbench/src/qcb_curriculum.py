@@ -25,6 +25,8 @@ def reader_source_digest():
              "website/static/quantumcomputingbench.js", "website/scripts/test_quantumcomputingbench_browser.py",
              "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
              "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+             "benchmarks/quantumcomputingbench/src/qcb_formal_views.py",
+             "benchmarks/quantumcomputingbench/tracks/lean/views/native-v1.json",
              "benchmarks/quantumcomputingbench/shared/current-policy.json",
              "benchmarks/quantumcomputingbench/shared/curriculum.json")
     return digest({path: text_sha(R / path) for path in paths})
@@ -78,6 +80,16 @@ def load_catalog():
         "graph_evidence": "imports/ownership plus typed curated/planned relations, not a theorem-proof dependency oracle",
         "isolated_prediction_evaluation": "ENV_BLOCKED",
     }
+    from qcb_formal_views import admission as formal_admission
+    formal, formal_status = formal_admission(records)
+    catalog["native_formal_view_admission"] = formal_status
+    for core in records:
+        if core["core_id"] in formal:
+            core["views"]["lean"] = formal[core["core_id"]]
+    accepted, disputed = content_review_status(catalog)
+    for core in records:
+        core["editorial_second_pass"] = ("disputed" if core["core_id"] in disputed else
+            "content_bound_review_accepted" if core["core_id"] in accepted else "pending_content_bound_review")
     catalog["catalog_hash"] = digest(catalog)
     return catalog, {i["core_id"]: i for i in native}, graph
 
@@ -121,8 +133,8 @@ def validate_proposals(catalog, proposals):
     return {"proposals": len(proposals), "new_cores_admitted": 0, "distributed_lock_claimed": False}
 
 
-def stable_readiness(catalog):
-    """Stable requires real second-pass records, not changing a version label."""
+def content_review_status(catalog):
+    """One content-bound editorial status for both registry rows and metrics."""
     accepted = {c["core_id"] for c in catalog["cores"] if c.get("textbook_successor")}
     disputed = set()
     by_id = {c["core_id"]: c for c in catalog["cores"]}
@@ -147,6 +159,12 @@ def stable_readiness(catalog):
             else:
                 disputed.add(row["core_id"])
     accepted -= disputed
+    return accepted, disputed
+
+
+def stable_readiness(catalog):
+    """Stable requires real second-pass records, not changing a version label."""
+    accepted, disputed = content_review_status(catalog)
     missing = sorted({c["core_id"] for c in catalog["cores"]} - accepted)
     browser_path = R / "_out/qcb-browser/browser-report.json"
     if not browser_path.is_file():
@@ -159,10 +177,12 @@ def stable_readiness(catalog):
         browser.get("checks", {}).get(key) is True for key in (
             "mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure",
             "graph_links", "search_excludes_answers"))
+    if any("lean" in c["views"] for c in catalog["cores"]):
+        browser_ok = browser_ok and browser.get("checks", {}).get("native_formal_panels") is True
     gates = {"content_bound_second_pass": not missing and bool(catalog["cores"]),
              "rendered_browser_checks": browser_ok,
              "cross_cohort_semantic_reconciliation": catalog["global_semantic_dedup_complete"],
-             "shared_view_admission": False}
+             "shared_view_admission": catalog.get("native_formal_view_admission", {}).get("status") == "admitted"}
     return {"stable": all(gates.values()), "required_core_reviews": len(catalog["cores"]),
             "content_bound_second_pass_reviews": len(accepted), "pending_core_ids": missing,
             "gates": gates, "disputed_core_ids": sorted(disputed),

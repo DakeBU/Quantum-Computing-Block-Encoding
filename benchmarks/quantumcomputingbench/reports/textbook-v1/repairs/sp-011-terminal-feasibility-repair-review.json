@@ -1,0 +1,55 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-sp-011",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-011-terminal-feasibility-repair.json",
+  "repair_record_digest": "dbc81770f93ebf540ba98fa159e7b3552d4722fa04143ffd78163c75aa64457d",
+  "original_item_digest": "8e29ce90772af81328f7d4b8e817f6183b46c52d96801e394ac4287c4be24a6f",
+  "verdict": "accept",
+  "verdict_scope": "Exact candidate answer, rubric and complete exposition; mathematical correctness, source fidelity, and fitness to the unchanged question. It is not acceptance of the predecessor's assertion that active-only cleanup solves unitarity at active dimension greater than two.",
+  "independence": {
+    "actual_identity": "/root/qcb_boundary_repair_review is the actual separately dispatched review task; it authored neither this candidate nor the original item.",
+    "repair_author": "/root",
+    "original_author": "native-sp-author",
+    "distinct_from_repair_author": true,
+    "exposure": "The parent highlighted the active-dimension-greater-than-two feasibility issue and required rejection if the unchanged-question contract fails. The complete candidate and the original prepared item, including historical review metadata, were visible. This is independent mathematical reconstruction, not source-blind or verdict-blind review. Earlier verdicts were not used to establish correctness."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "ccf6c506bc06c94a4aba979176d9cab93c866f1a7a5173a60d7c5d5e74047cb7",
+    "retrieval": "Loaded scripts/release.py checked() with UTF-8, bytecode disabled, and TEMP/TMP in workspace _review_tmp; selected the historical prepared native item by core_id from its returned native cohort, not through the current reader.",
+    "hash_definition": "qcb_core.digest({k: original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}); original_item_digest binds the entire actual prepared historical item and repair_record_digest binds the entire exact parsed candidate, including exposition.",
+    "reasoning": "The question explicitly retains active dimension k > 2 and padded dimension D > k, requires the full stage to be unitary, and asks both for the all-padded-column obstruction and for the restricted condition the library uses. The candidate answers those two requests: it proves the obstruction and states the exact active-only equality with inactive support. It then correctly warns that this conditional library statement supplies no feasible unitary remedy when k > 2. The wording 'correct restricted condition the library uses instead' can be answered by identifying that actual theorem's condition; it does not entitle an answer to assert its feasibility under the contradictory dimensions. Explicitly correcting that presupposition is a faithful answer, not evasion. The candidate never substitutes k <= 2 for the original hypothesis; it states that bound only when explaining a different feasible regime. Thus the unchanged question is adequately answered despite its misleading implication of a remedy. Family, train split, graph version, node/source scope and three-step count remain the original contract."
+  },
+  "substantive_reconstruction": {
+    "orientation_and_space": "Let B be the padded bond basis with D elements, and A the active label set with k elements. Stage U has output rows (c,b) and input columns (d,a), with c,d in Fin 2. freshZero restricts relevant input columns to d=0. terminalCore(clean,T)((c,b),a) is T(c,a) if b=clean and zero otherwise. Every prescribed column therefore belongs to H=span{e_(0,clean),e_(1,clean)}, whose complex dimension is exactly two because the clean label exists.",
+    "orthogonality_obstruction": "If U is unitary, U.conjTranspose * U = I, so the images U e_(0,a) of distinct orthonormal computational input vectors are orthonormal. Any orthonormal family is linearly independent; H has room for at most two members. Prescribing all D fresh-zero input columns into H requires D <= 2, contrary to D > k > 2. Prescribing only the k active columns still requires k <= 2. Inactive columns left free cannot cure a failure of orthonormality among already prescribed active columns. The conclusion is about these column constraints, not a blanket impossibility of cleaning a specially chosen single global state through other actions.",
+    "supported_state_action": "For x=(prefix p, last bit c), step_apply gives step(U,v)(x,b)=sum_a U((c,b),(0,a))*v(p,a). If a is inactive then support makes v(p,a)=0, so that summand vanishes regardless of its U column. If a is active then the prescribed terminalCore equality replaces the U entry. Factoring the b=clean indicator gives zero for b != clean and sum_a T(c,a)*v(p,a) for b=clean. This is precisely the supported theorem's conditional algebraic identity. It has neither a unitary hypothesis nor a unitary-existence conclusion. run_terminal_clean supplies the state support through run_supported and substitutes the transfer contraction; it likewise does not construct or certify a terminal unitary.",
+    "feasible_alternative_boundary": "For a different parameter regime, the prescribed active columns embed the two-entry columns of T isometrically into H. Their Gram matrix has entries sum_c conjugate(T(c,a))*T(c,a'), so unitary compatibility requires that matrix to be the active identity. This implies k <= 2. Conversely any such finite orthonormal family can be extended to an orthonormal basis of the full complex space of dimension 2D, assigning the remaining basis vectors to the unspecified input columns. The resulting square matrix is unitary. This establishes finite-dimensional existence, not an implemented completion procedure or circuit/gate-cost theorem. The candidate states those boundaries correctly."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Correct and complete for the unchanged question. It distinguishes D from k, identifies fresh-zero columns and the two-dimensional clean sector, proves both obstructions, gives both actual supported-theorem premises, derives the clean amplitude expression, and explicitly denies a feasible unitary remedy under k > 2. Its optional completion discussion has the necessary Gram condition and is marked as an existence observation.",
+    "rubric": {
+      "r1": "Correctly checks dimensions, row/column orientation and the fresh-input-zero sector.",
+      "r2": "Correctly requires orthonormal columns and the all-padded obstruction for D > 2.",
+      "r3": "Correctly checks active-only equality together with zero inactive support and conditional factorization, without fabricating unitary existence.",
+      "r4": "Correctly requires recognition that k > 2 defeats active-only unitarity too. It prevents full credit for the predecessor's false remedy while retaining the question's original assumptions."
+    },
+    "exposition": "Read the complete core_summary and all three semantic steps. The summary now states both dimension obstructions and the conditional theorem boundary. Step 1 is supported by the terminalCore/step_terminalCore semantics; step 2's dimension argument is an independently reconstructed mathematical consequence of those semantics plus unitarity, not a dimension theorem proved in step_terminalCore. Step 3 matches the supported and run-terminal theorem signatures and does not claim their unitarity or feasibility. The graph-node scope and original three-step structure are preserved.",
+    "necessity_and_minimality": "The predecessor wrongly asserted that restricting to active columns lets unitarity and cleanup coexist under its k > 2 assumption. Removing that assertion and explaining the remaining obstruction is necessary. Identifying the source's conditional condition still answers the second question clause; silently weakening k would not. No source theorem, question assumption or finite synthesis claim is altered."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+      "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5",
+      "anchor": "Read complete module. Core/Stage/BondState, freshZero, liftStage, step and step_apply fix output-row/input-column orientation and zero fresh-bit input; transfer/run and supported-run results supply the transfer/support semantics. terminalCore 177-178, step_terminalCore 182-190, step_terminalCore_of_supported 204-222 and run_terminal_clean were inspected with their full proofs. The supported and terminal-run theorems contain no unitary-existence assertion. circuitStage_unitary and amplitudeMass_step separately bind unitarity where used."
+    }
+  ],
+  "provenance": {
+    "procedure": "Read repository AGENTS.md, complete HARNESS.md, theorem-publication protocol, substantive-worker skill and required proof-digestion/evidence-memory protocols. Read full original prepared item and full exact repair, independently derived the dimension and finite-sum arguments, and inspected exact source signatures/proofs. Computed source LF hashes and JSON digests with repository helpers.",
+    "new_kernel_execution": false,
+    "formal_status": "Source inspection and mathematical reconstruction only. No new Lean dimension theorem, completion implementation, circuit synthesis or resource bound is claimed. Historical validated evidence is not represented as a fresh kernel run.",
+    "no_extra_agents_or_external_messages": true,
+    "mutation_scope": "Only the two requested review files are authored; original and candidate records are untouched."
+  }
+}

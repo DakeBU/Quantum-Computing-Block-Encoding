@@ -36,6 +36,18 @@ def apply_current_reader_policy(native):
         if (repair["core_id"] != row["core_id"] or repair["supersedes_key"] != original["key"]
                 or repair["supersedes_item_digest"] != digest(original)):
             raise ValueError("answer successor changed its predecessor contract")
+        exposition = repair.get("exposition", {})
+        if set(exposition) - {"core_summary", "semantic_steps"}:
+            raise ValueError("answer repair cannot replace contract or admission metadata")
+        if "core_summary" in exposition and not isinstance(exposition["core_summary"], str):
+            raise ValueError("answer repair summary must be text")
+        if "semantic_steps" in exposition:
+            steps = exposition["semantic_steps"]
+            allowed_nodes = set(original["target_nodes"] + original["supporting_nodes"])
+            if (not isinstance(steps, list) or len(steps) != original["semantic_step_count"]
+                    or any(not s.get("claim") or not s.get("supporting_nodes")
+                           or set(s["supporting_nodes"]) - allowed_nodes for s in steps)):
+                raise ValueError("answer repair changed graph scope or semantic step count")
         check_source_bindings(repair["source_checks"])
         decision = {**row, "status": "withheld_pending_distinct_repair_review"}
         if review_path.is_file():
@@ -53,6 +65,10 @@ def apply_current_reader_policy(native):
                 current = deepcopy(original)
                 current.update(key=repair["key"], reference_answer=repair["reference_answer"], rubric=repair["rubric"],
                                author={"identity": repair["author"], "method": "source-reconstructed additive answer repair"})
+                if "core_summary" in exposition:
+                    current["native_nl"]["core_summary"] = exposition["core_summary"]
+                if "semantic_steps" in exposition:
+                    current["semantic_steps"] = deepcopy(exposition["semantic_steps"])
                 current["textbook_successor"] = {"predecessor_item_digest": digest(original),
                     "predecessor_key": original["key"],
                     "repair_record": row["repair"], "repair_record_digest": digest(repair),

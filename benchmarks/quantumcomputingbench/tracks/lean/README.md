@@ -23,3 +23,31 @@ show both NL and formal views with solutions folded by default. The existing
 three corrected-v3 API warmups remain a separate diagnostic reference section
 until cross-cohort/core admission is resolved; they do not silently add to the
 native core count.
+
+## First native formal-view batch
+
+[`views/native-v1.json`](views/native-v1.json) binds three existing cores:
+the marginal squared-norm identity (`sp-005`), real-row Gram to complex-column
+isometry (`sp-009`), and determinant preservation by a half-angle row rotation
+(`la-102`). These are **library-lemma applications**, not deep synthesis tasks.
+They preserve the original contracts, families and splits and add no core IDs.
+
+The [evidence directory](../../reports/textbook-v1/formal-native/) separates a
+source-blind statement reconstruction, a distinct NL/formal comparison, and
+actual fixed-reference elaboration with transitive axiom checks and negative
+controls. The full unchanged production proof tree passed `lake build`,
+`lake build Tests`, and all 202 explicit module targets in a matching cached
+checkout. The receipt records that actual checkout, not an invented current
+commit build. No arbitrary model output was run on the host.
+
+To inspect the blinded input or recheck the fixed references:
+
+```sh
+python benchmarks/quantumcomputingbench/scripts/native_views.py decoder-input --output _out/native-decoder.json
+python benchmarks/quantumcomputingbench/scripts/native_views.py check-references --build-root PATH_TO_MATCHING_BUILT_CHECKOUT --trusted-local-reference --output _out/native-reference-checks.json
+```
+
+Do not overwrite sealed reports after changing the pipeline. A fresh batch or
+fresh evidence review is needed when mathematical content or bound inputs change.
+Kernel acceptance of these conclusions does not certify every NL explanatory
+sentence, useful process reward, isolated evaluation, or a real-model baseline.

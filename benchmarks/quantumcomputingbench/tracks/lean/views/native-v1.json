@@ -1,0 +1,82 @@
+{
+  "schema_version": "qcb.native_formal_views.v1",
+  "author": "/root",
+  "execution_class": "trusted_local_reference",
+  "isolated": false,
+  "policy": "These are library-grounded theorem-application views of existing mathematical conclusions, not new cores, deep proof-synthesis scores, or Lean certificates of every explanatory sentence.",
+  "views": [
+    {
+      "view_id": "native-formal-marginal-norm-v1",
+      "anonymous_id": "F1",
+      "core_id": "qcb-core-sp-005",
+      "contract_hash": "0821f527326022b9972f0d4083b8a2a99c179263e36e5d27112f6cb5c1c98865",
+      "item_digest": "4748bf7c81283496b115e778c1f365bd503d4384829e85ceb0959f348a5a97d4",
+      "family": "marginal-norm-pythagorean",
+      "split": "test_public",
+      "snapshot_id": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "formal_context": {
+        "imports": ["QuantumBlockEncoding.RealAmplitudePreparation"],
+        "target": "∀ {n : ℕ} (f : QuantumBlockEncoding.PrimitiveBasis (n + 1) → ℝ), QuantumBlockEncoding.RealAmplitudePreparation.normSq (QuantumBlockEncoding.RealAmplitudePreparation.marginal f) = QuantumBlockEncoding.RealAmplitudePreparation.normSq f"
+      },
+      "reference_proof": "by exact QuantumBlockEncoding.RealAmplitudePreparation.normSq_marginal",
+      "task_kind": "library_lemma_application",
+      "coverage": "exact_symbolic_conclusion_with_separately_reviewed_nl_explanation",
+      "boundary": "No positivity or normalization premise. This is a norm identity, not a signed-state loading, circuit-cost or finite-precision theorem.",
+      "ambient_definitions": [
+        {"path": "QuantumBlockEncoding/PrimitiveSemantics.lean", "lines": [116, 116]},
+        {"path": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "lines": [143, 143]},
+        {"path": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "lines": [204, 205]},
+        {"path": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "lines": [211, 211]}
+      ]
+    },
+    {
+      "view_id": "native-formal-row-rotation-det-v1",
+      "anonymous_id": "F2",
+      "core_id": "qcb-core-la-102",
+      "contract_hash": "4be120801daf6e4de98794d14d4c0db5f93bcb6924b3c6aae20252167d662f93",
+      "item_digest": "470ce4707a5d7cebab5a056b624cf70eb6448b2fdee43c594b57cf19d273943f",
+      "family": "matrix-constructions-givens-determinant",
+      "split": "test_public",
+      "snapshot_id": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "formal_context": {
+        "imports": ["QuantumBlockEncoding.AdjacentGivens"],
+        "target": "∀ {N : ℕ} (A : _root_.Matrix (Fin N) (Fin N) ℝ) (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.rotateRows A i j theta).det = A.det"
+      },
+      "reference_proof": "by exact QuantumBlockEncoding.AdjacentGivens.rotateRows_det",
+      "task_kind": "library_lemma_application",
+      "coverage": "exact_symbolic_conclusion_with_separately_reviewed_nl_explanation",
+      "boundary": "Arbitrary real square input matrix and distinct rows; no adjacency, orthogonality or determinant-one input assumption. Half-angle convention is preserved.",
+      "ambient_definitions": [
+        {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "lines": [20, 25]}
+      ]
+    },
+    {
+      "view_id": "native-formal-complex-core-isometry-v1",
+      "anonymous_id": "F3",
+      "core_id": "qcb-core-sp-009",
+      "contract_hash": "108977edccc1cb916d3614d5b4d2927d1a82e337f901ff73421320ef956448b0",
+      "item_digest": "3f133557d4caeab060a7631ee2641d0019434fd496c4f8fa413895aaf318e981",
+      "family": "core-circuit-isometry",
+      "split": "train",
+      "snapshot_id": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "formal_context": {
+        "imports": ["QuantumBlockEncoding.TensorTrainCanonical"],
+        "target": "∀ {l r : ℕ} (A : QuantumBlockEncoding.TensorTrainCanonical.Core l r), A * A.transpose = 1 → (QuantumBlockEncoding.TensorTrainCanonical.complexCore A).conjTranspose * QuantumBlockEncoding.TensorTrainCanonical.complexCore A = 1"
+      },
+      "reference_proof": "by exact QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry",
+      "task_kind": "library_lemma_application",
+      "coverage": "exact_symbolic_conclusion_with_separately_reviewed_nl_explanation",
+      "boundary": "Real row-canonical core, complex output-row/input-column embedding. No efficient completion/compiler/resource claim; the legacy API exercise is the same mathematical target and adds no core.",
+      "ambient_definitions": [
+        {"path": "QuantumBlockEncoding/TensorTrainCanonical.lean", "lines": [18, 18]},
+        {"path": "QuantumBlockEncoding/TensorTrainCanonical.lean", "lines": [211, 212]}
+      ]
+    }
+  ],
+  "source_bindings": [
+    {"path": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"},
+    {"path": "QuantumBlockEncoding/PrimitiveSemantics.lean", "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"},
+    {"path": "QuantumBlockEncoding/AdjacentGivens.lean", "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"},
+    {"path": "QuantumBlockEncoding/TensorTrainCanonical.lean", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"}
+  ]
+}

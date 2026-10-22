@@ -1,0 +1,54 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-sp-006",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-006-normalization-boundary-repair.json",
+  "repair_record_digest": "fafbf96e8efc8d116beffec203eb79caf60dc5d551b63df44e3baca73cb3b5a3",
+  "original_item_digest": "44c37085b4bd6ee2044b283002c7cb3d2067205bc96c3b84b5cb04a60a4002a6",
+  "verdict": "accept",
+  "verdict_scope": "Exact candidate answer, rubric and complete exposition; mathematical correctness, source fidelity, and fitness to the unchanged question. Acceptance does not certify a new Lean execution or a new data release.",
+  "independence": {
+    "actual_identity": "/root/qcb_boundary_repair_review is the actual separately dispatched review task; it authored neither this candidate nor the original item.",
+    "repair_author": "/root",
+    "original_author": "native-sp-author",
+    "distinct_from_repair_author": true,
+    "exposure": "The parent specified the suspected normalization/circuit boundary and requested critical review. The complete candidate and the historical original, including historical review metadata, were visible. This is an independent reconstruction and exact-candidate review, not a source-blind or verdict-blind experiment. Historical accept verdicts were not used as mathematical evidence."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "707c3d1e73346e5b7db45aef51792362cdd94974cd01199fac9eff41413a842d",
+    "retrieval": "Loaded scripts/release.py checked() with UTF-8, bytecode disabled, and TEMP/TMP in workspace _review_tmp; selected the historical prepared native item by core_id from its returned native cohort. Did not substitute the current reader, which may withhold the predecessor.",
+    "hash_definition": "qcb_core.digest({k: original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}); original_item_digest is qcb_core.digest of that entire actual prepared historical item; repair_record_digest is qcb_core.digest of the entire parsed exact repair JSON, including exposition.",
+    "reasoning": "The original question assumes a finite real table and S > 0 and requests the unit norm identity plus the precise use of positivity. It does not assume pointwise nonnegativity or request circuit synthesis. The repaired proof answers both requests for signed entries without adding a hypothesis. Its circuit discussion identifies the limit of an existing supporting theorem rather than changing the question. Replacing the original rubric's compulsory circuit connection by a requirement not to overclaim signed circuit loading improves fitness to the actual question. The unchanged question, assumptions, conventions, family, split, graph version, node scope and source references remain the contract bound by this hash; three semantic steps remain three."
+  },
+  "substantive_reconstruction": {
+    "normalization": "Put S = sum_b f(b)^2. Every term is nonnegative, hence S >= 0 independently of the signs of f. Finite distributivity gives sum_b (f(b)/sqrt(S))^2 = (sum_b f(b)^2)/(sqrt(S))^2 = S/(sqrt(S))^2. The nonnegative square-root identity gives (sqrt(S))^2 = S. The positive assumption ensures S != 0 and therefore S/S = 1. Equivalently sqrt(S) > 0 makes each ordinary quotient defined. Positivity is not needed to infer individual entries are nonnegative, and that inference would be false.",
+    "zero_boundary": "If S = 0, each nonnegative square has to vanish, so f is the zero table. Every scalar multiple is still zero and cannot be a unit vector. In ordinary partial division the normalization quotients are undefined; in Lean's total real field the zero quotients and their finite sum equal zero. The repaired answer explicitly separates those conventions, fixing the original sentence that combined undefined division with a numerical zero result.",
+    "circuit_boundary": "normalized_sum_sq has only positive norm as its logical premise. prepareCircuit_firstColumn additionally binds nonneg : forall b, 0 <= f b. The zero-qubit table consists of one real entry. Choosing -1 gives S=1 and normalized entry -1, whereas prepareCircuit 0 f is [] and its evaluated matrix is the identity with sole entry +1. These are unequal as exact first columns, even though they represent the same physical ray if global phase is quotiented. The source theorem and candidate compare exact amplitudes, so the counterexample correctly blocks transferring that exact theorem to all signed tables. No claim is made that signed loading is generally impossible or that every positive-qubit case fails."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Correct and complete. It derives the finite identity, locates nonvanishing, handles S=0 with the two division conventions, and accurately confines the circuit assertion to the actual theorem hypotheses. The additional circuit example is relevant to the erroneous inherited connection and does not become a new required problem part.",
+    "rubric": {
+      "r1": "Correct common-denominator algebra.",
+      "r2": "Correctly distinguishes S >= 0 from entrywise signs.",
+      "r3": "Correctly assigns the load-bearing role of S > 0 to nonvanishing and cancellation.",
+      "r4": "Correctly keeps credit tied to the norm identity; expressly permits a full-credit proof without circuit discussion. Its optional zero-case convention distinction and prohibition on unsupported circuit loading are mathematically appropriate."
+    },
+    "exposition": "All three semantic steps were inspected. They retain the original denominator-factorization, square-root and cancellation progression and original graph scope. The third step now explicitly preserves the separate nonnegative-entry premise of the supporting first-column theorem. The normSq node identifies the finite sum; distributivity is the mathematical calculation, not a claimed new theorem proved by that definition.",
+    "necessity_and_minimality": "The predecessor's normalization algebra was sound, but its zero-division prose and unrestricted compiled-column connection were unsound under arbitrary real entries. The successor corrects those exact boundaries and removes a rubric demand not justified by the question. No mathematical contract change is necessary."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa",
+      "anchor": "normSq and normSq_nonneg; prepareCircuit 224-230, including the empty zero-qubit case; prepareCircuit_firstColumn 275-308, including both nonneg and positive binders and its base case; normalized_sum_sq 311-317, including div_pow, finite sum division, Real.sq_sqrt and div_self. Exact relevant source definitions and full proofs were read."
+    }
+  ],
+  "provenance": {
+    "procedure": "Read repository AGENTS.md, complete HARNESS.md, theorem-publication protocol, substantive-worker skill and its required proof-digestion/evidence-memory protocols. Read full original prepared item, full exact repair JSON and relevant Lean source. Reconstructed the mathematics independently and computed exact bindings with repository helpers.",
+    "new_kernel_execution": false,
+    "formal_status": "Source inspection and mathematical derivation only; release.checked() also validates historical release/evidence bindings, but no historical record is promoted to a newly executed proof.",
+    "no_extra_agents_or_external_messages": true,
+    "mutation_scope": "Only this review and the separately requested sp-011 review are authored; original and candidate records are untouched."
+  }
+}

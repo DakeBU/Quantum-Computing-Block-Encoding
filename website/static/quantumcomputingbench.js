@@ -1,7 +1,17 @@
 /* Progressive enhancement: all exercise links work without JavaScript. */
 (() => {
   "use strict";
+  function revealFormalCompanion() {
+    if (location.hash !== "#lean") return;
+    const panel = document.getElementById("lean");
+    if (panel instanceof HTMLDetailsElement) {
+      panel.open = true;
+      panel.scrollIntoView({ block: "start" });
+    }
+  }
   function start() {
+    revealFormalCompanion();
+    window.addEventListener("hashchange", revealFormalCompanion);
     const controls = document.querySelector("[data-qcb-controls]");
     if (!controls) return;
     const query = controls.querySelector("[data-qcb-query]");
