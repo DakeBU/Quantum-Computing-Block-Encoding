@@ -195,6 +195,7 @@ if ($env:CI -eq "true") {
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
   & $PythonCommand website/scripts/test_quantumcomputingbench_browser.py --root _site
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+  Copy-Item _out/qcb-browser/browser-report.json _site/data/quantumcomputingbench/browser-report.json
   Copy-Item _out/research-browser/browser-report.json _site/data/research/browser-report.json
 }
 & $PythonCommand website/scripts/check_source_links.py --root _site

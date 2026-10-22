@@ -13,11 +13,11 @@ from qcb_curriculum import load_catalog, summary, validate_proposals
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["validate", "export", "stable-check"])
+    parser.add_argument("command", choices=["validate", "export", "export-reader", "stable-check"])
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     try:
-        catalog, _, graph = load_catalog()
+        catalog, items, graph = load_catalog()
         proposals = [read_json(path) for track in ["non-lean", "lean"]
                      for path in sorted((B / "tracks" / track / "proposals").glob("*.json"))]
         for proposal in proposals:
@@ -25,10 +25,15 @@ def main():
                 raise ValueError("proposal uses an unknown graph/source identity")
         validate_proposals(catalog, proposals)
         result = summary(catalog)
-        if args.command == "export":
+        if args.command in {"export", "export-reader"}:
             if not args.output:
                 raise ValueError("--output is required; generated exports do not replace frozen source data")
-            write_json(args.output, catalog)
+            value = catalog if args.command == "export" else {
+                "schema_version": "qcb.current_reader_export.v1", "stable": False,
+                "catalog_hash": catalog["catalog_hash"], "reader_decisions": catalog["reader_decisions"],
+                "use": "Open reader views, not a newly validated stable training/scoring release.",
+                "items": list(items.values())}
+            write_json(args.output, value)
         print(json.dumps(result, indent=2))
         if args.command == "stable-check" and not result["stable_readiness"]["stable"]:
             return 2

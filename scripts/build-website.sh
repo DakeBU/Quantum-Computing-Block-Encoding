@@ -98,6 +98,7 @@ if [[ "${CI:-}" == "true" ]]; then
   python3 website/scripts/test_research_browser.py --root _site --require-blueprint
   python3 website/scripts/test_math_browser.py --root _site --report _out/research-browser/math-browser-report.json
   python3 website/scripts/test_quantumcomputingbench_browser.py --root _site
+  cp _out/qcb-browser/browser-report.json _site/data/quantumcomputingbench/browser-report.json
   cp _out/research-browser/browser-report.json _site/data/research/browser-report.json
 fi
 python3 website/scripts/check_source_links.py --root _site

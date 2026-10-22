@@ -7,6 +7,14 @@ Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
 
+**Current textbook correction:** a fresh State Preparation review found an
+input/output bond-index defect in the historical `qcb-core-sp-002` answer.
+[Current policy](shared/current-policy.json) withholds that exact predecessor
+and admits only a separately reviewed additive answer/rubric successor. Frozen
+preview assets remain historical, not automatically current gold. Their native
+scoring/repackaging entry fails closed until a separately versioned data release
+is prepared. The current reader export preserves the original core and split.
+
 ## Hierarchical exercise book
 
 The website reader organizes the retained native cores into five parts:
@@ -29,6 +37,7 @@ the preview as stable. Inspect the remaining acceptance gates with:
 ```sh
 python benchmarks/quantumcomputingbench/scripts/curriculum.py validate
 python benchmarks/quantumcomputingbench/scripts/curriculum.py export --output _out/qcb-cores.json
+python benchmarks/quantumcomputingbench/scripts/curriculum.py export-reader --output _out/qcb-reader.json
 python benchmarks/quantumcomputingbench/scripts/curriculum.py stable-check
 ```
 
@@ -76,8 +85,10 @@ python -m unittest discover -s benchmarks/quantumcomputingbench/tests -v
 python benchmarks/quantumcomputingbench/scripts/release.py validate
 ```
 
-The current entry validates both cohorts, current withdrawal policy, source/review
-bindings and canonical paths. Package the committed clean checkout with:
+The entry validates the historical preview, source/review bindings and canonical
+paths, and separately reports current reader decisions. The historical packaging
+command below now fails closed while a withdrawn predecessor differs from the
+reader; do not overwrite the existing tag or bypass this guard:
 
 ```bash
 python benchmarks/quantumcomputingbench/scripts/release.py build

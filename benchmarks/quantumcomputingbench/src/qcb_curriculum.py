@@ -11,18 +11,28 @@ B = Path(__file__).resolve().parents[1]
 R = B.parents[1]
 sys.path.insert(0, str(B / "scripts"))
 from qcb_core import digest, read_json
+from qcb_integrity import text_sha
+from qcb_textbook_policy import apply_current_reader_policy, CONTRACT_FIELDS, check_source_bindings
 import release as preview
 
 
 def core_contract(item):
-    return {key: item[key] for key in (
-        "question", "assumptions", "conventions", "family", "split",
-        "graph_version", "target_nodes", "supporting_nodes", "source_refs",
-    )}
+    return {key: item[key] for key in CONTRACT_FIELDS}
+
+
+def reader_source_digest():
+    paths = ("website/scripts/quantumcomputingbench.py", "website/static/quantumcomputingbench.css",
+             "website/static/quantumcomputingbench.js", "website/scripts/test_quantumcomputingbench_browser.py",
+             "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+             "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+             "benchmarks/quantumcomputingbench/shared/current-policy.json",
+             "benchmarks/quantumcomputingbench/shared/curriculum.json")
+    return digest({path: text_sha(R / path) for path in paths})
 
 
 def load_catalog():
     snapshot, all_items, native, legacy = preview.checked()
+    native, reader_decisions = apply_current_reader_policy(native)
     config = read_json(B / "shared/curriculum.json")
     topics = {topic: part for part in config["parts"] for topic in part["topics"]}
     if sum(len(p["topics"]) for p in config["parts"]) != len(topics):
@@ -45,6 +55,9 @@ def load_catalog():
             "supporting_nodes": item["supporting_nodes"], "evidence_relation": item["evidence_relation"],
             "semantic_steps": item["semantic_step_count"],
             "source_record": "data/public/nl-v12/release.json",
+            "source_key": item.get("textbook_successor", {}).get("predecessor_key", item["key"]),
+            "answer_source_record": item.get("textbook_successor", {}).get("repair_record", "data/public/nl-v12/release.json"),
+            "textbook_successor": item.get("textbook_successor"),
             "views": {"non-lean": {"status": "admitted_under_current_overlay", "item_id": item["id"]}},
             "editorial_second_pass": "pending_content_bound_review",
         })
@@ -55,6 +68,8 @@ def load_catalog():
     catalog = {
         "schema_version": "qcb.shared_core_registry.v1", "version": config["version"],
         "publication_status": config["publication_status"], "snapshot_id": snapshot["snapshot_id"],
+        "graph_source_commit": snapshot["commit"],
+        "reader_decisions": reader_decisions,
         "parts": config["parts"], "cores": records,
         "core_count_policy": "One admitted core per mathematical target; views never increase this count.",
         "known_cross_cohort_aliases": admission["observed_cross_cohort_aliases"],
@@ -108,28 +123,39 @@ def validate_proposals(catalog, proposals):
 
 def stable_readiness(catalog):
     """Stable requires real second-pass records, not changing a version label."""
-    accepted, disputed = set(), set()
+    accepted = {c["core_id"] for c in catalog["cores"] if c.get("textbook_successor")}
+    disputed = set()
     by_id = {c["core_id"]: c for c in catalog["cores"]}
     for path in sorted((B / "reports/textbook-v1/reader-reviews").glob("*.json")):
         packet = read_json(path)
         if not packet.get("reviewer") or packet.get("method") != "independent-mathematical-reader-review":
             raise ValueError("invalid reader review provenance")
         for row in packet["items"]:
+            historical = any(d["core_id"] == row["core_id"] and d["predecessor_item_digest"] == row.get("item_digest")
+                             for d in catalog.get("reader_decisions", []))
+            if historical and row.get("verdict") in {"reject", "uncertain"}:
+                continue  # exact predecessor finding remains history, never successor approval
             if row["core_id"] not in by_id or row.get("item_digest") != by_id[row["core_id"]]["item_digest"]:
                 raise ValueError("reader review does not bind current mathematical content")
             if packet["reviewer"] == by_id[row["core_id"]]["author_identity"]:
                 raise ValueError("authors cannot self-certify an independent review")
             if not row.get("reasoning") or not row.get("source_checks"):
                 raise ValueError("review verdicts require substantive reasoning and source checks")
+            check_source_bindings(row["source_checks"])
             if row.get("verdict") == "accept" and row.get("semantic_core_verdict") == "distinct_or_explicit_alias":
                 accepted.add(row["core_id"])
             else:
                 disputed.add(row["core_id"])
     accepted -= disputed
     missing = sorted({c["core_id"] for c in catalog["cores"]} - accepted)
-    browser_path = B / "reports/textbook-v1/browser-report.json"
+    browser_path = R / "_out/qcb-browser/browser-report.json"
+    if not browser_path.is_file():
+        browser_path = B / "reports/textbook-v1/browser-report.json"
     browser = read_json(browser_path) if browser_path.is_file() else {}
-    browser_ok = browser.get("catalog_hash") == catalog["catalog_hash"] and all(
+    browser_ok = (browser.get("catalog_hash") == catalog["catalog_hash"]
+                  and browser.get("reader_source_digest") == reader_source_digest()
+                  and browser.get("failures") == []
+                  and browser.get("all_core_mobile_checks") == len(catalog["cores"])) and all(
         browser.get("checks", {}).get(key) is True for key in (
             "mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure",
             "graph_links", "search_excludes_answers"))

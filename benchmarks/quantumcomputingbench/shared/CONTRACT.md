@@ -25,6 +25,11 @@ remain where they are; reader pages resolve their exact admitted source records.
 6. Proposed aliases, external collaborator acknowledgment and reviewer identities
    must describe real decisions/actions. Their existence is not inferred from a
    file, a shared target node or a successful script.
+7. Retained cores bind their frozen benchmark graph snapshot, not an unversioned
+   live website. New library nodes require a separately generated/reviewed snapshot
+   before proposal admission. Do not patch a frozen snapshot or silently mix node
+   identities/source hashes across graph versions. Submit the refresh request and
+   source evidence with your candidate if the current registry lacks its anchor.
 
 ## Concurrent collaborators
 

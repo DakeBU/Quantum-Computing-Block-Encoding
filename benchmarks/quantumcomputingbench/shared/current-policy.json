@@ -1,0 +1,14 @@
+{
+  "schema_version": "qcb.textbook_current_policy.v1",
+  "policy": "Frozen historical releases are unchanged. Withhold exact rejected predecessor answers; admit an additive answer/rubric successor only after a distinct content-bound review. No new core or split is created.",
+  "answer_successors": [
+    {
+      "core_id": "qcb-core-sp-002",
+      "predecessor_key": "qcb-core-sp-002",
+      "predecessor_item_digest": "7f1b2a1988e00771f6ae01653a655d04982f664f22fab24482075424eb8cbed5",
+      "reason": "The original answer conflates the free output-bond label with the summed input-bond index. step_apply requires distinct b and a labels. Completion columns are irrelevant to the clean-input action, not arbitrary under unitarity.",
+      "repair": "shared/repairs/sp-002-index-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-002-index-repair-review.json"
+    }
+  ]
+}

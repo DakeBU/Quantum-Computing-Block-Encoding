@@ -18,7 +18,7 @@ B = ROOT / "benchmarks/quantumcomputingbench"
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(B / "src"))
 from qcb_core import digest, read_json, write_json
-from qcb_curriculum import load_catalog, stable_readiness
+from qcb_curriculum import load_catalog, stable_readiness, reader_source_digest
 from qcb_integrity import text_sha
 
 HUB = "quantumcomputingbench/"
@@ -50,10 +50,7 @@ def disclosure(title, content, anchor):
 
 
 def reader_sources():
-    paths = [Path(__file__), ROOT / "website/static/quantumcomputingbench.css",
-             ROOT / "website/static/quantumcomputingbench.js", B / "src/qcb_curriculum.py",
-             B / "shared/curriculum.json"]
-    return digest({p.relative_to(ROOT).as_posix(): text_sha(p) for p in paths})
+    return reader_source_digest()
 
 
 def formal_warmups():
@@ -110,20 +107,23 @@ def core_body(core, item, catalog, graph, live_ids, prefix):
     part = next(p for p in catalog["parts"] if p["id"] == core["part"])
     parent = prefix + HUB + "non-lean/" + part["id"] + "/" + core["topic"] + "/index.html"
     body = '<article class="qcb-reader"><p class="qcb-breadcrumb"><a href="' + esc(parent) + '">' + esc(part["title"]) + ' / ' + esc(title_of(core["topic"])) + '</a></p>'
-    body += '<p class="eyebrow">' + esc(core["core_id"]) + '</p><h1>' + esc(core["title"]) + '</h1>'
+    body += '<p class="eyebrow">' + esc(title_of(core["topic"])) + '</p><h1>Exercise ' + esc(core["core_id"].removeprefix("qcb-core-").upper()) + '</h1>'
     body += '<p class="qcb-meta">' + esc(item["difficulty"]["level"]) + ' · ' + esc(item["task_kind"]) + ' · ' + esc(core["split"]) + '</p>'
-    body += '<p class="qcb-boundary">' + esc(core["evidence_relation"].replace("_", " ")) + '. Inherited content-bound reviews; textbook second pass pending. No new Lean verification is claimed for this NL view.</p>'
+    review_status = 'Additive answer successor with distinct content-bound review; historical rejected answer retained only for audit.' if core.get("textbook_successor") else 'Inherited content-bound reviews; consult the current textbook review ledger for second-pass status.'
+    body += '<p class="qcb-boundary">' + esc(core["evidence_relation"].replace("_", " ")) + '. ' + review_status + ' No new Lean verification is claimed for this NL view.</p>'
     premises = '<ul>' + "".join('<li>' + esc(s) + '</li>' for s in item["assumptions"] + item["conventions"]) + '</ul>'
     body += section("Assumptions and conventions", premises, "assumptions")
     body += section("Question", prose(item["question"]), "question")
     roadmap = '<ol>' + "".join('<li>' + esc(s["claim"]) + '</li>' for s in item["semantic_steps"]) + '</ol>'
-    body += disclosure("Hint: mathematical route", roadmap, "hint")
+    body += disclosure("Hint: mathematical route", prose(core["title"]) + roadmap, "hint")
     body += disclosure("Reference solution", prose(item["reference_answer"]), "solution")
     rubric = '<ol>' + "".join('<li>' + esc(r["criterion"]) + ' <small>(' + esc(r["weight"]) + ' weight)</small></li>' for r in item["rubric"]) + '</ol>'
     body += disclosure("Assessment rubric", rubric, "rubric")
     body += section("Graph-grounded prerequisites", '<p>These are support/source anchors, not an automatically extracted theorem-dependency proof.</p><ul>' + "".join('<li>' + graph_link(n, prefix, graph, live_ids) + '</li>' for n in dict.fromkeys(core["target_nodes"] + core["supporting_nodes"])) + '</ul><p><a href="' + prefix + 'data/quantumcomputingbench/cores.json">Download the shared core registry</a></p>', "graph")
     body += disclosure("Lean view and evidence boundary", '<p>No aligned Lean view has been admitted for this native core in this textbook checkpoint. This is not a claim that the underlying mathematics lacks a formal proof. Contributions must preserve this exact target contract and split.</p><p><a href="' + prefix + HUB + 'lean/index.html">Read the Lean track and existing diagnostic warmups</a></p>', "lean")
     body += disclosure("Sources and provenance", source_list(item) + '<p>Contract: <code>' + esc(core["contract_hash"]) + '</code></p><p>Item digest: <code>' + esc(core["item_digest"]) + '</code></p><p>Graph snapshot: <code>' + esc(core["snapshot_id"]) + '</code></p><p>Authored support steps: ' + str(core["semantic_steps"]) + '. This is not measured graph distance or model difficulty.</p>', "sources")
+    if core.get("textbook_successor"):
+        body += disclosure("Answer revision lineage", prose(json.dumps(core["textbook_successor"], indent=2)), "revision")
     return body + '</article>'
 
 
@@ -131,7 +131,9 @@ def exercise_cards(cores, prefix, items):
     content = '<div class="qcb-grid">'
     for c in cores:
         href = prefix + HUB + "cores/" + c["core_id"] + "/index.html"
-        content += '<article class="qcb-card" data-qcb-card data-qcb-search="' + esc(c["core_id"] + ' ' + c["title"] + ' ' + c["topic"] + ' ' + c["evidence_relation"] + ' ' + items[c["core_id"]]["question"]) + '"><p class="qcb-meta">' + esc(c["core_id"]) + ' · ' + esc(c["split"]) + '</p><h3><a href="' + esc(href) + '">' + esc(c["title"]) + '</a></h3><p>' + esc(c["evidence_relation"].replace("_", " ")) + '</p></article>'
+        question = items[c["core_id"]]["question"]
+        preview = question if len(question) <= 220 else question[:220] + "…"
+        content += '<article class="qcb-card" data-qcb-card data-qcb-search="' + esc(c["core_id"] + ' ' + c["topic"] + ' ' + c["evidence_relation"] + ' ' + question) + '"><p class="qcb-meta">' + esc(c["split"]) + ' · ' + esc(items[c["core_id"]]["task_kind"]) + '</p><h3><a href="' + esc(href) + '">Exercise ' + esc(c["core_id"].removeprefix("qcb-core-").upper()) + '</a></h3>' + prose(preview) + '<p>' + esc(c["evidence_relation"].replace("_", " ")) + '</p></article>'
     return content + '</div>'
 
 
@@ -153,6 +155,8 @@ def publish(root):
     live_ids = {n["id"] for n in read_json(graph_path)["nodes"]}
     data_dir = root / "data/quantumcomputingbench"
     write_json(data_dir / "cores.json", catalog)
+    write_json(data_dir / "reader-items.json", {"schema_version": "qcb.current_reader_export.v1", "stable": False,
+        "catalog_hash": catalog["catalog_hash"], "use": "Open reader views; not a stable training/scoring release.", "items": list(items.values())})
     for name in ("quantumcomputingbench.css", "quantumcomputingbench.js"):
         shutil.copyfile(ROOT / "website/static" / name, root / "static" / name)
     entries, routes = [], []
@@ -197,7 +201,8 @@ def publish(root):
                 body += filters() + exercise_cards(rows, "../../../../", items)
                 write(HUB + track + "/" + part["id"] + "/" + topic + "/", title_of(topic) + " · " + track, body + '</div>', "Graph-grounded " + title_of(topic) + " questions; shared targets for both reader paths.")
     for core in catalog["cores"]:
-        write(HUB + "cores/" + core["core_id"] + "/", core["title"], core_body(core, items[core["core_id"]], catalog, graph, live_ids, "../../../"), items[core["core_id"]]["question"])
+        title = title_of(core["topic"]) + " · Exercise " + core["core_id"].removeprefix("qcb-core-").upper()
+        write(HUB + "cores/" + core["core_id"] + "/", title, core_body(core, items[core["core_id"]], catalog, graph, live_ids, "../../../"), items[core["core_id"]]["question"])
     body = intro("Three reference warmups", "Small API applications, not deep proof synthesis. A distinct semantic review checked exact definitions, angle conventions and assumptions; inherited fixed-reference elaboration is separate from this review. The review is not a strictly source-blind decoder certificate.")
     for i, (item, review) in enumerate(formal_warmups(), 1):
         formal = item["formal"]
@@ -214,6 +219,7 @@ def publish(root):
     body = intro("Evidence and release readiness", "An inspectable textbook is not automatically a fully validated benchmark. These are the current acceptance boundaries, not claimed completions.")
     body += '<pre><code>' + esc(json.dumps(stable_readiness(catalog), indent=2)) + '</code></pre>'
     body += '<p>Four mathematically quarantined records and inherited provisional material are excluded from the normal reader. Historical releases and all source/review records are retained in the repository. Existing AI reviews are fallible, content-bound provenance, not newly invented expert approval. No model baseline or isolated arbitrary-Lean prediction evaluation is claimed.</p><p>The frozen benchmark graph is not the current whole-library inventory. Exact live node links are offered only when identities exist; planned/source-only anchors remain graph metadata. An import edge is not theorem entailment and a curated AND hyperedge is not a completed proof.</p>'
+    body += section("Additive answer decisions", '<pre><code>' + esc(json.dumps(catalog["reader_decisions"], indent=2)) + '</code></pre><p>The frozen preview contains the historical predecessor answer. Do not treat its bytes as current gold after a withdrawal. A corrected reader view needs its own content-bound review and does not create a new mathematical core.</p><p><a href="../../data/quantumcomputingbench/reader-items.json">Download current open reader views (not a stable training release)</a></p>', "answer-decisions")
     write(HUB + "evidence/", "Evidence and release readiness", body + '</div>', "Current second-pass review, split/dedup, formal-view, isolation and publication boundaries.")
     home = root / "index.html"
     text = home.read_text(encoding="utf-8")

@@ -27,10 +27,11 @@ class CurriculumTests(unittest.TestCase):
                 **{k: c[k] for k in ("core_id", "contract_hash", "family", "split", "snapshot_id")}}
 
     def test_one_core_one_home_and_same_registry_for_both_tracks(self):
-        self.assertEqual(len(self.catalog["cores"]), 213)
-        self.assertEqual(len(self.items), 213)
+        expected = 213 - sum(r["status"] == "withheld_pending_distinct_repair_review" for r in self.catalog["reader_decisions"])
+        self.assertEqual(len(self.catalog["cores"]), expected)
+        self.assertEqual(len(self.items), expected)
         self.assertEqual(len(self.catalog["parts"]), 5)
-        self.assertEqual(len({c["core_id"] for c in self.catalog["cores"]}), 213)
+        self.assertEqual(len({c["core_id"] for c in self.catalog["cores"]}), expected)
         self.assertEqual(set(c["topic"] for c in self.catalog["cores"]),
                          {t for p in self.catalog["parts"] for t in p["topics"]})
         self.assertTrue(all(c["views"].keys() == {"non-lean"} for c in self.catalog["cores"]))
@@ -66,23 +67,25 @@ class CurriculumTests(unittest.TestCase):
         c["version"] = "v1.0.0"
         result = shared.stable_readiness(c)
         self.assertFalse(result["stable"])
-        self.assertEqual(result["content_bound_second_pass_reviews"], 0)
+        self.assertGreaterEqual(result["content_bound_second_pass_reviews"], 4)
         self.assertFalse(result["gates"]["cross_cohort_semantic_reconciliation"])
 
     def test_stale_self_and_conflicting_reviews_fail_closed(self):
         core = self.catalog["cores"][0]
         packet = {"reviewer": "independent-test-reader", "method": "independent-mathematical-reader-review", "items": [{
             "core_id": core["core_id"], "item_digest": core["item_digest"], "verdict": "accept",
-            "semantic_core_verdict": "distinct_or_explicit_alias", "reasoning": "Test fixture only.", "source_checks": ["test"]}]}
+            "semantic_core_verdict": "distinct_or_explicit_alias", "reasoning": "Test fixture only.",
+            "source_checks": [{"file": "QuantumBlockEncoding/StatePreparation.lean", "sha256_lf": reader.text_sha(reader.ROOT / "QuantumBlockEncoding/StatePreparation.lean")}]}]}
         with tempfile.TemporaryDirectory() as tmp, patch.object(shared, "B", Path(tmp)):
+            baseline = sum(bool(c.get("textbook_successor")) for c in self.catalog["cores"])
             path = Path(tmp) / "reports/textbook-v1/reader-reviews/a.json"
             write_json(path, packet)
-            self.assertEqual(shared.stable_readiness(self.catalog)["content_bound_second_pass_reviews"], 1)
+            self.assertEqual(shared.stable_readiness(self.catalog)["content_bound_second_pass_reviews"], baseline + 1)
             rejected = deepcopy(packet)
             rejected["reviewer"] = "other-test-reader"
             rejected["items"][0]["verdict"] = "uncertain"
             write_json(path.with_name("b.json"), rejected)
-            self.assertEqual(shared.stable_readiness(self.catalog)["content_bound_second_pass_reviews"], 0)
+            self.assertEqual(shared.stable_readiness(self.catalog)["content_bound_second_pass_reviews"], baseline)
             packet["reviewer"] = core["author_identity"]
             write_json(path, packet)
             with self.assertRaisesRegex(ValueError, "self-certify"):
@@ -103,6 +106,10 @@ class CurriculumTests(unittest.TestCase):
         self.assertNotIn(' open', body)
         self.assertLess(body.index('id="assumptions"'), body.index('id="question"'))
         self.assertIn("No aligned Lean view has been admitted", body)
+        self.assertNotIn(reader.esc(c["title"]), body.split('id="hint"')[0])
+        cards = reader.exercise_cards([c], "../../../", self.items)
+        self.assertNotIn(reader.esc(c["title"]), cards)
+        self.assertNotIn(reader.esc(i["reference_answer"]), cards)
 
     def test_html_and_source_url_injection_are_not_executable(self):
         self.assertNotIn("<script>", reader.prose('<script>alert(1)</script>'))
@@ -117,6 +124,22 @@ class CurriculumTests(unittest.TestCase):
         self.assertEqual(len(warmups), 3)
         self.assertTrue(all(r["verdict"] == "accept" for _, r in warmups))
         self.assertTrue(all(i["formal"]["target"] == r["formal_target"] for i, r in warmups))
+
+    def test_repaired_answer_keeps_core_contract_and_split_without_old_acceptance_transfer(self):
+        from qcb_textbook_policy import apply_current_reader_policy, frozen_native_is_current
+        _, _, originals, _ = shared.preview.checked()
+        current, decisions = apply_current_reader_policy(originals)
+        old = next(i for i in originals if i["core_id"] == "qcb-core-sp-002")
+        successor = next((i for i in current if i["core_id"] == old["core_id"]), None)
+        self.assertFalse(frozen_native_is_current(originals))
+        if successor is not None:
+            self.assertEqual(shared.core_contract(old), shared.core_contract(successor))
+            self.assertNotEqual(old["id"], successor["id"])
+            self.assertNotEqual(old["reference_answer"], successor["reference_answer"])
+            self.assertEqual(successor["reviews"][0]["method"], "independent-answer-successor-review")
+            self.assertIn("inherited_predecessor_reviews", successor)
+        else:
+            self.assertEqual(decisions[0]["status"], "withheld_pending_distinct_repair_review")
 
     def test_bench_navigation_does_not_replace_the_four_existing_textbooks(self):
         from qcb_core import read_json

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate, package, or score the current public preview. No model/Lean execution."""
+"""Audit the frozen preview; refuse obsolete native scoring/packaging after repairs."""
 from __future__ import annotations
 
 import argparse
@@ -41,7 +41,7 @@ def checked():
             raise ValueError("integration quarantine binding changed: " + row["key"])
     excluded = {row["key"] for row in admission["quarantined"]}
     native = [i for i in native if i["key"] not in excluded]
-    check_current_gold(native)
+    check_current_gold(native, frozen_preview_audit=True)
     legacy = checked_release(LEGACY_VERSION)
     if len({i["core_id"] for i in native}) != len(native):
         raise ValueError("duplicate native core ID")
@@ -184,6 +184,14 @@ def main():
         snapshot, items, native, legacy = checked()
         commit = subprocess.check_output(["git", "-C", str(R), "rev-parse", "HEAD"], text=True).strip()
         manifest = release_manifest(snapshot, items, native, legacy, commit)
+        from qcb_textbook_policy import apply_current_reader_policy, frozen_native_is_current
+        current_reader, reader_decisions = apply_current_reader_policy(native)
+        manifest["textbook_current_reader"] = {"native_core_ids": len(current_reader),
+            "answer_decisions": reader_decisions,
+            "frozen_preview_is_current_gold": frozen_native_is_current(native),
+            "policy": "Published preview bytes remain historical; changed reader answers require a separately versioned future data release."}
+        if (args.command == "build" or args.command == "score" and args.cohort == "native") and not frozen_native_is_current(native):
+            raise ValueError("historical preview contains a withdrawn predecessor answer; do not repackage or score it as current gold. Inspect shared/current-policy.json and the reviewed textbook successor; a new data release is pending")
         if args.command == "score":
             if not args.predictions:
                 raise ValueError("--predictions is required")

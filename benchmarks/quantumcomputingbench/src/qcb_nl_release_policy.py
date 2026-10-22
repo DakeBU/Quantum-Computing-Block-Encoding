@@ -18,11 +18,16 @@ WITHDRAWN_KEYS = {
     'qcb-core-plan-002-partial-transpose-negativity-converse-boundary': 'integration quarantine: trivial-factor dimension counterexample',
     'qcb-core-plan-006-trace-norm-unitary-variational': 'integration quarantine: scalar counterexample and norm-bound argument',
     'qcb-core-plan-303-external-product-irrep': 'integration quarantine: wrong second tensor representation',
+    'qcb-core-sp-002': 'textbook second pass: free output bond index conflated with summed input bond index; use the separately reviewed answer successor',
 }
 
 
-def check_current_gold(items):
+def check_current_gold(items, *, frozen_preview_audit=False):
     withdrawn = sorted({i.get('key') for i in items} & WITHDRAWN_KEYS.keys())
+    if frozen_preview_audit:
+        # Only reproduce the published historical preview for audit. Its CLI
+        # separately refuses current native scoring/repackaging after a repair.
+        withdrawn = [key for key in withdrawn if key != 'qcb-core-sp-002']
     if withdrawn:
         raise ValueError('withdrawn historical native gold: ' + ', '.join(withdrawn)
                          + '; use scripts/release.py for the current admission overlay; old files are audit-only')

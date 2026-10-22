@@ -45,6 +45,8 @@ def run(root, output, channel=None):
                     for n, route in enumerate(routes):
                         page.goto(base + route, wait_until="networkidle")
                         page.evaluate("theme => document.documentElement.dataset.theme = theme", theme)
+                        page.wait_for_function("Boolean(window.MathJax?.startup?.promise)", timeout=60000)
+                        page.evaluate("async () => { await MathJax.startup.promise; await MathJax.typesetPromise(); }")
                         if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
                             failures.append(f"overflow: {route} {width} {theme}")
                         if page.locator("mjx-merror").count():
@@ -89,6 +91,8 @@ def run(root, output, channel=None):
             browser.close()
         if not failures:
             checks = {key: True for key in checks}
+    except Exception as error:
+        failures.append(type(error).__name__ + ": " + str(error))
     finally:
         server.shutdown()
         server.server_close()
