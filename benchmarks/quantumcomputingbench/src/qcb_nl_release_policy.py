@@ -31,6 +31,13 @@ WITHDRAWN_KEYS = {
     'qcb-core-sp-119': 'textbook second pass: fixed-function versus order-indexed family ambiguity',
     'qcb-core-la-003': 'textbook second pass: raw coefficient syntax is not a ring under constructor operations',
     'qcb-core-la-013': 'textbook second pass: basis permutation must be explicitly wire-induced',
+    'qcb-core-la-112': 'textbook second pass: UpperPrefix does not set earlier diagonal entries to zero',
+    'qcb-core-la-119': 'textbook second pass: fixed-size example is not an asymptotic lower bound or optimal plane necessity',
+    'qcb-core-la-206': 'textbook second pass: literal equality-with-budgets wording conflicts with the proved upper bound',
+    'qcb-core-la-214': 'textbook second pass: a polynomial supplier example does not refute polynomial boundedness; use reviewed quantified repair',
+    'qcb-core-la-215': 'textbook second pass: nonnegative-y nonzero branch does not attain the full field budget; use reviewed branch repair',
+    'qcb-core-la-219': 'textbook second pass: correlated compiled guards do not establish an attainable loose-cap endpoint',
+    'qcb-core-la-220': 'textbook second pass: attained maximum bond differs from its upper bound for a single closed core',
     'qcb-core-plan-003-density-set-convexity': 'textbook second pass: topological boundary is not the extreme-point set',
     'qcb-core-be-003': 'textbook second pass: conflicting scalar target ranges in question and assumptions',
     'qcb-core-be-004': 'textbook second pass: adjoint uniqueness and deterministic auxiliary cleanup overclaims',
@@ -49,6 +56,8 @@ def check_current_gold(items, *, frozen_preview_audit=False):
             'qcb-core-sp-105', 'qcb-core-sp-107', 'qcb-core-sp-108', 'qcb-core-sp-111',
             'qcb-core-sp-113', 'qcb-core-sp-115', 'qcb-core-sp-117', 'qcb-core-sp-119',
             'qcb-core-la-003', 'qcb-core-la-013', 'qcb-core-plan-003-density-set-convexity',
+            'qcb-core-la-112', 'qcb-core-la-119', 'qcb-core-la-206', 'qcb-core-la-214',
+            'qcb-core-la-215', 'qcb-core-la-219', 'qcb-core-la-220',
             'qcb-core-be-003', 'qcb-core-be-004', 'qcb-core-be-008', 'qcb-core-be-009', 'qcb-core-be-012'}
         withdrawn = [key for key in withdrawn if key not in audit_only_keys]
     if withdrawn:

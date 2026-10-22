@@ -1,0 +1,69 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-la-214",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/la-214-uniform-supplier-bound-repair.json",
+  "repair_record_digest": "ce7d672987cfbd1a176bae4bd3bfeb8ae9da448b0ed80c73d7a5303761d98bb0",
+  "original_item_digest": "c676dd23f7a68be8627059eb6e12cfefe9910f62c9a635b3495675187dfae459",
+  "verdict": "accept",
+  "verdict_scope": "Correctness and unchanged-question fitness of the entire exact answer/rubric/exposition successor, not policy admission, a new kernel proof, stable release approval or a finite-bit runtime theorem.",
+  "independence": {
+    "actual_identity": "The actual separately dispatched /root/qcb_boundary_repair_review task, which authored neither this original record nor this root-authored candidate.",
+    "repair_author": "/root",
+    "original_author": "stored-cost-author-b2",
+    "distinct_from_repair_author": true,
+    "exposure": "Not blind. Parent requested this review and identified the broad supplier-quantifier/branch-count concerns; complete candidate, prepared original and historical review metadata were visible. The local definitions, explicit reconstruction and quantifier arguments below, not parent reasoning or prior verdicts, are the mathematical evidence. This task previously reviewed other stored-cost items, disclosed rather than presented as fresh blind exposure."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "3c12b9f9957ea94a3acad1bf31966d5130946caab2c7c21f01701c4091ee1803",
+    "retrieval": "Read the entire actual historical prepared original selected from scripts/release.checked()[2], including complete question/reference answer/rubric/assumptions/conventions/semantic steps/source references and historical metadata. Did not substitute the current-reader view.",
+    "hash_definition": "original_item_digest=qcb_core.digest(entire actual prepared predecessor); repair_record_digest=qcb_core.digest(entire parsed exact candidate, including exposition); contract_hash=qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}). Fields are question, assumptions, conventions, family, split, graph_version, target_nodes, supporting_nodes, source_refs.",
+    "reasoning": "The literal question challenges a fixed polynomial in N,M alone for any stored matrix materialization when supplier work is unrestricted/data-dependent, and asks for a precise counterexample and exact condition. This has the uniform interpretation: one dimensions-only polynomial must cover the admitted supplier/input class. The candidate explicitly fixes that quantifier rather than silently imposing constant-time suppliers. It retains all original premises, exact-real convention, dev split/family and graph/source scope; it neither changes the data domain nor adds a degree/time promise to the question. The aggregate necessary-and-sufficient condition and per-entry sufficient interface answer the requested exact condition more accurately than the predecessor. All three exposition steps stay inside original target/support nodes and keep the original step count."
+  },
+  "substantive_reconstruction": {
+    "counted_semantics": "Cost is a function from eight operation tags to nonnegative natural counts. A charged add increments field by one, including add(z,0); Run.pure has cost zero and Run.bind adds ledgers. collect at length k retains the sum of supplier ledgers and adds k*(2read+2write). Applying collect inside collect gives, for every op, C(op)=S(op)+(NM+N)s(op), with S(op)=sum_i sum_j cost(f(i,j),op) and s=2read+2write. The outer N copies store/project row references, so they remain even when M=0.",
+    "concrete_counterexample_and_quantifiers": "Define t_0=pure(0), t_(K+1)=t_K.bind(lambda z:add(z,0)). Induction gives value(t_K)=0 and cost(t_K)=K*tick(field); there are no other charged calls. At N=M=1 take the unique entry supplier constantly t_K. Thus its stored value is always the same 1-by-1 zero matrix, yet materialization has exactly K field operations and four reads plus four writes from (1+1)*s. For every proposed fixed polynomial p bounding field cost uniformly over all suppliers, its value p(1,1) is finite, so choose a natural K>p(1,1); the total field cost exceeds it. This is a family of concrete finite terminating counted computations, not an assertion that one finite computation has infinite cost. If the intended class consists of data-parameterized computations, one family taking unbounded K as input gives the same fixed-dimension obstruction. The argument does not require infinite loops, uncounted scalar arithmetic, growing dimensions or changed returned values.",
+    "exact_condition": "For any specified supplier/input class and any counter op, S(op)<=C(op) by nonnegativity. Hence existence of one polynomial upper bound uniform in that class for C implies such a bound for S. Conversely, if S(op)<=P_op(N,M) uniformly for a fixed polynomial P_op, then C(op)<=P_op(N,M)+(NM+N)s(op), again a polynomial. Eight tags are finite, so counterwise uniform polynomial bounds and a uniform polynomial total bound imply one another by finite summation/domination. The exact obstruction is absence of a uniform bound on aggregate counted supplier work, not nonconstancy of individual costs. A uniform per-entry bound B_op(N,M) with polynomial control gives S<=NM*B_op and is a useful sufficient interface; an uncontrolled external parameter B is only conditional, not dimensions-only complexity.",
+    "necessity_of_repair": "The predecessor's j-additions example has aggregate N*M*(M-1)/2, already a polynomial in dimensions. It does not defeat existence of some polynomial upper bound; different costs at equal dimensions can also lie below a single bound. Its unrestricted B claim omitted the need to control B in dimensions. The successor supplies the missing universal-over-suppliers quantifier and a witness for each proposed p, and states the exact aggregate condition instead of falsely calling a constant per-entry premise necessary.",
+    "empty_and_resource_boundaries": "If N=0, both S and NM+N vanish and materialization costs zero. If M=0 with N>0, no entry supplier is called, S=0, but the N row-reference surcharge remains. Thus positive dimensions in the counterexample are essential and supplied. No rank, matrix norm, nonzero entry or state-normalization promise is needed. The charged primitive loop is a valid construction within the source model, not an asserted existing named Lean theorem. Proof checking, counter/loop bookkeeping and finite-bit representations are outside the declared model."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full: the fixed 1-by-1 arbitrary-K example is concrete and defeats every uniform dimensions-only polynomial, the exact identity has correct surcharge, the aggregate iff follows from nonnegative costs, and the B qualification is explicit. The optional single-family wording is sound with its stated unbounded data parameter. The old example's failure is accurately explained without denying that particular bounded supplier classes may have valid polynomial costs.",
+    "rubric": {
+      "c1": "Correct: demands genuine unbounded fixed-positive-dimension work or an equally rigorous universal-poly refutation, not merely varying polynomial costs.",
+      "c2": "Correct: isolates S from storage and makes exact field cost K checkable; storage never introduces a field charge.",
+      "c3": "Correct: asks for the necessary-and-sufficient aggregate condition, a sufficient polynomial per-entry interface and resource-tier restraint. It no longer mistakes an uncontrolled B for a dimension polynomial."
+    },
+    "exposition": "The summary and all three exact semantic claims were read. Step1 states the literal cost identity; step2 supplies the arbitrary-K counterexample as NL reasoning grounded in materialize/Run semantics; step3 gives the aggregate iff and sufficient interface grounded in the identity. All are mathematically correct, preserve three steps, and use only original allowed nodes. No local theorem is falsely said to contain the arbitrary-K construction.",
+    "necessity_and_minimality": "A necessary answer/rubric/exposition correction rather than question repair. It preserves correct storage accounting and source boundary while replacing the invalid counterexample and quantifier conclusion. Added explanation is directly needed to answer the original 'exact condition'; it does not broaden the question or assert new formal closure.",
+    "remaining_limits": "This review does not determine an optimal polynomial for any particular supplier class, certify every callback's cost, or admit the candidate into current policy. Historical dataset and predecessor reviews remain untouched."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/StoredGivens.lean",
+      "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+      "anchor": "Complete module read. Op/Cost/tick21-27; Run and pure/bind29-41; charge and charged add43-45; collect60-64 and complete collect_cost83-85; materialize boundary comment and definition75-78; full materialize_cost369-375. These bodies/proofs evidence exact additive supplier-plus-storage semantics. The arbitrary-K loop and aggregate iff are independently derived NL arguments, not attributed to a nonexistent source theorem."
+    }
+  ],
+  "provenance": {
+    "source_inspection": "Complete exact candidate JSON and complete prepared original read; complete StoredGivens module, including definitions and proofs, read afresh. Exact source anchors below identify the operative semantics.",
+    "instructions_refreshed": [
+      "AGENTS.md",
+      "HARNESS.md",
+      "docs/theorem-publication-protocol.md",
+      ".agents/skills/qbe-substantive-worker/SKILL.md",
+      "docs/proof-digestion-protocol.md",
+      "docs/evidence-routed-memory-protocol.md",
+      "benchmarks/quantumcomputingbench/shared/CONTRACT.md",
+      "benchmarks/quantumcomputingbench/shared/ACCEPTANCE.md"
+    ],
+    "observed_head": "e9bd65f737959662d7acd882b518a59692a77fea",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "formal_status": "Independent mathematical/source review only; no fresh branch-count, arbitrary-loop or resource kernel theorem is claimed. Existing theorem text is inspected, not rerun.",
+    "verification": "Whole JSON/contract bindings use qcb_core.digest; source hashes use qcb_integrity.text_sha (CRLF-to-LF normalization). Predecessor acceptance is not transferred to changed content.",
+    "mutation_scope": "Only the two specifically requested parent-workspace temporary successor-review outputs are authored in this pass. No candidate, production source, policy, frozen record, prior report, history/main/PR100, commit or push is changed. No extra agent."
+  }
+}

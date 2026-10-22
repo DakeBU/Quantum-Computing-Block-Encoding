@@ -59,6 +59,40 @@
         "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
         "finding_digest": "fef4bb8b3a59dd636393f754ffefc5910f00f35717d54593d9bc8eeac3846eab"
       }
+    },
+    {
+      "core_id": "qcb-core-la-214",
+      "predecessor_key": "qcb-core-la-214",
+      "predecessor_item_digest": "c676dd23f7a68be8627059eb6e12cfefe9910f62c9a635b3495675187dfae459",
+      "reason": "The j-cost supplier example is itself polynomial and cannot refute every dimensions-only polynomial bound; the unrestricted supplier quantifier needs a valid counterexample.",
+      "repair": "shared/repairs/la-214-uniform-supplier-bound-repair.json",
+      "review": "reports/textbook-v1/repairs/la-214-uniform-supplier-bound-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-214",
+        "predecessor_key": "qcb-core-la-214",
+        "predecessor_item_digest": "c676dd23f7a68be8627059eb6e12cfefe9910f62c9a635b3495675187dfae459",
+        "reason": "The j-cost supplier example is itself polynomial and cannot refute every dimensions-only polynomial bound; the unrestricted supplier quantifier needs a valid counterexample.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+        "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+        "finding_digest": "e6886887a76e5aeae9136891a0175d2af15bed85ec424b424de56ce1527a3bd5"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-215",
+      "predecessor_key": "qcb-core-la-215",
+      "predecessor_item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+      "reason": "Nonzero inputs with nonnegative y skip the charged sign subtraction; the full budget is attained only on the negative-y branch, not every nonzero branch.",
+      "repair": "shared/repairs/la-215-branch-cost-repair.json",
+      "review": "reports/textbook-v1/repairs/la-215-branch-cost-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-215",
+        "predecessor_key": "qcb-core-la-215",
+        "predecessor_item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+        "reason": "Nonzero inputs with nonnegative y skip the charged sign subtraction; the full budget is attained only on the negative-y branch, not every nonzero branch.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+        "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+        "finding_digest": "86aaacd8f8d5951d95b7ec66e8245301c0bc9136397b15d46d15a006ab94bb31"
+      }
     }
   ],
   "withdrawals": [
@@ -187,6 +221,51 @@
       "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
       "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
       "finding_digest": "58557745ed1b5f803ae270ac6a915b0621373c468f46c39e57f8885babc9c70b"
+    },
+    {
+      "core_id": "qcb-core-la-112",
+      "predecessor_key": "qcb-core-la-112",
+      "predecessor_item_digest": "5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e",
+      "reason": "UpperPrefix only guarantees entries strictly below each earlier diagonal are zero, not the diagonal itself; preservation uses the later swept window.",
+      "review": "reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json",
+      "review_digest": "a020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22",
+      "finding_digest": "c618ea778aa8275a3d95f0c0e2c59885b526ebfed9375799565a49d01a9085f6"
+    },
+    {
+      "core_id": "qcb-core-la-119",
+      "predecessor_key": "qcb-core-la-119",
+      "predecessor_item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+      "reason": "The fixed backend has a cubic family count, but one N=4 datum does not refute every linear bound and its emitted plane count is not an optimal-synthesis necessity.",
+      "review": "reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json",
+      "review_digest": "a020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22",
+      "finding_digest": "cdee1557b5369d0e8d07d3b6de0c67340212fafc79615b8209d41683bc6109f4"
+    },
+    {
+      "core_id": "qcb-core-la-206",
+      "predecessor_key": "qcb-core-la-206",
+      "predecessor_item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+      "reason": "The literal question may demand equality with a sum of upper budgets, while the source and reference prove only a componentwise upper bound.",
+      "review": "reports/textbook-v1/reader-reviews/linear-algebra-201-210-review.json",
+      "review_digest": "a51c24b07f402ff5373d5e8c0c07e52f0c8754b3fd66dca3df4b16f03373c45a",
+      "finding_digest": "de2149de4a2d2beee514747e3bd787e1bec72050579a0cb98accda109692cc3e"
+    },
+    {
+      "core_id": "qcb-core-la-219",
+      "predecessor_key": "qcb-core-la-219",
+      "predecessor_item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
+      "reason": "The valid guard-count ledger and loose cap do not establish an attainable full range; actual compiled child guards are correlated.",
+      "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+      "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+      "finding_digest": "7e6c52380b436f2f09fa465c8760c5b591ffeddac9fc4e8824ad75b73def19eb"
+    },
+    {
+      "core_id": "qcb-core-la-220",
+      "predecessor_key": "qcb-core-la-220",
+      "predecessor_item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+      "reason": "A single closed core has actual maximum bond one for every D; evaluating max(D,1) alone does not characterize the attained bond.",
+      "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+      "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+      "finding_digest": "7496cd12e696b1f4e7cace614faf99aefa9b14628345b244e76462983278319b"
     }
   ]
 }

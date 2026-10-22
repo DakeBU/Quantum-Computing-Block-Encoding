@@ -25,6 +25,30 @@ an unapproved answer. Current reader/search exports exclude these records.
 Withdrawal does **not** remove a core from the stable-release review obligation.
 All historical content and the substantive findings remain inspectable.
 
+The [linear-algebra and stored-cost second pass](reports/textbook-v1/reader-reviews/)
+also distinguishes strict staircase zeros from diagonal entries, generated
+backend counts from optimal-synthesis lower bounds, upper budgets from actual
+costs, and maximum-bond bounds from attained dimensions. The reviewed
+[supplier-bound repair](shared/repairs/la-214-uniform-supplier-bound-repair.json)
+uses an arbitrary-work family at fixed matrix dimensions; the
+[angle-cost repair](shared/repairs/la-215-branch-cost-repair.json) distinguishes
+all three execution branches. Exact predecessor findings remain in history.
+
+The [inspected fixed-reference source](reports/textbook-v1/repairs/fixed-references/StoredCostRepair.lean)
+and [actual receipt](reports/textbook-v1/repairs/fixed-references/checked-receipt.json)
+support these two repairs with seven named Lean roots and two real negative
+controls. Three roots check concrete branch representatives; they do not replace
+the independent universal control-flow argument or certify every NL sentence.
+These are support checks, not additional native Lean views or isolated model
+evaluation. To replay only this inspected source against a matching built tree,
+choose a new receipt path rather than overwriting published evidence:
+
+```sh
+python benchmarks/quantumcomputingbench/scripts/cost_repair_references.py \
+  --build-root PATH_TO_MATCHING_BUILT_CHECKOUT --trusted-local-reference \
+  --output _out/cost-repair-recheck.json
+```
+
 ## Hierarchical exercise book
 
 The website reader organizes the retained native cores into five parts:

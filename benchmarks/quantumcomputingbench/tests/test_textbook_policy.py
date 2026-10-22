@@ -67,8 +67,9 @@ class TextbookPolicyTests(unittest.TestCase):
                     apply_current_reader_policy(self.historical)
 
     def test_all_repaired_predecessors_are_withdrawn_from_current_gold(self):
+        repaired = {r["core_id"] for r in read_json(B / "shared/current-policy.json")["answer_successors"]}
         for item in self.historical:
-            if item["core_id"] in {"qcb-core-sp-002", "qcb-core-sp-006", "qcb-core-sp-011"}:
+            if item["core_id"] in repaired:
                 with self.assertRaisesRegex(ValueError, "withdrawn"):
                     check_current_gold([item])
 
