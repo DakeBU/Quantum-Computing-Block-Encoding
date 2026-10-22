@@ -53,6 +53,10 @@ question/answer/rubric/exposition and a distinct contract-change review. Preserv
 family/split/graph scope and disclose changed requested reasoning rather than
 claiming equivalence. Use the LA206 successor as a worked example. Further
 assumption/graph changes or multi-successor chains need maintainer reconciliation.
+The SP108/SP111 successors show how to keep a false degree assertion visible for
+refutation, then state the correct exact degree or universal upper bound without
+excluding zero-step/endpoint cases. Do not turn a necessary condition into a
+sufficient one in either the reference, rubric or process-step explanation.
 
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,

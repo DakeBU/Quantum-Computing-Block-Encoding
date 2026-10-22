@@ -18,6 +18,40 @@
         "review_digest": "a51c24b07f402ff5373d5e8c0c07e52f0c8754b3fd66dca3df4b16f03373c45a",
         "finding_digest": "de2149de4a2d2beee514747e3bd787e1bec72050579a0cb98accda109692cc3e"
       }
+    },
+    {
+      "core_id": "qcb-core-sp-108",
+      "predecessor_key": "qcb-core-sp-108",
+      "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+      "reason": "First explicit question-contract correction, not an unchanged-question answer repair. Preserve and assess the predecessor's false description of t^i(1-t)^(k+1) as degree k+1, replace it by the exact degree i+k+1, and retain the same exact Bernstein elevation and source-coefficient nonnegativity target. Define the previously implicit full source polynomial in its existing coordinate t=p+1. No premise is added to the unchanged assumptions/conventions; core, family, split, frozen graph/source scope and three semantic steps remain reserved. Old and new requested reasoning are not claimed equivalent; the original remains historical.",
+      "repair": "shared/repairs/sp-108-question-degree-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-108-question-degree-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-108",
+        "predecessor_key": "qcb-core-sp-108",
+        "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+        "reason": "The question gives the false degree k+1 for t^i(1-t)^(k+1); its degree is i+k+1.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+        "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+        "finding_digest": "a00068654d14500fe3903fde2955649e61d1f1e6ea184f3dd168c9359eddd2dc"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-111",
+      "predecessor_key": "qcb-core-sp-111",
+      "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+      "reason": "First explicit question-contract correction. Preserve and assess the predecessor's unconditional exact-degree2*deg(q) assertion, replace it by a universal upper bound and the correct zero-step/nonzero-step cases, and retain the same exact degree-sized Faulhaber discrete squared-mass identity. The original assumptions still require a coefficient bound at least2*deg(q) and exact real sampling; no nonzero-step or nonzero-polynomial hypothesis is added. The question spells out natDegree at zero to make the inherited bound meaningful. Core, family, split, frozen graph/source scope and three semantic steps remain unchanged. This changes requested reasoning and is not claimed equivalent to the old question.",
+      "repair": "shared/repairs/sp-111-question-degree-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-111-question-degree-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-111",
+        "predecessor_key": "qcb-core-sp-111",
+        "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+        "reason": "The allowed zero grid step invalidates the claimed exact degree 2*deg(q); only an upper bound follows.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "87a3bd96b762a6434e855a55bee89412168140113f31b0e9ae758b40f5f70c43"
+      }
     }
   ],
   "answer_successors": [
@@ -163,6 +197,57 @@
         "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
         "finding_digest": "dcd0cb8e660cb2bc5c6770f428b752242e01ef43d844fe17f6dc8f4e2ccb3591"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-004",
+      "predecessor_key": "qcb-core-plan-004-ensemble-nonuniqueness",
+      "predecessor_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+      "reason": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact question, assumptions, conventions, qit-state-foundations family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: 8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e. Correct zero-output normalization and the false inference from different isometries to physically different ensembles; give explicit varying ensembles for every mixed state and an honest longer-ensemble witness. This is authorship, not approval or admission.",
+      "repair": "shared/repairs/plan-004-ensemble-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-004-ensemble-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-004",
+        "predecessor_key": "qcb-core-plan-004-ensemble-nonuniqueness",
+        "predecessor_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+        "reason": "A column isometry may have zero output rows and different isometries need not yield physically different ensembles; the complete answer and rubric need explicit genuine witnesses.",
+        "review": "reports/textbook-v1/reader-reviews/qit-foundations-004-005-007-review.json",
+        "review_digest": "4abf4a37cc2623f6feb6473e335730daee6715618091c94eb42d4af1feabfcf1",
+        "finding_digest": "fe9e555b715be7c35c4faa05e8bdef5a2377bc274cb8ce604da4f2a0b4b0a039"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-007",
+      "predecessor_key": "qcb-core-plan-007-werner-entanglement-threshold",
+      "predecessor_item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+      "reason": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact two-qubit question and x interval, empty explicit assumptions/conventions, qit-symmetry-entanglement family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: d2196fd968d517f6f9d4f870dab30d7bd70e0344eddb4b3ad19e6ff0464a6874. Replace the reversed implication in rubric r4 and the third semantic step by the explicit product-with-overlap-x, invariant-twirl, uniqueness and closed-separability proof. No low-dimensional PPT-sufficiency premise is added; this is not approval or admission.",
+      "repair": "shared/repairs/plan-007-werner-converse-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-007-werner-converse-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-007",
+        "predecessor_key": "qcb-core-plan-007-werner-entanglement-threshold",
+        "predecessor_item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+        "reason": "Swap-overlap positivity proves separable implies nonnegative overlap, not the converse; the rubric and process step omit the actual product-twirl construction.",
+        "review": "reports/textbook-v1/reader-reviews/qit-foundations-004-005-007-review.json",
+        "review_digest": "4abf4a37cc2623f6feb6473e335730daee6715618091c94eb42d4af1feabfcf1",
+        "finding_digest": "8f69d1537c88c514a97f878f2812a52d1fb9b6a97877836c785b4070de36649f"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-307",
+      "predecessor_key": "qcb-core-plan-307-young-row-bound",
+      "predecessor_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+      "reason": "Answer, rubric r2 and explanatory summary/four semantic steps only. The exact question and all nine contract fields remain unchanged, including assumptions, conventions, family, split, frozen graph and source scope. Make the pinned source product e_T=r_T*c_T and its actual column-first action explicit; first prove c_T=0 on the whole tensor space when the diagram has more than d rows. The predecessor's row-bound conclusion is true: its row-then-column phrase was ambiguous, not a counterexample to the zero theorem. No claim of nonzero action on every allowed filling, new mathematical core, question change or formal admission.",
+      "repair": "shared/repairs/plan-307-young-order-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-307-young-order-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-307",
+        "predecessor_key": "qcb-core-plan-307-young-row-bound",
+        "predecessor_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+        "reason": "The row-bound conclusion is correct, but temporal row-then-column wording is ambiguous relative to the source Young symmetrizer r_T*c_T.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+        "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+        "finding_digest": "785c061d3ee33b72d66f626d11f373296581ded85ba7591272e007e75c37db39"
+      }
     }
   ],
   "withdrawals": [
@@ -237,24 +322,6 @@
       "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
       "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
       "finding_digest": "a09afc1e0293de4db4da7412ddffcad481527cdcc3ca65a356dcd27300291de4"
-    },
-    {
-      "core_id": "qcb-core-sp-108",
-      "predecessor_key": "qcb-core-sp-108",
-      "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
-      "reason": "The question gives the false degree k+1 for t^i(1-t)^(k+1); its degree is i+k+1.",
-      "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
-      "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
-      "finding_digest": "a00068654d14500fe3903fde2955649e61d1f1e6ea184f3dd168c9359eddd2dc"
-    },
-    {
-      "core_id": "qcb-core-sp-111",
-      "predecessor_key": "qcb-core-sp-111",
-      "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
-      "reason": "The allowed zero grid step invalidates the claimed exact degree 2*deg(q); only an upper bound follows.",
-      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
-      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
-      "finding_digest": "87a3bd96b762a6434e855a55bee89412168140113f31b0e9ae758b40f5f70c43"
     },
     {
       "core_id": "qcb-core-sp-113",
@@ -561,6 +628,24 @@
       "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
       "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
       "finding_digest": "4bd9c821d89cc6706cb515c028f1b2ef693ede3a7019a039bfc577e9f5bdc5a5"
+    },
+    {
+      "core_id": "qcb-core-plan-305",
+      "predecessor_key": "qcb-core-plan-305-permutation-conjugation-invariance",
+      "predecessor_item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+      "reason": "The standalone operator-tensor identification omits the finite-dimensional domain; a swap-invariant infinite-dimensional diagonal projection is not a finite tensor sum.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+      "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+      "finding_digest": "3400748d2ffbb56cb8fb05e1ba97aa253a2122e3d96510b5a48cbcd0df9c2c8a"
+    },
+    {
+      "core_id": "qcb-core-plan-309",
+      "predecessor_key": "qcb-core-plan-309-majorization-annihilation",
+      "predecessor_item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+      "reason": "Majorization is a necessary survival condition, not a fixed-tableau/fixed-word nonzero iff; explicit same-content words have different outcomes.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+      "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+      "finding_digest": "2994fbf67f6441a17218102ef2a26bc8179f74b6249587445d75ed95495eb471"
     }
   ]
 }

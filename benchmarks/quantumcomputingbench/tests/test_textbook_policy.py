@@ -46,11 +46,12 @@ class TextbookPolicyTests(unittest.TestCase):
             self.assertEqual(release.main(), 1)
         self.assertIn("historical preview contains a withdrawn predecessor", errors.getvalue())
 
-    def test_complex_and_dirty_work_repairs_keep_questions_and_rejected_predecessors_separate(self):
+    def test_explicitly_withdrawn_answer_repairs_keep_questions_and_predecessors_separate(self):
         originals = {i['core_id']: i for i in self.historical}
         current, decisions = apply_current_reader_policy(self.historical)
         by_id = {i['core_id']: i for i in current}
-        for core in ('qcb-core-be-102', 'qcb-core-plan-107', 'qcb-core-plan-204'):
+        for core in ('qcb-core-be-102', 'qcb-core-plan-107', 'qcb-core-plan-204',
+                     'qcb-core-plan-004', 'qcb-core-plan-007', 'qcb-core-plan-307'):
             old, new = originals[core], by_id[core]
             self.assertNotEqual(old['reference_answer'], new['reference_answer'])
             self.assertEqual({k: old[k] for k in CONTRACT_FIELDS}, {k: new[k] for k in CONTRACT_FIELDS})
@@ -83,7 +84,8 @@ class TextbookPolicyTests(unittest.TestCase):
                     apply_current_reader_policy(self.historical)
 
     def test_all_repaired_predecessors_are_withdrawn_from_current_gold(self):
-        repaired = {r["core_id"] for r in read_json(B / "shared/current-policy.json")["answer_successors"]}
+        current_policy = read_json(B / "shared/current-policy.json")
+        repaired = {r["core_id"] for r in current_policy["answer_successors"] + current_policy["question_successors"]}
         for item in self.historical:
             if item["core_id"] in repaired:
                 with self.assertRaisesRegex(ValueError, "withdrawn"):
@@ -197,6 +199,31 @@ class TextbookPolicyTests(unittest.TestCase):
             with patch.object(policy, "read_json", side_effect=lambda path: bad if Path(path) == vp else read_json(path)):
                 with self.assertRaises(ValueError):
                     apply_current_reader_policy(self.historical)
+
+    def test_polynomial_question_corrections_keep_reserved_core_and_split(self):
+        originals = {i['core_id']: i for i in self.historical}
+        current, decisions = apply_current_reader_policy(self.historical)
+        by_id = {i['core_id']: i for i in current}
+        for core in ('qcb-core-sp-108', 'qcb-core-sp-111'):
+            with self.subTest(core=core):
+                old, new = originals[core], by_id[core]
+                self.assertNotEqual(old['question'], new['question'])
+                self.assertEqual(new['question_version'], 2)
+                fields = [k for k in CONTRACT_FIELDS if k != 'question']
+                self.assertEqual({k: old[k] for k in fields}, {k: new[k] for k in fields})
+                self.assertEqual(len(new['semantic_steps']), old['semantic_step_count'])
+                self.assertEqual(sum(i['core_id'] == core for i in current), 1)
+                lineage = new['question_successor']
+                self.assertEqual(lineage['additional_core_count'], 0)
+                self.assertFalse(lineage['equivalence_to_predecessor_claimed'])
+                self.assertNotEqual(lineage['predecessor_contract_hash'], lineage['current_contract_hash'])
+                self.assertEqual(new['reviews'][0]['method'], 'independent-question-successor-review')
+                self.assertNotEqual(new['reviews'][0]['reviewer'], new['author']['identity'])
+                self.assertNotIn(old['reviews'][0], new['reviews'])
+                row = next(r for r in decisions if r['core_id'] == core)
+                self.assertEqual(row['prior_withdrawal']['predecessor_item_digest'], digest(old))
+                with self.assertRaisesRegex(ValueError, 'withdrawn'):
+                    check_current_gold([old])
 
     def test_rejected_question_successor_stays_reserved_not_current_gold(self):
         from copy import deepcopy

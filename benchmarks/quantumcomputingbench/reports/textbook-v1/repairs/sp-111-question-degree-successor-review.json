@@ -1,0 +1,116 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-sp-111",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-111-question-degree-successor.json",
+  "repair_record_digest": "470f9a8189d5265b0b901236ee73547481f404a08a5f0e443102e0a81252a436",
+  "repair_record_sha256_lf": "1ef3a345898941dc5af9e4a19f6cba1e39d9c09f467cac7ad61af0b514f60499",
+  "original_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+  "original_contract_hash": "1c89646531e5e6897c0e8bc9ebaf2840d58c260824ce3d40d7ff57427cb09bc1",
+  "successor_contract_hash": "43fa4e5865634e668b2600393484ad6e44df32e9c848ead8e01b986715794b7f",
+  "verdict": "accept",
+  "verdict_scope": "The complete exact private version-2 question, answer, rubric and exposition are accepted as a mathematically justified, expressly changed contract. Not equivalence to the predecessor, reader admission, historical gold restoration, native formal-view approval or new Lean execution.",
+  "independence": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "structured-preparation-author-b2",
+    "assessment": "This task authored neither candidate nor predecessor; it is distinct from their actual authors.",
+    "exposure": "Not blind or a fresh identity. This reviewer previously rejected the exact original in its bounded State Preparation reader batch, including the degree defect. The parent requested review of the new candidate and its intended correction. Complete actual original, candidate and operative local proof bodies were inspected again; prior verdicts are not substituted for the reconstruction."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of the whole actual historical prepared predecessor obtained through current scripts/release.checked()[2], not a selected-field digest or current reader projection.",
+    "repair_record_digest": "qcb_core.digest of the entire exact parsed private candidate, including question/answer/rubric/exposition and source/execution metadata.",
+    "repair_record_sha256_lf": "qcb_integrity.text_sha of the actual complete private candidate.",
+    "original_contract_hash": "qcb_core.digest(qcb_curriculum.core_contract(original)).",
+    "successor_contract_hash": "qcb_core.digest of that exact original contract with only question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_equality": {
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "actual_checks": "Supersedes key, whole item digest and contract hash match the actual predecessor. Candidate question_version=2, question is changed. check_exposition and check_source_bindings passed read-only. Exactly three semantic steps remain, with every cited node in the original target/support scope.",
+    "retained_scope": {
+      "family": "hermite-discrete-mass",
+      "split": "dev",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "core_id": "qcb-core-sp-111"
+    }
+  },
+  "provenance": {
+    "observed_head": "a0836e38501d3976663ca561424063e78ba32214",
+    "retrieval": "Current release.checked()[2] actual full predecessors; both complete private candidates read. No current reader admission or source-publication seal inferred.",
+    "instruction_status": "Refreshed AGENTS, HARNESS, substantive-worker skill, theorem-publication, proof-digestion, evidence-routed-memory and shared CONTRACT/ACCEPTANCE instructions. Their evidence distinctions guided this static mathematical review.",
+    "source_hash_method": "Actual qcb_integrity.text_sha whole-file LF-normalized bindings independently recomputed; parsed-record and contract hashes use qcb_core.digest.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this private review JSON is authored. No candidate, earlier reader review, production Lean, frozen QA, source-binding module, canonical policy, PR103, commit or push is changed.",
+    "remaining_limits": "Local source text and independently reconstructed elementary polynomial reasoning; no fresh kernel check, primary-paper retrieval, finite-bit implementation, coherent oracle, circuit, theorem novelty, global dedup or blanket chapter approval."
+  },
+  "contract_change_assessment": {
+    "classification": "Explicit first question-contract successor, not answer-only repair.",
+    "predecessor_literal_reading": "The original question, answer, rubric r1 and step1 assert deg(g)=2deg(q) without step!=0. For q=X,start=1,step=0 the squared affine sample is1 of degree0 instead of2. The true finite-sum identity survives with an upper bound, as does the actual local <= theorem.",
+    "changed_requested_reasoning": "Version2 asks to refute unconditional equality, prove the universal natural-degree upper bound, classify exact cases and then prove the retained arbitrary-count Faulhaber mass formula with trailing zeros and its cost boundary. This materially changes the old requested degree proof and is expressly versioned; no equivalence is asserted.",
+    "retained_mathematical_family_and_target": "The same HermiteIntervalMass affineSquared/polynomialMassClosed_eq/powerSumClosed_eq mass-evaluation mechanism remains. Family hermite-discrete-mass, dev split, frozen graph, target/support scope and source_refs are exactly retained, with three semantic steps. Same core lineage does not count a new distinct core.",
+    "hypotheses_and_model": "The original permits arbitrary real q and exact real grid. No nonzero-step, nonzero-q, nonzero-sampled-value or positive-count premise is added. natDegree(0)=0 makes the inherited natural coefficient-bound convention explicit; it does not assign ordinary zero-polynomial degree0. D>=2natDegree(q) is the inherited bound, not a new promise limiting the original polynomials.",
+    "necessity_and_minimality": "A false exact-degree sentence cannot be corrected by silently reinterpreting the answer's equality as an upper bound. The explicit successor changes that question obligation, keeps all admissible degeneracies and the same exact mass target, and supplies the missing degree cases without restricting the domain. The additional cost explanation prevents expression-size/runtime conflation rather than asserting a new resource theorem.",
+    "admission_boundary": "This review does not install/select version2, approve migration policy, transfer old review acceptance or alter the exact original rejection. Current source/reader/formal gates remain separate."
+  },
+  "substantive_reconstruction": {
+    "degree_counterexamples": "For q=X,start=1,step=0, d=1 and g=1 has ordinary/natural degree0, disproving exact2d. With start=0, g=0 and natural degree0 while ordinary degree is the extended zero degree, not0. Both are allowed by the unchanged contract.",
+    "universal_bound": "The affine polynomial start+step X has natural degree<=1. Composing q with it gives natural degree<=d, and squaring gives natural degree<=2d over R. At q=0 the result and bound are both0. This is the direction of the actual affineSquared_degree proof, not an equality inferred from the inequality.",
+    "exact_degree_and_leading_coefficient": "If step!=0 and q!=0 has degree d and leading coefficient a_d, its highest composition coefficient is a_d step^d!=0, so the square has degree2d and coefficient a_d^2 step^(2d)!=0. Negative step causes no cancellation of this leading coefficient. If step=0, g is constant q(start)^2, nonzero ordinary degree0 or the zero polynomial according to q(start). Nonzero constants remain degree0 for every step; q=0 always stays zero. Thus natDegree(g)=2d for all q when step!=0, and at step=0 exactly when d=0. These exact-degree cases are independently reconstructed NL mathematics, not fabricated local theorem names.",
+    "finite_expansion_and_sum_exchange": "With D>=2d>=natDegree(g), all coefficients above D vanish. For each natural j, g(j)=sum_{r=0}^D g_r j^r=q(start+step j)^2. Summing over0<=j<count and exchanging two finite sums yields sum_r g_r sum_j j^r. Replace the inner sum by the exact power-sum polynomial P_r(count) to obtain the requested formula. Trailing zeros are valid; D is an upper bound rather than actual degree.",
+    "source_faulhaber_formula": "The source defines powerSumClosed(count,r) as sum_{ell=0}^r B_ell choose(r+1,ell) count^(r+1-ell)/(r+1) over Q, with Mathlib's Bernoulli convention. Its powerSumClosed_eq converts the exact sum_range_pow identity to R. polynomialMassClosed_eq performs the finite exchange and eval_eq_sum_range' under the supplied degree bound; no approximation, integral, continuum limit or rounded sampling occurs.",
+    "zero_empty_constant_and_negative_steps": "P_r(0)=0 for all r because the sum is empty; P_0(N)=N because every j^0 is1 including j=0. count=0 therefore gives both sides0. At step=0 only g_0=q(start)^2 can survive, giving count*q(start)^2 even when that value is0. At q=0 all coefficients vanish. At constant q=c the result is count*c^2. As an additional direct negative-step check, q=X,start=1,step=-2 gives g=1-4X+4X^2, hence M=P_0-4P_1+4P_2; at count3 this is11, matching1+1+9. Reversed or repeated sample locations do not affect any identity.",
+    "expression_size_not_runtime": "For any fixed D there are D+1 weighted power-sum slots, and D=2d is always sufficient. A user-chosen excessively large D is not claimed degree-minimal. Expanding each Faulhaber formula separately adds degree-dependent terms; evaluating powers, coefficient production, rational/integer growth, count bit length and arbitrary real representation/precision still require a model and costs. No constant-time, finite-bit complexity, free coherent oracle or state-preparation circuit follows."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: natural degree and its zero convention are explicitly separated from ordinary degree, all real start/step and natural counts remain allowed, and the formula uses an upper coefficient bound.",
+    "reference_answer": "Accept in full. All leading-coefficient and equality conditions are correct, including zero q/constants and collapse with nonzero q(start). Finite sum exchange, trailing zeros and all endpoints are correct. Cost limitations accurately distinguish algebraic slots from evaluation work.",
+    "rubric": "c1 requires refutation/universal bound/full degeneracy classification without adding step!=0; c2 grades bounded expansion; c3 grades exact finite exchange/Faulhaber; c4 grades empty/constant/zero cases and honest computational scope. None retains the original false equality as a criterion.",
+    "semantic_steps": "All three read. Step1 includes the independently derived counterexample/degree classification and cites the actual affineSquared definition, not a fictitious exact-degree theorem. Steps2/3 preserve source finite-sum and power-sum structure, support nodes and three-step count.",
+    "residual_mathematical_defects": "None found for this exact question/answer/rubric/exposition. No independent implementation/cost certificate is supplied or inferred."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+      "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+      "anchor": "Complete module read. Exact rational powerSumClosed21-24 and entire powerSumClosed_eq27-31; affineSquared34-35 and full affineSquared_eval37-39; polynomialMassClosed42-44 and complete polynomialMassClosed_eq47-57; complete affineSquared_degree59-71, explicitly <= with arbitrary start/step. Later Hermite specializations/exponential branch/conditioning proofs are not asserted as the candidate's exact-degree or resource certificate."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "Actual CONTRACT_FIELDS/check_exposition12-27 and question_successor30-123 read, including new_contract={original_contract,question:repair.question}, distinct content bindings, retained scope and historical lineage. Only read-only scope/binding checks used; no admission invoked."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "anchor": "Actual core_contract19-20 read; its nine-field extraction used programmatically for both old/new contract digests."
+    }
+  ]
+}
