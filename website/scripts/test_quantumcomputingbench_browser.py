@@ -100,10 +100,20 @@ def run(root, output, channel=None):
                             failures.append("formal proof keyboard disclosure failed: " + route)
                         if page.evaluate("document.documentElement.scrollWidth > innerWidth + 2"):
                             failures.append(f"expanded formal overflow: {route} {width} {theme}")
+                        contrast = panel.locator('pre').evaluate_all("""blocks => Math.min(...blocks.map(pre => {
+                          const rgb = text => text.match(/[\\d.]+/g).slice(0,3).map(Number);
+                          const lum = text => rgb(text).map(v => v/255).map(v => v <= .04045 ? v/12.92 : ((v+.055)/1.055)**2.4)
+                            .reduce((s,v,i) => s+v*[.2126,.7152,.0722][i],0);
+                          const foreground = lum(getComputedStyle(pre.querySelector('code')).color);
+                          const background = lum(getComputedStyle(pre).backgroundColor);
+                          return (Math.max(foreground,background)+.05)/(Math.min(foreground,background)+.05);
+                        }))""")
+                        if contrast < 4.5:
+                            failures.append(f"formal code contrast below 4.5: {route} {theme}: {contrast}")
                         panel.scroll_into_view_if_needed()
                         page.screenshot(path=str(output / f"formal-{core['core_id']}-{width}-{theme}.png"))
                         formal_rows.append({"core_id": core["core_id"], "width": width, "theme": theme,
-                                            "target_and_reference_checked": True})
+                                            "target_and_reference_checked": True, "code_contrast_ratio": contrast})
             page.set_viewport_size({"width": 390, "height": 900})
             page.goto(base + HUB + "non-lean/state-preparation/structured_preparation/index.html", wait_until="networkidle")
             total = page.locator('[data-qcb-card]').count()
