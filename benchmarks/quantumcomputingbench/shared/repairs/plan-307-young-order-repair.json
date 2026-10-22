@@ -1,0 +1,80 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-307",
+  "supersedes_key": "qcb-core-plan-307-young-row-bound",
+  "supersedes_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-307-textbook-v1-young-source-order-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer, rubric r2 and explanatory summary/four semantic steps only. The exact question and all nine contract fields remain unchanged, including assumptions, conventions, family, split, frozen graph and source scope. Make the pinned source product e_T=r_T*c_T and its actual column-first action explicit; first prove c_T=0 on the whole tensor space when the diagram has more than d rows. The predecessor's row-bound conclusion is true: its row-then-column phrase was ambiguous, not a counterexample to the zero theorem. No claim of nonzero action on every allowed filling, new mathematical core, question change or formal admission.",
+  "reference_answer": "Fix a standard tableau T of shape lambda and write Q_pi for the source's permutation action on tensor factors, so Q_pi*Q_sigma=Q_(pi*sigma). Let R_T and C_T be the subgroups permuting positions within each row and column of T. Define the row sum r_T=sum_{rho in R_T} Q_rho and the signed column sum c_T=sum_{kappa in C_T} sgn(kappa)*Q_kappa. The source convention is e_T=r_T*c_T. On column vectors this means e_T(v)=r_T(c_T(v)): COLUMN antisymmetrization acts first, then ROW symmetrization. No commutation of these two sums is assumed.\n\nA tensor basis word v=e_{i_1} tensor ... tensor e_{i_n} fills the box carrying the number j in T with the label i_j. Suppose lambda has p>d nonempty rows. Its first column has p boxes, whose labels come from an alphabet of size d, so some two first-column positions have the same label. Let tau be their transposition. It lies in C_T, has sign-1, and fixes this basis word: Q_tau*v=v. Reindexing the entire signed column sum by kappa -> kappa*tau gives c_T*Q_tau=-c_T. Consequently c_T*v=c_T*Q_tau*v=-c_T*v. Over C,2 is invertible, so c_T*v=0.\n\nThe repeated pair may depend on the chosen basis word, but the preceding argument applies to EVERY word in the tensor basis. By linearity c_T is therefore the ZERO OPERATOR on the entire tensor power. Only after establishing this whole-space statement do we multiply by the row sum: e_T=r_T*c_T=r_T*0=0. Its image e_T((C^d) tensor n) is the zero space, so the Young-symmetrizer realization contributes no unitary-group irreducible piece of that shape. This is the precise algebraic mechanism: forced repetition in a column, a fixing transposition with negative sign, pair cancellation, and linear extension from a spanning basis. If d=0 and n>0 the tensor space is already zero; when n=0 the empty diagram has no row count exceeding a natural d, so there is no excluded case to analyze.\n\nThe earlier phrase 'row symmetrization followed by column antisymmetrization' was ambiguous: written factors r_T*c_T are not the temporal row-then-column action c_T*r_T. These products do not commute in general. For example, with T=[1,2;3] and v=e_1 tensor e_2 tensor e_1, let r=I+Q_(12) and c=I-Q_(13). Then r*c*v=0, whereas c*r*v=e_2 tensor e_1 tensor e_1-e_1 tensor e_1 tensor e_2 is nonzero. Thus one must preserve the source order, not interchange factors. In the excluded p>d regime, however, c_T has already been proved zero on the WHOLE space, so both r_T*c_T and c_T*r_T happen to vanish. That is why the old wording did not falsify the row-bound conclusion. Nothing here asserts that e_T acts nontrivially on every basis word when p<=d; absence of the forced long-column obstruction is not a pointwise survival theorem.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Describes the filled tableau of a tensor basis word by placing the label of factor j in T's box numbered j."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Defines row symmetrization r_T and signed column antisymmetrization c_T and states the pinned source convention e_T=r_T*c_T. Explicitly gives column-first, then row action on column vectors; does not assume r_T and c_T commute. Treats the old row-then-column wording as ambiguous rather than refuting the valid row-bound conclusion."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "For p>d rows, applies pigeonhole to the first column to obtain equal labels and a column transposition tau fixing the input word with sign-1."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Uses c_T*Q_tau=-c_T to show c_T kills each basis word, then by linearity proves c_T=0 on the ENTIRE tensor space before concluding e_T=r_T*c_T=0 and the Young-image piece is absent. Does not claim every allowed p<=d filling survives."
+    }
+  ],
+  "exposition": {
+    "core_summary": "With the source convention e_T=r_T*c_T, columns act first. More than d rows force signed column cancellation on every basis word, hence c_T=0 on the whole tensor space and the Young-image piece is absent, without commuting row and column sums.",
+    "semantic_steps": [
+      {
+        "claim": "Each tensor basis word fills T by recording its factor labels in the boxes carrying the corresponding position numbers.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The source Young symmetrizer is e_T=r_T*c_T: signed COLUMN antisymmetrization acts first on column vectors, then ROW symmetrization; the factors are not generally interchangeable.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "If the first column has p>d boxes, pigeonhole supplies equal labels and a column transposition tau that fixes the input word and has sign-1.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The identity c_T*Q_tau=-c_T kills every basis word, so c_T is zero on the entire space before the row product is taken. Thus e_T=0 and its image vanishes; this proves exclusion, not nonzero action on every allowed filling.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit entry near219 inspected. Metadata binds the author-hosted URL and recorded10 April2026/79-page edition, historical binary SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3. This local LF hash is metadata provenance, NOT primary proof or verification of PDF-byte equality. Genuine primary PDF text was inspected at https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf: printed47/PDF46, row/column groups Eq5.16-5.19 and complete Definition5.14 e_T=r_T*c_T; printed48/PDF47, Eq5.20 realization and complete first-column row-count argument after Eq5.23-5.24. The source convention and the candidate's cancellation derivation are assessed separately."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+      "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+      "anchor": "Complete mathematical/grading fields of authored plan-307 near644 inspected, including original order wording, all rubric criteria and four semantic steps; actual prepared counterpart separately loaded. This binds predecessor content provenance, not a proof of the repair."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Entire exact prepared qcb-core-plan-307-young-row-bound loaded via release.checked()[2]; supersedes_item_digest binds its whole record. The exact question, assumptions, conventions, family, split, graph version/nodes and source_refs remain inherited unchanged. Frozen QA provenance only."
+    }
+  ],
+  "execution": "Private source-reconstructed answer authoring by the actual /root/qcb_boundary_repair_review task, not an independent review of this candidate. I previously wrote the exact-item reader review and have full source/parent-disposition exposure; no source-blindness or self-approval is claimed. Genuine author-hosted primary PDF text inspection occurred in this same task context, with matching cover date and anchors. Direct in-memory binary retrieval failed with WinError10013, and rendered-page attempts did not yield inspected pixels; the recorded historical PDF SHA remains UNVERIFIED. No PDF stored or redistributed, no Lean/kernel execution, production change, native formal admission, model evaluation, novelty, human approval or PR103 change. The original question is unchanged, and a distinct exact-candidate repair review is still required. Only _review_tmp/plan-307-young-order-repair.json is written;305 and309 remain unresolved and no corrections for them are drafted."
+}

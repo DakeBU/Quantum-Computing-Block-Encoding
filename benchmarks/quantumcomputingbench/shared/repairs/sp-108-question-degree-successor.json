@@ -1,0 +1,73 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-sp-108",
+  "supersedes_key": "qcb-core-sp-108",
+  "supersedes_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+  "supersedes_contract_hash": "0c40b3818a787101bd8d762d33210b70f3847eb30289dc997d15279634febffa",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-sp-108-textbook-question-v2-endpoint-term-degree",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "First explicit question-contract correction, not an unchanged-question answer repair. Preserve and assess the predecessor's false description of t^i(1-t)^(k+1) as degree k+1, replace it by the exact degree i+k+1, and retain the same exact Bernstein elevation and source-coefficient nonnegativity target. Define the previously implicit full source polynomial in its existing coordinate t=p+1. No premise is added to the unchanged assumptions/conventions; core, family, split, frozen graph/source scope and three semantic steps remain reserved. Old and new requested reasoning are not claimed equivalent; the original remains historical.",
+  "question": "For natural numbers k and i with 0 <= i <= k, work over the real polynomial ring and define B_{d,r}(t)=C(d,r)*t^r*(1-t)^(d-r) for 0 <= r <= d. The predecessor described the endpoint-factor term t^i*(1-t)^(k+1) as having degree k+1. Is this true for every allowed i? Determine its exact degree and leading coefficient, give a counterexample to the universal description if false, and distinguish that degree from the Bernstein representation degree d=2*k+1.\n\nProve, for every real t, the exact identity t^i*(1-t)^(k+1)=sum_{j=0}^{k-i} w(k,i,j)*B_{d,i+j}(t), where w(k,i,j)=C(k-i,j)/C(d,i+j), with the binomial coefficients regarded as real numbers. Justify the nonzero denominators and handle i=0, i=k and k=0 without assuming t is strictly between the endpoints.\n\nTo make the same full source polynomial explicit, set a_{k,i}=sum_{m=0}^{i} C(k+i-m,k)/m! for 0 <= i <= k, F_k(t)=(1-t)^(k+1)*sum_{i=0}^{k} a_{k,i}*t^i, and H_k(t)=exp(-1)*F_k(t)+F_k(1-t). Thus H_k(t) is the source interpolant evaluated at p=t-1. Give a degree-d Bernstein coefficient formula for H_k by collecting the elevated terms and reflecting their indices. Prove its coefficients are nonnegative real numbers, and deduce H_k(t)>=0 on [0,1]. Separate the all-real exact identity from the interval restriction used for nonnegativity of the basis functions.",
+  "reference_answer": "The predecessor's universal degree description is false. The factor (1-t)^(k+1) has leading term (-1)^(k+1)*t^(k+1); multiplying by t^i gives the nonzero leading coefficient (-1)^(k+1) at degree i+k+1. This equals k+1 exactly when i=0. For k=i=1 the term is t*(1-t)^2=t-2*t^2+t^3, of degree3 rather than2. Since i<=k, its actual degree is at most d=2*k+1, reaching d when i=k. The degree-d Bernstein basis is an ambient representation choice, not an assertion that every term has exact degree d. These terms are never zero or constant polynomials, since k+1>=1 and their leading coefficients are nonzero.\n\nFor 0<=j<=k-i we have 0<=i+j<=k<=d, hence C(d,i+j)>0 and its real reciprocal is defined. Multiplication cancels that binomial factor in w*B. The exponent relation d-(i+j)=(k+1)+(k-i-j) then gives\nw(k,i,j)*B_{d,i+j}(t)=t^i*(1-t)^(k+1)*C(k-i,j)*t^j*(1-t)^(k-i-j).\nSumming over j yields the fixed endpoint term multiplied by (t+(1-t))^(k-i)=1, by the binomial theorem. This proves the polynomial identity, hence its evaluation at every real t; no division by t or 1-t occurs. For i=k the sum has only j=0 and gives w=1/C(d,k), with no increase in actual degree. For i=0 it is the usual expansion of (1-t)^(k+1) into this ambient basis. For k=0 necessarily i=j=0 and the identity is B_{1,0}(t)=1-t. At t=0 or1 the same polynomial evaluations remain valid, using the standard constant-polynomial convention t^0=1, including 0^0=1 in such evaluations.\n\nEach a_{k,i} is nonnegative, because every binomial numerator is nonnegative and m! is a positive real number. For r=0,...,d define\nL_{k,r}=sum_{i=0}^{k} sum_{j=0}^{k-i} [r=i+j]*a_{k,i}*w(k,i,j),\nwhere the bracket is1 when the index equality holds and0 otherwise. Finite collection of the exact single-term identities gives F_k(t)=sum_{r=0}^{d} L_{k,r}*B_{d,r}(t). All L_{k,r} are nonnegative, and L_{k,r}=0 for r>k. The reflection identity B_{d,r}(1-t)=B_{d,d-r}(t) gives F_k(1-t)=sum_{r=0}^{d} L_{k,d-r}*B_{d,r}(t). Therefore\nH_k(t)=sum_{r=0}^{d} c_{k,r}*B_{d,r}(t), with c_{k,r}=exp(-1)*L_{k,r}+L_{k,d-r}>=0.\nThe positive exponential weight multiplies the unreflected F_k, exactly as in the source formula; it is not moved to the other endpoint. This is the degree-d coefficient vector for the same H_k. Its nonnegativity is a statement about real coefficients, independent of t. On [0,1] the powers in every B_{d,r} are nonnegative, so the displayed sum implies H_k(t)>=0. The coefficient positivity alone makes no claim about signs of the basis outside that interval. At k=0 the coefficients are exp(-1) and1 and H_0(t)=exp(-1)*(1-t)+t, consistent with all formulas.\n\nThis answer reconstructs the source mathematics statically. The inspected elevation and coefficient lemmas support the identities/nonnegativity; no exact-degree lemma or new native formal proof is asserted merely because the source module exists.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Explicitly refutes the universal exact-degree k+1 description, derives nonzero leading coefficient (-1)^(k+1) and exact degree i+k+1, gives a valid allowed counterexample, and distinguishes actual term degree from ambient Bernstein degree2k+1."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Checks C(2k+1,i+j)>0 on the full summation range, cancels it, splits the exponent correctly and sums by the binomial theorem to prove the identity for all real t, including endpoint evaluations and i=0/i=k/k=0."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Uses the actual nonnegative source coefficients a_{k,i}, collects them into L_{k,r}, and reflects indices to give c_{k,r}=exp(-1)L_{k,r}+L_{k,2k+1-r}, preserving the source coordinate/weight orientation."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Proves coefficient nonnegativity independently of t and only then uses basis nonnegativity on [0,1] to conclude H_k>=0; does not claim an exact degree for every represented polynomial or a fresh formal admission."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The endpoint-factor term has exact degree i+k+1, not generally k+1; its exact representation in degree2k+1 Bernstein coordinates yields nonnegative coefficients for the same weighted source interpolant.",
+    "semantic_steps": [
+      {
+        "claim": "The nonzero leading term has degree i+k+1, refuting the predecessor's universal k+1 description; on each allowed index, positive binomial cancellation gives the exact single-term elevation factorization.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term"
+        ]
+      },
+      {
+        "claim": "The finite binomial sum equals (t+(1-t))^(k-i)=1, so the ambient-degree2k+1 Bernstein expansion holds for every real t, including the endpoint and k=0 cases.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum"
+        ]
+      },
+      {
+        "claim": "Collecting nonnegative source coefficients and weights, then forming exp(-1)L_r+L_{2k+1-r}, gives the source coefficient vector; its nonnegativity and nonnegative basis values imply the source polynomial is nonnegative on [0,1].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteBernstein.leftCoefficient_nonneg",
+          "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+      "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+      "anchor": "Complete operative basis/basis_eq/basis_nonneg/basis_flip, sourceCoefficient and nonnegative coefficient definitions, elevationWeight, full elevation_term/elevation_sum proofs, leftCoefficient definition/collection/nonnegativity/evaluation proofs, sourceBernsteinCoefficient definition/nonnegativity, reflected_sum and full sourceInterpolant_bernstein proof. The module proves the exact all-real elevation and source bridge, not the predecessor's false degree wording. Remaining subdivision code read but not required by this candidate."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Complete operative coefficientSeries/coefficientPolynomial/endpointFactor/sourceInterpolant definitions and coefficientSeries_coeff/nonneg/zero proofs near169-204; coefficientPolynomial_eval, sourceInterpolant_eval and degree-upper-bound proofs near289-332. These fix the actual a_{k,i}, exp(-1) weight on the unreflected endpoint, and t=p+1 coordinate. No claim of inspecting unrelated analytic/splice proofs."
+    }
+  ],
+  "execution": "Private authoring by the actual /root/qcb_boundary_repair_review task. Complete frozen predecessor loaded via release.checked()[2]; actual question/answer/rubric/assumptions/conventions/steps and operative local definitions/proofs inspected statically. Parent's suggested degree issue and historical accept metadata were exposed; this is not source-blind or independent approval of my own candidate. No kernel execution, fresh proof certificate, native formal admission, model evaluation, novelty or human approval claim. Only this private candidate is written; independent exact-candidate question-change review remains required."
+}

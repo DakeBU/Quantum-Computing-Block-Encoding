@@ -6,91 +6,8 @@ mathematical models, backed by QuantumComputinglib's sources and graph.
 Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
-
-**Current textbook corrections:** fresh State Preparation reviews found an
-input/output bond-index defect (`sp-002`), an unsupported arbitrary-signed
-loader claim (`sp-006`), and a terminal active-dimension feasibility error
-(`sp-011`). [Current policy](shared/current-policy.json) withholds those exact
-predecessors and admits only separately reviewed additive successors, including
-their explanatory summaries/steps when affected. Frozen
-preview assets remain historical, not automatically current gold. Their native
-scoring/repackaging entry fails closed until a separately versioned data release
-is prepared. The current reader export preserves the original core and split.
-
-**Further reader review:** exact rejected or ambiguous questions/answers are
-withheld through the same [bound current policy](shared/current-policy.json),
-without inventing a replacement. Their core IDs, contracts and splits remain
-reserved for corrections, and old links display a withdrawal notice rather than
-an unapproved answer. Current reader/search exports exclude these records.
-Withdrawal does **not** remove a core from the stable-release review obligation.
-All historical content and the substantive findings remain inspectable.
-
-**Explicit question versions:** an answer-only repair cannot fix a false question
-by silently proving a weaker target. The [LA206 version-2 successor](shared/repairs/la-206-cost-contract-successor.json)
-asks the reader to refute literal budget equality, derive the actual-cost sum,
-then prove the upper bound and same-run LQ identities. Its
-[distinct contract-change review](reports/textbook-v1/repairs/la-206-cost-contract-successor-review.json)
-binds both question contracts. Core/family/split stay reserved; the registry and
-page disclose the change, and an old-hash Lean companion is rejected as stale.
-The predecessor remains audit history, not an equivalent second exercise.
-
-The [fixed Lean support](reports/textbook-v1/repairs/fixed-references/WideLQCostContract.lean)
-and its [actual receipt](reports/textbook-v1/repairs/fixed-references/wide-lq-checked-receipt.json)
-check the general actual-cost identity and actual/budget emit mismatch, including
-sorry and wrong-target negative controls. These three roots are not another
-native formal-view admission. Replay only the inspected reference using
-`scripts/wide_lq_contract_reference.py --build-root PATH --trusted-local-reference --output NEW_RECEIPT`.
-
-The [oracle/composition, representation and scientific-algorithm reviews](reports/textbook-v1/reader-reviews/)
-also separate phase-aware programs from bare gate products, unitary composition
-from deterministic cleanup, finite-dimensional representation hypotheses from
-unrestricted claims, and original bit-oracle costs from derived angle-oracle
-costs. Primary-source access limits are recorded honestly. Earlier scientific
-reader batches inspected primary text without freshly verifying its binary
-hash; those reports are unchanged. The later exact repair reviews below did
-independently retrieve matching bytes, without retroactively approving the
-whole source or every earlier derivation.
-
-Three [reviewed answer repairs](shared/repairs/) restore the original questions:
-BE102 distinguishes actual dirty-input failure from absence of a clean-input
-certificate; plan107 retains the right adjoint in the Pauli twirl; plan204
-retains the complex conjugate and derives the full positive-POVM spectrum.
-Their exact [independent reviews](reports/textbook-v1/repairs/) cover the whole
-answer, rubric and explanatory steps, not only an isolated corrected formula.
-No real-overlap, full-rank or extra oracle premise was added.
-
-The [dirty-work support source](reports/textbook-v1/repairs/fixed-references/DirtyWorkBoundary.lean)
-and [actual receipt](reports/textbook-v1/repairs/fixed-references/dirty-work-checked-receipt.json)
-check four named roots for the fixed seven-wire program: unconditional entering
-work/row preservation and two distinguishing dirty-input examples. The allowed
-axioms and real sorry/wrong-target controls are recorded. This does not create
-four native Lean views or certify arbitrary-width adders or all quantum prose.
-Replay only the inspected source using
-`scripts/dirty_work_boundary_reference.py --build-root PATH --trusted-local-reference --output NEW_RECEIPT`.
-
-The [linear-algebra and stored-cost second pass](reports/textbook-v1/reader-reviews/)
-also distinguishes strict staircase zeros from diagonal entries, generated
-backend counts from optimal-synthesis lower bounds, upper budgets from actual
-costs, and maximum-bond bounds from attained dimensions. The reviewed
-[supplier-bound repair](shared/repairs/la-214-uniform-supplier-bound-repair.json)
-uses an arbitrary-work family at fixed matrix dimensions; the
-[angle-cost repair](shared/repairs/la-215-branch-cost-repair.json) distinguishes
-all three execution branches. Exact predecessor findings remain in history.
-
-The [inspected fixed-reference source](reports/textbook-v1/repairs/fixed-references/StoredCostRepair.lean)
-and [actual receipt](reports/textbook-v1/repairs/fixed-references/checked-receipt.json)
-support these two repairs with seven named Lean roots and two real negative
-controls. Three roots check concrete branch representatives; they do not replace
-the independent universal control-flow argument or certify every NL sentence.
-These are support checks, not additional native Lean views or isolated model
-evaluation. To replay only this inspected source against a matching built tree,
-choose a new receipt path rather than overwriting published evidence:
-
-```sh
-python benchmarks/quantumcomputingbench/scripts/cost_repair_references.py \
-  --build-root PATH_TO_MATCHING_BUILT_CHECKOUT --trusted-local-reference \
-  --output _out/cost-repair-recheck.json
-```
+The [latest polynomial/converse checkpoint](docs/textbook-polynomial-and-converse-checkpoint-2026-10-23.md)
+explains reviewed corrections, remaining obligations and compatible continuation.
 
 ## Hierarchical exercise book
 
@@ -128,6 +45,113 @@ Source-blind decoding, independent comparison and actual reference/axiom checks
 are separate evidence records. They are not three new questions, deep proof
 synthesis results, or kernel certification of the entire NL explanation.
 
+## Audited mathematical corrections
+
+<details>
+<summary>Exact repairs, historical boundaries and replay evidence</summary>
+
+**Current textbook corrections:** fresh State Preparation reviews found an
+input/output bond-index defect (`sp-002`), an unsupported arbitrary-signed
+loader claim (`sp-006`), and a terminal active-dimension feasibility error
+(`sp-011`). [Current policy](shared/current-policy.json) withholds those exact
+predecessors and admits only separately reviewed additive successors, including
+their explanatory summaries/steps when affected. Frozen
+preview assets remain historical, not automatically current gold. Their native
+scoring/repackaging entry fails closed until a separately versioned data release
+is prepared. The current reader export preserves the original core and split.
+
+**Further reader review:** exact rejected or ambiguous questions/answers are
+withheld through the same [bound current policy](shared/current-policy.json),
+without inventing a replacement. Their core IDs, contracts and splits remain
+reserved for corrections, and old links display a withdrawal notice rather than
+an unapproved answer. Current reader/search exports exclude these records.
+Withdrawal does **not** remove a core from the stable-release review obligation.
+All historical content and the substantive findings remain inspectable.
+
+**Explicit question versions:** an answer-only repair cannot fix a false question
+by silently proving a weaker target. The [LA206 version-2 successor](shared/repairs/la-206-cost-contract-successor.json)
+asks the reader to refute literal budget equality, derive the actual-cost sum,
+then prove the upper bound and same-run LQ identities. Its
+[distinct contract-change review](reports/textbook-v1/repairs/la-206-cost-contract-successor-review.json)
+binds both question contracts. Core/family/split stay reserved; the registry and
+page disclose the change, and an old-hash Lean companion is rejected as stale.
+The predecessor remains audit history, not an equivalent second exercise.
+
+The [SP108](shared/repairs/sp-108-question-degree-successor.json) and
+[SP111](shared/repairs/sp-111-question-degree-successor.json) version-2 questions
+retain the original false degree assertions for explicit assessment. They then
+ask for the correct endpoint-factor degree or squared-affine degree bound,
+including endpoint and zero-step cases. Their distinct exact-content reviews
+preserve the same core/family/split and do not transfer old formal companions
+or claim that existing elevation/mass lemmas prove every new obligation.
+
+The [fixed Lean support](reports/textbook-v1/repairs/fixed-references/WideLQCostContract.lean)
+and its [actual receipt](reports/textbook-v1/repairs/fixed-references/wide-lq-checked-receipt.json)
+check the general actual-cost identity and actual/budget emit mismatch, including
+sorry and wrong-target negative controls. These three roots are not another
+native formal-view admission. Replay only the inspected reference using
+`scripts/wide_lq_contract_reference.py --build-root PATH --trusted-local-reference --output NEW_RECEIPT`.
+
+The [oracle/composition, representation and scientific-algorithm reviews](reports/textbook-v1/reader-reviews/)
+also separate phase-aware programs from bare gate products, unitary composition
+from deterministic cleanup, finite-dimensional representation hypotheses from
+unrestricted claims, and original bit-oracle costs from derived angle-oracle
+costs. Primary-source access limits are recorded honestly. Earlier scientific
+reader batches inspected primary text without freshly verifying its binary
+hash; those reports are unchanged. The later exact repair reviews below did
+independently retrieve matching bytes, without retroactively approving the
+whole source or every earlier derivation.
+
+Three [reviewed answer repairs](shared/repairs/) restore the original questions:
+BE102 distinguishes actual dirty-input failure from absence of a clean-input
+certificate; plan107 retains the right adjoint in the Pauli twirl; plan204
+retains the complex conjugate and derives the full positive-POVM spectrum.
+Their exact [independent reviews](reports/textbook-v1/repairs/) cover the whole
+answer, rubric and explanatory steps, not only an isolated corrected formula.
+No real-overlap, full-rank or extra oracle premise was added.
+
+Further exact repairs distinguish genuine physical ensemble variation from
+isometry redundancy, establish the Werner separable converse by an explicit
+product twirl, and retain the source Young-symmetrizer action order. See the
+[checkpoint](docs/textbook-polynomial-and-converse-checkpoint-2026-10-23.md) and
+the content-bound reviews; these are source-only mathematics, not new Lean views.
+
+The [dirty-work support source](reports/textbook-v1/repairs/fixed-references/DirtyWorkBoundary.lean)
+and [actual receipt](reports/textbook-v1/repairs/fixed-references/dirty-work-checked-receipt.json)
+check four named roots for the fixed seven-wire program: unconditional entering
+work/row preservation and two distinguishing dirty-input examples. The allowed
+axioms and real sorry/wrong-target controls are recorded. This does not create
+four native Lean views or certify arbitrary-width adders or all quantum prose.
+Replay only the inspected source using
+`scripts/dirty_work_boundary_reference.py --build-root PATH --trusted-local-reference --output NEW_RECEIPT`.
+
+The [linear-algebra and stored-cost second pass](reports/textbook-v1/reader-reviews/)
+also distinguishes strict staircase zeros from diagonal entries, generated
+backend counts from optimal-synthesis lower bounds, upper budgets from actual
+costs, and maximum-bond bounds from attained dimensions. The reviewed
+[supplier-bound repair](shared/repairs/la-214-uniform-supplier-bound-repair.json)
+uses an arbitrary-work family at fixed matrix dimensions; the
+[angle-cost repair](shared/repairs/la-215-branch-cost-repair.json) distinguishes
+all three execution branches. Exact predecessor findings remain in history.
+
+The [inspected fixed-reference source](reports/textbook-v1/repairs/fixed-references/StoredCostRepair.lean)
+and [actual receipt](reports/textbook-v1/repairs/fixed-references/checked-receipt.json)
+support these two repairs with seven named Lean roots and two real negative
+controls. Three roots check concrete branch representatives; they do not replace
+the independent universal control-flow argument or certify every NL sentence.
+These are support checks, not additional native Lean views or isolated model
+evaluation. To replay only this inspected source against a matching built tree,
+choose a new receipt path rather than overwriting published evidence:
+
+```sh
+python benchmarks/quantumcomputingbench/scripts/cost_repair_references.py \
+  --build-root PATH_TO_MATCHING_BUILT_CHECKOUT --trusted-local-reference \
+  --output _out/cost-repair-recheck.json
+```
+
+
+</details>
+
 ## What is ready
 
 | Cohort | Current scope | Evidence and use |
@@ -161,6 +185,13 @@ records its prior selection snapshot, a confirmed same-core pair and cross-split
 mechanism overlap. It is not exhaustive global deduplication, does not approve
 unlisted pairs, and predates the current withdrawals and latest answer repairs.
 Its historical inventory count must not be reused as the latest reader count.
+
+The [first-eight refresh](reports/textbook-v1/cohort-reconciliation/review-at-policy-adbf736a-first-eight.json)
+binds a later exact policy snapshot, reuses sixteen earlier comparisons without
+counting them again, and examines five omitted candidates. The newly identified
+controlled-inverse specialization crosses separate legacy/native splits but is
+not a whole-question alias. This remains partial evidence, not authorization to
+pool cohorts or a claim that a subsequent question version inherits its digest.
 
 **Isolated untrusted Lean evaluation: ENV_BLOCKED. Real-model baseline: UNMEASURED.**
 Source inspection, successful execution, useful progress, formal correctness and

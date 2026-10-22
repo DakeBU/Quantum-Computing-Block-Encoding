@@ -45,6 +45,10 @@ the same. Old-hash proposals are stale and fail validation; a previous formal
 proof or review is not silently transferred. Review the current full question,
 not only the theorem name. If its new request includes a refutation or an
 additional cost distinction, explain exactly which part the formal view covers.
+For example, SP108 now includes refuting a false exact-degree description;
+SP111 includes zero-step degree collapse as well as the exact mass identity.
+An existing elevation or mass lemma can support part of these questions without
+certifying every new obligation. Keep that coverage explicit in the alignment.
 
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install

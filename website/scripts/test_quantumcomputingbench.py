@@ -80,21 +80,24 @@ class CurriculumTests(unittest.TestCase):
                 shared.validate_proposals(self.catalog, [p, q])
 
     def test_question_successor_exposes_revision_and_rejects_stale_companion(self):
-        c = next(c for c in self.catalog["cores"] if c.get("question_successor"))
-        p = self.proposal()
-        p.update({k: c[k] for k in ("core_id", "contract_hash", "family", "split", "snapshot_id")})
-        self.assertEqual(shared.validate_proposals(self.catalog, [p])["new_cores_admitted"], 0)
-        p["contract_hash"] = c["question_successor"]["predecessor_contract_hash"]
-        with self.assertRaisesRegex(ValueError, "contract/family/split"):
-            shared.validate_proposals(self.catalog, [p])
-        self.assertEqual(c["question_source_record"], c["answer_source_record"])
-        self.assertEqual(c["question_version"], 2)
-        body = reader.core_body(c, self.items[c["core_id"]], self.catalog, self.graph, set(self.graph), "../../../")
-        self.assertIn('data-qcb-question-version="2"', body)
-        self.assertIn("Question revision lineage", body)
-        self.assertIn(c["question_successor"]["predecessor_contract_hash"], body)
-        self.assertIn(c["contract_hash"], body)
-        self.assertNotIn("Additive answer successor with", body)
+        revised = [c for c in self.catalog["cores"] if c.get("question_successor")]
+        self.assertTrue(revised)
+        for c in revised:
+            with self.subTest(core=c["core_id"]):
+                p = self.proposal()
+                p.update({k: c[k] for k in ("core_id", "contract_hash", "family", "split", "snapshot_id")})
+                self.assertEqual(shared.validate_proposals(self.catalog, [p])["new_cores_admitted"], 0)
+                p["contract_hash"] = c["question_successor"]["predecessor_contract_hash"]
+                with self.assertRaisesRegex(ValueError, "contract/family/split"):
+                    shared.validate_proposals(self.catalog, [p])
+                self.assertEqual(c["question_source_record"], c["answer_source_record"])
+                self.assertEqual(c["question_version"], 2)
+                body = reader.core_body(c, self.items[c["core_id"]], self.catalog, self.graph, set(self.graph), "../../../")
+                self.assertIn('data-qcb-question-version="2"', body)
+                self.assertIn("Question revision lineage", body)
+                self.assertIn(c["question_successor"]["predecessor_contract_hash"], body)
+                self.assertIn(c["contract_hash"], body)
+                self.assertNotIn("Additive answer successor with", body)
 
     def test_exact_predecessor_acceptance_remains_history_not_new_question_approval(self):
         c = next(c for c in self.catalog["cores"] if c.get("question_successor"))

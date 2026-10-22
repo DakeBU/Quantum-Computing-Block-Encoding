@@ -1,0 +1,64 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-007",
+  "supersedes_key": "qcb-core-plan-007-werner-entanglement-threshold",
+  "supersedes_item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-007-textbook-v1-product-twirl-separable-converse-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact two-qubit question and x interval, empty explicit assumptions/conventions, qit-symmetry-entanglement family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: d2196fd968d517f6f9d4f870dab30d7bd70e0344eddb4b3ad19e6ff0464a6874. Replace the reversed implication in rubric r4 and the third semantic step by the explicit product-with-overlap-x, invariant-twirl, uniqueness and closed-separability proof. No low-dimensional PPT-sufficiency premise is added; this is not approval or admission.",
+  "reference_answer": "The exact threshold is x=0: rho(x) is entangled for -1<=x<0 and separable for 0<=x<=1. Write a=(2-x)/6 and b=(2x-1)/6. Since swap F has eigenvalue +1 on the three-dimensional symmetric subspace and -1 on the antisymmetric line, rho itself has eigenvalues a+b=(1+x)/6 with multiplicity three and a-b=(1-x)/2 with multiplicity one; these are nonnegative on the stipulated interval and sum to one.\n\nFor the entangled direction, F^{T_B}=2P_+ and I^{T_B}=I give rho(x)^{T_B}=a I+2b P_+. In the Bell basis its eigenvalue on P_+ is a+2b=(2-x)/6+(2x-1)/3=x/2, while each of the three orthogonal Bell states has eigenvalue a=(2-x)/6. Thus x<0 produces a negative partial-transpose eigenvalue, so rho(x) is entangled: partial transpose of every product positive operator is positive, and convex mixtures preserve positivity. For x>=0 this calculation shows only PPT, not separability; no PPT-sufficiency theorem is used.\n\nThe swap identity tr[F(omega tensor sigma)]=tr(omega sigma)>=0 extends to mixtures and proves separable implies nonnegative swap overlap. It does not prove the converse for arbitrary bipartite states; Werner symmetry must be used to establish the required converse.\n\nFor each x in [0,1], choose |a>=|0> and |b>=sqrt(x)|0>+sqrt(1-x)|1>, and twirl the product projector tau=|a><a| tensor |b><b| by normalized Haar averaging of (U tensor U)tau(U tensor U)^dagger: the average is Werner by Haar invariance, preserves swap overlap |<a|b>|^2=x because F commutes with U tensor U, and hence equals the specified rho(x), which is the unique two-qubit Werner state with that overlap. Each integrand is a product state and finite convex approximations converge to the average; the finite-dimensional separable set is closed (the convex hull of the compact set of pure product projectors is compact), so this proves separability including x=0 and x=1 without the low-dimensional PPT shortcut, and the product-twirl argument, unlike these particular qubit coefficients and eigenvalue multiplicities, extends to local dimension at least two.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "States the exact restricted-family threshold: entangled for -1<=x<0 and separable for 0<=x<=1, including the x=0 boundary."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Computes rho^{T_B}=((2-x)/6)I+((2x-1)/3)P_+, with Bell eigenvalues x/2 once and (2-x)/6 three times; does not confuse this spectrum with rho's original spectrum."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Uses the negative eigenvalue for x<0 and necessary positivity of partial transpose for separable states to prove entanglement. Does not infer separability merely from nonnegative partial-transpose eigenvalues."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "For x>=0 supplies a product state with squared local overlap x and twirls it; establishes preserved swap overlap and Werner invariance/uniqueness, and uses convexity plus closedness of finite-dimensional separable states to conclude the twirl equals rho(x) and is separable. Swap-overlap positivity extended to mixtures alone proves only the opposite implication and is not a valid converse proof; no PPT-sufficiency shortcut is accepted."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The two-qubit Werner state is entangled exactly for negative swap overlap. Its partial transpose has eigenvalue x/2, while the separable converse follows by twirling an explicit product state with overlap x and identifying the unique Werner state, not by reversing swap-overlap positivity.",
+    "semantic_steps": [
+      {
+        "claim": "Partial transpose gives rho(x)^{T_B}=((2-x)/6)I+((2x-1)/3)P_+, using F^{T_B}=2P_+.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The Bell-basis partial-transpose eigenvalues are x/2 and three copies of (2-x)/6; negative x therefore proves entanglement by the necessary partial-transpose test.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For every x in [0,1], the product of |0> and sqrt(x)|0>+sqrt(1-x)|1> has swap overlap x; its U tensor U twirl preserves that overlap, is the unique Werner rho(x), and stays in the closed convex separable set. This proves the separable converse, whereas overlap positivity alone proves only separable implies x>=0.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry entry leditzky-2025-repth-qit is metadata only. Actual independently retrieved pinned primary PDF: complete printed pages13-16, especially Proposition3.1/Eq3.2, Haar normalization/invariance and twirl3.3-3.8, swap preservation3.10-3.19, full Proposition3.2/Eqs3.20-3.22 and printed16 footnote3's finite-approximation limit. Printed6 separability definition also read. Explicit local vectors, original/partial-transpose spectra and closed-convex-set justification are this author's mathematical reconstruction; no local theorem closure follows from concept anchors."
+    }
+  ],
+  "execution": "Source-grounded private authorship only, pending distinct mathematical review; no selfapproval, kernel/native-formal/stable admission or new identity. Read root's exact _review_tmp/qit-foundations-004-005-007-review.json and the full actual prepared historical007 record from release.checked()[2], including exposed original grading and prior reviews; not blind. I independently retrieved https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf in memory after the initial sandboxed fetch failed:554175 bytes,79 pages, raw SHA256 90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3, exactly matching the inherited pin. Read complete printed pages4,6,12-16, including the complete converse and footnote on16. Web screenshots failed with cache misses; I personally viewed existing private page12 and16 PNGs rendered by root, without attributing that rendering to myself. PDF skill informed the complete-region text plus visual check; no PDF bytes were saved or redistributed, no external book-wide or production-source claim. These are two-qubit mathematical identities and a separability argument, not an efficient implemented twirl, gate count or finite-bit result. The historical primary_sources and all nine contract fields are preserved; only answer/rubric/exposition are proposed to change."
+}

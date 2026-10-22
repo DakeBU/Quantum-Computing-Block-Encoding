@@ -1,0 +1,92 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "core_ids": [
+      "qcb-core-plan-004",
+      "qcb-core-plan-005",
+      "qcb-core-plan-007"
+    ],
+    "record_selection": "Actual complete prepared predecessors from release.checked()[2], including all mathematical fields, original review metadata and provenance; no subset-field digests.",
+    "observed_head": "a0836e38501d3976663ca561424063e78ba32214",
+    "bounded_alias_scope": "Full questions of004,005,007 and315 read; no whole-catalog or whole-source-review claim."
+  },
+  "provenance": {
+    "actual_identity": "/root",
+    "independence": "Distinct from original native-planned-author and historical native-planned-review-distinct-context. Root authored none of these original QA records. Answers and earlier accept metadata visible; not source-blind, human review or a new identity.",
+    "execution": "Read-only exact-item retrieval, independent symbolic derivation, primary PDF text inspection and two actual rendered-page visual checks. No Lean execution, production source change, admission or new model evaluation.",
+    "source_scope": "Complete relevant printed pages4,6,12,14,15,16 inspected; page12 and16 rendered privately and actually viewed. Other lecture regions and cited external proofs are not blanket approved.",
+    "publication_boundary": "Exact full-item mathematical verdicts only. Rejecting007 concerns the reversed implication in rubric/semantic step, not a counterexample to the true restricted Werner theorem. Current-reader disposition remains a separate policy action.",
+    "bytes": "Fresh in-memory HTTPS retrieval554175bytes/79pages, exact historical binary pin matched. Raw PDF not saved or redistributed; source page PNGs private and not published.",
+    "primary_url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+    "raw_pdf_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "primary_anchors": "Definition2.3/Eq2.7 and pure-extreme paragraph printed4; Eq2.14-2.16 and separable remark printed6; complete Exercise2.1/Eq2.37-2.38 printed12; Prop3.1/Eq3.2 and twirl3.4 printed14; Eq3.10-3.20 printed15; complete Prop3.2 converse/Eq3.21-3.22/footnote3 printed16.",
+    "visual_pages": {
+      "12": "411aae2bf632bdd390606ea531b6dd1cee494f95031a464ddb66198505517466",
+      "16": "a570501008dfd41cd19afb94a7e0a7965908ba0a88970c5896b2d2eac5e90157"
+    },
+    "graph_boundary": "All three remain primary_source_nl_only; concept anchors and source prose do not certify local Lean closure.",
+    "stable_boundary": "No global dedup, equivalence class closure, isolated prediction, hidden-test or stable approval."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-004",
+      "key": "qcb-core-plan-004-ensemble-nonuniqueness",
+      "item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+      "verdict": "reject",
+      "semantic_core_verdict": "pending_repair",
+      "semantic_core_reasoning": "Same graph/family scope, true question with defective full answer/rubric/exposition. No new alias found in the bounded comparison with005/007; no global distinctness or new core count claimed.",
+      "reasoning": "The outer-product computation is correct: the coefficient of |psi_l'><psi_m'| is sum_j V_jl conjugate(V_jm)=(V*V)_ml=delta_ml. Also sum_j q_j=tr(rho)=1. However a column isometry need not have nonzero output rows. For rho=I_2/2, r=2,k=3 and V with rows (1,0),(0,1),(0,0), q_3=0. The answer conditions normalization on q_j>0 but then asserts a bona fide k-term normalized ensemble without discarding that row or choosing an arbitrary state for its zero weight. More importantly, infinitely many isometries alone do not prove infinitely many physically different ensembles: replacing V by D V with diagonal row phases changes the isometry while leaving every q_j and normalized rank-one projector unchanged. Taking V=-I already shows this noninjectivity. The statement that distinct isometries produce distinct ensembles cannot serve as its claimed proof of genuine nonuniqueness; larger k can merely append zero rows or split duplicate rays. This does not refute the true question. A complete answer can explicitly mix two positive independent spectral components with a real rotation, producing a continuously varying projective ray, and handle zero outputs and longer ensembles separately. The rubric r3 and final semantic step must be repaired with the answer, not retained as a blanket isometry-freedom implication.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Leditzky primary metadata only; actual bounded primary PDF inspection and binary pin separately recorded, not inferred from this metadata."
+        }
+      ],
+      "formal_status": "not_run_source_only"
+    },
+    {
+      "core_id": "qcb-core-plan-005",
+      "key": "qcb-core-plan-005-classical-correlation-vs-product-counterexample",
+      "item_digest": "75bdc7610d7bf3c2c4c4a2fb21a151bdd2966bb54443b4426e310f9b67f38bf5",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "semantic_core_reasoning": "Explicit correlated separable/non-product witness and pure-extreme explanation, not the ensemble isometry target or Werner threshold target. No bounded equivalent whole target identified; no global semantic-dedup verdict.",
+      "reasoning": "For every pair of local POVM effects E_a,F_b, trace multiplicativity gives p_ab=tr(omega E_a)tr(sigma F_b); summing the complete POVMs recovers these as the marginals, so all joint outcomes are independent. The proposed rho=diag(1/2,0,0,1/2) is explicitly separable. Its marginals are I_2/2, whose tensor product is I_4/4 with rank4, whereas rho has rank2; any hypothetical normalized product has its factors equal to its marginals, so it cannot equal rho. Computational measurements give p00=p11=1/2,p01=p10=0 and each zero marginal1/2; in particular p00 differs from1/4. Finally a pure density matrix is an extreme point of all density matrices. In any finite convex separable decomposition, every positive-weight product term must therefore equal it, giving a single product representation. Thus it cannot have the displayed classical correlation. The reference, all four rubric criteria, summary and three steps correctly distinguish unconditioned correlation from the uncorrelated terms; no entanglement is inferred from the classical correlation.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Leditzky primary metadata only; actual bounded primary PDF inspection and binary pin separately recorded, not inferred from this metadata."
+        }
+      ],
+      "formal_status": "not_run_source_only"
+    },
+    {
+      "core_id": "qcb-core-plan-007",
+      "key": "qcb-core-plan-007-werner-entanglement-threshold",
+      "item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+      "verdict": "reject",
+      "semantic_core_verdict": "pending_repair",
+      "semantic_core_reasoning": "The specialized threshold uses twirling as a dependency; it is not identical to the full planned315 twirl-invariance/visibility question. No exact alias or split rewrite decided; generic graph concepts are not theorem closure.",
+      "reasoning": "The threshold and negative partial-transpose calculation are correct: a=(2-x)/6,b=(2x-1)/6, rho^TB=a I+2b P_plus has eigenvalue a+2b=x/2 on P_plus and a on its three-dimensional complement. Negative x therefore implies entanglement; y=a is nonnegative on the stated interval. The answer also mentions the necessary missing converse mechanism, twirling a suitable product state, but the last semantic step and rubric r4 assert that nonnegative swap overlap extended to mixtures PROVES separability for x>=0. It proves the opposite implication, separable implies nonnegative overlap. Positivity alone cannot certify separability: |Phi_plus><Phi_plus| has swap expectation1 and is entangled (it is not a Werner state, so this is a counterexample to the proof principle, not to the stated Werner theorem). For the actual restricted family, one must choose |a>=|0>,|b>=sqrt(x)|0>+sqrt(1-x)|1>, twirl their product, preserve swap expectation x and identify the unique Werner state rho(x). Twirling stays in the closed convex set of separable states (finite mixtures approximate the Haar integral). This is the real source converse. The exact full item is rejected as current gold because its process step and grading accept an invalid implication, not because the threshold or whole reference conclusion is false. An unchanged-question answer/rubric/exposition repair is sufficient; do not add a low-dimensional PPT-sufficiency premise. The dimension-independent assertion applies to the twirling/product construction in local dimension at least2, not the literal two-qubit coefficients or eigenvalue x/2.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Leditzky primary metadata only; actual bounded primary PDF inspection and binary pin separately recorded, not inferred from this metadata."
+        }
+      ],
+      "formal_status": "not_run_source_only"
+    }
+  ],
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky primary metadata only; actual bounded primary PDF inspection and binary pin separately recorded, not inferred from this metadata."
+    }
+  ]
+}

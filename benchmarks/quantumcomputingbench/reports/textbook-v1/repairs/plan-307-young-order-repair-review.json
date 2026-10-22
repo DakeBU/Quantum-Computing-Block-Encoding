@@ -1,0 +1,146 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-307",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-307-young-order-repair.json",
+  "repair_record_digest": "4f130e179b86191d1b5651ee6eb1e94b6817708cd33791efe8a236d459b7e89f",
+  "repair_record_sha256_lf": "a92a082223972fc416aadc827d7b9725212c128d59816c8e49bd1280fc581fdc",
+  "original_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+  "verdict": "accept",
+  "verdict_scope": "Independent acceptance of this exact answer/rubric/exposition candidate under the unchanged question contract only. No historical acceptance transfer, canonical transport, reader admission, new core, local Lean closure or kernel execution is performed.",
+  "independence": {
+    "actual_reviewer": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "tensor-symmetry-author-b3",
+    "assessment": "This reviewer authored neither the original nor this candidate and is distinct from their actual authors.",
+    "exposure": "Not blind or a fresh identity. Prior Leditzky representation/QIT source exposure is disclosed, but no prior independent original307 review by this task is claimed. The complete actual original, candidate, author's previous307 uncertainty finding and parent's order-versus-conclusion distinction were read. The zero-operator proof and noncommutation witness are independently reconstructed below."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "b0103ea948e0a3c59024867148d8adf149ca2cd8da13d605ee24efd98a0906c0",
+    "projected_contract_hash": "b0103ea948e0a3c59024867148d8adf149ca2cd8da13d605ee24efd98a0906c0",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "contract_field_overrides_in_repair": [],
+    "assessment": "Programmatically loaded the actual whole prepared original through current release.checked()[2]. Privately deep-copied it and replaced only key/reference_answer/rubric/author plus native_nl.core_summary and semantic_steps, as inspected in the answer-successor policy. Every actual nine-field contract value and its qcb_core.digest remain exactly equal. Candidate supersedes_key/item_digest match the original. No future admitted full-item digest is invented.",
+    "family": "qit-young-row-bound",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "original_semantic_step_count": 4,
+    "candidate_semantic_step_count": 4,
+    "mechanical_checks": "check_exposition and check_source_bindings passed read-only, including the original target/support node set and retained semantic-step count. These checks do not certify mathematics or perform admission.",
+    "mathematical_scope": "Same Schur-Weyl row-count exclusion and Young-image realization over C^d. The d-letter assumption and filled-tableau convention remain exactly inherited. No shape/full-rank/nonzero-filling hypothesis is added; all four semantic steps remain. This clarifies the answer's exact operator/action, not the true question or theorem."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit entry219-227 read, including author-hosted URL, printed10 April2026/79-page edition and historical PDF pin. This whole-file LF hash binds metadata only; actual primary access/hash and bounded mathematics are separately recorded."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "Read actual CONTRACT_FIELDS/check_exposition12-27 and answer-successor projection153-207. Private unchanged-contract projection uses those actual replacement fields; no current-policy mutation or admission invoked."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "anchor": "core_contract19-20 read; actual nine-field dictionary used to compute unchanged contract digest."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole actual prepared307 record loaded via release.checked()[2] and read in full, including question/answer/assumptions/conventions/four-step exposition/rubric/metadata. Whole-file LF hash verified as frozen predecessor provenance, not a mathematical proof."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10 April 2026,79 pages; course-directory FT25",
+      "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "byte_count": 554175,
+      "pdf_page_count": 79,
+      "hash_match": true,
+      "retrieval": "Fresh independent read-only HTTPS retrieval into memory in this review; initial ordinary fetch failed with WinError10013, approved read-only retry succeeded. hashlib computed raw binary SHA256 and bundled pypdf extracted complete relevant pages. Raw PDF not saved or redistributed.",
+      "title_page": "April10,2026 independently read from retrieved bytes.",
+      "last_modified_header": "Fri, 10 Apr 2026 12:15:47 GMT",
+      "response_date_header": "Thu, 22 Oct 2026 20:15:23 GMT",
+      "visual_inspection": {
+        "performed": false,
+        "scope": "No operative printed40/47/48 render inspected in this review. Exact matching-byte text was read. The viewed printed12/16 root-rendered images concern the other two repairs, not visual evidence for307.",
+        "limit": "No new rendering or whole-source visual approval claimed."
+      },
+      "local_lean_closure": "None: primary-source NL only; source concept nodes do not constitute formal counterparts.",
+      "zero_based_pdf_pages_read": [
+        0,
+        37,
+        39,
+        46,
+        47
+      ],
+      "operative_regions": "Fresh exact-byte text on printed47 Eq5.16-5.19/Definition5.14 and printed48 Eq5.20, Prop5.17 realization and complete first-column argument after5.23-5.24. Additional fresh exact-byte printed40 Eq4.8/4.9 action definition checked; printed38 was inspected ancillary context but is not the tensor-action anchor.",
+      "comparison": "Exact source factor order and source row-exclusion argument match the repair. The candidate expands the basiswise sign argument into c_T=0 globally and supplies its own noncommutation witness. Those are independently checked NL derivations, not a claim that the source itself spells out every step.",
+      "author_retrieval_distinction": "The candidate honestly says its author did not verify the historical binary pin. This reviewer independently obtained and hashed the bytes successfully during this later review; the author's record is not silently upgraded or edited."
+    }
+  ],
+  "provenance": {
+    "observed_head": "a0836e38501d3976663ca561424063e78ba32214",
+    "reviewed_at_private_path": "_review_tmp/plan-307-young-order-repair.json",
+    "published_locator_note": "repair_record names intended canonical transport destination. Actual reviewed bytes were read privately at reviewed_at_private_path; copying the exact artifact changes its locator, not mathematics or digest.",
+    "whole_digest_method": "qcb_core.digest of entire actual prepared original and complete parsed repair including all metadata. Candidate LF binding independently recomputed with qcb_integrity.text_sha.",
+    "instruction_status": "Substantive-worker and PDF skill used. Mandatory repository publication/digestion/memory/shared contract instructions read in this continuous task context; keep source, NL review, Lean execution and admission evidence separate.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "additional_agents": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this private *-review.json output is authored; candidates, frozen originals, prior reports, source-binding modules, production Lean, policy, canonical reports and PR103 are untouched. No commit or push.",
+    "limitations": "Bounded independent NL/source mathematical review. No efficient twirl, exact-real/finite-bit resource result, quantum compilation, global semantic dedup, theorem novelty, blanket source approval or stable-release certification.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+      "reviewed_at_private_path": "_review_tmp/representation-qit-301-311-review.json",
+      "digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+      "sha256_lf": "34e7f6d8cf9154d45469fa84970c90458bfd820070b33d7094c6dd8a38765067",
+      "reviewer": "/root/qcb_boundary_repair_review",
+      "inspection": "Read the complete plan307 finding from this prior report. Its author is also the repair author; that prior review is exposed rationale, not independent approval of the candidate."
+    }
+  },
+  "original_defect": "The predecessor's 'row symmetrization followed by column antisymmetrization' can mean written product r_T c_T or temporal row-then-column execution c_T r_T. The pinned source means r_T c_T, with column action first. General order interchangeability is false, but this ambiguity does not falsify the >d-row exclusion because c_T is zero on the entire space in that regime.",
+  "substantive_reconstruction": {
+    "source_action_and_order": "Eq4.8 uses Q_pi(v_1 tensor...tensor v_n)=v_(pi^-1(1)) tensor...tensor v_(pi^-1(n)). Consequently Q_pi Q_sigma=Q_(pi sigma), not an anti-action. Row/column subgroup sums act as r_T=sum_rho Q_rho and c_T=sum_kappa sgn(kappa)Q_kappa. Definition5.14 gives e_T=r_T c_T; applying this to column vectors performs c_T first, r_T second. No commutation is used.",
+    "pigeonhole_and_cancellation": "If the shape has p>d nonempty rows, its first column has p positions. Every tensor basis word labels those positions from d possibilities, so a pair repeats. Their transposition tau belongs to C_T, has sign-1, and fixes that basis word. Right multiplication kappa->kappa tau is a bijection of C_T; multiplicativity of sign gives c_T Q_tau=-c_T. Thus c_T v=c_T Q_tau v=-c_T v and c_T v=0 over C, where2 is invertible.",
+    "whole_space_then_row_action": "The repeated pair may vary with v. Nevertheless the argument applies to every basis word, so linearity gives the global operator identity c_T=0. Only now conclude e_T=r_T c_T=r_T0=0 and its image is the zero space, eliminating that Young-image realization. This avoids the gap of applying the row sum to a single word and assuming its original repeated pair still fixes the result.",
+    "noncommutation_witness": "For T with rows[1,2] and[3], d=2 and v=e1 tensor e2 tensor e1, take r=I+Q_(12),c=I-Q_(13). Since Q_(13)v=v, r c v=0. But r v=121+211, so c r v=211-112, a nonzero difference of distinct tensor basis words. The candidate's displayed witness and signs are exact. Its shape has2 rows with d=2; it tests general factor interchangeability, not the >d-row excluded domain.",
+    "true_conclusion_under_both_orders": "In the actual p>d domain, global c_T=0 implies both r_T c_T=0 and c_T r_T=0. Thus the original row bound and its pigeonhole mechanism survive either product. Acceptance is of source-order clarity, not a purported counterexample to row exclusion or an equivalence of the two operators outside that domain.",
+    "empty_dimension_and_pointwise_boundary": "If d=0 and n>0 the tensor power is already zero, with empty basis, so the universal annihilation argument is vacuous and valid. If n=0, the empty diagram has no positive row count exceeding natural d, so no exclusion is asserted for the scalar zeroth tensor power. For p<=d there is merely no forced long-column collision; individual basis words may still be annihilated, as the same121 witness shows. No every-filling-survives converse appears.",
+    "source_and_proof_boundary": "The question supplies the Young-image realization framework. The repair proves its precise vanishing mechanism directly; it does not reproduce all irreducibility, Specht-module, minimal-projection or Schur-Weyl proofs. The source's deferred surrounding representation results and unrelated later content claims are not newly approved. This is not a circuit, cost, kernel or native-formal theorem certificate."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full. Explicit source multiplication order, right-coset sign cancellation, basis-to-whole-space extension and empty cases are correct. The noncommutation example is valid and carefully separated from the theorem's >d-row regime.",
+    "rubric": "r1 grades the actual factor-position filling; r2 fixes e_T=r_T c_T and temporal column-first action while treating old wording as ambiguous; r3 grades the forced repeated column label; r4 requires c_T=0 globally before composing and disallows a false pointwise converse. All four criteria are valid.",
+    "exposition": "All four actual steps and summary read. They retain original concept support and count, spell out noncommutation and the necessary whole-space extension, and do not relabel the true row-bound theorem as false.",
+    "necessity_minimality": "An unchanged-question answer/rubric/exposition clarification suffices. No new hypothesis, row restriction or target is introduced. The author's old uncertain finding is preserved as history rather than converted into fresh independent evidence."
+  }
+}
