@@ -150,6 +150,53 @@ class CurriculumTests(unittest.TestCase):
             self.assertNotIn(c['core_id'], accepted)
             self.assertNotIn(c['core_id'], disputed)
 
+    def test_current_conventions_are_separate_from_historical_audit(self):
+        revisions = [c for c in self.catalog['cores']
+                     if 'conventions' in (c.get('question_successor') or {}).get('changed_contract_fields', [])]
+        self.assertTrue(revisions, 'the admitted convention migration must have a renderer regression')
+        for core in revisions:
+            item, lineage = self.items[core['core_id']], core['question_successor']
+            body = reader.core_body(core, item, self.catalog, self.graph, set(self.graph), '../../../')
+            active = body.split('id="assumptions"', 1)[1].split('</section>', 1)[0]
+            self.assertIn('data-qcb-convention-revision="2"', body)
+            self.assertIn('Historical conventions (audit only)', body)
+            self.assertIn('Current conventions', body)
+            for text in lineage['current_conventions']:
+                self.assertIn(reader.esc(text), active)
+            for text in lineage['original_conventions']:
+                self.assertIn(reader.esc(text), body.split('id="revision"', 1)[1])
+                if text not in lineage['current_conventions']:
+                    self.assertNotIn(reader.esc(text), active)
+            proposal = self.proposal()
+            proposal.update({k: core[k] for k in ('core_id', 'contract_hash', 'family', 'split', 'snapshot_id')})
+            proposal['source_nodes'] = core['target_nodes']
+            shared.validate_proposals(self.catalog, [proposal])
+            proposal['contract_hash'] = lineage['predecessor_contract_hash']
+            with self.assertRaisesRegex(ValueError, 'contract/family/split'):
+                shared.validate_proposals(self.catalog, [proposal])
+
+    def test_convention_migration_requires_its_actual_browser_gate(self):
+        self.assertTrue(any('conventions' in (c.get('question_successor') or {}).get('changed_contract_fields', [])
+                            for c in self.catalog['cores']))
+        browser = {'catalog_hash': self.catalog['catalog_hash'],
+                   'reader_source_digest': shared.reader_source_digest(), 'failures': [],
+                   'all_core_mobile_checks': len(self.catalog['cores']),
+                   'checks': {key: True for key in ('mobile_no_overflow', 'desktop_no_overflow', 'themes',
+                       'solution_disclosure', 'graph_links', 'search_excludes_answers', 'native_formal_panels',
+                       'quarantined_content_excluded', 'question_revision_lineage')}}
+        actual_read = shared.read_json
+        actual_is_file = Path.is_file
+        with patch.object(shared, 'read_json', side_effect=lambda path:
+                browser if Path(path).name == 'browser-report.json' else actual_read(path)), \
+                patch.object(Path, 'is_file', lambda path:
+                    path.name == 'browser-report.json' or actual_is_file(path)):
+            self.assertFalse(shared.stable_readiness(self.catalog)['gates']['rendered_browser_checks'])
+            browser['checks']['convention_revision_lineage'] = True
+            result = shared.stable_readiness(self.catalog)
+            self.assertTrue(result['gates']['rendered_browser_checks'])
+            self.assertFalse(result['stable'])
+            self.assertFalse(result['gates']['cross_cohort_semantic_reconciliation'])
+
     def test_candidate_never_self_admits_or_allocates_permanent_core(self):
         p = self.proposal()
         p.update(core_id="candidate:" + p["proposal_id"], admission="candidate_not_counted", dedup_review_required=True)

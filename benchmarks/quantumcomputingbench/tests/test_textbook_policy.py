@@ -34,7 +34,9 @@ class TextbookPolicyTests(unittest.TestCase):
         self.assertLessEqual(len(current), len(self.historical))
         old = {i["core_id"]: i for i in self.historical}
         for item in current:
-            unchanged = [k for k in CONTRACT_FIELDS if not (k == "question" and item.get("question_successor"))]
+            changed = item.get("question_successor", {}).get("changed_contract_fields", [])
+            self.assertIn(changed, ([], ["question"], ["question", "conventions"]))
+            unchanged = [k for k in CONTRACT_FIELDS if k not in changed]
             self.assertEqual({k: item[k] for k in unchanged}, {k: old[item["core_id"]][k] for k in unchanged})
             if item.get("textbook_successor"):
                 self.assertEqual(item["textbook_successor"]["predecessor_item_digest"], digest(old[item["core_id"]]))
@@ -252,3 +254,97 @@ class TextbookPolicyTests(unittest.TestCase):
                 return candidate if Path(path) == rp else review if Path(path) == vp else read_json(path)
             with patch.object(policy, "read_json", side_effect=mocked), self.assertRaises(ValueError):
                 apply_current_reader_policy(self.historical)
+
+    def convention_fixture(self):
+        """Mechanical fixture, not a mathematical approval or catalog admission."""
+        from copy import deepcopy
+        row = next(r for r in read_json(B / 'shared/current-policy.json')['question_successors']
+                   if r['core_id'] == 'qcb-core-la-206')
+        original = next(i for i in self.historical if i['core_id'] == row['core_id'])
+        candidate, review = deepcopy(read_json(B / row['repair'])), deepcopy(read_json(B / row['review']))
+        candidate.update(schema_version='qcb.textbook_question_successor.v2',
+                         conventions=['Current fixture convention; no mathematical approval.'])
+        review.update(method='independent-question-convention-successor-review',
+                      original_conventions=deepcopy(original['conventions']),
+                      successor_conventions=deepcopy(candidate['conventions']),
+                      changed_contract_fields=['question', 'conventions'],
+                      convention_change_assessment={'fixture': 'Both convention lists are explicit.'})
+        self.bind_convention_fixture(original, candidate, review)
+        return row, original, candidate, review
+
+    @staticmethod
+    def bind_convention_fixture(original, candidate, review):
+        review['repair_record_digest'] = digest(candidate)
+        review['successor_contract_hash'] = digest({**{k: original[k] for k in CONTRACT_FIELDS},
+            'question': candidate['question'], 'conventions': candidate['conventions']})
+
+    def execute_convention_fixture(self, row, original, candidate, review):
+        rp, vp = B / row['repair'], B / row['review']
+        with patch.object(policy, 'read_json', side_effect=lambda path:
+                candidate if Path(path) == rp else review if Path(path) == vp else read_json(path)):
+            return policy.question_successor(row, original)
+
+    def test_convention_successor_binds_both_contracts_and_keeps_other_fields(self):
+        row, original, candidate, review = self.convention_fixture()
+        current, decision = self.execute_convention_fixture(row, original, candidate, review)
+        lineage = current['question_successor']
+        self.assertEqual(lineage['changed_contract_fields'], ['question', 'conventions'])
+        self.assertEqual(lineage['original_conventions'], original['conventions'])
+        self.assertEqual(lineage['current_conventions'], current['conventions'])
+        self.assertEqual(lineage['current_contract_hash'], digest({k: current[k] for k in CONTRACT_FIELDS}))
+        self.assertEqual(lineage['additional_core_count'], 0)
+        self.assertFalse(lineage['equivalence_to_predecessor_claimed'])
+        for field in set(CONTRACT_FIELDS) - {'question', 'conventions'}:
+            self.assertEqual(current[field], original[field])
+        self.assertEqual(current['core_id'], original['core_id'])
+        self.assertEqual(current['reviews'], [review])
+        self.assertNotIn(original['reviews'][0], current['reviews'])
+        self.assertEqual(decision['status'], 'reviewed_question_successor_admitted_to_reader')
+
+    def test_convention_successor_rejects_unbounded_or_invalid_payloads_with_rebound_review(self):
+        mutations = [('schema_version', 'qcb.textbook_question_successor.v1'),
+                     ('conventions', None), ('conventions', []), ('conventions', ['']),
+                     ('conventions', ['valid', 1]), ('conventions', ['same', 'same']),
+                     ('assumptions', ['new assumption']), ('split', 'test_public'),
+                     ('source_refs', []), ('target_nodes', []), ('family', 'new-family')]
+        for field, value in mutations:
+            with self.subTest(field=field, value=value):
+                row, original, candidate, review = self.convention_fixture()
+                candidate[field] = value
+                self.bind_convention_fixture(original, candidate, review)
+                with self.assertRaises(ValueError):
+                    self.execute_convention_fixture(row, original, candidate, review)
+        for variant in ('missing', 'unchanged', 'unchanged-question'):
+            row, original, candidate, review = self.convention_fixture()
+            if variant == 'missing':
+                del candidate['conventions']
+                review['repair_record_digest'] = digest(candidate)
+            elif variant == 'unchanged':
+                candidate['conventions'] = original['conventions']
+                self.bind_convention_fixture(original, candidate, review)
+            else:
+                candidate['question'] = original['question']
+                self.bind_convention_fixture(original, candidate, review)
+            with self.subTest(variant=variant), self.assertRaises(ValueError):
+                self.execute_convention_fixture(row, original, candidate, review)
+
+    def test_convention_successor_requires_distinct_exact_substantive_review(self):
+        mutations = [('method', 'independent-question-successor-review'),
+                     ('original_conventions', ['wrong historical premise']),
+                     ('successor_conventions', ['unreviewed premise']),
+                     ('changed_contract_fields', ['question']),
+                     ('convention_change_assessment', {}), ('convention_change_assessment', True),
+                     ('successor_contract_hash', 'stale'), ('original_contract_hash', 'stale'),
+                     ('repair_record_digest', 'stale'), ('source_checks', []),
+                     ('reviewer', '/root'), ('reviewer', '')]
+        for field, value in mutations:
+            with self.subTest(field=field):
+                row, original, candidate, review = self.convention_fixture()
+                review[field] = value
+                with self.assertRaises(ValueError):
+                    self.execute_convention_fixture(row, original, candidate, review)
+        row, original, candidate, review = self.convention_fixture()
+        review['verdict'] = 'uncertain'
+        current, decision = self.execute_convention_fixture(row, original, candidate, review)
+        self.assertIsNone(current)
+        self.assertEqual(decision['status'], 'withheld_pending_distinct_question_review')

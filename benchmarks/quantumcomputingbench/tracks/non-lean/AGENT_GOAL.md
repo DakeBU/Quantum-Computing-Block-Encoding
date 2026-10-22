@@ -90,8 +90,14 @@ finite-square injectivity, wire-induced permutations and exact stored phase
 explicit. Backend list counts are not optimal lower bounds; typed bond maxima
 are not minimal ranks. BE004/BE112 share assessed subproofs across inherited
 train/dev assignments: do not claim independent held-out evidence or pooling
-clearance for those fragments. LA219 remains reserved pending a separately
-reviewed convention-aware migration; do not force it into a question-only schema.
+clearance for those fragments. Read the newer convention/guard-count checkpoint:
+LA219's explicit question-and-convention successor derives
+E=n+2+popcount(cutoff) from the actual positive-scale producer and proves
+attainability, including n=0. The older loose cap remains true but is not sharp.
+This is reviewed NL mathematics, not new kernel closure. Use the explicit
+v2 payload only when both question and convention list change; bind both lists
+and both contracts in a distinct substantive review. Other assumptions, splits
+and graph scope are not overridable. Historical conventions are audit-only.
 
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,

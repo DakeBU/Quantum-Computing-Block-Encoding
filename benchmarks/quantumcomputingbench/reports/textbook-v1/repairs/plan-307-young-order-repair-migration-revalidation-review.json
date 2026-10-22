@@ -1,0 +1,178 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "method": "independent-answer-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-plan-307",
+  "repair_record_digest": "4f130e179b86191d1b5651ee6eb1e94b6817708cd33791efe8a236d459b7e89f",
+  "original_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+  "verdict": "accept",
+  "exposure": "Not blind: read root's migration objective, the complete historical prepared item via release.checked()[2], actual current policy row, exact bound withdrawal/finding, entire boundary-authored candidate and old exact approval by /root/qcb_formal_view_audit. Prior task/source context and the original objections were exposed. I did not author this candidate and am distinct from both its author and original author. This is substantive re-review of unchanged candidate bytes, not mechanical rebinding of an earlier approval.",
+  "substantive_reconstruction": {
+    "action_and_order": "From the inverse-index tensor action in source Eq4.8, applying Q_sigma then Q_pi puts original factor (pi*sigma)^(-1)(j) in slot j, so Q_pi Q_sigma=Q_(pi*sigma). The row subgroup sum r and signed column subgroup sum c act on that representation. Definition5.14 fixes e=r*c; hence c acts first on column vectors. The proof cannot replace this by c*r solely from a linguistic phrase. The candidate correctly separates written multiplication from temporal application and preserves the source's Young-image realization. I inspected the complete operative row/column definitions and the subsequent source image/vanishing argument, rather than treating a source catalog ID as proof.",
+    "cancellation": "For p>d nonempty rows, the first column has p positions in any tensor-basis filling. Pigeonhole gives a repeated label and a transposition tau inside that column fixing this particular word. Right multiplication kappa -> kappa*tau bijects the entire column subgroup and flips each sign. With the homomorphic action this proves c Q_tau=-c, so c v=c Q_tau v=-c v. Complex characteristic zero gives c v=0. Although tau depends on v, no common tau is needed: every basis vector is killed, so linearity proves c is the zero operator on the whole tensor power. Only then is r applied, yielding e=r*0=0. Its image is zero and therefore supplies no nonzero irreducible realization of that shape.",
+    "explicit_order_witness": "For T=[1,2;3] and v=121, r=I+(12), c=I-(13). The transposition (13) fixes v, so rcv=0. In contrast rv=121+211 and crv=211-112, a nonzero difference of distinct basis words in dimension at least2. This checks both the candidate's sign and tensor-factor order. It does not refute the p>d theorem: in that excluded regime c has already been proved globally zero, so both products happen to vanish. Thus the answer correctly classifies the predecessor's defect as ambiguous order wording, not a false row-count conclusion.",
+    "grading_and_boundaries": "All four rubric criteria and explanatory steps track the complete argument: filling by position labels; source order without a commutation claim; a fixing odd column permutation; then whole-space annihilation before taking the row product. The noncommutation example is a boundary illustration, not a new standing assumption or additional target. For d=0 and n>0 the tensor space is already zero. For n=0 there are no nonempty rows and p>d cannot hold for natural d. Absence of a long-column obstruction when p<=d does not imply that every filling survives; the answer expressly disclaims that converse. No dimension formula, complexity bound or constructive circuit follows from this finite-dimensional cancellation argument.",
+    "source_and_migration_scope": "The source printed47 fixes the order and printed48 supplies the image realization and vanishing mechanism. My mathematical acceptance rests on the reconstructed sign-cancellation proof and checked source convention, not on the historical approval or the primary PDF's overbroad source status. Source metadata LF is bound below only to preserve the actual external locator; it is not a local mathematical proof file. The engine's new question-plus-convention path is irrelevant to this answer-only payload. Its inspected code/test versions are historical mechanical_context, not future source-hash dependencies. Existing approvals and candidate bytes are untouched."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit catalog entry inspected. Locator/edition metadata only; no local theorem proof or PDF-byte identity is inferred. Actual mathematical primary regions are recorded separately."
+    }
+  ],
+  "content_bindings": {
+    "candidate_path": "benchmarks/quantumcomputingbench/shared/repairs/plan-307-young-order-repair.json",
+    "candidate_sha256_lf": "a92a082223972fc416aadc827d7b9725212c128d59816c8e49bd1280fc581fdc",
+    "current_policy_row_digest": "91eb57db37936d1a73948605b6290364279c79264179706bbc92e0d0d26d6aad",
+    "withdrawal": {
+      "core_id": "qcb-core-plan-307",
+      "predecessor_key": "qcb-core-plan-307-young-row-bound",
+      "predecessor_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+      "reason": "The row-bound conclusion is correct, but temporal row-then-column wording is ambiguous relative to the source Young symmetrizer r_T*c_T.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+      "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+      "finding_digest": "785c061d3ee33b72d66f626d11f373296581ded85ba7591272e007e75c37db39"
+    },
+    "withdrawal_report_digest_recomputed": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+    "withdrawal_finding_digest_recomputed": "785c061d3ee33b72d66f626d11f373296581ded85ba7591272e007e75c37db39",
+    "ordered_original_step_nodes": [
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "ordered_candidate_step_nodes": [
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "original_contract_fields": {
+      "question": "In the Schur-Weyl decomposition of the n-fold tensor power of C^d, only Young diagrams with at most d rows contribute. Using the realization of the unitary-group irreducible pieces by Young symmetrizers acting on tensor basis vectors, explain precisely why a Young diagram with more than d rows contributes nothing, and identify the exact algebraic mechanism responsible.",
+      "assumptions": [
+        "The alphabet of tensor labels has exactly d letters."
+      ],
+      "conventions": [
+        "A filled tableau places tensor labels into boxes according to the standard labels of T."
+      ],
+      "family": "qit-young-row-bound",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:tensor-networks",
+        "concept:operator-theory"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "successor_contract_fields": {
+      "question": "In the Schur-Weyl decomposition of the n-fold tensor power of C^d, only Young diagrams with at most d rows contribute. Using the realization of the unitary-group irreducible pieces by Young symmetrizers acting on tensor basis vectors, explain precisely why a Young diagram with more than d rows contributes nothing, and identify the exact algebraic mechanism responsible.",
+      "assumptions": [
+        "The alphabet of tensor labels has exactly d letters."
+      ],
+      "conventions": [
+        "A filled tableau places tensor labels into boxes according to the standard labels of T."
+      ],
+      "family": "qit-young-row-bound",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:tensor-networks",
+        "concept:operator-theory"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    }
+  },
+  "mechanical_context": {
+    "observed_head": "f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818",
+    "branch": "agent/qcb-convention-contract-migration",
+    "state": "Dirty engine inspected after root's explicit FINAL admission-engine freeze; these are historical mechanical-inspection versions, not mathematical source dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab"
+      },
+      {
+        "path": "website/scripts/quantumcomputingbench.py",
+        "sha256_lf": "5a097d13f8048bd3265a42ec6312448baa5a99701fe583d383148a9a194ef740"
+      },
+      {
+        "path": "website/scripts/test_quantumcomputingbench_browser.py",
+        "sha256_lf": "03446cd6e0e891c5ea85cdb57948673198d2b42d0327d0a341dcfed30e18a681"
+      }
+    ],
+    "inspection": "Read complete qcb_textbook_policy.py and qcb_curriculum.py; read the convention-fixture construction, rebinding and three direct tests and changed renderer/browser logic. V1 accepts exactly its original field set and only replaces question; V2 alone requires an additional changed, nonempty, unique list of nonblank convention strings and a genuinely changed question. Other contract fields cannot enter either payload. V2 requires its distinct review method, exact old/new nine-field hashes and convention lists, changed-fields order and substantive convention assessment. Current and historical conventions are separately retained; readiness conditionally requires convention_revision_lineage. This does not prove all application paths, browser execution or semantic correctness.",
+    "tests": {
+      "executed_by": "/root/qcb_native_comparison",
+      "test_file": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+      "names": [
+        "test_convention_successor_binds_both_contracts_and_keeps_other_fields",
+        "test_convention_successor_rejects_unbounded_or_invalid_payloads_with_rebound_review",
+        "test_convention_successor_requires_distinct_exact_substantive_review"
+      ],
+      "result": "3 passed; unittest reported 4.405 seconds",
+      "scope": "In-memory mechanical fixtures only. No build, production installation, browser or kernel execution."
+    }
+  },
+  "provenance": {
+    "inspected_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-307-young-order-repair.json",
+    "written_private_review": "_review_tmp/plan-307-young-order-repair-migration-revalidation-review.json",
+    "limits": "Private review only; no canonical installation, changes to old reviews/candidates, new paper/PDF seal, kernel/native-formal verification, model/human/expert/blind approval, admission, global semantic closure or additional-core claim."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "b0103ea948e0a3c59024867148d8adf149ca2cd8da13d605ee24efd98a0906c0",
+    "literal_fit": "The literal original asks why a diagram with more than d rows contributes no Young-image piece. That conclusion is true and neither specifies temporal row-first action nor asks a pointwise survival converse. Clarifying the source product and repairing answer/rubric/exposition therefore suffices. All nine original contract values are unchanged, including the d-letter alphabet, filled-tableau convention, test_public split, family and graph/source scope. Four steps and every ordered per-step node list are identical; the equality of old/new contract hashes is recomputed, not inferred from the repair label."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10 April 2026,79 pages",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "actual_access": "Author-hosted PDF text extraction inspected in this revalidation. Cover/date/page count observed. Direct in-memory byte retrieval failed with WinError10013; screenshot attempts at PDF pages2,46,47,51,56 returned cache misses. No operative page pixels inspected and historical binary SHA not independently reverified.",
+      "binary_hash_verified_here": false,
+      "visual_inspection_here": false,
+      "inspected_anchors": "Eq4.8 tensor permutation convention, printed40/PDF39; complete row and column subgroup sums Eq5.16-5.19 and Definition5.14 e_T=r_T*c_T, printed47/PDF46; Young-image realization Eq5.20 and complete first-column row-bound argument following Eq5.23-5.24, printed48/PDF47.",
+      "assessment": "These regions support the factor order and basis cancellation. No claim that every permitted filling survives is taken from them."
+    }
+  ]
+}

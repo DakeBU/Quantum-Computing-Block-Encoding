@@ -1,0 +1,136 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-407",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-407-fixed-neighborhood-state-successor.json",
+  "repair_record_digest": "87ffafa152bb4ce9810d460206df4bfb6f65ca0a8ed9bcee4cc966010725b33c",
+  "repair_record_sha256_lf": "12b2e11ca416a51eef0a7862cd017ae692f12d479ddbdd2263a2f21e1d7b863d",
+  "original_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: question-contract fitness, answer, rubric and exposition. Private independent mathematical revalidation only; no automatic admission, formal transfer, kernel, human/expert or novelty certification.",
+  "question_version": 2,
+  "original_contract_hash": "df551f43bd9ee6937018c39bad53ba61fdcec54489bfa28c58aed7307f7bfc36",
+  "successor_contract_hash": "bd70d7c3406d456f52bcb1fa331f1e00117b9e38165b63dff5105473b9913f81",
+  "changed_contract_fields": [
+    "question"
+  ],
+  "contract_change_assessment": {
+    "necessity": "The literal old Pr(hat r≠r)→0 claim is false, not an imprecise proof of convergence in probability. Every estimator coordinate λ_i/n is rational. With r=(1/√2,1−1/√2), an allowed ordered full-rank qubit spectrum, equality is impossible at every n, so the probability of inequality is one. The successor retains this assertion to refute and explicitly asks for fixed-neighborhood concentration instead.",
+    "scope": "Only question changes; the empty assumption/convention lists and all spectra, including zeros, remain. Fixed d is an asymptotic quantifier in the new requested theorem, not a hidden full-rank premise. Estimator validity, original polynomial outcome bound, family/split/source/graph and the three ordered step-node lists are preserved. This changes the requested conclusion and is not answer-only or equivalent to exact-atom consistency."
+  },
+  "preserved_scope": {
+    "family": "spectrum-estimation-consistency",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:probability",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 3,
+    "original_ordered_step_nodes": [
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ]
+  },
+  "substantive_reconstruction": {
+    "domain_and_counterexample": "For n≥1 a partition has nonnegative decreasing row lengths summing to n; dividing by n gives a legitimate ordered probability vector, realized as a diagonal density matrix. n=0 has no λ/n estimator. The irrational example is decisive independently of the probability distribution. Even for rational spectra some sample counts cannot realize exact equality. Approximating the irrational example by (floor(nt),n−floor(nt))/n also shows D→0, so pointwise strict positivity off r supplies no uniform gap on the punctured simplex.",
+    "support_and_gap": "Let h=d(d−1)/2 and fix ε>0. If p places mass on a zero component of r then D(p||r)=∞, and the given outcome bound forces its probability to zero. On the supported closed face, D=Σp_i log(p_i/r_i), with 0log0=0, is continuous; the closed ε-away set is compact and excludes its sole zero r, hence has minimum δ_ε>0 unless empty. With natural logarithms Pinsker additionally gives D≥||p−r||₁²/2, so δ_ε may be replaced by ε²/2.",
+    "count_and_limit": "There are at most (n+1)^d possible padded row-length tuples. Summing the actual per-outcome estimate therefore gives Pr(||hat r−r||₁≥ε)≤(n+1)^(h+d)exp(−nδ_ε), and hence convergence to zero for fixed d. Keeping only exponent h would drop the union factor. The exponential dominates this polynomial, but not an n-dependent gap approaching zero. At d=1 or rank-one spectrum the only supported outcome has the matching one-row diagram. No constant lower mass for individual nearby atoms or exact matching conclusion is derived."
+  },
+  "answer_rubric_and_exposition_assessment": "The rubric checks the estimator domain, an actual rational-grid counterexample, uniform supported-away rate and zero-support cases, and the counted polynomial limit. The three-step exposition preserves the exact original ordered graph support. Its explicit overlap disclosure is important: neighborhood concentration is substantially the concentration subtarget of319, but407 also assesses the false atom claim and estimator domain. The answer makes no measurement implementation, gate, oracle or sample-optimality certificate. I accept the whole question-version2 candidate, not the original assertion.",
+  "bounded_semantic_relation": "There is substantial overlap with319's fixed-neighborhood conclusion, not wholesale equality of targets. This review grants no global deduplication or cross-split pooling permission.",
+  "prior_review_exposure": {
+    "old_review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-407-fixed-neighborhood-state-successor-review.json",
+    "old_review_digest": "39718be98dd76f07aa50777b51ec5c600bc6a2c294cfbe2ca45c893031f0eb84",
+    "old_review_sha256_lf": "6db3a6086e732e1bdb2edb79be77cd8d870d759d07aa40dc49b4c089d6b24906",
+    "actual_prior_reviewer": "/root/qcb_boundary_repair_review",
+    "exposure": "The exact historical original, withdrawal/finding, entire candidate and old accepted review were exposed. I authored the old review and had already inspected the original/source; this is a fresh reconstruction after exposure, not a blind new reviewer. I did not author this candidate. Old reviews remain byte-for-byte unchanged.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+    "prior_withdrawal_review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+    "prior_finding_digest": "3edbf7781b4db74af20cc4116027f3749ed29fb005d2ca662d4316887f8e879d",
+    "historical_code_binding": "The old report's whole policy binding remains historical, including its old LF cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9. This NEW report does not bypass or rewrite it."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Exact complete historical prepared qcb-core-plan-407 loaded via release.checked()[2], including question, assumptions, conventions, reference answer, full rubric and semantic steps. Whole item digest is above. This is tracked mathematical-content provenance, not proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/shared/repairs/plan-407-fixed-neighborhood-state-successor.json",
+      "sha256_lf": "12b2e11ca416a51eef0a7862cd017ae692f12d479ddbdd2263a2f21e1d7b863d",
+      "anchor": "Entire exact candidate read, including all reference-answer, rubric, exposition and metadata fields. This LF binding identifies reviewed mathematical content, not independent proof authority."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete relevant Leditzky entry read: primary URL, edition and historical binary pin. LF binds metadata only; primary mathematical inspection and its limits are separate below."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "actual_access": "Primary PDF text actually accessed through web extraction in this objective; cover/edition and operative regions inspected. No PDF redistribution or new local formal closure.",
+      "operative_regions": "Leditzky complete Algorithm9.1/Eq9.6; Eq9.7–9.12, full Lemma9.3 and Proposition9.4 proof Eq9.13–9.32; full asymptotic discussion Eq9.33–9.37, Proposition9.5/Eq9.38–9.39 and Pinsker Eq9.40–9.41. The printed exact-equality sentence is false and extracted Eq9.35 omits the counting factor its prose invokes. Neither is accepted on authority; the explicit union argument above corrects both.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "reviewer_verified_binary_hash": false,
+      "limit": "The retrieved text's edition/anchors agree with the recorded source, but I did not obtain/hash original PDF bytes. Candidate/other reviewer claims of matching bytes are not inherited. This is source-text mathematical review, not a PDF-binary seal or a source-blind/kernel proof."
+    }
+  ],
+  "mechanical_context": {
+    "scope": "Historical static inspection after the parent's final freeze on agent/qcb-convention-contract-migration, HEAD f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818. These files implement admission/lineage, not the mathematical proof. Their hashes are not evergreen mathematical dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50",
+        "inspection": "Entire file read. Payload v1 remains question-only; strict payload v2 additionally requires a changed nonempty distinct text convention list, separate review method and exact old/new lists/hashes/changed fields. Both keep other contract fields and versioned lineage; source/withdrawal checks remain."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157",
+        "inspection": "Entire file read. core_contract uses the nine fields. stable_readiness conditionally requires convention_revision_lineage when a current successor changes conventions; historic predecessor reviews do not approve successors."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab",
+        "inspection": "Entire file read, including the three new convention fixture tests: both contracts/unchanged fields, malformed or unbounded rebound payloads, and exact distinct substantive review including uncertain withholding. Fixtures are explicitly not mathematical approval."
+      }
+    ],
+    "execution": "No tests/build/kernel executed by this reviewer. Parent reported three direct convention tests passed; I inspected their code, not their execution. No admission engine was invoked for this verdict."
+  },
+  "provenance": {
+    "candidate_author": "/root/qcb_formal_view_audit",
+    "read_location": "benchmarks/quantumcomputingbench/shared/repairs/plan-407-fixed-neighborhood-state-successor.json",
+    "prepared_original": "release.checked()[2] historical native record, not current-reader substitution",
+    "independence": "Distinct from candidate author and original author; truthful prior exposure above. No parent reasoning or accepted metadata used as proof.",
+    "writes": "Only this new private migration-revalidation report; canonical candidates, sources, policy and all old reports untouched."
+  }
+}

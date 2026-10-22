@@ -1,0 +1,169 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-sp-111",
+  "repair_record_digest": "470f9a8189d5265b0b901236ee73547481f404a08a5f0e443102e0a81252a436",
+  "original_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+  "verdict": "accept",
+  "exposure": "Not blind: read root's migration objective, the complete historical prepared item via release.checked()[2], actual current policy row, exact bound withdrawal/finding, entire boundary-authored candidate and old exact approval by /root/qcb_formal_view_audit. Prior task/source context and the original objections were exposed. I did not author this candidate and am distinct from both its author and original author. This is substantive re-review of unchanged candidate bytes, not mechanical rebinding of an earlier approval.",
+  "substantive_reconstruction": {
+    "exact_degree_cases": "Write d=natDegree(q). The affine polynomial start+step X has natural degree at most1, so composition and squaring yield natDegree(g)<=2d. At step0 the result is the constant q(start)^2, with natural degree0; its ordinary degree is0 if that constant is nonzero and the zero-polynomial degree otherwise. The witnesses q=X,start1 and start0 respectively show collapse to1 and0. If step!=0 and q!=0 has leading coefficient a_d, the affine composite has leading coefficient a_d step^d and degree d. Its square has nonzero leading coefficient a_d^2 step^(2d), proving degree2d over the reals. Zero q remains zero, and every nonzero constant has degree0 for any step. Consequently natural-degree equality holds for every q when step is nonzero, including q=0 by convention; at zero step equality holds exactly when d=0. These are statements about degree, not about nonvanishing at individual sampled points.",
+    "coefficient_bound_and_exchange": "For any natural D>=2d, every coefficient of g above D vanishes. Thus g(j)=sum_(r=0)^D g_r j^r for each integer index, with trailing zeros allowed even when degree collapses. The sample identity g(j)=q(start+step j)^2 is direct evaluation of the source's composition/square definition. The two summation ranges are finite, so distributing and exchanging them gives M=sum_r g_r sum_(j<count)j^r. The complete polynomialMassClosed_eq proof performs precisely this exchange and invokes polynomial evaluation with a supplied natDegree bound. It does not use or need the predecessor's exact-degree equality.",
+    "faulhaber_and_empty_cases": "The powerSumClosed adapter is an exact rational Bernoulli polynomial and its complete proof casts the exact sum_range_pow identity into the real numbers. Substitution gives M=sum_r g_r P_r(count) without an asymptotic expansion, integration or quadrature error. For count0 every inner finite sum and P_r(0) is0. For r0, j^0=1 even at j0, so P_0(N)=N. At step0 only g_0=q(start)^2 can be nonzero, giving count*q(start)^2. Zero q gives zero on both sides; constant c gives count*c^2, including c0. Negative steps and repeated sample locations affect neither finite exchange nor the power-sum theorem. These checks cover the entire domain rather than proving only a nondegenerate generic case.",
+    "expression_size_and_grading": "Choosing D=2d uses at most2d+1 weighted power-sum slots. It does not make every Bernoulli polynomial evaluation one finite-bit operation: expanded P_r has its own degree, count has a representation length, integer/rational powers and coefficients may grow, and arbitrary real coefficients lack an automatic exact finite encoding. The question's symbolic-expression-size aim is therefore met without claiming count-independent bit runtime, a free mass oracle, or a state-preparation circuit. Each rubric criterion and exposition step is consistent: degree assessment and bound; bounded monomial expansion; finite exchange plus exact power sums; explicit degenerate cases and resource distinction. There is no residual grading incentive to insist on false exact degree.",
+    "source_and_revalidation_limits": "I read the complete HermiteIntervalMass module, including the actual affineSquared_degree inequality and proof, not just its name. Its later exponential-tail and conditioning statements are separate leaves, not evidence for an unrestricted resource bound here. The candidate's sharper nonzero-step degree characterization is independently proved above rather than attributed to a nonexistent exact-degree source theorem. The bound and finite-sum formula are sound static mathematics; my verdict is not a new kernel result. Earlier approvals and the frozen candidate are preserved; the newly inspected migration code is historical mechanical context, not a mathematical source dependency or automatic future approval."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+      "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+      "anchor": "Complete module read. Operative powerSumClosed definition and full powerSumClosed_eq cast proof; affineSquared/affineSquared_eval; polynomialMassClosed and complete coefficient-bound/finite-sum exchange proof; affineSquared_degree full proof near20-71. Later analytic/conditioning leaves are not used as this answer's resource proof."
+    }
+  ],
+  "content_bindings": {
+    "candidate_path": "benchmarks/quantumcomputingbench/shared/repairs/sp-111-question-degree-successor.json",
+    "candidate_sha256_lf": "1ef3a345898941dc5af9e4a19f6cba1e39d9c09f467cac7ad61af0b514f60499",
+    "current_policy_row_digest": "af075ca15293560b19d3207495d862ae91c8328e0c84b547045dd18f6f5fdcce",
+    "withdrawal": {
+      "core_id": "qcb-core-sp-111",
+      "predecessor_key": "qcb-core-sp-111",
+      "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+      "reason": "The allowed zero grid step invalidates the claimed exact degree 2*deg(q); only an upper bound follows.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+      "finding_digest": "87a3bd96b762a6434e855a55bee89412168140113f31b0e9ae758b40f5f70c43"
+    },
+    "withdrawal_report_digest_recomputed": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+    "withdrawal_finding_digest_recomputed": "87a3bd96b762a6434e855a55bee89412168140113f31b0e9ae758b40f5f70c43",
+    "ordered_original_step_nodes": [
+      [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq"
+      ]
+    ],
+    "ordered_candidate_step_nodes": [
+      [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq"
+      ]
+    ],
+    "original_contract_fields": {
+      "question": "Let q be a real polynomial and consider sampling it on an arithmetic progression x_j = start + step * j for j = 0,1,...,count-1. We want the exact discrete squared mass M = sum_{j=0}^{count-1} q(x_j)^2 as a closed-form expression whose size depends on the degree of q, not on count. Let g(x) = q(start + step*x)^2, a polynomial of degree D = 2*deg(q), with coefficients g_0,...,g_D. Using the power-sum identity sum_{j=0}^{count-1} j^r = P_r(count) (a fixed polynomial in count, e.g. the Faulhaber/Bernoulli formula), prove the exact identity M = sum_{r=0}^{D} g_r * P_r(count), and explain why this is an exact algebraic equality rather than a quadrature approximation.",
+      "assumptions": [
+        "q is an arbitrary real polynomial; the coefficient bound used must be at least 2 deg q",
+        "samples are taken on the exact real arithmetic progression, not a rounded grid"
+      ],
+      "conventions": [
+        "the empty sum (count=0) is zero and the power-sum polynomial satisfies P_r(0)=0"
+      ],
+      "family": "hermite-discrete-mass",
+      "split": "dev",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lines 20-57: powerSumClosed count degree = sum_{i in range (degree+1)} bernoulli i * C(degree+1,i) * count^(degree+1-i)/(degree+1); powerSumClosed_eq : (powerSumClosed count degree : R) = sum_{j in range count} j^degree (via sum_range_pow); affineSquared p start step = (p.comp (C start + C step*X))^2; polynomialMassClosed_eq (h : affineSquared.natDegree <= bound) : polynomialMassClosed = sum_{j in range count} (p.eval (start+step*j))^2",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f"
+        }
+      ]
+    },
+    "successor_contract_fields": {
+      "question": "Let q be any real polynomial, start and step any real numbers, and count a natural number. Set d=natDegree(q): this is the usual degree when q is nonzero, and d=0 for the zero polynomial. This natural-degree convention is used for coefficient bounds; it does not assert that the ordinary degree of the zero polynomial is0. Sample on the exact arithmetic progression x_j=start+step*j for j=0,...,count-1, and put g(X)=q(start+step*X)^2 and M=sum_{j=0}^{count-1} q(x_j)^2.\n\nFirst assess the predecessor's assertion that g always has exact degree2*d. Give a counterexample if false, prove the universally valid natDegree(g)<=2*d, and state the exact degree behavior for step=0 and for step!=0, including q=0 and nonzero constants. Do not exclude zero step or a zero sampled value by adding a hypothesis.\n\nNow let D be any natural coefficient bound with D>=2*d and write g_r for the coefficient of X^r in g, including trailing zeros. For each natural r, let P_r be the exact power-sum polynomial satisfying P_r(N)=sum_{j=0}^{N-1} j^r for every natural N (for example the Faulhaber/Bernoulli formula). Prove M=sum_{r=0}^{D} g_r*P_r(count). Explain why D+1 weighted power sums suffice independently of the number of samples, why this is exact algebra rather than quadrature, and what this expression-size statement does not imply about finite-bit arithmetic cost. Verify count=0, step=0, q=0 and constant q explicitly.",
+      "assumptions": [
+        "q is an arbitrary real polynomial; the coefficient bound used must be at least 2 deg q",
+        "samples are taken on the exact real arithmetic progression, not a rounded grid"
+      ],
+      "conventions": [
+        "the empty sum (count=0) is zero and the power-sum polynomial satisfies P_r(0)=0"
+      ],
+      "family": "hermite-discrete-mass",
+      "split": "dev",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lines 20-57: powerSumClosed count degree = sum_{i in range (degree+1)} bernoulli i * C(degree+1,i) * count^(degree+1-i)/(degree+1); powerSumClosed_eq : (powerSumClosed count degree : R) = sum_{j in range count} j^degree (via sum_range_pow); affineSquared p start step = (p.comp (C start + C step*X))^2; polynomialMassClosed_eq (h : affineSquared.natDegree <= bound) : polynomialMassClosed = sum_{j in range count} (p.eval (start+step*j))^2",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f"
+        }
+      ]
+    }
+  },
+  "mechanical_context": {
+    "observed_head": "f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818",
+    "branch": "agent/qcb-convention-contract-migration",
+    "state": "Dirty engine inspected after root's explicit FINAL admission-engine freeze; these are historical mechanical-inspection versions, not mathematical source dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab"
+      },
+      {
+        "path": "website/scripts/quantumcomputingbench.py",
+        "sha256_lf": "5a097d13f8048bd3265a42ec6312448baa5a99701fe583d383148a9a194ef740"
+      },
+      {
+        "path": "website/scripts/test_quantumcomputingbench_browser.py",
+        "sha256_lf": "03446cd6e0e891c5ea85cdb57948673198d2b42d0327d0a341dcfed30e18a681"
+      }
+    ],
+    "inspection": "Read complete qcb_textbook_policy.py and qcb_curriculum.py; read the convention-fixture construction, rebinding and three direct tests and changed renderer/browser logic. V1 accepts exactly its original field set and only replaces question; V2 alone requires an additional changed, nonempty, unique list of nonblank convention strings and a genuinely changed question. Other contract fields cannot enter either payload. V2 requires its distinct review method, exact old/new nine-field hashes and convention lists, changed-fields order and substantive convention assessment. Current and historical conventions are separately retained; readiness conditionally requires convention_revision_lineage. This does not prove all application paths, browser execution or semantic correctness.",
+    "tests": {
+      "executed_by": "/root/qcb_native_comparison",
+      "test_file": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+      "names": [
+        "test_convention_successor_binds_both_contracts_and_keeps_other_fields",
+        "test_convention_successor_rejects_unbounded_or_invalid_payloads_with_rebound_review",
+        "test_convention_successor_requires_distinct_exact_substantive_review"
+      ],
+      "result": "3 passed; unittest reported 4.405 seconds",
+      "scope": "In-memory mechanical fixtures only. No build, production installation, browser or kernel execution."
+    }
+  },
+  "provenance": {
+    "inspected_candidate": "benchmarks/quantumcomputingbench/shared/repairs/sp-111-question-degree-successor.json",
+    "written_private_review": "_review_tmp/sp-111-question-degree-successor-migration-revalidation-review.json",
+    "limits": "Private review only; no canonical installation, changes to old reviews/candidates, new paper/PDF seal, kernel/native-formal verification, model/human/expert/blind approval, admission, global semantic closure or additional-core claim."
+  },
+  "original_contract_hash": "1c89646531e5e6897c0e8bc9ebaf2840d58c260824ce3d40d7ff57427cb09bc1",
+  "successor_contract_hash": "43fa4e5865634e668b2600393484ad6e44df32e9c848ead8e01b986715794b7f",
+  "question_version": 2,
+  "contract_change_assessment": {
+    "necessity": "The original question calls g a polynomial of degree2*deg(q) without excluding zero step. Its explicit assumptions allow arbitrary real q and an exact real grid. The counterexample q=X,start=1,step=0 gives g=1, so answer-only wording cannot satisfy the literal false exact-degree demand. The changed question openly assesses this assertion and replaces it by an upper bound and complete degree cases; it does not insert step!=0 as a standing premise.",
+    "invariants": "The nine-field recomputation changes only question. Original assumptions, empty-count convention, dev split, hermite-discrete-mass family, graph version, target/supporting nodes and source_refs remain exact. The new question spells out natural degree at zero to interpret the existing coefficient bound, not ordinary degree0 for the zero polynomial. Three steps and each ordered per-step node list are unchanged."
+  }
+}

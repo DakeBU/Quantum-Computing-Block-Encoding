@@ -1,0 +1,142 @@
+{
+  "schema_version": "qcb.answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-107",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-107-pauli-adjoint-repair.json",
+  "repair_record_digest": "c6c7b731c68107c1b125b7d98580ee09d3c9db16660e823deb4d5275bc67c8e7",
+  "repair_record_sha256_lf": "9d46261de5c8b7e19d2b4d3e11fc5d228749c746f1c2c5d207ab838459077741",
+  "original_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: question-contract fitness, answer, rubric and exposition. Private independent mathematical revalidation only; no automatic admission, formal transfer, kernel, human/expert or novelty certification.",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "11c31361c66f8f024eece34bda8ca89fd2754069adea474f939160f43b4dbdaf",
+    "reasoning": "All nine original contract fields are unchanged, including the single-qubit C² density-matrix domain and requirement for a Schur/commutant plus trace proof rather than brute coordinates. Only answer/rubric/exposition change. Correcting an invalid intermediate conjugation equality is possible without weakening the true twirl question. The five ordered step-node lists, family, split and source/graph scope are identical."
+  },
+  "preserved_scope": {
+    "family": "qit-schur-lemma",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 5,
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ]
+  },
+  "substantive_reconstruction": {
+    "adjoint_and_phase": "Define T=(1/4)Σ_P PρP†. Each chosen P∈{I,X,Y,Z} is Hermitian-unitary, so this equals the stated formula. For a unitary Pauli Q, QTQ†=(1/4)Σ_P (QP)ρ(QP)†; crucially (QP)†=P†Q†=PQ for the Hermitian representatives, not QP in general. Multiplication by Q permutes the four Pauli classes modulo scalar phases. Writing QP=ωP′, |ω|=1, gives ωP′ρconj(ω)P′†=P′ρP′†. Thus the correct sum is invariant.",
+    "commutant_and_trace": "Invariance QTQ†=T implies QT=TQ. It extends from the representatives to the whole generated Pauli representation, including its central scalar phases. The stipulated irreducibility on finite-dimensional C² makes its commutant scalar by Schur, so T=λI. Trace cyclicity and P†P=I give trT=(1/4)Σ_P trρ=1. Since trI=2, λ=1/2. This uses no matrix-entry evaluation of the density input.",
+    "defect_and_boundaries": "The predecessor's right factor (QP) instead of (QP)† is materially false: for Q=X and ρ=I/2 the incorrectly squared-product sum is zero because the Y,Z products have square −I, whereas the genuine conjugated sum is I/2. This finite witness diagnoses the omitted adjoint but is not the replacement proof. Individual QP need not be Hermitian; cancellation requires an adjoint phase, not ω²=1. The stated argument includes pure and mixed density matrices; positivity is not used to smuggle an extra rank or nonzero-entry premise."
+  },
+  "answer_rubric_and_exposition_assessment": "The complete answer obeys the requested Schur/trace route. Rubric r1 explicitly requires the right adjoint and class bijection rather than treating all Pauli products as Hermitian; r2 checks full-representation commutation and finite-dimensional Schur; r3 fixes the trace normalization; r4 preserves the all-density conclusion and excludes a substitute coordinate/circuit claim. Every exposition step reconstructs the same five support roles. No question-convention migration is needed for this answer repair, and the new engine's optional convention payload does not alter its mathematical contract.",
+  "bounded_semantic_relation": "The single-qubit twirl is a Schur-lemma specialization, not a proof that all averaging or Schur-Weyl targets are identical. No exhaustive alias or split clearance is asserted.",
+  "prior_review_exposure": {
+    "old_review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-107-pauli-adjoint-repair-review.json",
+    "old_review_digest": "fb6ab4d1e304a29e3a0881dde7386167c7779a5157ecc7741827020ee53e0be2",
+    "old_review_sha256_lf": "2ddfbe72ccb10b11b3dd57e3be96bfb07e5968a85194904a2f405f4e1f2208bd",
+    "actual_prior_reviewer": "/root/qcb_formal_view_audit",
+    "exposure": "The exact historical original, withdrawal/finding, entire candidate and old accepted review were exposed. I read the other reviewer's old report; its verdict is not mathematical evidence for this reconstruction. I did not author this candidate. Old reviews remain byte-for-byte unchanged.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+    "prior_withdrawal_review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+    "prior_finding_digest": "0103f696beb09b7a15f628254279f7d0879042f7fa538bd13439ab71ba3aa656",
+    "historical_code_binding": "The old report's whole policy binding remains historical, including its old LF cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9. This NEW report does not bypass or rewrite it."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Exact complete historical prepared qcb-core-plan-107 loaded via release.checked()[2], including question, assumptions, conventions, reference answer, full rubric and semantic steps. Whole item digest is above. This is tracked mathematical-content provenance, not proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/shared/repairs/plan-107-pauli-adjoint-repair.json",
+      "sha256_lf": "9d46261de5c8b7e19d2b4d3e11fc5d228749c746f1c2c5d207ab838459077741",
+      "anchor": "Entire exact candidate read, including all reference-answer, rubric, exposition and metadata fields. This LF binding identifies reviewed mathematical content, not independent proof authority."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete relevant Leditzky entry read: primary URL, edition and historical binary pin. LF binds metadata only; primary mathematical inspection and its limits are separate below."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "actual_access": "Primary PDF text actually accessed through web extraction in this objective; cover/edition and operative regions inspected. No PDF redistribution or new local formal closure.",
+      "operative_regions": "Leditzky full Proposition3.17 proof and Corollary3.18, Example3.19/Eq3.27 twirl statement, with the Pauli-group context. The example defers its proof to an exercise; the phase-correct averaging proof above supplies the needed derivation. I do not import the source exercise's questionable set-union typography as a definition of the group.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "reviewer_verified_binary_hash": false,
+      "limit": "The retrieved text's edition/anchors agree with the recorded source, but I did not obtain/hash original PDF bytes. Candidate/other reviewer claims of matching bytes are not inherited. This is source-text mathematical review, not a PDF-binary seal or a source-blind/kernel proof."
+    }
+  ],
+  "mechanical_context": {
+    "scope": "Historical static inspection after the parent's final freeze on agent/qcb-convention-contract-migration, HEAD f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818. These files implement admission/lineage, not the mathematical proof. Their hashes are not evergreen mathematical dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50",
+        "inspection": "Entire file read. Payload v1 remains question-only; strict payload v2 additionally requires a changed nonempty distinct text convention list, separate review method and exact old/new lists/hashes/changed fields. Both keep other contract fields and versioned lineage; source/withdrawal checks remain."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157",
+        "inspection": "Entire file read. core_contract uses the nine fields. stable_readiness conditionally requires convention_revision_lineage when a current successor changes conventions; historic predecessor reviews do not approve successors."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab",
+        "inspection": "Entire file read, including the three new convention fixture tests: both contracts/unchanged fields, malformed or unbounded rebound payloads, and exact distinct substantive review including uncertain withholding. Fixtures are explicitly not mathematical approval."
+      }
+    ],
+    "execution": "No tests/build/kernel executed by this reviewer. Parent reported three direct convention tests passed; I inspected their code, not their execution. No admission engine was invoked for this verdict."
+  },
+  "provenance": {
+    "candidate_author": "/root",
+    "read_location": "benchmarks/quantumcomputingbench/shared/repairs/plan-107-pauli-adjoint-repair.json",
+    "prepared_original": "release.checked()[2] historical native record, not current-reader substitution",
+    "independence": "Distinct from candidate author and original author; truthful prior exposure above. No parent reasoning or accepted metadata used as proof.",
+    "writes": "Only this new private migration-revalidation report; canonical candidates, sources, policy and all old reports untouched."
+  }
+}

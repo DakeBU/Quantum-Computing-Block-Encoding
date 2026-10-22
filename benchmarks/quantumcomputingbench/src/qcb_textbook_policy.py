@@ -38,8 +38,12 @@ def question_successor(row, original):
                "supersedes_contract_hash", "author", "key", "question_version", "admission",
                "change_scope", "question", "reference_answer", "rubric", "exposition",
                "source_checks", "execution"}
+    convention_revision = repair.get("schema_version") == "qcb.textbook_question_successor.v2"
+    if convention_revision:
+        allowed.add("conventions")
     original_contract = {key: original[key] for key in CONTRACT_FIELDS}
-    if (set(repair) != allowed or repair["schema_version"] != "qcb.textbook_question_successor.v1"
+    if (set(repair) != allowed or repair["schema_version"] not in {
+            "qcb.textbook_question_successor.v1", "qcb.textbook_question_successor.v2"}
             or repair["core_id"] != original["core_id"] or row["core_id"] != original["core_id"]
             or repair["supersedes_key"] != original["key"] or row["predecessor_key"] != original["key"]
             or repair["supersedes_item_digest"] != digest(original)
@@ -53,6 +57,12 @@ def question_successor(row, original):
             or not isinstance(repair["key"], str) or not re.fullmatch(
                 re.escape(original["core_id"]) + r"-textbook-question-v2-[a-z0-9]+(?:-[a-z0-9]+)*", repair["key"])):
         raise ValueError("question successor does not bind an explicit versioned contract change")
+    if convention_revision and (
+            not isinstance(repair["conventions"], list) or not repair["conventions"]
+            or any(not isinstance(s, str) or not s.strip() for s in repair["conventions"])
+            or len(set(repair["conventions"])) != len(repair["conventions"])
+            or repair["conventions"] == original["conventions"]):
+        raise ValueError("convention successor requires explicit changed nonempty conventions")
     rubric = repair["rubric"]
     if (not isinstance(repair["reference_answer"], str) or not repair["reference_answer"].strip()
             or not isinstance(rubric, list) or not rubric
@@ -66,13 +76,18 @@ def question_successor(row, original):
     check_exposition(repair["exposition"], original)
     check_source_bindings(repair["source_checks"])
     new_contract = {**original_contract, "question": repair["question"]}
+    changed_fields = ["question"]
+    if convention_revision:
+        new_contract["conventions"] = deepcopy(repair["conventions"])
+        changed_fields.append("conventions")
     decision = {**row, "status": "withheld_pending_distinct_question_review"}
     if not paths[1].is_file():
         return None, decision
     review = read_json(paths[1])
     reviewer = review.get("reviewer")
     if (review.get("repair_record_digest") != digest(repair)
-            or review.get("method") != "independent-question-successor-review"
+            or review.get("method") != ("independent-question-convention-successor-review"
+                if convention_revision else "independent-question-successor-review")
             or not isinstance(reviewer, str) or not reviewer.strip()
             or reviewer in {repair["author"], original["author"]["identity"]}
             or review.get("original_item_digest") != digest(original)
@@ -83,6 +98,12 @@ def question_successor(row, original):
     if review.get("verdict") != "accept":
         return None, decision
     narratives = [review.get(key) for key in ("substantive_reconstruction", "contract_change_assessment")]
+    if convention_revision:
+        narratives.append(review.get("convention_change_assessment"))
+        if (review.get("original_conventions") != original["conventions"]
+                or review.get("successor_conventions") != repair["conventions"]
+                or review.get("changed_contract_fields") != changed_fields):
+            raise ValueError("convention successor review must bind both convention lists and changed fields")
     if (review.get("core_id") != original["core_id"] or not review.get("source_checks")
             or any(not isinstance(n, dict) or not n or any(
                 not isinstance(k, str) or not k.strip() or not isinstance(v, str) or not v.strip()
@@ -92,12 +113,16 @@ def question_successor(row, original):
     current = deepcopy(original)
     for field in ("key", "question", "reference_answer", "rubric", "question_version"):
         current[field] = deepcopy(repair[field])
+    if convention_revision:
+        current["conventions"] = deepcopy(repair["conventions"])
     for field in ("core_summary",):
         if field in repair["exposition"]:
             current["native_nl"][field] = repair["exposition"][field]
     if "semantic_steps" in repair["exposition"]:
         current["semantic_steps"] = deepcopy(repair["exposition"]["semantic_steps"])
     current["author"] = {"identity": repair["author"], "method": "explicit versioned question-contract correction"}
+    if convention_revision:
+        current["author"]["method"] = "explicit versioned question-and-convention correction"
     current["native_nl"].update(author_identity=repair["author"], new_problem_core=False)
     current["inherited_predecessor_reviews"] = current.pop("reviews")
     current["inherited_predecessor_hashes"] = {key: current.pop(key) for key in
@@ -106,10 +131,14 @@ def question_successor(row, original):
     current["question_successor"] = {
         "question_version": repair["question_version"], "predecessor_key": original["key"],
         "predecessor_item_digest": digest(original), "predecessor_contract_hash": digest(original_contract),
-        "current_contract_hash": digest(new_contract), "changed_contract_fields": ["question"],
+        "current_contract_hash": digest(new_contract), "changed_contract_fields": changed_fields,
         "repair_record": row["repair"], "repair_record_digest": digest(repair),
         "review_record": row["review"], "review_digest": digest(review),
         "equivalence_to_predecessor_claimed": False, "additional_core_count": 0}
+    if convention_revision:
+        current["question_successor"].update(
+            original_conventions=deepcopy(original["conventions"]),
+            current_conventions=deepcopy(current["conventions"]))
     current["id"] = "qcb-textbook-" + digest(current)[:20]
     decision["status"] = "reviewed_question_successor_admitted_to_reader"
     return current, decision

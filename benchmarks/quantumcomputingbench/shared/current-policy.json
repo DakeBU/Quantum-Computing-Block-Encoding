@@ -25,7 +25,7 @@
       "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
       "reason": "First explicit question-contract correction, not an unchanged-question answer repair. Preserve and assess the predecessor's false description of t^i(1-t)^(k+1) as degree k+1, replace it by the exact degree i+k+1, and retain the same exact Bernstein elevation and source-coefficient nonnegativity target. Define the previously implicit full source polynomial in its existing coordinate t=p+1. No premise is added to the unchanged assumptions/conventions; core, family, split, frozen graph/source scope and three semantic steps remain reserved. Old and new requested reasoning are not claimed equivalent; the original remains historical.",
       "repair": "shared/repairs/sp-108-question-degree-successor.json",
-      "review": "reports/textbook-v1/repairs/sp-108-question-degree-successor-review.json",
+      "review": "reports/textbook-v1/repairs/sp-108-question-degree-successor-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-sp-108",
         "predecessor_key": "qcb-core-sp-108",
@@ -42,7 +42,7 @@
       "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
       "reason": "First explicit question-contract correction. Preserve and assess the predecessor's unconditional exact-degree2*deg(q) assertion, replace it by a universal upper bound and the correct zero-step/nonzero-step cases, and retain the same exact degree-sized Faulhaber discrete squared-mass identity. The original assumptions still require a coefficient bound at least2*deg(q) and exact real sampling; no nonzero-step or nonzero-polynomial hypothesis is added. The question spells out natDegree at zero to make the inherited bound meaningful. Core, family, split, frozen graph/source scope and three semantic steps remain unchanged. This changes requested reasoning and is not claimed equivalent to the old question.",
       "repair": "shared/repairs/sp-111-question-degree-successor.json",
-      "review": "reports/textbook-v1/repairs/sp-111-question-degree-successor-review.json",
+      "review": "reports/textbook-v1/repairs/sp-111-question-degree-successor-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-sp-111",
         "predecessor_key": "qcb-core-sp-111",
@@ -59,7 +59,7 @@
       "predecessor_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
       "reason": "Explicit first question-version2 correction, not an unchanged-question answer repair and not an equivalent restatement of the predecessor's requested proof. Retain the false state-level iff for assessment/refutation, then request the valid full sandwich/adjoint identity, unconditional OPERATOR-symmetry equivalence and the conditional PPT state-level theorem. PPT is a proved case/necessary positivity condition, not a new standing premise excluding the counterexample. The exact assumptions, conventions, family, split, frozen graph/source scope and four semantic steps remain reserved; only question changes among the nine contract fields. Original source wording and the frozen predecessor remain historical. No new core or Lean node is introduced.",
       "repair": "shared/repairs/plan-320-partial-transpose-state-successor.json",
-      "review": "reports/textbook-v1/repairs/plan-320-partial-transpose-state-successor-review.json",
+      "review": "reports/textbook-v1/repairs/plan-320-partial-transpose-state-successor-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-320",
         "predecessor_key": "qcb-core-plan-320-isotropic-partial-transpose",
@@ -76,7 +76,7 @@
       "predecessor_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
       "reason": "Explicit first question-version2 correction, not an answer-only repair or an equivalent restatement of the predecessor's requested proof. Preserve the exact SVD unitary dilation and no-exact-system-unitary claim. Replace the universal demand to prove ancilla/postselection necessity for nonunitary A by explicit assessment/refutation for NORMALIZED state preparation, while retaining the chosen branch probability and exact unnormalized-operator boundary. Keep original assumptions/conventions (both empty), family/split, frozen graph/source scope and the same three semantic steps/nodes; only question changes among the nine contract fields. No deterministic implementation of the unnormalized nonunitary A, efficient gate synthesis, new core or formal admission is claimed.",
       "repair": "shared/repairs/plan-011-normalized-preparation-state-successor.json",
-      "review": "reports/textbook-v1/repairs/plan-011-normalized-preparation-state-successor-review.json",
+      "review": "reports/textbook-v1/repairs/plan-011-normalized-preparation-state-successor-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-011",
         "predecessor_key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
@@ -93,7 +93,7 @@
       "predecessor_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
       "reason": "Explicit first question-contract correction. Preserve the original positivity/trace/eigenvalue target and require assessment of its dimension-independent interval claim, but include the allowed d=1 branch instead of silently imposing d>=2. All-real x and all nonzero Hilbert dimensions remain; d=0 was already incompatible with the stipulated rank-one trace-one Phi. Only question changes among the nine CONTRACT_FIELDS; original assumptions/conventions stay empty, and family/split/frozen graph/source scope/three semantic steps remain reserved. Not an equivalent proof demand, answer-only repair, new core, or admission.",
       "repair": "shared/repairs/plan-401-isotropic-dimension-state-successor.json",
-      "review": "reports/textbook-v1/repairs/plan-401-isotropic-dimension-state-successor-review.json",
+      "review": "reports/textbook-v1/repairs/plan-401-isotropic-dimension-state-successor-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-401",
         "predecessor_key": "qcb-core-plan-401-isotropic-positivity-x-range",
@@ -110,7 +110,7 @@
       "predecessor_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
       "reason": "Explicit first question-contract correction, not equivalent to the predecessor's demand to prove Pr(hat r!=r)->0. Keep that exact-equality assertion for assessment/refutation and replace the false proof demand with fixed-epsilon convergence in probability using the original polynomial-qualified outcome bound and an explicit diagram-count union factor. Keep estimator-domain validation, all spectra including zeros, original assumptions/conventions (empty), family spectrum-estimation-consistency, split, frozen graph/source scope and three semantic steps. Only question changes among the nine fields. The corrected neighborhood theorem substantially overlaps plan319's concentration subtarget; this is reserved lineage under existing407, not an additional distinct core or global deduplication/alias decision.",
       "repair": "shared/repairs/plan-407-fixed-neighborhood-state-successor.json",
-      "review": "reports/textbook-v1/repairs/plan-407-fixed-neighborhood-state-successor-review.json",
+      "review": "reports/textbook-v1/repairs/plan-407-fixed-neighborhood-state-successor-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-407",
         "predecessor_key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
@@ -358,6 +358,23 @@
         "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
         "finding_digest": "bb4d92a5d0627f4314bd0c0ba5413139fdade1764e5066e5dccad0bcbb076a5b"
       }
+    },
+    {
+      "core_id": "qcb-core-la-219",
+      "predecessor_key": "qcb-core-la-219",
+      "predecessor_item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
+      "reason": "Explicit first question-AND-convention successor under the announced qcb.textbook_question_successor.v2 engine, not a question-only wrapper or answer repair. Only question and conventions change among the nine CONTRACT_FIELDS; assumptions,family,split,graph_version,target_nodes,supporting_nodes,source_refs are literally inherited. Retain reserved qcb-core-la-219/native-stored-cost-219/train/frozen graph and three exact ordered step-node lists; no additional core or predecessor-equivalence claim. The old active 'only an inequality cap is provable' convention is false as an unrestricted mathematical claim and is retained only in historical evidence, not silently reinterpreted. The exact proposed question/conventions, complete answer/rubric/exposition and operative source bindings are carried unchanged from the separately mathematically reviewed frozen private migration proposal, while this NEW full admissible payload and its execution metadata require distinct exact-content review. Old contract 1adc7e2fff3b379cfa59091ba192d0d9ffdd4cd49c4b0e945f9e884ce5c4ba79; new question+convention contract 8071360a2cb8f672ebcbb0bf3ca61da4283ffe28766652b17ede24d6cc89eb3d. Engine compatibility does not imply mathematical approval or current reader admission.",
+      "repair": "shared/repairs/la-219-correlated-guard-question-convention-successor.json",
+      "review": "reports/textbook-v1/repairs/la-219-correlated-guard-question-convention-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-219",
+        "predecessor_key": "qcb-core-la-219",
+        "predecessor_item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
+        "reason": "The valid guard-count ledger and loose cap do not establish an attainable full range; actual compiled child guards are correlated.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+        "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+        "finding_digest": "7e6c52380b436f2f09fa465c8760c5b591ffeddac9fc4e8824ad75b73def19eb"
+      }
     }
   ],
   "answer_successors": [
@@ -476,7 +493,7 @@
       "predecessor_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
       "reason": "Repair the false right factor in the twirl expansion throughout answer, rubric and semantic exposition. The question already specifies C^2, a density matrix, irreducibility and a Schur/trace proof. No question, assumptions, graph scope, family, split or step count changes; no local Lean closure is asserted for this planned concept anchor.",
       "repair": "shared/repairs/plan-107-pauli-adjoint-repair.json",
-      "review": "reports/textbook-v1/repairs/plan-107-pauli-adjoint-repair-review.json",
+      "review": "reports/textbook-v1/repairs/plan-107-pauli-adjoint-repair-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-107",
         "predecessor_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
@@ -493,7 +510,7 @@
       "predecessor_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
       "reason": "Repair the dropped complex conjugation in the no-two-outcome proof, and make the positivity verification complete. Keep the original complex-overlap question, 0<|c|<1, two-dimensional ambient space, graph, family, test split and five support steps. Do not silently restrict c to a real phase convention or claim a new local formal theorem.",
       "repair": "shared/repairs/plan-204-complex-conjugation-repair.json",
-      "review": "reports/textbook-v1/repairs/plan-204-complex-conjugation-repair-review.json",
+      "review": "reports/textbook-v1/repairs/plan-204-complex-conjugation-repair-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-204",
         "predecessor_key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
@@ -510,7 +527,7 @@
       "predecessor_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
       "reason": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact question, assumptions, conventions, qit-state-foundations family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: 8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e. Correct zero-output normalization and the false inference from different isometries to physically different ensembles; give explicit varying ensembles for every mixed state and an honest longer-ensemble witness. This is authorship, not approval or admission.",
       "repair": "shared/repairs/plan-004-ensemble-repair.json",
-      "review": "reports/textbook-v1/repairs/plan-004-ensemble-repair-review.json",
+      "review": "reports/textbook-v1/repairs/plan-004-ensemble-repair-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-004",
         "predecessor_key": "qcb-core-plan-004-ensemble-nonuniqueness",
@@ -527,7 +544,7 @@
       "predecessor_item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
       "reason": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact two-qubit question and x interval, empty explicit assumptions/conventions, qit-symmetry-entanglement family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: d2196fd968d517f6f9d4f870dab30d7bd70e0344eddb4b3ad19e6ff0464a6874. Replace the reversed implication in rubric r4 and the third semantic step by the explicit product-with-overlap-x, invariant-twirl, uniqueness and closed-separability proof. No low-dimensional PPT-sufficiency premise is added; this is not approval or admission.",
       "repair": "shared/repairs/plan-007-werner-converse-repair.json",
-      "review": "reports/textbook-v1/repairs/plan-007-werner-converse-repair-review.json",
+      "review": "reports/textbook-v1/repairs/plan-007-werner-converse-repair-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-007",
         "predecessor_key": "qcb-core-plan-007-werner-entanglement-threshold",
@@ -544,7 +561,7 @@
       "predecessor_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
       "reason": "Answer, rubric r2 and explanatory summary/four semantic steps only. The exact question and all nine contract fields remain unchanged, including assumptions, conventions, family, split, frozen graph and source scope. Make the pinned source product e_T=r_T*c_T and its actual column-first action explicit; first prove c_T=0 on the whole tensor space when the diagram has more than d rows. The predecessor's row-bound conclusion is true: its row-then-column phrase was ambiguous, not a counterexample to the zero theorem. No claim of nonzero action on every allowed filling, new mathematical core, question change or formal admission.",
       "repair": "shared/repairs/plan-307-young-order-repair.json",
-      "review": "reports/textbook-v1/repairs/plan-307-young-order-repair-review.json",
+      "review": "reports/textbook-v1/repairs/plan-307-young-order-repair-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-307",
         "predecessor_key": "qcb-core-plan-307-young-row-bound",
@@ -561,7 +578,7 @@
       "predecessor_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
       "reason": "Unchanged-question complete answer/rubric/exposition repair. Preserve all nine contract fields, fixed-d assumption, original source/graph scope, family/split and four semantic steps. Correct the bare-exponential process claim and clarify total neighborhood mass versus individual/exact-matching outcomes. Supply the prefactor-aware finite-n proof and zero-spectrum cases without a full-rank premise. No new question/core/native formal view, resource or admission claim.",
       "repair": "shared/repairs/plan-319-concentration-prefactor-repair.json",
-      "review": "reports/textbook-v1/repairs/plan-319-concentration-prefactor-repair-review.json",
+      "review": "reports/textbook-v1/repairs/plan-319-concentration-prefactor-repair-migration-revalidation-review.json",
       "prior_withdrawal": {
         "core_id": "qcb-core-plan-319",
         "predecessor_key": "qcb-core-plan-319-spectrum-concentration",
@@ -734,15 +751,6 @@
       "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
       "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
       "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0"
-    },
-    {
-      "core_id": "qcb-core-la-219",
-      "predecessor_key": "qcb-core-la-219",
-      "predecessor_item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
-      "reason": "The valid guard-count ledger and loose cap do not establish an attainable full range; actual compiled child guards are correlated.",
-      "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
-      "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
-      "finding_digest": "7e6c52380b436f2f09fa465c8760c5b591ffeddac9fc4e8824ad75b73def19eb"
     },
     {
       "core_id": "qcb-core-plan-104",

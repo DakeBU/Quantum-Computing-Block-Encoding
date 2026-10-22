@@ -45,6 +45,16 @@ remain where they are; reader pages resolve their exact admitted source records.
    current implementation supports one first correction per frozen core;
    further chains or changes to assumptions/graph scope require a separately
    designed and reviewed migration, not an extra JSON override.
+   Payload schema `qcb.textbook_question_successor.v1` changes only the question.
+   Schema `qcb.textbook_question_successor.v2` additionally requires an explicit,
+   changed nonempty convention list. It still denotes question version 2, not a
+   second correction. A distinct `independent-question-convention-successor-review`
+   binds both literal convention lists, both whole contract hashes, the whole
+   candidate digest and `changed_contract_fields: ["question", "conventions"]`,
+   with substantive reconstruction and separate contract/convention assessments.
+   No other contract field is overridable. Historical conventions appear only
+   in the folded revision audit, not among active premises. Browser acceptance
+   must check this distinction before a stable gate can pass.
 
 ## Concurrent collaborators
 

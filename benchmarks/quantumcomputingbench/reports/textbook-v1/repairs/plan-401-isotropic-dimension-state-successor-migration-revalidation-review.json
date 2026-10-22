@@ -1,0 +1,138 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-401",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-401-isotropic-dimension-state-successor.json",
+  "repair_record_digest": "4918d3f5fbe8d0227ba7c73816fb923c33ed514af235ad01372127bd8c35e00d",
+  "repair_record_sha256_lf": "7687b7f8bbe91a1537ac4f7eb18ae6ffa3769eb127b73dc596b9263b8b2ca034",
+  "original_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: question-contract fitness, answer, rubric and exposition. Private independent mathematical revalidation only; no automatic admission, formal transfer, kernel, human/expert or novelty certification.",
+  "question_version": 2,
+  "original_contract_hash": "35796e5369f3f45d58d9b62103d321787c8fd234a7d0ed8d6b8b4c585181b9cf",
+  "successor_contract_hash": "f5d6e502b09f0ff671db99348e926bb515551af628bffba62aebf9a08184d1e9",
+  "changed_contract_fields": [
+    "question"
+  ],
+  "contract_change_assessment": {
+    "necessity": "The predecessor demands a finite closed interval with tight endpoints for an unrestricted nonzero dimension. At d=1, Φ=I and ρ(x)=I for every real x, so no answer can prove that universal finite-interval assertion. The successor explicitly assesses/refutes it, includes d=1, and retains the sharp nontrivial-dimensional positivity problem instead of silently adding d≥2.",
+    "scope": "Only question changes in the exact nine-field contract. Both assumption/convention lists remain empty; all real x and every dimension compatible with a rank-one trace-one Φ remain in scope. Family, split, source/graph scope and all three ordered step-node lists are preserved. Changed requested reasoning is disclosed; equivalence to the predecessor is not claimed."
+  },
+  "preserved_scope": {
+    "family": "isotropic-state-positivity",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 3,
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis",
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis",
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ]
+  },
+  "substantive_reconstruction": {
+    "trace_and_sectors": "Writing P=Φ and Q=I−P gives orthogonal projectors and ρ=aP+bQ, where a=1−x+x/d² and b=x/d². Its trace is (1−x)trP+(x/d²)trI=1 for every real x. For d≥2 the P sector has rank one and Q has rank d²−1, so both coefficients are actual eigenvalues, with their indicated multiplicities (coinciding at x=1).",
+    "sharp_range": "Positive semidefiniteness for d≥2 is equivalent to a,b≥0, hence exactly 0≤x≤d²/(d²−1). Necessity has concrete witnesses: a unit vector |1,2⟩ is orthogonal to Φ+ and has expectation b<0 when x<0; Φ+ has expectation a<0 beyond the upper endpoint. These also prove both endpoints tight, not merely sufficient. At x=0 the state is Φ of rank one; at the upper endpoint it is (I−Φ)/(d²−1), of rank d²−1.",
+    "degenerate_dimensions": "For d=1 the complementary projector Q is zero. The coefficient b=x multiplies a rank-zero sector and is not an eigenvalue constraint; a=1 and the sole state is I for every x, including negative values. The allowed set is all R, without finite positivity endpoints. Dimension zero was already incompatible with the stipulated rank-one trace-one maximally entangled projector and is not being newly excluded to repair the theorem. Positivity here says nothing about separability or PPT."
+  },
+  "answer_rubric_and_exposition_assessment": "The four rubric criteria require the d=1 refutation rather than rewarding an implicit restriction, trace and genuine sector multiplicities, necessary-and-sufficient interval with negativity witnesses, and endpoint ranks/degenerate boundaries. The full exposition has the same three ordered support lists and correctly treats a zero-rank sector. The answer does not confuse coefficients with distinct eigenvalues when x=1, or positivity with an entanglement threshold. Thus the entire candidate, including grading and boundaries, is mathematically acceptable as an explicit first question-version2 correction.",
+  "bounded_semantic_relation": "The repaired object remains isotropic-state positivity in the same reserved lineage. It is not an extra entanglement/PPT core, nor a semantic clearance of neighboring isotropic questions or their splits.",
+  "prior_review_exposure": {
+    "old_review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-401-isotropic-dimension-state-successor-review.json",
+    "old_review_digest": "32388e4953c52bb847925079a549eb8aeff055c6754a80996946c9b9cb042576",
+    "old_review_sha256_lf": "790fe15c709779671029b9b0188addecce45ad6d23dffbc88598da31990d4913",
+    "actual_prior_reviewer": "/root/qcb_boundary_repair_review",
+    "exposure": "The exact historical original, withdrawal/finding, entire candidate and old accepted review were exposed. I authored the old review and had already inspected the original/source; this is a fresh reconstruction after exposure, not a blind new reviewer. I did not author this candidate. Old reviews remain byte-for-byte unchanged.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+    "prior_withdrawal_review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+    "prior_finding_digest": "7dd8cd3e026c51b8ed2c8c4d778a9efd2a03f7ed1e0eed62f935411c088158f8",
+    "historical_code_binding": "The old report's whole policy binding remains historical, including its old LF cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9. This NEW report does not bypass or rewrite it."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Exact complete historical prepared qcb-core-plan-401 loaded via release.checked()[2], including question, assumptions, conventions, reference answer, full rubric and semantic steps. Whole item digest is above. This is tracked mathematical-content provenance, not proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/shared/repairs/plan-401-isotropic-dimension-state-successor.json",
+      "sha256_lf": "7687b7f8bbe91a1537ac4f7eb18ae6ffa3769eb127b73dc596b9263b8b2ca034",
+      "anchor": "Entire exact candidate read, including all reference-answer, rubric, exposition and metadata fields. This LF binding identifies reviewed mathematical content, not independent proof authority."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete relevant Leditzky entry read: primary URL, edition and historical binary pin. LF binds metadata only; primary mathematical inspection and its limits are separate below."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "actual_access": "Primary PDF text actually accessed through web extraction in this objective; cover/edition and operative regions inspected. No PDF redistribution or new local formal closure.",
+      "operative_regions": "Leditzky, April10 2026 edition, complete printed57 Definition6.7/Proposition6.8/Eq6.44–6.47 and printed58 Exercise6.2 context. The source states the isotropic family and exercise range but provides no worked exercise proof. The eigenvalue, multiplicity, d=1 and tightness derivation above is my reconstruction, not an invented printed solution or Lean theorem.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "reviewer_verified_binary_hash": false,
+      "limit": "The retrieved text's edition/anchors agree with the recorded source, but I did not obtain/hash original PDF bytes. Candidate/other reviewer claims of matching bytes are not inherited. This is source-text mathematical review, not a PDF-binary seal or a source-blind/kernel proof."
+    }
+  ],
+  "mechanical_context": {
+    "scope": "Historical static inspection after the parent's final freeze on agent/qcb-convention-contract-migration, HEAD f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818. These files implement admission/lineage, not the mathematical proof. Their hashes are not evergreen mathematical dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50",
+        "inspection": "Entire file read. Payload v1 remains question-only; strict payload v2 additionally requires a changed nonempty distinct text convention list, separate review method and exact old/new lists/hashes/changed fields. Both keep other contract fields and versioned lineage; source/withdrawal checks remain."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157",
+        "inspection": "Entire file read. core_contract uses the nine fields. stable_readiness conditionally requires convention_revision_lineage when a current successor changes conventions; historic predecessor reviews do not approve successors."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab",
+        "inspection": "Entire file read, including the three new convention fixture tests: both contracts/unchanged fields, malformed or unbounded rebound payloads, and exact distinct substantive review including uncertain withholding. Fixtures are explicitly not mathematical approval."
+      }
+    ],
+    "execution": "No tests/build/kernel executed by this reviewer. Parent reported three direct convention tests passed; I inspected their code, not their execution. No admission engine was invoked for this verdict."
+  },
+  "provenance": {
+    "candidate_author": "/root/qcb_formal_view_audit",
+    "read_location": "benchmarks/quantumcomputingbench/shared/repairs/plan-401-isotropic-dimension-state-successor.json",
+    "prepared_original": "release.checked()[2] historical native record, not current-reader substitution",
+    "independence": "Distinct from candidate author and original author; truthful prior exposure above. No parent reasoning or accepted metadata used as proof.",
+    "writes": "Only this new private migration-revalidation report; canonical candidates, sources, policy and all old reports untouched."
+  }
+}

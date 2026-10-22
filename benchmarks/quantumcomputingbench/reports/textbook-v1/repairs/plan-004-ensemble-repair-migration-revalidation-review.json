@@ -1,0 +1,137 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-004",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-004-ensemble-repair.json",
+  "repair_record_digest": "515747bfeded89a5c56224d2ee4b8a3f96c2f52b3b45a73be29aed8524536b2f",
+  "repair_record_sha256_lf": "b1f07a4de1cc0ea4fa9778e9e305231c8770100ba75420460511c496a8ba407b",
+  "original_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+  "verdict": "accept",
+  "verdict_scope": "New substantive revalidation of this entire exact current answer/rubric/exposition under the unchanged question, not mechanical transplantation of prior acceptance or admission.",
+  "independence": {
+    "repair_author": "/root/qcb_native_comparison",
+    "original_author": "native-planned-author",
+    "assessment": "Actual reviewer /root/qcb_formal_view_audit authored neither predecessor nor candidate. I previously reviewed these candidates and have substantial Leditzky/source exposure; this is not blind or a new identity. Complete current canonical candidate, historical original and original withdrawal/finding were reread and the mathematics reconstructed again."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e",
+    "projected_contract_hash": "8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": "All nine actual values remain literally inherited; no contract field override in candidate. Empty assumptions/conventions remain empty.",
+    "family": "qit-state-foundations",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "original_semantic_step_count": 3,
+    "candidate_semantic_step_count": 3,
+    "ordered_per_step_supporting_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "ordered_node_lists_identical": true,
+    "checks": "Whole predecessor/supersedes digest and key, whole candidate/LF, exact nine-field hash and each ordered step-node list independently recomputed. Historical review is preserved, not converted into the new verdict."
+  },
+  "original_defect": "Zero rows can give q_j=0, so the old exact-k normalized-ensemble claim is invalid without handling those slots. Different column isometries can change only row phases or descriptions; infinitely many isometries alone does not prove physically different ensembles.",
+  "substantive_reconstruction": {
+    "complex_identity": "Write u_l=sqrt(p_l)psi_l. The coefficient of |u_l><u_m| in sum_j|w_j><w_j| is sum_j V_jl conjugate(V_jm)=(V†V)_(m,l)=delta_ml. The sum is rho, including complex entries and dependent or zero starting u_l. Trace gives sum_j||w_j||²=1. No transpose substitutes for the adjoint.",
+    "zero_outputs": "Set q_j=||w_j||². For q_j>0, phi_j=w_j/sqrt(q_j) is unit; at q_j=0, definiteness gives w_j=0, so discard it or assign its zero-weight slot an arbitrary unit vector. The latter exists because a trace-one state has nonzero carrier. Thus at most k positive components are guaranteed. Appending a zero row to an isometry exhibits the missing boundary.",
+    "redundancy": "Multiplying output rows by unit phases leaves q_j and each normalized rank-one projector unchanged. Row permutations, zero padding and split duplicate rays also need not change the physical ensemble. Hence the candidate correctly declines to infer injectivity or genuine variation from the parameter space alone.",
+    "genuine_variation": "A mixed finite density state has rank s>=2. Choose two positive spectral components u=sqrt(lambda1)e1,v=sqrt(lambda2)e2. The stated two-row rotation is a column isometry, and its output norms are lambda1 cos²theta+lambda2 sin²theta and lambda1 sin²theta+lambda2 cos²theta, both positive. On0<theta<pi/4, w1 has positive e2/e1 ratio sqrt(lambda2/lambda1)tan(theta), strictly increasing; w2 has negative ratio. No phase/permutation equates these rays across distinct theta, and untouched eigenvectors lie outside their span. Repeated eigenvalues do not stop ray variation. This yields infinitely many ensembles of rho and alternatives to any fixed initial ensemble, without assuming that initial ensemble was spectral.",
+    "longer_witness": "The displayed3-by-2 coefficient columns have norms1 and inner product0. Adding s-2 identity columns/rows gives an(s+1)-by-s column isometry. Outputs u/sqrt2,u/2+v/sqrt2,-u/2+v/sqrt2 have weights lambda1/2,lambda1/4+lambda2/2 twice; these sum to lambda1+lambda2 and are positive. Independence of u,v makes all three rays distinct and unlike untouched eigenvectors. Thus this is a genuine existential length increase from the positive rank-s spectral ensemble, not a guarantee for every k>r or every V.",
+    "boundaries": "Rank0 is excluded by trace1; rank1 is outside the mixed-state demand. Zero eigenvalues are omitted only from the positive spectral witness, not silently forbidden in the supplied ensemble. The proof makes no HJW reachability classification, efficient numerical construction, gate cost or local Lean-closure claim."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept the complete answer: the universal outer-product identity, qualified normalization and separate explicit witnesses discharge the literal true question. 'Generally' is not converted into an all-isometries injectivity assertion.",
+    "rubric": "All four criteria are sound: correct complex(m,l) coefficient; state/trace recovery; explicit zero handling; and genuine varying-ray/longer witnesses with redundancies distinguished. None demands positive q for every row.",
+    "exposition": "All three replacement claims retain exactly the original ordered node lists and step count. Their source concept anchors support NL discussion, not local theorems.",
+    "repair_scope": "Answer-only remains appropriate: the question asks a true construction/existence result with generally different/longer outputs, not that every isometry is injective on physical ensembles. No question, assumption, convention, family or split changes are needed."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Actual complete leditzky-2025-repth-qit registry entry218-228 read. LF hash binds metadata only; primary mathematical inspection and current access limits are separate below. No policy/curriculum executable is a mathematical source dependency."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10April2026,79pages",
+      "recorded_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "current_binary_sha256": null,
+      "current_binary_hash_verified": false,
+      "retrieval": "Current web PDF extraction succeeded, exposing79pages/title date and the operative full bounded text. Direct urllib in-memory fresh-byte fetch failed WinError10013; no escalation/retry success or fresh binary hash claimed. Web screenshots of pages12/16 cache-missed.",
+      "operative_regions": "Definition2.3/Eqs2.7-2.8 and complete Exercise2.1/Eqs2.37-2.38 reread; the zero-output and genuine-variation completions are independently reconstructed, not attributed verbatim to the exercise.",
+      "visual_scope": "Actually re-viewed existing root-rendered printed pages12/16; did not freshly render or bind these images to newly retrieved PDF bytes.",
+      "existing_image_sha256": {
+        "leditzky-foundation-page-12.png": "411aae2bf632bdd390606ea531b6dd1cee494f95031a464ddb66198505517466",
+        "leditzky-foundation-page-16.png": "a570501008dfd41cd19afb94a7e0a7965908ba0a88970c5896b2d2eac5e90157"
+      },
+      "limits": "Historical raw pin remains a recorded pin and prior exposure, not a fresh-byte seal. Current extracted edition/content agrees with inspected anchors; full-book, cited-proof and transitive formal approval not claimed."
+    }
+  ],
+  "withdrawal_evidence": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/qit-foundations-004-005-007-review.json",
+    "report_digest": "4abf4a37cc2623f6feb6473e335730daee6715618091c94eb42d4af1feabfcf1",
+    "report_sha256_lf": "6b01ae49271f3f45b4312b560f2fd18e06cc640b4a289d7bcf14623bf2e6c9e1",
+    "finding_digest": "fe9e555b715be7c35c4faa05e8bdef5a2377bc274cb8ce604da4f2a0b4b0a039",
+    "row_digest": "9c616308eb6a8a361992632166d6375a402b974d9a678d7503a043052f207063",
+    "reviewer": "/root",
+    "inspection": "Full original finding reread; exact immutable report/finding/predecessor bindings matched."
+  },
+  "previous_repair_review": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-004-ensemble-repair-review.json",
+    "digest": "9df307a2950f456d799339e4aa5958847cca2a3cccc95e3c9654c9b0c688150c",
+    "sha256_lf": "f689a66b9c09cac85b3c2cc171ae67dd5d37416936a16f7cd0407a4f9c9c6815",
+    "status": "Historical earlier acceptance/source access is preserved unchanged, not rebound or claimed as current execution."
+  },
+  "mechanical_context": {
+    "context_class": "Historical mechanical context at the announced FINAL engine freeze, not mathematical source dependencies or an evergreen proof-input binding.",
+    "observed_head": "f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818",
+    "branch": "agent/qcb-convention-contract-migration",
+    "working_tree": "Announced dirty engine; no Lean changes inferred from this hash.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab"
+      }
+    ],
+    "inspection": "Actual edited question/answer projection, exact contract checks, convention-list/narrative/lineage requirements, curriculum convention_revision_lineage gate and all three new direct convention tests read. These do not prove ensemble/Werner mathematics.",
+    "execution": "Only read-only retrieval/hash/scope checks by this reviewer. Parent reported three convention tests passed in4.612s; this reviewer did not rerun them or invoke admission."
+  },
+  "provenance": {
+    "reviewed_candidate_location": "Canonical repair_record above, not an assumed old private copy.",
+    "instruction_status": "Substantive-worker and PDF skills used; required repository protocols previously read fully, skill refreshed and mandatory instruction files checked unchanged from preceding inspected head.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this NEW private migration-revalidation-review JSON authored after freeze. Candidate, original, old review, canonical tree and source/policy code unchanged; no build/commit/push/extra agents.",
+    "limits": "Primary-source NL mathematics only. No new Lean view, efficient implementation, global deduplication, blind test, model baseline or source-paper/kernel/publication seal."
+  }
+}
