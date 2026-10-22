@@ -99,6 +99,19 @@ v2 payload only when both question and convention list change; bind both lists
 and both contracts in a distinct substantive review. Other assumptions, splits
 and graph scope are not overridable. Historical conventions are audit-only.
 
+Read the newer symmetry/search checkpoint and use the current exported question.
+Do not infer original symmetric support from mixed-state permutation invariance,
+pointwise statistical equality from spectral invariance, or full trace
+preservation from a projected cloning core. Keep block normalization and
+coefficient rescaling explicit. For search distinguish nontrivial planes from
+zero-component endpoints, first-peak rounding from a global optimum, conditional
+transcripts from worst-input randomized success, and early-window amplitude
+growth from perpetual increase. Complex continuation is not a physical overlap
+promise. Preserve existing core IDs when improving related explanations; record
+shared purification, parity-LCU and reflection subproofs without duplicate counts
+or inherited-split independence claims. These are reviewed NL corrections, not
+new kernel proofs or a stable-release declaration.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite

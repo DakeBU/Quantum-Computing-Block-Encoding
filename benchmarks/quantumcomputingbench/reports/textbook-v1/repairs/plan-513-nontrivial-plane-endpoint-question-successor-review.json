@@ -1,0 +1,126 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-plan-513",
+  "repair_record_digest": "7852abdac0ad37b8434b8dcbcc72b873c5e0a78e60b3e14505ed69f1305968c4",
+  "original_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+  "original_contract_hash": "223283ae1e418ed41b108cf5cec5af739ef40b70d1bd30aa955b782c7f7f80a9",
+  "successor_contract_hash": "f4b50cd4ee83f991c95c99e67653cc21fb47d221b7e2c687258c45a5fb328dfc",
+  "question_version": 2,
+  "verdict": "accept",
+  "exposure": "Not blind: I authored the historical scientific-signals-511-520 reader findings, have prior cohort/source/parent-lead exposure, and read the boundary author's handoff before this new review. I did not author these repair candidates. In this objective I read each full actual prepared predecessor via release.checked()[2], current bound withdrawal and complete finding, entire candidate including rubric/steps/execution, and operative primary proofs. Independence here is distinct actual candidate authorship and substantive re-review, not a claim of unexposed cognition or human review.",
+  "contract_change_assessment": {
+    "literal_correction": "The original asks for a normalized unmarked vector and a two-dimensional real plane for every unique-mark instance. Its assumptions allow N=1, where that vector cannot exist. An answer-only repair cannot prove the false universal construction. The new question preserves this instance for assessment, requests the plane only as a proved N>1 case, and separately asks for the exact endpoint action. That is an explicit first question-version2, not a hidden N>=2 assumption or an equivalent restatement.",
+    "conventions_and_scope": "The overlap/half-angle convention remains numerically meaningful at N=1, with phi=pi/2. The two-planar-mirrors convention is an algebraic fact about actual planes, not an assertion that such a plane exists on every search input; the question now tests that applicability. No false active assertion is being reinterpreted. The other eight nine-field values, family/split/graph/source scope and all six ordered per-step node lists are exact. The change is requested reasoning, not more cores or formal graph depth."
+  },
+  "substantive_reconstruction": {
+    "normalized_plane": "For N>1, the marked basis vector g and b=(N-1)^(-1/2)sum_unmarked|x> have disjoint support, norm1 and inner product0. The uniform psi has coordinates(s,c), with s=1/sqrt(N)>0, c=sqrt((N-1)/N)>0 and s^2+c^2=1. Taking phi=arcsin(s) gives psi=sin(phi)g+cos(phi)b. Both reflections preserve this span because their defining projectors have their ranges in it or kill it appropriately. There is no need to infer an invariant subspace solely from source rhetoric or a division by sin(2phi).",
+    "ordered_algebra": "R_g is diag(-1,1). The other reflection is2(s,c)(s,c)^T-I, so multiplying R_psi R_g, with the marked flip acting first, gives [[1-2s^2,2sc],[-2sc,2c^2-1]]. This is [[cos(2phi),sin(2phi)],[-sin(2phi),cos(2phi)]]. In the Cartesian coordinates whose ordered axes are(g,b) it is rotation by -2phi. In the alternative scalar parameterization sin(alpha)g+cos(alpha)b, alpha is measured from b towards g and increases by2phi. Those are the same action, not an inconsistent source sign or a swapped reflection order.",
+    "powers_and_phase": "Multiplication of the last matrix by(sin(alpha),cos(alpha)) gives(sin(alpha+2phi),cos(alpha+2phi)). Starting at alpha=phi and inducting proves the exact all-k state formula. In particular the signed marked coefficient is sin((2k+1)phi). Its projected-vector norm is the absolute sine, and measurement probability is the sine squared. Late negative coefficients are permitted and no phase is discarded in the vector equality. A phase invisible to an isolated probability still matters to a controlled comparison, so this is stronger and more precise than only a probability curve.",
+    "endpoint_reconstruction": "When N=1, the only state basis vector is g=psi. On this one-dimensional space R_psi=I and R_g=-I, so G=-I and G^k psi=(-1)^k g. The scalar formula survives since sin((2k+1)pi/2)=(-1)^k, but there is no unmarked sum to normalize, no orthogonal bad axis and no actual two-dimensional mirror geometry. Success is already1 at k0. N0 is impossible under the unique-mark promise. This is a separate operator calculation, not continuity used to manufacture a nonexistent vector.",
+    "grading_and_success_limits": "All four rubric criteria and six exposition claims match the corrected domain and exact ordered algebra. They require detecting the endpoint defect, not merely presenting a generic nontrivial diagram. For N2, phi=pi/4 and every integer odd multiple gives probability1/2; this directly checks the candidate's warning against arbitrary near-unit integer-iteration success. The old answer's qualitative final amplification gloss is not allowed to override that boundary. Preparation, extra verification, phase-matched exact search and gate/finite-bit implementations are not supplied by this algebraic proof.",
+    "source_and_bounded_overlap": "The full operative Theorem11.2 proof supplies the reflection order, interior matrix action and odd-multiple sine mechanism; its Eq11.15 explicitly displays the problematic sqrt(N-1) denominator. I checked the source's different psi/psi-perpendicular basis before comparing orientation, rather than demanding equal displayed matrix signs across different bases. The candidate's N1 calculation and N2 boundary are independently correct even where the source's generic presentation is partial. This interior proof is a one-mark specialization of515 and a special case of520's projector dynamics, not evidence that their complete revised targets are aliases or globally reconciled. My verdict concerns these exact candidate bytes, not the author's process labels as mathematical proof."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc entry personally inspected in the continuous task context and LF rechecked here. This is external-source locator/edition metadata only, not a local mathematical proof or primary-byte identity. Actual operative mathematics is recorded in primary_source_checks."
+    }
+  ],
+  "content_bindings": {
+    "inspected_private_candidate": "_review_tmp/plan-513-nontrivial-plane-endpoint-question-successor.json",
+    "planned_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-513-nontrivial-plane-endpoint-question-successor.json",
+    "candidate_sha256_lf": "5ae0bede2533b5a21123302ecdec2c2e493ca492da4891da771a30276d453913",
+    "original_assumptions": [
+      "Exactly one marked element among N basis states"
+    ],
+    "original_conventions": [
+      "Sine of the half-angle equals the overlap 1/sqrt(N) of the uniform state with the marked state",
+      "A product of two planar reflections with axes differing by phi is a rotation by 2 phi"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_digests": {
+      "assumptions": "626842dfa6b2ef179a51357df397a9a05bb157971eb2b79318050d02850677ed",
+      "conventions": "f724241702f46ce0d9413ac630777d2493014be9f5275304b85c02eb7c4f8979",
+      "family": "dd5e0d146f7b323c02bdb41d2cf01111381d6e7f033a04264d07b1b89f48055f",
+      "split": "a774e852385c11df74d26b40210fb7d29a7b8e7357a8ecece45482398c3f3f7c",
+      "graph_version": "2ced781f875884ea6187183f7ad941c8871d10c978fb36a1a4c054d2defedc1b",
+      "target_nodes": "2388f6a0817ff53ef2be6fff8d77427bfd4187acb6680022f23a72a255a74465",
+      "supporting_nodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_refs": "5c4265958dc20cca662e75650774b7cf3998fb866be977f879a73d2cc238bc75"
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:approximation"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:approximation"
+      ]
+    ],
+    "semantic_step_count": 6,
+    "withdrawal": {
+      "core_id": "qcb-core-plan-513",
+      "predecessor_key": "qcb-core-plan-513-grover-two-reflection-rotation",
+      "predecessor_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+      "reason": "The allowed one-element search has no normalized bad vector or requested two-dimensional plane; the endpoint needs explicit treatment.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "8f5aca8a2b1a2bdf4cd54d2b5126fa33b84f7598bb44e4394483ec4afdb1a348"
+    },
+    "whole_original_candidate_contract_and_withdrawal_bindings": "Independently recomputed and matched actual current records and handoff. All candidate LF source bindings and six identical ordered node lists checked; these are content checks, not a proof or admission."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition_observed": "Cover29 April2026;447 pages",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "operative_regions": "Complete Algorithm11.1 and Theorem11.2 statement/proof, Eq11.2-11.22, printed183-186/PDF182-185, including the normalized-bad denominator Eq11.15 and exact ordered g/b action Eq11.17; source basis/orientation and integer-rounding limitations inspected.",
+      "actual_review_access": "Primary author-hosted PDF text extraction personally read in this objective, including complete operative statements/proofs and context named above. Cover was reopened. Source claims were independently assessed, not presumed correct.",
+      "binary_hash_verified_in_this_review": false,
+      "operative_pixels_inspected_in_this_review": false,
+      "limits": "My screenshot requests at PDF pages181,184,188 failed with cache misses. No direct primary-byte hashing, rendered-page inspection, paper/PDF seal or source redistribution is claimed. Root's or candidate author's separate fetch/render executions are not assigned to me."
+    }
+  ],
+  "provenance": {
+    "observed_head": "e9308632431899a08938b4d9a6cd1b9d90c45e30",
+    "written_private_review": "_review_tmp/plan-513-nontrivial-plane-endpoint-question-successor-review.json",
+    "limitations": "Private mathematical/source review only. No canonical installation, old-artifact edits, builds/kernel/native-formal proof, code-as-mathematical-evidence, source-paper/visual seal, human/model/expert/blind approval, global semantic closure or admission claim."
+  },
+  "review_scope": "Complete question, answer, every rubric criterion, core summary, all six semantic steps and process/source metadata assessed. Exact V1 question-payload key set, actual predecessor and both nine-field hashes, distinct authorship, source LF and ordered-step preservation are mechanical bindings only. No fresh production execution is used as mathematical evidence."
+}

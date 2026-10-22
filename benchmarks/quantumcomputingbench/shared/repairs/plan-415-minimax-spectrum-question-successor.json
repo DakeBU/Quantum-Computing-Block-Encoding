@@ -1,0 +1,83 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-415",
+  "supersedes_key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+  "supersedes_item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+  "supersedes_contract_hash": "e3045661a7b88148f760703f32ae99867018ef95cd2c2b09737a874187dbbaae",
+  "question_version": 2,
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-415-textbook-question-v2-minimax-spectrum-twirl",
+  "admission": "pending_distinct_review",
+  "change_scope": "First explicit question-version successor. The old 'without loss of generality' has no performance criterion; preserve and assess that defect rather than assume a hidden guarantee from the intended answer. Replace ONLY question among the nine contract fields, retaining empty assumptions/conventions, spectrum-estimation-symmetries family, test_public split, graph/source scope and the original three ordered step-node lists. Establish the exact pointwise/permutation versus orbit-average/uniform-risk distinction, then the full both-symmetry Schur postprocessing statement. No convention migration, new core or split override.",
+  "question": "One measures rho^{tensor n}, where rho is an unknown density operator on C^d, to estimate its sorted eigenvalue vector r(rho). Assess the unqualified assertion that restricting all measurement effects to commute with BOTH tensor-factor permutations Q_pi and U^{tensor n} is 'without loss of generality': distinguish preserving every fixed state's outcome distribution from preserving a uniform worst-case spectrum-estimation guarantee.\n\nFor d>=1 and integer n>=0, let E be any POVM on a measurable outcome space Omega, with a measurable estimator rhat:Omega->Delta_d and bounded nonnegative measurable loss ell(rhat,r), depending on rho only through r(rho). Define R_rho(E)=integral ell(rhat(y),r(rho)) tr[E(dy)rho^{tensor n}] and R_max(E)=sup_rho R_rho(E). (i) Prove permutation averaging of E preserves every fixed rho's full outcome distribution. (ii) Prove Haar averaging the permutation-averaged effects yields a POVM F commuting with BOTH groups and R_max(F)<=R_max(E); explain the resulting preservation of uniform epsilon/delta guarantees and provide a finite-dimensional counterexample to preservation of each fixed probability under unitary twirling. Do not treat spectral invariance alone as pointwise-statistics invariance. (iii) Prove every effect of F has the form F(B)=sum_lambda a_lambda(B)P_lambda, where P_lambda are the Schur-Weyl isotypic projectors and each a_lambda is a classical probability measure on Omega. Thus establish weak Schur measurement followed by classical postprocessing, and justify positivity, completeness and both symmetries of {P_lambda}. State the n=0 and d=1 boundaries and explain why a zero-dimensional single-copy space has no density operator. No efficient implementation or exact-equality spectrum-consistency assertion is requested.",
+  "reference_answer": "Let rho_n=rho^{tensor n}. For a measurable event B, define E_pi(B)=(1/n!)sum_pi Q_pi E(B) Q_pi^dagger. Positivity, countable additivity and E_pi(Omega)=I follow from those of E. Since Q_pi^dagger rho_n Q_pi=rho_n, cyclicity gives tr[E_pi(B)rho_n]=tr[E(B)rho_n] for EVERY B and every rho. This preserves the whole distribution, hence all the defined risks, not just their supremum.\n\nDefine F(B)=integral dU U_n E_pi(B) U_n^dagger using normalized Haar on compact U(d). Finite-dimensional entrywise integration preserves positivity and normalization. Countable additivity follows entrywise from the positive scalar measures (or dominated convergence), so this is a POVM. Permutations commute with U_n and E_pi is permutation invariant, so F commutes with Q_pi; left Haar translation proves V_n F(B)V_n^dagger=F(B).\n\nCyclicity and the tensor product identity yield\ntr[F(B)rho_n]=integral dU tr[E_pi(B)(U^dagger rho U)^{tensor n}].\nBounded nonnegative measurable loss permits the corresponding interchange of integrals. Since r(U^dagger rho U)=r(rho),\nR_rho(F)=integral dU R_{U^dagger rho U}(E_pi)\n=integral dU R_{U^dagger rho U}(E)\n<=R_max(E).\nTaking sup_rho proves R_max(F)<=R_max(E). This is a uniform/minimax statement, not equality of each state's risk. In particular take ell as the indicator that an estimate has error larger than epsilon in any specified spectrum distance: if the original failure probability is <=delta for ALL rho, the averaged procedure retains that uniform bound. No assertion that a minimizer exists is needed.\n\nFor the pointwise obstruction, n=1,d=2 and effects E_0=|0><0|, E_1=I-E_0 are a valid POVM. For rho=diag(4/5,1/5), Pr_E(0)=4/5; for its basis-swapped conjugate it is 1/5, despite the same spectrum. The Haar twirl of E_0 is I/2 and has probability 1/2 on both states. Assigning two fixed spectrum estimates to the outcomes does not remove this distributional difference. Thus unitary invariance of the parameter does not, by itself, preserve a particular procedure's pointwise statistics. It licenses the uniform-risk averaging argument just proved.\n\nUse the unitary Schur-Weyl decomposition (C^d)^{tensor n}=direct_sum_lambda V_lambda tensor U_lambda^d, over nonzero sectors. The S_n and U(d) actions on their respective irreducible factors span mutual commutants. An operator commuting with permutations is blockwise I_{V_lambda} tensor A_lambda; commuting also with all U_n forces A_lambda=a_lambda I by Schur. Therefore F(B)=sum_lambda a_lambda(B)P_lambda. Positivity gives a_lambda(B)>=0, and F(Omega)=I gives a_lambda(Omega)=1; countable additivity is inherited, for example from a_lambda(B)=tr[P_lambda F(B)]/rank(P_lambda). Hence each a_lambda is a probability measure. Measuring the orthogonal projectors P_lambda and then drawing y from a_lambda has event probability sum_lambda a_lambda(B)tr[P_lambda rho_n], exactly that of F on every input. The P_lambda are orthogonal positive projectors, sum to I, and commute with both actions, so constitute a legitimate projective measurement. This simulation applies to the SYMMETRIZED procedure; it does not simulate arbitrary unsymmetrized orientation-sensitive statistics. The joint decomposition is multiplicity free as an S_n times U(d) representation, not scalarity from unitary commutation alone.\n\nFor n=0 the Hilbert space is C, S_0 acts trivially, and there is one empty-diagram projector I. Every effect is scalar, the measurement contains no information about rho, and the proof remains valid; lambda/n is undefined and is not used. For d=1 the spectrum is always (1) and the only Schur-Weyl sector is the symmetric one. A zero-dimensional single-copy space has no positive trace-one operator at all, even though its zero-copy tensor unit is C; thus there is no unknown rho on that carrier and no minimax inference over such states. The reduction is an exact finite-dimensional mathematical construction, not a gate-count bound, constructive Haar sampler or an exact-atom consistency theorem.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Proves permutation averaging is a normalized POVM and preserves tr[E(B)rho^tensor n] for every measurable B and fixed rho by permutation invariance of rho^tensor n."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Defines the unitary average, checks positivity/normalization/additivity and both commuting symmetries, derives the orbit-averaged risk identity and the minimax inequality using spectrum-invariant loss. Explicitly qualifies uniform error guarantees and refutes pointwise-probability preservation with an actual POVM/state example; no unbound WLOG premise or exact-atom consistency claim."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Uses both mutual commutants, not unitary commutation alone, to obtain F(B)=sum a_lambda(B)P_lambda; proves that the coefficients are probability measures and gives weak-Schur plus classical postprocessing that simulates F."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Checks projectors are positive, orthogonal, complete and commute with both group actions. Handles n=0, d=1 and absence of a d=0 density operator, without division by n or an efficient implementation assertion."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Permutation twirling preserves each product-state distribution; unitary twirling instead averages risks over a unitary orbit and preserves uniform spectrum guarantees. Both symmetries force block scalars, hence weak Schur measurement plus classical postprocessing.",
+    "semantic_steps": [
+      {
+        "claim": "Permutation averaging fixes all probabilities on rho^{tensor n}, since the state is invariant under every factor permutation.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Unitary averaging preserves uniform/minimax spectrum-risk bounds via the orbit-average identity, but not every fixed state's probabilities; the qubit computational-basis POVM is a counterexample.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "The complete positive Schur-Weyl projectors commute with both groups; their joint commutant consists of block scalars, so every symmetrized POVM is their classical postprocessing, including the zero-copy and one-dimensional boundaries.",
+        "supporting_nodes": [
+          "concept:tensor-networks",
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry entry leditzky-2025-repth-qit; local LF binding is METADATA ONLY, not a hash of the mathematical PDF. Primary content/access and exact operative anchors are separately described in execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+      "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+      "anchor": "Complete historical authored record for this core, read alongside the full prepared original; provenance, not a mathematical proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Complete exact historical prepared original returned by release.checked()[2]; whole-item binding is supersedes_item_digest. This LF binding is data provenance, not local Lean closure."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+      "sha256_lf": "0c34048331684a9a75bbcd6472ff4ad289d8196213f6a19df0d1b5be13ba71ef",
+      "anchor": "Full prior withdrawal finding and cohort-level primary-access limits read as exposed historical evidence; not transferred approval of this new candidate."
+    }
+  ],
+  "execution": "Actual author /root/qcb_formal_view_audit, not a distinct reviewer of this payload. Inspected the entire actual historical prepared original through release.checked()[2] at local e9308632431899a08938b4d9a6cd1b9d90c45e30, its exact current bound withdrawal and complete prior finding by /root/qcb_boundary_repair_review. Prior finding whole-report digest 86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70; item finding digest 255fe64423284aaf29fc37d3945ae22098f4ff0d4685b94c2319dedbac851528. Exposed to old answers/reviews and earlier related cohort work; not source-blind. Primary URL https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf was actually retrieved as primary text through the web PDF reader during this task (79-page document, displayed 10 April 2026 edition). Inherited raw-byte SHA256 90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3 is a recorded pin, NOT freshly verified: direct binary retrieval failed with Windows socket access error10013, and operative-page web screenshot attempts failed with cache misses. Text inspection is real but current raw-byte equality and visual equation checking are unverified. No PDF saved/redistributed. Metadata LF equality does not prove primary-byte equality. PDF skill used for source-inspection discipline. Independent elementary reconstructions below do not rely on missing visual evidence as authority. No new Lean/kernel/native-formal/source-paper seal, finite-bit algorithm, build, stable release, admission or global dedup claim; distinct exact-content review is required. No changed canonical/source/frozen files. Process-memory scope was the exact current withdrawal/finding, not a new correctness premise. Operative primary text actually read: complete Leditzky Section9.1-9.2/Eqs9.1-9.5 including the MW16 citation/footnote, compact Haar Proposition3.39, and complete commutant/decomposition proof region Lemma4.4/Proposition4.5 and Propositions4.9-4.11 (4.9's proof is deferred there). Also genuinely retrieved/read https://arxiv.org/pdf/1310.2035v4, Montanaro/de Wolf, A Survey of Quantum Property Testing, complete Section4.2.2/Lemma20 proof, zero-based PDF pages41-43. This is the actual 2018v4 text, not a claimed byte match to the cited 2016 publication; no fresh raw hash or operative-page visual is claimed. Its uniform property-testing quantifiers support the distinction, not fixed-state equality. The general bounded-loss formulation and its integration argument here are explicit elementary reconstruction, not a verbatim source theorem. Bounded comparison:414 proves covariance of a channel,319/407 concern spectrum concentration/consistency, and417 compressed symmetric support; none is asserted exactly equal to this measurement/performance reduction. Original family/split/node scope is retained; no global dedup."
+}

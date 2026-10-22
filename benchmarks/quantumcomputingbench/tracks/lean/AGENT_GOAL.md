@@ -88,6 +88,17 @@ contract hash is stale; do not inherit its formal evidence. Read the current
 convention/guard-count checkpoint and preserve the separation between active
 premises, historical convention audit, mathematical review and kernel evidence.
 
+Read the newer symmetry/search checkpoint before adding related companions.
+Re-export after question versions plan415/420/510/513/515/517/518/520; their old
+contract hashes are stale. Distinguish invariant-input symmetric compression
+from arbitrary output, minimax risk from pointwise statistics, paired symmetric
+purification from original mixed-state support, and projected-cloner trace
+nonincrease from a full channel. Preserve normalized block scales, parity phases,
+directed query order, endpoint vectors and conditional inverse/calibration/check
+access. A shared rotation or covariance lemma covers a bounded subclaim, not
+the whole revised question. Shared fragments across inherited splits remain
+subject to semantic reconciliation; these repairs add no formal admissions.
+
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install
 system packages, contact administrators, launch long GPU jobs or paid training.

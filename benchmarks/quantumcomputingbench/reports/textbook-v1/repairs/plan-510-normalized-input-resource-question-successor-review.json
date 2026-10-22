@@ -1,0 +1,131 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-510",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-510-normalized-input-resource-question-successor.json",
+  "repair_record_digest": "388b6fd668fa6318fd4cb4e64d2f5a7c8ab3f5822b6d520dad7a90d40ee80aad",
+  "repair_record_sha256_lf": "d19e39e83ebad79b645ca0b16a2bc82cac17c14353110c78e667a772f8047857",
+  "original_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+  "question_version": 2,
+  "original_contract_hash": "2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c",
+  "successor_contract_hash": "c70aee607b7ca91f359152628fb31bbab1e0855382bbbfcfa55b8468e8f239da",
+  "changed_contract_fields": [
+    "question"
+  ],
+  "contract_change_assessment": {
+    "necessity": "A single ancilla specifies register count, not block factor or error. A=2I,U=I,κ=2 is an exact allowed input; f=x has β=1, so the old claimed factor1 output would compress a unitary to2I, impossible. An answer-only proof cannot restore that universal promise. The successor retains/refutes it and asks a visibly CONDITIONAL exact normalized-input theorem plus the arbitrary-scale/error boundary.",
+    "preservation": "Only question changes among the nine fields. Original parity assumption, coefficient/query conventions, family/split, graph/source scope and six ordered node lists remain. Exact κ=1,ε=0 is an explicit case to be proved, not a silently edited standing premise. This changes requested reasoning and does not claim equivalence to the false predecessor guarantee."
+  },
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: mathematical correctness, literal contract fit/change, complete answer/rubric/exposition. Private review, not admission or automatic formal transfer.",
+  "substantive_reconstruction": {
+    "paired_blocks": "For normalized A=J†UJ and A=WΣV†, even targets are V f(Σ)V†, odd targets W f(Σ)V†. Odd f(0)=0 removes null-completion dependence. Put Q=JJ†, R=2Q−I, E=U†RUR. Independently, for singular pair v=Jv_i and w=U†Jw_i, <v,w>=σ. At0<σ<1 set z=(w−σv)/s, s=sqrt(1−σ²); Qz=0. On(v,z), E has matrix [[2σ²−1,−2σs],[2σs,2σ²−1]]. Writing σ=cosα gives clean E^j entry cos(2jα)=T_2j(σ). Since J†Uv=σw_i and J†Uz=sw_i, the LEFT factor UR makes the odd entry σcos(2jα)−s sin(2jα)=T_(2j+1)(σ). Thus J†E^jJ and J†URE^jJ are exactly the claimed parity blocks. σ=0 gives E v=−v and zero odd block; σ=1 gives E v=v and clean Uv=Jw_i. No division by a vanishing complement is needed at endpoints.",
+    "lcu_and_queries": "For q=floor(d/2), a=ceil(log2(q+1)), K=2^a, phase-weighted magnitude preparation and zero padding give Σ_j μ_jT_(2j+p)^SV(A)/β. The relative factor μ_j/|μ_j|, not its magnitude alone, preserves complex coefficients. Binary multiplexing uses Σ_l2^l=K−1 E steps. A controlled E is (I⊗U†)(cR)(I⊗U)(cR): its control0 branch is U†U=I, its control1 branch E. No controlled unknown-U promise is needed. This chosen even construction uses exactly(K−1,K−1) U/U† calls; odd uses(K,K−1), because one unconditional UR acts AFTER the even SELECT. Index preparation/unpreparation/phases/reflections are separate gate ingredients.",
+    "boundaries_and_rescaling": "The flag size is1+a, with scratch declared separately. d=0 has a=0 and zero U queries for a nonzero scalar phase block; d=1 odd uses one U. β=0 cannot prepare normalized coefficients or be a positive block factor: a separate X zero-block construction at factor1 handles it, as a degree-bound extension, not a false exact degree. Actual acceptance probability is ||f^SV(A)ψ||²/β²; a zero output cannot be conditioned. Exact κ input instead transforms B=A/κ. Reexpanding g(x)=f(κx) preserves parity and gives g^SV(B)=f^SV(A), but generally NEW coefficient norm β_κ; for f=x,κ=2 it is2. Approximate input requires an additional perturbation theorem, not this exact derivation."
+  },
+  "answer_rubric_and_exposition_assessment": "The four rubric criteria and all six exposition steps cover the counterexample, conditional target/projection, phase preparation, correct padded counts/order/controlled cancellation, endpoints and rescaling/error boundary. No query result is promoted to coefficient-state preparation, input-state loading, gates, finite bits, amplification or readout. The fixed construction's O(d) count and O(log(d+1)) index overhead are correct, including small d. I accept the entire question-version2 candidate, not the old unconditional theorem.",
+  "bounded_semantic_relations": "509 consumes this parity-LCU mechanism but has a mixed-parity Hermitian sum target, not the same full resource contract.517's scalar identity supplies neither these oracle calls nor its normalized-input premise. No exhaustive semantic reconciliation is claimed.",
+  "preserved_scope": {
+    "family": "qsc-lcu-chebyshev-synthesis",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:complexity",
+      "concept:approximation"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 6,
+    "original_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:complexity"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:complexity"
+      ]
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete Lin–Wiebe metadata entry230–238 read. LF authenticates recorded URL/edition/pin metadata only; not PDF proof or binary equality. Genuine primary mathematics/access limits are separately described."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Complete relevant authored question/assumptions/conventions/answer/rubric/steps and source context read. Tracked content provenance, not independent proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole actual historical prepared qcb-core-plan-510 loaded through release.checked()[2], not current-reader substitution; exact item digest above."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "operative_regions": "Definition9.2; full Lemma9.5 proof; Definition10.4; complete Theorem10.9/CS proof and operative Eq10.90–10.98; full Section10.5 Eq10.99–10.104/Theorem10.12. Source gives exact(1,m) access and assumes prepare oracles; the odd SELECT is exercise-deferred. The explicit left-UR, controlled-reflection cancellation and separate query counts above reconstruct that omitted implementation rather than claim a printed worked exercise proof.",
+      "actual_access": "Primary PDF text genuinely accessed in this review objective. April29,2026 cover observed in the continuous source-reading context; current tool reports447 pages. Complete operative proof/definition regions above read, with independent reconstruction rather than verdict inheritance.",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "binary_hash_independently_verified": false,
+      "rendered_pages_independently_inspected": false,
+      "limits": "This reviewer did not obtain/hash original PDF bytes or inspect operative rendered pages. Parent separately reported genuine rehash/rendering; those actions are not mine and are not imported as a seal. No source-paper seal, local Lean/kernel execution or source-blind claim."
+    }
+  ],
+  "provenance": {
+    "candidate_author": "/root/qcb_native_comparison",
+    "reviewed_private_origin": "_review_tmp/plan-510-normalized-input-resource-question-successor.json",
+    "canonical_locator_status": "repair_record is the intended canonical transport locator, not a claim that those bytes were installed/admitted there. Whole digest and LF bind actual privately inspected bytes.",
+    "prior_exposure": "I previously inspected related qubitization/Grover sources and repairs, and received parent defect leads. For this objective I read the full actual original, exact withdrawal/finding and entire new candidate, including grading/process/metadata. Not a source-blind review; candidate author's or parent's reasoning/verdicts are not proof.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+    "prior_withdrawal_review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+    "prior_finding_digest": "410ccd51e78b2071927d9f67951836196e7c4a9ea7647781d82297320fcd62d2",
+    "actual_prior_reviewer": "/root/qcb_native_comparison",
+    "independence": "Actual reviewer /root/qcb_boundary_repair_review is distinct from candidate author /root/qcb_native_comparison and prepared original author polynomial-signals-author-b3. I did not author these candidates.",
+    "execution": "Read-only source/math and binding calculations only; no build/test/kernel/simulator/prediction, human/expert approval, global deduplication, policy change or admission.",
+    "mechanical_context": "Main engine remains e9308632431899a08938b4d9a6cd1b9d90c45e30. Payload grammar is mechanical context, not mathematical source_checks; no executable admission code is used as proof.",
+    "writes": "Only this NEW private exact-content review. Candidate, authorship handoff, all prior private artifacts and canonical files remain unchanged."
+  }
+}
