@@ -14,6 +14,10 @@ WITHDRAWN_KEYS = {
     'qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds': 'printed fraction (1-d)/k misread as 1-d/k in primary text extraction',
     'qcb-core-plan-411-transpose-trick-and-UU-invariance': 'false intermediate identity and silent source-conjugation repair',
     'qcb-core-plan-418-cloning-map-cp-trace-nonincreasing': 'incorrect single-Kraus extension and trace equality characterization',
+    'qcb-core-plan-001-povm-nonunique-update': 'integration quarantine: positive square root and instrument semantics',
+    'qcb-core-plan-002-partial-transpose-negativity-converse-boundary': 'integration quarantine: trivial-factor dimension counterexample',
+    'qcb-core-plan-006-trace-norm-unitary-variational': 'integration quarantine: scalar counterexample and norm-bound argument',
+    'qcb-core-plan-303-external-product-irrep': 'integration quarantine: wrong second tensor representation',
 }
 
 
@@ -21,7 +25,7 @@ def check_current_gold(items):
     withdrawn = sorted({i.get('key') for i in items} & WITHDRAWN_KEYS.keys())
     if withdrawn:
         raise ValueError('withdrawn historical native gold: ' + ', '.join(withdrawn)
-                         + '; use nl-v12 or a separately reviewed successor; old files are audit-only')
+                         + '; use scripts/release.py for the current admission overlay; old files are audit-only')
     if any(i.get('lifecycle') != 'released' for i in items):
         raise ValueError('current scoring accepts admitted release items only')
     return items

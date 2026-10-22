@@ -36,5 +36,8 @@ jobs:
       - run: python benchmarks/quantumcomputingbench/scripts/qcb.py validate --version release-v3
         env:
           PYTHONUTF8: '1'
+      - run: python benchmarks/quantumcomputingbench/scripts/release.py validate
+        env:
+          PYTHONUTF8: '1'
       # This job validates checked artifacts and software contracts. It does NOT
       # claim to rerun Lean or to provision a container verifier image.

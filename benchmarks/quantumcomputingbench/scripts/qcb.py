@@ -13,6 +13,7 @@ sys.path.insert(0, str(BASE / "src"))
 from qcb_core import (assign_splits, content_hash, digest, model_input, prepare,
                       read_json, score, validate, write_json)
 from qcb_integrity import check_not_withdrawn, snapshot_input_matches, text_sha
+from qcb_migration import source_matches, pipeline_matches
 
 
 def schema_check(items):
@@ -33,13 +34,13 @@ def load(version):
     snap = read_json(manifest / "snapshot.json")
     for relative, expected in snap["input_hashes"].items():
         path = (ROOT / relative).resolve()
-        if not snapshot_input_matches(ROOT, relative, expected):
+        if not source_matches(ROOT, relative, expected):
             raise ValueError("frozen source/adapter changed: " + relative + "; create an explicit migration/new version")
     pipeline = manifest / "pipeline.json"
     if pipeline.exists():
         for relative, expected in read_json(pipeline)["input_hashes"].items():
             path = (ROOT / relative).resolve()
-            if not path.is_relative_to(ROOT.resolve()) or not path.is_file() or text_sha(path) != expected:
+            if not path.is_relative_to(ROOT.resolve()) or not path.is_file() or not pipeline_matches(path, expected):
                 raise ValueError("frozen benchmark pipeline changed: " + relative + "; use a new version")
     return snap, read_json(public / "items.json")
 

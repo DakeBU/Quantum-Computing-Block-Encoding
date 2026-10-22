@@ -9,6 +9,7 @@ R=B.parents[1]
 sys.path.insert(0,str(B/'src'))
 from qcb_core import read_json,write_json,digest,score
 from qcb_integrity import matches,text_sha
+from qcb_migration import pipeline_matches
 from qcb_nl import build,paths,check_baseline,native_errors,authoring,prepare_native,VERSION,WITHDRAWN_NATIVE
 
 
@@ -17,7 +18,7 @@ def load_checked(version=VERSION):
     snap=check_baseline(R)
     pipeline=read_json(manifest/'pipeline.json')
     for rel,expected in pipeline['input_hashes'].items():
-        if not matches(R/rel,expected):raise ValueError('successor pipeline changed; new version needed: '+rel)
+        if not pipeline_matches(R/rel,expected):raise ValueError('successor pipeline changed; new version needed: '+rel)
     items=read_json(public/'items.json');release=read_json(public/'release.json')
     binding=read_json(manifest/'release.json')
     if digest(items)!=binding['items_hash'] or digest(release)!=binding['release_hash']:

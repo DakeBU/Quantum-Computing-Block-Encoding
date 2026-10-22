@@ -1,0 +1,31 @@
+{
+  "schema_version": "qcb.compatibility.v1",
+  "migration": "integration-20261022",
+  "policy": "Frozen artifacts retain original hashes. Exact historical Git blobs, exact current digests and restricted AST equivalence are all required. No mathematical or review changes are admitted.",
+  "inputs": {
+    "website/scripts/build_site.py": {
+      "kind": "source",
+      "original_commit": "5fd07170d84f60a16d564d75cd72e87e26c5b837",
+      "current_sha256": "626fa05361a6f936501185eb1c269b1d90159553d0dde72548b7507295548c0c",
+      "original_sha256": "11452a38d8f20ceb3ccb821536c2cd84336483ac10cb0142d63a7c5575c771c1"
+    },
+    "benchmarks/quantumcomputingbench/scripts/qcb.py": {
+      "kind": "pipeline",
+      "original_commit": "dae799f286f8026ec93d55279af220f7c25693ed",
+      "current_sha256": "cd568d1848770940e85a4580f0a4e66e810febe4dbe3197935ea65aa249a4cde",
+      "original_sha256": "9958d390a9921e84ee48352b4256cf86aea624fc8b89e5cdd67ba225806ac145"
+    },
+    "benchmarks/quantumcomputingbench/scripts/nl_qa.py": {
+      "kind": "pipeline",
+      "original_commit": "dae799f286f8026ec93d55279af220f7c25693ed",
+      "current_sha256": "8acf41e9b50b3f32164603979ddd1ec50e525c0b89e4fec5e677e3d18af693cd",
+      "original_sha256": "c00106283d7127ea83b7f42325040960c1d5e924b7103b19268286f8b0b1c64b"
+    },
+    "benchmarks/quantumcomputingbench/src/qcb_nl.py": {
+      "kind": "pipeline",
+      "original_commit": "dae799f286f8026ec93d55279af220f7c25693ed",
+      "current_sha256": "c64dacd423a66a8d14924ac086d371b4697c090bcca0270286c9443540bb89be",
+      "original_sha256": "569e26fc6580de0a22cade06ddae230c99379c44372c603a24092b7dc4227e7d"
+    }
+  }
+}

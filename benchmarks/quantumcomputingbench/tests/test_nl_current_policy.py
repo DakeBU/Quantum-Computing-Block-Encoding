@@ -22,7 +22,9 @@ class CurrentPolicyTests(unittest.TestCase):
   p=B/'data/public/nl-v12/release.json'
   if not p.exists():raise unittest.SkipTest('expanded native release not built')
   values=json.loads(p.read_text());self.assertGreaterEqual(len(values),200)
-  self.assertEqual(len(check_current_gold(values)),len(values))
+  # The imported frozen cohort is audit-only after the integration discovered
+  # four further defects. Current distribution applies an explicit bound overlay.
+  with self.assertRaises(ValueError):check_current_gold(values)
   self.assertEqual(len({i['core_id'] for i in values}),len(values))
 
  def test_original_old_files_are_still_present_for_audit(self):

@@ -12,6 +12,7 @@ import re
 from qcb_core import (prepare, assign_splits, validate, digest, content_hash,
                       model_input, score, read_json, write_json, normalize_question)
 from qcb_integrity import text_sha, matches, snapshot_input_matches, check_not_withdrawn
+from qcb_migration import source_matches, pipeline_matches
 from qcb_snapshot import coverage
 
 VERSION = 'nl-v1'
@@ -47,11 +48,11 @@ def check_baseline(root):
     base,_,_,_=paths(root)
     snap=read_json(base/'manifests/release-v3/snapshot.json')
     for rel,expected in snap['input_hashes'].items():
-        if not snapshot_input_matches(root,rel,expected):
+        if not source_matches(root,rel,expected):
             raise ValueError('Frozen v3 input differs: '+rel)
     pipeline=read_json(base/'manifests/release-v3/pipeline.json')
     for rel,expected in pipeline['input_hashes'].items():
-        if not matches(Path(root)/rel,expected):
+        if not pipeline_matches(Path(root)/rel,expected):
             raise ValueError('Frozen v3 pipeline differs: '+rel)
     return snap
 
