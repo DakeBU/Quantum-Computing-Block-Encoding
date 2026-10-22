@@ -99,6 +99,18 @@ access. A shared rotation or covariance lemma covers a bounded subclaim, not
 the whole revised question. Shared fragments across inherited splits remain
 subject to semantic reconciliation; these repairs add no formal admissions.
 
+Read the topology/coherent-record checkpoint and re-export after question
+versions plan003/104/105/206/207. A pure-projector lemma does not prove a boundary
+classification; equivariance alone does not supply linearity; a complex Schur
+scalar theorem cannot silently certify arbitrary fields or dimensions. Match
+the common-carrier clean projector, normalized PREP, finite-bit angle and actual
+scratch-aware inverse before formalizing plan206/207. A signal marginal is not
+the joint signal/index state. Plan404 retains its contract but has a new answer
+and review: unchanged question hash does not transfer old answer approval.
+Its bound concerns excess copies and distinguishes sufficient bounds from
+optimal sample complexity. Formalize the precise covered subclaim and remaining
+NL obligations; these six repairs themselves admit no native formal views.
+
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install
 system packages, contact administrators, launch long GPU jobs or paid training.

@@ -1,0 +1,154 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "core_id": "qcb-core-plan-104",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-104-functional-equivariance-linearity-question-successor.json",
+  "repair_record_digest": "944bf81b6986c0f9099005558126eb1e68eb45e1503176af98c5576030aeb9dc",
+  "repair_record_sha256_lf": "85674236762720a14e1ed19858a69325c59ba0100d3559cfc33bb500a566cc45",
+  "original_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+  "original_contract_hash": "50738c89ced0281d39cb9294217c84dbd8c958ee8bf75e0ca18bd89f7b23d3d1",
+  "successor_contract_hash": "a3065731e3b29568ab9eb2c692a90f89eb2b2c854f49ab505d8a67974a7914ff",
+  "question_version": 2,
+  "verdict": "accept",
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky source registry entry, URL/edition/recorded pin; exact local metadata LF binding only. Actual mathematical primary inspection and binary/visual limits are separately recorded."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_representation_qit.json",
+      "sha256_lf": "efe3edde9226d4c9d30f8336a2e1231935ae443670fa98ed576f91171b3c2f89",
+      "anchor": "Complete actual authored104/105 mathematical, grading, convention and five-step records compared against the historical prepared originals. Data provenance, not a proof or inherited acceptance."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Actual complete historical prepared originals inspected via release.checked()[2]; whole item hashes bound separately. Frozen QA provenance, not current gold or new proof execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "sha256_lf": "a6d80d945512edd20c52815a84153a821a6103cb724cedeb0f405907d6c98748",
+      "anchor": "Full exact bound104/105 uncertain findings, exposed prior source claims and report scope read. This reviewer authored those historical findings but not these native-authored successors; no verdict or binary execution is transferred."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "observed_text_edition": "Cover April10,2026;79 PDF pages, personally checked during this review.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "binary_hash_verified_this_review": false,
+      "retrieved_raw_sha256": null,
+      "actual_text_regions": "Genuine author-hosted primary PDF text accessed through the web reader: Definition3.6 and finite-dimensional course scope (zero-based16/printed17); Definition3.8 equivalent representations and Definition3.10 invariant vector subspaces (17/18); Definition3.12 irreducibility (18/19); complete Proposition3.17 statement, both proof parts and Corollary3.18 proof (19/20); complete Exercise3.6 statement (36/37); Definition3.37-3.38 and finite-discrete/circle examples (33-34/34-35). Whole operative Schur proof read, not only a registry summary.",
+      "actual_visual_scope": "One new screenshot request for zero-based PDF19 failed with an internal error; no operative pixels or fresh binary retrieval are claimed here. Prior reports include historical byte retrieval by this same task identity, but those old executions and other actors' byte/pixel checks are not current-review executions.",
+      "mathematical_scope": "The source theorem explicitly requires a linear map; the exercise's abbreviated functional equation does not prove linearity. Source finite-dimensional/eigenvalue conventions are separated from the newly explicit question contracts. The counterexamples, closure/inverse steps and exterior field/dimension arguments were independently reconstructed, not attributed as additional source theorems.",
+      "limits": "Current binary equality to the recorded pin remains unverified. No primary PDF saved/redistributed, full-paper seal, source-blind decoding, human/expert approval, local Lean/kernel/native-formal or efficient-circuit claim."
+    }
+  ],
+  "previous_reader_evidence": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+    "report_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+    "finding_digest": "4558782c88d3c0ab2f8a40185e85c35b3947e65c35d916ac5b8ab21189263e5b",
+    "withdrawal_digest": "baa97367b617d82dac6b5067bf87f87f2ae5ec118c36065e45c8c473b81fac19",
+    "actual_historical_reviewer": "/root/qcb_formal_view_audit",
+    "exposure": "Read the full current canonical historical finding and its scope; same actual reviewer identity as that old reader pass, distinct from the successor's author. Old uncertainty is retained; this is review of the changed complete question, not relabeling the original digest."
+  },
+  "contract_bindings": {
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_fields": [
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "unchanged_values": {
+      "assumptions": [],
+      "conventions": [],
+      "family": "qit-schur-lemma",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "semantic_step_count": 5,
+    "additional_core_count": 0,
+    "equivalence_to_predecessor_claimed": false
+  },
+  "provenance": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "candidate_author": "/root/qcb_native_comparison",
+    "original_author": "representation-qit-author-b2",
+    "independence": "Distinct from the actual current candidate author /root/qcb_native_comparison and original author representation-qit-author-b2; I authored neither104 nor105 successor. I did author the old original-item findings and have prior neighboring QIT/primary-source exposure. Parent supplied the review objective and candidate pins; I saw complete candidate answers/metadata. This is source-exposed distinct mathematical review, not strict blindness, a human/expert seal or a new identity.",
+    "reviewed_at_private_path": "_review_tmp/plan-104-functional-equivariance-linearity-question-successor.json",
+    "observed_canonical_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "instructions": "Mandatory repository substantive-worker/publication/proof-digestion/evidence-routed-memory instructions and shared CONTRACT/ACCEPTANCE read in this continuous task context and refreshed; PDF skill used to separate text from byte/pixel evidence.",
+    "execution": "Only read-only actual prepared records, complete candidates including all execution metadata, bound withdrawals/findings, primary text and mechanical digests/schema/source/ordered-node checks. New private review JSON only. No candidate/canonical/previous-report edits, builds, Lean/kernel/source-paper seal, policy admission, deployment, model/GPU run, commits/push or new agents. No executable policy/curriculum hashes bound as mathematical source dependencies."
+  },
+  "contract_change_assessment": {
+    "literal_change": "The predecessor's only declared definition of equivariance is an equality of functions, with empty assumptions/conventions. It does not bind F-linearity. The revision therefore visibly REFUTES that literal reading and asks for the correct conditional linear theorem instead of silently importing a category convention from the intended proof. It is genuinely changed reasoning, not an equivalent paraphrase or an answer-only correction.",
+    "preserved_scope": "Only question differs in the nine-field contract. Both empty lists, common qit-schur-lemma family, test_public split, frozen graph/source_refs and exact five ordered support lists are preserved. The positive theorem still proves kernel/image invariance, zero-or-isomorphism and the inverse. Added diagnostics do not avoid irreducibility by a reducible action, restrict the theorem to a convenient finite group, or smuggle a topological condition. An old-hash companion would be stale; no duplicate core is created."
+  },
+  "substantive_reconstruction": {
+    "nonlinear_obstruction": "I reconstructed the finite-group discriminator first. Let C2 act on the one-dimensional complex space by the sign character. The action maps are invertible and unitary, and the only complex-linear subspaces are zero and the whole line, so this is a genuine nonzero irreducible representation, not a reducible trivial higher-dimensional action. For f(z)=z^3, oddness gives f(-z)=-f(z), exactly the required functional equation. But f(2)=8 differs from 2f(1), and the distinct cube roots 1 and omega=(-1+i sqrt(3))/2 have the same image. Thus the nonlinear map is neither zero nor a linear isomorphism, even though its zero fiber is {0} and its image is C. Its polynomial is entire. Giving C2 the discrete topology makes the finite group compact and its sign action continuous, so continuity/holomorphicity cannot repair the missing linearity.",
+    "which_steps_fail": "The extra h(z)=z^3-z is odd under the same representation, and its zero fiber is {-1,0,1}; this stable subset is not closed under addition, since 1+1=2 is not a zero. Hence one cannot apply irreducibility merely after proving set invariance. The cube already isolates another independent gap: a zero fiber {0} does not imply injectivity without f(v-w)=f(v)-f(w). I also checked the compact U(1) image example. q(z)=z/(1+|z|^2) satisfies q(uz)=u q(z). Its radial range is [0,1/2], since r/(1+r^2)<=1/2 and continuity on r in [0,1] attains that whole interval; all phases occur. The closed nonzero disk is bounded, hence not a complex vector subspace. This map is continuous but explicitly not asserted holomorphic. Neither example relies on an unstated topology for the algebraic theorem.",
+    "linear_kernel_and_image": "For the revised conditional theorem, linearity is now an actual question premise over one common field F. If v,w are killed, f(av+bw)=0 for every a,b in F; zero is killed as well. Likewise af(v)+bf(w)=f(av+bw), so the image is a vector subspace. The intertwining equation sends each kernel vector back into the kernel, since the codomain action sends zero to zero; it sends every image vector f(v) to f(phi1(g)v), still in the image. These checks distinguish domain and codomain actions. Stability for g and g inverse supplies equality under each action if desired. No averaging, complement, finite dimension or field-closure theorem is needed to establish these hypotheses of algebraic irreducibility.",
+    "dichotomy_and_inverse": "For nonzero f there is a v with f(v) nonzero. The kernel is therefore proper and irreducibility of V1 forces it to be zero; the image is nonzero and irreducibility of V2 forces it to be V2. Now, and only now, equality f(v)=f(w) implies f(v-w)=0 and v=w. Thus the map is bijective. For y=f(v), z=f(w), uniqueness of preimages proves f inverse(ay+bz)=av+bw, giving inverse linearity rather than only a set-theoretic bijection. Applying the original identity to v then gives f inverse(phi2(g)y)=phi1(g)f inverse(y), with the reverse intertwining order correct. This independently supplies the full inverse step omitted by short source shorthand.",
+    "boundaries_grading_and_dependency": "The proof applies over any common field and to arbitrary algebraic group representations, including infinite carriers if irreducibility concerns ALL invariant linear subspaces. It does not replace that condition by absence of proper CLOSED subspaces, nor prove a topological inverse. When either carrier is zero, every linear map to or from it is zero; if both are zero that map is also a linear bijection, so the alternatives need not be disjoint. This matches the candidate rather than silently choosing an ordinary nonzero-irrep convention. The four rubric criteria collectively test the nonlinear obstruction, actual subspace closure, both irreducibility uses and inverse, and exact field/topology boundaries. All five exposition claims have the original ordered supports. Plan105 uses this invariant-kernel lemma only after obtaining an eigenvalue for a linear endomorphism; scalar classification is an additional target. I find no blocking mathematical or grading defect in this complete104 candidate; its relation to105 is a real prerequisite/subproof overlap, not whole-target alias clearance."
+  },
+  "limitations": [
+    "Current primary raw-byte pin equality and operative pixels unverified; genuine text inspection and explicit algebraic derivation support this NL review, not a source-paper or kernel seal.",
+    "Verdict covers this whole exact successor only. Historical original remains uncertain/reserved until an authorized admission process acts; no old-hash review transfer, global deduplication or cross-split clearance."
+  ]
+}

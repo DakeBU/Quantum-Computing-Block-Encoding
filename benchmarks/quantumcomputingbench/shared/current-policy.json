@@ -511,6 +511,91 @@
         "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
         "finding_digest": "1a2ec98812099b35814fa779424d2c24c4504ff5db248ef5f32e30a3e2870eea"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-003",
+      "predecessor_key": "qcb-core-plan-003-density-set-convexity",
+      "predecessor_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+      "reason": "Explicit first question-version2, not an unchanged-question answer repair. Preserve and refute the literal boundary=pure clause rather than silently substitute extreme points, assume d=2, or change the meaning of boundary. The question makes the cited finite-dimensional complex carrier and real affine/ambient topologies explicit, retains the valid mixture and extremality targets, and asks the correct boundary classification with all low/zero-dimensional cases. Only question changes among the nine contract fields; original empty assumptions/conventions, core/family/split/frozen graph/source_refs and the three exact ordered step-node lists remain. No convention itself is false or rewritten, so question-only v1 suffices. The new requested reasoning is not claimed logically equivalent to the predecessor, and no infinite-dimensional extension is claimed.",
+      "repair": "shared/repairs/plan-003-density-topology-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-003-density-topology-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-003",
+        "predecessor_key": "qcb-core-plan-003-density-set-convexity",
+        "predecessor_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+        "reason": "The literal boundary-equals-pure-states clause is false; the answer silently substitutes extreme points. Relative and ambient boundary also differ.",
+        "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
+        "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
+        "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-104",
+      "predecessor_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+      "predecessor_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+      "reason": "Explicit first question-version2 correction, not an answer-only silent linearity premise. The original defines equivariance solely by a functional composition equation, so its zero-or-linear-isomorphism and kernel/image-subspace demands are false for arbitrary functions. Retain and refute that reading with genuine continuous/holomorphic finite-unitary-irrep counterexamples, then put the common-field F-linear conditional theorem explicitly in the QUESTION. No field/algebraic-closure or finite-group restriction is silently added. Original assumptions/conventions are both empty and remain empty; only question changes among nine CONTRACT_FIELDS. Core qcb-core-plan-104, qit-schur-lemma family, test_public split, frozen graph/source_refs, five steps and every original ordered per-step node list are preserved. Original contract 50738c89ced0281d39cb9294217c84dbd8c958ee8bf75e0ca18bd89f7b23d3d1 is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-104-functional-equivariance-linearity-question-successor.json; authored private _review_tmp/plan-104-functional-equivariance-linearity-question-successor.json. No additional core, active-convention override, selfapproval or admission. Recomputed proposed nine-field question-only contract a3065731e3b29568ab9eb2c692a90f89eb2b2c854f49ab505d8a67974a7914ff.",
+      "repair": "shared/repairs/plan-104-functional-equivariance-linearity-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-104-functional-equivariance-linearity-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-104",
+        "predecessor_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+        "predecessor_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+        "reason": "Equivariance as a functional equation omits the linear-map premise used by Schur kernel/image reasoning.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "4558782c88d3c0ab2f8a40185e85c35b3947e65c35d916ac5b8ab21189263e5b"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-105",
+      "predecessor_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+      "predecessor_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+      "reason": "Explicit first question-version2 correction, not an answer-only assumption of linearity. The original finite-dimensional/algebraically closed question defines f-equivariance only by a functional equation; even there a continuous entire equivariant function need not be scalar. Retain/refute that reading and put F-linear endomorphism, finite dimension, algebraic closure and the nonzero/zero-space eigenvalue distinction explicitly in the assessed QUESTION. Restrict the commutant conclusion to End_F(V), not all commuting functions. Original assumptions/conventions remain empty and only question changes among nine CONTRACT_FIELDS; core/family/test_public split/frozen graph/source_refs and five exact ordered per-step node lists are preserved. Original contract 309c75520531398abe723c2336552f0c218d92787f06a834b7fb16bfa6f49be2 is superseded without an equivalence claim. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-105-linear-scalar-schur-question-successor.json; authored private _review_tmp/plan-105-linear-scalar-schur-question-successor.json. No convention migration, new core, selfapproval or admission. Recomputed proposed nine-field question-only contract 66e2872bd051a32e94d0a7f3affed31b2fc48f29be73fdd24fb86462efb14c73.",
+      "repair": "shared/repairs/plan-105-linear-scalar-schur-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-105-linear-scalar-schur-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-105",
+        "predecessor_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+        "predecessor_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+        "reason": "The scalar-Schur question omits linearity; a nonlinear equivariant function need not be scalar.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "c0c58b623d3ea5cabe7b2ebc6ab27b3547b16bdda387f45ac8779508fceb6c33"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-206",
+      "predecessor_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+      "predecessor_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+      "reason": "Explicit first question-version2 correction, not an answer-only repair. The predecessor forces false necessity in part(b): disjoint/unequal-size CLEAN ancillas can be embedded in one union register with a well-defined union-zero success projector. Retain and assess/refute that assertion rather than silently add a shared-register promise. Also replace 'different beta always fails' by the exact projected-map criterion and expose the unnormalized proposed compensating PREP. Only question changes among nine fields: original selector/success assumptions, both conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists remain. Clean initialization, embeddings, attenuation and coefficient preparation are explicit construction operations with costs, not hidden free promises. No convention is rewritten, no new core or optimality/formal/admission claim.",
+      "repair": "shared/repairs/plan-206-common-projector-weighted-prep-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-206-common-projector-weighted-prep-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-206",
+        "predecessor_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+        "predecessor_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+        "reason": "Disjoint clean ancillas admit a common union projector; the proposed compensating PREP is also unnormalized.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "29ed87e1b485d7a29947e777bf2027ffd4136259fb8568b9f46da65a3f0383ff"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-207",
+      "predecessor_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+      "predecessor_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+      "reason": "Explicit first question-version2 clarification/assessment, not an answer-only repair of the literal arbitrary-real finite-bit equality. Retain the exact compute-rotate-uncompute target for the actual stored angle and the original rounded-entry convention, but explicitly assess theta~=arccos(A_ij)/pi as a finite-bit equality rather than silently assume exact representability. Also make the clean arbitrary-superposition interface, basis-input exception and unchanged signal marginal part of the requested reasoning, not a universal signal-decoherence slogan. Only question changes among nine fields; all original assumptions/conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists remain. No new angle-exactness, free inverse/reset/control or cleanup premise; no convention override. The revision clarifies changed requested reasoning, not equivalence to every original unqualified interpretation or native formal admission.",
+      "repair": "shared/repairs/plan-207-rounded-angle-joint-coherence-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-207-rounded-angle-joint-coherence-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-207",
+        "predecessor_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+        "predecessor_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+        "reason": "The explanation conflates joint signal/index decoherence with an unchanged signal marginal and basis-input coherence.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "db960820e5a4bb71362d614ca297e9e55d8fce29f335bd2936a8810b2e635716"
+      }
     }
   ],
   "answer_successors": [
@@ -910,36 +995,26 @@
         "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
         "finding_digest": "5b0bbdc9fe85d50082bb174b7e1fd26f26a23d699689671f4608892618f8eb6a"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-404",
+      "predecessor_key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+      "predecessor_item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+      "reason": "Unchanged-question answer/rubric/exposition successor only. The literal question(a)-(c) supplies the two correct bounds, asks their purification origin, strict-below-one thresholds and vanishing regimes; it does NOT ask for exactly d-times as many TOTAL copies. That false exact wording is in the historical reference/rubric r4, not the question or its empty conventions. Correct it without replacing the question, adding a fixed-d assumption, or weakening its target: give the fixed-d regime and the fully dimension-dependent criterion when d varies. ALL nine CONTRACT_FIELDS are unchanged, old and new hash both 6b6e41599ffc0cfa4f8e5c4c63f405cda41de360a349b07533969992adba766c. Retain definetti-bound-scaling family, test_public split, frozen graph/source_refs, empty assumptions/conventions, original three steps and their exact ordered supporting-node lists. The supplied upper bounds are guarantees, not optimal or necessary physical copy costs. No new core, alias clearance, convention migration, admission or selfapproval.",
+      "repair": "shared/repairs/plan-404-excess-copy-count-answer-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-404-excess-copy-count-answer-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-404",
+        "predecessor_key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+        "predecessor_item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+        "reason": "At fixed accuracy it is the excess copy count n-minus-k, not the total n, that scales by exactly the dimension factor.",
+        "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+        "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+        "finding_digest": "e7638c3136c2047766855d9329ffbfd597ff7fdfa426e8de22a8f9f1632b2137"
+      }
     }
   ],
   "withdrawals": [
-    {
-      "core_id": "qcb-core-plan-003",
-      "predecessor_key": "qcb-core-plan-003-density-set-convexity",
-      "predecessor_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
-      "reason": "The literal boundary-equals-pure-states clause is false; the answer silently substitutes extreme points. Relative and ambient boundary also differ.",
-      "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
-      "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
-      "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0"
-    },
-    {
-      "core_id": "qcb-core-plan-104",
-      "predecessor_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
-      "predecessor_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
-      "reason": "Equivariance as a functional equation omits the linear-map premise used by Schur kernel/image reasoning.",
-      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
-      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
-      "finding_digest": "4558782c88d3c0ab2f8a40185e85c35b3947e65c35d916ac5b8ab21189263e5b"
-    },
-    {
-      "core_id": "qcb-core-plan-105",
-      "predecessor_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
-      "predecessor_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
-      "reason": "The scalar-Schur question omits linearity; a nonlinear equivariant function need not be scalar.",
-      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
-      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
-      "finding_digest": "c0c58b623d3ea5cabe7b2ebc6ab27b3547b16bdda387f45ac8779508fceb6c33"
-    },
     {
       "core_id": "qcb-core-plan-106",
       "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
@@ -966,24 +1041,6 @@
       "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
       "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
       "finding_digest": "1e3e595067d2c96cc48105b4e40869640a5307faa897543b14a94a0d6f210dbd"
-    },
-    {
-      "core_id": "qcb-core-plan-206",
-      "predecessor_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
-      "predecessor_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
-      "reason": "Disjoint clean ancillas admit a common union projector; the proposed compensating PREP is also unnormalized.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
-      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
-      "finding_digest": "29ed87e1b485d7a29947e777bf2027ffd4136259fb8568b9f46da65a3f0383ff"
-    },
-    {
-      "core_id": "qcb-core-plan-207",
-      "predecessor_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
-      "predecessor_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
-      "reason": "The explanation conflates joint signal/index decoherence with an unchanged signal marginal and basis-input coherence.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
-      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
-      "finding_digest": "db960820e5a4bb71362d614ca297e9e55d8fce29f335bd2936a8810b2e635716"
     },
     {
       "core_id": "qcb-core-plan-208",
@@ -1137,15 +1194,6 @@
       "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
       "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
       "finding_digest": "2994fbf67f6441a17218102ef2a26bc8179f74b6249587445d75ed95495eb471"
-    },
-    {
-      "core_id": "qcb-core-plan-404",
-      "predecessor_key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
-      "predecessor_item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
-      "reason": "At fixed accuracy it is the excess copy count n-minus-k, not the total n, that scales by exactly the dimension factor.",
-      "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
-      "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
-      "finding_digest": "e7638c3136c2047766855d9329ffbfd597ff7fdfa426e8de22a8f9f1632b2137"
     }
   ]
 }

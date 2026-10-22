@@ -1,0 +1,203 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-206",
+  "supersedes_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+  "supersedes_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+  "supersedes_contract_hash": "649d4e624621233d47f2e87d3362859e93f4b05ff4643ed3d04f7483a81d2d35",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-206-textbook-question-v2-common-projector-weighted-prep",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction, not an answer-only repair. The predecessor forces false necessity in part(b): disjoint/unequal-size CLEAN ancillas can be embedded in one union register with a well-defined union-zero success projector. Retain and assess/refute that assertion rather than silently add a shared-register promise. Also replace 'different beta always fails' by the exact projected-map criterion and expose the unnormalized proposed compensating PREP. Only question changes among nine fields: original selector/success assumptions, both conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists remain. Clean initialization, embeddings, attenuation and coefficient preparation are explicit construction operations with costs, not hidden free promises. No convention is rewritten, no new core or optimality/formal/admission claim.",
+  "question": "Keep the original POVM setting of Lemma9.15: L=2^m outcomes, P_i>=0 with sum_i P_i=I, K_i=sqrt(P_i), and controlled selector W=sum_i|i><i| tensor U_i. Preserve the rule that success is the designated block-ancilla zero event. Assess the predecessor's assertions that different positive beta_i necessarily destroy the desired conditional clean map and that different-sized or disjoint ancilla registers make any single joint all-zero success event undefined. Do not assume these conclusions or add shared-physical-register promises.\n\nFor compatible embeddings with clean branch block K_i/beta_i, derive the full branch state and the selected operator for an arbitrary NORMALIZED index preparation sum_i alpha_i|i>, including the success density map, success/failure effects and conditional outcome probabilities. Specialize to uniform preparation. Distinguish generic reweighting from exceptional inputs/zero effects; do not call the subnormalized success effects by themselves a complete POVM.\n\nGive a correctly normalized compensating preparation and a separate common-factor attenuation route. Check whether sum_i(beta_i/beta_max)|i> is a unit vector; keep all success probabilities and relative label phases exact.\n\nFor genuinely disjoint branch ancillas A_i, explicitly construct their common carrier, initialize the whole union to zero as part of the construction, extend U_i by identity on idle ancillas and test projection onto that union being zero. Give a concrete unequal/disjoint-ancilla POVM witness that settles the old claimed obstruction. Contrast clean idle registers with unspecified dirty workspace and with an untyped sum of differently sized operators. Explain which interface/initialization obligations remain, without claiming that sharing one physical ancilla is mathematically necessary or cost-optimal. Preserve conditional-state normalization and zero-probability boundaries; do not infer free oracle controls, preparation, reset, amplification, gate or readout costs.",
+  "reference_answer": "Fix register order(index I,global ancilla A,system H), and embed each branch into A before forming W. Let Jψ=|0_A>ψ and J† U_i J=K_i/beta_i, beta_i>0. For a unit ψ write U_iJψ=|0_A>K_iψ/beta_i+g_i(ψ), with (<0_A| tensor I)g_i=0. W is unitary because its index projectors are orthogonal and every embedded U_i is unitary; different U_i need not commute. On a normalized index vector alpha the FULL output is sum_i alpha_i|i>|0_A>K_iψ/beta_i+sum_i alpha_i|i>g_i(ψ). Thus the projected map C_alpha:H->I tensor H is C_alpha=sum_i(alpha_i/beta_i)|i> tensor K_i, with C_alpha†C_alpha=T_alpha=sum_i |alpha_i|^2 P_i/beta_i^2. For input density rho the unnormalized successful joint state is C_alpha rho C_alpha†=sum_ij alpha_i conj(alpha_j)/(beta_i beta_j)|i><j| tensor K_i rho K_j. Its probability is p_alpha=tr(T_alpha rho); conditional joint state is that operator divided by p_alpha only when p_alpha>0. Success-label effects are E_i=|alpha_i|^2P_i/beta_i^2. Compression implies T_alpha<=I, so the full physical measurement includes failure effect I-T_alpha; E_i alone need not sum to I. On successful label i, the system update is K_i rho K_i/tr(P_i rho) if that outcome has nonzero probability. A zero outcome probability supplies no normalized state.\n\nFor uniform alpha_i=1/sqrt(L), C_u=L^(-1/2)sum_i beta_i^(-1)|i>K_i, T_u=L^(-1)sum_i P_i/beta_i^2, and conditional label probability is tr(P_i rho)/beta_i^2 divided by sum_j tr(P_j rho)/beta_j^2. This is GENERALLY biased, not an unconditional impossibility theorem. For P_0=P_1=I/2 and(beta_0,beta_1)=(1,2), valid contraction encodings exist and the probabilities become4/5,1/5 rather than1/2,1/2; total uniform success is5/16. But P_0=I,P_1=0 with those factors still gives the desired conditional label0 and unchanged system. Different factors on zero effects, or restricted populated outcomes, do not establish generic failure. In the full finite POVM/uniform case success is positive for every density input, at least1/(L beta_max^2), since sum_i P_i=I.\n\nLet B=sqrt(sum_i beta_i^2)>0 and PREP create sum_i(beta_i/B)|i>. Its coefficients have squared norm1, and C_beta=V/B where V=sum_i|i>K_i satisfies V†V=I. Thus success probability is exactly1/B^2, accepted density is V rho V†/B^2, and the conditional POVM/isometry is the intended one. Existence of the encodings implies P_i<=beta_i^2 I, hence B^2>=1; no probability exceeds1. The proposed denominator beta_max is generally wrong: beta=(1,2) gives norm squared5/4. Known branch phases must be fixed: using e^(i theta_i)beta_i/B inserts the relative label unitary sum_i e^(i theta_i)|i><i| into the coherent target, although label measurement probabilities are unchanged. A common overall phase is different from arbitrary per-label phases. An alternative is beta_*=max beta_i and an extra accepted-block attenuation r_i=beta_i/beta_* in each branch. A clean qubit rotation with00 entry r_i, tensor the old encoding, gives block r_i K_i/beta_i=K_i/beta_*; include its flag in the global success register. Uniform preparation then has success1/(L beta_*^2). Padding/attenuation and preparing the nonuniform vector are construction work, not free or claimed optimal.\n\nNow let the actual ancillas be disjoint A_0,...,A_(L-1). Construct A=their tensor product, prepare every factor in its zero state, and extend branch U_i to act on A_i and H while acting identically on idle A_j. The global projector Q_A=|0_A><0_A| is a SINGLE well-defined projector. Every active dirty vector is killed by <0_(A_i)|, while each idle zero register contributes factor1, not another random success. Therefore the same C_alpha and probabilities above hold exactly. As a witness take L=2,P_0=P_1=I/2,beta=1; branch0 rotates its own one-qubit ancilla by Ry(pi/2), branch1 rotates one of its own TWO ancillas and leaves the other zero. All three ancillas are initialized zero and the system is unchanged. The union-zero output is(|0>+|1>)ψ/2, of norm squared1/2=1/(L beta^2). This has unequal widths and disjoint physical ancillas, so directly refutes the forced part(b) assertion. Relabeling/padding both operators onto a common max-width register is another sufficient interface, not a necessity or a proved cheapest implementation. Without any common carrier the written W is a typing error; with dirty idle registers the union projection need not mean just active-branch success, and their preparation/reset/correlation obligations must be analyzed. The construction supplies CLEAN initialization explicitly; it does not promise this for arbitrary dirty workspace. Positive factors are required even for zero effects, whose zero accepted block can use an extra X flag if a new encoding is constructed. L=1 is allowed and reduces to the single-branch formulas; an empty POVM cannot sum to I on a nonzero physical space. No amplitude-amplification/query-complexity proof for Lemma9.15's final paragraph is supplied here; unknown-state reflection, SELECT control, compiled gate/finite-bit implementation and resource optimality are not declared free or certified.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Derives the full alpha-weighted branch state, C_alpha rho C_alpha†, T_alpha, success/failure effects and conditional probabilities, with correct phases, normalization and zero-output boundaries."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Computes uniform reweighting and a concrete biased example while refuting the universal 'different beta always fails' claim on an allowed zero-effect case; does not call the successful subeffects alone a complete measurement."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Normalizes compensating PREP by B=sqrt(sum beta_i²), checks the beta_max counterexample and relative phases, and constructs common-factor attenuation with its additional clean flag/work explicitly accounted."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Constructs the disjoint/unequal-width union-zero projector and exact witness, distinguishes clean initialization from dirty idle workspace/typing, and rejects a necessity or cost-optimality claim for shared physical ancillas."
+    }
+  ],
+  "exposition": {
+    "core_summary": "POVM selector correctness depends on one specified clean projector and normalized coefficient weights, not shared physical ancillas. A union-zero projection works for clean disjoint branches; beta compensation uses the Euclidean norm of the factors.",
+    "semantic_steps": [
+      {
+        "claim": "On a normalized alpha preparation the clean map is C_alpha=sum_i(alpha_i/beta_i)|i>K_i; uniform preparation generally reweights, with explicit exceptional/zero-effect boundaries.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The successful density map and probabilities follow from T_alpha=sum_i|alpha_i|²P_i/beta_i²; failure completes the physical measurement and conditional normalization is explicit.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Correct compensation is beta_i/sqrt(sum beta_j²); common-factor attenuation is a separate explicit construction, not the unnormalized beta_i/beta_max PREP.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Disjoint clean ancillas admit a common union-zero projector that kills every active-branch garbage term, refuting the predecessor's forced obstruction.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A common carrier/clean initialization must be supplied; max-width sharing is a sufficient alternative, not a necessary or proved optimal physical layout.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc entry230–238 inspected. LF authenticates URL/edition/historical PDF pin metadata only; primary mathematical regions and access limits are separately recorded."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole exact historical prepared qcb-core-plan-206 loaded through release.checked()[2], with full question/assumptions/conventions/answer/rubric/steps and provenance; content binding, not mathematical proof or current-reader substitution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+      "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+      "anchor": "Complete corresponding authored mathematical record read and matched to the prepared original. Local QA-content provenance only, not a primary proof seal."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_authorship_pending_distinct_review",
+    "author_identity": "/root/qcb_boundary_repair_review",
+    "authored_at_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "private_origin": "_review_tmp/plan-206-common-projector-weighted-prep-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-206-common-projector-weighted-prep-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "649d4e624621233d47f2e87d3362859e93f4b05ff4643ed3d04f7483a81d2d35",
+      "successor_contract_hash": "d5bbb6751510de60e219672c2dfd00853e0dd5e7ca9e81d962aedea813e1518b",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [
+        "W = sum_i |i><i| tensor U_i is the controlled block-encoding selector",
+        "Success is defined as the block-encoding ancilla returning 0^a"
+      ],
+      "original_conventions": [
+        "beta_i denotes a per-outcome subnormalization; a_i a per-outcome ancilla size",
+        "A valid POVM requires the implemented effects to sum to I"
+      ],
+      "family": "qsc-generalized-measurement",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:probability",
+        "concept:operator-theory"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lin-wiebe-2026-qasc",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 5,
+      "original_ordered_step_nodes": [
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:probability"
+        ],
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:block-encoding"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:probability"
+        ],
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:block-encoding"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "prior_exposure": {
+      "actual_prior_reviewer": "/root/qcb_boundary_repair_review",
+      "review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "29ed87e1b485d7a29947e777bf2027ffd4136259fb8568b9f46da65a3f0383ff",
+      "exposure": "I authored the earlier historical reader finding, and have prior source/original and parent-lead exposure. I reread the complete actual original, exact current withdrawal/finding and full operative primary regions. This is informed correction authorship, not source-blind or independent approval of my own candidate. Prior imported accept metadata or my old verdict is not mathematical proof."
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+        "recorded_edition": "29 April2026 public447-page edition",
+        "operative_regions": "Complete Lemma9.15 statement and proof Eq9.55–9.67, including full register transcript, orthogonal garbage, POVM completeness, conditional update and final amplification paragraph; Definition9.2 factor convention and complete Lemma9.5 coefficient-normalization proof are reused from inspected source. The union-ancilla and normalized weighted-PREP extensions/counterexamples are independent mathematical reconstruction, not claimed printed source necessities.",
+        "actual_access": "Genuine author-hosted PDF text access in this objective. Complete operative theorem/construction/proof and figure textual labels/rotation angles read. No PDF copied or redistributed.",
+        "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "binary_hash_independently_verified": false,
+        "rendered_figure_independently_inspected": false,
+        "access_limit": "Attempted screenshot of Fig5.3 page; service reported PDF screenshot unavailable. Exact binary hash and rendered pixels remain unverified by this author; parent's separate byte/render work is not inherited as my seal."
+      }
+    ],
+    "source_proof_coverage": {
+      "nodes": "Complete Lemma9.15 statement and proof Eq9.55–9.67, including full register transcript, orthogonal garbage, POVM completeness, conditional update and final amplification paragraph; Definition9.2 factor convention and complete Lemma9.5 coefficient-normalization proof are reused from inspected source. The union-ancilla and normalized weighted-PREP extensions/counterexamples are independent mathematical reconstruction, not claimed printed source necessities.",
+      "independent_extensions": "General alpha state/density/effect formula, correctly normalized compensation, union-clean construction and its unequal/disjoint witness are new NL reconstruction for this candidate.",
+      "excluded": "Source's downstream amplification complexity, arbitrary unknown-state reflection, complete sparse-matrix compiler, arithmetic bit-error/runtime analysis and production Lean closure are not supplied or claimed."
+    },
+    "artifact_inventory": "First inventory found no prior private plan206/207 candidate or review. The unrelated la-206-cost-contract-successor-review.json was preserved. Existing historical reader reports and every earlier private artifact remain unchanged.",
+    "mechanical_validation": "Predecessor, withdrawal and exact old/new contract digests recomputed from actual records; all five ordered step-node lists preserved. These are structural checks, not mathematical approval. Admission engine code is not a mathematical source dependency.",
+    "execution_limits": "No builds, tests, kernel/Lean, simulator, GPU/admin, commits/push, other agents, human/expert/novelty/source-blind claim, canonical mutation or admission. Complete mathematical candidate pending a distinct exact-content review.",
+    "self_approval": false
+  }
+}

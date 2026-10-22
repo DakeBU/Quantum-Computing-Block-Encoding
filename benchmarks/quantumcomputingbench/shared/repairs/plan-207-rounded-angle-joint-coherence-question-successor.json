@@ -1,0 +1,204 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-207",
+  "supersedes_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+  "supersedes_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+  "supersedes_contract_hash": "7d2f9cde13aacc1e0b0bc6861255c55ac6c5054d724b259cef6b33fb79326f44",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-207-textbook-question-v2-rounded-angle-joint-coherence",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 clarification/assessment, not an answer-only repair of the literal arbitrary-real finite-bit equality. Retain the exact compute-rotate-uncompute target for the actual stored angle and the original rounded-entry convention, but explicitly assess theta~=arccos(A_ij)/pi as a finite-bit equality rather than silently assume exact representability. Also make the clean arbitrary-superposition interface, basis-input exception and unchanged signal marginal part of the requested reasoning, not a universal signal-decoherence slogan. Only question changes among nine fields; all original assumptions/conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists remain. No new angle-exactness, free inverse/reset/control or cleanup premise; no convention override. The revision clarifies changed requested reasoning, not equivalence to every original unqualified interpretation or native formal admission.",
+  "question": "Keep the original real-matrix, reversible arithmetic and controlled-rotation assumptions, and the declared convention A~_ij=cos(pi theta~_ij). Let t=(i,j) denote the combined retained index, q_t=theta~_ij be the ACTUALLY STORED d-bit angle in[0,1), B=O'_A satisfy B|0^d,t>=|q_t,t>, and v_t=cos(pi q_t)|0>+sin(pi q_t)|1>. Assess the predecessor's literal identification of an arbitrary real arccos(A_ij)/pi with a finite-d-bit value: state exactly which rounded-entry law can be proved without adding exact representability of arbitrary A. Distinguish the original d'-bit matrix datum from the angle-redefined A~.\n\nIn register order(signal S,work W,index T), prove the full basis and arbitrary coherent-input action of (I_S tensor B-dagger) CR (I_S tensor B), including the work-zero output, both signal branches, selected block and success probability. Derive CR from its bit-controlled rotations and do not uncompute the intended signal output.\n\nFor a general input density matrix on T, derive the full state if the inverse is omitted, the reduced joint S,T state after discarding W, and the signal-only marginal. State precisely what an additional index dephasing/tracing can and cannot change. Explain whether a single basis input loses its signal coherence, and which populated equal/different rounded-angle classes retain joint coherence. Give an exact allowed coherent-input counterexample, including a relative sign, that distinguishes the desired clean oracle from discarding the angle record even though the signal marginal is unchanged.\n\nCompare the clean S=0,W=0 projected block, the block obtained by omitting the inverse but postselecting the SAME clean flag, and the trace-out channel. Explain the exact sense in which coherent cleanup is needed for the clean reusable arbitrary-input interface, rather than claiming B-dagger is the unique possible cleanup or every basis-input signal decoheres. Keep precision, full arithmetic workspace, inverse access, ideal rotations and finite-bit/gate/resource costs explicit; do not claim a unitary can erase all distinct work records by acting on W alone.",
+  "reference_answer": "The exact target is the declared rounded-angle entry a_t=A~_ij=cos(pi q_t), not necessarily A_ij or the original d'-bit fixed-point matrix datum. A generic theta_t=arccos(A_ij)/pi need not have an exact finite-d-bit expansion: for example A_ij=1/2 gives theta_t=1/3, not a finite binary fraction. Thus the predecessor's displayed finite-bit equality must be assessed, not made a new exact-representability premise. The source rounds theta and then redefines A~ by its cosine. Once the actual q_t and reversible B are specified, the following clean-oracle law is EXACT for a_t, irrespective of approximation quality to A. If |q_t-theta_t|<=epsilon_theta then |a_t-A_ij|<=pi epsilon_theta and ||v(q_t)-v(theta_t)||<=pi epsilon_theta; deriving epsilon_theta from the input-bit approximation and arithmetic is a separate error contract, especially near arccos endpoints.\n\nUse order(S,W,T). For q=(.q_(d-1)...q_0)=sum_(r=1)^d q_(d-r)2^(-r), apply Ry(2pi*2^(-r)) to S controlled on bit q_(d-r). All rotations are about y, so their product is Ry(2pi q)=[[cos(pi q),-sin(pi q)],[sin(pi q),cos(pi q)]]. The work bits and index are not changed. Hence |0,0^d,t> goes under B to |0,q_t,t>, under CR to |v_t,q_t,t>, and under B-dagger on W,T to |v_t,0^d,t>. Since0<=q_t<1, sin(pi q_t)>=0 and equals b_t=sqrt(1-a_t²). B-dagger acts identically on S and restores W in BOTH signal branches; no inverse on the output signal is performed. For coherent coefficients c_t the final state is sum_t c_t|v_t,0^d,t>, with every relative phase retained. The basis rule extends to an isometry V:T->S tensor T, V|t>=|v_t,t>, because different t remain orthogonal. With clean embeddings the S=0,W=0 block is D_a=sum_t a_t|t><t|, not the full matrix A on a different register; the S=1,W=0 block is D_b=sum_t b_t|t><t|. For density rho on T, signal0 success is p_0=tr(D_a rho D_a†)=sum_t rho_tt a_t², and its conditional index state is D_a rho D_a†/p_0 only if p_0>0. A zero success supplies no normalized conditional output.\n\nIf the inverse is skipped, the full density is sigma_SWT=sum_(t,s)rho_ts |v_t><v_s| tensor |q_t><q_s| tensor |t><s|. Tracing W gives rho_dirty_ST=sum_(t,s)rho_ts delta_(q_t,q_s)|v_t><v_s| tensor |t><s|. In contrast rho_clean_ST=V rho V† has no delta. Equivalently trace-out implements the index-class dephasing sum_q (I_S tensor Q_q)rho_clean_ST(I_S tensor Q_q), Q_q=sum_(t:q_t=q)|t><t|. It kills cross terms only between populated DIFFERENT stored bit strings; equal rounded records preserve their coherence. In both cases tracing the index gives the identical signal marginal rho_S=sum_t rho_tt|v_t><v_t|. Dephasing or discarding the index cannot alter that marginal either. A single basis input has product v_t tensor q_t tensor t, so discarding W leaves the signal PURE and unchanged. It is false that this operation invariably destroys the signal's |0>,|1> superposition. Multiple populated angle classes generally make the joint S,T output mixed; this is a different claim from the signal-only state, which may already have been mixed before cleanup.\n\nFor an exact witness take d=2 and two distinct indices t,s with q_t=1/4, q_s=3/4, from real entries A_t=1/sqrt2,A_s=-1/sqrt2; complete any other entries by0 so ||A||_max<1. For input(|t>+|s>)/sqrt2, v_t=(|0>+|1>)/sqrt2 and v_s=(-|0>+|1>)/sqrt2. The clean joint state is their coherent indexed superposition; tracing the two orthogonal angle records instead leaves the equal mixture of |v_t,t> and |v_s,s>. The signal marginal is I/2 in BOTH. After signal0, however, the clean index is(|t>-|s>)/sqrt2, while the trace-out version is the incoherent equal mixture. The joint test S=0 and index-minus has probabilities1/2 versus1/4. Thus unchanged signal statistics do not certify the intended coherent oracle or its relative phase.\n\nIf instead of tracing one omits B-dagger and projects the original clean S=0,W=0 flag, the actual block is D_(a*1_(q=0)), not D_a, because <0^d|q_t>=delta_(q_t,0). It is ZERO on both witness indices. Trace-out has no single retained-unitary block to read: its signal0 subchannel is D_a (sum_q Q_q rho Q_q) D_a†, with the same signal0 probability but generally different coherent output from D_a rho D_a†. Therefore neither tracing nor merely projecting the original flag substitutes for the specified clean oracle. The given B-dagger is a sufficient coherent cleanup using the retained index; it is not uniquely necessary as a circuit. Any alternative must prove the same clean interface. A W-only unitary cannot map two orthogonal q records to the same |0> while leaving everything else unchanged, by inner-product preservation. Known constant records, a single basis input, or one populated record class are exceptions to the decoherence claim, not automatic clean-register reuse guarantees.\n\nThis construction uses one B and one B-dagger plus d ideal bit-controlled y rotations; the composite B may require the original bit oracle, reversible arithmetic and additional clean scratch, all of which must be restored by its actual inverse. Those are not free from a d-bit output-length statement. There is no generic finite-bit exact-real or elementary-gate complexity certificate here. q=0 gives a_t=1,b_t=0, allowed for a rounded entry even though the original A has strict max norm below1; q<1 excludes an exact q=1. For d=0 there is only the empty record q=0 and no distinct-record dephasing. The proof requires no assumption that every angle differs or every index is populated, and the inverse is not a cleanup of the intentional amplitude signal itself.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Distinguishes stored q and cosine-redefined A~ from arbitrary exact A/d'-bit input; exposes nonrepresentable theta=1/3 without adding a premise, and states exact rounded-law versus separate precision guarantees."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Tracks S,W,T through B, bit-controlled Ry rotations and B-dagger for basis/coherent inputs, derives D_a/D_b clean blocks and success/conditioning, and preserves negative amplitudes and phases."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Derives the full skipped-inverse density, work-trace angle-class dephasing and unchanged signal marginal; includes basis-input and equal-record exceptions instead of universal signal-decoherence rhetoric."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Supplies the exact q=1/4,3/4 sign/interference witness, compares same-flag projection with trace-out, and states coherent-interface cleanup/non-unique-inverse and resource/workspace boundaries without a W-only erasure claim."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Compute-rotate-uncompute gives an exact coherent oracle for the stored-angle cosine. Discarding the angle record dephases joint signal/index classes, not the signal marginal; basis inputs and equal records are exceptions to a blanket decoherence claim.",
+    "semantic_steps": [
+      {
+        "claim": "B loads the actual finite-bit angle q_t on work while preserving indices; exactness is for the declared cosine-rounded entry, not arbitrary real angle equality.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Bit-controlled y rotations give v_t=a_t|0>+sqrt(1-a_t²)|1> with relative signs retained, leaving work/index unchanged.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "B-dagger restores the whole advertised work state coherently across both signal branches, yielding clean blocks D_a and D_b and their success probabilities.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Skipping the inverse and tracing work applies angle-class dephasing to joint signal/index coherence; the signal-only marginal and a single basis input's pure signal are unchanged.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "An explicit two-angle sign witness distinguishes the coherent oracle from trace-out and from the wrong same-flag block; any replacement cleanup needs its own coherent-interface and resource proof.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc entry230–238 inspected. LF authenticates URL/edition/historical PDF pin metadata only; primary mathematical regions and access limits are separately recorded."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole exact historical prepared qcb-core-plan-207 loaded through release.checked()[2], with full question/assumptions/conventions/answer/rubric/steps and provenance; content binding, not mathematical proof or current-reader substitution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+      "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+      "anchor": "Complete corresponding authored mathematical record read and matched to the prepared original. Local QA-content provenance only, not a primary proof seal."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_authorship_pending_distinct_review",
+    "author_identity": "/root/qcb_boundary_repair_review",
+    "authored_at_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "private_origin": "_review_tmp/plan-207-rounded-angle-joint-coherence-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-207-rounded-angle-joint-coherence-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "7d2f9cde13aacc1e0b0bc6861255c55ac6c5054d724b259cef6b33fb79326f44",
+      "successor_contract_hash": "a2990190157e0445347d0897271b81649ccc15e8872d3c5e01b3e39a92c26d6f",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [
+        "||A||_max < 1 and A_ij real so arccos(A_ij) is well defined and sin(pi theta~) >= 0",
+        "O'_A is a reversible classical-arithmetic unitary depending only on (i,j)",
+        "CR is controlled on the work register and acts on a single fresh ancilla qubit"
+      ],
+      "original_conventions": [
+        "A~_ij = cos(pi theta~_ij) is the d-bit-rounded entry",
+        "'Discarding' a register means tracing it out; a quantum computer cannot erase an entangled register for free"
+      ],
+      "family": "qsc-matrix-access",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:operator-theory",
+        "concept:approximation"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lin-wiebe-2026-qasc",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 5,
+      "original_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:block-encoding"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:block-encoding"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "prior_exposure": {
+      "actual_prior_reviewer": "/root/qcb_boundary_repair_review",
+      "review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "db960820e5a4bb71362d614ca297e9e55d8fce29f335bd2936a8810b2e635716",
+      "exposure": "I authored the earlier historical reader finding, and have prior source/original and parent-lead exposure. I reread the complete actual original, exact current withdrawal/finding and full operative primary regions. This is informed correction authorship, not source-blind or independent approval of my own candidate. Prior imported accept metadata or my old verdict is not mathematical proof."
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+        "recorded_edition": "29 April2026 public447-page edition",
+        "operative_regions": "Complete Example9.16 Eq9.68–9.71, including the explicit cosine redefinition, additional-workspace caveat and final inverse; full Proposition5.7 proof Eq5.17–5.20 and textual Fig5.3 controls/rotation angles; complete Example5.8/Fig5.4 Eq5.22–5.25 and uncomputation context Eq5.3–5.7/Fig5.2. Density/dephasing/projected-block counterexamples are independent reconstruction, not printed source claims that a basis-input signal necessarily decoheres.",
+        "actual_access": "Genuine author-hosted PDF text access in this objective. Complete operative theorem/construction/proof and figure textual labels/rotation angles read. No PDF copied or redistributed.",
+        "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "binary_hash_independently_verified": false,
+        "rendered_figure_independently_inspected": false,
+        "access_limit": "Attempted screenshot of Fig5.3 page; service reported PDF screenshot unavailable. Exact binary hash and rendered pixels remain unverified by this author; parent's separate byte/render work is not inherited as my seal."
+      }
+    ],
+    "source_proof_coverage": {
+      "nodes": "Complete Example9.16 Eq9.68–9.71, including the explicit cosine redefinition, additional-workspace caveat and final inverse; full Proposition5.7 proof Eq5.17–5.20 and textual Fig5.3 controls/rotation angles; complete Example5.8/Fig5.4 Eq5.22–5.25 and uncomputation context Eq5.3–5.7/Fig5.2. Density/dephasing/projected-block counterexamples are independent reconstruction, not printed source claims that a basis-input signal necessarily decoheres.",
+      "independent_extensions": "Full density/angle-class dephasing, unchanged signal marginal, sign/interference witness and projected-block-versus-channel analysis are new NL reconstruction for this candidate.",
+      "excluded": "Source's downstream amplification complexity, arbitrary unknown-state reflection, complete sparse-matrix compiler, arithmetic bit-error/runtime analysis and production Lean closure are not supplied or claimed."
+    },
+    "artifact_inventory": "First inventory found no prior private plan206/207 candidate or review. The unrelated la-206-cost-contract-successor-review.json was preserved. Existing historical reader reports and every earlier private artifact remain unchanged.",
+    "mechanical_validation": "Predecessor, withdrawal and exact old/new contract digests recomputed from actual records; all five ordered step-node lists preserved. These are structural checks, not mathematical approval. Admission engine code is not a mathematical source dependency.",
+    "execution_limits": "No builds, tests, kernel/Lean, simulator, GPU/admin, commits/push, other agents, human/expert/novelty/source-blind claim, canonical mutation or admission. Complete mathematical candidate pending a distinct exact-content review.",
+    "self_approval": false
+  }
+}
