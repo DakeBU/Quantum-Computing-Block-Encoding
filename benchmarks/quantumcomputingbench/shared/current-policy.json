@@ -375,6 +375,142 @@
         "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
         "finding_digest": "7e6c52380b436f2f09fa465c8760c5b591ffeddac9fc4e8824ad75b73def19eb"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-415",
+      "predecessor_key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+      "predecessor_item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+      "reason": "First explicit question-version successor. The old 'without loss of generality' has no performance criterion; preserve and assess that defect rather than assume a hidden guarantee from the intended answer. Replace ONLY question among the nine contract fields, retaining empty assumptions/conventions, spectrum-estimation-symmetries family, test_public split, graph/source scope and the original three ordered step-node lists. Establish the exact pointwise/permutation versus orbit-average/uniform-risk distinction, then the full both-symmetry Schur postprocessing statement. No convention migration, new core or split override.",
+      "repair": "shared/repairs/plan-415-minimax-spectrum-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-415-minimax-spectrum-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-415",
+        "predecessor_key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+        "predecessor_item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+        "reason": "Unitary twirling preserves a uniform invariant worst-case testing guarantee, not each fixed state measurement distribution; the WLOG performance quantifiers are missing.",
+        "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+        "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+        "finding_digest": "255fe64423284aaf29fc37d3945ae22098f4ff0d4685b94c2319dedbac851528"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-420",
+      "predecessor_key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+      "predecessor_item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+      "reason": "First explicit question-version successor, because the literal question(c) presupposes false original-space symmetric support for de Finetti/cloning constructions without qualification. Retain(a)/(b), explicitly assess/refute that premise and repair the interpretation using the actual mixed-state purification and projected-cloner domains. Replace ONLY question among nine contract fields: empty assumptions/conventions, symmetric-subspace-dimension family, test_public split, graph/source_refs and exact original three ordered step-node lists remain unchanged. No silent restriction to pure symmetric states, no assertion that arbitrary invariant states or every full cloning channel are symmetric-supported, and no new core/count/split or convention migration.",
+      "repair": "shared/repairs/plan-420-symmetric-support-dimension-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-420-symmetric-support-dimension-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-420",
+        "predecessor_key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+        "predecessor_item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+        "reason": "Permutation-invariant mixed states need not have original symmetric support; the mixed de Finetti proof instead uses an enlarged symmetric purification space.",
+        "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+        "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+        "finding_digest": "054eb2176652b357778927631005014e6031653129241046875b9c11b5e26403"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-510",
+      "predecessor_key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+      "predecessor_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+      "reason": "Explicit first question-version2 correction, not an answer-only silent addition of the exact unit-normalized input premise. The old single-ancilla description fixes register count, not block factor or error, and is insufficient for its promised coefficient factor. Keep/refute that reading, then request the true conditional normalized-input theorem and exact arbitrary-scale rescaling boundary. Only question changes among nine CONTRACT_FIELDS; assumptions/conventions/family/test_public split/frozen graph/source_refs remain literal, with six steps and every ordered per-step node list unchanged. Original contract 2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-510-normalized-input-resource-question-successor.json; private _review_tmp/plan-510-normalized-input-resource-question-successor.json. No new core, standing assumption-field override, engine change or selfapproval. Recomputed proposed question-only contract c70aee607b7ca91f359152628fb31bbab1e0855382bbbfcfa55b8468e8f239da.",
+      "repair": "shared/repairs/plan-510-normalized-input-resource-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-510-normalized-input-resource-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-510",
+        "predecessor_key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+        "predecessor_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+        "reason": "The exact unit-normalized input block premise is missing; an arbitrary-scale block encoding cannot imply the stated output coefficient factor.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "410ccd51e78b2071927d9f67951836196e7c4a9ea7647781d82297320fcd62d2"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-513",
+      "predecessor_key": "qcb-core-plan-513-grover-two-reflection-rotation",
+      "predecessor_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+      "reason": "Explicit first question-version2 correction, not an answer-only repair. Retain the literal single-mark promise for every positive N, including N=1, and assess/refute the predecessor's universal normalized-unmarked-plane demand at that endpoint. Preserve the two reflections, their order, the interior angle/power target, and every other contract field. The existing half-angle and two-mirror conventions remain true on their defined loci; no convention change or N>=2 standing premise is introduced. The nontrivial plane is a case conclusion for N>1, not a new assumption. Preserve all six ordered semantic-step node lists. Changed requested reasoning and non-equivalence are explicit; no arbitrary near-unit success, new core or local formal admission.",
+      "repair": "shared/repairs/plan-513-nontrivial-plane-endpoint-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-513-nontrivial-plane-endpoint-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-513",
+        "predecessor_key": "qcb-core-plan-513-grover-two-reflection-rotation",
+        "predecessor_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+        "reason": "The allowed one-element search has no normalized bad vector or requested two-dimensional plane; the endpoint needs explicit treatment.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "8f5aca8a2b1a2bdf4cd54d2b5126fa33b84f7598bb44e4394483ec4afdb1a348"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-515",
+      "predecessor_key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+      "predecessor_item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+      "reason": "Explicit first question-version2 correction. Keep known M>=1 among N, including M=N, the original normalized-good/bad convention as a definition only where its component is nonzero, and sin(half-angle)=sqrt(M/N). Do not add M<N or a sparse-mark standing premise. Correct the question's conflation of the angle phi from the bad direction with the full iteration angle2phi. Replace the vague uniform positive 'optimal k/near-one' demand by an explicitly first-peak integer schedule, quantitative guaranteed success and sparse-regime asymptotic, while retaining/refuting the predecessor's all-marked plane demand. Other eight contract fields, six ordered node lists and source/family/split scope remain. This is changed requested reasoning, not an equivalent proof or a global optimality claim.",
+      "repair": "shared/repairs/plan-515-marked-fraction-rounding-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-515-marked-fraction-rounding-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-515",
+        "predecessor_key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+        "predecessor_item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+        "reason": "The all-marked case has no normalized bad state; a positive Theta iteration optimum and near-unit integer-round success do not hold uniformly.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "75d97ae9fc5e1d85f1e51d6a6f4c84fb6d021b76bea6a8e4d9e8c4a18940f840"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-517",
+      "predecessor_key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+      "predecessor_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+      "reason": "Explicit first question-version2 correction. The original question requests a concrete false extension beyond real arcsine's domain, while the original answer additionally (and falsely) excludes complex continuation. Replace that demand transparently by assessment of real well-formedness versus the valid complex identity, retaining its real proof, exact a2 witness, correct signed hyperbolic representation and physical-overlap boundary. Only question changes among nine CONTRACT_FIELDS; both original conventions remain true when hyperbolic representation is stated with reflection/parity sign. No active assumption/convention is overridden. Preserve core/family/test_public split/frozen graph/source_refs, six steps and every ordered per-step node list. Original contract fe6b370225ca42bd08b2aabe06434b9ffb89977c361b5ebd6a75fa01fb650f2e is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-517-real-domain-complex-continuation-question-successor.json; inspected/authored private _review_tmp/plan-517-real-domain-complex-continuation-question-successor.json. Pending distinct review, not a new core or selfapproval. Recomputed proposed question-only contract a7cd3d15c64e8ec16178faaa51a6e067064725220063b471bf6e1826851513fe.",
+      "repair": "shared/repairs/plan-517-real-domain-complex-continuation-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-517-real-domain-complex-continuation-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-517",
+        "predecessor_key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+        "predecessor_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+        "reason": "Real arcsine is undefined outside its domain, but the answer falsely rejects valid complex multiple-angle continuation and mishandles negative hyperbolic arguments.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "bb15f37a2e8deeec8147b21b53ea6258b68ad076a504ab74faa9b88c478f1a71"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-518",
+      "predecessor_key": "qcb-core-plan-518-classical-search-lower-bound",
+      "predecessor_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+      "reason": "Explicit first question-version2 correction, not answer-only weakening. Preserve N=2^n, unique mark, unbiased algorithms, classical worst-case query accounting and no-quantum-lower-bound conclusion. Retain the original N-1/>1/2 statement for explicit refutation, then request the sharp bounded-error guarantee (q+1)/N and the distinct certainty threshold N-1. The upper bound applies even without unbiasedness; the matching counterexample/algorithm is label-symmetric, so the retained assumption is not evaded or redefined to save the false claim. Only question changes among nine fields; all six ordered nodes remain. Same search-query family and source scope, changed requested reasoning, no formal admission.",
+      "repair": "shared/repairs/plan-518-randomized-query-guarantee-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-518-randomized-query-guarantee-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-518",
+        "predecessor_key": "qcb-core-plan-518-classical-search-lower-bound",
+        "predecessor_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+        "reason": "The claimed N-minus-one randomized bounded-error lower bound is false; a symmetric four-input two-query algorithm succeeds with probability three quarters.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "3ac468c2706e32d6cc769a47839576b4c6a02a98ebb853e8aa0e77aca7cf1365"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-520",
+      "predecessor_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+      "predecessor_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+      "reason": "Explicit first question-version2 correction. Retain the original small-positive-p projector setting and both true conventions (sine amplitude and query-level costs), but assess/refute perpetual positive amplitude growth rather than silently restricting k. Ask for an early-angle quantitative theorem and matched constant-success comparison, plus an explicit CONDITIONAL oracle/access and calibration audit. Do not turn missing inverse/prepared-reflection access, known p or a projective check into new standing assumptions: identify the necessary dependencies and state what the original promises alone do not establish. Other eight contract fields, all six ordered node lists, family/split/source scope stay unchanged. The replacement changes requested reasoning, not a proof of the original unqualified growth/access claim. No arbitrary-state reflection, free cleanup/control, global query lower bound, finite-bit or gate certificate.",
+      "repair": "shared/repairs/plan-520-windowed-amplification-access-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-520-windowed-amplification-access-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-520",
+        "predecessor_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+        "predecessor_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+        "reason": "Amplitude increments are not positive at every iteration; the early-angle window, inverse-preparation access and calibrated stopping rule require explicit scope.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "1a2ec98812099b35814fa779424d2c24c4504ff5db248ef5f32e30a3e2870eea"
+      }
     }
   ],
   "answer_successors": [
@@ -740,6 +876,40 @@
         "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
         "finding_digest": "9f0ddc315b8481d1b3bc3b501643535116bcff0325c0da58c174500a826c32b7"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-414",
+      "predecessor_key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+      "predecessor_item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+      "reason": "Answer/rubric/exposition only. The literal question asks covariance and how it lets Schur-Weyl constrain a symmetric output block; it does not demand the false assertion that every output is scalar. Preserve ALL nine contract fields, empty assumptions/conventions, family haar-twirl-covariance, test_public split, graph/source scope, and exactly three ordered step-node lists. Unchanged contract hash 978355f5a0bd94ec866217b30d86c71d7567df66b79cc556a0b81d5d596a73f7. Correct the translation justification and restrict the scalar conclusion to invariant input and the symmetric output block, rather than quietly add an input hypothesis to the covariance theorem.",
+      "repair": "shared/repairs/plan-414-invariant-output-block-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-414-invariant-output-block-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-414",
+        "predecessor_key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+        "predecessor_item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+        "reason": "Twirling gives channel covariance; Schur scalar output follows only for invariant input and the specified symmetric output block, not arbitrary states.",
+        "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+        "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+        "finding_digest": "6786b3ea4a98fe328e01a3358cad1b502a9b0b6d208222455343324831bfd329"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-509",
+      "predecessor_key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+      "predecessor_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+      "reason": "Unchanged-question answer/rubric/exposition successor, not a question or convention migration. The literal question's factor2 is true for the specified naive balanced common-c combiner and its chosen all-zero port; it does not require the answer's false exclusive-success-port claim. Preserve all nine CONTRACT_FIELDS exactly, original core/family/test_public split/frozen graph/source_refs, six semantic steps and every ordered per-step node list. Unchanged contract hash ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2. Clarify finite-dimensional input normalization/access, compatible branch registers, both control-port projections, degenerate spectra and fixed-scheme versus global optimality. No extra source assumption is silently imposed on the arbitrary Hermitian A: normalization of A and polynomial rescaling are explicit construction obligations. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-509-balanced-selected-port-boundary-repair.json; authored private locator _review_tmp/plan-509-balanced-selected-port-boundary-repair.json. Pending distinct review; no additional core or selfapproval.",
+      "repair": "shared/repairs/plan-509-balanced-selected-port-boundary-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-509-balanced-selected-port-boundary-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-509",
+        "predecessor_key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+        "predecessor_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+        "reason": "The balanced selected-block identity is sound but the exclusive-success-port claim fails on allowed degenerate spectra.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "5b0bbdc9fe85d50082bb174b7e1fd26f26a23d699689671f4608892618f8eb6a"
+      }
     }
   ],
   "withdrawals": [
@@ -969,69 +1139,6 @@
       "finding_digest": "2994fbf67f6441a17218102ef2a26bc8179f74b6249587445d75ed95495eb471"
     },
     {
-      "core_id": "qcb-core-plan-509",
-      "predecessor_key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
-      "predecessor_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
-      "reason": "The balanced selected-block identity is sound but the exclusive-success-port claim fails on allowed degenerate spectra.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
-      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
-      "finding_digest": "5b0bbdc9fe85d50082bb174b7e1fd26f26a23d699689671f4608892618f8eb6a"
-    },
-    {
-      "core_id": "qcb-core-plan-510",
-      "predecessor_key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
-      "predecessor_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
-      "reason": "The exact unit-normalized input block premise is missing; an arbitrary-scale block encoding cannot imply the stated output coefficient factor.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
-      "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
-      "finding_digest": "410ccd51e78b2071927d9f67951836196e7c4a9ea7647781d82297320fcd62d2"
-    },
-    {
-      "core_id": "qcb-core-plan-513",
-      "predecessor_key": "qcb-core-plan-513-grover-two-reflection-rotation",
-      "predecessor_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
-      "reason": "The allowed one-element search has no normalized bad vector or requested two-dimensional plane; the endpoint needs explicit treatment.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
-      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
-      "finding_digest": "8f5aca8a2b1a2bdf4cd54d2b5126fa33b84f7598bb44e4394483ec4afdb1a348"
-    },
-    {
-      "core_id": "qcb-core-plan-515",
-      "predecessor_key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
-      "predecessor_item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
-      "reason": "The all-marked case has no normalized bad state; a positive Theta iteration optimum and near-unit integer-round success do not hold uniformly.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
-      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
-      "finding_digest": "75d97ae9fc5e1d85f1e51d6a6f4c84fb6d021b76bea6a8e4d9e8c4a18940f840"
-    },
-    {
-      "core_id": "qcb-core-plan-517",
-      "predecessor_key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
-      "predecessor_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
-      "reason": "Real arcsine is undefined outside its domain, but the answer falsely rejects valid complex multiple-angle continuation and mishandles negative hyperbolic arguments.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
-      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
-      "finding_digest": "bb15f37a2e8deeec8147b21b53ea6258b68ad076a504ab74faa9b88c478f1a71"
-    },
-    {
-      "core_id": "qcb-core-plan-518",
-      "predecessor_key": "qcb-core-plan-518-classical-search-lower-bound",
-      "predecessor_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
-      "reason": "The claimed N-minus-one randomized bounded-error lower bound is false; a symmetric four-input two-query algorithm succeeds with probability three quarters.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
-      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
-      "finding_digest": "3ac468c2706e32d6cc769a47839576b4c6a02a98ebb853e8aa0e77aca7cf1365"
-    },
-    {
-      "core_id": "qcb-core-plan-520",
-      "predecessor_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
-      "predecessor_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
-      "reason": "Amplitude increments are not positive at every iteration; the early-angle window, inverse-preparation access and calibrated stopping rule require explicit scope.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
-      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
-      "finding_digest": "1a2ec98812099b35814fa779424d2c24c4504ff5db248ef5f32e30a3e2870eea"
-    },
-    {
       "core_id": "qcb-core-plan-404",
       "predecessor_key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
       "predecessor_item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
@@ -1039,33 +1146,6 @@
       "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
       "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
       "finding_digest": "e7638c3136c2047766855d9329ffbfd597ff7fdfa426e8de22a8f9f1632b2137"
-    },
-    {
-      "core_id": "qcb-core-plan-414",
-      "predecessor_key": "qcb-core-plan-414-twirled-channel-covariance-haar",
-      "predecessor_item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
-      "reason": "Twirling gives channel covariance; Schur scalar output follows only for invariant input and the specified symmetric output block, not arbitrary states.",
-      "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
-      "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
-      "finding_digest": "6786b3ea4a98fe328e01a3358cad1b502a9b0b6d208222455343324831bfd329"
-    },
-    {
-      "core_id": "qcb-core-plan-415",
-      "predecessor_key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
-      "predecessor_item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
-      "reason": "Unitary twirling preserves a uniform invariant worst-case testing guarantee, not each fixed state measurement distribution; the WLOG performance quantifiers are missing.",
-      "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
-      "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
-      "finding_digest": "255fe64423284aaf29fc37d3945ae22098f4ff0d4685b94c2319dedbac851528"
-    },
-    {
-      "core_id": "qcb-core-plan-420",
-      "predecessor_key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
-      "predecessor_item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
-      "reason": "Permutation-invariant mixed states need not have original symmetric support; the mixed de Finetti proof instead uses an enlarged symmetric purification space.",
-      "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
-      "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
-      "finding_digest": "054eb2176652b357778927631005014e6031653129241046875b9c11b5e26403"
     }
   ]
 }

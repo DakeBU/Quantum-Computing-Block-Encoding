@@ -1,0 +1,128 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-plan-518",
+  "repair_record_digest": "6b985ff85de798453a98d8edc6fec4d4619b7743e65c3527fae3629edb1426ff",
+  "original_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+  "original_contract_hash": "6d6f5612311dac1f0e44d408b9252b503fc88147ef8c39813b5b18f2a1106d18",
+  "successor_contract_hash": "eefe47810cd6fdb8bf3d284522edd84d5a709a54e926e999568c06d8b200b046",
+  "question_version": 2,
+  "verdict": "accept",
+  "exposure": "Not blind: I authored the historical scientific-signals-511-520 reader findings, have prior cohort/source/parent-lead exposure, and read the boundary author's handoff before this new review. I did not author these repair candidates. In this objective I read each full actual prepared predecessor via release.checked()[2], current bound withdrawal and complete finding, entire candidate including rubric/steps/execution, and operative primary proofs. Independence here is distinct actual candidate authorship and substantive re-review, not a claim of unexposed cognition or human review.",
+  "contract_change_assessment": {
+    "false_requested_bound": "The predecessor explicitly asks to prove that worst-input success above1/2 requires N-1 queries. The symmetric N4,q2 counterexample lies inside its unique-mark and unbiased setting, so answer-only correction is not legitimate. The replacement question retains that assertion for refutation and transparently requests the sharp randomized worst-input guarantee, with certainty separately distinguished. N=2^n, worst-case query budget and all other eight contract values remain literal.",
+    "unbiased_scope": "Here unbiased has the operational label-symmetry meaning explicitly used by the revised question: relabeling inputs relabels the entire randomized query/output law, with equal success on each marked label. It is not numerical expectation-unbiasedness for an arbitrarily encoded label, nor a deterministic algorithm disguised as a randomized one. The bound holds even without this symmetry restriction, and its matching witness is fully permutation-equivariant. Thus the retained assumption is actually met, not redefined to exclude the counterexample. All six ordered node lists are unchanged; no convention itself is replaced."
+  },
+  "substantive_reconstruction": {
+    "success_contract_and_counterexample": "The quantity being optimized is min_x Pr_coins[output=x when x is the unique mark], under a worst-case budget of at most q Boolean queries on every input and coin outcome. For N4,q2, uniformly sampling two distinct labels finds each fixed mark with probability1/2; otherwise a uniform guess among the remaining pair succeeds with conditional probability1/2. Unconditional success is1/2+(1/2)(1/2)=3/4 for every mark. It is exactly permutation-symmetric, uses fewer than N-1 queries and therefore refutes the historical bounded-error statement without changing its promise.",
+    "deterministic_reduction": "Fix a complete random seed first, including any randomness used for the final guess. This produces a deterministic adaptive tree. Previously seen answers can be cached to remove repeated oracle calls. Early stopping may be padded to q distinct labels with output preserved, since q<=N-1 leaves enough labels and extra observations cannot force a worse decision. The all-zero branch then queries some fixed seed-dependent set S of size q. An oracle with its unique mark outside S follows that same branch throughout, so all N-q such inputs induce the identical complete transcript and the same deterministic output.",
+    "counting_and_quantifiers": "The deterministic output on that transcript can be correct on at most one input outside S. Inputs whose mark lies in S contribute at most q more possible successes, regardless of their later adaptive branches. Thus success averaged over the UNIFORM marked input is at most(q+1)/N for each fixed seed. Average this inequality over seeds, interchange the finite input average with the seed expectation, then choose some fixed input no better than that average. This yields the worst-input upper bound. It never selects an adversarial mark as a function of private coins; that quantifier swap would invalidate a randomized lower bound.",
+    "matching_attainment": "Choose q labels uniformly without replacement, query them, output the hit if any and otherwise choose uniformly among the N-q remaining labels. On each fixed input the hit contribution is q/N and the miss-and-correct contribution is((N-q)/N)/(N-q)=1/N. Its unconditional success is exactly(q+1)/N. The entire procedure is equivariant under every label permutation, not merely average-correct under a convenient prior. Therefore the same upper bound is attainable within the explicitly stated unbiased class, proving the sharp maximum of the minimum success, not just an average-case inequality.",
+    "endpoints_and_thresholds": "At q0 the optimum is1/N, obtained by a uniform output guess; at q=N-1 it is1, since one can either see the mark or infer the sole residual label. Strict success above1/2 occurs iff q+1>N/2, so the least permitted integer is floor(N/2); this also gives0 when N1. With N1 the unique mark is known and no query is needed. Certainty needs N-1 queries and suffices there. For larger N a constant-success lower bound remains linear in N, while the old exact bounded-error threshold does not. No maximum-versus-minimum or strict-versus-nonstrict threshold is left implicit.",
+    "source_grading_and_limits": "A residual pair really is indistinguishable conditional on a fixed all-zero transcript; hit transcripts can nevertheless succeed with probability1. The source Proposition11.1 conflates those conditional and unconditional statements, so citation does not validate its stronger printed result. I read the complete proposition/proof and its surrounding bit-oracle discussion and checked the new four rubric criteria and six steps against the fixed-seed argument and matching construction. The candidate does not infer a quantum lower bound from classical transcripts: coherent queries do not produce the same evidence tree, and quantum optimality needs a different proof. Its known Grover comparison is not that missing proof. These are oracle-call results only, not finite-bit, elementary-gate or physical timing guarantees; no executed enumeration is needed for the arbitrary-N proof."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc entry personally inspected in the continuous task context and LF rechecked here. This is external-source locator/edition metadata only, not a local mathematical proof or primary-byte identity. Actual operative mathematics is recorded in primary_source_checks."
+    }
+  ],
+  "content_bindings": {
+    "inspected_private_candidate": "_review_tmp/plan-518-randomized-query-guarantee-question-successor.json",
+    "planned_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-518-randomized-query-guarantee-question-successor.json",
+    "candidate_sha256_lf": "1c383a420c91e69a228ba8347e56df246f9b5570104bd31c812f95654a9c282c",
+    "original_assumptions": [
+      "Unique marked element; algorithm is unbiased"
+    ],
+    "original_conventions": [
+      "N = two-to-the-n; worst-case classical query count",
+      "Quantum queries act in superposition, unlike the classical bit answers counted here"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_digests": {
+      "assumptions": "376ad93aba560042f87ce4ba8599ca4f7609e32d41a00d309b14d1d7ed7a84fb",
+      "conventions": "71e2f784d4ff4a438c4b2d279198b1535539b124a6c1f95f6287a6215b5244c4",
+      "family": "dd5e0d146f7b323c02bdb41d2cf01111381d6e7f033a04264d07b1b89f48055f",
+      "split": "a774e852385c11df74d26b40210fb7d29a7b8e7357a8ecece45482398c3f3f7c",
+      "graph_version": "2ced781f875884ea6187183f7ad941c8871d10c978fb36a1a4c054d2defedc1b",
+      "target_nodes": "8d709277aa6b9b2b15c780b9b11f947e80f3f3fc7f0a995046b4847528ae6809",
+      "supporting_nodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_refs": "5c4265958dc20cca662e75650774b7cf3998fb866be977f879a73d2cc238bc75"
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:operator-theory",
+        "concept:complexity"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:operator-theory",
+        "concept:complexity"
+      ]
+    ],
+    "semantic_step_count": 6,
+    "withdrawal": {
+      "core_id": "qcb-core-plan-518",
+      "predecessor_key": "qcb-core-plan-518-classical-search-lower-bound",
+      "predecessor_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+      "reason": "The claimed N-minus-one randomized bounded-error lower bound is false; a symmetric four-input two-query algorithm succeeds with probability three quarters.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "3ac468c2706e32d6cc769a47839576b4c6a02a98ebb853e8aa0e77aca7cf1365"
+    },
+    "whole_original_candidate_contract_and_withdrawal_bindings": "Independently recomputed and matched actual current records and handoff. All candidate LF source bindings and six identical ordered node lists checked; these are content checks, not a proof or admission."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition_observed": "Cover29 April2026;447 pages",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "operative_regions": "Complete Proposition11.1 statement/proof and preceding unique-mark setup, printed181-182/PDF180-181, with full subsequent classical/quantum discussion and bit-oracle Eq11.1. The printed unconditional bounded-error claim is assessed as false, not accepted from source authority. No label-search-specific numerical estimator definition was supplied by that proposition; candidate label-equivariance is explicit.",
+      "actual_review_access": "Primary author-hosted PDF text extraction personally read in this objective, including complete operative statements/proofs and context named above. Cover was reopened. Source claims were independently assessed, not presumed correct.",
+      "binary_hash_verified_in_this_review": false,
+      "operative_pixels_inspected_in_this_review": false,
+      "limits": "My screenshot requests at PDF pages181,184,188 failed with cache misses. No direct primary-byte hashing, rendered-page inspection, paper/PDF seal or source redistribution is claimed. Root's or candidate author's separate fetch/render executions are not assigned to me."
+    }
+  ],
+  "provenance": {
+    "observed_head": "e9308632431899a08938b4d9a6cd1b9d90c45e30",
+    "written_private_review": "_review_tmp/plan-518-randomized-query-guarantee-question-successor-review.json",
+    "limitations": "Private mathematical/source review only. No canonical installation, old-artifact edits, builds/kernel/native-formal proof, code-as-mathematical-evidence, source-paper/visual seal, human/model/expert/blind approval, global semantic closure or admission claim."
+  },
+  "review_scope": "Complete question, answer, every rubric criterion, core summary, all six semantic steps and process/source metadata assessed. Exact V1 question-payload key set, actual predecessor and both nine-field hashes, distinct authorship, source LF and ordered-step preservation are mechanical bindings only. No fresh production execution is used as mathematical evidence."
+}

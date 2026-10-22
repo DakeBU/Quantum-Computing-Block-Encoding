@@ -6,7 +6,11 @@ mathematical models, backed by QuantumComputinglib's sources and graph.
 Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
-The [latest convention/guard-count checkpoint](docs/textbook-convention-and-guard-count-checkpoint-2026-10-23.md)
+The [latest symmetry/search checkpoint](docs/textbook-symmetry-and-search-boundaries-2026-10-23.md)
+separates invariant states from symmetric support, pointwise from minimax
+statistics, normalized blocks from arbitrary scales, and windowed search
+guarantees from unconditional growth or certainty claims.
+The preceding [convention/guard-count checkpoint](docs/textbook-convention-and-guard-count-checkpoint-2026-10-23.md)
 explains explicit premise revisions, the actual Hermite producer's sharp
 exponential-call count, and substantive revalidation of code-bound reviews.
 The preceding [operator/bond checkpoint](docs/textbook-operator-and-bond-boundaries-2026-10-23.md)

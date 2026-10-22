@@ -1,0 +1,125 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-509",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-509-balanced-selected-port-boundary-repair.json",
+  "repair_record_digest": "fdada9695f430dfb21067da2a448e81ad393672d4d39e74cea469443c46c44b5",
+  "repair_record_sha256_lf": "177628d37d61a8d9fcef72fa2b468d1f30574f3aea9ab41cb4aac4ae5475eb31",
+  "original_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2",
+    "reasoning": "The literal question asks about the naive balanced combination, not a globally optimal block factor or exclusive usable success port. Its common-c balanced selected block really is f(A)/(2c). The false 'only one outcome' claim belongs to the old answer/exposition, so answer-only correction suffices. All nine contract fields remain exact. Finite-dimensional quantum-circuit matrix typing is inherited from the qubitization setting, not a new ||A||<=1 premise; unbounded infinite-dimensional operators are not silently being claimed encoded."
+  },
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: mathematical correctness, literal contract fit/change, complete answer/rubric/exposition. Private review, not admission or automatic formal transfer.",
+  "substantive_reconstruction": {
+    "parity_and_input": "Applying x->−x to f=e+o gives f(−x)=e−o, forcing e=(f(x)+f(−x))/2 and o=(f(x)−f(−x))/2. This is polynomial uniqueness, not uniqueness from sampled eigenvalues. For Hermitian A=V diag(λ)V†, even SVT uses f_e(|λ|)=f_e(λ); odd balanced SVT supplies sign(λ)f_o(|λ|)=f_o(λ). A unitary sign completion at λ=0 is harmless because f_o(0)=0. For arbitrary finite A choose known ρ>0 with ||A||≤ρ, B=A/ρ, and g_p(x)=f_p(ρx). Then g_p(B)=f_p(A). The candidate actually supplies U_B=[[B,S],[S,−B]], S=sqrt(I−B²): BS=SB and B²+S²=I prove U_B†U_B=I. Thus input access is constructed algebraically rather than imposed as a hidden contraction/oracle promise; efficiency is not proved.",
+    "branches_and_ports": "Phase-aware Chebyshev LCU supplies finite positive factors for both parity functions. Padding clean registers preserves each block; attenuation by c_p/c∈[0,1] explicitly equalizes scales to c≥max(c_e,c_o). Those workspace costs precede the one-new-selector combiner. Zero branches need a positive-factor zero-block unitary such as X, not division by a zero coefficient norm. Given common clean embedding J, H SELECT H has clean blocks (E+O)/(2c) at selector0 and (E−O)/(2c) at selector1, E=f_e(A), O=f_o(A). The remaining vector is orthogonal to the common clean SIGNAL subspace, not necessarily to selector0 alone. Each selected amplitude is obtained by multiplying the two Hadamard entries; the fixed coefficient1/2 is therefore forced by the stated operations and projector.",
+    "degeneracy_and_success": "For normalized ψ the chosen-port probability is ||f(A)ψ||²/(4c²); if the numerator vanishes no normalized conditional state exists. A parity-mixed polynomial does not prevent operator degeneracy: f=1+x,A=0 gives E=I,O=0, so BOTH clean selector ports equal I/(2c). If E=0 they differ only by sign; if E=O the difference vanishes. These do not alter the fixed selected block. Weighted LCU with factors c_e,c_o instead gives (E+O)/(c_e+c_o), demonstrating why2c is not a universal minimality theorem. Changing the accepted projector or exploiting known degeneracies is a different scheme, not removal of a Hadamard entry in this one."
+  },
+  "answer_rubric_and_exposition_assessment": "All four rubric entries test substantive obligations: polynomial uniqueness versus spectral coincidence; Hermitian parity transport including nulls and input rescaling; both port blocks/garbage/probability; and fixed-scheme versus global unavoidability. The complete six-step exposition preserves the original ordered support lists and eliminates the exclusive-port overclaim without changing the requested sum. The answer correctly distinguishes exact projected-block existence from efficient oracle synthesis, gate/finite-bit, input preparation, amplification and readout guarantees. I accept the whole exact candidate under the unchanged finite circuit question, not the old answer's universal physical-success interpretation.",
+  "bounded_semantic_relations": "509 and510 share the definite-parity/LCU substrate but not their full targets:509 is the mixed-parity Hermitian fixed-combiner question;510 audits normalized general-matrix resource guarantees. This is a bounded relation, not global deduplication or split clearance.",
+  "preserved_scope": {
+    "family": "qsc-lcu-chebyshev-synthesis",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:approximation",
+      "concept:block-encoding",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 6,
+    "original_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete Lin–Wiebe metadata entry230–238 read. LF authenticates recorded URL/edition/pin metadata only; not PDF proof or binary equality. Genuine primary mathematics/access limits are separately described."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Complete relevant authored question/assumptions/conventions/answer/rubric/steps and source context read. Tracked content provenance, not independent proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole actual historical prepared qcb-core-plan-509 loaded through release.checked()[2], not current-reader substitution; exact item digest above."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "operative_regions": "Definition9.2/Example9.3; complete Lemma9.5 proof Eq9.15–9.26 and Example9.6/Exercise9.2; Definition10.4/Eq10.14–10.16; full operative CS-to-Chebyshev blocks Eq10.90–10.98 and Section10.5/Theorem10.12/Eq10.99–10.105. The source states the factor2 combination but does not prove exclusive success or universal optimality. Both-port degeneracy, equalization and arbitrary-Hermitian dilation above are explicit reconstruction.",
+      "actual_access": "Primary PDF text genuinely accessed in this review objective. April29,2026 cover observed in the continuous source-reading context; current tool reports447 pages. Complete operative proof/definition regions above read, with independent reconstruction rather than verdict inheritance.",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "binary_hash_independently_verified": false,
+      "rendered_pages_independently_inspected": false,
+      "limits": "This reviewer did not obtain/hash original PDF bytes or inspect operative rendered pages. Parent separately reported genuine rehash/rendering; those actions are not mine and are not imported as a seal. No source-paper seal, local Lean/kernel execution or source-blind claim."
+    }
+  ],
+  "provenance": {
+    "candidate_author": "/root/qcb_native_comparison",
+    "reviewed_private_origin": "_review_tmp/plan-509-balanced-selected-port-boundary-repair.json",
+    "canonical_locator_status": "repair_record is the intended canonical transport locator, not a claim that those bytes were installed/admitted there. Whole digest and LF bind actual privately inspected bytes.",
+    "prior_exposure": "I previously inspected related qubitization/Grover sources and repairs, and received parent defect leads. For this objective I read the full actual original, exact withdrawal/finding and entire new candidate, including grading/process/metadata. Not a source-blind review; candidate author's or parent's reasoning/verdicts are not proof.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+    "prior_withdrawal_review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+    "prior_finding_digest": "5b0bbdc9fe85d50082bb174b7e1fd26f26a23d699689671f4608892618f8eb6a",
+    "actual_prior_reviewer": "/root/qcb_native_comparison",
+    "independence": "Actual reviewer /root/qcb_boundary_repair_review is distinct from candidate author /root/qcb_native_comparison and prepared original author polynomial-signals-author-b3. I did not author these candidates.",
+    "execution": "Read-only source/math and binding calculations only; no build/test/kernel/simulator/prediction, human/expert approval, global deduplication, policy change or admission.",
+    "mechanical_context": "Main engine remains e9308632431899a08938b4d9a6cd1b9d90c45e30. Payload grammar is mechanical context, not mathematical source_checks; no executable admission code is used as proof.",
+    "writes": "Only this NEW private exact-content review. Candidate, authorship handoff, all prior private artifacts and canonical files remain unchanged."
+  }
+}

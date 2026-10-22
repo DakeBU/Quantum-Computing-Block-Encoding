@@ -1,0 +1,214 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-518",
+  "supersedes_key": "qcb-core-plan-518-classical-search-lower-bound",
+  "supersedes_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+  "supersedes_contract_hash": "6d6f5612311dac1f0e44d408b9252b503fc88147ef8c39813b5b18f2a1106d18",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-518-textbook-question-v2-randomized-query-guarantee",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction, not answer-only weakening. Preserve N=2^n, unique mark, unbiased algorithms, classical worst-case query accounting and no-quantum-lower-bound conclusion. Retain the original N-1/>1/2 statement for explicit refutation, then request the sharp bounded-error guarantee (q+1)/N and the distinct certainty threshold N-1. The upper bound applies even without unbiasedness; the matching counterexample/algorithm is label-symmetric, so the retained assumption is not evaded or redefined to save the false claim. Only question changes among nine fields; all six ordered nodes remain. Same search-query family and source scope, changed requested reasoning, no formal admission.",
+  "question": "Keep the original setting N=2^n, a unique marked input and classical worst-case query count, including the unbiased-algorithm assumption. Assess/refute the predecessor's claim that success greater than1/2 on every input needs at least N-1 queries, using an explicitly label-symmetric randomized algorithm for N=4. For integer0<=q<=N-1 determine and prove the sharp maximum possible WORST-INPUT unconditional success probability when at most q classical Boolean queries are permitted: include a matching unbiased/label-symmetric algorithm. Reconstruct padding/removal-of-repeats and indistinguishability correctly by fixing the random coins, following the all-zero transcript, and then averaging over a uniformly chosen marked input before taking a worst input; do not choose an adverse input after observing private random coins. Explain why the conditional indistinguishability of two remaining candidates does not give the old unconditional1/2 ceiling. Derive the true thresholds for success strictly greater than1/2 and for certainty, treating N=1 as well, and state why this classical transcript proof alone proves no quantum lower bound.",
+  "reference_answer": "The old bounded-error N-1 threshold is false even for a completely label-symmetric algorithm. For N=4 choose a uniform random permutation, query its first two entries, output any hit, and if both answers are zero guess uniformly among the remaining two. For each fixed mark the hit probability is2/4; on a miss the guess succeeds with probability1/2. Thus overall success is2/4+(2/4)(1/2)=3/4 using exactly2<N-1=3 queries. The algorithm is equivariant under every relabeling and has identical success for every marked input, so unbiasedness does not rescue the assertion. More generally, for0<=q<=N-1 the sharp worst-input success is(q+1)/N. For the upper bound fix every internal random choice, obtaining a deterministic adaptive algorithm. Repeated queries can be cached and removed. Early stopping can be padded to q distinct queries while retaining the original output, or with an output rule improved by any discovered hit; this cannot reduce success. Follow the resulting all-zero branch and let S be its q queried labels. A unique mark outside S gives precisely this same zero transcript, regardless of which of the N-q remaining labels is marked, so its single deterministic final output is correct for at most one such label. For a mark in S the algorithm can be correct on at most the q inputs in S. Under a uniform marked input it therefore succeeds on at most q+1 of N inputs. Averaging this inequality over the random coins preserves the uniform-input success upper bound(q+1)/N. Some FIXED input must have success no larger than that average, which proves the worst-input upper bound without any unbiasedness hypothesis. The order matters: no input is selected as a function of hidden coins. For attainment, choose q distinct labels uniformly without replacement, query them and output a hit; if no hit occurs, guess uniformly among the N-q unqueried labels. Each fixed mark has hit probability q/N and miss-and-correct probability((N-q)/N)/(N-q)=1/N, hence success(q+1)/N. This is label-symmetric and so satisfies the retained unbiased condition. Conditional on a fixed all-zero transcript, two residual candidates indeed cannot both have success greater than1/2. But this conditions away hit transcripts, which can succeed with probability one, and the residual pair for randomized queries depends on coins. The old proof improperly promoted that conditional statement to an unconditional worst-input conclusion. Strict success greater than1/2 is attainable exactly when q+1>N/2, with least integer q=floor(N/2); certainty needs q>=N-1. For N=1 the mark is known with zero queries and these formulas give success1 and both least counts0. For N>=2 the certainty bound is also the familiar deterministic all-zero indistinguishability argument: q<=N-2 leaves at least two possible marks; N-1 negative tests identify the final candidate. Constant-success classical complexity is therefore Theta(N), not the old exact threshold. This proof concerns classical Boolean query transcripts, not coherent superposed oracle calls, and establishes no quantum lower bound. Grover's separate upper-bound construction is consistent with this distinction; its optimality requires an independent genuinely quantum lower-bound argument not supplied here. No gate, finite-bit or physical query-cost conclusion follows from these oracle counts.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Refutes the old N-1 bounded-error assertion with the explicit N=4,q=2 symmetric algorithm and unconditional3/4 success for each fixed mark, not a biased guess or a changed promise."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Fixes coins before the deterministic all-zero transcript, justifies caching/padding, counts at most q hit inputs plus one successful residual guess under a uniform mark, and averages coins before selecting a worst input."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Proves attainment(q+1)/N by symmetric distinct queries plus a uniform residual guess; identifies the old conditional/unconditional and quantifier errors."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Derives least q=floor(N/2) for strict success>1/2 and N-1 for certainty, includes N=1, and separates classical transcript reasoning from an absent quantum lower-bound proof."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The sharp randomized worst-input q-query success for a unique mark is(q+1)/N, achieved symmetrically. N-1 is a certainty threshold, not the threshold for success above one half; conditional zero-transcript ambiguity must not replace unconditional success.",
+    "semantic_steps": [
+      {
+        "claim": "Fix random coins, cache repeats and pad up to q<=N-1 distinct classical queries without reducing success, then follow the all-zero branch.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "That branch leaves N-q unqueried labels; for q=N-2 exactly two remain, but the branch and pair may depend on coins.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Every mark outside the zero-branch query set gives the same transcript; a fixed output is correct for at most one of them.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Count at most q successful hit inputs plus one residual input, then average over coins before taking a fixed worst input to obtain success<=(q+1)/N.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "The symmetric construction attains(q+1)/N, refuting N-1 for bounded error; strict success>1/2 needs floor(N/2) queries and certainty needs N-1.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "This classical-transcript argument gives no quantum lower bound; superposed-query optimality needs a separate quantum proof.",
+        "supporting_nodes": [
+          "concept:operator-theory",
+          "concept:complexity"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Entire lin-wiebe-2026-qasc metadata entry230-238 read: URL, April29 2026/447-page edition and historical PDF pin. This LF authenticates metadata only, not source proof or binary identity. Genuine primary text access/limitations below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Complete authored qcb-core-plan-518-classical-search-lower-bound question/assumptions/conventions/answer/rubric/semantic steps and actual whole prepared counterpart read. Content provenance only; mathematical corrections are derived, not certified by this QA file."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Historical prepared original loaded through release.checked()[2] and bound as a whole, not a substituted current-reader row. No change to frozen content."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_candidate_pending_distinct_review",
+    "authored_at_head": "e9308632431899a08938b4d9a6cd1b9d90c45e30",
+    "private_origin": "_review_tmp/plan-518-randomized-query-guarantee-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-518-randomized-query-guarantee-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "6d6f5612311dac1f0e44d408b9252b503fc88147ef8c39813b5b18f2a1106d18",
+      "successor_contract_hash": "eefe47810cd6fdb8bf3d284522edd84d5a709a54e926e999568c06d8b200b046",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [
+        "Unique marked element; algorithm is unbiased"
+      ],
+      "original_conventions": [
+        "N = two-to-the-n; worst-case classical query count",
+        "Quantum queries act in superposition, unlike the classical bit answers counted here"
+      ],
+      "preserved_family": "qsc-grover-amplitude-amplification",
+      "preserved_split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:complexity",
+        "concept:operator-theory"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lin-wiebe-2026-qasc",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 6,
+      "original_ordered_step_nodes": [
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:operator-theory",
+          "concept:complexity"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:operator-theory",
+          "concept:complexity"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "prior_exposure": {
+      "source_and_original": "This author read the entire actual prepared original, current withdrawal and complete bound finding, including old imported accept metadata. Parent supplied defect leads; neither those leads nor prior verdicts are proof. The source was then reread and the arguments independently reconstructed. This is not source-blind authorship.",
+      "withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "withdrawal_review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "3ac468c2706e32d6cc769a47839576b4c6a02a98ebb853e8aa0e77aca7cf1365",
+      "actual_prior_reviewer": "/root/qcb_native_comparison",
+      "withdrawal_bindings_verified": true
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+        "edition_observed": "Cover April29,2026;447 pages",
+        "operative_regions": "Complete Proposition11.1 statement and proof (printed182), its unique-mark setup and following classical/quantum discussion through bit-oracle Eq11.1. The source prints the false stronger bounded-error assertion. The conditional-transcript flaw, symmetric counterexample, averaging argument and matching sharp guarantee are independent reconstruction rather than a claim that the printed proof establishes them.",
+        "access": "Primary PDF text genuinely retrieved through web extraction in this objective. One group of requests failed, direct-URL retry succeeded. No PDF redistributed.",
+        "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "binary_hash_independently_verified": false,
+        "visual_check": "Attempted Fig11.1 page screenshot; service reported screenshot unavailable. No visual source-layout seal or verified binary claim.",
+        "limits": "The cover/anchors match the recorded edition, but this author did not obtain and hash original PDF bytes. Source statements themselves have assessed defects; primary-source presence is not proof of their correctness."
+      }
+    ],
+    "source_proof_coverage": {
+      "mathematical_nodes": "Complete Proposition11.1 statement and proof (printed182), its unique-mark setup and following classical/quantum discussion through bit-oracle Eq11.1. The source prints the false stronger bounded-error assertion. The conditional-transcript flaw, symmetric counterexample, averaging argument and matching sharp guarantee are independent reconstruction rather than a claim that the printed proof establishes them.",
+      "source_gaps": "No local Lean theorem or source-to-formal bridge supplied. Source bounds/normalizations are assessed rather than inherited; this candidate contains an explicit NL derivation only.",
+      "excluded": "Neighboring Chebyshev/SVT reinterpretation, exact-amplification variants, quantum lower-bound proofs and circuit synthesis are not needed for this bounded correction and are not claimed covered."
+    },
+    "validation": "Whole predecessor/withdrawal/contract bindings and exact six-step ordered-node preservation checked mechanically; those checks are not mathematical approval. No test/build/Lean/kernel or prediction execution.",
+    "author_self_approval": false
+  }
+}

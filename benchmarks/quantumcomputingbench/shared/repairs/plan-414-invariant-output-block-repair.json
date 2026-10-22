@@ -1,0 +1,79 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-414",
+  "supersedes_key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+  "supersedes_item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-414-textbook-v1-invariant-output-block-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer/rubric/exposition only. The literal question asks covariance and how it lets Schur-Weyl constrain a symmetric output block; it does not demand the false assertion that every output is scalar. Preserve ALL nine contract fields, empty assumptions/conventions, family haar-twirl-covariance, test_public split, graph/source scope, and exactly three ordered step-node lists. Unchanged contract hash 978355f5a0bd94ec866217b30d86c71d7567df66b79cc556a0b81d5d596a73f7. Correct the translation justification and restrict the scalar conclusion to invariant input and the symmetric output block, rather than quietly add an input hypothesis to the covariance theorem.",
+  "reference_answer": "Put U_r=U^{tensor r}, and take normalized left Haar measure mu on the compact group U(d). First justify the translation actually needed. For fixed V, the right-translated measure nu(A)=mu(A V^{-1}) is a probability measure and satisfies nu(gA)=mu(g A V^{-1})=mu(A V^{-1})=nu(A). Uniqueness of normalized left Haar therefore gives nu=mu. Thus normalized compact left Haar is also right invariant. The substitution W=UV below is RIGHT translation, derived from left invariance plus normalization/uniqueness; it is not directly a left translation.\n\nFor any operator X, expand\nTbar(V_N X V_N^dagger)\n= integral dU (U^dagger)_M T((UV)_N X ((UV)^dagger)_N) U_M.\nSet W=UV, so U=W V^dagger and U^dagger=V W^dagger. Right invariance just established leaves dU=dW. Consequently this equals\nintegral dW V_M (W^dagger)_M T(W_N X (W^dagger)_N) W_M (V^dagger)_M\n= V_M Tbar(X) (V^dagger)_M.\nThis proves the specified covariance, for every X, not merely density operators or symmetric inputs. Every integrand map is a unitary conjugation before and after T; positivity of every matrix amplification and trace preservation survive finite-dimensional averaging, so Tbar is again a quantum channel.\n\nThe requested one-sentence Schur-Weyl explanation is: covariance converts invariance of an INPUT into invariance of its OUTPUT, so the multiplicity-one irreducible symmetric output block is scalar by Schur's lemma, without asserting that an arbitrary input has a scalar output.\n\nMore explicitly, write Pi_r for the projector onto Sym^r(C^d) and q_d(r)=dim Sym^r(C^d). Whenever q_d(N)>0, tau_N=Pi_N/q_d(N) is an invariant density operator. Covariance implies Y=Tbar(tau_N) commutes with every V_M. The compression Pi_M Y Pi_M also commutes with the irreducible U(d) action on Sym^M. Thus, if q_d(M)>0,\nPi_M Y Pi_M = (lambda/q_d(M)) Pi_M,\nlambda=tr(Pi_M Y), 0<=lambda<=1.\nThis is the statement used in the source's cloning argument. It describes only that compressed block, not all of Y or a channel determined by one parameter. Nor does unitary commutation force scalars on every isotypic component: in the Schur-Weyl order V_lambda tensor U_lambda^d it permits End(V_lambda) tensor I on the multiplicity factor. Additional permutation commutation is a different condition.\n\nFor a direct boundary witness, d=2,N=M=1,T=identity gives Tbar=identity and Tbar(|0><0|)=|0><0|, not a scalar on Sym^1(C^2)=C^2. Covariance is an intertwining identity for a SUPEROPERATOR, not permission to apply the ordinary irreducible-endomorphism version of Schur directly to that superoperator.\n\nN,M may be zero, with tensor power zero the one-dimensional tensor unit and U_0=1; the same proof applies. For d=1 the nonzero spaces and symmetric blocks are one-dimensional. For d=0 the covariance algebra still makes sense whenever such a channel exists, but positive tensor powers of C^0 are zero spaces with no trace-one state: tau_r and division by q_0(r)=0 must not be used there. For r=0 the tensor unit and its projector have dimension one. These cases do not enlarge the scalar conclusion. No optimal-cloning fidelity or efficient implementation is proved by this covariance identity alone.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Expands the rotated input, groups U_N V_N=(UV)_N, and keeps input/output tensor powers and adjoints in the displayed order."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Correctly identifies W=UV as right translation and derives its measure invariance from uniqueness/normalization of compact left Haar; uses U=W V^dagger and U^dagger=V W^dagger without the original inverse-substitution typo."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Pulls the fixed V_M and (V^dagger)_M outside the integral, recognizes Tbar(X), and proves covariance for every X. Does not add symmetric-input or scalar-output premises to that identity."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Gives a qualified Schur-Weyl explanation: invariant input yields invariant output, whose irreducible symmetric compression is scalar when the normalized objects exist. Does not infer scalarity for arbitrary input, for multiplicity factors, or for the entire channel. The invariant tau_N calculation, identity-channel witness and zero-normalization discussion in the reference elaborate this boundary; they are not additional premises for the covariance equation."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Compact normalized left Haar supplies right invariance for W=UV and hence channel covariance. Schur's scalar conclusion applies to the symmetric compression of an invariant-input output, not arbitrary outputs or the channel as a whole.",
+    "semantic_steps": [
+      {
+        "claim": "Expanding a rotated input groups its inside factors as (UV)_N X ((UV)^dagger)_N.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Uniqueness of normalized compact left Haar implies right invariance, validating W=UV with U=W V^dagger.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "The outside V factors give covariance; at the invariant input tau_N its symmetric output block is scalar, whereas arbitrary inputs and other multiplicities need not be.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry entry leditzky-2025-repth-qit; local LF binding is METADATA ONLY, not a hash of the mathematical PDF. Primary content/access and exact operative anchors are separately described in execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_quantum_information_apps.json",
+      "sha256_lf": "abb7e74aab048f89e16a1a6a809b69bc41ca09c014e17e7a3825f3c25255bf45",
+      "anchor": "Complete historical authored record for this core, read alongside the full prepared original; provenance, not a mathematical proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Complete exact historical prepared original returned by release.checked()[2]; whole-item binding is supersedes_item_digest. This LF binding is data provenance, not local Lean closure."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+      "sha256_lf": "0c34048331684a9a75bbcd6472ff4ad289d8196213f6a19df0d1b5be13ba71ef",
+      "anchor": "Full prior withdrawal finding and cohort-level primary-access limits read as exposed historical evidence; not transferred approval of this new candidate."
+    }
+  ],
+  "execution": "Actual author /root/qcb_formal_view_audit, not a distinct reviewer of this payload. Inspected the entire actual historical prepared original through release.checked()[2] at local e9308632431899a08938b4d9a6cd1b9d90c45e30, its exact current bound withdrawal and complete prior finding by /root/qcb_boundary_repair_review. Prior finding whole-report digest 86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70; item finding digest 6786b3ea4a98fe328e01a3358cad1b502a9b0b6d208222455343324831bfd329. Exposed to old answers/reviews and earlier related cohort work; not source-blind. Primary URL https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf was actually retrieved as primary text through the web PDF reader during this task (79-page document, displayed 10 April 2026 edition). Inherited raw-byte SHA256 90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3 is a recorded pin, NOT freshly verified: direct binary retrieval failed with Windows socket access error10013, and operative-page web screenshot attempts failed with cache misses. Text inspection is real but current raw-byte equality and visual equation checking are unverified. No PDF saved/redistributed. Metadata LF equality does not prove primary-byte equality. PDF skill used for source-inspection discipline. Independent elementary reconstructions below do not rely on missing visual evidence as authority. No new Lean/kernel/native-formal/source-paper seal, finite-bit algorithm, build, stable release, admission or global dedup claim; distinct exact-content review is required. No changed canonical/source/frozen files. Process-memory scope was the exact current withdrawal/finding, not a new correctness premise. Operative primary content actually read: Proposition3.39/Eq3.3 compact Haar normalization/invariance; complete Schur-Weyl commutant/decomposition region Lemma4.4, Proposition4.5, Definition4.6, Lemma4.7 and Propositions4.9-4.11 (the notes defer4.9's proof); complete Proposition8.2 including Eq8.10 and the explicit tau_N insertion before Eq8.16; Exercise8.4 covariance equations. Relevant PDF zero-based pages33-34,38-41,65-66,69 (printed pagination is one higher). These are source text plus the explicit compact-Haar and matrix reconstructions here, not new local theorem closure. Bounded semantic comparison:415 additionally imposes permutation commutation and changes the performance question;413 concerns the projected cloner/fidelity. Shared twirling machinery is not proof that these entire targets are equal."
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-plan-520",
+  "repair_record_digest": "ce248c860a3bf8a7e19eea10d9d6a5661f00a66ab3fa6aef196b5d4c1ea5c8fe",
+  "original_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+  "original_contract_hash": "9fc6da7ea892a915785e7651e360083795319bc98f19859b6d758618a32c676e",
+  "successor_contract_hash": "b2fe41619a12e1932fb1f8c78109c1582e824efb65a575099d817994cc93958c",
+  "question_version": 2,
+  "verdict": "accept",
+  "exposure": "Not blind: I authored the historical scientific-signals-511-520 reader findings, have prior cohort/source/parent-lead exposure, and read the boundary author's handoff before this new review. I did not author these repair candidates. In this objective I read each full actual prepared predecessor via release.checked()[2], current bound withdrawal and complete finding, entire candidate including rubric/steps/execution, and operative primary proofs. Independence here is distinct actual candidate authorship and substantive re-review, not a claim of unexposed cognition or human review.",
+  "contract_change_assessment": {
+    "literal_defect": "The original question says each iteration increases amplitude by order sqrt(p), without an iteration window, and asks an implementable cost comparison without explicitly providing inverse/calibration/check access. Small p alone does not make every increment positive. The new question must change: it retains/refutes that claim, requests quantitative windowed mathematics and makes applicability a conditional dependency audit rather than silently supplying extra standing promises.",
+    "convention_and_scope": "The retained amplitude convention is consistent with a SIGNED sine coefficient; its absolute value is the norm and its square is probability. It does not assert perpetual positive growth. The query-level cost convention fixes the units, not forward-only sufficiency or free inverse access. No active assumption/convention is overridden: original small-positive p is retained,0/1 are boundary analyses rather than substitutes, and all other eight contract fields and six ordered node lists remain exact. Therefore a question-only V1 successor is legitimate."
+  },
+  "substantive_reconstruction": {
+    "projected_plane": "For0<p<1, orthogonality of Pi and I-Pi gives normalized g=Pi psi/sqrt(p), b=(I-Pi)psi/sqrt(1-p), with psi=sin(phi)g+cos(phi)b, phi=arcsin(sqrt(p)). The mathematical reflections preserve their span even if either ambient subspace has larger rank. Their ordered product has matrix [[cos(2phi),sin(2phi)],[-sin(2phi),cos(2phi)]], yielding signed a_k=sin((2k+1)phi). Consequently ||Pi W^k psi||=|a_k| and success=a_k^2; the source's all-k norm-equals-signed-sine wording cannot be imported literally.",
+    "exact_increment_and_failure": "Subtracting consecutive sines gives a_(k+1)-a_k=2sqrt(p)cos((2k+2)phi). On0<=(2k+2)phi<=pi/3 the cosine lies in[1/2,1], proving the explicit bounds sqrt(p)<=increment<=2sqrt(p). They are two-sided positive bounds only in that window. Taking phi=pi/(4m+2) gives p tending to0, a_m=1 and a_(m+1)=cos(2phi)<1, so a later increment is negative despite arbitrarily small initial p. This is an exact family, not a numerical-screen extrapolation or a contradiction to rotation by a fixed angle.",
+    "matched_quantum_target": "For beta=pi/6 and phi<=pi/12, k=ceil((beta/phi-1)/2) is nonnegative and gives beta<=(2k+1)phi<beta+2phi<=pi/3. Thus success is at least1/4. Since phi is asymptotic to sqrt(p), this schedule uses Theta(1/sqrt(p)) iterates. Every increment actually used has index i<k, so (2i+2)phi<=2k phi<beta+phi<=pi/4, inside the stated early window. Conversely any fixed-iterate first attainment of1/4 requires angle at least pi/6 from |sin(alpha)|<=alpha, giving the same order within this scheme, not a lower bound over all quantum algorithms.",
+    "matched_classical_target": "Independent fresh trials have C_t=1-(1-p)^t and increment p(1-p)^t. For p<=1/2 and tp<=C, log(1-p)>=-2p yields p exp(-2C)<=increment<=p. It is therefore Theta(p) in the specified window and tends to0 as trials saturate, not linearly forever. The least t for the SAME success target1/4 is ceil(log(3/4)/log(1-p)), hence Theta(1/p) as p tends to0. Coherent early-window angle/amplitude growth and Born's rule explain this matched comparison; a vague amplitude-versus-probability slogan alone would not establish the schedule or success.",
+    "conditional_access_ledger": "For the complete preparation input/workspace define S0=2|0><0|-I. If inverse U and S0 are available, U S0 U†=2|psi><psi|-I, so applying k mathematical iterates after the initial preparation uses exactly(k+1,k,k,k) calls to(U,U†,R_good,S0). The rightmost good reflection acts before each conjugated prepared reflection. Forward preparation alone does not provide U† for free, and knowing a state vector does not provide a free reflection about an arbitrary unknown state. Selecting this k needs p or adequate calibration; classical repetition needs fresh preparations and an available good-outcome check. A bare phase-reflection oracle does not certify an uncontrolled free projective check or free controlled access.",
+    "endpoints_grading_and_source": "At p0, psi is bad and W fixes it, so no g normalization or amplification is defined. At p1, psi is good, W^k psi=(-1)^k psi and success is already1; b is undefined. The full rubric and six steps correctly demand these distinctions, quantitative increments, matched target and conditional access rather than treating them as hidden hypotheses. Complete Proposition11.6 proof and Example11.7 supply the legitimate reversible model, with Corollary11.8 showing stronger controlled/known-p assumptions are separate. Original primary_sources anchors remain frozen historical metadata; the review identifies the actual operative later pages rather than silently editing that field. No cleanup, gate synthesis, precision, global lower bound or source-to-Lean theorem is established."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc entry personally inspected in the continuous task context and LF rechecked here. This is external-source locator/edition metadata only, not a local mathematical proof or primary-byte identity. Actual operative mathematics is recorded in primary_source_checks."
+    }
+  ],
+  "content_bindings": {
+    "inspected_private_candidate": "_review_tmp/plan-520-windowed-amplification-access-question-successor.json",
+    "planned_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-520-windowed-amplification-access-question-successor.json",
+    "candidate_sha256_lf": "f4b482d95582d8e614673d10978acda7cc899555af929218932b9f468495d434",
+    "original_assumptions": [
+      "Initial success probability p is small and positive; the good subspace is defined by a projector"
+    ],
+    "original_conventions": [
+      "sine of the half-angle equals sqrt(p); amplitude is the sine of the running angle",
+      "Costs counted in state-preparation-unitary and good-subspace-reflection calls"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_digests": {
+      "assumptions": "416f79ae8195086c2552eb94ab16b821ca747b7c95c7e95c082436b4ba6fe8ad",
+      "conventions": "704d0b30e5ef3f6a3f45b9406ab187b52d23ee5f560f23e41bd9f1e6375ddd3c",
+      "family": "dd5e0d146f7b323c02bdb41d2cf01111381d6e7f033a04264d07b1b89f48055f",
+      "split": "a774e852385c11df74d26b40210fb7d29a7b8e7357a8ecece45482398c3f3f7c",
+      "graph_version": "2ced781f875884ea6187183f7ad941c8871d10c978fb36a1a4c054d2defedc1b",
+      "target_nodes": "566496a5e723f36048e61016ba335d270d27c182c79d50215292718e5939a50e",
+      "supporting_nodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_refs": "5c4265958dc20cca662e75650774b7cf3998fb866be977f879a73d2cc238bc75"
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:approximation",
+        "concept:operator-theory"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:approximation",
+        "concept:operator-theory"
+      ]
+    ],
+    "semantic_step_count": 6,
+    "withdrawal": {
+      "core_id": "qcb-core-plan-520",
+      "predecessor_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+      "predecessor_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+      "reason": "Amplitude increments are not positive at every iteration; the early-angle window, inverse-preparation access and calibrated stopping rule require explicit scope.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "1a2ec98812099b35814fa779424d2c24c4504ff5db248ef5f32e30a3e2870eea"
+    },
+    "whole_original_candidate_contract_and_withdrawal_bindings": "Independently recomputed and matched actual current records and handoff. All candidate LF source bindings and six identical ordered node lists checked; these are content checks, not a proof or admission."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition_observed": "Cover29 April2026;447 pages",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "operative_regions": "Chapter11 amplitude/probability discussion; complete Section11.2 decomposition Eq11.31; full Proposition11.6 statement/proof Eq11.32-11.42, printed189-190/PDF188-189; entire Example11.7 Eq11.43-11.47 and Corollary11.8's known-p/controlled-oracle statement and surrounding proof context. Signed-sine versus norm and inverse/full-workspace access were checked rather than copied.",
+      "actual_review_access": "Primary author-hosted PDF text extraction personally read in this objective, including complete operative statements/proofs and context named above. Cover was reopened. Source claims were independently assessed, not presumed correct.",
+      "binary_hash_verified_in_this_review": false,
+      "operative_pixels_inspected_in_this_review": false,
+      "limits": "My screenshot requests at PDF pages181,184,188 failed with cache misses. No direct primary-byte hashing, rendered-page inspection, paper/PDF seal or source redistribution is claimed. Root's or candidate author's separate fetch/render executions are not assigned to me."
+    }
+  ],
+  "provenance": {
+    "observed_head": "e9308632431899a08938b4d9a6cd1b9d90c45e30",
+    "written_private_review": "_review_tmp/plan-520-windowed-amplification-access-question-successor-review.json",
+    "limitations": "Private mathematical/source review only. No canonical installation, old-artifact edits, builds/kernel/native-formal proof, code-as-mathematical-evidence, source-paper/visual seal, human/model/expert/blind approval, global semantic closure or admission claim."
+  },
+  "review_scope": "Complete question, answer, every rubric criterion, core summary, all six semantic steps and process/source metadata assessed. Exact V1 question-payload key set, actual predecessor and both nine-field hashes, distinct authorship, source LF and ordered-step preservation are mechanical bindings only. No fresh production execution is used as mathematical evidence."
+}
