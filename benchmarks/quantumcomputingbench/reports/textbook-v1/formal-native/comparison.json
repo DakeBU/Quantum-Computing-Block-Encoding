@@ -1,0 +1,51 @@
+{
+  "schema_version": "qcb.native_source_comparison.v1",
+  "reviewer": "/root/qcb_native_comparison",
+  "batch_digest": "5bda7b47ec2dae841f07814ce8c7a4151436a297bf038c65a6ade9290ebfe110",
+  "decoder_digest": "941e664778923dbaebc3388d6ce77d75eeb9de739aff8d43d0e986d079279559",
+  "views": [
+    {
+      "anonymous_id": "F1",
+      "verdict": "accept",
+      "question_contract_hash": "0821f527326022b9972f0d4083b8a2a99c179263e36e5d27112f6cb5c1c98865",
+      "formal_context_digest": "b96109018cdf2bf6a3d842914598f4328ff9ba607aad57862f970751295aa1e6",
+      "reasoning": "The literal requested mathematical conclusion is equality of the complete squared norms of f and its sibling-pair Euclidean marginal. PrimitiveBasis n is Fin n -> Fin 2; marginal f at b is sqrt(f(snoc b 0)^2 + f(snoc b 1)^2), and normSq is the finite sum of squares. Thus the target is exactly the requested equality, with all n including zero and all real tables, including signed and zero tables; it adds no normalization or positivity premise. The reconstruction agrees on the last-coordinate split, nonnegative square root, complete carrier and exact real equality. The inspected source proves pairNorm_sq by nonnegativity of a sum of squares, then uses the snoc equivalence and the two-element last-bit sum, matching the mathematical steps required by the answer and rubric. The recursive explanation identifies a normalization-denominator invariant: whenever a normalized preparation induction is applicable, every marginal has the same squared norm. This equality alone does not supply the separate positivity/nonnegativity premises of prepareCircuit_firstColumn, construct a normalized zero state, or certify the loader, signed phases, rotations, resources or numerical export. Acceptance is exact alignment of the mathematical norm invariant, not kernel certification of the full NL explanation; applying this existing library lemma is not deep proof synthesis. I did not run Lean or perform a source-blind decode in this review.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        }
+      ]
+    },
+    {
+      "anonymous_id": "F2",
+      "verdict": "accept",
+      "question_contract_hash": "4be120801daf6e4de98794d14d4c0db5f93bcb6924b3c6aae20252167d662f93",
+      "formal_context_digest": "16cd1c8222c678613ea0868fe418361909e18ad18c74c404a7fe81af17dee080",
+      "reasoning": "The question supplies the general two-row mixing determinant factor and asks to use it to prove determinant preservation by a half-angle plane rotation. The target states exactly that final conclusion for every real square A, every distinct ordered row pair i,j, and every real theta. The rotateRows definition uses the original rows in both new rows, with coefficients cos(theta/2), -sin(theta/2), sin(theta/2), cos(theta/2), and leaves all other rows unchanged. Consequently a*d-b*c is cos(theta/2)^2+sin(theta/2)^2=1. This matches the reconstruction, NL assumptions and answer; no invertibility, adjacency, orthogonality, angle choice or nonzero determinant was inserted. Empty and one-dimensional matrices have no admissible distinct pair, and singular matrices remain included. I also inspected det_two_row_mix: its equal-row determinants vanish, its swap term is -det A, and its multilinear expansion gives the stated factor, so the answer and all three rubric steps have the advertised supporting source mathematics. The formal target does not itself require an arbitrary a,b,c,d mixing theorem or certify that the submitted NL proof performed those steps; it certifies only the requested rotation identity if separately checked. It supplies no elimination construction, circuit compilation or evaluation-cost theorem. Acceptance is mathematical conclusion alignment, not an execution claim or deep proof-synthesis result. I did not run Lean or perform a source-blind decode in this review.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"
+        }
+      ]
+    },
+    {
+      "anonymous_id": "F3",
+      "verdict": "accept",
+      "question_contract_hash": "108977edccc1cb916d3614d5b4d2927d1a82e337f901ff73421320ef956448b0",
+      "formal_context_digest": "c882ae7a342ce3dbd6ecdf4f3798a1ddb28b8359d31adccac77a31370ad4812a",
+      "reasoning": "Core l r is literally Matrix (Fin l) (Fin 2 x Fin r) Real. complexCore reverses these carriers and embeds each real entry: B(out,a)=A(a,out) in Complex. The sole algebraic premise A*A.transpose=1 is precisely the stated row-canonical condition. The target B.conjTranspose*B=1 has both identity indices on Fin l, so it is exactly the question's explicitly defined isometry conclusion on the old/input bond, rather than the generally false rectangular output identity B*B.conjTranspose=1. Expanding its (a,c) entry gives sum_out conjugate(A(a,out))*A(c,out); real embedding makes conjugation trivial, and this is the complex embedding of (A*A.transpose)(a,c), hence the Kronecker delta. That verifies the answer's real and imaginary part reasoning and every rubric step independently of merely recognizing the target. The reconstruction agrees on orientation, realness, summation over physical bit plus new bond, unrestricted natural dimensions and degenerate cases. No square-core condition, power-of-two bond size or extra feasibility inequality was added. The phrase circuit isometry is expressly defined here by the Gram identity; neither this target nor the NL derivation constructs an executable circuit, qubit register embedding, unitary extension, canonicalization algorithm, resource bound or finite-precision guarantee. Acceptance binds the exact algebraic conclusion and its source semantics; it does not claim that a kernel certifies the entire explanation or that an application of this existing library lemma is deep synthesis. I did not run Lean or perform a source-blind decode in this review.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ]
+    }
+  ]
+}

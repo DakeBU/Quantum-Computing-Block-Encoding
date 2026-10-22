@@ -11,6 +11,8 @@ sys.path.insert(0, str(B / "src"))
 sys.path.insert(0, str(B / "scripts"))
 import release
 from qcb_core import digest
+from qcb_core import read_json
+import qcb_textbook_policy as policy
 from qcb_nl_release_policy import check_current_gold
 from qcb_textbook_policy import apply_current_reader_policy, frozen_native_is_current, CONTRACT_FIELDS, public_reader_item
 
@@ -52,3 +54,20 @@ class TextbookPolicyTests(unittest.TestCase):
             self.assertNotIn("reviews", view)
             self.assertNotIn("inherited_predecessor_reviews", view)
             self.assertNotIn("lineage", view)
+
+    def test_exposition_repairs_cannot_change_contract_or_graph_scope(self):
+        repair_path = B / "shared/repairs/sp-006-normalization-boundary-repair.json"
+        for exposition in ({"question": "a different problem"},
+                           {"semantic_steps": []},
+                           {"semantic_steps": [{"claim": "bad scope", "supporting_nodes": ["unbound:node"]}] * 3}):
+            bad = read_json(repair_path)
+            bad["exposition"] = exposition
+            with patch.object(policy, "read_json", side_effect=lambda p: bad if Path(p) == repair_path else read_json(p)):
+                with self.assertRaisesRegex(ValueError, "contract|graph scope"):
+                    apply_current_reader_policy(self.historical)
+
+    def test_all_repaired_predecessors_are_withdrawn_from_current_gold(self):
+        for item in self.historical:
+            if item["core_id"] in {"qcb-core-sp-002", "qcb-core-sp-006", "qcb-core-sp-011"}:
+                with self.assertRaisesRegex(ValueError, "withdrawn"):
+                    check_current_gold([item])

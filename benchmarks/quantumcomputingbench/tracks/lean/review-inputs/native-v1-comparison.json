@@ -1,0 +1,239 @@
+{
+  "author": "/root",
+  "batch_digest": "5bda7b47ec2dae841f07814ce8c7a4151436a297bf038c65a6ade9290ebfe110",
+  "decoder": "/root/qcb_native_decoder",
+  "decoder_digest": "941e664778923dbaebc3388d6ce77d75eeb9de739aff8d43d0e986d079279559",
+  "schema_version": "qcb.anti_anchored_comparison_packet.v1",
+  "views": [
+    {
+      "anonymous_id": "F1",
+      "core_id": "qcb-core-sp-005",
+      "formal_context": {
+        "imports": [
+          "QuantumBlockEncoding.RealAmplitudePreparation"
+        ],
+        "target": "∀ {n : ℕ} (f : QuantumBlockEncoding.PrimitiveBasis (n + 1) → ℝ), QuantumBlockEncoding.RealAmplitudePreparation.normSq (QuantumBlockEncoding.RealAmplitudePreparation.marginal f) = QuantumBlockEncoding.RealAmplitudePreparation.normSq f"
+      },
+      "question_contract_hash": "0821f527326022b9972f0d4083b8a2a99c179263e36e5d27112f6cb5c1c98865",
+      "reconstruction": {
+        "anonymous_id": "F1",
+        "assumptions": [
+          "The only parameters are an arbitrary natural n and an arbitrary real function f on PrimitiveBasis(n+1).",
+          "There is no normalization, nonzero, positivity, boundedness, or sign assumption on f. The real expression under each square root is nonnegative because it is a sum of squares."
+        ],
+        "definitions_and_conventions": [
+          "PrimitiveBasis k is the set of functions from Fin k to Fin 2: its elements have k ordered coordinates, each taking the value zero or one.",
+          "Fin.snoc b d extends b by placing d in the last coordinate, indexed by n; this marginal combines amplitudes differing in that last coordinate.",
+          "pairNorm(a,b) is the nonnegative real square root of a squared plus b squared. The marginal is a real amplitude function, rather than a function returning the squared marginal weights.",
+          "normSq(h) is the finite sum of the real squares of h over its complete bitstring carrier. No square root is taken in normSq itself."
+        ],
+        "edge_cases": [
+          "For n=0, PrimitiveBasis 0 contains exactly the empty bitstring, so the left side has one summand and the right side has the two one-bit summands.",
+          "Every PrimitiveBasis n has 2^n elements and is nonempty, even at n=0; the outer norm sums are therefore never empty.",
+          "If both amplitudes in a pair are zero, the corresponding marginal amplitude is zero. The all-zero function is admitted. Negative real amplitudes are admitted and their signs are discarded by this marginal."
+        ],
+        "limits": [
+          "The proposition is an exact real algebraic identity for squared norms. It does not assert a circuit, a state-preparation algorithm, a measurement procedure, a gate count, query complexity, runtime, or finite-precision error bound.",
+          "It does not recover the individual amplitudes or their signs from the marginal, and it does not state a complex-amplitude or phase-preservation result. Normalized input would imply normalized marginal, but normalization is not a premise of this target.",
+          "The supplied definitions suffice to reconstruct this statement; their noncomputable annotations alone establish neither an executable algorithm nor an inefficiency result."
+        ],
+        "reconstructed_statement": "For every natural number n, including zero, and every real-valued function f on the set of bitstrings of length n+1, define a real-valued function g on bitstrings b of length n by g(b) = sqrt(f(b followed by 0)^2 + f(b followed by 1)^2). Then the sum, over all length-n bitstrings b, of g(b)^2 equals the sum, over all length-(n+1) bitstrings x, of f(x)^2. Thus the specified operation of replacing each pair of amplitudes sharing the first n coordinates by its nonnegative Euclidean length preserves the total squared Euclidean norm exactly."
+      },
+      "source_question": {
+        "assumptions": [
+          "f is an arbitrary real table on n+1 wires; no positivity or normalization is assumed",
+          "the marginal is defined by the sibling-pair Euclidean length as in the source"
+        ],
+        "conventions": [
+          "normSq g is the sum of squared entries; wires are little-endian with the last bit split off by snoc",
+          "pairNorm is the nonnegative Euclidean length of a pair"
+        ],
+        "question": "For a finite real amplitude table f on n+1 wires, define its low-wire marginal by taking, at each prefix word b, the Euclidean length of the sibling pair (f at b-with-last-bit-0, f at b-with-last-bit-1). Prove that the total squared Euclidean norm of the marginal equals the total squared Euclidean norm of f. Explain why this makes the recursive marginal pass norm-faithful.",
+        "reference_answer": "Write normSq g = sum over basis words of g^2, and for a prefix word b let m(b) = pairNorm(f(snoc b 0), f(snoc b 1)) with pairNorm(a,b) = sqrt(a^2+b^2). First, pairNorm squares cleanly: pairNorm(a,b)^2 = a^2 + b^2, because pairNorm is the square root of the nonnegative quantity a^2+b^2 and squaring a square root of a nonnegative real returns the radicand. Hence m(b)^2 = f(snoc b 0)^2 + f(snoc b 1)^2 for every prefix b. Summing over all prefix words b: normSq(marginal f) = sum_b m(b)^2 = sum_b [ f(snoc b 0)^2 + f(snoc b 1)^2 ]. Now use the bijection between words on n+1 wires and (prefix word b, last bit v) given by w = snoc b v, which partitions every full word uniquely by its last bit. Reindexing the full sum normSq f = sum over w of f(w)^2 along this bijection and splitting the last bit into the two cases v=0 and v=1 gives exactly sum_b [ f(snoc b 0)^2 + f(snoc b 1)^2 ]. The two expressions coincide, so normSq(marginal f) = normSq f. Norm-faithfulness follows: the recursive loader first prepares the marginal on the lower wires and then splits each marginal entry with one rotation; because each marginal step reproduces the exact squared norm, the induction hypothesis about the normalized lower state transfers without any loss or rescaling, which is precisely the invariant the first-column proof consumes.",
+        "rubric": [
+          {
+            "criterion": "Establishes pairNorm(a,b)^2 = a^2 + b^2 (square of a square root of a nonnegative radicand), hence m(b)^2 = f(snoc b 0)^2 + f(snoc b 1)^2.",
+            "id": "r1",
+            "weight": 1
+          },
+          {
+            "criterion": "Uses the (prefix word, last bit) bijection w = snoc b v to reindex the full squared-norm sum.",
+            "id": "r2",
+            "weight": 1
+          },
+          {
+            "criterion": "Splits the last-bit sum into v=0 and v=1 to match the marginal sum, concluding normSq(marginal f) = normSq f.",
+            "id": "r3",
+            "weight": 1
+          },
+          {
+            "criterion": "Explains that exact squared-norm preservation per level is what carries the normalization invariant through the recursion.",
+            "id": "r4",
+            "weight": 1
+          }
+        ],
+        "source_refs": [
+          {
+            "anchor": "lines 142-222: theorem pairNorm_sq (a b : R) : pairNorm a b ^ 2 = a ^ 2 + b ^ 2; noncomputable def marginal f := fun b => pairNorm (f (Fin.snoc b 0)) (f (Fin.snoc b 1)); noncomputable def normSq f := sum b, f b ^ 2; theorem normSq_marginal (f : PrimitiveBasis (n+1) -> R) : normSq (marginal f) = normSq f",
+            "license": "MIT (repository LICENSE)",
+            "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+            "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+          }
+        ]
+      }
+    },
+    {
+      "anonymous_id": "F2",
+      "core_id": "qcb-core-la-102",
+      "formal_context": {
+        "imports": [
+          "QuantumBlockEncoding.AdjacentGivens"
+        ],
+        "target": "∀ {N : ℕ} (A : _root_.Matrix (Fin N) (Fin N) ℝ) (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.rotateRows A i j theta).det = A.det"
+      },
+      "question_contract_hash": "4be120801daf6e4de98794d14d4c0db5f93bcb6924b3c6aae20252167d662f93",
+      "reconstruction": {
+        "anonymous_id": "F2",
+        "assumptions": [
+          "N is any natural number; A is any real square matrix of that size; i and j are valid row indices; the sole substantive hypothesis is i != j; theta is any real number.",
+          "There is no invertibility, orthogonality, normalization, sparsity, nonzero-determinant, or restriction on the angle."
+        ],
+        "definitions_and_conventions": [
+          "A has row and column carrier Fin N and real entries. The ambient rotateRows definition also supports rectangular matrices, but this target specializes it to square matrices so that its determinant is defined.",
+          "Both replacement rows use entries from the original A. For every column, the ordered pair of entries in rows i and j is multiplied on the left by the real two-by-two matrix with first row (cos(theta/2), -sin(theta/2)) and second row (sin(theta/2), cos(theta/2)).",
+          "The rotation angle in that two-dimensional plane is theta/2, not theta. Its orientation is fixed by the negative sine in the new row i and positive sine in the new row j, using the ordered pair (i,j).",
+          "The definition tests row=i first and row=j second. The hypothesis that the indices differ ensures these two branches describe separate rows. The target imposes neither adjacency nor a numerical ordering on i and j."
+        ],
+        "edge_cases": [
+          "For N=0 there are no row indices, so there is no instance with chosen i and j. For N=1 indices exist but the distinctness hypothesis cannot hold. These sizes impose no nonvacuous determinant identity for a distinct row pair.",
+          "Singular A is included; both determinants are then zero. Theta=0 is included and gives the original matrix.",
+          "Coincident indices are excluded. At i=j, the first branch of the ambient definition takes priority and would scale that row by cos(theta/2)-sin(theta/2); the target supplies no determinant-preservation claim for that case."
+        ],
+        "limits": [
+          "The conclusion is determinant preservation by one specified row operation. It does not assert an elimination algorithm, that an entry is zeroed, a method for choosing theta, a factorization into rotations, or any gate or runtime bound.",
+          "The import or namespace name supplies no adjacency assumption and no additional circuit semantics. The target does not itself state norm preservation, matrix unitarity, or a quantum-gate implementation.",
+          "The supplied formula fixes the half-angle, row order, and signs without requiring additional definitions."
+        ],
+        "reconstructed_statement": "For every natural number N, every real N-by-N matrix A, every ordered pair of row indices i and j in Fin N with i different from j, and every real number theta, form a new matrix by replacing row i with cos(theta/2) times the old row i minus sin(theta/2) times the old row j, replacing row j with sin(theta/2) times the old row i plus cos(theta/2) times the old row j, and leaving every other row unchanged. The determinant of the resulting matrix equals the determinant of A exactly."
+      },
+      "source_question": {
+        "assumptions": [
+          "Finite-dimensional real square matrix; two distinct selected rows",
+          "Determinant is multilinear and alternating in rows"
+        ],
+        "conventions": [
+          "RY half-angle convention for the rotation coefficients",
+          "A single row transposition contributes sign -1",
+          "Original derivation from inspected local source; no fresh Lean verification"
+        ],
+        "question": "Replacing two distinct rows i and j of a square matrix by the linear mixtures (a*row_i + b*row_j) and (c*row_i + d*row_j) multiplies the determinant by (a*d - b*c). Use this to prove that a plane rotation acting on rows i and j by the half-angle convention leaves the determinant unchanged.",
+        "reference_answer": "Expanding the determinant linearly in the two updated rows produces four terms. The two terms that reuse the same original row twice (coefficients a*c on row_i in both slots, and b*d on row_j in both slots) are determinants with two equal rows, hence 0. The surviving cross terms are a*d times the original determinant and b*c times the determinant with rows i and j swapped; the swap introduces one transposition, so its sign is -1 and that determinant equals -det. Collecting gives (a*d)*det + (b*c)*(-det) = (a*d - b*c)*det. For a plane rotation the mixing coefficients are a=cos(t/2), b=-sin(t/2), c=sin(t/2), d=cos(t/2), so a*d - b*c = cos^2(t/2) + sin^2(t/2) = 1. Therefore the rotation preserves the determinant exactly. This is an exact algebraic identity about the determinant, not an arithmetic evaluation cost.",
+        "rubric": [
+          {
+            "criterion": "Kill the repeated-row terms via equal-row determinant 0",
+            "id": "c1",
+            "weight": 1
+          },
+          {
+            "criterion": "Identify the swap term sign as -1 and assemble a*d - b*c",
+            "id": "c2",
+            "weight": 1
+          },
+          {
+            "criterion": "Specialize rotation coefficients to get factor cos^2+sin^2=1",
+            "id": "c3",
+            "weight": 1
+          }
+        ],
+        "source_refs": [
+          {
+            "anchor": "det_two_row_mix341-365; rotateRows_det367-378; planeMatrix_det381-383",
+            "license": "MIT (repository LICENSE)",
+            "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+            "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"
+          }
+        ]
+      }
+    },
+    {
+      "anonymous_id": "F3",
+      "core_id": "qcb-core-sp-009",
+      "formal_context": {
+        "imports": [
+          "QuantumBlockEncoding.TensorTrainCanonical"
+        ],
+        "target": "∀ {l r : ℕ} (A : QuantumBlockEncoding.TensorTrainCanonical.Core l r), A * A.transpose = 1 → (QuantumBlockEncoding.TensorTrainCanonical.complexCore A).conjTranspose * QuantumBlockEncoding.TensorTrainCanonical.complexCore A = 1"
+      },
+      "question_contract_hash": "108977edccc1cb916d3614d5b4d2927d1a82e337f901ff73421320ef956448b0",
+      "reconstruction": {
+        "anonymous_id": "F3",
+        "assumptions": [
+          "l and r are arbitrary natural numbers and A has real entries with the stated carriers.",
+          "The sole algebraic hypothesis is A*A.transpose = I_l, namely pairwise orthonormality of all rows. No square shape, nonempty dimension, additional normalization, or separate dimension inequality is explicitly assumed.",
+          "In finite dimensions the row-orthonormality hypothesis can hold only when l <= 2*r, but that inequality is a consequence or feasibility constraint rather than an additional binder in the target."
+        ],
+        "definitions_and_conventions": [
+          "Core(l,r) is literally a real matrix with row carrier Fin l and column carrier the Cartesian product Fin 2 times Fin r. The first output component b is a two-valued index and the second q ranges over r values.",
+          "complexCore is the transpose of A followed entrywise by the canonical real-to-complex embedding: it reverses the row and column carriers. It does not merely cast A while retaining its original orientation.",
+          "The hypothesis uses an ordinary real transpose. The conclusion uses the complex conjugate transpose of B. Because every entry of B is embedded from a real number, conjugation leaves those entries unchanged.",
+          "Both displayed identity matrices have row and column carrier Fin l. In components, the hypothesis says that for every a,a' in Fin l, the sum over b in Fin 2 and q in Fin r of A(a,(b,q)) times A(a',(b,q)) equals one when a=a' and zero otherwise. The conclusion says the corresponding complex inner products of columns of B have exactly those values.",
+          "The product carrier specifies the two output components explicitly; the packet supplies no separate flattening into Fin(2*r), bit-endianness convention, or requirement that r be a power of two."
+        ],
+        "edge_cases": [
+          "When l=0, A has no rows and B has no columns. Both the hypothesis and conclusion concern the unique zero-by-zero matrix and hold vacuously for every r, including r=0.",
+          "When r=0 and l>0, the column carrier of A and row carrier of B are empty. A*A.transpose is the zero l-by-l matrix, so the identity hypothesis cannot hold. The conditional target therefore has no such nonvacuous instance.",
+          "Rectangular cases with 0<l<2*r are permitted. Their conclusion is an isometric embedding and does not require B to be surjective. When l=2*r the carriers have equal cardinality, but the target still explicitly states only B's left Gram identity."
+        ],
+        "limits": [
+          "The target proves the conditional identity B.conjTranspose*B = I_l for this already supplied A. It does not construct a row-orthonormal core, a tensor-train canonicalization algorithm, or a decomposition of an arbitrary tensor.",
+          "It does not generally conclude B*B.conjTranspose equals the identity on the output carrier; that would be full unitarity and need not hold for rectangular B.",
+          "It does not specify a unitary extension, ancillas, a preparation circuit, successive core contractions, gate counts, computational complexity, or approximation and finite-precision bounds. The output dimension 2*r alone is not an encoding of all output degrees of freedom into a specified number of qubits.",
+          "The ambient definitions suffice to determine the exact real-to-complex conversion and orientation. No original source wording or proof was needed or inspected."
+        ],
+        "reconstructed_statement": "For every pair of natural numbers l and r and every real matrix A whose rows are indexed by Fin l and whose columns are indexed by Fin 2 times Fin r, suppose A times its ordinary transpose equals the identity matrix on Fin l. Define the complex matrix B with rows indexed by Fin 2 times Fin r and columns indexed by Fin l by B((b,q),a) equal to the real entry A(a,(b,q)), embedded in the complex numbers. Then B's conjugate transpose times B equals the identity matrix on Fin l. Equivalently, real orthonormal rows of the l-by-(2r) matrix A become complex orthonormal columns of the (2r)-by-l matrix B, so the complex linear map B from complex l-space to complex (2r)-space is an isometry."
+      },
+      "source_question": {
+        "assumptions": [
+          "A is a real core with orthonormal rows A * A^T = 1",
+          "the complex embedding uses (bit, new bond) as output rows and old bond as input columns"
+        ],
+        "conventions": [
+          "conjTranspose is the complex conjugate transpose; realness means entrywise conjugation is the identity",
+          "the isometry condition is (complexCore A)^dagger (complexCore A) = 1 on the input-bond index"
+        ],
+        "question": "A real tensor-train core carries orthonormal rows (its row-canonical condition). Show that embedding such a core into a complex matrix with the physical bit and new bond as output rows and the old bond as input columns yields a genuine circuit isometry: the conjugate-transpose times the matrix is the identity on the input-bond index. Explain why real orthonormal rows translate exactly to orthonormal complex input columns under this orientation.",
+        "reference_answer": "Let A be a real core with A * A^T = 1 (orthonormal rows). The complex embedding places (bit, new bond) as the output row index and the old bond a as the input column, with entry the real number A_{a,(bit,newbond)} viewed as a complex number. The isometry claim is (complexCore A)^dagger * (complexCore A) = 1 on the old-bond index. Fix input columns a and c; the (a,c) entry of the product is sum over all outputs (bit, newbond) of conj(entry at output,(a)) times entry at output,(c). Because every entry is a real number embedded in the complex field, its conjugate is itself, so this equals the real sum over outputs of A_{a,out} * A_{c,out}, which is precisely the (a,c) entry of A * A^T. By hypothesis A * A^T = 1, so the sum is 1 when a = c and 0 otherwise. Splitting the complex equality into real and imaginary parts: the real part reproduces the (a,c) entry of A * A^T (equal to the Kronecker delta), and the imaginary part vanishes because every summand is a product of reals and hence has zero imaginary component. Therefore (complexCore A)^dagger (complexCore A) is the identity. The conceptual point: the row-canonical condition on the real core, summation over the physical bit together with the new bond, is literally the Gram matrix of the complex input-bond columns under this output-row/input-column orientation; realness makes conjugation trivial so the real orthonormality transfers verbatim to complex column orthonormality.",
+        "rubric": [
+          {
+            "criterion": "States the isometry target (complexCore A)^dagger (complexCore A) = 1 and expands the (a,c) entry as a sum over outputs (bit, new bond) of conj times entry.",
+            "id": "r1",
+            "weight": 1
+          },
+          {
+            "criterion": "Uses realness of the entries (conjugate = itself) to reduce the sum to the real sum A_{a,out} A_{c,out}, i.e. the (a,c) entry of A * A^T.",
+            "id": "r2",
+            "weight": 1
+          },
+          {
+            "criterion": "Invokes A * A^T = 1 to get the Kronecker delta, splitting the complex identity into a real part (= delta) and a vanishing imaginary part.",
+            "id": "r3",
+            "weight": 1
+          },
+          {
+            "criterion": "Explains the orientation point: real orthonormal rows are exactly the Gram matrix of complex input-bond columns, so orthonormality transfers verbatim.",
+            "id": "r4",
+            "weight": 1
+          }
+        ],
+        "source_refs": [
+          {
+            "anchor": "lines 209-226: def complexCore A := fun out a => (A a out : C); theorem complexCore_isometry (A : Core l r) (hA : A * A.transpose = 1) : (complexCore A).conjTranspose * complexCore A = 1, proved via congrFun hA, Complex.ext on real and imaginary parts of the mul_apply / conjTranspose_apply / one_apply expansion",
+            "license": "MIT (repository LICENSE)",
+            "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+            "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-sp-006",
+  "supersedes_key": "qcb-core-sp-006",
+  "supersedes_item_digest": "44c37085b4bd6ee2044b283002c7cb3d2067205bc96c3b84b5cb04a60a4002a6",
+  "author": "/root",
+  "key": "qcb-core-sp-006-textbook-v1-normalization-boundary-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer, rubric and explanatory semantic steps only. The exact question, assumptions, conventions, graph scope, family, split and step count remain unchanged. No nonnegativity hypothesis is added to the question.",
+  "reference_answer": "Let S = sum_b f(b)^2 > 0. The common denominator is independent of b, so sum_b (f(b)/sqrt(S))^2 = (sum_b f(b)^2)/(sqrt(S))^2 = S/S = 1. The square-root identity (sqrt(S))^2 = S uses nonnegativity of S, which already follows from its being a finite sum of real squares. Strict positivity is needed for nonvanishing: sqrt(S) is nonzero and cancellation S/S = 1 is justified. It does not require the individual f(b) to be nonnegative. At S=0 every entry is zero, so there is no normalized state proportional to that table. Ordinary division by zero is undefined; in Lean's total real division, 0/0 is defined as zero, and the corresponding sum is zero rather than one. This norm identity alone is not a first-column correctness theorem for a particular preparation circuit. The library's prepareCircuit_firstColumn additionally requires every f(b) to be nonnegative. For example, the zero-qubit table with its sole entry -1 has positive S and normalizes to -1, while the empty preparation circuit has first column +1. Thus one must not transfer the circuit theorem to arbitrary signed real tables under the assumptions of this question.",
+  "rubric": [
+    {"id": "r1", "weight": 1, "criterion": "Factors the constant squared denominator out of the finite sum to obtain S/(sqrt(S))^2."},
+    {"id": "r2", "weight": 1, "criterion": "Uses (sqrt(S))^2 = S from S >= 0, independently of signs of individual entries."},
+    {"id": "r3", "weight": 1, "criterion": "Uses S > 0 to ensure the nonzero denominator and S/S = 1; identifies nonvanishing as the load-bearing condition."},
+    {"id": "r4", "weight": 1, "criterion": "Keeps the claim at normalization of the real table, without requiring or asserting arbitrary-signed circuit loading. If discussing S=0, distinguishes absence of a normalized proportional state from Lean's total division. No circuit discussion is required for full credit."}
+  ],
+  "exposition": {
+    "semantic_steps": [
+      {"claim": "Factoring the common squared denominator out of the finite sum gives S/(sqrt(S))^2.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"]},
+      {"claim": "The square-root identity for nonnegative S reduces this expression to S/S.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq"]},
+      {"claim": "Strict positivity makes S nonzero, hence S/S = 1, for arbitrary real entries. This algebraic conclusion does not remove the separate nonnegative-entry premise of prepareCircuit_firstColumn.", "supporting_nodes": ["declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq", "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn"]}
+    ]
+  },
+  "source_checks": [
+    {"path": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "anchor": "prepareCircuit 224-230; prepareCircuit_firstColumn 275-278 explicitly requires nonnegative entries and positive norm; normalized_sum_sq 311-317 requires only positive norm"}
+  ],
+  "execution": "Exact source inspection and algebraic derivation; no new production Lean theorem or circuit synthesis claimed."
+}

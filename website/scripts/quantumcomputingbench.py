@@ -104,7 +104,7 @@ def source_list(item):
     return '<ul class="qcb-sources">' + "".join(rows) + '</ul>'
 
 
-def core_body(core, item, catalog, graph, live_ids, prefix):
+def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=None):
     part = next(p for p in catalog["parts"] if p["id"] == core["part"])
     parent = prefix + HUB + "non-lean/" + part["id"] + "/" + core["topic"] + "/index.html"
     body = '<article class="qcb-reader"><p class="qcb-breadcrumb"><a href="' + esc(parent) + '">' + esc(part["title"]) + ' / ' + esc(title_of(core["topic"])) + '</a></p>'
@@ -121,20 +121,34 @@ def core_body(core, item, catalog, graph, live_ids, prefix):
     rubric = '<ol>' + "".join('<li>' + esc(r["criterion"]) + ' <small>(' + esc(r["weight"]) + ' weight)</small></li>' for r in item["rubric"]) + '</ol>'
     body += disclosure("Assessment rubric", rubric, "rubric")
     body += section("Graph-grounded prerequisites", '<p>These are support/source anchors, not an automatically extracted theorem-dependency proof.</p><ul>' + "".join('<li>' + graph_link(n, prefix, graph, live_ids) + '</li>' for n in dict.fromkeys(core["target_nodes"] + core["supporting_nodes"])) + '</ul><p><a href="' + prefix + 'data/quantumcomputingbench/cores.json">Download the shared core registry</a></p>', "graph")
-    body += disclosure("Lean view and evidence boundary", '<p>No aligned Lean view has been admitted for this native core in this textbook checkpoint. This is not a claim that the underlying mathematics lacks a formal proof. Contributions must preserve this exact target contract and split.</p><p><a href="' + prefix + HUB + 'lean/index.html">Read the Lean track and existing diagnostic warmups</a></p>', "lean")
+    formal = core["views"].get("lean")
+    if formal:
+        formal_body = '<p class="qcb-boundary">Exact formal conclusion: independently decoded and compared with this question, then checked with the fixed reference in Lean. This is a library-lemma application, not a deep proof-search result. The kernel does not certify every sentence of the natural-language explanation.</p>'
+        formal_body += '<pre><code>' + esc(json.dumps(formal["formal_context"], ensure_ascii=False, indent=2)) + '</code></pre>'
+        formal_body += disclosure("Fixed reference proof", '<pre><code>' + esc(formal["reference_proof"]) + '</code></pre>', "lean-reference")
+        formal_body += prose(formal["boundary"]) + '<p>Execution class: trusted local reference; not isolated model-output evaluation. The same core, family and split apply to both views.</p>'
+        if publication_commit and re.fullmatch(r'[0-9a-f]{40}', publication_commit):
+            formal_body += '<p>Source-blind reconstruction, distinct comparison and actual reference receipts: <a href="' + REPO + '/tree/' + publication_commit + '/benchmarks/quantumcomputingbench/' + esc(formal["evidence_directory"]) + '">inspect the evidence records</a>.</p>'
+    else:
+        formal_body = '<p>No aligned Lean view has been admitted for this native core in this textbook checkpoint. This is not a claim that the underlying mathematics lacks a formal proof. Contributions must preserve this exact target contract and split.</p>'
+    formal_body += '<p><a href="' + prefix + HUB + 'lean/index.html">Read the Lean track and existing diagnostic warmups</a></p>'
+    body += disclosure("Lean view and evidence boundary", formal_body, "lean")
     body += disclosure("Sources and provenance", source_list(item) + '<p>Contract: <code>' + esc(core["contract_hash"]) + '</code></p><p>Item digest: <code>' + esc(core["item_digest"]) + '</code></p><p>Graph snapshot: <code>' + esc(core["snapshot_id"]) + '</code></p><p>Authored support steps: ' + str(core["semantic_steps"]) + '. This is not measured graph distance or model difficulty.</p>', "sources")
     if core.get("textbook_successor"):
         body += disclosure("Answer revision lineage", prose(json.dumps(core["textbook_successor"], indent=2)), "revision")
     return body + '</article>'
 
 
-def exercise_cards(cores, prefix, items):
+def exercise_cards(cores, prefix, items, track="non-lean"):
     content = '<div class="qcb-grid">'
     for c in cores:
         href = prefix + HUB + "cores/" + c["core_id"] + "/index.html"
+        if track == "lean":
+            href += "#lean"
         question = items[c["core_id"]]["question"]
         preview = question if len(question) <= 220 else question[:220] + "…"
-        content += '<article class="qcb-card" data-qcb-card data-qcb-search="' + esc(c["core_id"] + ' ' + c["topic"] + ' ' + c["evidence_relation"] + ' ' + question) + '"><p class="qcb-meta">' + esc(c["split"]) + ' · ' + esc(items[c["core_id"]]["task_kind"]) + '</p><h3><a href="' + esc(href) + '">Exercise ' + esc(c["core_id"].removeprefix("qcb-core-").upper()) + '</a></h3>' + prose(preview) + '<p>' + esc(c["evidence_relation"].replace("_", " ")) + '</p></article>'
+        label = (' · aligned Lean reference checked' if "lean" in c["views"] else ' · formal view pending') if track == "lean" else ''
+        content += '<article class="qcb-card" data-qcb-card data-qcb-search="' + esc(c["core_id"] + ' ' + c["topic"] + ' ' + c["evidence_relation"] + ' ' + question) + '"><p class="qcb-meta">' + esc(c["split"]) + ' · ' + esc(items[c["core_id"]]["task_kind"]) + esc(label) + '</p><h3><a href="' + esc(href) + '">Exercise ' + esc(c["core_id"].removeprefix("qcb-core-").upper()) + '</a></h3>' + prose(preview) + '<p>' + esc(c["evidence_relation"].replace("_", " ")) + '</p></article>'
     return content + '</div>'
 
 
@@ -147,6 +161,7 @@ def publish(root):
     from website.scripts.research_atlas import patch_navigation
     root = root.resolve()
     catalog, items, graph = load_catalog()
+    native_lean_count = sum("lean" in c["views"] for c in catalog["cores"])
     report = read_json(root / "build-report.json")
     context = site.git_context()
     if not report["leanGate"].get("passed") or report["leanGate"].get("commit") != context["commit"]:
@@ -177,33 +192,36 @@ def publish(root):
 
     body = intro("Learn the mathematics. Inspect the evidence.", "A substantial open exercise book for quantum-computing knowledge, derivations and proof skills. Two reader paths share one mathematical core registry, the same graph identities and the same split contracts.")
     body += '<p class="qcb-boundary">Textbook edition in progress, not a stable benchmark claim. ' + str(len(catalog["cores"])) + ' retained native core IDs; global semantic deduplication and fresh editorial review are incomplete. Public answers are open training/diagnostic material, not a hidden evaluation set.</p>'
-    body += '<div class="qcb-grid"><article class="qcb-card"><p class="eyebrow">Read without Lean</p><h2><a href="non-lean/index.html">Mathematical questions and solutions</a></h2><p>Definitions, reasoning, constructions, counterexamples and carefully stated assumptions. No Lean installation needed.</p></article><article class="qcb-card"><p class="eyebrow">Inspect the formal interface</p><h2><a href="lean/index.html">Lean companion and proof tasks</a></h2><p>Exact targets, fixed-reference checks and explicit semantic boundaries. Native formal views are a contribution frontier; three separate API warmups are available.</p></article></div>'
+    body += '<div class="qcb-grid"><article class="qcb-card"><p class="eyebrow">Read without Lean</p><h2><a href="non-lean/index.html">Mathematical questions and solutions</a></h2><p>Definitions, reasoning, constructions, counterexamples and carefully stated assumptions. No Lean installation needed.</p></article><article class="qcb-card"><p class="eyebrow">Inspect the formal interface</p><h2><a href="lean/index.html">Lean companion and proof tasks</a></h2><p>' + str(native_lean_count) + ' aligned native formal views with fixed-reference checks and explicit semantic boundaries. Three separate legacy API warmups are also available.</p></article></div>'
     body += section("Five parts, one source of truth", "".join('<article class="qcb-part"><p class="eyebrow">Part ' + str(i + 1) + '</p><h3><a href="non-lean/' + p["id"] + '/index.html">' + esc(p["title"]) + '</a></h3>' + prose(p["summary"]) + '<p>' + str(sum(c["part"] == p["id"] for c in catalog["cores"])) + ' native core IDs · ' + str(len(p["topics"])) + ' topics</p></article>' for i, p in enumerate(catalog["parts"])), "parts")
     body += section("Read, solve, then inspect", '<ol><li>Choose a part and topic. Check dimensions, normalization, phase and resource conventions first.</li><li>Attempt the question before opening the hint or solution.</li><li>Follow exact graph/source anchors. Source-backed and planned material are visibly different evidence classes.</li><li>Use the Lean path to contribute a matching formal view, not another copy of the same question.</li></ol><p><a href="contribute/index.html">Contributor tracks and compatibility contract</a> · <a href="evidence/index.html">Release boundaries and current acceptance gates</a></p>', "reading")
     write(HUB, "QuantumComputingBench exercise book", body + '</div>', "Five-part graph-grounded quantum-computing exercise book with non-Lean and Lean companion paths.")
     for track in TRACKS:
         prefix = "../../"
         is_lean = track == "lean"
-        body = intro("Lean companion" if is_lean else "Mathematical exercise book", "The same five-part curriculum, with no duplicate mathematical core counting. " + ("A source-supported NL answer is not automatically a verified formal view. Native formal views are not yet admitted." if is_lean else "Read and solve substantial quantum-computing problems without learning Lean syntax."))
+        body = intro("Lean companion" if is_lean else "Mathematical exercise book", "The same five-part curriculum, with no duplicate mathematical core counting. " + ("A source-supported NL answer is not automatically a verified formal view. Admitted views and remaining formalization work are labeled separately." if is_lean else "Read and solve substantial quantum-computing problems without learning Lean syntax."))
         if is_lean:
-            body += '<p class="qcb-boundary">0 admitted native Lean views in this checkpoint. The three corrected-v3 reference warmups below are separate legacy diagnostics, not additions to the native count. Trusted local checking does not establish isolated model-output evaluation.</p><p><a href="warmups/index.html">Open the three semantic-audited API warmups</a></p>'
+            body += '<p class="qcb-boundary">' + str(native_lean_count) + ' admitted native Lean views in this checkpoint. These check exact conclusions by library-lemma application, not deep proof synthesis or the full NL explanation. The three corrected-v3 reference warmups are separate legacy diagnostics, not additions to the native count. Trusted local checking does not establish isolated model-output evaluation.</p><p><a href="warmups/index.html">Open the three semantic-audited API warmups</a></p>'
+            admitted = [c for c in catalog["cores"] if "lean" in c["views"]]
+            if admitted:
+                body += section("Aligned native formal views", exercise_cards(admitted, prefix, items, track), "native-views")
         body += '<div class="qcb-grid">' + "".join('<article class="qcb-card"><h2><a href="' + p["id"] + '/index.html">' + esc(p["title"]) + '</a></h2>' + prose(p["summary"]) + '</article>' for p in catalog["parts"]) + '</div>'
         write(HUB + track + "/", "Lean companion" if is_lean else "Non-Lean exercise book", body + '</div>', "Shared curriculum and exact evidence boundaries for the " + track + " track.")
         for part in catalog["parts"]:
             body = intro(part["title"], part["summary"])
-            body += '<p><a href="../index.html">Back to the ' + track + ' reader path</a></p><ol class="qcb-topic-list">' + "".join('<li><a href="' + topic + '/index.html">' + esc(title_of(topic)) + '</a> <small>(' + str(sum(c["topic"] == topic for c in catalog["cores"])) + ' shared cores' + (', formal views pending' if is_lean else '') + ')</small></li>' for topic in part["topics"]) + '</ol>'
+            body += '<p><a href="../index.html">Back to the ' + track + ' reader path</a></p><ol class="qcb-topic-list">' + "".join('<li><a href="' + topic + '/index.html">' + esc(title_of(topic)) + '</a> <small>(' + str(sum(c["topic"] == topic for c in catalog["cores"])) + ' shared cores' + (', ' + str(sum(c["topic"] == topic and "lean" in c["views"] for c in catalog["cores"])) + ' aligned Lean views' if is_lean else '') + ')</small></li>' for topic in part["topics"]) + '</ol>'
             write(HUB + track + "/" + part["id"] + "/", part["title"] + " · " + track, body + '</div>', part["summary"])
             for topic in part["topics"]:
                 rows = [c for c in catalog["cores"] if c["topic"] == topic]
                 body = intro(title_of(topic), part["summary"])
                 body += '<p><a href="../index.html">Back to ' + esc(part["title"]) + '</a></p>'
                 if is_lean:
-                    body += '<p class="qcb-boundary">Formal-view contribution frontier: these links open shared NL targets, not admitted Lean exercises. Preserve the exact core contract and split when adding a formal companion.</p>'
-                body += filters() + exercise_cards(rows, "../../../../", items)
+                    body += '<p class="qcb-boundary">These links open the shared core\'s formal companion panel. Each card distinguishes admitted fixed-reference views from pending formalization. Preserve the exact core contract and split; a formal view is not another core.</p>'
+                body += filters() + exercise_cards(rows, "../../../../", items, track)
                 write(HUB + track + "/" + part["id"] + "/" + topic + "/", title_of(topic) + " · " + track, body + '</div>', "Graph-grounded " + title_of(topic) + " questions; shared targets for both reader paths.")
     for core in catalog["cores"]:
         title = title_of(core["topic"]) + " · Exercise " + core["core_id"].removeprefix("qcb-core-").upper()
-        write(HUB + "cores/" + core["core_id"] + "/", title, core_body(core, items[core["core_id"]], catalog, graph, live_ids, "../../../"), items[core["core_id"]]["question"])
+        write(HUB + "cores/" + core["core_id"] + "/", title, core_body(core, items[core["core_id"]], catalog, graph, live_ids, "../../../", context["commit"]), items[core["core_id"]]["question"])
     body = intro("Three reference warmups", "Small API applications, not deep proof synthesis. A distinct semantic review checked exact definitions, angle conventions and assumptions; inherited fixed-reference elaboration is separate from this review. The review is not a strictly source-blind decoder certificate.")
     for i, (item, review) in enumerate(formal_warmups(), 1):
         formal = item["formal"]
@@ -239,7 +257,7 @@ def publish(root):
     write_json(search_path, search)
     manifest = {"schema_version": 1, "catalog_hash": catalog["catalog_hash"],
                 "reader_source_digest": reader_sources(), "routes": routes,
-                "native_core_ids": len(catalog["cores"]), "admitted_native_lean_views": 0,
+                "native_core_ids": len(catalog["cores"]), "admitted_native_lean_views": native_lean_count,
                 "legacy_reference_warmups": 3, "stable": False,
                 "leanGraphSha256": graph_hash, "source_commit": context["commit"]}
     write_json(data_dir / "reader.json", manifest)

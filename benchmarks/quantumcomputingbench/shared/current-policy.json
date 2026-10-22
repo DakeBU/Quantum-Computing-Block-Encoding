@@ -1,6 +1,6 @@
 {
   "schema_version": "qcb.textbook_current_policy.v1",
-  "policy": "Frozen historical releases are unchanged. Withhold exact rejected predecessor answers; admit an additive answer/rubric successor only after a distinct content-bound review. No new core or split is created.",
+  "policy": "Frozen historical releases are unchanged. Withhold exact rejected predecessor answers; admit an additive answer/rubric successor, including affected explanatory summary/steps, only after a distinct content-bound review. Question contracts, graph scope, step counts, cores and splits do not change.",
   "answer_successors": [
     {
       "core_id": "qcb-core-sp-002",
@@ -9,6 +9,22 @@
       "reason": "The original answer conflates the free output-bond label with the summed input-bond index. step_apply requires distinct b and a labels. Completion columns are irrelevant to the clean-input action, not arbitrary under unitarity.",
       "repair": "shared/repairs/sp-002-index-repair.json",
       "review": "reports/textbook-v1/repairs/sp-002-index-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-sp-006",
+      "predecessor_key": "qcb-core-sp-006",
+      "predecessor_item_digest": "44c37085b4bd6ee2044b283002c7cb3d2067205bc96c3b84b5cb04a60a4002a6",
+      "reason": "The arbitrary-real normalization answer unconditionally transfers a circuit first-column theorem that additionally requires nonnegative entries, and conflates ordinary partial division with Lean's total division.",
+      "repair": "shared/repairs/sp-006-normalization-boundary-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-006-normalization-boundary-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-sp-011",
+      "predecessor_key": "qcb-core-sp-011",
+      "predecessor_item_digest": "8e29ce90772af81328f7d4b8e817f6183b46c52d96801e394ac4287c4be24a6f",
+      "reason": "Active dimension > 2 makes even active-only unitary terminal cleanup impossible; the source's supported state-action theorem is conditional and does not establish a unitary remedy.",
+      "repair": "shared/repairs/sp-011-terminal-feasibility-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-011-terminal-feasibility-repair-review.json"
     }
   ]
 }

@@ -12,6 +12,11 @@ milestone; stable benchmark admission is a separate decision.
 - Assumptions before questions; hints, answers, rubrics and evidence folded.
 - Exact shared-core/split contracts, UUID proposal checks and two collaborator goals.
 - Three separately audited historical Lean reference warmups; no invented native aliases.
+- Three native library-application views with source-blind decoding, a distinct
+  semantic comparison and actual fixed-reference/axiom checks; same core IDs.
+- Exact-predecessor withdrawals and separately reviewed additive repairs; affected
+  explanatory summaries and semantic steps are repaired too, without changing
+  question contracts or silently transferring historical acceptance.
 - Standard site build/link checks and real desktop/mobile/theme/browser tests.
 
 ## Remaining acceptance work
@@ -31,9 +36,10 @@ milestone; stable benchmark admission is a separate decision.
 5. Define the exact stable release scope and evidence manifest only after those
    decisions. A global complete-library claim is not required and must not be implied.
 
-The current `stable-check` fails closed on these unfinished obligations. Its
-shared-view gate deliberately remains pending until actual view admission is
-implemented and evidenced, rather than inferring it from a directory name.
+The current `stable-check` fails closed on unfinished obligations. Its
+shared-view gate reads exact native semantic and kernel evidence rather than
+inferring acceptance from a directory name; passing that narrow first-batch
+gate does not imply full formal coverage or deep proof synthesis.
 Browser success must never stand in for mathematical/source review.
 
 ## Distinct later experimental gates

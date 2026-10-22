@@ -1,0 +1,45 @@
+{
+  "schema_version": "qcb.source_blind_decode_packet.v1",
+  "views": [
+    {
+      "ambient_definitions": [
+        "abbrev PrimitiveBasis (qubits : Nat) := Fin qubits → Fin 2",
+        "noncomputable def pairNorm (a b : ℝ) : ℝ := Real.sqrt (a ^ 2 + b ^ 2)",
+        "noncomputable def marginal {n : Nat} (f : PrimitiveBasis (n + 1) → ℝ) :\n    PrimitiveBasis n → ℝ := fun b => pairNorm (f (Fin.snoc b 0)) (f (Fin.snoc b 1))",
+        "noncomputable def normSq {n : Nat} (f : PrimitiveBasis n → ℝ) : ℝ := ∑ b, f b ^ 2"
+      ],
+      "anonymous_id": "F1",
+      "formal_context": {
+        "imports": [
+          "QuantumBlockEncoding.RealAmplitudePreparation"
+        ],
+        "target": "∀ {n : ℕ} (f : QuantumBlockEncoding.PrimitiveBasis (n + 1) → ℝ), QuantumBlockEncoding.RealAmplitudePreparation.normSq (QuantumBlockEncoding.RealAmplitudePreparation.marginal f) = QuantumBlockEncoding.RealAmplitudePreparation.normSq f"
+      }
+    },
+    {
+      "ambient_definitions": [
+        "noncomputable def rotateRows {N M : ℕ} (A : _root_.Matrix (Fin N) (Fin M) ℝ)\n    (i j : Fin N) (theta : ℝ) : _root_.Matrix (Fin N) (Fin M) ℝ :=\n  fun row col =>\n    if row = i then Real.cos (theta / 2) * A i col - Real.sin (theta / 2) * A j col\n    else if row = j then Real.sin (theta / 2) * A i col + Real.cos (theta / 2) * A j col\n    else A row col"
+      ],
+      "anonymous_id": "F2",
+      "formal_context": {
+        "imports": [
+          "QuantumBlockEncoding.AdjacentGivens"
+        ],
+        "target": "∀ {N : ℕ} (A : _root_.Matrix (Fin N) (Fin N) ℝ) (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.rotateRows A i j theta).det = A.det"
+      }
+    },
+    {
+      "ambient_definitions": [
+        "abbrev Core (l r : ℕ) := _root_.Matrix (Fin l) (Fin 2 × Fin r) ℝ",
+        "def complexCore {l r : ℕ} (A : Core l r) :\n    _root_.Matrix (Fin 2 × Fin r) (Fin l) ℂ := fun out a => (A a out : ℂ)"
+      ],
+      "anonymous_id": "F3",
+      "formal_context": {
+        "imports": [
+          "QuantumBlockEncoding.TensorTrainCanonical"
+        ],
+        "target": "∀ {l r : ℕ} (A : QuantumBlockEncoding.TensorTrainCanonical.Core l r), A * A.transpose = 1 → (QuantumBlockEncoding.TensorTrainCanonical.complexCore A).conjTranspose * QuantumBlockEncoding.TensorTrainCanonical.complexCore A = 1"
+      }
+    }
+  ]
+}

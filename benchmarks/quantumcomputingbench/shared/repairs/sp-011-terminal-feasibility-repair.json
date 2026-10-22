@@ -1,0 +1,29 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-sp-011",
+  "supersedes_key": "qcb-core-sp-011",
+  "supersedes_item_digest": "8e29ce90772af81328f7d4b8e817f6183b46c52d96801e394ac4287c4be24a6f",
+  "author": "/root",
+  "key": "qcb-core-sp-011-textbook-v1-terminal-feasibility-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer, rubric and explanatory summary/steps only. The original question's active dimension > 2 assumption is preserved and its consequence explicitly acknowledged; it is not silently weakened to active dimension <= 2. The exact question contract and split remain unchanged. A distinct reviewer must decide whether this corrective answer adequately answers the unchanged question.",
+  "reference_answer": "Write D for the padded input bond dimension and k for the number of active input bond basis labels. The fresh input bit is zero, so the constrained columns of the stage U are indexed by (0,a). Requiring terminal cleanup confines each such column to the output subspace H spanned by (0,clean) and (1,clean), which has dimension two. If U is unitary, these columns must be orthonormal. Therefore no more than two columns can satisfy this action. An all-padded-column requirement is impossible whenever D > 2. In the question k > 2 and D > k, so this obstruction certainly applies. The library's step_terminalCore_of_supported instead assumes (1) v(p,a)=0 for every inactive label a and every prefix p, and (2) U(bit,b)(0,a)=terminalCore(clean,T)(bit,b)(a) only for active a. The inactive summands then vanish in step_apply, yielding step(U,v)(x,b)=0 when b differs from clean and sum_a T(lastBit(x),a)*v(prefix(x),a) when b=clean. This is a conditional state-action identity; it does not assume or prove that U is unitary or construct such a U. Crucially, under the stated k > 2 assumption, even the active-only condition is incompatible with unitarity: it still forces k > 2 orthonormal columns into H. Thus active-only restriction is not a feasible unitary remedy for this question's setting. A physically feasible terminal step of this form must also have k <= 2 and orthonormal prescribed active columns (equivalently the active columns of T have Gram identity); then those finitely many columns can be completed to a unitary on the full finite-dimensional stage space. This last linear-algebra existence observation is not a circuit synthesis or resource theorem. Without changing the stated k > 2 setting there is no such unitary terminal cleanup, and a correct answer must say so rather than claiming the support condition solves the dimension obstruction.",
+  "rubric": [
+    {"id": "r1", "weight": 1, "criterion": "Uses distinct symbols D and k for padded and active input dimensions and identifies the two-dimensional output span (bit,clean). The columns in question are the fresh-input-bit-zero columns (0,a)."},
+    {"id": "r2", "weight": 1, "criterion": "Uses unitarity to force column orthonormality and proves all-padded cleanup impossible for D > 2."},
+    {"id": "r3", "weight": 1, "criterion": "States exactly the active-only column identity plus zero inactive-support condition, and derives clean output factorization as a conditional state-action result, not a unitary-existence result."},
+    {"id": "r4", "weight": 1, "criterion": "Explicitly recognizes that k > 2 also makes active-only unitary cleanup impossible. Does not claim a feasible remedy under the unchanged assumptions; any discussion of feasible alternatives must disclose k <= 2 and the Gram/isometry condition, without a circuit-cost claim."}
+  ],
+  "exposition": {
+    "core_summary": "Terminal cleanup confines constrained columns to a two-dimensional clean-output span. Padded dimension greater than two forbids an all-column unitary condition, and active dimension greater than two forbids even its active-only variant; the library's supported factorization theorem is conditional, not a unitary-existence result.",
+    "semantic_steps": [
+      {"claim": "Each terminal-action column lies in the two-dimensional output span indexed by emitted bit and the clean bond label.", "supporting_nodes": ["declaration:QuantumBlockEncoding.SequentialBondPreparation.step_terminalCore"]},
+      {"claim": "Unitary columns are orthonormal, so requiring this action on more than two padded or active input columns is impossible.", "supporting_nodes": ["declaration:QuantumBlockEncoding.SequentialBondPreparation.step_terminalCore"]},
+      {"claim": "Active-only terminal equality plus zero inactive support yields a conditional clean state-action factorization. It does not prove unitarity or its feasibility, and cannot yield a unitary in the question's active-dimension-greater-than-two case.", "supporting_nodes": ["declaration:QuantumBlockEncoding.SequentialBondPreparation.step_terminalCore_of_supported", "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_terminal_clean"]}
+    ]
+  },
+  "source_checks": [
+    {"path": "QuantumBlockEncoding/SequentialBondPreparation.lean", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "anchor": "terminalCore 177-178; step_terminalCore 182-190; step_terminalCore_of_supported 204-222 has no unitarity premise or conclusion; run_terminal_clean is likewise a conditional transfer factorization"}
+  ],
+  "execution": "Source inspection plus finite-dimensional orthonormal-column obstruction; no new Lean dimension theorem, unitary completion implementation or resource result claimed."
+}
