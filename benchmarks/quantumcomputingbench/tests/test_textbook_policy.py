@@ -12,7 +12,7 @@ sys.path.insert(0, str(B / "scripts"))
 import release
 from qcb_core import digest
 from qcb_nl_release_policy import check_current_gold
-from qcb_textbook_policy import apply_current_reader_policy, frozen_native_is_current, CONTRACT_FIELDS
+from qcb_textbook_policy import apply_current_reader_policy, frozen_native_is_current, CONTRACT_FIELDS, public_reader_item
 
 
 class TextbookPolicyTests(unittest.TestCase):
@@ -42,3 +42,13 @@ class TextbookPolicyTests(unittest.TestCase):
         with patch.object(sys, "argv", ["release.py", "build"]), redirect_stderr(errors):
             self.assertEqual(release.main(), 1)
         self.assertIn("historical preview contains a withdrawn predecessor", errors.getvalue())
+
+    def test_public_reader_download_is_not_a_raw_review_or_control_log(self):
+        current, _ = apply_current_reader_policy(self.historical)
+        for item in current:
+            view = public_reader_item(item)
+            self.assertEqual(view["reference_answer"], item["reference_answer"])
+            self.assertEqual(view["source_item_digest"], digest(item))
+            self.assertNotIn("reviews", view)
+            self.assertNotIn("inherited_predecessor_reviews", view)
+            self.assertNotIn("lineage", view)

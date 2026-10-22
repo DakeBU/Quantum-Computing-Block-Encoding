@@ -70,3 +70,13 @@ def apply_current_reader_policy(native):
 def frozen_native_is_current(native):
     current, decisions = apply_current_reader_policy(native)
     return {i["core_id"]: digest(i) for i in current} == {i["core_id"]: digest(i) for i in native}
+
+
+def public_reader_item(item):
+    """Reader mathematics plus provenance references, not raw review/control logs."""
+    fields = ("id", "key", "core_id", "question", "reference_answer", "assumptions", "conventions",
+              "rubric", "formal_context", "task_kind", "difficulty", "topic", "family", "split",
+              "graph_version", "target_nodes", "supporting_nodes", "source_refs", "primary_sources",
+              "semantic_steps", "semantic_step_count", "evidence_relation", "textbook_successor")
+    return {**{k: deepcopy(item[k]) for k in fields if k in item},
+            "source_item_digest": digest(item), "export_role": "open_reader_not_stable_training_release"}

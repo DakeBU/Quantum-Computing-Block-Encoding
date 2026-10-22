@@ -9,6 +9,7 @@ B = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(B / "src"))
 from qcb_core import read_json, write_json
 from qcb_curriculum import load_catalog, summary, validate_proposals
+from qcb_textbook_policy import public_reader_item
 
 
 def main():
@@ -32,7 +33,7 @@ def main():
                 "schema_version": "qcb.current_reader_export.v1", "stable": False,
                 "catalog_hash": catalog["catalog_hash"], "reader_decisions": catalog["reader_decisions"],
                 "use": "Open reader views, not a newly validated stable training/scoring release.",
-                "items": list(items.values())}
+                "items": [public_reader_item(i) for i in items.values()]}
             write_json(args.output, value)
         print(json.dumps(result, indent=2))
         if args.command == "stable-check" and not result["stable_readiness"]["stable"]:

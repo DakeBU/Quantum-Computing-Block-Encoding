@@ -20,6 +20,7 @@ sys.path.insert(0, str(B / "src"))
 from qcb_core import digest, read_json, write_json
 from qcb_curriculum import load_catalog, stable_readiness, reader_source_digest
 from qcb_integrity import text_sha
+from qcb_textbook_policy import public_reader_item
 
 HUB = "quantumcomputingbench/"
 REPO = "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench"
@@ -156,7 +157,7 @@ def publish(root):
     data_dir = root / "data/quantumcomputingbench"
     write_json(data_dir / "cores.json", catalog)
     write_json(data_dir / "reader-items.json", {"schema_version": "qcb.current_reader_export.v1", "stable": False,
-        "catalog_hash": catalog["catalog_hash"], "use": "Open reader views; not a stable training/scoring release.", "items": list(items.values())})
+        "catalog_hash": catalog["catalog_hash"], "use": "Open reader views; not a stable training/scoring release.", "items": [public_reader_item(i) for i in items.values()]})
     for name in ("quantumcomputingbench.css", "quantumcomputingbench.js"):
         shutil.copyfile(ROOT / "website/static" / name, root / "static" / name)
     entries, routes = [], []
