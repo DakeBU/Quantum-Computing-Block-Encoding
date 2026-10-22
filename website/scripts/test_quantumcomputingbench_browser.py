@@ -29,7 +29,7 @@ def run(root, output, channel=None):
     thread.start()
     base = f"http://127.0.0.1:{server.server_port}/"
     rows, formal_rows, withdrawal_rows, revision_rows, failures = [], [], [], [], []
-    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers", "native_formal_panels", "quarantined_content_excluded", "question_revision_lineage")}
+    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers", "native_formal_panels", "quarantined_content_excluded", "question_revision_lineage", "convention_revision_lineage")}
     core_route = HUB + "cores/" + catalog["cores"][0]["core_id"] + "/index.html"
     routes = [HUB + "index.html", HUB + "non-lean/index.html", HUB + "lean/index.html",
               HUB + "non-lean/state-preparation/structured_preparation/index.html",
@@ -103,6 +103,18 @@ def run(root, output, channel=None):
                         if panel.get_attribute('open') is None or any(value not in panel.inner_text() for value in
                                 (revision['predecessor_contract_hash'], core['contract_hash'])):
                             failures.append('question contract lineage disclosure failed: ' + route)
+                        convention_revision = 'conventions' in revision['changed_contract_fields']
+                        if convention_revision:
+                            assumptions = page.locator('#assumptions').inner_text()
+                            if (page.locator('[data-qcb-convention-revision="2"]').count() != 1
+                                    or any(s not in assumptions for s in revision['current_conventions'])
+                                    or any(s in assumptions for s in revision['original_conventions']
+                                           if s not in revision['current_conventions'])
+                                    or any(s not in panel.inner_text() for s in
+                                           revision['original_conventions'] + revision['current_conventions'])
+                                    or 'Historical conventions (audit only)' not in panel.inner_text()
+                                    or 'Current conventions' not in panel.inner_text()):
+                                failures.append('active/historical conventions not distinguished: ' + route)
                         if page.locator('#solution').get_attribute('open') is not None:
                             failures.append('revision disclosure exposed solution: ' + route)
                         if page.evaluate('document.documentElement.scrollWidth > innerWidth + 2'):
@@ -110,7 +122,8 @@ def run(root, output, channel=None):
                         panel.scroll_into_view_if_needed()
                         page.screenshot(path=str(output / f"revision-{core['core_id']}-{width}-{theme}.png"))
                         revision_rows.append({'core_id': core['core_id'], 'width': width, 'theme': theme,
-                                              'old_and_new_contracts_checked': True, 'solution_remained_folded': True})
+                                              'old_and_new_contracts_checked': True, 'solution_remained_folded': True,
+                                              'conventions_checked': convention_revision})
                     for core in catalog["cores"]:
                         formal = core["views"].get("lean")
                         if not formal:

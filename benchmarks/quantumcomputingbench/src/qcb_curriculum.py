@@ -210,6 +210,9 @@ def stable_readiness(catalog):
         browser_ok = browser_ok and browser.get("checks", {}).get("quarantined_content_excluded") is True
     if any(c.get("question_successor") for c in catalog["cores"]):
         browser_ok = browser_ok and browser.get("checks", {}).get("question_revision_lineage") is True
+    if any("conventions" in (c.get("question_successor") or {}).get("changed_contract_fields", [])
+           for c in catalog["cores"]):
+        browser_ok = browser_ok and browser.get("checks", {}).get("convention_revision_lineage") is True
     gates = {"content_bound_second_pass": not missing and bool(catalog["cores"]),
              "reader_withdrawals_resolved": not withheld,
              "rendered_browser_checks": browser_ok,

@@ -79,9 +79,14 @@ projection, count or maximum-bond lemmas do not automatically prove every new
 necessity refutation, phase-ledger computation or boundary case. Preserve bare
 list versus phase-aware program denotations, rational/real carriers, finite
 self-map scope and actual typed chain length. BE004/BE112's shared assessed
-subproofs are not cleared for independent train/dev evaluation. LA219's private
-sharp-count derivation is not an admitted contract or a new Lean theorem; a
-convention-aware migration must be separately implemented and reviewed first.
+subproofs are not cleared for independent train/dev evaluation. Re-export after
+LA219's explicit question-and-convention migration. Its sharp identity
+E=n+2+popcount(cutoff), correlated-guard analysis and positive-scale attainability
+are reviewed NL mathematics, not a newly compiled theorem. A companion proving
+only the existing loose cap does not cover this full revised request. The old
+contract hash is stale; do not inherit its formal evidence. Read the current
+convention/guard-count checkpoint and preserve the separation between active
+premises, historical convention audit, mathematical review and kernel evidence.
 
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install

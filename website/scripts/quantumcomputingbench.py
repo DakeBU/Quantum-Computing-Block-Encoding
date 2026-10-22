@@ -141,6 +141,8 @@ def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=N
     body += section("Assumptions and conventions", premises, "assumptions")
     if core.get("question_successor"):
         body += '<p class="qcb-boundary" data-qcb-question-version="' + esc(core["question_version"]) + '">This question explicitly revises its historical contract. A Lean companion must bind the current contract hash, not the predecessor hash. This is one reserved core, not two exercises.</p>'
+        if "conventions" in core["question_successor"]["changed_contract_fields"]:
+            body += '<p class="qcb-boundary" data-qcb-convention-revision="2">The conventions above are the current premises. The superseded convention list is retained in the revision audit below, not as active assumptions. A question may quote a historical claim to assess or refute it.</p>'
     body += section("Question", prose(item["question"]), "question")
     roadmap = '<ol>' + "".join('<li>' + esc(s["claim"]) + '</li>' for s in item["semantic_steps"]) + '</ol>'
     body += disclosure("Hint: mathematical route", prose(core["title"]) + roadmap, "hint")
@@ -164,7 +166,14 @@ def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=N
     if core.get("textbook_successor"):
         body += disclosure("Answer revision lineage", prose(json.dumps(core["textbook_successor"], indent=2)), "revision")
     if core.get("question_successor"):
-        body += disclosure("Question revision lineage", prose(json.dumps(core["question_successor"], indent=2)), "revision")
+        lineage = core["question_successor"]
+        revision_body = ""
+        if "conventions" in lineage["changed_contract_fields"]:
+            for title, key in (("Historical conventions (audit only)", "original_conventions"),
+                               ("Current conventions", "current_conventions")):
+                revision_body += '<h3>' + title + '</h3><ul>' + ''.join(
+                    '<li>' + esc(s) + '</li>' for s in lineage[key]) + '</ul>'
+        body += disclosure("Question revision lineage", revision_body + prose(json.dumps(lineage, indent=2)), "revision")
     return body + '</article>'
 
 

@@ -1,0 +1,183 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-plan-320",
+  "repair_record_digest": "c597c3868f09a50231b7f2be997a94e9a1cabc30ccae49277cd65f19c08f9004",
+  "original_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+  "verdict": "accept",
+  "exposure": "Not blind: read root's migration objective, the complete historical prepared item via release.checked()[2], actual current policy row, exact bound withdrawal/finding, entire boundary-authored candidate and old exact approval by /root/qcb_formal_view_audit. Prior task/source context and the original objections were exposed. I did not author this candidate and am distinct from both its author and original author. This is substantive re-review of unchanged candidate bytes, not mechanical rebinding of an earlier approval.",
+  "substantive_reconstruction": {
+    "state_counterexample": "For d>=2, Phi=|Phi_d><Phi_d| with |Phi_d>=d^(-1/2)sum_i|ii> is positive and has trace1. The coefficient of |ab> under U tensor conjugate(U) is d^(-1/2)sum_i U_ai conjugate(U_bi)=delta_ab/sqrt(d), so this state is isotropic. Expanding its projector and transposing the second matrix unit gives Gamma(Phi)=d^(-1)sum_ij E_ij tensor E_ji=F/d. The normalized antisymmetric a=(|12>-|21>)/sqrt(2) has Fa=-a, hence expectation -1/d. Thus F/d has trace1 and Werner symmetry but is not positive; at d2 its eigenvalues are1/2 three times and -1/2 once. This specifically refutes the forward STATE implication while leaving symmetry transport intact.",
+    "full_sandwich": "Expand arbitrary Z=sum_ij Z_ij tensor E_ij. The transpose of B E_ij D is D^T E_ji B^T, while the first-factor product remains A Z_ij C. Factoring the finite sum proves Gamma((A tensor B)Z(C tensor D))=(A tensor D^T)Gamma(Z)(C tensor B^T), without positivity, Hermiticity or a nonzero assumption. Partial transpose is not an antihomomorphism on the entire bipartite algebra. For an actual isotropic conjugation choose A=U,B=conjugate(U),C=U†,D=U^T. Then D^T=U and B^T=U†, giving conjugation of Gamma(Z) by U tensor U. Setting both right factors equal to the left ones would not be conjugation for a general U; the repair correctly fixes this independent original-answer error.",
+    "both_symmetry_directions": "Gamma is linear and involutive, hence injective. Applying the sandwich identity to every fixed-point equality proves isotropic operator symmetry of Z implies Werner operator symmetry of Gamma(Z). Conversely, the Werner equality and the same identity make Gamma of each isotropic conjugation equal Gamma(Z); injectivity recovers the original equality. This works for arbitrary non-Hermitian, nonpositive and zero Z. No positivity statement follows from this linear equivalence. The candidate does not infer a state from symmetry or quietly identify transpose with adjoint.",
+    "conditional_theorem_and_edges": "Now let rho already be any density state. If rho is isotropic and PPT, transport supplies Werner symmetry, PPT supplies positivity, and trace preservation supplies trace1, so Gamma(rho) is a Werner state. Conversely a Werner-state Gamma(rho) is positive, which is exactly PPT, and its symmetry transports back to isotropic symmetry of the already-given rho. This proves the conjunction iff without imposing PPT before the counterexample. Gamma preserves trace and Hermiticity but not positivity. Zero has both symmetries but trace0. At d1 Gamma is identity, scalar conjugation trivial and the unique density operator1 is PPT. At d0 the only operator has trace0, so no density state exists; no maximally entangled normalization is used. These boundaries avoid the d^2-1 parametrization singularity.",
+    "grading_source_and_limits": "All four rubric criteria and corresponding exposition stages enforce the normalized counterexample, complete matrix-unit sandwich with correct right adjoints, both unconditional operator directions and conditional state/degenerate cases. The primary density definition and Werner definition make positivity indispensable. I read the complete operative printed57 paragraph: its Eq6.45 state wording itself overreaches, whereas Eq6.46 and Gamma(Phi)=F/d support the valid algebra and counterexample. Extracted typography can lose conjugation bars, so the exact adjoint substitution is independently reconstructed rather than asserted from an uninspected rendering. The recorded metadata hash binds a locator only; fresh PDF-byte equality and visual confirmation failed. Acceptance is NL mathematical/source revalidation, not a new paper seal, kernel theorem, physical-channel implementation, global alias closure or admission. Historical approval bytes remain untouched."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit catalog entry read. Exact external locator/recorded edition metadata only, not a local mathematical proof or verification of primary PDF bytes. Primary proof/counterexample regions are recorded separately."
+    }
+  ],
+  "content_bindings": {
+    "candidate_path": "benchmarks/quantumcomputingbench/shared/repairs/plan-320-partial-transpose-state-successor.json",
+    "candidate_sha256_lf": "88c9212c55f7528347b12601020d33b3375d034deb6df74697c7a6d36310729c",
+    "current_policy_row_digest": "042b3695f83683eb32fa8bfd7716e51835b1076dbb5a5870851a9af39d96dba9",
+    "withdrawal": {
+      "core_id": "qcb-core-plan-320",
+      "predecessor_key": "qcb-core-plan-320-isotropic-partial-transpose",
+      "predecessor_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+      "reason": "Partial transpose transports operator symmetry but not state positivity; a maximally entangled state maps to the nonpositive swap divided by dimension.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+      "review_digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+      "finding_digest": "67bcc2c402586f17aefc82809acea89ad9159ded86b184014e0768aac06f02cb"
+    },
+    "withdrawal_report_digest_recomputed": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+    "withdrawal_finding_digest_recomputed": "67bcc2c402586f17aefc82809acea89ad9159ded86b184014e0768aac06f02cb",
+    "ordered_original_step_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "ordered_candidate_step_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis",
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis",
+        "concept:operator-theory"
+      ]
+    ],
+    "original_contract_fields": {
+      "question": "A bipartite state of equal local dimension is called isotropic if it is invariant under conjugation by every transformation of the form a unitary tensored with its complex conjugate. Prove that a state is isotropic if and only if its partial transpose on the second subsystem is a Werner state, using the algebraic identity relating partial transposition to conjugation by a unitary and its conjugate.",
+      "assumptions": [
+        "The two subsystems have equal local dimension; partial transposition is taken on the second subsystem."
+      ],
+      "conventions": [
+        "Isotropic symmetry conjugates by a unitary tensored with its complex conjugate; Werner symmetry conjugates by a unitary tensored with itself."
+      ],
+      "family": "qit-isotropic-partial-transpose",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "successor_contract_fields": {
+      "question": "Work on C^d tensor C^d in the fixed local bases used for complex conjugation and partial transpose on the second subsystem. Write Gamma(Z)=Z^{T_B}. A state means a positive semidefinite operator of trace1. Call the invariance (U tensor conjugate(U))*Z*(U† tensor U^T)=Z for every unitary U isotropic OPERATOR SYMMETRY, and call (U tensor U)*Z*(U† tensor U†)=Z for every unitary U Werner OPERATOR SYMMETRY. An isotropic state or a Werner state must additionally be a state.\n\nAssess the predecessor's assertion: 'A state is isotropic if and only if its partial transpose on the second subsystem is a Werner state.' Is it true for every allowed local dimension and every state? For d>=2, use the normalized maximally entangled projector Phi_d=|Phi_d><Phi_d|, |Phi_d>=(1/sqrt(d))*sum_{i=1}^d |i,i>, to prove or refute that assertion. Compute Gamma(Phi_d) in terms of the swap F and test positivity on an explicit antisymmetric vector; do not redefine Werner state to mean only an invariant operator.\n\nFor arbitrary operators A,B,C,D on C^d and Z on C^d tensor C^d, prove the full sandwich identity Gamma((A tensor B)*Z*(C tensor D))=(A tensor D^T)*Gamma(Z)*(C tensor B^T). Apply it to an actual isotropic conjugation, specifying the distinct left and right factors and all adjoints, to prove the unconditional equivalence: Z has isotropic operator symmetry if and only if Gamma(Z) has Werner operator symmetry. No positivity or nonzero premise may be imposed on this operator statement.\n\nFinally, for an arbitrary density operator rho, prove the correct conditional state-level statement: [rho is isotropic and rho is PPT] if and only if [Gamma(rho) is a Werner state], where PPT means Gamma(rho)>=0. Explain why this is a conditional case, not a standing hypothesis that would silently remove the maximally entangled counterexample. Discuss the zero operator, d=1, and the lack of density states at d=0 without dividing by zero. Distinguish trace/Hermiticity preservation, positivity, and involutivity.",
+      "assumptions": [
+        "The two subsystems have equal local dimension; partial transposition is taken on the second subsystem."
+      ],
+      "conventions": [
+        "Isotropic symmetry conjugates by a unitary tensored with its complex conjugate; Werner symmetry conjugates by a unitary tensored with itself."
+      ],
+      "family": "qit-isotropic-partial-transpose",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    }
+  },
+  "mechanical_context": {
+    "observed_head": "f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818",
+    "branch": "agent/qcb-convention-contract-migration",
+    "state": "Dirty engine inspected after root's explicit FINAL admission-engine freeze; these are historical mechanical-inspection versions, not mathematical source dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab"
+      },
+      {
+        "path": "website/scripts/quantumcomputingbench.py",
+        "sha256_lf": "5a097d13f8048bd3265a42ec6312448baa5a99701fe583d383148a9a194ef740"
+      },
+      {
+        "path": "website/scripts/test_quantumcomputingbench_browser.py",
+        "sha256_lf": "03446cd6e0e891c5ea85cdb57948673198d2b42d0327d0a341dcfed30e18a681"
+      }
+    ],
+    "inspection": "Read complete qcb_textbook_policy.py and qcb_curriculum.py; read the convention-fixture construction, rebinding and three direct tests and changed renderer/browser logic. V1 accepts exactly its original field set and only replaces question; V2 alone requires an additional changed, nonempty, unique list of nonblank convention strings and a genuinely changed question. Other contract fields cannot enter either payload. V2 requires its distinct review method, exact old/new nine-field hashes and convention lists, changed-fields order and substantive convention assessment. Current and historical conventions are separately retained; readiness conditionally requires convention_revision_lineage. This does not prove all application paths, browser execution or semantic correctness.",
+    "tests": {
+      "executed_by": "/root/qcb_native_comparison",
+      "test_file": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+      "names": [
+        "test_convention_successor_binds_both_contracts_and_keeps_other_fields",
+        "test_convention_successor_rejects_unbounded_or_invalid_payloads_with_rebound_review",
+        "test_convention_successor_requires_distinct_exact_substantive_review"
+      ],
+      "result": "3 passed; unittest reported 4.405 seconds",
+      "scope": "In-memory mechanical fixtures only. No build, production installation, browser or kernel execution."
+    }
+  },
+  "provenance": {
+    "inspected_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-320-partial-transpose-state-successor.json",
+    "written_private_review": "_review_tmp/plan-320-partial-transpose-state-successor-migration-revalidation-review.json",
+    "limits": "Private review only; no canonical installation, changes to old reviews/candidates, new paper/PDF seal, kernel/native-formal verification, model/human/expert/blind approval, admission, global semantic closure or additional-core claim."
+  },
+  "original_contract_hash": "0164cb961b1796b8988514c3091185d2f45c0172e0dd169d8dbfb24b646861e7",
+  "successor_contract_hash": "7e02133d768c2c2525f000b0e7671e0665919c75600a3eea91edd0e774260b7f",
+  "question_version": 2,
+  "contract_change_assessment": {
+    "necessity": "The literal original asks an unconditional state-level iff. States require positivity, not only invariance. Its maximally entangled counterexample is allowed, so an answer-only swap of 'state' for 'operator' or a hidden PPT premise would change the demand. This explicit first question-version2 instead retains/refutes the old assertion and requests unconditional operator transport plus the exact conditional state theorem.",
+    "invariants": "Exactly question changes among the recomputed nine fields. Original equal-local-dimension assumption, conjugation convention, test_public split, family, graph and source_refs are inherited. Four steps remain, but candidate steps2/4 additionally use existing concept nodes. Both ordered maps are bound without claiming literal predecessor per-step equality, new graph scope, or a measured proof depth."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10 April 2026,79 pages",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "actual_access": "Author-hosted PDF text extraction inspected in this revalidation. Cover/date/page count observed. Direct in-memory byte retrieval failed with WinError10013; screenshot attempts at PDF pages2,46,47,51,56 returned cache misses. No operative page pixels inspected and historical binary SHA not independently reverified.",
+      "binary_hash_verified_here": false,
+      "visual_inspection_here": false,
+      "inspected_anchors": "Definition2.1 density positivity/trace, printed3/PDF2; full Definition6.1 Werner state, printed52/PDF51; complete Definition6.7/Eq6.44-6.46 symmetry/sandwich paragraph and Gamma(Phi)=F/d plus immediate Proposition6.8 context, printed57/PDF56.",
+      "assessment": "Eq6.45's state wording does not establish positivity and is refuted on the stated domain. Eq6.46 is the operative algebraic identity. Text extraction drops some bars; no visual typography verification is claimed."
+    }
+  ]
+}

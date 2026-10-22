@@ -1,0 +1,136 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-011",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-011-normalized-preparation-state-successor.json",
+  "repair_record_digest": "3abc7e9b1e0ec54bf113dfe1e4becbfc5405442531faa7b9b12feb7aeadd3361",
+  "repair_record_sha256_lf": "fb13fa6cbc68ef031684f07c11a9976e75bcd56524113a86912fa11c66acd459",
+  "original_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: question-contract fitness, answer, rubric and exposition. Private independent mathematical revalidation only; no automatic admission, formal transfer, kernel, human/expert or novelty certification.",
+  "question_version": 2,
+  "original_contract_hash": "8befbf010523ba0d7470bf3d315f6611a2d90965f3ea9f3481c107697e864693",
+  "successor_contract_hash": "07a39bea90c46dde931e87c67620bbe9377d70d306fcc87aa6481ba1b545878c",
+  "changed_contract_fields": [
+    "question"
+  ],
+  "contract_change_assessment": {
+    "necessity": "An answer-only patch cannot satisfy the predecessor's universal necessity demand. A=cI with 0<c<1 is nonunitary but its normalized target is exactly the input, prepared deterministically by the system identity. The successor retains this false assertion for assessment and explicitly requests its refutation, rather than silently equating normalized output rays with the exact linear map.",
+    "scope": "Only question changes among the nine contract fields. Empty assumptions/conventions, all contraction inputs including singular/zero matrices, family/split, frozen graph/source scope, and the three ordered support-node lists remain unchanged. The exact SVD dilation and no exact system-only unitary conclusion are retained. This is changed requested reasoning, not a theorem-equivalent restatement."
+  },
+  "preserved_scope": {
+    "family": "qsc-block-encoding-dilation",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 3,
+    "original_ordered_step_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ]
+  },
+  "substantive_reconstruction": {
+    "dilation": "Put S=sqrt(I−Σ²). Both S and Σ are real diagonal, hence commute; the central block M is Hermitian and M² has diagonal Σ²+S²=I and off-diagonal ΣS−SΣ=0. Therefore M†M=I. The two exterior block-diagonal matrices are unitary, so their product U_A is unitary, with blocks [[A,W S],[S V†,−Σ]]. This proves existence, not efficient gate synthesis.",
+    "conditioning": "For a normalized b, U_A|0,b⟩=|0⟩Ab+|1⟩S V†b. Orthogonal ancilla branches give p=||Ab||². Conditioning yields Ab/||Ab|| only if p>0; no normalized output is defined on ker A, and A=0 has no successful input. Since I−A†A is positive semidefinite, p=1 exactly on normalized vectors in K=ker(I−A†A), not only when the entire A is unitary. For example diag(1,1/2) succeeds with certainty on the first basis vector.",
+    "operator_boundary": "For A=cI the specified dilation succeeds with probability c², whereas the deterministic identity gives the same normalized output for every input without that branch. This does not implement the unnormalized map cI. No nonunitary A can equal one system-only unitary on all vectors. More generally tr(AρA†)=tr(A†Aρ) equals one for every density matrix precisely when A†A=I: testing pure states and polarization proves the converse. No deterministic generic normalized preparation theorem is inferred."
+  },
+  "answer_rubric_and_exposition_assessment": "All four rubric criteria check the actual repaired obligations: central/full-block unitarity, correct failure block and conditional domain, norm-one subspace, scalar counterexample, exact-operator/trace-preserving distinction and implementation limit. Every exposition claim follows the derivation above with exactly three original ordered node lists. The change removes the false universal normalized-state necessity, not the correct operator-level obstruction. The full answer neither assumes invertibility nor treats the selected branch's probability as a universal lower bound for all possible preparation procedures.",
+  "bounded_semantic_relation": "This preserves the existing dilation family and its exact-operator target while changing a false necessity request. No new core, formal view, cross-split pooling or exhaustive semantic uniqueness conclusion follows.",
+  "prior_review_exposure": {
+    "old_review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-011-normalized-preparation-state-successor-review.json",
+    "old_review_digest": "6ed37d9495aebb1abc56a11dd177d39b87c5d95f35d9ece39d5fdc28fb9bbe65",
+    "old_review_sha256_lf": "5e1fcf882cfe5a733493fc62a02da2240db1b380070ce4a2640309a89768fabf",
+    "actual_prior_reviewer": "/root/qcb_boundary_repair_review",
+    "exposure": "The exact historical original, withdrawal/finding, entire candidate and old accepted review were exposed. I authored the old review and had already inspected the original/source; this is a fresh reconstruction after exposure, not a blind new reviewer. I did not author this candidate. Old reviews remain byte-for-byte unchanged.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/encoding-foundations-010-011-review.json",
+    "prior_withdrawal_review_digest": "5a155ddc15bd54290a7dfd292bd7e6166c6b7c6c7969ac4b46be2d368ceb2912",
+    "prior_finding_digest": "d9269435cbdfb1fc7da2499a9274a5df80a07d47e35e71b871f016ba5e5c60ac",
+    "historical_code_binding": "The old report's whole policy binding remains historical, including its old LF cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9. This NEW report does not bypass or rewrite it."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Exact complete historical prepared qcb-core-plan-011 loaded via release.checked()[2], including question, assumptions, conventions, reference answer, full rubric and semantic steps. Whole item digest is above. This is tracked mathematical-content provenance, not proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/shared/repairs/plan-011-normalized-preparation-state-successor.json",
+      "sha256_lf": "fb13fa6cbc68ef031684f07c11a9976e75bcd56524113a86912fa11c66acd459",
+      "anchor": "Entire exact candidate read, including all reference-answer, rubric, exposition and metadata fields. This LF binding identifies reviewed mathematical content, not independent proof authority."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete relevant Lin–Wiebe entry read: primary URL, edition and historical binary pin. LF binds metadata only; primary mathematical inspection and its limits are separate below."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "actual_access": "Primary PDF text actually accessed through web extraction in this objective; cover/edition and operative regions inspected. No PDF redistribution or new local formal closure.",
+      "operative_regions": "Lin–Wiebe, April29 2026 edition, printed141–144: complete Section9.1 branch/normalization context Eq9.1–9.13, Figs9.1/9.2 and full Example9.3/Eq9.14 including its no-simple-gate-construction caveat. The source supplies the dilation and selected-branch formula; the necessity counterexample, kernel characterization and trace-preservation proof are independently reconstructed here.",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "reviewer_verified_binary_hash": false,
+      "limit": "The retrieved text's edition/anchors agree with the recorded source, but I did not obtain/hash original PDF bytes. Candidate/other reviewer claims of matching bytes are not inherited. This is source-text mathematical review, not a PDF-binary seal or a source-blind/kernel proof."
+    }
+  ],
+  "mechanical_context": {
+    "scope": "Historical static inspection after the parent's final freeze on agent/qcb-convention-contract-migration, HEAD f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818. These files implement admission/lineage, not the mathematical proof. Their hashes are not evergreen mathematical dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50",
+        "inspection": "Entire file read. Payload v1 remains question-only; strict payload v2 additionally requires a changed nonempty distinct text convention list, separate review method and exact old/new lists/hashes/changed fields. Both keep other contract fields and versioned lineage; source/withdrawal checks remain."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157",
+        "inspection": "Entire file read. core_contract uses the nine fields. stable_readiness conditionally requires convention_revision_lineage when a current successor changes conventions; historic predecessor reviews do not approve successors."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab",
+        "inspection": "Entire file read, including the three new convention fixture tests: both contracts/unchanged fields, malformed or unbounded rebound payloads, and exact distinct substantive review including uncertain withholding. Fixtures are explicitly not mathematical approval."
+      }
+    ],
+    "execution": "No tests/build/kernel executed by this reviewer. Parent reported three direct convention tests passed; I inspected their code, not their execution. No admission engine was invoked for this verdict."
+  },
+  "provenance": {
+    "candidate_author": "/root/qcb_formal_view_audit",
+    "read_location": "benchmarks/quantumcomputingbench/shared/repairs/plan-011-normalized-preparation-state-successor.json",
+    "prepared_original": "release.checked()[2] historical native record, not current-reader substitution",
+    "independence": "Distinct from candidate author and original author; truthful prior exposure above. No parent reasoning or accepted metadata used as proof.",
+    "writes": "Only this new private migration-revalidation report; canonical candidates, sources, policy and all old reports untouched."
+  }
+}

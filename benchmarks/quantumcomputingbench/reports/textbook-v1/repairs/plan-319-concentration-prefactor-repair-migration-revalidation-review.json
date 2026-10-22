@@ -1,0 +1,137 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-319",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-319-concentration-prefactor-repair.json",
+  "repair_record_digest": "2fcc7f4bda646993c9b2da0b02c61c075fe06acbea9d840480a5643486142182",
+  "repair_record_sha256_lf": "5cae4df09ac6e4321e6d125eb3953b3473b13a774701aed0a068a43b275dc019",
+  "original_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: question-contract fitness, answer, rubric and exposition. Private independent mathematical revalidation only; no automatic admission, formal transfer, kernel, human/expert or novelty certification.",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "71f662a536110e1d7e62774362e563fe429fba9429940a16fc3410273fec0825",
+    "reasoning": "The unchanged question asks for concentration and its exact exponential rate, not a coefficient-one finite-n bound. Its fixed-d assumption, natural relative-entropy convention, nine fields, family/split/source scope and four ordered step-node lists remain. Therefore a full prefactor-aware answer repair is sufficient; neither a full-rank premise nor a new question is needed."
+  },
+  "preserved_scope": {
+    "family": "qit-spectrum-concentration",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:probability",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 4,
+    "original_ordered_step_nodes": [
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:probability"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:probability"
+      ]
+    ]
+  },
+  "substantive_reconstruction": {
+    "factorization_and_character": "For orthogonal Schur-Weyl projectors, wλ=tr(Pλρ^⊗n)≥0 and Σλwλ=1. It factorizes as fλ times the Schur-character trace on the unitary irrep, not the trace of an arbitrary nonorthogonal Young symmetrizer. Put p=λ/n, h=d(d−1)/2 and Cλ=n!/∏λ_i!. In a semistandard tableau character, the row-constant tableau contributes s^λ; content ν satisfies ν↓≺λ by the column-capacity condition. Rearrangement and summation by parts against decreasing log s give s^ν≤s^λ, so s^λ≤character≤mλs^λ. No converse asserting survival of every filling is required.",
+    "finite_bounds": "Row-assignment counting gives fλ≤Cλ. The padded hook formula fλ=n!∏_{i<j}(λ_i−λ_j+j−i)/∏_i(λ_i+d−i)! gives fλ≥Cλ/(n+d)^h: the numerator factors are at least one and the h extra denominator factors are at most n+d. Weyl's formula gives mλ≤(n+d)^h. Also (n+1)^−d exp(nH(p))≤Cλ≤exp(nH(p)). For the lower bound, the multinomial type λ is a mode at parameter p=λ/n: each coordinate factorial ratio for an increase or decrease is ≤1, with zero-probability coordinates handled separately. At most (n+1)^d types sum to one. Combining these inequalities proves (n+d)^−(h+d)e^−nD≤wλ≤(n+d)^h e^−nD.",
+    "zero_support_and_rate": "If rank ρ=q and λ has more than q rows, its first column cannot be strictly filled by q positive-weight labels, so the character and weight vanish and D=∞. Otherwise the supported character proof applies with zero components omitted, and gives the same padded bounds. For supported nonzero blocks, −log(wλ)/n=D(p||s)+O_d(log(n+d)/n). The bare bound is false: s=(1/2,1/2), n=2, λ=(2,0) has wλ=3/4 but exp(−nD)=1/4.",
+    "concentration": "For fixed ε, the supported closed ε-away set has positive KL minimum δ_ε unless empty. Counting at most (n+1)^d diagrams yields outside mass ≤(n+1)^d(n+d)^h exp(−nδ_ε)→0. This proves total neighborhood concentration, not positive constant mass for each nearby atom or exact finite-grid equality."
+  },
+  "answer_rubric_and_exposition_assessment": "The four rubric criteria demand orthogonal block probabilities, actual character/dimension bounds, every polynomial prefactor and zero-support convention, and the counted fixed-neighborhood conclusion. All four exposition steps preserve their ordered support nodes. The expanded proof justifies both the finite bounds and requested rate; it avoids the source's dropped union count and the predecessor's bare exponential. It asserts no efficient weak-Schur circuit, sample-optimality or new formal closure.",
+  "bounded_semantic_relation": "407's repaired fixed-neighborhood theorem substantially overlaps this conclusion, but319 additionally derives the per-block exponential rate and two-sided prefactors. This bounded comparison is not global deduplication or cross-split pooling clearance.",
+  "prior_review_exposure": {
+    "old_review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-319-concentration-prefactor-repair-review.json",
+    "old_review_digest": "84b885835c6f280c94a7e43f18e38f3b76bd3419811c7bf2584ef36ee3cb18ca",
+    "old_review_sha256_lf": "de6be03d38ebf62fec0dd82a14f8ffa1fe8050f59eaba659dbee30c914497de0",
+    "actual_prior_reviewer": "/root/qcb_formal_view_audit",
+    "exposure": "The exact historical original, withdrawal/finding, entire candidate and old accepted review were exposed. I read the other reviewer's old report; its verdict is not mathematical evidence for this reconstruction. I did not author this candidate. Old reviews remain byte-for-byte unchanged.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+    "prior_withdrawal_review_digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+    "prior_finding_digest": "e99edf0301fa05d76b800d1e2b763f13ef5f7373b09000cb63a4596033772f29",
+    "historical_code_binding": "The old report's whole policy binding remains historical, including its old LF cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9. This NEW report does not bypass or rewrite it."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Exact complete historical prepared qcb-core-plan-319 loaded via release.checked()[2], including question, assumptions, conventions, reference answer, full rubric and semantic steps. Whole item digest is above. This is tracked mathematical-content provenance, not proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/shared/repairs/plan-319-concentration-prefactor-repair.json",
+      "sha256_lf": "5cae4df09ac6e4321e6d125eb3953b3473b13a774701aed0a068a43b275dc019",
+      "anchor": "Entire exact candidate read, including all reference-answer, rubric, exposition and metadata fields. This LF binding identifies reviewed mathematical content, not independent proof authority."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete relevant Leditzky entry read: primary URL, edition and historical binary pin. LF binds metadata only; primary mathematical inspection and its limits are separate below."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "actual_access": "Primary PDF text actually accessed through web extraction in this objective; cover/edition and operative regions inspected. No PDF redistribution or new local formal closure.",
+      "operative_regions": "Leditzky Proposition5.9/5.10 character-basis and hook/Weyl interfaces, Eq5.35–5.36 two-sided rate, full Lemma9.3 and Proposition9.4 proof Eq9.7–9.32, and full asymptotic discussion/Proposition9.5 Eq9.33–9.39. Some representation statements and the two-sided bound are stated/deferred rather than fully proved in these notes; the elementary multinomial and expanded supported-union arguments are independent reconstruction.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "reviewer_verified_binary_hash": false,
+      "limit": "The retrieved text's edition/anchors agree with the recorded source, but I did not obtain/hash original PDF bytes. Candidate/other reviewer claims of matching bytes are not inherited. This is source-text mathematical review, not a PDF-binary seal or a source-blind/kernel proof."
+    }
+  ],
+  "mechanical_context": {
+    "scope": "Historical static inspection after the parent's final freeze on agent/qcb-convention-contract-migration, HEAD f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818. These files implement admission/lineage, not the mathematical proof. Their hashes are not evergreen mathematical dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50",
+        "inspection": "Entire file read. Payload v1 remains question-only; strict payload v2 additionally requires a changed nonempty distinct text convention list, separate review method and exact old/new lists/hashes/changed fields. Both keep other contract fields and versioned lineage; source/withdrawal checks remain."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157",
+        "inspection": "Entire file read. core_contract uses the nine fields. stable_readiness conditionally requires convention_revision_lineage when a current successor changes conventions; historic predecessor reviews do not approve successors."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab",
+        "inspection": "Entire file read, including the three new convention fixture tests: both contracts/unchanged fields, malformed or unbounded rebound payloads, and exact distinct substantive review including uncertain withholding. Fixtures are explicitly not mathematical approval."
+      }
+    ],
+    "execution": "No tests/build/kernel executed by this reviewer. Parent reported three direct convention tests passed; I inspected their code, not their execution. No admission engine was invoked for this verdict."
+  },
+  "provenance": {
+    "candidate_author": "/root",
+    "read_location": "benchmarks/quantumcomputingbench/shared/repairs/plan-319-concentration-prefactor-repair.json",
+    "prepared_original": "release.checked()[2] historical native record, not current-reader substitution",
+    "independence": "Distinct from candidate author and original author; truthful prior exposure above. No parent reasoning or accepted metadata used as proof.",
+    "writes": "Only this new private migration-revalidation report; canonical candidates, sources, policy and all old reports untouched."
+  }
+}
