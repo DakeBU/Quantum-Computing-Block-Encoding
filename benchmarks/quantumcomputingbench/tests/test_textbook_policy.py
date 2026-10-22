@@ -71,3 +71,63 @@ class TextbookPolicyTests(unittest.TestCase):
             if item["core_id"] in {"qcb-core-sp-002", "qcb-core-sp-006", "qcb-core-sp-011"}:
                 with self.assertRaisesRegex(ValueError, "withdrawn"):
                     check_current_gold([item])
+
+    def test_quarantine_requires_exact_content_and_a_rejection_not_self_approval(self):
+        p = B / "shared/current-policy.json"
+        original_policy = read_json(p)
+        self.assertTrue(original_policy["withdrawals"])
+        for mutate in (lambda row: row.update(predecessor_item_digest="stale"),
+                       lambda row: row.update(review_digest="unreviewed file"),
+                       lambda row: row.update(finding_digest="different verdict")):
+            from copy import deepcopy
+            changed = deepcopy(original_policy)
+            mutate(changed["withdrawals"][0])
+            with patch.object(policy, "read_json", side_effect=lambda path: changed if Path(path) == p else read_json(path)):
+                with self.assertRaisesRegex(ValueError, "quarantine"):
+                    apply_current_reader_policy(self.historical)
+
+    def test_quarantine_is_not_a_current_gold_key_and_never_discards_the_original(self):
+        current, decisions = apply_current_reader_policy(self.historical)
+        by_id = {i["core_id"]: i for i in self.historical}
+        active = {i["core_id"] for i in current}
+        withheld = [d for d in decisions if d["status"].startswith("withheld_")]
+        self.assertTrue(withheld)
+        for row in withheld:
+            old = by_id[row["core_id"]]
+            self.assertEqual(digest(old), row["predecessor_item_digest"])
+            self.assertNotIn(row["core_id"], active)
+            with self.assertRaisesRegex(ValueError, "withdrawn"):
+                check_current_gold([old])
+        check_current_gold(current)
+
+    def test_quarantine_rejects_self_review_or_positive_verdict_even_with_updated_hashes(self):
+        from copy import deepcopy
+        p = B / "shared/current-policy.json"
+        initial = read_json(p)
+        old = {i["core_id"]: i for i in self.historical}
+        for change in ("self_review", "positive_verdict", "stale_source"):
+            changed = deepcopy(initial)
+            row = changed["withdrawals"][0]
+            review_path = B / row["review"]
+            review = deepcopy(read_json(review_path))
+            finding = next(f for f in review["items"] if f["core_id"] == row["core_id"])
+            if change == "self_review":
+                review["reviewer"] = old[row["core_id"]]["author"]["identity"]
+            elif change == "positive_verdict":
+                finding["verdict"] = "accept"
+            else:
+                finding["source_checks"][0]["sha256_lf"] = "different source"
+            row["review_digest"], row["finding_digest"] = digest(review), digest(finding)
+            def mocked(path):
+                return changed if Path(path) == p else review if Path(path) == review_path else read_json(path)
+            with patch.object(policy, "read_json", side_effect=mocked), self.assertRaises(ValueError):
+                apply_current_reader_policy(self.historical)
+
+    def test_duplicate_policy_cannot_hide_a_quarantine_behind_an_answer_successor(self):
+        from copy import deepcopy
+        p = B / "shared/current-policy.json"
+        changed = deepcopy(read_json(p))
+        changed["withdrawals"].append(changed["answer_successors"][0])
+        with patch.object(policy, "read_json", side_effect=lambda path: changed if Path(path) == p else read_json(path)):
+            with self.assertRaisesRegex(ValueError, "conflicting"):
+                apply_current_reader_policy(self.historical)

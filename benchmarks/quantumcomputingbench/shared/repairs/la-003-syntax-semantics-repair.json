@@ -1,0 +1,27 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-la-003",
+  "supersedes_key": "qcb-core-la-003",
+  "supersedes_item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+  "author": "/root",
+  "key": "qcb-core-la-003-textbook-v1-syntax-semantics-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer, rubric and explanatory summary/steps only. The question already asks precisely which compound-evaluation equalities hold; no new assumptions, quotient, graph nodes, family, split or mathematical core are introduced.",
+  "reference_answer": "Fix an environment env:String->Rat and write ev for evalWith env. The five recursive clauses are ev(rat(q))=q, ev(symbol(s))=env(s), ev(add(a,b))=ev(a)+ev(b), ev(mul(a,b))=ev(a)*ev(b), and ev(neg(a))=-ev(a). In particular the constant expressions rat(0) and rat(1) evaluate to rational 0 and 1. Every rational q is attained by rat(q), so this fixed-environment interpretation is surjective.\n\nThese equations say exactly that evaluation preserves the specified expression constructors as rational operations: it is an interpretation, or homomorphism of the corresponding operation-signature term algebra. They do not make the raw inductive Coeff syntax a ring or a rational algebra under those constructors. For example, add(rat(0),rat(0)) and rat(0) are different syntax trees even though both evaluate to zero. Ring laws such as x+0=x hold for the evaluated rational values, not as literal equality of these trees. To speak of a ring homomorphism one would first need an appropriate semantic quotient or another separately defined ring of expressions satisfying the ring laws; the raw source definition supplies neither that quotient nor such a ring instance. A symbolic rewrite is justified when its evaluations agree under the environments in scope, not merely because an arbitrary syntactic identity has been asserted. The five displayed equations are the exact preserved structure requested here.",
+  "rubric": [
+    {"id": "r1", "weight": 1, "criterion": "States constant and symbol evaluation exactly: ev(rat(q))=q and ev(symbol(s))=env(s), with env fixed."},
+    {"id": "r2", "weight": 1, "criterion": "States all three recursive preservation identities for add, mul and neg, including the correct rational operations on evaluated subexpressions."},
+    {"id": "r3", "weight": 1, "criterion": "Identifies precisely this constructor-preserving interpretation and 0/1 preservation. Distinguishes raw syntax from rational ring equality instead of claiming an unqualified ring/algebra homomorphism from constructor syntax. If surjectivity is claimed, justifies it using rat(q); no quotient construction is required."}
+  ],
+  "exposition": {
+    "core_summary": "Evaluation interprets rational constants, assigned symbols, addition, multiplication and negation compositionally. It preserves these operations into Rat without identifying raw expression trees modulo ring laws.",
+    "semantic_steps": [
+      {"claim": "Rational constants evaluate to themselves, symbols to the fixed environment's values; rat(0) and rat(1) give rational zero and one.", "supporting_nodes": ["declaration:QuantumBlockEncoding.Coeff.evalWith_rat", "declaration:QuantumBlockEncoding.Coeff.evalWith_symbol"]},
+      {"claim": "Evaluation commutes with add, mul and neg as rational operations. This interprets raw constructor syntax; it does not assert that the syntax carrier itself satisfies ring equations.", "supporting_nodes": ["declaration:QuantumBlockEncoding.Coeff.evalWith_add", "declaration:QuantumBlockEncoding.Coeff.evalWith_mul", "declaration:QuantumBlockEncoding.Coeff.evalWith_neg"]}
+    ]
+  },
+  "source_checks": [
+    {"path": "QuantumBlockEncoding/Core.lean", "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894", "anchor": "Coeff inductive constructors and derived DecidableEq; constructor operations; evalWith recursion and complete evalWith_rat/symbol/add/mul/neg theorems. No ring laws or expression quotient are supplied by this raw syntax definition."}
+  ],
+  "execution": "Exact source semantics and structural/algebraic reasoning only; no new Coeff quotient or production Lean theorem implemented or certified."
+}

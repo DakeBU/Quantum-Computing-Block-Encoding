@@ -23,17 +23,23 @@ def core_contract(item):
 def reader_source_digest():
     paths = ("website/scripts/quantumcomputingbench.py", "website/static/quantumcomputingbench.css",
              "website/static/quantumcomputingbench.js", "website/scripts/test_quantumcomputingbench_browser.py",
+             "website/scripts/build_site.py", "website/scripts/sidebar_navigation.py",
+             "website/static/site.css", "website/static/site.js", "website/static/math-reader.js",
              "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
              "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
              "benchmarks/quantumcomputingbench/src/qcb_formal_views.py",
              "benchmarks/quantumcomputingbench/tracks/lean/views/native-v1.json",
              "benchmarks/quantumcomputingbench/shared/current-policy.json",
+             "benchmarks/quantumcomputingbench/shared/CONTRACT.md",
+             "benchmarks/quantumcomputingbench/reports/textbook-v1/formal-view-review.json",
+             "benchmarks/quantumcomputingbench/data/authored/repairs-v3.json",
              "benchmarks/quantumcomputingbench/shared/curriculum.json")
     return digest({path: text_sha(R / path) for path in paths})
 
 
 def load_catalog():
     snapshot, all_items, native, legacy = preview.checked()
+    historical_native = native
     native, reader_decisions = apply_current_reader_policy(native)
     config = read_json(B / "shared/curriculum.json")
     topics = {topic: part for part in config["parts"] for topic in part["topics"]}
@@ -67,11 +73,21 @@ def load_catalog():
     if len({r["core_id"] for r in records}) != len(records):
         raise ValueError("duplicate canonical core ID")
     admission = read_json(B / "manifests/integration-20261022/admission.json")
+    withheld_ids = {d["core_id"] for d in reader_decisions if d["status"].startswith("withheld_")}
+    withheld = [{"core_id": i["core_id"], "contract_hash": digest(core_contract(i)),
+                 "item_digest": digest(i), "key": i["key"], "family": i["family"], "split": i["split"],
+                 "snapshot_id": snapshot["snapshot_id"], "topic": i["topic"],
+                 "target_nodes": i["target_nodes"], "supporting_nodes": i["supporting_nodes"],
+                 "source_record": "data/public/nl-v12/release.json", "source_key": i["key"],
+                 "status": "withheld_not_current_gold", "proposal_only": True}
+                for i in historical_native if i["core_id"] in withheld_ids]
     catalog = {
         "schema_version": "qcb.shared_core_registry.v1", "version": config["version"],
         "publication_status": config["publication_status"], "snapshot_id": snapshot["snapshot_id"],
         "graph_source_commit": snapshot["commit"],
         "reader_decisions": reader_decisions,
+        "historical_native_core_count": len(historical_native), "withheld_cores": withheld,
+        "review_scope_core_ids": sorted(i["core_id"] for i in historical_native),
         "parts": config["parts"], "cores": records,
         "core_count_policy": "One admitted core per mathematical target; views never increase this count.",
         "known_cross_cohort_aliases": admission["observed_cross_cohort_aliases"],
@@ -96,7 +112,7 @@ def load_catalog():
 
 def validate_proposals(catalog, proposals):
     """Detect merge-time conflicts; advisory reservations are not distributed locks."""
-    known = {c["core_id"]: c for c in catalog["cores"]}
+    known = {c["core_id"]: c for c in catalog["cores"] + catalog.get("withheld_cores", [])}
     owners, views, candidates = {}, set(), set()
     for row in proposals:
         if row.get("track") not in {"non-lean", "lean"}:
@@ -164,8 +180,12 @@ def content_review_status(catalog):
 
 def stable_readiness(catalog):
     """Stable requires real second-pass records, not changing a version label."""
+    withheld = {d["core_id"] for d in catalog.get("reader_decisions", []) if d["status"].startswith("withheld_")}
+    scope = set(catalog["review_scope_core_ids"])
+    if scope != {c["core_id"] for c in catalog["cores"]} | withheld:
+        raise ValueError("reader policy dropped or invented a historical core obligation")
     accepted, disputed = content_review_status(catalog)
-    missing = sorted({c["core_id"] for c in catalog["cores"]} - accepted)
+    missing = sorted(scope - accepted)
     browser_path = R / "_out/qcb-browser/browser-report.json"
     if not browser_path.is_file():
         browser_path = B / "reports/textbook-v1/browser-report.json"
@@ -179,11 +199,15 @@ def stable_readiness(catalog):
             "graph_links", "search_excludes_answers"))
     if any("lean" in c["views"] for c in catalog["cores"]):
         browser_ok = browser_ok and browser.get("checks", {}).get("native_formal_panels") is True
+    if withheld:
+        browser_ok = browser_ok and browser.get("checks", {}).get("quarantined_content_excluded") is True
     gates = {"content_bound_second_pass": not missing and bool(catalog["cores"]),
+             "reader_withdrawals_resolved": not withheld,
              "rendered_browser_checks": browser_ok,
              "cross_cohort_semantic_reconciliation": catalog["global_semantic_dedup_complete"],
              "shared_view_admission": catalog.get("native_formal_view_admission", {}).get("status") == "admitted"}
-    return {"stable": all(gates.values()), "required_core_reviews": len(catalog["cores"]),
+    return {"stable": all(gates.values()), "required_core_reviews": len(scope),
+            "withheld_core_ids": sorted(withheld),
             "content_bound_second_pass_reviews": len(accepted), "pending_core_ids": missing,
             "gates": gates, "disputed_core_ids": sorted(disputed),
             "version_rename_is_not_an_acceptance_gate": True,

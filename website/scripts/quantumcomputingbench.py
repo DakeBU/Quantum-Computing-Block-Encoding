@@ -110,7 +110,9 @@ def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=N
     body = '<article class="qcb-reader"><p class="qcb-breadcrumb"><a href="' + esc(parent) + '">' + esc(part["title"]) + ' / ' + esc(title_of(core["topic"])) + '</a></p>'
     body += '<p class="eyebrow">' + esc(title_of(core["topic"])) + '</p><h1>Exercise ' + esc(core["core_id"].removeprefix("qcb-core-").upper()) + '</h1>'
     body += '<p class="qcb-meta">' + esc(item["difficulty"]["level"]) + ' · ' + esc(item["task_kind"]) + ' · ' + esc(core["split"]) + '</p>'
-    review_status = 'Additive answer successor with distinct content-bound review; historical rejected answer retained only for audit.' if core.get("textbook_successor") else 'Inherited content-bound reviews; consult the current textbook review ledger for second-pass status.'
+    review_status = ('Additive answer successor with distinct content-bound review; historical rejected answer retained only for audit.' if core.get("textbook_successor") else
+                    'Current content-bound mathematical second pass accepted.' if core.get("editorial_second_pass") == "content_bound_review_accepted" else
+                    'Inherited reviews only; a current content-bound mathematical second pass remains pending.')
     body += '<p class="qcb-boundary">' + esc(core["evidence_relation"].replace("_", " ")) + '. ' + review_status + ' No new Lean verification is claimed for this NL view.</p>'
     premises = '<ul>' + "".join('<li>' + esc(s) + '</li>' for s in item["assumptions"] + item["conventions"]) + '</ul>'
     body += section("Assumptions and conventions", premises, "assumptions")
@@ -177,15 +179,16 @@ def publish(root):
         shutil.copyfile(ROOT / "website/static" / name, root / "static" / name)
     entries, routes = [], []
 
-    def write(route, title, body, description):
+    def write(route, title, body, description, searchable=True):
         site.write_page(root, route, site.page_template(
             title=title, route=route, current=route, body=body,
             coverage=report["coverage"], gate=report["leanGate"], context=context,
             description=description, extra_styles=("static/quantumcomputingbench.css",),
             extra_scripts=("static/quantumcomputingbench.js",)))
         routes.append(route + "index.html")
-        entries.append({"type": "page", "kind": "quantumcomputingbench", "title": title,
-                        "summary": description, "url": route + "index.html"})
+        if searchable:
+            entries.append({"type": "page", "kind": "quantumcomputingbench", "title": title,
+                            "summary": description, "url": route + "index.html"})
 
     def intro(title, subtitle):
         return '<div class="qcb-reader"><p class="eyebrow">QuantumComputingBench · graph-grounded exercise book</p><h1>' + esc(title) + '</h1>' + prose(subtitle)
@@ -222,6 +225,17 @@ def publish(root):
     for core in catalog["cores"]:
         title = title_of(core["topic"]) + " · Exercise " + core["core_id"].removeprefix("qcb-core-").upper()
         write(HUB + "cores/" + core["core_id"] + "/", title, core_body(core, items[core["core_id"]], catalog, graph, live_ids, "../../../", context["commit"]), items[core["core_id"]]["question"])
+    withheld_routes = []
+    decisions = {d["core_id"]: d for d in catalog["reader_decisions"]}
+    for core in catalog.get("withheld_cores", []):
+        route = HUB + "cores/" + core["core_id"] + "/"
+        decision = decisions[core["core_id"]]
+        body = intro("Exercise withheld pending correction", "This historical core remains reserved, but its rejected or ambiguous content is excluded from current exercise listings, reader downloads and scoring. No approved replacement is implied by this notice.")
+        body += '<p class="qcb-boundary" data-qcb-withheld>' + esc(core["core_id"]) + ': ' + esc(decision["reason"]) + '</p>'
+        body += '<p>The frozen preview and original review records remain available for audit. Withdrawal does not close this core\'s stable-release obligation and does not authorize a different split or duplicate core ID.</p>'
+        body += '<p><a href="../../../' + HUB + 'evidence/index.html#answer-decisions">Inspect the current reader decisions</a> · <a href="../../../' + HUB + 'contribute/index.html">Contribute a separately reviewed correction</a></p>'
+        write(route, "Withheld exercise · " + core["core_id"], body + '</div>', "Historical content withheld pending mathematical correction.", searchable=False)
+        withheld_routes.append(route + "index.html")
     body = intro("Three reference warmups", "Small API applications, not deep proof synthesis. A distinct semantic review checked exact definitions, angle conventions and assumptions; inherited fixed-reference elaboration is separate from this review. The review is not a strictly source-blind decoder certificate.")
     for i, (item, review) in enumerate(formal_warmups(), 1):
         formal = item["formal"]
@@ -237,7 +251,8 @@ def publish(root):
     write(HUB + "contribute/", "Contribution contract", body + '</div>', "Shared core IDs, UUID proposals, exact contracts, compatible views and split-safe collaboration.")
     body = intro("Evidence and release readiness", "An inspectable textbook is not automatically a fully validated benchmark. These are the current acceptance boundaries, not claimed completions.")
     body += '<pre><code>' + esc(json.dumps(stable_readiness(catalog), indent=2)) + '</code></pre>'
-    body += '<p>Four mathematically quarantined records and inherited provisional material are excluded from the normal reader. Historical releases and all source/review records are retained in the repository. Existing AI reviews are fallible, content-bound provenance, not newly invented expert approval. No model baseline or isolated arbitrary-Lean prediction evaluation is claimed.</p><p>The frozen benchmark graph is not the current whole-library inventory. Exact live node links are offered only when identities exist; planned/source-only anchors remain graph metadata. An import edge is not theorem entailment and a curated AND hyperedge is not a completed proof.</p>'
+    body += '<p>A bounded historical cross-cohort review is available as <a href="' + REPO + '/blob/' + context["commit"] + '/benchmarks/quantumcomputingbench/reports/textbook-v1/cohort-reconciliation/review-at-8533b9b.json">an exact snapshot audit</a>. It identifies an equivalent target and cross-split mechanism overlap, not exhaustive global deduplication. Its inventory predates current withdrawals and later answer repairs; it does not authorize pooling.</p>'
+    body += '<p>Historical integration quarantines, current rejected/ambiguous records and inherited provisional material are excluded from the normal reader. Historical releases and all source/review records are retained in the repository. Existing AI reviews are fallible, content-bound provenance, not newly invented expert approval. No model baseline or isolated arbitrary-Lean prediction evaluation is claimed.</p><p>The frozen benchmark graph is not the current whole-library inventory. Exact live node links are offered only when identities exist; planned/source-only anchors remain graph metadata. An import edge is not theorem entailment and a curated AND hyperedge is not a completed proof.</p>'
     body += section("Additive answer decisions", '<pre><code>' + esc(json.dumps(catalog["reader_decisions"], indent=2)) + '</code></pre><p>The frozen preview contains the historical predecessor answer. Do not treat its bytes as current gold after a withdrawal. A corrected reader view needs its own content-bound review and does not create a new mathematical core.</p><p><a href="../../data/quantumcomputingbench/reader-items.json">Download current open reader views (not a stable training release)</a></p>', "answer-decisions")
     write(HUB + "evidence/", "Evidence and release readiness", body + '</div>', "Current second-pass review, split/dedup, formal-view, isolation and publication boundaries.")
     home = root / "index.html"
@@ -258,6 +273,7 @@ def publish(root):
     manifest = {"schema_version": 1, "catalog_hash": catalog["catalog_hash"],
                 "reader_source_digest": reader_sources(), "routes": routes,
                 "native_core_ids": len(catalog["cores"]), "admitted_native_lean_views": native_lean_count,
+                "withheld_routes": withheld_routes, "historical_native_core_count": catalog["historical_native_core_count"],
                 "legacy_reference_warmups": 3, "stable": False,
                 "leanGraphSha256": graph_hash, "source_commit": context["commit"]}
     write_json(data_dir / "reader.json", manifest)
@@ -278,14 +294,33 @@ def check_site(root):
         raise ValueError("textbook projection is stale")
     if manifest["leanGraphSha256"] != hashlib.sha256((root / "data/lean-graph.json").read_bytes()).hexdigest():
         raise ValueError("textbook graph binding differs")
+    current_routes = {HUB + "cores/" + c["core_id"] + "/index.html": items[c["core_id"]] for c in catalog["cores"]}
     for route in manifest["routes"]:
         page = (root / route).read_text(encoding="utf-8")
         if '<html lang="en"' not in page or 'class="qcb-reader"' not in page:
             raise ValueError("missing shared English reader shell: " + route)
+        if route in current_routes:
+            item = current_routes[route]
+            if prose(item["question"]) not in page or prose(item["reference_answer"]) not in page or 'id="solution"' not in page:
+                raise ValueError("page changed the exact reviewed question or answer: " + route)
     entries = [e for e in read_json(root / "search-index.json")["entries"] if e.get("kind") == "quantumcomputingbench"]
     expected = {HUB + "cores/" + c["core_id"] + "/index.html": items[c["core_id"]]["question"] for c in catalog["cores"]}
     actual = {e["url"]: e["summary"] for e in entries if e["url"] in expected}
-    if actual != expected or len(entries) != len(manifest["routes"]):
+    withheld = set(manifest.get("withheld_routes", []))
+    expected_withheld = {HUB + "cores/" + c["core_id"] + "/index.html" for c in catalog.get("withheld_cores", [])}
+    if withheld != expected_withheld or any(e["url"] in withheld for e in entries):
+        raise ValueError("quarantined content entered ordinary question search")
+    exported = read_json(root / "data/quantumcomputingbench/reader-items.json")
+    expected_items = {key: public_reader_item(item) for key, item in items.items()}
+    if (exported.get("catalog_hash") != catalog["catalog_hash"] or exported.get("stable") is not False
+            or len(exported["items"]) != len(expected_items)
+            or {i["core_id"]: i for i in exported["items"]} != expected_items):
+        raise ValueError("current reader export differs from exact reviewed content or includes quarantined content")
+    for route in withheld:
+        page = (root / route).read_text(encoding="utf-8")
+        if 'data-qcb-withheld' not in page or 'id="solution"' in page or 'id="hint"' in page or 'id="rubric"' in page:
+            raise ValueError("quarantine notice exposed an unapproved answer")
+    if actual != expected or len(entries) != len(manifest["routes"]) - len(withheld):
         raise ValueError("question-only search or route coverage changed")
     return {"pages": len(manifest["routes"]), "question_only_search": True, "graph_unchanged": True}
 

@@ -1,0 +1,55 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-la-003",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/la-003-syntax-semantics-repair.json",
+  "repair_record_digest": "1bf531ffaa22350d6c4a2d855728a260eca2b6d1c2ba88e7e94cc12a426c1c11",
+  "original_item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+  "verdict": "accept",
+  "verdict_scope": "Correctness and unchanged-question fitness of the exact full answer/rubric/exposition successor; neither a quotient implementation nor a ring instance for raw syntax is approved or claimed.",
+  "independence": {
+    "actual_identity": "/root/qcb_boundary_repair_review is the actual separately dispatched reviewer and authored neither the candidate nor the original item.",
+    "repair_author": "/root",
+    "original_author": "native-foundations-author",
+    "distinct_from_repair_author": true,
+    "exposure": "Not blind. The parent highlighted the syntax-versus-ring issue; the full candidate and original prepared item with historical review metadata were visible. The five defining equations and constructor counterexample below are the mathematical evidence, not parent reasoning or prior verdicts."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "f030c8cd7686f69b91de68108cc38a8bde1ebec892ae26f18513169c6ed5c285",
+    "retrieval": "Selected and read the entire actual prepared qcb-core-la-003 predecessor from scripts/release.checked()[2], not the potentially withheld current-reader view. Read its complete question/answer/rubric, assumptions, conventions, semantic steps and exact source references.",
+    "hash_definition": "original_item_digest=qcb_core.digest(entire prepared original); repair_record_digest=qcb_core.digest(entire parsed exact candidate including exposition); contract_hash=qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}), using the actual original question, assumptions, conventions, family, split, graph_version, target_nodes, supporting_nodes and source_refs.",
+    "reasoning": "The question asks how all five expression kinds evaluate and explicitly glosses 'which algebraic structure' by the equalities relating compound values to their parts. It does not assert a ring quotient or ring laws on raw syntax. A constructor-preserving term interpretation therefore answers the literal request completely; correcting the predecessor's unqualified ring/algebra language does not weaken the question. The fixed total rational environment premise remains unchanged. Family symbolic algebra evaluation homomorphism, train split, graph/source scope and two semantic steps remain the original contract. Surjectivity is a justified optional observation, not a new required assumption or a new mathematical core."
+  },
+  "substantive_reconstruction": {
+    "exact_five_clauses": "Fix env:String->Rat. For every rational q and name s, ev(rat(q))=q and ev(symbol(s))=env(s). For any Coeff trees a,b, ev(add(a,b))=ev(a)+ev(b), ev(mul(a,b))=ev(a)*ev(b), and ev(neg(a))=-ev(a). These equalities are the actual recursive definition of evalWith and the full source simp theorems are reflexive proofs. Rational constants include rat(0) and rat(1), so zero and one values are preserved.",
+    "preserved_structure": "Regard raw trees as the free term algebra for a signature with rational-literal nullary operations, named-symbol nullary operations interpreted through env, binary add/mul and unary neg. Rat with its ordinary arithmetic and the chosen symbol assignments is an algebra for that signature. Evaluation preserves each listed constructor as the corresponding target operation; this is precisely an operation-signature homomorphism/interpretation. Fixed environment matters because ev(symbol(s)) depends on env(s). Recursion also makes this interpretation unique once those five clauses are required. Nothing in this argument equips the raw constructor carrier with ring identities as literal tree equalities.",
+    "syntax_counterexample": "Coeff is an inductive type with distinct constructors and structural DecidableEq. add(rat(0),rat(0)) has top constructor add while rat(0) has top constructor rat, so those terms are unequal. They both evaluate to rational zero in every environment. With constructor addition and rat(0) as zero, the additive identity axiom would require these two trees to be equal, which is false. Thus no ring structure using those raw operations and constants can satisfy the ring laws, regardless of whether some unrelated structure could be invented on the same carrier. Mere HAdd/HMul/Neg/OfNat instances supply notation and operations, not the ring axioms. The candidate correctly keeps tree equality separate from equality after evaluation.",
+    "surjectivity_and_rewrite_boundary": "For every q in Rat the tree rat(q) maps to q, so evaluation is onto for every fixed total env. It is not injective, as the constructor counterexample shows. A valid equational identity of rational rings holds after evaluation because the target is Rat; an arbitrary asserted syntactic identity need not. For instance symbol(s)=rat(0) is not sound under environments with env(s)=1. If a transformation is intended for one fixed env it requires equality of evaluations there; if intended before any assignments are chosen it requires equality under all relevant env. A semantic quotient can be defined separately, for example by universal equality of evaluations, and could then inherit suitable ring structure, but this is neither needed to state the five clauses nor supplied by the raw source definition. The candidate does not claim to construct such a quotient."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept. All five equations are present with correct types and fixed env. The optional onto claim is proved by rational constants. The operation-signature homomorphism language is precise, the literal-tree counterexample is valid, and the rewrite qualification avoids the predecessor's overbroad consequence. It does not introduce a quotient or falsely call raw Coeff a ring.",
+    "rubric": {
+      "r1": "Correctly checks the two base cases with the fixed environment.",
+      "r2": "Correctly checks all three compound-value equations with rational addition, multiplication and negation.",
+      "r3": "Correctly asks for the actual preserved constructor interpretation and zero/one values, rejects an unqualified ring/algebra homomorphism from raw trees, and requires justification only if surjectivity is asserted. No quotient construction is required for full credit."
+    },
+    "core_summary": "Accurately states compositional interpretation and preserves the distinction between raw trees and rational ring equality.",
+    "semantic_steps": "Both exact steps were inspected. Step1 covers constants/symbols and zero/one values using the original base-case nodes; step2 gives addition/multiplication/negation preservation and the syntax caveat using the original compound-evaluation nodes. The same two-step count and allowed node scope are preserved. No graph edge is advertised as proof of a nonexistent Coeff ring instance.",
+    "necessity_and_minimality": "The original five equations and onto observation were correct, but its rubric required an unqualified ring/algebra homomorphism while the source only defines raw constructors. The successor fixes that classification and the arbitrary-identity wording. Since the question itself asks for the exact preserved equations, the change remains within answer/rubric/exposition scope. No new question hypothesis, semantic quotient, data split or source edit is needed."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/Core.lean",
+      "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894",
+      "anchor": "Read Coeff inductive constructors and derived Repr/DecidableEq148-154; OfNat/Neg/HAdd/HMul/HSub operation instances158-173; full evalWith definition175-181 and complete evalWith_rat/symbol/add/mul/neg theorems183-196; rat_zero and zero/one/constant-operation evaluation lemmas thereafter. A scan of the complete file's instance/Ring/Algebra/Quotient occurrences confirms that the inspected raw language supplies these operation instances and no ring or expression quotient. The stronger impossibility for a ring under those exact constructors follows independently from constructor disjointness."
+    }
+  ],
+  "provenance": {
+    "source_inspection": "Entire exact candidate and prepared original read; actual local Coeff constructors/instances/evaluator/full proof clauses read. Repository protocols previously read remain applicable.",
+    "new_kernel_execution": false,
+    "formal_status": "Source inspection and independent structural/algebraic reasoning only. No new Coeff quotient, ring instance or Lean theorem is implemented or certified.",
+    "verification": "Exact JSON record digests and original contract digest use qcb_core.digest; source binding uses qcb_integrity.text_sha with LF normalization. No inherited acceptance is transferred to this changed content.",
+    "mutation_scope": "Only this review and the separately requested sp-105 successor-review file are authored in this pass. All candidates, source files, prepared originals, original reviews and policy files remain untouched; no commit, push or extra agent."
+  }
+}

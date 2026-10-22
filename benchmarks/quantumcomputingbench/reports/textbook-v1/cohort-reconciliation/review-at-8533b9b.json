@@ -1,0 +1,3113 @@
+{
+  "schema_version": "qcb.legacy_native_semantic_reconciliation_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-cross-cohort-mathematical-target-reconciliation",
+  "status": "partial_substantive_review_not_global_dedup_completion",
+  "scope": {
+    "historical_native_count": 213,
+    "current_reader_native_count": 213,
+    "legacy_diagnostic_count": 26,
+    "native_source": "scripts/release.checked()[2], then qcb_textbook_policy.apply_current_reader_policy",
+    "legacy_source": "scripts/release.checked()[3]",
+    "historical_native_digest": "fb075ec52f340a169b8fc4b60eafcb5a3e88bdf832886de0f9d47cb36f32ecad",
+    "current_native_digest": "4ea8d1044fbb37f9345c01086c2efb79768e84fe666f66d8095cb437dfead477",
+    "legacy_digest": "9bd1672230ef465a6b397656ad4e880bef9a9298fae8e5165569fc1d3705f23c",
+    "digest_method": "qcb_core.digest of entire prepared records/cohort lists; current reader includes the three exact reviewed answer successors. Native pair digests bind current prepared reader items, not historical predecessors.",
+    "reader_decisions": [
+      {
+        "core_id": "qcb-core-sp-002",
+        "predecessor_key": "qcb-core-sp-002",
+        "predecessor_item_digest": "7f1b2a1988e00771f6ae01653a655d04982f664f22fab24482075424eb8cbed5",
+        "reason": "The original answer conflates the free output-bond label with the summed input-bond index. step_apply requires distinct b and a labels. Completion columns are irrelevant to the clean-input action, not arbitrary under unitarity.",
+        "repair": "shared/repairs/sp-002-index-repair.json",
+        "review": "reports/textbook-v1/repairs/sp-002-index-repair-review.json",
+        "status": "reviewed_answer_successor_admitted_to_reader"
+      },
+      {
+        "core_id": "qcb-core-sp-006",
+        "predecessor_key": "qcb-core-sp-006",
+        "predecessor_item_digest": "44c37085b4bd6ee2044b283002c7cb3d2067205bc96c3b84b5cb04a60a4002a6",
+        "reason": "The arbitrary-real normalization answer unconditionally transfers a circuit first-column theorem that additionally requires nonnegative entries, and conflates ordinary partial division with Lean's total division.",
+        "repair": "shared/repairs/sp-006-normalization-boundary-repair.json",
+        "review": "reports/textbook-v1/repairs/sp-006-normalization-boundary-repair-review.json",
+        "status": "reviewed_answer_successor_admitted_to_reader"
+      },
+      {
+        "core_id": "qcb-core-sp-011",
+        "predecessor_key": "qcb-core-sp-011",
+        "predecessor_item_digest": "8e29ce90772af81328f7d4b8e817f6183b46c52d96801e394ac4287c4be24a6f",
+        "reason": "Active dimension > 2 makes even active-only unitary terminal cleanup impossible; the source's supported state-action theorem is conditional and does not establish a unitary remedy.",
+        "repair": "shared/repairs/sp-011-terminal-feasibility-repair.json",
+        "review": "reports/textbook-v1/repairs/sp-011-terminal-feasibility-repair-review.json",
+        "status": "reviewed_answer_successor_admitted_to_reader"
+      }
+    ]
+  },
+  "independence": {
+    "actual_task_identity": "/root/qcb_boundary_repair_review",
+    "prior_work": "This reviewer previously reviewed exact sp-006 and sp-011 successors in this same task. Those reviews are disclosed; this is not a new blind-review identity.",
+    "no_new_kernel_execution": true,
+    "no_subagents": true,
+    "no_dataset_changes": true,
+    "no_external_acknowledgment_claim": true
+  },
+  "coverage": {
+    "question_target_screen": "Read all 213 current native questions and target-node lists and all 26 legacy questions/assumptions/conventions/full reference answers. Full plausible counterpart reference answers, assumptions, conventions, source references and formal_context (all inspected counterpart formal_context values were null) were read for the enumerated pair records. Selected source definitions and complete relevant proofs were inspected where identified below. Different families/node names were never treated as proof of distinctness.",
+    "pairwise_exhaustive_review": false,
+    "all_5538_pairs_independently_proved_distinct": false,
+    "global_dedup_complete": false,
+    "limitations": "An inventory-wide semantic screen is not a proof that every unlisted pair is distinct. The report certifies the specific comparisons and the one confirmed equivalent core, plus an explicit unresolved malformed native contract. External primary texts were inspected in bounded sections via text extraction; remote PDF bytes were not locally SHA-verified, and several screenshot requests failed with cache misses. No new Lean check or source-publication gate was run. No complete audit of all native gold correctness is claimed."
+  },
+  "summary": {
+    "confirmed_equivalent_core_pairs": [
+      [
+        "qcb-authored-0007",
+        "qcb-core-sp-009"
+      ]
+    ],
+    "confirmed_equivalent_pair_split_conflict": false,
+    "confirmed_equivalent_pair_family_labels_differ": true,
+    "high_cross_split_overlap_clusters": [
+      "legacy test neg-givens-count-needs-SO-not-O with native train la-106/la-011/la-006",
+      "legacy test qasc-product... with native train be-010",
+      "legacy train r-eval-circuit-order-dagger with native dev la-103/la-120",
+      "legacy dev breadth-hermite-angle-budget with native test la-015/la-016",
+      "legacy test thin-lq diagnostics with native train stored thin-lq la-206/la-218"
+    ],
+    "new_distinct_core_count": null,
+    "merge_authorization": "None. This is evidence for a future concrete dedup/split policy, not permission to mutate existing cohorts."
+  },
+  "relation_semantics": {
+    "equivalent": "Same quantified mathematical target under explicit notation/index adapters; proof verbosity alone does not make a new core.",
+    "strict_specialization": "An explicitly scoped theorem subtarget restricts dimensions/hypotheses/error tier of another; whole multipart tasks may still be incomparable. The scope is stated, so this label is not automatic whole-record dedup.",
+    "merely_related": "Shared mechanism/example/prerequisite but materially different mathematical obligation; does not imply leakage-free.",
+    "distinct": "The enumerated candidate has a different target even after checking the apparent shared notion; not a global claim against every unlisted native.",
+    "unresolved": "A faithful semantic conclusion is not justified; contract defect or missing exhaustive evidence remains visible."
+  },
+  "records": [
+    {
+      "legacy_key": "breadth-cubic-unnormalized-operator",
+      "item_digest": "8f737e41228bf8f1bc126d7767fd0d28955d657f9c04def3b9bd6eaa3b11067e",
+      "question": "For n=1, let v_j=(j/2)^3 for j=0,1. Can a unitary map |0> exactly to this v? Compute its squared norm and state the action of the library rank-one cubicOperator on both basis vectors. Distinguish this operator target from a normalized state-preparation target.",
+      "assumptions": [
+        "n=1 for the numerical witness",
+        "Column-vector basis action; rational coefficients embedded into a real/complex vector"
+      ],
+      "conventions": [
+        "j runs from 0 to 2^n-1",
+        "Operator normalization is not state normalization"
+      ],
+      "family": "breadth-cubic-unnormalized-operator",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.CubicStatePreparation.cubicOperator"
+      ],
+      "source_refs": [
+        {
+          "anchor": "gridPoint/cubicAmplitude/cubicOperator/cubicNormSq/conservativeNormalizer, lines30-61",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/CubicStatePreparation.lean",
+          "sha256": "944c149a0d3e42c376382de469edf2bd2fd4cd5b61335f833975f99d0c3e1421"
+        }
+      ],
+      "literal_mathematical_target": "At n=1 compute v=(0,1/8), ||v||²=1/64; exclude exact unitary loading; identify O=|v><0| on both basis vectors.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-plan-011",
+          "item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+          "key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+          "family": "qsc-block-encoding-dilation",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The native gives an arbitrary contraction's SVD unitary dilation and its ancilla block; it neither computes this cubic vector nor distinguishes O|1>=0 from normalized state preparation.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-sp-006",
+          "item_digest": "80d8cf9a6ab1179417909a57f88236985358dda61923d365c37edbbe5f4df69d",
+          "key": "qcb-core-sp-006-textbook-v1-normalization-boundary-repair",
+          "family": "normalization-identity",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The norm-division identity applies after normalizing v, but the legacy deliberately fixes the unnormalized vector and rank-one operator. Replacing it by |1> changes the target.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy fixed 2-vector rational witness embedded in R/C; native normalization allows all finite real tables with S>0; dilation allows all square complex contractions and uses induced L2 operator norm. Squared state norm and operator scale are different.",
+      "recommended_merge_treatment": "Retain as a diagnostic; no exact duplicate established; link to normalization and dilation as prerequisites.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "breadth-banded-inverse-register",
+      "item_digest": "844c21d1e9424408d3ed5ab473ee50bf53f3cff1c2ef00ee3665a1f62b0e0416",
+      "question": "Let L be a permutation of Z/(2^n). The banded access map loads the address first and then adds the preserved row: F(a,r)=(L(a)+r,r). Derive F inverse, explain why row preservation alone is not a loader specification, and identify the extra premise needed to get F(slot,r)=(offset(slot)+r,r). Does this semantic permutation certify the printed gate-count bounds?",
+      "assumptions": [
+        "n is a natural number",
+        "L is an actual permutation of Word n",
+        "Arithmetic is modulo 2^n"
+      ],
+      "conventions": [
+        "First register overwritten, second register preserved",
+        "Inverse composition reverses operation order"
+      ],
+      "family": "breadth-banded-inverse-register",
+      "split": "test_public",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BandedSparseAccess.accessEquiv_clean_slot"
+      ],
+      "source_refs": [
+        {
+          "anchor": "modularSumEquiv/liftLoaderEquiv/accessEquiv, clean_slot, preserves_row, matrix_unitary; lines20-85 and module boundary",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BandedSparseAccess.lean",
+          "sha256": "3fe81db13dd99b9de8bffb1d87f1564820b11e73a5cf2e800d56ab333a3316c9"
+        }
+      ],
+      "literal_mathematical_target": "For all n and permutations L on Z/(2^n), derive F^-1(b,r)=(L^-1(b-r),r), separate row preservation from loader_spec and gate-resource certification.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-be-102",
+          "item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
+          "key": "qcb-core-be-102",
+          "family": "be-clean-branch-work-hypothesis",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Its clean address action specializes F to n=3 and XOR3 with a work-zero premise, but it asks about scratch restoration and dirty inputs. Legacy asks inverse composition, a generic loader premise and absent arbitrary-size resource certificate.",
+          "subtarget_relationship": "The address/row subtarget of native be-102 is a strict specialization of the legacy generic semantic map; its workspace claims are additional.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-be-101",
+          "item_digest": "c121d5a0d54af38e9206a89b7e5c8acbab4eca77fe5c2e3ef5dad9fc0267a2a1",
+          "key": "qcb-core-be-101",
+          "family": "be-xor-loader-involution",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "XOR3 is one choice of L. Its involution table and two-X implementation are not the inverse of SUM-after-L for arbitrary preserved row.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-be-104",
+          "item_digest": "09426de0cfd6a624bf2b04f6011fbb177a23b57067ad18a29ca7ccb95d4765d8",
+          "key": "qcb-core-be-104",
+          "family": "be-compile-eval-refinement",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Compiler soundness for the fixed seven-wire bijection is a separate implementation bridge; generic permutation unitarity does not establish it.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy uses 2n bits with modular words and no explicit scratch; native fixed7 wires has three-bit address+row+one scratch. Exact bijection equality throughout; no approximate norm.",
+      "recommended_merge_treatment": "Put the generic and fixed-instance questions in a common semantic dependency cluster for splitting; do not erase either by matching the banded-access name.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "breadth-ghl-hermitian-pieces",
+      "item_digest": "7385e47078d7d6fe24b3928da24484fdfe1ccdfbd640a72f2ba1b2294775814e",
+      "question": "For an arbitrary finite complex matrix A define H=(A+A dagger)/2 and K=(A-A dagger)/(2i). Is K anti-Hermitian or Hermitian? Prove the correct claim and reconstruct A. Then apply the identity to S=[[A,B],[0,0]] without assuming A or B Hermitian.",
+      "assumptions": [
+        "Finite complex matrix with matching row/column index type",
+        "2i is nonzero in C"
+      ],
+      "conventions": [
+        "dagger is conjugate transpose",
+        "The antiHermitianPart identifier denotes division by 2i, yielding a Hermitian matrix"
+      ],
+      "family": "breadth-ghl-hermitian-pieces",
+      "split": "dev",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitian_decomposition"
+      ],
+      "source_refs": [
+        {
+          "anchor": "adjoint/IsHermitian/hermitianPart/antiHermitianPart; decomposition and S1/S2 theorems, lines47-136",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+          "sha256": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7"
+        }
+      ],
+      "literal_mathematical_target": "For every finite complex square A, prove H=(A+A†)/2 and K=(A-A†)/(2i) Hermitian, A=H+iK; apply to [[A,B],[0,0]] without Hermitian A/B.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-019",
+          "item_digest": "2608e997670f03f1d37ccd000716a0a0478826035c40e22316b4639af5704267",
+          "key": "qcb-core-la-019",
+          "family": "native-mathematical-expansion-019",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Tensor/additive closure of already Hermitian S,T,X differs from constructing the two Hermitian pieces of arbitrary non-Hermitian A.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-be-011",
+          "item_digest": "b64c8446192d113eddb6f829ef3cce766d74ac79527a75bec2bebc8674cce7fd",
+          "key": "qcb-core-be-011",
+          "family": "be-lcu-phase-cancellation",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "The filler-phase cancellation counterexample consumes S1 but asks a distinct LCU block defect. Its corrected S1 claim assumes B Hermitian whereas the legacy general split does not.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Same finite complex adjoint convention. K itself is Hermitian because conjugating 1/(2i) negates it and adjointing the numerator negates it; no commutation premise or norm statement.",
+      "recommended_merge_treatment": "Retain; cluster source-related GHL material to avoid treating shared S1 exposition as independent evidence.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "breadth-robin-norm-convention-counterexample",
+      "item_digest": "ecfd5453b1dd830554279108f55bfdf3b985909e07986476183d3e3ce18364b5",
+      "question": "The implementation matrixOneNorm takes the maximum absolute ROW sum. For M=[[1,2],[0,0]], compute this quantity and the standard induced column-vector l1 operator norm. Explain the convention mismatch and whether a definition docstring can certify their equality.",
+      "assumptions": [
+        "Numeric real/rational matrix M with the stated entries",
+        "Standard column-vector l1 norm convention"
+      ],
+      "conventions": [
+        "Library definition is authoritative for computation, its norm label is separately audited",
+        "No change to the production definition"
+      ],
+      "family": "breadth-robin-norm-convention-counterexample",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.matrixOneNorm"
+      ],
+      "source_refs": [
+        {
+          "anchor": "matrixRowAbsSum and matrixOneNorm, lines92-109",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RobinMatrix.lean",
+          "sha256": "e957b6a5961ad2c22cfd154f17cbbec3e7668027b2f526d9f762798eb1c50038"
+        }
+      ],
+      "literal_mathematical_target": "Compute maximum absolute row sum=3 versus induced column-vector l1 norm=2 for [[1,2],[0,0]], exposing the library norm-name mismatch.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-be-001",
+          "item_digest": "d3fcc5644825a903d365c5356b4e51c6754683966d400872169b733c2b7ed313",
+          "key": "qcb-core-be-001-corrected-v2",
+          "family": "be-projected-block-contract",
+          "split": "test_public",
+          "relation": "distinct",
+          "reasoning": "The native block-encoding contract uses induced Euclidean operator norm, neither maximum row sum nor induced l1. For this witness that norm would be sqrt(5), a third quantity. Sharing the word norm is no equivalence.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Fixed rational2x2 witness; max-row-sum equals standard induced infinity norm. Standard l1 is max column sum. Native L2 error must not be transported to either without bounds.",
+      "recommended_merge_treatment": "Retain this convention diagnostic. It must not be relabeled an L2 block-error item; no exact native counterpart identified in the screened inventory.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "breadth-hermite-resource-scope",
+      "item_digest": "daaf6fa6a85ab645fd579a0682fd97ccf847363a87ad3ca0655852bbd81804b8",
+      "question": "For k,n natural and L>0, unpack exists_polynomial_resources: how many wires does its circuit use, what are the gate/depth/oracle bounds, and what happens for a nonzero bond output b on the all-zero input? Does the result supply a finite-bit Clifford+T implementation?",
+      "assumptions": [
+        "k,n natural; L strictly positive",
+        "Exact primitive real-angle gate model"
+      ],
+      "conventions": [
+        "Data register first, clean bond appended",
+        "Zero oracle calls is a circuit metadata result, not universal free input construction"
+      ],
+      "family": "breadth-hermite-resource-scope",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomialPreparation.exists_polynomial_resources"
+      ],
+      "source_refs": [
+        {
+          "anchor": "exists_polynomial_resources complete theorem lines11-24",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomialResources.lean",
+          "sha256": "e3498942130f957315c3328cc0e55d1054b042a14d670bbb80c743b531832d2d"
+        }
+      ],
+      "literal_mathematical_target": "Unpack the existential Hermite circuit on (n+1)+bondQubits(k) wires with gate/depth<=48(n+1)(2k+6)^3, no opaque oracles, exact clean bond and exact-real scope.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-sp-117",
+          "item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+          "key": "qcb-core-sp-117",
+          "family": "hermite-cut-rank",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "The native explains why per-cut rank<=8k+12 alone is not a compiler. The legacy unpacks a later actual circuit theorem including cleanup, whose prerequisites go beyond cut rank.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-213",
+          "item_digest": "e8d6aac4380e1be63a7428f60ed9f11f343696644445cfb3f1cae3cfe7f2ba36",
+          "key": "qcb-core-la-213",
+          "family": "native-stored-cost-213",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Depth<=gateCount for every scheduled circuit is one dependency of the legacy bound, but supplies neither Hermite gates, angle semantics, wire split nor clean-column equality.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy k,n natural,L>0; exact-real physical RY/CX metadata. Native generic depth is a schedule theorem; rank certificate is algebraic. Neither is a finite-bit compiler.",
+      "recommended_merge_treatment": "Retain; record dependency overlap with la-213 and sp-117, not an alias or arbitrary polynomial-preparation success.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "breadth-hermite-angle-budget",
+      "item_digest": "d2984caafeda90de3eb89b0fff28e267dd248af2c8ee539ee846eb462147061c",
+      "question": "An exact Hermite circuit has at most G=48(n+1)(2k+6)^3 primitive instructions. Assuming positional alignment with only RY angles changed on the same targets by at most delta>=0, derive a sufficient delta for operator error <=epsilon, epsilon>=0. Explain why a small gate-count difference or basis-state probability match alone cannot replace alignment.",
+      "assumptions": [
+        "epsilon>=0; k,n natural",
+        "Aligned approximate circuit supplied with same physical targets and only permitted RY changes"
+      ],
+      "conventions": [
+        "Chronological eval(g::rest)=eval(rest)*eval(g)",
+        "Induced Euclidean L2 operator norm, not entrywise norm or output-distribution distance"
+      ],
+      "family": "breadth-hermite-angle-budget",
+      "split": "dev",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveCircuitPerturbation.prepare_conditional_distance_le"
+      ],
+      "source_refs": [
+        {
+          "anchor": "GateAligned, Aligned, distance_le, aligned_eval_distance_le, hermiteAngleBudget, prepare_conditional_distance_le; lines16-119",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean",
+          "sha256": "624109564cd82b0584fad717283e7b9116b36f1ef10d60b43a063c0ef2a1fbae"
+        }
+      ],
+      "literal_mathematical_target": "From positional RY-only alignment and gate count G derive delta=2epsilon/G and uniform induced-L2 error<=epsilon; show counts/probabilities alone do not replace alignment.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-015",
+          "item_digest": "4ac0d74781d50ead023fd5830a7e8e5cda93b4580d32f2f4ef85299e32890567",
+          "key": "qcb-core-la-015",
+          "family": "native-expansion-mechanism-015",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The native proves single-gate exact distance 2|sin((a-b)/4)|<=|a-b|/2 uniformly with spectators. Legacy additionally telescopes an aligned whole list, uses the Hermite gate bound and budgets delta. No single-gate lemma alone gives the whole proof.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-016",
+          "item_digest": "9c8a04ca1889fb0a56d3f452b52f5640741fb20e9f1d4e4962b89aef5642bc12",
+          "key": "qcb-core-la-016",
+          "family": "native-expansion-mechanism-016",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The 2pi-shift distance2 counterexample explains why equal probabilities do not imply operator closeness; it is one failure witness, not the aligned telescoping theorem.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Same induced Euclidean L2 operator norm and half-angle convention. Legacy epsilon,delta>=0 and exact physical target/order alignment; native single-gate result has no whole-circuit alignment promise.",
+      "recommended_merge_treatment": "High cross-split prerequisite leakage: legacy dev versus native la-015/la-016 test_public. Group the perturbation mechanism before any pooled evaluation; retain separate theorem granularity.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "breadth-stored-projection-cost",
+      "item_digest": "2eee09b23591d3b20b6522e257d85dc9a7d9722ccfdada5875a8e16f60a91198",
+      "question": "For m stored StageRun values f(i), collectStages_total_cost states ordinary(collectStages f)=sum_i ordinary(f(i))+6m. Explain the 6m, evaluate total ordinary work for m=3 when each stage has ordinary work 10, and distinguish these counts from arbitrary-precision bit complexity.",
+      "assumptions": [
+        "m=3 for numerical example; arbitrary m for stated collection identity",
+        "Cost records use the defined eight-operation model"
+      ],
+      "conventions": [
+        "Stored reads/writes charged explicitly",
+        "Exact-real operation counts kept separate from finite-bit implementation costs"
+      ],
+      "family": "breadth-stored-projection-cost",
+      "split": "dev",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.StoredHermiteRawCost.collectStages_total_cost"
+      ],
+      "source_refs": [
+        {
+          "anchor": "module scope; ordinary_eq_total and collectStages_cost/collectStages_total_cost, lines4-29,78-93",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+          "sha256": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62"
+        }
+      ],
+      "literal_mathematical_target": "For m StageRuns derive ordinary(collectStages f)=sum ordinary(f_i)+6m; account for3 reads+3 writes, compute m3,cost10 gives48, distinguish bit complexity.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-211",
+          "item_digest": "8a26d0b580fa303806b022d75965d1d39401d78114de1ccc9363c4c6c4f582c6",
+          "key": "qcb-core-la-211",
+          "family": "native-stored-cost-211",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "The native proves ordinary=sum of eight counters and its additive/unit laws. Those enable summing the projection surcharge but do not derive which reads/writes collectStages performs.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-la-212",
+          "item_digest": "3b06beca17d084d5e8dfc81822d969d9e1271b530e70525a1fb4f0e7713a7c24",
+          "key": "qcb-core-la-212",
+          "family": "native-stored-cost-212",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "The native derives selected raw integer totals2n²+10n+7 for a whole producer, not the per-stage collection overhead. Same operation model is not the same counted algorithm.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Same eight exact-real tags; legacy quantified over arbitrary m and stored producers. Integer/exponential counters and arbitrary-precision bit costs remain separate.",
+      "recommended_merge_treatment": "Retain; same split dev for la-211, cross split dev/train for la-212 is dependency overlap only.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "breadth-bell-chronological-wires",
+      "item_digest": "dcc7a4670167a7a6ae01c1c3a635bbd8cd2aba313a0051a540d75e232cdd874e",
+      "question": "Using the library little-endian q0 convention, apply RY(pi/2) on q0 to |00>, then CX(q0,q1). Give the nonzero basis labels after each operation and the final resource tuple. Why is it wrong to describe the intermediate label1 as the big-endian q0=0,q1=1 convention without an adapter?",
+      "assumptions": [
+        "Initial two-qubit all-zero state",
+        "Exact angle pi/2; control wire0 distinct from target wire1"
+      ],
+      "conventions": [
+        "Little-endian label=sum_j bit_j 2^j",
+        "Chronological RY then CX; positive Bell amplitudes"
+      ],
+      "family": "breadth-bell-chronological-wires",
+      "split": "dev",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.StatePreparationBenchmarks.bellVerified_cost"
+      ],
+      "source_refs": [
+        {
+          "anchor": "module convention, bellRyAngle, bellAfterRy, bellRy_col_zero, bellPrimitive_prepares_target, bellVerified_cost",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+          "sha256": "5d9f5c0c28bf90fc38f66f76b2e5725ae903490904fac270bf1bd0d033c968c7"
+        }
+      ],
+      "literal_mathematical_target": "Propagate |00> through RY(pi/2) at little-endian q0 then CX(0,1): supports{0,1} then{0,3}, cost(aux,gates,depth,oracle)=(0,2,2,0).",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-007",
+          "item_digest": "f10f3a23733971a2aa0b150a90124936ed6d12d8b403eff4b77380607f85064c",
+          "key": "qcb-core-la-007",
+          "family": "linearity of matrix-vector action / sparse-input collapse",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "Two-basis-column linearity is exactly the method used after the first gate but does not compute this circuit, endianness or its resources.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-plan-411",
+          "item_digest": "05e0d2384e44696ebe45e9477ead16e724d11c08a081759a128d460e2e821847",
+          "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2",
+          "family": "maximally-entangled-intertwiner",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The native transpose trick/U tensor conjugate(U) invariance uses the maximally entangled vector for general d; it is not this two-gate preparation path.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Fixed two-qubit exact positive Bell vector; circuit little-endian integer labels are central. Abstract QIT tensor A,B labels do not automatically supply physical wire placement.",
+      "recommended_merge_treatment": "Retain; do not equate a Bell preparation path with Bell-state partial trace or abstract invariance.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qcb-authored-0001",
+      "item_digest": "be983fb5a6a9a7c42c46f392584fe45067899858381971a78353d0746631c5ef",
+      "question": "In QuantumBlockEncoding.ThinLQ, the theorem exists_thin_lq asserts that every finite real matrix A : Matrix (Fin m) (Fin n) R admits R and Q with A = R * Q and Q * Q.transpose = 1. (a) What is the exact inner dimension of this factorization (the number of rows of Q and columns of R)? (b) Does the theorem require A to have full rank or to have nonzero rows? (c) What does the equation Q * Q.transpose = 1 say about Q geometrically?",
+      "assumptions": [
+        "A is a finite real matrix over Fin m x Fin n."
+      ],
+      "conventions": [
+        "Q * Q.transpose = 1 encodes orthonormal rows (right-isometry).",
+        "Inner dimension is min m n in all shapes, including rank-deficient."
+      ],
+      "family": "thin-lq",
+      "split": "test_public",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ThinLQ.exists_thin_lq"
+      ],
+      "source_refs": [
+        {
+          "anchor": "theorem exists_thin_lq (lines 79-93); docstring lines 4-10; exists_factor_of_le lines 36-77",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ThinLQ.lean",
+          "sha256": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a"
+        }
+      ],
+      "literal_mathematical_target": "Every real m-by-n A factors A=RQ with Q of exactly min(m,n) orthonormal rows, including deficient/zero dimensions, and interpret row geometry.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-001",
+          "item_digest": "f871c32a18b71fb5ea483f94e2941d10f0b34a1ea600577f1e392fdb2d0412c3",
+          "key": "qcb-core-la-001",
+          "family": "composite-index reshaping / bijective reindexing invariance",
+          "split": "test_public",
+          "relation": "strict_specialization",
+          "reasoning": "The core factorization subtarget takes m=l,n=2r and relabels composite columns; the returned inner rank is min(l,2r). The whole native task additionally asks a bijective reshape/reindex invariance argument; therefore whole-question aliasing is not justified.",
+          "subtarget_relationship": "Native factorization is a strict even-column-dimension specialization of legacy exists_thin_lq, plus an index-transport obligation; odd n legacy cases are not covered literally.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-la-206",
+          "item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+          "key": "qcb-core-la-206",
+          "family": "native-stored-cost-206",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Stored wide LQ produces actual factors and a same-run cost budget for m<=n, strengthening implementation content while narrowing shape; neither full task implies the other.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-218",
+          "item_digest": "2b9c9d2449bb0b0da1ab69a254c046c2da52c231a4d71d5ef29f1a828508ee72",
+          "key": "qcb-core-la-218",
+          "family": "native-stored-cost-218",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Tall stored dispatcher uses R=A,Q=I, which also appears in the legacy existence proof, but the native task is an algorithm/cost counterexample, not the all-shape existence contract.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy arbitrary real finite matrices, no rank/nonzero-row hypothesis, exact min not matrix rank. Native core has 2r columns; stored variants add operation model. Both use QQ^T=I, not Q^TQ=I.",
+      "recommended_merge_treatment": "Avoid double-counting the core factorization subtarget as independent mathematics. Keep whole-item distinctions and cluster legacy test_public with la-206/la-218 train in a future grouped split.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qcb-authored-0002",
+      "item_digest": "0568a552545e1329cdf4414a36bd812b2ec2d28467eca20a374cceac8202aebf",
+      "question": "In QuantumBlockEncoding.ThinLQ, exactly what does the lemma sum_prefix_of_zero state, and explain precisely how it is used in exists_factor_of_le so that the factor Q ends up with exactly m rows (for m <= n) rather than n rows.",
+      "assumptions": [
+        "m <= n for the wide case; Gram-Schmidt orthonormal basis of n vectors is used."
+      ],
+      "conventions": [
+        "Fin.castLE embeds Fin m into Fin n as the first m indices."
+      ],
+      "family": "thin-lq",
+      "split": "test_public",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ThinLQ.sum_prefix_of_zero"
+      ],
+      "source_refs": [
+        {
+          "anchor": "sum_prefix_of_zero lines 17-34; exists_factor_of_le lines 36-77 (hz triangularity + hs restriction)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ThinLQ.lean",
+          "sha256": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a"
+        }
+      ],
+      "literal_mathematical_target": "Prove/interpret the additive-monoid zero-tail prefix-sum identity and explain the Gram-Schmidt triangular coefficient truncation yielding m rows when m<=n.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-001",
+          "item_digest": "f871c32a18b71fb5ea483f94e2941d10f0b34a1ea600577f1e392fdb2d0412c3",
+          "key": "qcb-core-la-001",
+          "family": "composite-index reshaping / bijective reindexing invariance",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The native assumes existence of a flat thin factorization and transports it through a bijection; it does not reconstruct the zero-tail/Gram-Schmidt proof of existence.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-la-218",
+          "item_digest": "2b9c9d2449bb0b0da1ab69a254c046c2da52c231a4d71d5ef29f1a828508ee72",
+          "key": "qcb-core-la-218",
+          "family": "native-stored-cost-218",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "The stored tall branch avoids elimination and does not use the wide-case Gram-Schmidt prefix proof.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy prefix lemma holds in any AddCommMonoid before specializing to real basis coefficients. Native composite-index finite sums are bijective reindexings rather than zero-tail truncations.",
+      "recommended_merge_treatment": "Retain as proof-level diagnostic; same ThinLQ ancestry is insufficient to merge it with la-001.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qcb-authored-0005",
+      "item_digest": "283a59a6800ad601006206b42aada78472055abe407c8ce349db54271f07ccea",
+      "question": "In QuantumBlockEncoding.TensorTrainCanonical, describe the types Core, Chain, Word and the function contract. In particular: what are the three dimensions of a Core, how are bond dimensions represented, in what order are physical bits emitted, and what does the matrix contract C x represent? For a scalar-boundary chain C : Chain n 1 1, what is contract C x 0 0?",
+      "assumptions": [
+        "Real tensor-train cores; amplitudes are real entries of the slice product."
+      ],
+      "conventions": [
+        "Physical bit index is Fin 2; first core emits first bit; bond dims are dependent, not padded.",
+        "contract on nil is the identity matrix 1."
+      ],
+      "family": "tensor-train",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.contract"
+      ],
+      "source_refs": [
+        {
+          "anchor": "Core line 18; slice lines 20-21; Chain lines 24-26; Word lines 29-31; contract lines 39-42",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "literal_mathematical_target": "Specify Core(l,r)=R^{l×(2r)}, dependent Chain/recursive Word and ordered slice contraction; scalar boundary entry gives amplitude.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-109",
+          "item_digest": "1fd3017d71601c3fa4b81db41b1b04a8d4a9fd00e609a2ba2b87f5082ddbb14b",
+          "key": "qcb-core-la-109",
+          "family": "matrix-constructions-mpc-left-boundary",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Left-boundary absorption proves a new contraction identity using these types; defining contract does not prove absorption.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-la-110",
+          "item_digest": "fad513662c7653c200c59df3ebf0190dd261233cbc497793dff6c0821c892001",
+          "key": "qcb-core-la-110",
+          "family": "matrix-constructions-mpc-terminal-absorption",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Terminal vector absorption/readout equivalence adds a recursive construction beyond the vocabulary.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-sp-007",
+          "item_digest": "f47a739f7ea08d5acd553764322f8c24c2c6b1e7c40abe98923f3bceb2f8963a",
+          "key": "qcb-core-sp-007",
+          "family": "sequential-transfer-composition",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The native bridges complex padded square-stage matrix action to chronological transfer. Its orientation is new-core-left multiplication; the real dependent chain uses first slice times tail. An explicit transpose/register adapter is needed before comparing formulas.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy real dependent bonds; native sequential stage uses fixed padded B and complex columns. Neither dependent-index names nor differently ordered products establish distinctness; actual source orientations were compared.",
+      "recommended_merge_treatment": "Retain vocabulary diagnostic; related construction items may share a group for pedagogical splits but are not the same target.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qcb-authored-0006",
+      "item_digest": "e63083a59b00dbd881ba3dcb0f68c0929137fba1fcb14e0d8ce66d4beab47039",
+      "question": "QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq states that if a chain C is RightCanonical then chainMass C v = mass v for every left boundary v. Give the honest inductive derivation, naming each sublemma or structural fact used.",
+      "assumptions": [
+        "C is RightCanonical: every core has orthonormal rows A * A.transpose = 1."
+      ],
+      "conventions": [
+        "mass is the squared Euclidean norm; vecMul is row-vector times matrix; the two bit-slices tile A's (bit, bond) index."
+      ],
+      "family": "tensor-train",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq"
+      ],
+      "source_refs": [
+        {
+          "anchor": "chainMass_eq lines 142-157; mass_vecMul lines 123-135; chainMass lines 138-139; RightCanonical lines 45-47",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "literal_mathematical_target": "For all right-canonical real chains C and all left boundary v, inductively prove chainMass(C,v)=sum v², summing all emitted words and terminal bonds.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-sp-004",
+          "item_digest": "1b31a5d5788641b5b7068c87fc829de70756a84e5d8acb6f2e049f0d12701aed",
+          "key": "qcb-core-sp-004",
+          "family": "canonicalization-residual-norm",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Its residual-mass conclusion composes this invariant with a separate factorization C=R D, then specializes chain mass to1. It does not ask for this general inductive core proof.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-sp-003",
+          "item_digest": "c4a49ccae5572ff4bf896d73c30f37c0c0c3b4caa98488b2efd4171679e36f72",
+          "key": "qcb-core-sp-003",
+          "family": "canonicalization-input-promise",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "The native derives a normalized boundary and exact amplitude recovery after canonicalizing a normalized scalar-boundary chain, rather than assuming the entire input chain right-canonical.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-sp-008",
+          "item_digest": "d403cce404da75f2931579b020692a9cf08143dfd7b2a59eeec69fce4c59f771",
+          "key": "qcb-core-sp-008",
+          "family": "coherent-success-probability",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Both preserve mass by composing local isometries, but native has complex full unitaries on padded stages and a basis boundary, whereas legacy has arbitrary real boundaries and rectangular row-isometries with changing dependent bonds. Those hypotheses and conclusion domains are not literally equivalent.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy arbitrary real v and terminal r includes nonnormalized/zero inputs. Native sp-008 is complex basis-boundary unit mass. Same invariant can be transported but source and circuit models differ.",
+      "recommended_merge_treatment": "Retain theorem granularity; train/train overlap here is not cross-split contamination. Record canonical-mass dependency instead of a new independent mechanism claim.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qcb-authored-0007",
+      "item_digest": "faf376c5de2ba21cc978ab994bfcf32a7878baba4d07eaf9899f796fab4bc48e",
+      "question": "QuantumBlockEncoding.TensorTrainCanonical.complexCore embeds a real core A into a complex matrix. (a) What is the index order of complexCore A, and how does it differ from the mathematical Core orientation? (b) State what complexCore_isometry proves and explain the circuit meaning: how does a right-canonical real core (A * A.transpose = 1) become a valid circuit stage?",
+      "assumptions": [
+        "A is a right-canonical real core: A * A.transpose = 1."
+      ],
+      "conventions": [
+        "Circuit orientation: output rows = (emitted bit, new right bond); input columns = old left bond. Real amplitudes embed with zero imaginary part."
+      ],
+      "family": "tensor-train",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"
+      ],
+      "source_refs": [
+        {
+          "anchor": "complexCore lines 209-212; complexCore_isometry lines 214-226",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "literal_mathematical_target": "Transpose real core A into C_(out,a)=A_(a,out) and prove A A^T=I implies C†C=I on old bond, explaining output(bit,newbond)/input(oldbond) orientation.",
+      "assessment": "equivalent_core_confirmed",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-sp-009",
+          "item_digest": "3f133557d4caeab060a7631ee2641d0019434fd496c4f8fa413895aaf318e981",
+          "key": "qcb-core-sp-009",
+          "family": "core-circuit-isometry",
+          "split": "train",
+          "relation": "equivalent",
+          "reasoning": "Both quantify a real Core(l,r), assume exactly A A^T=I, define the same transpose-plus-real-inclusion complex matrix, and ask the same isometry and orientation interpretation. Entry(a,c) of C†C is sum_out A_(a,out)A_(c,out)=(AA^T)_(a,c). Native expands the proof more explicitly, but there is no distinct mathematical target or added assumption.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Identical arbitrary l,r (including empty admissible indices), Fin2 emitted bit, new-bond output ordering, real inclusion and complex adjoint; no norm approximation/resource claim in either.",
+      "recommended_merge_treatment": "Confirmed alias/equivalent core for a future merged dedup registry. Both currently train, so no present split conflict; family labels tensor-train versus core-circuit-isometry must not hide this duplicate. Preserve both historical record IDs and provenance.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "k-ry-half-angle-convention",
+      "item_digest": "7424914e3a8a578e6e2c3d48167b3b6f229835c4cc5855a1d7fb04f003209d39",
+      "question": "In this library's exact matrix semantics, `standardRyMatrix theta` is defined as `realRotation (theta / 2)` and is documented as the Qiskit / OpenQASM 3 convention. State precisely what the four matrix entries of `standardRyMatrix theta` are in terms of `theta`, explain why the half angle appears, and give the value of the first computational-basis column (the image of the |0> basis vector).",
+      "assumptions": [
+        "theta is a real angle; entries are promoted to the complex field via Complex.ofReal"
+      ],
+      "conventions": [
+        "RY uses the half-angle convention theta/2 (Qiskit / OpenQASM 3)",
+        "basis order: index 0 is |0>, index 1 is |1>"
+      ],
+      "family": "primitive-semantics-convention",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.standardRyMatrix"
+      ],
+      "source_refs": [
+        {
+          "anchor": "standardRyMatrix / standardRyMatrix_zero",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        }
+      ],
+      "literal_mathematical_target": "Give RY(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]], first column and half-angle convention.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-015",
+          "item_digest": "4ac0d74781d50ead023fd5830a7e8e5cda93b4580d32f2f4ef85299e32890567",
+          "key": "qcb-core-la-015",
+          "family": "native-expansion-mechanism-015",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The native takes this matrix as given and derives a two-angle induced-norm distance; the question's shared formula is an input, not its target.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-be-105",
+          "item_digest": "15381b174d3517cf5ade51fd5a8bfdf0eee977640793ea43e93c0627b2eaede1",
+          "key": "qcb-core-be-105",
+          "family": "be-real-rotation-unitary-iff",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "The generic real planar matrix unitarity iff c²+s²=1 has an arbitrary pair(c,s), not specifically the physical-angle parameterization or |0> column.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy theta real, exact matrix equality and computational basis0/1. Native operator distance is L2 while unitarity proof is Gram identity; no Bloch-angle/amplitude-angle substitution.",
+      "recommended_merge_treatment": "Retain foundational convention item; cluster RY convention prerequisites if using broad mechanism-based splits.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "k-clog2-gridsize-identity",
+      "item_digest": "50d896cce9a13ec8a2ad37d69f7a124eb4c643d979ffcf224c7a624b606c3587",
+      "question": "`gridSize n` and `clog2 m` are defined in the Core vocabulary. Give both definitions, state the identity `clog2_gridSize`, and explain in words why it holds, including the boundary behaviour of `clog2` at inputs 0 and 1.",
+      "assumptions": [
+        "All quantities are natural numbers; Nat.log2 is the floor base-2 logarithm with Nat.log2 0 = 0"
+      ],
+      "conventions": [
+        "clog2 counts bits needed to address m alternatives, zero for m<=1"
+      ],
+      "family": "core-vocabulary",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.clog2_gridSize"
+      ],
+      "source_refs": [
+        {
+          "anchor": "clog2 / gridSize / clog2_gridSize / log2_pred_two_pow_succ",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Core.lean",
+          "sha256": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894"
+        }
+      ],
+      "literal_mathematical_target": "Define gridSize n=2^n, clog2 m=0 for m<=1 and floorlog2(m-1)+1 otherwise; prove clog2(2^n)=n including0/1 boundaries.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-004",
+          "item_digest": "33cc06733514e0836a461f03019dbbcf4881b1b6963dfe5207cb05932deb4106",
+          "key": "qcb-core-la-004",
+          "family": "register tensor ordering / block indexing",
+          "split": "test_public",
+          "relation": "distinct",
+          "reasoning": "The native dimension/order question uses 2^(n+a) basis states and flat signal/system indices but asks no ceiling-log definition, predecessor-log identity or m=0,1 address-width behavior.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Natural-number vocabulary, total floorlog2 with log2 0=0. Register-dimension exponential and inverse address-width ceiling-log are connected but separate obligations.",
+      "recommended_merge_treatment": "Retain; no matching native mathematical target was identified in the full question/target screen.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "k-firstcolumn-prepares-target",
+      "item_digest": "b00cb712ac9876642aff68c98ddd94ca95235e3141cf32a78f1824fcbac6680f",
+      "question": "A `StatePreparationCandidate` certifies `preparesTarget`, defined through `FirstColumnMatches`. State exactly what `FirstColumnMatches unitary target` requires, which column of the unitary it constrains, and why a candidate cannot escape its obligation by flipping a boolean flag. What does `zeroBasisIndex qubits` denote?",
+      "assumptions": [
+        "amplitudes is a function Fin (gridSize qubits) -> alpha; equality is in the coefficient type alpha"
+      ],
+      "conventions": [
+        "The prepared state is the image of the all-zero computational-basis input, read off the first column"
+      ],
+      "family": "state-preparation-certificate",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.FirstColumnMatches"
+      ],
+      "source_refs": [
+        {
+          "anchor": "FirstColumnMatches / preparesTarget / zeroBasisIndex / VerifiedStatePreparation",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/StatePreparation.lean",
+          "sha256": "2585a3b5ef2a58a0f7fb33664552e9166373cec2815eddf2542c9db66cb5f52f"
+        }
+      ],
+      "literal_mathematical_target": "State FirstColumnMatches U t as all rows U[row,zero]=t[row], define zero basis and explain a derived Prop cannot be toggled as a stored boolean.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-007",
+          "item_digest": "f10f3a23733971a2aa0b150a90124936ed6d12d8b403eff4b77380607f85064c",
+          "key": "qcb-core-la-007",
+          "family": "linearity of matrix-vector action / sparse-input collapse",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "Basis-vector action selects a column (and its two-term extension), but the native does not define the exact state-certificate API or its proof-bearing field.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-008",
+          "item_digest": "ffed957ea2517808e052738941799ab1478ba9bade87b7bf84f0987ffc74cd0d",
+          "key": "qcb-core-la-008",
+          "family": "block-encoding certification styles / projection-vs-action equivalence",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "Projection/action equivalence for every system input in a clean block is broader than a single state-preparation input, but does not include the derived-Prop versus flag obligation.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy generic coefficient type and one designated column in a2^n square matrix. Native clean block quantifies many input columns; neither implies a particular normalization backend from an arbitrary Prop field.",
+      "recommended_merge_treatment": "Retain API diagnostic, with single-column subtarget linked to generic basis action. Do not merge it into a normalization proof.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "r-decomposeSO-count-identity",
+      "item_digest": "6ac12dbafd5c67123186c3039faacbcbef1ad18fe7295ed8044025ceeabe7b8e",
+      "question": "`decomposeSO A` returns a list of adjacent RY plane rotations whose length is `N*(N-1)/2` (theorem decomposeSO_length). Explain how this count is established from the sweep structure, why the identity holds even when A has zero pivots, and how `decomposeSO_action` guarantees the list exactly reconstructs any A with A.transpose*A=1 and det A = 1.",
+      "assumptions": [
+        "A is real NxN with A.transpose*A = 1 and det A = 1 for the reconstruction claim; the length claim needs no hypothesis on A"
+      ],
+      "conventions": [
+        "Steps are chronological: first listed matrix acts first; angle zero is a genuine identity step that is still counted"
+      ],
+      "family": "givens-decomposition",
+      "split": "test_public",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_length",
+        "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_action"
+      ],
+      "source_refs": [
+        {
+          "anchor": "decomposeSO / decomposeSO_length / decomposeSO_action / fullSweep_eq_one",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"
+        }
+      ],
+      "literal_mathematical_target": "Establish exact N(N-1)/2 adjacent-plane list length independent of entries/zero pivots and exact reconstruction for every real SO(N) matrix.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-106",
+          "item_digest": "2e7a6b4d161e7e91748a4d476a0fc00e1f24695c727136037c0478ed59488ad3",
+          "key": "qcb-core-la-106",
+          "family": "matrix-constructions-so-identity-termination",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "The final-identity-prefix determinant lemma is a critical dependency of reconstruction, not the sweep count or full reconstruction.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-103",
+          "item_digest": "169363b29832bc0b484a2c0a455b9b07a8fce233631ec20ffbd7868be52abb66",
+          "key": "qcb-core-la-103",
+          "family": "matrix-constructions-rotation-reversibility",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "Reverse-negated list inversion is another full-reconstruction dependency but contains no N(N-1)/2 count.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-119",
+          "item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+          "key": "qcb-core-la-119",
+          "family": "matrix-constructions-selected-ry-resource-fallacy",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "Its selected-plane cubic-cost discussion assumes this same plane count and multiplies by per-plane compilation costs. It does not establish the original count from sweep recursion.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy count has no A hypotheses, reconstruction needs both A^T A=I and det A=1. Exact counted identity rotations remain in the list. Native cost discussion adds physical control count, not a different SO group.",
+      "recommended_merge_treatment": "Retain composite diagnostic, but cluster the sweep/determinant/selected-plane resource chain across test_public legacy and train/dev native. No whole-record equivalence claimed.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "r-preparecircuit-firstcolumn-normalization",
+      "item_digest": "2810fc3a879b22576bcedd2cdfac4e965befa586f8edc63ee6d130d40ef47136",
+      "question": "`prepareCircuit_firstColumn` states that the compiled recursive loader produces first-column entries f(b)/sqrt(normSq f) for a nonnegative, nonzero-norm amplitude table. Reconstruct the inductive argument: how the base case (0 qubits) and the inductive step (controlled RY on the top wire times the lifted marginal circuit) combine, and which lemma supplies the marginal norm-preservation that makes the recursion well-founded.",
+      "assumptions": [
+        "f is pointwise nonnegative and has strictly positive normSq (hypotheses nonneg and positive)",
+        "wires are little-endian; the recursion splits off the highest wire"
+      ],
+      "conventions": [
+        "Chronological circuit list; marginal defined by pairNorm of the two last-bit children"
+      ],
+      "family": "real-amplitude-preparation",
+      "split": "test_public",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn"
+      ],
+      "source_refs": [
+        {
+          "anchor": "prepareCircuit_firstColumn / normSq_marginal / splitAngle_firstColumn / controlledLast_mul_lift",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ],
+      "literal_mathematical_target": "Inductively prove exact recursive loader first column f/sqrt(normSq f) for nonnegative f with positive norm, including zero-qubit identity and marginal norm preservation.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-sp-005",
+          "item_digest": "4748bf7c81283496b115e778c1f365bd503d4384829e85ceb0959f348a5a97d4",
+          "key": "qcb-core-sp-005",
+          "family": "marginal-norm-pythagorean",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The native proves the normSq_marginal invariant for arbitrary signed tables. This exact lemma is explicitly required within the legacy proof, but does not implement the circuit.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-sp-006",
+          "item_digest": "80d8cf9a6ab1179417909a57f88236985358dda61923d365c37edbbe5f4df69d",
+          "key": "qcb-core-sp-006-textbook-v1-normalization-boundary-repair",
+          "family": "normalization-identity",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "Current repaired native establishes a general signed-table norm identity, expressly denying transfer to firstColumn without nonneg. Legacy has the extra nonnegative-entry hypothesis and asks circuit matrix correctness.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-sp-001",
+          "item_digest": "0131ad1ec8cff86035bb3b2ac0369a3fda6efe1bb41e47ed0f2a41355733e4ce",
+          "key": "qcb-core-sp-001",
+          "family": "signed-amplitude-angles",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The exact signed sibling-pair rotation identity is another local dependency; neither global recursion nor circuit first-column theorem follows from the angle-sign explanation alone.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy pointwise nonnegative f,S>0 and exact phases; native norm/marginal statements allow signed real f. For n0,f=-1 normalization works while empty-circuit first column is+1, so conflating these contracts is false.",
+      "recommended_merge_treatment": "Retain; same test_public split for these candidates. The shared proof spine should be explicit, and 'well-founded' in the question concerns preserving the positive norm premise, while recursion termination itself is structural in n.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "r-eval-circuit-order-dagger",
+      "item_digest": "a6686580e84c5e2c9e290856cc61a0e19ff940097894724e503a165f64a17525",
+      "question": "`evalPrimitiveCircuit` is defined so that for a cons `gate :: rest` the result is `evalPrimitiveCircuit rest * evalPrimitiveGate gate`. Using this convention, prove `evalPrimitiveCircuit_append` (eval of left++right = eval right * eval left) and explain how it combines with `evalPrimitiveGate_dagger` to yield `evalPrimitiveCircuit_dagger` (eval of the reversed, per-gate-daggered circuit equals the adjoint). Why does the reverse appear?",
+      "assumptions": [
+        "Matrices form a star-ring where star is an anti-multiplicative involution",
+        "PrimitiveGate.dagger negates angles for ry/rz and is identity on x/cx"
+      ],
+      "conventions": [
+        "Chronological list with first gate acting first; evaluation multiplies later gates on the left"
+      ],
+      "family": "primitive-semantics-composition",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.evalPrimitiveCircuit_dagger"
+      ],
+      "source_refs": [
+        {
+          "anchor": "evalPrimitiveCircuit / evalPrimitiveCircuit_append / evalPrimitiveCircuit_dagger / evalPrimitiveGate_dagger",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        }
+      ],
+      "literal_mathematical_target": "Prove eval(left++right)=eval(right)eval(left) and eval(reverse(map dagger,c))=eval(c)† under chronological X/RY/RZ/CX semantics.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-103",
+          "item_digest": "169363b29832bc0b484a2c0a455b9b07a8fce233631ec20ffbd7868be52abb66",
+          "key": "qcb-core-la-103",
+          "family": "matrix-constructions-rotation-reversibility",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "The common list-algebra proof specializes a general adjoint/inverse principle to real plane rotations. However, native planes act on arbitrary N-by-N real matrices whereas the primitive circuit backend acts on power-of-two complex bases and includes X/CX/RZ. A register/dimension and gate-realization adapter is additional; a literal whole-record strict specialization is not established.",
+          "subtarget_relationship": "At the dimension-independent matrix-list algebra level, reverse-inverse is a specialization of reverse-adjoint for unitary factors. This is a mechanism edge, not a compiled-circuit or whole-question equivalence.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-120",
+          "item_digest": "378ddb50eda58d0fe217c02313ba7c13f7550d190ac84862faa25f8e3a1cb315",
+          "key": "qcb-core-la-120",
+          "family": "matrix-constructions-step-action-matrix-equivalence",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "Both induct on a chronological list and use reverse product order. Native equates stepwise real-plane application to one accumulated matrix; it does not prove the star anti-multiplicative dagger identity.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy complex matrix star is conjugate transpose, anti-multiplicative; native real plane inverse equals transpose. Exact ordered products, no quotient by phase.",
+      "recommended_merge_treatment": "Group the list-composition/inversion mechanism before mixing legacy train with native dev; do not count a general dagger proof and its plane specialization as independent evaluation evidence.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qs-global-phase-program-semantics",
+      "item_digest": "f776695156399b7ac814db3f00c8159d3a90ab252f7dac597222f38af64355e4",
+      "question": "A `PrimitiveProgram` carries both a circuit and an `ExactAngle` global phase, and `evalPrimitiveProgram` is `evalGlobalPhase program.globalPhase • evalPrimitiveCircuit program.circuit`, with `evalGlobalPhase angle = Complex.exp(i·angle)`. Explain the physical and mathematical status of this global phase: is it observable; why does `PrimitiveRefinement` demand exact equality `evalPrimitiveCircuit circuit = target` rather than equality up to phase; and how do global phases compose under `seq`?",
+      "assumptions": [
+        "State vectors are compared up to measurement statistics for the observability claim; the IR itself keeps the exact scalar"
+      ],
+      "conventions": [
+        "Global phase convention exp(i·phase) matching Qiskit / OpenQASM 3; phases add under sequential composition"
+      ],
+      "family": "primitive-semantics-phase",
+      "split": "train",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.evalPrimitiveProgram"
+      ],
+      "source_refs": [
+        {
+          "anchor": "evalPrimitiveProgram / evalGlobalPhase / evalPrimitiveProgram_seq / PrimitiveRefinement",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        },
+        {
+          "anchor": "PrimitiveProgram.seq",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveCircuit.lean",
+          "sha256": "d5019ef58ce1ce65664d2a40979cdd652ca691c94743532c59dfe18cf2036d4c"
+        }
+      ],
+      "literal_mathematical_target": "Track exp(i phi) in PrimitiveProgram, explain isolated versus controlled observability, strict refinement equality, and additive phase under sequential composition.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-016",
+          "item_digest": "9c8a04ca1889fb0a56d3f452b52f5640741fb20e9f1d4e4962b89aef5642bc12",
+          "key": "qcb-core-la-016",
+          "family": "native-expansion-mechanism-016",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "Its RY(theta+2pi)=-RY(theta) distance2 example instantiates the global-versus-relative-phase distinction at phase pi, but does not define program phase or prove additive seq semantics.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy arbitrary exact phase and programs, matrix equality; native specific RY parameter shift and exact L2 norm. Both distinguish isolated-ray equivalence from controlled relative phase.",
+      "recommended_merge_treatment": "Retain; group phase-sensitive correctness across legacy train/native test_public. Shared explanatory content is a leakage edge even absent whole-target equivalence.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qs-prepare-ry-cx-counts",
+      "item_digest": "0a4e6a7292c317a255da17ba69eb2b0121e2ddeae51421f3d990b51a40c60488",
+      "question": "For the unoptimized reference loader, `prepareCircuit_ryCount` gives RY count 2^n - 1 and `prepareCircuit_cxCount` gives CX count 2*(2^n - 1 - n). Interpret both counts in terms of the binary-tree / uniformly-controlled-rotation structure, verify them on small n (n=1 and n=2), and state what the oracleCalls count is and why.",
+      "assumptions": [
+        "n is the number of qubits; counts are for the reference tree without Gray-code CX optimization"
+      ],
+      "conventions": [
+        "Little-endian wires; one uniformly controlled RY per tree level on the newly added highest wire"
+      ],
+      "family": "real-amplitude-preparation",
+      "split": "test_public",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_ryCount",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_cxCount"
+      ],
+      "source_refs": [
+        {
+          "anchor": "prepareCircuit_ryCount / prepareCircuit_cxCount / prepareCircuit_oracleCalls",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ],
+      "literal_mathematical_target": "Derive/interpret RY=2^n-1,CX=2(2^n-1-n), verify n1/2, and explain zero opaque oracle calls for the unoptimized loader.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-119",
+          "item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+          "key": "qcb-core-la-119",
+          "family": "matrix-constructions-selected-ry-resource-fallacy",
+          "split": "dev",
+          "relation": "merely_related",
+          "reasoning": "Native gives per-selected-rotation counts and warns the arbitrary SO compilation needs a quadratic plane count. Legacy sums different per-level multiplexors over an amplitude-loading binary tree; both use the same RY/CX compiler but total formulas differ.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-014",
+          "item_digest": "cc4258a0f2ab565d82b3abe29fb1f7cbd0112c16d5ad88e0b35d780ac7c0bdd1",
+          "key": "qcb-core-la-014",
+          "family": "native-expansion-mechanism-014",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "Renaming wires preserves counts already present, but does not derive the loader counts.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy n-qubit tree, level c contributes2^c rotations and2(2^c-1)CX. Sum over c=0..n-1 gives exact formulas. Native c-control selected plane and general SO dimension are different parameters.",
+      "recommended_merge_treatment": "Retain; track common multiplexor counts as dependencies. Do not infer a duplicate from identical primitive gate sets.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "neg-givens-count-needs-SO-not-O",
+      "item_digest": "c87988aeca02cd7cd89288a3ab0fa9f7d641e689a76e4bd885a81774620e2d33",
+      "question": "A learner claims: 'decomposeSO reconstructs ANY orthogonal matrix A (A.transpose*A=1) as a product of adjacent RY planes, because planeMatrix is orthogonal and the sweep zeroes out the subdiagonal.' Identify the missing hypothesis, give a 2x2 counterexample, and explain precisely where the reconstruction proof would fail without it.",
+      "assumptions": [
+        "A is real NxN and orthogonal; the counterexample is 2x2 with det -1"
+      ],
+      "conventions": [
+        "planeMatrix always has determinant 1; adjacent RY planes generate the special orthogonal group"
+      ],
+      "family": "givens-decomposition",
+      "split": "test_public",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_action"
+      ],
+      "source_refs": [
+        {
+          "anchor": "decomposeSO_action / planeMatrix_det / matrix_eq_one_of_last_prefix",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"
+        }
+      ],
+      "literal_mathematical_target": "Refute reconstructing every orthogonal A by determinant+1 planes using diag(1,-1), and identify failure of the final-prefix determinant step.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-la-106",
+          "item_digest": "2e7a6b4d161e7e91748a4d476a0fc00e1f24695c727136037c0478ed59488ad3",
+          "key": "qcb-core-la-106",
+          "family": "matrix-constructions-so-identity-termination",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Strong overlapping core: both isolate A=diag(1,...,1,s), orthogonality permits s=±1 and det selects+1. Native proves the positive final-prefix lemma and explicitly mentions the reflection. Legacy additionally rules out all products of RY planes by their determinant and ties this to decomposeSO. Whole tasks are not identical, but a training answer substantially supplies the test explanation.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-011",
+          "item_digest": "71e5ff52e00d5ec5c88b81ae1265a8094d961c43c77f466c3fb32c8b23f7196f",
+          "key": "qcb-core-la-011",
+          "family": "necessity of the strict dimension bound / completion failure",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Both can use diag(1,-1), but native asks failure of SO completion when all columns are prescribed, because no spare sign-flip position exists; legacy asks failure of determinant-one plane reconstruction.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-la-006",
+          "item_digest": "4eae07a7fa7dc01f54e03e5d15700d11bec10c23f9368e6d01b5f44fc0d675f6",
+          "key": "qcb-core-la-006",
+          "family": "special-orthogonal completion / orientation repair",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "SO completion orientation repair explains why an unused column can absorb a sign. It cannot repair an already fixed reflection without changing that target.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Same exact real orthogonal versus special-orthogonal distinction; native la106 has identity-prefix premise and det+1, legacy counterexample deliberately violates det+1. Reusing one witness does not equate their quantified propositions.",
+      "recommended_merge_treatment": "Flag high cross-split proof leakage: legacy test_public versus all three native train. Cluster SO orientation/termination/obstruction for future splits; retain distinct whole-item IDs until a granular alias policy is reviewed.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qit-pure-state-projector-density-001-corrected-v2",
+      "item_digest": "886224a482c3d7877834370d1e63116a87a4bd0ec1079182893fd3815d2161ac",
+      "question": "Let H = C^d with the standard inner product of Eq. (2.4), and let |psi> in H be a unit vector, <psi|psi> = 1. Define rho := |psi><psi|. Starting only from Definition 2.1 (a quantum state is a density operator with rho >= 0 and tr rho = 1), prove that rho is a legitimate quantum state, that it is a rank-one orthogonal projector (rho^2 = rho = rho^dagger), and explain in what precise sense this makes rho an extreme point (pure state) of the convex set of density operators. State explicitly which step uses normalization of |psi> and why dropping it breaks the trace condition.",
+      "assumptions": [
+        "Finite-dimensional H = C^d with the standard inner product of Eq. (2.4).",
+        "|psi> is a fixed unit vector; density-operator conditions are exactly Definition 2.1."
+      ],
+      "conventions": [
+        "Inner product conjugate-linear in the first argument per Eq. (2.4): <psi|phi> = sum_i psi_i^* phi_i.",
+        "Pure state = extreme point of the convex set of density operators."
+      ],
+      "family": "qit-state-foundations",
+      "split": "test_public",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "source_refs": [
+        {
+          "anchor": "source id leditzky-2025-repth-qit (status primary-text-checked; registry SHA256 90784b02...; 10 April 2026 edition)",
+          "license": "course lecture notes (c) Felix Leditzky; not redistributed in this dataset; only short definitions/equations referenced, original questions and prose",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "literal_mathematical_target": "For unit psi in C^d prove rho=|psi><psi| positive trace1 Hermitian rank-one idempotent and extreme; identify normalization and zero-vector boundary.",
+      "assessment": "unresolved_native_counterpart_contract_defect",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-plan-003",
+          "item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+          "key": "qcb-core-plan-003-density-set-convexity",
+          "family": "qit-state-foundations",
+          "split": "test_public",
+          "relation": "unresolved",
+          "reasoning": "Native convexity has a legitimate overlap with the legacy extreme-point proof but literally also asks why the boundary of all states equals pure states. That claim is false for d>=3. Its answer silently reinterprets boundary as extreme points. No clean equivalence/specialization decision may silently repair that question.",
+          "family_label_equal": true,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-plan-004",
+          "item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+          "key": "qcb-core-plan-004-ensemble-nonuniqueness",
+          "family": "qit-state-foundations",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "Isometric remixing of pure ensembles concerns nonuniqueness of mixed-state decompositions, not density validation and extremality of a fixed rank-one projector.",
+          "family_label_equal": true,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-plan-409",
+          "item_digest": "a64a1d8b27cf0fe3a7a66f8b4bf60d7ebf0a288ef911b5e8cdcc2fdaac26500a",
+          "key": "qcb-core-plan-409-pure-bipartite-extension-forced-product",
+          "family": "pure-state-extension",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "Rank-one marginal forces a product extension by a purification/Schmidt argument; the support-one-dimensional principle is shared but the target is a distinct extension/monogamy theorem.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy d arbitrary with a fixed unit vector and conjugate-linear first inner-product argument. For d>=2, in the trace-one Hermitian affine space the relative boundary of the density set consists of rank-deficient states: positive-definite states have a positive minimum eigenvalue and a neighborhood in that affine space remains positive; a zero-eigenvalue state can be perturbed negatively in that eigendirection and compensating positively in another to preserve trace. In d3, diag(1/2,1/2,0) is therefore a mixed rank2 boundary point and is nonextreme. In the ambient full Hermitian space every trace-one state is boundary because the trace hyperplane has empty interior. For d1 the state set is a singleton equal to its trace-one affine ambient space, so its relative boundary is empty even though its only state is pure.",
+      "recommended_merge_treatment": "Hold plan-003 out of any automatically accepted alias/merged gold decision pending its own exact-question review/repair; legacy corrected pure-state item remains separate. Do not silently reinterpret boundary.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qasc-lcu-sum-additive-error-prop910-001-corrected-v2",
+      "item_digest": "dc9e57cbb0e2d10c51ef9adc7604f58768532b1714ab898a64bb87e8f5515441",
+      "question": "Proposition 9.10 (Lin-Wiebe, p.149) states that given block encodings U_{A_j} in BE_{alpha_j,a}(A_j, eps_j), j in [M], M=2^m, alpha_j >= 0, with select oracle U_SEL = sum_j |j><j| tensor U_{A_j} and prepare oracle V_PREP|0^m> = (1/sqrt gamma) sum_j sqrt(alpha_j)|j>, gamma = sum_j alpha_j > 0, the operator W = (V_PREP^dagger tensor I) U_SEL (V_PREP tensor I) satisfies W in BE_{gamma, a+m}(sum_j A_j, sum_j eps_j). Derive (i) the subnormalization factor of the sum and (ii) the total block-encoding error, prove the error bound, and explain why the errors add (not the max) and why gamma = sum_j alpha_j rather than something smaller.",
+      "assumptions": [
+        "Each U_{A_j} is a genuine (alpha_j, a, eps_j)-block encoding with shared ancilla size a; M=2^m summands on an m-qubit control register.",
+        "Spectral-norm error convention for ||A_j - alpha_j B_j||.",
+        "gamma=sum alpha_j is strictly positive; eps_j>=0; normalization optimality refers only to these fixed prepare amplitudes, not arbitrary constructions."
+      ],
+      "conventions": [
+        "BE_{alpha,a}(A,eps): ||A - alpha<0^a|U|0^a>|| <= eps, ||<0^a|U|0^a>|| <= 1.",
+        "V_PREP|0^m> = (1/sqrt gamma) sum_j sqrt(alpha_j)|j>; W = (V_PREP^dagger tensor I)U_SEL(V_PREP tensor I)."
+      ],
+      "family": "qsc-block-encoding-composition",
+      "split": "test_public",
+      "target_nodes": [
+        "concept:block-encoding",
+        "family:prepare-select",
+        "family:matrix-contract"
+      ],
+      "source_refs": [
+        {
+          "anchor": "source id lin-wiebe-2026-qasc (status primary-text-checked; registry SHA256 56825000...; 29 April 2026 447-page edition)",
+          "license": "author-hosted lecture notes (c) Lin Lin and Nathan Wiebe; not redistributed in this dataset; only short propositions/equations referenced, original questions and prose",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "literal_mathematical_target": "For arbitrary approximate A_j block encodings derive weighted LCU block, gamma=sum alpha>0, a+m ancillas, and spectral error<=sum eps; fixed-prepare scale, not global optimality.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-be-006",
+          "item_digest": "5e2925c035693a4f8034296aa2d0448e56e059aac0db6f66de4b45cc440f9fb2",
+          "key": "qcb-core-be-006",
+          "family": "be-lcu-clean-entry",
+          "split": "train",
+          "relation": "merely_related",
+          "reasoning": "Its exact selector-weighted permutation/rotation entry is a structured local matrix formula. It lacks arbitrary approximate input blocks, operator-norm error propagation and gamma normalization.",
+          "subtarget_relationship": "Structured exact-permutation LCU is an application-side specialization of the general sum mechanism, but whole theorem signatures have different supplied operators.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        },
+        {
+          "native_core_id": "qcb-core-plan-509",
+          "item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+          "key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+          "family": "qsc-lcu-chebyshev-synthesis",
+          "split": "test_public",
+          "relation": "strict_specialization",
+          "reasoning": "The balanced two-branch exact sum uses M2,alpha0=alpha1=c,eps0=eps1=0, so gamma=2c. This recovers its naive factor-two step. Native additionally proves parity decomposition and implements each part; the whole tasks are not interchangeable.",
+          "subtarget_relationship": "Only the balanced-combination subtarget is a strict specialization; the general approximate-M sum cannot be recovered from it.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-plan-510",
+          "item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+          "key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+          "family": "qsc-lcu-chebyshev-synthesis",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "Chebyshev coefficient1-norm is a specialization/application of LCU normalization with signed coefficients absorbed in term unitaries, but the native's degree/query/select reuse analysis is extra and general additive input-error proof absent.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Both spectral/Euclidean induced norm, finite common system; legacy shared ancilla size a and M2^m,alpha_j>=0,gamma>0,eps_j>=0. Error in target scale ||A-alpha B||, not normalized-block error ||A/alpha-B||.",
+      "recommended_merge_treatment": "Retain general sum theorem and record specialization edges. Cross-split legacy test_public/native be006 train is dependency leakage, not exact alias. No scale-optimality claim beyond this preparation.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qasc-product-block-encoding-error-prop912-001-corrected-v2",
+      "item_digest": "7b2b629da45f41f4595dae26b6344039eff11c2b05e2dabc16f25b6284ae966a",
+      "question": "Proposition 9.12 (Lin-Wiebe, p.150) block-encodes a product A_{M-1}...A_0 by applying U_{A_j} in BE_{alpha_j, a_j}(A_j, eps_j) sequentially on disjoint ancilla registers and a common system register, yielding U in BE_{prod_j alpha_j, sum_j a_j}(A_{M-1}...A_0, prod_j (alpha_j+eps_j) - prod_j alpha_j). Prove the error bound by induction on M, using ||B_j|| <= 1 and ||A_j|| <= alpha_j+eps_j. Then contrast this multiplicative error growth with the additive error of the sum construction (Prop. 9.10) and explain the resource meaning of disjoint ancilla registers. Assume alpha_j>0, eps_j>=0; when using a first-order relative-error approximation, explicitly require all eps_j/alpha_j small (fixed M).",
+      "assumptions": [
+        "Each U_{A_j} is an (alpha_j, a_j, eps_j)-block encoding; registers a_0,...,a_{M-1} disjoint, system register shared.",
+        "Spectral-norm error convention; compatible dimensions for the product A_{M-1}...A_0.",
+        "alpha_j>0 and eps_j>=0. The relative-error asymptotic is only for max_j eps_j/alpha_j small at fixed M; the displayed polynomial bound is exact without asymptotics."
+      ],
+      "conventions": [
+        "BE_{alpha,a}(A,eps): ||A - alpha<0^a|U|0^a>|| <= eps, ||<0^a|U|0^a>|| <= 1.",
+        "Product ordering A_{M-1}...A_0 reflects applying U_{A_0} first; subnormalization multiplies to prod_j alpha_j."
+      ],
+      "family": "qsc-block-encoding-composition",
+      "split": "test_public",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:matrix-analysis",
+        "family:spectral-filter"
+      ],
+      "source_refs": [
+        {
+          "anchor": "source id lin-wiebe-2026-qasc (status primary-text-checked; registry SHA256 56825000...; 29 April 2026 447-page edition)",
+          "license": "author-hosted lecture notes (c) Lin Lin and Nathan Wiebe; not redistributed in this dataset; only short propositions/equations referenced, original questions and prose",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "literal_mathematical_target": "For ordered disjoint-ancilla approximate factors prove scale prod alpha, ancilla sum a, spectral error<=prod(alpha+eps)-prod alpha; contrast sums and small relative-error expansion.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-be-010",
+          "item_digest": "ee013faa49782085ff133a942fb0e639d3357fa9a4eed212f42f0bb7096d2323",
+          "key": "qcb-core-be-010-corrected-v2",
+          "family": "be-product-fresh-ancilla",
+          "split": "train",
+          "relation": "strict_specialization",
+          "reasoning": "Setting M2,eps0=eps1=0,alpha0=alpha1=1 gives exactly its independent-ancilla block product AB. Native also demands an ancilla-reuse counterexample and rejects free reset/inverse cleanup; legacy adds arbitrary-M quantitative errors.",
+          "subtarget_relationship": "The clean disjoint-register product subtarget is a strict exact/unit-scale/two-factor specialization, while full question bundles are incomparable.",
+          "family_label_equal": false,
+          "split_equal": false,
+          "cross_split_overlap": true
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Legacy alpha_j>0,eps_j>=0,induced L2 operator norm and chronological A_(M-1)...A0. Native exact unit factors. Disjointness is physical tensor-register independence, not a syntactic multiplication of already extracted blocks.",
+      "recommended_merge_treatment": "Flag high cross-split overlap legacy test_public/native be010 train. Group product composition in a future split; do not alias full error-propagation proof to a zero-error two-factor question.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    },
+    {
+      "legacy_key": "qit-bell-partial-trace-maximally-mixed-001",
+      "item_digest": "608888b953c3840286cfa24e534d77422eda577e71b34393d86d0252191218c0",
+      "question": "Consider the two-qubit EPR/Bell state |Phi+>_AB = (1/sqrt 2)(|0>_A|0>_B + |1>_A|1>_B) with density matrix Phi+_AB = |Phi+><Phi+| as in Eqs. (2.17)-(2.18). Using the defining relation Eq. (2.14), tr(rho_AB (X_A tensor 1_B)) = tr(rho_A X_A) for all X_A, and/or the basis formula Eq. (2.15), compute the marginal rho_A = tr_B Phi+_AB and show rho_A = (1/2) 1 (Eq. (2.22)). Explain why this maximally mixed marginal shows Phi+ is not a product state, and why the partial trace is independent of the orthonormal basis chosen in Eq. (2.15).",
+      "assumptions": [
+        "Two-qubit system C^2 tensor C^2 with computational basis {|0>,|1>}.",
+        "Partial trace defined by Eq. (2.14) and computed via Eq. (2.15); tensor order A then B fixed."
+      ],
+      "conventions": [
+        "tr_B = id_A tensor tr; rho_A is the unique operator satisfying Eq. (2.14) for all X_A.",
+        "'Maximally mixed' means proportional to identity, (1/2)1 on a qubit."
+      ],
+      "family": "qit-composite-entanglement",
+      "split": "test_public",
+      "target_nodes": [
+        "concept:tensor-networks",
+        "concept:operator-theory"
+      ],
+      "source_refs": [
+        {
+          "anchor": "source id leditzky-2025-repth-qit (status primary-text-checked; registry SHA256 90784b02...; 10 April 2026 edition)",
+          "license": "course lecture notes (c) Felix Leditzky; not redistributed in this dataset; only short definitions/equations referenced, original questions and prose",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "literal_mathematical_target": "Compute tr_B |Phi+><Phi+|=I2/2 by basis/duality definition, prove pure Bell is not product and partial trace basis independent.",
+      "assessment": "bounded_pair_comparisons_complete",
+      "native_candidates": [
+        {
+          "native_core_id": "qcb-core-plan-411",
+          "item_digest": "05e0d2384e44696ebe45e9477ead16e724d11c08a081759a128d460e2e821847",
+          "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2",
+          "family": "maximally-entangled-intertwiner",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "General-d transpose trick and U tensor conjugate(U) invariance concern the same entangled vector but require different identities than partial trace; neither task directly proves the other without additional arguments.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-plan-005",
+          "item_digest": "75bdc7610d7bf3c2c4c4a2fb21a151bdd2966bb54443b4426e310f9b67f38bf5",
+          "key": "qcb-core-plan-005-classical-correlation-vs-product-counterexample",
+          "family": "qit-composite-entanglement",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "Its classically correlated mixed separable state also has I2/2 marginals, demonstrating why a mixed marginal alone does not imply entanglement unless global purity is known. Native asks product/separable correlation distinctions, not Bell partial trace.",
+          "family_label_equal": true,
+          "split_equal": true,
+          "cross_split_overlap": false
+        },
+        {
+          "native_core_id": "qcb-core-plan-409",
+          "item_digest": "a64a1d8b27cf0fe3a7a66f8b4bf60d7ebf0a288ef911b5e8cdcc2fdaac26500a",
+          "key": "qcb-core-plan-409-pure-bipartite-extension-forced-product",
+          "family": "pure-state-extension",
+          "split": "test_public",
+          "relation": "merely_related",
+          "reasoning": "The product-extension theorem consumes a general pure marginal, not the calculation of the marginal of Bell. Its monogamy corollary is a further application.",
+          "family_label_equal": false,
+          "split_equal": true,
+          "cross_split_overlap": false
+        }
+      ],
+      "dimension_hypothesis_norm_comparison": "Fixed C2⊗C2,tensor order A then B,trace of discarded B,not measurement or a circuit wire permutation. Crucial purity distinguishes Bell from the separable half(|00><00|+|11><11|) counterexample.",
+      "recommended_merge_treatment": "Retain partial-trace diagnostic; same test_public splits for listed QIT candidates, but shared Bell examples should be recorded in a concept-level leakage cluster.",
+      "global_distinctness": "unresolved beyond the enumerated substantive comparisons; all current questions and targets were screened"
+    }
+  ],
+  "proposed_policy": {
+    "exact_equivalence": "Create an alias edge for the confirmed complexCore isometry pair in a separately reviewed future merged registry. Keep immutable historical IDs and exact-content lineage; count its mathematical core once, choosing a canonical evaluation view rather than pooling two equivalent questions.",
+    "specialization": "Preserve direction and quantifier scope. Do not collapse a generic theorem with its special case merely because a training proof can answer a test subpart. Assign equivalence classes first, then separately build leakage groups for strict specializations and substantial proof reuse.",
+    "split_rule": "For a new pooled release, assign whole equivalence classes to one split. For a stronger generalization evaluation, also keep the identified proof-mechanism/dependency clusters together or explicitly label seen-prerequisite transfer. Existing test_public items are exposed and cannot become clean held-out tests simply by renaming IDs or moving them. This report does not select or alter any current split.",
+    "malformed_contracts": "A false question is not deduplicated by silently substituting its intended true version. Quarantine/review plan-003's boundary clause with exact bindings before treating it as accepted merged gold.",
+    "release_claim": "Do not claim 239 distinct mathematical cores, 238 globally distinct cores, cross-cohort dedup complete, blind evaluation, or external collaborator acknowledgment from this report. One known duplicate only gives an upper bound of238 on this239-record union, conditional on all records being counted once; further overlaps/unresolved contracts remain."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+      "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+      "anchor": "Core/Chain/Word/contract; exists_core_lq67-80; mass_vecMul/chainMass_eq/residual_mass123-178; normalized-state results; complexCore209-226."
+    },
+    {
+      "path": "QuantumBlockEncoding/ThinLQ.lean",
+      "sha256_lf": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a",
+      "anchor": "Complete module: sum_prefix_of_zero17-34, exists_factor_of_le36-77, exists_thin_lq79-93; min dimension, rank/zero boundary and tall identity branch."
+    },
+    {
+      "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+      "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+      "anchor": "matrix_eq_one_of_last_prefix490-525; fullSweep and length recursion; fullSweep_eq_one; decomposeSO_action/decomposeSO_length. Relevant actual code read, not just theorem-node labels."
+    },
+    {
+      "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa",
+      "anchor": "pairNorm/splitAngle proofs, marginal/normSq_marginal, prepareCircuit, full prepareCircuit_firstColumn proof, normalized_sum_sq; prior exact source inspection in this same task."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+      "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+      "anchor": "standardRyMatrix half-angle; evaluator chronological cons; append and circuit dagger proof; evalGlobalPhase, evalPrimitiveProgram_seq and exact PrimitiveRefinement."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveCircuit.lean",
+      "sha256_lf": "d5019ef58ce1ce65664d2a40979cdd652ca691c94743532c59dfe18cf2036d4c",
+      "anchor": "PrimitiveCircuit wire scheduler/resource metadata and PrimitiveProgram.seq/dagger phase/list definitions."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+      "sha256_lf": "57ad888af7a81ac5067f6655160fecf1f197a91b0414bc5e510786b9eed27e32",
+      "anchor": "Complete module exact scalar-times-unitary difference and induced L2 norm/dimension-independent lift bounds."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean",
+      "sha256_lf": "624109564cd82b0584fad717283e7b9116b36f1ef10d60b43a063c0ef2a1fbae",
+      "anchor": "Complete module GateAligned/Aligned, chronological telescoping proof and hermiteAngleBudget/prepare_conditional_distance_le."
+    },
+    {
+      "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+      "sha256_lf": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d",
+      "anchor": "Complete module orthogonal extension, single-column signFlip, determinant correction at an unused position and strict-r<N completion."
+    },
+    {
+      "path": "QuantumBlockEncoding/StatePreparation.lean",
+      "sha256_lf": "2585a3b5ef2a58a0f7fb33664552e9166373cec2815eddf2542c9db66cb5f52f",
+      "anchor": "Complete module zeroBasisIndex/FirstColumnMatches/preparesTarget and VerifiedStatePreparation proof fields."
+    },
+    {
+      "path": "QuantumBlockEncoding/Core.lean",
+      "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894",
+      "anchor": "gridSize/clog2 definitions and complete predecessor-log and grid identity proof."
+    },
+    {
+      "path": "QuantumBlockEncoding/CubicStatePreparation.lean",
+      "sha256_lf": "944c149a0d3e42c376382de469edf2bd2fd4cd5b61335f833975f99d0c3e1421",
+      "anchor": "Module target contract and gridPoint/cubicAmplitude/cubicOperator/cubicNormSq/conservativeNormalizer30-61."
+    },
+    {
+      "path": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+      "sha256_lf": "5d9f5c0c28bf90fc38f66f76b2e5725ae903490904fac270bf1bd0d033c968c7",
+      "anchor": "Little-endian module contract, bellRyCircuit/CX circuit, bellAfterRy and first-column computation; final preparation and bellVerified_cost."
+    },
+    {
+      "path": "QuantumBlockEncoding/BandedSparseAccess.lean",
+      "sha256_lf": "3fe81db13dd99b9de8bffb1d87f1564820b11e73a5cf2e800d56ab333a3316c9",
+      "anchor": "Complete module accessEquiv composition/inverse components, loader_spec clean_slot, row preservation and boundary between semantic unitarity and source-only arbitrary-size resource formulas."
+    },
+    {
+      "path": "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+      "sha256_lf": "e4f35bfdd690445de12d5a7e6692b9ab86d1a096b9ed3f4d1a41e07b99181ca7",
+      "anchor": "primitiveOffset3/table, seven-wire program, cleanAction work-zero premise, row/workspace restoration and compiler-evaluation refinement through line100."
+    },
+    {
+      "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+      "sha256_lf": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+      "anchor": "adjoint/hermitianPart/antiHermitianPart, complete decomposition/Hermitian proofs and homogenized S/S1/S2 definitions47-136."
+    },
+    {
+      "path": "QuantumBlockEncoding/RobinMatrix.lean",
+      "sha256_lf": "e957b6a5961ad2c22cfd154f17cbbec3e7668027b2f526d9f762798eb1c50038",
+      "anchor": "Actual matrixRowAbsSum and matrixOneNorm definitions92-109, including maximum-row-sum body."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomialResources.lean",
+      "sha256_lf": "e3498942130f957315c3328cc0e55d1054b042a14d670bbb80c743b531832d2d",
+      "anchor": "Complete module exists_polynomial_resources wire count, gate/depth/oracle/unitarity/clean-bond exact-column conjunction."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+      "sha256_lf": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+      "anchor": "ordinary enumeration/add/unit lemmas; collectStages_cost and full collectStages_total_cost78-93; exact three-read/three-write overhead."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Actual leditzky-2025-repth-qit and lin-wiebe-2026-qasc source registry entries; metadata/pinned PDF hashes are recorded claims, not hashes independently recomputed for remote PDFs."
+    },
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "matrix_mul_congr_pointwise792-797 and exact already-extracted clean-block product certificate800-820; productResourceCost831-839. Does not alone certify a disjoint-ancilla compiled circuit."
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+      "sha256_lf": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340",
+      "anchor": "Complete prepareAmplitudeSelectUnprepare_cleanEntry statement/proof171-220; structured clean selector/rotation/permutation formula."
+    },
+    {
+      "path": "QuantumBlockEncoding/MatrixProductChain.lean",
+      "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+      "anchor": "Core-boundary definitions and full tailChain_contract/closeLeft_contract proofs14-49."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+      "sha256_lf": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+      "anchor": "Wide four-stage producer and correctness/cost74-109; all-shape dispatcher111-125; compile correctness/cost162-187."
+    },
+    {
+      "path": "QuantumBlockEncoding/SelectedRyPlane.lean",
+      "sha256_lf": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40",
+      "anchor": "Actual per-selected-rotation RY/CX count statements143-156; counted controls differ from a full recursive loader's levels."
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+      "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+      "anchor": "realOrthogonalRotation and complete sufficiency proof32-57; angle-parameter realRotation definition. The iff necessity in native answer is independently derived from the first Gram diagonal."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+      "sha256_lf": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+      "anchor": "basis-column theorem70-74, full two-basis-superposition proofs79-100, cleanBasisAction/projection bridge249-294."
+    },
+    {
+      "path": "QuantumBlockEncoding/BlockEncoding.lean",
+      "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+      "anchor": "Candidate dimensions and backend-specific Prop fields103-116; approximate bound convention comment136-153. A generic Prop field is not itself an analytic theorem."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveDepthBound.lean",
+      "sha256_lf": "fd31cfd12a5ed193608b0f666ee1e990981f36b45182fc34dd0fc2db1cf62b16",
+      "anchor": "Complete module actual per-wire schedule induction and resource_depth_le_gateCount12-47."
+    }
+  ],
+  "external_primary_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "edition_seen": "April 10, 2026;79 pages",
+      "anchors": "Definition2.1/Eq2.4; printed pp3-4 convexity/extreme-state paragraph; printed pp5-7 product/separable/Bell and Eq2.22",
+      "scope": "Bounded source-text inspection supports separating extreme points from an unqualified boundary and confirms the Bell/QIT source setting. Remote bytes not hash-verified against registry."
+    },
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition_seen": "April29,2026;447 pages",
+      "anchors": "Printed pp148-150, Proposition9.10 Eq9.37-9.42; Example9.11; Proposition9.12 Eq9.43-9.48 and induction continuation",
+      "scope": "Checked finite sum scale/error and disjoint-ancilla product scope. The mathematical pair comparisons are independently reconstructed above. Remote bytes not hash-verified against registry; no full-book inspection."
+    }
+  ],
+  "review_followup": {
+    "feedback_received": "The parent independently inspected plan-003 and confirmed the literal boundary/extreme-point mismatch, adding the d=1 relative-topology boundary case.",
+    "reviewer_assessment": "The topology distinction above is independently justified by the minimum-eigenvalue and trace-preserving zero-eigendirection perturbations; agreement from the parent is provenance, not replacement mathematical evidence. No source/dataset edits are made."
+  },
+  "native_inventory_bindings": {
+    "qcb-core-sp-101": {
+      "item_digest": "b8d06ee21a9000b00a45e7a559e8ec84e1a3821bc80cf948e134426bf5687741",
+      "key": "qcb-core-sp-101-corrected-v2",
+      "family": "hermite-jet-interpolation",
+      "split": "train"
+    },
+    "qcb-core-la-205": {
+      "item_digest": "3e52d9ef18efc62d9cff3b7087e30bb8b30494040dba6f8b2292182c2274badc",
+      "key": "qcb-core-la-205-corrected-v2",
+      "family": "native-stored-cost-205",
+      "split": "train"
+    },
+    "qcb-core-plan-210": {
+      "item_digest": "1f65e62ee73cdfa4f023076fc698fed90d81a1dbaf24524784aa24219df9cfe4",
+      "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity-corrected-v2",
+      "family": "qsc-sparse-block-encoding",
+      "split": "test_public"
+    },
+    "qcb-core-la-101": {
+      "item_digest": "5d349b058b56a55a91b036f2d61d63d6c9cdc6be9ba99988d6e0d0ecea65486e",
+      "key": "qcb-core-la-101",
+      "family": "matrix-constructions-givens-pair-elimination",
+      "split": "test_public"
+    },
+    "qcb-core-la-102": {
+      "item_digest": "470ce4707a5d7cebab5a056b624cf70eb6448b2fdee43c594b57cf19d273943f",
+      "key": "qcb-core-la-102",
+      "family": "matrix-constructions-givens-determinant",
+      "split": "test_public"
+    },
+    "qcb-core-la-103": {
+      "item_digest": "169363b29832bc0b484a2c0a455b9b07a8fce233631ec20ffbd7868be52abb66",
+      "key": "qcb-core-la-103",
+      "family": "matrix-constructions-rotation-reversibility",
+      "split": "dev"
+    },
+    "qcb-core-la-104": {
+      "item_digest": "d116f4f01eb9ee69ff710e3d88155094fba848cfbe1475bc166d29434e5c98ea",
+      "key": "qcb-core-la-104",
+      "family": "matrix-constructions-sweep-zeroing-invariant",
+      "split": "test_public"
+    },
+    "qcb-core-la-105": {
+      "item_digest": "059fbedeca9a54a2029f3769ccac4ed3d567bda7d0899acd6cb3cc9cc3fb0c2d",
+      "key": "qcb-core-la-105",
+      "family": "matrix-constructions-orthonormal-pivot-sign",
+      "split": "train"
+    },
+    "qcb-core-la-106": {
+      "item_digest": "2e7a6b4d161e7e91748a4d476a0fc00e1f24695c727136037c0478ed59488ad3",
+      "key": "qcb-core-la-106",
+      "family": "matrix-constructions-so-identity-termination",
+      "split": "train"
+    },
+    "qcb-core-la-107": {
+      "item_digest": "87706ea5c66f54bf0bffd4b1d4fcaab38075224230201e30e5d530af8ae448e2",
+      "key": "qcb-core-la-107",
+      "family": "matrix-constructions-gray-single-wire-adjacency",
+      "split": "train"
+    },
+    "qcb-core-la-108": {
+      "item_digest": "b49acfec30465319f4637b8b0bc8fb1655146b68a99b8b9d6688fff48ec32fa7",
+      "key": "qcb-core-la-108",
+      "family": "matrix-constructions-rectangular-exact-recovery",
+      "split": "train"
+    },
+    "qcb-core-la-109": {
+      "item_digest": "1fd3017d71601c3fa4b81db41b1b04a8d4a9fd00e609a2ba2b87f5082ddbb14b",
+      "key": "qcb-core-la-109",
+      "family": "matrix-constructions-mpc-left-boundary",
+      "split": "train"
+    },
+    "qcb-core-la-110": {
+      "item_digest": "fad513662c7653c200c59df3ebf0190dd261233cbc497793dff6c0821c892001",
+      "key": "qcb-core-la-110",
+      "family": "matrix-constructions-mpc-terminal-absorption",
+      "split": "train"
+    },
+    "qcb-core-la-111": {
+      "item_digest": "913e7d71276fa5074d8dde978f1e7bb69b6655f8aaa0087808b89035aad8a38e",
+      "key": "qcb-core-la-111",
+      "family": "matrix-constructions-mpc-storage-bound",
+      "split": "test_public"
+    },
+    "qcb-core-la-112": {
+      "item_digest": "5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e",
+      "key": "qcb-core-la-112",
+      "family": "matrix-constructions-rectangular-staircase-invariant",
+      "split": "train"
+    },
+    "qcb-core-la-114": {
+      "item_digest": "d786b4f7dd920203358d420044561a976ab5979789857cbfc7dc3a3c73a6aa96",
+      "key": "qcb-core-la-114",
+      "family": "matrix-constructions-greedy-injection-extension",
+      "split": "train"
+    },
+    "qcb-core-la-115": {
+      "item_digest": "c1f7bebe1314ec75cc91e72658ca0457c6bc62518acffb2a8b53db63dd6bb50d",
+      "key": "qcb-core-la-115",
+      "family": "matrix-constructions-parity-orientation-fix",
+      "split": "train"
+    },
+    "qcb-core-la-116": {
+      "item_digest": "e13c0d1bd06158bd627632029146044c6323a71aaaf22ded1d505d62b6f8e2e2",
+      "key": "qcb-core-la-116",
+      "family": "matrix-constructions-gray-coordinate-transport",
+      "split": "train"
+    },
+    "qcb-core-la-117": {
+      "item_digest": "c187f71e1150c9fa98992c1dc15dbe5e22c6e35ff1be3cc2a8acccb8244daf96",
+      "key": "qcb-core-la-117",
+      "family": "matrix-constructions-gray-plane-transport",
+      "split": "train"
+    },
+    "qcb-core-la-118": {
+      "item_digest": "0d08607d4fa98a7c4e6c2f3cef267a9b7e35329c0894b2c6272a11c823fe4ffd",
+      "key": "qcb-core-la-118",
+      "family": "matrix-constructions-control-context-pair",
+      "split": "train"
+    },
+    "qcb-core-la-119": {
+      "item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+      "key": "qcb-core-la-119",
+      "family": "matrix-constructions-selected-ry-resource-fallacy",
+      "split": "dev"
+    },
+    "qcb-core-la-120": {
+      "item_digest": "378ddb50eda58d0fe217c02313ba7c13f7550d190ac84862faa25f8e3a1cb315",
+      "key": "qcb-core-la-120",
+      "family": "matrix-constructions-step-action-matrix-equivalence",
+      "split": "dev"
+    },
+    "qcb-core-be-101": {
+      "item_digest": "c121d5a0d54af38e9206a89b7e5c8acbab4eca77fe5c2e3ef5dad9fc0267a2a1",
+      "key": "qcb-core-be-101",
+      "family": "be-xor-loader-involution",
+      "split": "train"
+    },
+    "qcb-core-be-102": {
+      "item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
+      "key": "qcb-core-be-102",
+      "family": "be-clean-branch-work-hypothesis",
+      "split": "train"
+    },
+    "qcb-core-be-104": {
+      "item_digest": "09426de0cfd6a624bf2b04f6011fbb177a23b57067ad18a29ca7ccb95d4765d8",
+      "key": "qcb-core-be-104",
+      "family": "be-compile-eval-refinement",
+      "split": "train"
+    },
+    "qcb-core-be-105": {
+      "item_digest": "15381b174d3517cf5ade51fd5a8bfdf0eee977640793ea43e93c0627b2eaede1",
+      "key": "qcb-core-be-105",
+      "family": "be-real-rotation-unitary-iff",
+      "split": "train"
+    },
+    "qcb-core-be-106": {
+      "item_digest": "a01f8f5245eb84999d3a73584d8019263b296e87e308ca3a6b391d676bbcc2ea",
+      "key": "qcb-core-be-106",
+      "family": "be-amplitude-unitary-vs-readout",
+      "split": "train"
+    },
+    "qcb-core-be-107": {
+      "item_digest": "1b36266ef6c6f4eed5fc5fd43aada972b13c343a97ddce568581c553671be494",
+      "key": "qcb-core-be-107",
+      "family": "be-blockdiagonal-unitary",
+      "split": "train"
+    },
+    "qcb-core-be-108": {
+      "item_digest": "a6acd83107961bd9360a0c2c55995f194064e1416340d73260285f5dbcb73c02",
+      "key": "qcb-core-be-108",
+      "family": "be-reindex-preserves-unitary",
+      "split": "train"
+    },
+    "qcb-core-be-109": {
+      "item_digest": "76cc51c2e49f3f7062d8732b280e44f07723d2cfe3a72ceb5bf003e71965a5ff",
+      "key": "qcb-core-be-109",
+      "family": "be-tensor-lift-unitary",
+      "split": "dev"
+    },
+    "qcb-core-be-110": {
+      "item_digest": "0cc5f51f216a0d5dbe1cc2aa09034b4fe15c07d1d632632b930ae11ec0505a4d",
+      "key": "qcb-core-be-110",
+      "family": "be-controlled-select-bijection",
+      "split": "train"
+    },
+    "qcb-core-be-111": {
+      "item_digest": "9b7764d055cff46ba40805e22a51db043464ec809fb8b49c72ab4ffd7bed969a",
+      "key": "qcb-core-be-111",
+      "family": "be-permutation-composition-order",
+      "split": "test_public"
+    },
+    "qcb-core-be-112": {
+      "item_digest": "c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19",
+      "key": "qcb-core-be-112",
+      "family": "be-lcu-composite-unitary",
+      "split": "dev"
+    },
+    "qcb-core-be-119": {
+      "item_digest": "9861d3807794ab3a410205c3d90e220174973ab60491d738ba200ce0de215506",
+      "key": "qcb-core-be-119",
+      "family": "be-source-transcript-vs-semantics",
+      "split": "dev"
+    },
+    "qcb-core-be-120": {
+      "item_digest": "e5fce40032b6c3cf22a772b67ac145bb32118f946cb8534d087744848f82c38b",
+      "key": "qcb-core-be-120",
+      "family": "be-indicator-involution-uncompute",
+      "split": "train"
+    },
+    "qcb-core-plan-101": {
+      "item_digest": "39cf1c51e2f1204e64df33d8a8210e06de5ea44fdc2525809858621ecd97be1a",
+      "key": "qcb-core-plan-101-homomorphism-preserves-identity-inverse",
+      "family": "qit-representation-foundations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-102": {
+      "item_digest": "4aa8a582922a72a46c4a3189cc1902dd7961a753460a2c5189793a0372a0dff8",
+      "key": "qcb-core-plan-102-weyl-unitarity-trick-invariant-complement",
+      "family": "qit-representation-foundations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-103": {
+      "item_digest": "da4e2877f4284ace0995f01785a6c7c6c5c209746ca8a2c28b52e5252370b82f",
+      "key": "qcb-core-plan-103-invariant-complement-averaged-projection",
+      "family": "qit-representation-foundations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-104": {
+      "item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+      "key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+      "family": "qit-schur-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-105": {
+      "item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+      "key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+      "family": "qit-schur-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-106": {
+      "item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+      "key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+      "family": "qit-schur-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-107": {
+      "item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+      "key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+      "family": "qit-schur-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-108": {
+      "item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+      "key": "qcb-core-plan-108-character-is-class-function-degree",
+      "family": "qit-character-theory",
+      "split": "test_public"
+    },
+    "qcb-core-plan-109": {
+      "item_digest": "940d170e2bda6414a28189165ce2bc37170ee0653d2cf788e54f04b40a60ecd5",
+      "key": "qcb-core-plan-109-multiplicity-character-inner-product",
+      "family": "qit-character-theory",
+      "split": "test_public"
+    },
+    "qcb-core-plan-110": {
+      "item_digest": "9b9f633d427e365f4b941d9ba0ac65a7198e50c1ed20cb2f793d3398242285ab",
+      "key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+      "family": "qit-intertwiners-multiplicity",
+      "split": "test_public"
+    },
+    "qcb-core-plan-111": {
+      "item_digest": "5c86b4af86f4716aeec0f5399496dacdd9f853ece3b24ed6d0c0810ec154546e",
+      "key": "qcb-core-plan-111-symmetrization-block-diagonal-isotypical",
+      "family": "qit-schur-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-112": {
+      "item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+      "key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+      "family": "qit-tensor-representations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-113": {
+      "item_digest": "86e1d04d033535a8c92558d1206d86b9032daab481cb0b41dfbdc72641fd4800",
+      "key": "qcb-core-plan-113-character-projector-isotypical-component",
+      "family": "qit-character-theory",
+      "split": "test_public"
+    },
+    "qcb-core-plan-114": {
+      "item_digest": "be8cfff02ab1e6793f2ec533ebd7da483867295b6376480ae2ff6811b33f7663",
+      "key": "qcb-core-plan-114-multiplicity-breaks-schur-scalar-counterexample",
+      "family": "qit-schur-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-115": {
+      "item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+      "key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+      "family": "qit-tensor-representations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-116": {
+      "item_digest": "ab9df40fd93fe05c0101d8c2d0d0b36cb55443c64c0780a092a57db7377c5e67",
+      "key": "qcb-core-plan-116-nonunique-irrep-splitting-isotypical-counterexample",
+      "family": "qit-isotypical-decomposition",
+      "split": "test_public"
+    },
+    "qcb-core-plan-117": {
+      "item_digest": "eec0cb51404622c0e85a513a847761fd901179fb2ae5383757106e295d0c690f",
+      "key": "qcb-core-plan-117-non-unitarizable-infinite-group-counterexample",
+      "family": "qit-representation-foundations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-118": {
+      "item_digest": "18b194dedfd34e0201b2edbc78e5ce8545fbaa37a56e99edeee582302e03020d",
+      "key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+      "family": "qit-schur-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-119": {
+      "item_digest": "dca75eb96b7c01ba5932c174af9039b8070253a2ac90ff323882760a463f2323",
+      "key": "qcb-core-plan-119-finite-vs-compact-haar-boundary",
+      "family": "qit-compact-groups",
+      "split": "test_public"
+    },
+    "qcb-core-plan-120": {
+      "item_digest": "c4c3e55cfc17e2cd0d8984618558bdea620de9ea2410140f1652fe489fd27ea4",
+      "key": "qcb-core-plan-120-dual-representation-conjugate-boundary",
+      "family": "qit-tensor-representations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-201": {
+      "item_digest": "5432c2b2b9dea37c3425626c4e2f81de0bc5efe924d1f09178943b56ade40d74",
+      "key": "qcb-core-plan-201-povm-lcu-success-probability-completeness",
+      "family": "qsc-generalized-measurement",
+      "split": "test_public"
+    },
+    "qcb-core-plan-202": {
+      "item_digest": "4d0389f52f14f202bd366a400d21ee868cd70f95d739c66384d54c616d48666f",
+      "key": "qcb-core-plan-202-povm-conditional-output-state-update-rule",
+      "family": "qsc-generalized-measurement",
+      "split": "test_public"
+    },
+    "qcb-core-plan-203": {
+      "item_digest": "6eda46c37ea2b7d75cb89acca2686e8411e54825a5468776262522fff5b883bd",
+      "key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+      "family": "qsc-generalized-measurement",
+      "split": "test_public"
+    },
+    "qcb-core-plan-204": {
+      "item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+      "key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+      "family": "qsc-state-discrimination",
+      "split": "test_public"
+    },
+    "qcb-core-plan-205": {
+      "item_digest": "ac1b3b3d96f318f7409e0ff115c76d8ac4d471ea0f8b8acf2b79810e14205eb7",
+      "key": "qcb-core-plan-205-state-discrimination-povm-validity-unambiguity",
+      "family": "qsc-state-discrimination",
+      "split": "test_public"
+    },
+    "qcb-core-plan-206": {
+      "item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+      "key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+      "family": "qsc-generalized-measurement",
+      "split": "test_public"
+    },
+    "qcb-core-plan-207": {
+      "item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+      "key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+      "family": "qsc-matrix-access",
+      "split": "test_public"
+    },
+    "qcb-core-plan-208": {
+      "item_digest": "1433ecfb6610132671b67d490e1d21b1d9dae433bb26badca61bce12b62e0347",
+      "key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+      "family": "qsc-matrix-access",
+      "split": "test_public"
+    },
+    "qcb-core-plan-209": {
+      "item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+      "key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+      "family": "qsc-matrix-access",
+      "split": "test_public"
+    },
+    "qcb-core-plan-211": {
+      "item_digest": "956c29f294371de27e9ec45ec5196f99962ce8a623ede5e3b3285f52d19ab01c",
+      "key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+      "family": "qsc-sparse-block-encoding",
+      "split": "test_public"
+    },
+    "qcb-core-plan-212": {
+      "item_digest": "970c5ba0f50e0dd502278b4dc174d90ea437909bbaf2877765b536179388b15d",
+      "key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+      "family": "qsc-sparse-block-encoding",
+      "split": "test_public"
+    },
+    "qcb-core-plan-213": {
+      "item_digest": "25309f761a99ded35bf244e4492c4586faf0237b0cf08117241262e92d77f079",
+      "key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+      "family": "qsc-sparse-block-encoding",
+      "split": "test_public"
+    },
+    "qcb-core-plan-214": {
+      "item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+      "key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+      "family": "qsc-hermitian-block-encoding",
+      "split": "test_public"
+    },
+    "qcb-core-plan-215": {
+      "item_digest": "576ff269c4242c5a9080540a6009923b6f34ab1f07e5ad9fdd42381baca1176d",
+      "key": "qcb-core-plan-215-hermitian-sparse-block-encoding-prop924",
+      "family": "qsc-hermitian-block-encoding",
+      "split": "test_public"
+    },
+    "qcb-core-plan-216": {
+      "item_digest": "25c3a802898fe52a55571fa3631a3925ffbb6c11f24473f29e40723e7f634ad2",
+      "key": "qcb-core-plan-216-block-encoding-beyond-computational-basis-def925",
+      "family": "qsc-generalized-block-encoding",
+      "split": "test_public"
+    },
+    "qcb-core-plan-217": {
+      "item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+      "key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+      "family": "qsc-singular-value-transformation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-218": {
+      "item_digest": "568117cff67fd69c6ea6f73b73f70181dee69cf8f0059fd634d0074c0189fe8a",
+      "key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+      "family": "qsc-singular-value-transformation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-219": {
+      "item_digest": "2387018c64ae8b443f7d0dc49ebb1c814f123a3d08e5575f01c1597ddc3b6d0e",
+      "key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+      "family": "qsc-singular-value-transformation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-220": {
+      "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+      "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+      "family": "qsc-qubitization",
+      "split": "test_public"
+    },
+    "qcb-core-la-201": {
+      "item_digest": "4b2411a0ba33a8286691461446ef4686f5dd20ab90d92061bc04fe1fbd74eb65",
+      "key": "qcb-core-la-201",
+      "family": "native-stored-cost-201",
+      "split": "train"
+    },
+    "qcb-core-la-202": {
+      "item_digest": "cffaec368aa74c7a29a98568529ed0821b8c45328ba670593e9b00c3d43c19f3",
+      "key": "qcb-core-la-202",
+      "family": "native-stored-cost-202",
+      "split": "train"
+    },
+    "qcb-core-la-203": {
+      "item_digest": "d3c7ffab655e801f0c3275b31d71aff77610f9d16830e0dfc9b47683fbb647f7",
+      "key": "qcb-core-la-203",
+      "family": "native-stored-cost-203",
+      "split": "train"
+    },
+    "qcb-core-la-204": {
+      "item_digest": "705a52ec7b52b60d5ea01c2f2bf97d622094dcf936d909b80d18cfd481591425",
+      "key": "qcb-core-la-204",
+      "family": "native-stored-cost-204",
+      "split": "train"
+    },
+    "qcb-core-la-206": {
+      "item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+      "key": "qcb-core-la-206",
+      "family": "native-stored-cost-206",
+      "split": "train"
+    },
+    "qcb-core-la-207": {
+      "item_digest": "172127f1825454b15f930b84064179096752d4fe8288d27eba49940a6a8d600e",
+      "key": "qcb-core-la-207",
+      "family": "native-stored-cost-207",
+      "split": "train"
+    },
+    "qcb-core-la-208": {
+      "item_digest": "2af4654334ec83645d32e3ac7541aa9ca67e8c78afa43aa5ed50f9d40b1ea312",
+      "key": "qcb-core-la-208",
+      "family": "native-stored-cost-208",
+      "split": "test_public"
+    },
+    "qcb-core-la-209": {
+      "item_digest": "6e688a66b2ad5ce4760787a4e1ca2cbadba1fb9f536048ff3512ea316b3b0157",
+      "key": "qcb-core-la-209",
+      "family": "native-stored-cost-209",
+      "split": "train"
+    },
+    "qcb-core-la-210": {
+      "item_digest": "f7b3e31bd2ea7ed164adf59e8ce49b69f7a86494a8f7b0de784805f53bf9efcb",
+      "key": "qcb-core-la-210",
+      "family": "native-stored-cost-210",
+      "split": "train"
+    },
+    "qcb-core-la-211": {
+      "item_digest": "8a26d0b580fa303806b022d75965d1d39401d78114de1ccc9363c4c6c4f582c6",
+      "key": "qcb-core-la-211",
+      "family": "native-stored-cost-211",
+      "split": "dev"
+    },
+    "qcb-core-la-212": {
+      "item_digest": "3b06beca17d084d5e8dfc81822d969d9e1271b530e70525a1fb4f0e7713a7c24",
+      "key": "qcb-core-la-212",
+      "family": "native-stored-cost-212",
+      "split": "train"
+    },
+    "qcb-core-la-213": {
+      "item_digest": "e8d6aac4380e1be63a7428f60ed9f11f343696644445cfb3f1cae3cfe7f2ba36",
+      "key": "qcb-core-la-213",
+      "family": "native-stored-cost-213",
+      "split": "train"
+    },
+    "qcb-core-la-214": {
+      "item_digest": "c676dd23f7a68be8627059eb6e12cfefe9910f62c9a635b3495675187dfae459",
+      "key": "qcb-core-la-214",
+      "family": "native-stored-cost-214",
+      "split": "dev"
+    },
+    "qcb-core-la-215": {
+      "item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+      "key": "qcb-core-la-215",
+      "family": "native-stored-cost-215",
+      "split": "train"
+    },
+    "qcb-core-la-216": {
+      "item_digest": "06ed62cc08c6f5635662d9347275c6820fe449819d095626d4b19289a2acaf7f",
+      "key": "qcb-core-la-216",
+      "family": "native-stored-cost-216",
+      "split": "train"
+    },
+    "qcb-core-la-217": {
+      "item_digest": "cf1248c62cc4a15751ecfbedf58495f047548317dc6baee60b7e784b4f6e4d99",
+      "key": "qcb-core-la-217",
+      "family": "native-stored-cost-217",
+      "split": "train"
+    },
+    "qcb-core-la-218": {
+      "item_digest": "2b9c9d2449bb0b0da1ab69a254c046c2da52c231a4d71d5ef29f1a828508ee72",
+      "key": "qcb-core-la-218",
+      "family": "native-stored-cost-218",
+      "split": "train"
+    },
+    "qcb-core-la-219": {
+      "item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
+      "key": "qcb-core-la-219",
+      "family": "native-stored-cost-219",
+      "split": "train"
+    },
+    "qcb-core-la-220": {
+      "item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+      "key": "qcb-core-la-220",
+      "family": "native-stored-cost-220",
+      "split": "dev"
+    },
+    "qcb-core-sp-102": {
+      "item_digest": "68c0514f0b9677c677caf2ac29f4872c3571042ec82a12426c71df57763e6c00",
+      "key": "qcb-core-sp-102",
+      "family": "hermite-jet-interpolation",
+      "split": "train"
+    },
+    "qcb-core-sp-103": {
+      "item_digest": "cf9f012b3ae8f37e5d04817754ee8ca5785470f5f4faef3d82c859613ef20f54",
+      "key": "qcb-core-sp-103",
+      "family": "hermite-source-positivity",
+      "split": "train"
+    },
+    "qcb-core-sp-104": {
+      "item_digest": "10130b96d45745bf1b25df4c137ef2168b7368cb7eef7fb384197c1df6db6fc7",
+      "key": "qcb-core-sp-104",
+      "family": "hermite-interpolant-uniqueness",
+      "split": "train"
+    },
+    "qcb-core-sp-105": {
+      "item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+      "key": "qcb-core-sp-105",
+      "family": "hermite-interpolant-uniqueness",
+      "split": "train"
+    },
+    "qcb-core-sp-106": {
+      "item_digest": "bfb8236c482b42681d8f649cd2b0f1c243cc6405d52b55cb9abb4ab337f16792",
+      "key": "qcb-core-sp-106",
+      "family": "hermite-source-positivity",
+      "split": "train"
+    },
+    "qcb-core-sp-107": {
+      "item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+      "key": "qcb-core-sp-107",
+      "family": "hermite-source-positivity",
+      "split": "train"
+    },
+    "qcb-core-sp-108": {
+      "item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+      "key": "qcb-core-sp-108",
+      "family": "hermite-bernstein-representation",
+      "split": "train"
+    },
+    "qcb-core-sp-109": {
+      "item_digest": "3a814cf53b0df4df2ad559be465c6234a73ffca971366dae638536dbc21981d0",
+      "key": "qcb-core-sp-109",
+      "family": "hermite-bernstein-subdivision",
+      "split": "train"
+    },
+    "qcb-core-sp-110": {
+      "item_digest": "19291aabce76c1930159c1330905a8a44784b80535f3d33e1810e220eb3aa5ec",
+      "key": "qcb-core-sp-110",
+      "family": "hermite-bernstein-subdivision",
+      "split": "train"
+    },
+    "qcb-core-sp-111": {
+      "item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+      "key": "qcb-core-sp-111",
+      "family": "hermite-discrete-mass",
+      "split": "dev"
+    },
+    "qcb-core-sp-112": {
+      "item_digest": "f461f617f938693f5dd6590f3941706aa04c057bf24d4f52eda14c0641aecfab",
+      "key": "qcb-core-sp-112",
+      "family": "hermite-discrete-mass",
+      "split": "dev"
+    },
+    "qcb-core-sp-113": {
+      "item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+      "key": "qcb-core-sp-113",
+      "family": "hermite-discrete-mass",
+      "split": "dev"
+    },
+    "qcb-core-sp-114": {
+      "item_digest": "8692de94902e02e828e3bcd36f059d65ad388327e3f3824390ab974de1fa729b",
+      "key": "qcb-core-sp-114",
+      "family": "hermite-cut-rank",
+      "split": "dev"
+    },
+    "qcb-core-sp-115": {
+      "item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+      "key": "qcb-core-sp-115",
+      "family": "hermite-cut-rank",
+      "split": "dev"
+    },
+    "qcb-core-sp-116": {
+      "item_digest": "5a48d2fbfdcd90638dbcba8d09119755740f0e5606aae50d25be30c0d2c43380",
+      "key": "qcb-core-sp-116",
+      "family": "hermite-cut-rank",
+      "split": "dev"
+    },
+    "qcb-core-sp-117": {
+      "item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+      "key": "qcb-core-sp-117",
+      "family": "hermite-cut-rank",
+      "split": "dev"
+    },
+    "qcb-core-sp-118": {
+      "item_digest": "27638bfef87bf0b5f1fc109c2d14d973d255199199bfe386b9d7b6b53453ccdf",
+      "key": "qcb-core-sp-118",
+      "family": "hermite-smooth-gluing",
+      "split": "train"
+    },
+    "qcb-core-sp-119": {
+      "item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+      "key": "qcb-core-sp-119",
+      "family": "hermite-smooth-gluing",
+      "split": "train"
+    },
+    "qcb-core-sp-120": {
+      "item_digest": "345c21e4f78ee80ed2cbaa7372d069aacbfb19d8c3c2f046e5b8df13c107196a",
+      "key": "qcb-core-sp-120",
+      "family": "hermite-cutoff-search",
+      "split": "test_public"
+    },
+    "qcb-core-plan-402": {
+      "item_digest": "e44a4b02385956e555df305910fd11506ff3e11002d06ca0e3b57f07499a1820",
+      "key": "qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds-corrected-v2",
+      "family": "werner-isotropic-extendibility",
+      "split": "test_public"
+    },
+    "qcb-core-plan-411": {
+      "item_digest": "05e0d2384e44696ebe45e9477ead16e724d11c08a081759a128d460e2e821847",
+      "key": "qcb-core-plan-411-transpose-trick-and-UU-invariance-corrected-v2",
+      "family": "maximally-entangled-intertwiner",
+      "split": "test_public"
+    },
+    "qcb-core-plan-418": {
+      "item_digest": "759b3d5a55c7fb2b6fdecb9196f4d8a053109e944bb8a426cdefc98a5cc0a376",
+      "key": "qcb-core-plan-418-cloning-map-cp-trace-nonincreasing-corrected-v2",
+      "family": "approximate-cloning-optimal-map",
+      "split": "test_public"
+    },
+    "qcb-core-plan-502": {
+      "item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+      "key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+      "family": "qsc-chebyshev-eigenvalue-transformation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-503": {
+      "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+      "key": "qcb-core-plan-503-second-kind-offdiagonal",
+      "family": "qsc-chebyshev-eigenvalue-transformation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-504": {
+      "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+      "key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+      "family": "qsc-chebyshev-singular-value-transformation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-505": {
+      "item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+      "key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+      "family": "qsc-chebyshev-singular-value-transformation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-506": {
+      "item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+      "key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+      "family": "qsc-cosine-sine-decomposition",
+      "split": "test_public"
+    },
+    "qcb-core-plan-507": {
+      "item_digest": "8c10659977129d9beb6a9dc8a112cd04b982917267361a57dd4449e718f07091",
+      "key": "qcb-core-plan-507-z-reflection-commutes-not-xy",
+      "family": "qsc-cosine-sine-decomposition",
+      "split": "test_public"
+    },
+    "qcb-core-plan-508": {
+      "item_digest": "99fb50087dd29dddc1503144dc867f4855efd2d53d33cf573ad8a8869fe5ed47",
+      "key": "qcb-core-plan-508-lcu-select-query-count",
+      "family": "qsc-lcu-chebyshev-synthesis",
+      "split": "test_public"
+    },
+    "qcb-core-plan-509": {
+      "item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+      "key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+      "family": "qsc-lcu-chebyshev-synthesis",
+      "split": "test_public"
+    },
+    "qcb-core-plan-510": {
+      "item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+      "key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+      "family": "qsc-lcu-chebyshev-synthesis",
+      "split": "test_public"
+    },
+    "qcb-core-plan-511": {
+      "item_digest": "216c79773b04ab1d4a02081409afd1d5bcb8b699bbc13e5e52d49665f0603746",
+      "key": "qcb-core-plan-511-subspace-blockencoding-reflections-reduce",
+      "family": "qsc-qubitization-beyond-basis",
+      "split": "test_public"
+    },
+    "qcb-core-plan-512": {
+      "item_digest": "f7c7bcf690a37698856d2c6713a064d8184919097eb397ba4fc74e1f628a723a",
+      "key": "qcb-core-plan-512-rotation-reflections-overlap-example",
+      "family": "qsc-qubitization-beyond-basis",
+      "split": "test_public"
+    },
+    "qcb-core-plan-513": {
+      "item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+      "key": "qcb-core-plan-513-grover-two-reflection-rotation",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-514": {
+      "item_digest": "f8f0ce53cafa5cf44f72a178c5cf657a9a3d80928242702e3db089b8f6f7b21a",
+      "key": "qcb-core-plan-514-grover-failure-bound",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-515": {
+      "item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+      "key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-516": {
+      "item_digest": "d16b9b79662aed1cc9a0d4dbaf86e932a72fa15e988bfa6581425efd1b448e4a",
+      "key": "qcb-core-plan-516-grover-odd-chebyshev-identity",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-517": {
+      "item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+      "key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-518": {
+      "item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+      "key": "qcb-core-plan-518-classical-search-lower-bound",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-519": {
+      "item_digest": "afb80c476b2ea2e3b90eb6c6150ac9bab08f06123950b5cbfebb94a581d1d088",
+      "key": "qcb-core-plan-519-phase-kickback-bit-to-phase-oracle",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-520": {
+      "item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+      "key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+      "family": "qsc-grover-amplitude-amplification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-401": {
+      "item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+      "key": "qcb-core-plan-401-isotropic-positivity-x-range",
+      "family": "isotropic-state-positivity",
+      "split": "test_public"
+    },
+    "qcb-core-plan-403": {
+      "item_digest": "e4a453dba730b81064c7eab905c12090da22e6fb67aa29a08ee0feccfc0ce3f0",
+      "key": "qcb-core-plan-403-extendibility-channel-converse-counterexample",
+      "family": "extendibility-under-channels",
+      "split": "test_public"
+    },
+    "qcb-core-plan-404": {
+      "item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+      "key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+      "family": "definetti-bound-scaling",
+      "split": "test_public"
+    },
+    "qcb-core-plan-405": {
+      "item_digest": "c77d7ed511391ab1864f7706a6fc6b3a476a578c5cbf169260939dff0ae77fef",
+      "key": "qcb-core-plan-405-no-cloning-orthogonal-or-equal-boundary",
+      "family": "no-cloning-orthogonality",
+      "split": "test_public"
+    },
+    "qcb-core-plan-406": {
+      "item_digest": "8bf1b28a875f6ad1991b903518a8f3aba4204087b064b579c744440afa5614ca",
+      "key": "qcb-core-plan-406-cloning-fidelity-asymptotics-and-ordering",
+      "family": "approximate-cloning-asymptotics",
+      "split": "test_public"
+    },
+    "qcb-core-plan-407": {
+      "item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+      "key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+      "family": "spectrum-estimation-consistency",
+      "split": "test_public"
+    },
+    "qcb-core-plan-408": {
+      "item_digest": "682c79e81015ae2267b8ddef78c927dc7e1d68ec526c14ae7e30f002b5c310c8",
+      "key": "qcb-core-plan-408-separable-infinite-extendibility-and-hierarchy",
+      "family": "separable-infinite-extendibility",
+      "split": "test_public"
+    },
+    "qcb-core-plan-409": {
+      "item_digest": "a64a1d8b27cf0fe3a7a66f8b4bf60d7ebf0a288ef911b5e8cdcc2fdaac26500a",
+      "key": "qcb-core-plan-409-pure-bipartite-extension-forced-product",
+      "family": "pure-state-extension",
+      "split": "test_public"
+    },
+    "qcb-core-plan-410": {
+      "item_digest": "7f9d8bb4088fa19fc4b12e3fd2430d713e777a164111aa1fed72a0972f83e30e",
+      "key": "qcb-core-plan-410-channel-preserves-k-extendibility",
+      "family": "extendibility-under-channels",
+      "split": "test_public"
+    },
+    "qcb-core-plan-412": {
+      "item_digest": "b4183f8ccfaf78c2989b2a41175edfa0d6bd452671cb1a5d0c767b53fdac475d",
+      "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+      "family": "symmetric-subspace-haar-average",
+      "split": "test_public"
+    },
+    "qcb-core-plan-413": {
+      "item_digest": "50dfc466512f79d99c0a65bb7de21f90ba787a46dcb487bff9fd4a9c81908c17",
+      "key": "qcb-core-plan-413-cloning-optimal-map-saturates-bound",
+      "family": "approximate-cloning-optimal-map",
+      "split": "test_public"
+    },
+    "qcb-core-plan-414": {
+      "item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+      "key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+      "family": "haar-twirl-covariance",
+      "split": "test_public"
+    },
+    "qcb-core-plan-415": {
+      "item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+      "key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+      "family": "spectrum-estimation-symmetries",
+      "split": "test_public"
+    },
+    "qcb-core-plan-417": {
+      "item_digest": "e2e13bbb34865744a0e5a9f2ab454f606e78c8144fe0237f4ed4c708ddceebdc",
+      "key": "qcb-core-plan-417-symmetrized-vs-projected-state-identity",
+      "family": "symmetric-projection-symmetrization",
+      "split": "test_public"
+    },
+    "qcb-core-plan-419": {
+      "item_digest": "59c6bcb17e48756c7d9d42d22d2a2834b87745b5f7064cefc99fb1b53aa8b270",
+      "key": "qcb-core-plan-419-fidelity-telescoping-lower-bound",
+      "family": "fidelity-telescoping-bound",
+      "split": "test_public"
+    },
+    "qcb-core-plan-420": {
+      "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+      "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+      "family": "symmetric-subspace-dimension",
+      "split": "test_public"
+    },
+    "qcb-core-plan-301": {
+      "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+      "key": "qcb-core-plan-301-tensor-commutant-lemma",
+      "family": "qit-tensor-commutant-lemma",
+      "split": "test_public"
+    },
+    "qcb-core-plan-302": {
+      "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+      "key": "qcb-core-plan-302-double-commutant-bicommutant",
+      "family": "qit-double-commutant-bicommutant",
+      "split": "test_public"
+    },
+    "qcb-core-plan-304": {
+      "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+      "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+      "family": "qit-schur-weyl-mutual-commutant",
+      "split": "test_public"
+    },
+    "qcb-core-plan-305": {
+      "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+      "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+      "family": "qit-permutation-conjugation-invariance",
+      "split": "test_public"
+    },
+    "qcb-core-plan-306": {
+      "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+      "key": "qcb-core-plan-306-symmetric-power-spanning",
+      "family": "qit-symmetric-power-spanning",
+      "split": "test_public"
+    },
+    "qcb-core-plan-307": {
+      "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+      "key": "qcb-core-plan-307-young-row-bound",
+      "family": "qit-young-row-bound",
+      "split": "test_public"
+    },
+    "qcb-core-plan-308": {
+      "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+      "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+      "family": "qit-antisymmetrizer-vanishing",
+      "split": "test_public"
+    },
+    "qcb-core-plan-309": {
+      "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+      "key": "qcb-core-plan-309-majorization-annihilation",
+      "family": "qit-majorization-annihilation",
+      "split": "test_public"
+    },
+    "qcb-core-plan-310": {
+      "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+      "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+      "family": "qit-schur-weyl-dimension-count",
+      "split": "test_public"
+    },
+    "qcb-core-plan-311": {
+      "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+      "key": "qcb-core-plan-311-weyl-dim-u2",
+      "family": "qit-weyl-dim-u2",
+      "split": "test_public"
+    },
+    "qcb-core-plan-312": {
+      "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+      "key": "qcb-core-plan-312-hook-length-standard",
+      "family": "qit-hook-length-standard",
+      "split": "test_public"
+    },
+    "qcb-core-plan-313": {
+      "item_digest": "2aa47cab42159b2c4d10c188b1f176c3bf6fa3799aff9b9f0e347853a9f92974",
+      "key": "qcb-core-plan-313-cycle-type-conjugacy",
+      "family": "qit-cycle-type-conjugacy",
+      "split": "test_public"
+    },
+    "qcb-core-plan-315": {
+      "item_digest": "92a2b9973081ad5bf6b6ed502bb11e407263dfc26ea1de0bd92d9591e1674980",
+      "key": "qcb-core-plan-315-werner-twirl-visibility",
+      "family": "qit-werner-twirl-visibility",
+      "split": "test_public"
+    },
+    "qcb-core-plan-318": {
+      "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+      "key": "qcb-core-plan-318-permutation-invariant-poly",
+      "family": "qit-permutation-invariant-poly",
+      "split": "test_public"
+    },
+    "qcb-core-plan-319": {
+      "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+      "key": "qcb-core-plan-319-spectrum-concentration",
+      "family": "qit-spectrum-concentration",
+      "split": "test_public"
+    },
+    "qcb-core-plan-320": {
+      "item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+      "key": "qcb-core-plan-320-isotropic-partial-transpose",
+      "family": "qit-isotropic-partial-transpose",
+      "split": "test_public"
+    },
+    "qcb-core-be-003": {
+      "item_digest": "a757beddff8a7a05762348e416f2e50a373efa53005468c33f43d4ea53b61de8",
+      "key": "qcb-core-be-003",
+      "family": "be-unitary-completion-nonuniqueness",
+      "split": "dev"
+    },
+    "qcb-core-be-004": {
+      "item_digest": "69ef913513b5551fc106df171152b284d3ab8de62ca563ee680e1e751cfaa977",
+      "key": "qcb-core-be-004",
+      "family": "be-lcu-stage-roles",
+      "split": "train"
+    },
+    "qcb-core-be-006": {
+      "item_digest": "5e2925c035693a4f8034296aa2d0448e56e059aac0db6f66de4b45cc440f9fb2",
+      "key": "qcb-core-be-006",
+      "family": "be-lcu-clean-entry",
+      "split": "train"
+    },
+    "qcb-core-be-008": {
+      "item_digest": "f7551d5420a1e61e7be02a212873d5cc4384b08c62628605282e64b91c4a7181",
+      "key": "qcb-core-be-008",
+      "family": "be-scalar-dilation-contraction",
+      "split": "dev"
+    },
+    "qcb-core-be-009": {
+      "item_digest": "81aa90c475f83c6c482f6e7f35e5c20125c17896170b3c3306ef5600c8c76dcb",
+      "key": "qcb-core-be-009",
+      "family": "be-one-sparse-support-boundary",
+      "split": "train"
+    },
+    "qcb-core-be-011": {
+      "item_digest": "b64c8446192d113eddb6f829ef3cce766d74ac79527a75bec2bebc8674cce7fd",
+      "key": "qcb-core-be-011",
+      "family": "be-lcu-phase-cancellation",
+      "split": "train"
+    },
+    "qcb-core-be-012": {
+      "item_digest": "f2574f4e42e99fa324af5c0df2eb12570c39d40fa042763277872b2a3b8abb8a",
+      "key": "qcb-core-be-012",
+      "family": "be-permutation-orthogonal-clean",
+      "split": "train"
+    },
+    "qcb-core-la-013": {
+      "item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+      "key": "qcb-core-la-013",
+      "family": "native-expansion-mechanism-013",
+      "split": "train"
+    },
+    "qcb-core-la-014": {
+      "item_digest": "cc4258a0f2ab565d82b3abe29fb1f7cbd0112c16d5ad88e0b35d780ac7c0bdd1",
+      "key": "qcb-core-la-014",
+      "family": "native-expansion-mechanism-014",
+      "split": "test_public"
+    },
+    "qcb-core-la-015": {
+      "item_digest": "4ac0d74781d50ead023fd5830a7e8e5cda93b4580d32f2f4ef85299e32890567",
+      "key": "qcb-core-la-015",
+      "family": "native-expansion-mechanism-015",
+      "split": "test_public"
+    },
+    "qcb-core-la-016": {
+      "item_digest": "9c8a04ca1889fb0a56d3f452b52f5640741fb20e9f1d4e4962b89aef5642bc12",
+      "key": "qcb-core-la-016",
+      "family": "native-expansion-mechanism-016",
+      "split": "test_public"
+    },
+    "qcb-core-la-017": {
+      "item_digest": "f717b346a68d9dddbefdc009acf698ff6aca04c0531629f56fab06200a6b0999",
+      "key": "qcb-core-la-017",
+      "family": "native-expansion-mechanism-017",
+      "split": "train"
+    },
+    "qcb-core-la-018": {
+      "item_digest": "c6d32bc846decf5ac3703d8ef0c1d92984d3bd2cacfb16960bdb04a891b21afd",
+      "key": "qcb-core-la-018",
+      "family": "native-expansion-mechanism-018",
+      "split": "train"
+    },
+    "qcb-core-la-019": {
+      "item_digest": "2608e997670f03f1d37ccd000716a0a0478826035c40e22316b4639af5704267",
+      "key": "qcb-core-la-019",
+      "family": "native-mathematical-expansion-019",
+      "split": "train"
+    },
+    "qcb-core-la-020": {
+      "item_digest": "af12f58eabab10496249efa91b5f940edea14c74f6121a7b860ae69e321d3fc6",
+      "key": "qcb-core-la-020",
+      "family": "native-mathematical-expansion-020",
+      "split": "train"
+    },
+    "qcb-core-la-001": {
+      "item_digest": "f871c32a18b71fb5ea483f94e2941d10f0b34a1ea600577f1e392fdb2d0412c3",
+      "key": "qcb-core-la-001",
+      "family": "composite-index reshaping / bijective reindexing invariance",
+      "split": "test_public"
+    },
+    "qcb-core-la-002": {
+      "item_digest": "ca7a9fcd324216a1144307b9d48138420f5a9609c644b95f81d80c8ccc438408",
+      "key": "qcb-core-la-002",
+      "family": "residual absorption / per-bit-slice right multiplication",
+      "split": "train"
+    },
+    "qcb-core-la-003": {
+      "item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+      "key": "qcb-core-la-003",
+      "family": "symbolic algebra evaluation homomorphism",
+      "split": "train"
+    },
+    "qcb-core-la-004": {
+      "item_digest": "33cc06733514e0836a461f03019dbbcf4881b1b6963dfe5207cb05932deb4106",
+      "key": "qcb-core-la-004",
+      "family": "register tensor ordering / block indexing",
+      "split": "test_public"
+    },
+    "qcb-core-la-005": {
+      "item_digest": "9de300e5af170f37dfbbb8e216ddc6a74157f274971779218e9477ade22a8db4",
+      "key": "qcb-core-la-005",
+      "family": "orthonormal completion / isometry extension",
+      "split": "train"
+    },
+    "qcb-core-la-006": {
+      "item_digest": "4eae07a7fa7dc01f54e03e5d15700d11bec10c23f9368e6d01b5f44fc0d675f6",
+      "key": "qcb-core-la-006",
+      "family": "special-orthogonal completion / orientation repair",
+      "split": "train"
+    },
+    "qcb-core-la-007": {
+      "item_digest": "f10f3a23733971a2aa0b150a90124936ed6d12d8b403eff4b77380607f85064c",
+      "key": "qcb-core-la-007",
+      "family": "linearity of matrix-vector action / sparse-input collapse",
+      "split": "dev"
+    },
+    "qcb-core-la-008": {
+      "item_digest": "ffed957ea2517808e052738941799ab1478ba9bade87b7bf84f0987ffc74cd0d",
+      "key": "qcb-core-la-008",
+      "family": "block-encoding certification styles / projection-vs-action equivalence",
+      "split": "dev"
+    },
+    "qcb-core-la-009": {
+      "item_digest": "b31607a7ea2a259a413bb5b7c11780ee9b302542f801bc1ce38ca72cfc3e1311",
+      "key": "qcb-core-la-009",
+      "family": "isometry dimensional obstruction / finite-cardinality counting",
+      "split": "train"
+    },
+    "qcb-core-la-010": {
+      "item_digest": "492aef4134070695970d651e98c5bf482a5c7d14719d34b8b92091a7a6178ff5",
+      "key": "qcb-core-la-010",
+      "family": "zero-padding embedding / row-vs-column isometry under padding",
+      "split": "dev"
+    },
+    "qcb-core-la-011": {
+      "item_digest": "71e5ff52e00d5ec5c88b81ae1265a8094d961c43c77f466c3fb32c8b23f7196f",
+      "key": "qcb-core-la-011",
+      "family": "necessity of the strict dimension bound / completion failure",
+      "split": "train"
+    },
+    "qcb-core-la-012": {
+      "item_digest": "b53e888a9d2bde591363f2eb202ee553d7d833c9cfc4f8c52e0ce21427338a09",
+      "key": "qcb-core-la-012",
+      "family": "bond-dimension recurrence / canonicalization boundary bounds",
+      "split": "train"
+    },
+    "qcb-core-plan-003": {
+      "item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+      "key": "qcb-core-plan-003-density-set-convexity",
+      "family": "qit-state-foundations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-004": {
+      "item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+      "key": "qcb-core-plan-004-ensemble-nonuniqueness",
+      "family": "qit-state-foundations",
+      "split": "test_public"
+    },
+    "qcb-core-plan-005": {
+      "item_digest": "75bdc7610d7bf3c2c4c4a2fb21a151bdd2966bb54443b4426e310f9b67f38bf5",
+      "key": "qcb-core-plan-005-classical-correlation-vs-product-counterexample",
+      "family": "qit-composite-entanglement",
+      "split": "test_public"
+    },
+    "qcb-core-plan-007": {
+      "item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+      "key": "qcb-core-plan-007-werner-entanglement-threshold",
+      "family": "qit-symmetry-entanglement",
+      "split": "test_public"
+    },
+    "qcb-core-plan-010": {
+      "item_digest": "13ff4d7410b8c1c651c0e8a652cb201ded626374ddf50a7f712d2a82784b3abf",
+      "key": "qcb-core-plan-010-entry-vs-operator-norm-verification",
+      "family": "qsc-block-encoding-verification",
+      "split": "test_public"
+    },
+    "qcb-core-plan-011": {
+      "item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+      "key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+      "family": "qsc-block-encoding-dilation",
+      "split": "test_public"
+    },
+    "qcb-core-be-001": {
+      "item_digest": "d3fcc5644825a903d365c5356b4e51c6754683966d400872169b733c2b7ed313",
+      "key": "qcb-core-be-001-corrected-v2",
+      "family": "be-projected-block-contract",
+      "split": "test_public"
+    },
+    "qcb-core-be-002": {
+      "item_digest": "0225404a2bcf4af0f22e5bf5145a57227181783389be19800bce939c379853e1",
+      "key": "qcb-core-be-002-corrected-v2",
+      "family": "be-auxiliary-accounting",
+      "split": "train"
+    },
+    "qcb-core-be-010": {
+      "item_digest": "ee013faa49782085ff133a942fb0e639d3357fa9a4eed212f42f0bb7096d2323",
+      "key": "qcb-core-be-010-corrected-v2",
+      "family": "be-product-fresh-ancilla",
+      "split": "train"
+    },
+    "qcb-core-sp-001": {
+      "item_digest": "0131ad1ec8cff86035bb3b2ac0369a3fda6efe1bb41e47ed0f2a41355733e4ce",
+      "key": "qcb-core-sp-001",
+      "family": "signed-amplitude-angles",
+      "split": "test_public"
+    },
+    "qcb-core-sp-003": {
+      "item_digest": "c4a49ccae5572ff4bf896d73c30f37c0c0c3b4caa98488b2efd4171679e36f72",
+      "key": "qcb-core-sp-003",
+      "family": "canonicalization-input-promise",
+      "split": "train"
+    },
+    "qcb-core-sp-004": {
+      "item_digest": "1b31a5d5788641b5b7068c87fc829de70756a84e5d8acb6f2e049f0d12701aed",
+      "key": "qcb-core-sp-004",
+      "family": "canonicalization-residual-norm",
+      "split": "train"
+    },
+    "qcb-core-sp-005": {
+      "item_digest": "4748bf7c81283496b115e778c1f365bd503d4384829e85ceb0959f348a5a97d4",
+      "key": "qcb-core-sp-005",
+      "family": "marginal-norm-pythagorean",
+      "split": "test_public"
+    },
+    "qcb-core-sp-007": {
+      "item_digest": "f47a739f7ea08d5acd553764322f8c24c2c6b1e7c40abe98923f3bceb2f8963a",
+      "key": "qcb-core-sp-007",
+      "family": "sequential-transfer-composition",
+      "split": "test_public"
+    },
+    "qcb-core-sp-008": {
+      "item_digest": "d403cce404da75f2931579b020692a9cf08143dfd7b2a59eeec69fce4c59f771",
+      "key": "qcb-core-sp-008",
+      "family": "coherent-success-probability",
+      "split": "train"
+    },
+    "qcb-core-sp-009": {
+      "item_digest": "3f133557d4caeab060a7631ee2641d0019434fd496c4f8fa413895aaf318e981",
+      "key": "qcb-core-sp-009",
+      "family": "core-circuit-isometry",
+      "split": "train"
+    },
+    "qcb-core-sp-012": {
+      "item_digest": "071ab0623ad314e9dec69f07d951817d7eba436b0cdbfe21a38c52f4ec7b8e30",
+      "key": "qcb-core-sp-012",
+      "family": "rank-change-support-gauge",
+      "split": "train"
+    },
+    "qcb-core-sp-002": {
+      "item_digest": "913146f35e58a18dbdca2df520ed09bfef9b31fc3bddfaf331881d33a6cb06bf",
+      "key": "qcb-core-sp-002-textbook-v1-index-repair",
+      "family": "sequential-bond-input-promise",
+      "split": "test_public"
+    },
+    "qcb-core-sp-006": {
+      "item_digest": "80d8cf9a6ab1179417909a57f88236985358dda61923d365c37edbbe5f4df69d",
+      "key": "qcb-core-sp-006-textbook-v1-normalization-boundary-repair",
+      "family": "normalization-identity",
+      "split": "test_public"
+    },
+    "qcb-core-sp-011": {
+      "item_digest": "3dc8ebd018ba2a658d973683c272426bb6cf72ff07f489e20ed26fdb8a249818",
+      "key": "qcb-core-sp-011-textbook-v1-terminal-feasibility-repair",
+      "family": "terminal-cleanup-unitarity-obstruction",
+      "split": "train"
+    }
+  },
+  "historical_selection_snapshot": {
+    "classification": "historical_prior_reader_selection_not_latest_current_reader",
+    "publication_checkpoint": "8533b9b1d121c5997edf3f99de416347446e9f9b",
+    "reader_inventory_count": 213,
+    "legacy_diagnostic_count": 26,
+    "chronology": "The 213-item reader inventory and its content digests belong to the prior selection snapshot captured before the new reader quarantines and before the sp-105 affine-dimension and la-003 syntax-semantics answer successors. This derivative does not inspect, refresh or certify the latest current-reader inventory.",
+    "interpretation_of_inherited_labels": "Inherited field names such as scope.current_native_digest, scope.current_reader_native_count, native_inventory_bindings and record prose referring to 'current' retain their original values and refer exclusively to that historical selection. They must not be read as present-day admission statements.",
+    "mathematical_review_refreshed": false,
+    "global_semantic_dedup_complete": false,
+    "cross_split_pooling_allowed": false,
+    "scope_limit": "The one confirmed equivalent pair and the 57 bounded comparisons remain the historical findings. No unlisted-pair distinctness, new current-gold approval or external acknowledgment follows from publication of this derivative."
+  },
+  "public_derivative_provenance": {
+    "original_report_digest": "d1b66f5b8dd1a4e02a1a1378c28fda40674f4a9993b6f9e722514fc32531d46d",
+    "original_report_digest_method": "qcb_core.digest of the entire parsed original private report, including its original output_provenance; not a digest of an already sanitized subset.",
+    "derivative_type": "provenance_sanitized_historical_public_copy",
+    "private_files_preserved": true,
+    "sanitization": [
+      "Removed original top-level output_provenance.final_absolute_path.",
+      "Removed original top-level output_provenance.preserved_intermediate_absolute_path.",
+      "Removed original top-level output_provenance.note, whose operational output-location narrative exposed control-folder names. The intermediate private copy and original private report remain preserved.",
+      "Added historical_selection_snapshot to disambiguate all inherited current-reader labels as the prior 213-item selection before subsequent quarantines and the sp-105/la-003 successors, without changing any original inventory binding, finding or verdict.",
+      "Added this derivative provenance record to bind the exact original report and document the public-copy transformation."
+    ],
+    "unchanged_material": "All 26 legacy record objects, all 57 native candidate-pair objects and their mathematical target/relation/reasoning/verdict content, all item digests/family/split data, all 213 native inventory bindings, all source_checks with LF hashes and anchors, all external primary-source checks and verification limits, actual reviewer identity, exposure, topology follow-up and incomplete-global-dedup limitations are unchanged.",
+    "repository_relative_evidence_preserved": "Tracked source_checks paths, original source_refs and repair/review evidence names within inherited reader decisions remain repository-relative and unchanged. No user-machine or private control-output location is published.",
+    "latest_inventory_review_claimed": false,
+    "global_dedup_complete": false,
+    "cross_split_pooling_allowed": false
+  }
+}

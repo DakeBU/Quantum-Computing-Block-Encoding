@@ -1,0 +1,93 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "requested_core_ids": ["qcb-core-plan-003"],
+    "observed_branch": "agent/qcb-reader-quarantines-v1",
+    "item_selection": "Re-read the complete actual prepared qcb-core-plan-003 item returned by scripts/release.checked()[2], selected by core_id; also re-read its authored planned.json record and the cited primary-source text. This is a standalone full natural-language reader review, not a relabeling of the earlier cross-cohort report.",
+    "digest_method": "qcb_core.digest of the entire actual prepared item, including question, answer, rubric, metadata and inherited review records; not the authored-row digest or a question-only digest.",
+    "content_checked": "Complete question, reference answer, all four rubric criteria, assumptions, conventions, all three semantic steps, native core summary, primary-source metadata and source references. Assumptions and conventions are empty lists; formal and formal_context are null.",
+    "mathematical_setting": "Finite-dimensional complex Hilbert space C^d, d>=1, as specified by the cited source. The question imposes neither a qubit-only d=2 restriction nor a special topology identifying boundary with extremality."
+  },
+  "provenance": {
+    "actual_identity": "/root/qcb_boundary_repair_review is the actual separately dispatched task, distinct from original author native-planned-author. This task originally noticed the boundary defect during cross-cohort screening and received the parent's independently derived topology observations. The present review re-read the exact full item and primary-source sections and reconstructs the arguments below.",
+    "exposure": "Not blind: the answer, rubric, historical acceptance and earlier screening observation were visible. Prior verdicts and parent agreement are provenance, not mathematical evidence. No second reviewer identity is invented.",
+    "protocol_context": "Previously read complete repository AGENTS.md, HARNESS.md, theorem-publication protocol, substantive-worker skill and its required proof-digestion and evidence-routed-memory protocols remain applicable.",
+    "new_kernel_execution": false,
+    "formal_status": "Natural-language mathematical review and bounded primary-source inspection only. No Lean theorem is invented, no existing local formal closure for this item is claimed, and historical release validation is not a fresh proof execution.",
+    "extra_agents": false,
+    "mutation_scope": "Only this new reader-review JSON. Authored QA, frozen prepared data, source registry, production definitions, current policy, other reviews, IDs and splits are untouched; no repair, commit or push."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-003",
+      "key": "qcb-core-plan-003-density-set-convexity",
+      "item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "literal_defect": "The question asks for a reason why the boundary of the density-operator set is exactly the pure states. This is not the same proposition as the source's characterization of pure states as extreme points. It is false in general even in the natural trace-one Hermitian affine ambient space; in the full Hermitian ambient space it fails already for qubits. Empty assumptions/conventions do not authorize replacing boundary by extreme points or restricting d to2.",
+        "convexity_reconstruction": "Let D_d={rho in Herm_d : rho>=0, tr(rho)=1}, and let each rho_i lie in D_d. For p_i>=0, every quadratic form of rho=sum_i p_i rho_i is <v,rho v>=sum_i p_i<v,rho_i v>>=0; this proves positivity without using sum_i p_i=1. Linearity of trace gives tr(rho)=sum_i p_i tr(rho_i)=sum_i p_i, hence trace one uses the weights summing to one without requiring their nonnegativity for this algebraic equality. Therefore probability-weighted mixtures are states. The first two weight roles in the answer and r1/r2 are correct. They describe sufficient hypotheses for the respective universal arguments; they are not claims that no particular mixture with a negative coefficient can happen to be positive.",
+        "extreme_points_reconstruction": "If rho has rank at least2, choose two orthonormal eigenvectors u,v with positive eigenvalues lambda_u,lambda_v. For 0<t<min(lambda_u,lambda_v), the distinct matrices rho_plus=rho+t(|u><u|-|v><v|) and rho_minus=rho-t(|u><u|-|v><v|) are positive with trace1 and rho=(rho_plus+rho_minus)/2. Thus rho is not extreme. Conversely suppose P=|psi><psi| for unit psi and P=s sigma+(1-s)tau with0<s<1 and sigma,tau states. For every z orthogonal to psi,0=<z,Pz>=s<z,sigma z>+(1-s)<z,tau z>, so both nonnegative terms vanish. For a positive operator, <z,sigma z>=||sqrt(sigma)z||^2=0 implies sigma z=0; likewise tau z=0. Hermiticity then puts both ranges in span(psi), so trace1 forces sigma=tau=P. Hence the extreme points are exactly the pure rank-one projectors in every d>=1. This proves the true extreme-point statement independently, but cannot prove the different literal boundary assertion.",
+        "relative_boundary_reconstruction": "Take the real affine space H_1={X=X† : tr X=1} as the ambient space, with its finite-dimensional topology, and assume d>=2. A positive-definite rho has lambda_min(rho)>0; every Hermitian trace-zero perturbation E with ||E||_op<lambda_min leaves rho+E positive, since <z,(rho+E)z> >= (lambda_min-||E||_op)||z||^2. It is therefore relatively interior. If rho has a zero eigenvector z, choose any unit w orthogonal to z and define E_t=t(|w><w|-|z><z|). This perturbation is Hermitian and trace zero, tends to zero as t tends to zero, and <z,(rho+E_t)z>=-t<0. Arbitrarily nearby points in H_1 thus lie outside D_d. Since D_d is closed, rho is relatively boundary. Accordingly the relative boundary consists of all rank-deficient density matrices for d>=2, not just the extreme ones.",
+        "dimension_cases": {
+          "d_1": "D_1={ [1] } and H_1={ [1] }. The relative interior equals the whole singleton and the relative boundary is empty. Its sole state is pure and extreme, so even here relative boundary and pure states are different. In the full one-dimensional real Hermitian space R the singleton is a boundary point.",
+          "d_2": "A rank-deficient trace-one positive2x2 matrix has eigenvalues1 and0, so is rank one. Thus only in this dimension does the relative boundary in H_1 equal the pure states. This qubit coincidence does not license the unrestricted question. In the full Hermitian ambient space, the mixed state I_2/2 is also a boundary point.",
+          "d_at_least_3": "rho=diag(1/2,1/2,0,...,0) is positive trace1, rank2 and mixed, yet relatively boundary because it is rank deficient. It is explicitly the nontrivial average of diag(1,0,0,...) and diag(0,1,0,...), so it is not extreme. The sequence rho_t=diag(1/2+t,1/2,-t,0,...) has trace1, is not positive for t>0, and tends to rho; this independently verifies the boundary witness. Since rank-deficient states can have any rank1 through d-1, there is an entire mixed boundary stratum, not an isolated exception."
+        },
+        "ambient_boundary_reconstruction": "In the full real vector space Herm_d, the closed set D_d lies in the proper trace-one affine hyperplane and has empty interior: rho+tI has trace1+td and is outside D_d for arbitrarily small nonzero t. Therefore every density matrix is in the ambient boundary for all d>=1. For d>=2 that includes positive-definite mixed states such as I_d/d. Specifying ordinary ambient boundary cannot rescue the question; choosing the state set itself as ambient space would instead make its boundary empty.",
+        "reference_answer_assessment": "The positivity, trace and convexity paragraphs are correct. The final paragraph changes the target to extreme points and parenthetically calls them boundary points that have no nontrivial mixture. Nontrivial-mixture irreducibility is the definition of an extreme point, not a definition of the whole topological boundary. The higher-rank spectral split explains nonextremality, but a point can be nonextreme and still be boundary. The response never discloses that its last paragraph does not prove the literal request. Its explanation also leaves the rank-one-implies-extreme direction compressed; the supporting positivity argument is supplied above rather than treating that compression as evidence of the false boundary equality.",
+        "rubric_assessment": {
+          "r1": "Accept as a subcriterion: the quadratic-form proof and nonnegative-weight role are correct.",
+          "r2": "Accept as a subcriterion: trace linearity and unit-sum role are correct.",
+          "r3": "Accept as a subcriterion: satisfying positivity and trace1 establishes convexity.",
+          "r4": "Mathematically sound for the extreme-point assertion but mismatched to the question's boundary clause. A correct answer rejecting the boundary claim could be unfairly graded against an unstated substituted target; a full-score answer could leave the false literal claim unchallenged. The other three valid criteria cannot compensate for that contract mismatch."
+        },
+        "semantic_steps_and_summary": "All three semantic steps and the native core summary use the true extreme-point statement, whereas the last question clause uses boundary. The mismatch therefore lies between the frozen question and its answer/rubric/expository target, not in the valid convexity proof. No alteration of an evidence label, difficulty rationale or graph node can make the two statements equivalent.",
+        "primary_source_fidelity": "The inspected source gives positivity and unit trace, then describes convex mixtures and identifies pure states with extreme points and rank-one projectors. It does not justify substituting the whole topological boundary for the extreme-point set. The error is in the authored question's expansion of the source, not an established defect in Definition2.1.",
+        "semantic_core_assessment": "For bookkeeping this review uses the required distinct_or_explicit_alias verdict, without proposing an alias. The valid composite target is density-set convexity with separate weight roles plus extreme-point characterization. The previously inspected legacy pure-projector diagnostic overlaps the extreme-point subtarget but also asks positivity, trace/idempotency and normalization for a fixed psi; it is not a whole-question equivalence with this convex-mixture problem. A repaired question would need its own exact-content review and bounded alias reconciliation. This review makes no global distinct-core claim.",
+        "required_disposition": "Reject this exact prepared item as an aligned reader/gold question. Preserve the original bytes and historical review as audit evidence. Replacing boundary by extreme points would change the literal question and must be an explicit successor with its own review; no such successor is authored or approved here. The valid convexity and extremality derivations are salvageable mathematics, not permission to publish the current mismatched contract."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/planned.json",
+          "sha256_lf": "afb90ee041855b1a011081522c41e4166fcd758236e55161f7cc9a2cd1f784bb",
+          "anchor": "Authored qcb-core-plan-003 record at core_id near line193: entire question/reference_answer/rubric/semantic_steps/native summary and primary_source metadata reread.",
+          "evidence_role": "Exact tracked authored-content provenance: establishes the boundary wording, extreme-point answer/r4 and absence of a dimension/topology correction. This QA JSON is not mathematical proof of any state-space theorem."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Prepared qcb-core-plan-003-density-set-convexity key near line35308; entire actual prepared item selected through release.checked() and bound by item_digest.",
+          "evidence_role": "Exact immutable prepared-data provenance. It binds what is being rejected, including historical metadata; it is not a proof or a new independent acceptance of the answer."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "leditzky-2025-repth-qit entry near line219: URL, April10,2026 edition, claimed PDF hash, bounded Definition2.1/Eq2.4/pure-state characterization anchor and external-reference scope.",
+          "evidence_role": "Tracked primary-source identity and scope metadata. The registry's primary-text-checked label and PDF hash are historical claims, not a substitute for the fresh bounded primary-source reading described separately below, nor a newly compiled local density-operator definition."
+        }
+      ],
+      "primary_source_verification": {
+        "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+        "retrieval": "Reopened the original public PDF URL through the web PDF-text reader during this standalone review. Returned document has79 pages and displays the April10,2026 edition; inspected Definition2.1 and Eq2.4 on printed p3 plus convexity/extreme-point/rank-one and spectral-decomposition paragraphs on printed p4.",
+        "expected_pdf_sha256_from_tracked_metadata": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+        "remote_pdf_bytes_sha256_independently_verified": false,
+        "verification_limits": "The tool supplied extracted text, not local original PDF bytes with a recomputed hash. This review therefore does not claim byte-identical verification against the pinned registry hash or a full79-page read. The relevant finite-dimensional definitions and distinction were readable in the bounded returned primary text. No PDF or source excerpt is added to the repository. The boundary counterexamples and full topology/extremality arguments above are independently derived mathematics, not an inference from source-status labels."
+      },
+      "limitations": [
+        "No new kernel execution, local density-operator theorem, circuit semantics, resource guarantee, source-publication admission or repair approval is claimed.",
+        "This rejection concerns the exact whole prepared item bound above; it does not reject the convexity theorem or the cited source's true extreme-point characterization.",
+        "No dataset label, split, release state or current-reader policy is changed by this review file itself. The integration owner must apply any exclusion through the separately authorized publication process."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [],
+    "rejected": ["qcb-core-plan-003"],
+    "reason": "The literal unrestricted boundary-equals-pure-state clause is false, while answer, rubric and exposition silently address extreme points instead. Convexity remains valid.",
+    "global_limit": "One standalone exact-item natural-language reader review, not global native correctness, dedup completion or a new formal certificate."
+  }
+}
