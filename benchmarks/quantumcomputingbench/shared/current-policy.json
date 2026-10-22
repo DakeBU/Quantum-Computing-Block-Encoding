@@ -171,6 +171,57 @@
         "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
         "finding_digest": "e34e7ac69cf7f42a89f5d771db3532fdadbf90e17c75e6a088860be09ad8864c"
       }
+    },
+    {
+      "core_id": "qcb-core-sp-115",
+      "predecessor_key": "qcb-core-sp-115",
+      "predecessor_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+      "reason": "Explicit first question-version2 correction, not an unchanged-question answer successor. The literal historical question has valid universal composition-law requests, but its last threshold application supplies no threshold domain; the historical answer and rubric r3 promote a width-two claim that is false for unrestricted thresholds. The question itself does not explicitly assert that every threshold has width two, so the rank-three example below refutes that answer/rubric claim, not the four laws. Rather than silently insert a source premise into an unchanged contract, this version explicitly asks for the source's bounded natural prefix/suffix application and its limitation. It also clarifies 'exact width each produces' as the cardinality of the supplied construction, not necessarily minimum width. Only question changes among the nine CONTRACT_FIELDS; retain the other eight exactly, including empty assumptions/conventions, family hermite-cut-rank, dev split, frozen graph/source_refs, the same six target nodes and no supporting nodes. Retain exactly three semantic steps and each step's original supporting-node list. No equivalence-to-predecessor, additional core, selfapproval or admission claim. Proposed canonical repair locator is benchmarks/quantumcomputingbench/shared/repairs/sp-115-threshold-domain-question-successor.json; only the private _review_tmp/sp-115-threshold-domain-question-successor.json is authored/inspected here.",
+      "repair": "shared/repairs/sp-115-threshold-domain-question-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-115-threshold-domain-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-115",
+        "predecessor_key": "qcb-core-sp-115",
+        "predecessor_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+        "reason": "The width-two threshold assertion omits the bounded natural suffix premise; an allowed unrestricted threshold matrix has rank three.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "207301599011cac2c810f0e5331bcc1e48f81b689ff8fd692d08c78aa3738f0b"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-117",
+      "predecessor_key": "qcb-core-sp-117",
+      "predecessor_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+      "reason": "Explicit question-v2 because the original asks readers to reject an unqualified polynomial-resource inference, without distinguishing existential arbitrary-real gate size from a uniform finite-bit compiler. Its old rank-one example confuses a single cut with all ordered cuts. Retain the Hermite cut-certificate/normalized-preparation boundary objective but require a qualified comparison, not a nonexistent gate-count impossibility. Only question changes among the nine contract fields; original logical-sufficiency assumption and empty conventions stay intact, same core/hermite-cut-rank family/dev split/frozen graph/source refs and original three ordered step-node lists. The generic computability discriminator below is not a hardness claim about Hermite samples. Current later source interfaces are read-only contextual evidence, not new frozen graph nodes or a new formal view.",
+      "repair": "shared/repairs/sp-117-rank-resource-model-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-117-rank-resource-model-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-117",
+        "predecessor_key": "qcb-core-sp-117",
+        "predecessor_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+        "reason": "The answer conflates rank one at a single cut, all-cut product structure, exact-real circuit existence and a computed finite-bit compiler.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "114d7fd61409efca3a2e77f0052725e3460c5c1ff061a1bd45c875e410e07828"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-119",
+      "predecessor_key": "qcb-core-sp-119",
+      "predecessor_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+      "reason": "Explicit first question-contract correction of the suppressed smoothing index and ambiguous all-orders conclusion. The predecessor is valid under the indexed-family reading but false under a single fixed C-infinity-target reading; this is not silently resolved by changing only its answer. Make the actual source family S_k,f_k explicit, prove forall natural k,C^k(f_k), and require the canonical k=0 counterexample to the stronger reading. Retain the exact two-junction target and supplied finite-jet premise, middle-inclusive boundary convention, same core/hermite-smooth-gluing family/train split/frozen graph/source scope and original three semantic steps with exactly the same node lists. Only question changes among the nine contract fields; no assumptions/conventions field is added. No assertion that every fixed k member fails exactly at order k+1 is required or claimed.",
+      "repair": "shared/repairs/sp-119-indexed-smoothness-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-119-indexed-smoothness-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-119",
+        "predecessor_key": "qcb-core-sp-119",
+        "predecessor_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+        "reason": "The question may conflate a family of order-k bridges with one fixed infinitely smooth function; its quantifiers need clarification.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "58557745ed1b5f803ae270ac6a915b0621373c468f46c39e57f8885babc9c70b"
+      }
     }
   ],
   "answer_successors": [
@@ -516,33 +567,6 @@
       "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
       "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
       "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0"
-    },
-    {
-      "core_id": "qcb-core-sp-115",
-      "predecessor_key": "qcb-core-sp-115",
-      "predecessor_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
-      "reason": "The width-two threshold assertion omits the bounded natural suffix premise; an allowed unrestricted threshold matrix has rank three.",
-      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
-      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
-      "finding_digest": "207301599011cac2c810f0e5331bcc1e48f81b689ff8fd692d08c78aa3738f0b"
-    },
-    {
-      "core_id": "qcb-core-sp-117",
-      "predecessor_key": "qcb-core-sp-117",
-      "predecessor_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
-      "reason": "The answer conflates rank one at a single cut, all-cut product structure, exact-real circuit existence and a computed finite-bit compiler.",
-      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
-      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
-      "finding_digest": "114d7fd61409efca3a2e77f0052725e3460c5c1ff061a1bd45c875e410e07828"
-    },
-    {
-      "core_id": "qcb-core-sp-119",
-      "predecessor_key": "qcb-core-sp-119",
-      "predecessor_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
-      "reason": "The question may conflate a family of order-k bridges with one fixed infinitely smooth function; its quantifiers need clarification.",
-      "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
-      "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
-      "finding_digest": "58557745ed1b5f803ae270ac6a915b0621373c468f46c39e57f8885babc9c70b"
     },
     {
       "core_id": "qcb-core-la-112",

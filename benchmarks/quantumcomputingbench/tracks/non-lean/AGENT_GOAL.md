@@ -75,6 +75,14 @@ Plan502 distinguishes a generally sufficient pairing from universal necessity;
 plan504 retains leakage until projection and uses directed U/U-adjoint maps.
 These exact changes are mathematical reader evidence, not new formal closure.
 
+Apply the latest rank/regularity distinctions: threshold
+width two needs the stated bounded suffix; all-cut rank one implies a product
+state with short arbitrary-real preparation; this does not supply an effective
+finite-bit compiler. Existing Hermite/TT compilers must be acknowledged. Write
+the smoothness claim as the indexed family forall k,C^k(f_k), not C-infinity of
+one fixed bridge. Historical cohort reports are snapshot-bound, not permission
+to pool the current cohorts or silently transfer old-contract companions.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite
