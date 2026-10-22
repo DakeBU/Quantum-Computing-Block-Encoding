@@ -1,0 +1,155 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-be-119",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/be-119-visible-workspace-question-successor.json",
+  "repair_record_digest": "84404045bdb48551016b30c2f17988781d1137b5c9f1b8ace89c5879a3d3c861",
+  "repair_record_sha256_lf": "5ef0701ab968b3643559e960ae8ccfcb77297ea77b596abcc55f495b2c645c7f",
+  "original_item_digest": "9861d3807794ab3a410205c3d90e220174973ab60491d738ba200ce0de215506",
+  "original_contract_hash": "4d00d5fa56caf609041bdfb2399f6cba6567cbd92c4e5d42725303b60e962807",
+  "successor_contract_hash": "73c770b750b75e2d669bcff4625dd1d3827fffe3a6532d704fab0a3c072a115a",
+  "verdict": "accept",
+  "verdict_scope": "Accept this entire exact private candidate's mathematics, complete answer/rubric/exposition and disclosed contract boundary only. No historical acceptance transfer, current catalog restoration, canonical transport, fresh kernel/native-formal verification, source-publication seal or admission is performed.",
+  "independence": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "oracle-composition-author-b2",
+    "assessment": "This reviewer authored neither this candidate nor its frozen predecessor and is distinct from both actual authors.",
+    "exposure": "Not source-blind or a fresh identity. This task has substantial previous local Lean/QCB source and review exposure. The parent supplied the six candidates, focus concerns and authorship handoff; the complete original, candidate, withdrawal and prior reader finding were visible. Prior finding by /root/qcb_native_comparison and author summaries are not substituted for the present independent reconstruction."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of entire actual prepared original retrieved through current release.checked()[2].",
+    "repair_record_digest": "qcb_core.digest of entire exact parsed private candidate, including all metadata.",
+    "repair_record_sha256_lf": "qcb_integrity.text_sha of complete exact private candidate.",
+    "original_contract_hash": "qcb_core.digest(qcb_curriculum.core_contract(original)).",
+    "successor_contract_hash": "qcb_core.digest of the exact nine-field predecessor contract with only question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_equality": {
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "retained_scope": {
+      "core_id": "qcb-core-be-119",
+      "family": "be-source-transcript-vs-semantics",
+      "split": "dev",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a"
+    },
+    "original_semantic_step_count": 4,
+    "candidate_semantic_step_count": 4,
+    "ordered_per_step_supporting_nodes_equal": true
+  },
+  "original_defect": "The old question says total13 physical qubits while its source total sums only the visible ket partition. The separate full2n pure-workspace budget includes internal oracle work. This is an unsupported resource scope, not an arithmetic contradiction or a proven >13 lower bound.",
+  "contract_change_assessment": {
+    "classification": "Question-version2 is justified by the literal unqualified total. It explicitly asks to assess that old claim including internal workspace, then separates the certified visible count from an unestablished expanded footprint. It does not silently relabel a full count or invent another total.",
+    "preservation": "Only question changes; transcript-not-matrices and separate-SWAP assumptions, declared/effective conventions, family, dev split, frozen source/graph scope and four ordered step-node lists remain. Same ten-label transcript and9/10 arithmetic remain the task; no compiled source-route correctness is substituted.",
+    "scope": "This accepts the same adapter's bookkeeping and its limits, not a global assertion that no other current fixed Robin implementation is certified. SourceBaseline has separately labelled fixed/generic frontier objects; their status does not supply semantics to this string transcript."
+  },
+  "substantive_reconstruction": {
+    "labels": "The exact list read from warmRobinSourceCircuit is H_W^(kappa), U_indic, O_DT^S, Ry_boundary, O_DT^BS, U_indic^dagger, O_f, SWAP(two n-qubit registers; paper label only), (O_D^BS)^dagger, (H_W^(kappa))^dagger. Each is Gate.oracleCall(String); gateList and length10 are definitional/list facts, not interpreted inverses, unitarity, cleanup or a projected target theorem.",
+    "swap": "SourceBaseline separately gives logical pairs(0,3),(1,4),(2,5), a three-swap circuit fragment, a six-wire index exchange and complete involution/bijection proofs. These establish an actual separate object; no bridge identifies that object's matrix action with an oracleCall string or composes the full ten-block circuit. The candidate correctly refuses transfer by a matching name.",
+    "arithmetic": "At n3 the visible widths are(5,1,3,0,3,1), summing13. Removing system3 gives effective10. Declared signal9=5+1+3 and the complete source layout bridge gives10=9+paddedOD0+trailing1. This fixes projection dimension in the backend, not post-execution cleanup or block correctness.",
+    "workspace": "Visible pure workspace is0+1=1. oneTermRobinLayout.pureAncillas=2n=6 is a theorem-layout budget whose source comment explicitly includes internal sparse-access/oracle subcircuits and is narrower/different in scope from visible ket counting. Thus13 is the visible backend total, not an established total physical implementation including all hidden work.",
+    "no_invented_total": "Neither3+9+6=18 nor13+(6-1)=18 is a certified simultaneous footprint: no field equality proves disjointness, liveness, reuse or an exact five-extra-wire allocation. Nor does the debt prove13 impossible after optimization. Label implementations can use different hidden workspace. A full total, cleanup, normalizer/success or compiled cost requires additional implementation and semantic evidence."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question_and_answer": "Accept the explicit visible-versus-full resource assessment, exact labels and9/10/13 arithmetic. It states the missing physical conclusion as unsupported rather than false for every possible implementation.",
+    "rubric_and_steps": "All four criteria and four claims preserve the original scope and exact ordered nodes. They grade label semantics, swap bridge, workspace scopes and avoidance of manufactured totals. No criterion asserts all currently existing Robin modules are merely labels.",
+    "residual": "None found in this exact adapter-scoped candidate. External paper resource validity, the full GHL module and unrelated fixed-source route are not certified by this review."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/RobinEvolution.lean",
+      "sha256_lf": "8673572458ff260cf35d6cfce60ffcc52b5b2be721671b3171919e32d0b73a37",
+      "anchor": "Read complete operative warm adapter region86-177: parameter/layout/visible partition definitions94-103, exact ten labels108-119, full gateList/length proofs122-141, concrete parameter/layout/partition fields144-166, visible total169-171 and effective projection bridge174-177. Unrelated matrix-entry source functions are not mathematical dependencies here."
+    },
+    {
+      "path": "QuantumBlockEncoding/GHL2025.lean",
+      "sha256_lf": "75aa9e6b508e31fe70db050c58899d9c62560b838810d65c98e3879c9b58e5c4",
+      "anchor": "Read OneTermRobinParameters18-23; complete RobinRegisterPartition/default/total/visible pure-workspace definitions and explicit internal-oracle caveat42-97; resource2n documentation/records99-141 and oneTermRobinLayout143-152; full visible total/effective projection definitions766-778 and theorem-data/layout/resource/projection bridge bodies780-845. No full multi-thousand-line module or paper-source closure claimed."
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/SourceBaseline.lean",
+      "sha256_lf": "cc3aa711cb2bc5c4dfb308719e77ac299539d9a1f97f7b45002b4a11cc9a5722",
+      "anchor": "Read full module including separate swap pairs29-30, Circuit33-34, full gateList/length and wire involution/bijective proof bodies36-63, and separate fixed/generic open-contract declarations65-90. Only separate-fragment existence/scope is used; no full transcript matrix equality follows."
+    },
+    {
+      "path": "QuantumBlockEncoding/Circuit.lean",
+      "sha256_lf": "286c7b579f75891cb34f01d13e84a5f00e6b509a480efaaef9472a58a67a0f94",
+      "anchor": "Gate constructors13-22, Circuit abbreviation24 and complete resource cases32-41 read. oracleCall contains a String; its local resource placeholder is not hidden-workspace semantics."
+    },
+    {
+      "path": "QuantumBlockEncoding/Examples/RobinHeat.lean",
+      "sha256_lf": "f2b2691ecc6300705a1dd319fa4386562e2b267e806ff905b66d81303b6645ff",
+      "anchor": "oneTermParameters74-78 and robinHeatAncillas83-84 read: kappa7,functionPieces1,degreeCost1 with n passed through; complete ancilla field theorem is rfl."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0e42c19ec6def3722dc9cc130f86f8453869c5c1",
+    "reviewed_at_private_path": "_review_tmp/be-119-visible-workspace-question-successor.json",
+    "published_locator_note": "repair_record is the intended future canonical destination; actual reviewed bytes were private. Exact copying changes locator only, not content or hashes.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+      "digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+      "sha256_lf": "8e6844f1b5c2efc2508ff121eaa28906474330d25b3da6e25e80c501ab90e5d4",
+      "reviewer": "/root/qcb_native_comparison",
+      "finding_digest": "bb4d92a5d0627f4314bd0c0ba5413139fdade1764e5066e5dccad0bcbb076a5b",
+      "verdict": "uncertain",
+      "inspection": "Complete exact core finding read in its canonical report; its historical verdict remains bound to the original digest. It is diagnosis evidence, not approval of this candidate."
+    },
+    "withdrawal_evidence": {
+      "path": "benchmarks/quantumcomputingbench/shared/current-policy.json",
+      "row_digest": "cbba7a62d2320318b00627e1762935e7f0ead04ab02271340358c97aa41b4383",
+      "core_id": "qcb-core-be-119",
+      "inspection": "Exact original-bound withdrawal row inspected and check_withdrawal passed read-only. Mechanical provenance, not a mathematical source dependency."
+    },
+    "instruction_status": "Repository AGENTS/HARNESS, substantive-worker skill and required publication/digestion/evidence-memory protocols refreshed/read in this continuous task context; shared CONTRACT/ACCEPTANCE read. The skill requires honest source/semantic/Lean/admission separation.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_claimed": false,
+    "extra_agents": false,
+    "admission_performed": false,
+    "primary_paper_retrieval_performed": false,
+    "mutation_scope": "Only this new private review JSON authored. No candidates, prior private packets including LA/SP/remaining18, frozen QA, canonical tree, production Lean, policy, code, PR107, build, commit or push changed.",
+    "limits": "Static complete operative local-source inspection and independently reconstructed mathematics. No transitive Mathlib closure, fresh compilation, primary-paper/PDF/visual seal, circuit execution, uniform finite-bit synthesis, global deduplication or blanket source/module approval."
+  },
+  "mechanical_context": {
+    "separate_from_mathematical_source_dependencies": true,
+    "checks": "Read-only actual prepared-record retrieval, whole parsed/LF hashes, supersedes key/digest, original and projected nine-field contracts, check_exposition, check_source_bindings and check_withdrawal passed. Additionally compared every ordered semantic-step supporting-node list exactly; no admission function invoked.",
+    "tools_used": "Existing checkout .venv/Scripts/python.exe with PYTHONDONTWRITEBYTECODE=1; no installation or executable-file source dependency is introduced.",
+    "incidental_policy_and_curriculum_files_not_bound_as_mathematical_sources": true
+  },
+  "worker_handoff": {
+    "objective": "Distinct exact-candidate source/semantics review for this reserved BE core.",
+    "mathematical_delta": "Independent reconstruction resolves the stated carrier/quantifier/phase/resource ambiguity with exact candidate/predecessor/source bindings.",
+    "failure_class": "NONE for this exact candidate; historical defect remains auditable.",
+    "salvage": "Existing source identities and core scope retained; no newly compiled fragment promoted.",
+    "process_memory_ids_consulted": [],
+    "direction_fingerprint": "exact-private-BE-119-source-reader-not-author",
+    "parallel_admission": "No agents spawned. Parent-assigned distinct-author review, not duplicated proof authoring.",
+    "common_blind_spot_scope": "Checked stated conventions against operative source, not just author summary; not a multi-route/global blind-spot certification.",
+    "purification_exposition_seal": "No publication/purification seal issued; private candidate acceptance pending parent reconciliation and independent gates.",
+    "recommended_next_step": "Parent inspect exact review and candidate, then separately decide transport/admission. Preserve predecessor historical withdrawal and all existing frozen artifacts."
+  }
+}

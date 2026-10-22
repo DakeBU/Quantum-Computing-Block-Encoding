@@ -83,6 +83,16 @@ the smoothness claim as the indexed family forall k,C^k(f_k), not C-infinity of
 one fixed bridge. Historical cohort reports are snapshot-bound, not permission
 to pool the current cohorts or silently transfer old-contract companions.
 
+Read the operator/bond checkpoint before extending related exercises. Distinguish
+global unitarity, full inverse, a fixed clean row and deterministic cleanup;
+keep rational versus real witnesses, fixed versus existential support maps,
+finite-square injectivity, wire-induced permutations and exact stored phase
+explicit. Backend list counts are not optimal lower bounds; typed bond maxima
+are not minimal ranks. BE004/BE112 share assessed subproofs across inherited
+train/dev assignments: do not claim independent held-out evidence or pooling
+clearance for those fragments. LA219 remains reserved pending a separately
+reviewed convention-aware migration; do not force it into a question-only schema.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite

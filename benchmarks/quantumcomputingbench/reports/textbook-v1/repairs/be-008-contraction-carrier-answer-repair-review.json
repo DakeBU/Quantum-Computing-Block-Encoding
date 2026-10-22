@@ -1,0 +1,128 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-be-008",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/be-008-contraction-carrier-answer-repair.json",
+  "repair_record_digest": "aa3d8dd0d2ca5db0dfb2a2f84a045d398df7860fd834759d424d61ae753e6d17",
+  "repair_record_sha256_lf": "0be7081b8404ad755155add8c297f7db3b6a91db292fd347f933b406ca8bb7db",
+  "original_item_digest": "f7551d5420a1e61e7be02a212873d5cc4384b08c62628605282e64b91c4a7181",
+  "verdict": "accept",
+  "verdict_scope": "Accept this entire exact private candidate's mathematics, complete answer/rubric/exposition and disclosed contract boundary only. No historical acceptance transfer, current catalog restoration, canonical transport, fresh kernel/native-formal verification, source-publication seal or admission is performed.",
+  "independence": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "native-be-author",
+    "assessment": "This reviewer authored neither this candidate nor its frozen predecessor and is distinct from both actual authors.",
+    "exposure": "Not source-blind or a fresh identity. This task has substantial previous local Lean/QCB source and review exposure. The parent supplied the six candidates, focus concerns and authorship handoff; the complete original, candidate, withdrawal and prior reader finding were visible. Prior finding by /root/qcb_native_comparison and author summaries are not substituted for the present independent reconstruction."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "feff0f307f0c6ad39e5005c64e9c3468a58c3a773630c438345563f33c66d55c",
+    "projected_contract_hash": "feff0f307f0c6ad39e5005c64e9c3468a58c3a773630c438345563f33c66d55c",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "contract_field_overrides_in_repair": [],
+    "core_id": "qcb-core-be-008",
+    "family": "be-scalar-dilation-contraction",
+    "split": "dev",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "original_semantic_step_count": 2,
+    "candidate_semantic_step_count": 2,
+    "ordered_per_step_supporting_nodes_equal": true,
+    "assessment": "Answer-only repair is justified by the literal question: start with rational x,y as inherited, compute the rational polynomial identity, then separately answer the question's real-y existence clause after embedding rational x in R. This does not replace the initial rational carrier or assert rational existence for all |x|<=1.",
+    "necessity_minimality": "The false enlarged-signal remedy appears only in old answer/rubric, not the demanded conclusion. Correcting those and distinguishing carriers suffices. If the question had asked every witness to be rational, |x|<=1 would not be sufficient; the candidate explicitly denies that reading of the real-existence clause."
+  },
+  "original_defect": "Original answer and rubric falsely offer added signal qubits as an alternative to raising alpha for |c|>1. The rational source cannot provide arbitrary real square-root witnesses. The unchanged question itself explicitly asks existence of a REAL y and does not require the false extra-signal remedy.",
+  "substantive_reconstruction": {
+    "gram": "D is symmetric. DD^T has diagonal x^2+y^2 and off-diagonals xy-xy=0, so it equals (x^2+y^2)I. Thus DD^T=I iff x^2+y^2=1; D^TD is identical. Cross-overlap0 alone does not imply unit row norm.",
+    "carrier": "For rational fixed x viewed in R, y^2=1-x^2 has real solutions iff |x|<=1, namely +/-sqrt(1-x^2). Within Q the necessary and sufficient condition is that 1-x^2 be a rational square. At x=1/2, y=+/-sqrt3/2 is irrational by the reduced-fraction divisibility argument. At x=3/5,y=4/5 a rational witness exists; x=0 admits +/-1, x=+/-1 admits0. Therefore the maximum |x| is1 over either carrier, while the rational interior admissibility set is smaller.",
+    "compression": "For an isometric clean embedding J, ||J||=||J^dagger||=1 on a nonempty clean space, and U unitary has norm1. Consequently ||J^dagger UJz||<=||z|| in every auxiliary dimension. For a scalar |c|>1 this rules out all normalizer1 clean compressions, not just this2x2 shape. Empty clean spaces are irrelevant to the stipulated one-dimensional block.",
+    "normalizer": "Under A=alpha B and alpha>0, scalar c requires |c/alpha|<=1, hence alpha>=|c|. A real2x2 dilation realizes the normalized scalar when that holds; arbitrary rational entries require the separate square condition. Enlarging a signal space does not relax the norm obstruction.",
+    "source_scope": "The inspected source proves finite rational entry and conditional row-overlap identities. Real square-root existence and the general operator-norm argument here are independently reconstructed NL mathematics, not newly run Lean, a source-provided rational completion theorem or a finite-bit synthesis guarantee."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept complete answer: it retains the initial rational matrix, explicitly separates real extension and rational existence, proves the dimension-independent obstruction, and uses A=alpha B consistently.",
+    "rubric_and_steps": "Three rubric criteria correctly require full Gram normalization, carrier distinction/endpoints and dimension-independent contraction. Two semantic claims preserve the exact ordered original nodes and do not attribute rational existence or universal norm closure to the row-norm lemma.",
+    "residual": "None found. The linguistic 'real rational entries' is handled by its literal rational subfield plus the question's explicit separate REAL-y clause, not by importing arbitrary real entries into the rational backend."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "Read complete operative definitions/proof bodies: permMatrix/columnInner/rowInner/IsRationalOrthogonal19-36; cleanBlockBy/productIndex/product block and entry bridges38-113; kroneckerRat/oneSparseMatrix/entry_if/support proof/certificate116-168; complete all-zero/unique-hit/nodup/finRange fold helpers185-280 and both Gram proofs/combined orthogonality283-394; complete scalarDilation entries/row-dot/conditional unit-norm/cross-overlap proofs532-595. Only the subset relevant to this core supplies its mathematical source; no whole-module formal verification claimed."
+    },
+    {
+      "path": "QuantumBlockEncoding/BlockEncoding.lean",
+      "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+      "anchor": "Read RegisterLayout14-27; complete OperatorBlockEncodingCandidate, cost projection and VerifiedOperatorBlockEncoding103-134; approximate normalizer/error documentation and records136-162. These are contract data and proof fields, not new existence or resource proofs."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0e42c19ec6def3722dc9cc130f86f8453869c5c1",
+    "reviewed_at_private_path": "_review_tmp/be-008-contraction-carrier-answer-repair.json",
+    "published_locator_note": "repair_record is the intended future canonical destination; actual reviewed bytes were private. Exact copying changes locator only, not content or hashes.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "sha256_lf": "f0de45cb9d816411b1325fdba42276ce8b700a156c1de37fd809c29c91cd9fbe",
+      "reviewer": "/root/qcb_native_comparison",
+      "finding_digest": "f53f7d473a8dea4823d16ac7c401577259b9d70a5744233157bcb088204ea38e",
+      "verdict": "reject",
+      "inspection": "Complete exact core finding read in its canonical report; its historical verdict remains bound to the original digest. It is diagnosis evidence, not approval of this candidate."
+    },
+    "withdrawal_evidence": {
+      "path": "benchmarks/quantumcomputingbench/shared/current-policy.json",
+      "row_digest": "3b0218e59f969928588f0f1dd9e87c00098e90bd85f9871581397f1373a9d1b6",
+      "core_id": "qcb-core-be-008",
+      "inspection": "Exact original-bound withdrawal row inspected and check_withdrawal passed read-only. Mechanical provenance, not a mathematical source dependency."
+    },
+    "instruction_status": "Repository AGENTS/HARNESS, substantive-worker skill and required publication/digestion/evidence-memory protocols refreshed/read in this continuous task context; shared CONTRACT/ACCEPTANCE read. The skill requires honest source/semantic/Lean/admission separation.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_claimed": false,
+    "extra_agents": false,
+    "admission_performed": false,
+    "primary_paper_retrieval_performed": false,
+    "mutation_scope": "Only this new private review JSON authored. No candidates, prior private packets including LA/SP/remaining18, frozen QA, canonical tree, production Lean, policy, code, PR107, build, commit or push changed.",
+    "limits": "Static complete operative local-source inspection and independently reconstructed mathematics. No transitive Mathlib closure, fresh compilation, primary-paper/PDF/visual seal, circuit execution, uniform finite-bit synthesis, global deduplication or blanket source/module approval."
+  },
+  "mechanical_context": {
+    "separate_from_mathematical_source_dependencies": true,
+    "checks": "Read-only actual prepared-record retrieval, whole parsed/LF hashes, supersedes key/digest, original and projected nine-field contracts, check_exposition, check_source_bindings and check_withdrawal passed. Additionally compared every ordered semantic-step supporting-node list exactly; no admission function invoked.",
+    "tools_used": "Existing checkout .venv/Scripts/python.exe with PYTHONDONTWRITEBYTECODE=1; no installation or executable-file source dependency is introduced.",
+    "incidental_policy_and_curriculum_files_not_bound_as_mathematical_sources": true
+  },
+  "worker_handoff": {
+    "objective": "Distinct exact-candidate source/semantics review for this reserved BE core.",
+    "mathematical_delta": "Independent reconstruction resolves the stated carrier/quantifier/phase/resource ambiguity with exact candidate/predecessor/source bindings.",
+    "failure_class": "NONE for this exact candidate; historical defect remains auditable.",
+    "salvage": "Existing source identities and core scope retained; no newly compiled fragment promoted.",
+    "process_memory_ids_consulted": [],
+    "direction_fingerprint": "exact-private-BE-008-source-reader-not-author",
+    "parallel_admission": "No agents spawned. Parent-assigned distinct-author review, not duplicated proof authoring.",
+    "common_blind_spot_scope": "Checked stated conventions against operative source, not just author summary; not a multi-route/global blind-spot certification.",
+    "purification_exposition_seal": "No publication/purification seal issued; private candidate acceptance pending parent reconciliation and independent gates.",
+    "recommended_next_step": "Parent inspect exact review and candidate, then separately decide transport/admission. Preserve predecessor historical withdrawal and all existing frozen artifacts."
+  }
+}

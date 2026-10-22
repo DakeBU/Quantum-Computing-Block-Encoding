@@ -1,0 +1,135 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-be-009",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/be-009-support-quantifiers-question-successor.json",
+  "repair_record_digest": "cfbe91cf8fbd9eb42e104306deadc4eee9b263c0d2e7121bf7bea2122cb79fe7",
+  "repair_record_sha256_lf": "acdb4775daa124ec4341bf1799de28b4ebadb41ea8b0fb653a57e68000ea6271",
+  "original_item_digest": "81aa90c475f83c6c482f6e7f35e5c20125c17896170b3c3306ef5600c8c76dcb",
+  "original_contract_hash": "6659d3e45a3aa738998a147809356d44e0b5f688405bbe667a6d174f6f8ba117",
+  "successor_contract_hash": "2d6d1fc3dd956a6077b7f27dc77ca53cc22333f28a846d18e4782cffc5dd528c",
+  "verdict": "accept",
+  "verdict_scope": "Accept this entire exact private candidate's mathematics, complete answer/rubric/exposition and disclosed contract boundary only. No historical acceptance transfer, current catalog restoration, canonical transport, fresh kernel/native-formal verification, source-publication seal or admission is performed.",
+  "independence": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "native-be-author",
+    "assessment": "This reviewer authored neither this candidate nor its frozen predecessor and is distinct from both actual authors.",
+    "exposure": "Not source-blind or a fresh identity. This task has substantial previous local Lean/QCB source and review exposure. The parent supplied the six candidates, focus concerns and authorship handoff; the complete original, candidate, withdrawal and prior reader finding were visible. Prior finding by /root/qcb_native_comparison and author summaries are not substituted for the present independent reconstruction."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of entire actual prepared original retrieved through current release.checked()[2].",
+    "repair_record_digest": "qcb_core.digest of entire exact parsed private candidate, including all metadata.",
+    "repair_record_sha256_lf": "qcb_integrity.text_sha of complete exact private candidate.",
+    "original_contract_hash": "qcb_core.digest(qcb_curriculum.core_contract(original)).",
+    "successor_contract_hash": "qcb_core.digest of the exact nine-field predecessor contract with only question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_equality": {
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "retained_scope": {
+      "core_id": "qcb-core-be-009",
+      "family": "be-one-sparse-support-boundary",
+      "split": "train",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a"
+    },
+    "original_semantic_step_count": 2,
+    "candidate_semantic_step_count": 2,
+    "ordered_per_step_supporting_nodes_equal": true
+  },
+  "original_defect": "The old requested refutation of an at-most-one-nonzero-per-column claim used a target with two nonzeros in one column. Such an input violates the premise and cannot refute existential support selection. Fixed-c reconstruction is a different proposition.",
+  "contract_change_assessment": {
+    "classification": "Question-version2 is necessary to correct the requested logical task rather than silently replace its quantifiers. It explicitly asks to assess the old invalid refutation and separates existence of c from a previously fixed c.",
+    "preservation": "Only question changes; rational finite-square carrier, fixed-location convention, sampled amplitudes, family, train split, graph/source scope and two ordered step-node lists remain. The question examines a claim that relaxes fixed-map support; it does not adopt that relaxation as a new standing premise.",
+    "target": "Both exact support characterization and zero-column reconstruction remain central. Existential finite choice is proved as a mathematical fact, not postulated oracle access or an efficient compiler."
+  },
+  "substantive_reconstruction": {
+    "iff": "For fixed c, R_c(A)(i,j)=A(c(j),j) on i=c(j), and0 off that support. Hence off-support-zero implies equality by two cases. Conversely R_c(A)=A forces all off-support A entries to vanish. This is the exact necessary-and-sufficient condition; the source proves its forward direction via that same case split.",
+    "existence": "For n>0 choose the unique nonzero row in each nonzero column and row0 for an all-zero column. At-most-one nonzero guarantees off-support zero and therefore equality. Finite choice requires no complexity claim. At n=0 there are no columns, and the empty function exists without selecting an element of an empty set; equality is vacuous.",
+    "fixed_map_counterexample": "With n=2,c=id,A=[[0,0],[1,0]], column0 has exactly one nonzero but at row1 rather than c(0)=0. Both sampled amplitudes are0, so reconstruction is the zero matrix. This is a genuine one-sparse input defeating a mismatched fixed map, not existential selection.",
+    "invalid_and_valid_examples": "D=[[1,0],[1,0]] cannot be reconstructed for any c because whichever row is chosen for column0 leaves the other1 off support. It is a limitation example outside the one-sparse premise, not its refutation. B=diag(0,3) and c=id reconstructs exactly with amplitudes(0,3); zero-column choice is harmless.",
+    "encoding_boundary": "||B||=3, so entry reconstruction does not make B an alpha1 unitary block. A column support function can be many-to-one and need not be a reversible location oracle. Normalization, amplitude loading, cleanup, access construction and costs remain separate."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question_and_answer": "Accept the now explicit fixed-versus-existential distinctions, both directions of support iff, n=0 case and all three concrete examples.",
+    "rubric_and_steps": "Every criterion grades the valid logical distinction rather than rewards the former invalid counterexample. Both semantic claims and ordered node lists are preserved and stay within the support/reconstruction family.",
+    "residual": "None found in the exact candidate; not a statement that every one-sparse matrix is encoded at normalizer1 or that the existential map has efficient coherent access."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "Read complete operative definitions/proof bodies: permMatrix/columnInner/rowInner/IsRationalOrthogonal19-36; cleanBlockBy/productIndex/product block and entry bridges38-113; kroneckerRat/oneSparseMatrix/entry_if/support proof/certificate116-168; complete all-zero/unique-hit/nodup/finRange fold helpers185-280 and both Gram proofs/combined orthogonality283-394; complete scalarDilation entries/row-dot/conditional unit-norm/cross-overlap proofs532-595. Only the subset relevant to this core supplies its mathematical source; no whole-module formal verification claimed."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0e42c19ec6def3722dc9cc130f86f8453869c5c1",
+    "reviewed_at_private_path": "_review_tmp/be-009-support-quantifiers-question-successor.json",
+    "published_locator_note": "repair_record is the intended future canonical destination; actual reviewed bytes were private. Exact copying changes locator only, not content or hashes.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "sha256_lf": "f0de45cb9d816411b1325fdba42276ce8b700a156c1de37fd809c29c91cd9fbe",
+      "reviewer": "/root/qcb_native_comparison",
+      "finding_digest": "fea98e3562be629e82f7a4e733ee182d623a0bf36e2dba6e33e7ea0c4d158ee9",
+      "verdict": "reject",
+      "inspection": "Complete exact core finding read in its canonical report; its historical verdict remains bound to the original digest. It is diagnosis evidence, not approval of this candidate."
+    },
+    "withdrawal_evidence": {
+      "path": "benchmarks/quantumcomputingbench/shared/current-policy.json",
+      "row_digest": "a994e3257b941760a66b29fc950f1263fcc951ca0cb901f553da7b034373b9c9",
+      "core_id": "qcb-core-be-009",
+      "inspection": "Exact original-bound withdrawal row inspected and check_withdrawal passed read-only. Mechanical provenance, not a mathematical source dependency."
+    },
+    "instruction_status": "Repository AGENTS/HARNESS, substantive-worker skill and required publication/digestion/evidence-memory protocols refreshed/read in this continuous task context; shared CONTRACT/ACCEPTANCE read. The skill requires honest source/semantic/Lean/admission separation.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_claimed": false,
+    "extra_agents": false,
+    "admission_performed": false,
+    "primary_paper_retrieval_performed": false,
+    "mutation_scope": "Only this new private review JSON authored. No candidates, prior private packets including LA/SP/remaining18, frozen QA, canonical tree, production Lean, policy, code, PR107, build, commit or push changed.",
+    "limits": "Static complete operative local-source inspection and independently reconstructed mathematics. No transitive Mathlib closure, fresh compilation, primary-paper/PDF/visual seal, circuit execution, uniform finite-bit synthesis, global deduplication or blanket source/module approval."
+  },
+  "mechanical_context": {
+    "separate_from_mathematical_source_dependencies": true,
+    "checks": "Read-only actual prepared-record retrieval, whole parsed/LF hashes, supersedes key/digest, original and projected nine-field contracts, check_exposition, check_source_bindings and check_withdrawal passed. Additionally compared every ordered semantic-step supporting-node list exactly; no admission function invoked.",
+    "tools_used": "Existing checkout .venv/Scripts/python.exe with PYTHONDONTWRITEBYTECODE=1; no installation or executable-file source dependency is introduced.",
+    "incidental_policy_and_curriculum_files_not_bound_as_mathematical_sources": true
+  },
+  "worker_handoff": {
+    "objective": "Distinct exact-candidate source/semantics review for this reserved BE core.",
+    "mathematical_delta": "Independent reconstruction resolves the stated carrier/quantifier/phase/resource ambiguity with exact candidate/predecessor/source bindings.",
+    "failure_class": "NONE for this exact candidate; historical defect remains auditable.",
+    "salvage": "Existing source identities and core scope retained; no newly compiled fragment promoted.",
+    "process_memory_ids_consulted": [],
+    "direction_fingerprint": "exact-private-BE-009-source-reader-not-author",
+    "parallel_admission": "No agents spawned. Parent-assigned distinct-author review, not duplicated proof authoring.",
+    "common_blind_spot_scope": "Checked stated conventions against operative source, not just author summary; not a multi-route/global blind-spot certification.",
+    "purification_exposition_seal": "No publication/purification seal issued; private candidate acceptance pending parent reconciliation and independent gates.",
+    "recommended_next_step": "Parent inspect exact review and candidate, then separately decide transport/admission. Preserve predecessor historical withdrawal and all existing frozen artifacts."
+  }
+}

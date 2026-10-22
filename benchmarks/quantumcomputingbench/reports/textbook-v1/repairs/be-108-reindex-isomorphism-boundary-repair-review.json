@@ -1,0 +1,87 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-be-108",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/be-108-reindex-isomorphism-boundary-repair.json",
+  "repair_record_digest": "4c19bd5b346da36b690a62c8c64cb1293de7db96437a66becae0054e511a1e69",
+  "repair_record_sha256_lf": "60280cc3fe36987755d4db9010c982c9b353d0f6f5f77e4399b741c1e80c9723",
+  "original_item_digest": "a6acd83107961bd9360a0c2c55995f194064e1416340d73260285f5dbcb73c02",
+  "verdict": "accept",
+  "verdict_scope": "Accept the entire exact NEW answer/rubric/exposition candidate after actual full-byte rereading and mathematical reconstruction. This is a distinct review record for the new bytes, not transplantation of the old review, admission, kernel or human approval.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate/prior-withdrawal-finding author /root/qcb_native_comparison and historical original author oracle-composition-author-b2.",
+    "prior_review_exposure": "I reviewed the earlier frozen BE108 algebra-boundary candidate and explicitly noted the nonblocking endomorphism terminology. I also read/reviewed BE004/112 and authored a disjoint frozen six-BE candidate batch. This new review is not blind and does not pretend to be a fresh reviewer of unseen source.",
+    "current_action": "Read the ENTIRE actual new candidate, including change_scope, all answer paragraphs/equations/examples, all rubric/exposition/source/execution metadata; reloaded and read full actual historical original via release.checked()[2]; revalidated exact withdrawal/finding; reread operative source proofs. Parent/author recommendations and prior acceptance are not used as mathematical evidence."
+  },
+  "exact_new_vs_old_comparison": {
+    "old_private_candidate": "_review_tmp/be-108-reindex-algebra-boundary-repair.json",
+    "old_candidate_digest": "4a1d79d77c12e16a878a0a12f8826d2263a4f893f2f4c7758a5f6df1e331357b",
+    "old_candidate_sha256_lf": "c583284fc1c739d0d0e263136e38b399a9276367d70bf51b448105440452d648",
+    "old_private_review": "_review_tmp/be-108-reindex-algebra-boundary-repair-review.json",
+    "old_review_digest": "09ab25e81de94aa559c84cfb12a2b49ab2a0374aba85c27ce46db077c23e0ddd",
+    "changed_top_fields": [
+      "reference_answer",
+      "execution",
+      "change_scope",
+      "key"
+    ],
+    "answer_change_verified": "Exact string comparison confirms ONE replacement in reference_answer: 'unital multiplicative endomorphism between the two square-matrix algebras' becomes 'unital star-algebra isomorphism between the two square-matrix algebras'. No other character of the answer changed.",
+    "unchanged_payloads_verified": "Rubric, complete exposition including5 steps/ordered nodes, source_checks, schema/core/author/predecessor fields and pending marker are exactly equal to the earlier candidate. No original contract field is overridden in either answer-only candidate.",
+    "metadata_review": "The new key and proposed canonical/private locators actually identify this new candidate. change_scope and execution additionally disclose the terminology-only new-file revision and prior exposure. Entire new metadata was read; its author's workflow claims are disclosed provenance, not reviewer execution or approval.",
+    "old_artifact_boundary": "Earlier candidate/review preserved with the exact old digests above. This new review does not replace or relabel them and does not claim the old review automatically covers new bytes."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "9d0c3c71f51d29071eb2ae9233bdbed5a785dbfdc336519086097ec5a8d4efa7",
+    "full_binding": "qcb_core.digest({k:actual_original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}) over question,assumptions,conventions,family,split,graph_version,target_nodes,supporting_nodes,source_refs. Entire actual prepared original digest is separately bound above.",
+    "reasoning": "The literal original asks SAME equivalence essential 'for the argument to close', under assumptions that rows/columns use the same map and conventions that reindexing is an algebra equivalence preserving multiplication and identity. The candidate proves exactly that same-map theorem and restricts necessity to its fixed-map algebra argument. It then explains independent-axis unitarity as a boundary comparison, not a replacement standing hypothesis. The old answer's false 'not square-compatible' inference is not required by the literal question and is correctly removed without a question-version change.",
+    "retained_scope": "All9 original contract fields unchanged; be-reindex-preserves-unitary family/train split/frozen graph/source refs and5 exact ordered per-step node lists retained. No domain/range, normalizer, clean-input or extra proof premise silently added.",
+    "prior_finding_limit": "Prior rejection identifies the old answer's false type/universal-necessity explanation; its repair-method label is not a mathematical verdict on answer-only fitness. This review independently uses the actual question's proof-qualified wording."
+  },
+  "substantive_reconstruction": {
+    "correctly_typed_map": "For finite bijection e:I→K, let U_e:C^I→C^K send basis i to basis e(i). It satisfies U_e†U_e=I_I and U_e U_e†=I_K. The reindexing T_e(A)=U_e A U_e† maps the square algebra M_I(C) to M_K(C), with entries T_e(A)[a,b]=A[e^-1(a),e^-1(b)]. This is the actual inverse pullback orientation; no identical index TYPES are needed.",
+    "full_isomorphism_term": "Conjugation by U_e preserves addition and complex scalar multiplication by distributivity, preserves products by U_e†U_e=I_I, preserves identity by U_e U_e†=I_K, and preserves adjoint because(U_e A U_e†)†=U_e A† U_e†. Its inverse is B↦U_e† B U_e, i.e. T_(e^-1). Thus the replacement phrase UNITAL STAR-ALGEBRA ISOMORPHISM BETWEEN the two algebras is fully justified. When I,K differ it need not literally be an endomorphism of one algebra; no implicit identification is needed or used.",
+    "same_map_unitarity": "For unitaryO, T_e(O)†T_e(O)=T_e(O†)T_e(O)=T_e(O†O)=I_K; reverse product likewise. Entrywise dagger commutation swaps the axes while both are pulled back by the SAME e^-1. The product contracts a K index that relabels bijectively to an I index. The complete local source proof performs this star compatibility, multiplicative algebra-equivalence and identity calculation.",
+    "essential_for_this_argument": "For fixed two-axis T_(e,f)(A)=U_e A U_f†, its dagger is T_(f,e)(A†); fixed-map multiplication inserts U_f†U_e, and T_(e,f)(I)=U_e U_f†. These generally are not the same-map star/product/unital rules when e≠f. The same bijection is necessary to use THAT unital-algebra-equivalence proof, not to type a square matrix or to preserve unitarity by every available proof.",
+    "independent_axes_still_unitary": "Even with e≠f, R=U_e O U_f† is square onK and R†R=U_f O†(U_e†U_e)O U_f†=I_K, with RR† similarly. The correctly matched rule T_(e,f)(A)T_(f,g)(B)=T_(e,g)(AB) accounts for consistent contracted indices after the dagger exchanges axis maps. This generalization is a clearly marked comparison and does not weaken the same-axis requested theorem.",
+    "exact_counterexamples": "In dimension2, e=id,f=swap,U_e=I,U_f=X,O=I yieldsR=X, square/unitary. But T(I)=X≠I and T(I)T(I)=I≠X=T(I I), so fixed-map unitality/multiplicativity fail. For Z=diag(1,-1), T(Z)=ZX=[[0,1],[-1,0]] has dagger-ZX, while T(Z†)=ZX, so fixed-map star commutation fails too. These exact algebraic examples preserve unitarity and refute the old overstatement independently of any numerical/kernel run.",
+    "empty_cases_and_boundaries": "Zero/singleton finite spaces obey the same-axis identities; no distinct two-dimensional relabeling example is available there. The result transports global unitary matrices, not an arbitrarily untransported clean projection, normalization, cleanup, primitive circuit or finite-bit cost. No hidden state/input promise or global-phase quotient appears."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full after rereading all new bytes. The single terminology replacement is mathematically correct with explicit inverse/linearity reasoning above; all retained equations, independent-axis cancellation and I/X/Z witnesses remain correct.",
+    "rubric": "All3 criteria unchanged and sound: define same-axis map/hypothesis/goal; prove dagger/product/identity rules and unitarity; explain proof-qualified SAME necessity versus independent-axis unitarity. They answer the original question without grading the former false type-mismatch claim.",
+    "exposition": "All5 steps and ordered nodes exactly match the previously reviewed candidate and preserve the historical step count/scope. Claims are correct, including inverse pullback and explicitly proof-local necessity. No source/kernel claim introduced.",
+    "execution_and_entire_candidate": "Metadata truthfully identifies new pending private authorship and prior review exposure. No earlier review is transplanted as acceptance, and this actual new distinct review binds its own full candidate digest. Accept the whole exact candidate, not merely its changed word."
+  },
+  "withdrawal_binding": {
+    "row_digest": "09e3912723bd8be158842faa9e40f0cde3ba13c26c18b561c72726dccd4afcb2",
+    "prior_review": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+    "prior_review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+    "prior_finding_digest": "9f0ddc315b8481d1b3bc3b501643535116bcff0325c0da58c174500a826c32b7",
+    "prior_verdict": "reject",
+    "assessment": "Current exact withdrawal/full finding reloaded and check_withdrawal verified against the entire actual predecessor and immutable report. Prior diagnosis is provenance, not proof of new candidate correctness; no mutable policy-file hash is made a source dependency."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+      "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+      "anchor": "Whole actual file LF hash verified. Complete module/proof bodies read in preceding continuous gate at the same unchanged HEAD; operative full reindex_unitary105–119 and permutation/unitarity/composition/conjugates-reindex proof regions148–248 reread for this new candidate. Actual local star_reindex/reindexAlgEquiv_mul/identity and complete entrywise proof mechanism inspected. These support the mathematical same-map theorem, not a new kernel or independently executed formal companion."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0e42c19ec6def3722dc9cc130f86f8453869c5c1",
+    "private_reviewed_at": "_review_tmp/be-108-reindex-isomorphism-boundary-repair.json",
+    "locator_boundary": "repair_record is intended canonical repository-relative future destination; actual inspection used the private file above. No installation/transport/admission claimed.",
+    "instruction_refresh": "Mandatory repository instructions/protocols fully read in this continuous context; unchanged at the same head. Substantive-worker skill reread completely for this exact new review; applied full-contract, source-proof and truthful-execution requirements.",
+    "mechanical_context_not_math_source": "Historical release loader, digest/LF functions and policy schema/exposition/source/withdrawal checks used read-only for exact bindings. qcb policy/curriculum executables are mechanical context only, not mathematical source dependencies; only actual operative Lean source is listed in source_checks.",
+    "actual_checks": "Supplied new whole digest and LF pins matched. Exact old/new top-field and one-phrase answer difference, unchanged rubric/exposition/source data, entire predecessor and unchanged9-field contract,5 ordered step-node lists and actual source LF all checked. Full new content was read before acceptance; this is not mechanical rebinding.",
+    "source_blind_review": false,
+    "new_kernel_execution": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "source_limits": "Actual local operative proof inspection only. No fresh external PDF/source-paper-byte/visual seal, transitive-Mathlib audit, Lean build/compiler/kernel/prediction/native-formal execution or automatic old-hash formal transfer.",
+    "mutation_scope": "Only NEW _review_tmp/be-108-reindex-isomorphism-boundary-repair-review.json authored. New/old candidates, old BE108 review, BE004/112 reviews, my six candidates/handoff, all other prior artifacts and canonical/code/source/policy/history/currentPR107 remain unchanged; no build/commit/push/agent.",
+    "remaining_boundary": "Exact-content mathematical acceptance only. No policy/reader/publication admission, blind/human approval, new core/novelty/global dedup or cross-split pooling claim."
+  }
+}

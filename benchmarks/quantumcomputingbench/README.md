@@ -6,7 +6,11 @@ mathematical models, backed by QuantumComputinglib's sources and graph.
 Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
-The [latest Hermite rank/regularity checkpoint](docs/textbook-hermite-rank-and-regularity-2026-10-23.md)
+The [latest operator/bond checkpoint](docs/textbook-operator-and-bond-boundaries-2026-10-23.md)
+explains clean projection versus cleanup, phase-aware compilation, finite
+support/permutation domains and actual producer bounds. Shared cross-split
+answer fragments remain subject to reconciliation. The preceding
+[Hermite rank/regularity checkpoint](docs/textbook-hermite-rank-and-regularity-2026-10-23.md)
 explains threshold domains, exact-real versus finite-bit resources, indexed
 smoothness and bounded historical reconciliation. The preceding
 [Hermite/directed-qubitization checkpoint](docs/textbook-hermite-and-directed-qubitization-2026-10-23.md)

@@ -1,0 +1,116 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "core_id": "qcb-core-be-112",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/be-112-unitarity-versus-adjoint-question-successor.json",
+  "repair_record_digest": "f351324a881cf91ba38563bd9f1040457e2ec256284146c040c43bcbda21c0ab",
+  "repair_record_sha256_lf": "d91cb857aed02b05bdc5329c296c68fd3412d5efe5dc75a1dfd29ebda0e758dd",
+  "original_item_digest": "c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19",
+  "question_version": 2,
+  "original_contract_hash": "f64837f9c986dd70c8674308b444a2520ddf8f79805e5f7866e5b114aefb2b7d",
+  "successor_contract_hash": "f0d61f87e50ec90e5811ab7333684aaae090d01347814e037b5ed6c241ae9e61",
+  "verdict": "accept",
+  "verdict_scope": "Accept the whole exact candidate's mathematical question/answer/rubric/exposition content as a pending first explicit question-version2 correction. This is not policy/current-reader admission, transported canonical bytes, exact NL-to-formal alignment, kernel execution or a global alias/split verdict.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate and prior-finding author /root/qcb_native_comparison and historical original author oracle-composition-author-b2.",
+    "exposure": "Not blind: prior related source/task exposure and parent review focus disclosed. I authored a separate frozen BE003/008/009/012/104/119 candidate batch, NOT these three candidates. I read each complete actual historical prepared original, exact reserved withdrawal/full finding and entire exact private candidate including execution metadata. Both complete operative ComplexLCU and ComplexLCUProjection modules/proof bodies were independently read; prior author/parent verdicts are context, not mathematical evidence."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared original via release.checked()[2]), not a current-reader or authored-subset replacement.",
+    "repair_record_digest": "qcb_core.digest(entire exact private candidate, including all reference/rubric/exposition/source/execution metadata); separate whole-file LF pin also verified.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "hash_definition": "Old hash=digest(original nine fields); new hash=digest(the same nine fields with ONLY candidate.question substituted).",
+    "actual_checks": "Exact candidate schema/key set, predecessor core/key/whole-item digest, pending marker, nonempty reference/rubric with unique IDs/positive finite weights, candidate source LF and reviewer distinction checked. Explicit version2 grammar/old contract pin/new contract recomputed; question differs and no other8 contract-field overrides. Exposition has exactly5 steps and EACH original ordered supporting-node list is literally retained.",
+    "retained_values": "family=be-lcu-composite-unitary; split=dev; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; assumptions/conventions, target/support nodes and source_refs inherited exactly except explicitly versioned question where applicable."
+  },
+  "withdrawal_binding": {
+    "row_digest": "af42acb69a95192fe6bc4e2a9fa823f73785754283d6934e1735edf821ee6e77",
+    "prior_review": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+    "prior_review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+    "prior_review_sha256_lf": "8e6844f1b5c2efc2508ff121eaa28906474330d25b3da6e25e80c501ab90e5d4",
+    "prior_finding_digest": "f19345e48c0c9646bc0181d7b8556e55c1901c2935d455fdc91715669016262e",
+    "prior_verdict": "reject",
+    "interpretation": "Exact whole prior report, full item-finding and current withdrawal row verified against actual predecessor. These bind historical rejection, not successor proof/approval. The immutable review's LF is content provenance, not a mathematical theorem. Mutable policy whole-file hashes are intentionally not evergreen dependencies."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+      "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+      "anchor": "COMPLETE actual module independently read: real rotation/unit-circle versus clean-entry domain; full reindex_unitary105–119, blockDiagonal_unitary, permutation/unitarity/multiplication/reindex proofs; selectorLift/amplitudeLift/controlledSystemEquiv/selectLift and complete local proofs253–349; chosen composition351–367 and full unitary-group-closure proof370–399. Actual definitions/proof text, not theorem-name or new kernel verification."
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+      "sha256_lf": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340",
+      "anchor": "COMPLETE actual module independently read: amplitude/SELECT entries, selector clean column/adjoint row, full amplitude/SELECT propagation, arbitrary right-factor clean-bra projection and complete final weighted-entry proof through220. These are clean-entry identities, not full-output cleanup or uniqueness theorems."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0e42c19ec6def3722dc9cc130f86f8453869c5c1",
+    "private_reviewed_at": "_review_tmp/be-112-unitarity-versus-adjoint-question-successor.json",
+    "locator_boundary": "repair_record is an intended canonical repository-relative future locator. Entire exact candidate actually inspected at private_reviewed_at, not claimed transported or admitted.",
+    "instructions_and_skill": "Mandatory AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared CONTRACT/ACCEPTANCE fully read in this continuous context and checked unchanged at this head. Substantive-worker SKILL.md reread completely; its exact-contract/definition-expansion/source-proof/boundary rules applied.",
+    "mechanical_context_not_math_source": "release.checked(), qcb_core.digest, qcb_integrity.text_sha and qcb_textbook_policy schema/contract/exposition/source-binding helpers/current-policy withdrawal data were inspected or used read-only as mechanical binding context. No qcb policy/curriculum executable file is bound as a mathematical source dependency or used as proof of the claims. Only actual operative Lean modules appear in source_checks.",
+    "own_execution": "Only read-only historical loading, exact whole-JSON/contract/LF hashing and structural checks executed. Displayed mathematical examples reconstructed algebraically, not a new Lean, simulator, compiler or proof execution.",
+    "source_blind_review": false,
+    "new_kernel_execution": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "source_limits": "Local operative source/proofs are actual inspected primary evidence for this bounded gate. No external paper/PDF was freshly retrieved, byte/visual verified or sealed; no all-transitive-Mathlib proof audit or new exact formal companion claimed.",
+    "mutation_scope": "Only new parent _review_tmp/be-112-unitarity-versus-adjoint-question-successor-review.json authored. All three candidates, my six frozen candidates/handoff, earlier artifacts, canonical/source/policy/history/currentPR107 untouched; no build/kernel/agent/commit/push.",
+    "remaining_boundary": "Mathematical exact-content review only; not admission/publication, human approval, source-blindness, new-core/novelty/global dedup or cross-split pooling certification."
+  },
+  "contract_change_assessment": {
+    "original_false_demand": "The original explicitly says unprepare 'must' be the conjugate transpose and its answer/r3 claim any other factor is not guaranteed unitary, plus deterministic selector reset despite intervening operations. Global unitarity alone cannot force this: I is already a known unitary, and replacing the final gate by I remains a product of certified unitaries.",
+    "changed_requested_reasoning": "Version2 preserves the stipulated three local certificates and chosen W=P† S A P, clarifies right-to-left chronology and asks to assess necessity, full inverse, same clean projection and deterministic cleanup separately. These are transparent changed demands rather than answer-only refusal to prove a false 'must'. Alternatives test necessity; they do not override the retained convention that W itself uses P†.",
+    "retained_scope_minimality": "Same coefficient×(selector×system), be-lcu-composite-unitary family/dev split, frozen graph/source scope and5 exact ordered source-node lists. No additional clean-input, numerical-weight, positivity, cleanup or efficient-oracle premise is needed for product unitarity. Counterexamples are small valid source instances, not weakened local hypotheses.",
+    "non_equivalence_and_overlap": "Old/new contracts differ and are not asserted equivalent. This correction shares subproofs with004 and makes no additional-core claim; whole-target and split boundaries are separately disclosed below. No old-hash companion is automatically current."
+  },
+  "substantive_reconstruction": {
+    "typed_local_lifts": "Let L=P_lift=I_C⊗(P⊗I_H). Kronecker-unitary closure givesL unitary; adjoint closure givesL† unitary. A is block diagonal over(s,x), with each R_(s,x) unitary, so A†A and AA† have identity blocks. S is a basis equivalence(c,s,x)↦(c,s,p_s(x)), with explicit inverse using p_s^-1, hence unitary. All are endomorphisms of the SAME finite total register.",
+    "product_and_chronology": "W=L† S A L acts chronologically L,A,S,L†. W†W=L† A† S† L L† S A L=L† A† A L=I using LL†=I,S†S=I,A†A=I,L†L=I; reverse product likewise. The complete source proof uses exactly tensor/block/permutation, star and product closure, not a clean-branch or state-normalization assumption. Empty total index carriers make the unitary identities vacuous; designated clean labels only enter later projection examples.",
+    "alternative_unitary_counterexample": "Any known unitary selectorQ yields Q_lift S A L unitary. I needs no unknown certificate; P itself is certified. To separate global unitary from correct projection, use singleton coefficient/system,P=H,A=S=I,s0=0. Chosen W=I has clean scalar1; finalQ=I givesH with clean scalar1/sqrt2 while staying unitary. Thus replacing P† need not break unitarity, but can change the desired block.",
+    "full_inverse_vs_clean_row": "QP=I on the ENTIRE selector uniquely forcesQ=P†. Clean projection is weaker: with D=diag(1,-1) fixing<0| and Q=DP†, W_Q=D_lift W,J†D_lift=J†,so K_Q=K. Q differs fromP†, including explicit P=A=S=I givingI versusD with the same clean scalar. This establishes nonuniqueness at the level actually read by a clean block, not just equality up to global phase.",
+    "cleanup_counterexample": "For singleton coefficient, qubit selector/system,P=H,A=I,SELECT controlled(I,X), input00 gives(|00>+|11>)/sqrt2 before finalH and(|00>+|10>+|01>-|11>)/2 afterwards. Dirty selector probability=1/2 despite all three local certificates. K=(I+X)/2, not a deterministic normalized unitary action. Coefficient leakage is also allowed by its amplitude blocks; amplitudeX with singleton selector/system explicitly moves clean coefficient0 to1. Deterministic cleanup requires(I-JJ†)WJ=0, not merely W†W=I.",
+    "scope_boundary": "Full inverse adjacency P†P cancels only if no intervening dynamics changes the prepared context; P† is not an inverse of S A P on the whole register. The source proves global product unitarity and separately a clean-entry formula, neither the false necessity nor full-output cleanup. No controlled-global-phase quotient, gate count, finite-bit cost, oracle implementation or success guarantee is certified by group membership."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full. Correct dagger order/cancellations, local lifting proofs, identity and clean-row-preserving alternative gates, full-inverse uniqueness and both projected-versus-cleanup counterexamples. No hidden clean input needed for the global theorem.",
+    "rubric": "c1–c4 faithfully grade local certificates/product closure and the revised logical boundaries. Alternative known gates refute the old necessity, projected equality is distinguished from changed projection, and cleanup is not credited without its own theorem.",
+    "exposition": "All5 revised steps have exact inherited ordered node lists and correct main claims. Final step treats P† as the convention/unique full inverse, not necessary for global unitarity or guaranteed cleanup after A/S.",
+    "entire_exact_candidate": "Accept this exact explicit qv2 candidate mathematically, not its author's prior verdict or automatic formal/reader admission."
+  },
+  "bounded_semantic_relations": {
+    "compared_exact_candidates": [
+      {
+        "core_id": "qcb-core-be-004",
+        "candidate_digest": "f6754efc28a9919eb73ccebc5187deec5f58648be6080113e9887eaf583ccda2",
+        "original_item_digest": "69ef913513b5551fc106df171152b284d3ab8de62ca563ee680e1e751cfaa977",
+        "successor_contract_hash": "112521b12612f1c530e7fffe4738eab90f97fd054cc6f06e90a5a93ecbb57666",
+        "split": "train",
+        "family": "be-lcu-stage-roles"
+      },
+      {
+        "core_id": "qcb-core-be-112",
+        "candidate_digest": "f351324a881cf91ba38563bd9f1040457e2ec256284146c040c43bcbda21c0ab",
+        "original_item_digest": "c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19",
+        "successor_contract_hash": "f0d61f87e50ec90e5811ab7333684aaae090d01347814e037b5ed6c241ae9e61",
+        "split": "dev",
+        "family": "be-lcu-composite-unitary"
+      }
+    ],
+    "assessment": "BE004 and BE112 have an EXACT shared subtarget: clean-row-preserving Q=D P† nonuniqueness and the H/controlled-X failure of deterministic selector cleanup. Their counterexample solution fragments coincide mathematically, not just by source-node names. BE004 additionally requires stage-specific basis actions and the clean weighted-permutation entry; BE112 requires lifting local unitary certificates and proving the four-factor global group-membership theorem. Neither whole requested/grading target is equivalent to the other: a stage/projection answer alone does not discharge the global unitary proof, and a product-closure answer alone does not derive the arbitrary clean coefficient-entry formula. Thus this bounded review identifies shared mechanisms/partial overlap, not a full alias declaration.",
+    "split_boundary": "BE004 is train and BE112 dev under retained contracts. Common assessed subproofs create genuine answer-fragment exposure across those splits. Non-equivalence of whole tasks does NOT certify cross-split pooling of these fragments or clear all split-conflict/dedup obligations; root must reconcile intended reuse/pooling separately. No dataset/split/policy change or global semantic-distinctness claim is made."
+  }
+}

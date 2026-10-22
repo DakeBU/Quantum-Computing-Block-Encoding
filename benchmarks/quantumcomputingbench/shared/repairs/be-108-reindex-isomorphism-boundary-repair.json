@@ -1,0 +1,71 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-be-108",
+  "supersedes_key": "qcb-core-be-108",
+  "supersedes_item_digest": "a6acd83107961bd9360a0c2c55995f194064e1416340d73260285f5dbcb73c02",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-be-108-textbook-answer-reindex-isomorphism-boundary",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer successor, selected from the LITERAL original rather than copying the prior finding's label. The question already assumes same-axis relabeling and asks why it is essential 'for the argument to close': a faithful answer can restrict that to the one-map algebra-equivalence proof. The original false claim that different row/column bijections are not square-compatible is removed, and the boundary is explicitly explained: independent permutations remain square/unitary although their fixed two-axis transformation is generally not unital or multiplicative. All nine CONTRACT_FIELDS, including the literal question, original same-axis assumptions/conventions, be-reindex-preserves-unitary family/train split and frozen graph/source_refs, remain EXACTLY unchanged. Exactly five semantic steps retain each original ordered per-step node list. No new standing assumption or weakened theorem, source override, equivalent-core/duplicate-count or admission claim. Original unchanged contract hash9d0c3c71f51d29071eb2ae9233bdbed5a785dbfdc336519086097ec5a8d4efa7. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/be-108-reindex-isomorphism-boundary-repair.json; inspected/authored private locator _review_tmp/be-108-reindex-isomorphism-boundary-repair.json. This is a NEW private terminology revision of the earlier frozen candidate, not an overwrite: only 'unital multiplicative endomorphism between the two square-matrix algebras' in its answer is replaced by 'unital star-algebra isomorphism between the two square-matrix algebras'. For distinct I,K, isomorphism is the precise term. No equations, proofs, boundary examples, rubric, exposition, source binding or nine-field contract are changed; the key and private/proposed-canonical locators identify the new exact bytes.",
+  "reference_answer": "Let I,K be finite index sets, e:I->K a bijection, and O a complex unitary matrix on I. Write U_e for its basis-relabeling matrix, U_e[e(i),i]=1 and all other entries zero; it is a unitary map from C^I to C^K. Define T_e(A)=U_e A U_e†, so T_e(A)[e(i),e(j)]=A[i,j], equivalently T_e(A)[a,b]=A[e^{-1}(a),e^{-1}(b)]. This is the simultaneous pullback along e^{-1} on the two matrix axes.\n\nConjugate transpose commutes with this SAME-axis relabeling. Entrywise, T_e(A)†[a,b]=conjugate(A[e^{-1}(b),e^{-1}(a)])=T_e(A†)[a,b]; equivalently (U_e A U_e†)†=U_e A† U_e†. Multiplication also commutes: T_e(A)T_e(B)=U_e A(U_e†U_e)B U_e†=U_e AB U_e†=T_e(AB). In entries the contracted label z in K is replaced bijectively by e^{-1}(z) in I. Finally T_e(I_I)=I_K. Therefore\nT_e(O)† T_e(O)=T_e(O†)T_e(O)=T_e(O†O)=T_e(I_I)=I_K.\nThe analogous reverse product is also I_K (or follows for square finite-dimensional isometries); hence the reindexed operator is unitary. This is exactly the same-map algebra-equivalence proof implemented by reindex_unitary.\n\nThe question's word 'essential' must be read with its explicit qualification 'for the argument': using the same bijection is what makes this single transformation T_e a unital star-algebra isomorphism between the two square-matrix algebras, commuting with adjoint. It is NOT a necessary condition for the resulting matrix to remain square or unitary. To see the boundary, consider arbitrary bijections e,f:I->K and the two-axis map T_{e,f}(A)=U_e A U_f†. It still gives a square K×K matrix. Its adjoint is T_{f,e}(A†), with the axes exchanged, rather than in general T_{e,f}(A†). Also\nT_{e,f}(A)T_{e,f}(B)=U_e A(U_f†U_e)B U_f†,\nwhich is generally not T_{e,f}(AB), and T_{e,f}(I)=U_e U_f† need not be I. Thus one cannot repeat the SAME fixed-map algebra-homomorphism proof when e differs from f.\n\nUnitarity nevertheless survives by a different cancellation:\nR=U_e O U_f† implies R†R=U_f O†(U_e†U_e)O U_f†=U_f I_I U_f†=I_K,\nand RR†=I_K similarly. More generally the correctly matched transformation rule T_{e,f}(A)T_{f,g}(B)=T_{e,g}(AB) explains how the swapped axes in the adjoint give this cancellation. Consistent contracted indices are needed for composition; that does not require the output and input basis bijections to be equal in a general two-sided relabeling.\n\nFor an explicit two-dimensional counterexample to any stronger necessity claim, take O=I_2, e=identity and f=swap. Then U_e=I_2, U_f=X=[[0,1],[1,0]], and R=X is square and unitary despite e!=f. Here T_{e,f}(I)=X!=I and T_{e,f}(I)T_{e,f}(I)=I!=X=T_{e,f}(I*I), displaying failure of the one-map unital/product rules without failure of unitarity. Adjoint commutation with that same map can fail too: for Z=diag(1,-1), T_{e,f}(Z)=ZX has adjoint -ZX, whereas T_{e,f}(Z†)=ZX. In zero- or one-dimensional spaces the same-axis proof still holds; there may simply be no distinct bijections available to instantiate this two-dimensional boundary example.\n\nThese comparisons do not replace the original standing hypothesis: the requested proof remains the same-bijection theorem. They correct only an overstatement about why that proof works. The result is exact finite-dimensional complex algebra; it makes no primitive-circuit or finite-bit cost claim and does not by itself preserve a separately chosen clean projected block unless its register/clean basis identifications are transported consistently.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Defines simultaneous reindexing by T_e(A)[e(i),e(j)]=A[i,j] and states O†O=I and the goal T_e(O)†T_e(O)=I."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Proves same-axis adjoint commutation, multiplicativity and identity preservation, then uses these to prove unitarity (with finite square dimensions or both unitary identities understood)."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Explains SAME is essential to this fixed-map algebra-equivalence proof, not to squareness or unitarity in general. Gives R=U_e O U_f† for independent axes and a valid cancellation/counterexample, explicitly rejecting the old 'not square-compatible' explanation without changing the standing same-axis theorem."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Same-bijection reindexing is a star-preserving algebra equivalence and preserves unitarity. Independent row/column bijections also preserve unitarity by two-sided unitary cancellation; what generally fails is using their fixed two-axis map as a unital multiplicative algebra equivalence.",
+    "semantic_steps": [
+      {
+        "claim": "Define R=T_e(O) by R[e(i),e(j)]=O[i,j], i.e. pullback along e^{-1} on both axes, with the same finite source/target bases.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "For simultaneous reindexing, swapping matrix axes under adjoint leaves the same bijection on each axis, so T_e(O)†=T_e(O†).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "The same-axis transformation preserves products by consistently relabeling the contracted index and is unital: T_e(A)T_e(B)=T_e(AB).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "Apply the original O†O=I identity, same-map adjoint/product rules and T_e(I)=I to get R†R=I and hence finite-dimensional unitarity.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "The same-bijection restriction belongs to this fixed-map algebra-equivalence proof, not a universal necessity for unitarity: independent-axis relabeling remains square/unitary as U_e O U_f†, while its same-map product/identity/adjoint rules can fail.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+      "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+      "anchor": "Personally read complete ComplexLCU.lean and all proof bodies, especially reindex_unitary (entrywise star compatibility, multiplicative reindexAlgEquiv and identity), equivPermutationMatrix/unitarity, left/right permutation multiplication and conjugates_reindex. Independent-axis cancellation and the I/X/Z boundary examples are the author's explicit finite-dimensional derivations, not claimed new Lean declarations or a changed same-axis source theorem. Source inspection is not a fresh kernel run."
+    }
+  ],
+  "execution": "Actual private author /root/qcb_native_comparison; pending distinct exact-content answer-successor review, not selfapproval. I authored the earlier bound qcb-core-be-108 mathematical-reader finding; this is correction authorship, not a new independent acceptance of my own work. Root's linked-cohort objective and complete current historical prepared original via release.checked()[2] were read, including full question, answer, rubric, assumptions/conventions, source/graph metadata and every ordered semantic step. Whole predecessor digest a6acd83107961bd9360a0c2c55995f194064e1416340d73260285f5dbcb73c02; original nine-field contract 9d0c3c71f51d29071eb2ae9233bdbed5a785dbfdc336519086097ec5a8d4efa7. Exact withdrawal report reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json, report digest 045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b and finding digest 9f0ddc315b8481d1b3bc3b501643535116bcff0325c0da58c174500a826c32b7 were recomputed and matched. Operative local source/proof bodies named in source_checks were personally inspected at observed HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Local text is the primary evidence inspected; no external source-paper/PDF retrieval, visual reading, new source-paper seal, whole-NL formal certification, kernel/build/compiler execution, human/expert/model or blind-review claim is made. Mathematical examples are explicit algebraic reconstructions, not a new Lean certificate. Only private _review_tmp/be-108-reindex-isomorphism-boundary-repair.json is authored here; proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/be-108-reindex-isomorphism-boundary-repair.json is a future destination, not installed/inspected canonical bytes. Portable workspace-relative provenance is intentional. All prior private artifacts and canonical/source/policy/currentPR107 files remain unedited by this task; no commits/push or extra agents. Cohort BE004/BE112 deliberately reuse the same clean-row/projection and H-controlled-X subproof; their register-role and global-unitarity targets remain separate. Shared mechanism is disclosed, not a global alias verdict, new-core/duplicate-count claim or publication admission. All original per-step node lists and their order/count are retained. All nine CONTRACT_FIELDS, including the literal question, remain unchanged at the recorded contract hash; independent-axis relabelings below are boundary comparisons, not replacement standing assumptions. Additional actual provenance for this new file: root read the earlier candidate and distinct review, agreed with its substantive mathematics and explicitly requested this terminology-only NEW candidate after the LA review batch was frozen. Earlier private _review_tmp/be-108-reindex-algebra-boundary-repair.json remains unchanged at qcb_core.digest 4a1d79d77c12e16a878a0a12f8826d2263a4f893f2f4c7758a5f6df1e331357b and LF SHA256 c583284fc1c739d0d0e263136e38b399a9276367d70bf51b448105440452d648. No earlier review is transplanted as acceptance of the new bytes. Distinct review of this exact new terminology candidate remains required; this author does not selfapprove. LA013/112/119/220 reviews and the separate LA219 migration review were finished/frozen first, and remain untouched, as do BE004/112 and all earlier artifacts."
+}

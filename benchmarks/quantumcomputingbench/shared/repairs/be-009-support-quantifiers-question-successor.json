@@ -1,0 +1,56 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-be-009",
+  "supersedes_key": "qcb-core-be-009",
+  "supersedes_item_digest": "81aa90c475f83c6c482f6e7f35e5c20125c17896170b3c3306ef5600c8c76dcb",
+  "supersedes_contract_hash": "6659d3e45a3aa738998a147809356d44e0b5f688405bbe667a6d174f6f8ba117",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-be-009-textbook-question-v2-support-quantifiers-question-successor",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction of the false demand for a counterexample to a true existential reconstruction claim. Keep the original one-sparse premise and fixed-support convention visible, assess/refute the invalid old example logically, and separate existential-map truth from the genuinely false arbitrary-fixed-map claim. No silent replacement by a non-one-sparse input. Exact predecessor contract hash 6659d3e45a3aa738998a147809356d44e0b5f688405bbe667a6d174f6f8ba117. Preserve core/family/split/frozen graph/source scope, 2 semantic steps and each ordered per-step supporting-node list. Only question changes among the nine CONTRACT_FIELDS; all other8 fields inherited literally. Old/new requested reasoning is not claimed equivalent. No new core, selfapproval, formal transfer or admission.",
+  "question": "Retain rational square matrices A indexed by Fin n and a column support function c:Fin n→Fin n, with amp(j)=A(c(j),j) and reconstruction R_c(A)(i,j)=amp(j) if i=c(j), else0. The inherited convention describes support at the FIXED row c(j). State and prove the exact support condition for R_c(A)=A. Then distinguish two claims: (a) for every matrix with at most one nonzero per column there EXISTS a suitable c giving reconstruction; (b) any previously fixed c reconstructs every such matrix. Assess the historical demand to refute claim(a) with a column containing TWO nonzeros: is that a valid counterexample under its premise? Prove or refute each claim in the stated finite square setting, including n0. Give a genuine one-sparse counterexample to claim(b) for a specified c, a separate two-nonzero limitation example, and a correctly reconstructed target with a zero column. State why arithmetic reconstruction alone is not a normalizer-one block-encoding or oracle/circuit certificate.",
+  "reference_answer": "Write hSupport:forall i,j,i≠c(j) implies A(i,j)=0. At i=c(j), R_c(A)(i,j)=A(c(j),j)=A(i,j); away from that row it is0, so hSupport proves equality. Conversely reconstruction equality forces every off-support entry to be0. Thus the support predicate is necessary and sufficient. The complete oneSparse_from_support proof supplies the forward implication by exactly this case split; oneSparseMatrix_entry_if supplies the formula.\n\nFor claim(a), if n>0 and a column has a nonzero entry, choose its unique nonzero row as c(j); uniqueness follows from at-most-one nonzero. If the column is zero, choose any row, say0. Then all off-support entries vanish and the reconstruction is exact. At n0 columns/rows are empty, c is the unique empty function and equality is vacuous. Thus the finite square existential reconstruction statement is TRUE. This is an existence/finite-choice fact, not an efficient method for finding a support oracle.\n\nClaim(b) is false when c is fixed independently of A. Take n2,c(0)=0,c(1)=1 and A=[[0,0],[1,0]]. Each column has at most one nonzero, but A(1,0)=1 lies off c(0)=0. Both sampled amplitudes are0, so R_c(A)=0≠A. This is a genuine counterexample respecting the one-sparse premise; it violates the fixed-map hSupport condition.\n\nThe historical example D=[[1,0],[1,0]] has two nonzeros in column0. Whichever c(0) is chosen, one nonzero is off-support, so no map reconstructs D. But D violates the premise of claim(a), hence cannot refute it. It only demonstrates the limitation on non-one-sparse inputs. Finally B=[[0,0],[0,3]], with c0=0,c1=1, has amp0=0,amp1=3 and reconstructs exactly: the entire zero column is allowed. These examples retain rational entries; zero amplitudes need no choice of a distinguished nonzero row.\n\nThe reconstructed B has operator norm3, so this arithmetic equality is not a normalizer-one unitary compression. Normalization, unitary completion, reversible location-map implementation, amplitude loading, ancilla cleanup, finite-bit evaluation and resource costs are separate obligations; a support map function need not itself be injective or an already supplied reversible oracle. The empty case does not require selecting a row from an empty carrier because there are also no columns. No invalid two-nonzero refutation or quantum synthesis conclusion is retained.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Proves the exact fixed-c off-support condition and distinguishes existential selection of c from an arbitrary preselected c; correctly handles n0."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Proves the existential one-sparse reconstruction claim and gives a genuine one-sparse fixed-c failure; explicitly explains why a two-nonzero column violates, rather than refutes, the existential claim's premise."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Gives the separate two-nonzero limitation and valid zero-column witness, while keeping arithmetic reconstruction separate from normalization/oracle/circuit claims."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The fixed-c reconstruction is equivalent to off-support zero entries; suitable c exists for every finite square one-sparse matrix, while a mismatched fixed c can fail and a two-nonzero column is not a counterexample to the existential premise. Zero columns and correctly located single nonzeros reconstruct exactly, including the empty square case; this entrywise identity does not supply unitary normalization or oracle/circuit resources.",
+    "semantic_steps": [
+      {
+        "claim": "The fixed-c reconstruction is equivalent to off-support zero entries; suitable c exists for every finite square one-sparse matrix, while a mismatched fixed c can fail and a two-nonzero column is not a counterexample to the existential premise.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.oneSparse_from_support"
+        ]
+      },
+      {
+        "claim": "Zero columns and correctly located single nonzeros reconstruct exactly, including the empty square case; this entrywise identity does not supply unitary normalization or oracle/circuit resources.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix_entry_if"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "Actual operative definitions and complete proof bodies read: Complete kroneckerRat, oneSparseMatrix, oneSparseMatrix_entry_if and oneSparse_from_support definitions/proofs, lines 116-147; complete OneSparseCertificate/cleanBlock/correct, lines 155-170. Static source evidence only; no new kernel execution."
+    }
+  ],
+  "execution": "Private authorship by actual /root/qcb_boundary_repair_review, not an independent approval of this candidate. Full actual historical release.checked()[2] record, all question/assumption/convention/reference/rubric/step/source/metadata fields, exact bound withdrawal and full prior finding were read. Prior exposure includes related Hermite/QIT/source review tasks, parent's six-item repair focus; no blindness claimed. Reserved withdrawal row digest a994e3257b941760a66b29fc950f1263fcc951ca0cb901f553da7b034373b9c9; prior review reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json whole digest 3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf; item-finding digest fea98e3562be629e82f7a4e733ee182d623a0bf36e2dba6e33e7ea0c4d158ee9. Those prior findings identify defects, not approval of my candidate. Observed local HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Mandatory repository instructions/protocols were read fully in this continuous context and checked unchanged since prior gate; substantive-worker skill refreshed. Operative local source definitions and complete relevant proof bodies were personally read; broader unrelated modules and transitive Mathlib proof closure are not claimed fully audited. No external source-paper/PDF seal, human/expert/model approval, Lean/kernel/nativeformal execution, build, agent, canonical/source/policy/frozen/older-private edit, commit/push or currentPR107 change. Algebraic/phase/resource reconstruction is written mathematics, not newly executed formal evidence. Planned canonical destination benchmarks/quantumcomputingbench/shared/repairs/be-009-support-quantifiers-question-successor.json; actual authored/read location _review_tmp/be-009-support-quantifiers-question-successor.json only. Portable provenance names are repository/workspace-relative. Distinct exact-content review and root reconciliation required before any transport/admission."
+}

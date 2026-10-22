@@ -1,0 +1,139 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-be-012",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/be-012-finite-injection-question-successor.json",
+  "repair_record_digest": "38ca61034725e92bfe7863c8d0d2d02d3287aac60b7a641b72afeb1a29a08b5c",
+  "repair_record_sha256_lf": "39b3731fa4a54218b938bfb347298e825f0e7819b1f29075a71412bedbbe1d57",
+  "original_item_digest": "f2574f4e42e99fa324af5c0df2eb12570c39d40fa042763277872b2a3b8abb8a",
+  "original_contract_hash": "be2e431321111e231fd75ca79c603a24a827d45ffc7335d5621f6abd48b5977e",
+  "successor_contract_hash": "9dcb092d2d4df085dca462e15f8adfb57c3e054e64c640be62c132ac9cda81ce",
+  "verdict": "accept",
+  "verdict_scope": "Accept this entire exact private candidate's mathematics, complete answer/rubric/exposition and disclosed contract boundary only. No historical acceptance transfer, current catalog restoration, canonical transport, fresh kernel/native-formal verification, source-publication seal or admission is performed.",
+  "independence": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "native-be-author",
+    "assessment": "This reviewer authored neither this candidate nor its frozen predecessor and is distinct from both actual authors.",
+    "exposure": "Not source-blind or a fresh identity. This task has substantial previous local Lean/QCB source and review exposure. The parent supplied the six candidates, focus concerns and authorship handoff; the complete original, candidate, withdrawal and prior reader finding were visible. Prior finding by /root/qcb_native_comparison and author summaries are not substituted for the present independent reconstruction."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of entire actual prepared original retrieved through current release.checked()[2].",
+    "repair_record_digest": "qcb_core.digest of entire exact parsed private candidate, including all metadata.",
+    "repair_record_sha256_lf": "qcb_integrity.text_sha of complete exact private candidate.",
+    "original_contract_hash": "qcb_core.digest(qcb_curriculum.core_contract(original)).",
+    "successor_contract_hash": "qcb_core.digest of the exact nine-field predecessor contract with only question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_equality": {
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "retained_scope": {
+      "core_id": "qcb-core-be-012",
+      "family": "be-permutation-orthogonal-clean",
+      "split": "train",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a"
+    },
+    "original_semantic_step_count": 2,
+    "candidate_semantic_step_count": 2,
+    "ordered_per_step_supporting_nodes_equal": true
+  },
+  "original_defect": "Old question requires injectivity to be insufficient for a row Gram identity even though p is a self-map of one finite set; this is false. The old unqualified non-0/1-target limitation also ignores a common nonunit normalizer.",
+  "contract_change_assessment": {
+    "classification": "An explicit question-version2 is necessary because answer-only prose cannot prove the demanded false necessity. The old demand is retained for assessment in the original finite-square setting, not rescued by a rectangular/infinite substitution.",
+    "preservation": "Only question changes. The rational finite self-map, product embedding, family, train split, frozen graph/source refs and two ordered step-node lists remain. Bijectivity remains the useful Gram proof interface but is not asserted independent of injectivity on a finite self-map.",
+    "scope": "The same raw clean-block/orthogonality task remains; distinguishing A=alpha B from raw B corrects an inference rather than assuming a new weighting layer. No easier change of carrier or hidden dimension restriction occurs."
+  },
+  "substantive_reconstruction": {
+    "column": "(P^TP)ij=sum_k [k=p(i)][k=p(j)]. The diagonal has exactly one hit k=p(i); for i!=j injectivity makes supports disjoint. Source fold proofs establish unique-hit and all-zero sums and finRange nodup before this Gram proof; those complete helpers and main proofs were read.",
+    "row_and_finiteness": "(PP^T)ij=sum_k[i=p(k)][j=p(k)]. Off-diagonals vanish termwise. A bijection supplies exactly one diagonal preimage, giving1. On a finite set of size n, an injective self-map has image size n and is surjective, so injectivity already implies the row identity. Separate source lemma hypotheses reflect proof organization, not strict additional necessity. At n=0 all entries are absent and the empty self-map is bijective.",
+    "clean_embedding": "e(s)=zero.val*system+s.val is injective by cancellation. Thus B(r,c)=[e(r)=p(e(c))]. Distinct rows cannot share a1 in a column, and two columns with1 in one row would contradict injectivity of p and e. B is therefore0/1 with at most one1 in both rows and columns; missing1s record leakage. A chosen zero:Fin ancilla requires a nonempty ancilla carrier; a zero-qubit ancilla has dimension1. A zero-dimensional system gives an empty clean block, not an obligation to choose a system index.",
+    "normalizer": "At alpha1 the direct target is B. At positive alpha, the conventional target is A=alpha B; U=I,alpha2 encodes2I. Common scaling does not produce arbitrary relative weights/signs or dense support. Rational Gram identities embed into R/C but provide no primitive implementation or resource theorem."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question_and_answer": "Accept the finite injective=>surjective correction, exact orientation row=p(column), row AND column clean-support bounds, empty/clean-index cases and positive-normalizer example.",
+    "rubric_and_steps": "All three criteria are correct and specifically reject the former false necessity. The two exposition steps retain the original ordered nodes; the finite-cardinality argument is independently supplied NL reasoning, not misrepresented as a source non-surjectivity result.",
+    "residual": "None found within the actual finite-square target. No arbitrary permutation completion, physical layout or optimal resource theorem is inferred."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "Read complete operative definitions/proof bodies: permMatrix/columnInner/rowInner/IsRationalOrthogonal19-36; cleanBlockBy/productIndex/product block and entry bridges38-113; kroneckerRat/oneSparseMatrix/entry_if/support proof/certificate116-168; complete all-zero/unique-hit/nodup/finRange fold helpers185-280 and both Gram proofs/combined orthogonality283-394; complete scalarDilation entries/row-dot/conditional unit-norm/cross-overlap proofs532-595. Only the subset relevant to this core supplies its mathematical source; no whole-module formal verification claimed."
+    },
+    {
+      "path": "QuantumBlockEncoding/BlockEncoding.lean",
+      "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+      "anchor": "Read RegisterLayout14-27; complete OperatorBlockEncodingCandidate, cost projection and VerifiedOperatorBlockEncoding103-134; approximate normalizer/error documentation and records136-162. These are contract data and proof fields, not new existence or resource proofs."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0e42c19ec6def3722dc9cc130f86f8453869c5c1",
+    "reviewed_at_private_path": "_review_tmp/be-012-finite-injection-question-successor.json",
+    "published_locator_note": "repair_record is the intended future canonical destination; actual reviewed bytes were private. Exact copying changes locator only, not content or hashes.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+      "digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+      "sha256_lf": "f0de45cb9d816411b1325fdba42276ce8b700a156c1de37fd809c29c91cd9fbe",
+      "reviewer": "/root/qcb_native_comparison",
+      "finding_digest": "4d6fa0174c308e192484ab625f67d247932d688f61e3f09a5b3c5685cd757a0d",
+      "verdict": "reject",
+      "inspection": "Complete exact core finding read in its canonical report; its historical verdict remains bound to the original digest. It is diagnosis evidence, not approval of this candidate."
+    },
+    "withdrawal_evidence": {
+      "path": "benchmarks/quantumcomputingbench/shared/current-policy.json",
+      "row_digest": "197c29d4026e6e21077f7d6b2cb1a96efde5610d34a925d33a6eb6db59d921df",
+      "core_id": "qcb-core-be-012",
+      "inspection": "Exact original-bound withdrawal row inspected and check_withdrawal passed read-only. Mechanical provenance, not a mathematical source dependency."
+    },
+    "instruction_status": "Repository AGENTS/HARNESS, substantive-worker skill and required publication/digestion/evidence-memory protocols refreshed/read in this continuous task context; shared CONTRACT/ACCEPTANCE read. The skill requires honest source/semantic/Lean/admission separation.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_claimed": false,
+    "extra_agents": false,
+    "admission_performed": false,
+    "primary_paper_retrieval_performed": false,
+    "mutation_scope": "Only this new private review JSON authored. No candidates, prior private packets including LA/SP/remaining18, frozen QA, canonical tree, production Lean, policy, code, PR107, build, commit or push changed.",
+    "limits": "Static complete operative local-source inspection and independently reconstructed mathematics. No transitive Mathlib closure, fresh compilation, primary-paper/PDF/visual seal, circuit execution, uniform finite-bit synthesis, global deduplication or blanket source/module approval."
+  },
+  "mechanical_context": {
+    "separate_from_mathematical_source_dependencies": true,
+    "checks": "Read-only actual prepared-record retrieval, whole parsed/LF hashes, supersedes key/digest, original and projected nine-field contracts, check_exposition, check_source_bindings and check_withdrawal passed. Additionally compared every ordered semantic-step supporting-node list exactly; no admission function invoked.",
+    "tools_used": "Existing checkout .venv/Scripts/python.exe with PYTHONDONTWRITEBYTECODE=1; no installation or executable-file source dependency is introduced.",
+    "incidental_policy_and_curriculum_files_not_bound_as_mathematical_sources": true
+  },
+  "worker_handoff": {
+    "objective": "Distinct exact-candidate source/semantics review for this reserved BE core.",
+    "mathematical_delta": "Independent reconstruction resolves the stated carrier/quantifier/phase/resource ambiguity with exact candidate/predecessor/source bindings.",
+    "failure_class": "NONE for this exact candidate; historical defect remains auditable.",
+    "salvage": "Existing source identities and core scope retained; no newly compiled fragment promoted.",
+    "process_memory_ids_consulted": [],
+    "direction_fingerprint": "exact-private-BE-012-source-reader-not-author",
+    "parallel_admission": "No agents spawned. Parent-assigned distinct-author review, not duplicated proof authoring.",
+    "common_blind_spot_scope": "Checked stated conventions against operative source, not just author summary; not a multi-route/global blind-spot certification.",
+    "purification_exposition_seal": "No publication/purification seal issued; private candidate acceptance pending parent reconciliation and independent gates.",
+    "recommended_next_step": "Parent inspect exact review and candidate, then separately decide transport/admission. Preserve predecessor historical withdrawal and all existing frozen artifacts."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-la-112",
+  "supersedes_key": "qcb-core-la-112",
+  "supersedes_item_digest": "5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-la-112-textbook-v1-strict-prefix-window-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer/rubric/exposition-only correction. The literal upper-prefix question and its strict-below convention are sound. Replace the false assertion that an old diagonal is zero by the actual swept-window inequality r>=k>c; keep the existing question, assumptions, conventions, family/train split, graph and4 ordered semantic-step node lists. The original rubric is retained unchanged. Unchanged nine-field contract hash77c102094d16f2fe997c42dfd3e75fcf661263f56d7065fd074fbd91556f1014.",
+  "reference_answer": "Assume UpperPrefix(A,k): for every earlier column c<k, A[r,c]=0 whenever c<r. This is a STRICT-below-diagonal condition, not a claim that A[c,c]=0. For exampleI_2 has UpperPrefix at k=1 while A[0,0]=1; a proof demanding that diagonal zero would be false.\n\nFor k<M and k<N, the actual sweep acts only on the row window k,...,N-1, bottom-up. Fresh column k is zero at every row r>k after columnSweep_zeroed. For an old column c<k, EVERY row r in the swept window satisfies r>=k>c. Consequently all entries of old column c in that window are zero by the prefix hypothesis. Each two-row rotation combines two zero entries of that old column into two zeros, while rows outside the window are unchanged. Equivalently columnSweep_preserves_zero_column applies with lo=k and count=N-1-k. Thus old entries retain their previous values everywhere and in particular retain their required below-diagonal zeros; the old diagonal row c is outside the swept window and need not be zero. Combining old columns with fresh column k gives UpperPrefix at k+1.\n\nIf k>=N, no pivot row exists and the actual procedure skips the sweep. Every old c<k remains covered. The only newly included column c=k has no row r>k in Fin N, so its required clause is vacuous. Hence the same one-index advance holds without a hidden k<N assumption on all processed columns.\n\nNow induct on the number of remaining columns, starting with the vacuous UpperPrefix(A,0). Each processed or skipped column advances the index by one. After M columns UpperPrefix(reduced(A),M) holds. For any actual column c in Fin M, c<M; if c<r, the invariant gives reduced(A)[r,c]=0. This is the claimed upper-trapezoidal residual. N=0 or M=0 is harmless: there are no rows/columns witnessing a forbidden entry and the empty/skipping recursions preserve the vacuous invariant. No nonzero pivot, full rank, diagonal normalization, cost or numerical stability premise was needed.",
+  "rubric": [
+    {
+      "criterion": "Show the freshly swept column is zero below its diagonal",
+      "id": "c1",
+      "weight": 1
+    },
+    {
+      "criterion": "Show earlier columns' below-diagonal zeros are preserved by the new sweep",
+      "id": "c2",
+      "weight": 1
+    },
+    {
+      "criterion": "Induct from the vacuous index 0 to full upper-trapezoidal residual at index M",
+      "id": "c3",
+      "weight": 1
+    }
+  ],
+  "exposition": {
+    "core_summary": "The strict upper-prefix invariant survives because the next sweep touches rows r>=k, all strictly below every earlier column c<k. No old diagonal entry is assumed zero; skipped pivots and empty dimensions are vacuous.",
+    "semantic_steps": [
+      {
+        "claim": "For an existing pivot k<N, the actual bottom-up sweep zeros fresh column k only strictly below its diagonal.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RectangularGivens.columnSweep_upperPrefix"
+        ]
+      },
+      {
+        "claim": "Earlier c<k has zero entries throughout the later swept window r>=k>c; zero-column preservation and unchanged outside rows retain the old invariant without zeroing A[c,c].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.AdjacentGivens.columnSweep_preserves_zero_column"
+        ]
+      },
+      {
+        "claim": "Fresh zeroing and old-column preservation give UpperPrefix(k+1); when k>=N the fresh clause is vacuous and the skipped sweep also advances it.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RectangularGivens.sweep_upperPrefix"
+        ]
+      },
+      {
+        "claim": "Induction from the vacuous index0 gives UpperPrefix(M), hence all entries with c<r vanish, including empty row/column boundaries.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RectangularGivens.reduced_zero_below"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/RectangularGivens.lean",
+      "sha256_lf": "8066d811985b60d5f30eeb6cef50c516a00d9f8b95182a2d541c7c9eb35fa133",
+      "anchor": "Complete module read: actual sweep/sweepSteps16-34; exact STRICT UpperPrefix49-50; full columnSweep_upperPrefix52-65 and sweep_upperPrefix67-83 proofs; reduced_zero_below135-139. No new compilation."
+    },
+    {
+      "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+      "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+      "anchor": "Read full actual columnSweep/steps222-248, action/recovery and frame behavior250-281, complete fresh zeroing283-303 and window-zero preservation305-323. Zero premises cover rows lo through lo+count, not old diagonal rows."
+    }
+  ],
+  "execution": "Private author /root/qcb_formal_view_audit, pending distinct exact-content review, not self-approval or blindness. Full actual frozen release.checked()[2] item, exact bound withdrawal and complete finding read at HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. This same actual task authored the prior LA112 rejection; previous finding/source exposure is disclosed, not claimed independent approval. Prior report reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json whole digesta020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22; finding digestc618ea778aa8275a3d95f0c0e2c59885b526ebfed9375799565a49d01a9085f6. Mandatory repository substantive-worker/publication/digestion/memory protocols used in this continuous task. Complete operative source/proof bodies inspected as scoped below; source LF bindings recomputed. Same frozen core/family/split/graph/source contract and exact original step count/ordered node lists retained, except the explicit first question correction when schema says question-v2. No fresh Lean/kernel/formal-view/native-formal execution, source-paper seal, new human/model approval, external acknowledgment, agent, build, canonical/source/policy/other-private/prior-evidence edit, admission, commit/push or PR107 mutation. Only this private candidate authored."
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-la-013",
+  "repair_record_digest": "d6a2668fec88fe31956e2579b6a4b00e95906a46ef340cffc073562305bc627d",
+  "original_item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+  "original_contract_hash": "9ee6494ba1c46bb565bbb37ed3e59665c616ad6633e47368efec9a3c722dccb7",
+  "successor_contract_hash": "ae8929927ad4dffcc2d10d957b43dcf6354d24de5af0fbeff6d1277908c76635",
+  "question_version": 2,
+  "verdict": "accept",
+  "exposure": "Actual distinct reviewer /root/qcb_native_comparison; candidate author /root/qcb_formal_view_audit. I received root's objective, read the complete private _review_tmp/la-013-wire-induced-permutation-successor.json and the actual historical prepared original via release.checked()[2] (complete mathematical/grading contracts, all steps and inherited metadata), then exact withdrawal and bound finding. Prior LA013/219/220 findings were authored by this same reviewer; prior LA112/119 findings were by the candidate author. Those exposures and prior source/cohort work are disclosed; no blindness or independent acceptance of my own authorship is claimed. This reviewer did not author these candidates. Withdrawal reports/textbook-v1/reader-reviews/linear-algebra-011-020-review.json, exact report 91acd2c7c75eb4d0db95f87b1743b0352f6925cf3ea20b40fa0b0edee81b0807, finding dc6de2ac88b200ae76d61dd5e4488e8958fd2eda342d20d710d6279f81ea1d67 and full predecessor f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226 recomputed/matched. Proposed canonical candidate locator benchmarks/quantumcomputingbench/shared/repairs/la-013-wire-induced-permutation-successor.json; only its private bytes were inspected. This task writes only NEW private _review_tmp/la-013-wire-induced-permutation-successor-review.json; it installs no canonical bytes. Mechanical inspection used release/qcb_core/qcb_textbook_policy helpers at observed HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1; these incidental scripts/policy are not mathematical source dependencies and are not in source_checks. No external paper/PDF retrieval, visual-source claim, source-paper seal, fresh kernel/build/compiler/production execution, whole-NL formal certification, human/expert/model identity, selfapproval, admission, global-dedup, new agents, canonical/candidate/prior-artifact edits, commits/push or PR107 mutation. Acceptance is exact-content question-successor mathematics/source correspondence only.",
+  "contract_change_assessment": {
+    "literal_necessity": "A question version is appropriate: the literal predecessor allows arbitrary computational-label P without relating it to a wire bijection. Algebraic conjugation exists for arbitrary P, but renaming physical targets/controls only realizes the permutation induced by that wire map. The successor explicitly supplies the missing relation instead of silently restricting an unchanged question; the one-wire X/RY example refutes the unrestricted interpretation.",
+    "bindings_and_preservation": "Exact16-field first question-v2 schema, actual distinct author, canonical per-core versioned key, predecessor/item/contract and source LF bindings checked. Only question changes among the nine contract fields. Other eight fields, native-expansion-mechanism-013/train/frozen graph/source refs, all three steps and each ordered node list are identical to the original. The new reference/rubric/exposition expressly handles empty circuit and small widths.",
+    "limits": "This accepts the precise wire-induced statement and its written proof/boundary examples, not arbitrary basis permutations as physical wire renamings or a routing-cost theorem. It does not admit the successor or newly certify source/Lean execution."
+  },
+  "substantive_reconstruction": {
+    "single_gate": "R_sigma(b)=b composed with sigma^{-1} implies R_sigma(b)(sigma(w))=b(w). Thus X's target bit, CX's distinct control/target test, and RY/RZ's target matrix and spectator context are transported consistently. On every basis ket U'_j P=P U_j, so U'_j=P U_j P^{-1}. The source matrix_apply gives the equivalent entry formula U'_j[a,b]=U_j[a composed with sigma,b composed with sigma]; inverse directions agree. This is not a statement about an unrelated arbitrary P.",
+    "composition_and_boundary": "The circuit convention multiplies later matrices on the left. Products of these conjugates telescope to P(U_t...U_1)P^{-1}; for the empty list both sides are I. Output-only transport instead multiplies P U_2 P U_1. With two identity stages and an actual two-wire swap, the induced nontrivial involution P yields I=P^2 versus P, proving nonmultiplicativity. N=0 or1 has only the identity wire bijection, so P=I and no fictitious nontrivial wire swap is required.",
+    "unrestricted_counterexample": "On one wire sigma must be identity and physical renaming leaves RY(theta) unchanged. The unrelated computational-label swap X has X RY(theta) X=RY(-theta) in the exact half-angle sign convention; theta=pi/2 makes the off-diagonal signs different. This is a valid counterexample to the old unrestricted reading, not to algebraic conjugation itself. The rubric and all three exposition claims respect that distinction and do not obtain physical SWAP/routing for free."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+      "sha256_lf": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727",
+      "anchor": "Read the complete current module and all proof bodies: wire-induced basisEquiv, target/control-preserving gate/circuit map, matrix_apply/matrix_mul, spectator context and X/CX action transport, per-gate/circuit evaluation and count preservation. The represented P is this induced bitstring bijection, not an arbitrary computational-label permutation."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+      "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+      "anchor": "Read exact standardRyMatrix half-angle/sign definitions and proofs through xMatrix_conjugates_standardRy, basis/X/CX/spectator and one-qubit lifts, complete evalPrimitiveGate cases/adjoint semantics and chronological evalPrimitiveCircuit/append proofs (operative regions through approximately line405). No whole-module audit or fresh kernel run claimed."
+    }
+  ]
+}
