@@ -1,0 +1,121 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-sp-115",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-115-threshold-domain-question-successor.json",
+  "repair_record_digest": "8af0c91bc63b25aa9587cf8537e4994cc5933c93296635a5d500a3b2abd22f44",
+  "repair_record_sha256_lf": "f6fddfa7204e7bcc92270476723e0ab4ca488939157f5fb77e9af2d0663ee079",
+  "original_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+  "original_contract_hash": "100166c122f1f17df8582b740fef87d440236690e24d51ec33f9339fb5bb906c",
+  "successor_contract_hash": "b91f8d89b32ba3072bfa8ea635c19cb4593132a25765c41edc0a4c7f6b66af77",
+  "verdict": "accept",
+  "verdict_scope": "Accept the whole exact pending first question-version2 candidate: question, complete reference, four rubric criteria, all three exposition steps and disclosed metadata. This is mathematical/source review, not unchanged-question equivalence, candidate transport, automatic formal transfer or policy/reader admission.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate author /root/qcb_native_comparison, prior rejection author /root/qcb_formal_view_audit and historical original author structured-preparation-author-b2.",
+    "repair_author": "/root/qcb_native_comparison",
+    "exposure": "Not blind: prior related Hermite/source review exposure and parent's bounded objective are disclosed. In this objective I read the full actual historical prepared original via release.checked()[2], complete exact withdrawal/finding, whole final private candidate including source/execution metadata, complete operative HermiteCutRank source/proofs and complete imported HermitePolynomial. Author/parent recommendations and prior verdicts are not independent mathematical evidence."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of the ENTIRE actual historical prepared SP115 record via release.checked()[2], not a current-reader substitute or authored-subset digest.",
+    "repair_record_digest": "qcb_core.digest of ENTIRE final exact private candidate, including question/reference/rubric/exposition/source_checks/execution.",
+    "repair_record_sha256_lf": "Actual qcb_integrity.text_sha over the entire inspected private candidate file; this matches the separately supplied LF pin without treating its planned canonical location as already installed.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the original nine-field contract with ONLY question replaced by candidate.question.",
+    "actual_checks": "Exact qcb.textbook_question_successor.v1 allowed-key set, author distinction, predecessor core/key/whole-item hash, explicit old hash, recomputed new hash, question_version2 key grammar and pending_distinct_review marker checked. Nonempty changed question/reference and four unique positive-finite rubric weights pass. Other8 contract fields are inherited literally, not overridden. Three exposition steps retained and EVERY per-step supporting-node list equals the predecessor's ordered list. Candidate source LF bindings pass.",
+    "retained_values": "assumptions=[]; conventions=[]; family=hermite-cut-rank; split=dev; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; six target nodes [FactorsThrough.add,neg,pointwise_mul,scale,threshold_factorization,exponential_add_factorization], no supporting nodes and exact original source_refs retained."
+  },
+  "withdrawal_binding": {
+    "withdrawal_row_digest": "f58307bd3c06ec787ffda76ccd06f52a792feab560558650a9195b7b1d7eb1a6",
+    "review_path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+    "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+    "finding_digest": "207301599011cac2c810f0e5331bcc1e48f81b689ff8fd692d08c78aa3738f0b",
+    "prior_verdict": "reject",
+    "assessment": "Whole prior review, complete SP115 finding and exact current reserved withdrawal loaded and digest-verified against this actual predecessor. This binds what was rejected, not a proof of the proposed successor. Mutable current-policy whole-file hash is not an evergreen source dependency."
+  },
+  "contract_change_assessment": {
+    "precise_predecessor_defect": "The original four universal composition-law questions are sound. Its last application merely says threshold/exponential/polynomial without the exact threshold domain; it does NOT literally assert every threshold has width two. The false universal width-two promotion appears in the supplied reference/r3/third-step exposition. The displayed rank-three array refutes that unsupported supplier assertion, not the four composition laws or every possible honest response to the original question.",
+    "why_this_is_question_v2": "This candidate now explicitly asks for positive natural M, natural T,u,v, bounded suffix v<M, a two-state quotient/remainder construction and an unrestricted counterexample; it also makes the additive exponential/polynomial suppliers and produced-versus-minimal width interpretation explicit. Those are actual changes to the question's data and demanded reasoning, so this exact proposed task cannot be labeled an unchanged-question answer successor merely because the other8 fields are inherited.",
+    "necessity_and_minimality": "Versioning is necessary for THESE explicit new question restrictions/demands, not a claim that no truthful answer-only repair of the old generic question could exist. An answer-only response could instead disclose the missing supplier assumptions and decline a universal width-two claim, but that is not the present exact candidate. The added bounded natural suffix is a sufficient uniform supplier contract, not a logically necessary condition for each individual low-rank array. The candidate explicitly acknowledges both distinctions, preventing a false minimality/necessity claim.",
+    "source_NL_domain_difference": "Local threshold_factorization assumes natural M,T,u,v and hv:forall y,v(y)<M, without a separate M>0 binder. On any actual column hv implies M>0; when Y is empty, hv is vacuous and the source also covers M0 empty-column arrays. Version2 transparently requires M>0 even for empty Y to state ordinary Euclidean division uniformly. That explicitly excludes the degenerate M0 case; it is not claimed to reproduce the source's maximal empty-domain generality or to make Lean's total Nat.div undefined at0. Empty X/Y with positive M remain fully allowed.",
+    "retained_family_scope": "Same real finite-width factorization calculus, symbolic composition target, hermite-cut-rank family/dev split, graph/source scope and three steps retained. No assumptions/conventions fields or new graph node override is introduced; domains are openly revised in question. The source-specific composite is illustrative, not a substitute literal Hermite target or quantum construction theorem.",
+    "non_equivalence_and_formal_boundary": "Old/new contract hashes differ; no equivalence of requested reasoning, new core, transported old review or automatically aligned old-hash formal companion is claimed. Static source presence plus this mathematical review does not provide a new kernel/native formal certificate or admission."
+  },
+  "substantive_reconstruction": {
+    "witness_semantics_and_rank": "FactorsThrough(ι,F) is the existential ordinary REAL product F=AB with finite inner indexι, not a conjugate-transpose/Gram factorization or minimum rank declaration. For finite arrays, each output column is a linear combination of the left factor's w columns, so rank(F)≤w. Empty index width0 has empty sum0; any zero/empty array has a width0 witness, although a supplied construction may deliberately retain a larger width.",
+    "sum_and_negation": "Given F=AB,G=CD on inner I,J, let the new left factor use A on inl(I),C on inr(J), and right factor use B,D correspondingly. Summing over disjoint union gives AB+CD with EXACT constructed cardinality w1+w2. Negating A gives(-A)B=-F with same supplied widthw. These are the complete source add/neg constructions; no rank equality is inferred, since F+(-F)=0 can keep produced width2w yet minimum width0.",
+    "quotient_remainder_supplier": "For M>0 write T=Mq+r with q=T div M and0≤r<M. If u<q then u+1≤q and Mu+v<M(u+1)≤Mq≤T; if u>q then u≥q+1 and Mu+v≥M(q+1)>Mq+r=T. At u=q the comparison is exactly v<r. Therefore Θ_T=1[u<q]+1[u=q]1[v<r]. The two row predicates are mutually exclusive, so this is a real0/1 indicator, not double counting. L=(1[u<q],1[u=q]),R=(1,1[v<r])^T is an explicit width2 witness. Repeated/missing prefixes or suffixes do not affect the proof.",
+    "suffix_zero_empty_and_boundary_cases": "Natural values supply nonnegativity; v<M supplies the strict upper bound. Neither comes from an arbitrary real additive variable. T0 gives q=r0 and the zero threshold. At r0 the second right component vanishes, and every u=q row is0; no equality-at-cut off-by-one occurs because the target comparison is strict. M1 permits only suffix0 and is valid. Empty Y or X makes all target identities vacuous but factors still have their declared shapes; this version keeps M>0 and does not need to choose a suffix element to establish it. In the original Lean theorem M0 is possible only if Y is empty, and the proof's per-column use of hv is vacuous in that case.",
+    "rank_three_counterexample": "After dropping only v<M, keep every other threshold condition: X=Y={0,1,2},M1,T3,u(x)=x,v(y)=y. The strict threshold x+y<3 gives exactly K=[[1,1,1],[1,1,0],[1,0,0]]. Expansion on its last row yields detK=det[[1,1],[1,0]]=-1, so rankK=3 overR. A width2 product has column space dimension≤2 and is impossible. Suffix values1,2 violate v<M; all values are still natural and Mpositive. This demonstrates loss of a UNIFORM guarantee, not that every violating instance has high rank; e.g. T0 would remain rank0.",
+    "additive_base_arrays": "The real exponential splits exp(a+b)=exp(a)exp(b), with one inner index and no computability assumption on a,b. For p(z)=sum_(r=0..d)c_r z^r, the binomial theorem gives p(a+b)=sum_(i=0..d)[sum_(r=i..d)c_r choose(r,i)a^(r-i)]b^i. Those brackets are precisely shifted Taylor coefficients of p(a+z); source polynomial_add_factorization uses them and degree≤d to truncate at d+1. This needs ordinary binomial coefficients, not factorial derivative normalization inserted inconsistently. d0, the zero polynomial, a0/b0 and lower actual degree all work; constructed widthd+1 need not be minimum. Empty rows/columns can make even an exponential's minimum rank0 despite supplied width1.",
+    "finite_sum_product_cardinalities": "A finite product of supplied-width W_l arrays gets inner product-index cardinality product_l W_l. Scalar weights are absorbed on one side; disjoint-union across finite summands gives total sum_j product_l W_(j,l). An empty product is the all-ones array with width1; empty sum is zero with width0. No hidden dense enumeration is needed for these pointwise algebraic proofs, although an implementation may still elect to store factors. These conventions also handle a zero-width factor, zero coefficient and cancellation correctly.",
+    "composite_and_complement_counts": "Two qualified threshold suppliers have width2 each. Thus Θ_A E+(Θ_B-Θ_A)P has width2+4(d+1), with band constructed width2+2=4 regardless of possible lower rank. Generic complement1-Θ_B has width1+2=3, giving full three-piece bound2+4(d+1)+3=4d+9. The explicit complementary witness Lc=(1-1[u<q],-1[u=q]),Rc=(1,1[v<r])^T instead gives1-Θ exactly with width2, improving total to2+4(d+1)+2=4d+8. This is a separate valid witness, not a free cancellation of index dimensions. Substituting source degree capd=2k+1 yields8k+12, exactly HermiteBond cardinality. Matching a generic expression to actual piecewise cuts still requires the source's separate affine/cut and branch-value arguments, which the complete module contains; the candidate does not assume arbitrary cuts already match.",
+    "mathematical_vs_computational_cost": "Symbolic factor construction and rank≤width do not make arbitrary factor entries cheaply computable. Storing explicit factors takes |X|w+w|Y| real entries, and the proof gives neither an evaluator cost for u,v,a,b nor finite-bit cost/precision/stability for exp, coefficients or integer comparisons. The noncomputable existential source proposition is an algebraic certificate, not a preprocessing algorithm, normalized/isometric state construction, oracle implementation, circuit compiler or gate/query bound. Zero factors need no normalized output interpretation.",
+    "hadamard_and_scale": "For the Hadamard product, define L_(i,j)(x)=A_(x,i)C_(x,j),R_(i,j)(y)=B_(i,y)D_(j,y). Finite distributivity and commutativity of real multiplication turn sum_(i,j)Axi Cxj Biy Djy into(sum_i Axi Biy)(sum_j Cxj Djy). Thus constructed width is w1*w2, not sum and not a matrix product of F,G. Scaling uses(cA)B=cF with same supplied widthw for every realc, including0. The full source double-sum/scale proofs match these witnesses."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept exact explicit qv2: gives the real finite-array model, all four requested laws, transparent bounded-natural threshold application, additive base suppliers, failure witness and resource boundary. It changes the question openly without misdescribing the four original laws as false.",
+    "reference_answer": "Accept in full. All four factor formulas, three quotient/remainder cases, exact rank-three determinant, polynomial coefficient factors, empty/zero cases, finite expression width arithmetic and separate complement refinement are correct. Its ordinary quotient/remainder wording is interpreted under the explicitly positive M premise, not as a statement that Lean's total natural division operation is undefined at0.",
+    "rubric": "All r1–r4 correctly reward constructed upper-bound widths, ordinary products, exact domain-qualified supplier and counterexample, and honest symbolic-versus-computational boundaries. Rubric r3 now checks the omitted suffix condition rather than asserting every threshold is width2. The fourth criterion distinguishes generic complement width3 from explicit width2 refinement if used.",
+    "exposition": "Summary and all3 steps are mathematically sound, and each ordered source-node list is exactly inherited: [add,neg], [pointwise_mul,scale], [threshold_factorization,exponential_add_factorization]. The polynomial supplier/counterexample are bounded mathematical explanations within the same application step, not invented newly checked graph/Lean nodes.",
+    "entire_candidate": "Accept exact final candidate8af0c91bc63b25aa9587cf8537e4994cc5933c93296635a5d500a3b2abd22f44. It is an explicit question-domain/reasoning correction with valid unchanged composition core; no selfapproval, kernel or automatic admission is supplied by its execution metadata."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+      "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+      "anchor": "COMPLETE module read, including actual existential FactorsThrough/rank_le; full shifted-Taylor polynomial witness/rank derivation; product/exponential factors; complete add/neg/pointwise_mul/scale constructions and double sums; blockIndex_lt_iff with exact natural suffix premise and per-column positive-M derivation; threshold and complementary two-state witnesses; affine_lt_cut, exact strict-branch identity, HermiteBond cardinality and full Hermite composite/rank proof. Static actual bodies, not theorem-name review or a fresh kernel run."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "COMPLETE imported module reread in this objective. SourceInterpolant canonical finite formula and degree≤2k+1 proof are the imported supplier for Hermite composite; exact middle-inclusive smoothInitial and endpoint value identify source cut boundaries. Independent Euclid/jet/uniqueness and analytic adapters were read but are not substituted for the generic cut-rank proof or promoted into new execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "sha256_lf": "dfb5230153faecc09bbd4f8c3e88b16878358919670934e597c1a4ff7e0a2c9c",
+      "anchor": "Complete exact SP115 rejected item-finding read and digest-bound with its current reserved withdrawal. This binds historical diagnosis/provenance only; its recommendation/acceptance status is not mathematical evidence for this successor."
+    }
+  ],
+  "provenance": {
+    "observed_head": "c432bcccb35a0e63aa0800b379ad4171cfa9c021",
+    "private_reviewed_at": "_review_tmp/sp-115-threshold-domain-question-successor.json",
+    "locator_boundary": "repair_record is the intended repository-relative canonical destination. The exact final private file above was actually inspected and whole-JSON/LF hashed; no canonical candidate transport/installation/admission is claimed.",
+    "instructions_and_skill": "Mandatory AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared CONTRACT/ACCEPTANCE were fully read earlier in this continuous context and unchanged through the preceding SP119 refresh; same observed head. Substantive-worker SKILL.md reread completely here. Exact-definition/proof, changed-contract, typed-boundary and honest execution rules applied.",
+    "actual_retrieval": "Entire actual historical predecessor via release.checked()[2], exact withdrawal/full finding and complete final candidate loaded directly. Full local operative source/proof text inspected; current reader or author summary was not substituted.",
+    "source_blind_review": false,
+    "new_kernel_execution": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "external_source_limit": "This bounded gate uses complete actual local Lean/source mathematics. No external PDF/primary paper was freshly retrieved, byte-verified or visually audited; no external source-publication seal claimed.",
+    "dependency_limit": "No new build or transitive Mathlib source audit was performed. A read-only lookup at the conventional local .lake/packages/mathlib source paths found no such files; full project proof bodies were available, and their relevant mathematical identities were independently reconstructed above. Existing imports/theorem names or prior receipts are not a new kernel certificate.",
+    "formal_status": "Static source-only review with independently derived exact algebraic/counterexample reasoning. No new Lean/kernel/native-formal view, fixed-reference compilation or formal-semantic-equivalence approval. The rank-three example is exact NL mathematics, not an invented local Lean theorem.",
+    "hash_method": "qcb_core.digest over entire exact candidate/original/contracts/withdrawal/prior-report/finding values; qcb_integrity.text_sha over complete actual tracked source files and inspected private candidate. Source/LF bindings are not compilation or mathematical approval by themselves.",
+    "mutation_scope": "Only parent _review_tmp/sp-115-threshold-domain-question-successor-review.json authored. SP119 candidate/review and all prior artifacts remain frozen. No canonical/currentPR106/policy/source/frozen-data/history changes, build, agent, commit or push.",
+    "remaining_limits": "Acceptance concerns this exact pending mathematical question successor only. No reader/stable/publication admission, automatic formal transfer, global dedup/alias/split pooling/novelty judgement, human/collaborator approval or deployment verification."
+  },
+  "worker_handoff": {
+    "objective": "Bounded distinct exact-content SP115 first question-version2 mathematical/source gate.",
+    "mathematical_delta": "Valid width calculus and bounded-natural two-state supplier retained; exact rank-three witness rules out the unrestricted supplier; construction width, resource and complement-count boundaries made explicit.",
+    "failure_class": "NONE for revised exact candidate. Historical unqualified width-two answer/rubric is SOURCE_INVALID; universal composition laws remain valid and salvaged.",
+    "salvage": "All four factor constructions, additive exponential/polynomial witnesses and source composite mechanism retained with explicit domains and no minimum-rank/resource promotion.",
+    "process_memory": "Repository process protocols consulted; no author/control-plane recommendation treated as a mathematical premise.",
+    "direction_fingerprint": "SP115-bounded-suffix-factor-calculus-exact-content-distinct-review",
+    "parallel_and_common_blind_spot": "No extra agents or parallel route used; actual reviewer is distinct from candidate/prior-finding/original authors.",
+    "purification_and_exposition": "Private answer/rubric/three-step exposition expanded against full operative source and boundary cases. No whole-repository PURIFIED or public Exposition Seal claimed.",
+    "residual_risk": "No mathematical objection found in bounded exact candidate. Exact formal-view alignment/execution, future transport/admission and broader semantic reconciliation remain separate gates."
+  }
+}

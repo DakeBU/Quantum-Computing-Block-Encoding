@@ -66,6 +66,14 @@ For plan504, preserve directed U/U-adjoint maps and projected rather than whole
 state semantics, even though the question contract is unchanged. Distinct
 mathematical reader review and kernel evidence remain separate requirements.
 
+Re-export the registry after the SP115/SP117/SP119 question-version changes.
+Keep threshold domains (including empty-column differences), all-cut versus
+one-cut rank, exact-real producer/resource theorems and finite-bit guarantees
+separate. The source gluing theorem binds the same k in the target and its
+regularity order. A formal sublemma does not automatically check the revised
+counterexample or effective-input diagnosis. Historical reconciliation reports
+are not current exact-contract alignment receipts.
+
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install
 system packages, contact administrators, launch long GPU jobs or paid training.

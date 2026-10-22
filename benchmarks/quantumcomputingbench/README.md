@@ -6,7 +6,10 @@ mathematical models, backed by QuantumComputinglib's sources and graph.
 Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
-The [latest Hermite/directed-qubitization checkpoint](docs/textbook-hermite-and-directed-qubitization-2026-10-23.md)
+The [latest Hermite rank/regularity checkpoint](docs/textbook-hermite-rank-and-regularity-2026-10-23.md)
+explains threshold domains, exact-real versus finite-bit resources, indexed
+smoothness and bounded historical reconciliation. The preceding
+[Hermite/directed-qubitization checkpoint](docs/textbook-hermite-and-directed-qubitization-2026-10-23.md)
 explains actual endpoint/grid dependencies, directed maps, projected outputs and
 compatible continuation. The earlier
 [quantum-contract checkpoint](docs/textbook-quantum-contract-checkpoint-2026-10-23.md)

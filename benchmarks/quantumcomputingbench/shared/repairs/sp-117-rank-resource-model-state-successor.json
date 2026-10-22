@@ -1,0 +1,113 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-sp-117",
+  "supersedes_key": "qcb-core-sp-117",
+  "supersedes_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+  "supersedes_contract_hash": "1b9fcc519870440970cd5546bde896c4a8bdde2db6458994b83c9a4006d7a850",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-sp-117-textbook-question-v2-rank-and-resource-models",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit question-v2 because the original asks readers to reject an unqualified polynomial-resource inference, without distinguishing existential arbitrary-real gate size from a uniform finite-bit compiler. Its old rank-one example confuses a single cut with all ordered cuts. Retain the Hermite cut-certificate/normalized-preparation boundary objective but require a qualified comparison, not a nonexistent gate-count impossibility. Only question changes among the nine contract fields; original logical-sufficiency assumption and empty conventions stay intact, same core/hermite-cut-rank family/dev split/frozen graph/source refs and original three ordered step-node lists. The generic computability discriminator below is not a hardness claim about Hermite samples. Current later source interfaces are read-only contextual evidence, not new frozen graph nodes or a new formal view.",
+  "question": "Fix natural k,N and real L>0. The actual Hermite sample is a_j=HermiteStatePreparation.sampledAmplitude k N L j=HermitePolynomial.smoothInitial k(-pi L+j*(2pi L/2^N)), for0<=j<2^N. Let Z=sqrt(sum_j a_j^2)>0 and |psi>=sum_j(a_j/Z)|j>, with the source little-endian physical labeling. The existing certificate says that for EVERY ordered contiguous binary cut N=pWidth+sWidth, the matrix F(x,y)=a_{2^sWidth*x+y} factors through width D=8k+12, hence has rank at most D. Its normalized version absorbs the scalar1/Z into a factor; it is not an evaluated-normalizer record. Empty prefix/suffix cuts are included.\n\nAssess the claim that this certificate by itself 'closes polynomial-resource state preparation', distinguishing the following contracts rather than rejecting them all indiscriminately. (I) Nonuniform EXISTENCE of an exact circuit of polynomial size in N,D, with arbitrary real one-qubit rotation parameters counted as unit-cost gate data and an allowed logarithmic-size clean bond register. (II) A UNIFORM finite-string algorithm that, from an explicitly specified effective input representation, produces a circuit over a fixed computable approximately universal finite gate set within error2^-b of the normalized target, with a stated runtime bound in N,k,b and input-description length. This model does not silently charge arbitrary real comparisons/transcendental evaluation as finite-bit unit cost; no polynomial-in-log(k) claim is requested.\n\nExplain what the source cut-factorization and normalized-factorization declarations actually return and identify at least two additional construction/cost obligations needed for contract II. For contract I, explain the additional mathematical route from ALL ordered cut ranks to a compatible TT/MPS, canonical local isometries, unitary completion and a polynomial-size circuit; a full new MPS theorem or source kernel proof is not requested. Do not equate independently witnessed factorizations with already compatible sequential cores.\n\nCheck the decisive rank-one boundary: for a nonzero normalized real N-qubit state with N>=1, prove that rank one at EVERY internal ordered cut forces a product of one-qubit states by elementary induction, and explain its O(N) arbitrary-real one-qubit circuit existence. Why does rank one at only ONE cut not imply this? Give a genuine effective-input/computability or precision-access gap consistent with all ordered ranks one, while keeping its short arbitrary-real circuit existence. Do not claim an arbitrary real has a finite effective encoding, derive hardness from the word 'noncomputable', or assert a lower bound against arbitrary circuit architectures.\n\nFinally distinguish this certificate's scope from the CURRENT separate library constructions: the full-table reference loader, actual constructive TT/Hermite exact-real circuits, and local/stored norm/raw-source suppliers. Explain why their existence is compatible with the unresolved finite-bit input/precision/cost obligations of this rank certificate. Treat N=0 as the actual positive singleton Hermite target. Do not infer that the Hermite family itself is hard, that no compiler exists anywhere, or that cut rank is necessary for every polynomial-size circuit architecture.",
+  "reference_answer": "The rank statement concerns a FIXED ordered prefix/suffix flattening with integer j=2^sWidth*x+y, not an arbitrary permutation of physical sites. FactorsThrough retains witnesses A,B with F=AB. Matrix rank is bounded by their common inner dimension. Scalar normalization changes A to A/Z, so it preserves this width. That algebraic scale operation works as a formula with a supplied scalar; it does not compute Z, provide an effective representation of its value, make different cut witnesses compatible, or return a gate list. For the actual target the table is nonempty and samples are strictly positive, so Z>0 and the normalized state is well defined. For N=0 there is one positive sample: a_0/Z=1, and the empty reference circuit suffices. It is not a generic zero-vector normalization case.\n\nFor contract I, all ordered cut ranks at most D have a substantive positive consequence. Successive exact Schmidt decompositions (or real SVDs for this real tensor) give a compatible MPS/TT with each internal bond dimension at most D and scalar endpoint bonds. This is ADDITIONAL mathematics beyond reading off the independent two-factor certificates. Choosing canonical gauges gives isometries from each incoming bond into the emitted qubit and next bond. Pad the active bond into dimension B=2^ceil(log2(max(1,D))); B<2D for D>1. Extend the active isometries to local unitaries on a fresh physical qubit plus that bond, preserving the required clean input columns. Sequentially emit the qubits and end with the bond clean. Standard finite-dimensional unitary/real-orthogonal decomposition then compiles each local unitary with polynomially many one/two-qubit gates in B (hence in D), giving N times a polynomial in D gates and O(log D) bond wires. Register reversal/reindexing between the MPS site order and physical little-endian order must be handled explicitly, not dropped. Gate parameters may be arbitrary real numbers under contract I; computing their finite descriptions and numerical values was NOT charged. Thus the rank information plus these mathematical existence/compilation results supports existential polynomial gate size. It is wrong to turn the certificate file's lack of an emitted gate list into a theorem that such circuits cannot exist.\n\nHere is the elementary all-cut rank-one check. For N=1 every normalized state is already a one-qubit factor. For N>1, rank one at the first site/rest flattening writes the nonzero tensor as u_1 tensor v, with u_1 and v normalized after moving a scalar/sign between them. For each later cut, its flattening is the residual flattening of v tensored with the nonzero vector u_1; multiplication by that nonzero vector is injective and leaves the rank unchanged. Hence all internal ordered flattenings of v also have rank one. Induction gives u_1 tensor ... tensor u_N. A real normalized factor u_j=(alpha_j,beta_j) is the first column of a real planar rotation [[alpha_j,-beta_j],[beta_j,alpha_j]], realized by an arbitrary-real RY angle; any overall sign can be absorbed into one factor for N>=1. One such gate per qubit gives exact O(N) gate existence without a bond register. In contrast, rank one at one chosen cut only gives a product of TWO possibly highly entangled multi-qubit factors. For example on four sites, Bell_{12} tensor Bell_{34} has rank one across12|34 but rank two across1|234 and123|4. The old arbitrary-factor argument therefore does not address rank one at every ordered cut.\n\nA genuine algorithmic gap can coexist with the positive existence result. Choose a real q in(1/4,3/4) that is not computable, and consider for N>=1 the normalized product state (sqrt(q)|0>+sqrt(1-q)|1>) tensor |+>^(tensor(N-1)). Every ordered cut has rank one; an arbitrary-real RY parameter for the first factor and N-1 fixed RY(pi/2) gates prepare it in O(N) gates. But suppose there were a finite program with no oracle/effective representation for q that output certified fixed-computable-gate approximations to this state for every requested b. The finite output circuit has computable probabilities, and its first-qubit-zero probability approximates q. For normalized vectors, probability error for a projector is at most twice the vector2-norm error, so requesting sufficiently many extra precision bits would compute q to arbitrary accuracy, a contradiction. This is not a claim that q is an allowed finite input encoding: it demonstrates why a rank predicate that permits arbitrary reals does not itself supply the EFFECTIVE INPUT PROMISE needed by contract II. Even when entries are computable, computability alone supplies no polynomial evaluation bound. This illustration is a generic product-state discriminator, not a claim about the actual Hermite family, and not a quantum gate-size lower bound.\n\nFor contract II one must specify at least: an effective access/encoding and cost for L and the coefficient/core data; a method for producing compatible normalized TT cores and their canonical/completed stage data with a charged preprocessing bound; an evaluated nonzero normalizer with enough certified relative precision; computable gate-angle values and a finite-gate synthesis procedure; and a uniform propagated error/conditioning analysis that turns their local inaccuracies into the requested global target error. These are construction/cost promises, not additional hypotheses needed for the exact algebraic rank lemma. Normalization sensitivity matters: absolute raw-table error alone does not give a normalized-state error without control of the nonzero norm. One must not silently assign unit finite-bit cost to arbitrary exact-real comparisons, transcendental calls, or expanding an exponentially sized dense input. No assertion that every one of these obligations is absent from the entire current library follows.\n\nIndeed the current library has separate constructions. HermiteStatePreparation.hermiteCircuit is a full-table exact-real reference loader with2^N-1 RY and2(2^N-1-N) CX gates. ConstructiveTensorTrain takes actual cores and produces a canonical chain/residual. ConstructiveTensorTrainCompiler.compile takes a supplied normalized scalar-boundary real chain plus a bond cap and returns an actual primitive circuit with all-sector clean-bond column theorem and polynomial bound in its bond dimension. ConstructiveHermitePreparation.prepare supplies a literal Hermite chain normalized through a local Gram norm and has an existing gate/depth bound48(n+1)(2k+6)^3 for N=n+1, with explicit clean bond wires and no opaque oracle. Its sharper2k+6 source-chain bond is not obtained just by identifying it with the8k+12 cut certificate. HermiteFiniteNorm supplies the same true norm through local environments; stored raw-source modules also provide actual unnormalized source data and separately scoped exact-real/selected-integer ledgers. These are additional interfaces and proofs, compatible with contract I and with genuine constructive progress, not objects returned by sampled_cut_rank_le. Their inspected signatures do not by themselves establish contract II's complete uniform finite-bit algorithm/runtime/error guarantee. A noncomputable annotation alone proves neither inefficiency nor incomputability.\n\nThe corrected verdict is therefore model-specific: the cut certificate is useful all-cut structure supporting existential short exact-real preparation via extra mathematics, while it alone is not a certified effective, finite-bit polynomial-time compiler. It is not a necessity theorem for every efficient circuit architecture, an impossibility result for Hermite samples, or a new execution/formal-view certificate.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "States the exact ordered prefix/suffix factorization and normalization-scaling scope, actual normalized target/nonzero norm and N=0 positive singleton. Separates independent cut witnesses from already compatible TT cores."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Explains the positive all-cut TT/MPS/isometry/completion route to polynomial arbitrary-real gate-size existence with charged-as-data real angles and logarithmic bond, without confusing that additional mathematics with output of the rank declaration or claiming rank is necessary for arbitrary architectures."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Proves all-internal-ordered-cut rank1 implies a product by induction, gives O(N) arbitrary-real one-qubit preparation, and distinguishes one-cut rank1 (e.g. Bell12 tensor Bell34). Gives a valid effective-input/precision obstruction consistent with all-cut rank1, not an unsupported short-circuit lower bound or a hardness claim about Hermite."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Identifies at least two concrete effective-input/normalization/compatible-core/angle-synthesis/error/cost obligations for a uniform finite-bit compiler, acknowledges current separate constructive and norm/raw-source interfaces, and makes no absent-global-compiler, noncomputable-means-hard, or new kernel/closure claim."
+    }
+  ],
+  "exposition": {
+    "core_summary": "All ordered cut ranks support compatible TT/MPS and existential short arbitrary-real circuits via additional mathematics; they do not by themselves return a uniform finite-bit compiler. All-cut rank1 is a product state with a short circuit, yet may lack effective amplitude input. Current separate Hermite/TT compilers are acknowledged rather than erased.",
+    "semantic_steps": [
+      {
+        "claim": "The ordered Hermite cut factorization bounds width/rank; it is algebraic structural evidence, not an emitted gate list or finite-bit work certificate, while all-cut bounds have positive TT existence consequences through additional mathematics.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.rank_le",
+          "declaration:QuantumBlockEncoding.HermiteSampleStructure.sampled_cut_rank_le"
+        ]
+      },
+      {
+        "claim": "Scalar normalization preserves factor width but does not evaluate its normalizer or produce compatible canonical cores and finite-precision gates; those are separate interfaces whose actual current suppliers must be distinguished.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteSampleStructure.normalized_cut_factorization"
+        ]
+      },
+      {
+        "claim": "All-ordered-cut rank1 implies product structure and short arbitrary-real circuit existence; a generic non-effective product amplitude instead isolates the missing effective-input premise for a uniform finite-bit claim, not Hermite hardness or a gate-count lower bound.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteSampleStructure.sampled_cut_rank_le"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteSampleStructure.lean",
+      "sha256_lf": "eda04790bd59d39a49da0e98bc9602261ef7c5b0cdb531d88a97c3f6d1036d1f",
+      "anchor": "Complete60-line module read: cutSampleIndex12-23 fixes MS-prefix/LS-suffix; full sampled factorization27-39; rank41-46; normalized factorization50-58 absorbs a supplied reciprocal scalar. The declaration does not evaluate a norm or return gates."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+      "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+      "anchor": "Complete259-line module read: FactorsThrough23-25 and rank lemma27-31; all polynomial/exponential/threshold composition proofs, exact affine threshold and boundary convention, HermiteBond cardinality and full affine factorization; scale248-257. The module comment is scoped to its certificate, not an impossibility theorem."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+      "sha256_lf": "dee753c9379124c29f3c2b08e2b597714b9f9dacca073ec315add33f7f169ec7",
+      "anchor": "Complete124-line module read: exact grid23-24, positive samples27-31, true norm34-42, normalized target44-45, actual full-table circuit48-49, exact first column67-70, normalization/state action73-85, exponential reference counts87-95 and complete certificate101-120."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveTensorTrain.lean",
+      "sha256_lf": "8e36e9762568f0ef52e18aca99d15240be32103b8fb3ed76782a2cd3e914139e",
+      "anchor": "Complete123-line producer module read: factorCore, actual recursive canonicalize and all-word action, mass/boundary refinements. It takes a supplied chain and does not turn an isolated rank inequality into a finite-bit implementation."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveTensorTrainCompiler.lean",
+      "sha256_lf": "a8dbe683cab13bf55a52f9d3d976aa005ed19c2ee7e7c79088da54aa3611044c",
+      "anchor": "Complete149-line module read: signed-boundary absorption, unitBoundary, local stage producer and stage columns, actual compile, compile_gateCount/depth/unitary, complete clean/all-bond column theorem and compile_spec. This IS an existing actual primitive compiler on a supplied normalized real TT; no global absence claim."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveHermitePreparation.lean",
+      "sha256_lf": "e244b8dbf2d35ec51a432ffadfac8be5532d31e47ad4850c58418786f84d9b5c",
+      "anchor": "Complete86-line module read: normalizedSource16-18 and its local-norm/source equality, maxBond<=2k+6, normalized amplitudes, actual prepare45-47, polynomial gate/depth bounds and all-sector prepare_columns/prepare_spec. Read-only existing evidence, not a fresh check or a consequence of the8k+12 cut bound alone."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteFiniteNorm.lean",
+      "sha256_lf": "c63848c15a010911cdf622a892002f6c9b3463a19ea6a19f94220fb8a11b5d9f",
+      "anchor": "Complete80-line module read: explicit rawSourceChain, exact sample semantics, local Gram norm supplier, equality/positivity versus full sampleNorm, source normalization substitution and scoped storage/arithmetic budgets. Entry-supplier/canonicalization/finite-bit costs are explicitly not charged by this theorem."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomialResources.lean",
+      "sha256_lf": "e3498942130f957315c3328cc0e55d1054b042a14d670bbb80c743b531832d2d",
+      "anchor": "Complete26-line module read: exists_polynomial_resources supplies a circuit on(n+1)+bondQubits k wires, exact clean-bond normalized column, unitary/no-oracle and gate/depth cap48(n+1)(2k+6)^3. Source signature inspected only, not new kernel execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredHermiteRawSource.lean",
+      "sha256_lf": "5b61bed754471e7413108a8a2c69f5567a6034e6aab406c2586b412c3302cbef",
+      "anchor": "Complete138-line module read: one-run cache/stage/field/core/boundary assembly, collected stage materialization, RawRun and exact raw_contract. It produces an unnormalized chain, not a complete finite-bit normalized compiler certificate."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+      "sha256_lf": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+      "anchor": "Complete229-line module read: exact ordinary/stored projection ledger, same-run raw_total_cost_le, exponential and named integer counters, raw_certified. These exact-real/selected-integer counts are not full arbitrary-precision runtime; no missing-global-compiler inference."
+    }
+  ],
+  "execution": "Private actual author /root/qcb_formal_view_audit, pending distinct exact-content question-successor review, not self-approval. This SAME task wrote the prior SP117 rejection in state-preparation-111-120-review.json (whole report digestffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8; exact finding digest114d7fd61409efca3a2e77f0052725e3460c5c1ff061a1bd45c875e410e07828), read again with the full actual frozen release.checked()[2] item and reserved withdrawal. Prior source/reconciliation exposure disclosed; not blind, not a new identity. Complete operative modules listed in source_checks read directly, including the newer real TT/Hermite producers and their exact interface limits. Observed HEADc432bcccb35a0e63aa0800b379ad4171cfa9c021. Mandatory substantive-worker/publication/digestion/evidence protocols used in this continuous task. Only question changes among frozen nine fields; same three ordered step-node lists preserved. Later source interfaces are contextual read-only evidence, not newly admitted frozen graph nodes or closure. No new Lean/kernel/native-formal/formal-view execution, source-paper seal, human/model/external approval, extra agent, build, canonical/source/policy/prior-private-artifact edit, admission, commit/push or PR106 mutation. Only this private candidate authored."
+}
