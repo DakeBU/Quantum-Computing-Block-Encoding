@@ -67,6 +67,14 @@ reference, rubric and process steps, even when the central formula is correct.
 Record shared subproofs such as the concentration step in plan-319/plan-407;
 shared graph nodes do not establish either complete equivalence or distinctness.
 
+Read the latest Hermite/directed-qubitization checkpoint:
+SP107 derives normalization from the actual coefficients; SP113 derives its unit
+anchor from the existing grid and endpoint value, not positivity. Do not repeat
+the incorrect diagnosis that its original question lacked that unit premise.
+Plan502 distinguishes a generally sufficient pairing from universal necessity;
+plan504 retains leakage until projection and uses directed U/U-adjoint maps.
+These exact changes are mathematical reader evidence, not new formal closure.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite

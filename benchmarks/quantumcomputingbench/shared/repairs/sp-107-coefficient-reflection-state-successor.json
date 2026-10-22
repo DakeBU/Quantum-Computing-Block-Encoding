@@ -1,0 +1,72 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-sp-107",
+  "supersedes_key": "qcb-core-sp-107",
+  "supersedes_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+  "supersedes_contract_hash": "74f67ca96f4d2d3fddf5b38276976be1291002a448bf81f9447f09e0bbf392e6",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-sp-107-textbook-question-v2-normalized-endpoint-shapes",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-contract correction of an underspecified standalone source coefficient/ambiguous reflection demand. Define the actual canonical coefficient polynomial and derive its normalization, rather than silently adding A_k(0)=1 as a standing premise. Preserve the coordinate, opposite-endpoint k-jet decoupling, endpoint-value and weighted-shape target. Only question changes among the nine fields; original assumptions/conventions remain empty, with the same core/family/train split/frozen graph/source scope/three semantic steps. The predecessor is ambiguous, not a counterexample to the canonical production formula. Requested reasoning changes explicitly; no new core, full endpoint-jet reproof or source/kernel closure is claimed.",
+  "question": "For natural k define the canonical real source coefficient polynomial by a_{k,r}=sum_{m=0}^r C(k+r-m,k)/m! for0<=r<=k and A_k(t)=sum_{r=0}^k a_{k,r}t^r. Equivalently it is the degree-k truncation of the formal series exp(t)/(1-t)^(k+1). Let F_k(t)=(1-t)^(k+1)A_k(t), H_k(t)=exp(-1)F_k(t)+F_k(1-t), and S_k(p)=H_k(p+1).\n\nThe predecessor specified only that A_k had degree<=k and asked why the endpoint values were exp(-1) and1. Explain why that degree condition alone cannot determine those values, using k=0 and a suitable constant-polynomial example. For the actual coefficient definition above, derive A_k(0)=1 rather than assuming it.\n\nExplain why t=p+1 sends p=-1,0 to t=0,1 with no derivative scaling. Show how the two endpoint factors make each contribution and its derivatives of orders0,...,k vanish at the OPPOSITE endpoint, and then compute S_k(-1) and S_k(0). Distinguish this opposite-endpoint decoupling from specifying every derivative at the contribution's own endpoint; a full higher-jet derivation is not requested here.\n\nFinally write the exact reflected expression H_k(1-t). State precisely what it means for reflection to exchange the two endpoint SHAPES and their assigned weights. Is H_k literally reflection invariant, or does H_k(1-t)=c H_k(t) hold for some fixed scalar c for all t? Decide this by its endpoint values. Include k=0 and preserve which shape carries exp(-1); do not move that weight to the other endpoint in the definition of the unreflected source.",
+  "reference_answer": "A degree bound alone says nothing about the constant coefficient. If k=0 and A_0=2, then the displayed generic weighted endpoint form is2exp(-1)(1-t)+2t; its endpoint values are2exp(-1) and2, not the requested values. This does not refute the actual canonical source polynomial; it shows why the predecessor's standalone description omitted load-bearing normalization. In the canonical definition, a_{k,0}=C(k,k)/0!=1, and evaluating A_k at0 retains exactly that constant coefficient. Thus A_k(0)=1 for every k. This follows from the supplied finite source coefficients, not from degree<=k or a new normalization hypothesis.\n\nSet t=p+1. Then p=-1 gives t=0, p=0 gives t=1 and dt/dp=1, so ordinary differentiation in p adds no scale factor. F_k(t) has the factor(1-t)^(k+1); by repeated product differentiation, every derivative of order j<=k still vanishes at t=1. Its reflection F_k(1-t)=t^(k+1)A_k(1-t) and its derivatives through order k vanish at t=0. Therefore the unreflected exp(-1)F_k term contributes no k-jet at the right node, while the reflected F_k(1-t) term contributes no k-jet at the left node. Those opposite-node zeros decouple the two contributions. They alone would not determine all derivatives at the responsible node; the actual coefficient identities supply further own-node information, outside this question's requested proof.\n\nFor the endpoint values, F_k(0)=A_k(0)=1 and F_k(1)=0 because k+1>=1. Thus H_k(0)=exp(-1),H_k(1)=1 and S_k(-1)=exp(-1),S_k(0)=1, with the exponential weight on the UNREFLECTED F_k term. No interior or nonzero-k assumption is needed. At k=0,A_0=1,F_0(t)=1-t and H_0(t)=exp(-1)(1-t)+t.\n\nThe exact reflected expression is H_k(1-t)=exp(-1)F_k(1-t)+F_k(t). Reflection exchanges the ordered shape pair(F_k(t),F_k(1-t)). Expressed again against the unreflected ordered pair, the weights change from(exp(-1),1) to(1,exp(-1)). More generally H_{a,b}(t)=aF_k(t)+bF_k(1-t) obeys H_{a,b}(1-t)=H_{b,a}(t). This is weighted SHAPE exchange, not invariance of the fixed-weight polynomial. Literal invariance already fails because H_k(0)!=H_k(1). If H_k(1-t)=c H_k(t) held for all t, t=0 would give c=exp(1), while t=1 would give c=exp(-1); these are unequal. Thus no such fixed scalar exists. The k=0 linear example shows the same failure directly.\n\nThis is the same canonical endpoint decomposition in the production definitions. The corrected question makes its coefficient normalization explicit and replaces ambiguous 'symmetry up to a constant' by an exact weighted-reflection identity. Static inspection of the local source/theorem proofs is not new Lean execution, a new circuit/resource theorem or an external-paper fidelity seal.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Explains degree alone does not force the required endpoint normalization, gives a valid k=0 constant counterexample, and derives A_k(0)=1 from the actual finite coefficient definition."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Uses t=p+1 with correct endpoint/order and no derivative scale, and proves opposite-node derivatives through k vanish from the(k+1) factors without conflating decoupling with all own-node jet values."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Computes F_k(0)=1,F_k(1)=0 and hence S_k(-1)=exp(-1),S_k(0)=1, including k=0 and the correct source weight orientation."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Writes the exact reflected shape/weight exchange and refutes literal invariance or fixed scalar covariance using endpoint values; does not call the unequal-weight polynomial symmetric in the invariant sense."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The canonical source coefficients give A_k(0)=1, which a degree bound alone cannot supply. The shifted endpoint factors decouple opposite k-jets, and reflection exchanges shapes with their weights rather than leaving the unequal-weight source invariant.",
+    "semantic_steps": [
+      {
+        "claim": "The source coefficient definition supplies its constant normalization, and t=p+1 sends physical nodes-1,0 to0,1 without derivative scaling.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_eval"
+        ]
+      },
+      {
+        "claim": "The factors(1-t)^(k+1) and t^(k+1) kill the opposite endpoint derivatives through k; this decoupling does not by itself prescribe every own-node jet.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermitePolynomial.endpointFactor"
+        ]
+      },
+      {
+        "claim": "A_k(0)=1 gives the exact endpoint values with exp(-1) on F_k; reflection swaps the endpoint shapes/weights, not the fixed polynomial or a scalar multiple of it.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Read complete operative coefficientSeries/coefficientPolynomial/endpointFactor/sourceInterpolant169-182; full coefficientSeries_coeff/nonnegative/zero proofs184-204; endpointFactor_series_trunc/coeff/zero_jet/one_jet206-235; full left/right endpoint proofs237-252 and formula/evaluation/degree bounds289-332. These establish actual coefficients, constant1, source weight and p+1 convention. No new Lean run or full external-paper audit inferred."
+    },
+    {
+      "path": "docs/hermite-polynomial-proof.md",
+      "sha256_lf": "ba2d1f1583d222c34c5edcee142d7b5e64905198720969eb9bb58260fe81caf7",
+      "anchor": "Complete local source-to-Lean notes read, especially exact finite coefficients, shifted formula and opposite-node/own-node jet explanation. Notes identify the external source, but no fresh primary-paper retrieval or publication seal is claimed by this candidate."
+    }
+  ],
+  "execution": "Private authoring by actual /root/qcb_formal_view_audit, not independent approval of this candidate. This same task authored the prior exact SP107 uncertain finding; its exposure and current bound withdrawal record are disclosed, not presented as blindness or another reviewer. Full historical prepared item, exact withdrawal finding/policy, production definitions/proof bodies and local notes read. Whole predecessor/contract and actual source LF bindings recomputed at observed head 0b229454bcac07658738e184e255d3ae44e65957. Required repository protocols and substantive-worker exact-contract rules used. No new Lean/kernel/native-formal execution, external source-paper/graph closure, model/human approval, new agent, admission, canonical/source/policy/prior-review edit, commit/push or PR104 change. Only this private question-v2 candidate is authored, pending a distinct exact-content review."
+}

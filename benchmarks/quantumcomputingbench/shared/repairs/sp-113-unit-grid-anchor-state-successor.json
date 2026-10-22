@@ -1,0 +1,82 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-sp-113",
+  "supersedes_key": "qcb-core-sp-113",
+  "supersedes_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+  "supersedes_contract_hash": "3a69ad92920832681d43e5f54f6afcee5b54fa90202e271e585a405a0571ed06",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-sp-113-textbook-question-v2-unit-anchor-without-positivity",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-contract correction of the demanded positivity-as-anchor explanation, not an altered mass inequality. The original question ALREADY supplies f_k(0)=1 and the central grid identity; no unit-grid premise is newly invented. Retain that exact unit-sample/squared-mass target and L>0 domain, but ask the reader to assess/refute the claimed role of strict positivity and prove the bound/nonzero consequence without it. Only question changes among the nine fields; assumptions/conventions stay empty, same core/family/dev split/frozen graph/source scope and three steps/nodes retained. This is not an equivalent explanation demand or a fresh production theorem.",
+  "question": "Let k,n be natural numbers and L>0. The actual real source target is f_k(p)=HermitePolynomial.smoothInitial(k,p): on the splice interval[-1,0] it equals the source Hermite bridge S_k, whose order-zero right endpoint identity is S_k(0)=(-1)^0=1. Thus f_k(0)=1. Its strict positivity at every real p is also known as a SEPARATE source fact.\n\nUse the actual left-inclusive grid on an(n+1)-qubit register: M=2^(n+1), j=0,...,M-1, p_j=-pi L+j*(2 pi L/M). The integer index j is represented in little-endian order, j=sum_{i=0}^n bit_i*2^i. Define raw amplitudes a_j=f_k(p_j) and the unnormalized squared sample mass N=sum_{j=0}^{M-1}a_j^2. Prove N>=1 uniformly in k,n,L, explicitly locating and checking the unit sample. Deduce sqrt(N)>0 without using strict positivity of all samples.\n\nAssess the predecessor's explanation that strict positivity is what makes this unit-grid anchor 'honest' or realizes it as an actual sample. Which exact facts actually realize the unit sample, and what role does strict positivity have in THIS inequality and its nonzero-normalizer consequence? Show by a strictly positive finite sample-table example that positivity alone need not give mass>=1 or a unit-valued sample. This example is a logical test of that proposed proof principle, not a claim about the actual source target. Discuss n=0 carefully: it means one qubit here, not a zero-qubit table. Do not infer preparation-circuit correctness or a success-probability bound from unnormalized mass alone.",
+  "reference_answer": "Let c=2^n. Since c>0 and M=2^(n+1)=2c, we have0<=c<M, so c is a genuine index in the specified register. In little-endian bits its only nonzero bit is bit_n; the proof then uses its actual natural integer value c. Substituting into the stated grid gives p_c=-pi L+2^n*(2 pi L/2^(n+1))=-pi L+pi L=0. This identity is independent of the function's signs and of k. For n=0 the register has M=2 points and c=1, so the same calculation holds on one qubit; this is not a claim about a zero-qubit single-point grid.\n\nAt that physical point the source middle branch applies. Its zeroth right endpoint jet is S_k(0)=(-1)^0=1, hence f_k(0)=1 and a_c=1. This endpoint identity and the explicit grid-index identity are the TWO facts that realize an actual unit sample. The source lemma smoothInitial_zero derives that value from sourceInterpolant_right_jet at order0; it is not deduced from positivity.\n\nEvery real square is nonnegative, regardless of the amplitude's sign. Therefore N=a_c^2+sum_{j!=c}a_j^2=1+sum_{j!=c}a_j^2>=1. In particular N>0 and sqrt(N)>=1>0, so this normalizer is well defined and nonzero. The inference uses only one unit sample and nonnegative squares; it never calls strict positivity of the other amplitudes. Width/order/scale uniformity comes from the same central point and endpoint value persisting for all stipulated k,n,L.\n\nThe old positivity-as-anchor explanation is incorrect. Positivity alone cannot locate a sample equal to1. For any fixed nonempty table size M, take every entry equal to eta=1/(2 sqrt(M)). All entries are strictly positive, yet the squared mass is M eta^2=1/4<1, and no entry equals1. This is a counterexample to the proposed implication from positivity alone, not to the actual Hermite sample table with its known unit term. Conversely a real table with a_c=1 and every other entry0 still has mass1, showing why strict positivity is unnecessary for this lower-bound argument. The actual target's positivity is a separate, stronger structural fact. It CAN independently prove a finite nonempty table's norm is positive, and the separate general sampleNorm_pos proof uses it; however it is neither what realizes the unit grid anchor nor needed once N>=1 has already proved the nonzero-normalizer consequence.\n\nThe existing sampled_mass_ge_one proof follows exactly the actual-grid/unit-value/single-square chain. It does not use sampledAmplitude_pos. Its Lean statement even permits every real L, but this candidate retains the original requested L>0 domain rather than adding a new generalization. Reading that theorem and its proof is static evidence, not a new compilation or a blanket state-preparation certificate. No phase, ancillary-space, circuit-resource or postselection-success conclusion is extracted from the unnormalized mass inequality itself.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Proves c=2^n is an in-range actual LE integer index and substitutes it into the explicit grid to get p_c=0, independent of k,L; handles n=0 as one qubit."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Uses the source zeroth right-endpoint value to obtain f_k(0)=1 and hence a_c=1, distinguishing that identity from amplitude positivity."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Bounds the sum of nonnegative real squares by its unit central term, proves N>=1 uniformly and deduces sqrt(N)>0 without strict positivity."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Refutes positivity-as-unit-anchor necessity with a strictly positive table of mass<1, identifies the actual grid/value dependencies and distinguishes positivity's separate norm-positivity role. Makes no circuit/success or new Lean-execution claim."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The unit conditioning anchor comes from the actual central grid index and the exact endpoint value, not from strict positivity. One squared unit term proves mass>=1 and a nonzero normalizer; positivity is a separate structural theorem.",
+    "semantic_steps": [
+      {
+        "claim": "The actual index2^n lies in the(n+1)-qubit grid and its physical point is0 by direct substitution; n=0 is a one-qubit case.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteIntervalMass.gridPoint_central"
+        ]
+      },
+      {
+        "claim": "The zeroth right endpoint identity gives f_k(0)=1 and therefore the actual central sample is1; positivity does not produce this equality.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteIntervalMass.smoothInitial_zero"
+        ]
+      },
+      {
+        "claim": "Nonnegative squares give N>=1 from the central unit term and hence a nonzero normalizer, without strict positivity. A separate positive-table counterexample shows positivity alone supplies no unit lower bound.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteIntervalMass.sampled_mass_ge_one"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+      "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+      "anchor": "Complete module read. Operative full smoothInitial_zero163-165; centralIndex168-173; gridPoint_central175-182; complete sampled_mass_ge_one186-195. The latter constructs its actual unit term and applies single_le_sum/sq_nonneg, with no positivity theorem call."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+      "sha256_lf": "dee753c9379124c29f3c2b08e2b597714b9f9dacca073ec315add33f7f169ec7",
+      "anchor": "Complete module read. Actual gridPoint23-24, sampledAmplitude27-28, separate positivity30-31, sampleNorm34-35 and full sampleNorm_pos37-42. Distinguishes the valid positivity-based generic nonzero proof from the separate unit-anchor mass lower bound; later circuit roots are not rerun or newly certified."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Read actual sourceInterpolant_right_jet246-252, smoothInitial357-359, middle-branch proof364-366 and separate global positivity373-377, plus operative coefficient/endpoint/formula proofs. These identify the true target and endpoint anchor without a positivity oracle."
+    },
+    {
+      "path": "docs/hermite-polynomial-proof.md",
+      "sha256_lf": "ba2d1f1583d222c34c5edcee142d7b5e64905198720969eb9bb58260fe81caf7",
+      "anchor": "Complete local notes read, especially exact construction and endpoint-jet explanation. Existing arbitrary-k theorem descriptions are provenance, not fresh build evidence or a source-publication seal from this authorship."
+    }
+  ],
+  "execution": "Private authoring by actual /root/qcb_formal_view_audit, not independent approval. This same task wrote the prior SP113 rejected finding and has that full exposure; it is not a new reviewer or blind pass. Full actual prepared item, exact bound withdrawal/policy finding, complete HermiteIntervalMass and HermiteStatePreparation modules, full operative HermitePolynomial definitions/proofs and local notes read. Whole predecessor/contract and whole LF source hashes recomputed at observed head 0b229454bcac07658738e184e255d3ae44e65957. Mandatory repository protocols and substantive-worker rules used in this continuous context. No production Lean/source edit, new kernel/native-formal execution, external source-paper closure, model/human approval, extra agent, admission, canonical/policy/prior-report edit, commit/push or PR104 change. Only this private question-v2 candidate is authored, requiring a distinct exact-content review."
+}

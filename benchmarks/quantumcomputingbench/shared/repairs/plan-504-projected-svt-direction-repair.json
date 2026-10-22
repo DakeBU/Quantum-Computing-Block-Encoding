@@ -1,0 +1,84 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-504",
+  "supersedes_key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+  "supersedes_item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-504-textbook-v1-projected-svt-directed-maps-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition successor. The actual question says U realizes A in its flag block and asks the correct assembled even/right and odd/balanced operators; it does NOT demand that each bare U application be a bidirectional swap or that the full unitary image be purely clean. Thus this is an explicit block-output clarification and proof repair, not a silent correction of a false question demand. Preserve all nine CONTRACT_FIELDS, the same core/family/test_public split/frozen graph/source scope and six semantic steps. Exact unchanged original contract hash:8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26. Replace the false answer/rubric/step swap rationale by U:H→H', U†:H'→H, retain the flag-orthogonal terms, handle singular values0/1 and keep exact normalization/projection distinct from state preparation or gate cost. Pending distinct review, not selfapproval or admission.",
+  "reference_answer": "Interpret the requested output operators as the flag-to-flag blocks of the qubitization unitaries, as in the given block-encoding model, not as their entire output states. Let J map a system vector into the clean flag state, let P=JJ† and R=2P-I, and use the question's exact clean block J†UJ=A. Hence A is a contraction: ||Ax||≤||UJx||=||x||, so each singular value sigma_i lies in[0,1]. No normality, diagonalizability or Hermiticity of A is assumed. If one instead had only a scaled or approximate encoding of a separate target, this exact premise would have to be replaced by its actual normalized block and an error analysis; the present identities do not automatically transform the unscaled target.\n\nChoose orthonormal right/left singular bases satisfying Av_i=sigma_i w_i and A†w_i=sigma_i v_i. Put p_i=Jv_i and p'_i=Jw_i. For sigma_i<1 let s_i=sqrt(1-sigma_i^2), q_i=(U†p'_i-sigma_i p_i)/s_i, and q'_i=(Up_i-sigma_i p'_i)/s_i. Exact compression and unitarity imply that q_i,q'_i are unit vectors orthogonal to the entire clean subspace. The directed input/output planes are H_i=span{p_i,q_i} and H'_i=span{p'_i,q'_i}. Directly,\nUp_i=sigma_i p'_i+s_i q'_i, Uq_i=s_i p'_i-sigma_i q'_i,\nU†p'_i=sigma_i p_i+s_i q_i, U†q'_i=s_i p_i-sigma_i q_i.\nThus U:H_i→H'_i and U†:H'_i→H_i have matrix S_i=[[sigma_i,s_i],[s_i,-sigma_i]] between the respective ordered bases. These are directed maps: U† is the guaranteed reverse, not a second application of U. The geometric planes may coincide or differ; neither possibility changes the argument.\n\nIn both bases R has matrix Z=diag(1,-1). Set E=U†RUR and M_i=S_i Z=[[sigma_i,-s_i],[s_i,sigma_i]]. Then E on H_i has matrix M_i^2, while UR maps H_i to H'_i with matrix M_i. Matrix powers of this scalar rotation yield the full state actions\nE^k p_i=T_{2k}(sigma_i)p_i+s_i U_{2k-1}(sigma_i)q_i for k≥1,\nUR E^k p_i=T_{2k+1}(sigma_i)p'_i+s_i U_{2k}(sigma_i)q'_i for k≥0.\nHere U_l is the second-kind polynomial, not the bare encoding unitary U, and E^0 p_i=p_i is treated directly. These formulas retain the generally nonzero flag-orthogonal components. In the odd expression the R in the extra UR matters on the leakage; it must not simply be omitted as an unqualified extra-U step.\n\nApplying the clean projection kills q_i and q'_i. For every right basis vector v_i we therefore have\nJ†E^kJ v_i=T_{2k}(sigma_i)v_i,\nJ†UR E^kJ v_i=T_{2k+1}(sigma_i)w_i.\nSince the right vectors form an orthonormal basis, summing these actions gives exactly\nJ†E^kJ=sum_i |v_i>T_{2k}(sigma_i)<v_i|,\nJ†UR E^kJ=sum_i |w_i>T_{2k+1}(sigma_i)<v_i|.\nThe even paired iterate returns to the right plane and therefore uses v_i on both outer sides; the odd extra directed UR ends in the left plane and therefore uses w_i on the left. Parity refers to the alternating U/U† construction and this final directed map, not a universal rule that each U swaps two planes in both directions.\n\nAt sigma_i=0 the companion definitions remain valid because s_i=1; the odd clean coefficient is T_{2k+1}(0)=0, whereas the even one is T_{2k}(0)=(-1)^k. At sigma_i=1 the leakage norms vanish, so use the direct relations Up_i=p'_i and U†p'_i=p_i instead of dividing by zero. The input clean line is fixed by E, while UR sends it to the output clean line: the output line need not be the same physical line as the input. This gives the required even and odd coefficients1. It does not assert that an arbitrary general U has a single invariant clean eigenvector. Degenerate singular-vector choices do not change the resulting operators: T_{2k}(x)=h_k(x^2) yields the even operator h_k(A†A), while T_{2k+1}(x)=x g_k(x^2) yields the odd operator A g_k(A†A). In particular the odd expression does not depend on arbitrary choices of zero-singular-value left vectors.\n\nTwo concrete checks explain why the corrected distinctions matter. In the source's Eq10.79 example, write the ambient ancilla-major basis as e_0,e_1,e_2,e_3. Its U sends e_0→e_2→e_1→e_0 and fixes e_3. For the nilpotent A and its sigma=0 right/left vectors, H=span{e_0,e_2} and H'=span{e_1,e_2}; yet U(H')=span{e_0,e_1} is not H. This disproves a bidirectional-U swap claim, while U† does return H' to H. Separately let A=(1/2)I_2 and use U=[[tI_2,sI_2],[sI_2,-tI_2]], t=1/2, s=sqrt(3)/2. For a unit v, E Jv=(-1/2)|0>v+(sqrt(3)/2)|1>v. Its clean block coefficient is -1/2, but the unit-norm output is not the unnormalized clean vector alone.\n\nFor a unit input psi, if F denotes one of the displayed clean operators, projection succeeds with probability ||F psi||^2; conditional on a nonzero success the normalized system vector is F psi/||F psi||. A zero branch cannot be normalized. The clean block identities alone are not deterministic state-preparation claims or gate/query/finite-bit resource bounds. The source's general-SVD derivation in Eqs10.61–10.75 establishes these formulas directly; its printed Proposition10.7 has a narrower Hermitian label, which is not used as an extra premise or as a substitute for this derivation.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Uses E=U†RUR and shows the even clean block is sum_i |v_i>T_{2k}(sigma_i)<v_i|, with exact flag-to-flag meaning rather than a whole-state equality."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Tracks the extra directed UR, not an omitted R or a bidirectional-U swap, and obtains the odd clean block sum_i |w_i>T_{2k+1}(sigma_i)<v_i|."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Derives the scalar amplitudes from the directed singular-vector companion matrices, retains flag-orthogonal leakage before projection, and treats k=0 and sigma_i=0/1 without zero-norm division."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Explains parity by alternating U:H_i→H'_i and U†:H'_i→H_i with a final UR for odd order; distinguishes right-even from balanced-odd assembly without requiring distinct geometric planes or making deterministic full-output, scaling/error or resource claims."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Even paired qubitization has clean block V T_{2k}(Sigma)V†; an extra directed UR gives W T_{2k+1}(Sigma)V†. The guaranteed maps are U:H_i→H'_i and U†:H'_i→H_i; generally nonzero flag-orthogonal terms disappear only under the stated clean projection.",
+    "semantic_steps": [
+      {
+        "claim": "From the exact clean block and an SVD, define directed companion matrices for U:H_i→H'_i and U†:H'_i→H_i, without a bidirectional-U or distinct-plane premise; singular-value1 is handled directly when leakage vanishes.",
+        "supporting_nodes": [
+          "concept:block-encoding",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "R is diag(1,-1) in both companion bases, so E=U†RUR acts as M(sigma_i)^2 on the input plane; its kth power has clean coefficient T_{2k}(sigma_i) and generally nonzero orthogonal leakage.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Projecting out leakage and summing over the right singular basis yields the even operator sum_i |v_i>T_{2k}(sigma_i)<v_i|.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The extra directed UR has between-basis matrix M(sigma_i), so UR E^k has clean coefficient T_{2k+1}(sigma_i) on the left singular vector, with orthogonal leakage retained before projection.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Projecting and summing gives the odd operator sum_i |w_i>T_{2k+1}(sigma_i)<v_i|; the zero-singular-value odd term vanishes, and the singular-value1 case needs no normalized leakage companion.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Parity distinguishes return to the right plane from a final directed map to the left plane; it is not a universal-U swap rule or a deterministic clean-state statement, and no independent gate/error guarantee is inferred.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry entry lin-wiebe-2026-qasc, metadata only. Independently retrieved pinned primary: complete printed172–174, the general-SVD directed construction Eqs10.61–10.75 and explicit nilpotent unitary Eq10.79, with source171's analogous directed-basis notation also read. The general proof is reconstructed from these equations rather than inferred from Proposition10.7's printed narrower Hermitian label. Endpoint, representative-independence and full-state/projection explanations are this author's mathematical reconstruction, not a claim of local Lean closure."
+    }
+  ],
+  "execution": "Private answer/rubric/exposition authorship by actual /root/qcb_native_comparison, pending distinct exact answer-successor review, not selfapproval/admission/kernel/nativeformal/stable certification. I authored the frozen502–510 reader report including504's rejection, reread that finding and the complete actual historical504 mathematical/grading/source record through release.checked()[2], and received root's repair objective; no blindness or independent review of my own candidate is claimed. The question's flag-block assembly demand is retained exactly; the erroneous reverse-U and clean-whole-state assertions are removed from the answer/rubric/steps. For this task I freshly retrieved the Lin–Wiebe PDF in memory:5718900 bytes,447 pages, raw SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599, matching the historical pin. Complete printed170–174 read;171/173 personally rendered and viewed in memory. No PDF/page/source bytes saved or redistributed. A bounded exact SymPy4×4 discriminator verified the displayed t=1/2 full output [-1/2,0,sqrt(3)/2,0]^T; this is finite diagnostic evidence, not kernel or arbitrary-width/circuit verification. Only the requested private502/504 candidates are authored; no canonical/source/policy, frozen original, prior candidate or report is edited by this task."
+}

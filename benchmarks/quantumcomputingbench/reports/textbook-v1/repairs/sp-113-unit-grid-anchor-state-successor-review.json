@@ -1,0 +1,130 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-sp-113",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-113-unit-grid-anchor-state-successor.json",
+  "repair_record_digest": "f5854401b05a07ca94c2aa833e7741057875f07f63a792481d4a17e041f23d72",
+  "original_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+  "original_contract_hash": "3a69ad92920832681d43e5f54f6afcee5b54fa90202e271e585a405a0571ed06",
+  "successor_contract_hash": "84ba33c1266ca6bce4771fd68dc57cc64a084b96719cd7addab2896bcdd23973",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate question/reference/rubric/exposition accepted as mathematically correct explicit first question-version2 correction. Not predecessor-equivalence, policy admission, source-blind approval, fresh kernel evidence or automatic native formal transfer.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate/prior-finding author /root/qcb_formal_view_audit and original structured-preparation-author-b2.",
+    "repair_author": "/root/qcb_formal_view_audit",
+    "original_author": "structured-preparation-author-b2",
+    "exposure": "Not blind: prior Hermite/cohort/source exposure in this task, current parent focus and exact bound withdrawal findings are disclosed. Full actual prepared original, entire private candidate, full operative source/proof bodies and complete local notes were read. The prior author's finding/recommendation is not mathematical evidence for successor acceptance; reconstruction below independently checks the exact contract."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared original via release.checked()[2]), not a current-reader substitute.",
+    "repair_record_digest": "qcb_core.digest(entire exact candidate JSON, including answer/rubric/exposition/source/execution metadata).",
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the exact original nine-field contract with ONLY question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "actual_checks": "Exact allowed candidate keys/schema, predecessor key/whole-item/contract bindings, pending marker, version2 key grammar and changed question verified. The other8 contract fields are literally inherited, not overridden. Exposition count is3 and each supporting-node list equals its original per-step list exactly. Source LF bindings checked. Old/new contract hashes differ.",
+    "retained_values": "family=hermite-discrete-mass; split=dev; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; assumptions=[]; conventions=[]; targets=[\"declaration:QuantumBlockEncoding.HermiteIntervalMass.centralIndex\",\"declaration:QuantumBlockEncoding.HermiteIntervalMass.gridPoint_central\",\"declaration:QuantumBlockEncoding.HermiteIntervalMass.smoothInitial_zero\",\"declaration:QuantumBlockEncoding.HermiteIntervalMass.sampled_mass_ge_one\"]; supporting_nodes=[]; source_refs retained exactly."
+  },
+  "withdrawal_binding": {
+    "withdrawal_row_digest": "aa778d6bdeb5ba61ef0cbbb9c67646d59d3d3466840d3d716e1ada09f893f1d2",
+    "review_path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+    "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+    "finding_digest": "b81bd650d3b6b65a3997bdd8b1ed2f9eaa69ebb5ba2c3716c32dc76e5506548e",
+    "prior_verdict": "reject",
+    "assessment": "Full finding and exact row loaded; predecessor item, whole prior review and whole item-finding digests verified. These bind what was previously withheld, not proof that this successor is correct. Current-policy whole-file hash is intentionally not made an evergreen source dependency because later integration must mutate policy."
+  },
+  "contract_change_assessment": {
+    "classification": "First explicit question-contract successor, not an unchanged-question answer repair.",
+    "predecessor_and_withdrawal": "The original ALREADY states f_k(0)=1 and that the actual central index2^n maps to p0 on n+1 qubits. Its mass inequality and single-term proof are true. The bound withdrawal rejects the question/reference/r4 explanation attributing realization of that unit anchor to strict positivity. The candidate accurately says this is a dependency/explanation defect, not a missing endpoint/grid premise or a false mass theorem.",
+    "changed_requested_reasoning": "Version2 retains the existing unit-grid/squared-mass problem and L>0 domain, explicitly asks to assess/refute positivity-as-anchor reasoning, derives the same mass and nonzero-normalizer consequence without it, and supplies a positive-table logical counterexample. This changes the demanded explanation transparently rather than silently adding an f(0)=1 promise or merely regrading the old answer.",
+    "retained_scope_and_minimality": "Same hermite-discrete-mass family, dev split, frozen graph/source refs and3 semantic steps are inherited. Assumptions/conventions stay empty. The actual smoothInitial and grid definitions clarify the original target/indexing; they do not alter the physical table, add an oracle, strengthen positivity, impose extra width/rank or extend the requested L domain. A definitionally named noncomputable source is not a new efficient producer theorem.",
+    "admission_boundary": "No canonical source/policy/data, graph, prior report/candidate, companion view or publication gate is changed. A local theorem can support mathematics but does not prove an exact revised NL formal equivalence; any future formal view requires its own exact alignment and kernel gate."
+  },
+  "substantive_reconstruction": {
+    "actual_target_and_endpoint": "HermitePolynomial.smoothInitial uses exp(p) if p<-1, sourceInterpolant on the remaining p<=0 branch, and exp(-p) for p>0. Thus p=0 uses the MIDDLE branch. The complete sourceInterpolant_right_jet proof evaluated at j=0 gives S_k(0)=(-1)^0=1 for every natural k, and smoothInitial_zero transfers it. The strict-positivity theorem is separate and is not a premise of this value equality.",
+    "grid_and_le_index": "gridSize(q)=2^q and gridPoint(q,L,j)=-pi L+j.val*(2pi L/2^q). With q=n+1 and c=2^n, c>0 and c<2c=M=2^(n+1), so it is an actual finite index, not an existential point outside the register. PrimitiveBasisLEEquiv has recursion index(bits)=bit0+2*index(tail), which gives j=sum_(i=0..n)bit_i2^i; c is exactly the bit string with only wire n set. Substitution gives p_c=-pi L+2^n*(2pi L/2^(n+1))=0. The nonzero denominator is2^(n+1), not L; no positivity of samples or division by a potentially zero scale is used.",
+    "unit_term_and_mass": "For a_j=f_k(p_j), the actual central sample is a_c=f_k(0)=1. Every real square is nonnegative even if some entries have arbitrary signs or zeros. Hence N=sum_j a_j^2=a_c^2+sum_(j!=c)a_j^2=1+sum_(j!=c)a_j^2>=1, uniformly in the requested k,n,L. Therefore N>0 and sqrt(N)>=1>0. The grid identity plus endpoint value realize the anchor; the already established lower bound proves its own nonzero-normalizer consequence.",
+    "positivity_counterexample_and_denominator": "For any nonempty finite table with integer M>=1, sqrt(M)>0. Set every entry eta=1/(2sqrt(M)); eta>0, eta<=1/2 and no entry is1. Its total squared mass is M/(4M)=1/4<1, so positivity alone supplies neither the unit sample nor the bound1. The denominator check uses M>0 explicitly; the actual Hermite table has M>=2. Conversely a table with one unit entry and all others0 already has N=1. Both examples test proof dependencies, not alternate values of the actual positive Hermite target.",
+    "zero_width_and_scale_boundary": "n=0 here means q=1 and M=2, with c=1 and grid points -pi L,0; it is not a zero-qubit singleton table. The source sampled_mass_ge_one theorem indeed has L:real without an L>0 premise, and at L=0 all samples equal1, but this candidate retains the original L>0 requested domain. Its uniformity does not require any continuum integral, asymptotic quadrature or growing-width approximation. A zero-qubit table is genuinely a different case: with q=0,L=1 its single grid point is -pi<-1, so mass=exp(-2pi)<1. The original n+1 width avoids that case; this is not a new restriction supplied by the successor.",
+    "two_distinct_norm_proofs": "The full sampled_mass_ge_one proof constructs its central hc equality via gridPoint_central and smoothInitial_zero, then uses Finset.single_le_sum with sq_nonneg. It calls no sampledAmplitude_pos. Separately sampleNorm_pos in HermiteStatePreparation uses normSq_pos_of_positive and normSq_reindex to prove generic positivity on any finite nonempty sample domain. That independent valid positivity proof does not imply positivity produced a unit term; once N>=1 is known it is unnecessary for this particular normalizer conclusion. Source presence is not logical dependence.",
+    "formal_and_resource_boundary": "The reviewed candidate concerns unnormalized mass and a well-defined positive scalar normalizer only. The later hermiteCircuit/stateAction/root/resource declarations in the read module have additional dependencies and semantic content; they do not transfer automatically to this question successor. No ancilla, phase, gate cost, success-probability, efficient arithmetic, source-paper seal or new kernel/native formal assertion is extracted from N>=1."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: correctly acknowledges the original unit-value/grid premises and changes only their demanded explanation. The actual grid, target branch, n+1 convention, L>0 domain and requested nonzero consequence are explicit.",
+    "reference_answer": "Accept in full. In-range dyadic index, LE representation, grid substitution, right jet at order0, nonnegative-square bound, sqrt consequence and positive-table counterexample all match the source. Its positivity discussion distinguishes separate generic norm positivity from the unit-anchor proof.",
+    "rubric": "All c1-c4 are supported: actual LE index/n0; source endpoint value independent of positivity; central term plus nonnegative squares and sqrt; precise refutation of positivity-as-anchor with no circuit/success promotion. No new premise is disguised as a correction.",
+    "exposition": "Summary and all3 steps preserve exactly the predecessor's gridPoint_central, smoothInitial_zero and sampled_mass_ge_one node lists. The unchanged target set also retains centralIndex. Expanded explanations do not add a formal companion or change the frozen graph.",
+    "necessity_minimality_verdict": "Accept the whole exact explicit question-version2 candidate. The original main inequality remains correct; rejection concerned its explanatory demand/rubric, which this candidate now assesses openly. No automatic transfer of old formal/source acceptance or new current-reader admission is claimed."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+      "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+      "anchor": "Complete module read. Full smoothInitial_zero163–165, actual centralIndex168–173, gridPoint_central175–182 and sampled_mass_ge_one186–195 proofs inspected. Exact central finite index, endpoint equality and single_le_sum/sq_nonneg chain contain no positivity call; wider interval-mass formulas are separate."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+      "sha256_lf": "dee753c9379124c29f3c2b08e2b597714b9f9dacca073ec315add33f7f169ec7",
+      "anchor": "Complete module read. Actual grid/sample definitions23–28, separate sampledAmplitude_pos30–31 and sampleNorm34–35/full sampleNorm_pos37–42 distinguish the actual physical amplitude and generic positivity proof. Later circuit/action/count/root bodies were read but are not replayed or promoted by this scalar review."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Complete module read. Source right endpoint jet proof246–252, smoothInitial branch definition357–359 and middle/global positivity proofs364–377; coefficient/truncation and exact evaluation regions establish the canonical source target. Order-zero anchor and strict positivity are distinct conclusions."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveBasisLE.lean",
+      "sha256_lf": "469c176f1f47732661d526b72de1f9906a3c335061f6a4c82766877ce5979fad",
+      "anchor": "Complete module read. primitiveBasisLEEquiv definition15–25 and full succ_value recursion32–37 fix wire0 as least significant; high-bit index2^n follows. Fixed finite native_decide proofs elsewhere were read as source text only, not executed."
+    },
+    {
+      "path": "QuantumBlockEncoding/Core.lean",
+      "sha256_lf": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894",
+      "anchor": "Actual gridSize definition44 and zero-width convention read in full context: gridSize(q)=2^q, including gridSize0=1. This disambiguates original n+1 qubits from q0 and guarantees the table is nonempty."
+    },
+    {
+      "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa",
+      "anchor": "Complete operative normSq definition/nonneg proof211–215, normSq_pos_of_positive319–323 and normSq_reindex389–391 read, with their actual bodies. The positivity-based generic norm proof and reindex equivalence are distinct from the unit-anchor proof; no arbitrary broader compiler proof is claimed reviewed in full."
+    },
+    {
+      "path": "docs/hermite-polynomial-proof.md",
+      "sha256_lf": "ba2d1f1583d222c34c5edcee142d7b5e64905198720969eb9bb58260fe81caf7",
+      "anchor": "Complete local source-to-Lean notes read. The precise source formula/endpoint explanation and stated verification boundaries are local mathematical exposition, not fresh external-paper inspection or a new successful build."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "sha256_lf": "dfb5230153faecc09bbd4f8c3e88b16878358919670934e597c1a4ff7e0a2c9c",
+      "anchor": "Complete exact qcb-core-sp-113 withdrawal finding read and digest-bound above. Prior finding provenance only, not mathematical support or successor approval."
+    }
+  ],
+  "provenance": {
+    "private_reviewed_at": "_review_tmp/sp-113-unit-grid-anchor-state-successor.json",
+    "locator_correction": "Only repair_record was retargeted to the intended repository-relative canonical locator, with this truthful private inspection location retained. No candidate transport or policy admission is claimed; mathematical findings and exact candidate binding are unchanged.",
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "retrieval": "Full actual historical original from release.checked()[2] and entire exact private candidate read. The current reader's withholding does not prevent inspecting the actual predecessor.",
+    "instructions_and_skills": "Mandatory AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared contract/acceptance and substantive-worker skill read completely in this continuous context; head unchanged from preceding gate. Exact-contract/definition-expansion/source-proof/typed-boundary rules applied.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "source_inspection_scope": "Full HermitePolynomial, HermiteIntervalMass, HermiteStatePreparation, PrimitiveBasisLE and local Hermite notes were read where relevant; Core grid vocabulary and RealAmplitudePreparation operative norm/reindex proofs were additionally inspected for113. Static full proof text, not theorem-name matching or compile receipt inheritance.",
+    "formal_status": "No Lean/kernel/native formal execution was necessary or performed. Existing noncomputable definitions and theorem bodies are inspected static evidence; neither their presence nor this NL review certifies an exact revised formal companion, arbitrary compilation cost or source-publication seal.",
+    "external_primary_limit": "This bounded local-Lean/source gate does not freshly retrieve/audit arXiv2403.19123v3. Local notes identify that source, but no external-paper-byte, full-paper fidelity or public source seal is claimed. Exact local definition/proof mathematics is independently reconstructed.",
+    "source_hash_method": "qcb_integrity.text_sha over whole actual tracked local files; qcb_core.digest for exact whole candidate/original/contracts and withdrawal records. LF bindings are actual source content, not kernel execution.",
+    "mutation_scope": "Only parent _review_tmp/sp-113-unit-grid-anchor-state-successor-review.json written. Candidates, canonical files/policy/source, prior reports, history/current publication gate are untouched; no commit/push.",
+    "remaining_limits": "Acceptance is mathematical/source review of this exact question successor only. No global dedup, new core count, cross-split reconciliation, external collaborator/human approval, novelty or automatic formal transfer."
+  }
+}
