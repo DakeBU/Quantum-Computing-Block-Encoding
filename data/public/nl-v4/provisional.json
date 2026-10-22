@@ -1,0 +1,1422 @@
+[
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Signal value fixed to the clean value for the whole argument",
+      "Finite-dimensional complex (or semiring) matrices; matrix-vector action is linear"
+    ],
+    "author": {
+      "identity": "native-be-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "49107573667056ff1425e8feb3970e0570e32daa1f2ff99089a64d3396bea5c5",
+    "context_hash": "02e92de28bb736293282788d1fed1e9b5309377af4b992015e53927d6d1e9618",
+    "conventions": [
+      "Compound index s*systemDim+k with signal high-order",
+      "Clean output amplitude = coordinate (clean,output) of U applied to the (clean,input) basis ket"
+    ],
+    "core_id": "qcb-core-be-005",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A complete two-direction equivalence proof resting on the column-selection identity and linearity, with correct scoping of the normalizer and failure branch."
+    },
+    "evidence_relation": "local_source_supported",
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "be-projection-action-equivalence",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "existing_source_not_freshly_verified",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-b6645e576299a1775e27",
+    "key": "qcb-core-be-005",
+    "language": "en",
+    "legacy_split_constraints": [],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "be-projection-action-equivalence",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-be-005",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-be-005",
+    "native_nl": {
+      "author_identity": "native-be-author",
+      "core_summary": "Proves the pointwise equivalence between the projected-block certificate and the clean-basis-action certificate via column selection, and extends it to arbitrary inputs by linearity.",
+      "evidence_relation": "local_source_supported",
+      "existing_core_aliases": [],
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "new_problem_core": true
+    },
+    "primary_sources": [],
+    "question": "Fix the clean signal value. Prove that the following two certificate conditions are equivalent: (i) the projected system x system block of U equals a target A entrywise; (ii) for every system basis input and output, the clean output amplitude of U on the clean basis input (clean signal, basis input) equals A(output,input). Explain each direction, name the single linear-algebra fact that makes one clean-basis amplitude equal to one projected-block entry, and state how (ii) extends from basis inputs to an arbitrary normalized system input.",
+    "reference_answer": "Write the compound (flattened) index for signal value s and system index k as s*systemDim + k, with s fixed to the clean value throughout. The projected block entry at (output,input) is block(output,input) = U(clean*systemDim+output, clean*systemDim+input). The clean output amplitude is the coordinate at compound index (clean,output) of the vector U applied to the basis ket at compound index (clean,input). Key fact: applying a matrix to a computational basis ket selects the corresponding column of the matrix (mulVec of a single-one indicator yields that column). Hence the clean output amplitude equals U(clean*systemDim+output, clean*systemDim+input), which is exactly block(output,input). (i) => (ii): if block = A entrywise, then for each (output,input) the clean output amplitude equals block(output,input) = A(output,input). (ii) => (i): if every clean output amplitude equals A(output,input), then by the same column-selection identity every projected-block entry equals A(output,input), so block = A entrywise. The two statements are therefore pointwise equivalent at the fixed signal value. Extension to arbitrary input: write a normalized system state as a linear combination of system basis vectors; the clean output on this input is the same linear combination of the per-basis clean outputs by linearity of matrix-vector action, so the clean-branch action equals A acting on the system state (up to the normalizer and the orthogonal failure branch, which only records the unitarity probability deficit). This equivalence is why a construction may prove the block directly or prove the clean action and conclude the other.",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "duplicate",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/block-review.json",
+        "artifact_sha256": "bd3133e6201e79f7c27b702cb0ac11d56fba7dcaf6a9181034841b8a3fb8e400",
+        "authored_sha256": "49107573667056ff1425e8feb3970e0570e32daa1f2ff99089a64d3396bea5c5",
+        "checked_sources": [
+          "QuantumBlockEncoding/ConcreteSemantics.lean applyVec_basisKet 70-74, cleanBasisActionAmplitude 249-256, cleanBasisActionAmplitude_eq_signalSystemBlockProjection 259-269, pointwiseProjection_iff_cleanBasisAction 277-294",
+          "native_nl/foundations.json qcb-core-la-008 645-735"
+        ],
+        "content_hash": "e4fc903bf6e1023850215c1b6cb0697dab5eaa30f595949775ca14f51a877112",
+        "core_aliases": [
+          "qcb-core-la-008"
+        ],
+        "core_verdict": "duplicate",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-be-005",
+        "method": "distinct-context-source-review",
+        "notes": "DUPLICATE of foundations la-008. Identical target_nodes {pointwiseProjection_iff_cleanBasisAction, cleanBasisActionAmplitude_eq_signalSystemBlockProjection} (verified set-equal). Both prove the same biconditional (projected-block pointwise equality <=> clean-basis-action equality) via the same single bridge (applyVec_basisKet column-selection), both directions, same linearity extension and failure-branch remark. be-005 only adds the explicit s*systemDim+k index; same mathematical core already authored in foundations. Reject as duplicate, not counted toward native-BE quota.",
+        "reviewer": "native-be-review-distinct-context",
+        "verdict": "reject"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "Identify the column-selection fact (matrix applied to a basis ket = that column) as the bridge, and show one clean-basis amplitude equals one projected-block entry via the compound index s*systemDim+k",
+        "id": "c1",
+        "weight": 1
+      },
+      {
+        "criterion": "Prove both directions (i)=>(ii) and (ii)=>(i) pointwise at the fixed signal value",
+        "id": "c2",
+        "weight": 1
+      },
+      {
+        "criterion": "Extend (ii) from basis inputs to an arbitrary normalized input by linearity, noting the normalizer and that the failure branch is only unitarity evidence",
+        "id": "c3",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 3,
+    "semantic_steps": [
+      {
+        "claim": "Applying U to a basis ket selects a column, so the clean output amplitude equals the corresponding full-matrix entry, i.e. one projected-block entry.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet",
+          "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection"
+        ]
+      },
+      {
+        "claim": "Pointwise equality of all clean amplitudes with A is logically equivalent to pointwise equality of the projected block with A, giving both directions.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction"
+        ]
+      },
+      {
+        "claim": "Linearity of matrix-vector action extends the basis statement to any normalized system input.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "theorem applyVec_basisKet 'applyVec operator (basisKet cols index) = operator.col index' (lines 70-74); def cleanBasisActionAmplitude (lines 249-256); theorem cleanBasisActionAmplitude_eq_signalSystemBlockProjection (lines 259-269); theorem pointwiseProjection_iff_cleanBasisAction (lines 277-294)",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+        "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+      },
+      {
+        "anchor": "def signalSystemBlockProjection and signalSystemBlockRowIndex 'signalIdx * rows + systemIdx' (lines 695-772)",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/CircuitSemantics.lean",
+        "sha256": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666"
+      }
+    ],
+    "split": "dev",
+    "split_group": "be-projection-action-equivalence+block-encoding certification styles / projection-vs-action equivalence",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 5,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet",
+      "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude",
+      "declaration:QuantumBlockEncoding.signalSystemBlockProjection"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+      "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection"
+    ],
+    "task_hash": "abe4b624e50be998db17aea399b601531757aceae7f68e798bd175f52db24116",
+    "task_kind": "proof",
+    "topic": "block_encoding",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "U is unitary so the total output norm is 1",
+      "alpha is chosen at least ||A|| so the projected block A/alpha is a valid contraction for every input"
+    ],
+    "author": {
+      "identity": "native-be-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "2bb59f58aa67cbf13308b51aff190206d50c0c781b6ee7b6427ece2eb487f3a1",
+    "context_hash": "00be69e0e4b1f01b6a85df21819c136d5c64c6bd38af3a2f17cc7c9a5040b86c",
+    "conventions": [
+      "Clean branch = all-zero auxiliary bra/ket; success = all-zero postselection outcome",
+      "Normalizer alpha enters as block = A/alpha"
+    ],
+    "core_id": "qcb-core-be-007",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Combines the projected-block contract with unitarity to compute the postselection success probability and derive the amplitude-amplification query cost; charges the normalizer."
+    },
+    "evidence_relation": "nl_bridge_from_inspected_source",
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "be-postselection-success",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "none",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-c4df090a401e521616c9",
+    "key": "qcb-core-be-007",
+    "language": "en",
+    "legacy_split_constraints": [
+      "test_public"
+    ],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "be-postselection-success",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-be-007",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-be-007",
+    "native_nl": {
+      "author_identity": "native-be-author",
+      "core_summary": "Computes the all-zero postselection success probability ||A v||^2/alpha^2 of a block encoding from unitarity and the projected-block contract, and derives the 1/alpha query cost and normalizer charge.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "existing_core_aliases": [],
+      "formal_counterpart": "none",
+      "new_problem_core": true
+    },
+    "primary_sources": [],
+    "question": "A block encoding is read by preparing the auxiliary register in the all-zero state, applying U, and postselecting the auxiliary register back on all-zero. Suppose U block-encodes A with normalizer alpha (so the auxiliary-zero projected block equals A/alpha) and the input system state is a normalized vector v. Express the unnormalized clean output branch and its squared norm, give the exact success probability of the all-zero postselection, and state when this probability equals (||A v|| / alpha)^2. Why is the success probability generally strictly below 1, and what does this cost imply for using the block encoding as a subroutine?",
+    "reference_answer": "Prepare |0^a> tensor |v>, apply U. Decompose the output as |0^a> tensor w_clean + (orthogonal auxiliary-nonzero branches), where w_clean = (<0^a| tensor I) U (|0^a> tensor |v>). Because the auxiliary-zero projected block of U equals A/alpha, w_clean = (A/alpha) v. The all-zero postselection keeps exactly the clean branch, so the unnormalized clean output is (A/alpha) v with squared norm ||(A/alpha) v||^2 = ||A v||^2 / alpha^2, and the post-measurement normalized state is (A v)/||A v||. The success probability of the all-zero auxiliary outcome is therefore p = ||A v||^2 / alpha^2 = (||A v|| / alpha)^2. This equals (||A v||/alpha)^2 exactly whenever the projected block is exactly A/alpha (the exact block-encoding case); in the epsilon-approximate case it is this value up to an O(epsilon) correction. Since U is unitary, the total output norm is 1, so p <= 1 with equality only in the degenerate case ||A v|| = alpha (e.g. alpha = ||A|| and v a top singular vector with the orthogonal branch empty); generically ||A v|| < alpha (alpha is chosen at least the operator norm so the encoding is valid for all v), so p < 1 strictly. The cost implication: one query to U succeeds with probability p that can be far below 1, so naive repetition costs O(1/p) = O(alpha^2/||A v||^2) trials; amplitude amplification reduces this to O(alpha/||A v||) queries. This 1/alpha success penalty is exactly why the normalizer alpha is a charged resource and why alpha should be kept close to ||A||.",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "existing_view",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/block-review.json",
+        "artifact_sha256": "bd3133e6201e79f7c27b702cb0ac11d56fba7dcaf6a9181034841b8a3fb8e400",
+        "authored_sha256": "2bb59f58aa67cbf13308b51aff190206d50c0c781b6ee7b6427ece2eb487f3a1",
+        "checked_sources": [
+          "QuantumBlockEncoding/BlockEncoding.lean ApproximateOperatorBlockEncodingCandidate 136-153",
+          "QuantumBlockEncoding/ConcreteSemantics.lean 249-294 (no operator-norm theorem present)",
+          "native_nl/planned.json plan-008"
+        ],
+        "content_hash": "4da9a2be44d59142c3be19d2574cb54904ce8c609c46f493f17d74a078145ca3",
+        "core_aliases": [
+          "qcb-core-plan-008-normalized-block-success-probability"
+        ],
+        "core_verdict": "existing_view",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-be-007",
+        "method": "distinct-context-source-review",
+        "notes": "Postselection success probability p = ||A v||^2/alpha^2, post-measurement (A v)/||A v||, p<1 since alpha>=||A||, O(1/p) vs O(alpha/||A v||) amplitude-amplification cost. Same mathematical result as planned core plan-008-normalized-block-success-probability (qsc-block-encoding-access), whose summary states the identical ||A|b>||^2/alpha^2 success probability. be-007 is a legitimate nl_bridge derivation (no operator-norm theorem exists in BlockEncoding.lean/ConcreteSemantics.lean - it is an analytic bridge, not a literal source theorem) but it is a VIEW of plan-008, not a new distinct block-encoding core. Pending/existing_view so parent can alias-group vs reject; should not be counted as fresh distinct alongside plan-008.",
+        "reviewer": "native-be-review-distinct-context",
+        "verdict": "pending"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "Decompose U output into clean (|0^a> tensor (A/alpha)v) plus orthogonal auxiliary-nonzero branches and identify the postselected clean branch",
+        "id": "c1",
+        "weight": 1
+      },
+      {
+        "criterion": "Give the success probability p = ||A v||^2 / alpha^2 and the normalized post-measurement state (A v)/||A v||, with equality to (||A v||/alpha)^2 in the exact case",
+        "id": "c2",
+        "weight": 1
+      },
+      {
+        "criterion": "Explain p < 1 generically (alpha >= ||A||), the O(1/p) repetition vs O(alpha/||A v||) amplitude-amplification cost, and why alpha is a charged resource",
+        "id": "c3",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 2,
+    "semantic_steps": [
+      {
+        "claim": "The auxiliary-zero projected block equals A/alpha, so the clean branch of U on |0^a> tensor v is |0^a> tensor (A/alpha)v.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+          "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude"
+        ]
+      },
+      {
+        "claim": "Postselecting all-zero keeps the clean branch; its squared norm ||A v||^2/alpha^2 is the success probability, which is <1 generically because U is unitary and alpha>=||A||.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate"
+        ]
+      }
+    ],
+    "skills": [
+      "quantum_semantics"
+    ],
+    "source_refs": [
+      {
+        "anchor": "structure ApproximateOperatorBlockEncodingCandidate with approximationBound '||A - alpha * ((<0^a| tensor I) U (|0^a> tensor I))|| <= epsilon' (lines 136-153); structure OperatorBlockEncodingCandidate (lines 103-116)",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/BlockEncoding.lean",
+        "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+      },
+      {
+        "anchor": "def cleanBasisActionAmplitude and comment that any normalized orthogonal failure branch is additional unitarity evidence (lines 249-294)",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+        "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 4,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+      "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude",
+      "declaration:QuantumBlockEncoding.signalSystemBlockProjection"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate"
+    ],
+    "task_hash": "ba2e25f29ef790bc014bac61620a437e61f73bb3cd96c522d456cc7834546c96",
+    "task_kind": "proof",
+    "topic": "block_encoding",
+    "track": "quantum_semantics",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "Finite rational/complex matrices; clean block via an embedding of the system basis",
+      "The approximation bound is a proposition instantiated by the backend"
+    ],
+    "author": {
+      "identity": "native-be-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "21fd48b1d9663e241f763be62f0b828764bdebd9dd141171a138810a91bac79e",
+    "context_hash": "9a4e7816f803e659102e95f0b03276fe67831256fe2a0d3fae6fcee490b22bde",
+    "conventions": [
+      "Exact case is epsilon=0 with the approximation predicate equal to the pointwise clean-block equality",
+      "Pointwise (entrywise) equality is distinct from an operator-norm statement"
+    ],
+    "core_id": "qcb-core-be-013",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Reads the exact-to-approximate repackaging and correctly identifies the missing pointwise-to-norm bridge; a boundary/scope question about evidence strength."
+    },
+    "evidence_relation": "local_source_supported",
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "be-exact-to-approx-boundary",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "existing_source_not_freshly_verified",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-566e56f62fefa227a0eb",
+    "key": "qcb-core-be-013",
+    "language": "en",
+    "legacy_split_constraints": [
+      "test_public"
+    ],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "be-exact-to-approx-boundary",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-be-013",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-be-013",
+    "native_nl": {
+      "author_identity": "native-be-author",
+      "core_summary": "Explains the free exact-to-zero-error-approximate repackaging (reusing the pointwise clean-block proof as the epsilon=0 bound) and the boundary that an operator-norm statement still needs a pointwise-to-norm bridge theorem.",
+      "evidence_relation": "local_source_supported",
+      "existing_core_aliases": [],
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "new_problem_core": true
+    },
+    "primary_sources": [],
+    "question": "An exact clean-block certificate can be promoted to a zero-error approximate incumbent in the adaptive exact-to-approximate search policy. State what data an exact clean-block certificate carries, what the zero-error promotion sets the epsilon and the approximation predicate to, and why an exact certificate is a legitimate epsilon=0 member of the approximate search without any additional analytic norm argument. Then explain the boundary the other way: does holding a zero-error approximate incumbent let you conclude an operator-norm bound ||A - alpha*block|| <= 0, and if not, what extra ingredient is required?",
+    "reference_answer": "An exact clean-block certificate carries: a full matrix U on the total (ancilla+system) basis, a target system-space matrix A, an embedding of the system basis into the total basis, and a proof that the embedded clean block of U equals A pointwise (the clean submatrix equals A entry by entry). The zero-error promotion sets epsilon = 0 and sets the approximation predicate to be exactly that same pointwise clean-block equality, with the approximation proof being the certificate's own block proof. This is legitimate because the approximate incumbent's bound field is a PROPOSITION that different backends may instantiate; the exact finite route instantiates the epsilon=0 bound by the exact pointwise equality it already proved, so no analytic operator-norm reasoning is introduced - the promotion is a repackaging, not a new theorem. Boundary the other way: holding this zero-error approximate incumbent does NOT by itself yield the analytic statement ||A - alpha*block|| <= 0 in an operator-norm sense. The finite certificate proves ENTRYWISE (pointwise) equality of the clean block with A/normalizer; converting that to an operator-norm inequality (or to the statement that the operator-norm distance is 0) requires the extra ingredient of a theorem connecting pointwise/entrywise equality of finite matrices to the chosen matrix norm (e.g. that pointwise equality implies equality as operators and hence zero norm difference). The source is explicit that analytic backends can LATER replace the exact-as-approximate packaging with such a theorem; until then the epsilon=0 incumbent is a faithful exact-equality witness, not an analytic norm certificate. So the exact-to-approximate direction is free (repackaging), but the approximate-norm interpretation needs an added norm-vs-pointwise bridge.",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "existing_view",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/block-review.json",
+        "artifact_sha256": "bd3133e6201e79f7c27b702cb0ac11d56fba7dcaf6a9181034841b8a3fb8e400",
+        "authored_sha256": "21fd48b1d9663e241f763be62f0b828764bdebd9dd141171a138810a91bac79e",
+        "checked_sources": [
+          "QuantumBlockEncoding/BlockEncodingClassics.lean 623-641, 865-888",
+          "QuantumBlockEncoding/BlockEncoding.lean 148-184",
+          "native_nl/planned.json plan-010"
+        ],
+        "content_hash": "639c9f6de24cf76b00969e487332ba57225373a372a2994aafc308ab83c7a21e",
+        "core_aliases": [
+          "qcb-core-plan-010-entry-vs-operator-norm-verification"
+        ],
+        "core_verdict": "existing_view",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-be-013",
+        "method": "distinct-context-source-review",
+        "notes": "Exact-to-zero-error-approximate repackaging (epsilon=0, approximationBound = same PointwiseEq) and the boundary that a zero-error incumbent does not yield an operator-norm bound without a pointwise-to-norm bridge. Source objects verified: ExactCleanBlock (623-641), ZeroErrorApproxCleanBlock epsilon:=0 approximationBound:=PointwiseEq (865-872), exactAsZeroErrorApproxCleanBlock + _bound (877-888), VerifiedOperatorBlockEncoding.asZeroErrorApprox doc 'Analytic backends can later replace this with a theorem connecting exact block equality to a concrete operator-norm inequality' (BlockEncoding.lean 165-184). CONCERN: the first half (certificate fields, promotion sets epsilon=0, reuses proof) is largely a structure-field/software-packaging description bordering on API recall; the genuinely mathematical content (entrywise equality alone does not give an operator-norm statement, needs a bridge theorem) is the SAME scope distinction as planned core plan-010-entry-vs-operator-norm-verification (qsc-block-encoding-verification). Pending/existing_view: substantive math overlaps plan-010, remainder is packaging; recommend parent alias-group under plan-010 or reject rather than count as distinct native core.",
+        "reviewer": "native-be-review-distinct-context",
+        "verdict": "pending"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "List the exact certificate's data (U, target A, embedding, pointwise clean-block equality proof)",
+        "id": "c1",
+        "weight": 1
+      },
+      {
+        "criterion": "State the promotion sets epsilon=0 and the approximation predicate to the same pointwise equality, legitimate because the bound is an instantiable proposition reusing the existing proof (no new analytic argument)",
+        "id": "c2",
+        "weight": 1
+      },
+      {
+        "criterion": "Explain that a zero-error incumbent does NOT by itself give an operator-norm bound; converting pointwise equality to a norm statement needs an added pointwise-implies-norm theorem",
+        "id": "c3",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 2,
+    "semantic_steps": [
+      {
+        "claim": "The exact certificate's pointwise clean-block equality is reused verbatim as the epsilon=0 approximation bound, so promotion is a repackaging.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock",
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock_bound"
+        ]
+      },
+      {
+        "claim": "A zero-error incumbent is an entrywise witness; an operator-norm bound needs an added theorem linking pointwise equality to the matrix norm.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.ZeroErrorApproxCleanBlock",
+          "declaration:QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox"
+        ]
+      }
+    ],
+    "skills": [
+      "knowledge"
+    ],
+    "source_refs": [
+      {
+        "anchor": "structure ExactCleanBlock (lines 623-641); structure ZeroErrorApproxCleanBlock with epsilon:=0 and approximationBound := PointwiseEq (lines 865-872); def exactAsZeroErrorApproxCleanBlock and theorem exactAsZeroErrorApproxCleanBlock_bound (lines 877-888)",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+        "sha256": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+      },
+      {
+        "anchor": "def VerifiedOperatorBlockEncoding.asZeroErrorApprox with comment 'Analytic backends can later replace this with a theorem connecting exact block equality to a concrete operator-norm inequality' (lines 165-184)",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/BlockEncoding.lean",
+        "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 5,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.BlockEncodingClassics.ZeroErrorApproxCleanBlock",
+      "declaration:QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock_bound",
+      "declaration:QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock",
+      "declaration:QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock"
+    ],
+    "task_hash": "bda3d5623be513227cbbe4e82725724b796852a0f512de10d7e41f87a74e5aff",
+    "task_kind": "boundary",
+    "topic": "block_encoding",
+    "track": "knowledge",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "author": {
+      "identity": "native-planned-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "2b74d1fa51314ffb938ea80c8b9990167551da89c2cb9d3b800685937d99f980",
+    "context_hash": "8823ce7b9870c6b79352e468fd789ff96ceb9d125fd3a32a9438fbac2ec41501",
+    "conventions": [],
+    "core_id": "qcb-core-plan-008",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A direct derivation of the success probability with two quantitative consequences; combines inner-product computation with resource reasoning."
+    },
+    "evidence_relation": "primary_source_nl_only",
+    "evidence_status": "planned_source_inspected",
+    "exposure": "closed_book",
+    "family": "qsc-block-encoding-access",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "none",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-92bac985043993606803",
+    "key": "qcb-core-plan-008-normalized-block-success-probability",
+    "language": "en",
+    "legacy_split_constraints": [
+      "test_public"
+    ],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "qsc-block-encoding-access",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-plan-008-normalized-block-success-probability",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-plan-008",
+    "native_nl": {
+      "author_identity": "native-planned-author",
+      "core_summary": "Postselecting the all-zeros ancilla of a block encoding succeeds with probability ||A|b>||^2/alpha^2, recovering the lost norm and penalizing oversized subnormalization, while the kept state is the normalized A|b>.",
+      "evidence_relation": "primary_source_nl_only",
+      "existing_core_aliases": [],
+      "formal_counterpart": "none",
+      "new_problem_core": true
+    },
+    "primary_sources": [
+      {
+        "anchors": "Section 9.1 Eqs. (9.1)-(9.4): UA|0,b> = |0>A|b> + |perp>, orthogonality (9.3), success probability p(0) = ||A|b>||^2 = <b|A-dagger A|b>; Eqs. (9.9)-(9.10): A/alpha = <0^m|UA|0^m> and p(0^m) = (1/alpha^2)||A|b>||^2 with alpha hidden in the success probability; remark that output is normalized A|b>/||A|b>|| after postselection",
+        "edition": "29 April 2026 public 447-page edition",
+        "inspection": "full bounded primary text read",
+        "pages": "141-144",
+        "redistribution": "not redistributed",
+        "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed",
+        "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf"
+      }
+    ],
+    "question": "Suppose a non-unitary matrix A acting on n qubits is embedded as the top-left block of a larger unitary, in the sense that applying the unitary to an input with the ancilla register prepared in all-zeros, and then measuring the ancillas and keeping only the all-zeros outcome, applies A to the system state. More generally the embedded block equals A divided by a positive subnormalization factor alpha. For an input system state |b>, derive the probability of the kept (all-zeros) outcome, express it in terms of A, |b> and alpha, and explain two consequences: how the norm of A|b> can be recovered from the measured success probability, and why choosing alpha too large is harmful. Confirm the output state conditioned on success is the correctly normalized version of A|b>.",
+    "reference_answer": "Apply the unitary to |0...0>|b>. By the block structure the component in the all-zeros ancilla sector is |0...0> (A/alpha)|b>, and the rest is orthogonal to the all-zeros ancilla subspace. The probability of measuring the ancillas in all-zeros is the squared norm of that component: p(0) = ||(A/alpha)|b>||^2 = (1/alpha^2) <b| A-dagger A |b> = ||A|b>||^2 / alpha^2. In the exact one-ancilla case alpha = 1 this is simply p(0) = ||A|b>||^2 = <b|A-dagger A|b>. Consequence 1 (norm recovery): the norm that is 'lost' when the output is renormalized is encoded in the success probability, since ||A|b>|| = alpha sqrt(p(0)); measuring p(0) (by repetition) therefore recovers ||A|b>||. Consequence 2 (cost of large alpha): p(0) scales as 1/alpha^2, so an unnecessarily large alpha makes the all-zeros outcome exponentially unlikely and the scheme requires on the order of alpha^2/||A|b>||^2 repetitions (or amplitude amplification) to succeed, which is why one wants the smallest valid alpha (at least the operator norm of A). Output state on success: dividing the kept component by its own norm gives (A/alpha)|b> / ||(A/alpha)|b>|| = A|b> / ||A|b>||, the correctly normalized image of |b> under A, independent of alpha and of the irrelevant orthogonal part of the unitary.",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "existing_view",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/planned-review.json",
+        "artifact_sha256": "59cf13dc3985b26a8ab36952c283b043df835653648622a84f3766b6d4e4da41",
+        "authored_sha256": "2b74d1fa51314ffb938ea80c8b9990167551da89c2cb9d3b800685937d99f980",
+        "checked_sources": [
+          "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+          "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+          "data/authored/planned-corrections.json"
+        ],
+        "content_hash": "27c8598eb4610c5b07f77a7091aa70bef311b34875bea8d6b43d6738d3bfda73",
+        "core_aliases": [
+          "qsc-block-encoding-dedup-adapter-001"
+        ],
+        "core_verdict": "existing_view",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-plan-008-normalized-block-success-probability",
+        "method": "distinct-context-source-review",
+        "notes": "Lin-Wiebe pp141-144 Sec 9.1 Eq 9.1-9.4,9.9-9.10. p(0)=||A|b>||^2/alpha^2=(1/alpha^2)<b|A-dagger A|b> correct; exact alpha=1 p(0)=||A|b>||^2; norm recovery ||A|b>||=alpha sqrt(p(0)); p~1/alpha^2 oversized alpha harmful; normalized output A|b>/||A|b>|| -> all match source. MATH VALID. NOVELTY: base success-probability/postselection fact of Sec 9.1; authored roadmap item qsc-block-encoding-dedup-adapter-001 explicitly directs the scientific-computing part to point back to the existing certified Block Encoding part and NOT re-formalize under a second API. new_problem_core=true with empty aliases not safely established by source inspection alone -> core_verdict existing_view; verdict pending dedup against existing certified BE part.",
+        "reviewer": "native-planned-review-distinct-context",
+        "verdict": "pending"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "Derives p(0) = ||(A/alpha)|b>||^2 = ||A|b>||^2/alpha^2 = (1/alpha^2)<b|A-dagger A|b> by taking the squared norm of the all-zeros-ancilla component",
+        "id": "r1",
+        "weight": 1
+      },
+      {
+        "criterion": "States the exact-case p(0) = ||A|b>||^2 and that the output on success is A|b>/||A|b>||, independent of alpha",
+        "id": "r2",
+        "weight": 1
+      },
+      {
+        "criterion": "Explains norm recovery ||A|b>|| = alpha sqrt(p(0)) from the measured success probability",
+        "id": "r3",
+        "weight": 1
+      },
+      {
+        "criterion": "Explains that p(0) ~ 1/alpha^2 makes large alpha harmful (vanishing success probability / many repetitions)",
+        "id": "r4",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 3,
+    "semantic_steps": [
+      {
+        "claim": "The all-zeros-ancilla component after the unitary is |0..0>(A/alpha)|b>, orthogonal to the rest.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "p(0) = ||A|b>||^2/alpha^2 = (1/alpha^2)<b|A-dagger A|b>, so ||A|b>|| = alpha sqrt(p(0)).",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Success probability scales as 1/alpha^2, so oversized alpha is harmful; the normalized output is A|b>/||A|b>||.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "skills": [
+      "planned"
+    ],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 2,
+    "supporting_nodes": [],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:probability"
+    ],
+    "task_hash": "42ee5969b350bf16a1e36d6c672f1ba270ac790092726d03d47df64285f08f45",
+    "task_kind": "proof",
+    "topic": "planned_scientific_computing",
+    "track": "planned",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "author": {
+      "identity": "native-planned-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "4e1d482fddb82b818dd82662c1276158894ca859faf3ed10c4731fe396b25f4d",
+    "context_hash": "8823ce7b9870c6b79352e468fd789ff96ceb9d125fd3a32a9438fbac2ec41501",
+    "conventions": [],
+    "core_id": "qcb-core-plan-009",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A short norm inequality lifted to a necessary scaling bound, with a careful distinction between feasibility of scale and efficiency of implementation."
+    },
+    "evidence_relation": "primary_source_nl_only",
+    "evidence_status": "planned_source_inspected",
+    "exposure": "closed_book",
+    "family": "qsc-block-encoding-access",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "none",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-d95153732830590a28f4",
+    "key": "qcb-core-plan-009-subnormalization-scale-lower-bound",
+    "language": "en",
+    "legacy_split_constraints": [
+      "test_public"
+    ],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "qsc-block-encoding-access",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-plan-009-subnormalization-scale-lower-bound",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-plan-009",
+    "native_nl": {
+      "author_identity": "native-planned-author",
+      "core_summary": "Because any block of a unitary is a contraction, embedding A at factor alpha requires alpha >= ||A||; a unit factor is impossible once ||A|| > 1, and the bound fixes the scale but not an efficient circuit.",
+      "evidence_relation": "primary_source_nl_only",
+      "existing_core_aliases": [],
+      "formal_counterpart": "none",
+      "new_problem_core": true
+    },
+    "primary_sources": [
+      {
+        "anchors": "Exercise 9.1 (any submatrix block A of a unitary U satisfies ||A|| <= 1); Eqs. (9.8)-(9.9): A = <0^m|UA|0^m> and the rescaled relation A/alpha = <0^m|UA|0^m>; discussion that a necessary condition for existence is ||A|| <= 1 (unit factor) and that a sufficiently large alpha is used otherwise, with alpha hidden in the success probability (9.10)",
+        "edition": "29 April 2026 public 447-page edition",
+        "inspection": "full bounded primary text read",
+        "pages": "142-143",
+        "redistribution": "not redistributed",
+        "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed",
+        "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf"
+      }
+    ],
+    "question": "When a matrix A is embedded (up to a positive factor alpha) as the all-zeros block of a larger unitary, so that A/alpha is a submatrix of a unitary, prove the necessary scaling constraint on alpha. First prove the auxiliary fact that any submatrix block of a unitary has operator norm at most 1. Deduce the sharp lower bound alpha must satisfy in terms of the operator norm of A, explain why an exact unit-factor embedding is impossible when A has operator norm bigger than 1, and state what role alpha then plays and whether the bound alone guarantees an efficiently implementable embedding.",
+    "reference_answer": "Submatrix-norm fact: let U be unitary and let B = P U Q be a block, where P and Q are projectors onto the output and input index sets of the block (equivalently B = <0^m| U |0^m> as an operator on the system register). For any unit input vector v (extended by zeros outside the block), ||B v|| = ||P U (Q v)|| <= ||U (Q v)|| = ||Q v|| <= ||v|| = 1, since projectors are norm-nonincreasing and U is norm-preserving. Taking the supremum over unit v gives ||B|| <= 1. Lower bound on alpha: if A/alpha is such a block of a unitary, then ||A/alpha|| <= 1, i.e. ||A|| <= alpha, so alpha >= ||A|| is necessary. In particular if ||A|| > 1 there is no exact embedding with alpha = 1 (a unit-factor block would force ||A|| <= 1); one must take alpha >= ||A|| > 1. Role of alpha: it rescales A so that A/alpha fits inside a unitary as a contraction, at the cost of a success probability that falls like 1/alpha^2; the smallest admissible alpha is the operator norm ||A|| (achieved by a singular-value dilation). Finally, the inequality alpha >= ||A|| is only a necessary existence condition on the scale: it does not by itself provide a circuit, since constructing a unitary whose block is A/alpha and that is implementable with few elementary gates requires further structure or oracle access to A; the bound guarantees feasibility of the scale, not efficiency of implementation.",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "existing_view",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/planned-review.json",
+        "artifact_sha256": "59cf13dc3985b26a8ab36952c283b043df835653648622a84f3766b6d4e4da41",
+        "authored_sha256": "4e1d482fddb82b818dd82662c1276158894ca859faf3ed10c4731fe396b25f4d",
+        "checked_sources": [
+          "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+          "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+          "data/authored/planned-corrections.json"
+        ],
+        "content_hash": "d5423a8f40f9521c8671c1a985e2be777d2e934fec4a601a68083c066571785b",
+        "core_aliases": [
+          "qsc-block-encoding-dedup-adapter-001"
+        ],
+        "core_verdict": "existing_view",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-plan-009-subnormalization-scale-lower-bound",
+        "method": "distinct-context-source-review",
+        "notes": "pp142-143 Exercise 9.1 + Eq 9.8-9.10. Block B=PUQ contraction ||B||<=1 proof correct (projectors non-expansive, U norm-preserving); A/alpha a block => ||A||<=alpha i.e. alpha>=||A|| necessary; ||A||>1 rules out unit factor; alpha=||A|| smallest admissible; bound is scale-only not efficient-circuit guarantee -> matches source. MATH VALID. NOVELTY: Exercise 9.1 standard norm bound; same dedup caution as plan-008 (dedup-adapter roadmap). core_verdict existing_view; verdict pending.",
+        "reviewer": "native-planned-review-distinct-context",
+        "verdict": "pending"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "Proves any block B = PUQ of a unitary has ||B|| <= 1 using projector contractivity and norm preservation of U",
+        "id": "r1",
+        "weight": 1
+      },
+      {
+        "criterion": "Deduces the necessary lower bound alpha >= ||A|| from ||A/alpha|| <= 1",
+        "id": "r2",
+        "weight": 1
+      },
+      {
+        "criterion": "Explains that ||A|| > 1 rules out an exact unit-factor embedding, forcing alpha >= ||A|| > 1, with alpha = ||A|| the smallest admissible scale",
+        "id": "r3",
+        "weight": 1
+      },
+      {
+        "criterion": "Notes the bound is only a necessary scale condition and does not guarantee an efficiently implementable unitary",
+        "id": "r4",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 3,
+    "semantic_steps": [
+      {
+        "claim": "A block B = PUQ of a unitary satisfies ||B|| <= 1 because projectors do not increase norm and U preserves it.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "If A/alpha is such a block then ||A|| <= alpha, so alpha >= ||A|| is necessary.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "alpha >= ||A|| is only a necessary scale condition, not a guarantee of an efficient circuit.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "skills": [
+      "planned"
+    ],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 2,
+    "supporting_nodes": [],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis"
+    ],
+    "task_hash": "12e594e3505799fb75301f517b3a173f8ec1707e5666bc36018bc2dfad5f5c3c",
+    "task_kind": "boundary",
+    "topic": "planned_scientific_computing",
+    "track": "planned",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [],
+    "author": {
+      "identity": "native-planned-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "57b13d9edff532288897c940d548d7d9537898468d0a2f8f6ad61917f8823994",
+    "context_hash": "8823ce7b9870c6b79352e468fd789ff96ceb9d125fd3a32a9438fbac2ec41501",
+    "conventions": [],
+    "core_id": "qcb-core-plan-012",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean Cauchy-Schwarz lower bound with its equality case and a resource interpretation; a single sharp inequality argument distinct from error-accumulation results."
+    },
+    "evidence_relation": "primary_source_nl_only",
+    "evidence_status": "planned_source_inspected",
+    "exposure": "closed_book",
+    "family": "qsc-lcu-subnormalization",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "none",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-9bb26e7228e441a0cf85",
+    "key": "qcb-core-plan-012-lcu-optimal-subnormalization-cauchy-schwarz",
+    "language": "en",
+    "legacy_split_constraints": [
+      "test_public"
+    ],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "qsc-lcu-subnormalization",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-plan-012-lcu-optimal-subnormalization-cauchy-schwarz",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-plan-012",
+    "native_nl": {
+      "author_identity": "native-planned-author",
+      "core_summary": "In a prepare-select-unprepare LCU implementation the subnormalization factor ||beta||_2 ||gamma||_2 is bounded below by ||alpha||_1 via Cauchy-Schwarz, attained at the symmetric split sqrt(|alpha_i|), which maximizes the success probability.",
+      "evidence_relation": "primary_source_nl_only",
+      "existing_core_aliases": [],
+      "formal_counterpart": "none",
+      "new_problem_core": true
+    },
+    "primary_sources": [
+      {
+        "anchors": "Section 9.2 LCU: T = sum_i alpha_i U_i, select oracle Eq. (9.15), prepare oracle Eq. (9.16), arbitrary split alpha_i = beta_i gamma_i Eq. (9.20); Lemma 9.5 W in BE with factor ||beta||_2 ||gamma||_2 and Eq. (9.26) Cauchy-Schwarz ||alpha||_1 = sum_i |beta_i gamma_i| <= ||beta||_2 ||gamma||_2 with the optimal |beta_i| = |gamma_i| = sqrt(|alpha_i|) giving factor ||alpha||_1 (Eq. (9.23))",
+        "edition": "29 April 2026 public 447-page edition",
+        "inspection": "full bounded primary text read",
+        "pages": "145-146",
+        "redistribution": "not redistributed",
+        "reuse": "Original questions/derivations; no copied source text; external source rights not relicensed",
+        "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf"
+      }
+    ],
+    "question": "A target operator is written as a linear combination T = sum_i alpha_i U_i of unitaries U_i, and is implemented by a prepare-select-unprepare scheme in which each coefficient is split as alpha_i = beta_i gamma_i, a left preparation loads the vector of beta_i (normalized by the 2-norm of beta), a controlled selection applies U_i, and a right unpreparation loads the vector of gamma_i. The resulting construction embeds T with subnormalization factor equal to the product of the 2-norms of the beta and gamma vectors. Prove, using the Cauchy-Schwarz inequality, that this subnormalization factor is at least the 1-norm of the coefficient vector alpha, and determine the splitting beta_i, gamma_i that makes the factor equal to that 1-norm. Explain why this is the best (smallest) achievable factor for this scheme and hence the most favorable success probability.",
+    "reference_answer": "The scheme produces subnormalization factor ||beta||_2 ||gamma||_2 where ||beta||_2 = sqrt(sum_i |beta_i|^2) and likewise for gamma. Since alpha_i = beta_i gamma_i, the 1-norm of alpha is ||alpha||_1 = sum_i |alpha_i| = sum_i |beta_i| |gamma_i|. By the Cauchy-Schwarz inequality applied to the vectors (|beta_i|)_i and (|gamma_i|)_i, sum_i |beta_i| |gamma_i| <= sqrt(sum_i |beta_i|^2) sqrt(sum_i |gamma_i|^2) = ||beta||_2 ||gamma||_2. Therefore ||alpha||_1 <= ||beta||_2 ||gamma||_2, i.e. the subnormalization factor is at least ||alpha||_1 for every admissible split. Equality in Cauchy-Schwarz holds iff the vectors (|beta_i|) and (|gamma_i|) are proportional; combined with |beta_i gamma_i| = |alpha_i|, the symmetric optimum is |beta_i| = |gamma_i| = sqrt(|alpha_i|) for every i. With that choice ||beta||_2^2 = ||gamma||_2^2 = sum_i |alpha_i| = ||alpha||_1, so ||beta||_2 ||gamma||_2 = ||alpha||_1, attaining the lower bound. Since the success probability of keeping the all-zeros ancilla scales inversely with the square of the subnormalization factor, minimizing it to ||alpha||_1 maximizes the success probability for this prepare-select-unprepare implementation; no split in this scheme can do better, because ||alpha||_1 is a hard lower bound from Cauchy-Schwarz. (When all alpha_i >= 0 this optimal choice also makes the unpreparation the adjoint of the preparation.)",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "uncertain",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/planned-review.json",
+        "artifact_sha256": "59cf13dc3985b26a8ab36952c283b043df835653648622a84f3766b6d4e4da41",
+        "authored_sha256": "57b13d9edff532288897c940d548d7d9537898468d0a2f8f6ad61917f8823994",
+        "checked_sources": [
+          "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+          "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+          "data/authored/planned-corrections.json"
+        ],
+        "content_hash": "7831ada509e6aee2de968492f7251e4538bd1a434035f915ac3acfd8320ebffd",
+        "core_aliases": [
+          "qasc-lcu-sum-additive-error-prop910-001",
+          "qasc-product-block-encoding-error-prop912-001",
+          "qsc-block-encoding-dedup-adapter-001"
+        ],
+        "core_verdict": "uncertain",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-plan-012-lcu-optimal-subnormalization-cauchy-schwarz",
+        "method": "distinct-context-source-review",
+        "notes": "pp145-146 Lemma 9.5 Eq 9.20-9.26. factor ||beta||_2 ||gamma||_2; ||alpha||_1=sum|beta_i gamma_i| <= ||beta||_2 ||gamma||_2 by Cauchy-Schwarz (Eq 9.26); optimum |beta_i|=|gamma_i|=sqrt(|alpha_i|) giving factor ||alpha||_1 (Eq 9.23); success prob ~1/factor^2 so minimizing factor maximizes success -> all match source exactly. MATH VALID. NOVELTY: Lemma 9.5 itself NOT among authored items (which cover Prop 9.10 sum and Prop 9.12 product composition error), so not a direct duplicate, but same qsc LCU family under the dedup-adapter roadmap caution. core_verdict uncertain; verdict pending (adjacent to authored LCU items).",
+        "reviewer": "native-planned-review-distinct-context",
+        "verdict": "pending"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "Writes ||alpha||_1 = sum_i |beta_i||gamma_i| using alpha_i = beta_i gamma_i",
+        "id": "r1",
+        "weight": 1
+      },
+      {
+        "criterion": "Applies Cauchy-Schwarz to (|beta_i|),(|gamma_i|) to get ||alpha||_1 <= ||beta||_2 ||gamma||_2, i.e. factor >= ||alpha||_1",
+        "id": "r2",
+        "weight": 1
+      },
+      {
+        "criterion": "Identifies the equality/optimal split |beta_i| = |gamma_i| = sqrt(|alpha_i|) giving ||beta||_2 ||gamma||_2 = ||alpha||_1",
+        "id": "r3",
+        "weight": 1
+      },
+      {
+        "criterion": "Explains that minimizing the factor to ||alpha||_1 maximizes the success probability (which scales as inverse square of the factor)",
+        "id": "r4",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 3,
+    "semantic_steps": [
+      {
+        "claim": "||alpha||_1 = sum_i |beta_i||gamma_i| from the split alpha_i = beta_i gamma_i.",
+        "supporting_nodes": [
+          "family:prepare-select"
+        ]
+      },
+      {
+        "claim": "Cauchy-Schwarz gives ||alpha||_1 <= ||beta||_2 ||gamma||_2, so the subnormalization factor is at least ||alpha||_1.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The split |beta_i| = |gamma_i| = sqrt(|alpha_i|) attains the factor ||alpha||_1 and maximizes success probability.",
+        "supporting_nodes": [
+          "family:prepare-select"
+        ]
+      }
+    ],
+    "skills": [
+      "planned"
+    ],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 2,
+    "supporting_nodes": [],
+    "target_nodes": [
+      "concept:block-encoding",
+      "family:prepare-select"
+    ],
+    "task_hash": "b680e9133d1155c1196eb87e5ecccdd07bd90204f430f2447a979e0436d8ae08",
+    "task_kind": "proof",
+    "topic": "planned_scientific_computing",
+    "track": "planned",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "canonicalization uses the thin core factorization with Q-row count min(l, 2*m')",
+      "the chain has dependent (not padded) bond dimensions"
+    ],
+    "author": {
+      "identity": "native-sp-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "15db68aa5549420f71184e377a3b783634b541e2ad8cec8d673076386aafc11c",
+    "context_hash": "28f75c83456d34f22cf9c8245d2093ac8e9130e5fcf0483f011fe29e363c34ca",
+    "conventions": [
+      "l is the current left dimension, m' the already-reduced next bond; maxBond takes the max over all bonds including both boundaries",
+      "a scalar-to-scalar train is Chain 1 l 1 with an empty tail of terminal bond one"
+    ],
+    "core_id": "qcb-core-sp-010",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Combines the thin-factorization rank recurrence, a two-sided min bound, a sharp scalar specialization, and a monotonicity argument into one boundary characterization."
+    },
+    "evidence_relation": "nl_bridge_from_inspected_source",
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "canonicalization-rank-bounds",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "existing_source_not_freshly_verified",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-20609c46e38bceebd8a3",
+    "key": "qcb-core-sp-010",
+    "language": "en",
+    "legacy_split_constraints": [],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "canonicalization-rank-bounds",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-sp-010",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-sp-010",
+    "native_nl": {
+      "author_identity": "native-sp-author",
+      "core_summary": "Canonicalization's reduced bonds obey l'=min(l,2m'), yielding a two-sided head bound, a sharp at-most-two penultimate bond for scalar trains, and non-expansion of the maximal bond.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "existing_core_aliases": [],
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "new_problem_core": true
+    },
+    "primary_sources": [],
+    "question": "Consider the exact right-canonicalization of a finite real tensor train. Characterize the active (reduced) bond dimensions it produces: give the backward recurrence the reduced left rank of each core obeys, prove the two-sided bound on the head rank of any nonempty canonicalized train, and derive the sharp consequence that the penultimate active bond of a scalar-to-scalar train (one core, both boundaries dimension one) has dimension at most two. Also state why canonicalization never enlarges the maximal bond.",
+    "reference_answer": "Right-canonicalization reduces each core by a thin factorization whose Q-factor row count is min(l, 2*m'), where l is the current left dimension and m' is the already-reduced next bond. So the reduced left rank obeys the backward min recurrence l' = min(l, 2*m') computed from the terminal bond inward. Two-sided head bound: for any nonempty canonicalized train D = cons Q tail with reduced head l', from l' = min(l, 2*m') we get both l' <= l (the min is at most its first argument) and l' <= 2*m' (the min is at most its second argument), where m' is the next active bond. Thus the head rank is bounded by the original left dimension and by twice the next active rank simultaneously. Sharp scalar case: for a one-core chain with both boundaries dimension one (Chain 1 l 1), the tail is the empty chain whose only bond is the terminal bond of dimension one, so m' = 1. The head bound l' <= 2*m' becomes l' <= 2. This is sharp: a core emitting one bit from a scalar boundary can legitimately populate both values of that bit, so the reduced bond genuinely reaches dimension two. No enlargement: the maximal bond of D is bounded by that of the original chain, because each reduced left rank min(l, 2*m') is at most l and, inductively, the tail's maximal bond does not grow; taking the max over cores preserves the inequality. Hence canonicalization is a non-expanding rank reduction with an explicit min recurrence and a tight penultimate-bond-at-most-two corollary.",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "duplicate",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/preparation-review.json",
+        "artifact_sha256": "e0d70cafb3974beff6b5da6c3378bc3247006dd41c23716d387f5bdcb4660cac",
+        "authored_sha256": "15db68aa5549420f71184e377a3b783634b541e2ad8cec8d673076386aafc11c",
+        "checked_sources": [
+          "QuantumBlockEncoding/TensorTrainCanonical.lean"
+        ],
+        "content_hash": "c25e1c5d0fa59e63aa1672e04164b8d392ea9c840609a24324faca7f90b46ca9",
+        "core_aliases": [
+          "qcb-core-la-012"
+        ],
+        "core_verdict": "duplicate",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-sp-010",
+        "method": "distinct-context-source-review",
+        "notes": "DUPLICATE of foundations qcb-core-la-012. Verified head_bound (104-110), last_bond_le_two (113-117), maxBond (198-200), maxBond_le (203-207); source math correct and sha256 matches. BUT core content is identical to la-012: same backward recurrence l'=min(l,2m'), same two-sided head bound (l'<=l and l'<=2m'), same sharp scalar-boundary penultimate-bond<=2 specialization, same 'factor of two from emitted bit' explanation. sp-010 only additionally foregrounds maxBond_le (non-expansion), which la-012 already carries as a supporting_node. No new mathematics; rejected as a re-worded restatement of an existing accepted foundations core.",
+        "reviewer": "native-sp-review-distinct-context",
+        "verdict": "reject"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "States the backward reduced-rank recurrence l' = min(l, 2*m') from the terminal bond inward.",
+        "id": "r1",
+        "weight": 1
+      },
+      {
+        "criterion": "Proves the two-sided head bound l' <= l and l' <= 2*m' from the min expression for any nonempty canonicalized train.",
+        "id": "r2",
+        "weight": 1
+      },
+      {
+        "criterion": "Derives the sharp scalar corollary: for a single core with scalar boundaries, m' = 1 (empty-tail terminal bond), so the reduced bond is at most two.",
+        "id": "r3",
+        "weight": 1
+      },
+      {
+        "criterion": "States that the maximal bond never increases under canonicalization, via min(l,2m') <= l and induction on the tail.",
+        "id": "r4",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 4,
+    "semantic_steps": [
+      {
+        "claim": "Each reduced core comes from a thin factorization whose Q has min(l, 2*m') rows, giving the backward recurrence l' = min(l, 2*m').",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_core_lq",
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.head_bound"
+        ]
+      },
+      {
+        "claim": "From the min, the head rank satisfies l' <= l and l' <= 2*m' simultaneously.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.head_bound"
+        ]
+      },
+      {
+        "claim": "For a single core with scalar boundaries the tail's bond is one, so the head bound forces reduced bond at most two.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.last_bond_le_two"
+        ]
+      },
+      {
+        "claim": "min(l,2m') <= l plus induction on the tail shows the maximal bond never increases.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.maxBond_le",
+          "declaration:QuantumBlockEncoding.TensorTrainCanonical.maxBond"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "lines 102-117 and 197-207: theorem RankReduced.head_bound : l' <= l and exists m' Q tail, D = cons Q tail and l' <= 2*m'; theorem RankReduced.last_bond_le_two {C : Chain 1 l 1} {D : Chain 1 l' 1} (h : RankReduced C D) : l' <= 2; def maxBond | nil r => r | cons _ C => max l (maxBond C); theorem RankReduced.maxBond_le : maxBond D <= maxBond C via max_le_max (min_le_left _ _) ih",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+        "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+      }
+    ],
+    "split": "train",
+    "split_group": "bond-dimension recurrence / canonicalization boundary bounds+canonicalization-rank-bounds",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 5,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_core_lq",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.maxBond"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.head_bound",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.last_bond_le_two",
+      "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.maxBond_le"
+    ],
+    "task_hash": "fd4c4015024ff00a27b677b5cc993c7a16f757f6b60454504b4842044131b73e",
+    "task_kind": "proof",
+    "topic": "state_preparation",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "the loader uses the zero-pair angle-zero convention and normalizes by the total norm's square root",
+      "entries are real and may be zero or negative; the question concerns which zeros are tolerable"
+    ],
+    "author": {
+      "identity": "native-sp-author",
+      "independence": "self-authored; distinct reviewer required",
+      "method": "Native mathematical authoring from inspected complete sources"
+    },
+    "authored_hash": "ae9d254c3309208eaf4b7e3f31a7bc2d0959faa940b43c57078f20e7f1c81ff2",
+    "context_hash": "119163b400ce9306e4d22d2d706b4620b1fa89061b2ad75a5344279333ba53a6",
+    "conventions": [
+      "normSq is the total squared norm; a zero marginal corresponds to a vanishing subtree",
+      "the per-entry claim targets f(b)/sqrt(normSq f)"
+    ],
+    "core_id": "qcb-core-sp-013",
+    "cross_version_split_conflict": false,
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires separating harmless interior zeros from the one fatal global-zero case and articulating the minimal norm-positivity hypothesis versus the stronger convenience API."
+    },
+    "evidence_relation": "nl_bridge_from_inspected_source",
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "sparse-zero-subtree-boundary",
+    "formal": null,
+    "formal_context": null,
+    "formal_evidence": {
+      "counterpart": "existing_source_not_freshly_verified",
+      "inherited_evidence": "See original provenance only; not rerun or upgraded",
+      "local_verification_performed": false
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-95fdc2107f73437a372b",
+    "key": "qcb-core-sp-013",
+    "language": "en",
+    "legacy_split_constraints": [
+      "test_public"
+    ],
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "sparse-zero-subtree-boundary",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qcb-core-sp-013",
+      "tokens": null
+    },
+    "mathematical_core_id": "qcb-core-sp-013",
+    "native_nl": {
+      "author_identity": "native-sp-author",
+      "core_summary": "Zero sibling pairs are harmless vanishing subtrees handled by angle zero; only a globally zero vector breaks the normalized first-column identity, so strict positivity of the total norm is the minimal honest hypothesis.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "existing_core_aliases": [],
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "new_problem_core": true
+    },
+    "primary_sources": [],
+    "question": "The recursive real-amplitude loader assigns the all-zero sibling pair the angle zero, so a vanishing subtree contributes no rotation. (i) Explain operationally what a zero sibling pair means for the prepared state and why angle zero is the right choice there. (ii) The sharp first-column theorem that recovers f(b)/sqrt(normSq f) for every entry is stated with a STRICT positivity hypothesis on the entries, yet the construction clearly tolerates many exact zeros internally. Reconcile these: identify where exact interior zeros are harmless and where a zero would actually break the stated per-entry identity, and give the minimal honest hypothesis for the whole-vector claim.",
+    "reference_answer": "(i) A zero sibling pair (a = b = 0) means the entire subtree hanging below that split carries no amplitude: the marginal mass at that prefix is zero, so there is nothing to rotate between the two children. The rotation angle multiplies a zero marginal in the first-column recursion, so any angle would give the same (zero) contribution; assigning angle zero is the canonical, well-defined choice and avoids an undefined polar angle (a/0). The split-level identity still holds exactly at a zero pair because both children are forced to zero and the rotation applied to a zero norm yields zero. So interior zeros that occur as whole vanishing subtrees are harmless: the marginal recursion and the per-split identity both pass through them. (ii) The strict positivity hypothesis in the sharp flat theorem is NOT needed for the circuit to be unitary or for the general first-column recursion, which only needs the global norm to be positive (so sqrt(normSq f) is nonzero and the normalized target f(b)/sqrt(normSq f) is well defined). Where a zero genuinely bites is subtler: if the TOTAL norm is zero (all entries zero) the normalization sqrt(normSq f) = 0 and f(b)/sqrt(normSq f) is 0/0, so the per-entry identity is vacuous/ill-posed; strict positivity of the total norm is the real load-bearing condition. The entrywise strict positivity in the convenience API is a sufficient simplification (it guarantees positive total norm and lets the proof avoid case-splitting on vanishing subtrees), but it is stronger than necessary: the honest minimal hypothesis for the whole-vector normalized first-column claim is that the total squared norm is strictly positive (equivalently, at least one entry is nonzero), with individual entries allowed to be zero or negative. Thus zeros inside the tree are fine; only a globally zero vector breaks the stated identity.",
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviewed_core_status": "existing_view",
+    "reviewed_semantic_step_count": null,
+    "reviews": [
+      {
+        "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/preparation-review.json",
+        "artifact_sha256": "e0d70cafb3974beff6b5da6c3378bc3247006dd41c23716d387f5bdcb4660cac",
+        "authored_sha256": "ae9d254c3309208eaf4b7e3f31a7bc2d0959faa940b43c57078f20e7f1c81ff2",
+        "checked_sources": [
+          "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+        ],
+        "content_hash": "9502d65b867d63eb88829f0598db863117dc52fd65b9c27320b6776c5bb6ddd8",
+        "core_aliases": [
+          "qcb-core-sp-001",
+          "qcb-core-sp-006"
+        ],
+        "core_verdict": "existing_view",
+        "formal_status": "not_run_source_inspection_only",
+        "key": "qcb-core-sp-013",
+        "method": "distinct-context-source-review",
+        "notes": "REJECT: problematic step claim. Verified splitAngle zero-branch (150-155), prepareCircuit_firstColumn (275-308), normalized_sum_sq (311-317); sha256 matches. Part (i) (zero sibling pair = vanishing subtree, angle zero canonical, per-split identity passes through zero norm) is CORRECT. Part (ii)/r4 is MATHEMATICALLY WRONG for the cited node: it states the minimal honest hypothesis for the whole-vector normalized first-column claim allows 'individual entries ... zero or NEGATIVE', but prepareCircuit_firstColumn carries a load-bearing hypothesis nonneg : for all b, 0 <= f b. The base case (n=0, lines 280-289) derives hf : 0 < f b and uses Real.sqrt_sq (le_of_lt hf); a single negative entry gives f(b)/sqrt(f(b)^2)=f(b)/|f(b)|=-1 != 1 (empty circuit emits amplitude 1), so negatives genuinely break the cited theorem. The item is internally contradictory: its own unresolved_issues admits 'prepareCircuit_firstColumn, which assumes nonnegativity'. Core is also a recombination of sp-001 (zero-branch) + sp-006 (strict-positivity normalization) with no genuinely new verified mathematics; the one novel assertion (negatives allowed) is false. existing_view relative to sp-001/sp-006.",
+        "reviewer": "native-sp-review-distinct-context",
+        "verdict": "reject"
+      }
+    ],
+    "rubric": [
+      {
+        "criterion": "Explains a zero sibling pair = a whole vanishing subtree with zero marginal mass, so any angle gives zero and angle zero is the canonical well-defined choice avoiding a/0.",
+        "id": "r1",
+        "weight": 1
+      },
+      {
+        "criterion": "States the per-split identity still holds at a zero pair (zero norm times rotation = zero), so interior vanishing subtrees are harmless.",
+        "id": "r2",
+        "weight": 1
+      },
+      {
+        "criterion": "Identifies that the genuinely breaking case is a globally zero vector (total norm zero), making f(b)/sqrt(normSq f) the ill-posed 0/0.",
+        "id": "r3",
+        "weight": 1
+      },
+      {
+        "criterion": "Gives the minimal honest hypothesis: strict positivity of the TOTAL squared norm (at least one nonzero entry), noting entrywise strict positivity in the API is sufficient but stronger than necessary.",
+        "id": "r4",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 3,
+    "semantic_steps": [
+      {
+        "claim": "A zero sibling pair is a vanishing subtree with zero marginal mass, so the rotation multiplies zero and angle zero is the canonical well-defined choice avoiding a/0.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.pairNorm"
+        ]
+      },
+      {
+        "claim": "The per-split identity passes through a zero pair, so interior vanishing subtrees do not break the first-column recursion.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.marginal_nonneg"
+        ]
+      },
+      {
+        "claim": "The genuinely breaking case is total norm zero, where f(b)/sqrt(normSq f) is 0/0; the minimal honest hypothesis is strict positivity of the total squared norm, stronger entrywise positivity being merely a convenient sufficient simplification.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn"
+        ]
+      }
+    ],
+    "skills": [
+      "quantum_semantics"
+    ],
+    "source_refs": [
+      {
+        "anchor": "lines 150-156 splitAngle zero-pair branch (.rational 0); lines 275-308 theorem prepareCircuit_firstColumn (f) (nonneg : for all b, 0 <= f b) (positive : 0 < normSq f) (b) : evalPrimitiveCircuit (prepareCircuit n f) b (fun _ => 0) = ((f b / Real.sqrt (normSq f) : R) : C); lines 310-317 normalized_sum_sq requiring 0 < normSq f",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+        "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 5,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.pairNorm",
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.marginal_nonneg"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn",
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq"
+    ],
+    "task_hash": "fb9f780242fc682cdc1237785594885f0409425c59f1ad8afc2097237e2d36a0",
+    "task_kind": "boundary",
+    "topic": "state_preparation",
+    "track": "quantum_semantics",
+    "unresolved_issues": [
+      "The flat per-entry API prepareMatrixLE_firstColumn is stated with entrywise strict positivity; the weaker total-norm-positive hypothesis stated here is the mathematically minimal one for the recursive first-column form prepareCircuit_firstColumn, which assumes nonnegativity plus positive total norm."
+    ],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [],
+    "views": [
+      "natural_language"
+    ]
+  }
+]

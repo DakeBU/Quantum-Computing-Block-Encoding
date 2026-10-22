@@ -1,0 +1,521 @@
+[
+  {
+    "core_id": "qcb-core-la-013",
+    "key": "qcb-core-la-013",
+    "topic": "wire_placement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Let P permute computational-basis labels and let a circuit have chronological matrices U1,...,Ut. Prove that consistently renaming every wire realizes P(Ut...U1)P inverse rather than inserting a physical permutation gate. Explain why output-only relabeling would fail to preserve circuit multiplication.",
+    "reference_answer": "Renaming one stage consistently gives P Uj P inverse. Multiplying chronological stages, each adjacent P inverse P cancels, so the product is P(Ut...U1)P inverse. Both boundary label maps are essential. Output-only relabeling gives P Uj, and two stages multiply as P U2 P U1, which generally differs from P(U2U1). For example choose a nontrivial involutive permutation P and both stages identity: output-only gives P squared=I rather than P. Consistent renaming is a representation/placement operation; it does not supply a free physical SWAP on an already fixed hardware layout.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Derive conjugation not one-sided permutation",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Give valid failure of output-only relabeling",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Distinguish representation renaming from physical SWAP",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_circuit"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveWireRename.matrix_mul",
+      "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_gate"
+    ],
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Each stage is conjugated by the same basis permutation.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_gate"
+        ]
+      },
+      {
+        "claim": "Interior inverse/permutation pairs cancel through the product.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_circuit",
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.matrix_mul"
+        ]
+      },
+      {
+        "claim": "Output-only relabeling lacks cancellation, as identity-stage counterexample shows.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.matrix_mul"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A complete mathematical derivation with explicit boundary or convention, not interface recall."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+        "sha256": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727",
+        "anchor": "matrix_mul lines35-38; eval_gate83-109; eval_circuit111-118; module placement boundary",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-expansion-mechanism-013",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Let P permute computational-basis labels and let a circuit have chronological matrices U1,...,Ut. Prove that consistently renaming every wire realizes P(Ut...U1)P inverse rather than inserting a physical permutation gate. Explain why output-only relabeling would fail to preserve circuit multiplication.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "none",
+      "author_identity": "main-native-expansion-author",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-014",
+    "key": "qcb-core-la-014",
+    "topic": "wire_placement",
+    "track": "quantum_semantics",
+    "task_kind": "concept",
+    "question": "A circuit uses only single-qubit rotations, bit flips and controlled bit flips. A bijection relabels all physical wires, preserving which wire controls which target. Which of total instruction count, rotation count and controlled-bit-flip count must stay unchanged? Does this alone prove equal nearest-neighbor routing cost on fixed hardware?",
+    "reference_answer": "All three logical counts stay unchanged: map each instruction to the same kind with relabeled target/control, so there is a one-to-one position-preserving correspondence of lists. Counting all positions, rotation positions or controlled-bit-flip positions therefore yields equal counts. Hardware routing cost need not stay unchanged because the permutation can map an adjacent control-target pair to a distant pair while the hardware graph is fixed. Equal logical counts are a semantic placement invariant, not an assumption that connectivity or physical SWAP overhead is free.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "All three logical counts invariant",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Preserve control-target roles",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "No inferred physical routing equality",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveWireRename.gateCount"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveWireRename.ryCount",
+      "declaration:QuantumBlockEncoding.PrimitiveWireRename.cxCount"
+    ],
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Wire renaming maps each instruction to the same instruction kind.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.gateCount"
+        ]
+      },
+      {
+        "claim": "Count positions of each kind to preserve all logical counts.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.gateCount",
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.ryCount",
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.cxCount"
+        ]
+      },
+      {
+        "claim": "Fixed hardware distance is outside this semantic bijection.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.gateCount"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A complete mathematical derivation with explicit boundary or convention, not interface recall."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+        "sha256": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727",
+        "anchor": "gate/circuit16-23; count theorems120-133 and module header",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-expansion-mechanism-014",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A circuit uses only single-qubit rotations, bit flips and controlled bit flips. A bijection relabels all physical wires, preserving which wire controls which target. Which of total instruction count, rotation count and controlled-bit-flip count must stay unchanged? Does this alone prove equal nearest-neighbor routing cost on fixed hardware?",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "none",
+      "author_identity": "main-native-expansion-author",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-015",
+    "key": "qcb-core-la-015",
+    "topic": "angle_approximation",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Define R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]]. Derive the exact operator distance between R(a) and R(b), and prove it is at most |a-b|/2. Why does adding any number of untouched spectator qubits not multiply the distance by a dimension factor?",
+    "reference_answer": "Trigonometric sum-difference formulas factor R(a)-R(b)=2 sin((a-b)/4) R((a+b)/2+pi). The second factor is unitary, so its induced Euclidean operator norm is1, giving exactly 2|sin((a-b)/4)|. Since |sin x|<=|x|, the distance is <=|a-b|/2. Adding identity spectators, with any fixed wire placement, tensors the difference with an identity and conjugates by a permutation. The identity has norm1 and unitary conjugation preserves the norm; hence the same scalar-times-unitary factorization has no dimension multiplier. This is uniform operator error, not entrywise error or a finite-bit synthesis algorithm.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Exact quarter-angle sine formula",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Correct linear bound factor1/2",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain dimension independence in induced norm",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor",
+      "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance_le"
+    ],
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Use sum-difference identities to factor the difference by a unitary.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor"
+        ]
+      },
+      {
+        "claim": "Take scalar-times-unitary norm to obtain the exact sine expression.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+        ]
+      },
+      {
+        "claim": "Apply sine Lipschitz bound; spectator lift remains unitary.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance",
+          "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A complete mathematical derivation with explicit boundary or convention, not interface recall."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+        "sha256": "57ad888af7a81ac5067f6655160fecf1f197a91b0414bc5e510786b9eed27e32",
+        "anchor": "difference_factor28-37; liftedRy factor54-59; distance61-79",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-expansion-mechanism-015",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Define R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]]. Derive the exact operator distance between R(a) and R(b), and prove it is at most |a-b|/2. Why does adding any number of untouched spectator qubits not multiply the distance by a dimension factor?",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "none",
+      "author_identity": "main-native-expansion-author",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-016",
+    "key": "qcb-core-la-016",
+    "topic": "phase_semantics",
+    "track": "reasoning",
+    "task_kind": "counterexample",
+    "question": "For the real rotation R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]], compare R(theta+2pi) and R(theta). A colleague claims the two full operators have distance0 because every output probability agrees. Refute or prove that claim, and distinguish bare-system global-phase equivalence from coherent branch use.",
+    "reference_answer": "Both sine and cosine change sign after adding pi to their arguments, so R(theta+2pi)=-R(theta). Their difference is -2R(theta), whose induced operator norm is2, not0. Bare-system output probabilities agree because the sign is a global phase. In a coherent controlled use, however, applying the minus sign only on the active control branch introduces a relative phase between control branches. Thus probabilities on one isolated output do not establish equality of operators; an error metric modulo global phase is different from the exact operator-norm contract. Equivalently the exact distance formula gives2|sin(2pi/4)|=2.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Distance2 not0",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain probability agreement without operator equality",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "State exact-vs-phase-quotiented metric distinction",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor"
+    ],
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A2pi parameter shift negates both matrix sine/cosine entries.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor"
+        ]
+      },
+      {
+        "claim": "Unitary norm gives distance2 despite unchanged probabilities.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+        ]
+      },
+      {
+        "claim": "A controlled branch sign is relative rather than globally shared.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A complete mathematical derivation with explicit boundary or convention, not interface recall."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+        "sha256": "57ad888af7a81ac5067f6655160fecf1f197a91b0414bc5e510786b9eed27e32",
+        "anchor": "exact difference factor and exact operator distance28-68",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-expansion-mechanism-016",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "For the real rotation R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]], compare R(theta+2pi) and R(theta). A colleague claims the two full operators have distance0 because every output probability agrees. Refute or prove that claim, and distinguish bare-system global-phase equivalence from coherent branch use.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "none",
+      "author_identity": "main-native-expansion-author",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-017",
+    "key": "qcb-core-la-017",
+    "topic": "reversible_classical",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A reversible gate flips a target bit exactly when two control bits are both1. Assume each control wire is distinct from the target, but allow the two control wires to coincide. Prove the gate is its own inverse and explain what it reduces to when the controls coincide.",
+    "reference_answer": "If the control predicate is false, the gate leaves the whole bit string unchanged, so a second application also does nothing. If true, it flips only the target; each control remains1 because neither control is the target. Thus the predicate remains true for the second application, which flips the target back. All other bits stay fixed, proving involution. If the two controls coincide, the condition c=1 and c=1 is just c=1, so the action reduces to one controlled bit flip. Pairwise-distinct controls are required by some instruction encodings but not by this involution argument; control-target distinctness is the load-bearing condition.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Complete two-case inverse argument",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Correct minimal distinctness assumptions",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Identify coincident-control reduction",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ccxBasisAction_involutive"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ccxBasisAction",
+      "declaration:QuantumBlockEncoding.ccxBasisEquiv"
+    ],
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Separate inactive and active control cases.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ccxBasisAction"
+        ]
+      },
+      {
+        "claim": "Active control values survive the target flip by wire distinctness.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ccxBasisAction_involutive"
+        ]
+      },
+      {
+        "claim": "Two target flips cancel; coincident controls collapse to a single predicate.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ccxBasisAction_involutive",
+          "declaration:QuantumBlockEncoding.ccxBasisEquiv"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A complete mathematical derivation with explicit boundary or convention, not interface recall."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/ReversibleClassical.lean",
+        "sha256": "01ea24f54500974985702a0f968e28d93b2bd04a1aefaf05da848c9b7fe64711",
+        "anchor": "ccxBasisAction24-28; involutive30-50; equivalence52-61",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-expansion-mechanism-017",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A reversible gate flips a target bit exactly when two control bits are both1. Assume each control wire is distinct from the target, but allow the two control wires to coincide. Prove the gate is its own inverse and explain what it reduces to when the controls coincide.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "none",
+      "author_identity": "main-native-expansion-author",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-018",
+    "key": "qcb-core-la-018",
+    "topic": "reversible_classical",
+    "track": "reasoning",
+    "task_kind": "counterexample",
+    "question": "On a two-bit string(c,t), consider the update that flips c itself when c=t=1 and otherwise does nothing. Does the familiar self-inverse proof for a two-control target flip remain valid when one control is also the target? Give a concrete collision and explain the lost hypothesis.",
+    "reference_answer": "No. The input(1,1) is sent to(0,1), while(0,1) already fails the activation predicate and is left at(0,1). Two distinct inputs therefore collide, so this map is not injective and cannot be reversible or unitary on basis states. Applying it twice to(1,1) does not return the original state: after the first flip the control predicate became false. The usual involution proof uses that flipping the target preserves all control bits, which fails exactly when a control coincides with the target. This is a mathematical counterexample, not a compiler rejection.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Explicit collision of two inputs",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain activation predicate changes",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Conclude noninjective not just unsupported API",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.ccxBasisAction"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.ccxBasisAction_involutive"
+    ],
+    "assumptions": [
+      "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+      "All basis/register permutations are fixed and applied to both input and output"
+    ],
+    "conventions": [
+      "Column-vector action; Euclidean induced operator norm for norm claims",
+      "Source inspection only; no fresh formal verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Evaluate active input(1,1) to(0,1).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ccxBasisAction"
+        ]
+      },
+      {
+        "claim": "Evaluate inactive input(0,1) to itself, exposing collision.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ccxBasisAction"
+        ]
+      },
+      {
+        "claim": "Identify failed preservation premise of the inverse proof.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.ccxBasisAction_involutive"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A complete mathematical derivation with explicit boundary or convention, not interface recall."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/ReversibleClassical.lean",
+        "sha256": "01ea24f54500974985702a0f968e28d93b2bd04a1aefaf05da848c9b7fe64711",
+        "anchor": "basis action24-28; control-target hypotheses and preserved controls30-49",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-expansion-mechanism-018",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "On a two-bit string(c,t), consider the update that flips c itself when c=t=1 and otherwise does nothing. Does the familiar self-inverse proof for a two-control target flip remain valid when one control is also the target? Give a concrete collision and explain the lost hypothesis.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "none",
+      "author_identity": "main-native-expansion-author",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

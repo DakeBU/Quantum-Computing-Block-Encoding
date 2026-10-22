@@ -1,0 +1,952 @@
+[
+  {
+    "key": "qit-channel-adapter-boundary-001",
+    "topic": "Part III Quantum Information: channels, Choi maps and shared-foundation adapters",
+    "track": "planned",
+    "question": "The planned Part III chapter 'Channels, Choi maps, distances and operational tests' (curriculum id part-iii-quantum-information:qit-channels-distances) is linked to the external intake cluster oai-ppt-square, whose local role is CP/PPT/trace-preserving/entanglement-breaking channel geometry with an explicit PPT-square counterexample. The intake marks this cluster 'adapter-backed' with next_action 'admit only after canonical CP, PPT, trace-preserving, Choi and entanglement-breaking adapters are fixed'. Explain, using the roadmap's single-shared-graph and node-reuse policy, why a question drawn from this chapter cannot yet be scored as a certified result, and state precisely which shared foundation obligations must be discharged before the PPT-square geometry can be consumed. Do not assert any specific theorem from the primary quantum-information notes.",
+    "reference_answer": "The roadmap (docs/quantum-domain-roadmap.md, sections 4 and 6) fixes a single shared proof graph in which density operators, partial trace, positive operators and channel semantics are L1/L2 shared nodes that downstream chapters must reuse rather than redefine. The PPT-square geometry sits at L5 (information-theoretic application / channel-geometry consumer) and therefore depends on a canonical complete-positivity, Choi-map, trace-preserving and entanglement-breaking layer. The intake record (research-wiki/openai-math-2026-intake.json, cluster oai-ppt-square) independently states the same prerequisite as next_action and reports verification status 'lean-present-not-comparator-audited', i.e. the upstream Lean is present but not comparator-audited and no local certificate exists. Consequently any PPT-square item is at most a planned, source-grounded question: it cannot be a Lean-certified or source-validated gold answer because (1) the canonical CP/PPT/trace-preserving/Choi/entanglement-breaking adapters are not yet fixed as shared nodes, (2) no primary-source theorem/page anchor from the quantum-information notes has been locally read to pin the exact PPT-square statement and its hypotheses, and (3) the roadmap's new-QIT semantic checklist (positivity/complete positivity, subsystem order, partial trace, normalization, support, metric conventions) has not been verified for this chapter. The honest status is a conditional interface question whose answer is pending primary-source anchor review.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies that PPT-square geometry is a downstream consumer requiring the L1/L2 shared CP/Choi/trace-preserving/entanglement-breaking foundation, per the single-shared-graph policy",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States that the required canonical CP/PPT/Choi/entanglement-breaking adapters are not yet fixed, so the cluster is adapter-backed and uncertified (status lean-present-not-comparator-audited, no local certificate)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Notes the QIT semantic checklist obligations (positivity/complete positivity, subsystem order, partial trace, normalization, support, metric conventions) must be discharged",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes the item is a planned/conditional question pending primary-source anchor review and does not fabricate a specific theorem from the notes",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "family:spectral-filter"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The intake curriculum/cluster linkage in research-wiki/openai-math-2026-intake.json is treated as architecture metadata, not as a read of the primary quantum-information notes.",
+      "Shared quantum-object and channel nodes referenced here are the roadmap's planned L1/L2 nodes, not yet-compiled local declarations."
+    ],
+    "conventions": [
+      "Channel = completely positive trace-preserving map; distances use the roadmap's to-be-fixed canonical trace/fidelity conventions.",
+      "'Adapter-backed' and 'lean-present-not-comparator-audited' follow the intake record's definitions."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The single shared graph forces downstream channel-geometry chapters to reuse canonical CP/Choi/trace-preserving foundation nodes rather than private copies.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "oai-ppt-square is adapter-backed and not comparator-audited, so it carries no local certificate yet.",
+        "supporting_nodes": []
+      },
+      {
+        "claim": "Absent fixed adapters and a read primary-source anchor, a PPT-square item stays a conditional planned question, not scored gold.",
+        "supporting_nodes": [
+          "family:spectral-filter"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires combining the roadmap node-reuse policy with the intake verification status to diagnose a missing-adapter boundary; no deep proof, but multi-document interface reasoning."
+    },
+    "source_refs": [
+      {
+        "path": "docs/quantum-domain-roadmap.md",
+        "sha256": "01c3a93df03f754a71a3055962324eb99ac545a9cfe7b9506931189005f3e37b",
+        "anchor": "Sections 4 (one graph, minimal duplicated nodes; L0-L5), 6 (QIT semantic checklist: positivity/complete positivity, subsystem order, partial traces, normalization, support, metric)",
+        "license": "MIT (repository LICENSE; architecture document, not external textbook text)"
+      },
+      {
+        "path": "research-wiki/openai-math-2026-intake.json",
+        "sha256": "b21d4529b562468823aab323624eac7455b6e3a2e52ef0a205c2c38773c0ad18",
+        "anchor": "cluster oai-ppt-square: class 'adapter-backed', curriculum part-iii-quantum-information:qit-channels-distances/qit-optics-counterexamples, next_action 'admit only after canonical CP, PPT, trace-preserving, Choi and entanglement-breaking adapters are fixed', upstream_verification 'lean-present-not-comparator-audited'",
+        "license": "repository metadata; upstream openai/math Apache-2.0 boundary recorded, no upstream text copied"
+      },
+      {
+        "path": "website/curriculum-parts.json",
+        "sha256": "013bf053dd1e798ec0d8238894cfca934912067739ca77164be8bb0350cc2d88",
+        "anchor": "part-iii-quantum-information chapter qit-channels-distances (status Planned); oaiClusters include oai-ppt-square",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "qit-channel-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_evidence_pending",
+    "formal": null,
+    "unresolved_issues": [
+      {
+        "type": "SOURCE_BLOCKED",
+        "detail": "primary source text/anchor review pending: Leditzky quantum-information notes (sources.json id leditzky-2025-repth-qit) are not locally readable in this checkout; only sources.json metadata exists, which may not be used as a reading. Exact PPT-square statement, channel-distance conventions and CP/Choi adapter definitions require primary-source page/theorem anchors before any scored release."
+      }
+    ]
+  },
+  {
+    "key": "qit-schur-weyl-prereq-ordering-001",
+    "topic": "Part III Quantum Information: Schur-Weyl prerequisites versus advanced extensions",
+    "track": "planned",
+    "question": "In the planned chapter 'Young diagrams, Specht modules and Schur-Weyl duality' (part-iii-quantum-information:qit-schur-weyl) the curriculum lists three external clusters: oai-young-unitary-infrastructure, oai-saxl and oai-foulkes-howe. The chapter summary states that 'advanced Saxl and Foulkes-Howe results remain extensions, not prerequisites'. Using only the local architecture records, explain which of these clusters supplies the genuine prerequisite layer for the quantum method of types, why the other two must not be placed on the critical dependency path, and what purification obligation gates admission of the prerequisite cluster. Do not import any theorem statement from the primary notes.",
+    "reference_answer": "The prerequisite layer is oai-young-unitary-infrastructure. The intake (research-wiki/openai-math-2026-intake.json) describes it as the Young/Specht and finite-unitary representation ingredients 'relevant to Schur-Weyl prerequisites', spanning paths RepresentationTheory/Young, YoungSymmetry and FiniteUnitary, and classifies it 'adapter-backed'. Its next_action requires purifying manuscript-specific namespaces and assumptions and admitting only source-independent declarations that have a real textbook consumer. By contrast oai-saxl (Saxl conjecture) and oai-foulkes-howe (plethysm/Foulkes-Howe) are each explicitly recorded as 'advanced ... route, not a prerequisite for Schur-Weyl / quantum representation theory'; the curriculum-parts summary echoes this by calling Saxl and Foulkes-Howe extensions. Placing either on the critical path would violate the roadmap node-reuse gate (build the lowest compatible shared node first) and would import deep, source-specific results that the quantum method of types does not need. Admission of the prerequisite cluster is gated by (1) namespace/assumption purification removing manuscript-specific baggage, (2) existence of an actual downstream textbook consumer, and (3) a still-pending primary-source anchor fixing the exact Schur-Weyl statement and its hypotheses - which has not been locally read. Hence this is a conditional curriculum-ordering question, not scored gold.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Correctly selects oai-young-unitary-infrastructure as the prerequisite layer with its Young/Specht/finite-unitary role",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Explains that oai-saxl and oai-foulkes-howe are advanced extensions and must not be on the critical dependency path, citing the roadmap lowest-compatible-node gate",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the purification/real-consumer admission gate for the prerequisite cluster (purify manuscript-specific namespaces, source-independent declarations only)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Keeps the answer conditional on pending primary-source anchors and does not quote or invent a theorem from the notes",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:tensor-networks",
+      "family:local-isometry"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Cluster roles and the prerequisite-vs-extension labels are read from local intake/curriculum metadata only.",
+      "No local Lean declaration for Schur-Weyl duality is assumed to exist."
+    ],
+    "conventions": [
+      "'Prerequisite' means on the critical dependency path for the quantum method of types; 'extension' means an optional downstream route.",
+      "Node-reuse gate as defined in docs/quantum-domain-roadmap.md section 4."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "oai-young-unitary-infrastructure is the adapter-backed prerequisite ingredient set for Schur-Weyl.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Saxl and Foulkes-Howe are explicitly advanced non-prerequisite routes and must stay off the critical path.",
+        "supporting_nodes": []
+      },
+      {
+        "claim": "Admission needs namespace purification plus a real consumer, and still awaits a read primary-source anchor.",
+        "supporting_nodes": [
+          "family:local-isometry"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Dependency-ordering diagnosis across three clusters plus the roadmap gate; conceptual, no proof depth claimed."
+    },
+    "source_refs": [
+      {
+        "path": "research-wiki/openai-math-2026-intake.json",
+        "sha256": "b21d4529b562468823aab323624eac7455b6e3a2e52ef0a205c2c38773c0ad18",
+        "anchor": "clusters oai-young-unitary-infrastructure (paths Young/YoungSymmetry/FiniteUnitary; next_action purify manuscript-specific namespaces, admit source-independent declarations with a real consumer), oai-saxl ('advanced ... not a prerequisite for Schur-Weyl'), oai-foulkes-howe ('advanced plethysm/Foulkes-Howe route, not a prerequisite')",
+        "license": "repository metadata; upstream openai/math Apache-2.0 boundary recorded, no upstream text copied"
+      },
+      {
+        "path": "website/curriculum-parts.json",
+        "sha256": "013bf053dd1e798ec0d8238894cfca934912067739ca77164be8bb0350cc2d88",
+        "anchor": "part-iii-quantum-information chapter qit-schur-weyl summary 'advanced Saxl and Foulkes-Howe results remain extensions, not prerequisites'",
+        "license": "MIT (repository LICENSE)"
+      },
+      {
+        "path": "docs/quantum-domain-roadmap.md",
+        "sha256": "01c3a93df03f754a71a3055962324eb99ac545a9cfe7b9506931189005f3e37b",
+        "anchor": "Section 4 node-reuse gate (search ASPBE, then Mathlib, then attributed references, then narrow adapter, only then a new node); Section 2 QIT progression items 4-5 (representation theory then Schur-Weyl)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "qit-representation-ordering",
+    "answer_format": "rubric",
+    "evidence_status": "planned_evidence_pending",
+    "formal": null,
+    "unresolved_issues": [
+      {
+        "type": "SOURCE_BLOCKED",
+        "detail": "primary source text/anchor review pending: the exact Schur-Weyl duality statement, Young/Specht module definitions and the quantum-method-of-types dependency chain require page/theorem anchors from the Leditzky notes (leditzky-2025-repth-qit), which are not locally readable; sources.json metadata is not a reading."
+      }
+    ]
+  },
+  {
+    "key": "qit-amplitude-damping-invariant-vs-capacity-001",
+    "topic": "Part III Quantum Information: separating distinct channel obligations",
+    "track": "planned",
+    "question": "The amplitude-damping cluster oai-amplitude-damping is linked to three planned chapters (qit-channels-distances, qit-capacity-entanglement, and the scientific-computing qsc-linear-open) with local role 'quantum channel, entropy, Holevo information, and operational capacity'. The intake reports upstream_verification status 'comparator-backed' with declaration OAI.GAD.main. A tempting inference is: 'the cluster is comparator-backed upstream, therefore a capacity question about the amplitude-damping channel can be released as certified gold.' Explain why this inference fails under the project's evidence policy, and separate the distinct obligations that a channel-definition question, a capacity question, and a shared-foundation reuse obligation each carry. Do not state any numeric capacity value or theorem from the primary notes.",
+    "reference_answer": "The inference conflates three different labels that the AGENT_GOAL and roadmap keep separate. First, 'comparator-backed upstream' is an upstream openai/math verification signal, not a local certificate: the local_boundary in the intake pins Lean 4.33.0 and forbids a direct package dependency, so upstream status cannot stand in for a replayed, axiom-checked local proof. Second, a channel-definition/interpretation question (qit-channels-distances) needs only the canonical CP/trace-preserving channel and entropy adapters to be fixed, but it still requires a primary-source anchor pinning the amplitude-damping Kraus/Choi form - not yet locally read. Third, a capacity/Holevo question (qit-capacity-entanglement) is strictly heavier: operational capacity is a distinct obligation from merely defining the channel, and the AGENT_GOAL's resource/semantics track insists that capacity claims carry their own operational interpretation and are not implied by a definition being formalized. The shared-foundation reuse obligation is that this channel must consume the one canonical state/channel/distance layer (roadmap L1/L2), as qsc-foundations and qsc-linear-open also depend on it, rather than a chapter-local copy. Therefore the correct status is planned/conditional: a definition-level question could be admitted to a non-Lean-certified source-grounded track only after a primary-source anchor is read, and a capacity value remains unscored until both the local adapters and the operational-capacity argument are independently checked.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Rejects 'upstream comparator-backed implies local certified', citing the local_boundary (Lean 4.33.0, no direct package dependency) and the need for independent replay/axiom check",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Separates the channel-definition obligation (canonical CP/channel adapter + source anchor) from the capacity/Holevo obligation (distinct operational argument)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the shared-foundation reuse obligation (one canonical state/channel/distance layer consumed by qit and qsc chapters)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes a capacity value stays unscored and gives no numeric capacity or theorem from the notes",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:verification"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Upstream verification status is read from intake metadata; no upstream or primary-source proof was executed or read.",
+      "Canonical channel/entropy adapters referenced are planned shared nodes, not compiled local declarations."
+    ],
+    "conventions": [
+      "Capacity/Holevo information taken in the standard operational sense; exact normalization pending the source anchor.",
+      "'Comparator-backed' is the intake's upstream signal, distinct from a local certificate."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Upstream comparator-backed status is not a local certificate under the pinned-toolchain, no-direct-dependency boundary.",
+        "supporting_nodes": [
+          "concept:verification"
+        ]
+      },
+      {
+        "claim": "Channel definition and operational capacity are distinct obligations with different evidence requirements.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The channel must reuse the single canonical state/channel/distance foundation shared with the scientific-computing chapters.",
+        "supporting_nodes": []
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires diagnosing a plausible-but-wrong 'upstream implies certified' inference and decomposing three obligation types; conceptual resource/evidence reasoning."
+    },
+    "source_refs": [
+      {
+        "path": "research-wiki/openai-math-2026-intake.json",
+        "sha256": "b21d4529b562468823aab323624eac7455b6e3a2e52ef0a205c2c38773c0ad18",
+        "anchor": "cluster oai-amplitude-damping (local_role 'quantum channel, entropy, Holevo information, and operational capacity'; curriculum qit-channels-distances/qit-capacity-entanglement/qsc-linear-open; upstream_verification comparator-backed, declaration OAI.GAD.main); local_boundary (lean_toolchain 4.33.0, direct_package_dependency_allowed false)",
+        "license": "repository metadata; upstream openai/math Apache-2.0 boundary recorded, no upstream text copied"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/AGENT_GOAL.md",
+        "sha256": "6449e6bb5cc961068bae28a446998b1dd02bcda0ea647c50888defb287971a7d",
+        "anchor": "Section 'Design complementary QA tracks' item 3 (quantum semantics and resources: query vs logical-gate vs finite-bit complexity, charge input preparation/readout); 'Evidence and answer validation' (keep formal validity, NL alignment and answer quality separate; upstream compilation record cannot support a local proof)",
+        "license": "MIT (repository LICENSE)"
+      },
+      {
+        "path": "docs/quantum-domain-roadmap.md",
+        "sha256": "01c3a93df03f754a71a3055962324eb99ac545a9cfe7b9506931189005f3e37b",
+        "anchor": "Section 4 shared L1/L2 state/channel/distance nodes consumed by both QIT and scientific-computing chapters",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "qit-channel-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_evidence_pending",
+    "formal": null,
+    "unresolved_issues": [
+      {
+        "type": "SOURCE_BLOCKED",
+        "detail": "primary source text/anchor review pending: amplitude-damping Kraus/Choi form, entropy and operational-capacity statements require page/theorem anchors from the Leditzky notes (leditzky-2025-repth-qit) and/or Lin-Wiebe notes (lin-wiebe-2026-qasc); neither primary text is locally readable, and no local certificate or upstream replay has been performed."
+      }
+    ]
+  },
+  {
+    "key": "qsc-block-encoding-dedup-adapter-001",
+    "topic": "Part IV Scientific Computing: block encoding reuse and error-convention adapters",
+    "track": "planned",
+    "question": "The scientific-computing chapter 'Block encoding as the shared scientific-computing interface' (part-iv-quantum-scientific-computing:qsc-block-encoding, status 'Partial route') is documented to 'Point back to Part II and add adapters only where the source notation or error convention differs.' The roadmap maps Lin-Wiebe Chapter 9 onto the existing certified Block Encoding part rather than duplicating it. Using the local records, explain (a) why the scientific-computing part must not re-formalize block encoding under a second API, and (b) what minimal adapter obligation arises specifically from a differing error convention, referencing how the existing diagonal-operator source already flags a normalized-block-versus-spectral-norm error distinction. Do not assert the exact Chapter 9 block-encoding statement from the primary notes.",
+    "reference_answer": "(a) The roadmap (section 3 and the Part III source table) explicitly maps Lin-Wiebe Chapter 9 onto the existing Block Encoding part and states 'Block Encoding is therefore not duplicated as a later textbook chapter'; the single-shared-graph policy (section 4) forbids a second definition of block encoding merely because the source uses different notation, because duplicated L3 construction-interface nodes break proof locality and the node-reuse gate. The curriculum record confirms qsc-block-encoding is a 'Partial route' that points back (href block-encoding/) rather than a new compiled chapter. (b) The only legitimate new work is a narrow adapter where the source's error convention differs from the local clean-block contract. The repository already has a concrete precedent: sources.json for zylberman-et-al-2025-diagonal records that 'Table I uses spectral-norm error; Eq. (18) bounds normalized-block error delta, corresponding to total-scale times delta in the unscaled-operator convention.' So a differing-error-convention adapter must (1) fix whether epsilon/delta is measured in spectral norm of the target or in normalized-block error, (2) carry the explicit scale factor (e.g. total-scale alpha or dmax) relating the two, and (3) preserve the subnormalization alpha and register/projector layout of the local clean-block API, proving the local contract norm bound under the translated convention. Absent a read Chapter 9 primary-source anchor the exact source epsilon definition is unknown, so this remains a conditional adapter-design question, not scored gold.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States block encoding must be reused from Part II, not re-formalized under a second API, citing the roadmap dedup and node-reuse policy",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the error-convention adapter obligation: reconcile spectral-norm vs normalized-block error with an explicit scale factor and preserved subnormalization/register layout",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Grounds the error-convention point in the existing zylberman-et-al-2025-diagonal spectral-norm-vs-delta precedent from sources.json",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Keeps the exact Chapter 9 statement open (pending primary-source anchor) and invents no block-encoding theorem",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "family:spectral-filter",
+      "family:matrix-contract"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The clean-block API and its subnormalization alpha are the existing Part II contract; no new local declaration is assumed for Chapter 9.",
+      "The diagonal-operator error distinction is read from sources.json scope text, which is a repository audit note, not the primary paper body."
+    ],
+    "conventions": [
+      "Block-encoding error measured as ||A - alpha Pi U Pi+|| <= epsilon (local roadmap convention); source conventions may differ and need an adapter.",
+      "'Normalized-block error delta' vs 'spectral-norm error' as distinguished in the diagonal-operator source scope."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The scientific-computing part reuses the certified Block Encoding nodes rather than defining a second block-encoding API.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "A differing error convention is the specific trigger for a narrow adapter, which must carry the explicit scale factor between normalized-block and spectral-norm error.",
+        "supporting_nodes": [
+          "family:spectral-filter",
+          "family:matrix-contract"
+        ]
+      },
+      {
+        "claim": "The exact source error definition for Chapter 9 is unknown without a read anchor, so the adapter design stays conditional.",
+        "supporting_nodes": []
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines the dedup policy with a concrete error-convention adapter obligation and reuses an existing documented norm distinction; requires resource/convention care but no new proof."
+    },
+    "source_refs": [
+      {
+        "path": "docs/quantum-domain-roadmap.md",
+        "sha256": "01c3a93df03f754a71a3055962324eb99ac545a9cfe7b9506931189005f3e37b",
+        "anchor": "Section 3 Part IV table (Ch. 9 block encoding -> map onto existing Block Encoding part) and 'Block Encoding is therefore not duplicated as a later textbook chapter'; Section 4 single shared graph / no second block-encoding definition",
+        "license": "MIT (repository LICENSE)"
+      },
+      {
+        "path": "website/curriculum-parts.json",
+        "sha256": "013bf053dd1e798ec0d8238894cfca934912067739ca77164be8bb0350cc2d88",
+        "anchor": "part-iv-quantum-scientific-computing chapter qsc-block-encoding (status 'Partial route', href block-encoding/, 'Point back to Part II and add adapters only where the source notation or error convention differs')",
+        "license": "MIT (repository LICENSE)"
+      },
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source zylberman-et-al-2025-diagonal scope: 'Table I uses spectral-norm error; Eq. (18) bounds normalized-block error delta, corresponding to total-scale times delta in the unscaled-operator convention'",
+        "license": "MIT repository audit note; underlying arXiv:2404.02819v4 not copied, only convention paraphrased"
+      }
+    ],
+    "family": "qsc-block-encoding-reuse",
+    "answer_format": "rubric",
+    "evidence_status": "planned_evidence_pending",
+    "formal": null,
+    "unresolved_issues": [
+      {
+        "type": "SOURCE_BLOCKED",
+        "detail": "primary source text/anchor review pending: the exact Lin-Wiebe Chapter 9 block-encoding definition and its error/subnormalization convention require page/equation anchors from lin-wiebe-2026-qasc, which is not locally readable (only sources.json metadata exists). The adapter's precise scale factor cannot be finalized until the Chapter 9 epsilon definition is read."
+      }
+    ]
+  },
+  {
+    "key": "qsc-fourier-not-qpe-certificate-001",
+    "topic": "Part IV Scientific Computing: exact Fourier resource theorem versus QPE certificate",
+    "track": "planned",
+    "question": "The chapter 'Fourier transforms, phase estimation and amplitude estimation' (part-iv-quantum-scientific-computing:qsc-fourier-estimation) is linked to cluster oai-exact-fourier, which the curriculum describes as a route to 'Use the Comparator-backed exact Fourier route as an external resource theorem after circuit-model adaptation; it does not itself certify QPE.' Explain precisely why possessing a comparator-backed exact-Fourier circuit construction does NOT constitute a certificate for quantum phase estimation, and enumerate the additional resource and correctness obligations that QPE requires beyond the Fourier primitive. Do not assert the exact phase-estimation theorem or its error bound from the primary notes.",
+    "reference_answer": "An exact-Fourier circuit construction is a single primitive: it realizes the quantum Fourier transform with some gate set and resource tuple. The intake records oai-exact-fourier as a 'source-route' with next_action 'compare circuit ordering, gate set and cost tuple with the local circuit/resource API; do not present the Fourier result as a block encoding or QPE certificate.' QPE is a composite algorithm that consumes the QFT but additionally requires: (1) controlled applications of the target unitary U (or its powers U^{2^k}), i.e. an access/oracle model whose construction cost must be charged separately; (2) an eigenstate or input-state preparation assumption and the overlap of the input with eigenvectors, which governs success probability; (3) an approximation/precision analysis relating the number of ancilla phase qubits to the estimated-phase resolution and failure probability; (4) readout/measurement of the phase register and the classical post-processing, which the AGENT_GOAL's resource track insists be charged; and (5) a circuit-model adaptation reconciling the Fourier route's qubit/gate ordering with the local circuit and resource API. None of these are supplied by the Fourier primitive alone, so comparator-backed Fourier status certifies only the transform, not the end-to-end QPE claim. The correct status is a conditional resource-decomposition question; the exact QPE error bound stays unscored pending a read primary-source anchor.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the exact-Fourier construction is only the QFT primitive and does not certify the composite QPE algorithm, citing the 'do not present as a QPE certificate' route note",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Enumerates controlled-U access/oracle cost and input-state/eigenvector-overlap assumptions as separate obligations",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Includes precision/ancilla-vs-resolution analysis and readout/post-processing cost (resource charging), plus circuit-model adaptation of ordering/gate set",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Gives no exact QPE theorem or error bound and keeps the item conditional on a pending primary-source anchor",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:harmonic-analysis",
+      "concept:complexity",
+      "family:prepare-select"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "The exact-Fourier cluster provides a QFT circuit with a defined resource tuple, read from intake metadata only.",
+      "Controlled-U access, input preparation and readout are treated as separately charged resources per the AGENT_GOAL resource track."
+    ],
+    "conventions": [
+      "QPE in the standard phase-register formulation; precision measured in phase-register bits with an associated failure probability.",
+      "'Resource theorem' means a construction with an explicit cost tuple, not an end-to-end algorithm certificate."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "An exact-Fourier circuit is a transform primitive, explicitly not a QPE certificate.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "QPE adds controlled-U access, input-overlap, precision and readout obligations, each separately charged.",
+        "supporting_nodes": [
+          "concept:complexity",
+          "family:prepare-select"
+        ]
+      },
+      {
+        "claim": "Circuit-model adaptation of ordering/gate set is required before the Fourier route plugs into the local API, and the exact error bound awaits a source anchor.",
+        "supporting_nodes": []
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires decomposing a composite algorithm into its separately-charged resources and resisting a primitive-equals-algorithm fallacy; genuine quantum-resource reasoning though no formal proof is replayed."
+    },
+    "source_refs": [
+      {
+        "path": "website/curriculum-parts.json",
+        "sha256": "013bf053dd1e798ec0d8238894cfca934912067739ca77164be8bb0350cc2d88",
+        "anchor": "part-iv-quantum-scientific-computing chapter qsc-fourier-estimation summary 'Use the Comparator-backed exact Fourier route as an external resource theorem after circuit-model adaptation; it does not itself certify QPE'; oaiClusters oai-exact-fourier",
+        "license": "MIT (repository LICENSE)"
+      },
+      {
+        "path": "research-wiki/openai-math-2026-intake.json",
+        "sha256": "b21d4529b562468823aab323624eac7455b6e3a2e52ef0a205c2c38773c0ad18",
+        "anchor": "cluster oai-exact-fourier (class 'source-route', local_role 'exact Fourier-circuit construction and resource theorem; supplier to Fourier/QPE chapters after circuit-model adaptation', next_action 'compare circuit ordering, gate set and cost tuple ...; do not present the Fourier result as a block encoding or QPE certificate')",
+        "license": "repository metadata; upstream openai/math Apache-2.0 boundary recorded, no upstream text copied"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/AGENT_GOAL.md",
+        "sha256": "6449e6bb5cc961068bae28a446998b1dd02bcda0ea647c50888defb287971a7d",
+        "anchor": "'Design complementary QA tracks' item 3 (quantum semantics and resources: oracle access and construction cost, query vs logical-gate complexity; charge input preparation, postselection, amplification and readout where relevant)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "qsc-transforms-resources",
+    "answer_format": "rubric",
+    "evidence_status": "planned_evidence_pending",
+    "formal": null,
+    "unresolved_issues": [
+      {
+        "type": "SOURCE_BLOCKED",
+        "detail": "primary source text/anchor review pending: the exact QPE statement, ancilla-vs-precision bound and the exact-Fourier resource tuple require page/equation anchors from lin-wiebe-2026-qasc (Chapter 16 Fourier/phase/amplitude estimation) which is not locally readable; sources.json metadata is not a reading and no local certificate exists."
+      }
+    ]
+  },
+  {
+    "key": "qsc-foundations-query-cost-charging-001",
+    "topic": "Part IV Scientific Computing: query models and honest resource charging",
+    "track": "planned",
+    "question": "The foundations chapter 'Probability, channels, query models, perturbation and statistics' (part-iv-quantum-scientific-computing:qsc-foundations) links the frontier cluster oai-randomized-quantum-query-separation, whose intake status is 'manuscript-only-in-current-audit' and whose class is 'benchmark-only'. A contributor proposes releasing, as scored gold, a question of the form 'state the proven quantum-vs-randomized query separation'. Explain why this must instead remain an unscored challenge, and separately state the honest resource-charging requirement that any accepted qsc-foundations query question must satisfy (distinguishing query complexity from an explicit gate implementation). Do not assert the separation's exact exponent or theorem from the manuscript.",
+    "reference_answer": "The separation question must stay an unscored challenge for two independent reasons. First, the intake records oai-randomized-quantum-query-separation as class 'benchmark-only' with upstream_verification 'manuscript-only-in-current-audit' and next_action 'locate exact formalization/comparator mapping before any Lean-status claim' - i.e. there is no comparator-backed or locally replayed proof, only a manuscript. The AGENT_GOAL is explicit that a title/abstract/manuscript or upstream compilation record cannot support a local certificate, and that open questions without a validated answer remain unscored challenges, kept separate from scored gold. Second, no primary-source anchor for the exact statement has been locally read, so even a source-grounded non-Lean track entry is premature. The honest resource-charging requirement for any accepted qsc-foundations query question is the AGENT_GOAL semantics/resource rule: it must distinguish (a) query complexity (number of oracle calls in a black-box model), from (b) logical-gate complexity of an explicit circuit, from (c) finite-bit/precision cost, and must charge input preparation, the oracle construction cost (an oracle is not free), postselection/amplification and readout where relevant. A question may legitimately ask about query complexity in a fixed oracle model, but it must declare that model and not silently convert a query bound into a gate-complexity or hardware claim.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Explains the separation stays an unscored challenge because the cluster is benchmark-only/manuscript-only with no comparator-backed or replayed proof, per AGENT_GOAL open-question policy",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Notes that manuscript/upstream status cannot support a local certificate and no primary-source anchor has been read",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "States the resource-charging requirement distinguishing query vs logical-gate vs finite-bit complexity and charging oracle construction/input/readout",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Does not assert the exact separation exponent/theorem and keeps the item conditional",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:complexity",
+      "concept:probability",
+      "family:charged-access"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Cluster status is read from intake metadata; the manuscript itself was not read.",
+      "Query/oracle models are the black-box models of the AGENT_GOAL resource track, not an assumed hardware model."
+    ],
+    "conventions": [
+      "Query complexity counts oracle calls; gate complexity counts primitive gates of an explicit circuit; finite-bit cost counts precision/qubits.",
+      "'Benchmark-only' and 'manuscript-only-in-current-audit' follow the intake definitions."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A manuscript-only, benchmark-only cluster has no validated answer and so yields an unscored challenge, not gold.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Manuscript/upstream status cannot substitute for a local certificate or a read primary-source anchor.",
+        "supporting_nodes": []
+      },
+      {
+        "claim": "Any accepted query question must declare its oracle model and charge query vs gate vs finite-bit costs plus input/oracle/readout.",
+        "supporting_nodes": [
+          "concept:probability",
+          "family:charged-access"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines the open-challenge release policy with the resource-charging taxonomy; conceptual evidence-and-resource reasoning without proof depth."
+    },
+    "source_refs": [
+      {
+        "path": "research-wiki/openai-math-2026-intake.json",
+        "sha256": "b21d4529b562468823aab323624eac7455b6e3a2e52ef0a205c2c38773c0ad18",
+        "anchor": "cluster oai-randomized-quantum-query-separation (class 'benchmark-only', curriculum qsc-foundations, upstream_verification 'manuscript-only-in-current-audit', next_action 'locate exact formalization/comparator mapping before any Lean-status claim')",
+        "license": "repository metadata; upstream openai/math Apache-2.0 boundary recorded, no upstream text copied"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/AGENT_GOAL.md",
+        "sha256": "6449e6bb5cc961068bae28a446998b1dd02bcda0ea647c50888defb287971a7d",
+        "anchor": "'Evidence and answer validation' (a title, abstract, planned graph edge or upstream compilation record cannot support an invented local proof; an open question without a validated answer remains an unscored challenge); 'Design complementary QA tracks' item 3 (query versus logical-gate versus finite-bit complexity; oracle access and construction cost; charge input preparation, postselection, amplification and readout)",
+        "license": "MIT (repository LICENSE)"
+      },
+      {
+        "path": "website/curriculum-parts.json",
+        "sha256": "013bf053dd1e798ec0d8238894cfca934912067739ca77164be8bb0350cc2d88",
+        "anchor": "part-iv-quantum-scientific-computing chapter qsc-foundations (status Planned; oaiClusters include oai-randomized-quantum-query-separation)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "qsc-query-complexity",
+    "answer_format": "rubric",
+    "evidence_status": "planned_evidence_pending",
+    "formal": null,
+    "unresolved_issues": [
+      {
+        "type": "SOURCE_BLOCKED",
+        "detail": "primary source text/anchor review pending: the exact randomized-vs-quantum query separation statement and exponent live in a manuscript (oai-randomized-quantum-query-separation, 'manuscript-only-in-current-audit') with no locally readable primary text or comparator mapping; the Lin-Wiebe query-complexity chapter (lin-wiebe-2026-qasc Ch. 6) is also not locally readable."
+      }
+    ]
+  },
+  {
+    "key": "qit-pure-state-projector-density-001",
+    "topic": "Part III Quantum Information: pure states as rank-one projectors satisfying the density-operator axioms",
+    "track": "planned",
+    "question": "Let H = C^d with the standard inner product of Eq. (2.4), and let |psi> in H be a unit vector, <psi|psi> = 1. Define rho := |psi><psi|. Starting only from Definition 2.1 (a quantum state is a density operator with rho >= 0 and tr rho = 1), prove that rho is a legitimate quantum state, that it is a rank-one orthogonal projector (rho^2 = rho = rho^dagger), and explain in what precise sense this makes rho an extreme point (pure state) of the convex set of density operators. State explicitly which step uses normalization of |psi> and why dropping it breaks the trace condition.",
+    "reference_answer": "Hermiticity: rho^dagger = (|psi><psi|)^dagger = |psi><psi| = rho. Positivity: for any |phi>, <phi|rho|phi> = <phi|psi><psi|phi> = |<psi|phi>|^2 >= 0, hence rho >= 0. Trace/normalization: in any orthonormal basis, tr rho = sum_i <e_i|psi><psi|e_i> = <psi|(sum_i |e_i><e_i|)|psi> = <psi|psi> = 1, where the final equality is exactly the unit-norm hypothesis computed with the Eq. (2.4) inner product. Both Definition 2.1 conditions hold, so rho is a quantum state. Idempotency: rho^2 = |psi><psi|psi><psi| = <psi|psi>|psi><psi| = rho, so rho is an orthogonal projector onto the one-dimensional span{|psi>}, hence rank 1. Extreme point: if rho = p sigma_1 + (1-p) sigma_2 with 0<p<1 and density operators sigma_i, positivity forces the range of each sigma_i inside range(rho) = span{|psi>}; the only trace-one state supported on a one-dimensional space is |psi><psi|, so sigma_1 = sigma_2 = rho and the decomposition is trivial. Thus rho is an extreme point (pure state), matching the text's statement that a pure density matrix has rank 1 and equals a projector |psi><psi|. If normalization were dropped (<psi|psi> = c != 1) then tr rho = c != 1 violates Definition 2.1, and (|psi><psi|)^2 = c|psi><psi| != rho, so one must renormalize rho = |psi><psi|/<psi|psi> to recover a state.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves rho = rho^dagger and rho >= 0 via <phi|rho|phi> = |<psi|phi>|^2",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes tr rho = <psi|psi> = 1 and identifies normalization of |psi> as the step giving trace one",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Shows rho^2 = rho using <psi|psi>=1, concluding rank-one orthogonal projector",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Argues purity via one-dimensional support forcing a trivial convex decomposition, and notes failure of trace/idempotency without normalization",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Finite-dimensional H = C^d with the standard inner product of Eq. (2.4).",
+      "|psi> is a fixed unit vector; density-operator conditions are exactly Definition 2.1."
+    ],
+    "conventions": [
+      "Inner product conjugate-linear in the first argument per Eq. (2.4): <psi|phi> = sum_i psi_i^* phi_i.",
+      "Pure state = extreme point of the convex set of density operators."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "rho = |psi><psi| is Hermitian and positive semidefinite since <phi|rho|phi> = |<psi|phi>|^2 >= 0.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "tr rho = <psi|psi> = 1 exactly because |psi> is normalized, giving the Definition 2.1 trace condition.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "rho^2 = rho so rho is a rank-one orthogonal projector whose one-dimensional support forces purity.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean several-step derivation from the density-operator axioms; the extreme-point argument needs support/convexity reasoning beyond idempotency."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source id leditzky-2025-repth-qit (status primary-text-checked; registry SHA256 90784b02...; 10 April 2026 edition)",
+        "license": "course lecture notes (c) Felix Leditzky; not redistributed in this dataset; only short definitions/equations referenced, original questions and prose"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "3-7",
+          "anchors": "Definition 2.1 (density operator: positivity, tr=1); Eq. (2.4) standard inner product; pure-state projector characterization (rank 1, rho=|psi><psi|, <psi|psi>=1); Eqs. (2.14)-(2.15) partial trace definition; Example 2.6 Eqs. (2.17)-(2.18) Bell state Phi+ and its density matrix; Eq. (2.22) maximally-mixed marginals",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed"
+        }
+      }
+    ],
+    "family": "qit-state-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": []
+  },
+  {
+    "key": "qit-bell-partial-trace-maximally-mixed-001",
+    "topic": "Part III Quantum Information: partial trace of the Bell state gives a maximally mixed marginal",
+    "track": "planned",
+    "question": "Consider the two-qubit EPR/Bell state |Phi+>_AB = (1/sqrt 2)(|0>_A|0>_B + |1>_A|1>_B) with density matrix Phi+_AB = |Phi+><Phi+| as in Eqs. (2.17)-(2.18). Using the defining relation Eq. (2.14), tr(rho_AB (X_A tensor 1_B)) = tr(rho_A X_A) for all X_A, and/or the basis formula Eq. (2.15), compute the marginal rho_A = tr_B Phi+_AB and show rho_A = (1/2) 1 (Eq. (2.22)). Explain why this maximally mixed marginal shows Phi+ is not a product state, and why the partial trace is independent of the orthonormal basis chosen in Eq. (2.15).",
+    "reference_answer": "Write |Phi+> = (1/sqrt2) sum_{i in {0,1}} |i>_A|i>_B. Using Eq. (2.15) with the computational B-basis: tr_B Phi+_AB = sum_k (1_A tensor <k|_B) |Phi+><Phi+| (1_A tensor |k>_B). Since (1_A tensor <k|_B)|Phi+> = (1/sqrt2)|k>_A, each term is (1/2)|k>_A<k|_A, and summing over k in {0,1} gives rho_A = (1/2)(|0><0| + |1><1|) = (1/2)1, the maximally mixed state (Eq. 2.22). Equivalently via Eq. (2.14): tr(Phi+_AB (X_A tensor 1_B)) = (1/2)(<0|X_A|0> + <1|X_A|1>) = (1/2) tr X_A = tr((1/2)1 X_A) for all X_A, so by uniqueness rho_A = (1/2)1. Not a product state: a pure global state has a pure marginal iff it is a product; here rho_A = (1/2)1 is maximally mixed (eigenvalues 1/2,1/2, rank 2), so if Phi+ = omega_A tensor sigma_B its A-marginal would be the pure omega_A, contradicting rho_A = (1/2)1. A pure global state with a mixed marginal is by definition entangled. Basis independence: Eq. (2.14) defines rho_A uniquely by its action against all X_A with no reference to a basis; Eq. (2.15) merely evaluates that unique operator, so every orthonormal {|e_i>_B} yields the same rho_A, as the text explicitly notes.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Applies Eq. (2.15) or Eq. (2.14) to the Bell state and obtains rho_A = (1/2)(|0><0|+|1><1|) = (1/2)1",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies the marginal as maximally mixed (eigenvalues 1/2,1/2), matching Eq. (2.22)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains a pure global state with a mixed marginal is entangled, so Phi+ is not a product state",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States basis independence of the partial trace, grounded in the basis-free Eq. (2.14)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:tensor-networks",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Two-qubit system C^2 tensor C^2 with computational basis {|0>,|1>}.",
+      "Partial trace defined by Eq. (2.14) and computed via Eq. (2.15); tensor order A then B fixed."
+    ],
+    "conventions": [
+      "tr_B = id_A tensor tr; rho_A is the unique operator satisfying Eq. (2.14) for all X_A.",
+      "'Maximally mixed' means proportional to identity, (1/2)1 on a qubit."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "(1_A tensor <k|_B)|Phi+> = (1/sqrt2)|k>_A, so each Eq. (2.15) term yields (1/2)|k><k|_A.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Summing gives rho_A = (1/2)1, the maximally mixed marginal of Eq. (2.22).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "A pure global state with a mixed marginal is entangled; a product state would force a pure A-marginal.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Eq. (2.14) defines rho_A basis-free, so Eq. (2.15) gives the same operator for any B-basis.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A correct partial-trace computation plus the pure-global/mixed-marginal entanglement argument and a basis-independence justification."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source id leditzky-2025-repth-qit (status primary-text-checked; registry SHA256 90784b02...; 10 April 2026 edition)",
+        "license": "course lecture notes (c) Felix Leditzky; not redistributed in this dataset; only short definitions/equations referenced, original questions and prose"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "3-7",
+          "anchors": "Definition 2.1 (density operator: positivity, tr=1); Eq. (2.4) standard inner product; pure-state projector characterization (rank 1, rho=|psi><psi|, <psi|psi>=1); Eqs. (2.14)-(2.15) partial trace definition; Example 2.6 Eqs. (2.17)-(2.18) Bell state Phi+ and its density matrix; Eq. (2.22) maximally-mixed marginals",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed"
+        }
+      }
+    ],
+    "family": "qit-composite-entanglement",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": []
+  },
+  {
+    "key": "qasc-lcu-sum-additive-error-prop910-001",
+    "topic": "Part IV Scientific Computing: additive error of an LCU sum of block encodings (Proposition 9.10)",
+    "track": "planned",
+    "question": "Proposition 9.10 (Lin-Wiebe, p.149) states that given block encodings U_{A_j} in BE_{alpha_j,a}(A_j, eps_j), j in [M], M=2^m, alpha_j >= 0, with select oracle U_SEL = sum_j |j><j| tensor U_{A_j} and prepare oracle V_PREP|0^m> = (1/sqrt gamma) sum_j sqrt(alpha_j)|j>, gamma = sum_j alpha_j, the operator W = (V_PREP^dagger tensor I) U_SEL (V_PREP tensor I) satisfies W in BE_{gamma, a+m}(sum_j A_j, sum_j eps_j). Derive (i) the subnormalization factor of the sum and (ii) the total block-encoding error, prove the error bound, and explain why the errors add (not the max) and why gamma = sum_j alpha_j rather than something smaller.",
+    "reference_answer": "Set B_j := <0^a|U_{A_j}|0^a>, so by BE_{alpha_j,a}(A_j,eps_j) we have ||A_j - alpha_j B_j|| <= eps_j and ||B_j|| <= 1. Computing the (|0^m,0^a>) block of W, the prepare amplitudes sqrt(alpha_j)/sqrt(gamma) on each side contract through U_SEL to weight term j by (sqrt(alpha_j)/sqrt(gamma))^2 = alpha_j/gamma, giving <0^m,0^a|W|0^m,0^a> = sum_j (alpha_j/gamma) B_j (Eq. 9.41). (i) Hence W encodes gamma * sum_j (alpha_j/gamma) B_j with subnormalization gamma = sum_j alpha_j and target sum_j A_j. (ii) The error is ||sum_j A_j - gamma<0^m,0^a|W|0^m,0^a>|| = ||sum_j (A_j - alpha_j B_j)|| <= sum_j ||A_j - alpha_j B_j|| <= sum_j eps_j by the triangle inequality (Eq. 9.42), so W in BE_{gamma,a+m}(sum_j A_j, sum_j eps_j). Errors add because each term independently contributes its deviation A_j - alpha_j B_j and the triangle inequality admits no cancellation guarantee, so sum_j eps_j (not the max) is the faithful worst-case bound. gamma = sum_j alpha_j is forced by unit-norm of the prepare state: |V_PREP|0^m>|^2 = (1/gamma) sum_j alpha_j = 1; any smaller gamma makes the amplitudes exceed norm one and V_PREP non-unitary. The a+m ancilla count is the a block ancillas plus the m-qubit control register indexing the M = 2^m summands.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Identifies B_j = <0^a|U_{A_j}|0^a> with ||A_j-alpha_j B_j||<=eps_j, ||B_j||<=1, and computes the W block = sum_j (alpha_j/gamma)B_j",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Gives subnormalization gamma = sum_j alpha_j and target sum_j A_j",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Proves total error <= sum_j eps_j via the triangle inequality and explains why errors add not max",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Justifies gamma = sum_j alpha_j by unit-norm of V_PREP|0^m> and notes a+m ancilla accounting",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "family:prepare-select",
+      "family:matrix-contract"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Each U_{A_j} is a genuine (alpha_j, a, eps_j)-block encoding with shared ancilla size a; M=2^m summands on an m-qubit control register.",
+      "Spectral-norm error convention for ||A_j - alpha_j B_j||."
+    ],
+    "conventions": [
+      "BE_{alpha,a}(A,eps): ||A - alpha<0^a|U|0^a>|| <= eps, ||<0^a|U|0^a>|| <= 1.",
+      "V_PREP|0^m> = (1/sqrt gamma) sum_j sqrt(alpha_j)|j>; W = (V_PREP^dagger tensor I)U_SEL(V_PREP tensor I)."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The (0^m,0^a) block of W equals sum_j (alpha_j/gamma)B_j from the squared prepare amplitudes.",
+        "supporting_nodes": [
+          "family:prepare-select"
+        ]
+      },
+      {
+        "claim": "Multiplying by gamma recovers sum_j alpha_j B_j, approximating sum_j A_j.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Triangle inequality bounds the deviation by sum_j eps_j; errors add with no cancellation.",
+        "supporting_nodes": [
+          "family:matrix-contract"
+        ]
+      },
+      {
+        "claim": "Unit-norm of the prepare state forces gamma = sum_j alpha_j; ancilla count is a+m.",
+        "supporting_nodes": [
+          "family:prepare-select"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A genuine block-encoding derivation combining the LCU block computation, triangle-inequality error accounting, a normalization-driven subnormalization argument and honest ancilla accounting."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source id lin-wiebe-2026-qasc (status primary-text-checked; registry SHA256 56825000...; 29 April 2026 447-page edition)",
+        "license": "author-hosted lecture notes (c) Lin Lin and Nathan Wiebe; not redistributed in this dataset; only short propositions/equations referenced, original questions and prose"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "146-150",
+          "anchors": "Proposition 9.10 Eqs. (9.37)-(9.42) (sum of M=2^m block-encoded matrices, additive error); Proposition 9.12 Eqs. (9.43)-(9.49) (product of M block-encoded matrices on disjoint ancillas, multiplicative error by induction)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed"
+        }
+      }
+    ],
+    "family": "qsc-block-encoding-composition",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": []
+  },
+  {
+    "key": "qasc-product-block-encoding-error-prop912-001",
+    "topic": "Part IV Scientific Computing: multiplicative error of a product of block encodings on disjoint ancillas (Proposition 9.12)",
+    "track": "planned",
+    "question": "Proposition 9.12 (Lin-Wiebe, p.150) block-encodes a product A_{M-1}...A_0 by applying U_{A_j} in BE_{alpha_j, a_j}(A_j, eps_j) sequentially on disjoint ancilla registers and a common system register, yielding U in BE_{prod_j alpha_j, sum_j a_j}(A_{M-1}...A_0, prod_j (alpha_j+eps_j) - prod_j alpha_j). Prove the error bound by induction on M, using ||B_j|| <= 1 and ||A_j|| <= alpha_j+eps_j. Then contrast this multiplicative error growth with the additive error of the sum construction (Prop. 9.10) and explain the resource meaning of disjoint ancilla registers.",
+    "reference_answer": "For each j set B_j := <0^{a_j}|U_{A_j}|0^{a_j}>, so ||A_j - alpha_j B_j|| <= eps_j, ||B_j|| <= 1, and ||A_j|| <= ||A_j - alpha_j B_j|| + alpha_j||B_j|| <= alpha_j+eps_j. Disjoint ancillas make the all-zero ancilla block factorize: <0^{a_0+...+a_{M-1}}|U|0^{...}> = B_{M-1}...B_0 (Eq. 9.45). We prove ||prod_j A_j - prod_j (alpha_j B_j)|| <= prod_j(alpha_j+eps_j) - prod_j alpha_j by induction on M. Base M=1: ||A_0 - alpha_0 B_0|| <= eps_0 = (alpha_0+eps_0) - alpha_0. Step: let P = prod_{j<=M-2}A_j, P~ = prod_{j<=M-2}(alpha_j B_j). Then ||A_{M-1}P - (alpha_{M-1}B_{M-1})P~|| <= ||(A_{M-1}-alpha_{M-1}B_{M-1})P|| + ||alpha_{M-1}B_{M-1}(P-P~)|| <= eps_{M-1}||P|| + alpha_{M-1}||P-P~||. With ||P|| <= prod_{j<=M-2}(alpha_j+eps_j) and the induction hypothesis ||P-P~|| <= prod_{j<=M-2}(alpha_j+eps_j) - prod_{j<=M-2}alpha_j, this is <= eps_{M-1}prod_{j<=M-2}(alpha_j+eps_j) + alpha_{M-1}[prod_{j<=M-2}(alpha_j+eps_j) - prod_{j<=M-2}alpha_j] = (alpha_{M-1}+eps_{M-1})prod_{j<=M-2}(alpha_j+eps_j) - alpha_{M-1}prod_{j<=M-2}alpha_j = prod_j(alpha_j+eps_j) - prod_j alpha_j, completing the induction. Contrast: the sum (Prop. 9.10) has additive error sum_j eps_j and additive subnormalization gamma=sum_j alpha_j; the product has multiplicative subnormalization prod_j alpha_j and error prod(alpha_j+eps_j)-prod alpha_j, which for small eps_j is approximately (prod alpha_j) sum_j (eps_j/alpha_j) -- relative errors add while absolute error is amplified by the product of subnormalizations. Disjoint ancilla registers: each factor keeps its own a_j ancillas (not reused), so total ancilla cost is sum_j a_j; disjointness is exactly what lets the zero-ancilla block factor into B_{M-1}...B_0. This is simple but not ancilla-optimal (the text notes Example 11.9/Fig. 9.6 reduces a two-factor product to a+1 ancillas via deferred measurement).",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Sets B_j = <0^{a_j}|U_{A_j}|0^{a_j}>, derives ||A_j|| <= alpha_j+eps_j, and uses disjointness to factor the zero-ancilla block as B_{M-1}...B_0",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Carries out the induction base and step correctly including ||P|| <= prod(alpha_j+eps_j)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Arrives at prod_j(alpha_j+eps_j) - prod_j alpha_j and interprets it (relative errors add; absolute error amplified by product subnormalization)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Contrasts additive sum vs multiplicative product accounting and explains disjoint-ancilla cost sum_j a_j with the non-optimality note",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "family:spectral-filter"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "Each U_{A_j} is an (alpha_j, a_j, eps_j)-block encoding; registers a_0,...,a_{M-1} disjoint, system register shared.",
+      "Spectral-norm error convention; compatible dimensions for the product A_{M-1}...A_0."
+    ],
+    "conventions": [
+      "BE_{alpha,a}(A,eps): ||A - alpha<0^a|U|0^a>|| <= eps, ||<0^a|U|0^a>|| <= 1.",
+      "Product ordering A_{M-1}...A_0 reflects applying U_{A_0} first; subnormalization multiplies to prod_j alpha_j."
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Disjoint ancillas make the zero-ancilla block factor as B_{M-1}...B_0 with ||B_j||<=1 and ||A_j||<=alpha_j+eps_j.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Induction with the triangle inequality and ||P||<=prod(alpha_j+eps_j) yields the telescoping product bound.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The error prod(alpha_j+eps_j)-prod alpha_j behaves like relative-error addition, contrasting the additive sum.",
+        "supporting_nodes": [
+          "family:spectral-filter"
+        ]
+      },
+      {
+        "claim": "Total ancilla cost sum_j a_j is simple but not optimal; disjointness enables the block factorization.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "A full induction proof of a multiplicative error bound plus a quantitative contrast with the additive construction and honest ancilla-resource accounting."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "source id lin-wiebe-2026-qasc (status primary-text-checked; registry SHA256 56825000...; 29 April 2026 447-page edition)",
+        "license": "author-hosted lecture notes (c) Lin Lin and Nathan Wiebe; not redistributed in this dataset; only short propositions/equations referenced, original questions and prose"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026 public 447-page edition",
+          "pages": "146-150",
+          "anchors": "Proposition 9.10 Eqs. (9.37)-(9.42) (sum of M=2^m block-encoded matrices, additive error); Proposition 9.12 Eqs. (9.43)-(9.49) (product of M block-encoded matrices on disjoint ancillas, multiplicative error by induction)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed"
+        }
+      }
+    ],
+    "family": "qsc-block-encoding-composition",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": []
+  }
+]
