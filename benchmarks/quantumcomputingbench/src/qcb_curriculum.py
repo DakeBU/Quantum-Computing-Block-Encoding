@@ -48,6 +48,7 @@ def load_catalog():
     graph = {node["id"]: node for node in snapshot["nodes"]}
     records = []
     for item in native:
+        revision = item.get("question_successor", item.get("textbook_successor", {}))
         if item["topic"] not in topics:
             raise ValueError("unmapped mathematical topic: " + item["topic"])
         ids = item["target_nodes"] + item["supporting_nodes"]
@@ -63,9 +64,12 @@ def load_catalog():
             "supporting_nodes": item["supporting_nodes"], "evidence_relation": item["evidence_relation"],
             "semantic_steps": item["semantic_step_count"],
             "source_record": "data/public/nl-v12/release.json",
-            "source_key": item.get("textbook_successor", {}).get("predecessor_key", item["key"]),
-            "answer_source_record": item.get("textbook_successor", {}).get("repair_record", "data/public/nl-v12/release.json"),
+            "source_key": revision.get("predecessor_key", item["key"]),
+            "question_source_record": item.get("question_successor", {}).get("repair_record", "data/public/nl-v12/release.json"),
+            "answer_source_record": revision.get("repair_record", "data/public/nl-v12/release.json"),
             "textbook_successor": item.get("textbook_successor"),
+            "question_successor": item.get("question_successor"),
+            "question_version": item.get("question_version", 1),
             "views": {"non-lean": {"status": "admitted_under_current_overlay", "item_id": item["id"]}},
             "editorial_second_pass": "pending_content_bound_review",
         })
@@ -151,7 +155,7 @@ def validate_proposals(catalog, proposals):
 
 def content_review_status(catalog):
     """One content-bound editorial status for both registry rows and metrics."""
-    accepted = {c["core_id"] for c in catalog["cores"] if c.get("textbook_successor")}
+    accepted = {c["core_id"] for c in catalog["cores"] if c.get("textbook_successor") or c.get("question_successor")}
     disputed = set()
     by_id = {c["core_id"]: c for c in catalog["cores"]}
     for path in sorted((B / "reports/textbook-v1/reader-reviews").glob("*.json")):
@@ -161,8 +165,11 @@ def content_review_status(catalog):
         for row in packet["items"]:
             historical = any(d["core_id"] == row["core_id"] and d["predecessor_item_digest"] == row.get("item_digest")
                              for d in catalog.get("reader_decisions", []))
-            if historical and row.get("verdict") in {"reject", "uncertain"}:
-                continue  # exact predecessor finding remains history, never successor approval
+            if historical:
+                if not row.get("reasoning") or not row.get("source_checks"):
+                    raise ValueError("historical review requires bound reasoning and source checks")
+                check_source_bindings(row["source_checks"])
+                continue  # every exact predecessor verdict remains history, never successor approval
             if row["core_id"] not in by_id or row.get("item_digest") != by_id[row["core_id"]]["item_digest"]:
                 raise ValueError("reader review does not bind current mathematical content")
             if packet["reviewer"] == by_id[row["core_id"]]["author_identity"]:
@@ -201,6 +208,8 @@ def stable_readiness(catalog):
         browser_ok = browser_ok and browser.get("checks", {}).get("native_formal_panels") is True
     if withheld:
         browser_ok = browser_ok and browser.get("checks", {}).get("quarantined_content_excluded") is True
+    if any(c.get("question_successor") for c in catalog["cores"]):
+        browser_ok = browser_ok and browser.get("checks", {}).get("question_revision_lineage") is True
     gates = {"content_bound_second_pass": not missing and bool(catalog["cores"]),
              "reader_withdrawals_resolved": not withheld,
              "rendered_browser_checks": browser_ok,

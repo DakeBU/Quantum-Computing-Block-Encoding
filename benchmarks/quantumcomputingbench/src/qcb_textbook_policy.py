@@ -1,6 +1,8 @@
 """Additive current reader policy; frozen preview artifacts remain audit history."""
 from copy import deepcopy
+import math
 from pathlib import Path
+import re
 
 from qcb_core import digest, read_json
 from qcb_integrity import text_sha
@@ -9,6 +11,108 @@ B = Path(__file__).resolve().parents[1]
 R = B.parents[1]
 CONTRACT_FIELDS = ("question", "assumptions", "conventions", "family", "split",
                    "graph_version", "target_nodes", "supporting_nodes", "source_refs")
+
+
+def check_exposition(exposition, original):
+    if set(exposition) - {"core_summary", "semantic_steps"}:
+        raise ValueError("repair exposition cannot replace contract or admission metadata")
+    if "core_summary" in exposition and not isinstance(exposition["core_summary"], str):
+        raise ValueError("repair summary must be text")
+    if "semantic_steps" in exposition:
+        steps = exposition["semantic_steps"]
+        allowed_nodes = set(original["target_nodes"] + original["supporting_nodes"])
+        if (not isinstance(steps, list) or len(steps) != original["semantic_step_count"]
+                or any(not s.get("claim") or not s.get("supporting_nodes")
+                       or set(s["supporting_nodes"]) - allowed_nodes for s in steps)):
+            raise ValueError("repair changed graph scope or semantic step count")
+
+
+def question_successor(row, original):
+    """A versioned replacement question; never pretend its old contract survived."""
+    check_withdrawal(row["prior_withdrawal"], original)
+    paths = [B / row[key] for key in ("repair", "review")]
+    if any(not path.resolve().is_relative_to(B) for path in paths):
+        raise ValueError("external question repair/review paths are forbidden")
+    repair = read_json(paths[0])
+    allowed = {"schema_version", "core_id", "supersedes_key", "supersedes_item_digest",
+               "supersedes_contract_hash", "author", "key", "question_version", "admission",
+               "change_scope", "question", "reference_answer", "rubric", "exposition",
+               "source_checks", "execution"}
+    original_contract = {key: original[key] for key in CONTRACT_FIELDS}
+    if (set(repair) != allowed or repair["schema_version"] != "qcb.textbook_question_successor.v1"
+            or repair["core_id"] != original["core_id"] or row["core_id"] != original["core_id"]
+            or repair["supersedes_key"] != original["key"] or row["predecessor_key"] != original["key"]
+            or repair["supersedes_item_digest"] != digest(original)
+            or row["predecessor_item_digest"] != digest(original)
+            or repair["supersedes_contract_hash"] != digest(original_contract)
+            or repair["question_version"] != 2 or not repair["author"] or not repair["change_scope"]
+            or not isinstance(repair["question"], str) or not repair["question"].strip()
+            or repair["question"] == original["question"]
+            or not isinstance(repair["author"], str) or not repair["author"].strip()
+            or repair["admission"] != "pending_distinct_review"
+            or not isinstance(repair["key"], str) or not re.fullmatch(
+                re.escape(original["core_id"]) + r"-textbook-question-v2-[a-z0-9]+(?:-[a-z0-9]+)*", repair["key"])):
+        raise ValueError("question successor does not bind an explicit versioned contract change")
+    rubric = repair["rubric"]
+    if (not isinstance(repair["reference_answer"], str) or not repair["reference_answer"].strip()
+            or not isinstance(rubric, list) or not rubric
+            or any(not isinstance(r, dict) or set(r) != {"id", "weight", "criterion"}
+                   or not isinstance(r["id"], str) or not r["id"].strip()
+                   or not isinstance(r["criterion"], str) or not r["criterion"].strip()
+                   or isinstance(r["weight"], bool) or not isinstance(r["weight"], (int, float))
+                   or not math.isfinite(r["weight"]) or r["weight"] <= 0 for r in rubric)
+            or len({r["id"] for r in rubric}) != len(rubric)):
+        raise ValueError("question successor requires a complete answer and well-formed rubric")
+    check_exposition(repair["exposition"], original)
+    check_source_bindings(repair["source_checks"])
+    new_contract = {**original_contract, "question": repair["question"]}
+    decision = {**row, "status": "withheld_pending_distinct_question_review"}
+    if not paths[1].is_file():
+        return None, decision
+    review = read_json(paths[1])
+    reviewer = review.get("reviewer")
+    if (review.get("repair_record_digest") != digest(repair)
+            or review.get("method") != "independent-question-successor-review"
+            or not isinstance(reviewer, str) or not reviewer.strip()
+            or reviewer in {repair["author"], original["author"]["identity"]}
+            or review.get("original_item_digest") != digest(original)
+            or review.get("original_contract_hash") != digest(original_contract)
+            or review.get("successor_contract_hash") != digest(new_contract)
+            or review.get("question_version") != repair["question_version"]):
+        raise ValueError("question successor review is stale or not independent")
+    if review.get("verdict") != "accept":
+        return None, decision
+    narratives = [review.get(key) for key in ("substantive_reconstruction", "contract_change_assessment")]
+    if (review.get("core_id") != original["core_id"] or not review.get("source_checks")
+            or any(not isinstance(n, dict) or not n or any(
+                not isinstance(k, str) or not k.strip() or not isinstance(v, str) or not v.strip()
+                for k, v in n.items()) for n in narratives)):
+        raise ValueError("question successor lacks a substantive contract-change review")
+    check_source_bindings(review["source_checks"])
+    current = deepcopy(original)
+    for field in ("key", "question", "reference_answer", "rubric", "question_version"):
+        current[field] = deepcopy(repair[field])
+    for field in ("core_summary",):
+        if field in repair["exposition"]:
+            current["native_nl"][field] = repair["exposition"][field]
+    if "semantic_steps" in repair["exposition"]:
+        current["semantic_steps"] = deepcopy(repair["exposition"]["semantic_steps"])
+    current["author"] = {"identity": repair["author"], "method": "explicit versioned question-contract correction"}
+    current["native_nl"].update(author_identity=repair["author"], new_problem_core=False)
+    current["inherited_predecessor_reviews"] = current.pop("reviews")
+    current["inherited_predecessor_hashes"] = {key: current.pop(key) for key in
+        ("authored_hash", "context_hash", "task_hash") if key in current}
+    current["reviews"] = [review]
+    current["question_successor"] = {
+        "question_version": repair["question_version"], "predecessor_key": original["key"],
+        "predecessor_item_digest": digest(original), "predecessor_contract_hash": digest(original_contract),
+        "current_contract_hash": digest(new_contract), "changed_contract_fields": ["question"],
+        "repair_record": row["repair"], "repair_record_digest": digest(repair),
+        "review_record": row["review"], "review_digest": digest(review),
+        "equivalence_to_predecessor_claimed": False, "additional_core_count": 0}
+    current["id"] = "qcb-textbook-" + digest(current)[:20]
+    decision["status"] = "reviewed_question_successor_admitted_to_reader"
+    return current, decision
 
 
 def check_source_bindings(bindings):
@@ -48,7 +152,7 @@ def apply_current_reader_policy(native):
     items = {i["core_id"]: deepcopy(i) for i in native}
     decisions = []
     policy = read_json(B / "shared/current-policy.json")
-    rows = policy["answer_successors"] + policy.get("withdrawals", [])
+    rows = policy["answer_successors"] + policy.get("question_successors", []) + policy.get("withdrawals", [])
     if len({row["core_id"] for row in rows}) != len(rows):
         raise ValueError("a core cannot have conflicting reader policy decisions")
     for row in policy["answer_successors"]:
@@ -65,17 +169,7 @@ def apply_current_reader_policy(native):
                 or repair["supersedes_item_digest"] != digest(original)):
             raise ValueError("answer successor changed its predecessor contract")
         exposition = repair.get("exposition", {})
-        if set(exposition) - {"core_summary", "semantic_steps"}:
-            raise ValueError("answer repair cannot replace contract or admission metadata")
-        if "core_summary" in exposition and not isinstance(exposition["core_summary"], str):
-            raise ValueError("answer repair summary must be text")
-        if "semantic_steps" in exposition:
-            steps = exposition["semantic_steps"]
-            allowed_nodes = set(original["target_nodes"] + original["supporting_nodes"])
-            if (not isinstance(steps, list) or len(steps) != original["semantic_step_count"]
-                    or any(not s.get("claim") or not s.get("supporting_nodes")
-                           or set(s["supporting_nodes"]) - allowed_nodes for s in steps)):
-                raise ValueError("answer repair changed graph scope or semantic step count")
+        check_exposition(exposition, original)
         check_source_bindings(repair["source_checks"])
         decision = {**row, "status": "withheld_pending_distinct_repair_review"}
         if review_path.is_file():
@@ -108,11 +202,19 @@ def apply_current_reader_policy(native):
                 items[row["core_id"]] = current
                 decision["status"] = "reviewed_answer_successor_admitted_to_reader"
         decisions.append(decision)
+    for row in policy.get("question_successors", []):
+        original = items.pop(row["core_id"])
+        current, decision = question_successor(row, original)
+        if current is not None:
+            items[row["core_id"]] = current
+        decisions.append(decision)
     for row in policy.get("withdrawals", []):
         original = items.pop(row["core_id"])
         finding = check_withdrawal(row, original)
         decisions.append({**row, "status": "withheld_pending_mathematical_correction",
                           "finding_verdict": finding["verdict"]})
+    if len({item["key"] for item in items.values()}) != len(items):
+        raise ValueError("reader policy introduced a colliding current item key")
     return list(items.values()), decisions
 
 
@@ -126,6 +228,7 @@ def public_reader_item(item):
     fields = ("id", "key", "core_id", "question", "reference_answer", "assumptions", "conventions",
               "rubric", "formal_context", "task_kind", "difficulty", "topic", "family", "split",
               "graph_version", "target_nodes", "supporting_nodes", "source_refs", "primary_sources",
-              "semantic_steps", "semantic_step_count", "evidence_relation", "textbook_successor")
+              "semantic_steps", "semantic_step_count", "evidence_relation", "textbook_successor",
+              "question_successor", "question_version")
     return {**{k: deepcopy(item[k]) for k in fields if k in item},
             "source_item_digest": digest(item), "export_role": "open_reader_not_stable_training_release"}

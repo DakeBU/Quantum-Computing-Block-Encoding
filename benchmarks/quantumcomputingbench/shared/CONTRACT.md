@@ -35,6 +35,16 @@ remain where they are; reader pages resolve their exact admitted source records.
    correction does not restore it automatically, and withdrawal does not erase
    its stable-release obligation. Question changes require an explicit reviewed
    successor; an answer-only repair cannot silently alter the original premises.
+9. The first question-contract correction uses an explicit version-2 successor
+   with a distinct content-bound contract-change review. It binds the entire
+   predecessor, both contract hashes, changed question, complete new answer and
+   rubric. The reader displays the revision; the original stays audit-only.
+   This does not assert equivalence of old and new requested reasoning. Core,
+   family, split, graph/source scope and support-step count stay reserved. A
+   companion bound to the old hash is stale, not automatically upgraded. The
+   current implementation supports one first correction per frozen core;
+   further chains or changes to assumptions/graph scope require a separately
+   designed and reviewed migration, not an extra JSON override.
 
 ## Concurrent collaborators
 

@@ -34,7 +34,8 @@ class TextbookPolicyTests(unittest.TestCase):
         self.assertLessEqual(len(current), len(self.historical))
         old = {i["core_id"]: i for i in self.historical}
         for item in current:
-            self.assertEqual({k: item[k] for k in CONTRACT_FIELDS}, {k: old[item["core_id"]][k] for k in CONTRACT_FIELDS})
+            unchanged = [k for k in CONTRACT_FIELDS if not (k == "question" and item.get("question_successor"))]
+            self.assertEqual({k: item[k] for k in unchanged}, {k: old[item["core_id"]][k] for k in unchanged})
             if item.get("textbook_successor"):
                 self.assertEqual(item["textbook_successor"]["predecessor_item_digest"], digest(old[item["core_id"]]))
                 self.assertNotIn(old[item["core_id"]]["reviews"][0], item["reviews"])
@@ -131,4 +132,81 @@ class TextbookPolicyTests(unittest.TestCase):
         changed["withdrawals"].append(changed["answer_successors"][0])
         with patch.object(policy, "read_json", side_effect=lambda path: changed if Path(path) == p else read_json(path)):
             with self.assertRaisesRegex(ValueError, "conflicting"):
+                apply_current_reader_policy(self.historical)
+
+    def test_question_successor_versions_contract_without_adding_a_core_or_inheriting_approval(self):
+        old = next(i for i in self.historical if i["core_id"] == "qcb-core-la-206")
+        current, decisions = apply_current_reader_policy(self.historical)
+        new = next(i for i in current if i["core_id"] == old["core_id"])
+        lineage = new["question_successor"]
+        self.assertNotEqual(old["question"], new["question"])
+        self.assertNotEqual(lineage["predecessor_contract_hash"], lineage["current_contract_hash"])
+        self.assertEqual(lineage["predecessor_contract_hash"], digest({k: old[k] for k in CONTRACT_FIELDS}))
+        self.assertEqual(lineage["current_contract_hash"], digest({k: new[k] for k in CONTRACT_FIELDS}))
+        self.assertEqual(new["question_version"], 2)
+        self.assertFalse(lineage["equivalence_to_predecessor_claimed"])
+        self.assertEqual(lineage["additional_core_count"], 0)
+        self.assertNotIn("textbook_successor", new)
+        self.assertEqual(new["reviews"][0]["method"], "independent-question-successor-review")
+        self.assertNotIn(old["reviews"][0], new["reviews"])
+        self.assertNotIn("task_hash", new)
+        self.assertIn("task_hash", new["inherited_predecessor_hashes"])
+        self.assertEqual(sum(i["core_id"] == old["core_id"] for i in current), 1)
+        self.assertIn("reviewed_question_successor_admitted_to_reader",
+                      [r["status"] for r in decisions if r["core_id"] == old["core_id"]])
+        self.assertEqual(public_reader_item(new)["question_successor"], lineage)
+        with self.assertRaisesRegex(ValueError, "withdrawn"):
+            check_current_gold([old])
+
+    def test_question_successor_rejects_unreviewed_contract_source_or_scope_changes(self):
+        from copy import deepcopy
+        row = read_json(B / "shared/current-policy.json")["question_successors"][0]
+        rp, vp = B / row["repair"], B / row["review"]
+        for field, value in (("question", "silently changed question"), ("assumptions", ["full rank"]),
+                             ("split", "test_public"), ("question_version", 3),
+                             ("supersedes_contract_hash", "same hash"), ("author", "")):
+            bad = deepcopy(read_json(rp))
+            bad[field] = value
+            with patch.object(policy, "read_json", side_effect=lambda path: bad if Path(path) == rp else read_json(path)):
+                with self.assertRaises(ValueError):
+                    apply_current_reader_policy(self.historical)
+        for field, value in (("reviewer", "/root"), ("reviewer", "stored-cost-author-b2"),
+                             ("reviewer", "   "), ("reviewer", 123),
+                             ("substantive_reconstruction", True), ("contract_change_assessment", True),
+                             ("successor_contract_hash", "old contract reused"),
+                             ("original_contract_hash", "unbound predecessor"),
+                             ("repair_record_digest", "unreviewed change"),
+                             ("contract_change_assessment", {}), ("question_version", 1)):
+            bad = deepcopy(read_json(vp))
+            bad[field] = value
+            with patch.object(policy, "read_json", side_effect=lambda path: bad if Path(path) == vp else read_json(path)):
+                with self.assertRaises(ValueError):
+                    apply_current_reader_policy(self.historical)
+
+    def test_rejected_question_successor_stays_reserved_not_current_gold(self):
+        from copy import deepcopy
+        row = read_json(B / "shared/current-policy.json")["question_successors"][0]
+        vp = B / row["review"]
+        bad = deepcopy(read_json(vp))
+        bad["verdict"] = "uncertain"
+        with patch.object(policy, "read_json", side_effect=lambda path: bad if Path(path) == vp else read_json(path)):
+            current, decisions = apply_current_reader_policy(self.historical)
+        self.assertNotIn(row["core_id"], {i["core_id"] for i in current})
+        self.assertEqual(next(r for r in decisions if r["core_id"] == row["core_id"])["status"],
+                         "withheld_pending_distinct_question_review")
+
+    def test_question_successor_schema_rejects_malformed_payload_even_if_review_rebound(self):
+        from copy import deepcopy
+        row = read_json(B / "shared/current-policy.json")["question_successors"][0]
+        rp, vp = B / row["repair"], B / row["review"]
+        for field, value in (("reference_answer", ""), ("rubric", None), ("rubric", ["invalid"]),
+                             ("key", "qcb-core-sp-001"),
+                             ("rubric", [{"id": "c1", "criterion": "check", "weight": float('nan')}]),
+                             ("rubric", [{"id": "c1", "criterion": "check", "weight": True}])):
+            candidate, review = deepcopy(read_json(rp)), deepcopy(read_json(vp))
+            candidate[field] = value
+            review["repair_record_digest"] = digest(candidate)
+            def mocked(path):
+                return candidate if Path(path) == rp else review if Path(path) == vp else read_json(path)
+            with patch.object(policy, "read_json", side_effect=mocked), self.assertRaises(ValueError):
                 apply_current_reader_policy(self.historical)

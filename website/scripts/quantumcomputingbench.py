@@ -110,12 +110,15 @@ def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=N
     body = '<article class="qcb-reader"><p class="qcb-breadcrumb"><a href="' + esc(parent) + '">' + esc(part["title"]) + ' / ' + esc(title_of(core["topic"])) + '</a></p>'
     body += '<p class="eyebrow">' + esc(title_of(core["topic"])) + '</p><h1>Exercise ' + esc(core["core_id"].removeprefix("qcb-core-").upper()) + '</h1>'
     body += '<p class="qcb-meta">' + esc(item["difficulty"]["level"]) + ' · ' + esc(item["task_kind"]) + ' · ' + esc(core["split"]) + '</p>'
-    review_status = ('Additive answer successor with distinct content-bound review; historical rejected answer retained only for audit.' if core.get("textbook_successor") else
+    review_status = ('Explicit question version ' + str(core["question_version"]) + ' with distinct contract-change review; the predecessor question is not equivalent current gold. Core, family and split are retained.' if core.get("question_successor") else
+                    'Additive answer successor with distinct content-bound review; historical rejected answer retained only for audit.' if core.get("textbook_successor") else
                     'Current content-bound mathematical second pass accepted.' if core.get("editorial_second_pass") == "content_bound_review_accepted" else
                     'Inherited reviews only; a current content-bound mathematical second pass remains pending.')
     body += '<p class="qcb-boundary">' + esc(core["evidence_relation"].replace("_", " ")) + '. ' + review_status + ' No new Lean verification is claimed for this NL view.</p>'
     premises = '<ul>' + "".join('<li>' + esc(s) + '</li>' for s in item["assumptions"] + item["conventions"]) + '</ul>'
     body += section("Assumptions and conventions", premises, "assumptions")
+    if core.get("question_successor"):
+        body += '<p class="qcb-boundary" data-qcb-question-version="' + esc(core["question_version"]) + '">This question explicitly revises its historical contract. A Lean companion must bind the current contract hash, not the predecessor hash. This is one reserved core, not two exercises.</p>'
     body += section("Question", prose(item["question"]), "question")
     roadmap = '<ol>' + "".join('<li>' + esc(s["claim"]) + '</li>' for s in item["semantic_steps"]) + '</ol>'
     body += disclosure("Hint: mathematical route", prose(core["title"]) + roadmap, "hint")
@@ -138,6 +141,8 @@ def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=N
     body += disclosure("Sources and provenance", source_list(item) + '<p>Contract: <code>' + esc(core["contract_hash"]) + '</code></p><p>Item digest: <code>' + esc(core["item_digest"]) + '</code></p><p>Graph snapshot: <code>' + esc(core["snapshot_id"]) + '</code></p><p>Authored support steps: ' + str(core["semantic_steps"]) + '. This is not measured graph distance or model difficulty.</p>', "sources")
     if core.get("textbook_successor"):
         body += disclosure("Answer revision lineage", prose(json.dumps(core["textbook_successor"], indent=2)), "revision")
+    if core.get("question_successor"):
+        body += disclosure("Question revision lineage", prose(json.dumps(core["question_successor"], indent=2)), "revision")
     return body + '</article>'
 
 
@@ -253,7 +258,7 @@ def publish(root):
     body += '<pre><code>' + esc(json.dumps(stable_readiness(catalog), indent=2)) + '</code></pre>'
     body += '<p>A bounded historical cross-cohort review is available as <a href="' + REPO + '/blob/' + context["commit"] + '/benchmarks/quantumcomputingbench/reports/textbook-v1/cohort-reconciliation/review-at-8533b9b.json">an exact snapshot audit</a>. It identifies an equivalent target and cross-split mechanism overlap, not exhaustive global deduplication. Its inventory predates current withdrawals and later answer repairs; it does not authorize pooling.</p>'
     body += '<p>Historical integration quarantines, current rejected/ambiguous records and inherited provisional material are excluded from the normal reader. Historical releases and all source/review records are retained in the repository. Existing AI reviews are fallible, content-bound provenance, not newly invented expert approval. No model baseline or isolated arbitrary-Lean prediction evaluation is claimed.</p><p>The frozen benchmark graph is not the current whole-library inventory. Exact live node links are offered only when identities exist; planned/source-only anchors remain graph metadata. An import edge is not theorem entailment and a curated AND hyperedge is not a completed proof.</p>'
-    body += section("Additive answer decisions", '<pre><code>' + esc(json.dumps(catalog["reader_decisions"], indent=2)) + '</code></pre><p>The frozen preview contains the historical predecessor answer. Do not treat its bytes as current gold after a withdrawal. A corrected reader view needs its own content-bound review and does not create a new mathematical core.</p><p><a href="../../data/quantumcomputingbench/reader-items.json">Download current open reader views (not a stable training release)</a></p>', "answer-decisions")
+    body += section("Versioned reader decisions", '<pre><code>' + esc(json.dumps(catalog["reader_decisions"], indent=2)) + '</code></pre><p>The frozen preview contains historical predecessor questions and answers. Do not treat their bytes as current gold after a withdrawal. Answer-only repairs preserve the question contract. Explicit question successors bind both old and new contract hashes and require a distinct contract-change review; old acceptance and Lean views do not transfer. Neither kind creates another mathematical core.</p><p><a href="../../data/quantumcomputingbench/reader-items.json">Download current open reader views (not a stable training release)</a></p>', "answer-decisions")
     write(HUB + "evidence/", "Evidence and release readiness", body + '</div>', "Current second-pass review, split/dedup, formal-view, isolation and publication boundaries.")
     home = root / "index.html"
     text = home.read_text(encoding="utf-8")

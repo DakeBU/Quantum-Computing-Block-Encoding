@@ -79,6 +79,40 @@ class CurriculumTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 shared.validate_proposals(self.catalog, [p, q])
 
+    def test_question_successor_exposes_revision_and_rejects_stale_companion(self):
+        c = next(c for c in self.catalog["cores"] if c.get("question_successor"))
+        p = self.proposal()
+        p.update({k: c[k] for k in ("core_id", "contract_hash", "family", "split", "snapshot_id")})
+        self.assertEqual(shared.validate_proposals(self.catalog, [p])["new_cores_admitted"], 0)
+        p["contract_hash"] = c["question_successor"]["predecessor_contract_hash"]
+        with self.assertRaisesRegex(ValueError, "contract/family/split"):
+            shared.validate_proposals(self.catalog, [p])
+        self.assertEqual(c["question_source_record"], c["answer_source_record"])
+        self.assertEqual(c["question_version"], 2)
+        body = reader.core_body(c, self.items[c["core_id"]], self.catalog, self.graph, set(self.graph), "../../../")
+        self.assertIn('data-qcb-question-version="2"', body)
+        self.assertIn("Question revision lineage", body)
+        self.assertIn(c["question_successor"]["predecessor_contract_hash"], body)
+        self.assertIn(c["contract_hash"], body)
+        self.assertNotIn("Additive answer successor with", body)
+
+    def test_exact_predecessor_acceptance_remains_history_not_new_question_approval(self):
+        c = next(c for c in self.catalog["cores"] if c.get("question_successor"))
+        decision = next(d for d in self.catalog['reader_decisions'] if d['core_id'] == c['core_id'])
+        from qcb_core import read_json
+        packet = read_json(shared.B / decision['prior_withdrawal']['review'])
+        finding = next(r for r in packet['items'] if r['core_id'] == c['core_id'])
+        finding['verdict'], finding['semantic_core_verdict'] = 'accept', 'distinct_or_explicit_alias'
+        packet['items'] = [finding]
+        with tempfile.TemporaryDirectory() as tmp, patch.object(shared, 'B', Path(tmp)):
+            write_json(Path(tmp) / 'reports/textbook-v1/reader-reviews/old-positive.json', packet)
+            unapproved = deepcopy(self.catalog)
+            current = next(r for r in unapproved['cores'] if r['core_id'] == c['core_id'])
+            current['question_successor'] = None
+            accepted, disputed = shared.content_review_status(unapproved)
+            self.assertNotIn(c['core_id'], accepted)
+            self.assertNotIn(c['core_id'], disputed)
+
     def test_candidate_never_self_admits_or_allocates_permanent_core(self):
         p = self.proposal()
         p.update(core_id="candidate:" + p["proposal_id"], admission="candidate_not_counted", dedup_review_required=True)
@@ -102,7 +136,7 @@ class CurriculumTests(unittest.TestCase):
             "semantic_core_verdict": "distinct_or_explicit_alias", "reasoning": "Test fixture only.",
             "source_checks": [{"file": "QuantumBlockEncoding/StatePreparation.lean", "sha256_lf": reader.text_sha(reader.ROOT / "QuantumBlockEncoding/StatePreparation.lean")}]}]}
         with tempfile.TemporaryDirectory() as tmp, patch.object(shared, "B", Path(tmp)):
-            baseline = sum(bool(c.get("textbook_successor")) for c in self.catalog["cores"])
+            baseline = sum(bool(c.get("textbook_successor") or c.get("question_successor")) for c in self.catalog["cores"])
             path = Path(tmp) / "reports/textbook-v1/reader-reviews/a.json"
             write_json(path, packet)
             self.assertEqual(shared.stable_readiness(self.catalog)["content_bound_second_pass_reviews"], baseline + 1)

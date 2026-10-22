@@ -46,6 +46,14 @@ test solution into a training view, call a public-solution set blind, or count
 Lean/NL duplicates twice. Preserve quarantines until separately reviewed repairs
 are admitted. Advisory reservations do not establish exclusive ownership.
 
+If a question itself is false or underspecified, preserve it and submit an
+explicit question-contract successor, not an answer-only patch or a new core ID.
+The first correction binds the predecessor item and contract, version2, full new
+question/answer/rubric/exposition and a distinct contract-change review. Preserve
+family/split/graph scope and disclose changed requested reasoning rather than
+claiming equivalence. Use the LA206 successor as a worked example. Further
+assumption/graph changes or multi-successor chains need maintainer reconciliation.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite

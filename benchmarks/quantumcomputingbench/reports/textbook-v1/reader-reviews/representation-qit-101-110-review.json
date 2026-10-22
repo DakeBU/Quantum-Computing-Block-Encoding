@@ -1,0 +1,821 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "requested_core_ids": [
+      "qcb-core-plan-101",
+      "qcb-core-plan-102",
+      "qcb-core-plan-103",
+      "qcb-core-plan-104",
+      "qcb-core-plan-105",
+      "qcb-core-plan-106",
+      "qcb-core-plan-107",
+      "qcb-core-plan-108",
+      "qcb-core-plan-109",
+      "qcb-core-plan-110"
+    ],
+    "core_ids": [
+      "qcb-core-plan-101",
+      "qcb-core-plan-102",
+      "qcb-core-plan-103",
+      "qcb-core-plan-104",
+      "qcb-core-plan-105",
+      "qcb-core-plan-106",
+      "qcb-core-plan-107",
+      "qcb-core-plan-108",
+      "qcb-core-plan-109",
+      "qcb-core-plan-110"
+    ],
+    "absent_ids": [],
+    "observed_head_at_start": "5e83f45bea5b7368237a22c3513dc00566687fc3",
+    "current_native_cohort_digest_at_review": "fb075ec52f340a169b8fc4b60eafcb5a3e88bdf832886de0f9d47cb36f32ecad",
+    "record_selection": "Actual ten admitted native prepared records selected through release.checked(). Complete current questions/reference answers/assumptions/conventions/rubrics/semantic steps, source and formal metadata read; whole prepared-item digests computed before projecting review fields.",
+    "output": "Only parent workspace _review_tmp/representation-qit-101-110-review.json. PR101 and canonical/frozen records not edited.",
+    "source_coverage": "Fresh full PDF bytes fetched into memory and hashed; matching-byte primary PDF page regions17-21 and29-32 read via direct pypdf extraction, with complete relevant Exercises3.5,3.6,3.8 on page37 and context on36. Web primary PDF text also read at the same URL. No PDF saved/redistributed; no external Serre/Teleman reference proof claimed.",
+    "alias_scope": "Bounded actual prepared native plus legacy question search for homomorphism/irreducible/Schur/character/representation/twirl, then complete relevant compared contracts (not imported reviews) for plan111,113,117,118,119,120,412 and within-batch contracts. All other search hits are discovery only. Common generic graph anchors and proof templates are not aliases. No global distinct-core or exhaustive deduplication claim."
+  },
+  "provenance": {
+    "actual_task": "/root/qcb_formal_view_audit",
+    "independence": "Distinct from representation-qit-author-b2. This reviewer authored none of the ten original items or any proposed successor; prior acceptance labels are not used as mathematical evidence.",
+    "exposure": "Prepared answers, rubrics, source metadata and mathematical source visible. Independent mathematical reader second pass, not strict source-blind decoding or a human-expert review.",
+    "protocol_context": "Refreshed AGENTS.md, HARNESS.md, substantive-worker SKILL.md and mandatory theorem-publication/proof-digestion/evidence-routed-memory/shared CONTRACT and ACCEPTANCE instructions. PDF reading skill used for primary-source inspection; unavailable web screenshots are not treated as successful visual evidence.",
+    "lean_rerun": false,
+    "additional_agents": false,
+    "external_access": "Only the pinned primary Leditzky PDF; web PDF text and read-only HTTPS memory retrieval. Bundled pypdf used, no package installs.",
+    "item_digest_method": "qcb_core.digest on entire actual release.checked() native prepared item.",
+    "source_file_hash_method": "qcb_integrity.text_sha for local LF-normalized metadata. Raw PDF SHA256 computed using hashlib.sha256 on actual retrieved byte strings; not inferred from metadata.",
+    "graph_boundary": "All ten have primary_source_nl_only evidence and no formal counterpart. Planned concept:operator-theory/matrix-analysis/harmonic-analysis anchors are navigation, not Lean declarations or theorem closure.",
+    "publication_boundary": "Staged source-bound reader review only, not current admission, a new kernel run or source-publication seal."
+  },
+  "primary_retrieval": {
+    "observed_time_window_utc": "2026-10-22 19:05-19:09 UTC",
+    "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+    "bytes_obtained": 554175,
+    "raw_pdf_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "recorded_pdf_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "recorded_hash_matches_current_bytes": true,
+    "content_type": "application/pdf",
+    "last_modified_header": "Fri, 10 Apr 2026 12:15:47 GMT",
+    "response_date_header": "Thu, 22 Oct 2026 19:05:18 GMT",
+    "edition_observed": "April10,2026 on title page; 79 pages verified by web and pypdf.",
+    "failure_and_recovery": "Initial sandbox socket restriction was followed by an approved read-only retrieval. Two subsequent direct extraction retrievals failed TLS EOF; a standard User-Agent request succeeded and recomputed the same hash while extracting remaining pages. Web screenshot attempts failed internally; no screenshot/visual fidelity claim is made. Source text and byte verification were successful.",
+    "saved_pdf": false,
+    "redistributed_primary_text": false
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-101",
+      "key": "qcb-core-plan-101-homomorphism-preserves-identity-inverse",
+      "item_digest": "39cf1c51e2f1204e64df33d8a8210e06de5ea44fdc2525809858621ecd97be1a",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "A homomorphism sends e_G*g=g to a*b=b, with a=phi(e_G), b=phi(g). Multiplication by b^-1 in H, using associativity and identity, yields a=e_H; no surjectivity onto H is needed. Applying the homomorphism to g*g^-1 and g^-1*g then gives both inverse equations, and uniqueness yields phi(g^-1)=phi(g)^-1.",
+        "answer_rubric": "The answer supplies the missing cancellation step that the notes compress into an identity-uniqueness remark. All four rubric criteria and five semantic steps agree. Its alternative identity-uniqueness wording must be understood with that cancellation, not as proving a global identity merely by fixing one element in a monoid. Groups are nonempty because they contain an identity; infinite groups and a nonfaithful or trivial homomorphism cause no difficulty.",
+        "boundary": "For a representation landing in GL(V), invertibility is already part of the target group typing. What is derived is preservation of e and identification of the inverse with phi(g^-1), not invertibility of arbitrary endomorphism-valued multiplicative maps without a unital requirement."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            17
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Definition 3.5; equations 3.23-3.24; Definition 3.6 and following finite-dimensional course convention"
+          ],
+          "source_comparison": "Exact group equalities and representation specialization agree. Directly inspected source proof is a short cancellation/uniqueness argument; the reference supplies its algebraic detail.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-108",
+          "other_key": "qcb-core-plan-108-character-is-class-function-degree",
+          "other_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+          "relation": "prerequisite_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Character conjugation-invariance uses inverse preservation but proves different trace conclusions."
+        },
+        {
+          "other_core_id": "qcb-core-plan-120",
+          "other_key": "qcb-core-plan-120-dual-representation-conjugate-boundary",
+          "other_item_digest": "c4c3e55cfc17e2cd0d8984618558bdea620de9ea2410140f1652fe489fd27ea4",
+          "relation": "prerequisite_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Dual representations use inverse preservation but ask for a distinct transpose/duality statement."
+        }
+      ],
+      "limitations": [
+        "No local Lean theorem or new kernel execution is claimed; no group-generation or representation computation cost follows."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-102",
+      "key": "qcb-core-plan-102-weyl-unitarity-trick-invariant-complement",
+      "item_digest": "4aa8a582922a72a46c4a3189cc1902dd7961a753460a2c5189793a0372a0dff8",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "The finite normalized sum preserves sesquilinearity and conjugate symmetry. For v!=0 the identity summand is strictly positive and every term is nonnegative, so the averaged form is definite. For h, the summands after acting on v,w are indexed by g*h, a bijection of G, so the form is invariant. For u perpendicular to W, invariance gives <phi(g)u,w>_G=<u,phi(g^-1)w>_G=0; finite-dimensional orthogonal decomposition yields the invariant direct sum.",
+        "answer_rubric": "The complete answer and all rubric/semantic steps correctly use the identity summand, normalized averaging and inverse action on W. It calls g->g*h 'left translation'; this is a terminology slip (right translation), not an incorrect bijection or changed formula. The empty/zero-dimensional space, W=0, W=V and the trivial group are covered; |G|>=1. An orthogonal complement for an arbitrary original inner product need not be invariant—the answer correctly uses the averaged form.",
+        "boundary": "Finite averaging is a constructive algebraic formula but does not by itself furnish a circuit or bit-complexity guarantee. Haar replacement additionally needs appropriate continuous compact-group representation assumptions; the question itself concerns finite G only."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            17,
+            19,
+            20
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Definition 3.6 finite-dimensional convention; Proposition 3.14 alternative Weyl-inner-product proof through the complete conclusion on page 20"
+          ],
+          "source_comparison": "The source gives the average and the invariant-complement/unitarity conclusion in a short alternative proof. The expanded positivity, translation and adjoint argument has been independently checked rather than treating the source conclusion as a supplied proof.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-103",
+          "other_key": "qcb-core-plan-103-invariant-complement-averaged-projection",
+          "other_item_digest": "da4e2877f4284ace0995f01785a6c7c6c5c209746ca8a2c28b52e5252370b82f",
+          "relation": "alternative_route_shared_complement_conclusion",
+          "same_core_alias_proposed": false,
+          "reason": "Both yield invariant complements, but this asks for an invariant inner product/unitarity over C; 103 asks for an equivariant projection over arbitrary nonmodular characteristic. Not the same full target/assumption contract."
+        },
+        {
+          "other_core_id": "qcb-core-plan-117",
+          "other_key": "qcb-core-plan-117-non-unitarizable-infinite-group-counterexample",
+          "other_item_digest": "eec0cb51404622c0e85a513a847761fd901179fb2ae5383757106e295d0c690f",
+          "relation": "failure_boundary_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "The nonunitarizable infinite-group example tests failure of this averaging route, not the finite-group theorem."
+        },
+        {
+          "other_core_id": "qcb-core-plan-119",
+          "other_key": "qcb-core-plan-119-finite-vs-compact-haar-boundary",
+          "other_item_digest": "dca75eb96b7c01ba5932c174af9039b8070253a2ac90ff323882760a463f2323",
+          "relation": "generalization_boundary_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Compact Haar extensions and regular-representation boundaries are distinct requested reasoning."
+        }
+      ],
+      "limitations": [
+        "The compact/Haar parenthetical in the answer is not blanket approval of unqualified infinite-dimensional or discontinuous extensions."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-103",
+      "key": "qcb-core-plan-103-invariant-complement-averaged-projection",
+      "item_digest": "da4e2877f4284ace0995f01785a6c7c6c5c209746ca8a2c28b52e5252370b82f",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Conjugating Q by phi(h) changes each summand to phi(h*g)P phi(h*g)^-1, so left translation proves equivariance. Every summand lands in W. Because phi(g^-1) preserves W and P fixes its image, every summand fixes each w in W; multiplying the sum by |G|^-1 gives Qw=w. Thus im(Q)=W and Q^2=Q. Write v=Qv+(v-Qv) to obtain the direct sum with ker(Q); commuting with the action makes this kernel invariant.",
+        "answer_rubric": "All four criteria and five semantic steps preserve the source logic, including the field characteristic restriction. It is important that an average of arbitrary projections need not be idempotent: here idempotence follows from the common image W and pointwise identity on W, which the reference proves. W=0, W=V and trivial G work. The question supplies a linear projection onto W, so this argument actually needs no additional finite-dimensional premise. No orthogonality of Q or inner product is asserted.",
+        "boundary": "The integer |G| must map to a nonzero field element so its inverse exists. In characteristic dividing |G| the normalization and argument fail; no theorem in the prepared record supplies modular semisimplicity."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            19,
+            20,
+            37
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Proposition 3.14 first proof sketch, equation 3.26; Exercise 3.5 in full"
+          ],
+          "source_comparison": "The source explicitly has the characteristic restriction and conjugated projection. The report independently expands the image/fixing/idempotence steps left as checks or an exercise in the notes.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-102",
+          "other_key": "qcb-core-plan-102-weyl-unitarity-trick-invariant-complement",
+          "other_item_digest": "4aa8a582922a72a46c4a3189cc1902dd7961a753460a2c5189793a0372a0dff8",
+          "relation": "alternative_route_not_same_contract",
+          "same_core_alias_proposed": false,
+          "reason": "Averaged forms and averaged projections have different intermediate claims and scalar-field scope despite the common complement conclusion."
+        },
+        {
+          "other_core_id": "qcb-core-plan-113",
+          "other_key": "qcb-core-plan-113-character-projector-isotypical-component",
+          "other_item_digest": "86e1d04d033535a8c92558d1206d86b9032daab481cb0b41dfbdc72641fd4800",
+          "relation": "related_averaging_not_same_target",
+          "same_core_alias_proposed": false,
+          "reason": "Averaging phi(g) projects onto invariant vectors; conjugating a supplied projection instead projects onto an arbitrary already-invariant W."
+        },
+        {
+          "other_core_id": "qcb-core-plan-111",
+          "other_key": "qcb-core-plan-111-symmetrization-block-diagonal-isotypical",
+          "other_item_digest": "5c86b4af86f4716aeec0f5399496dacdd9f853ece3b24ed6d0c0810ec154546e",
+          "relation": "common_reynolds_operator_different_obligation",
+          "same_core_alias_proposed": false,
+          "reason": "General symmetrization asks for scalar-block structure, not image W and an invariant kernel of a projection."
+        }
+      ],
+      "limitations": [
+        "No representation algorithm, arithmetic model, bit cost or production Lean closure has been established."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-104",
+      "key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+      "item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "pending_contract_linearity_clarification",
+      "reasoning": {
+        "reconstruction": "For an F-linear intertwiner f, ker(f) and im(f) are vector subspaces stable under G by the displayed intertwining equality. If f!=0, irreducibility forces ker(f)=0 and im(f)=V2. Linearity makes zero kernel equivalent to injectivity; the inverse of the resulting linear bijection also intertwines after rearranging the same equality. This is valid over any common field, without finite G or algebraic closure.",
+        "contract_uncertainty": "The question explicitly defines equivariance by the composition equality but never states f is linear; its assumptions and conventions arrays are empty. That functional equality alone does not imply linearity. For the trivial group on V1=V2=C (one-dimensional irreducibles), f(z)=z^2 satisfies it and is nonzero but is not injective or a linear isomorphism. The source's Proposition 3.17 explicitly requires a linear map, although its Exercise 3.6 later abbreviates the wording.",
+        "answer_rubric": "The reference proof, rubric r1-r4 and semantic steps are correct for the intended representation-category meaning 'linear intertwiner', but implicitly use that missing condition when treating kernel/image as subspaces and when inferring injectivity from ker=0. Do not accept the broader literal functional-equation contract. Clarify an explicit prepared ambient convention or submit a question successor saying F-linear map; this report does not silently add it.",
+        "boundary": "The phrase 'no field assumption' means no algebraic-closure/characteristic restriction once a common field and linear map are specified; it does not remove the linear-map requirement."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            18,
+            19,
+            20,
+            37
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Definitions 3.8, 3.10 and 3.12; full Proposition 3.17(i) proof; Exercise 3.6"
+          ],
+          "source_comparison": "Kernel/image proof is faithful when f is linear. The source theorem explicitly says linear; later exercise prose omits that adjective but does not prove nonlinear equivariance implies linearity.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-105",
+          "other_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+          "other_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+          "relation": "schur_dependency_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Scalar endomorphism classification additionally uses an eigenvalue and finite algebraically closed setting; not the zero-or-isomorphism result."
+        },
+        {
+          "other_core_id": "qcb-core-plan-110",
+          "other_key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+          "other_item_digest": "9b9f633d427e365f4b941d9ba0ac65a7198e50c1ed20cb2f793d3398242285ab",
+          "relation": "application_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Hom-space multiplicity evaluation uses this theorem for cross-intertwiners but has a different target."
+        }
+      ],
+      "limitations": [
+        "Uncertainty is the frozen question's carrier/morphism convention, not doubt about the standard linear Schur lemma. Ordinary nonzero irreducibles are intended."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-105",
+      "key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+      "item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "pending_contract_linearity_clarification",
+      "reasoning": {
+        "reconstruction": "For a linear endomorphism on a nonzero finite-dimensional space over algebraically closed F, its characteristic polynomial has positive degree and a root lambda. The linear intertwiner f-lambda*I has a nonzero eigenvector in its kernel. The zero-or-isomorphism result therefore forces it to be zero. This proves the scalar commutant assertion. No finiteness of G, inner product, unitarity or characteristic-zero requirement is needed.",
+        "contract_uncertainty": "As in 104, the question states only f:V->V and the equivariance equation, not that f is F-linear; empty assumption/convention arrays supply no missing ambient convention. On the one-dimensional trivial complex representation f(z)=z^2 is equivariant under that literal definition and not lambda*z. The source Proposition 3.17 is explicitly about equivariant linear maps. This issue must be resolved consistently for both 104 and 105.",
+        "answer_rubric": "The intended linear proof, r1-r4 and five semantic steps are sound, including separate roles for finite dimension and algebraic closure. They cannot manufacture a characteristic polynomial for a nonlinear function. An explicit operator/linear-endomorphism convention would suffice; otherwise the minimal question successor must add linearity rather than relabel the current digest as accepted. Ordinary irreducibility excludes V=0; if zero were included, the conclusion is still trivial but the eigenvalue proof requires a separate branch.",
+        "boundary": "The supplied finite-dimensional hypothesis is indispensable to this elementary eigenvalue argument; an arbitrary infinite-dimensional operator need not have an eigenvalue even over C. Algebraic closure may be weakened to existence of an eigenvalue for this particular operator, but is not removed as an undocumented generalization."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            19,
+            20
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Definition 3.12; full Proposition 3.17 statement and part(ii) proof; Corollary 3.18 and proof"
+          ],
+          "source_comparison": "The notes impose linearity in the theorem and finite dimension/algebraic closure in part(ii). The prepared proof follows the eigenvalue-shift route but does not make its linear carrier explicit.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-104",
+          "other_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+          "other_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+          "relation": "prerequisite_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Zero-or-isomorphism is used after shifting by lambda but does not classify the commutant by itself."
+        },
+        {
+          "other_core_id": "qcb-core-plan-118",
+          "other_key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+          "other_item_digest": "18b194dedfd34e0201b2edbc78e5ce8545fbaa37a56e99edeee582302e03020d",
+          "relation": "boundary_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Real rotation commutants test failure outside algebraic closure, not the positive scalar theorem."
+        },
+        {
+          "other_core_id": "qcb-core-plan-106",
+          "other_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+          "other_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+          "relation": "application_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Abelian group action operators commuting with one another is an additional application, not a paraphrase of this endomorphism theorem."
+        }
+      ],
+      "limitations": [
+        "No acceptance under a silently strengthened linear contract. No source-blind or kernel claim."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-106",
+      "key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+      "item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+      "verdict": "reject",
+      "semantic_core_verdict": "pending_dimension_contract_successor",
+      "reasoning": {
+        "reconstruction": "With the additional finite-dimensional convention, abelianness makes each phi(h) a commuting linear endomorphism. Scalar Schur then gives phi(h)=lambda_h*I. Any nonzero vector spans an invariant line, hence a nonzero irreducible has dimension one. Over R, a generator acting by a 90-degree rotation for C4 has no real invariant line and gives the stated two-dimensional counterexample; identity and pi rotations must not be used for that example.",
+        "defect": "The standalone prepared question does not restrict V to finite dimension (nor G to a finite group), and assumptions/conventions are empty. This is not true for arbitrary algebraic complex irreducibles. Let K=C(t), G=K^times and V=K as a C-vector space, with phi(g)v=g*v. G is abelian and the representation is irreducible: if an invariant C-subspace contains v!=0, then every w!=0 is (w/v)*v and so belongs to it. V is infinite-dimensional over C (powers of t are independent). Thus the literal question's one-dimensional conclusion is false.",
+        "answer_rubric": "The source explicitly restricts representations to finite dimension after Definition 3.6 on page17, a standing premise used by Corollary3.20 and Schur(ii). The prepared question loses it; the answer, rubric r2 and semantic step2 then apply scalar Schur without its finite-dimensional hypothesis. Reject this exact item. A separately reviewed question successor should add finite-dimensional V (and retain ordinary nonzero irreducibility); do not call that an answer-only correction.",
+        "boundary": "This counterexample is algebraic, with arbitrary abelian group as allowed. It does not contradict finite-group complex representation theory or appropriately continuous compact/unitary versions."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            17,
+            20,
+            21
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Finite-dimensional standing restriction immediately after Definition 3.6; Proposition3.17(ii); full Corollary3.20 statement/proof"
+          ],
+          "source_comparison": "The source's short corollary relies on its finite-dimensional standing restriction. The prepared standalone assumptions do not carry that restriction, so source wording cannot justify the enlarged contract.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-105",
+          "other_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+          "other_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+          "relation": "application_missing_premise_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "The intended proof applies scalar Schur to group operators but asks for an abelian-irrep dimension classification."
+        },
+        {
+          "other_core_id": "qcb-core-plan-118",
+          "other_key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+          "other_item_digest": "18b194dedfd34e0201b2edbc78e5ce8545fbaa37a56e99edeee582302e03020d",
+          "relation": "related_field_boundary_not_same_core",
+          "same_core_alias_proposed": false,
+          "reason": "Its real commutant counterexample is related to the requested non-algebraically-closed boundary; the central target here is dimension-one over C, not merely failure of scalar commutant."
+        }
+      ],
+      "limitations": [
+        "The rejection concerns omitted dimension scope, not the correctly finite-dimensional source corollary. No successor authored here."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-107",
+      "key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+      "item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For Q a Hermitian Pauli, Q*T(rho)*Q = (1/4)*sum_P (Q*P)*rho*(Q*P)^dagger, whose right factor equals P*Q. Products QP permute Pauli classes modulo phases, and those phases cancel against their daggers. Thus T(rho) commutes with the irreducible Pauli representation, is scalar by Schur, and trace preservation yields 2*lambda=1. Positivity is not used by this proof beyond the density-state interpretation; the same map sends any 2x2 operator A to tr(A)*I/2.",
+        "defect": "The reference answer and semantic step2 instead write the right factor as (QP), not (QP)^dagger. This is false because products of distinct Hermitian Paulis are generally anti-Hermitian. For Q=X and rho=I/2, sum_P (XP)*rho*(XP)/4 is zero: squares of X,I,iZ,-iY contribute I,I,-I,-I. But Q*T(rho)*Q=I/2. The following sentence uses the correct dagger but does not make the preceding equality true.",
+        "answer_rubric": "The question and rubric r1-r4 request a valid phase-insensitive Schur/trace proof. The intended conclusion and remaining scalar/trace calculations are correct, but the full answer and explicit semantic step contain a wrong noncommutative product. A minimal additive answer/semantic-step successor must restore the right dagger (or right factor PQ) consistently; this is not grounds to overwrite frozen content. The exact relative-phase convention is essential to this correction.",
+        "boundary": "Example3.19 gives the identity and defers detailed proof to Exercise3.8; it does not print the erroneous expanded product. The printed Exercise3.8 set notation for the Pauli group uses an incomplete union, despite calling it order16; the intended generated group is {phase*P}. No source typo has been imported as a new group definition."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            20,
+            21,
+            37
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Proposition3.17(ii)/Corollary3.18; Example3.19 equation3.27; complete Exercise3.8 and displayed Pauli matrices/equation3.120"
+          ],
+          "source_comparison": "The identity and irreducible-Pauli route match the source. The missing dagger is in the prepared expanded proof, not a valid consequence of the source. Independently checked X,Y,Z product phases and the I/2 counterexample.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence.",
+          "source_caveat": "Exercise3.8's printed Pauli-group set notation is incomplete; use the group generated by X,Y,Z, as explicitly stated in Example3.19 and in the question."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-105",
+          "other_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+          "other_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+          "relation": "specialized_application_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Scalar commutant is a prerequisite; Pauli-class averaging and trace normalization are additional target-specific steps."
+        },
+        {
+          "other_core_id": "qcb-core-plan-111",
+          "other_key": "qcb-core-plan-111-symmetrization-block-diagonal-isotypical",
+          "other_item_digest": "5c86b4af86f4716aeec0f5399496dacdd9f853ece3b24ed6d0c0810ec154546e",
+          "relation": "irreducible_twirl_vs_multiplicity_free_blocks",
+          "same_core_alias_proposed": false,
+          "reason": "General two-irrep block structure is not the single-qubit trace-fixed depolarizing identity."
+        },
+        {
+          "other_core_id": "qcb-core-plan-412",
+          "other_key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+          "other_item_digest": "b4183f8ccfaf78c2989b2a41175edfa0d6bd452671cb1a5d0c767b53fdac475d",
+          "relation": "same_schur_trace_template_different_core",
+          "same_core_alias_proposed": false,
+          "reason": "A Haar average on symmetric tensor powers uses different state space, measure, support and normalization; common proof template is not same core."
+        }
+      ],
+      "limitations": [
+        "No circuit synthesis or cost claim follows from the operator twirl identity; no repair authored or approved by this reviewer."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-108",
+      "key": "qcb-core-plan-108-character-is-class-function-degree",
+      "item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "pending_scalar_field_convention",
+      "reasoning": {
+        "reconstruction": "For a finite-dimensional representation over F, phi(h*g*h^-1)=phi(h)*phi(g)*phi(h)^-1 and cyclicity tr(AB)=tr(BA) give conjugacy invariance without finite G or unitarity. At the identity, tr(I_V) is the image in F of the integer n=dim_F(V). Over C this identifies the degree as the usual integer and chi descends to the set of conjugacy classes.",
+        "contract_uncertainty": "The prepared question does not name a scalar field; its assumption/convention arrays are empty. The literal field-independent identity is chi(e)=n*1_F, not a means of recovering integer dimension in positive characteristic. For the trivial group on F_p^p, chi(e)=0 although dim(V)=p, so the answer's assertion that the value 'recovers the degree' needs a characteristic-zero/complex convention. The primary source surrounding Definition3.28 is explicitly the complex group algebra C[G], but that ambient carrier is not bound in this standalone question.",
+        "answer_rubric": "All four rubric criteria and four semantic steps are correct over C (and conjugacy invariance over any field with the trace interpreted there). The answer additionally calls linearity a property used 'to define trace'; cyclicity and identity trace are the actual proof ingredients. Clarify that this is a complex representation/complex character, or explicitly cast n into F and remove integer recovery as a universal statement. Until that convention is fixed, the exact scope remains uncertain rather than silently inherited from a PDF section.",
+        "boundary": "No positive-definite character inner product or isomorphism classification is proved here; those require additional hypotheses as in109."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            17,
+            29,
+            30
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Definition3.6 over a field; Section3.6 complex group algebra context; Definition3.28; equation3.84; Proposition3.29(i)"
+          ],
+          "source_comparison": "The source character passage sits in the C[G] context. Its class-function calculation is explicit; the subsequent basic character properties are listed without proof. The standalone prepared field scope is less explicit than that source context.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-101",
+          "other_key": "qcb-core-plan-101-homomorphism-preserves-identity-inverse",
+          "other_item_digest": "39cf1c51e2f1204e64df33d8a8210e06de5ea44fdc2525809858621ecd97be1a",
+          "relation": "uses_group_homomorphism_fact_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Inverse preservation supports the conjugation expression but does not prove trace invariance."
+        },
+        {
+          "other_core_id": "qcb-core-plan-109",
+          "other_key": "qcb-core-plan-109-multiplicity-character-inner-product",
+          "other_item_digest": "940d170e2bda6414a28189165ce2bc37170ee0653d2cf788e54f04b40a60ecd5",
+          "relation": "character_property_vs_multiplicity_classification",
+          "same_core_alias_proposed": false,
+          "reason": "Degree/conjugacy properties do not supply irreducible orthogonality or a full decomposition."
+        }
+      ],
+      "limitations": [
+        "Uncertainty is scalar/codomain interpretation, not a failure of the standard complex-character theorem. A dimension-zero complex representation has chi(e)=0 and presents no problem."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-109",
+      "key": "qcb-core-plan-109-multiplicity-character-inner-product",
+      "item_digest": "940d170e2bda6414a28189165ce2bc37170ee0653d2cf788e54f04b40a60ecd5",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "The given finite complex decomposition implies chi_V=sum_j n_j*chi_j by trace additivity on direct sums and trace invariance under conjugation. With the explicitly conjugate-first inner product, linearity in the second slot yields (chi_i,chi_V)=n_i. Expanding the norm gives sum_i n_i^2. For nonnegative integer multiplicities this is one exactly for a single multiplicity-one irrep. Equal characters give all equal n_i and hence isomorphic direct sums; the forward implication is trace conjugacy invariance.",
+        "answer_rubric": "The complete answer, r1-r4 and four semantic steps are correct. It calls the inner product bilinear before immediately specifying conjugate-linearity in the first slot; sesquilinear is the precise term, but the actual expansion is valid. The n_i are real integers, so no conjugation error occurs. Zero V gives all n_i=0 and norm zero, not irreducibility under the ordinary nonzero-irrep convention. Repeated constituents produce norm at least4 if multiplicity2, and distinct two constituents produce norm2; this tests both multiplicity and inequivalence.",
+        "source_boundary": "The question assumes orthonormality and a decomposition; it does not ask to prove Schur character orthogonality. The notes' Proposition3.30 cites external texts for that proof, which were not inspected here and need not be imported as newly proved. Proposition3.31 lists the desired consequences; the algebraic derivation here is independently reconstructed. Its reversed source inner-product order in the multiplicity formula gives the same real integer; the prepared convention is consistent."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            21,
+            29,
+            30,
+            31,
+            32
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Definition3.21; character definition/additivity3.28-3.29; inner product3.85 and Proposition3.30; full Proposition3.31(i)-(iii); equation3.96 for comparison"
+          ],
+          "source_comparison": "Verified finite complex/decomposition context and conjugate character convention. The source states character orthogonality with an external-proof citation; it is an explicit premise in this exercise, not a fresh closure claim. Multiplicity and both requested corollaries were independently derived.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-108",
+          "other_key": "qcb-core-plan-108-character-is-class-function-degree",
+          "other_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+          "relation": "prerequisite_character_facts_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Class invariance/degree differs from extracting multiplicities and character classification."
+        },
+        {
+          "other_core_id": "qcb-core-plan-110",
+          "other_key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+          "other_item_digest": "9b9f633d427e365f4b941d9ba0ac65a7198e50c1ed20cb2f793d3398242285ab",
+          "relation": "two_formulas_for_multiplicity_different_requested_reasoning",
+          "same_core_alias_proposed": false,
+          "reason": "Both concern multiplicities but this computes via character inner products and classification; 110 computes the dimension of a specific intertwiner space. Their equivalence needs an additional Hom-character bridge and is not presumed to make the whole exercises aliases."
+        },
+        {
+          "other_core_id": "qcb-core-plan-113",
+          "other_key": "qcb-core-plan-113-character-projector-isotypical-component",
+          "other_item_digest": "86e1d04d033535a8c92558d1206d86b9032daab481cb0b41dfbdc72641fd4800",
+          "relation": "trivial_constituent_specialization_not_whole_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Invariant-vector projection and its trace specialize one multiplicity but ask different projection identities."
+        }
+      ],
+      "limitations": [
+        "Uses ordinary nonzero irreducibles. No proof of the assumed character orthogonality, new Lean closure, or exhaustive cross-cohort equivalence clearance."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-110",
+      "key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+      "item_digest": "9b9f633d427e365f4b941d9ba0ac65a7198e50c1ed20cb2f793d3398242285ab",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Finite-group complex complete reducibility decomposes V into U^directsum(k) plus a finite direct sum F of inequivalent irreducibles. Projecting a map onto summands gives Hom_G(U,V)=Hom_G(U,U)^directsum(k) plus Hom_G(U,F). Schur's linear zero-or-isomorphism lemma kills every map to an inequivalent constituent. Scalar Schur identifies End_G(U) with C through lambda->lambda*I_U; this is an injective scalar map because U is nonzero. Therefore its dimension is1 and dim Hom_G(U,V)=k.",
+        "answer_rubric": "The question explicitly defines Hom_G using linear maps, so the linearity ambiguity in104/105 is absent here. The full answer, r1-r4 and four semantic steps correctly use additivity only for finite direct sums. k=0 and V=0 give Hom=0, which extends the source statement from a constituent 'appearing' to a possibly absent U. Nonunitary representations still work by semisimplicity; no chosen invariant inner product is needed. The result identifies a multiplicity space abstractly; no canonical basis of the k copies is asserted.",
+        "source_boundary": "Source Proposition3.33(i) supplies a complete short additivity/Schur proof. Part(ii) and Corollary3.34 give the evaluation-map refinement; the exercise asks only the dimension equality. The proof here does not promote the tensor evaluation isomorphism or whole Schur-Weyl theory as a locally proved consequence."
+      },
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "byte_count": 554175,
+          "hash_match": true,
+          "actual_edition": "Title page April 10, 2026; 79 PDF pages. Printed page numbers equal one-based PDF page positions.",
+          "printed_pages_inspected": [
+            20,
+            21,
+            29,
+            31,
+            32
+          ],
+          "actual_inspection": "Read complete relevant primary definition/proof regions through web PDF text and direct pypdf extraction of freshly retrieved matching bytes, not just the repository's source registry.",
+          "source_regions": [
+            "Schur Proposition3.17; isotypical Definition3.21; Hom-space Definition3.27; complete Proposition3.33(i) proof/equations3.89-3.91; adjoining part(ii)/Corollary3.34"
+          ],
+          "source_comparison": "Actual source proof uses finite direct-sum additivity and Schur evaluations, matching the reconstruction. The prepared k=0 case is a valid explicit generalization beyond source wording requiring U to appear.",
+          "local_lean_closure": "None. Prepared formal counterpart is none; generic planned concept anchors are not local Lean theorem evidence."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-plan-104",
+          "other_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+          "other_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+          "relation": "schur_cross_term_prerequisite_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Cross-intertwiner vanishing is one ingredient, not the entire multiplicity-space dimension theorem."
+        },
+        {
+          "other_core_id": "qcb-core-plan-105",
+          "other_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+          "other_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+          "relation": "schur_self_term_prerequisite_not_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Scalar endomorphisms give the one-dimensional self term, not a decomposition of arbitrary V."
+        },
+        {
+          "other_core_id": "qcb-core-plan-109",
+          "other_key": "qcb-core-plan-109-multiplicity-character-inner-product",
+          "other_item_digest": "940d170e2bda6414a28189165ce2bc37170ee0653d2cf788e54f04b40a60ecd5",
+          "relation": "parallel_multiplicity_formula_not_exact_alias",
+          "same_core_alias_proposed": false,
+          "reason": "Same multiplicity is computed through a different invariant and additional character conclusions are requested in109."
+        },
+        {
+          "other_core_id": "qcb-core-plan-116",
+          "other_key": "qcb-core-plan-116-nonunique-irrep-splitting-isotypical-counterexample",
+          "other_item_digest": "ab9df40fd93fe05c0101d8c2d0d0b36cb55443c64c0780a092a57db7377c5e67",
+          "relation": "multiplicity_space_vs_nonunique_internal_splitting",
+          "same_core_alias_proposed": false,
+          "reason": "Dimension of Hom supplies a multiplicity space; exhibiting noncanonical choices of irreducible lines is distinct."
+        }
+      ],
+      "limitations": [
+        "No chosen bases, decomposition algorithm, computational cost or local Lean counterpart supplied."
+      ],
+      "source_checks": [
+        {
+          "file": "website/research/sources.json",
+          "declarations": [
+            "registry entry leditzky-2025-repth-qit (metadata, not a Lean declaration)"
+          ],
+          "lines": "219-227",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "checked": "Read complete relevant registry entry and verified its actual LF hash. It records URL/edition and external-reference status; this hash binds metadata only, not the primary proof text."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "reviewed": 10,
+    "accept": 5,
+    "reject": 2,
+    "uncertain": 3,
+    "rejected_core_ids": [
+      "qcb-core-plan-106",
+      "qcb-core-plan-107"
+    ],
+    "uncertain_core_ids": [
+      "qcb-core-plan-104",
+      "qcb-core-plan-105",
+      "qcb-core-plan-108"
+    ],
+    "absent": 0,
+    "global_semantic_alias_clearance": false
+  },
+  "handoff": {
+    "mathematical_delta": "Identified missing finite-dimension contract with an explicit irreducible counterexample, a false Pauli conjugation expansion with a finite witness, and separate linear-map/scalar-field convention ambiguities. Reconstructed all intended bounded proofs from actual primary regions.",
+    "failure_classes": [
+      "REFUTED (literal plan106 contract and plan107 proof step)",
+      "SOURCE_INVALID (prepared contract ambiguities pending clarification, not primary theorem rejection)"
+    ],
+    "salvage": "Valid finite-dimensional corollary106 and corrected-dagger Schur/trace argument107 identified; no successor authored or approved. Intended linear Schur proofs and complex-character proof remain reusable mathematics after exact contract reconciliation.",
+    "process_memory_ids_consulted": [],
+    "direction_fingerprint": "independent-primary-definition-proof-and-boundary-review-plan101-110",
+    "common_blind_spot_status": "This is the actual distinct second-pass reader; no aggregate multi-route or blindness audit claimed.",
+    "purification_exposition_state": "Pending downstream editorial/admission reconciliation; no blanket source or chapter approval."
+  }
+}

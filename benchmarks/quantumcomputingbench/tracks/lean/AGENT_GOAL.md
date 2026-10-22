@@ -39,6 +39,13 @@ leakage or duplicate core counting. Existing historical Lean pilots are
 diagnostic until explicitly reconciled. Record any unsupported formal view as
 provisional, not as absent mathematics or a rejected NL answer.
 
+Re-export the current registry before submitting a companion. A versioned
+question correction changes the contract hash even when core/family/split remain
+the same. Old-hash proposals are stale and fail validation; a previous formal
+proof or review is not silently transferred. Review the current full question,
+not only the theorem name. If its new request includes a refutation or an
+additional cost distinction, explain exactly which part the formal view covers.
+
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install
 system packages, contact administrators, launch long GPU jobs or paid training.
