@@ -112,6 +112,57 @@
         "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
         "finding_digest": "86aaacd8f8d5951d95b7ec66e8245301c0bc9136397b15d46d15a006ab94bb31"
       }
+    },
+    {
+      "core_id": "qcb-core-be-102",
+      "predecessor_key": "qcb-core-be-102",
+      "predecessor_item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
+      "reason": "Answer/rubric/exposition correction only. Preserve the exact question and its seven-wire, clean-workspace, graph, family and split contracts. Distinguish absence of a clean-input certificate from universal failure on every dirty input; derive the actual stronger row/work preservation facts from this concrete program.",
+      "repair": "shared/repairs/be-102-dirty-work-boundary-repair.json",
+      "review": "reports/textbook-v1/repairs/be-102-dirty-work-boundary-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-102",
+        "predecessor_key": "qcb-core-be-102",
+        "predecessor_item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
+        "reason": "Dirty-input loss of a clean-branch guarantee is not universal simultaneous arithmetic failure and scratch corruption.",
+        "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+        "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+        "finding_digest": "8059b40a5108a2530185439e03bbfe25082f260311a4d1f9b3794fa760fb3acb"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-107",
+      "predecessor_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+      "predecessor_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+      "reason": "Repair the false right factor in the twirl expansion throughout answer, rubric and semantic exposition. The question already specifies C^2, a density matrix, irreducibility and a Schur/trace proof. No question, assumptions, graph scope, family, split or step count changes; no local Lean closure is asserted for this planned concept anchor.",
+      "repair": "shared/repairs/plan-107-pauli-adjoint-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-107-pauli-adjoint-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-107",
+        "predecessor_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+        "predecessor_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+        "reason": "The Pauli twirl expansion omits the right adjoint and contains a false noncommutative equality.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "0103f696beb09b7a15f628254279f7d0879042f7fa538bd13439ab71ba3aa656"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-204",
+      "predecessor_key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+      "predecessor_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+      "reason": "Repair the dropped complex conjugation in the no-two-outcome proof, and make the positivity verification complete. Keep the original complex-overlap question, 0<|c|<1, two-dimensional ambient space, graph, family, test split and five support steps. Do not silently restrict c to a real phase convention or claim a new local formal theorem.",
+      "repair": "shared/repairs/plan-204-complex-conjugation-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-204-complex-conjugation-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-204",
+        "predecessor_key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+        "predecessor_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+        "reason": "The complex-overlap proof drops a conjugation and equates 1-c^2 with 1-|c|^2.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "dcd0cb8e660cb2bc5c6770f428b752242e01ef43d844fe17f6dc8f4e2ccb3591"
+      }
     }
   ],
   "withdrawals": [
@@ -278,15 +329,6 @@
       "finding_digest": "7496cd12e696b1f4e7cace614faf99aefa9b14628345b244e76462983278319b"
     },
     {
-      "core_id": "qcb-core-be-102",
-      "predecessor_key": "qcb-core-be-102",
-      "predecessor_item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
-      "reason": "Dirty-input loss of a clean-branch guarantee is not universal simultaneous arithmetic failure and scratch corruption.",
-      "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
-      "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
-      "finding_digest": "8059b40a5108a2530185439e03bbfe25082f260311a4d1f9b3794fa760fb3acb"
-    },
-    {
       "core_id": "qcb-core-be-104",
       "predecessor_key": "qcb-core-be-104",
       "predecessor_item_digest": "09426de0cfd6a624bf2b04f6011fbb177a23b57067ad18a29ca7ccb95d4765d8",
@@ -350,15 +392,6 @@
       "finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e"
     },
     {
-      "core_id": "qcb-core-plan-107",
-      "predecessor_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
-      "predecessor_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
-      "reason": "The Pauli twirl expansion omits the right adjoint and contains a false noncommutative equality.",
-      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
-      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
-      "finding_digest": "0103f696beb09b7a15f628254279f7d0879042f7fa538bd13439ab71ba3aa656"
-    },
-    {
       "core_id": "qcb-core-plan-108",
       "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
       "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
@@ -375,15 +408,6 @@
       "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
       "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
       "finding_digest": "1e3e595067d2c96cc48105b4e40869640a5307faa897543b14a94a0d6f210dbd"
-    },
-    {
-      "core_id": "qcb-core-plan-204",
-      "predecessor_key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
-      "predecessor_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
-      "reason": "The complex-overlap proof drops a conjugation and equates 1-c^2 with 1-|c|^2.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
-      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
-      "finding_digest": "dcd0cb8e660cb2bc5c6770f428b752242e01ef43d844fe17f6dc8f4e2ccb3591"
     },
     {
       "core_id": "qcb-core-plan-206",
@@ -420,6 +444,123 @@
       "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
       "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
       "finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b"
+    },
+    {
+      "core_id": "qcb-core-plan-112",
+      "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+      "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+      "reason": "Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "e45d201a601e5979709a285fea6d3c8be4cc4dece012827e930b97939fd4af94"
+    },
+    {
+      "core_id": "qcb-core-plan-115",
+      "predecessor_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+      "predecessor_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+      "reason": "The one-dimensional tensor square need not be the original character; finite complex scope is also unbound.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "692e3da5b0932331045428e71fcf7fe7aed416882a2c18f8a2cde02b9aee134a"
+    },
+    {
+      "core_id": "qcb-core-plan-117",
+      "predecessor_key": "qcb-core-plan-117-non-unitarizable-infinite-group-counterexample",
+      "predecessor_item_digest": "eec0cb51404622c0e85a513a847761fd901179fb2ae5383757106e295d0c690f",
+      "reason": "The compact-group extension omits continuity; Haar averaging does not apply to every abstract representation.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "cd00b1e9cde5d2705dcbc1c70b64a14fbf0768fbeb207129c9043c197ea77163"
+    },
+    {
+      "core_id": "qcb-core-plan-118",
+      "predecessor_key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+      "predecessor_item_digest": "18b194dedfd34e0201b2edbc78e5ce8545fbaa37a56e99edeee582302e03020d",
+      "reason": "The scalar-Schur/division-ring-collapse summary omits finite dimension, despite a valid real two-dimensional example.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "9406d3c4b6ebf24784c7569ae0a28961ca8dda1589203f3816fc3c43c8182809"
+    },
+    {
+      "core_id": "qcb-core-plan-119",
+      "predecessor_key": "qcb-core-plan-119-finite-vs-compact-haar-boundary",
+      "predecessor_item_digest": "dca75eb96b7c01ba5932c174af9039b8070253a2ac90ff323882760a463f2323",
+      "reason": "Raw compact-group matrix coefficients are not orthonormal without dimension normalization; continuity scope is missing.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "0fb7ce239b61148423d0a48f7a7631fcc47b030ad8594d3cc8a62c925c5970a6"
+    },
+    {
+      "core_id": "qcb-core-plan-120",
+      "predecessor_key": "qcb-core-plan-120-dual-representation-conjugate-boundary",
+      "predecessor_item_digest": "c4c3e55cfc17e2cd0d8984618558bdea620de9ea2410140f1652fe489fd27ea4",
+      "reason": "Equal real characters do not classify self-duality for arbitrary nonsemisimple group representations.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "7e2cd44822bf18d5861c1bc37db7bbf7c3d2df0cfae784f50e15b0d8ce8f9811"
+    },
+    {
+      "core_id": "qcb-core-plan-211",
+      "predecessor_key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+      "predecessor_item_digest": "956c29f294371de27e9ec45ec5196f99962ce8a623ede5e3b3285f52d19ab01c",
+      "reason": "Sparsity and label-qubit count are conflated; zero-padding and regularization claims need additional structure.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "f74c0a5099286ea339404e8f8760828be9ab1856b6d18e516f351ef363eb6984"
+    },
+    {
+      "core_id": "qcb-core-plan-212",
+      "predecessor_key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+      "predecessor_item_digest": "970c5ba0f50e0dd502278b4dc174d90ea437909bbaf2877765b536179388b15d",
+      "reason": "Separate permutation maps do not imply a unique disjoint cover of each nonzero matrix position.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "8731c6aca54ebe1013fd940f3af7b58ef930765ce2b887a10061462091fa79bb"
+    },
+    {
+      "core_id": "qcb-core-plan-213",
+      "predecessor_key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+      "predecessor_item_digest": "25309f761a99ded35bf244e4492c4586faf0237b0cf08117241262e92d77f079",
+      "reason": "The literal forward oracle tail differs from the adjoint tail required by the source figure and amplitude proof.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "1db8cb3137b7ef804b50b2d6ac9f152f54cf67eda9d01d79488264507384fbd3"
+    },
+    {
+      "core_id": "qcb-core-plan-215",
+      "predecessor_key": "qcb-core-plan-215-hermitian-sparse-block-encoding-prop924",
+      "predecessor_item_digest": "576ff269c4242c5a9080540a6009923b6f34ab1f07e5ad9fdd42381baca1176d",
+      "reason": "The square-root conjugacy step fails for negative diagonal entries; the Hermitian SWAP circuit encodes the wrong sign.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "f111c9ca65f47c5173f1b606b32c2ae6147ad191b5d7f8ba8eb0eba3b7ac6639"
+    },
+    {
+      "core_id": "qcb-core-plan-217",
+      "predecessor_key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+      "predecessor_item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+      "reason": "Definite parity is sufficient, not necessary for coincidence on a fixed spectrum; scope is ambiguous.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "fb4e2f91c81088a6bfc6416921f3cddd964ecd84e85761aad2ce78f79814aa2b"
+    },
+    {
+      "core_id": "qcb-core-plan-218",
+      "predecessor_key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+      "predecessor_item_digest": "568117cff67fd69c6ea6f73b73f70181dee69cf8f0059fd634d0074c0189fe8a",
+      "reason": "An unnormalized non-isometric transformed vector is not a deterministic lossless quantum state.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "2eeb8ab2a932b998d24686c30d98a3f5bee17669dbf0ff364a88b7bd7244befe"
+    },
+    {
+      "core_id": "qcb-core-plan-219",
+      "predecessor_key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+      "predecessor_item_digest": "2387018c64ae8b443f7d0dc49ebb1c814f123a3d08e5575f01c1597ddc3b6d0e",
+      "reason": "The inverse lacks an invertibility premise and an SVD interior obstruction does not exclude all three transform forms.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "4bd9c821d89cc6706cb515c028f1b2ef693ede3a7019a039bfc577e9f5bdc5a5"
     }
   ]
 }

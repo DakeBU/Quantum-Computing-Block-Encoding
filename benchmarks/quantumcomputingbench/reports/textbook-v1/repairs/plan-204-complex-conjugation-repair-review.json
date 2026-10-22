@@ -1,0 +1,166 @@
+{
+  "schema_version": "qcb.answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-204",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-204-complex-conjugation-repair.json",
+  "repair_record_digest": "bf3c01e5a75f04338bc73b1803fe7dbd7447f815747aee41380175ead74b16fb",
+  "original_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+  "verdict": "accept",
+  "scope": {
+    "observed_head": "006ed812e2d54d4ec1a778b3ad613fcdda211e1a",
+    "selection": "Whole original from release.checked()[2] and complete current authored repair record, including answer, four rubric entries, core summary, five semantic steps, source/primary metadata and execution disclaimer.",
+    "output": "Only private _review_tmp/plan-204-complex-conjugation-repair-review.json. Canonical source/data/candidate and sealed earlier reader reports not edited."
+  },
+  "provenance": {
+    "actual_task": "/root/qcb_formal_view_audit",
+    "independence": "Distinct from candidate author /root and original author scientific-algorithms-author-b2. This reviewer authored neither candidate nor original and does not self-approve a repair.",
+    "exposure": "No prior independent review of original204 is claimed by this reviewer. Full original, proposed answer/rubric/exposition and primary source were visible. The candidate's primary metadata changed during this task; the entire updated record was reread and final digest recomputed. Mathematical fields were unchanged.",
+    "protocol": "Substantive-worker and shared contract/publication rules applied; PDF reading workflow used. No external human/expert or source-blind attestation inferred.",
+    "item_digest_method": "qcb_core.digest of entire actual original and entire current repair JSON; not a question-only or selected-field digest.",
+    "lean_rerun": false,
+    "additional_agents": false,
+    "admission_performed": false
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "b1569085f93b8ecb592f938cc36e92f9283b3fe8ac30012a7073869eb995671f",
+    "projected_contract_hash": "b1569085f93b8ecb592f938cc36e92f9283b3fe8ac30012a7073869eb995671f",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "contract_field_overrides_in_repair": [],
+    "assessment": "Constructed a private deep-copy answer projection using the same replacement fields inspected in qcb_textbook_policy: key/reference_answer/rubric/author and the two permitted exposition fields. Every actual CONTRACT_FIELDS value is exactly equal before and after. No question, assumptions, conventions, family, split, graph version/scope or source binding is changed. No future admitted full-item digest is invented, since that also depends on the review/admission wrapper.",
+    "exposure_of_scope": "The original already specifies normalized pure states, actual complex c=<psi|phi>, 0<|c|<1 and a two-dimensional ambient span. The candidate preserves these and does not assume c real or choose a new phase gauge."
+  },
+  "exposition_and_rubric_assessment": {
+    "original_semantic_step_count": 5,
+    "candidate_semantic_step_count": 5,
+    "rubric_ids": [
+      "r1",
+      "r2",
+      "r3",
+      "r4"
+    ],
+    "mechanical_scope": "check_exposition confirmed five steps and no graph nodes outside original targets/support. Candidate source bindings checked against actual LF files. These are structural checks, not proof or admission.",
+    "mathematical_scope": "All five claims preserve complex conjugation, forced weights and the positive contraction spectrum. r1-r4 cover the no-two-outcome proof and full POVM validity; allowing the alternative self-adjointness contradiction is mathematically valid and does not weaken the requested impossibility target."
+  },
+  "source_checks": [
+    {
+      "file": "website/research/sources.json",
+      "declarations": [
+        "lin-wiebe-2026-qasc metadata entry"
+      ],
+      "lines": "230-238",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "checked": "Exact current registry LF binding only; primary mathematics independently inspected as below."
+    },
+    {
+      "file": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "declarations": [
+        "CONTRACT_FIELDS",
+        "check_exposition",
+        "apply_current_reader_policy answer-successor projection"
+      ],
+      "lines": "12-27;153-207",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "checked": "Read actual immutable-contract field list, allowed exposition and answer-overlay replacements; no policy/admission mutation performed."
+    },
+    {
+      "file": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "declarations": [
+        "core_contract"
+      ],
+      "lines": "19-20",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "checked": "Read exact core-contract extraction; contract digests calculated from actual originals and privately projected items."
+    },
+    {
+      "file": "benchmarks/quantumcomputingbench/shared/repairs/plan-204-complex-conjugation-repair.json",
+      "declarations": [
+        "complete repair JSON"
+      ],
+      "lines": "whole record",
+      "sha256_lf": "974405d439d4252b5220ae716bdfb31eb96ee03b838c4a095ae18f870a769e73",
+      "checked": "Whole candidate read, including current metadata, and exact digest bound; an authored correction, not a Lean theorem."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "recorded_edition": "29 April 2026",
+      "recorded_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "retrieved_byte_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "byte_count": 5718900,
+      "pdf_page_count": 447,
+      "hash_match": true,
+      "last_modified_header": "Fri, 22 May 2026 15:39:43 GMT",
+      "response_date_header": "Thu, 22 Oct 2026 19:46:08 GMT",
+      "retrieval": "Actual read-only HTTPS memory retrieval in this review; hashlib SHA256 and bundled pypdf extraction. Raw PDF not saved or redistributed.",
+      "edition": "Title page independently read from retrieved bytes: April29,2026;447pages. HTTP Last-Modified is May22,2026; this is not substituted for the printed edition. Exact historical byte pin matches.",
+      "pages": [
+        151,
+        152,
+        153
+      ],
+      "zero_based_pdf_pages_extracted": [
+        0,
+        150,
+        151,
+        152
+      ],
+      "regions": "Preceding POVM definition/normalization on printed151; complete Example9.14/Eqs9.53-9.54 and its conclusion on152; adjoining Lemma9.15 implementation boundary on153.",
+      "source_comparison": "The source uses c and conj(c) in the two complements respectively and the same1/(1+|c|) effects. Positivity is left as a check; the candidate's no-two-outcome contradiction and Gram-spectrum calculation are independently audited extensions, not quoted source proofs.",
+      "visual_inspection": {
+        "performed": true,
+        "artifact_name": "lin-wiebe-repair-page-152.png",
+        "artifact_raw_sha256": "292e804ecefa906afdf0f03b125a72f8dbe44369da6b7b6a08ac45f8e324c149",
+        "scope": "Independently viewed root-provided full printed page152 image; c* in Eq9.53, the effects9.54 and unambiguity conclusion visibly agree with independent extraction.",
+        "limit": "Renderer authored/executed by root, not this reviewer. This reviewer did not rerun it; web screenshot attempt failed internally. No whole-book visual inspection claimed."
+      },
+      "local_lean_closure": "None. Original formal counterpart is none; planned source-concept anchors are not Lean roots."
+    }
+  ],
+  "execution": {
+    "mathematical_reconstruction": true,
+    "read_only_binding_checks": true,
+    "new_lean_execution": false,
+    "new_kernel_claim": false,
+    "human_expert_claim": false,
+    "blindness_claim": false,
+    "current_catalog_admission": false,
+    "raw_primary_pdf_saved": false
+  },
+  "limitations": [
+    "Acceptance is for this exact candidate and unchanged contract, not an approval of all source textbook claims or a transfer of predecessor acceptance.",
+    "Metadata/source byte equality is not by itself a proof. Mathematical reasoning and phase/conjugation checks are recorded separately.",
+    "No circuit construction, implementation query count, finite-bit runtime or source-publication seal is established."
+  ],
+  "original_defect": "The original answer expands <psi|phi_perp> using c rather than conj(c), incorrectly identifying1-c^2 with1-|c|^2 for general complex overlap. Its intended trace contradiction and effects are correct only after the bra-ket algebra is repaired. The candidate also expands the originally abbreviated positivity check.",
+  "substantive_reconstruction": {
+    "complements": "With r=|c|, delta=1-r^2>0, u=(psi-conj(c)phi)/sqrt(delta), v=(phi-c psi)/sqrt(delta), direct sesquilinear expansion gives ||u||=||v||=1, <phi|u>=<psi|v>=0, <psi|u>=<phi|v>=sqrt(delta), and <u|v>=-c. No real-overlap gauge is used.",
+    "impossibility": "For PSD E, a zero expectation means E annihilates the vector because E has a positive square root. On the fixed two-space, self-adjointness makes E_psi=a|u><u|, E_phi=b|v><v|. Completeness in psi and phi forces a=b=1/delta. Its trace2/delta exceeds trace I=2 for every0<r<1, a contradiction. The candidate's independent alternate proof also works: E_psi psi=psi, E_psi phi=0 imply c=<E_psi psi|phi>=<psi|E_psi phi>=0 by self-adjointness.",
+    "gram_and_effect_spectra": "For F with columns(u,v), G=F^dagger F has matrix[[1,-c],[-conj(c),1]], characteristic polynomial(1-lambda)^2-r^2 and eigenvalues1+r,1-r. Both are positive, so F is invertible; F F^dagger has the same spectrum (e.g. F G F^-1=F F^dagger). Hence S=(F F^dagger)/(1+r) has eigenvalues1,(1-r)/(1+r), and I-S has0,2r/(1+r). This proves positivity of the inconclusive effect, not just completeness by definition.",
+    "probabilities_and_endpoints": "Wrong-label probabilities vanish by the two orthogonality identities. Correct probability is delta/(1+r)=1-r and inconclusive probability r for either state. At r=0 the states are orthogonal and the two complementary projectors suffice; at r=1 the complement formulas are undefined and that case is excluded. Normalized states and delta>0 force the specified span to be exactly two-dimensional, so no empty-space or singular-F case was omitted.",
+    "complex_discriminator": "For psi=e0 and phi=(i/2)e0+(sqrt(3)/2)e1, c=i/2, u=(sqrt(3)/2)e0+(i/2)e1 and v=e1. Thus <u|v>=-i/2, not a real-overlap substitution. The conclusive sum eigenvalues are1 and1/3, P_? eigenvalues0 and2/3, and each correct outcome has probability1/2. Forced conclusive-only weights4/3 would give trace8/3>2. This directly discriminates the repaired conjugation from the original expression.",
+    "necessity_and_minimality": "The changed conjugation is necessary under the original question, not a phase convention change. The added Gram proof supplies the requested PSD verification, with no uniqueness or arbitrary-prior optimality claim. All current answer/rubric/summary/steps and updated source metadata were read; no residual mathematical defect found."
+  }
+}
