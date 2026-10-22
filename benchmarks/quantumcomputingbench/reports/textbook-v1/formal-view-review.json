@@ -1,0 +1,298 @@
+{
+  "schema_version": "qcb.textbook_formal_view_review.v1",
+  "review_identity": {
+    "task_name": "/root/qcb_formal_view_audit",
+    "parent_task": "/root",
+    "role": "bounded independent semantic reviewer of three existing formal exercises",
+    "identity_provenance": "Actual task identity supplied by the collaboration runtime; not an invented reviewer identity.",
+    "independence": "Distinct task from the integration parent and distinct from the recorded corrected-v3 author codex-qcb-repair-2026-10-21. No claim of a separate human reviewer or a separately executed decoder task.",
+    "method": "Read repository protocols; reconstructed the targets from literal Lean definitions and proof bodies before the deliberate question/metadata comparison; then compared the corrected raw records and relevant current/historical cohort questions.",
+    "blindness_limit": "An initial target-location search printed question strings alongside the formal targets. This is an independently reasoned semantic review, but is not a strictly source-blind decoder packet and must not be represented as one.",
+    "external_access": false,
+    "additional_agents_spawned": false
+  },
+  "scope": {
+    "workspace": "qcb-release-integration",
+    "observed_head": "78aa56a7c5f0325afc2bf6bff148b030c560d088",
+    "raw_records_path": "benchmarks/quantumcomputingbench/data/authored/repairs-v3.json",
+    "raw_digest_method": "qcb_core.digest(raw_record): SHA-256 of json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(',', ':')). Raw authored record digests are distinct from prepared/public item digests.",
+    "file_hash_method": "qcb_integrity.text_sha: SHA-256 after CRLF-to-LF normalization only.",
+    "allowed_change": "This new review file only; no Lean, frozen QA, existing review, commit or push changed by this task.",
+    "protocols_read": [
+      "AGENTS.md",
+      "HARNESS.md",
+      ".agents/skills/qbe-substantive-worker/SKILL.md",
+      "docs/theorem-publication-protocol.md",
+      "docs/proof-digestion-protocol.md",
+      "docs/evidence-routed-memory-protocol.md"
+    ]
+  },
+  "file_bindings": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/authored/repairs-v3.json",
+      "sha256_lf": "bbb2648902cf349216a2b310f0d4ab3c0abe53aa8582f58a195d1342d8d16949"
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+      "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+      "locations": "standardRyMatrix 18-20; standardRyMatrix_zero 22-25; flipBit 118; flipBit_flipBit 120-121; xBasisAction and involution 123-135"
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+      "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+      "locations": "realOrthogonalRotation 23-29; realRotation 60-62; entry lemmas 64-78"
+    },
+    {
+      "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+      "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+      "locations": "rotateRows 20-25; planeMatrix 27-28; det_two_row_mix 341-365; rotateRows_det 367-378; planeMatrix_det 381-383"
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/lean/ReferenceChecks.lean",
+      "sha256_lf": "f19ece54ef98dda8137ae02fde07c79e3a9642132cda5500e11c120aa466dc0c",
+      "locations": "ryZero 12; halfAngle 14-18; flipInvolution 20; planeDet 22-23; qcbAuditReferences collects transitive axioms"
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/integration-20261022/lean-reference-checks.json",
+      "sha256_lf": "0de10208afa3cb7f71b89fd2ccbd68ce4565865677463de028931b815f96ddd3"
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/authored/pilot.json",
+      "sha256_lf": "62915e47927dded73e1ac3ccfb9fa899932315398176370ce7b361844f8609f6"
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af"
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/release-v3/release.json",
+      "sha256_lf": "066842c0d2a0dfabaa83125b1e0acec240400025f02bf7a7cd6d5c3772155462"
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/release-v3/provisional.json",
+      "sha256_lf": "df1f4b4f4b586b1899ce9b2cda4c9468ef43453cfb181e068db8d0f8084438d5"
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/manifests/integration-20261022/admission.json",
+      "sha256_lf": "e38088a087d6fdc2c54f1a7e9d9ebd665a4b7e627d5439bb4837234019ed7a91"
+    }
+  ],
+  "lean_evidence": {
+    "rerun_by_this_task": false,
+    "new_lean_execution_claimed": false,
+    "reason": "Read-only semantic audit of unchanged production Lean, with an existing exact-target reference report; no arbitrary Lean rebuild was performed.",
+    "inherited_report_status": "reference_checked",
+    "inherited_execution_class": "trusted_local_reference",
+    "inherited_isolated": false,
+    "inherited_independent_nl_review": false,
+    "inherited_repository_gate_commit": "3b56da964f97511cc478d942d513b3e01b9328ee",
+    "inherited_proof_inputs_sha256": "1e65e7d2984e4542ca2747837d71c516847e4e987d3bbd6c48b8a803eb36806e",
+    "approved_transitive_axioms_reported_for_all_three": ["Classical.choice", "Quot.sound", "propext"],
+    "exact_target_comparison": "Each generated_harnesses formal_context imports and target equals its corresponding corrected raw formal context. The reference pack hash equals the current LF-normalized ReferenceChecks.lean hash.",
+    "boundaries": [
+      "The existing report records successful trusted local reference elaboration and rejected sorry/wrong-type controls; this task does not claim a fresh execution.",
+      "The report's repository-gate success is inherited historical evidence; this reviewer did not recompute the entire repository proof-input equality or certify the current whole checkout.",
+      "No isolated untrusted-output evaluation or full source-publication encoder/decoder/reviewer lifecycle is established by this file."
+    ]
+  },
+  "reviews": [
+    {
+      "key": "lean-standardRyMatrix-zero-corrected-v3",
+      "raw_record_digest": "b8d86e0decb5645276efc1815dc79c22f3979f2f35fb4d263df66245b00f5c23",
+      "formal_target": "QuantumBlockEncoding.standardRyMatrix 0 = 1",
+      "imports": ["QuantumBlockEncoding.PrimitiveSemantics"],
+      "independent_reconstruction": {
+        "meaning": "The complex 2-by-2 matrix with entries [[cos(theta/2), -sin(theta/2)], [sin(theta/2), cos(theta/2)]] equals the matrix identity when theta=0.",
+        "definitions": "standardRyMatrix(theta) is literally realRotation(theta/2); realRotation(a) is realOrthogonalRotation(cos a, sin a), whose Fin 2 row/column order gives the displayed entries.",
+        "proof": "At zero the diagonal entries are cos(0)=1 and the off-diagonal entries are plus/minus sin(0)=0. Matrix extensionality and the four Fin 2 cases give the identity.",
+        "binder_audit": "No logical hypotheses or implicit quantum contract bundle. Fin 2, complex scalars and matrix identity are typing/standing definition conventions. Availability of simp lemmas is proof-environment metadata, not a mathematical premise.",
+        "definition_kind": "literal",
+        "convention_boundaries": [
+          "Angle is the RY parameter theta; its real amplitude-plane rotation angle is theta/2.",
+          "This exact matrix equality has no global-phase quotient, approximate norm, ancilla, oracle or resource assertion.",
+          "The theta=0 test alone cannot distinguish full-angle from half-angle definitions; both vanish at zero. The general half-angle convention comes from the definition, not this theorem."
+        ]
+      },
+      "question_metadata_comparison": "The question explicitly requests imported-lemma interface application, and its fully qualified target exactly matches standardRyMatrix_zero. reference_answer is that exact application. The half-angle convention and source hash agree. No new-theorem-discovery or general angle-convention test is claimed by the question.",
+      "inherited_reference_root": "QuantumComputingBench.ReferenceChecks.ryZero",
+      "inherited_generated_harness_source_sha256": "da917f35435a4d4e4187b72eca8a8fa98e487797e13acf157c4437b510f24433",
+      "verdict": "accept",
+      "verdict_scope": "Semantic alignment of this exact raw exercise and literal target, supported by inherited reference evidence; not an independent blind-decoder certification or release promotion.",
+      "discovered_defects": [],
+      "successor_required": false,
+      "core_comparisons": [
+        {
+          "key": "lean-standardRyMatrix-zero",
+          "path": "benchmarks/quantumcomputingbench/data/authored/pilot.json",
+          "raw_record_digest": "c78b311efbf1a0a8491ea2af7bfd01820185ceb4fb9815c967c8bcae4a352e56",
+          "relation": "same_mathematical_core",
+          "reason": "Same literal RY-at-zero identity. Tactic synthesis versus imported-lemma application changes the exercise view, not the mathematical proposition. The old formal imports omit PrimitiveSemantics and names are unqualified, so same core does not admit its historical harness."
+        },
+        {
+          "key": "k-ry-half-angle-convention",
+          "path": "benchmarks/quantumcomputingbench/data/public/release-v3/release.json",
+          "item_digest": "7424914e3a8a578e6e2c3d48167b3b6f229835c4cc5855a1d7fb04f003209d39",
+          "relation": "related_proper_generalization",
+          "reason": "Derives all four entries and the first column for arbitrary theta and explains the convention. Zero-angle identity is only one specialization; shared standardRyMatrix support is not same-core evidence."
+        },
+        {
+          "key": "neg-ry-not-half-only-at-pi-corrected-v3",
+          "path": "benchmarks/quantumcomputingbench/data/public/release-v3/provisional.json",
+          "item_digest": "80154e0afb787646f823817524d52ea050144351f3a6e3e275a729461c012c83",
+          "relation": "related_convention_counterexample",
+          "reason": "Distinguishes amplitude-plane alpha, RY parameter and Bloch polar angle using alpha=0.7. A zero-angle identity cannot discriminate this misuse."
+        },
+        {
+          "key": "qcb-core-sp-001",
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "item_digest": "0131ad1ec8cff86035bb3b2ac0369a3fda6efe1bb41e47ed0f2a41355733e4ce",
+          "relation": "related_split_angle_construction",
+          "reason": "Signed pair preparation and zero-pair handling concern construction of a parameter, not the zero-parameter matrix identity."
+        }
+      ],
+      "suggested_core_aliases": ["lean-standardRyMatrix-zero"],
+      "unresolved_equivalences": []
+    },
+    {
+      "key": "lean-flipBit-involutive-corrected-v3",
+      "raw_record_digest": "7fd8423ebc51969e0b18eabf80b21128e3c56558b38d294b60d27292522fb106",
+      "formal_target": "∀ bit : Fin 2, QuantumBlockEncoding.flipBit (QuantumBlockEncoding.flipBit bit) = bit",
+      "imports": ["QuantumBlockEncoding.PrimitiveSemantics"],
+      "independent_reconstruction": {
+        "meaning": "On the two-element carrier {0,1}, the map exchanging zero and one is its own inverse.",
+        "definitions": "flipBit(bit) is literally if bit=0 then 1 else 0. Fin 2 has no third inhabitant.",
+        "proof": "For input zero the two images are one then zero. For input one the two images are zero then one. These exhaust the carrier, as the source fin_cases/rfl proof records.",
+        "binder_audit": "The universally quantified bit is TYPING; there is no additional logical hypothesis. Carrier size two is essential to this literal definition's involution statement.",
+        "definition_kind": "literal",
+        "convention_boundaries": [
+          "The conclusion concerns one bit value, not a whole circuit, controlled predicate, wire permutation or coherent matrix semantics.",
+          "There is no bit-endianness or dimension parameter beyond the fixed Fin 2 carrier.",
+          "Generalizing the same if-expression to a carrier with a value 2 would fail: 2 maps to 0 then 1."
+        ]
+      },
+      "question_metadata_comparison": "The question and reference application match the fully qualified universally quantified theorem. The recorded Fin 2 assumptions and conventions are exact. It correctly describes interface application.",
+      "inherited_reference_root": "QuantumComputingBench.ReferenceChecks.flipInvolution",
+      "inherited_generated_harness_source_sha256": "258d6966f36243f4dbbc5da645705b42580258c03b5a76377791e86f9848f42a",
+      "verdict": "accept",
+      "verdict_scope": "Semantic alignment of this exact raw exercise and literal target, supported by inherited reference evidence; not an independent blind-decoder certification or release promotion.",
+      "discovered_defects": [],
+      "successor_required": false,
+      "core_comparisons": [
+        {
+          "key": "lean-flipBit-involutive",
+          "path": "benchmarks/quantumcomputingbench/data/authored/pilot.json",
+          "raw_record_digest": "b76567950e8fb3dfaf5d01896fbad076619cf9a4907d1408f516639930a553e3",
+          "relation": "same_mathematical_core",
+          "reason": "Same two-point toggle involution. Case-analysis proof versus imported-lemma application is a change of view. Historical imports omit PrimitiveSemantics and the target is unqualified; that harness is not thereby validated."
+        },
+        {
+          "key": "qcb-core-la-017",
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "item_digest": "f717b346a68d9dddbefdc009acf698ff6aca04c0531629f56fab06200a6b0999",
+          "relation": "related_dependency_not_same_core",
+          "reason": "Controlled-target involution additionally requires preservation of the control predicate and control-target distinctness. The one-bit cancellation is a proof ingredient, not the whole core."
+        },
+        {
+          "key": "qcb-core-be-101",
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "item_digest": "c121d5a0d54af38e9206a89b7e5c8acbab4eca77fe5c2e3ef5dad9fc0267a2a1",
+          "relation": "related_composite_involution_not_same_core",
+          "reason": "XOR with mask 3 on Fin 8, its image list and two-wire realization require a different carrier and composition/commutation argument. Both being involutions is insufficient for aliasing."
+        },
+        {
+          "key": "qcb-core-la-118",
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "item_digest": "0d08607d4fa98a7c4e6c2f3cef267a9b7e35329c0894b2c6272a11c823fe4ffd",
+          "relation": "related_bit_string_context_theorem",
+          "reason": "Characterizes equality of non-target restrictions by equality or target-X relation; it does not ask for the single-bit involution identity."
+        }
+      ],
+      "suggested_core_aliases": ["lean-flipBit-involutive"],
+      "unresolved_equivalences": []
+    },
+    {
+      "key": "lean-planeMatrix-det-applicability-corrected-v3",
+      "raw_record_digest": "7bdf1ca3fc1242af917c5fce80e01c00fe1b0a76ea434cf1182d59b2c3169837",
+      "formal_target": "∀ {N : ℕ} (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.planeMatrix i j theta).det = 1",
+      "imports": ["QuantumBlockEncoding.AdjacentGivens"],
+      "independent_reconstruction": {
+        "meaning": "For every natural dimension N, every ordered pair of distinct coordinate indices i,j and every real RY parameter theta, rotating the identity's rows i,j gives an N-by-N real matrix of determinant one.",
+        "definitions": "rotateRows replaces row i by c*A_i-s*A_j and row j by s*A_i+c*A_j, with c=cos(theta/2), s=sin(theta/2), and leaves other rows unchanged. planeMatrix is this operation on the identity. In the ordered i,j subspace the block is [[c,-s],[s,c]].",
+        "proof": "Multilinear determinant expansion in two distinct replaced rows kills the two repeated-row terms. The unchanged-order and swapped-order terms give (a*d-b*c)*det(A). For (a,b,c,d)=(cos(theta/2),-sin(theta/2),sin(theta/2),cos(theta/2)), that factor is cos^2+sin^2=1. Applying determinant preservation to A=I and det(I)=1 gives the target.",
+        "binder_audit": "N and i,j are TYPING; theta is a freely quantified real parameter. i!=j is the explicit mathematically necessary SOURCE premise and matches the record. No orthogonality of an arbitrary input, adjacency, N>=2 binder, or SO-decomposition hypothesis is assumed.",
+        "definition_kind": "literal",
+        "convention_boundaries": [
+          "The selected pair is ordered, but need not satisfy i<j or adjacency. The module name AdjacentGivens does not impose either condition on this theorem.",
+          "The physical/RY parameter theta is twice the real plane angle. The result is over real square matrices, not an arbitrary complex unitary determinant claim.",
+          "For N=0 there are no i,j. For N=1 no distinct pair exists. The quantified implication is vacuous in those dimensions, not an explicit rotation with two available coordinates.",
+          "If i=j, the first if-branch wins: the selected identity row is scaled by cos(theta/2)-sin(theta/2). For N=1, i=j=0, theta=pi, its determinant is -1. Thus deleting distinctness is false.",
+          "No gate compilation, Gray-code relabeling, ancilla, resource or arbitrary-SO synthesis theorem follows from this determinant leaf alone."
+        ]
+      },
+      "question_metadata_comparison": "The question preserves the exact natural dimension quantifier, Fin N indices, distinctness implication and all-real-angle quantifier. The metadata correctly says real NxN, identity input and half angles. The fully qualified reference theorem has the same binder order. All recorded source hashes match current LF-normalized source.",
+      "inherited_reference_root": "QuantumComputingBench.ReferenceChecks.planeDet",
+      "inherited_generated_harness_source_sha256": "33c13edbfed255ae36e317f9d667302735556cf03d4c150b80bbf21907c9a4d9",
+      "verdict": "accept",
+      "verdict_scope": "Semantic alignment of this exact raw exercise and literal target, supported by inherited reference evidence; not an independent blind-decoder certification or release promotion.",
+      "discovered_defects": [],
+      "successor_required": false,
+      "core_comparisons": [
+        {
+          "key": "lean-planeMatrix-det-applicability",
+          "path": "benchmarks/quantumcomputingbench/data/authored/pilot.json",
+          "raw_record_digest": "735e8d6455395a062aeb879c8ae5aba8fb83702a8d2e8bd0587b711f338732db",
+          "relation": "same_mathematical_core",
+          "reason": "Same determinant-one proposition for arbitrary N and distinct i,j. A rewrite proof versus a theorem application changes its view. The historical imports omit AdjacentGivens and the target uses unqualified planeMatrix, so it remains a defective historical harness rather than newly certified evidence."
+        },
+        {
+          "key": "qcb-core-la-102",
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "item_digest": "470ce4707a5d7cebab5a056b624cf70eb6448b2fdee43c594b57cf19d273943f",
+          "relation": "related_proper_generalization_not_same_core",
+          "reason": "Its requested conclusion is determinant preservation for arbitrary A and its proof includes the general two-row mixing identity. The formal task asks only the identity-input determinant-one corollary. One direction is specialization; the reverse needs the additional planeMatrix_mul identity and determinant multiplicativity, so it is not merely a notation/view change. Common det_two_row_mix/rotateRows_det/planeMatrix_det source nodes do not justify a same-core alias."
+        },
+        {
+          "key": "neg-givens-count-needs-SO-not-O",
+          "path": "benchmarks/quantumcomputingbench/data/public/release-v3/release.json",
+          "item_digest": "c87988aeca02cd7cd89288a3ab0fa9f7d641e689a76e4bd885a81774620e2d33",
+          "relation": "related_downstream_obstruction_not_same_core",
+          "reason": "Uses determinant-one planes to rule out a reflection and identify the final-sign step in decomposition. That root is the SO-versus-O boundary, not determinant of one plane."
+        },
+        {
+          "key": "r-decomposeSO-count-identity",
+          "path": "benchmarks/quantumcomputingbench/data/public/release-v3/release.json",
+          "item_digest": "6ac12dbafd5c67123186c3039faacbcbef1ad18fe7295ed8044025ceeabe7b8e",
+          "relation": "related_downstream_construction_not_same_core",
+          "reason": "Concerns the computed list length, zero pivots and full SO reconstruction. Determinant preservation is one dependency among several."
+        }
+      ],
+      "suggested_core_aliases": ["lean-planeMatrix-det-applicability"],
+      "unresolved_equivalences": []
+    }
+  ],
+  "admission_conclusion": {
+    "semantic_verdict": "accept_three_exact_corrected_raw_records",
+    "frozen_metadata_defects_found_in_scope": [],
+    "separate_successor_recommendation": null,
+    "same_core_aliases": "Each corrected-v3 item aliases its own historical pilot mathematical proposition. Do not count a corrected interface view as an additional mathematical core.",
+    "native_same_core_aliases_supported": [],
+    "dedup_limit": "Bounded lexical/source-node candidate retrieval across current nl-v12 release/provisional and release-v3 release/provisional, followed by mathematical comparison of plausible matches. This is not an exhaustive proof of corpus-wide semantic non-equivalence and gives no aggregate distinct-core count.",
+    "publication_boundary": "This evidence can inform integration, but cannot fill both mandatory distinct source-blind decoder and comparison-review roles. A strict blinded decoder remains necessary if the parent intends to claim that full publication protocol for these views."
+  },
+  "handoff": {
+    "objective": "Reconstruct and audit the three corrected formal views, especially angle, distinct-row and dimension conventions.",
+    "mathematical_delta": "Explicit literal semantics, a coincident-row counterexample, dimension-vacuity accounting and non-alias decisions for related native propositions.",
+    "effect_on_root_frontier": "Semantic alignment is supported for the three exact records; no raw metadata repair is indicated. Full blind round-trip and release admission remain separate gates.",
+    "failure_class": "NONE",
+    "salvage_audit": "Retain existing corrected-v3 targets and inherited references; preserve historical same-core lineage without promoting defective historical harnesses.",
+    "process_memory_ids_consulted": ["QBE-PM-LOW-TOKEN-CONTROL-PLANE"],
+    "direction_fingerprint": "literal-formal-decoding/half-angle/Fin2/distinct-row-small-dimension/specialization-versus-alias",
+    "expected_information_gain": "Find a hidden metadata/convention defect or prevent a false same-core merge based only on shared declarations.",
+    "parallel_admission": "Dispatched by parent as distinct semantic uncertainty; this task spawned no agents.",
+    "common_blind_spot_review": "No competing new proof routes constructed. Checked angle, carrier, row order, distinctness and dimensions directly rather than accepting reference success as fidelity.",
+    "default_verified_route": "Existing imported-lemma application with inherited trusted local reference evidence; no new formal route selected.",
+    "purification_exposition_seal": "Not claimed. This bounded evidence file is not a new production source publication or an Exposition Seal.",
+    "residual_risk": "Initial question exposure prevents a strict blind-decoder claim; retrieval is bounded and full proof-input equality was not rerun. Confidence high in the three literal semantic reconstructions and the listed pairwise relations.",
+    "recommended_next_step": "Use these exact record bindings in integration. If strict source-blind publication admission is desired, obtain a genuinely blind decoder separately; preserve current provisional status until the parent's remaining gates pass."
+  }
+}

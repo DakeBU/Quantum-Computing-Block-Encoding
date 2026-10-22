@@ -7,6 +7,44 @@ Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
 
+**Current textbook correction:** a fresh State Preparation review found an
+input/output bond-index defect in the historical `qcb-core-sp-002` answer.
+[Current policy](shared/current-policy.json) withholds that exact predecessor
+and admits only a separately reviewed additive answer/rubric successor. Frozen
+preview assets remain historical, not automatically current gold. Their native
+scoring/repackaging entry fails closed until a separately versioned data release
+is prepared. The current reader export preserves the original core and split.
+
+## Hierarchical exercise book
+
+The website reader organizes the retained native cores into five parts:
+shared foundations, State Preparation, Block Encoding, Quantum Information,
+and Quantum Scientific Computing. Part pages lead to topics, then canonical
+exercise pages with assumptions first and hints, solutions, rubrics and evidence
+folded by default. It uses the existing QuantumComputinglib textbook shell.
+
+- [Mathematical reader (no Lean required)](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/non-lean/)
+- [Lean companion and diagnostic warmups](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/lean/)
+- [Shared core and split contract](shared/CONTRACT.md)
+- [Non-Lean collaborator goal](tracks/non-lean/AGENT_GOAL.md)
+- [Lean collaborator goal](tracks/lean/AGENT_GOAL.md)
+
+These are two views/contribution tracks, not duplicate datasets. Existing core
+contracts and splits are preserved; new UUID proposals remain uncounted until
+semantic admission. The reader is an editorial checkpoint, not a relabeling of
+the preview as stable. Inspect the remaining acceptance gates with:
+
+```sh
+python benchmarks/quantumcomputingbench/scripts/curriculum.py validate
+python benchmarks/quantumcomputingbench/scripts/curriculum.py export --output _out/qcb-cores.json
+python benchmarks/quantumcomputingbench/scripts/curriculum.py export-reader --output _out/qcb-reader.json
+python benchmarks/quantumcomputingbench/scripts/curriculum.py stable-check
+```
+
+`stable-check` intentionally exits 2 while reviews/reconciliation remain pending.
+No broad whole-graph completeness, new isolated evaluator or model baseline is
+implied by the website presentation.
+
 ## What is ready
 
 | Cohort | Current scope | Evidence and use |
@@ -47,8 +85,10 @@ python -m unittest discover -s benchmarks/quantumcomputingbench/tests -v
 python benchmarks/quantumcomputingbench/scripts/release.py validate
 ```
 
-The current entry validates both cohorts, current withdrawal policy, source/review
-bindings and canonical paths. Package the committed clean checkout with:
+The entry validates the historical preview, source/review bindings and canonical
+paths, and separately reports current reader decisions. The historical packaging
+command below now fails closed while a withdrawn predecessor differs from the
+reader; do not overwrite the existing tag or bypass this guard:
 
 ```bash
 python benchmarks/quantumcomputingbench/scripts/release.py build

@@ -1,0 +1,28 @@
+/* Use the textbook's own typography, palette, themes and layout shell. */
+.qcb-reader, .qcb-home { min-width: 0; max-width: 100%; }
+.qcb-reader h1 { font-size: clamp(1.65rem, 3vw, 2.6rem); line-height: 1.2; text-wrap: balance; overflow-wrap: anywhere; }
+.qcb-reader h2, .qcb-reader h3 { overflow-wrap: anywhere; }
+.qcb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.1rem; margin: 1.5rem 0; }
+.qcb-card { min-width: 0; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); padding: 1.2rem; }
+.qcb-card h3 { font-size: 1.05rem; line-height: 1.5; margin: .4rem 0; }
+.qcb-card p, .qcb-meta, .qcb-breadcrumb { font: .8rem/1.7 var(--ui-font); color: var(--muted); }
+.qcb-card[hidden] { display: none; }
+.qcb-section { margin: 2.5rem 0; }
+.qcb-part { padding: 1.2rem 0; border-top: 1px solid var(--line); }
+.qcb-part h3 { margin: .2rem 0; }
+.qcb-boundary { border-left: 3px solid var(--warm); background: var(--surface-subtle); padding: .85rem 1rem; font: .85rem/1.7 var(--ui-font); }
+.qcb-prose { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.9; }
+.qcb-disclosure { margin: 1.1rem 0; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 6px; }
+.qcb-disclosure summary { font: 600 .92rem/1.7 var(--ui-font); cursor: pointer; }
+.qcb-disclosure[open] summary { margin-bottom: 1rem; }
+.qcb-reader pre { max-width: 100%; overflow-x: auto; padding: 1rem; background: var(--surface-subtle); font-size: .8rem; }
+.qcb-reader code, .qcb-sources, .qcb-reader a { overflow-wrap: anywhere; }
+.qcb-reader pre code { overflow-wrap: normal; }
+.qcb-reader li { margin: .55rem 0; }
+.qcb-reader summary:focus-visible, .qcb-reader a:focus-visible, .qcb-reader input:focus-visible { outline: 3px solid var(--block); outline-offset: 3px; }
+.qcb-filter label { display: block; font: 600 .85rem/1.7 var(--ui-font); margin-bottom: .5rem; }
+.qcb-filter input { box-sizing: border-box; width: 100%; min-height: 44px; padding: .7rem .9rem; border: 1px solid var(--line-strong); border-radius: 5px; color: var(--ink); background: var(--surface); font: 1rem var(--ui-font); }
+.qcb-filter p { min-height: 1.7em; font: .8rem/1.7 var(--ui-font); color: var(--muted); }
+.qcb-home { margin: 1.5rem 0 3rem; border: 1px solid var(--line-strong); border-left: 5px solid var(--block); border-radius: 6px; padding: clamp(1rem, 3vw, 2rem); background: var(--surface); }
+.qcb-home h2 { font-size: clamp(1.5rem, 2.7vw, 2.2rem); line-height: 1.3; }
+@media (max-width: 600px) { .qcb-card, .qcb-disclosure { padding: .85rem; } .qcb-reader ul, .qcb-reader ol { padding-left: 1.35rem; } }

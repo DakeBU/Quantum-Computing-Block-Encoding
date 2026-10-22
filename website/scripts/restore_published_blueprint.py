@@ -15,6 +15,8 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -36,10 +38,21 @@ class Links(HTMLParser):
             if tag != 'base' and attrs.get(key): self.links.append(attrs[key])
 
 def resource(url: str) -> bytes:
-    with urllib.request.urlopen(url, timeout=90) as response:
-        if not response.geturl().startswith(ORIGIN):
-            raise ValueError('publication redirect left the approved origin')
-        data = response.read(160_000_001)
+    # Public CDN/TLS interruptions are transport failures, not grounds to skip
+    # version, source, size or link validation. Retry the same GET, boundedly.
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(url, timeout=90) as response:
+                if not response.geturl().startswith(ORIGIN):
+                    raise ValueError('publication redirect left the approved origin')
+                data = response.read(160_000_001)
+            break
+        except OSError as error:
+            if isinstance(error, urllib.error.HTTPError) and error.code not in {429, 500, 502, 503, 504}:
+                raise
+            if attempt == 2:
+                raise
+            time.sleep(attempt + 1)
     if len(data) > 160_000_000:
         raise ValueError('oversized publication resource')
     return data

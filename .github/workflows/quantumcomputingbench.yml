@@ -39,5 +39,11 @@ jobs:
       - run: python benchmarks/quantumcomputingbench/scripts/release.py validate
         env:
           PYTHONUTF8: '1'
+      - run: python benchmarks/quantumcomputingbench/scripts/curriculum.py validate
+        env:
+          PYTHONUTF8: '1'
+      - run: python -m unittest website.scripts.test_quantumcomputingbench -v
+        env:
+          PYTHONUTF8: '1'
       # This job validates checked artifacts and software contracts. It does NOT
       # claim to rerun Lean or to provision a container verifier image.

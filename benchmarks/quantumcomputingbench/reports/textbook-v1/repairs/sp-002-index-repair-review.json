@@ -1,0 +1,77 @@
+{
+  "schema_version": "qcb.answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-002-index-repair.json",
+  "repair_record_digest": "427b454740badec4b182fabaef2468f74c2a27c2779f396d2541a520136453aa",
+  "repair_digest_method": "qcb_core.digest of the entire parsed repair JSON, with sort_keys=True, ensure_ascii=False and compact separators.",
+  "core_id": "qcb-core-sp-002",
+  "original_item_digest": "7f1b2a1988e00771f6ae01653a655d04982f664f22fab24482075424eb8cbed5",
+  "verdict": "accept",
+  "verdict_scope": "Mathematical correctness and necessity/minimality of the exact additive answer/rubric successor candidate. This review does not itself admit or publish it.",
+  "independence": {
+    "actual_identity": "Same real /root/qcb_formal_view_audit task that issued the first-five reader review; no new reviewer identity or independent execution is invented.",
+    "repair_author": "/root",
+    "distinct_from_repair_author": true,
+    "distinct_from_original_author": "Original author is native-sp-author. This reviewer authored neither the original item nor the repair candidate.",
+    "exposure": "Reviewer had already found and reported the original index defect, and received the parent author's explanation before inspecting the repair. This is not a blind review or a fresh third reviewer of the original defect.",
+    "lean_rerun": false,
+    "external_calls_or_additional_agents": false
+  },
+  "original_defect": {
+    "bound_review": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-first-five.json",
+    "description": "The original reference describes an emitted amplitude at a 'prior bond label a' and then sums over a. It fails to distinguish the free output-bond label from the summed prior input-bond label, while rubric r2 requires the collapsed amplitude formula.",
+    "historical_verdict_preserved": "The original exact item remains rejected in the first-five report. This candidate acceptance must not rewrite that rejection as an acceptance of the old answer."
+  },
+  "substantive_reconstruction": {
+    "matrix_orientation": "Stage rows are output (new bit c, output bond b), columns are input (fresh bit d, prior bond a), and the passive old prefix is acted on by the identity. The appended bit is the highest emitted wire.",
+    "collapse": "Padding E(v)(p,(d,a)) is v(p,a) for d=0 and zero for d=1. Expanding (I tensor U)E(v) at prefix p and output (c,b) makes the passive-prefix sum collapse by its Kronecker delta and the fresh-input-bit sum collapse to d=0. The resulting expression is sum_a U((c,b),(0,a))*v(p,a). For the full word x, p=Fin.init x and c=x(Fin.last n). Thus b is free and a alone is summed.",
+    "norm_argument": "The padding mass is sum_{p,d,a} conjugate(E(v)(p,(d,a)))*E(v)(p,(d,a)). The d=1 summands vanish and d=0 reproduces each old (p,a) summand exactly once, giving the old mass for any complex v without a normalization premise. It is a deterministic isometric register embedding, not conditional projection. A subsequent arbitrary U need not preserve mass; full-stage norm preservation requires an appropriate isometry condition on the occupied input subspace, with full unitarity a sufficient condition.",
+    "completion_boundary": "Changing input-bit-one columns cannot affect this fresh-zero action. Such columns are unconstrained by this action, but are constrained by separately requested full unitarity. The repair correctly distinguishes those two statements.",
+    "edge_cases": "At n=0 the prefix set has one empty word and the same sum applies. Empty bond sets yield zero mass on both sides. Arbitrary complex phases are retained in the linear formula; no global-phase quotient or normalization adjustment is performed."
+  },
+  "answer_and_rubric_assessment": {
+    "reference_answer": "Accept. The candidate explicitly defines x,c,p,b,a; gives the exact source formula with the correct free and bound indices; states clean-input-column irrelevance without unconstrained-unitary claims; proves padding mass preservation with the complex conjugate product; and separates padding from arbitrary-stage norm preservation.",
+    "rubric_r1": "Correctly tests input-zero column support while preserving separately imposed admissibility constraints.",
+    "rubric_r2": "Correctly requires free output bond b, summed input bond a, and the old-prefix/new-highest-bit interpretation. It now matches the reference answer.",
+    "rubric_r3": "Correctly requires the bit-0/bit-1 padding mass calculation and disallows an unjustified arbitrary-U norm conclusion.",
+    "rubric_r4": "Correctly identifies deterministic enlargement without measurement, postselection, discarded weight or renormalization.",
+    "necessity_and_minimality": "The index correction is necessary for the requested formula. The additional completion and norm distinctions clarify the original two-part contract without altering it. No hypothesis was added to the original question and no easier mathematical target was substituted."
+  },
+  "unchanged_question_contract_assessment": {
+    "original_source": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+    "selection_note": "The original was initially retrieved through load_catalog during the first-five review. After the rejection file activated a catalog exclusion, the immutable public item was selected directly by core_id and checked against supersedes_item_digest; no missing current admission was bypassed or inferred.",
+    "question_contract_definition": "qcb_curriculum.core_contract: question, assumptions, conventions, family, split, graph_version, target_nodes, supporting_nodes and source_refs.",
+    "contract_hash": "dbada4a38d51afaacc05de7b54b9b3d1a802bd1c1f642f2e072d10ded5d7c2e2",
+    "verification": "Deep-copied the exact frozen original in memory and overlaid only reference_answer and rubric from the candidate. The list of changed fields was exactly ['reference_answer','rubric']; core_contract before and after was equal.",
+    "answer_rubric_only_overlay_digest": "97dcd3a359cca2d73d4f9518a52abe0171f8355e45562fd34ddbffc12baed8cc",
+    "overlay_digest_boundary": "This is only an in-memory answer/rubric overlay retaining historical metadata, not the digest of an admitted newly prepared successor with its own key/review/provenance fields.",
+    "unchanged_core_id": "qcb-core-sp-002",
+    "unchanged_split": "test_public",
+    "unchanged_family": "sequential-bond-input-promise",
+    "unchanged_graph_snapshot": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "alias_and_count_conclusion": "This is the same mathematical core with a corrected answer view, not a new core, new independent problem or permission to change splits. Related sp-007/sp-008/sp-012 distinctions from the first-five review remain unchanged."
+  },
+  "source_checks": [
+    {
+      "file": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+      "declarations": ["Stage", "BondState", "freshZero", "liftStage", "liftStage_apply", "step", "step_apply"],
+      "lines": "32-68",
+      "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5",
+      "checked": "Complete definitions and proof previously read during this same review pass. Exact target is step U v (x,b)=sum_a U(x(last),b)(0,a)*v(init x,a); the candidate matches it."
+    },
+    {
+      "file": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+      "declarations": ["amplitudeMass", "amplitudeMass_mulVec", "amplitudeMass_freshZero", "stepBasisEquiv", "amplitudeMass_step"],
+      "lines": "288-328",
+      "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5",
+      "checked": "Full padding mass proof and full-step unitary premise inspected; the candidate correctly keeps their semantic scopes separate."
+    }
+  ],
+  "limitations": [
+    "No new Lean compilation, proof execution, isolated evaluation or strict blindness claim.",
+    "Source hashes use LF normalization only. The successor record is bound by its entire qcb_core.digest, so any change requires a new exact-content assessment.",
+    "Acceptance is one candidate-review decision, not a fabricated admission event. Actual successor preparation, stale-review/provenance handling, catalog adoption and final source/reference checks remain the integration owner's responsibility.",
+    "The original five-item report's rejection must remain preserved; review progress here does not approve the other catalog items or settle every cross-cohort equivalence."
+  ]
+}

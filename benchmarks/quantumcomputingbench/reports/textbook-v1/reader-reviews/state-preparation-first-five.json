@@ -1,0 +1,154 @@
+{
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-mathematical-reader-review",
+  "schema_version": "qcb.reader_review.v1",
+  "scope": {
+    "core_ids": ["qcb-core-sp-001", "qcb-core-sp-002", "qcb-core-sp-003", "qcb-core-sp-004", "qcb-core-sp-005"],
+    "purpose": "Substantive second-pass review of the first five currently admitted state-preparation questions, complete reference answers and rubrics; not approval of the whole catalog.",
+    "record_selection": "Loaded the actual admitted prepared items with qcb_curriculum.load_catalog using this checkout's .venv/Scripts/python.exe.",
+    "item_digest_method": "qcb_core.digest(actual prepared public item), including its current metadata; not the authored-record digest or a digest of a paraphrase.",
+    "catalog_hash_at_selection": "cace83ed83cc179e219cb5ead4524c260f9501a8d81e42d90c709727b59e3e12",
+    "observed_head_during_review": "67bd047bc8b80e5f7d1c427825beebbda0a1bbac",
+    "prepared_source": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+    "primary_source_class": "All five have empty primary_sources arrays and local Lean source_refs. The exact local declarations are the primary anchors for this review; no external source was inferred or fetched.",
+    "instructions_read": ["AGENTS.md", "HARNESS.md", ".agents/skills/qbe-substantive-worker/SKILL.md", "docs/theorem-publication-protocol.md", "docs/proof-digestion-protocol.md", "docs/evidence-routed-memory-protocol.md", "benchmarks/quantumcomputingbench/shared/CONTRACT.md", "benchmarks/quantumcomputingbench/shared/ACCEPTANCE.md"],
+    "cohort_comparison": "Searched current admitted native questions and source-node anchors, current release-v3 released/provisional questions, and historical authored legacy records for plausible related targets; inspected the complete plausible comparison answers where the distinction depended on requested reasoning. This is a bounded comparison, not exhaustive corpus-wide semantic deduplication."
+  },
+  "provenance": {
+    "actual_identity": "The same actual /root/qcb_formal_view_audit task previously performed the three-formal-view audit; it was resumed by the parent for this distinct five-item review.",
+    "independence": "Reviewer is distinct from original author native-sp-author. No item was authored or edited by this reviewer. Imported accept labels were not used as mathematical evidence.",
+    "exposure_limits": "Questions, answers and rubrics were visible. This is not a strict source-blind decoder. Earlier formal-view work had already exposed sp-001 and related source material; that exposure is not hidden.",
+    "lean_rerun": false,
+    "formal_claim": "Source inspection and mathematical derivation only; no new Lean execution, kernel check, full publication seal or isolated prediction evaluation is claimed.",
+    "source_hash_method": "SHA-256 of source bytes with only CRLF-to-LF normalization, using qcb_integrity.text_sha.",
+    "external_calls_or_extra_agents": false,
+    "files_changed_by_this_pass": ["benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-first-five.json"],
+    "contract_sha256_lf": "1d8fbeb40021bde421f94112b7ba42375bb2874fdf1796814d958464a0fd03a5",
+    "acceptance_sha256_lf": "89352c2de83e63cf9ec63d94f3d205ba92b630cb42b6289841fdf7b667b6ab0b"
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-sp-001",
+      "item_digest": "0131ad1ec8cff86035bb3b2ac0369a3fda6efe1bb41e47ed0f2a41355733e4ce",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Put r=sqrt(a^2+b^2). For r>0, |a|<=r, so alpha=arccos(a/r) lies in [0,pi], cos(alpha)*r=a, and sin(alpha)*r is nonnegative with square b^2, hence equals |b|. The source angle is phi=2*alpha for b>=0 and phi=-2*alpha for b<0. Its RY first column, multiplied by r, is therefore (a,b); cosine is even and sine odd. This preserves a negative second component as a real relative sign, not merely its magnitude. For r=0, both a and b are zero and the source chooses the exact rational angle zero; the scaled-column identity still holds without dividing by zero.",
+        "answer_audit": "The complete answer follows precisely this signed arccos argument and states the r>0 domain condition before division. The phrase 'all-zero column' is read as the zeroth computational-basis column scaled by r, as fixed by the stated r*cos/r*sin formula, not as the zero vector. An editorial clarification to 'RY(phi)(r|0>)' would improve precision. No full signed-table loader theorem is established here: the assumptions explicitly restrict the claim to one split, which is important because the currently stated whole-loader first-column theorem has nonnegativity and positive-mass hypotheses.",
+        "rubric_audit": "r1-r3 correctly require the half-angle column, first-child recovery, nonnegative |b| branch and sign repair. r4 correctly confines the conclusion to exact real expressions and the zero-pair convention without charging gates or asserting whole-circuit correctness. Angles are exact symbolic values, not a certified finite-bit atan2 implementation.",
+        "edge_cases": "b=0 uses the nonnegative branch. If a<0,b=0 then alpha=pi and phi=2*pi produces the exact negative first component; discarding that sign as a global phase would change the literal local identity. The all-zero pair is legal even though it is not a normalized state."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "declarations": ["pairNorm", "pairNorm_nonneg", "pairNorm_sq", "splitAngle", "splitAngle_firstColumn"], "lines": "142-201", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "checked": "Read definitions and complete first-column proof, including zero norm, arccos-domain bounds, sign branches and both output bits."},
+        {"file": "QuantumBlockEncoding/PrimitiveSemantics.lean", "declarations": ["standardRyMatrix", "standardRyMatrix_zero"], "lines": "18-25", "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62", "checked": "RY(theta)=realRotation(theta/2), fixing the factor of two."},
+        {"file": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "declarations": ["prepareCircuit_firstColumn"], "lines": "275-308", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "checked": "Read the complete first-column proof through the final Fin.snoc recovery cases. Whole-loader boundary has pointwise nonnegativity and positive total mass; it was not silently generalized by this split-level review."}
+      ],
+      "alias_findings": [
+        {"other_key": "exact-zero-subtree-angle-v3", "other_item_digest": "43d0ed1ceab93962144351b99afe54b16cf2671be846a69398656a41cbae3cf8", "relation": "proper_zero-pair_specialization", "same_core_alias_proposed": false, "reason": "Asks only the zero-pair constant; omits the signed nonzero-pair mechanism and requested reasoning. Both are test_public."},
+        {"other_key": "r-preparecircuit-firstcolumn-normalization", "other_item_digest": "2810fc3a879b22576bcedd2cdfac4e965befa586f8edc63ee6d130d40ef47136", "relation": "downstream_loader_with_additional_hypotheses_and_induction", "same_core_alias_proposed": false, "reason": "Uses the split identity to prove a full normalized nonnegative table result. It is not the same requested mathematical target. Both are test_public."},
+        {"other_core_id": "qcb-core-la-101", "other_item_digest": "5d349b058b56a55a91b036f2d61d63d6c9cdc6be9ba99988d6e0d0ecea65486e", "relation": "inverse_action_related_core", "same_core_alias_proposed": false, "reason": "Maps (a,b) to (r,0) by the negative preparation angle. Relating its action to signed preparation requires an inverse/orthogonality argument; it is not a paraphrase of why arccos loses the sign. Both are test_public."}
+      ],
+      "limitations": ["Accepted as one-split mathematics only; no new whole-loader, gate-count, numerical-export or Lean execution certificate.", "No complete corpus-wide novelty or equivalence claim."]
+    },
+    {
+      "core_id": "qcb-core-sp-002",
+      "item_digest": "7f1b2a1988e00771f6ae01653a655d04982f664f22fab24482075424eb8cbed5",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For prior amplitudes v(p,a), padding is E(v)(p,(d,a))=delta(d,0)*v(p,a). The passive-prefix identity in I tensor U removes the prefix sum. With x an extended word and b its output bond label, step(U,v)(x,b)=sum_a U((last x),b)(0,a)*v(init x,a). The input-bond index a is summed; the output-bond index b is free. This statement needs no unitary hypothesis. Padding alone preserves sum star(v)*v because each old component occurs exactly once in the d=0 sector and the d=1 sector is zero.",
+        "answer_defect": "The frozen answer instead describes the emitted amplitude 'for output bit value c on the new wire and prior bond label a' and then says it is a 'sum over a'. This confuses the free output-bond label with the bound prior input-bond label, and omits the correct explicit formula. The distinction is material in a question testing which matrix columns act and a rubric explicitly requiring the collapsed emitted-amplitude formula. The source is correct; this is an answer/index-orientation defect, not a refutation of the construction.",
+        "remaining_answer_audit": "The clean-input-zero versus input-one column distinction is correct. Norm preservation is correctly assigned to freshZero, not to an arbitrary U. The answer does not assume a particular core equality or full-stage unitarity, matching the exercise assumptions. Calling the other columns 'unconstrained completion data' is valid only relative to this clean-input action; a physical full unitary completion must still satisfy its unitary constraints.",
+        "rubric_audit": "r1, r3 and r4 express correct conclusions. r2 requires a correct collapsed formula, while the supplied reference sentence does not preserve its free and bound indices. A minimally corrected successor should retain the mathematical question and fix the reference formula, rather than training against ambiguous indexing.",
+        "minimal_successor": "Write: 'For output word x and output bond label b, step(U,v)(x,b)=sum_a U((x_last),b)(0,a)*v(init x,a). Here a labels the prior input bond and is summed; b is the output bond. Fresh-input-one columns do not enter this expression; their choices remain subject to any separately imposed full-unitarity requirement.' Keep the correct freshZero mass argument. Do not alter this frozen record in place.",
+        "edge_cases": "n=0 has one empty passive prefix and the same formula. An empty finite bond carrier gives zero mass on both sides. No normalized-input assumption is needed. A nonunitary U can change mass after padding, so the padding conclusion must not be advertised as arbitrary-stage norm preservation."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["Core", "Stage", "BondState", "freshZero", "liftStage", "liftStage_apply", "step", "step_apply"], "lines": "28-68", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read complete definitions and collapsed-sum proof. Source has distinct free output b and summed input a."},
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["amplitudeMass", "amplitudeMass_mulVec", "amplitudeMass_freshZero", "stepBasisEquiv", "amplitudeMass_step"], "lines": "284-328", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read the complete freshZero mass proof and distinguished its unconditional embedding result from the unitary-hypothesis-dependent full-step theorem."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-sp-007", "other_item_digest": "f47a739f7ea08d5acd553764322f8c24c2c6b1e7c40abe98923f3bceb2f8963a", "relation": "downstream_full_run_transfer_induction", "same_core_alias_proposed": false, "reason": "Assumes stage/core clean-column equality and proves all-length transfer action. Contains the one-step collapse as an ingredient, with correct a/b indexing, but asks for additional reasoning. Both are test_public."},
+        {"other_core_id": "qcb-core-sp-008", "other_item_digest": "d403cce404da75f2931579b020692a9cf08143dfd7b2a59eeec69fce4c59f771", "relation": "stronger_mass_statement_with_unitary_and_basis-boundary_hypotheses", "same_core_alias_proposed": false, "reason": "Proves every-length total probability one. FreshZero preservation is one ingredient; generic matrix action alone does not imply its target. Its train split versus this test_public split is a related-prerequisite exposure, not an established exact-target alias conflict."},
+        {"other_core_id": "qcb-core-sp-012", "other_item_digest": "071ab0623ad314e9dec69f07d951817d7eba436b0cdbfe21a38c52f4ec7b8e30", "relation": "active-support_completion_independence", "same_core_alias_proposed": false, "reason": "Adds a changing active-bond predicate, support propagation and active-only clean-column equality. Input-one irrelevance is not identical to arbitrary inactive-input-zero completion independence."}
+      ],
+      "limitations": ["Rejection concerns the frozen reference explanation and r2 consistency; the underlying local source theorem and padding claim are sound.", "No frozen answer changed. A separate corrected successor needs content-bound review.", "No formal execution or global alias reconciliation claimed."]
+    },
+    {
+      "core_id": "qcb-core-sp-003",
+      "item_digest": "c4a49ccae5572ff4bf896d73c30f37c0c0c3b4caa98488b2efd4171679e36f72",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "A real core A has rows indexed by the old left bond and columns by (emitted bit,new right bond). Canonicality is A*A^T=I, so row boundaries act isometrically on the right. Sweeping backward, factor each absorbed core as R*Q with Q*Q^T=I, obtaining contract(C,x)=R*contract(D,x) for every word, with unchanged terminal dimension. For scalar initial and terminal boundaries take v=(1). The given sum_x contract(C,x)[0,0]^2=1 is exactly chainMass(C,v)=1. Set u=vR. Exact factorization gives each original amplitude sum_a u_a*contract(D,x)[a,0], and canonical mass preservation implies mass(u)=1. Neither this amplitude identity nor normalization is an extra premise.",
+        "answer_audit": "All promised outputs appear: right-canonical D, a normalized initial u, exact per-word amplitude recovery, and terminal dimension one. The claim that the only numeric input hypothesis is contracted mass one is correct; ThinLQ handles deficient and empty matrices without an input-rank hypothesis. 'No equality to a prescribed target state' is correct: the input's own contracted amplitudes define the state being recovered. This is an existence construction using orthonormal completion, not a certified efficient preprocessing algorithm.",
+        "rubric_audit": "r1-r4 accurately distinguish the output canonicality, initial normalization and exact amplitude identity from input assumptions. Orthogonality orientation is rows, and the output bond remains the right scalar index. No complex conjugation is missing because this input theorem is over the reals.",
+        "edge_cases": "The nil/zero-length chain is covered and has one empty word. A disconnected zero-dimensional internal bond would force all contracted amplitudes to zero, so it cannot satisfy the mass-one hypothesis. No positivity of real amplitudes or global-phase quotient is assumed; the identities preserve their signs exactly. The new left dimension obeys the source backward min recurrence, not a promise of minimal numerical/Schmidt rank."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/TensorTrainCanonical.lean", "declarations": ["Core", "slice", "Chain", "Word", "contract", "RightCanonical", "RankReduced", "absorb", "exists_core_lq", "exists_rightCanonical"], "lines": "18-103", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "checked": "Read exact contraction and canonicality orientations and full backward factorization proof, including the nil case."},
+        {"file": "QuantumBlockEncoding/TensorTrainCanonical.lean", "declarations": ["mass", "mass_vecMul", "chainMass", "chainMass_eq", "residual_mass", "exists_rightCanonical_normalized", "exists_normalized_state"], "lines": "120-195", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "checked": "Read complete row-isometry induction, residual mass equality, normalized existence and exact scalar-boundary recovery proof."},
+        {"file": "QuantumBlockEncoding/ThinLQ.lean", "declarations": ["exists_factor_of_le", "exists_thin_lq"], "lines": "38-93", "sha256_lf": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a", "checked": "Read full finite-dimensional existence proof and both shape regimes; no nonzero-row or independence premise is hidden."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-sp-004", "other_item_digest": "1b31a5d5788641b5b7068c87fc829de70756a84e5d8acb6f2e049f0d12701aed", "relation": "substantial_normalization_overlap_but_different_requested_target", "same_core_alias_proposed": false, "reason": "sp-003 is the scalar-boundary existence/recovery contract; sp-004 asks for the residual-mass mechanism with a general supplied initial boundary. Exact amplitude recovery is requested here but is not the target of sp-004. Both are train and already share one split group. Do not claim these questions contain disjoint proof ingredients."},
+        {"other_key": "qcb-authored-0006", "other_item_digest": "e63083a59b00dbd881ba3dcb0f68c0929137fba1fcb14e0d8ce66d4beab47039", "relation": "canonical_chain_isometry_prerequisite", "same_core_alias_proposed": false, "reason": "Legacy question starts from an already right-canonical chain and asks for the complete chainMass_eq induction for every v; it neither canonicalizes an arbitrary train nor derives per-amplitude recovery. Both are train."}
+      ],
+      "limitations": ["No cost bound, deterministic extraction or circuit compilation follows from this existence theorem.", "Bounded comparison supports the stated distinctions; broader alias policy remains a separate reconciliation task.", "No new Lean execution."]
+    },
+    {
+      "core_id": "qcb-core-sp-004",
+      "item_digest": "1b31a5d5788641b5b7068c87fc829de70756a84e5d8acb6f2e049f0d12701aed",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Interpret the given normalized state with its initial row boundary v; chain mass is not a property of bare C without v when the left bond exceeds one. The exact canonicalization factorization is contract(C,x)=R*contract(D,x). For each word, v*contract(C,x)=(vR)*contract(D,x). Summing squares and using row canonicality of D yields chainMass(C,v)=chainMass(D,vR)=mass(vR). If the left side is one, so is mass(vR). R itself need not be unitary or norm-preserving on all vectors; the invariant is for the given contracted state and its boundary.",
+        "answer_audit": "The answer states the correct residual factorization, row-isometry mechanism, normalized pushed boundary u=vR and unchanged scalar terminal bond. 'All normalization is concentrated' means the boundary carries the norm scalar while the canonical chain maps it isometrically, not that the state has only one nonzero amplitude or that R alone preserves every mass. 'Reduced left rank' must mean the source active bond dimension l' given by the backward min recurrence, not the actual minimal matrix or Schmidt rank. Under that established source convention the boundary-dimension claim is correct. The question could be clearer by naming the initial v explicitly, but its 'normalized state' and mass-one assumption, together with the answer's vR expression, provide this datum implicitly.",
+        "rubric_audit": "r1-r4 are correct with row-vector orientation: chain factorization, preservation by canonical cores, boundary normalization, terminal dimension one and the new left active dimension. No requirement wrongly asserts that the residual matrix is itself an isometry. No gate-resource or finite-bit algorithm claim occurs.",
+        "edge_cases": "For length zero with terminal dimension one, C is the nil scalar chain and R=I; the residual initial boundary is the original normalized boundary. Rank-deficient cores are permitted. Chain mass one excludes any configuration that annihilates every amplitude. The theorem preserves terminal dimension one exactly, rather than merely bounding it."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/TensorTrainCanonical.lean", "declarations": ["RightCanonical", "RankReduced", "exists_core_lq", "exists_rightCanonical", "RankReduced.head_bound"], "lines": "45-110", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "checked": "Read full factorization and active-dimension recurrence; distinguished min-based bond dimension from minimal algebraic rank."},
+        {"file": "QuantumBlockEncoding/TensorTrainCanonical.lean", "declarations": ["mass", "mass_vecMul", "chainMass", "chainMass_eq", "residual_mass", "exists_rightCanonical_normalized"], "lines": "120-178", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "checked": "Read all proofs establishing mass(vR)=chainMass(C,v) and terminal dimension preservation. The explicit input v is part of the source contract."},
+        {"file": "QuantumBlockEncoding/ThinLQ.lean", "declarations": ["exists_factor_of_le", "exists_thin_lq"], "lines": "38-93", "sha256_lf": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a", "checked": "The completion-based factors exist for deficient and empty matrices; no efficiency or exact numerical rank-minimality inferred."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-sp-003", "other_item_digest": "c4a49ccae5572ff4bf896d73c30f37c0c0c3b4caa98488b2efd4171679e36f72", "relation": "overlapping_scalar-boundary_normalization_specialization_plus_recovery", "same_core_alias_proposed": false, "reason": "See sp-003 comparison. Shared normalization conclusion and source family are acknowledged, but requested reasoning and input boundary contract differ. Both train; no exact-alias split conflict found."},
+        {"other_key": "qcb-authored-0006", "other_item_digest": "e63083a59b00dbd881ba3dcb0f68c0929137fba1fcb14e0d8ce66d4beab47039", "relation": "proper_isometry_prerequisite", "same_core_alias_proposed": false, "reason": "Legacy chainMass_eq applies to a chain already canonical; this question explains how original mass is transferred to a residual boundary of a newly canonicalized chain. The additional exact factorization is necessary. Both train."},
+        {"other_core_id": "qcb-core-la-012", "other_item_digest": "b53e888a9d2bde591363f2eb202ee553d7d833c9cfc4f8c52e0ce21427338a09", "relation": "related_active_dimension_boundary", "same_core_alias_proposed": false, "reason": "Asks for min-recursion bounds and penultimate bond <=2, not localization of mass. Sharing RankReduced is not an alias. Both train."}
+      ],
+      "limitations": ["Acceptance uses active 'rank' in the source's structural dimension sense, not a claim of minimal Schmidt rank.", "Naming v explicitly would improve reader precision; no frozen edit was made.", "No new Lean execution or complete alias reconciliation."]
+    },
+    {
+      "core_id": "qcb-core-sp-005",
+      "item_digest": "4748bf7c81283496b115e778c1f365bd503d4384829e85ceb0959f348a5a97d4",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For each n-bit prefix p define m(p)=sqrt(f(snoc(p,0))^2+f(snoc(p,1))^2). The radicand is nonnegative for arbitrary real f, so m(p)^2 is exactly the sum of those two squares. Every (n+1)-bit word is uniquely snoc(p,d), with d in Fin 2. Thus sum_p m(p)^2=sum_p sum_d f(snoc(p,d))^2=sum_w f(w)^2. The equality preserves squared Euclidean norm, not signs or linear amplitudes: the marginal is a nonnegative length table, not a quantum partial trace or a linear isometry of arbitrary input superpositions.",
+        "answer_audit": "The answer proves both ingredients explicitly: square-root cancellation on a nonnegative radicand and the prefix/last-bit bijection. Its normalization explanation correctly says every level has the same total denominator. The equality itself needs neither positivity nor normalization. When invoking the currently stated recursive first-column theorem one must separately retain its nonnegative/positive-mass hypotheses; this explanation describes the invariant consumed there, not a proof that a zero table is a normalized state or a general signed whole-loader certification.",
+        "rubric_audit": "r1-r3 require the genuine Pythagorean and reindexing proof, and r4 asks for the normalization-invariant consequence. None requires a positivity premise that is absent from the equality. Orientation matches little-endian highest-wire snoc, and every full word is counted once without a factor of two error.",
+        "edge_cases": "n=0 has one empty prefix and reduces to a single pair identity. The zero table gives zero on both sides and cannot be normalized by this identity alone. Mixed-sign entries are allowed because both sides are sums of squares; their relative signs are recovered by later split angles rather than by the marginal. No resource, approximation or compiled finite-bit claim follows."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "declarations": ["lastBasisEquiv", "lastBasisEquiv_apply", "lastBasisEquiv_symm_apply"], "lines": "20-28", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "checked": "Read the exact equivalence with init/last and inverse Fin.snoc, fixing high-wire orientation and unique full-word coverage."},
+        {"file": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "declarations": ["pairNorm", "pairNorm_nonneg", "pairNorm_sq", "marginal", "marginal_nonneg", "normSq", "normSq_nonneg", "normSq_marginal"], "lines": "143-148 and 203-222", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "checked": "Read complete squared-root and marginal reindexing proofs; no positivity or normalization binder is present."},
+        {"file": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "declarations": ["prepareCircuit", "controlledLast_mul_lift", "prepareCircuit_firstColumn"], "lines": "224-230 and 261-308", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "checked": "Read how the norm invariant is consumed by the complete normalized-loader induction without upgrading the unconditional equality to a broader loader theorem."}
+      ],
+      "alias_findings": [
+        {"other_key": "r-preparecircuit-firstcolumn-normalization", "other_item_digest": "2810fc3a879b22576bcedd2cdfac4e965befa586f8edc63ee6d130d40ef47136", "relation": "downstream_first-column_induction", "same_core_alias_proposed": false, "reason": "Legacy target combines the norm invariant with nonnegative positive-mass input, circuit evaluation and split-angle action to recover every amplitude. The invariant is a prerequisite, not the whole target. Both test_public."},
+        {"other_core_id": "qcb-core-sp-001", "other_item_digest": "0131ad1ec8cff86035bb3b2ac0369a3fda6efe1bb41e47ed0f2a41355733e4ce", "relation": "complementary_local_split_mechanism", "same_core_alias_proposed": false, "reason": "Signed angle recovers a pair from its norm; this target instead equates total norm under pair aggregation. Both are needed downstream but neither is a paraphrase of the other. Both test_public."},
+        {"other_key": "neg-prepare-firstcolumn-positivity-corrected-v3", "other_item_digest": "3616dda495341b2c25de7c311fababda12ac3d733051ff4b4db3e2162a50f1f0", "relation": "related_positivity_boundary", "same_core_alias_proposed": false, "reason": "Asks whether strict positivity is necessary, with a sparse witness and all-zero boundary. It does not ask for the marginal sum identity. Both test_public."}
+      ],
+      "limitations": ["No fresh Lean execution or compiled circuit certificate.", "The marginal norm identity alone does not normalize zero mass or preserve amplitude signs.", "No exhaustive corpus-wide equivalence claim."]
+    }
+  ],
+  "summary": {
+    "accepted": ["qcb-core-sp-001", "qcb-core-sp-003", "qcb-core-sp-004", "qcb-core-sp-005"],
+    "rejected": ["qcb-core-sp-002"],
+    "uncertain": [],
+    "rejection_class": "SOURCE_INVALID for the frozen answer/index contract only; not a mathematical counterexample to the Lean source.",
+    "recommended_action": "Retain frozen items and reviews. Exclude sp-002 from any newly asserted second-pass-accepted scope until a separate successor fixes the free/output versus summed/input bond formula and receives content-bound review. Preserve related-versus-same-core distinctions rather than merging source-node overlaps.",
+    "global_boundaries": "This is exactly a five-item reader review. It does not approve all 213 items, admit native Lean views, settle global cross-cohort equivalences, authorize pooling cohorts, or establish a stable release."
+  }
+}
