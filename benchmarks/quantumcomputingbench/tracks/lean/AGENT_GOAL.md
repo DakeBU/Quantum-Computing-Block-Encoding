@@ -111,6 +111,17 @@ Its bound concerns excess copies and distinguishes sufficient bounds from
 optimal sample complexity. Formalize the precise covered subclaim and remaining
 NL obligations; these six repairs themselves admit no native formal views.
 
+Re-export after question versions plan106/108/112 and read the field/tensor/
+entry-ledger checkpoint. Preserve the distinction between a field scalar and
+integer dimension, algebraic idempotents and metric orthogonal projections,
+and the any-field im(I-swap) proof versus a characteristic-not-two eigenspace
+split. Plan115/209 retain question hashes but have new answers and reviews;
+unchanged contracts do not transfer prior answer approval. For plan209 a clean
+coherent transcript must expose the value, angle, phase, arithmetic scratch,
+signal and index registers, original inverse access and actual cost model.
+Plan208's assumption-level obstruction is not an admitted successor. Do not
+silently assume nonnegative-real entries or use a code/schema change as proof.
+
 Run benchmark tests, `scripts/curriculum.py validate`, exact reference checks and
 the full publication gate appropriate to changed proof inputs. Do not install
 system packages, contact administrators, launch long GPU jobs or paid training.

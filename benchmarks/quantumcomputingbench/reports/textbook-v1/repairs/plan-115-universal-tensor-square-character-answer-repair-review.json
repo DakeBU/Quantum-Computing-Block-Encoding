@@ -1,0 +1,129 @@
+{
+  "reviewer": "/root/qcb_native_comparison",
+  "verdict": "accept",
+  "exposure": "Not blind: I authored related private plan104/105 repairs and have prior representation-theory/source/cohort and parent-lead exposure, including the C(t) and real quarter-turn mechanisms. I authored neither106/115 candidate nor their original QA records or historical106/115 reader findings. In this objective I read both complete actual prepared originals, exact current withdrawals/full findings, entire frozen candidates including execution/rubrics/steps, and operative primary source. Distinct actual candidate authorship and this reconstruction are the independence claimed; old verdicts and the author's source-access assertions are not my evidence of correctness.",
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit metadata entry personally read in continuous context and LF rechecked here. Authenticates primary URL/edition/historical pin only, not matching PDF bytes or local mathematical proof. Actual operative source and access limits recorded separately."
+    }
+  ],
+  "review_scope": "Entire actual question, answer, four rubric criteria, summary, all ordered semantic steps, source and execution/process metadata assessed. Whole-candidate and predecessor/content checks are static bindings, not production admission, a kernel run or a source-paper seal.",
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-115",
+  "repair_record_digest": "6603a16ad74c44ce0f28903bee21ed497e4b12032c8e463b99e2b898f9e6cf32",
+  "original_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+  "original_contract_hash": "0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6",
+  "successor_contract_hash": "0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6",
+  "substantive_reconstruction": {
+    "invariant_image": "For the diagonal action T_g=rho(g) tensor rho(g), pure-tensor calculation gives S²=I and ST_g=T_gS. Therefore T_g im(I-S) is contained in im(I-S), and the group inverse gives equality. With a Hamel basis e_i, ordered tensor coordinates are independent. Images of basis tensors are zero on diagonals and plus/minus the pair differences a_ij=e_i tensor e_j-e_j tensor e_i. Choosing one order i<j gives a basis of A=im(I-S), since the(i,j) coordinate occurs once with coefficient1. Thus a_12 is nonzero in every characteristic, while e_1 tensor e_1 has a nonzero diagonal coordinate and cannot belong to A. This proves universal properness without division by2.",
+    "dimensions_and_characteristic_two": "For finite d, unordered distinct pairs count d(d-1)/2 and all ordered pairs count d². Fixed-swap coefficients obey c_ij=c_ji, so a basis of B=ker(S-I) consists of diagonals and off-diagonal sums, giving d(d+1)/2 over every field. Those divisions are integer counts, not field divisions. For d>=2 both A and B are nonzero proper ambient subspaces. When char!=2, Sx=-x identifies A with the negative eigenspace by x=(I-S)(x/2), and the half-projectors split B plus A. In char2, both signed eigenspace equations become Sx=x; they define B, while A is strictly contained in B because it has no diagonal coefficients. At d2 their dimensions1 and3 explicitly distinguish them. The candidate never relabels these coincident eigenspaces as distinct summands.",
+    "infinite_dimension_and_method": "For infinite basis cardinal kappa, the ordered-pair basis has size kappa²=kappa and unordered distinct pairs also have size kappa, using ordinary basis-choice/infinite-cardinal arithmetic. B's diagonal-plus-pair basis has size kappa as well. Hence all three dimensions equal kappa, which is compatible with strict subspaces. The displayed off-diagonal and excluded diagonal witnesses remain valid algebraic finite sums and prove strictness. This supplies the requested computations while openly explaining why they cannot replace properness witnesses in this regime; it does not claim a dimension-only proof where none exists or a theorem about completed topological tensors.",
+    "genuinely_irreducible_factors": "For the complex S3 plane W defined by coordinate sum0, dimension is2 and permutations preserve W. A nonzero vector in an invariant U cannot have all equal coordinates because3a0 implies a0 over C. Unequal coordinates x_i,x_j produce x-(ij)x=(x_i-x_j)(e_i-e_j) in U. Dividing by that nonzero scalar and permuting gives every coordinate difference, which spans W. Thus W is truly irreducible. Tensoring W with itself under the SAME S3 element gives ambient dimension4 with proper invariant A dimension1 and B dimension3, refuting irreducible-factor closure rather than merely tensoring a reducible factor. No assertion extends this particular S3-plane proof to characteristic3.",
+    "low_dimension_grading_and_source": "At d1 the character is chi², a nonzero one-dimensional character and hence irreducible, but it equals chi only for the trivial character. For C3, omega²!=omega verifies actual inequivalence; a nonzero scalar intertwiner would force equality. At d0 the tensor square and A,B vanish and no nonzero-irrep claim is made. The four rubric criteria and four steps cover these corrections and the universal basis proof. Source Example3.25 supplies the finite-complex specialization, not the char2/infinite extension; the standard-plane source exercise has no full printed proof, so the transposition argument is assessed directly. Swap/projector subproof sharing with112 and distinction from external GxG action do not establish complete-target alias or global reconciliation."
+  },
+  "content_bindings": {
+    "inspected_private_candidate": "_review_tmp/plan-115-universal-tensor-square-character-answer-repair.json",
+    "planned_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-115-universal-tensor-square-character-answer-repair.json",
+    "candidate_sha256_lf": "0611f34a5525d55fe807be68759d32648045ca8711fc5088196a5c5ba5e31526",
+    "original_contract": {
+      "question": "A student asserts: the tensor product of two irreducible representations of a group G is again irreducible. Show this is false by a counterexample. Specifically, take any representation (phi, V) of G with dim V >= 2 (you may take V irreducible) and consider the tensor-square representation on V (x) V. Exhibit a proper nonzero G-invariant subspace of V (x) V, and compute the dimensions to show V (x) V cannot be irreducible when dim V >= 2.",
+      "assumptions": [],
+      "conventions": [],
+      "family": "qit-tensor-representations",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:tensor-networks",
+        "concept:matrix-analysis"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "changed_contract_fields": [],
+    "unchanged_contract_field_digests": {
+      "question": "d43724ca2c381e2fcc63ba6cc1fc97926423ab0bc74494acfe140ea7cdf12ef5",
+      "assumptions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "conventions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "family": "eb937441874fbf7c4f84faa3cdc88fb0a4df55fc3da6f3fe80abe7b33aeffde3",
+      "split": "a774e852385c11df74d26b40210fb7d29a7b8e7357a8ecece45482398c3f3f7c",
+      "graph_version": "2ced781f875884ea6187183f7ad941c8871d10c978fb36a1a4c054d2defedc1b",
+      "target_nodes": "98938f0998b2b8fd7e3420c2b019202a08adacb5343f28370dcb04baeb7a52a3",
+      "supporting_nodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_refs": "12d8e64fd1780743851209d7f8806bd74a58dbaaeb90825e729ec41594815f3d"
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "semantic_step_count": 4,
+    "withdrawal": {
+      "core_id": "qcb-core-plan-115",
+      "predecessor_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+      "predecessor_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+      "reason": "The one-dimensional tensor square need not be the original character; finite complex scope is also unbound.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "692e3da5b0932331045428e71fcf7fe7aed416882a2c18f8a2cde02b9aee134a"
+    },
+    "withdrawal_report_sha256_lf": "ef0bc651dc21af694af12dc1f653fe94bf849ef97389b2b147d7f5b67be97f72",
+    "full_finding_digest": "692e3da5b0932331045428e71fcf7fe7aed416882a2c18f8a2cde02b9aee134a",
+    "actual_prior_reviewer": "/root/qcb_formal_view_audit",
+    "static_validation": "Whole original/candidate digest, exact candidate LF, full old/new nine-field hashes, pending marker/distinct author, source LF, actual bound withdrawal/report/finding, complete answer/rubric/exposition and all identical ordered lists checked. Exact existing V1 question/answer payload grammar inspected; no production admission or kernel executed."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "edition_observed": "Cover April10,2026;79 pages",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "operative_regions": "Complete Definition3.24 and Example3.25 Eq3.73-3.78, including swap, bases, dimensions, projections and reducibility conclusion, printed28/PDF27; finite-dimensional standing scope after3.6 printed17/PDF16; standard permutation-plane context Eq3.33-3.36 printed22-23/PDF21-22 and full Exercise3.9 statement printed37/PDF36; Definition4.2 external versus internal product printed38/PDF37. Universal image proof, char2/infinite-cardinal analysis, explicit S3 irreducibility proof and character-square corrections independently checked, not claimed supplied by the finite-complex source.",
+      "actual_access": "Personally accessed author-hosted primary PDF text in this review and read complete operative statements/proofs named above. Historical findings/candidate authors' byte-access claims are attributed to them, not inherited as my execution.",
+      "fresh_binary_hash_verified": false,
+      "operative_pixels_inspected": false,
+      "limits": "My current PDF20 and27 screenshot requests returned cache misses. Text was accessible; rendered page geometry and fresh raw-byte identity were not verified. No paper/PDF/human/visual seal, copied PDF, complete-book reading or other actor's retrieval/render work is claimed."
+    }
+  ],
+  "provenance": {
+    "observed_head": "543595d84298831b3a2cdb400444b544a2dcd2fd",
+    "written_private_review": "_review_tmp/plan-115-universal-tensor-square-character-answer-repair-review.json",
+    "limits": "New private exact-content mathematical/source review only; no canonical/candidate/old-artifact edit, build/kernel/native-formal proof, admission, code-as-math dependency, commit/push, agents, human/expert/blind/model/novelty or global closure claim."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6",
+    "literal_dimension_request": "The original asks to exhibit a proper nonzero invariant subspace AND compute dimensions; it does not explicitly require finite dimension, the historical +/- decomposition, or that a strict dimension inequality alone prove properness. The candidate computes actual finite and infinite dimensions and explicitly explains that equal infinite dimensions cannot certify strictness, then gives the requested strict-subspace witness. This is not silent method substitution or a false smaller-cardinality claim. If the question had demanded a strict cardinal inequality in every case, it would require revision; those are not its literal words.",
+    "scope_preservation": "The universal algebraic tensor-square reducibility conclusion remains true over an arbitrary common field. The image proof removes an unnecessary characteristic-not-two proof ingredient rather than imposing it as a question premise. Assumptions/conventions stay empty; no finite-complex restriction is imported. All nine fields and four ordered step-node lists are identical. The false d1 equivalence was only old answer material, not a frozen question demand, so character-squaring correction is answer-only."
+  }
+}

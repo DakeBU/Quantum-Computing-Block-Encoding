@@ -1,0 +1,216 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-108",
+  "supersedes_key": "qcb-core-plan-108-character-is-class-function-degree",
+  "supersedes_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+  "supersedes_contract_hash": "bcb887f8e33533ce1c31d6828ec438b0ca7448f7ec38344bf8e47bf00a384324",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-108-textbook-question-v2-character-scalar-degree",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 scalar/codomain correction. The old class-function proof survives over every field, but its unqualified dimension equality needs a scalar cast and its answer's universal integer-recovery claim fails in positive characteristic. Retain and assess that assertion, prove chi(e)=n*1_K and separate characteristic-zero recovery from the characteristic-p counterexample. Do not merely impose C or characteristic zero on all inputs. Empty assumptions/conventions stay empty; only question changes among the nine fields, with the same core/family/split/frozen graph/source_refs and four exact ordered step-node lists. A true scalar-cast reading of the old equality is acknowledged rather than falsely refuted. No equivalence of requested reasoning or approval claimed.",
+  "question": "Let K be an arbitrary field, V a finite-dimensional K-vector space of dimension n, G an arbitrary group, and phi:G->GL_K(V) a representation. Define the K-valued trace character chi(g)=tr_K(phi(g)). Prove conjugacy invariance chi(hgh^(-1))=chi(g) and explain precisely how chi descends to a function on conjugacy classes; identify the representation and trace properties actually used. At the identity prove the correctly typed formula chi(e)=n*1_K.\n\nAssess the predecessor's unqualified 'chi(e)=dim V' and its answer's claim that this value recovers the integer degree. Distinguish an equality after the natural scalar map from recovery of the nonnegative integer n. Explain what follows in characteristic zero, in particular for complex representations, and in characteristic p>0; give a concrete finite-dimensional counterexample to universal integer recovery. Include n=0. Do not silently assume a finite group, a complex scalar field, unitarity or semisimplicity.",
+  "reference_answer": "The trace takes values in K, while n=dim_K(V) is a nonnegative integer. Let iota:N->K be iota(n)=n*1_K. Writing these types explicitly avoids either changing the field or mistaking a field scalar for an integer.\n\nA representation is a homomorphism into the group of invertible K-linear maps. In particular phi(e)=I_V (cancel phi(g) from phi(e)phi(g)=phi(g)), and phi(h^(-1))=phi(h)^(-1) because their products in both orders equal phi(e). Consequently phi(hgh^(-1))=phi(h)phi(g)phi(h)^(-1). For n-by-n matrices A,B over the COMMUTATIVE field K, tr(AB)=sum_ij A_ij B_ji=sum_ji B_ji A_ij=tr(BA). Applying this with A=phi(h) and B=phi(g)phi(h)^(-1), or moving the last factor cyclically to the front, gives chi(hgh^(-1))=tr(phi(h)^(-1)phi(h)phi(g))=tr(phi(g))=chi(g). The same calculation shows trace is invariant under change of basis, so chi is well-defined independently of the matrix representative. No inner product, finite-group averaging or unitary structure is used. Linearity is a trace property, but no linear combination of representation matrices is needed for this conjugation computation; the actual ingredients are cyclicity, multiplicativity and preservation of identity/inverses.\n\nFor the quotient SET of conjugacy classes, define chi_bar([g])=chi(g). If g' is conjugate to g, the calculation just proved says chi(g')=chi(g), so the definition does not depend on the representative. Equivalently chi=chi_bar composed with the quotient map, and surjectivity of that quotient map gives uniqueness of chi_bar. No finiteness of the set of classes is needed, and no identification with the center of a group algebra is asserted for arbitrary infinite G.\n\nAt the identity, an n-element basis gives the identity matrix with n diagonal entries 1_K. Hence chi(e)=tr(I_V)=sum_(j=1)^n 1_K=iota(n), universally over K. Thus the old notation chi(e)=dim V is valid shorthand IF its right side explicitly means this scalar image. As an untyped equality with an integer, or the answer's assertion of universal integer-degree recovery, it is not a justified field-independent claim. In characteristic zero the natural map is injective: (n-m)*1_K=0 forces n=m for nonnegative integers n,m. Accordingly knowing the scalar iota(n) determines n uniquely; over C one ordinarily identifies that scalar with the usual integer degree. This is uniqueness, not an asserted efficient extraction algorithm from an arbitrary field-element encoding.\n\nIn characteristic p>0, iota(n) depends only on n modulo p. For the trivial group and its trivial representation on V=F_p^p, phi(e)=I_p and chi(e)=p*1_(F_p)=0, but dim(V)=p, not zero as an integer. More strongly, the trivial representations on F_p and F_p^(p+1) have the same entire trace character (the constant scalar 1) yet different integer dimensions. This counterexample does not refute chi(e)=iota(n); it refutes integer recovery without a characteristic-zero assumption or an independent dimension restriction. Even if n<p happens to hold, that is extra information, not a premise of the old question. For n=0, the zero vector space has its unique invertible endomorphism as identity, the empty trace sum is zero, and chi is identically zero; all homomorphism, conjugacy and quotient arguments remain valid. A zero-dimensional trace character can coincide with a positive-dimensional one in characteristic p. The correction therefore preserves the original class-function/identity-trace family while explicitly repairing scalar typing and the claimed conclusion, rather than narrowing all representations to the complex case.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Proves identity/inverse preservation and the representation conjugation expression over arbitrary K without adding finite-G or unitarity assumptions."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Establishes trace cyclicity and similarity invariance with field-valued typing; identifies the actual proof ingredients, not a spurious use of trace linearity."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Defines and proves the well-defined unique factorization through conjugacy classes."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Proves chi(e)=n*1_K; assesses rather than silently recasts the old degree assertion, handles characteristic zero and positive characteristic with explicit unequal-dimension examples, and treats n=0."
+    }
+  ],
+  "exposition": {
+    "core_summary": "A finite-dimensional trace character is a conjugacy-invariant K-valued function with chi(e)=(dim_K V)*1_K. Integer degree is uniquely recovered in characteristic zero, but generally only its residue is visible in positive characteristic.",
+    "semantic_steps": [
+      {
+        "claim": "Multiplicativity of phi and preservation of identity/inverses express the conjugated operator as phi(h)phi(g)phi(h)^(-1) over any field.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Cyclicity of the finite-dimensional K-valued trace proves similarity and conjugacy invariance without unitarity or a finite-group hypothesis.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Conjugacy invariance makes chi_bar([g])=chi(g) well-defined and uniquely factors chi through the set of conjugacy classes.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "The identity trace is n*1_K, including n=0; scalar typing, characteristic-zero injectivity and explicit characteristic-p examples distinguish this identity from integer-degree recovery.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_representation_qit.json",
+      "sha256_lf": "efe3edde9226d4c9d30f8336a2e1231935ae443670fa98ed576f91171b3c2f89",
+      "anchor": "Complete corresponding authored qcb-core-plan-108 record read, including all literal question/answer/rubric/assumptions/conventions/steps and source metadata. Exact QA-content provenance, not a mathematical proof or approval."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole historical prepared qcb-core-plan-108-character-is-class-function-degree loaded via release.checked()[2], with exact digest independently revalidated after observed HEAD changed; not a current-reader substitute. Prepared-content provenance only."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit metadata entry previously read and LF rebound in this objective. Pins author-hosted URL, edition and historical SHA only; actual primary text and access limits are separately documented."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_authorship_pending_distinct_review",
+    "author_identity": "/root/qcb_boundary_repair_review",
+    "task_base_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "observed_head_during_final_authorship": "543595d84298831b3a2cdb400444b544a2dcd2fd",
+    "head_change_assessment": "Integration owner advanced the checkout during private work. Both entire historical originals and exact withdrawal review/finding bindings, plus all three source-LF bindings, were revalidated unchanged at the observed head. Mutable cohort counts are not evidence and no count is used.",
+    "private_origin": "_review_tmp/plan-108-character-scalar-degree-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-108-character-scalar-degree-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "bcb887f8e33533ce1c31d6828ec438b0ca7448f7ec38344bf8e47bf00a384324",
+      "successor_contract_hash": "7e2b63eef8a58a8d1121b777c267b1243ece7d127a08621e3dcfb70cbd7605ec",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [],
+      "original_conventions": [],
+      "family": "qit-character-theory",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:harmonic-analysis",
+        "concept:matrix-analysis"
+      ],
+      "supporting_nodes": [
+        "concept:operator-theory"
+      ],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 4,
+      "original_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:harmonic-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:harmonic-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "withdrawal_binding": {
+      "core_id": "qcb-core-plan-108",
+      "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
+      "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+      "reason": "The scalar field convention is absent; trace of identity need not recover integer dimension in positive characteristic.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "fef77d5dd0cf1cd367e8fab0d9141f07005ec9e52610916c8dac6c9928d55f48",
+      "assessment": "Read the exact current withdrawal and full bound item finding, not just the parent's lead. The review/finding digests were recomputed from actual files and matched. The prior uncertainty is addressed explicitly rather than overridden by imported acceptance."
+    },
+    "prior_exposure": {
+      "prior_review_actual_reviewer": "/root/qcb_formal_view_audit",
+      "review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "review_sha256_lf": "a6d80d945512edd20c52815a84153a821a6103cb724cedeb0f405907d6c98748",
+      "finding_digest": "fef77d5dd0cf1cd367e8fab0d9141f07005ec9e52610916c8dac6c9928d55f48",
+      "exposure": "Not blind: the full old answer, rubric, imported acceptance, exact withdrawal/finding, parent leads and relevant source were visible. The prior independent reader was /root/qcb_formal_view_audit, not me. I authored neither historical original nor that review. My preceding source-only QIT work gives prior primary exposure; this candidate is informed correction authorship, not a distinct review or selfapproval. Parent/other reviewer's byte retrieval and verdict are not inherited as my evidence."
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+        "observed_edition": "April10,2026 title, 79-page web PDF text",
+        "operative_regions": "Definition3.5 and complete identity/inverse argument Eq3.23–3.24; Definition3.6 and the following finite-dimensional standing statement; complete Section3.6 class-function/character passage, including the C[G] scalar context, Definition3.28, Eq3.83–3.84 and Proposition3.29(i).",
+        "actual_access": "Actual bounded primary PDF text inspection in this objective through the author-hosted web PDF reader; complete operative definition/formula/construction/proof regions read. No whole-book or external cited-proof read claimed.",
+        "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+        "binary_hash_independently_verified": false,
+        "rendered_pages_independently_inspected": false,
+        "access_limit": "Own read-only in-memory HTTPS byte request was blocked with WinError10013 before bytes were obtained. Web PDF text remained readable. Own screenshot attempts for operative printed28/30 pages returned internal errors, so no pixels or matching-byte verification is claimed. Other reviewer's successful historical retrieval is provenance only, not my own execution. No PDF saved or redistributed.",
+        "source_comparison": "The source gives the conjugation-trace calculation explicitly, in its complex-character context. It lists Proposition3.29 properties without proofs. The arbitrary-field scalar-cast formula, characteristic distinction, counterexamples and quotient factorization are independent reconstruction; no finite-group character-classification results are imported."
+      }
+    ],
+    "source_proof_coverage": {
+      "nodes": "Definition3.5 and complete identity/inverse argument Eq3.23–3.24; Definition3.6 and the following finite-dimensional standing statement; complete Section3.6 class-function/character passage, including the C[G] scalar context, Definition3.28, Eq3.83–3.84 and Proposition3.29(i).",
+      "independent_proof_design": "The source gives the conjugation-trace calculation explicitly, in its complex-character context. It lists Proposition3.29 properties without proofs. The arbitrary-field scalar-cast formula, characteristic distinction, counterexamples and quotient factorization are independent reconstruction; no finite-group character-classification results are imported.",
+      "excluded": "Semisimple character classification, irreducible orthogonality, equality of arbitrary representations from character equality, finite-bit algorithms and local formal closure are excluded.",
+      "formal_boundary": "Original formal/formal_context are null. Frozen conceptual nodes are retained but are not local theorem declarations, and no Lean source theorem or execution is invented."
+    },
+    "artifact_inventory": "Before authoring, recursive private inventory found only historical site readbacks for plan108/112, no existing private candidates/reviews with these core names. Those readbacks, the canonical prior reviews and all older private artifacts remain untouched. New names were chosen and absence checked before writing.",
+    "mechanical_validation": "Whole original and withdrawal/finding bindings, old/new nine-field contract hashes, source-LF files and every ordered step-node list are checked mechanically. This is read-only binding verification, not a build/test/kernel or mathematical approval. No admission-code executable is bound as mathematical source.",
+    "skill_handoff": {
+      "objective": "Explicitly resolve the reserved standalone field/typing/metric uncertainty without a new core or hidden premise.",
+      "mathematical_delta": "Retire field-independent integer-degree recovery; retain arbitrary-field trace conjugacy invariance and an explicitly typed identity value.",
+      "effect_on_root": "One private explicit first question-version2 candidate; root owns distinct review, transport and any integration.",
+      "failure_class": "SOURCE_INVALID: original standalone scope/typing ambiguity; candidate remains unapproved.",
+      "salvage_audit": "Valid universal algebraic components retained; unqualified conclusions assessed with concrete boundary examples. No discarded route is promoted as a formal result.",
+      "assumptions_and_conventions": "Original lists remain empty. Scalar/metric cases and necessary qualifications appear explicitly in the changed requested question; no nonempty convention rewrite or extra standing assumption is introduced.",
+      "process_memory_ids_consulted": [],
+      "direction_fingerprint": "plan-108-character-scalar-degree-question-successor",
+      "expected_information_gain": "A complete typed theorem/proof and exact counterexample distinguish salvageable mathematics from the old scope error.",
+      "parallel_admission": "No new agents. No source-blind, human/expert or common-blind-spot seal claimed.",
+      "default_route": "Direct algebraic identities and minimal counterexamples; metric proof is separately scoped where relevant.",
+      "purification_state": "Private question/reference/rubric/exposition aligned with the original ordered graph interfaces; no public Exposition Seal claimed.",
+      "recommended_next": "Distinct exact-content review of necessity, scope, full proof and all bindings before any canonical transport."
+    },
+    "execution_limits": "Only new private candidate and bounded binding/handoff files. No canonical/source/policy or older report/candidate edits, production Lean, builds/tests/kernel/simulation, commits/push, GPU/admin, global alias/split clearance, human/model/novelty/source-blind or admission claim.",
+    "self_approval": false
+  }
+}

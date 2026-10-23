@@ -124,6 +124,18 @@ angles. Plan404's dimension factor compares unrounded excess copies, not total
 or rounded copy minima. Reuse their existing core IDs and record bounded shared
 subproofs, not additional cores, independent splits or newly formalized results.
 
+Read the field/tensor/entry-ledger checkpoint. Plan106 explicitly assesses the
+unrestricted algebraic abelian-irrep assertion before proving its finite-
+dimensional positive theorem. Plan108 keeps trace field-valued: n*1_K need not
+recover integer n in characteristic p. Plan112 separates the universal flip,
+characteristic-dependent splitting and compatible-metric orthogonality.
+Plan115 keeps its original universal question using im(I-swap), including
+characteristic two and infinite dimension; equal infinite cardinal dimensions
+do not prove equality of subspaces. Plan209 charges original entry queries,
+both arithmetic passes and peak clean workspace, rather than renaming a derived
+angle oracle primitive. Plan208 remains reserved: its active magnitude-only
+rotation assumption cannot be silently overridden by a question or answer.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite

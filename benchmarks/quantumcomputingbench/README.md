@@ -6,7 +6,11 @@ mathematical models, backed by QuantumComputinglib's sources and graph.
 Current distribution: **v0.1.0-preview.1**. This is a working public preview,
 not complete whole-graph coverage or a newly certified mathematical teacher.
 See the [integration/release notes](docs/integration-release-2026-10-22.md).
-The [latest topology/coherent-record checkpoint](docs/textbook-topology-and-coherent-records-2026-10-23.md)
+The [latest field/tensor/entry-ledger checkpoint](docs/textbook-field-tensor-and-entry-ledgers-2026-10-23.md)
+clarifies abelian-irrep dimension, field-valued characters, algebraic versus
+metric swap decompositions, universal tensor-square reducibility and the full
+original-entry-query cost of amplitude loading.
+The preceding [topology/coherent-record checkpoint](docs/textbook-topology-and-coherent-records-2026-10-23.md)
 separates convex extremality from topological boundary, equivariance from
 linearity, clean union projectors from physical register sharing, and joint
 coherence from a signal marginal. It also corrects excess versus total copy
